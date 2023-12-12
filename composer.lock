@@ -2672,16 +2672,16 @@
         },
         {
             "name": "konekt/concord",
-            "version": "1.13.0",
+            "version": "1.13.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/artkonekt/concord.git",
-                "reference": "4c235e1f3fb56261884ec212552e4e3efc40db09"
+                "reference": "00a2b22e53c284a07aafc0e1500f0aaaa26cefcf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/artkonekt/concord/zipball/4c235e1f3fb56261884ec212552e4e3efc40db09",
-                "reference": "4c235e1f3fb56261884ec212552e4e3efc40db09",
+                "url": "https://api.github.com/repos/artkonekt/concord/zipball/00a2b22e53c284a07aafc0e1500f0aaaa26cefcf",
+                "reference": "00a2b22e53c284a07aafc0e1500f0aaaa26cefcf",
                 "shasum": ""
             },
             "require": {
@@ -2728,9 +2728,9 @@
             "description": "Concord is a Laravel Extension for building modular Laravel Applications",
             "support": {
                 "issues": "https://github.com/artkonekt/concord",
-                "source": "https://github.com/artkonekt/concord/tree/1.13.0"
+                "source": "https://github.com/artkonekt/concord/tree/1.13.1"
             },
-            "time": "2023-02-16T09:08:22+00:00"
+            "time": "2023-11-17T13:33:25+00:00"
         },
         {
             "name": "konekt/enum",
@@ -2787,25 +2787,25 @@
         },
         {
             "name": "konekt/enum-eloquent",
-            "version": "1.9.0",
+            "version": "1.9.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/artkonekt/enum-eloquent.git",
-                "reference": "b3d4ec41f020ed1d2f9059c88604cd6a104ae67b"
+                "reference": "d32cae34e912b683986d3a5a4475cdaaba52de1e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/artkonekt/enum-eloquent/zipball/b3d4ec41f020ed1d2f9059c88604cd6a104ae67b",
-                "reference": "b3d4ec41f020ed1d2f9059c88604cd6a104ae67b",
+                "url": "https://api.github.com/repos/artkonekt/enum-eloquent/zipball/d32cae34e912b683986d3a5a4475cdaaba52de1e",
+                "reference": "d32cae34e912b683986d3a5a4475cdaaba52de1e",
                 "shasum": ""
             },
             "require": {
-                "illuminate/database": "8.*|9.*|10.*",
+                "illuminate/database": "^8.75|9.*|10.*",
                 "konekt/enum": "^2.0.2 || ^3.0 | ^4.0",
                 "php": "^8.0"
             },
             "require-dev": {
-                "illuminate/events": "8.*|9.*|10.*",
+                "illuminate/events": "^8.75|9.*|10.*",
                 "phpunit/phpunit": "9 - 10"
             },
             "type": "library",
@@ -2851,7 +2851,7 @@
                 "issues": "https://github.com/artkonekt/enum-eloquent/issues",
                 "source": "https://github.com/artkonekt/enum-eloquent"
             },
-            "time": "2023-02-16T08:34:15+00:00"
+            "time": "2023-11-17T13:23:05+00:00"
         },
         {
             "name": "laminas/laminas-diactoros",
