@@ -88,6 +88,7 @@
             "Webkul\\SocialShare\\": "packages/Webkul/SocialShare/src",
             "Webkul\\Tax\\": "packages/Webkul/Tax/src",
             "Webkul\\Theme\\": "packages/Webkul/Theme/src",
+            "Nicelizhi\\OneBuy\\": "packages/Webkul/OneBuy/src",
             "Webkul\\User\\": "packages/Webkul/User/src"
         }
     },
