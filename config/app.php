@@ -223,6 +223,8 @@ return [
         Webkul\Tax\Providers\TaxServiceProvider::class,
         Webkul\Theme\Providers\ThemeServiceProvider::class,
         Webkul\User\Providers\UserServiceProvider::class,
+        
+        Nicelizhi\OneBuy\Providers\OneBuyServiceProvider::class,
     ])->toArray(),
 
     /*
