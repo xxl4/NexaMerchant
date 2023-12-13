@@ -23,7 +23,11 @@ class ProductController extends Controller
     }
 
     public function detail($slug) {
-        var_dump($slug);
+        //return view('paypal::standard-redirect');
+        return view('onebuy::product-detail');
+
+
+
     }
 
     /**
