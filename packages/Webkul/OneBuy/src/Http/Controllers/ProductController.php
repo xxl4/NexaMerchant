@@ -2,9 +2,10 @@
 
 namespace Nicelizhi\OneBuy\Http\Controllers;
 
-use Webkul\Paypal\Helpers\Ipn;
-use Webkul\Checkout\Facades\Cart;
-use Webkul\Sales\Repositories\OrderRepository;
+use Illuminate\Http\Request;
+use Webkul\Category\Repositories\CategoryRepository;
+use Webkul\Product\Repositories\ProductRepository;
+use Webkul\Shop\Repositories\ThemeCustomizationRepository;
 
 class ProductController extends Controller
 {
@@ -16,65 +17,40 @@ class ProductController extends Controller
      * @return void
      */
     public function __construct(
-        protected OrderRepository $orderRepository,
-        protected Ipn $ipnHelper
+        protected CategoryRepository $categoryRepository,
+        protected ProductRepository $productRepository,
+        protected ThemeCustomizationRepository $themeCustomizationRepository
     )
     {
     }
 
-    public function detail($slug) {
-        //return view('paypal::standard-redirect');
-        return view('onebuy::product-detail');
-
-
-
-    }
 
     /**
-     * Redirects to the paypal.
+     * Show product or category view. If neither category nor product matches, abort with code 404.
      *
-     * @return \Illuminate\View\View
+     * @return \Illuminate\View\View|\Exception
      */
-    public function redirect()
-    {
-        return view('paypal::standard-redirect');
-    }
+    public function detail($slug, Request $request) {
+        \Debugbar::disable(); /* 开启后容易出现前端JS报错的情况 */
+        
+        $slugOrPath = $slug;
+        $product = $this->productRepository->findBySlug($slugOrPath);
 
-    /**
-     * Cancel payment from paypal.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function cancel()
-    {
-        session()->flash('error', trans('shop::app.checkout.cart.paypal-payment-canceled'));
+        if (
+            ! $product
+            || ! $product->visible_individually
+            || ! $product->url_key
+            || ! $product->status
+        ) {
+            abort(404);
+        }
 
-        return redirect()->route('shop.checkout.cart.index');
-    }
+        //var_dump($product);exit;
 
-    /**
-     * Success payment.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function success()
-    {
-        $order = $this->orderRepository->create(Cart::prepareDataForOrder());
+        visitor()->visit($product);
 
-        Cart::deActivateCart();
+        //return view('shop::products.view', compact('product'));
 
-        session()->flash('order', $order);
-
-        return redirect()->route('shop.checkout.onepage.success');
-    }
-
-    /**
-     * Paypal IPN listener.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function ipn()
-    {
-        $this->ipnHelper->processIpn(request()->all());
+        return view('onebuy::product-detail', compact('product'));
     }
 }
