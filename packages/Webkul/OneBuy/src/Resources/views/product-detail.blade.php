@@ -359,170 +359,49 @@ Secure Checkout </div>
 <img class="checkout-security-img" src="https://lander.heomai.com/template-common/checkout1/images/secure-icons.png" />
 </div>
 <div class="product-list js-list">
-<div data-id="5" class="list-item js-list-item item-5 list-item--checked" style="order: 0;">
-<div class="recommend_deal" style="display:flex;">
-<img class="recommend_deal_img" src="https://lander.heomai.com/template-common/checkout1/images/star.png">
-<div class="recommend_deal_font">
-RECOMMENDED DEAL </div>
-</div>
-<div class="list-item-content">
-<div class="list-item-title">
-<span class="list-item-title-name js-name">
-2x {{ $product->name }} <br/>
-</span>
-</div>
-<div class="list-item-footer">
-<div class="list-item-prices">
-<div class="old-price">
-$171.96 </div>
-<div class="new-price">
-$49.99 </div>
-</div>
-</div>
-<style>
-                                        .tip1_wrapper_0 {
-                                            display: flex;
-                                        }
-                                        .tip2_wrapper_0 {
-                                            display: flex;
-                                        }
-                                        .tip2_wrapper_0 .tip1 {
-                                            color: #00c1f1;
-                                        }
-                                    </style>
-<div class="tip_wrapper tip1_wrapper_0">
-<img src="https://lander.heomai.com/template-common/checkout1/images/checkmark.png">
-<div class="tip1 js-tip1">71% Savings</div>
-</div>
-<div class="tip_wrapper tip2_wrapper_0">
-<img src="https://lander.heomai.com/template-common/checkout1/images/checkmark.png">
-<div class="tip1 js-tip1">$24.99/piece</div>
-</div>
-</div>
-</div>
-<div data-id="6" class="list-item js-list-item item-6 " style="order: 1;">
-<div class="recommend_deal" style="display:none;">
-<img class="recommend_deal_img" src="https://lander.heomai.com/template-common/checkout1/images/star.png">
-<div class="recommend_deal_font">
-RECOMMENDED DEAL </div>
-</div>
-<div class="list-item-content">
-<div class="list-item-title">
-<span class="list-item-title-name js-name">
-1x {{ $product->name }} <br/>
-</span>
-</div>
-<div class="list-item-footer">
-<div class="list-item-prices">
-<div class="old-price">
-$85.98 </div>
-<div class="new-price">
-$42.99 </div>
-</div>
-</div>
-<style>
-                                        .tip1_wrapper_1 {
-                                            display: flex;
-                                        }
-                                        .tip2_wrapper_1 {
-                                            display: flex;
-                                        }
-                                        .tip2_wrapper_1 .tip1 {
-                                            color: #00c1f1;
-                                        }
-                                    </style>
-<div class="tip_wrapper tip1_wrapper_1">
-<img src="https://lander.heomai.com/template-common/checkout1/images/checkmark.png">
-<div class="tip1 js-tip1">50% Savings</div>
-</div>
-<div class="tip_wrapper tip2_wrapper_1">
-<img src="https://lander.heomai.com/template-common/checkout1/images/checkmark.png">
-<div class="tip1 js-tip1">$42.99/piece</div>
-</div>
-</div>
-</div>
-<div data-id="7" class="list-item js-list-item item-7 " style="order: 1;">
-<div class="recommend_deal" style="display:none;">
-<img class="recommend_deal_img" src="https://lander.heomai.com/template-common/checkout1/images/star.png">
-<div class="recommend_deal_font">
-RECOMMENDED DEAL </div>
-</div>
-<div class="list-item-content">
-<div class="list-item-title">
-<span class="list-item-title-name js-name">
-3x {{ $product->name }} <br/>
-</span>
-</div>
-<div class="list-item-footer">
-<div class="list-item-prices">
-<div class="old-price">
-$257.94 </div>
-<div class="new-price">
-$54.99 </div>
-</div>
-</div>
-<style>
-                                        .tip1_wrapper_2 {
-                                            display: flex;
-                                        }
-                                        .tip2_wrapper_2 {
-                                            display: flex;
-                                        }
-                                        .tip2_wrapper_2 .tip1 {
-                                            color: #00c1f1;
-                                        }
-                                    </style>
-<div class="tip_wrapper tip1_wrapper_2">
-<img src="https://lander.heomai.com/template-common/checkout1/images/checkmark.png">
-<div class="tip1 js-tip1">79% Savings</div>
-</div>
-<div class="tip_wrapper tip2_wrapper_2">
-<img src="https://lander.heomai.com/template-common/checkout1/images/checkmark.png">
-<div class="tip1 js-tip1">$18.33/piece</div>
-</div>
-</div>
-</div>
-<div data-id="8" class="list-item js-list-item item-8 " style="order: 1;">
-<div class="recommend_deal" style="display:none;">
-<img class="recommend_deal_img" src="https://lander.heomai.com/template-common/checkout1/images/star.png">
-<div class="recommend_deal_font">
-RECOMMENDED DEAL </div>
-</div>
-<div class="list-item-content">
-<div class="list-item-title">
-<span class="list-item-title-name js-name">
-4x {{ $product->name }} <br/>
-</span>
-</div>
-<div class="list-item-footer">
-<div class="list-item-prices">
-<div class="old-price">
-$343.92 </div>
-<div class="new-price">
-$59.99 </div>
-</div>
-</div>
-<style>
-                                        .tip1_wrapper_3 {
-                                            display: flex;
-                                        }
-                                        .tip2_wrapper_3 {
-                                            display: flex;
-                                        }
-                                        .tip2_wrapper_3 .tip1 {
-                                            color: #00c1f1;
-                                        }
-                                    </style>
-<div class="tip_wrapper tip1_wrapper_3">
-<img src="https://lander.heomai.com/template-common/checkout1/images/checkmark.png">
-<div class="tip1 js-tip1">83% Savings</div>
-</div>
-<div class="tip_wrapper tip2_wrapper_3">
-<img src="https://lander.heomai.com/template-common/checkout1/images/checkmark.png">
-<div class="tip1 js-tip1">$14.99/piece</div>
-</div>
-</div>
-</div>
+    <?php foreach($package_products as $key=>$package_product) { ?>
+    <div data-id="<?php echo $package_product['id'];?>" class="list-item js-list-item item-5 <?php if($key==0) { ?> list-item--checked <?php } ?>" style="order: 0;">
+        <div class="recommend_deal" style="display:flex;">
+            <img class="recommend_deal_img" src="https://lander.heomai.com/template-common/checkout1/images/star.png">
+            <div class="recommend_deal_font">
+            RECOMMENDED DEAL </div>
+        </div>
+        <div class="list-item-content">
+            <div class="list-item-title">
+                <span class="list-item-title-name js-name">
+                <?php echo $package_product['name'];?> <br/>
+                </span>
+            </div>
+        <div class="list-item-footer">
+            <div class="list-item-prices">
+                <div class="old-price">
+                <?php echo $package_product['old_price'];?> </div>
+                <div class="new-price">
+                <?php echo $package_product['new_price'];?> </div>
+            </div>
+        </div>
+        <style>
+            .tip1_wrapper_0 {
+                display: flex;
+            }
+            .tip2_wrapper_0 {
+                display: flex;
+            }
+            .tip2_wrapper_0 .tip1 {
+                color: #00c1f1;
+            }
+        </style>
+        <div class="tip_wrapper tip1_wrapper_0">
+            <img src="https://lander.heomai.com/template-common/checkout1/images/checkmark.png">
+            <div class="tip1 js-tip1"><?php echo $package_product['tip1'];?></div>
+        </div>
+        <div class="tip_wrapper tip2_wrapper_0">
+            <img src="https://lander.heomai.com/template-common/checkout1/images/checkmark.png">
+            <div class="tip1 js-tip1"><?php echo $package_product['tip2'];?></div>
+        </div>
+        </div>
+    </div>
+    <?php } ?>
 </div>
 <div class="attribute-select">
 </div>
@@ -1065,6 +944,7 @@ COMPLETE SECURE PURCHASE </button>
             {"id":7,"name":"3x {{ $product->name }}","image":"https:\/\/d1y4tm6t3pzfj.cloudfront.net\/cpl\/images\/1689762581_1.jpg","amount":"3","old_price":"257.94","new_price":"54.99","tip1":"79% Savings","tip2":"$18.33\/piece","shipping_fee":"13.99","popup_info":{"name":null,"old_price":null,"new_price":null,"img":null}},
             {"id":8,"name":"4x {{ $product->name }}","image":"https:\/\/d1y4tm6t3pzfj.cloudfront.net\/cpl\/images\/1689762584_1.jpg","amount":"4","old_price":"343.92","new_price":"59.99","tip1":"83% Savings","tip2":"$14.99\/piece","shipping_fee":"15.99","popup_info":{"name":null,"old_price":null,"new_price":null,"img":null}}
         ]
+        var products = <?php echo json_encode($package_products);?>;
         var product_names = products.map(function(item) {return item.name})
         var comment_setting = {"productNames":product_names,"firstNames":["James","Mary","Robert","Jennifer","Michael","Elizabeth","Thomas","Nancy","Charles"],"lastNames":["A","B","C","D","E","F","G","H","K","L","M","N","O","P","R","S","T","V","W","Y"],"locations":["Florida, US","North Carolina, US","New York, US","Washington, US","Texas, US","Kentucky, US","North Coast, CA","Central Coast, CA","Klamath Mountains, CA","Central Sierra, CA","Central California, CA"]};
         function setComment(e) {
@@ -1100,6 +980,9 @@ COMPLETE SECURE PURCHASE </button>
                 {"id":7,"name":"3x {{ $product->name }}","image":"https:\/\/d1y4tm6t3pzfj.cloudfront.net\/cpl\/images\/1689762581_1.jpg","amount":"3","old_price":"257.94","new_price":"54.99","tip1":"79% Savings","tip2":"$18.33\/piece","shipping_fee":"13.99","popup_info":{"name":null,"old_price":null,"new_price":null,"img":null}},
                 {"id":8,"name":"4x {{ $product->name }}","image":"https:\/\/d1y4tm6t3pzfj.cloudfront.net\/cpl\/images\/1689762584_1.jpg","amount":"4","old_price":"343.92","new_price":"59.99","tip1":"83% Savings","tip2":"$14.99\/piece","shipping_fee":"15.99","popup_info":{"name":null,"old_price":null,"new_price":null,"img":null}}
             ]
+
+            var products = <?php echo json_encode($package_products);?>;
+            
             for (var i = 0; i < products.length; i++) {
                 var product = products[i];
                 if(product.id == selected_id) {
@@ -1461,16 +1344,26 @@ function GotoNotRequest(url) {
         {"id":3,"name":"Beige","image":"https:\/\/d1y4tm6t3pzfj.cloudfront.net\/cpl\/images\/1689762495_3.jpg"},
         {"id":4,"name":"Gray","image":"https:\/\/d1y4tm6t3pzfj.cloudfront.net\/cpl\/images\/1689762499_4.jpg"}],"tip":null,"tip_img":null,"selected_option_id":null}];
 */
+/**
+ * {"name":"Women's thin no wire lace bra - Black \/ S","sku_code":"CJ02168-C#black-S#m","sku_id":44113194877163,"attribute_name":"S,Black","key":"S_Black"}
+ * 
+ */
         <?php 
             $product_attributes = [];
+            $skus = [];
             $config = app('Webkul\Product\Helpers\ConfigurableOption')->getConfigurationConfig($product);
-            //var_dump($config);
+
             foreach($config['attributes'] as $key=>$attribute) {
                 
                 $product_attribute['id'] = $attribute['id'];
                 $product_attribute['name'] = $attribute['code'];
                 $options = [];
                 foreach($attribute['options'] as $kk=> $option) {
+                    $sku['name'] = $product->name." ".$option['label'];
+                    $sku['attribute_name'] = $option['label'];
+                    $sku['sku_id'] = $attribute['id']."_".$option['id'];
+                    $sku['code'] = $attribute['id']."_".$option['id'];
+                    $skus[] = $sku;
                     $option['name'] = $option['label'];
                     $option['is_sold_out'] = false;
                     if(isset($config['variant_images'][$attribute['id']][0]['small_image_url'])) {
@@ -1481,7 +1374,6 @@ function GotoNotRequest(url) {
                     $options[] = $option;
                 }
                 $product_attribute['options'] = $options;
-                //var_dump($config['variant_images'][$attribute['id']][0]['small_image_url']);exit;
                 if(isset($config['variant_images'][$attribute['id']][0]['small_image_url'])) {
                     $product_attribute['image'] = $config['variant_images'][$attribute['id']][0]['small_image_url'];
                 }else{
@@ -1490,6 +1382,8 @@ function GotoNotRequest(url) {
                 
                 $product_attributes[] = $product_attribute;
             }
+
+            //var_dump($skus);exit;
             
             //exit;
         ?>
@@ -2049,7 +1943,7 @@ function GotoNotRequest(url) {
                 product_name  : product.name,
                 product_price : product.new_price,
                 product_sku  : '',
-                product_id  : '8089213141227',
+                product_id  : '<?php echo $product->id;?>',
                 sku_id  : '',
                 currency : 'USD',
                 shipping_fee : shipping_fee,
@@ -2343,6 +2237,9 @@ function GotoNotRequest(url) {
                 skus.push(sku);
             }
 
+            console.log("product skus");
+            console.log(skus);
+
             var products = [], product_sku_map = {};
 
             for(var m=0; m<skus.length; m++) {
@@ -2354,7 +2251,7 @@ function GotoNotRequest(url) {
                         price       : unit_price,
                         amount      : 1,
                         description : skus[m].name,
-                        product_id  : '8089213141227',
+                        product_id  : '<?php echo $product->id;?>',
                         product_sku : skus[m].sku_code,
                         variant_id  : skus[m].sku_id
                     };
@@ -2371,7 +2268,38 @@ function GotoNotRequest(url) {
                 return window.sku_maps
             }
 
-            var skus = [{"name":"Women's thin no wire lace bra - Black \/ S","sku_code":"CJ02168-C#black-S#m","sku_id":44113194877163,"attribute_name":"S,Black","key":"S_Black"},{"name":"Women's thin no wire lace bra - Pink \/ S","sku_code":"CJ02168-C#pink-S#m","sku_id":44113194909931,"attribute_name":"S,Pink","key":"S_Pink"},{"name":"Women's thin no wire lace bra - Beige \/ S","sku_code":"CJ02168-C#beige-S#m","sku_id":44113194975467,"attribute_name":"S,Beige","key":"S_Beige"},{"name":"Women's thin no wire lace bra - Gray \/ S","sku_code":"CJ02168-C#gray-S#m","sku_id":44113194942699,"attribute_name":"S,Gray","key":"S_Gray"},{"name":"Women's thin no wire lace bra - Black \/ M","sku_code":"CJ02168-C#black-S#l","sku_id":44071643152619,"attribute_name":"M,Black","key":"M_Black"},{"name":"Women's thin no wire lace bra - Pink \/ M","sku_code":"CJ02168-C#pink-S#l","sku_id":44071643381995,"attribute_name":"M,Pink","key":"M_Pink"},{"name":"Women's thin no wire lace bra - Beige \/ M","sku_code":"CJ02168-C#beige-S#l","sku_id":44071643840747,"attribute_name":"M,Beige","key":"M_Beige"},{"name":"Women's thin no wire lace bra - Gray \/ M","sku_code":"CJ02168-C#gray-S#l","sku_id":44071643611371,"attribute_name":"M,Gray","key":"M_Gray"},{"name":"Women's thin no wire lace bra - Black \/ L","sku_code":"CJ02168-C#black-S#xl","sku_id":44071643185387,"attribute_name":"L,Black","key":"L_Black"},{"name":"Women's thin no wire lace bra - Pink \/ L","sku_code":"CJ02168-C#pink-S#xl","sku_id":44071643414763,"attribute_name":"L,Pink","key":"L_Pink"},{"name":"Women's thin no wire lace bra - Beige \/ L","sku_code":"CJ02168-C#beige-S#xl","sku_id":44071643873515,"attribute_name":"L,Beige","key":"L_Beige"},{"name":"Women's thin no wire lace bra - Gray \/ L","sku_code":"CJ02168-C#gray-S#xl","sku_id":44071643644139,"attribute_name":"L,Gray","key":"L_Gray"},{"name":"Women's thin no wire lace bra - Black \/ XL","sku_code":"CJ02168-C#black-S#2xl","sku_id":44071643218155,"attribute_name":"XL,Black","key":"XL_Black"},{"name":"Women's thin no wire lace bra - Pink \/ XL","sku_code":"CJ02168-C#pink-S#2xl","sku_id":44071643447531,"attribute_name":"XL,Pink","key":"XL_Pink"},{"name":"Women's thin no wire lace bra - Beige \/ XL","sku_code":"CJ02168-C#beige-S#2xl","sku_id":44071643906283,"attribute_name":"XL,Beige","key":"XL_Beige"},{"name":"Women's thin no wire lace bra - Gray \/ XL","sku_code":"CJ02168-C#gray-S#2xl","sku_id":44071643676907,"attribute_name":"XL,Gray","key":"XL_Gray"},{"name":"Women's thin no wire lace bra - Black \/ 2XL","sku_code":"CJ02168-C#black-S#3xl","sku_id":44071643250923,"attribute_name":"2XL,Black","key":"2XL_Black"},{"name":"Women's thin no wire lace bra - Pink \/ 2XL","sku_code":"CJ02168-C#pink-S#3xl","sku_id":44071643480299,"attribute_name":"2XL,Pink","key":"2XL_Pink"},{"name":"Women's thin no wire lace bra - Beige \/ 2XL","sku_code":"CJ02168-C#beige-S#3xl","sku_id":44071643939051,"attribute_name":"2XL,Beige","key":"2XL_Beige"},{"name":"Women's thin no wire lace bra - Gray \/ 2XL","sku_code":"CJ02168-C#gray-S#3xl","sku_id":44071643709675,"attribute_name":"2XL,Gray","key":"2XL_Gray"},{"name":"Women's thin no wire lace bra - Black \/ 3XL","sku_code":"CJ02168-C#black-S#4xl","sku_id":44071643283691,"attribute_name":"3XL,Black","key":"3XL_Black"},{"name":"Women's thin no wire lace bra - Pink \/ 3XL","sku_code":"CJ02168-C#pink-S#4xl","sku_id":44071643513067,"attribute_name":"3XL,Pink","key":"3XL_Pink"},{"name":"Women's thin no wire lace bra - Beige \/ 3XL","sku_code":"CJ02168-C#beige-S#4xl","sku_id":44071643971819,"attribute_name":"3XL,Beige","key":"3XL_Beige"},{"name":"Women's thin no wire lace bra - Gray \/ 3XL","sku_code":"CJ02168-C#gray-S#4xl","sku_id":44071643742443,"attribute_name":"3XL,Gray","key":"3XL_Gray"},{"name":"Women's thin no wire lace bra - Black \/ 4XL","sku_code":"CJ02168-C#black-S#5xl","sku_id":44071643316459,"attribute_name":"4XL,Black","key":"4XL_Black"},{"name":"Women's thin no wire lace bra - Pink \/ 4XL","sku_code":"CJ02168-C#pink-S#5xl","sku_id":44071643545835,"attribute_name":"4XL,Pink","key":"4XL_Pink"},{"name":"Women's thin no wire lace bra - Beige \/ 4XL","sku_code":"CJ02168-C#beige-S#5xl","sku_id":44071644004587,"attribute_name":"4XL,Beige","key":"4XL_Beige"},{"name":"Women's thin no wire lace bra - Gray \/ 4XL","sku_code":"CJ02168-C#gray-S#5xl","sku_id":44071643775211,"attribute_name":"4XL,Gray","key":"4XL_Gray"}];
+            var skus = [
+                {"name":"Women's thin no wire lace bra - Black \/ S","sku_code":"CJ02168-C#black-S#m","sku_id":44113194877163,"attribute_name":"S,Black","key":"S_Black"},
+            {"name":"Women's thin no wire lace bra - Pink \/ S","sku_code":"CJ02168-C#pink-S#m","sku_id":44113194909931,"attribute_name":"S,Pink","key":"S_Pink"},
+            {"name":"Women's thin no wire lace bra - Beige \/ S","sku_code":"CJ02168-C#beige-S#m","sku_id":44113194975467,"attribute_name":"S,Beige","key":"S_Beige"},
+            {"name":"Women's thin no wire lace bra - Gray \/ S","sku_code":"CJ02168-C#gray-S#m","sku_id":44113194942699,"attribute_name":"S,Gray","key":"S_Gray"},
+            {"name":"Women's thin no wire lace bra - Black \/ M","sku_code":"CJ02168-C#black-S#l","sku_id":44071643152619,"attribute_name":"M,Black","key":"M_Black"},
+            {"name":"Women's thin no wire lace bra - Pink \/ M","sku_code":"CJ02168-C#pink-S#l","sku_id":44071643381995,"attribute_name":"M,Pink","key":"M_Pink"},
+            {"name":"Women's thin no wire lace bra - Beige \/ M","sku_code":"CJ02168-C#beige-S#l","sku_id":44071643840747,"attribute_name":"M,Beige","key":"M_Beige"},
+            {"name":"Women's thin no wire lace bra - Gray \/ M","sku_code":"CJ02168-C#gray-S#l","sku_id":44071643611371,"attribute_name":"M,Gray","key":"M_Gray"},
+            {"name":"Women's thin no wire lace bra - Black \/ L","sku_code":"CJ02168-C#black-S#xl","sku_id":44071643185387,"attribute_name":"L,Black","key":"L_Black"},
+            {"name":"Women's thin no wire lace bra - Pink \/ L","sku_code":"CJ02168-C#pink-S#xl","sku_id":44071643414763,"attribute_name":"L,Pink","key":"L_Pink"},
+            {"name":"Women's thin no wire lace bra - Beige \/ L","sku_code":"CJ02168-C#beige-S#xl","sku_id":44071643873515,"attribute_name":"L,Beige","key":"L_Beige"},
+            {"name":"Women's thin no wire lace bra - Gray \/ L","sku_code":"CJ02168-C#gray-S#xl","sku_id":44071643644139,"attribute_name":"L,Gray","key":"L_Gray"},
+            {"name":"Women's thin no wire lace bra - Black \/ XL","sku_code":"CJ02168-C#black-S#2xl","sku_id":44071643218155,"attribute_name":"XL,Black","key":"XL_Black"},
+            {"name":"Women's thin no wire lace bra - Pink \/ XL","sku_code":"CJ02168-C#pink-S#2xl","sku_id":44071643447531,"attribute_name":"XL,Pink","key":"XL_Pink"},
+            {"name":"Women's thin no wire lace bra - Beige \/ XL","sku_code":"CJ02168-C#beige-S#2xl","sku_id":44071643906283,"attribute_name":"XL,Beige","key":"XL_Beige"},
+            {"name":"Women's thin no wire lace bra - Gray \/ XL","sku_code":"CJ02168-C#gray-S#2xl","sku_id":44071643676907,"attribute_name":"XL,Gray","key":"XL_Gray"},
+            {"name":"Women's thin no wire lace bra - Black \/ 2XL","sku_code":"CJ02168-C#black-S#3xl","sku_id":44071643250923,"attribute_name":"2XL,Black","key":"2XL_Black"},
+            {"name":"Women's thin no wire lace bra - Pink \/ 2XL","sku_code":"CJ02168-C#pink-S#3xl","sku_id":44071643480299,"attribute_name":"2XL,Pink","key":"2XL_Pink"},
+            {"name":"Women's thin no wire lace bra - Beige \/ 2XL","sku_code":"CJ02168-C#beige-S#3xl","sku_id":44071643939051,"attribute_name":"2XL,Beige","key":"2XL_Beige"},
+            {"name":"Women's thin no wire lace bra - Gray \/ 2XL","sku_code":"CJ02168-C#gray-S#3xl","sku_id":44071643709675,"attribute_name":"2XL,Gray","key":"2XL_Gray"},
+            {"name":"Women's thin no wire lace bra - Black \/ 3XL","sku_code":"CJ02168-C#black-S#4xl","sku_id":44071643283691,"attribute_name":"3XL,Black","key":"3XL_Black"},
+            {"name":"Women's thin no wire lace bra - Pink \/ 3XL","sku_code":"CJ02168-C#pink-S#4xl","sku_id":44071643513067,"attribute_name":"3XL,Pink","key":"3XL_Pink"},
+            {"name":"Women's thin no wire lace bra - Beige \/ 3XL","sku_code":"CJ02168-C#beige-S#4xl","sku_id":44071643971819,"attribute_name":"3XL,Beige","key":"3XL_Beige"},
+            {"name":"Women's thin no wire lace bra - Gray \/ 3XL","sku_code":"CJ02168-C#gray-S#4xl","sku_id":44071643742443,"attribute_name":"3XL,Gray","key":"3XL_Gray"},
+            {"name":"Women's thin no wire lace bra - Black \/ 4XL","sku_code":"CJ02168-C#black-S#5xl","sku_id":44071643316459,"attribute_name":"4XL,Black","key":"4XL_Black"},
+            {"name":"Women's thin no wire lace bra - Pink \/ 4XL","sku_code":"CJ02168-C#pink-S#5xl","sku_id":44071643545835,"attribute_name":"4XL,Pink","key":"4XL_Pink"},
+            {"name":"Women's thin no wire lace bra - Beige \/ 4XL","sku_code":"CJ02168-C#beige-S#5xl","sku_id":44071644004587,"attribute_name":"4XL,Beige","key":"4XL_Beige"},
+            {"name":"Women's thin no wire lace bra - Gray \/ 4XL","sku_code":"CJ02168-C#gray-S#5xl","sku_id":44071643775211,"attribute_name":"4XL,Gray","key":"4XL_Gray"}
+        ];
+            var skus = <?php echo json_encode($skus);?>  
+            
             var sku_maps = {};
             
             for(var i=0; i<skus.length; i++) {
