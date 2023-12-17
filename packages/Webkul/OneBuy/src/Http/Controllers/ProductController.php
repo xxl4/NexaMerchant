@@ -53,7 +53,68 @@ class ProductController extends Controller
 
         //return view('shop::products.view', compact('product'));
 
-        return view('onebuy::product-detail', compact('product'));
+
+        // 四个商品的价格情况
+        $package_products = [];
+        /**
+         * 
+         * {   "id":5,
+                "name":"2x {{ $product->name }}",
+                "image":"{{ $productBaseImage['medium_image_url'] }}",
+                "amount":"2",
+                "old_price":"171.96",
+                "new_price":"49.99",
+                "tip1":"71% Savings",
+                "tip2":"$24.99\/piece",
+                "shipping_fee":"11.99",
+                "popup_info":{
+                    "name":null,
+                    "old_price":null,
+                    "new_price":null,
+                    "img":null}
+                },
+         * 
+         */
+        
+        $productBaseImage = product_image()->getProductBaseImage($product);
+        $package_product['id'] = 5;
+        $package_product['name'] = "2x" . $product->name;
+        $package_product['image'] = $productBaseImage['medium_image_url'];
+        $package_product['amount'] = 2;
+        $package_product['old_price'] = 3;
+        $package_product['new_price'] = 2;
+        $package_product['tip1'] = "71% Savings";
+        $package_product['tip2'] = "$24.99/piece";
+        $package_product['shipping_fee'] = 4;
+        $popup_info['name'] = null;
+        $popup_info['old_price'] = null;
+        $popup_info['new_price'] = null;
+        $popup_info['img'] = null;
+        $package_product['popup_info'] = $popup_info;
+        $package_products[] = $package_product;
+        $productBaseImage = product_image()->getProductBaseImage($product);
+        $package_product['id'] = 6;
+        $package_product['name'] = "1x" . $product->name;
+        $package_product['image'] = $productBaseImage['medium_image_url'];
+        $package_product['amount'] = 1;
+        $package_product['old_price'] = 4;
+        $package_product['new_price'] = 3;
+        $package_product['tip1'] = "71% Savings";
+        $package_product['tip2'] = "$24.99/piece";
+        $package_product['shipping_fee'] = 3;
+        $popup_info['name'] = null;
+        $popup_info['old_price'] = null;
+        $popup_info['new_price'] = null;
+        $popup_info['img'] = null;
+        $package_product['popup_info'] = $popup_info;
+        $package_products[] = $package_product;
+
+        //var_dump($package_products);
+
+
+
+
+        return view('onebuy::product-detail', compact('product','package_products'));
     }
 
     // 完成订单生成动作
