@@ -2218,6 +2218,9 @@ function GotoNotRequest(url) {
             var attribute_item = $('.attribute-select .attribute-item');
             var sku_maps = getSKuMaps();
 
+            console.log("attribute_item");
+            console.log(attribute_item);
+
             for(var i=0; i< attribute_item.length; i++) {
                 var sku_key_arr = [];
                 var img_key = '';
@@ -2489,28 +2492,26 @@ function GotoNotRequest(url) {
         })
     </script>
 <script>
-                                    var ele_arr = [document.querySelector('.main-container-progress-box'), document.querySelector('.payment-block'), document.querySelector('.shipping-block'), document.querySelector('.summary-block')]
-                    
-
-        window.addEventListener('scroll', function(e) {
-            ele_arr.forEach(function(item, index) {
-                var elm_font = document.querySelector('.state-'+(index+1)+' .main-container-progress-state-content-step-title')
-                var elm_line = document.querySelector('.state-'+(index+1)+' .main-container-progress-state-line')
-                var elm_img = document.querySelector('.state-'+(index+1)+' .main-container-progress-state-content-circle-a img')
-                if(item) {
-                    if (item.getBoundingClientRect().top - window.innerHeight <= 0) {
-                        elm_line && elm_line.classList.add('active')
-                        elm_img && (elm_img.style.opacity = '0')
-                        elm_font.classList.add("black")
-                    } else {
-                        elm_line && elm_line.classList.remove('active')
-                        elm_img && (elm_img.style.opacity = '1')
-                        elm_font.classList.remove("black")
-                    }
+    var ele_arr = [document.querySelector('.main-container-progress-box'), document.querySelector('.payment-block'), document.querySelector('.shipping-block'), document.querySelector('.summary-block')]
+    window.addEventListener('scroll', function(e) {
+        ele_arr.forEach(function(item, index) {
+            var elm_font = document.querySelector('.state-'+(index+1)+' .main-container-progress-state-content-step-title')
+            var elm_line = document.querySelector('.state-'+(index+1)+' .main-container-progress-state-line')
+            var elm_img = document.querySelector('.state-'+(index+1)+' .main-container-progress-state-content-circle-a img')
+            if(item) {
+                if (item.getBoundingClientRect().top - window.innerHeight <= 0) {
+                    elm_line && elm_line.classList.add('active')
+                    elm_img && (elm_img.style.opacity = '0')
+                    elm_font.classList.add("black")
+                } else {
+                    elm_line && elm_line.classList.remove('active')
+                    elm_img && (elm_img.style.opacity = '1')
+                    elm_font.classList.remove("black")
                 }
-            })
-        });
-    </script>
+            }
+        })
+    });
+</script>
 <script>
         function loadJS( url, callback ){
             var script = document.createElement('script'),
