@@ -974,6 +974,8 @@ COMPLETE SECURE PURCHASE </button>
 <script>
         function getSelectProduct() {
             var selected_id = $('.list-item--checked').data('id');
+            console.log("select id info ");
+            console.log(selected_id);
             var products = [
                 {"id":5,"name":"2x {{ $product->name }}","image":"https:\/\/d1y4tm6t3pzfj.cloudfront.net\/cpl\/images\/1689762556_1.jpg","amount":"2","old_price":"171.96","new_price":"49.99","tip1":"71% Savings","tip2":"$24.99\/piece","shipping_fee":"11.99","popup_info":{"name":null,"old_price":null,"new_price":null,"img":null}},
                 {"id":6,"name":"1x {{ $product->name }}","image":"https:\/\/d1y4tm6t3pzfj.cloudfront.net\/cpl\/images\/1689762577_1.jpg","amount":"1","old_price":"85.98","new_price":"42.99","tip1":"50% Savings","tip2":"$42.99\/piece","shipping_fee":"10.99","popup_info":{"name":null,"old_price":null,"new_price":null,"img":null}},
@@ -1141,50 +1143,50 @@ COMPLETE SECURE PURCHASE </button>
     </script>
 <script>
     function setAttributeTemplate(select_language, select_language_after, has_img_attribute_id, is_more_attribute, template, attribute_err_language) {
-    var product_attributes = JSON.parse(JSON.stringify(window.product_attributes));
-    console.log(product_attributes);
-    var product_template = '<div class="attribute-item">';
-    if(is_more_attribute) {
-        product_template += '<div class="attribute-item-title">{article}</div>';
-    }
-    var show_image = '';
+        var product_attributes = JSON.parse(JSON.stringify(window.product_attributes));
+        console.log(product_attributes);
+        var product_template = '<div class="attribute-item">';
+        if(is_more_attribute) {
+            product_template += '<div class="attribute-item-title">{article}</div>';
+        }
+        var show_image = '';
 
-    for (var i = 0; i < product_attributes.length; i++) {
-        var product_attribute = product_attributes[i];
-        product_template += '<div class="attribute_item_wrapper">';
-        product_template += '<div class="attribute-value-item-title">'+select_language+' ' + (product_attribute.name || '') + select_language_after;
-        
-        if(product_attribute.tip) {
-            product_template += ' <span style="text-decoration: underline;font-size: 14px;cursor:pointer;color:#0000ff;" onclick="showImgProp(&quot;'+product_attribute.tip_img+'&quot;)">'+product_attribute.tip+'</span>'
-        }
-        
-        product_template += '</div>';
-        product_template += '<select class="attribute-value-item-select attribute_select" onchange="attributeChange(this, '+(product_attribute.id == has_img_attribute_id)+', '+"'"+template+"'"+')" '+(product_attribute.id==has_img_attribute_id? ' data-has-img="true"' : '' )+'><option value="" '+ (!product_attribute.selected_option_id ? 'selected' : '') +' url="'+product_attribute.options[0].image+'"></option>';
-        //if(product_attribute.id == has_img_attribute_id && !product_attribute.selected_option_id) {
-            show_image = product_attribute.options[0].image;
-        //}
+        for (var i = 0; i < product_attributes.length; i++) {
+            var product_attribute = product_attributes[i];
+            product_template += '<div class="attribute_item_wrapper">';
+            product_template += '<div class="attribute-value-item-title">'+select_language+' ' + (product_attribute.name || '') + select_language_after;
             
-        for(var j=0; j<product_attribute.options.length; j++) {
-            var product_attribute_option = product_attribute.options[j];
-            product_template += '<option value="'+product_attribute_option.name+'" '+ (product_attribute_option.id==product_attribute.selected_option_id? 'selected' : '') +' url="'+product_attribute_option.image+'" '+ (product_attribute_option.is_sold_out ? ' data-is-sold-out="true" ' : '')+'>'+product_attribute_option.name+'</option>';
-            //if(product_attribute_option.id==product_attribute.selected_option_id && product_attribute.id == has_img_attribute_id) {
-                show_image = product_attribute_option.image;
-            //}
-        }
+            if(product_attribute.tip) {
+                product_template += ' <span style="text-decoration: underline;font-size: 14px;cursor:pointer;color:#0000ff;" onclick="showImgProp(&quot;'+product_attribute.tip_img+'&quot;)">'+product_attribute.tip+'</span>'
+            }
             
-        product_template += '</select>';
-        if(template == 'common15') {
-            product_template += '<p class="attribute-err">'+attribute_err_language+'</p>'
-        }
-        product_template += '</div>';
+            product_template += '</div>';
+            product_template += '<select class="attribute-value-item-select attribute_select" onchange="attributeChange(this, '+(product_attribute.id == has_img_attribute_id)+', '+"'"+template+"'"+')" '+(product_attribute.id==has_img_attribute_id? ' data-has-img="true"' : '' )+'><option value="" '+ (!product_attribute.selected_option_id ? 'selected' : '') +' url="'+product_attribute.options[0].image+'"></option>';
+            if(product_attribute.id == has_img_attribute_id && !product_attribute.selected_option_id) {
+                show_image = product_attribute.options[0].image;
+            }
+                
+            for(var j=0; j<product_attribute.options.length; j++) {
+                var product_attribute_option = product_attribute.options[j];
+                product_template += '<option value="'+product_attribute_option.name+'" '+ (product_attribute_option.id==product_attribute.selected_option_id? 'selected' : '') +' url="'+product_attribute_option.image+'" '+ (product_attribute_option.is_sold_out ? ' data-is-sold-out="true" ' : '')+'>'+product_attribute_option.name+'</option>';
+                if(product_attribute_option.id==product_attribute.selected_option_id && product_attribute.id == has_img_attribute_id) {
+                    show_image = product_attribute_option.image;
+                }
+            }
+                
+            product_template += '</select>';
+            if(template == 'common15') {
+                product_template += '<p class="attribute-err">'+attribute_err_language+'</p>'
+            }
+            product_template += '</div>';
 
-        if(product_attribute.id == has_img_attribute_id && show_image) {
-            product_template += '<div class="img-wrapper"><img src="'+ show_image +'" /></div>'
+            if(product_attribute.id == has_img_attribute_id && show_image) {
+                product_template += '<div class="img-wrapper"><img src="'+ show_image +'" /></div>'
+            }
         }
+        console.log(product_template);
+        window.product_template = product_template;
     }
-    console.log(product_template);
-    window.product_template = product_template;
-}
 
 function getCurAttributeSelect(article_str) {
     if(!article_str) {
@@ -1222,10 +1224,15 @@ function showAttributeSelecet(article_str) {
 }
 
 function attributeChange(target, is_img_attribute, template) {
+    console.log("attribute change")
+    console.log(target);
+    console.log(is_img_attribute);
+    console.log(template);
     if(template == 'common5') {
         changeHtmlShow();
     }
     if(template == 'common15' && isProductSoldOut) {
+
         isProductSoldOut();
     }
     if(is_img_attribute) {
@@ -1327,61 +1334,67 @@ function GotoNotRequest(url) {
 </script>
 
 <script>
-    /*
+    
         window.product_attributes = [
-            {"id":1,"name":"SIZE","options":[{"id":2,"name":"S","image":null,"is_sold_out":false},
-            {"id":3,"name":"M","image":null},
-            {"id":4,"name":"L","image":null},
-            {"id":5,"name":"XL","image":null},
-            {"id":6,"name":"2XL","image":null},
-            {"id":7,"name":"3XL","image":null,"is_sold_out":false},
-            {"id":8,"name":"4XL","image":null}
+            {"id":1,"name":"SIZE","options":[
+                {"id":2,"name":"S","image":null,"is_sold_out":false},
+                {"id":3,"name":"M","image":null},
+                {"id":4,"name":"L","image":null},
+                {"id":5,"name":"XL","image":null},
+                {"id":6,"name":"2XL","image":null},
+                {"id":7,"name":"3XL","image":null,"is_sold_out":false},
+                {"id":8,"name":"4XL","image":null}
         ],
         "tip":"Size Chart",
         "tip_img":"https:\/\/d1y4tm6t3pzfj.cloudfront.net\/cpl\/images\/1694769733_2168.jpg","selected_option_id":null},
-        {"id":2,"name":"COLOR","options":[{"id":1,"name":"Black","image":"https:\/\/d1y4tm6t3pzfj.cloudfront.net\/cpl\/images\/1689762488_1.jpg"},
-        {"id":2,"name":"Pink","image":"https:\/\/d1y4tm6t3pzfj.cloudfront.net\/cpl\/images\/1689762492_2.jpg"},
-        {"id":3,"name":"Beige","image":"https:\/\/d1y4tm6t3pzfj.cloudfront.net\/cpl\/images\/1689762495_3.jpg"},
-        {"id":4,"name":"Gray","image":"https:\/\/d1y4tm6t3pzfj.cloudfront.net\/cpl\/images\/1689762499_4.jpg"}],"tip":null,"tip_img":null,"selected_option_id":null}];
-*/
+        {"id":2,"name":"COLOR","options":[
+            {"id":1,"name":"Black","image":"https:\/\/d1y4tm6t3pzfj.cloudfront.net\/cpl\/images\/1689762488_1.jpg"},
+            {"id":2,"name":"Pink","image":"https:\/\/d1y4tm6t3pzfj.cloudfront.net\/cpl\/images\/1689762492_2.jpg"},
+            {"id":3,"name":"Beige","image":"https:\/\/d1y4tm6t3pzfj.cloudfront.net\/cpl\/images\/1689762495_3.jpg"},
+            {"id":4,"name":"Gray","image":"https:\/\/d1y4tm6t3pzfj.cloudfront.net\/cpl\/images\/1689762499_4.jpg"}
+    ],
+    "tip":null,
+    "tip_img":null,
+    "selected_option_id":null}];
+
 /**
  * {"name":"Women's thin no wire lace bra - Black \/ S","sku_code":"CJ02168-C#black-S#m","sku_id":44113194877163,"attribute_name":"S,Black","key":"S_Black"}
  * 
  */
         <?php 
-            $product_attributes = [];
-            $skus = [];
-            $config = app('Webkul\Product\Helpers\ConfigurableOption')->getConfigurationConfig($product);
+            // $product_attributes = [];
+            // $skus = [];
+            // $config = app('Webkul\Product\Helpers\ConfigurableOption')->getConfigurationConfig($product);
 
-            foreach($config['attributes'] as $key=>$attribute) {
+            // foreach($config['attributes'] as $key=>$attribute) {
                 
-                $product_attribute['id'] = $attribute['id'];
-                $product_attribute['name'] = $attribute['code'];
-                $options = [];
-                foreach($attribute['options'] as $kk=> $option) {
-                    $sku['name'] = $product->name." ".$option['label'];
-                    $sku['attribute_name'] = $option['label'];
-                    $sku['sku_id'] = $attribute['id']."_".$option['id'];
-                    $sku['code'] = $attribute['id']."_".$option['id'];
-                    $skus[] = $sku;
-                    $option['name'] = $option['label'];
-                    $option['is_sold_out'] = false;
-                    if(isset($config['variant_images'][$attribute['id']][0]['small_image_url'])) {
-                        $option['image'] = $config['variant_images'][$attribute['id']][0]['small_image_url'];
-                    }else{
-                        $option['image'] = "http://45.79.79.208:8002/cache/large/product/19/twokW7Nhvs8obbDx2V9whxfIwV0zyPTG7cQh5Wxd.webp";
-                    }
-                    $options[] = $option;
-                }
-                $product_attribute['options'] = $options;
-                if(isset($config['variant_images'][$attribute['id']][0]['small_image_url'])) {
-                    $product_attribute['image'] = $config['variant_images'][$attribute['id']][0]['small_image_url'];
-                }else{
-                    $product_attribute['image'] = "http://45.79.79.208:8002/cache/large/product/19/twokW7Nhvs8obbDx2V9whxfIwV0zyPTG7cQh5Wxd.webp";
-                }
+            //     $product_attribute['id'] = $attribute['id'];
+            //     $product_attribute['name'] = $attribute['code'];
+            //     $options = [];
+            //     foreach($attribute['options'] as $kk=> $option) {
+            //         $sku['name'] = $product->name." ".$option['label'];
+            //         $sku['attribute_name'] = $option['label'];
+            //         $sku['sku_id'] = $attribute['id']."_".$option['id'];
+            //         $sku['code'] = $attribute['id']."_".$option['id'];
+            //         $skus[] = $sku;
+            //         $option['name'] = $option['label'];
+            //         $option['is_sold_out'] = false;
+            //         if(isset($config['variant_images'][$attribute['id']][0]['small_image_url'])) {
+            //             $option['image'] = $config['variant_images'][$attribute['id']][0]['small_image_url'];
+            //         }else{
+            //             $option['image'] = "http://45.79.79.208:8002/cache/large/product/19/twokW7Nhvs8obbDx2V9whxfIwV0zyPTG7cQh5Wxd.webp";
+            //         }
+            //         $options[] = $option;
+            //     }
+            //     $product_attribute['options'] = $options;
+            //     if(isset($config['variant_images'][$attribute['id']][0]['small_image_url'])) {
+            //         $product_attribute['image'] = $config['variant_images'][$attribute['id']][0]['small_image_url'];
+            //     }else{
+            //         $product_attribute['image'] = "http://45.79.79.208:8002/cache/large/product/19/twokW7Nhvs8obbDx2V9whxfIwV0zyPTG7cQh5Wxd.webp";
+            //     }
                 
-                $product_attributes[] = $product_attribute;
-            }
+            //     $product_attributes[] = $product_attribute;
+            // }
 
             //var_dump($skus);exit;
             
@@ -1473,7 +1486,7 @@ function GotoNotRequest(url) {
                             $('#'+ (error_id || 'paypal-error')).show();
                             throw new Error('Verification failed');
                         }
-                        var url = '/order/add/addr_after?time=' + new Date().getTime();
+                        var url = '/onebuy/order/addr/after?_token={{ csrf_token() }}&time=' + new Date().getTime();
                         $('#loading').show(); 
                         $('#'+ (error_id || 'paypal-error')).hide();
 
@@ -1671,9 +1684,58 @@ function GotoNotRequest(url) {
             }
             $('#loading').show();
             $('#checkout-error').hide();
+
+
+            
+
             
             testCreateOrder('test');
         }
+
+        // 添加到购买车中
+        function addToCart(pay_type) {
+            var product = getSelectProduct();
+            var shipping_fee = product.shipping_fee;
+            
+            var product_info = {
+                product_name  : product.name,
+                product_price : product.new_price,
+                product_sku  : '',
+                product_id  : '<?php echo $product->id;?>',
+                sku_id  : '',
+                currency : 'USD',
+                shipping_fee : shipping_fee,
+                amount : product.amount,
+                product_image : 'https://d1y4tm6t3pzfj.cloudfront.net/cpl/images/1689762374_1.jpg'
+            };
+
+            var total = product_info.product_price*1 + product_info.shipping_fee* 1;
+
+            var phone_number = $(".phone_number").val();
+            var phone_prefix = getPhonePrefix();
+
+
+            
+            var products = getSubmitProducts(product_info.product_price,product_info.amount);
+
+            var url = '/api/checkout/cart?_token={{ csrf_token() }}&time=' + new Date().getTime();
+
+            $('#loading').show();
+            fetch(url,{
+                body: JSON.stringify(products),
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json'
+                },
+            })
+            .then(function(res){return res.json()})
+            .then(function(res) {
+                console.log(res);
+            });
+
+        }
+
+        
 
         function testCreateOrder(pay_type) {
             var params = getOrderParams(pay_type);
@@ -1781,6 +1843,10 @@ function GotoNotRequest(url) {
         }
 
         function createOrder(token, token_field="checkout_frames_token", pay_type="checkout", card={}) {
+
+            //商品加入到购车中
+            //addToCart(pay_type);
+
             var params = getOrderParams(pay_type);
             if(token){
                 params[token_field] = token;
@@ -1992,7 +2058,7 @@ function GotoNotRequest(url) {
                 omnisend            : 'lilndary',
                 payment_account     : 'viusd',
             }
-                                                console.log(params);
+            console.log(params);
 
             if(getQueryString('utm_campaign')) {
                 params['utm_campaign'] = getQueryString('utm_campaign');
@@ -2218,13 +2284,17 @@ function GotoNotRequest(url) {
             var attribute_item = $('.attribute-select .attribute-item');
             var sku_maps = getSKuMaps();
 
-            console.log("attribute_item");
-            console.log(attribute_item);
+            //console.log("attribute_item");
+            //console.log(attribute_item);
+            //console.log("attribute_item");
 
             for(var i=0; i< attribute_item.length; i++) {
                 var sku_key_arr = [];
                 var img_key = '';
                 var attribute_select = $(attribute_item[i]).find('.attribute_select');
+                console.log("attribute select 11111111 ");
+                console.log(attribute_select);
+                console.log("attribute select 111111112 ");
                 for(var j=0; j<attribute_select.length; j++) {
                     sku_key_arr.push($(attribute_select[j]).val());
                     if($(attribute_select[j]).data('has-img')) {
@@ -2246,6 +2316,7 @@ function GotoNotRequest(url) {
             var products = [], product_sku_map = {};
 
             for(var m=0; m<skus.length; m++) {
+                console.log("skus length" + skus.length);
                 if(product_sku_map[skus[m].sku_id]) {
                     products[product_sku_map[skus[m].sku_id] - 1].amount++;
                 } else {
@@ -2256,7 +2327,8 @@ function GotoNotRequest(url) {
                         description : skus[m].name,
                         product_id  : '<?php echo $product->id;?>',
                         product_sku : skus[m].sku_code,
-                        variant_id  : skus[m].sku_id
+                        variant_id  : skus[m].sku_id,
+                        attr_id     : skus[m].attr_id
                     };
                     products.push(sku);
                     product_sku_map[skus[m].sku_id] = products.length;
@@ -2301,12 +2373,14 @@ function GotoNotRequest(url) {
             {"name":"Women's thin no wire lace bra - Beige \/ 4XL","sku_code":"CJ02168-C#beige-S#5xl","sku_id":44071644004587,"attribute_name":"4XL,Beige","key":"4XL_Beige"},
             {"name":"Women's thin no wire lace bra - Gray \/ 4XL","sku_code":"CJ02168-C#gray-S#5xl","sku_id":44071643775211,"attribute_name":"4XL,Gray","key":"4XL_Gray"}
         ];
-            var skus = <?php echo json_encode($skus);?>  
+            var skus = <?php echo json_encode($skus);?>
             
             var sku_maps = {};
             
             for(var i=0; i<skus.length; i++) {
                 sku_maps[skus[i].key] = JSON.parse(JSON.stringify(skus[i]));
+                // console.log("sku map");
+                // console.log(JSON.parse(JSON.stringify(skus[i])));
             }
 
             window.sku_maps = sku_maps;
