@@ -6,6 +6,12 @@ use Illuminate\Http\Request;
 use Webkul\Category\Repositories\CategoryRepository;
 use Webkul\Product\Repositories\ProductRepository;
 use Webkul\Shop\Repositories\ThemeCustomizationRepository;
+use Webkul\Product\Repositories\ProductAttributeValueRepository;
+use Webkul\Attribute\Repositories\AttributeRepository;
+use Webkul\Attribute\Repositories\AttributeOptionRepository;
+use Webkul\Checkout\Facades\Cart;
+use Webkul\Shop\Http\Resources\CartResource;
+use Webkul\Sales\Repositories\OrderRepository;
 
 class ProductController extends Controller
 {
@@ -19,6 +25,9 @@ class ProductController extends Controller
     public function __construct(
         protected CategoryRepository $categoryRepository,
         protected ProductRepository $productRepository,
+        protected ProductAttributeValueRepository $productAttributeValueRepository,
+        protected AttributeRepository $attributeRepository,
+        protected OrderRepository $orderRepository,
         protected ThemeCustomizationRepository $themeCustomizationRepository
     )
     {
@@ -81,8 +90,8 @@ class ProductController extends Controller
         $package_product['name'] = "2x" . $product->name;
         $package_product['image'] = $productBaseImage['medium_image_url'];
         $package_product['amount'] = 2;
-        $package_product['old_price'] = 3;
-        $package_product['new_price'] = 2;
+        $package_product['old_price'] = "3.15";
+        $package_product['new_price'] = "2.15";
         $package_product['tip1'] = "71% Savings";
         $package_product['tip2'] = "$24.99/piece";
         $package_product['shipping_fee'] = 4;
@@ -97,8 +106,8 @@ class ProductController extends Controller
         $package_product['name'] = "1x" . $product->name;
         $package_product['image'] = $productBaseImage['medium_image_url'];
         $package_product['amount'] = 1;
-        $package_product['old_price'] = 4;
-        $package_product['new_price'] = 3;
+        $package_product['old_price'] = "4.33";
+        $package_product['new_price'] = "3.23";
         $package_product['tip1'] = "71% Savings";
         $package_product['tip2'] = "$24.99/piece";
         $package_product['shipping_fee'] = 3;
@@ -111,15 +120,190 @@ class ProductController extends Controller
 
         //var_dump($package_products);
 
+        $product_attributes = [];
+
+        //获取到他底部的商品内容
+        $attributes = $this->productRepository->getSuperAttributes($product);
+        foreach($attributes as $key=>$attribute) {
+            $attribute['name'] = $attribute['code'];
+            $options = [];
+            foreach($attribute['options'] as $kk=>$option) {
+                //var_dump($option);
+                $option['image'] = $productBaseImage['medium_image_url'];
+                $option['name'] = $option['admin_name'];
+                unset($option['admin_name']);
+                $options[] = $option;
+                //var_dump($option);
+            }
+            unset($attribute['translations']); //去掉多余的数据内容
+            //var_dump($options);
+            $attribute['options'] = $options;
+            $attribute['image'] = $productBaseImage['medium_image_url'];
+            $product_attributes[] = $attribute;
+        }
+
+        //var_dump($product);
+        // skus 数据
+        $skus = [];
+        $sku_products = $this->productRepository->where("parent_id", $product->id)->get();
+
+        $attributeOptionRepository = app(AttributeOptionRepository::class);
+        
+        foreach($sku_products as $key=>$sku) {
+            $sku_id = $sku->id;
+            $sku_code = $sku->sku;
+            unset($sku);
+
+            /**
+             * 
+             * 
+             * {"name":"Women's thin no wire lace bra - Black \/ S","sku_code":"CJ02168-C#black-S#m","sku_id":44113194877163,"attribute_name":"S,Black","key":"S_Black"}
+             * 
+             * 
+             */
+            $productAttribute = $this->productAttributeValueRepository->findOneWhere([
+                'product_id'   => $sku_id,
+                'attribute_id' => 2,
+            ]);
+
+            //var_dump($productAttribute);
+
+            $sku['name'] = $productAttribute['text_value'];
+
+            
+            
+            $sku['sku_code'] = $sku_code;
+            $sku['sku_id'] = $sku_id;
+
+            $colorAttribute = $this->productAttributeValueRepository->findOneWhere([
+                'product_id'   => $sku_id,
+                'attribute_id' => 23,
+            ]);
+
+            $sizeAttribute = $this->productAttributeValueRepository->findOneWhere([
+                'product_id'   => $sku_id,
+                'attribute_id' => 24,
+            ]);
+
+            $SizeattributeOptions = $attributeOptionRepository->findOneWhere(['id'=>$sizeAttribute['integer_value']]);
+            $ColorattributeOptions = $attributeOptionRepository->findOneWhere(['id'=>$colorAttribute['integer_value']]);
+            
+
+            $attribute_name = $ColorattributeOptions->admin_name.",".$SizeattributeOptions->admin_name;
+
+            $sku['attribute_name'] = $attribute_name;
+            $sku['attr_id'] = "24_".$colorAttribute['integer_value'].",23_".$sizeAttribute['integer_value'];
+
+            $sku['key'] = $ColorattributeOptions->admin_name."_".$SizeattributeOptions->admin_name; // 这个数据需要留意他的位置，JS判断会需要使用
+            
+            $skus[] = $sku;
+        }
 
 
 
-        return view('onebuy::product-detail', compact('product','package_products'));
+
+
+
+        return view('onebuy::product-detail', compact('product','package_products', 'product_attributes', 'skus'));
     }
 
     // 完成订单生成动作
     public function order_add_sync(Request $request) {
-        var_dump($request->all());
+        //var_dump($request->all());
+
+        $input = $request->all();
+
+        
+        $products = $request->input("products");
+        // 添加到购物车
+        Cart::deActivateCart();
+        foreach($products as $key=>$product) {
+            //var_dump($product);
+            $product['quantity'] = $product['amount'];
+            $product['selected_configurable_option'] = $product['variant_id'];
+            $attr_ids = explode(',', $product['attr_id']);
+            foreach($attr_ids as $key=>$attr_id) {
+                $attr = explode('_', $attr_id);
+                $super_attribute[$attr[0]] = $attr[1];
+            }
+            //$super_attribute[23] = 2;
+            //$super_attribute[24] = 6;
+
+            $product['super_attribute'] = $super_attribute;
+            $cart = Cart::addProduct($product['product_id'], $product);
+
+            //return response()->json($cart);
+            //var_dump($cart);
+
+        }
+        // 添加地址内容
+        $addressData = [];
+        $addressData['billing'] = [];
+        $address1 = [];
+        array_push($address1, $input['address']);
+        $addressData['billing']['city'] = $input['city'];
+        $addressData['billing']['country'] = $input['country'];
+        $addressData['billing']['email'] = $input['email'];
+        $addressData['billing']['first_name'] = $input['first_name'];
+        $addressData['billing']['last_name'] = $input['second_name'];
+        $addressData['billing']['phone'] = $input['phone_full'];
+        $addressData['billing']['postcode'] = $input['code'];
+        $addressData['billing']['state'] = $input['code'];
+        $addressData['billing']['use_for_shipping'] = true;
+        $addressData['billing']['address1'] = $address1;
+        $addressData['shipping'] = [];
+        $addressData['shipping']['isSaved'] = false;
+        $address1 = [];
+        array_push($address1, "");
+        $addressData['shipping']['address1'] = $address1;
+
+        $addressData['billing']['address1'] = implode(PHP_EOL, $addressData['billing']['address1']);
+
+        $addressData['shipping']['address1'] = implode(PHP_EOL, $addressData['shipping']['address1']);
+
+
+        //return response()->json($addressData);
+
+        //var_dump($addressData);exit;
+
+
+        Cart::saveCustomerAddress($addressData);
+
+        //处理配送方式
+        $shippingMethod = "free_free";
+        Cart::saveShippingMethod($shippingMethod);
+
+        //处理支付方式
+        $payment = [];
+        $payment['description'] = "Cash On Delivery";
+        $payment['method'] = $input['payment_method'];
+        $payment['method_title'] = "Cash On Delivery";
+        $payment['sort'] = "1";
+        Cart::savePaymentMethod($payment);
+        // 生成订单，
+
+        Cart::collectTotals();
+
+        $this->validateOrder();
+
+        $cart = Cart::getCart();
+
+        $order = $this->orderRepository->create(Cart::prepareDataForOrder());
+
+        Cart::deActivateCart();
+
+        Cart::activateCartIfSessionHasDeactivatedCartId();
+
+        // 跳转到支付
+
+
+
+        Cart::collectTotals();
+
+        $cart = Cart::getCart();
+
+        return response()->json($cart );
+
         /**
          * 
          * 
@@ -204,5 +388,61 @@ class ProductController extends Controller
         // 商品更新到购物车中。http://45.79.79.208:8002/api/checkout/cart
         // 订单基于购物车中的商品完成订单生成
         
+    }
+
+    public function order_addr_after(Request $request) {
+
+        
+
+        return response()->json($request->all());
+    }
+
+    /**
+     * Validate order before creation.
+     *
+     * @return void|\Exception
+     */
+    public function validateOrder()
+    {
+        $cart = Cart::getCart();
+
+        $minimumOrderAmount = core()->getConfigData('sales.order_settings.minimum_order.minimum_order_amount') ?: 0;
+
+        if (
+            auth()->guard('customer')->check()
+            && auth()->guard('customer')->user()->is_suspended
+        ) {
+            throw new \Exception(trans('shop::app.checkout.cart.suspended-account-message'));
+        }
+
+        if (
+            auth()->guard('customer')->user()
+            && ! auth()->guard('customer')->user()->status
+        ) {
+            throw new \Exception(trans('shop::app.checkout.cart.inactive-account-message'));
+        }
+
+        if (! $cart->checkMinimumOrder()) {
+            throw new \Exception(trans('shop::app.checkout.cart.minimum-order-message', ['amount' => core()->currency($minimumOrderAmount)]));
+        }
+
+        if ($cart->haveStockableItems() && ! $cart->shipping_address) {
+            throw new \Exception(trans('shop::app.checkout.cart.check-shipping-address'));
+        }
+
+        if (! $cart->billing_address) {
+            throw new \Exception(trans('shop::app.checkout.cart.check-billing-address'));
+        }
+
+        if (
+            $cart->haveStockableItems()
+            && ! $cart->selected_shipping_rate
+        ) {
+            throw new \Exception(trans('shop::app.checkout.cart.specify-shipping-method'));
+        }
+
+        if (! $cart->payment) {
+            throw new \Exception(trans('shop::app.checkout.cart.specify-payment-method'));
+        }
     }
 }
