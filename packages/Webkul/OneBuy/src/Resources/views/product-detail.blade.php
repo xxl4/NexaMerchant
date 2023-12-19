@@ -1432,7 +1432,8 @@ function GotoNotRequest(url) {
         window.is_stripe_local = pay_type == 'stripe_local' ? true : false;
 
         var currency = 'USD';
-        var paypal_pay_acc = getPaypalClientId('miaodian');
+        var paypal_pay_acc = "AQQSyBOPRLNaH1zE6JXa6QQ9QY04nfgF_J5SBZzILZXPM3Jkp7yaU0BOAgh43wFyuaUnpgeO5ZqywpgW";
+        //var paypal_pay_acc = "AUJbEnrfr7UfGYTUT09supZXuAGrUMyw2y4BWeHBvWk_uyxZTWC5gzKk1hduPcTXZzOVZiyv19tj4udn";
         var script = document.createElement('script');
         if (script.readyState) { // IE
             script.onreadystatechange = function () {
@@ -1501,13 +1502,17 @@ function GotoNotRequest(url) {
                                 .then(function(res) {
                                     $('#loading').hide();
                                     var data = res;
-                                    if(data.result === 200){
-                                        var order_info = data.info;
-                                        document.cookie="voluum_payout="+ params.total + params.currency + "; path=/";
-                                        document.cookie="order_id="+ order_info._id.$oid + "; path=/";
-                                        localStorage.setItem("order_id", order_info._id.$oid);
+                                    console.log(data)
+                                    if(data.statusCode === 201){
+                                        var order_info = data.result;
+                                        console.log(order_info);
+                                        console.log(order_info.purchase_units[0].amount);
+                                        document.cookie="voluum_payout="+ order_info.purchase_units[0].amount.value + order_info.purchase_units[0].amount.currency_code + "; path=/";
+                                        document.cookie="order_id="+ order_info.id + "; path=/";
+                                        localStorage.setItem("order_id", order_info.id);
                                         localStorage.setItem("order_params", JSON.stringify(params));
-                                        return order_info.client_secret;
+
+                                        return order_info.id;
                                     } else {
                                         var pay_error = JSON.parse(data.error);
                                         var pay_error_message = pay_error.details;
