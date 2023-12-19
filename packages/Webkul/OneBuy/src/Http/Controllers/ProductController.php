@@ -12,6 +12,7 @@ use Webkul\Attribute\Repositories\AttributeOptionRepository;
 use Webkul\Checkout\Facades\Cart;
 use Webkul\Shop\Http\Resources\CartResource;
 use Webkul\Sales\Repositories\OrderRepository;
+use Webkul\Shop\Http\Resources\ProductResource;
 
 class ProductController extends Controller
 {
@@ -86,37 +87,40 @@ class ProductController extends Controller
          */
         
         $productBaseImage = product_image()->getProductBaseImage($product);
-        $package_product['id'] = 5;
-        $package_product['name'] = "2x" . $product->name;
-        $package_product['image'] = $productBaseImage['medium_image_url'];
-        $package_product['amount'] = 2;
-        $package_product['old_price'] = "3.15";
-        $package_product['new_price'] = "2.15";
-        $package_product['tip1'] = "71% Savings";
-        $package_product['tip2'] = "$24.99/piece";
-        $package_product['shipping_fee'] = 4;
-        $popup_info['name'] = null;
-        $popup_info['old_price'] = null;
-        $popup_info['new_price'] = null;
-        $popup_info['img'] = null;
-        $package_product['popup_info'] = $popup_info;
-        $package_products[] = $package_product;
-        $productBaseImage = product_image()->getProductBaseImage($product);
-        $package_product['id'] = 6;
-        $package_product['name'] = "1x" . $product->name;
-        $package_product['image'] = $productBaseImage['medium_image_url'];
-        $package_product['amount'] = 1;
-        $package_product['old_price'] = "4.33";
-        $package_product['new_price'] = "3.23";
-        $package_product['tip1'] = "71% Savings";
-        $package_product['tip2'] = "$24.99/piece";
-        $package_product['shipping_fee'] = 3;
-        $popup_info['name'] = null;
-        $popup_info['old_price'] = null;
-        $popup_info['new_price'] = null;
-        $popup_info['img'] = null;
-        $package_product['popup_info'] = $popup_info;
-        $package_products[] = $package_product;
+        // $package_product['id'] = 5;
+        // $package_product['name'] = "2x" . $product->name;
+        // $package_product['image'] = $productBaseImage['medium_image_url'];
+        // $package_product['amount'] = 2;
+        // $package_product['old_price'] = "3.15";
+        // $package_product['new_price'] = "2.15";
+        // $package_product['tip1'] = "71% Savings";
+        // $package_product['tip2'] = "$24.99/piece";
+        // $package_product['shipping_fee'] = 9.99;
+        // $popup_info['name'] = null;
+        // $popup_info['old_price'] = null;
+        // $popup_info['new_price'] = null;
+        // $popup_info['img'] = null;
+        // $package_product['popup_info'] = $popup_info;
+        // $package_products[] = $package_product;
+        // $productBaseImage = product_image()->getProductBaseImage($product);
+
+        // $package_product['id'] = 6;
+        // $package_product['name'] = "1x" . $product->name;
+        // $package_product['image'] = $productBaseImage['medium_image_url'];
+        // $package_product['amount'] = 1;
+        // $package_product['old_price'] = "4.33";
+        // $package_product['new_price'] = "3.23";
+        // $package_product['tip1'] = "71% Savings";
+        // $package_product['tip2'] = "$24.99/piece";
+        // $package_product['shipping_fee'] = 9.99;
+        // $popup_info['name'] = null;
+        // $popup_info['old_price'] = null;
+        // $popup_info['new_price'] = null;
+        // $popup_info['img'] = null;
+        // $package_product['popup_info'] = $popup_info;
+        // $package_products[] = $package_product;
+
+        $package_products = $this->makeProducts($product, [2,1,3,4]);
 
         //var_dump($package_products);
 
@@ -124,12 +128,31 @@ class ProductController extends Controller
 
         //获取到他底部的商品内容
         $attributes = $this->productRepository->getSuperAttributes($product);
+        //var_dump($attributes);exit;
         foreach($attributes as $key=>$attribute) {
             $attribute['name'] = $attribute['code'];
             $options = [];
+            //var_dump($attribute);
             foreach($attribute['options'] as $kk=>$option) {
                 //var_dump($option);
-                $option['image'] = $productBaseImage['medium_image_url'];
+
+                // 获取商品图片内容
+                if($attribute['id']==23) {
+                    //var_dump($option, $product->sku);exit;
+                    $new_sku = $product->sku."-variant-1-".$option['id']+5;
+                    //echo $new_sku."\r\n";
+                    $new_product = $this->productRepository->findByAttributeCode("sku", $new_sku);
+                    //var_dump($new_product);exit;
+                    //var_dump($new_sku);exit;
+                    $NewproductBaseImage = product_image()->getProductBaseImage($new_product);
+                    //var_dump($NewproductBaseImage);exit;
+                    $option['image'] = @$NewproductBaseImage['medium_image_url'];
+                }else{
+                    $option['image'] = $productBaseImage['medium_image_url'];
+                }
+
+
+                //$option['image'] = $productBaseImage['medium_image_url'];
                 $option['name'] = $option['admin_name'];
                 unset($option['admin_name']);
                 $options[] = $option;
@@ -232,8 +255,14 @@ class ProductController extends Controller
             $product['super_attribute'] = $super_attribute;
             $cart = Cart::addProduct($product['product_id'], $product);
 
-            //return response()->json($cart);
-            //var_dump($cart);
+            if (
+                is_array($cart)
+                && isset($cart['warning'])
+            ) {
+                return new JsonResource([
+                    'message' => $cart['warning'],
+                ]);
+            }
 
         }
         // 添加地址内容
@@ -267,11 +296,32 @@ class ProductController extends Controller
         //var_dump($addressData);exit;
 
 
-        Cart::saveCustomerAddress($addressData);
+        //Cart::saveCustomerAddress($addressData);
+
+        if (
+            Cart::hasError()
+            || ! Cart::saveCustomerAddress($addressData)
+        ) {
+            return new JsonResource([
+                'redirect' => true,
+                'data'     => route('shop.checkout.cart.index'),
+            ]);
+        }
+
 
         //处理配送方式
         $shippingMethod = "free_free";
-        Cart::saveShippingMethod($shippingMethod);
+        // Cart::saveShippingMethod($shippingMethod);
+
+        if (
+            Cart::hasError()
+            || ! $shippingMethod
+            || ! Cart::saveShippingMethod($shippingMethod)
+        ) {
+            return response()->json([
+                'redirect_url' => route('shop.checkout.cart.index'),
+            ], Response::HTTP_FORBIDDEN);
+        }
 
         Cart::collectTotals();
 
@@ -281,7 +331,18 @@ class ProductController extends Controller
         $payment['method'] = $input['payment_method'];
         $payment['method_title'] = "Cash On Delivery";
         $payment['sort'] = "1";
-        Cart::savePaymentMethod($payment);
+        // Cart::savePaymentMethod($payment);
+
+        if (
+            Cart::hasError()
+            || ! $payment
+            || ! Cart::savePaymentMethod($payment)
+        ) {
+            return response()->json([
+                'redirect_url' => route('shop.checkout.cart.index'),
+            ], Response::HTTP_FORBIDDEN);
+        }
+
         // 生成订单，
 
         Cart::collectTotals();
@@ -392,11 +453,65 @@ class ProductController extends Controller
         
     }
 
+    // paypal 生成订单动作
+    /**
+     * 
+     * @link https://gist.github.com/nicelizhi/76d2a09692459c1a22388366c5861521 input params
+     * @return
+     */
     public function order_addr_after(Request $request) {
 
 
 
         return response()->json($request->all());
+    }
+
+    /**
+     * 
+     * generation products for page
+     * @param product
+     * @param array nums
+     * 
+     */
+
+    private function makeProducts($product, $nums = array()) {
+
+        $package_products = [];
+        $productBaseImage = product_image()->getProductBaseImage($product);
+
+        $productTypeInstance = $product->getTypeInstance();
+
+        //$productPrice = $productTypeInstance->getProductPrices();
+
+        //var_dump($productPrice);exit;
+
+        //var_dump($productTypeInstance);exit;
+
+        //$productResource = ProductResource::collection($product);
+        
+        foreach($nums as $key=>$i) {
+            
+            $package_product = [];
+            $package_product['id'] = $i;
+            $package_product['name'] = $i."x" . $product->name;
+            $package_product['image'] = $productBaseImage['medium_image_url'];
+            $package_product['amount'] = $i;
+            //$package_product['old_price'] = $productPrice['regular']['price'] * $i;
+            $package_product['old_price'] = "10.00" * $i;
+            $package_product['new_price'] = "3.23" * $i;
+            $package_product['tip1'] = "71% Savings";
+            $package_product['tip2'] = "$24.99/piece";
+            $package_product['shipping_fee'] = 9.99;
+            $popup_info['name'] = null;
+            $popup_info['old_price'] = null;
+            $popup_info['new_price'] = null;
+            $popup_info['img'] = null;
+            $package_product['popup_info'] = $popup_info;
+            $package_products[] = $package_product;
+        }
+
+        return $package_products;
+        
     }
 
     /**
