@@ -273,6 +273,8 @@ class ProductController extends Controller
         $shippingMethod = "free_free";
         Cart::saveShippingMethod($shippingMethod);
 
+        Cart::collectTotals();
+
         //处理支付方式
         $payment = [];
         $payment['description'] = "Cash On Delivery";
@@ -392,7 +394,7 @@ class ProductController extends Controller
 
     public function order_addr_after(Request $request) {
 
-        
+
 
         return response()->json($request->all());
     }
