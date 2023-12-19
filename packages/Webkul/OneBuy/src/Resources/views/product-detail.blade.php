@@ -784,7 +784,7 @@ Contact Us </a>
 <div class="comment-block" id="comment-block">
 <div class="comment-content">
 <div class="comment-img">
-<img alt="product image" src="https://d1y4tm6t3pzfj.cloudfront.net/cpl/images/1689762374_1.jpg">
+<img alt="product image" src="{{ $productBaseImage['medium_image_url'] }}">
 </div>
 <div class="comment-desc">
 <div class="comment-details">
@@ -1711,7 +1711,7 @@ function GotoNotRequest(url) {
                 currency : 'USD',
                 shipping_fee : shipping_fee,
                 amount : product.amount,
-                product_image : 'https://d1y4tm6t3pzfj.cloudfront.net/cpl/images/1689762374_1.jpg'
+                product_image : '{{ $productBaseImage['medium_image_url'] }}'
             };
 
             var total = product_info.product_price*1 + product_info.shipping_fee* 1;
@@ -2019,7 +2019,7 @@ function GotoNotRequest(url) {
                 currency : 'USD',
                 shipping_fee : shipping_fee,
                 amount : product.amount,
-                product_image : 'https://d1y4tm6t3pzfj.cloudfront.net/cpl/images/1689762374_1.jpg'
+                product_image : '{{ $productBaseImage['medium_image_url'] }}'
             };
 
             var total = product_info.product_price*1 + product_info.shipping_fee* 1;
