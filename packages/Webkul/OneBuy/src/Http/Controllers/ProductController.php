@@ -13,6 +13,7 @@ use Webkul\Checkout\Facades\Cart;
 use Webkul\Shop\Http\Resources\CartResource;
 use Webkul\Sales\Repositories\OrderRepository;
 use Webkul\Shop\Http\Resources\ProductResource;
+use Webkul\Paypal\Payment\SmartButton;
 
 class ProductController extends Controller
 {
@@ -24,6 +25,7 @@ class ProductController extends Controller
      * @return void
      */
     public function __construct(
+        protected SmartButton $smartButton,
         protected CategoryRepository $categoryRepository,
         protected ProductRepository $productRepository,
         protected ProductAttributeValueRepository $productAttributeValueRepository,
@@ -310,7 +312,8 @@ class ProductController extends Controller
 
 
         //处理配送方式
-        $shippingMethod = "free_free";
+        $shippingMethod = "free_free"; // 包邮
+        $shippingMethod = "flatrate_flatrate";
         // Cart::saveShippingMethod($shippingMethod);
 
         if (
@@ -327,10 +330,10 @@ class ProductController extends Controller
 
         //处理支付方式
         $payment = [];
-        $payment['description'] = "Cash On Delivery";
-        $payment['method'] = $input['payment_method'];
-        $payment['method_title'] = "Cash On Delivery";
-        $payment['sort'] = "1";
+        $payment['description'] = "Money Transfer";
+        $payment['method'] = "moneytransfer";
+        $payment['method_title'] = "Money Transfer";
+        $payment['sort'] = "2";
         // Cart::savePaymentMethod($payment);
 
         if (
@@ -460,10 +463,254 @@ class ProductController extends Controller
      * @return
      */
     public function order_addr_after(Request $request) {
+        $input = $request->all();
+        $products = $request->input("products");
+        // 添加到购物车
+        Cart::deActivateCart();
+        foreach($products as $key=>$product) {
+            //var_dump($product);
+            $product['quantity'] = $product['amount'];
+            $product['selected_configurable_option'] = $product['variant_id'];
+            $attr_ids = explode(',', $product['attr_id']);
+            foreach($attr_ids as $key=>$attr_id) {
+                $attr = explode('_', $attr_id);
+                $super_attribute[$attr[0]] = $attr[1];
+            }
+
+            $product['super_attribute'] = $super_attribute;
+            $cart = Cart::addProduct($product['product_id'], $product);
+            if (
+                is_array($cart)
+                && isset($cart['warning'])
+            ) {
+                return new JsonResource([
+                    'message' => $cart['warning'],
+                ]);
+            }
+        }
+        // 添加地址内容
+        $addressData = [];
+        $addressData['billing'] = [];
+        $address1 = [];
+        array_push($address1, $input['address']);
+        $addressData['billing']['city'] = $input['city'];
+        $addressData['billing']['country'] = $input['country'];
+        $addressData['billing']['email'] = $input['email'];
+        $addressData['billing']['first_name'] = $input['first_name'];
+        $addressData['billing']['last_name'] = $input['second_name'];
+        $addressData['billing']['phone'] = $input['phone_full'];
+        $addressData['billing']['postcode'] = $input['code'];
+        $addressData['billing']['state'] = $input['code'];
+        $addressData['billing']['use_for_shipping'] = true;
+        $addressData['billing']['address1'] = $address1;
+        $addressData['shipping'] = [];
+        $addressData['shipping']['isSaved'] = false;
+        $address1 = [];
+        array_push($address1, "");
+        $addressData['shipping']['address1'] = $address1;
+
+        $addressData['billing']['address1'] = implode(PHP_EOL, $addressData['billing']['address1']);
+
+        $addressData['shipping']['address1'] = implode(PHP_EOL, $addressData['shipping']['address1']);
+
+
+        if (
+            Cart::hasError()
+            || ! Cart::saveCustomerAddress($addressData)
+        ) {
+            return new JsonResource([
+                'redirect' => true,
+                'data'     => route('shop.checkout.cart.index'),
+            ]);
+        }
+
+
+        //处理配送方式
+        $shippingMethod = "free_free"; // 包邮
+        $shippingMethod = "flatrate_flatrate";
+        // Cart::saveShippingMethod($shippingMethod);
+
+        if (
+            Cart::hasError()
+            || ! $shippingMethod
+            || ! Cart::saveShippingMethod($shippingMethod)
+        ) {
+            return response()->json([
+                'redirect_url' => route('shop.checkout.cart.index'),
+            ], Response::HTTP_FORBIDDEN);
+        }
+
+        Cart::collectTotals();
+
+        //处理支付方式
+        $payment = [];
+        $payment['description'] = "PayPal";
+        $payment['method'] = "paypal_smart_button";
+        $payment['method_title'] = "PayPal Smart Button";
+        $payment['sort'] = "1";
+        // Cart::savePaymentMethod($payment);
+
+        if (
+            Cart::hasError()
+            || ! $payment
+            || ! Cart::savePaymentMethod($payment)
+        ) {
+            return response()->json([
+                'redirect_url' => route('shop.checkout.cart.index'),
+            ], Response::HTTP_FORBIDDEN);
+        }
+
+
+        /*
+        Cart::collectTotals();
+
+        $this->validateOrder();
+
+        $cart = Cart::getCart();
+
+        $order = $this->orderRepository->create(Cart::prepareDataForOrder());
+
+        Cart::deActivateCart();
+
+        Cart::activateCartIfSessionHasDeactivatedCartId();
+        */
+
+        try {
+            return response()->json($this->smartButton->createOrder($this->buildRequestBody()));
+        } catch (\Exception $e) {
+            return response()->json(json_decode($e->getMessage()), 400);
+        }
 
 
 
-        return response()->json($request->all());
+
+        return response()->json($order);
+    }
+
+    protected function buildRequestBody()
+    {
+        $cart = Cart::getCart();
+
+        $billingAddressLines = $this->getAddressLines($cart->billing_address->address1);
+
+        $data = [
+            'intent' => 'CAPTURE',
+            'application_context' => [
+                'shipping_preference' => 'NO_SHIPPING',
+            ],
+
+            'purchase_units' => [
+                [
+                    'amount'   => [
+                        'value'         => $this->smartButton->formatCurrencyValue((float) $cart->sub_total + $cart->tax_total + ($cart->selected_shipping_rate ? $cart->selected_shipping_rate->price : 0) - $cart->discount_amount),
+                        'currency_code' => $cart->cart_currency_code,
+
+                        'breakdown'     => [
+                            'item_total' => [
+                                'currency_code' => $cart->cart_currency_code,
+                                'value'         => $this->smartButton->formatCurrencyValue((float) $cart->sub_total),
+                            ],
+
+                            'shipping'   => [
+                                'currency_code' => $cart->cart_currency_code,
+                                'value'         => $this->smartButton->formatCurrencyValue((float) ($cart->selected_shipping_rate ? $cart->selected_shipping_rate->price : 0)),
+                            ],
+
+                            'tax_total'  => [
+                                'currency_code' => $cart->cart_currency_code,
+                                'value'         => $this->smartButton->formatCurrencyValue((float) $cart->tax_total),
+                            ],
+
+                            'discount'   => [
+                                'currency_code' => $cart->cart_currency_code,
+                                'value'         => $this->smartButton->formatCurrencyValue((float) $cart->discount_amount),
+                            ],
+                        ],
+                    ],
+
+                    'items'    => $this->getLineItems($cart),
+                ],
+            ],
+        ];
+
+        if (! empty($cart->billing_address->phone)) {
+            $data['payer']['phone'] = [
+                'phone_type'   => 'MOBILE',
+
+                'phone_number' => [
+                    'national_number' => $this->smartButton->formatPhone($cart->billing_address->phone),
+                ],
+            ];
+        }
+
+        if (
+            $cart->haveStockableItems()
+            && $cart->shipping_address
+        ) {
+            $data['application_context']['shipping_preference'] = 'SET_PROVIDED_ADDRESS';
+
+            $data['purchase_units'][0] = array_merge($data['purchase_units'][0], [
+                'shipping' => [
+                    'address' => [
+                        'address_line_1' => current($billingAddressLines),
+                        'address_line_2' => last($billingAddressLines),
+                        'admin_area_2'   => $cart->shipping_address->city,
+                        'admin_area_1'   => $cart->shipping_address->state,
+                        'postal_code'    => $cart->shipping_address->postcode,
+                        'country_code'   => $cart->shipping_address->country,
+                    ],
+                ],
+            ]);
+        }
+
+        return $data;
+    }
+
+     /**
+     * Return cart items.
+     *
+     * @param  string  $cart
+     * @return array
+     */
+    protected function getLineItems($cart)
+    {
+        $lineItems = [];
+
+        foreach ($cart->items as $item) {
+            $lineItems[] = [
+                'unit_amount' => [
+                    'currency_code' => $cart->cart_currency_code,
+                    'value'         => $this->smartButton->formatCurrencyValue((float) $item->price),
+                ],
+                'quantity'    => $item->quantity,
+                'name'        => $item->name,
+                'sku'         => $item->sku,
+                'category'    => $item->getTypeInstance()->isStockable() ? 'PHYSICAL_GOODS' : 'DIGITAL_GOODS',
+            ];
+        }
+
+        return $lineItems;
+    }
+
+      /**
+     * Return convert multiple address lines into 2 address lines.
+     *
+     * @param  string  $address
+     * @return array
+     */
+    protected function getAddressLines($address)
+    {
+        $address = explode(PHP_EOL, $address, 2);
+
+        $addressLines = [current($address)];
+
+        if (isset($address[1])) {
+            $addressLines[] = str_replace(["\r\n", "\r", "\n"], ' ', last($address));
+        } else {
+            $addressLines[] = '';
+        }
+
+        return $addressLines;
     }
 
     /**
