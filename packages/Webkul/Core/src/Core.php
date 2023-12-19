@@ -15,6 +15,7 @@ use Webkul\Core\Repositories\LocaleRepository;
 use Webkul\Customer\Repositories\CustomerGroupRepository;
 use Webkul\Tax\Repositories\TaxCategoryRepository;
 use Webkul\Core\Models\Channel;
+use Illuminate\Support\Facades\Log;
 
 class Core
 {
@@ -572,6 +573,8 @@ class Core
             $price = 0;
         }
 
+        $price = floatval($price); // have $9.99 price?? 
+
         $currency = $currencyCode
             ? $this->getAllCurrencies()->where('code', $currencyCode)->first()
             : $this->getCurrentCurrency();
@@ -586,7 +589,9 @@ class Core
 
         if ($symbol = $currency->symbol) {
             if ($this->currencySymbol($currency) == $symbol) {
-                return $formatter->formatCurrency($price, $currency->code);
+                Log::info($price);
+                Log::info(json_encode($currency));
+                return $formatter->formatCurrency($price, $currency->code); // todo have bug??
             }
 
             $formatter->setSymbol(\NumberFormatter::CURRENCY_SYMBOL, $symbol);
