@@ -1,5 +1,4 @@
 <?php
-
 namespace Nicelizhi\OneBuy\Http\Controllers;
 
 use Illuminate\Http\Request;
