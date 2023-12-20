@@ -370,7 +370,11 @@ class ProductController extends Controller
 
         $cart = Cart::getCart();
 
-        return response()->json($cart );
+        $data['result'] = 200;
+        $data['order'] = $order;
+        $data['client_secret'] = "https://payments.worldpay.com/app/hpp/integration/wpg/corporate?OrderKey=DEDATATOUSD%5E6582655c25f2de3e694ce86d&Ticket=00170347644542002FNq7X0ZyeHG0y3IjOQL32wTQJBLEHiKPXyn5rz&source=https%3A%2F%2Fsecure.worldpay.com%2Fsc7";
+
+        return response()->json($data);
 
         /**
          * 
@@ -578,12 +582,17 @@ class ProductController extends Controller
         */
 
         try {
-            return response()->json($this->smartButton->createOrder($this->buildRequestBody()));
+            $order = $this->smartButton->createOrder($this->buildRequestBody());
+            $data = [];
+            $data['order'] = $order;
+            $data['code'] = 200;
+            $data['result'] = 200;
+            return response()->json($data);
         } catch (\Exception $e) {
             return response()->json(json_decode($e->getMessage()), 400);
         }
 
-        return response()->json($order);
+        // return response()->json($order);
     }
 
     /**
