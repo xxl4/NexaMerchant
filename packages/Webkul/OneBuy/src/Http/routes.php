@@ -15,6 +15,9 @@ Route::group(['middleware' => ['locale', 'theme', 'currency','web']], function (
     Route::any('onebuy/order/addr/after', [ProductController::class, "order_addr_after"])
         ->name("onebuy.order.addr.after");
 
+    Route::any('onebuy/order/status', [ProductController::class, "order_status"])
+        ->name("onebuy.order.status");
+
 
 
 });
