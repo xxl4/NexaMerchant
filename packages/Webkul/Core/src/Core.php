@@ -573,7 +573,7 @@ class Core
             $price = 0;
         }
 
-        $price = floatval($price); // have $9.99 price?? 
+        //$price = floatval($price); // have $9.99 price?? 
 
         $currency = $currencyCode
             ? $this->getAllCurrencies()->where('code', $currencyCode)->first()
