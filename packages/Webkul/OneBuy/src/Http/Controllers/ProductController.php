@@ -587,7 +587,7 @@ class ProductController extends Controller
             $data['order'] = $order;
             $data['code'] = 200;
             $data['result'] = 200;
-            return response()->json($data);
+            return response()->json($order);
         } catch (\Exception $e) {
             return response()->json(json_decode($e->getMessage()), 400);
         }
