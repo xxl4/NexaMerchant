@@ -14,6 +14,7 @@ use Webkul\Shop\Http\Resources\CartResource;
 use Webkul\Sales\Repositories\OrderRepository;
 use Webkul\Shop\Http\Resources\ProductResource;
 use Webkul\Paypal\Payment\SmartButton;
+use Webkul\Sales\Repositories\InvoiceRepository;
 
 class ProductController extends Controller
 {
@@ -31,6 +32,7 @@ class ProductController extends Controller
         protected ProductAttributeValueRepository $productAttributeValueRepository,
         protected AttributeRepository $attributeRepository,
         protected OrderRepository $orderRepository,
+        protected InvoiceRepository $invoiceRepository,
         protected ThemeCustomizationRepository $themeCustomizationRepository
     )
     {
@@ -581,10 +583,129 @@ class ProductController extends Controller
             return response()->json(json_decode($e->getMessage()), 400);
         }
 
-
-
-
         return response()->json($order);
+    }
+
+    /**
+     * 
+     * 订单状态查询
+     * 
+     */
+    public function order_status(Request $request) {
+
+        try {
+            $order = $this->smartButton->getOrder(request()->input('orderData.orderID'));
+            // return response()->json($order);
+            
+
+            $order = (array)$order;
+
+            //var_dump($order);
+
+            $purchase_units = (array)$order['result']->purchase_units;
+            $input = (array)$purchase_units[0]->shipping;
+            $payer = (array)$order['result']->payer;
+
+            //var_dump($payer, $input); exit;
+
+            // 添加地址内容
+            $addressData = [];
+            $addressData['billing'] = [];
+            $address1 = [];
+            array_push($address1, $input['address']->address_line_1);
+            $addressData['billing']['city'] = $input['address']->admin_area_1;
+            $addressData['billing']['country'] = $input['address']->country_code;
+            $addressData['billing']['email'] = $payer['email_address'];
+            $addressData['billing']['first_name'] = $payer['name']->given_name;
+            $addressData['billing']['last_name'] = $payer['name']->surname;
+            $addressData['billing']['phone'] = "";
+            $addressData['billing']['postcode'] = $input['address']->postal_code;
+            $addressData['billing']['state'] = $input['address']->postal_code;
+            $addressData['billing']['use_for_shipping'] = true;
+            $addressData['billing']['address1'] = $address1;
+            $addressData['shipping'] = [];
+            $addressData['shipping']['isSaved'] = false;
+            $address1 = [];
+            array_push($address1, "");
+            $addressData['shipping']['address1'] = $address1;
+
+            $addressData['billing']['address1'] = implode(PHP_EOL, $addressData['billing']['address1']);
+
+            $addressData['shipping']['address1'] = implode(PHP_EOL, $addressData['shipping']['address1']);
+
+            if (
+                Cart::hasError()
+                || ! Cart::saveCustomerAddress($addressData)
+            ) {
+                return new JsonResource([
+                    'redirect' => true,
+                    'data'     => route('shop.checkout.cart.index'),
+                ]);
+            }
+
+            $this->smartButton->captureOrder(request()->input('orderData.orderID'));
+
+            return $this->saveOrder();
+        } catch (\Exception $e) {
+            return response()->json($e->getMessage());
+            return response()->json(json_decode($e->getMessage()), 400);
+        }
+        
+    }
+
+      /**
+     * Saving order once captured and all formalities done.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    protected function saveOrder()
+    {
+        if (Cart::hasError()) {
+            return response()->json(['redirect_url' => route('shop.checkout.cart.index')], 403);
+        }
+
+        try {
+            Cart::collectTotals();
+
+            $this->validateOrder();
+
+            $order = $this->orderRepository->create(Cart::prepareDataForOrder());
+
+            $this->orderRepository->update(['status' => 'processing'], $order->id);
+
+            if ($order->canInvoice()) {
+                $this->invoiceRepository->create($this->prepareInvoiceData($order));
+            }
+
+            Cart::deActivateCart();
+
+            session()->flash('order', $order);
+
+            return response()->json([
+                'success' => true,
+            ]);
+        } catch (\Exception $e) {
+            session()->flash('error', trans('shop::app.common.error'));
+
+            throw $e;
+        }
+    }
+
+      /**
+     * Prepares order's invoice data for creation.
+     *
+     * @param  \Webkul\Sales\Models\Order  $order
+     * @return array
+     */
+    protected function prepareInvoiceData($order)
+    {
+        $invoiceData = ['order_id' => $order->id];
+
+        foreach ($order->items as $item) {
+            $invoiceData['invoice']['items'][$item->id] = $item->qty_to_invoice;
+        }
+
+        return $invoiceData;
     }
 
     protected function buildRequestBody()
@@ -596,7 +717,8 @@ class ProductController extends Controller
         $data = [
             'intent' => 'CAPTURE',
             'application_context' => [
-                'shipping_preference' => 'NO_SHIPPING',
+                //'shipping_preference' => 'NO_SHIPPING',
+                'shipping_preference' => 'GET_FROM_FILE', // 用户选择自己的地址内容
             ],
 
             'purchase_units' => [
@@ -647,8 +769,9 @@ class ProductController extends Controller
             $cart->haveStockableItems()
             && $cart->shipping_address
         ) {
-            $data['application_context']['shipping_preference'] = 'SET_PROVIDED_ADDRESS';
+            //$data['application_context']['shipping_preference'] = 'SET_PROVIDED_ADDRESS';
 
+            /*
             $data['purchase_units'][0] = array_merge($data['purchase_units'][0], [
                 'shipping' => [
                     'address' => [
@@ -661,6 +784,7 @@ class ProductController extends Controller
                     ],
                 ],
             ]);
+            */
         }
 
         return $data;
