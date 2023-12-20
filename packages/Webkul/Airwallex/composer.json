@@ -1,0 +1,25 @@
+{
+    "name": "Nicelizhi/Airwallex",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Steve Liu",
+            "email": "nice.lzhi@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Nicelizhi\\Airwallex\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Nicelizhi\\Airwallex\\Providers\\AirwallexServiceProvider"
+            ],
+            "aliases": {}
+        }
+    },
+    "minimum-stability": "dev"
+}
