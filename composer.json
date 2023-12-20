@@ -18,10 +18,12 @@
         "ext-pdo_mysql": "*",
         "ext-tokenizer": "*",
         "astrotomic/laravel-translatable": "^11.0.0",
+        "bagisto-eu/multisafepay": "^1.0",
         "barryvdh/laravel-dompdf": "^2.0.0",
         "cviebrock/laravel-elasticsearch": "^10.0",
         "diglactic/laravel-breadcrumbs": "^8.0",
         "doctrine/dbal": "^3.0",
+        "dompdf/dompdf": "2.0.4",
         "enshrined/svg-sanitize": "^0.16.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "intervention/image": "^2.4",
@@ -42,8 +44,12 @@
         "pusher/pusher-php-server": "^7.0",
         "shetabit/visitor": "^4.1",
         "spatie/laravel-responsecache": "^7.4",
+<<<<<<< HEAD
+        "spatie/laravel-sitemap": "^6.2"
+=======
         "dompdf/dompdf": "2.0.4",
         "spatie/laravel-sitemap": "^7.0"
+>>>>>>> ca2bcb09fff5845ba1a7e7da52b91855be7a09ab
     },
     "require-dev": {
         "bagisto/laravel-datafaker": "^2.0@alpha",
