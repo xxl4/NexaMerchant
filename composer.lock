@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "87255d14c26cee43238db358f32541b5",
+    "content-hash": "b71e128cbf659aaf039b2444e8210eda",
     "packages": [
         {
             "name": "astrotomic/laravel-translatable",
@@ -5291,20 +5291,20 @@
         },
         {
             "name": "paypal/paypal-checkout-sdk",
-            "version": "1.0.1",
+            "version": "1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/paypal/Checkout-PHP-SDK.git",
-                "reference": "ed6a55075448308b87a8b59dcb7fedf04a048cb1"
+                "reference": "19992ce7051ff9e47e643f28abb8cc1b3e5f1812"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/paypal/Checkout-PHP-SDK/zipball/ed6a55075448308b87a8b59dcb7fedf04a048cb1",
-                "reference": "ed6a55075448308b87a8b59dcb7fedf04a048cb1",
+                "url": "https://api.github.com/repos/paypal/Checkout-PHP-SDK/zipball/19992ce7051ff9e47e643f28abb8cc1b3e5f1812",
+                "reference": "19992ce7051ff9e47e643f28abb8cc1b3e5f1812",
                 "shasum": ""
             },
             "require": {
-                "paypal/paypalhttp": "1.0.0"
+                "paypal/paypalhttp": "1.0.1"
             },
             "require-dev": {
                 "phpunit/phpunit": "^5.7"
@@ -5337,24 +5337,23 @@
                 "sdk"
             ],
             "support": {
-                "issues": "https://github.com/paypal/Checkout-PHP-SDK/issues",
-                "source": "https://github.com/paypal/Checkout-PHP-SDK/tree/1.0.1"
+                "source": "https://github.com/paypal/Checkout-PHP-SDK/tree/1.0.2"
             },
             "abandoned": true,
-            "time": "2019-11-07T23:16:44+00:00"
+            "time": "2021-09-21T20:57:38+00:00"
         },
         {
             "name": "paypal/paypalhttp",
-            "version": "1.0.0",
+            "version": "1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/paypal/paypalhttp_php.git",
-                "reference": "1ad9b846a046f09d6135cbf2cbaa7701bbc630a3"
+                "reference": "7b09c89c80828e842c79230e7f156b61fbb68d25"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/paypal/paypalhttp_php/zipball/1ad9b846a046f09d6135cbf2cbaa7701bbc630a3",
-                "reference": "1ad9b846a046f09d6135cbf2cbaa7701bbc630a3",
+                "url": "https://api.github.com/repos/paypal/paypalhttp_php/zipball/7b09c89c80828e842c79230e7f156b61fbb68d25",
+                "reference": "7b09c89c80828e842c79230e7f156b61fbb68d25",
                 "shasum": ""
             },
             "require": {
@@ -5382,9 +5381,9 @@
             ],
             "support": {
                 "issues": "https://github.com/paypal/paypalhttp_php/issues",
-                "source": "https://github.com/paypal/paypalhttp_php/tree/1.0.0"
+                "source": "https://github.com/paypal/paypalhttp_php/tree/1.0.1"
             },
-            "time": "2019-11-06T21:27:12+00:00"
+            "time": "2021-09-14T21:35:26+00:00"
         },
         {
             "name": "phenx/php-font-lib",
