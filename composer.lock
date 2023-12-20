@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "de04a2b793f638c80e8438c919d1604d",
+    "content-hash": "992cd0b5df0f0c9b4f7aa6635005195a",
     "packages": [
         {
             "name": "astrotomic/laravel-translatable",
@@ -96,6 +96,61 @@
                 }
             ],
             "time": "2023-02-27T10:27:10+00:00"
+        },
+        {
+            "name": "bagisto-eu/multisafepay",
+            "version": "1.0.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/bagisto-europe/multisafepay.git",
+                "reference": "fb401be03257f83abe7c9585330b8d4be74f497f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/bagisto-europe/multisafepay/zipball/fb401be03257f83abe7c9585330b8d4be74f497f",
+                "reference": "fb401be03257f83abe7c9585330b8d4be74f497f",
+                "shasum": ""
+            },
+            "require": {
+                "multisafepay/php-sdk": "^5.11"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Bagisto\\MultiSafePay\\Providers\\MultiSafePayServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Bagisto\\MultiSafePay\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Bagisto Europe",
+                    "email": "info@bagisto.eu"
+                }
+            ],
+            "description": "MultiSafepay Payment Methods for Bagisto",
+            "homepage": "https://github.com/bagisto-europe/multisafepay",
+            "keywords": [
+                "bagisto",
+                "bagisto-payment-methods",
+                "laravel",
+                "multisafepay",
+                "payment-methods"
+            ],
+            "support": {
+                "issues": "https://github.com/bagisto-europe/multisafepay/issues",
+                "source": "https://github.com/bagisto-europe/multisafepay/tree/1.0.5"
+            },
+            "time": "2023-11-18T14:50:02+00:00"
         },
         {
             "name": "barryvdh/laravel-dompdf",
@@ -4646,6 +4701,59 @@
             "time": "2023-10-27T15:32:31+00:00"
         },
         {
+            "name": "multisafepay/php-sdk",
+            "version": "5.12.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/MultiSafepay/php-sdk.git",
+                "reference": "9891e4a29bb59ff3204a1091e6ba1da28ad025f2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/MultiSafepay/php-sdk/zipball/9891e4a29bb59ff3204a1091e6ba1da28ad025f2",
+                "reference": "9891e4a29bb59ff3204a1091e6ba1da28ad025f2",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "php": "^7.2|^8.0",
+                "php-http/discovery": "^1.0",
+                "psr/http-client-implementation": "^1.0",
+                "psr/http-factory-implementation": "^1.0",
+                "psr/http-message-implementation": "^1.0"
+            },
+            "require-dev": {
+                "fakerphp/faker": "^1.13",
+                "guzzlehttp/guzzle": "^7.0",
+                "http-interop/http-factory-guzzle": "^1.0",
+                "multisafepay/coding-standards": "dev-master",
+                "php-http/message": "^1.14",
+                "php-http/message-factory": "^1.1",
+                "php-http/mock-client": "^1.3",
+                "phpstan/phpstan": "^0.12.23",
+                "phpunit/phpunit": "^9.0 || ^7.5"
+            },
+            "suggest": {
+                "jschaedl/iban-validation": "Adds additional IBAN validation for \\MultiSafepay\\ValueObject\\IbanNumber"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "MultiSafepay\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "MultiSafepay PHP SDK",
+            "support": {
+                "issues": "https://github.com/MultiSafepay/php-sdk/issues",
+                "source": "https://github.com/MultiSafepay/php-sdk/tree/5.12.0"
+            },
+            "time": "2023-12-01T09:55:42+00:00"
+        },
+        {
             "name": "nesbot/carbon",
             "version": "2.72.1",
             "source": {
@@ -5475,6 +5583,84 @@
                 "source": "https://github.com/dompdf/php-svg-lib/tree/0.5.1"
             },
             "time": "2023-12-11T20:56:08+00:00"
+        },
+        {
+            "name": "php-http/discovery",
+            "version": "1.19.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-http/discovery.git",
+                "reference": "61e1a1eb69c92741f5896d9e05fb8e9d7e8bb0cb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-http/discovery/zipball/61e1a1eb69c92741f5896d9e05fb8e9d7e8bb0cb",
+                "reference": "61e1a1eb69c92741f5896d9e05fb8e9d7e8bb0cb",
+                "shasum": ""
+            },
+            "require": {
+                "composer-plugin-api": "^1.0|^2.0",
+                "php": "^7.1 || ^8.0"
+            },
+            "conflict": {
+                "nyholm/psr7": "<1.0",
+                "zendframework/zend-diactoros": "*"
+            },
+            "provide": {
+                "php-http/async-client-implementation": "*",
+                "php-http/client-implementation": "*",
+                "psr/http-client-implementation": "*",
+                "psr/http-factory-implementation": "*",
+                "psr/http-message-implementation": "*"
+            },
+            "require-dev": {
+                "composer/composer": "^1.0.2|^2.0",
+                "graham-campbell/phpspec-skip-example-extension": "^5.0",
+                "php-http/httplug": "^1.0 || ^2.0",
+                "php-http/message-factory": "^1.0",
+                "phpspec/phpspec": "^5.1 || ^6.1 || ^7.3",
+                "symfony/phpunit-bridge": "^6.2"
+            },
+            "type": "composer-plugin",
+            "extra": {
+                "class": "Http\\Discovery\\Composer\\Plugin",
+                "plugin-optional": true
+            },
+            "autoload": {
+                "psr-4": {
+                    "Http\\Discovery\\": "src/"
+                },
+                "exclude-from-classmap": [
+                    "src/Composer/Plugin.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Márk Sági-Kazár",
+                    "email": "mark.sagikazar@gmail.com"
+                }
+            ],
+            "description": "Finds and installs PSR-7, PSR-17, PSR-18 and HTTPlug implementations",
+            "homepage": "http://php-http.org",
+            "keywords": [
+                "adapter",
+                "client",
+                "discovery",
+                "factory",
+                "http",
+                "message",
+                "psr17",
+                "psr7"
+            ],
+            "support": {
+                "issues": "https://github.com/php-http/discovery/issues",
+                "source": "https://github.com/php-http/discovery/tree/1.19.2"
+            },
+            "time": "2023-11-30T16:49:05+00:00"
         },
         {
             "name": "phpoffice/phpspreadsheet",
