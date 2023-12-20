@@ -1459,6 +1459,8 @@ function GotoNotRequest(url) {
                 {fundingSource: paypal.FUNDING.PAYPAL},
             ]
 
+
+            
             
                         
             FUNDING_SOURCES.forEach(function(item) {
@@ -1466,6 +1468,8 @@ function GotoNotRequest(url) {
                 var render_id = item.render_id;
                 var paypal_type = item.paypal_type;
                 var fundingSource = item.fundingSource;
+
+
 
                 paypal.Buttons({
                     style: {
@@ -1475,6 +1479,16 @@ function GotoNotRequest(url) {
     
                     // Call your server to set up the transaction
                     createOrder: function(data, actions) {
+
+                                        // check the address info
+                        var email = $(".email").val();
+                        if(email.length < 1) {
+                            //alert("email is empty");
+                            //return false;
+                        }
+                        
+
+
                         sendInitiateCheckoutEvent();
                         gtag('event', 'initiate_checkout', {
                             'event_label': 'Initiate Checkout',
@@ -1532,25 +1546,39 @@ function GotoNotRequest(url) {
                     },
     
                     // Call your server to finalize the transaction
+                    /**
+                     *
+                     * 
+                     */
                     onApprove: function(data, actions) {
                         if(!data.orderID) {
                             throw new Error('orderid is not exisit');
                         }
+                        var orderData = {
+                            paymentID: data.orderID,
+                            orderID: data.orderID,
+                        };
                         var request_params = {
                             client_secret : data.orderID,
                             id : localStorage.getItem('order_id'),
+                            orderData: orderData,
                         }
                         var request = '';
                         for(var i=0; i<Object.keys(request_params).length; i++) {
                             request += Object.keys(request_params)[i] + '=' + request_params[Object.keys(request_params)[i]] + '&';
                         }
                         request = request.substr(0,request.length - 1);
+                        console.log(request);
+
     
-                        var url = '/pay/order/status?' + request;
+                        var url = '/onebuy/order/status?' + request + "&_token={{ csrf_token() }}";
+                        var url = "/paypal/smart-button/capture-order?_token={{ csrf_token() }}";
+                        var url = "/onebuy/order/status?_token={{ csrf_token() }}";
     
                         $('#loading').show();
                         return fetch(url,{
-                                method: 'get',
+                                method: 'post',
+                                body: JSON.stringify(request_params),
                                 headers: {
                                     'content-type': 'application/json'
                                 },
@@ -1558,11 +1586,12 @@ function GotoNotRequest(url) {
                             .then(function(res) {return res.json()})
                             .then(function(res) {
                                 $('#loading').hide();
-                                if(res.result === 200) {
-                                    var info = res.info;
-                                    if(info.pay_status) {
-                                        Goto('/template-common/en/thankyou1/?id='+localStorage.getItem('order_id')+'&client_secret='+data.orderID);
-                                    }
+                                if(res.success === 'true') {
+                                    //var info = res.info;
+                                    //if(info.pay_status) {
+                                        //Goto('/template-common/en/thankyou1/?id='+localStorage.getItem('order_id')+'&client_secret='+data.orderID);
+                                        Goto('/checkout/onepage/success');
+                                    //}
                                 }
                                 if(res.error == 'INSTRUMENT_DECLINED') {
                                     $('#'+ (error_id || 'paypal-error')).html("The instrument presented  was either declined by the processor or bank, or it can't be used for this payment.<br><br> Please confirm your account or bank card has sufficient balance, and try again.");
