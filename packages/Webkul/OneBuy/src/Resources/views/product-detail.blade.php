@@ -1907,11 +1907,12 @@ function GotoNotRequest(url) {
             .then(function(res){return res.json()})
             .then(function(res) {
                 var data = res;
+                console.log(data);
                 if(data.result === 200){
-                    var order_info = data.info;
-                    document.cookie="voluum_payout="+ params.total + params.currency + "; path=/";
-                    document.cookie="order_id="+ order_info._id.$oid + "; path=/";
-                    localStorage.setItem("order_id", order_info._id.$oid);
+                    var order_info = data.order;
+                    document.cookie="voluum_payout="+ order_info.grand_total + order_info.order_currency_code + "; path=/";
+                    document.cookie="order_id="+ order_info.id + "; path=/";
+                    localStorage.setItem("order_id", order_info.id);
                     localStorage.setItem("order_params", JSON.stringify(params));
                     if(window.is_payoneer_pay) {
                         $('#loading').hide();
@@ -1933,16 +1934,17 @@ function GotoNotRequest(url) {
                             Goto(order_info.client_secret, true);
                         }
                     } else if (window.is_worldpay){
+                        console.log(data)
                         $('#loading').hide();
                         document.querySelector(".submit-button").scrollIntoView({
                             behavior: "smooth"
                         })
                         worldpayInit({
-                            helper_html: window.location.protocol + '//' + window.location.host + '/template-common/worldpay/helper.html',
-                            redirect_url: order_info.client_secret,
+                            helper_html: window.location.protocol + '//' + window.location.host + '/worldpay/helper.html',
+                            redirect_url: data.client_secret,
                             target: 'worldpay-warpper',
                             language: 'en',
-                            country: order_info.country,
+                            country: order_info.order_currency_code,
                             resultCallback: function(responseData) {
                                 var status = responseData.order.status;
                                 if("success" == status) {
