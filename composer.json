@@ -1,7 +1,7 @@
 {
-    "name": "bagisto/bagisto",
+    "name": "nicelizhi/bagisto",
     "type": "project",
-    "description": "Bagisto Laravel E-Commerce",
+    "description": "Laravel E-Commerce",
     "keywords": [
         "framework",
         "laravel"
@@ -136,9 +136,9 @@
     "minimum-stability": "stable",
     "prefer-stable": true,
     "support": {
-        "issues": "https://github.com/bagisto/bagisto/issues",
-        "forum": "https://forums.bagisto.com",
-        "source": "https://github.com/bagisto/bagisto",
-        "docs": "https://devdocs.bagisto.com"
+        "issues": "https://github.com/nicelizhi/bagisto/issues",
+        "forum": "https://github.com/nicelizhi/Bagisto/discussions",
+        "source": "https://github.com/nicelizhi/bagisto",
+        "docs": "https://nicelizhi.github.io/me/tags/Bagisto/"
     }
 }
