@@ -29,6 +29,11 @@
         <testsuite name="Shop Feature Test">
             <directory suffix="Test.php">./packages/Webkul/Shop/tests/Feature</directory>
         </testsuite>
+
+        <!-- Shopify package testsuites. -->
+        <testsuite name="Shopify Unit Test">
+            <directory suffix="Test.php">./packages/Webkul/Shopify/tests/Feature</directory>
+        </testsuite>
     </testsuites>
     <source>
         <include>
