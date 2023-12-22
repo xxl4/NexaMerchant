@@ -32,4 +32,4 @@ jobs:
       env:
         DB_CONNECTION: sqlite
         DB_DATABASE: database/database.sqlite
-      run: vendor/bin/pest
+      run: php artisan migrate && php artisan db:seed && php artisan vendor:publish && php artisan storage:link && vendor/bin/pest
