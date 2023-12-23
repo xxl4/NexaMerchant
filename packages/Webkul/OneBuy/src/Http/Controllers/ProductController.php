@@ -14,6 +14,7 @@ use Webkul\Sales\Repositories\OrderRepository;
 use Webkul\Shop\Http\Resources\ProductResource;
 use Webkul\Paypal\Payment\SmartButton;
 use Webkul\Sales\Repositories\InvoiceRepository;
+use Webkul\Product\Helpers\View;
 
 class ProductController extends Controller
 {
@@ -129,15 +130,21 @@ class ProductController extends Controller
 
         $product_attributes = [];
 
+        $productViewHelper = new \Webkul\Product\Helpers\ConfigurableOption();
+
+        $attributes = $productViewHelper->getConfigurationConfig($product);
+
+        //var_dump($customAttributeValues);exit;
+
         //获取到他底部的商品内容
-        $attributes = $this->productRepository->getSuperAttributes($product);
+       // $attributes = $this->productRepository->getSuperAttributes($product);
         //var_dump($attributes);exit;
-        foreach($attributes as $key=>$attribute) {
+        foreach($attributes['attributes'] as $key=>$attribute) {
             $attribute['name'] = $attribute['code'];
             $options = [];
             //var_dump($attribute);
             foreach($attribute['options'] as $kk=>$option) {
-                //var_dump($option);
+                //var_dump($option);exit;
 
                 // 获取商品图片内容
                 if($attribute['id']==23) {
@@ -156,7 +163,7 @@ class ProductController extends Controller
 
 
                 //$option['image'] = $productBaseImage['medium_image_url'];
-                $option['name'] = $option['admin_name'];
+                $option['name'] = $option['label'];
                 unset($option['admin_name']);
                 $options[] = $option;
                 //var_dump($option);
