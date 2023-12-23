@@ -1420,7 +1420,7 @@ function GotoNotRequest(url) {
 <!-- End Google Analytics -->
 
 <script>
-        window.pay_type = 'worldpay';
+        window.pay_type = 'airwallex';
         window.is_checkout_pay = pay_type == 'checkout' ? true : false;
         window.is_payoneer_pay = pay_type == 'payoneer' ? true : false;
         window.is_paypal_card_pay = pay_type == 'paypal_card' ? true : false;
