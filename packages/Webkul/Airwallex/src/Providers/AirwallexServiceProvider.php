@@ -21,11 +21,24 @@ class AirwallexServiceProvider extends ServiceProvider
     public function boot(Router $router)
     {
         
+       /* loaders */
+       Route::middleware('web')->group(dirname(__DIR__).'/Routes/web.php');
         
+       $this->loadRoutesFrom(dirname(__DIR__).'/Routes/api.php');
 
-        /*
-        $this->app->register(EventServiceProvider::class);
-        */
+       $this->loadTranslationsFrom(__DIR__.'/../Resources/lang', 'airwallex');
+
+       $this->loadViewsFrom(__DIR__.'/../Resources/views', 'airwallex');
+
+       $this->app->bind('Webkul\Core\Core', 'Nicelizhi\Airwallex\Core');
+
+       $this->app->register(EventServiceProvider::class);
+
+       if ($this->app->runningInConsole()) {
+           $this->publishes([
+               __DIR__.'/../Resources/views' => $this->app->resourcePath('themes/default/views'),
+           ], 'airwallex');
+       }
     }
 
     /**
@@ -36,6 +49,7 @@ class AirwallexServiceProvider extends ServiceProvider
     public function register()
     {
         $this->registerConfig();
+        $this->registerCommands();
     }
 
     /**
@@ -45,10 +59,26 @@ class AirwallexServiceProvider extends ServiceProvider
      */
     protected function registerConfig()
     {
-        /*
         $this->mergeConfigFrom(
             dirname(__DIR__) . '/Config/paymentmethods.php', 'payment_methods'
         );
-        */
+
+        $this->mergeConfigFrom(
+            dirname(__DIR__) . '/Config/system.php', 'core'
+        );
+    }
+
+    /**
+     * Register the console commands of this package.
+     *
+     * @return void
+     */
+    protected function registerCommands(): void
+    {
+        if ($this->app->runningInConsole()) {
+            $this->commands([
+                \Nicelizhi\Airwallex\Console\Commands\Webhook\CreateaWebhook::class,
+            ]);
+        }
     }
 }
