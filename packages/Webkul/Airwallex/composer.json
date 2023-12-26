@@ -1,0 +1,40 @@
+{
+    "name": "nicelizhi/airwallex",
+    "description": "Airwallex Payment Methods for Bagisto",
+    "type": "library",
+    "license": "MIT",
+    "keywords": [
+      "bagisto",
+      "laravel",
+      "Airwallex",
+      "payment-methods",
+      "bagisto-payment-methods"
+    ],
+    "authors": [
+      {
+        "name": "nicelizhi",
+        "email": "nice.lizhi@gmail.com"
+      }
+    ],
+    "homepage": "https://github.com/nicelizhi/bagisto",
+    "require": {
+        "guzzlehttp/guzzle": "^7.0.1"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "autoload": {
+      "psr-4": {
+        "Nicelizhi\\Airwallex\\": "src/"
+      }
+    },
+    "config": {
+      "sort-packages": true
+    },
+    "extra": {
+      "laravel": {
+        "providers": [
+          "Nicelizhi\\Airwallex\\Providers\\AirwallexServiceProvider"
+        ]
+      }
+    }
+  }
