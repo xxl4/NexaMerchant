@@ -82,6 +82,7 @@ class Airwallex {
             $response = $client->request('POST', "/api/v1/authentication/login", [ 
                 'headers' => [
                      'Accept' => 'application/json', 
+                     'content-type' => 'application/json',
                      'x-client-id' => $this->clientId, 
                      'x-api-key' => $this->apiKey, 
                 ]
@@ -122,6 +123,7 @@ class Airwallex {
         $response = $client->request('POST', "/api/v1/pa/payment_intents/create", [ 
             'headers' => [
                  'Accept' => 'application/json', 
+                 'content-type' => 'application/json',
                  'Authorization' => "Bearer ".$token, 
             ],
             'json' => $data,
@@ -152,6 +154,12 @@ class Airwallex {
 
     }
 
+    /**
+     * 
+     * SDK get payment methods
+     * @return array
+     * 
+     */
     public function getPaymentMethods() {
         $paymentMethods = [];
 
