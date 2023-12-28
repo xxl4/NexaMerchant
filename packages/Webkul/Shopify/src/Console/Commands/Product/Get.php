@@ -5,6 +5,18 @@ namespace Nicelizhi\Shopify\Console\Commands\Product;
 use Illuminate\Console\Command;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Log;
+use Webkul\Attribute\Repositories\AttributeFamilyRepository;
+use Webkul\Inventory\Repositories\InventorySourceRepository;
+use Webkul\Product\Repositories\ProductRepository;
+use Webkul\Product\Repositories\ProductAttributeValueRepository;
+use Webkul\Product\Repositories\ProductDownloadableLinkRepository;
+use Webkul\Product\Repositories\ProductDownloadableSampleRepository;
+use Webkul\Product\Repositories\ProductInventoryRepository;
+use Webkul\Attribute\Models\AttributeOption;
+use Webkul\Attribute\Models\AttributeOptionTranslation;
+use Illuminate\Support\Facades\Event;
+use Illuminate\Support\Facades\Storage;
+use Webkul\Product\Models\ProductImage;
 
 class Get extends Command
 {
@@ -27,7 +39,11 @@ class Get extends Command
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(
+        protected AttributeFamilyRepository $attributeFamilyRepository,
+        protected InventorySourceRepository $inventorySourceRepository,
+        protected ProductRepository $productRepository,
+    )
     {
         parent::__construct();
     }
@@ -39,11 +55,14 @@ class Get extends Command
      */
     public function handle()
     {
+
+        $this->syncProductToLocal();
+
+        return true;
+
         $client = new Client();
 
         $shopify = config("shopify");
-
-
         /**
          * 
          * @link https://shopify.dev/docs/api/admin-rest/2023-10/resources/product#get-products?ids=632910392,921728736
@@ -72,6 +91,309 @@ class Get extends Command
             }else{
                 //$shopifyProduct::where("product_id", $item['id'])->update($item);
             }
+
+        }
+    }
+
+    private $locales = [
+        'en',
+        'fr',
+        'nl',
+        'tr',
+        'es',
+        'de',
+        'it',
+        'ru',
+        'uk'
+    ];
+
+    /**
+     * 
+     * sync product to local product
+     * 
+     */
+    public function syncProductToLocal() {
+        $items = \Nicelizhi\Shopify\Models\ShopifyProduct::all();
+        foreach($items as $key=>$item) {
+            // if($item['product_id']!='8126562107640') continue;
+
+            $this->info($item['product_id']);
+
+            //var_dump($item->options);exit;
+
+            // 23 color
+            // 24 size
+            // ba_attribute_options
+            // ba_attribute_option_translations
+            $options = $item->options;
+
+            //var_dump($options);
+
+            $shopifyVariants = $item->variants;
+            $shopifyImages = $item->images;
+            $color = [];
+            $size = [];
+            $error = 0;
+            foreach($options as $kk => $option) {
+                $attr_id = 0;
+                if($option['name']=='Color' && $option['position']==1) $attr_id = 23;
+                if($option['name']=='颜色' && $option['position']==1) $attr_id = 23;
+                if($option['name']=='Size' && $option['position']==2) $attr_id = 24;
+                if($option['name']=='Shoe Size' && $option['position']==2) $attr_id = 24;
+                if($option['name']=='尺码' && $option['position']==2) $attr_id = 24;
+                if($option['name']=='Size (we recommend you take 1 size up)' && $option['position']==2) $attr_id = 24;
+                if($option['name']=='Size (Suggust 1 size larger)' && $option['position']==2) $attr_id = 24;
+                if($option['name']=='Size (We suggust you to choose half or 1 size larger than usual)' && $option['position']==2) $attr_id = 24;
+                //if($option['position']==2) $attr_id = 24;
+                if(empty($attr_id)) {
+                    var_dump($item);
+                    Log::info(json_encode($item));
+                    $error = 1;
+                    continue;
+                    //exit;
+                }
+                $this->info("attr id ". $attr_id);
+
+                $values = $option['values'];
+                foreach($values as $kky => $value) {
+                    $this->info($value);
+                    if($value==35 && $attr_id==23) {
+                        var_dump($item);exit;
+                    }
+                    //ba_attribute_options
+                    $attr_option = AttributeOption::where("attribute_id", $attr_id)->where("admin_name", $value)->first();
+                    if(is_null($attr_option)) {
+                        $attr_option = new AttributeOption();
+                        $attr_option->attribute_id = $attr_id;
+                        $attr_option->admin_name = $value;
+                        $attr_option->save();
+                        $attribute_option_id = $attr_option->id;
+                    }else{
+                        $attribute_option_id = $attr_option->id;
+                    }
+
+                    //var_dump($attr_opt_tran);exit;
+                    foreach($this->locales as $kl => $locale) {
+                        $attr_opt_tran = AttributeOptionTranslation::where("attribute_option_id", $attribute_option_id)->where("locale", $locale)->first();
+                        if(is_null($attr_opt_tran)) {
+                            $attr_opt_tran = new AttributeOptionTranslation();
+                            if($locale=='en') {
+                                $attr_opt_tran->label = $value;
+                            } else{
+                                $attr_opt_tran->label = "";
+                            }
+                            $attr_opt_tran->locale = $locale;
+                            $attr_opt_tran->attribute_option_id = $attribute_option_id;
+                            $attr_opt_tran->save();
+                        }
+                    }
+                    if($attr_id==23) $color[$attribute_option_id] = $attribute_option_id; //array_push($color, $attribute_option_id); 
+                    if($attr_id==24) $size[$attribute_option_id] = $attribute_option_id;
+                }
+            }
+
+            if($error==1) continue;
+
+
+            
+            // add product
+
+            $data = [];
+            $data['attribute_family_id'] = 1;
+            $data['sku'] = $item['product_id'];
+            $data['type'] = "configurable";
+            $super_attributes['color'] = $color;
+            $super_attributes['size'] = $size;
+            $data['super_attributes'] = $super_attributes;
+            //$data['family'] = [];
+
+            //var_dump($data);exit;
+            Event::dispatch('catalog.product.create.before');
+
+            // check product info
+            $product = $this->productRepository->where("sku", $item['product_id'])->first();
+            if(is_null($product)) {
+                $product = $this->productRepository->create($data);
+                $id = $product->id;
+            }else{
+                $id = $product->id;
+            }
+            Event::dispatch('catalog.product.create.after', $product);
+
+            $updateData = [];
+            $updateData['product_number'] = 1000;
+            $updateData['name'] = $item['title'];
+            $updateData['url_key'] = $item['product_id'];
+            $updateData['short_description'] = $item['title'];
+            $updateData['description'] = $item['title'];
+            $updateData['new'] = 1;
+            $updateData['featured'] = 1;
+            $updateData['visible_individually'] = 1;
+            $updateData['status'] = 1;
+            $updateData['guest_checkout'] = 1;
+            $updateData['channel'] = "default";
+            $updateData['locale'] = "en";
+            $categories[] = 3;
+            $updateData['categories'] = $categories;
+
+            $updateData['description'] = $item['body_html'];
+
+            $variants = $variantCollection = $product->variants()->get()->toArray();
+
+            //var_dump(count($shopifyVariants));
+
+            $newShopifyVarants = [];
+            foreach($shopifyVariants as $sv => $shopifyVariant) {
+                //var_dump($shopifyVariant);
+                $newkey = $shopifyVariant['product_id'];
+                $color = AttributeOption::where("attribute_id", 23)->where("admin_name", $shopifyVariant['option1'])->first();
+                $size = AttributeOption::where("attribute_id", 24)->where("admin_name", $shopifyVariant['option2'])->first();
+
+                if(is_null($color) || is_null($size)) {
+                    $this->info("error");
+                    var_dump($color, $size, $shopifyVariant);
+                    exit;
+                }
+
+                $newkey .="_".$color->id."_".$size->id;
+
+                $newShopifyVarant = [];
+
+                $newShopifyVarant['id'] = $shopifyVariant['id'];
+                $newShopifyVarant['price'] = $shopifyVariant['price'];
+                $newShopifyVarant['title'] = $shopifyVariant['title'];
+                $newShopifyVarant['weight'] = $shopifyVariant['weight'];
+                $newShopifyVarant['sku'] = $shopifyVariant['sku'];
+                $newShopifyVarant['option1'] = $shopifyVariant['option1'];
+                $newShopifyVarant['option2'] = $shopifyVariant['option2'];
+                $newShopifyVarants[$newkey] = $newShopifyVarant;
+            }
+
+            //var_dump($newShopifyVarants);exit;
+
+            /**
+             * 
+             * variants[440][sku]: 8007538966776-variant-1375-1376
+             * variants[440][name]: Variant 1375 1376
+             * variants[440][price]: 0.0000
+             * variants[440][weight]: 0
+             * variants[440][status]: 1
+             * variants[440][color]: 1375
+             * variants[440][size]: 1376
+             * variants[440][inventories][1]: 0
+             * 
+             * 
+             */
+            $newVariants = [];
+            foreach($variants as $k => $variant) {
+                //Log::info(json_encode($variant));
+                //var_dump($variant);
+                $newkey = $item['product_id']."_".$variant['color']."_".$variant['size'];
+                if($variant['size']=='1403') {
+                    //var_dump($variant);exit;
+                }
+                $this->info($newkey);
+                if(!isset($newShopifyVarants[$newkey])) continue;
+                //var_dump($newkey);exit;
+                $newVariant['sku'] = $item['product_id'].';'.$newShopifyVarants[$newkey]['id'].';'.$newShopifyVarants[$newkey]['sku'];
+                $newVariant['name'] = $newShopifyVarants[$newkey]['title'];
+                $newVariant['price'] = $newShopifyVarants[$newkey]['price'];
+                $newVariant['weight'] = $newShopifyVarants[$newkey]['weight'];
+                $newVariant['status'] = 1;
+                $newVariant['color'] = $variant['color'];
+                $newVariant['size'] = $variant['size'];
+                $newVariant['inventories'][1] = 1000;
+                $newVariants[$variant['id']] = $newVariant;
+            }
+
+            //var_dump(count($newVariants));exit;
+
+            $updateData['variants'] = $newVariants;
+
+            // images
+            /**
+             * 
+             * 
+             * 
+             * images[files][32]: 
+             * images[files][]: （二进制）
+             * 
+             * 
+             */
+
+             $arrContextOptions=array(
+                "ssl"=>array(
+                      "verify_peer"=>false,
+                      "verify_peer_name"=>false,
+                  ),
+              ); 
+            $images = [];
+            foreach($shopifyImages as $key=>$shopifyImage) {
+
+                //var_dump($shopifyImage);
+                $info = pathinfo($shopifyImage['src']);
+
+                //var_dump($shopifyImage);
+
+                $this->info($info['filename']);
+
+               
+                //var_dump($info);exit;
+                $image_path = "product/".$id."/".$info['filename'].".webp";
+                $local_image_path = "storage/".$image_path;
+                $this->info(public_path($local_image_path));
+                if(!file_exists(public_path($local_image_path))) {
+                    //var_dump($shopifyImage['src'],"hello");
+                    $contents = file_get_contents($shopifyImage['src'], false, stream_context_create($arrContextOptions));
+                    Storage::disk("images")->put($local_image_path, $contents);
+                    //var_dump($local_image_path);exit;
+                }
+                $images[] = $image_path;
+            }
+
+            //var_dump($images);exit;
+            
+            
+            //$images['files'] = $files;
+
+            //$updateData['images'] = $images;
+            //var_dump($files);
+            //exit;
+
+
+            $product = $this->productRepository->update($updateData, $id);
+
+            Event::dispatch('catalog.product.update.after', $product);
+
+            foreach($images as $key=>$image) {
+                //var_dump($image);
+                $checkImg = ProductImage::where("product_id", $id)->where("path", $image)->first();
+                if(is_null($checkImg)) {
+                    $checkImg = new ProductImage();
+                    $checkImg->product_id = $id;
+                    $checkImg->path = $image;
+                    $checkImg->type = "images";
+                    $checkImg->save();
+                }
+            }
+
+
+            //exit;
+
+
+            sleep(1);
+            //var_dump($product);exit;
+            
+
+            //var_dump($product);exit;
+
+            // add product_attr
+
+
+            // add product_images
+            // add product_sku
+
+
 
         }
     }
