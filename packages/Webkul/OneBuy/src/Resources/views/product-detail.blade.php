@@ -19,9 +19,10 @@
         <meta name="base-url" content="{{ url()->to('/') }}">
         <meta name="currency-code" content="{{ core()->getCurrentCurrencyCode() }}">
         <meta http-equiv="content-language" content="{{ app()->getLocale() }}">
-<!--<base href="https://shoes.dotmalls.com" /> -->
 <script src="https://unpkg.com/jquery@3.3.1/dist/jquery.js"></script>
-
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
 <script>
     function sendInitcheckout2Everflow() {
@@ -40,7 +41,7 @@
         }
 
         /*
-        fetch('https://shoes.dotmalls.com/common/send/everflow/init_checkout',{
+        fetch('https://shoes.Hatmeo.com/common/send/everflow/init_checkout',{
             body: JSON.stringify(params),
             method: 'POST',
             headers: {
@@ -86,6 +87,7 @@
 <script src="https://lander.heomai.com/template-common/js/worldpay-init.js"></script>
 <script src="https://lander.heomai.com/template-common/js/paypal-init.js"></script>
 <script type="text/javascript" src="https://lander.heomai.com/template-common/js/op-payment-widget-v3.min.js"></script>
+<script src="https://checkout.airwallex.com/assets/elements.bundle.min.js"></script>
 <link rel="stylesheet" type="text/css" href="https://lander.heomai.com/template-common/css/op-payment-widget-v3.min.css">
 
 <link rel="stylesheet" href="https://lander.heomai.com/template-common/checkout1/css/font-awesome.min.css">
@@ -280,18 +282,18 @@
 <div class="header-container-bg"></div>
 <style>
                 .header-container-bg {
-                    background-image : url(https://d1y4tm6t3pzfj.cloudfront.net/cpl/images/1692088470_784C3FC2E47AF3089556A5446F337E1A_750_750.jpg)
+                    background-image : url(/storage/<?php echo isset($productBgAttribute->text_value) ? $productBgAttribute->text_value : "" ;?>)
                 }
 
                 @media (max-width:1023px) {
                     .header-container-bg {
-                        background-image : url(https://d1y4tm6t3pzfj.cloudfront.net/cpl/images/1692088466_1689762357_CJ02168-0719-HLP-2.jpg)
+                        background-image : url(/storage/<?php echo isset($productBgAttribute_mobile->text_value) ? $productBgAttribute_mobile->text_value : "" ;?>)
                     }
                 }
 
                 @media (max-width:767px) {
                     .header-container-bg {
-                        background-image : url(https://d1y4tm6t3pzfj.cloudfront.net/cpl/images/1692088466_1689762357_CJ02168-0719-HLP-2.jpg)
+                        background-image : url(/storage/<?php echo isset($productBgAttribute_mobile->text_value) ? $productBgAttribute_mobile->text_value : "" ;?>)
                     }
                 }
             </style>
@@ -634,11 +636,11 @@ Total:
 <div class="summary-footer">
 <div class="agree-block">
 <input type="checkbox" checked>
-I agree with the <a href="https://lander.heomai.com/template-common/en/terms-of-service?brand=Dotmalls&logo=https://d1y4tm6t3pzfj.cloudfront.net/cpl/images/1692088119_logo.png&email=support@dotmalls.com">
+I agree with the <a href="https://lander.heomai.com/template-common/en/terms-of-service?brand=Hatmeo&logo=https://d1y4tm6t3pzfj.cloudfront.net/cpl/images/1692088119_logo.png&email=support@Hatmeo.com">
 Term of service </a>
-& <a href="https://lander.heomai.com/template-common/en/refund-policy?brand=Dotmalls&logo=https://d1y4tm6t3pzfj.cloudfront.net/cpl/images/1692088119_logo.png&email=support@dotmalls.com">
+& <a href="https://lander.heomai.com/template-common/en/refund-policy?brand=Hatmeo&logo=https://d1y4tm6t3pzfj.cloudfront.net/cpl/images/1692088119_logo.png&email=support@Hatmeo.com">
 Refund policy </a>
-& <a href="https://lander.heomai.com/template-common/en/privacy-policy?brand=Dotmalls&logo=https://d1y4tm6t3pzfj.cloudfront.net/cpl/images/1692088119_logo.png&email=support@dotmalls.com">
+& <a href="https://lander.heomai.com/template-common/en/privacy-policy?brand=Hatmeo&logo=https://d1y4tm6t3pzfj.cloudfront.net/cpl/images/1692088119_logo.png&email=support@Hatmeo.com">
 Privacy Policy </a>
 . </div>
 <div class="guarantee-block">
@@ -652,7 +654,7 @@ United States Dollars </strong>
 <strong>
 30 DAY GUARANTEE:
 </strong>
-Dotmalls offers a 30 day guarantee on all unused purchases. Simply send the item(s) back to us in the original packaging for a full refund or replacement, less S&H. </div>
+Hatmeo offers a 30 day guarantee on all unused purchases. Simply send the item(s) back to us in the original packaging for a full refund or replacement, less S&H. </div>
 </div>
 </div>
 </div>
@@ -667,16 +669,18 @@ Dotmalls offers a 30 day guarantee on all unused purchases. Simply send the item
 COMPLETE SECURE PURCHASE </button>
 </div>
 </div>
-<div id="worldpay-warpper" style="margin-top:20px;"></div>
+<div id="airwallex-warpper"></div>
+<div id="dropIn"></div>
+<p id="error"></p>
 <div id="pay-after-warpper"></div>
 <div class="summary-footer summary-footer-mb">
 <div class="agree-block">
 <input type="checkbox" checked>
-I agree with the <a href="https://lander.heomai.com/template-common/en/terms-of-service?brand=Dotmalls&logo=https://d1y4tm6t3pzfj.cloudfront.net/cpl/images/1692088119_logo.png&email=support@dotmalls.com">
+I agree with the <a href="https://lander.heomai.com/template-common/en/terms-of-service?brand=Hatmeo&logo=https://d1y4tm6t3pzfj.cloudfront.net/cpl/images/1692088119_logo.png&email=support@Hatmeo.com">
 Term of service </a>
-& <a href="https://lander.heomai.com/template-common/en/refund-policy?brand=Dotmalls&logo=https://d1y4tm6t3pzfj.cloudfront.net/cpl/images/1692088119_logo.png&email=support@dotmalls.com">
+& <a href="https://lander.heomai.com/template-common/en/refund-policy?brand=Hatmeo&logo=https://d1y4tm6t3pzfj.cloudfront.net/cpl/images/1692088119_logo.png&email=support@Hatmeo.com">
 Refund policy </a>
-& <a href="https://lander.heomai.com/template-common/en/privacy-policy?brand=Dotmalls&logo=https://d1y4tm6t3pzfj.cloudfront.net/cpl/images/1692088119_logo.png&email=support@dotmalls.com">
+& <a href="https://lander.heomai.com/template-common/en/privacy-policy?brand=Hatmeo&logo=https://d1y4tm6t3pzfj.cloudfront.net/cpl/images/1692088119_logo.png&email=support@Hatmeo.com">
 Privacy Policy </a>
 . </div>
 <div class="price-tip tc">
@@ -690,7 +694,7 @@ United States Dollars </strong>
 <strong>
 30 DAY GUARANTEE:
 </strong>
-Dotmalls offers a 30 day guarantee on all unused purchases. Simply send the item(s) back to us in the original packaging for a full refund or replacement, less S&H. </div>
+Hatmeo offers a 30 day guarantee on all unused purchases. Simply send the item(s) back to us in the original packaging for a full refund or replacement, less S&H. </div>
 </div>
 </div>
 </div>
@@ -745,7 +749,7 @@ Dotmalls offers a 30 day guarantee on all unused purchases. Simply send the item
 </div>
 <div class="footer-container">
 <div class="copyright-block">
-©2021 - Dotmalls
+©2021 - Hatmeo
 </div>
 <style>
                     .phone-block {
@@ -761,24 +765,285 @@ Dotmalls offers a 30 day guarantee on all unused purchases. Simply send the item
                     }
                 </style>
 <div class="phone-block">
-Phone: <a href="tel:(833) 493-2323">(833) 493-2323</a> (9:00am-5:00pm EST, Monday to Friday). </div>
-<div class="terms-block">
-<a href="/template-common/en/shipping-delivery?brand=Dotmalls&logo=https://d1y4tm6t3pzfj.cloudfront.net/cpl/images/1692088119_logo.png&email=support@dotmalls.com" target="_blank">
-Shipping & Delivery </a>
-<a href="/template-common/en/refund-policy?brand=Dotmalls&logo=https://d1y4tm6t3pzfj.cloudfront.net/cpl/images/1692088119_logo.png&email=support@dotmalls.com" target="_blank">
-Refund policy </a>
-<a href="/template-common/en/terms-of-service?brand=Dotmalls&logo=https://d1y4tm6t3pzfj.cloudfront.net/cpl/images/1692088119_logo.png&email=support@dotmalls.com" target="_blank">
-Term of service </a>
-<a href="/template-common/en/privacy-policy?brand=Dotmalls&logo=https://d1y4tm6t3pzfj.cloudfront.net/cpl/images/1692088119_logo.png&email=support@dotmalls.com" target="_blank">
-Privacy Policy </a>
-<a href="/template-common/en/contact-us?brand=Dotmalls&logo=https://d1y4tm6t3pzfj.cloudfront.net/cpl/images/1692088119_logo.png&email=support@dotmalls.com" target="_blank">
-Contact Us </a>
+    <!--Phone: <a href="tel:(833) 493-2323">(833) 493-2323</a> (9:00am-5:00pm EST, Monday to Friday). </div>-->
+    <div class="terms-block">
+        <a href="#" class="btn" data-toggle="modal" data-target="#shippingdeliverModalCenter" >
+    Shipping & Delivery </a>
+        <a href="#" class="btn" data-toggle="modal" data-target="#RefundpolicyModalCenter">
+    Refund policy </a>
+        <a href="#" class="btn" data-toggle="modal" data-target="#TermofserviceModalCenter">
+    About US </a>
+        <a href="#" class="btn" data-toggle="modal" data-target="#PrivacyPolicyModalCenter">
+    Privacy Policy </a>
+        <a href="#" class="btn" data-toggle="modal" data-target="#contactusModalCenter" >
+    Contact Us </a>
+    </div>
+    <div class="dmca_logo">
+        <a href="https://www.dmca.com/Protection/Status.aspx" target="_blank">
+            <img src="https://lander.heomai.com/template-common/checkout1/images/dmca-grey.png" />
+        </a>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="shippingdeliverModalCenter" tabindex="-1" role="dialog" aria-labelledby="shippingdeliverModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="shippingdeliverModalCenterTitle">Shipping info</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      
+
+      Here are our shipping service options. Please note that delivery times are given as an indication and may be subject to delays in special circumstances.
+
+      <p>Standard delivery:</p>
+
+Cost: 9.99 euros
+Delivery time: 5-10 days
+Free delivery :
+
+Cost: 69 euros
+Delivery time: 5-10 days
+Conditions: Order with a value greater than or equal to 69 eurosRestrictions and delays
+Please rest assured that all orders will be shipped in the order received. Once your order has been shipped, you will immediately receive a shipping notification via email. We thank you for your patience.
+
+Due to higher than average order volume, there may be delays of a few days in shipping times.
+
+<p>Fast delivery times and methods</p>
+
+We want your order to be delivered as quickly as possible. Therefore, almost all orders ship within 1 business day.
+
+There are some countries where we cannot deliver at the moment. As long as your country appears in the list of countries when you enter your shipping address, we can deliver to you!
+
+Due to international customs regulations, we cannot offer a free exchange service for international orders. Return or exchange costs are the responsibility of the recipient.
+
+Customs fees and import duties are the responsibility of the recipient and vary depending on the country and the order. We ask that you understand that customs duties and taxes are not refundable.
+We ship to almost every country in the world and use the services of a large, trusted international carrier to ensure your packages arrive quickly and safely at their destination.
+
+<p>Order successful</p>
+
+After successfully placing your order, you will receive an email confirmation from us. If you have any special requests regarding your order, please let us know as soon as possible before your items are being processed.
+
+<p>Treatment</p>
+
+Note: For orders containing multiple items, processing time will depend on the longest processing time among the items.
+
+We perform strict quality control on your items and ensure they are properly packaged before shipping. We are happy to inform you that most orders are now shipped within 24 hours. Please note that for some small orders it may still take 3-5 business days depending on stock. We ask you to believe in us - it's worth the wait.
+
+Please note that processing time does not include delivery time. If you experience any issues with your order, you can submit a ticket to our support center for further assistance. Our dedicated customer service team will contact you within 24 hours.
+
+<p>Delivery </p>
+
+We work with major international shipping companies and offer different shipping options.
+
+During the ordering process, you will be able to select your preferred delivery method on the order information page.
+
+Note: During holiday periods, shipping times may be affected as manufacturers and delivery services limit operations during these times. Although this is unfortunately beyond our control, we will do our best to resolve this issue.
+
+-Delivery time: FROM (Germany): Standard Shipping (5-10 days), Free Shipping (5-10 days)
+-Delivery time: Other countries: Standard Shipping (5-10 days), Free Shipping (5-10 days)
+-Standard delivery costs: 9.99 euros (Order value: 0 euros - 69 euros)
+-Free delivery worldwide for orders over 69 euros
+Welcome to our FAQ. Here you will find answers to frequently asked questions from our customers before purchasing an item. If you have any other questions, feel free to send them to info@hatmeo.com.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
 </div>
-<div class="dmca_logo">
-<a href="https://www.dmca.com/Protection/Status.aspx?refurl=http://127.0.0.1:10801/me/Dotmalls/checkout/4766" target="_blank">
-<img src="https://lander.heomai.com/template-common/checkout1/images/dmca-grey.png" />
-</a>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="RefundpolicyModalCenter" tabindex="-1" role="dialog" aria-labelledby="RefundpolicyModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="RefundpolicyModalCenterTitle">Refund policy</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+            
+            <p>Eligible returns of products purchased on WMBRA.US should be made by mail. Items must be returned in accordance with the requirements outlined below, within 30 days from the date of delivery to a specified address which our customer service will provide. Customers need to apply through (info@hatmeo.com) and get consent by our customer serivice. We will NOT provide any return label, and customers need to send the tracking number to our customer service by email. If customers return products to an address without our permission, we have rights to refuse the returns or refund. Corporate gifts must be returned exclusively to hatmeo.com </p>
+
+            <p>Please return merchandise in its original box if possible and include the provided return slip with returns instructions.</p>
+
+            <p>Exchange:  Customers should bear the return shipping fees and $9.99 resend shipping fee themselves; we will re-send products to customers once we receive the products. Returned merchandise must meet the below requirements in order to be accepted for a refund.</p>
+
+            <p>Returns:  The address on the package is only the address of the last processing center, not the return address. To get the return address, please contact our customer service via info@hatmeo.com.</p>
+
+            <p>Customers should bear the return shipping fees themselves; we will refund(deduct the $9.99 shipping fee we paid when shipping the goods include free-shipping products) to customers once we receive the products. Returned merchandise must meet the below requirements in order to be accepted for a refund.</p>
+
+            <p>All items must be in original condition with original tags attached. Merchandise that has been worn, used, altered or damaged will not be accepted.</p>
+
+            <p>Once we receive the items and inspect them you will receive your refund. Allow up to 5 business days after receipt in our warehouse to process the refund. The refund will be applied to your original credit card or payment method. Original shipping and handling charges cannot be reimbursed.</p>
+
+            <p>（Please note that due to the hygiene and safety of other customers, we do not offer returns or exchanges on any panties sold on this site. If the product itself has quality problems, please contact our customer service. We will send you a new package or refund you.）</p>
+
+            <p>Please note that refunds are not offered for merchandise returned after the 30-day period.</p>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="TermofserviceModalCenter" tabindex="-1" role="dialog" aria-labelledby="TermofserviceModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="TermofserviceModalCenterTitle">About US</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+            
+
+            <p>Hatmeo is a global online retail company that delivers products directly to consumers around the world. Founded in 2016, Hotmeo has offered customers a convenient way to shop for a wide selection of lifestyle products at attractive prices through different websites, which are available in multiple major languages.</p>
+            <p>Hatmeo's mission:</p>
+            <p> Hatmeo offers products in the categories of bras,shoes and other general merchandise.
+            Hatmeo's innovative data-driven business model allows itself to offer products, at scale for optimal marketing, merchandising, and fulfillment.
+            Hatmeo's unique strengths:
+            Hatmeo is bringing the best merchandise partners, manufacturers and brands of all sizes to your doorstops because of our:
+            Ability to Manufacture the best products
+            Experience in managing complex logistical supply chains
+            Consumer-to-Manufacturing </p>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="PrivacyPolicyModalCenter" tabindex="-1" role="dialog" aria-labelledby="PrivacyPolicyModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="PrivacyPolicyModalCenterTitle">Privacy Policy</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+            
+            <p>Section 1 - How do we handle your data?</p>
+
+            <p>When you make a purchase in our store, we collect the personal data that you provide, such as your name, address, and email address, as part of the buying and selling process.
+            When you browse our store, we also automatically receive your computer's IP address to provide us with information about your browser and operating system.
+            Email marketing (if applicable): With your permission, we may send you emails about our store, new products, and other updates.</p>
+
+            <p>Section 2 - Consent</p>
+
+            <p>How do you get my consent?
+            If we ask for personal information for another reason, such as for marketing purposes, we will directly ask for your explicit consent, or we will give you the opportunity to refuse.</p>
+
+            <p>How can I withdraw my consent?
+            If you change your mind after subscribing, you can withdraw your consent by contacting us at any time at info@wmbra.de, and we will unsubscribe you from our mailing lists.
+
+            <p>Section 3 - Disclosure
+            We may disclose your personal information if we are legally required to do so or if you violate our terms of use.</p>
+
+            <p>Payment:</p>
+
+            <p>If you choose a direct payment gateway to complete your purchase, Shopify will store your credit card data. They are encrypted according to the Payment Card Industry Data Security Standard (PCI-DSS). The data related to your purchase transaction is stored only for the duration necessary to complete your transaction. Once your transaction is completed, your transaction data will be deleted.</p>
+
+            <p>All direct payment gateways adhere to the standards set by PCI-DSS, which is managed by the Payment Card Industry Security Standards Council, a joint effort of payment card brands such as Visa, MasterCard, American Express, and Discover.</p>
+
+            <p>The PCI-DSS requirements help ensure the secure processing of payment information for our store and its service providers.</p>
+
+            <p>Section 4 - Third-party services</p>
+
+            <p>In general, the third-party providers we use will only collect, use, and disclose your information to the extent necessary to enable them to provide the services they provide to us.</p>
+
+            <p>Certain third-party providers, such as payment gateways and other payment processors, have their own privacy policies regarding the information we are required to provide to them for your purchase-related transactions.</p>
+
+            <p>We recommend that you carefully read their privacy policies to understand how they will handle your personal information.</p>
+
+            <p>It is important to note that some providers may be located in a country different from where you are located or have facilities located in a different country than where you or we are. If you choose to engage in a transaction that involves the services of a third-party provider, then your information may be subject to the laws of the country or facility where that provider is located.</p>
+
+            <p>For example, if you are located in Canada and your transaction is processed by a payment gateway located in the United States, the personal information you used to make that transaction may be disclosed under American legislation, including the Patriot Act.</p>
+
+            <p>Once you leave our store's website or are redirected to a third-party website or application, you are no longer governed by this privacy policy or the terms of use of our website.</p>
+
+            <p>Section 5 - Security</p>
+
+            <p>To protect your personal information, we take reasonable precautions and follow industry best practices to ensure that it is not lost, misused, accessed, disclosed, altered, or destroyed inappropriately.</p>
+
+            <p>If you provide us with your credit card information, it is encrypted using SSL (Secure Socket Layer) technology and stored with AES-256 encryption. While no method of transmitting data over the Internet or electronic storage is completely secure, we follow all PCI-DSS requirements and implement additional generally accepted industry standards.</p>
+
+            <p>Section 6 - Age Consent</p>
+
+            <p>By using our site, you warrant that you are at least the age of majority in your country of residence, or that you have reached the age of majority in your country of residence and have given your consent for your minor children to use this site.</p>
+
+            <p>Section 7 - Changes to this Privacy Policy</p>
+
+            <p>We reserve the right to modify this privacy policy at any time, so please review it frequently. Changes and clarifications will take effect immediately upon their posting on the website. If we make significant changes to this policy, we will notify you here that it has been updated, so that you are aware of what information we collect, how we use it, and under what circumstances, if any, we use and/or disclose it.</p>
+
+            <p>If our store is acquired by another company or merges with another company, your information may be transferred to the new owners so that we can continue to sell products to you.</p>
+
+            <p>Questions and contact information</p>
+
+            <p>If you would like to access, correct, modify, or delete your personal information, file a complaint, or simply get more information, please contact our Data Protection Officer at info@hatmeo.com.</p>
+
+            <p> By using our site, you (the visitor) consent to the processing of your IP address by third parties to determine your location for currency conversion purposes. You also consent to this currency being stored in a session cookie in your browser (this temporary cookie will be automatically removed when you close your browser). We do this to maintain consistency while browsing our site and convert prices into your local currency (the visitor).</p>
+
+            <p>Imprint:
+            Address: Hong Kong
+            Company: New Tai E-commerce Limited
+            Company type: Enterprise
+            Company registration number: 2818807
+            Legal representative: Meng Wang
+            Company address: FLAT/RM B 5/F GAYLORD COMM BLDG 114-118 LOCKHART RD HK, HONG KONG, HONG KONG, 999077
+            (Please note that this address is not a return center.)
+            Email: info@hatmeo.com
+            Website: https://www.hatmeo.com
+            Tax number: IM4420001201 </p>
+
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+            </div>
+        </div>
+    </div>    
+
+    <!-- Modal -->
+<div class="modal fade" id="contactusModalCenter" tabindex="-1" role="dialog" aria-labelledby="contactusModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="contactusModalCenterTitle">Contact Us</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <p>Our 24/7 customer service team ensures you have the best shopping experience!</p>
+      <p>Email: customer@hatmeo.com </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
 </div>
+
+
 </div>
 </div>
 <div class="comment-block" id="comment-block">
@@ -1665,7 +1930,7 @@ function GotoNotRequest(url) {
                         case 'PROCEED':
                             // 当交互代码是'PROCEED'时，代码在此处
                             // 支付成功
-                            Goto('/template-common/en/thankyou1/?id='+localStorage.getItem('order_id'));
+                            Goto('/onebuy/checkout/success?id='+localStorage.getItem('order_id'));
                             break;
                 
                         case 'ABORT':
@@ -1796,7 +2061,7 @@ function GotoNotRequest(url) {
                     localStorage.setItem("order_params", JSON.stringify(params));
 
                     $('#loading').hide();
-                    Goto('/template-common/en/thankyou1/?id='+localStorage.getItem('order_id'));
+                    Goto('/onebuy/checkout/success?id='+localStorage.getItem('order_id'));
                 }else {
                     $('#loading').hide();
                     var pay_error = data.error;
@@ -1925,10 +2190,10 @@ function GotoNotRequest(url) {
                                 GotoNotRequest(order_info.payment_3ds.redirect_url);
                             }
                         } else {
-                            Goto('/template-common/en/thankyou1/?id='+localStorage.getItem('order_id'));
+                            Goto('/onebuy/checkout/success?id='+localStorage.getItem('order_id'));
                         }
                     } else if (window.is_wintopay) {
-                        Goto('/template-common/en/thankyou1/?id='+localStorage.getItem('order_id'));
+                        Goto('/onebuy/checkout/success?id='+localStorage.getItem('order_id'));
                     } else if (window.is_pacypay) {
                         if(order_info.client_secret) {
                             Goto(order_info.client_secret, true);
@@ -1948,7 +2213,7 @@ function GotoNotRequest(url) {
                             resultCallback: function(responseData) {
                                 var status = responseData.order.status;
                                 if("success" == status) {
-                                    Goto('/template-common/en/thankyou1/?id='+localStorage.getItem('order_id'));
+                                    Goto('/onebuy/checkout/success?id='+localStorage.getItem('order_id'));
                                 } else {
                                     var pay_error = responseData.error.messages;
 
@@ -1965,15 +2230,99 @@ function GotoNotRequest(url) {
                             behavior: "smooth"
                         })
                         $('#airwallex-warpper').show();
-                        airwallexElementCreate({
-                            intent_id: order_info.payment_intent_id,
-                            client_secret: order_info.client_secret,
-                            currency: order_info.currency,
-                        }, function(event) {
-                            Goto('/template-common/en/thankyou1/?id='+localStorage.getItem('order_id'));
-                        },  function(event){
-                            console.log(event);
+
+                        console.log(order_info);
+
+                        try {
+                            // STEP #2: Initialize the Airwallex global context for event communication
+                            Airwallex.init({
+                            env: 'demo', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
+                            origin: window.location.origin, // Setup your event target to receive the browser events message
+                            fonts: [
+                                // Customizes the font for the payment elements
+                                {
+                                src:
+                                    'https://checkout-demo.airwallex.com/fonts/CircularXXWeb/CircularXXWeb-Regular.woff2',
+                                family: 'AxLLCircular',
+                                weight: 400,
+                                },
+                            ],
+                            });
+
+                            // STEP #4: Create 'dropIn' element
+                            const dropIn = Airwallex.createElement('dropIn', {
+                            // Required, dropIn use intent Id, client_secret and currency to prepare checkout
+                            intent_id: data.payment_intent_id,
+                            client_secret: data.client_secret,
+                            currency: data.currency,
+                            // customer_id:"cus_hkdm6lm7hglgq1tsh22",
+                            googlePayRequestOptions: {
+                            countryCode: data.country,
+                            merchantInfo: {
+                                merchantName: "Example Merchant",
+                                },
+                                buttonType: 'buy', // Indicate the type of button you want displayed on your payments form. Like 'buy'
+                            },
+                            applePayRequestOptions: {
+                                buttonType: 'buy', // Indicate the type of button you want displayed on your payments form. Like 'buy'
+                                countryCode: data.country,  // The merchant's two-letter ISO 3166 country code. Like 'HK'
+                                totalPriceLabel: 'COMPANY, INC.' // Provide a business name for the label field.
+                                },
+                        // components:['card'],
+                            withBilling:true,
+                        requiredBillingContactFields: ['name','email','address']
+                            //country_code:'',
+                            });
+                            // STEP #5: Mount 'dropIn' element
+                            dropIn.mount('dropIn'); // This 'dropIn' id MUST MATCH the id on your empty container created in Step 3
+                        } catch (error) {
+                            document.getElementById('loading').style.display = 'none'; // Example: hide loading state
+                            document.getElementById('error').style.display = 'block'; // Example: show error
+                            document.getElementById('error').innerHTML = error.message; // Example: set error message
+                            console.error('There was an error', error);
+                        }
+
+
+                        // STEP #6: Add an event listener to handle events when the element is mounted
+                        window.addEventListener('onReady', (event) => {
+                            /*
+                            ... Handle event
+                            */
+                            document.getElementById('dropIn').style.display = 'block'; // Example: show element when mounted
+                            document.getElementById('loading').style.display = 'none'; // Example: hide loading tag when element is mounted
+                            console.log('Element is ready', event.detail);
                         });
+
+                        // STEP #7: Add an event listener to handle events when the payment is successful.
+                        window.addEventListener('onSuccess', (event) => {
+                            /*
+                            ... Handle event on success
+                            */
+                            //document.getElementById('success').style.display = 'block'; // Example: show success block
+
+                            console.log("success");
+                            console.log(event.detail);
+
+                            Goto('/onebuy/checkout/success?id='+localStorage.getItem('order_id'));
+
+                            // window.alert(JSON.stringify(event.detail));
+                        });
+
+                        // STEP #8: Add an event listener to handle events when the payment has failed.
+                        window.addEventListener('onError', (event) => {
+                            /*
+                            ... Handle event on error
+                            */
+                            const { error } = event.detail;
+                            document.getElementById('error').style.display = 'block'; // Example: show error block
+                            document.getElementById('error').innerHTML = error.message; // Example: set error message
+                            console.error('There was an error', error);
+                        });
+
+                       
+
+                       
+
                     } else if (window.is_stripe_local){
                         var client_secret = order_info.client_secret;
                         var stripe_init_data = {
@@ -1999,7 +2348,7 @@ function GotoNotRequest(url) {
                             window.addEventListener('message', messageListener, false);
                             create3DSPopup(order_info.stripe_extra_info.next_action.redirect_to_url.url);
                         } else {
-                            Goto('/template-common/en/thankyou1/?id='+localStorage.getItem('order_id'));
+                            Goto('/onebuy/checkout/success?id='+localStorage.getItem('order_id'));
                         }
                         // stripe.handleCardPayment(client_secret, cardNumber).then(function(result) {
                         //     if (result.error) {
@@ -2084,14 +2433,14 @@ function GotoNotRequest(url) {
                 phone_prefix        : phone_prefix,//todo
                 payment_method      : pay_type,
                 products            : products,
-                logo_image          : 'https://d1y4tm6t3pzfj.cloudfront.net/cpl/images/1692088119_logo.png',
-                brand               : 'Dotmalls',
+                logo_image          : '',
+                brand               : 'Hatmeo',
                 description         : product_info.product_name,
-                shopify_store_name  : 'lilndary.myshopify.com',
+                shopify_store_name  : '',
                 produt_amount_base  : '1',
                 domain_name         : document.domain || window.location.host,
                 price_template      : '$price',
-                omnisend            : 'lilndary',
+                omnisend            : '',
                 payment_account     : 'viusd',
             }
             console.log(params);
