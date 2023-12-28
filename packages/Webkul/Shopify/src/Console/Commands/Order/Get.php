@@ -49,7 +49,7 @@ class Get extends Command
          * @link https://shopify.dev/docs/api/admin-rest/2023-10/resources/order#get-orders?status=any
          * 
          */
-        $response = $client->get($shopify['shopify_app_host_name'].'/admin/api/2023-10/orders.json?status=any', [
+        $response = $client->get($shopify['shopify_app_host_name'].'/admin/api/2023-10/orders.json?status=any&limit=100', [
             'headers' => [
                 'Content-Type' => 'application/json',
                 'Accept' => 'application/json',
@@ -64,8 +64,8 @@ class Get extends Command
         $body = json_decode($body, true);
         foreach($body['orders'] as $key=>$item) {
 
-            Log::info(json_encode($item));
-           var_dump($item);exit;
+            
+           
 
         }
     }
