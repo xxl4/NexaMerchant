@@ -1,5 +1,4 @@
 <?php
-
 namespace Nicelizhi\Shopify\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -7,9 +6,10 @@ use Webkul\Core\Eloquent\TranslatableModel;
 use Webkul\Core\Models\ChannelProxy;
 use Konekt\Concord\Proxies\ModelProxy;
 use Illuminate\Database\Eloquent\Model;
+use Nicelizhi\Shopify\Contracts\ShopifyProduct as ShopifyProductContract;
 
 
-class ShopifyProduct extends Model
+class ShopifyProduct extends Model implements ShopifyProductContract
 {
     use HasFactory;
 
