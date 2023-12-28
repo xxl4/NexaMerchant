@@ -15,6 +15,9 @@ use Webkul\Shop\Http\Resources\ProductResource;
 use Webkul\Paypal\Payment\SmartButton;
 use Webkul\Sales\Repositories\InvoiceRepository;
 use Webkul\Product\Helpers\View;
+use Nicelizhi\Airwallex\Payment\Airwallex;
+use Illuminate\Http\Resources\Json\JsonResource;
+
 
 class ProductController extends Controller
 {
@@ -33,6 +36,7 @@ class ProductController extends Controller
         protected AttributeRepository $attributeRepository,
         protected OrderRepository $orderRepository,
         protected InvoiceRepository $invoiceRepository,
+        protected Airwallex $airwallex,
         protected ThemeCustomizationRepository $themeCustomizationRepository
     )
     {
@@ -233,16 +237,32 @@ class ProductController extends Controller
         }
 
 
+        //商品的背景图片获取
+
+        $productBgAttribute = $this->productAttributeValueRepository->findOneWhere([
+            'product_id'   => $product->id,
+            'attribute_id' => 29,
+        ]);
+
+
+        $productBgAttribute_mobile = $this->productAttributeValueRepository->findOneWhere([
+            'product_id'   => $product->id,
+            'attribute_id' => 30,
+        ]);
+
+        //var_dump($productBgAttribute);
 
 
 
 
-        return view('onebuy::product-detail', compact('product','package_products', 'product_attributes', 'skus'));
+        return view('onebuy::product-detail', compact('product','package_products', 'product_attributes', 'skus','productBgAttribute','productBgAttribute_mobile'));
     }
 
     // 完成订单生成动作
     public function order_add_sync(Request $request) {
         //var_dump($request->all());
+
+        $payment_method = $request->input('payment_method');
 
         $input = $request->all();
 
@@ -259,9 +279,6 @@ class ProductController extends Controller
                 $attr = explode('_', $attr_id);
                 $super_attribute[$attr[0]] = $attr[1];
             }
-            //$super_attribute[23] = 2;
-            //$super_attribute[24] = 6;
-
             $product['super_attribute'] = $super_attribute;
             $cart = Cart::addProduct($product['product_id'], $product);
 
@@ -336,10 +353,13 @@ class ProductController extends Controller
 
         Cart::collectTotals();
 
+        // 获取支付信息
+        
+
         //处理支付方式
         $payment = [];
         $payment['description'] = "Money Transfer";
-        $payment['method'] = "moneytransfer";
+        $payment['method'] = $payment_method;
         $payment['method_title'] = "Money Transfer";
         $payment['sort'] = "2";
         // Cart::savePaymentMethod($payment);
@@ -371,14 +391,28 @@ class ProductController extends Controller
         // 跳转到支付
 
 
+        
 
-        Cart::collectTotals();
 
-        $cart = Cart::getCart();
+        //Cart::collectTotals();
+
+        //$cart = Cart::getCart();
 
         $data['result'] = 200;
         $data['order'] = $order;
-        $data['client_secret'] = "https://payments.worldpay.com/app/hpp/integration/wpg/corporate?OrderKey=DEDATATOUSD%5E6582655c25f2de3e694ce86d&Ticket=00170347644542002FNq7X0ZyeHG0y3IjOQL32wTQJBLEHiKPXyn5rz&source=https%3A%2F%2Fsecure.worldpay.com%2Fsc7";
+        if ($order) {
+
+            //session(['order' => $order]);
+
+            $orderId = $order->id;
+            $transactionManager = $this->airwallex->createPaymentOrder($cart, $order->id);
+            //$transactionManager = $sdk->CreatePayment(json_encode($buildRequestBody, JSON_OBJECT_AS_ARRAY | JSON_UNESCAPED_UNICODE));
+
+            $data['client_secret'] = $transactionManager->client_secret;
+            $data['payment_intent_id'] = $transactionManager->id;
+            $data['currency'] = $transactionManager->currency;
+            $data['country'] = $input['country'];
+        }
 
         return response()->json($data);
 
@@ -865,7 +899,8 @@ class ProductController extends Controller
         $package_products = [];
         $productBaseImage = product_image()->getProductBaseImage($product);
 
-        $productTypeInstance = $product->getTypeInstance();
+        //$productTypeInstance = $product->getTypeInstance();
+
 
         //$productPrice = $productTypeInstance->getProductPrices();
 
@@ -883,8 +918,10 @@ class ProductController extends Controller
             $package_product['image'] = $productBaseImage['medium_image_url'];
             $package_product['amount'] = $i;
             //$package_product['old_price'] = $productPrice['regular']['price'] * $i;
-            $package_product['old_price'] = "10.00" * $i;
-            $package_product['new_price'] = "3.23" * $i;
+            $price = $this->getCartProductPrice($product,$product->id, $i);
+            $package_product['old_price'] = $price * $i;
+            //$package_product['new_price'] = "3.23" * $i;
+            $package_product['new_price'] = $this->getCartProductPrice($product,$product->id, $i);
             $package_product['tip1'] = "71% Savings";
             $package_product['tip2'] = "$24.99/piece";
             $package_product['shipping_fee'] = 9.99;
@@ -898,6 +935,69 @@ class ProductController extends Controller
 
         return $package_products;
         
+    }
+
+    /**
+     * 
+     * 
+     * 计算商品在具体的数量的时候的价格，主要是考虑到会有购物车折扣的情况下
+     * 
+     * @param int $product_id
+     * @param int $qty
+     * 
+     * @return float price
+     * 
+     */
+    private function getCartProductPrice($product, $product_id, $qty) {
+        //清空购车动作
+        Cart::deActivateCart();
+        //添加对应的商品到购物车中
+
+        $variant = $product->getTypeInstance()->getDefaultVariant();
+
+        //$product_variant = $this->productRepository->where("parent_id", $product->id)->get();
+
+        $productViewHelper = new \Webkul\Product\Helpers\ConfigurableOption();
+
+        $attributes = $productViewHelper->getConfigurationConfig($product);
+
+        //var_dump($attributes);exit;
+
+
+        $AddcartProduct = [];
+        
+        $AddcartProduct['quantity'] = $qty;
+        
+        foreach($attributes['attributes'] as $key=>$attribute) {
+            $super_attribute[$attribute['id']] = $attribute['options'][0]['id'];
+            $product_variant_id = $attribute['options'][0]['products'][0];
+        }
+
+        $AddcartProduct['selected_configurable_option'] = $product_variant_id;
+        $AddcartProduct['super_attribute'] = $super_attribute;
+        //var_dump($super_attribute);exit;
+
+        //var_dump($AddcartProduct);exit;
+        // $attr_ids = explode(',', $product['attr_id']);
+        // foreach($attr_ids as $key=>$attr_id) {
+        //     $attr = explode('_', $attr_id);
+        //     $super_attribute[$attr[0]] = $attr[1];
+        // }
+
+        //$AddcartProduct['super_attribute'] = $super_attribute;
+        //var_dump($AddcartProduct);exit;
+        $cart = Cart::addProduct($product['product_id'], $AddcartProduct);
+
+        //获取购车中商品价格返回
+        $cart = Cart::getCart();
+
+        //var_dump($cart); exit;
+
+        //清空购车动作
+        Cart::deActivateCart();
+
+        return $cart->grand_total;
+
     }
 
     /**
@@ -947,5 +1047,39 @@ class ProductController extends Controller
         if (! $cart->payment) {
             throw new \Exception(trans('shop::app.checkout.cart.specify-payment-method'));
         }
+    }
+
+    /***
+     * 
+     * 
+     */
+
+    public function checkout_success(Request $request) {
+        \Debugbar::disable(); /* 开启后容易出现前端JS报错的情况 */
+        $product = [];
+        return view('onebuy::checkout-success', compact('product'));
+    }
+
+    public function order_query(Request $request) {
+        $order_id = $request->input("id");
+
+        $order = $this->orderRepository->findOrFail($order_id);
+
+        return new JsonResource([
+            'order_id' => $order_id,
+            'info'      => $order,
+        ]);
+    }
+
+    public function recommended_query(Request $request) {
+
+        $checkout_path = $request->input("checkout_path");
+        $recommended_info = [];
+        return new JsonResource([
+            'checkout_path' => $checkout_path,
+            'recommended_info' => $recommended_info,
+            'recommended_info_title' => 'recommended_info_title'
+        ]);
+
     }
 }
