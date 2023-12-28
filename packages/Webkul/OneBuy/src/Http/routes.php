@@ -18,6 +18,16 @@ Route::group(['middleware' => ['locale', 'theme', 'currency','web']], function (
     Route::any('onebuy/order/status', [ProductController::class, "order_status"])
         ->name("onebuy.order.status");
 
+    
+
+
+    Route::get('onebuy/checkout/success', [ProductController::class, "checkout_success"])->name('onebuy.checkout.success');
+
+    Route::get('onebuy/order/query', [ProductController::class, "order_query"])->name('onebuy.order.query');
+    Route::get('onebuy/recommended/query', [ProductController::class, "recommended_query"])->name('onebuy.recommended.query');
+
+
+
 
 
 });
