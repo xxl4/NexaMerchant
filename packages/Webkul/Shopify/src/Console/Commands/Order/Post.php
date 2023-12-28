@@ -113,7 +113,7 @@ class Post extends Command
             $sku = $product['additional'];
 
             //var_dump($sku);
-            $skuInfo = explode(';', $sku['product_sku']);
+            $skuInfo = explode('-', $sku['product_sku']);
             if(!isset($skuInfo[1])) {
                 $this->error("have error" . $id);
                 return false;
@@ -224,6 +224,6 @@ class Post extends Command
             $shopifyNewOrder->save();
         }
 
-        exit;
+        //exit;
     }
 }

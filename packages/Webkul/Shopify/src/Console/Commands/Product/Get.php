@@ -56,9 +56,7 @@ class Get extends Command
     public function handle()
     {
 
-        $this->syncProductToLocal();
-
-        return true;
+        
 
         $client = new Client();
 
@@ -68,7 +66,7 @@ class Get extends Command
          * @link https://shopify.dev/docs/api/admin-rest/2023-10/resources/product#get-products?ids=632910392,921728736
          * 
          */
-        $response = $client->get($shopify['shopify_app_host_name'].'/admin/api/2023-10/products.json?limit=10&fields=id,title,variants,options,images,product_type,body_html,tags,admin_graphql_api_id', [
+        $response = $client->get($shopify['shopify_app_host_name'].'/admin/api/2023-10/products.json?ids=8231843496184limit=10&fields=id,title,variants,options,images,product_type,body_html,tags,admin_graphql_api_id', [
             'headers' => [
                 'Content-Type' => 'application/json',
                 'Accept' => 'application/json',
@@ -91,8 +89,9 @@ class Get extends Command
             }else{
                 //$shopifyProduct::where("product_id", $item['id'])->update($item);
             }
-
         }
+
+        $this->syncProductToLocal();
     }
 
     private $locales = [
@@ -142,6 +141,7 @@ class Get extends Command
                 if($option['name']=='Shoe Size' && $option['position']==2) $attr_id = 24;
                 if($option['name']=='尺码' && $option['position']==2) $attr_id = 24;
                 if($option['name']=='Size (we recommend you take 1 size up)' && $option['position']==2) $attr_id = 24;
+                if($option['name']=='Size (For all cups)' && $option['position']==2) $attr_id = 24;
                 if($option['name']=='Size (Suggust 1 size larger)' && $option['position']==2) $attr_id = 24;
                 if($option['name']=='Size (We suggust you to choose half or 1 size larger than usual)' && $option['position']==2) $attr_id = 24;
                 //if($option['position']==2) $attr_id = 24;
@@ -233,10 +233,12 @@ class Get extends Command
             $updateData['guest_checkout'] = 1;
             $updateData['channel'] = "default";
             $updateData['locale'] = "en";
-            $categories[] = 3;
+            $categories[] = 5;
             $updateData['categories'] = $categories;
 
             $updateData['description'] = $item['body_html'];
+
+            $updateData['compare_at_price'] = "49.46";
 
             $variants = $variantCollection = $product->variants()->get()->toArray();
 
@@ -295,7 +297,7 @@ class Get extends Command
                 $this->info($newkey);
                 if(!isset($newShopifyVarants[$newkey])) continue;
                 //var_dump($newkey);exit;
-                $newVariant['sku'] = $item['product_id'].';'.$newShopifyVarants[$newkey]['id'].';'.$newShopifyVarants[$newkey]['sku'];
+                $newVariant['sku'] = $item['product_id'].'-'.$newShopifyVarants[$newkey]['id'];
                 $newVariant['name'] = $newShopifyVarants[$newkey]['title'];
                 $newVariant['price'] = $newShopifyVarants[$newkey]['price'];
                 $newVariant['weight'] = $newShopifyVarants[$newkey]['weight'];
@@ -303,6 +305,10 @@ class Get extends Command
                 $newVariant['color'] = $variant['color'];
                 $newVariant['size'] = $variant['size'];
                 $newVariant['inventories'][1] = 1000;
+                $categories[] = 5;
+                $newVariant['categories'] = $categories;
+                $newVariant['guest_checkout'] = 1;
+                $newVariant['compare_at_price'] = "49.46";
                 $newVariants[$variant['id']] = $newVariant;
             }
 
@@ -343,9 +349,14 @@ class Get extends Command
                 $local_image_path = "storage/".$image_path;
                 $this->info(public_path($local_image_path));
                 if(!file_exists(public_path($local_image_path))) {
+                    $this->error("copy [ ".$local_image_path);
+                    $this->info($shopifyImage['src']);
                     //var_dump($shopifyImage['src'],"hello");
                     $contents = file_get_contents($shopifyImage['src'], false, stream_context_create($arrContextOptions));
+                    //var_dump($contents);
                     Storage::disk("images")->put($local_image_path, $contents);
+                    sleep(1);
+                    //exit;
                     //var_dump($local_image_path);exit;
                 }
                 $images[] = $image_path;
@@ -365,6 +376,34 @@ class Get extends Command
 
             Event::dispatch('catalog.product.update.after', $product);
 
+            foreach($shopifyImages as $key=>$shopifyImage) {
+
+                //var_dump($shopifyImage);
+                $info = pathinfo($shopifyImage['src']);
+
+                //var_dump($shopifyImage);
+
+                $this->info($info['filename']);
+
+               
+                //var_dump($info);exit;
+                $image_path = "product/".$id."/".$info['filename'].".webp";
+                $local_image_path = "storage/".$image_path;
+                $this->info(public_path($local_image_path));
+                if(!file_exists(public_path($local_image_path))) {
+                    $this->error("copy [ ".$local_image_path);
+                    $this->info($shopifyImage['src']);
+                    //var_dump($shopifyImage['src'],"hello");
+                    $contents = file_get_contents($shopifyImage['src'], false, stream_context_create($arrContextOptions));
+                    //var_dump($contents);
+                    Storage::disk("images")->put($local_image_path, $contents);
+                    sleep(1);
+                    //exit;
+                    //var_dump($local_image_path);exit;
+                }
+                $images[] = $image_path;
+            }
+
             foreach($images as $key=>$image) {
                 //var_dump($image);
                 $checkImg = ProductImage::where("product_id", $id)->where("path", $image)->first();
@@ -378,7 +417,7 @@ class Get extends Command
             }
 
 
-            //exit;
+            // exit;
 
 
             sleep(1);
