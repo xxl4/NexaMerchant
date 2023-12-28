@@ -1673,16 +1673,15 @@ function GotoNotRequest(url) {
         showAttributeSelecet('Article');
     </script>
 
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-Z7L6BT187M"></script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P6343Y2GKT"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
-  gtag('config', 'G-Z7L6BT187M');
+  gtag('config', 'G-P6343Y2GKT');
 </script>
-<!-- End Google Analytics -->
 
 <script>
         window.pay_type = 'airwallex';
@@ -1850,12 +1849,13 @@ function GotoNotRequest(url) {
                             })
                             .then(function(res) {return res.json()})
                             .then(function(res) {
+                                console.log(res);
                                 $('#loading').hide();
-                                if(res.success === 'true') {
+                                if(res.success == true) {
                                     //var info = res.info;
                                     //if(info.pay_status) {
                                         //Goto('/template-common/en/thankyou1/?id='+localStorage.getItem('order_id')+'&client_secret='+data.orderID);
-                                        Goto('/checkout/onepage/success');
+                                        Goto('/onebuy/checkout/success?id='+localStorage.getItem('order_id'));
                                     //}
                                 }
                                 if(res.error == 'INSTRUMENT_DECLINED') {
