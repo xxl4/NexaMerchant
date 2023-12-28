@@ -428,6 +428,15 @@ All rights reserved
 </p>
 </footer>
 </div>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P6343Y2GKT"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-P6343Y2GKT');
+</script>
 <script>
         if(getCookie('voluum_payout') && getCookie('order_id') == getQueryString('id')) {
             var order_params = {};

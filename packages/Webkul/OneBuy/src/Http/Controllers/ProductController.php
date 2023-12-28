@@ -17,6 +17,7 @@ use Webkul\Sales\Repositories\InvoiceRepository;
 use Webkul\Product\Helpers\View;
 use Nicelizhi\Airwallex\Payment\Airwallex;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Facades\Log;
 
 
 class ProductController extends Controller
@@ -647,6 +648,8 @@ class ProductController extends Controller
             // return response()->json($order);
             
 
+            Log::info("paypal ".json_encode($order));
+
             $order = (array)$order;
 
             //var_dump($order);
@@ -667,9 +670,9 @@ class ProductController extends Controller
             $addressData['billing']['email'] = $payer['email_address'];
             $addressData['billing']['first_name'] = $payer['name']->given_name;
             $addressData['billing']['last_name'] = $payer['name']->surname;
-            $addressData['billing']['phone'] = "";
-            $addressData['billing']['postcode'] = $input['address']->postal_code;
-            $addressData['billing']['state'] = $input['address']->postal_code;
+            $addressData['billing']['phone'] = isset($payer['phone']) ? $payer['phone'] : "";
+            $addressData['billing']['postcode'] = isset($input['address']->postal_code) ? $input['address']->postal_code : "";
+            $addressData['billing']['state'] = isset($input['address']->postal_code) ? $input['address']->postal_code : "";
             $addressData['billing']['use_for_shipping'] = true;
             $addressData['billing']['address1'] = $address1;
             $addressData['shipping'] = [];
@@ -899,6 +902,17 @@ class ProductController extends Controller
         $package_products = [];
         $productBaseImage = product_image()->getProductBaseImage($product);
 
+        //source price
+
+        $productBgAttribute_price = $this->productAttributeValueRepository->findOneWhere([
+            'product_id'   => $product->id,
+            'attribute_id' => 31,
+        ]);
+
+        $source_price = $productBgAttribute_price->float_value;
+
+        // var_dump();exit;
+
         //$productTypeInstance = $product->getTypeInstance();
 
 
@@ -919,11 +933,17 @@ class ProductController extends Controller
             $package_product['amount'] = $i;
             //$package_product['old_price'] = $productPrice['regular']['price'] * $i;
             $price = $this->getCartProductPrice($product,$product->id, $i);
-            $package_product['old_price'] = $price * $i;
+            $package_product['old_price'] = $source_price * $i; 
             //$package_product['new_price'] = "3.23" * $i;
-            $package_product['new_price'] = $this->getCartProductPrice($product,$product->id, $i);
-            $package_product['tip1'] = "71% Savings";
-            $package_product['tip2'] = "$24.99/piece";
+            if ($i==2) $discount = 0.8;
+            if ($i==3) $discount = 0.7;
+            if ($i==4) $discount = 0.6;
+            if ($i==1) $discount = 1;
+            $package_product['new_price'] = $this->getCartProductPrice($product,$product->id, $i) * $discount;
+            $tip1_price = (1 - round(($package_product['new_price'] / $package_product['old_price']), 2)) * 100;
+            $package_product['tip1'] = $tip1_price."% Savings";
+            $tip2_price = $package_product['new_price'] / $i;
+            $package_product['tip2'] = "$".$tip2_price."/piece";
             $package_product['shipping_fee'] = 9.99;
             $popup_info['name'] = null;
             $popup_info['old_price'] = null;
