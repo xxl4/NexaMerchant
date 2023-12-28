@@ -85,6 +85,7 @@ class ShopifyServiceProvider extends ServiceProvider
                 \Nicelizhi\Shopify\Console\Commands\Product\Put::class,
                 \Nicelizhi\Shopify\Console\Commands\Product\Delete::class,
                 \Nicelizhi\Shopify\Console\Commands\Order\Get::class,
+                \Nicelizhi\Shopify\Console\Commands\Order\Post::class,
             ]);
         }
     }
