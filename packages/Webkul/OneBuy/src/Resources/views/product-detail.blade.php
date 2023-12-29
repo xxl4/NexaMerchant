@@ -384,9 +384,9 @@ Secure Checkout </div>
         <div class="list-item-footer">
             <div class="list-item-prices">
                 <div class="old-price">
-                <?php echo $package_product['old_price'];?> </div>
+                <?php echo $package_product['old_price_format'];?> </div>
                 <div class="new-price">
-                <?php echo $package_product['new_price'];?> </div>
+                <?php echo $package_product['new_price_format'];?> </div>
             </div>
         </div>
         <style>
@@ -1196,26 +1196,7 @@ COMPLETE SECURE PURCHASE </button>
         }
     </style>
 <script>
-        var products = [
-            {   "id":5,
-                "name":"2x {{ $product->name }}",
-                "image":"{{ $productBaseImage['medium_image_url'] }}",
-                "amount":"2",
-                "old_price":"171.96",
-                "new_price":"49.99",
-                "tip1":"71% Savings",
-                "tip2":"$24.99\/piece",
-                "shipping_fee":"11.99",
-                "popup_info":{
-                    "name":null,
-                    "old_price":null,
-                    "new_price":null,
-                    "img":null}
-                },
-            {"id":6,"name":"1x {{ $product->name }}","image":"https:\/\/d1y4tm6t3pzfj.cloudfront.net\/cpl\/images\/1689762577_1.jpg","amount":"1","old_price":"85.98","new_price":"42.99","tip1":"50% Savings","tip2":"$42.99\/piece","shipping_fee":"10.99","popup_info":{"name":null,"old_price":null,"new_price":null,"img":null}},
-            {"id":7,"name":"3x {{ $product->name }}","image":"https:\/\/d1y4tm6t3pzfj.cloudfront.net\/cpl\/images\/1689762581_1.jpg","amount":"3","old_price":"257.94","new_price":"54.99","tip1":"79% Savings","tip2":"$18.33\/piece","shipping_fee":"13.99","popup_info":{"name":null,"old_price":null,"new_price":null,"img":null}},
-            {"id":8,"name":"4x {{ $product->name }}","image":"https:\/\/d1y4tm6t3pzfj.cloudfront.net\/cpl\/images\/1689762584_1.jpg","amount":"4","old_price":"343.92","new_price":"59.99","tip1":"83% Savings","tip2":"$14.99\/piece","shipping_fee":"15.99","popup_info":{"name":null,"old_price":null,"new_price":null,"img":null}}
-        ]
+
         var products = <?php echo json_encode($package_products);?>;
         var product_names = products.map(function(item) {return item.name})
         var comment_setting = {"productNames":product_names,"firstNames":["James","Mary","Robert","Jennifer","Michael","Elizabeth","Thomas","Nancy","Charles"],"lastNames":["A","B","C","D","E","F","G","H","K","L","M","N","O","P","R","S","T","V","W","Y"],"locations":["Florida, US","North Carolina, US","New York, US","Washington, US","Texas, US","Kentucky, US","North Coast, CA","Central Coast, CA","Klamath Mountains, CA","Central Sierra, CA","Central California, CA"]};
@@ -1248,13 +1229,6 @@ COMPLETE SECURE PURCHASE </button>
             var selected_id = $('.list-item--checked').data('id');
             console.log("select id info ");
             console.log(selected_id);
-            var products = [
-                {"id":5,"name":"2x {{ $product->name }}","image":"https:\/\/d1y4tm6t3pzfj.cloudfront.net\/cpl\/images\/1689762556_1.jpg","amount":"2","old_price":"171.96","new_price":"49.99","tip1":"71% Savings","tip2":"$24.99\/piece","shipping_fee":"11.99","popup_info":{"name":null,"old_price":null,"new_price":null,"img":null}},
-                {"id":6,"name":"1x {{ $product->name }}","image":"https:\/\/d1y4tm6t3pzfj.cloudfront.net\/cpl\/images\/1689762577_1.jpg","amount":"1","old_price":"85.98","new_price":"42.99","tip1":"50% Savings","tip2":"$42.99\/piece","shipping_fee":"10.99","popup_info":{"name":null,"old_price":null,"new_price":null,"img":null}},
-                {"id":7,"name":"3x {{ $product->name }}","image":"https:\/\/d1y4tm6t3pzfj.cloudfront.net\/cpl\/images\/1689762581_1.jpg","amount":"3","old_price":"257.94","new_price":"54.99","tip1":"79% Savings","tip2":"$18.33\/piece","shipping_fee":"13.99","popup_info":{"name":null,"old_price":null,"new_price":null,"img":null}},
-                {"id":8,"name":"4x {{ $product->name }}","image":"https:\/\/d1y4tm6t3pzfj.cloudfront.net\/cpl\/images\/1689762584_1.jpg","amount":"4","old_price":"343.92","new_price":"59.99","tip1":"83% Savings","tip2":"$14.99\/piece","shipping_fee":"15.99","popup_info":{"name":null,"old_price":null,"new_price":null,"img":null}}
-            ]
-
             var products = <?php echo json_encode($package_products);?>;
             
             for (var i = 0; i < products.length; i++) {
