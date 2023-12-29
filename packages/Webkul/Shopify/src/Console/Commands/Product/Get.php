@@ -125,9 +125,6 @@ class Get extends Command
             // ba_attribute_options
             // ba_attribute_option_translations
             $options = $item->options;
-
-            //var_dump($options);
-
             $shopifyVariants = $item->variants;
             $shopifyImages = $item->images;
             $color = [];
@@ -135,15 +132,20 @@ class Get extends Command
             $error = 0;
             foreach($options as $kk => $option) {
                 $attr_id = 0;
-                if($option['name']=='Color' && $option['position']==1) $attr_id = 23;
-                if($option['name']=='颜色' && $option['position']==1) $attr_id = 23;
-                if($option['name']=='Size' && $option['position']==2) $attr_id = 24;
-                if($option['name']=='Shoe Size' && $option['position']==2) $attr_id = 24;
-                if($option['name']=='尺码' && $option['position']==2) $attr_id = 24;
-                if($option['name']=='Size (we recommend you take 1 size up)' && $option['position']==2) $attr_id = 24;
-                if($option['name']=='Size (For all cups)' && $option['position']==2) $attr_id = 24;
-                if($option['name']=='Size (Suggust 1 size larger)' && $option['position']==2) $attr_id = 24;
-                if($option['name']=='Size (We suggust you to choose half or 1 size larger than usual)' && $option['position']==2) $attr_id = 24;
+                // if($option['name']=='Color' && $option['position']==1) $attr_id = 23;
+                // if($option['name']=='颜色' && $option['position']==1) $attr_id = 23;
+                // if($option['name']=='Size' && $option['position']==2) $attr_id = 24;
+                // if($option['name']=='Shoe Size' && $option['position']==2) $attr_id = 24;
+                // if($option['name']=='尺码' && $option['position']==2) $attr_id = 24;
+                // if($option['name']=='Size (we recommend you take 1 size up)' && $option['position']==2) $attr_id = 24;
+                // if($option['name']=='Size (For all cups)' && $option['position']==2) $attr_id = 24;
+                // if($option['name']=='Size (Suggust 1 size larger)' && $option['position']==2) $attr_id = 24;
+                // if($option['name']=='Size (We suggust you to choose half or 1 size larger than usual)' && $option['position']==2) $attr_id = 24;
+                if(strpos($option['name'], "Size")!==false) $attr_id = 24;
+                if(strpos($option['name'], "尺码") !==false) $attr_id = 24;
+                if(strpos($option['name'], "Color") !==false) $attr_id = 23;
+                if(strpos($option['name'], "颜色") !==false) $attr_id = 23;
+                //var_dump($option['name'], $attr_id); exit;
                 //if($option['position']==2) $attr_id = 24;
                 if(empty($attr_id)) {
                     var_dump($item);
@@ -362,16 +364,6 @@ class Get extends Command
                 $images[] = $image_path;
             }
 
-            //var_dump($images);exit;
-            
-            
-            //$images['files'] = $files;
-
-            //$updateData['images'] = $images;
-            //var_dump($files);
-            //exit;
-
-
             $product = $this->productRepository->update($updateData, $id);
 
             Event::dispatch('catalog.product.update.after', $product);
@@ -385,21 +377,15 @@ class Get extends Command
 
                 $this->info($info['filename']);
 
-               
-                //var_dump($info);exit;
                 $image_path = "product/".$id."/".$info['filename'].".webp";
                 $local_image_path = "storage/".$image_path;
                 $this->info(public_path($local_image_path));
                 if(!file_exists(public_path($local_image_path))) {
                     $this->error("copy [ ".$local_image_path);
                     $this->info($shopifyImage['src']);
-                    //var_dump($shopifyImage['src'],"hello");
                     $contents = file_get_contents($shopifyImage['src'], false, stream_context_create($arrContextOptions));
-                    //var_dump($contents);
                     Storage::disk("images")->put($local_image_path, $contents);
                     sleep(1);
-                    //exit;
-                    //var_dump($local_image_path);exit;
                 }
                 $images[] = $image_path;
             }
