@@ -284,6 +284,10 @@
     .header-container-bg {
         background-image : url(/storage/<?php echo isset($productBgAttribute->text_value) ? $productBgAttribute->text_value : "" ;?>)
     }
+    .modal-dialog {
+        text-align: left;
+    }
+
 
     @media (max-width:1023px) {
         .header-container-bg {
