@@ -1682,6 +1682,7 @@ function GotoNotRequest(url) {
 
         var currency = 'USD';
         var paypal_pay_acc = "AQQSyBOPRLNaH1zE6JXa6QQ9QY04nfgF_J5SBZzILZXPM3Jkp7yaU0BOAgh43wFyuaUnpgeO5ZqywpgW";
+        var paypal_pay_acc = "AdgqTmBT75iYoiq_dgPSCOoGYXDnlVuxRw5yOAH3BPNVLb4Ie9g8uhLR9LxsqX2NPFr8XzhngwtBO5qe";
         //var paypal_pay_acc = "AUJbEnrfr7UfGYTUT09supZXuAGrUMyw2y4BWeHBvWk_uyxZTWC5gzKk1hduPcTXZzOVZiyv19tj4udn";
         var script = document.createElement('script');
         if (script.readyState) { // IE
@@ -2221,7 +2222,7 @@ function GotoNotRequest(url) {
                         try {
                             // STEP #2: Initialize the Airwallex global context for event communication
                             Airwallex.init({
-                            env: 'demo', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
+                            env: 'prod', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
                             origin: window.location.origin, // Setup your event target to receive the browser events message
                             fonts: [
                                 // Customizes the font for the payment elements
@@ -2396,7 +2397,13 @@ function GotoNotRequest(url) {
             
             var products = getSubmitProducts(product_info.product_price,product_info.amount);
 
+            console.log("order products");
+            console.log(products);
+
             var product_price = product_info.product_price;
+
+            console.log("order product_price");
+            console.log(product_price);
             
             var params = {
                 first_name          : $(".first_name").val(),
@@ -2690,6 +2697,10 @@ function GotoNotRequest(url) {
                 if(product_sku_map[skus[m].sku_id]) {
                     products[product_sku_map[skus[m].sku_id] - 1].amount++;
                 } else {
+                    if(skus[m].sku_id==""||skus[m].sku_id==null||skus[m].sku_id==undefined) {
+                        alert("please select product color and size");
+                        return false;
+                    }
                     var sku = {
                         img         : skus[m].img,
                         price       : unit_price,
