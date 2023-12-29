@@ -155,8 +155,9 @@ class ProductController extends Controller
                 if($attribute['id']==23) {
                     //var_dump($option, $product->sku);exit;
                     $new_sku = $product->sku."-variant-1-".$option['id']+5;
+                    $new_id = $option['products'][0];
                     //echo $new_sku."\r\n";
-                    $new_product = $this->productRepository->findByAttributeCode("sku", $new_sku);
+                    $new_product = $this->productRepository->find($new_id);
                     //var_dump($new_product);exit;
                     //var_dump($new_sku);exit;
                     $NewproductBaseImage = product_image()->getProductBaseImage($new_product);

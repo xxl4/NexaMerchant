@@ -281,22 +281,29 @@
 <div class="header-container">
 <div class="header-container-bg"></div>
 <style>
-                .header-container-bg {
-                    background-image : url(/storage/<?php echo isset($productBgAttribute->text_value) ? $productBgAttribute->text_value : "" ;?>)
-                }
+    .header-container-bg {
+        background-image : url(/storage/<?php echo isset($productBgAttribute->text_value) ? $productBgAttribute->text_value : "" ;?>)
+    }
 
-                @media (max-width:1023px) {
-                    .header-container-bg {
-                        background-image : url(/storage/<?php echo isset($productBgAttribute_mobile->text_value) ? $productBgAttribute_mobile->text_value : "" ;?>)
-                    }
-                }
+    @media (max-width:1023px) {
+        .header-container-bg {
+            background-image : url(/storage/<?php echo isset($productBgAttribute_mobile->text_value) ? $productBgAttribute_mobile->text_value : "" ;?>)
+        }
+        .modal-dialog {
+            max-width: 800px; /* New width for default modal */
+        }
+    }
 
-                @media (max-width:767px) {
-                    .header-container-bg {
-                        background-image : url(/storage/<?php echo isset($productBgAttribute_mobile->text_value) ? $productBgAttribute_mobile->text_value : "" ;?>)
-                    }
-                }
-            </style>
+    @media (max-width:767px) {
+        .header-container-bg {
+            background-image : url(/storage/<?php echo isset($productBgAttribute_mobile->text_value) ? $productBgAttribute_mobile->text_value : "" ;?>)
+        }
+        .modal-dialog {
+            max-width: 600px; /* New width for default modal */
+        }
+    }
+</style>
+
 </div>
 <div class="main-container">
 <div class="main-container-progress-box">
@@ -358,7 +365,7 @@ Place Order </div>
 <div class="checkout-security-title-font">
 Secure Checkout </div>
 </div>
-<img class="checkout-security-img" src="https://lander.heomai.com/template-common/checkout1/images/secure-icons.png" />
+<img class="checkout-security-img" src="https://lander.heomai.com/template-common/checkout1/images/secure-icons.png?v=1111" />
 </div>
 <div class="product-list js-list">
     <?php foreach($package_products as $key=>$package_product) { ?>
@@ -485,7 +492,7 @@ GUARANTEED <span style="color: #00d2be;">
 SAFE </span>
 CHECKOUT </div>
 </div>
-<img class="payment-img" src="https://lander.heomai.com/template-common/checkout1/images/gsc-en.png" />
+<img class="payment-img" src="https://lander.heomai.com/template-common/checkout1/images/gsc-en.png?v=111" />
 </div>
 <div class="shipping-block">
 <div class="shipping-title">
