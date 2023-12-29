@@ -26,11 +26,13 @@ class Airwallex {
 
     protected $apiKey;
 
-    protected $host = "https://api-demo.airwallex.com";
+    protected $host = "https://api.airwallex.com";
 
     protected $client;
 
     protected $token;
+
+    protected $productionMode;
 
     /**
      * 
@@ -49,7 +51,11 @@ class Airwallex {
         $this->accountDC = $config['accountDC'];
         $this->apiKey = $config['apiKey'];
 
-        if($productionMode==1) $this->host = "https://api.airwallex.com"; 
+        $this->productionMode = $productionMode;
+
+        
+
+        if($productionMode=='on') $this->host = "https://api.airwallex.com"; 
 
         $this->client = new Client([
             // Base URI is used with relative requests
@@ -72,7 +78,7 @@ class Airwallex {
     public function Authentication() {
 
 
-        $cache_key = "airwallex_token";
+        $cache_key = "airwallex_token_".$this->productionMode;
 
         $token = Cache::get($cache_key);
 
@@ -90,7 +96,6 @@ class Airwallex {
             ]);
     
             $body = $response->getBody();
-            Log::info($body);
             $json = json_decode($body);
             Cache::put($cache_key, $json->token, 3600);
             return $json->token;
@@ -106,34 +111,9 @@ class Airwallex {
      * 
      */
     public function CreatePayment($data) {
-        //$token = $this->Authentication();
-
-        //var_dump(json_decode($data));
-
-        //var_dump($token, $data);
-
-        //var_dump(json_decode($data));
-
-/*
-        $response = $this->client->request('POST', "/api/v1/pa/payment_intents/create", [ 
-            'headers' => [
-                 'Accept' => 'application/json', 
-                 'content-type' => 'application/json',
-                 'Authorization' => "Bearer ".$this->token, 
-            ],
-            'json' => $data,
-            'body' => $data,
-            'debug' => true
-        ]);
-        $body = $response->getBody();
-        var_dump($body, $data, $token);
-*/
-
-        //$datajson = json_encode($param);
-        $datajson = $data;
         $myheader= array(
                 'Content-Type: application/json; charset=utf-8',
-                'Content-Length: ' . strlen($datajson),
+                'Content-Length: ' . strlen($data),
                 'Authorization: ' ."Bearer ".$this->token
         );
 
@@ -141,9 +121,7 @@ class Airwallex {
 
         $curlheader = array('Content-Type:application/x-www-form-urlencoded;charset=utf-8');
 
-        $result = $this->http_curl($url, 'xml', $datajson, 6, FALSE, '',$myheader);
-
-        //var_dump($result);
+        $result = $this->http_curl($url, 'xml', $data, 6, FALSE, '',$myheader);
 
         if($result['code']=='201') return json_decode($result['body']);
 
@@ -159,7 +137,6 @@ class Airwallex {
      * 
      */
     public function createWebhook($input) {
-        var_dump($input);
         $response = $this->client->request('POST', "/api/v1/webhooks/create", [ 
             'headers' => [
                  'Accept' => 'application/json', 
