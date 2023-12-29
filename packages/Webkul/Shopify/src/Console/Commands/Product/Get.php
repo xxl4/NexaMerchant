@@ -132,15 +132,6 @@ class Get extends Command
             $error = 0;
             foreach($options as $kk => $option) {
                 $attr_id = 0;
-                // if($option['name']=='Color' && $option['position']==1) $attr_id = 23;
-                // if($option['name']=='颜色' && $option['position']==1) $attr_id = 23;
-                // if($option['name']=='Size' && $option['position']==2) $attr_id = 24;
-                // if($option['name']=='Shoe Size' && $option['position']==2) $attr_id = 24;
-                // if($option['name']=='尺码' && $option['position']==2) $attr_id = 24;
-                // if($option['name']=='Size (we recommend you take 1 size up)' && $option['position']==2) $attr_id = 24;
-                // if($option['name']=='Size (For all cups)' && $option['position']==2) $attr_id = 24;
-                // if($option['name']=='Size (Suggust 1 size larger)' && $option['position']==2) $attr_id = 24;
-                // if($option['name']=='Size (We suggust you to choose half or 1 size larger than usual)' && $option['position']==2) $attr_id = 24;
                 if(strpos($option['name'], "Size")!==false) $attr_id = 24;
                 if(strpos($option['name'], "尺码") !==false) $attr_id = 24;
                 if(strpos($option['name'], "Color") !==false) $attr_id = 23;
@@ -148,7 +139,7 @@ class Get extends Command
                 //var_dump($option['name'], $attr_id); exit;
                 //if($option['position']==2) $attr_id = 24;
                 if(empty($attr_id)) {
-                    var_dump($item);
+                    $this->error(json_encode($item));
                     Log::info(json_encode($item));
                     $error = 1;
                     continue;
@@ -391,7 +382,6 @@ class Get extends Command
             }
 
             foreach($images as $key=>$image) {
-                //var_dump($image);
                 $checkImg = ProductImage::where("product_id", $id)->where("path", $image)->first();
                 if(is_null($checkImg)) {
                     $checkImg = new ProductImage();
