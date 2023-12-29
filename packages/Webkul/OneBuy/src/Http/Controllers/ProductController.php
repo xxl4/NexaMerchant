@@ -909,8 +909,11 @@ class ProductController extends Controller
             'product_id'   => $product->id,
             'attribute_id' => 31,
         ]);
-
-        $source_price = $productBgAttribute_price->float_value;
+        $source_price = 0;
+        if(!is_null($productBgAttribute_price)) $source_price = $productBgAttribute_price->float_value;
+        if(empty($source_price)) {
+            return abort(404);
+        }
 
         foreach($nums as $key=>$i) {
             
