@@ -225,6 +225,8 @@ return [
         Webkul\User\Providers\UserServiceProvider::class,
         
         Nicelizhi\OneBuy\Providers\OneBuyServiceProvider::class,
+        Nicelizhi\Airwallex\Providers\AirwallexServiceProvider::class,
+        Nicelizhi\Shopify\Providers\ShopifyServiceProvider::class,
     ])->toArray(),
 
     /*
