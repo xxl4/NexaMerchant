@@ -2,9 +2,6 @@
 @inject ('productViewHelper', 'Webkul\Product\Helpers\View')
 
 @php
-    $avgRatings = round($reviewHelper->getAverageRating($product));
-    $percentageRatings = $reviewHelper->getPercentageRating($product);
-    $customAttributeValues = $productViewHelper->getAdditionalData($product);
     $productBaseImage = product_image()->getProductBaseImage($product);
 @endphp
 
@@ -21,7 +18,6 @@
         <meta http-equiv="content-language" content="{{ app()->getLocale() }}">
 <script src="https://unpkg.com/jquery@3.3.1/dist/jquery.js"></script>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
 <script>
@@ -80,23 +76,13 @@
 
     sendEvent2Everflow('add_to_cart');
 </script>
-<script src="https://cdn.checkout.com/js/framesv2.min.js"></script>
 <script src="https://lander.heomai.com/template-common/js/frames-init.js"></script>
-<script src="https://js.stripe.com/v3/"></script>
-<script src="https://lander.heomai.com/template-common/js/stripe-init.js"></script>
-<script src="https://lander.heomai.com/template-common/js/worldpay-init.js"></script>
 <script src="https://lander.heomai.com/template-common/js/paypal-init.js"></script>
-<script type="text/javascript" src="https://lander.heomai.com/template-common/js/op-payment-widget-v3.min.js"></script>
-<script src="https://checkout.airwallex.com/assets/elements.bundle.min.js"></script>
-<link rel="stylesheet" type="text/css" href="https://lander.heomai.com/template-common/css/op-payment-widget-v3.min.css">
 
+<script src="https://checkout.airwallex.com/assets/elements.bundle.min.js"></script>
 <link rel="stylesheet" href="https://lander.heomai.com/template-common/checkout1/css/font-awesome.min.css">
 
-<script>
-        if (/MSIE \d|Trident.*rv:/.test(navigator.userAgent))
-            document.write('<script src="https://polyfill.io/v3/polyfill.min.js?features=RegExp.prototype.flags%2CNodeList.prototype.%40%40iterator%2CNodeList.prototype.forEach%2CString.prototype.normalize%2Cblissfuljs%2Cdocument.getElementsByClassName%2Cdocument.head%2Cdocument.querySelector%2Cdefault%2CElement.prototype.closest%2ClocalStorage%2Cfetch%2Ces5%2Ces6%2Ces7%2CURLSearchParams%2CURL%2CCustomEvent%2CEvent"><\/script>');
-    </script>
-<link rel="stylesheet" href="https://lander.heomai.com/template-common/checkout6/css/order.css">
+<link rel="stylesheet" href="https://lander.heomai.com/template-common/checkout6/css/order.css?v=11">
 <link rel="stylesheet" href="https://lander.heomai.com/template-common/checkout-common/css/order.css">
 <style>
         .list-item {
@@ -647,11 +633,11 @@ Total:
 <div class="summary-footer">
 <div class="agree-block">
 <input type="checkbox" checked>
-I agree with the <a href="https://lander.heomai.com/template-common/en/terms-of-service?brand=Hatmeo&logo=https://d1y4tm6t3pzfj.cloudfront.net/cpl/images/1692088119_logo.png&email=support@Hatmeo.com">
+I agree with the <a href="#" class="btn" data-toggle="modal" data-target="#PrivacyPolicyModalCenter">
 Term of service </a>
-& <a href="https://lander.heomai.com/template-common/en/refund-policy?brand=Hatmeo&logo=https://d1y4tm6t3pzfj.cloudfront.net/cpl/images/1692088119_logo.png&email=support@Hatmeo.com">
+& <a href="#" class="btn" data-toggle="modal" data-target="#RefundpolicyModalCenter">
 Refund policy </a>
-& <a href="https://lander.heomai.com/template-common/en/privacy-policy?brand=Hatmeo&logo=https://d1y4tm6t3pzfj.cloudfront.net/cpl/images/1692088119_logo.png&email=support@Hatmeo.com">
+& <a href="#" class="btn" data-toggle="modal" data-target="#PrivacyPolicyModalCenter">
 Privacy Policy </a>
 . </div>
 <div class="guarantee-block">
@@ -687,11 +673,11 @@ COMPLETE SECURE PURCHASE </button>
 <div class="summary-footer summary-footer-mb">
 <div class="agree-block">
 <input type="checkbox" checked>
-I agree with the <a href="https://lander.heomai.com/template-common/en/terms-of-service?brand=Hatmeo&logo=https://d1y4tm6t3pzfj.cloudfront.net/cpl/images/1692088119_logo.png&email=support@Hatmeo.com">
+I agree with the <a href="#" class="btn" data-toggle="modal" data-target="#PrivacyPolicyModalCenter">
 Term of service </a>
-& <a href="https://lander.heomai.com/template-common/en/refund-policy?brand=Hatmeo&logo=https://d1y4tm6t3pzfj.cloudfront.net/cpl/images/1692088119_logo.png&email=support@Hatmeo.com">
+& <a href="#" class="btn" data-toggle="modal" data-target="#RefundpolicyModalCenter">
 Refund policy </a>
-& <a href="https://lander.heomai.com/template-common/en/privacy-policy?brand=Hatmeo&logo=https://d1y4tm6t3pzfj.cloudfront.net/cpl/images/1692088119_logo.png&email=support@Hatmeo.com">
+& <a href="#" class="btn" data-toggle="modal" data-target="#PrivacyPolicyModalCenter">
 Privacy Policy </a>
 . </div>
 <div class="price-tip tc">
@@ -1231,8 +1217,6 @@ COMPLETE SECURE PURCHASE </button>
 <script>
         function getSelectProduct() {
             var selected_id = $('.list-item--checked').data('id');
-            console.log("select id info ");
-            console.log(selected_id);
             var products = <?php echo json_encode($package_products);?>;
             
             for (var i = 0; i < products.length; i++) {
@@ -1311,7 +1295,7 @@ COMPLETE SECURE PURCHASE </button>
         function updateCountrySelect(data) {
             countries = data.data
             window.countries = countries;
-            console.log(window.countries);
+      
             var t = '<option value="">----</option>';
             countries.forEach(function(e) {
                 t += "<option value=".concat(e.code, ">").concat(e.name, "</option>")
@@ -1387,14 +1371,14 @@ COMPLETE SECURE PURCHASE </button>
         .then(function(data){
             return data.json()}
         ).then(function(data) {
-            console.log(data);
+            //console.log(data);
             updateCountrySelect(data)
         })
     </script>
 <script>
     function setAttributeTemplate(select_language, select_language_after, has_img_attribute_id, is_more_attribute, template, attribute_err_language) {
         var product_attributes = JSON.parse(JSON.stringify(window.product_attributes));
-        console.log(product_attributes);
+        //console.log(product_attributes);
         var product_template = '<div class="attribute-item">';
         if(is_more_attribute) {
             product_template += '<div class="attribute-item-title">{article}</div>';
@@ -1434,7 +1418,7 @@ COMPLETE SECURE PURCHASE </button>
                 product_template += '<div class="img-wrapper"><img src="'+ show_image +'" /></div>'
             }
         }
-        console.log(product_template);
+        //console.log(product_template);
         window.product_template = product_template;
     }
 
@@ -1474,10 +1458,10 @@ function showAttributeSelecet(article_str) {
 }
 
 function attributeChange(target, is_img_attribute, template) {
-    console.log("attribute change")
-    console.log(target);
-    console.log(is_img_attribute);
-    console.log(template);
+    //console.log("attribute change")
+    //console.log(target);
+    //console.log(is_img_attribute);
+    //console.log(template);
     if(template == 'common5') {
         changeHtmlShow();
     }
@@ -1541,7 +1525,7 @@ function GetRequest() {
 }
 
 function showImgProp(img) {
-    console.log('showImgProp');
+    //console.log('showImgProp');
     document.getElementById('prop-img').src = img;
     document.getElementById('img-prop').style.display = 'block';
 }
@@ -1766,11 +1750,11 @@ function GotoNotRequest(url) {
                                 .then(function(res) {
                                     $('#loading').hide();
                                     var data = res;
-                                    console.log(data)
+                                    //console.log(data)
                                     if(data.statusCode === 201){
                                         var order_info = data.result;
-                                        console.log(order_info);
-                                        console.log(order_info.purchase_units[0].amount);
+                                        //console.log(order_info);
+                                        //console.log(order_info.purchase_units[0].amount);
                                         document.cookie="voluum_payout="+ order_info.purchase_units[0].amount.value + order_info.purchase_units[0].amount.currency_code + "; path=/";
                                         document.cookie="order_id="+ order_info.id + "; path=/";
                                         localStorage.setItem("order_id", order_info.id);
@@ -1818,7 +1802,7 @@ function GotoNotRequest(url) {
                             request += Object.keys(request_params)[i] + '=' + request_params[Object.keys(request_params)[i]] + '&';
                         }
                         request = request.substr(0,request.length - 1);
-                        console.log(request);
+                        //console.log(request);
 
     
                         var url = '/onebuy/order/status?' + request + "&_token={{ csrf_token() }}";
@@ -1835,7 +1819,7 @@ function GotoNotRequest(url) {
                             })
                             .then(function(res) {return res.json()})
                             .then(function(res) {
-                                console.log(res);
+                                //console.log(res);
                                 $('#loading').hide();
                                 if(res.success == true) {
                                     //var info = res.info;
@@ -2724,36 +2708,7 @@ function GotoNotRequest(url) {
                 return window.sku_maps
             }
 
-            var skus = [
-                {"name":"Women's thin no wire lace bra - Black \/ S","sku_code":"CJ02168-C#black-S#m","sku_id":44113194877163,"attribute_name":"S,Black","key":"S_Black"},
-            {"name":"Women's thin no wire lace bra - Pink \/ S","sku_code":"CJ02168-C#pink-S#m","sku_id":44113194909931,"attribute_name":"S,Pink","key":"S_Pink"},
-            {"name":"Women's thin no wire lace bra - Beige \/ S","sku_code":"CJ02168-C#beige-S#m","sku_id":44113194975467,"attribute_name":"S,Beige","key":"S_Beige"},
-            {"name":"Women's thin no wire lace bra - Gray \/ S","sku_code":"CJ02168-C#gray-S#m","sku_id":44113194942699,"attribute_name":"S,Gray","key":"S_Gray"},
-            {"name":"Women's thin no wire lace bra - Black \/ M","sku_code":"CJ02168-C#black-S#l","sku_id":44071643152619,"attribute_name":"M,Black","key":"M_Black"},
-            {"name":"Women's thin no wire lace bra - Pink \/ M","sku_code":"CJ02168-C#pink-S#l","sku_id":44071643381995,"attribute_name":"M,Pink","key":"M_Pink"},
-            {"name":"Women's thin no wire lace bra - Beige \/ M","sku_code":"CJ02168-C#beige-S#l","sku_id":44071643840747,"attribute_name":"M,Beige","key":"M_Beige"},
-            {"name":"Women's thin no wire lace bra - Gray \/ M","sku_code":"CJ02168-C#gray-S#l","sku_id":44071643611371,"attribute_name":"M,Gray","key":"M_Gray"},
-            {"name":"Women's thin no wire lace bra - Black \/ L","sku_code":"CJ02168-C#black-S#xl","sku_id":44071643185387,"attribute_name":"L,Black","key":"L_Black"},
-            {"name":"Women's thin no wire lace bra - Pink \/ L","sku_code":"CJ02168-C#pink-S#xl","sku_id":44071643414763,"attribute_name":"L,Pink","key":"L_Pink"},
-            {"name":"Women's thin no wire lace bra - Beige \/ L","sku_code":"CJ02168-C#beige-S#xl","sku_id":44071643873515,"attribute_name":"L,Beige","key":"L_Beige"},
-            {"name":"Women's thin no wire lace bra - Gray \/ L","sku_code":"CJ02168-C#gray-S#xl","sku_id":44071643644139,"attribute_name":"L,Gray","key":"L_Gray"},
-            {"name":"Women's thin no wire lace bra - Black \/ XL","sku_code":"CJ02168-C#black-S#2xl","sku_id":44071643218155,"attribute_name":"XL,Black","key":"XL_Black"},
-            {"name":"Women's thin no wire lace bra - Pink \/ XL","sku_code":"CJ02168-C#pink-S#2xl","sku_id":44071643447531,"attribute_name":"XL,Pink","key":"XL_Pink"},
-            {"name":"Women's thin no wire lace bra - Beige \/ XL","sku_code":"CJ02168-C#beige-S#2xl","sku_id":44071643906283,"attribute_name":"XL,Beige","key":"XL_Beige"},
-            {"name":"Women's thin no wire lace bra - Gray \/ XL","sku_code":"CJ02168-C#gray-S#2xl","sku_id":44071643676907,"attribute_name":"XL,Gray","key":"XL_Gray"},
-            {"name":"Women's thin no wire lace bra - Black \/ 2XL","sku_code":"CJ02168-C#black-S#3xl","sku_id":44071643250923,"attribute_name":"2XL,Black","key":"2XL_Black"},
-            {"name":"Women's thin no wire lace bra - Pink \/ 2XL","sku_code":"CJ02168-C#pink-S#3xl","sku_id":44071643480299,"attribute_name":"2XL,Pink","key":"2XL_Pink"},
-            {"name":"Women's thin no wire lace bra - Beige \/ 2XL","sku_code":"CJ02168-C#beige-S#3xl","sku_id":44071643939051,"attribute_name":"2XL,Beige","key":"2XL_Beige"},
-            {"name":"Women's thin no wire lace bra - Gray \/ 2XL","sku_code":"CJ02168-C#gray-S#3xl","sku_id":44071643709675,"attribute_name":"2XL,Gray","key":"2XL_Gray"},
-            {"name":"Women's thin no wire lace bra - Black \/ 3XL","sku_code":"CJ02168-C#black-S#4xl","sku_id":44071643283691,"attribute_name":"3XL,Black","key":"3XL_Black"},
-            {"name":"Women's thin no wire lace bra - Pink \/ 3XL","sku_code":"CJ02168-C#pink-S#4xl","sku_id":44071643513067,"attribute_name":"3XL,Pink","key":"3XL_Pink"},
-            {"name":"Women's thin no wire lace bra - Beige \/ 3XL","sku_code":"CJ02168-C#beige-S#4xl","sku_id":44071643971819,"attribute_name":"3XL,Beige","key":"3XL_Beige"},
-            {"name":"Women's thin no wire lace bra - Gray \/ 3XL","sku_code":"CJ02168-C#gray-S#4xl","sku_id":44071643742443,"attribute_name":"3XL,Gray","key":"3XL_Gray"},
-            {"name":"Women's thin no wire lace bra - Black \/ 4XL","sku_code":"CJ02168-C#black-S#5xl","sku_id":44071643316459,"attribute_name":"4XL,Black","key":"4XL_Black"},
-            {"name":"Women's thin no wire lace bra - Pink \/ 4XL","sku_code":"CJ02168-C#pink-S#5xl","sku_id":44071643545835,"attribute_name":"4XL,Pink","key":"4XL_Pink"},
-            {"name":"Women's thin no wire lace bra - Beige \/ 4XL","sku_code":"CJ02168-C#beige-S#5xl","sku_id":44071644004587,"attribute_name":"4XL,Beige","key":"4XL_Beige"},
-            {"name":"Women's thin no wire lace bra - Gray \/ 4XL","sku_code":"CJ02168-C#gray-S#5xl","sku_id":44071643775211,"attribute_name":"4XL,Gray","key":"4XL_Gray"}
-        ];
+
             var skus = <?php echo json_encode($skus);?>
             
             var sku_maps = {};
@@ -2769,21 +2724,6 @@ function GotoNotRequest(url) {
         }
 
         function getAttributeImg(attribute) {
-            console.log(attribute);
-            var product_attributes = [
-                {"id":1,"name":"SIZE","options":[{"id":2,"name":"S","image":null,"is_sold_out":false},
-                {"id":3,"name":"M","image":null},{"id":4,"name":"L","image":null},
-                {"id":5,"name":"XL","image":null},
-                {"id":6,"name":"2XL","image":null},
-                {"id":7,"name":"3XL","image":null,"is_sold_out":false},
-                {"id":8,"name":"4XL","image":null}],"tip":"Size Chart","tip_img":"https:\/\/d1y4tm6t3pzfj.cloudfront.net\/cpl\/images\/1694769733_2168.jpg","selected_option_id":null},
-                {"id":2,"name":"COLOR","options":[{"id":1,"name":"Black","image":"https:\/\/d1y4tm6t3pzfj.cloudfront.net\/cpl\/images\/1689762488_1.jpg"},
-                {"id":2,"name":"Pink","image":"https:\/\/d1y4tm6t3pzfj.cloudfront.net\/cpl\/images\/1689762492_2.jpg"},
-                {"id":3,"name":"Beige","image":"https:\/\/d1y4tm6t3pzfj.cloudfront.net\/cpl\/images\/1689762495_3.jpg"},
-                {"id":4,"name":"Gray","image":"https:\/\/d1y4tm6t3pzfj.cloudfront.net\/cpl\/images\/1689762499_4.jpg"}],"tip":null,"tip_img":null,"selected_option_id":null}];
-            
-
-
             var product_attributes = <?php echo json_encode($product_attributes);?>;
             var show_img_attribute_id =  '23';
             var product_img = "{{ $productBaseImage['medium_image_url'] }}";
@@ -2800,8 +2740,6 @@ function GotoNotRequest(url) {
                     }
                 }
             }
-
-            console.log(product_img);
 
             return product_img;
         }
@@ -2882,29 +2820,6 @@ function GotoNotRequest(url) {
             // sendFbInitiateCheckoutEvent();
         }
 
-        function sendFbInitiateCheckoutEvent() {
-            var params = {
-                _fbc:getCookie('_fbc'),
-                fbclid: getQueryString('fbclid'),
-                _fbp:getCookie('_fbp'),
-                event_name : 'InitiateCheckout',
-                pixel_ids: ['793435258214539','469388707483229','504538250963543'],
-                source_url: window.location.href, 
-                currency : 'USD',
-            }
-
-            fetchFbEvent(params);
-        }
-
-        function fetchFbEvent(params) {
-            fetch('/common/send/fb/event',{
-                body: JSON.stringify(params),
-                method: 'POST',
-                headers: {
-                    'content-type': 'application/json'
-                },
-            })
-        }
 
         function getCookie(name) {
             var strCookie=document.cookie;

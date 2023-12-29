@@ -18,6 +18,7 @@ use Webkul\Product\Helpers\View;
 use Nicelizhi\Airwallex\Payment\Airwallex;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Cache;
 
 
 class ProductController extends Controller
@@ -66,177 +67,152 @@ class ProductController extends Controller
             abort(404);
         }
 
-        //var_dump($product);exit;
-
         visitor()->visit($product);
 
-        //return view('shop::products.view', compact('product'));
 
 
         // 四个商品的价格情况
         $package_products = [];
-        /**
-         * 
-         * {   "id":5,
-                "name":"2x {{ $product->name }}",
-                "image":"{{ $productBaseImage['medium_image_url'] }}",
-                "amount":"2",
-                "old_price":"171.96",
-                "new_price":"49.99",
-                "tip1":"71% Savings",
-                "tip2":"$24.99\/piece",
-                "shipping_fee":"11.99",
-                "popup_info":{
-                    "name":null,
-                    "old_price":null,
-                    "new_price":null,
-                    "img":null}
-                },
-         * 
-         */
+
         
         $productBaseImage = product_image()->getProductBaseImage($product);
-        // $package_product['id'] = 5;
-        // $package_product['name'] = "2x" . $product->name;
-        // $package_product['image'] = $productBaseImage['medium_image_url'];
-        // $package_product['amount'] = 2;
-        // $package_product['old_price'] = "3.15";
-        // $package_product['new_price'] = "2.15";
-        // $package_product['tip1'] = "71% Savings";
-        // $package_product['tip2'] = "$24.99/piece";
-        // $package_product['shipping_fee'] = 9.99;
-        // $popup_info['name'] = null;
-        // $popup_info['old_price'] = null;
-        // $popup_info['new_price'] = null;
-        // $popup_info['img'] = null;
-        // $package_product['popup_info'] = $popup_info;
-        // $package_products[] = $package_product;
-        // $productBaseImage = product_image()->getProductBaseImage($product);
-
-        // $package_product['id'] = 6;
-        // $package_product['name'] = "1x" . $product->name;
-        // $package_product['image'] = $productBaseImage['medium_image_url'];
-        // $package_product['amount'] = 1;
-        // $package_product['old_price'] = "4.33";
-        // $package_product['new_price'] = "3.23";
-        // $package_product['tip1'] = "71% Savings";
-        // $package_product['tip2'] = "$24.99/piece";
-        // $package_product['shipping_fee'] = 9.99;
-        // $popup_info['name'] = null;
-        // $popup_info['old_price'] = null;
-        // $popup_info['new_price'] = null;
-        // $popup_info['img'] = null;
-        // $package_product['popup_info'] = $popup_info;
-        // $package_products[] = $package_product;
+        
+        
 
         $package_products = $this->makeProducts($product, [2,1,3,4]);
 
-        //var_dump($package_products);
+        // var_dump($package_products);exit;
 
         $product_attributes = [];
 
-        $productViewHelper = new \Webkul\Product\Helpers\ConfigurableOption();
 
-        $attributes = $productViewHelper->getConfigurationConfig($product);
 
-        //var_dump($customAttributeValues);exit;
+        $cache_key = "product_attributes_".$product->id;
+        $product_attributes = Cache::get($cache_key);
 
-        //获取到他底部的商品内容
-       // $attributes = $this->productRepository->getSuperAttributes($product);
-        //var_dump($attributes);exit;
-        foreach($attributes['attributes'] as $key=>$attribute) {
-            $attribute['name'] = $attribute['code'];
-            $options = [];
-            //var_dump($attribute);
-            foreach($attribute['options'] as $kk=>$option) {
-                //var_dump($option);exit;
 
-                // 获取商品图片内容
-                if($attribute['id']==23) {
-                    //var_dump($option, $product->sku);exit;
-                    $new_sku = $product->sku."-variant-1-".$option['id']+5;
-                    $new_id = $option['products'][0];
-                    //echo $new_sku."\r\n";
-                    $new_product = $this->productRepository->find($new_id);
-                    //var_dump($new_product);exit;
-                    //var_dump($new_sku);exit;
-                    $NewproductBaseImage = product_image()->getProductBaseImage($new_product);
-                    //var_dump($NewproductBaseImage);exit;
-                    $option['image'] = @$NewproductBaseImage['medium_image_url'];
-                }else{
-                    $option['image'] = $productBaseImage['medium_image_url'];
+        if(empty($product_attributes)) {
+
+            $productViewHelper = new \Webkul\Product\Helpers\ConfigurableOption();
+            $attributes = $productViewHelper->getConfigurationConfig($product);
+            
+            
+            
+
+            //var_dump($customAttributeValues);exit;
+
+            //获取到他底部的商品内容
+        // $attributes = $this->productRepository->getSuperAttributes($product);
+            //var_dump($attributes);exit;
+            foreach($attributes['attributes'] as $key=>$attribute) {
+                $attribute['name'] = $attribute['code'];
+                $options = [];
+                //var_dump($attribute);
+                foreach($attribute['options'] as $kk=>$option) {
+                    //var_dump($option);exit;
+
+                    // 获取商品图片内容
+                    if($attribute['id']==23) {
+                        //var_dump($option, $product->sku);exit;
+                        $new_sku = $product->sku."-variant-1-".$option['id']+5;
+                        $new_id = $option['products'][0];
+                        //echo $new_sku."\r\n";
+                        $new_product = $this->productRepository->find($new_id);
+                        //var_dump($new_product);exit;
+                        //var_dump($new_sku);exit;
+                        $NewproductBaseImage = product_image()->getProductBaseImage($new_product);
+                        //var_dump($NewproductBaseImage);exit;
+                        $option['image'] = @$NewproductBaseImage['medium_image_url'];
+                    }else{
+                        $option['image'] = $productBaseImage['medium_image_url'];
+                    }
+
+
+                    //$option['image'] = $productBaseImage['medium_image_url'];
+                    $option['name'] = $option['label'];
+                    unset($option['admin_name']);
+                    $options[] = $option;
+                    //var_dump($option);
                 }
-
-
-                //$option['image'] = $productBaseImage['medium_image_url'];
-                $option['name'] = $option['label'];
-                unset($option['admin_name']);
-                $options[] = $option;
-                //var_dump($option);
+                unset($attribute['translations']); //去掉多余的数据内容
+                //var_dump($options);
+                $attribute['options'] = $options;
+                $attribute['image'] = $productBaseImage['medium_image_url'];
+                $product_attributes[] = $attribute;
             }
-            unset($attribute['translations']); //去掉多余的数据内容
-            //var_dump($options);
-            $attribute['options'] = $options;
-            $attribute['image'] = $productBaseImage['medium_image_url'];
-            $product_attributes[] = $attribute;
+
+            Cache::put($cache_key, json_encode($product_attributes), 36000);
+
+        }else{
+            $product_attributes = json_decode($product_attributes, JSON_OBJECT_AS_ARRAY);
         }
+
+        
 
         //var_dump($product);
         // skus 数据
         $skus = [];
-        $sku_products = $this->productRepository->where("parent_id", $product->id)->get();
 
-        $attributeOptionRepository = app(AttributeOptionRepository::class);
-        
-        foreach($sku_products as $key=>$sku) {
-            $sku_id = $sku->id;
-            $sku_code = $sku->sku;
-            unset($sku);
+        $cache_key = "product_sku_".$product->id;
+        $skus = Cache::get($cache_key);
+        if(empty($skus)) {
+            $sku_products = $this->productRepository->where("parent_id", $product->id)->get();
 
-            /**
-             * 
-             * 
-             * {"name":"Women's thin no wire lace bra - Black \/ S","sku_code":"CJ02168-C#black-S#m","sku_id":44113194877163,"attribute_name":"S,Black","key":"S_Black"}
-             * 
-             * 
-             */
-            $productAttribute = $this->productAttributeValueRepository->findOneWhere([
-                'product_id'   => $sku_id,
-                'attribute_id' => 2,
-            ]);
-
-            //var_dump($productAttribute);
-
-            $sku['name'] = $productAttribute['text_value'];
-
+            $attributeOptionRepository = app(AttributeOptionRepository::class);
             
-            
-            $sku['sku_code'] = $sku_code;
-            $sku['sku_id'] = $sku_id;
-
-            $colorAttribute = $this->productAttributeValueRepository->findOneWhere([
-                'product_id'   => $sku_id,
-                'attribute_id' => 23,
-            ]);
-
-            $sizeAttribute = $this->productAttributeValueRepository->findOneWhere([
-                'product_id'   => $sku_id,
-                'attribute_id' => 24,
-            ]);
-
-            $SizeattributeOptions = $attributeOptionRepository->findOneWhere(['id'=>$sizeAttribute['integer_value']]);
-            $ColorattributeOptions = $attributeOptionRepository->findOneWhere(['id'=>$colorAttribute['integer_value']]);
-            
-
-            $attribute_name = $ColorattributeOptions->admin_name.",".$SizeattributeOptions->admin_name;
-
-            $sku['attribute_name'] = $attribute_name;
-            $sku['attr_id'] = "24_".$colorAttribute['integer_value'].",23_".$sizeAttribute['integer_value'];
-
-            $sku['key'] = $ColorattributeOptions->admin_name."_".$SizeattributeOptions->admin_name; // 这个数据需要留意他的位置，JS判断会需要使用
-            
-            $skus[] = $sku;
+            foreach($sku_products as $key=>$sku) {
+                $sku_id = $sku->id;
+                $sku_code = $sku->sku;
+                unset($sku);
+                /**
+                 * 
+                 * 
+                 * {"name":"Women's thin no wire lace bra - Black \/ S","sku_code":"CJ02168-C#black-S#m","sku_id":44113194877163,"attribute_name":"S,Black","key":"S_Black"}
+                 * 
+                 * 
+                 */
+                $productAttribute = $this->productAttributeValueRepository->findOneWhere([
+                    'product_id'   => $sku_id,
+                    'attribute_id' => 2,
+                ]);
+    
+                //var_dump($productAttribute);
+    
+                $sku['name'] = $productAttribute['text_value'];
+    
+                
+                
+                $sku['sku_code'] = $sku_code;
+                $sku['sku_id'] = $sku_id;
+    
+                $colorAttribute = $this->productAttributeValueRepository->findOneWhere([
+                    'product_id'   => $sku_id,
+                    'attribute_id' => 23,
+                ]);
+    
+                $sizeAttribute = $this->productAttributeValueRepository->findOneWhere([
+                    'product_id'   => $sku_id,
+                    'attribute_id' => 24,
+                ]);
+    
+                $SizeattributeOptions = $attributeOptionRepository->findOneWhere(['id'=>$sizeAttribute['integer_value']]);
+                $ColorattributeOptions = $attributeOptionRepository->findOneWhere(['id'=>$colorAttribute['integer_value']]);
+                
+    
+                $attribute_name = $ColorattributeOptions->admin_name.",".$SizeattributeOptions->admin_name;
+    
+                $sku['attribute_name'] = $attribute_name;
+                $sku['attr_id'] = "24_".$colorAttribute['integer_value'].",23_".$sizeAttribute['integer_value'];
+    
+                $sku['key'] = $ColorattributeOptions->admin_name."_".$SizeattributeOptions->admin_name; // 这个数据需要留意他的位置，JS判断会需要使用
+                
+                $skus[] = $sku;
+            }
+            Cache::put($cache_key, json_encode($skus), 36000);
+        }else {
+            $skus = json_decode($skus, JSON_OBJECT_AS_ARRAY);
         }
+
 
 
         //商品的背景图片获取
@@ -417,88 +393,6 @@ class ProductController extends Controller
         }
 
         return response()->json($data);
-
-        /**
-         * 
-         * 
-         * array(30) {
-  ["first_name"]=>
-  string(3) "Liu"
-  ["second_name"]=>
-  string(5) "Lizhi"
-  ["email"]=>
-  string(20) "nice.lizhi@gmail.com"
-  ["phone_full"]=>
-  string(13) "135 2408 4051"
-  ["country"]=>
-  string(2) "HK"
-  ["city"]=>
-  string(6) "大潭"
-  ["province"]=>
-  NULL
-  ["address"]=>
-  string(21) "datang road 255,ddddd"
-  ["code"]=>
-  string(6) "200000"
-  ["product_delivery"]=>
-  string(5) "10.99"
-  ["product_price"]=>
-  string(5) "42.99"
-  ["total"]=>
-  string(5) "53.98"
-  ["amount"]=>
-  string(1) "1"
-  ["payment_return_url"]=>
-  string(55) "http://45.79.79.208:8002/template-common/en/thankyou1/?"
-  ["payment_cancel_url"]=>
-  string(44) "http://45.79.79.208:8002/onebuy/operations-3"
-  ["phone_prefix"]=>
-  string(0) ""
-  ["payment_method"]=>
-  string(8) "worldpay"
-  ["products"]=>
-  array(1) {
-    [0]=>
-    array(4) {
-      ["img"]=>
-      string(92) "http://45.79.79.208:8002/cache/small/product/3/UyGkjcnr7Vt89NwRlmG3EEzk5PRY9TjT8gLRgHCg.webp"
-      ["price"]=>
-      string(7) "42.9900"
-      ["amount"]=>
-      int(1)
-      ["product_id"]=>
-      string(13) "8089213141227"
-    }
-  }
-  ["logo_image"]=>
-  string(67) "https://d1y4tm6t3pzfj.cloudfront.net/cpl/images/1692088119_logo.png"
-  ["brand"]=>
-  string(8) "Dotmalls"
-  ["description"]=>
-  string(15) "1x operations-3"
-  ["shopify_store_name"]=>
-  string(22) "lilndary.myshopify.com"
-  ["produt_amount_base"]=>
-  string(1) "1"
-  ["domain_name"]=>
-  string(12) "45.79.79.208"
-  ["price_template"]=>
-  string(6) "$price"
-  ["omnisend"]=>
-  string(8) "lilndary"
-  ["payment_account"]=>
-  string(5) "viusd"
-  ["error"]=>
-  bool(false)
-  ["_token"]=>
-  string(40) "EOdm1hHMBp9NRoDnKSAfYcpj6rtwHgDPbFgcWhQC"
-  ["time"]=>
-  string(13) "1702623252555"
-}
-         * 
-         * 
-         * 
-         */
         // 商品更新到购物车中。http://45.79.79.208:8002/api/checkout/cart
         // 订单基于购物车中的商品完成订单生成
         
@@ -900,54 +794,64 @@ class ProductController extends Controller
 
     private function makeProducts($product, $nums = array()) {
 
-        $package_products = [];
-        $productBaseImage = product_image()->getProductBaseImage($product);
-
-        //source price
-
-        $productBgAttribute_price = $this->productAttributeValueRepository->findOneWhere([
-            'product_id'   => $product->id,
-            'attribute_id' => 31,
-        ]);
-        $source_price = 0;
-        if(!is_null($productBgAttribute_price)) $source_price = $productBgAttribute_price->float_value;
-        if(empty($source_price)) {
-            return abort(404);
-        }
-
-        foreach($nums as $key=>$i) {
-            
-            $package_product = [];
-            $package_product['id'] = $i;
-            $package_product['name'] = $i."x" . $product->name;
-            $package_product['image'] = $productBaseImage['medium_image_url'];
-            $package_product['amount'] = $i;
-            //$package_product['old_price'] = $productPrice['regular']['price'] * $i;
-            $price = $this->getCartProductPrice($product,$product->id, $i);
-            $package_product['old_price'] = $source_price * $i; 
-            $package_product['old_price_format'] = "$".$package_product['old_price']; 
-            //$package_product['new_price'] = "3.23" * $i;
-            if ($i==2) $discount = 0.8;
-            if ($i==3) $discount = 0.7;
-            if ($i==4) $discount = 0.6;
-            if ($i==1) $discount = 1;
-            $package_product['new_price'] = $this->getCartProductPrice($product,$product->id, $i) * $discount;
-            $package_product['new_price_format'] = "$".$package_product['new_price'] ;
-            $tip1_price = (1 - round(($package_product['new_price'] / $package_product['old_price']), 2)) * 100;
-            $package_product['tip1'] = $tip1_price."% Savings";
-            $tip2_price = $package_product['new_price'] / $i;
-            $package_product['tip2'] = "$".$tip2_price."/piece";
-            $package_product['shipping_fee'] = 9.99;
-            $popup_info['name'] = null;
-            $popup_info['old_price'] = null;
-            $popup_info['new_price'] = null;
-            $popup_info['img'] = null;
-            $package_product['popup_info'] = $popup_info;
-            $package_products[] = $package_product;
-        }
-
-        return $package_products;
+        //var_dump($product->id);exit;
+        $cache_key = "product_ext_".$product->id."_".count($nums);
+        $package_products = Cache::get($cache_key);
         
+        if(empty($package_products)) {
+        //if($package_products) {
+            $package_products = [];
+            $productBaseImage = product_image()->getProductBaseImage($product);
+    
+            //source price
+    
+            $productBgAttribute_price = $this->productAttributeValueRepository->findOneWhere([
+                'product_id'   => $product->id,
+                'attribute_id' => 31,
+            ]);
+            $source_price = 0;
+            if(!is_null($productBgAttribute_price)) $source_price = $productBgAttribute_price->float_value;
+            if(empty($source_price)) {
+                return abort(404);
+            }
+    
+            foreach($nums as $key=>$i) {
+                
+                $package_product = [];
+                $package_product['id'] = $i;
+                $package_product['name'] = $i."x" . $product->name;
+                $package_product['image'] = $productBaseImage['medium_image_url'];
+                $package_product['amount'] = $i;
+                //$package_product['old_price'] = $productPrice['regular']['price'] * $i;
+                $price = $this->getCartProductPrice($product,$product->id, $i);
+                $package_product['old_price'] = $source_price * $i; 
+                $package_product['old_price_format'] = "$".$package_product['old_price']; 
+                //$package_product['new_price'] = "3.23" * $i;
+                if ($i==2) $discount = 0.8;
+                if ($i==3) $discount = 0.7;
+                if ($i==4) $discount = 0.6;
+                if ($i==1) $discount = 1;
+                $package_product['new_price'] = $this->getCartProductPrice($product,$product->id, $i) * $discount;
+                $package_product['new_price_format'] = "$".$package_product['new_price'] ;
+                $tip1_price = (1 - round(($package_product['new_price'] / $package_product['old_price']), 2)) * 100;
+                $package_product['tip1'] = $tip1_price."% Savings";
+                $tip2_price = $package_product['new_price'] / $i;
+                $package_product['tip2'] = "$".$tip2_price."/piece";
+                $package_product['shipping_fee'] = 9.99;
+                $popup_info['name'] = null;
+                $popup_info['old_price'] = null;
+                $popup_info['new_price'] = null;
+                $popup_info['img'] = null;
+                $package_product['popup_info'] = $popup_info;
+                $package_products[] = $package_product;
+            }
+
+            Cache::put($cache_key, json_encode($package_products), 36000);
+            //var_dump("hello");
+            return $package_products;
+        }
+        
+        return json_decode($package_products, JSON_OBJECT_AS_ARRAY);
     }
 
     /**
