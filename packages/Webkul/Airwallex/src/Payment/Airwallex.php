@@ -193,6 +193,8 @@ class Airwallex extends Payment
       //var_dump($buildRequestBody);
       $transactionManager = $sdk->CreatePayment(json_encode($buildRequestBody, JSON_OBJECT_AS_ARRAY | JSON_UNESCAPED_UNICODE));
 
+      // 针对生成订单后，需要和订单关联起来，从而在回告的过程中，好识别
+
       //var_dump($transactionManager);
 
       return $transactionManager;

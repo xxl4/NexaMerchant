@@ -7,6 +7,8 @@ use GuzzleHttp\Psr7\Request;
 use Illuminate\Support\Facades\Config;
 use GuzzleHttp\Promise;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Log;
+
 
 class Airwallex {
 
@@ -26,6 +28,10 @@ class Airwallex {
 
     protected $host = "https://api-demo.airwallex.com";
 
+    protected $client;
+
+    protected $token;
+
     /**
      * 
      * 
@@ -44,6 +50,17 @@ class Airwallex {
         $this->apiKey = $config['apiKey'];
 
         if($productionMode==1) $this->host = "https://api.airwallex.com"; 
+
+        $this->client = new Client([
+            // Base URI is used with relative requests
+            'base_uri' => $this->host,
+            // You can set any number of default request options.
+            'timeout'  => 2.0,
+        ]);
+
+        // token
+
+        $this->token = $this->Authentication();
     }
 
     /**
@@ -61,25 +78,9 @@ class Airwallex {
 
         //var_dump($token);
 
-        if(!Cache::has($cache_key)) {
-            $client = new Client([
-                // Base URI is used with relative requests
-                'base_uri' => $this->host,
-                // You can set any number of default request options.
-                'timeout'  => 2.0,
-            ]);
-    
-            $headers = [
-                'x-client-id' => $this->clientId,
-                'x-api-key'   => $this->apiKey
-            ];
-            //$body = "";
-            //$request = new Request('POST', $this->host."/api/v1/authentication/login", $headers, $body);
-            //$promise = $client->sendAsync($request);
-            //$responses = Promise\Utils::unwrap($promise);
-    
-    
-            $response = $client->request('POST', "/api/v1/authentication/login", [ 
+        if(true) {
+        //if(!Cache::has($cache_key)) {
+            $response = $this->client->request('POST', "/api/v1/authentication/login", [ 
                 'headers' => [
                      'Accept' => 'application/json', 
                      'content-type' => 'application/json',
@@ -89,7 +90,7 @@ class Airwallex {
             ]);
     
             $body = $response->getBody();
-            var_dump($body);
+            Log::info($body);
             $json = json_decode($body);
             Cache::put($cache_key, $json->token, 3600);
             return $json->token;
@@ -101,32 +102,71 @@ class Airwallex {
     /**
      * 
      * create payment
-     * 
+     * @link https://www.airwallex.com/docs/api#/Payment_Acceptance/Payment_Intents/_api_v1_pa_payment_intents_create/post
      * 
      */
     public function CreatePayment($data) {
-        $token = $this->Authentication();
-
-        $client = new Client([
-            // Base URI is used with relative requests
-            'base_uri' => $this->host,
-            // You can set any number of default request options.
-            'timeout'  => 2.0,
-        ]);
+        //$token = $this->Authentication();
 
         //var_dump(json_decode($data));
 
         //var_dump($token, $data);
 
-        var_dump(json_decode($data));
+        //var_dump(json_decode($data));
 
-        $response = $client->request('POST', "/api/v1/pa/payment_intents/create", [ 
+/*
+        $response = $this->client->request('POST', "/api/v1/pa/payment_intents/create", [ 
             'headers' => [
                  'Accept' => 'application/json', 
                  'content-type' => 'application/json',
-                 'Authorization' => "Bearer ".$token, 
+                 'Authorization' => "Bearer ".$this->token, 
             ],
             'json' => $data,
+            'body' => $data,
+            'debug' => true
+        ]);
+        $body = $response->getBody();
+        var_dump($body, $data, $token);
+*/
+
+        //$datajson = json_encode($param);
+        $datajson = $data;
+        $myheader= array(
+                'Content-Type: application/json; charset=utf-8',
+                'Content-Length: ' . strlen($datajson),
+                'Authorization: ' ."Bearer ".$this->token
+        );
+
+        $url = $this->host."/api/v1/pa/payment_intents/create";
+
+        $curlheader = array('Content-Type:application/x-www-form-urlencoded;charset=utf-8');
+
+        $result = $this->http_curl($url, 'xml', $datajson, 6, FALSE, '',$myheader);
+
+        //var_dump($result);
+
+        if($result['code']=='201') return json_decode($result['body']);
+
+        return $result;
+
+    }
+
+    /**
+     * 
+     * 注意授权方式有差异
+     * @param json input
+     * 
+     * 
+     */
+    public function createWebhook($input) {
+        var_dump($input);
+        $response = $this->client->request('POST', "/api/v1/webhooks/create", [ 
+            'headers' => [
+                 'Accept' => 'application/json', 
+                 'content-type' => 'application/json',
+                 'Authorization' => "Basic ".$this->clientId, 
+            ],
+            'json' => $input,
             'debug' => true
         ]);
         $body = $response->getBody();
@@ -186,6 +226,58 @@ class Airwallex {
         });
 
         return $paymentMethods;
+    }
+
+    function http_curl($url, $method, $params, $timeout=10, $https=FALSE, $isReturnHead='', $curlheader=''){
+        $curl = curl_init();
+        
+        $parastr = '';
+        if(strtolower($method) == 'xml'){
+            $parastr = $params;
+        }else{
+            if(!empty($params)){
+                foreach ($params as $key => $value) {
+                    $parastr .= $key . '=' . urlencode($value) . '&';
+                }
+                $parastr = substr($parastr, 0, -1);
+            }
+        }
+        
+        if(strtolower($method) == 'post' || strtolower($method) == 'xml'){
+            curl_setopt($curl, CURLOPT_POST, 1);
+            curl_setopt($curl, CURLOPT_URL, $url);
+            curl_setopt($curl, CURLOPT_POSTFIELDS, $parastr);
+        }else{
+            curl_setopt($curl, CURLOPT_URL, $url . '?' . $parastr);
+        }
+        if($https){
+            curl_setopt($curl,CURLOPT_SSL_VERIFYHOST, FALSE);
+            curl_setopt($curl,CURLOPT_SSL_VERIFYPEER, FALSE);
+        }
+        if($isReturnHead){//返回response头部信息
+            curl_setopt($curl, CURLOPT_HEADER, 1);   
+        }else{
+            curl_setopt($curl, CURLOPT_HEADER, 0);
+        }
+        if($curlheader){
+            curl_setopt($curl,CURLOPT_HTTPHEADER,$curlheader);
+        }
+        curl_setopt($curl, CURLOPT_TIMEOUT, $timeout);
+        curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, $timeout - 1);
+        //调试时打开
+        //curl_setopt($curl, CURLINFO_HEADER_OUT, true);
+        
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+        $resp['body'] = curl_exec($curl);
+        $resp['code'] = trim(curl_getinfo($curl, CURLINFO_HTTP_CODE));
+        //$resp['debug'] = curl_getinfo($curl);
+        $errno = curl_errno($curl);
+        if($errno != 0){
+            $resp['code'] = $errno;
+            $resp['body'] = curl_error($curl);
+        }
+        curl_close($curl);
+        return $resp;
     }
 
 }
