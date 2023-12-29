@@ -18,6 +18,7 @@
         <meta http-equiv="content-language" content="{{ app()->getLocale() }}">
 <script src="https://unpkg.com/jquery@3.3.1/dist/jquery.js"></script>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
 <script>
@@ -272,6 +273,7 @@
     }
     .modal-dialog {
         text-align: left;
+        margin-top: 5rem;
     }
 
 
@@ -633,11 +635,11 @@ Total:
 <div class="summary-footer">
 <div class="agree-block">
 <input type="checkbox" checked>
-I agree with the <a href="#" class="btn" data-toggle="modal" data-target="#PrivacyPolicyModalCenter">
+I agree with the <a href="#" data-toggle="modal" data-target="#PrivacyPolicyModalCenter">
 Term of service </a>
-& <a href="#" class="btn" data-toggle="modal" data-target="#RefundpolicyModalCenter">
+& <a href="#" data-toggle="modal" data-target="#RefundpolicyModalCenter">
 Refund policy </a>
-& <a href="#" class="btn" data-toggle="modal" data-target="#PrivacyPolicyModalCenter">
+& <a href="#"  data-toggle="modal" data-target="#PrivacyPolicyModalCenter">
 Privacy Policy </a>
 . </div>
 <div class="guarantee-block">
@@ -673,11 +675,11 @@ COMPLETE SECURE PURCHASE </button>
 <div class="summary-footer summary-footer-mb">
 <div class="agree-block">
 <input type="checkbox" checked>
-I agree with the <a href="#" class="btn" data-toggle="modal" data-target="#PrivacyPolicyModalCenter">
+I agree with the <a href="#" data-toggle="modal" data-target="#PrivacyPolicyModalCenter">
 Term of service </a>
-& <a href="#" class="btn" data-toggle="modal" data-target="#RefundpolicyModalCenter">
+& <a href="#"  data-toggle="modal" data-target="#RefundpolicyModalCenter">
 Refund policy </a>
-& <a href="#" class="btn" data-toggle="modal" data-target="#PrivacyPolicyModalCenter">
+& <a href="#"  data-toggle="modal" data-target="#PrivacyPolicyModalCenter">
 Privacy Policy </a>
 . </div>
 <div class="price-tip tc">
@@ -749,18 +751,19 @@ Hatmeo offers a 30 day guarantee on all unused purchases. Simply send the item(s
 ©2021 - Hatmeo
 </div>
 <style>
-                    .phone-block {
-                        color: #a9a9a9;
-                        font-size: 12px;
-                        font-family: Helvetica Bold;
-                        margin: 0 0 15px;
-                        text-align: center;
-                        padding: 5px 0;
-                    }
-                    .phone-block a {
-                        color: #a9a9a9;
-                    }
-                </style>
+    .phone-block {
+        color: #000;
+        font-size: 14px;
+        font-family: Helvetica Bold;
+        margin: 0 0 15px;
+        text-align: center;
+        padding: 5px 0;
+    }
+    .phone-block a {
+        color: #a9a9a9;
+        font-size: 14px;
+    }
+</style>
 <div class="phone-block">
     <!--Phone: <a href="tel:(833) 493-2323">(833) 493-2323</a> (9:00am-5:00pm EST, Monday to Friday). </div>-->
     <div class="terms-block">
