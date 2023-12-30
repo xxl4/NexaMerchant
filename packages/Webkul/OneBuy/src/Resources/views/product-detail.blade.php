@@ -16,6 +16,7 @@
         <meta name="base-url" content="{{ url()->to('/') }}">
         <meta name="currency-code" content="{{ core()->getCurrentCurrencyCode() }}">
         <meta http-equiv="content-language" content="{{ app()->getLocale() }}">
+        <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet' />
 <script src="https://unpkg.com/jquery@3.3.1/dist/jquery.js"></script>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
@@ -86,6 +87,9 @@
 <link rel="stylesheet" href="https://lander.heomai.com/template-common/checkout6/css/order.css?v=11">
 <link rel="stylesheet" href="https://lander.heomai.com/template-common/checkout-common/css/order.css">
 <style>
+        body {
+            font-family: "Poppins"
+        }
         .list-item {
             border: 6px solid transparent !important;
             border-radius: 5 !important;
@@ -262,6 +266,14 @@
             }
         }
     </style>
+
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "kdssdtdq6l");
+</script>
 </head>
 <body>
 <div class="smb-body">
