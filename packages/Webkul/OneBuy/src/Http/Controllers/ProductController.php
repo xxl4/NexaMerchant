@@ -565,7 +565,7 @@ class ProductController extends Controller
             $addressData['billing']['email'] = $payer['email_address'];
             $addressData['billing']['first_name'] = $payer['name']->given_name;
             $addressData['billing']['last_name'] = $payer['name']->surname;
-            $addressData['billing']['phone'] = isset($payer['phone']) ? $payer['phone'] : "";
+            $addressData['billing']['phone'] = isset($payer['phone']['national_number']) ? $payer['phone']['national_number'] : "";
             $addressData['billing']['postcode'] = isset($input['address']->postal_code) ? $input['address']->postal_code : "";
             $addressData['billing']['state'] = isset($input['address']->postal_code) ? $input['address']->postal_code : "";
             $addressData['billing']['use_for_shipping'] = true;
@@ -579,6 +579,8 @@ class ProductController extends Controller
             $addressData['billing']['address1'] = implode(PHP_EOL, $addressData['billing']['address1']);
 
             $addressData['shipping']['address1'] = implode(PHP_EOL, $addressData['shipping']['address1']);
+
+            Log::info("address data".json_encode($addressData));
 
             if (
                 Cart::hasError()
