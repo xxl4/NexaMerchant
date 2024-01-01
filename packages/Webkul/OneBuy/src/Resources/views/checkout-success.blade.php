@@ -24,6 +24,7 @@
 <script>
         function addVoluumImg(data) {
             console.log('addVoluumImg');
+            return false;
             var payout = data.info.payout || (data.info.total + data.info.currency); 
             var bigImg = document.createElement("img");
             bigImg.src = "https://tick.colapaco-op.com/conversion.gif?payout="+ payout +"&txid="+data.info._id.$oid;
@@ -60,6 +61,7 @@
         }
 
         function fbPurchase(order_params) {
+            return false;
             var params = {
                 _fbc:getCookie('_fbc'),
                 fbclid: getQueryString('fbclid'),
@@ -339,10 +341,12 @@ We’ve accepted your order, and we’re getting it ready. Come back to this pag
 Order Data:
 <div class="product-content"></div>
 </p>
+<!--
 <p>
 Order Total:
 <span class="order-total" data-value="orderTotalValue" data-currency="currencyCode">orderTotal</span>
 </p>
+-->
 </div>
 </div>
 <div class="content-box">
@@ -539,7 +543,7 @@ All rights reserved
                 sendPurchaseEvent(data);
             }
 
-            document.querySelector('.order-total').innerHTML = getFormatPrice(data.info.grand_total, order_param.price_template);
+            //document.querySelector('.order-total').innerHTML = getFormatPrice(data.info.grand_total, order_param.price_template);
             document.querySelector('.customer_first_name').innerHTML = order_param.first_name;
             document.querySelector('.customer_last_name').innerHTML = order_param.second_name;
             document.querySelector('.customer_email').innerHTML = order_param.email;
