@@ -455,6 +455,8 @@ class ProductController extends Controller
 
         $addressData['shipping']['address1'] = implode(PHP_EOL, $addressData['shipping']['address1']);
 
+        Log::info("paypal pay".json_encode($addressData));
+
 
         if (
             Cart::hasError()
@@ -565,7 +567,7 @@ class ProductController extends Controller
             $addressData['billing']['email'] = $payer['email_address'];
             $addressData['billing']['first_name'] = $payer['name']->given_name;
             $addressData['billing']['last_name'] = $payer['name']->surname;
-            $addressData['billing']['phone'] = isset($payer['phone']['national_number']) ? $payer['phone']['national_number'] : "";
+            $addressData['billing']['phone'] =  "";
             $addressData['billing']['postcode'] = isset($input['address']->postal_code) ? $input['address']->postal_code : "";
             $addressData['billing']['state'] = isset($input['address']->postal_code) ? $input['address']->postal_code : "";
             $addressData['billing']['use_for_shipping'] = true;
@@ -593,7 +595,6 @@ class ProductController extends Controller
             }
 
             $this->smartButton->captureOrder(request()->input('orderData.orderID'));
-
             return $this->saveOrder();
         } catch (\Exception $e) {
             return response()->json($e->getMessage());
@@ -982,7 +983,13 @@ class ProductController extends Controller
     public function order_query(Request $request) {
         $order_id = $request->input("id");
 
-        $order = $this->orderRepository->findOrFail($order_id);
+        $order = $this->orderRepository->find($order_id);
+        if(is_null($order)) {
+            return new JsonResource([
+                'order_id' => 0,
+                'info'      => [],
+            ]);
+        }
 
         return new JsonResource([
             'order_id' => $order_id,
