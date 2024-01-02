@@ -6,6 +6,14 @@ use Illuminate\Console\Command;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Log;
 
+use Webkul\Sales\Repositories\OrderRepository;
+use Webkul\Sales\Repositories\OrderCommentRepository;
+use Webkul\Admin\DataGrids\Sales\OrderDataGrid;
+
+use Nicelizhi\Shopify\Models\ShopifyOrder;
+use Nicelizhi\Shopify\Models\ShopifyStore;
+
+
 class Get extends Command
 {
     /**
@@ -27,8 +35,14 @@ class Get extends Command
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(
+        protected OrderRepository $orderRepository,
+        protected ShopifyOrder $ShopifyOrder,
+        protected ShopifyStore $ShopifyStore,
+        protected OrderCommentRepository $orderCommentRepository
+    )
     {
+        $this->shopify_store_id = "wmshoe";
         parent::__construct();
     }
 
@@ -41,15 +55,19 @@ class Get extends Command
     {
         $client = new Client();
 
-        $shopify = config("shopify");
+        $shopifyStore = $this->ShopifyStore->where('shopify_store_id', $this->shopify_store_id)->first();
 
-
+        if(is_null($shopifyStore)) {
+            $this->error("no store");
+            return false;
+        }
+        $shopify = $shopifyStore->toArray();
         /**
          * 
          * @link https://shopify.dev/docs/api/admin-rest/2023-10/resources/order#get-orders?status=any
          * 
          */
-        $response = $client->get($shopify['shopify_app_host_name'].'/admin/api/2023-10/orders.json?status=any&limit=100', [
+        $response = $client->get($shopify['shopify_app_host_name'].'/admin/api/2023-10/orders.json?status=any&limit=1', [
             'headers' => [
                 'Content-Type' => 'application/json',
                 'Accept' => 'application/json',
@@ -62,8 +80,10 @@ class Get extends Command
         $body = $response->getBody();
         //Log::info($body);
         $body = json_decode($body, true);
+        var_dump($body);
         foreach($body['orders'] as $key=>$item) {
 
+            var_dump($item);
             
            
 

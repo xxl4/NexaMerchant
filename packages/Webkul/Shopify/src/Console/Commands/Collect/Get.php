@@ -1,6 +1,6 @@
 <?php
 
-namespace Nicelizhi\Shopify\Console\Commands\Product;
+namespace Nicelizhi\Shopify\Console\Commands\Collect;
 
 use Illuminate\Console\Command;
 use GuzzleHttp\Client;
@@ -26,18 +26,16 @@ class Get extends Command
      *
      * @var string
      */
-    protected $signature = 'shopify:product:get';
+    protected $signature = 'shopify:collect:get';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Get Products List';
+    protected $description = 'Get Products Collect List';
 
     private $shopify_store_id = "";
-
-    private $category_id = 0;
 
     /**
      * Create a new command instance.
@@ -52,7 +50,6 @@ class Get extends Command
     )
     {
         $this->shopify_store_id = "hatmeo";
-        $this->category_id = 3;
         parent::__construct();
     }
 
@@ -64,7 +61,6 @@ class Get extends Command
     public function handle()
     {
         
-        $shopify_pro_id = "8398348714214";
 
         $client = new Client();
 
@@ -76,16 +72,13 @@ class Get extends Command
         }
 
         $shopify = $shopifyStore->toArray();
-
-        
-
         /**
          * 
          * @link https://shopify.dev/docs/api/admin-rest/2023-10/resources/product#get-products?ids=632910392,921728736
          * 
          */
         $created_at_min = date("Y-m-d")."T00:00:00-00:00";
-        $response = $client->get($shopify['shopify_app_host_name'].'/admin/api/2023-10/products.json?ids='.$shopify_pro_id.'&limit=10&fields=id,title,variants,options,images,product_type,body_html,tags,admin_graphql_api_id,collection_id', [
+        $response = $client->get($shopify['shopify_app_host_name'].'/admin/api/2023-10/collects.json', [
             'headers' => [
                 'Content-Type' => 'application/json',
                 'Accept' => 'application/json',
@@ -96,11 +89,10 @@ class Get extends Command
         $body = json_decode($response->getBody(), true);
 
         $body = $response->getBody();
-        Log::info($body);
+        //Log::info($body);
         $body = json_decode($body, true);
-        //var_dump($body);exit;
+        var_dump($body);exit;
         foreach($body['products'] as $key=>$item) {
-            //var_dump($item['collection_id']);exit;
 
             $shopifyProduct = \Nicelizhi\Shopify\Models\ShopifyProduct::where("product_id", $item['id'])->first();
             if(is_null($shopifyProduct)) {
@@ -115,7 +107,7 @@ class Get extends Command
         }
 
         
-        $this->syncProductToLocal($shopify_pro_id);
+        $this->syncProductToLocal();
 
         // 处理目录权限
         $this->Permissions();
@@ -148,8 +140,8 @@ class Get extends Command
      * sync product to local product
      * 
      */
-    public function syncProductToLocal($shopify_pro_id) {
-        $items = \Nicelizhi\Shopify\Models\ShopifyProduct::where("shopify_store_id", $this->shopify_store_id)->where("product_id", $shopify_pro_id)->get();
+    public function syncProductToLocal() {
+        $items = \Nicelizhi\Shopify\Models\ShopifyProduct::where("shopify_store_id", $this->shopify_store_id)->get();
         foreach($items as $key=>$item) {
             // if($item['product_id']!='8126562107640') continue;
 
@@ -263,7 +255,7 @@ class Get extends Command
             $updateData['guest_checkout'] = 1;
             $updateData['channel'] = "default";
             $updateData['locale'] = "en";
-            $categories[] = $this->category_id;
+            $categories[] = 5;
             $updateData['categories'] = $categories;
 
             $updateData['description'] = $item['body_html'];
@@ -426,65 +418,6 @@ class Get extends Command
                     $checkImg->path = $image;
                     $checkImg->type = "images";
                     $checkImg->save();
-                }
-            }
-
-            //更新对应的分类
-            $sku_products = $this->productRepository->where("parent_id", $id)->get();
-            foreach($sku_products as $key=>$sku) {
-
-                $this->info("process ".$sku->id);
-
-                Event::dispatch('catalog.product.create.after', $sku);
-
-                $updateData = [];
-
-                $updateData['new'] = 1;
-                $updateData['featured'] = 1;
-                $updateData['visible_individually'] = 1;
-                $updateData['status'] = 1;
-                $updateData['guest_checkout'] = 1;
-                $updateData['channel'] = "default";
-                $updateData['locale'] = "en";
-                $categories[] = $this->category_id;
-                $updateData['categories'] = $categories;
-
-                $this->productRepository->update($updateData, $sku->id);
-
-                Event::dispatch('catalog.product.update.after', $sku);
-
-                $images = [];
-                foreach($shopifyImages as $key=>$shopifyImage) {
-
-                    //var_dump($shopifyImage);
-                    $info = pathinfo($shopifyImage['src']);
-    
-                    //var_dump($shopifyImage);
-    
-                    $this->info($info['filename']);
-    
-                    $image_path = "product/".$sku->id."/".$info['filename'].".webp";
-                    $local_image_path = "storage/".$image_path;
-                    $this->info(public_path($local_image_path));
-                    if(!file_exists(public_path($local_image_path))) {
-                        $this->error("copy [ ".$local_image_path);
-                        $this->info($shopifyImage['src']);
-                        $contents = file_get_contents($shopifyImage['src'], false, stream_context_create($arrContextOptions));
-                        Storage::disk("images")->put($local_image_path, $contents);
-                        sleep(1);
-                    }
-                    $images[] = $image_path;
-                }
-    
-                foreach($images as $key=>$image) {
-                    $checkImg = ProductImage::where("product_id", $sku->id)->where("path", $image)->first();
-                    if(is_null($checkImg)) {
-                        $checkImg = new ProductImage();
-                        $checkImg->product_id = $sku->id;
-                        $checkImg->path = $image;
-                        $checkImg->type = "images";
-                        $checkImg->save();
-                    }
                 }
             }
 
