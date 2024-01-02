@@ -589,8 +589,6 @@ class Core
 
         if ($symbol = $currency->symbol) {
             if ($this->currencySymbol($currency) == $symbol) {
-                Log::info($price);
-                Log::info(json_encode($currency));
                 return $formatter->formatCurrency($price, $currency->code); // todo have bug??
             }
 

@@ -1,5 +1,4 @@
 <?php
-
 namespace Webkul\Paypal\Http\Controllers;
 
 use Webkul\Checkout\Facades\Cart;

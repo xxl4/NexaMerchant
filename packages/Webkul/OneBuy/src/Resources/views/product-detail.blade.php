@@ -17,8 +17,7 @@
         <meta name="currency-code" content="{{ core()->getCurrentCurrencyCode() }}">
         <meta http-equiv="content-language" content="{{ app()->getLocale() }}">
         <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet' />
-<script src="https://unpkg.com/jquery@3.3.1/dist/jquery.js"></script>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<script src="https://unpkg.com/jquery@3.3.1/dist/jquery.min.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
@@ -1061,7 +1060,7 @@ Welcome to our FAQ. Here you will find answers to frequently asked questions fro
 <div class="comment-block" id="comment-block">
 <div class="comment-content">
 <div class="comment-img">
-<img alt="product image" src="{{ $productBaseImage['medium_image_url'] }}">
+<img alt="product image" src="{{ $productBaseImage['small_image_url'] }}">
 </div>
 <div class="comment-desc">
 <div class="comment-details">
@@ -1307,13 +1306,14 @@ COMPLETE SECURE PURCHASE </button>
             $(this).removeClass('shipping-info-input-error');
             $(this).parent().find('.shipping-info-error').hide();
         })
-        function updateCountrySelect(data) {
-            countries = data.data
+        function updateCountrySelect(countries) {
+            //countries = data.data
             window.countries = countries;
       
             var t = '<option value="">----</option>';
             countries.forEach(function(e) {
-                t += "<option value=".concat(e.code, ">").concat(e.name, "</option>")
+                //t += "<option value=".concat(e.code, ">").concat(e.name, "</option>")
+                t += "<option value=".concat(e.countryCode, ">").concat(e.countryName, "</option>")
             });
 
             $('#country-select').html(t);
@@ -1380,7 +1380,8 @@ COMPLETE SECURE PURCHASE </button>
             .then(function(data){return data.json()}).then(function(data) {callback(data)}).catch(function(err){callback()})
         }
 
-        fetch('/api/core/countries',{
+        //fetch('/api/core/countries',{
+        fetch('https://lander.heomai.com/template-common/checkout1/state/countries.json',{
             method: 'GET',
         })
         .then(function(data){
@@ -1700,6 +1701,7 @@ function GotoNotRequest(url) {
         // script.src = 'https://www.paypal.com/sdk/js?client-id=Ac3a2fQqrAO_2skbKS4hb5okCBnRUdh_i78Vvjhh-s1xc4fqZc39OyawwGL4kdHGvlPiRsv6CmogaJZz&components=buttons,messages,funding-eligibility&currency='+currency+'&disable-funding=paylater';
         script.src = 'https://www.paypal.com/sdk/js?client-id='+paypal_pay_acc+'&components=buttons,messages,funding-eligibility&currency='+currency+'&disable-funding=paylater';
         // script.src = 'https://www.paypal.com/sdk/js?client-id=AUbkpTo_D9-l80qERS91ipcrXuIfSC3WMmFbK7Ey4n8RS3TaoJDw8H2rpxdhsWBIZWZbb6E3V7CSmK4R&components=buttons,messages,funding-eligibility&currency='+currency+'&disable-funding=paylater';
+        script.async = 1;
         document.body.appendChild(script);
 
         function creatPaypalCardButton() {
@@ -1990,7 +1992,7 @@ function GotoNotRequest(url) {
                 currency : 'USD',
                 shipping_fee : shipping_fee,
                 amount : product.amount,
-                product_image : '{{ $productBaseImage['medium_image_url'] }}'
+                product_image : '{{ $productBaseImage['small_image_url'] }}'
             };
 
             var total = product_info.product_price*1 + product_info.shipping_fee* 1;
@@ -2361,7 +2363,7 @@ function GotoNotRequest(url) {
             var country  = $("#country-select").val();
             
             for(var i=0; i<window.countries.length; i++) {
-                if(window.countries[i].Code == country) {
+                if(window.countries[i].countryCode == country) {
                     return window.countries[i].phonePrefix;
                 }
             }
@@ -2384,7 +2386,7 @@ function GotoNotRequest(url) {
                 currency : 'USD',
                 shipping_fee : shipping_fee,
                 amount : product.amount,
-                product_image : '{{ $productBaseImage['medium_image_url'] }}'
+                product_image : '{{ $productBaseImage['small_image_url'] }}'
             };
 
             var total = product_info.product_price*1 + product_info.shipping_fee* 1;
@@ -2741,7 +2743,7 @@ function GotoNotRequest(url) {
         function getAttributeImg(attribute) {
             var product_attributes = <?php echo json_encode($product_attributes);?>;
             var show_img_attribute_id =  '23';
-            var product_img = "{{ $productBaseImage['medium_image_url'] }}";
+            var product_img = "{{ $productBaseImage['small_image_url'] }}";
 
             for (var i = 0; i < product_attributes.length; i++) {
                 var product_attribute = product_attributes[i];
@@ -2814,7 +2816,7 @@ function GotoNotRequest(url) {
             var country  = $("#country-select").val();
             
             for(var i=0; i<window.countries.length; i++) {
-                if(window.countries[i].Code == country) {
+                if(window.countries[i].countryCode == country) {
                     return window.countries[i][field];
                 }
             }
