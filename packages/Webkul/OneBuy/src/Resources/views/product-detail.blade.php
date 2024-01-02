@@ -1373,7 +1373,7 @@ COMPLETE SECURE PURCHASE </button>
         }
 
         function getCountryStates(callback) {
-            var url = '/template-common/checkout1/state/' + $("#country-select").val().toLowerCase() + '.json';
+            var url = 'https://lander.heomai.com/template-common/checkout1/state/' + $("#country-select").val().toLowerCase() + '.json';
             fetch(url,{
                 method: 'GET',
             })

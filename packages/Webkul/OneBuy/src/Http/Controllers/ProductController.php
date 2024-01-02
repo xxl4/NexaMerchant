@@ -282,7 +282,7 @@ class ProductController extends Controller
         $addressData['billing']['last_name'] = $input['second_name'];
         $addressData['billing']['phone'] = $input['phone_full'];
         $addressData['billing']['postcode'] = $input['code'];
-        $addressData['billing']['state'] = $input['code'];
+        $addressData['billing']['state'] = $input['province'];
         $addressData['billing']['use_for_shipping'] = true;
         $addressData['billing']['address1'] = $address1;
         $addressData['shipping'] = [];
@@ -406,6 +406,9 @@ class ProductController extends Controller
      */
     public function order_addr_after(Request $request) {
         $input = $request->all();
+
+        Log::info("order addr after ".json_encode($input));
+
         $products = $request->input("products");
         // 添加到购物车
         Cart::deActivateCart();
@@ -442,7 +445,7 @@ class ProductController extends Controller
         $addressData['billing']['last_name'] = $input['second_name'];
         $addressData['billing']['phone'] = $input['phone_full'];
         $addressData['billing']['postcode'] = $input['code'];
-        $addressData['billing']['state'] = $input['code'];
+        $addressData['billing']['state'] = $input['province'];
         $addressData['billing']['use_for_shipping'] = true;
         $addressData['billing']['address1'] = $address1;
         $addressData['shipping'] = [];
@@ -554,8 +557,11 @@ class ProductController extends Controller
             $purchase_units = (array)$order['result']->purchase_units;
             $input = (array)$purchase_units[0]->shipping;
             $payer = (array)$order['result']->payer;
+            $payment_source = (array)$order['result']->payment_source;
 
             //var_dump($payer, $input); exit;
+
+            Log::info("paypal source".json_encode($payment_source));
 
             // 添加地址内容
             $addressData = [];
@@ -569,7 +575,7 @@ class ProductController extends Controller
             $addressData['billing']['last_name'] = $payer['name']->surname;
             $addressData['billing']['phone'] =  "";
             $addressData['billing']['postcode'] = isset($input['address']->postal_code) ? $input['address']->postal_code : "";
-            $addressData['billing']['state'] = isset($input['address']->postal_code) ? $input['address']->postal_code : "";
+            $addressData['billing']['state'] = isset($input['address']->admin_area_2) ? $input['address']->admin_area_2 : "";
             $addressData['billing']['use_for_shipping'] = true;
             $addressData['billing']['address1'] = $address1;
             $addressData['shipping'] = [];
