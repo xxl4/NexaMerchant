@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('shopify_products', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('shopify_store_id');
             $table->bigInteger('product_id');
             $table->string('title');
             $table->string('product_type');

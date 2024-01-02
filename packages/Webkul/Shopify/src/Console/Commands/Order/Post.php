@@ -73,10 +73,13 @@ class Post extends Command
         $shopifyOrder = $this->ShopifyOrder->where([
             'order_id' => $id
         ])->first();
-        if(!is_null($shopifyOrder)) {
-            var_dump($shopifyOrder);
+        if(!is_null($shopifyOrder) && $id !=145) {
+            //var_dump($shopifyOrder);
             return false;
         }
+
+        //var_dump($id);
+        //exit;
 
 
         $client = new Client();
@@ -90,7 +93,7 @@ class Post extends Command
         //$id = 115;
         $order = $this->orderRepository->findOrFail($id);
 
-        //var_dump($order->items);
+        var_dump($order);exit;
 
         //var_dump($order->shipping_address);
 
@@ -150,7 +153,7 @@ class Post extends Command
         $billing_address = [
             "first_name" => $shipping_address->first_name,
             "last_name" => $shipping_address->last_name,
-            "address1" => "测试订单".$shipping_address->address1,
+            "address1" => $shipping_address->address1,
             "phone" => $shipping_address->phone,
             "city" => $shipping_address->city,
             "province" => $shipping_address->state,
@@ -163,7 +166,7 @@ class Post extends Command
         $shipping_address = [
             "first_name" => $shipping_address->first_name,
             "last_name" => $shipping_address->last_name,
-            "address1" => "测试订单".$shipping_address->address1,
+            "address1" => $shipping_address->address1,
             "phone" => $shipping_address->phone,
             "city" => $shipping_address->city,
             "province" => $shipping_address->state,

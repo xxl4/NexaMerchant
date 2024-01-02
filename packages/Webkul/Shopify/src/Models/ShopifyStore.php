@@ -6,10 +6,10 @@ use Webkul\Core\Eloquent\TranslatableModel;
 use Webkul\Core\Models\ChannelProxy;
 use Konekt\Concord\Proxies\ModelProxy;
 use Illuminate\Database\Eloquent\Model;
-use Nicelizhi\Shopify\Contracts\ShopifyOrder as ShopifyOrderContract;
+use Nicelizhi\Shopify\Contracts\ShopifyStore as ShopifyStoreContract;
 
 
-class ShopifyOrder extends Model implements ShopifyOrderContract
+class ShopifyStore extends Model implements ShopifyStoreContract
 {
     use HasFactory;
 
@@ -25,8 +25,11 @@ class ShopifyOrder extends Model implements ShopifyOrderContract
      * @var array
      */
     protected $fillable = [
-        'order_id',
         'shopify_store_id',
-        'shopify_order_id',
+        'shopify_app_host_name',
+        'shopify_admin_access_token',
+        'shopify_client_id',
+        'shopify_client_secret',
+        'status',
     ];
 }

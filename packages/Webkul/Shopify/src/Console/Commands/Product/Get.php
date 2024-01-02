@@ -66,7 +66,8 @@ class Get extends Command
          * @link https://shopify.dev/docs/api/admin-rest/2023-10/resources/product#get-products?ids=632910392,921728736
          * 
          */
-        $response = $client->get($shopify['shopify_app_host_name'].'/admin/api/2023-10/products.json?ids=8231843496184limit=10&fields=id,title,variants,options,images,product_type,body_html,tags,admin_graphql_api_id', [
+        $created_at_min = date("Y-m-d")."T00:00:00-00:00";
+        $response = $client->get($shopify['shopify_app_host_name'].'/admin/api/2023-10/products.json?created_at_min='.$created_at_min.'&ids=8232168653048&limit=10&fields=id,title,variants,options,images,product_type,body_html,tags,admin_graphql_api_id', [
             'headers' => [
                 'Content-Type' => 'application/json',
                 'Accept' => 'application/json',
@@ -79,12 +80,14 @@ class Get extends Command
         $body = $response->getBody();
         //Log::info($body);
         $body = json_decode($body, true);
+        //var_dump($body);exit;
         foreach($body['products'] as $key=>$item) {
 
             $shopifyProduct = \Nicelizhi\Shopify\Models\ShopifyProduct::where("product_id", $item['id'])->first();
             if(is_null($shopifyProduct)) {
                 $shopifyProduct = new \Nicelizhi\Shopify\Models\ShopifyProduct();
                 $item['product_id'] = $item['id'];
+                unset($item['id']);
                 $shopifyProduct::create($item);
             }else{
                 //$shopifyProduct::where("product_id", $item['id'])->update($item);
@@ -231,7 +234,7 @@ class Get extends Command
 
             $updateData['description'] = $item['body_html'];
 
-            $updateData['compare_at_price'] = "49.46";
+            $updateData['compare_at_price'] = $item['compare_at_price'];
 
             $variants = $variantCollection = $product->variants()->get()->toArray();
 
@@ -301,7 +304,7 @@ class Get extends Command
                 $categories[] = 5;
                 $newVariant['categories'] = $categories;
                 $newVariant['guest_checkout'] = 1;
-                $newVariant['compare_at_price'] = "49.46";
+                $newVariant['compare_at_price'] = $item['compare_at_price'];
                 $newVariants[$variant['id']] = $newVariant;
             }
 

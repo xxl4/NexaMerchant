@@ -31,6 +31,7 @@ class ShopifyProduct extends Model implements ShopifyProductContract
      */
     protected $fillable = [
         'product_id',
+        'shopify_store_id',
         'title',
         'body_html',
         'vendor',
