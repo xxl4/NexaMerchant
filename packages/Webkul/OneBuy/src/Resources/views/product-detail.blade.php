@@ -16,6 +16,8 @@
         <meta name="base-url" content="{{ url()->to('/') }}">
         <meta name="currency-code" content="{{ core()->getCurrentCurrencyCode() }}">
         <meta http-equiv="content-language" content="{{ app()->getLocale() }}">
+        <link rel="alternate icon" class="js-site-favicon" type="image/png" href="/favicon.png">
+        <link rel="icon" class="js-site-favicon" type="image/svg+xml" href="/favicon.svg">
         <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet' />
 <script src="https://unpkg.com/jquery@3.3.1/dist/jquery.min.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
@@ -287,6 +289,10 @@
         margin-top: 5rem;
     }
 
+    .paypal-card-submit {
+        max-width: 600px;
+    }
+
 
     @media (max-width:1023px) {
         .header-container-bg {
@@ -294,6 +300,9 @@
         }
         .modal-dialog {
             max-width: 800px; /* New width for default modal */
+        }
+        .paypal-card-submit {
+            max-width: 600px;
         }
     }
 
@@ -303,6 +312,9 @@
         }
         .modal-dialog {
             max-width: 600px; /* New width for default modal */
+        }
+        .paypal-card-submit {
+            max-width: 300px;
         }
     }
 </style>
@@ -372,12 +384,14 @@ Secure Checkout </div>
 </div>
 <div class="product-list js-list">
     <?php foreach($package_products as $key=>$package_product) { ?>
-    <div data-id="<?php echo $package_product['id'];?>" class="list-item js-list-item item-5 <?php if($key==0) { ?> list-item--checked <?php } ?>" style="order: 0;">
+    <div data-id="<?php echo $package_product['id'];?>" class="list-item js-list-item item-<?php echo $key+5;?><?php if($key==0) { ?> list-item--checked <?php } ?>" style="order: 0;">
+        <?php if($key==0) { ?>
         <div class="recommend_deal" style="display:flex;">
             <img class="recommend_deal_img" src="https://lander.heomai.com/template-common/checkout1/images/star.png">
             <div class="recommend_deal_font">
             RECOMMENDED DEAL </div>
         </div>
+        <?php } ?>
         <div class="list-item-content">
             <div class="list-item-title">
                 <span class="list-item-title-name js-name">
@@ -417,30 +431,32 @@ Secure Checkout </div>
 </div>
 <div class="attribute-select">
 </div>
-<a class="list-item-btn click_scroll" anchor=".shipping_information_block">
-<div class="order_now">
-ORDER NOW </div>
-</a>
+    <!-- <a class="list-item-btn click_scroll" anchor=".shipping-and-payment">
+        <div class="order_now">
+        ORDER NOW </div>
+    </a> -->
+    <div class="split-line shipping_information_paypal_block" style="padding-top:20px;">
+        <div class="split-content" style="left: 0 \9;top: 8px \9;width: 100% \9; font-size:20px;">
+        Express Checkout </div>
+    </div>
+    <div class="paypal-wrapper" style="display:block;text-align:-webkit-center;padding: 0;margin-top: 20px;margin: 0;margin-top: 20px;">
+        <div id="paypal-error" style="color:#e51f28;display:none"></div>
+        <div class="paypal-card-submit" id="paypal-card-submit"></div>
+    </div>
 </div>
 </div>
 <div class="shipping-and-payment-wrapper">
 <div class="shipping-and-payment">
 <div class="payment-block">
 <div class="payment-title">
-PAYMENT </div>
-<div class="paypal-wrapper" style>
-<div id="paypal-error" style="color:#e51f28;display:none"></div>
-<div class="paypal-card-submit" id="paypal-card-submit" style="width:100%;"></div>
-</div>
-<div class="split-line shipping_information_paypal_block" style>
-<div class="split-content" style="left: 0 \9;top: 8px \9;width: 100% \9;">
-OR PAY WITH CREDIT CARD </div>
-</div>
+Or Pay With Credit Card </div>
+
+
 <div class="checkout-block" id="checkout-block-up">
-<button class="checkout-button">
+<!-- <button class="checkout-button">
 <span>
 CHECKOUT </span>
-</button>
+</button> -->
 <script>
                                                                                             $('#checkout-block-up').on('click', function() {
                                                     document.querySelector(".shipping_information_block").scrollIntoView({
@@ -499,7 +515,7 @@ CHECKOUT </div>
 </div>
 <div class="shipping-block">
 <div class="shipping-title">
-SHIPPING </div>
+Shipping </div>
 <div class="shipping-tip">
 Enter your contact information:
 </div>
@@ -540,13 +556,13 @@ Phone Number </label>
 <label class="shipping-info-label">
 Street Address </label>
 </div>
-<div class="shipping-info-item">
+<!-- <div class="shipping-info-item">
 <input name="apt_other" class="shipping-info-input apt_other" />
 <label id="apt_other-error" class="shipping-info-error">
 </label>
 <label class="shipping-info-label">
 Apt / Suite / Other </label>
-</div>
+</div> -->
 <div class="shipping-info-item">
 <input name="city" class="shipping-info-input city" oninput="checkoutCity(this)" />
 <label id="city-error" class="shipping-info-error">
@@ -583,7 +599,7 @@ Zip/Postal Code </label>
 <div class="summary-block-sticky">
 <div class="summary-wrapper">
 <div class="summary-title">
-ORDER SUMMARY </div>
+Order Summary </div>
 <div class="summary-content">
 <ul class="summary-list">
 <li class="summary-list-item">
@@ -759,7 +775,7 @@ Hatmeo offers a 30 day guarantee on all unused purchases. Simply send the item(s
 </div>
 <div class="footer-container">
 <div class="copyright-block">
-©2021 - Hatmeo
+©2016- Hatmeo
 </div>
 <style>
     .phone-block {
@@ -858,7 +874,7 @@ Note: During holiday periods, shipping times may be affected as manufacturers an
 -Delivery time: Other countries: Standard Shipping (5-10 days), Free Shipping (5-10 days)
 -Standard delivery costs: 9.99 euros (Order value: 0 euros - 69 euros)
 -Free delivery worldwide for orders over 69 euros
-Welcome to our FAQ. Here you will find answers to frequently asked questions from our customers before purchasing an item. If you have any other questions, feel free to send them to info@hatmeo.com.
+Welcome to our FAQ. Here you will find answers to frequently asked questions from our customers before purchasing an item. If you have any other questions, feel free to send them to customer@hatmeo.com.
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -880,13 +896,13 @@ Welcome to our FAQ. Here you will find answers to frequently asked questions fro
             </div>
             <div class="modal-body">
             
-            <p>Eligible returns of products purchased on WMBRA.US should be made by mail. Items must be returned in accordance with the requirements outlined below, within 30 days from the date of delivery to a specified address which our customer service will provide. Customers need to apply through (info@hatmeo.com) and get consent by our customer serivice. We will NOT provide any return label, and customers need to send the tracking number to our customer service by email. If customers return products to an address without our permission, we have rights to refuse the returns or refund. Corporate gifts must be returned exclusively to hatmeo.com </p>
+            <p>Eligible returns of products purchased on WMBRA.US should be made by mail. Items must be returned in accordance with the requirements outlined below, within 30 days from the date of delivery to a specified address which our customer service will provide. Customers need to apply through (customer@hatmeo.com) and get consent by our customer serivice. We will NOT provide any return label, and customers need to send the tracking number to our customer service by email. If customers return products to an address without our permission, we have rights to refuse the returns or refund. Corporate gifts must be returned exclusively to hatmeo.com </p>
 
             <p>Please return merchandise in its original box if possible and include the provided return slip with returns instructions.</p>
 
             <p>Exchange:  Customers should bear the return shipping fees and $9.99 resend shipping fee themselves; we will re-send products to customers once we receive the products. Returned merchandise must meet the below requirements in order to be accepted for a refund.</p>
 
-            <p>Returns:  The address on the package is only the address of the last processing center, not the return address. To get the return address, please contact our customer service via info@hatmeo.com.</p>
+            <p>Returns:  The address on the package is only the address of the last processing center, not the return address. To get the return address, please contact our customer service via customer@hatmeo.com.</p>
 
             <p>Customers should bear the return shipping fees themselves; we will refund(deduct the $9.99 shipping fee we paid when shipping the goods include free-shipping products) to customers once we receive the products. Returned merchandise must meet the below requirements in order to be accepted for a refund.</p>
 
@@ -1007,7 +1023,7 @@ Welcome to our FAQ. Here you will find answers to frequently asked questions fro
 
             <p>Questions and contact information</p>
 
-            <p>If you would like to access, correct, modify, or delete your personal information, file a complaint, or simply get more information, please contact our Data Protection Officer at info@hatmeo.com.</p>
+            <p>If you would like to access, correct, modify, or delete your personal information, file a complaint, or simply get more information, please contact our Data Protection Officer at customer@hatmeo.com.</p>
 
             <p> By using our site, you (the visitor) consent to the processing of your IP address by third parties to determine your location for currency conversion purposes. You also consent to this currency being stored in a session cookie in your browser (this temporary cookie will be automatically removed when you close your browser). We do this to maintain consistency while browsing our site and convert prices into your local currency (the visitor).</p>
 
@@ -1019,7 +1035,7 @@ Welcome to our FAQ. Here you will find answers to frequently asked questions fro
             Legal representative: Meng Wang
             Company address: FLAT/RM B 5/F GAYLORD COMM BLDG 114-118 LOCKHART RD HK, HONG KONG, HONG KONG, 999077
             (Please note that this address is not a return center.)
-            Email: info@hatmeo.com
+            Email: customer@hatmeo.com
             Website: https://www.hatmeo.com
             Tax number: IM4420001201 </p>
 
@@ -1099,7 +1115,7 @@ JUST NOW </div>
             overflow: hidden;
         }
         #prop-img {
-            /* max-height: 60%; */
+            max-height: 60%;
             max-width: 100%;
             position: absolute;
             left: 50%;
@@ -1280,7 +1296,7 @@ COMPLETE SECURE PURCHASE </button>
             })
 
             $(this).addClass('list-item--checked');
-            showAttributeSelecet('Article');
+            showAttributeSelecet('Itme');
             changeOrderSummary();
         })
 
@@ -1394,6 +1410,7 @@ COMPLETE SECURE PURCHASE </button>
 <script>
     function setAttributeTemplate(select_language, select_language_after, has_img_attribute_id, is_more_attribute, template, attribute_err_language) {
         var product_attributes = JSON.parse(JSON.stringify(window.product_attributes));
+        
         //console.log(product_attributes);
         var product_template = '<div class="attribute-item">';
         if(is_more_attribute) {
@@ -1411,7 +1428,8 @@ COMPLETE SECURE PURCHASE </button>
             }
             
             product_template += '</div>';
-            product_template += '<select class="attribute-value-item-select attribute_select" onchange="attributeChange(this, '+(product_attribute.id == has_img_attribute_id)+', '+"'"+template+"'"+')" '+(product_attribute.id==has_img_attribute_id? ' data-has-img="true"' : '' )+'><option value="" '+ (!product_attribute.selected_option_id ? 'selected' : '') +' url="'+product_attribute.options[0].image+'"></option>';
+            // product_template += '<select class="attribute-value-item-select attribute_select" onchange="attributeChange(this, '+(product_attribute.id == has_img_attribute_id)+', '+"'"+template+"'"+')" '+(product_attribute.id==has_img_attribute_id? ' data-has-img="true"' : '' )+'><option value="" '+ (!product_attribute.selected_option_id ? 'selected' : '') +' url="'+product_attribute.options[0].image+'"></option>';
+            product_template += '<select class="attribute-value-item-select attribute_select" onchange="attributeChange(this, '+(product_attribute.id == has_img_attribute_id)+', '+"'"+template+"'"+')" '+(product_attribute.id==has_img_attribute_id? ' data-has-img="true"' : '' )+'>';
             if(product_attribute.id == has_img_attribute_id && !product_attribute.selected_option_id) {
                 show_image = product_attribute.options[0].image;
             }
@@ -1474,10 +1492,10 @@ function showAttributeSelecet(article_str) {
 }
 
 function attributeChange(target, is_img_attribute, template) {
-    //console.log("attribute change")
-    //console.log(target);
-    //console.log(is_img_attribute);
-    //console.log(template);
+    console.log("attribute change")
+    console.log(target);
+    console.log(is_img_attribute);
+    console.log(template);
     if(template == 'common5') {
         changeHtmlShow();
     }
@@ -1582,80 +1600,12 @@ function GotoNotRequest(url) {
     }
 }
 </script>
-
 <script>
-    
-        window.product_attributes = [
-            {"id":1,"name":"SIZE","options":[
-                {"id":2,"name":"S","image":null,"is_sold_out":false},
-                {"id":3,"name":"M","image":null},
-                {"id":4,"name":"L","image":null},
-                {"id":5,"name":"XL","image":null},
-                {"id":6,"name":"2XL","image":null},
-                {"id":7,"name":"3XL","image":null,"is_sold_out":false},
-                {"id":8,"name":"4XL","image":null}
-        ],
-        "tip":"Size Chart",
-        "tip_img":"https:\/\/d1y4tm6t3pzfj.cloudfront.net\/cpl\/images\/1694769733_2168.jpg","selected_option_id":null},
-        {"id":2,"name":"COLOR","options":[
-            {"id":1,"name":"Black","image":"https:\/\/d1y4tm6t3pzfj.cloudfront.net\/cpl\/images\/1689762488_1.jpg"},
-            {"id":2,"name":"Pink","image":"https:\/\/d1y4tm6t3pzfj.cloudfront.net\/cpl\/images\/1689762492_2.jpg"},
-            {"id":3,"name":"Beige","image":"https:\/\/d1y4tm6t3pzfj.cloudfront.net\/cpl\/images\/1689762495_3.jpg"},
-            {"id":4,"name":"Gray","image":"https:\/\/d1y4tm6t3pzfj.cloudfront.net\/cpl\/images\/1689762499_4.jpg"}
-    ],
-    "tip":null,
-    "tip_img":null,
-    "selected_option_id":null}];
-
-/**
- * {"name":"Women's thin no wire lace bra - Black \/ S","sku_code":"CJ02168-C#black-S#m","sku_id":44113194877163,"attribute_name":"S,Black","key":"S_Black"}
- * 
- */
-        <?php 
-            // $product_attributes = [];
-            // $skus = [];
-            // $config = app('Webkul\Product\Helpers\ConfigurableOption')->getConfigurationConfig($product);
-
-            // foreach($config['attributes'] as $key=>$attribute) {
-                
-            //     $product_attribute['id'] = $attribute['id'];
-            //     $product_attribute['name'] = $attribute['code'];
-            //     $options = [];
-            //     foreach($attribute['options'] as $kk=> $option) {
-            //         $sku['name'] = $product->name." ".$option['label'];
-            //         $sku['attribute_name'] = $option['label'];
-            //         $sku['sku_id'] = $attribute['id']."_".$option['id'];
-            //         $sku['code'] = $attribute['id']."_".$option['id'];
-            //         $skus[] = $sku;
-            //         $option['name'] = $option['label'];
-            //         $option['is_sold_out'] = false;
-            //         if(isset($config['variant_images'][$attribute['id']][0]['small_image_url'])) {
-            //             $option['image'] = $config['variant_images'][$attribute['id']][0]['small_image_url'];
-            //         }else{
-            //             $option['image'] = "http://45.79.79.208:8002/cache/large/product/19/twokW7Nhvs8obbDx2V9whxfIwV0zyPTG7cQh5Wxd.webp";
-            //         }
-            //         $options[] = $option;
-            //     }
-            //     $product_attribute['options'] = $options;
-            //     if(isset($config['variant_images'][$attribute['id']][0]['small_image_url'])) {
-            //         $product_attribute['image'] = $config['variant_images'][$attribute['id']][0]['small_image_url'];
-            //     }else{
-            //         $product_attribute['image'] = "http://45.79.79.208:8002/cache/large/product/19/twokW7Nhvs8obbDx2V9whxfIwV0zyPTG7cQh5Wxd.webp";
-            //     }
-                
-            //     $product_attributes[] = $product_attribute;
-            // }
-
-            //var_dump($skus);exit;
-            
-            //exit;
-        ?>
-
         window.product_attributes = <?php echo json_encode($product_attributes);?>;
 
         var is_more_attribute = 1;
         setAttributeTemplate('SELECT YOUR', '', '23', is_more_attribute ? true : false, 'common15', 'Sold out, please select another Attributes');
-        showAttributeSelecet('Article');
+        showAttributeSelecet('Item');
     </script>
 
 <!-- Google tag (gtag.js) -->
@@ -1699,7 +1649,7 @@ function GotoNotRequest(url) {
         }
         script.type = 'text/javascript';
         // script.src = 'https://www.paypal.com/sdk/js?client-id=Ac3a2fQqrAO_2skbKS4hb5okCBnRUdh_i78Vvjhh-s1xc4fqZc39OyawwGL4kdHGvlPiRsv6CmogaJZz&components=buttons,messages,funding-eligibility&currency='+currency+'&disable-funding=paylater';
-        script.src = 'https://www.paypal.com/sdk/js?client-id='+paypal_pay_acc+'&components=buttons,messages,funding-eligibility&currency='+currency+'&disable-funding=paylater';
+        script.src = 'https://www.paypal.com/sdk/js?client-id='+paypal_pay_acc+'&components=buttons,messages,funding-eligibility&currency='+currency;
         // script.src = 'https://www.paypal.com/sdk/js?client-id=AUbkpTo_D9-l80qERS91ipcrXuIfSC3WMmFbK7Ey4n8RS3TaoJDw8H2rpxdhsWBIZWZbb6E3V7CSmK4R&components=buttons,messages,funding-eligibility&currency='+currency+'&disable-funding=paylater';
         script.async = 1;
         document.body.appendChild(script);
@@ -1742,7 +1692,7 @@ function GotoNotRequest(url) {
 
                         sendInitiateCheckoutEvent();
                         gtag('event', 'initiate_checkout', {
-                            'event_label': 'Initiate Checkout',
+                            'event_label': 'Initiate paypal Checkout',
                             'event_category': 'ecommerce'
                         });
                         // obApi('track', 'Start Checkout'); 
@@ -2414,7 +2364,7 @@ function GotoNotRequest(url) {
                 country             : $("#country-select").val(),
                 city                : $(".city").val(),
                 province            : $("#state-select").val(),
-                address             : $(".address").val() ? $(".address").val() + ',' +$(".apt_other").val() : '',
+                address             : $(".address").val() ? $(".address").val() : '',
                 code                : $(".zip_code").val(),
                 product_delivery    : product_info.shipping_fee,
                 currency            : product_info.currency,
@@ -2662,9 +2612,12 @@ function GotoNotRequest(url) {
             var attribute_item = $('.attribute-select .attribute-item');
             var sku_maps = getSKuMaps();
 
-            //console.log("attribute_item");
-            //console.log(attribute_item);
-            //console.log("attribute_item");
+            console.log("sku maps");
+            console.log(sku_maps);
+
+            console.log("attribute_item");
+            console.log(attribute_item);
+            console.log("attribute_item");
 
             for(var i=0; i< attribute_item.length; i++) {
                 var sku_key_arr = [];

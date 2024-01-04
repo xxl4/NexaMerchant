@@ -90,6 +90,10 @@ class ProductController extends Controller
         $cache_key = "product_attributes_".$product->id;
         $product_attributes = Cache::get($cache_key);
 
+        $categories = $product->categories;
+
+        //var_dump($categories);exit;
+
 
         if(empty($product_attributes)) {
 
@@ -103,37 +107,48 @@ class ProductController extends Controller
 
             //获取到他底部的商品内容
         // $attributes = $this->productRepository->getSuperAttributes($product);
-            //var_dump($attributes);exit;
             foreach($attributes['attributes'] as $key=>$attribute) {
                 $attribute['name'] = $attribute['code'];
                 $options = [];
-                //var_dump($attribute);
                 foreach($attribute['options'] as $kk=>$option) {
-                    //var_dump($option);exit;
 
                     // 获取商品图片内容
+                   
                     if($attribute['id']==23) {
-                        //var_dump($option, $product->sku);exit;
-                        $new_sku = $product->sku."-variant-1-".$option['id']+5;
                         $new_id = $option['products'][0];
-                        //echo $new_sku."\r\n";
                         $new_product = $this->productRepository->find($new_id);
-                        //var_dump($new_product);exit;
-                        //var_dump($new_sku);exit;
                         $NewproductBaseImage = product_image()->getProductBaseImage($new_product);
-                        //var_dump($NewproductBaseImage);exit;
                         $option['image'] = @$NewproductBaseImage['medium_image_url'];
+                        
                     }else{
                         $option['image'] = $productBaseImage['medium_image_url'];
+                        
                     }
 
+                    
 
-                    //$option['image'] = $productBaseImage['medium_image_url'];
                     $option['name'] = $option['label'];
                     unset($option['admin_name']);
                     $options[] = $option;
                     //var_dump($option);
                 }
+
+                $tip = "";
+                $tip_img = "";
+                if($attribute['id']==24) {
+                    $tip = "Size Chart";
+                    if($categories[0]->id==3) {
+                        $tip_img = "https://shop.hatmeo.com/size/shoes.jpg";
+                    }
+                    if($categories[0]->id==5) {
+                        $tip_img = "https://shop.hatmeo.com/size/bra.jpg";
+                    }
+                    
+                }
+                
+                $attribute['tip'] = $tip;
+                $attribute['tip_img'] = $tip_img;
+
                 unset($attribute['translations']); //去掉多余的数据内容
                 //var_dump($options);
                 $attribute['options'] = $options;
@@ -146,6 +161,8 @@ class ProductController extends Controller
         }else{
             $product_attributes = json_decode($product_attributes, JSON_OBJECT_AS_ARRAY);
         }
+
+        rsort($product_attributes);
 
         
 
@@ -199,12 +216,14 @@ class ProductController extends Controller
                 $ColorattributeOptions = $attributeOptionRepository->findOneWhere(['id'=>$colorAttribute['integer_value']]);
                 
     
-                $attribute_name = $ColorattributeOptions->admin_name.",".$SizeattributeOptions->admin_name;
+               // $attribute_name = $ColorattributeOptions->admin_name.",".$SizeattributeOptions->admin_name;
+                $attribute_name = $SizeattributeOptions->admin_name.",".$ColorattributeOptions->admin_name;
     
                 $sku['attribute_name'] = $attribute_name;
                 $sku['attr_id'] = "24_".$colorAttribute['integer_value'].",23_".$sizeAttribute['integer_value'];
     
-                $sku['key'] = $ColorattributeOptions->admin_name."_".$SizeattributeOptions->admin_name; // 这个数据需要留意他的位置，JS判断会需要使用
+                //$sku['key'] = $ColorattributeOptions->admin_name."_".$SizeattributeOptions->admin_name; // 这个数据需要留意他的位置，JS判断会需要使用
+                $sku['key'] = $SizeattributeOptions->admin_name."_".$ColorattributeOptions->admin_name; // 这个数据需要留意他的位置，JS判断会需要使用
                 
                 $skus[] = $sku;
             }
@@ -212,6 +231,8 @@ class ProductController extends Controller
         }else {
             $skus = json_decode($skus, JSON_OBJECT_AS_ARRAY);
         }
+
+        //rsort($skus);
 
 
 
@@ -558,10 +579,10 @@ class ProductController extends Controller
             $input = (array)$purchase_units[0]->shipping;
             $payer = (array)$order['result']->payer;
             $payment_source = (array)$order['result']->payment_source;
-
-            //var_dump($payer, $input); exit;
+            $payment_source_paypal = (array)$payment_source['paypal'];
 
             Log::info("paypal source".json_encode($payment_source));
+            Log::info("paypal source paypal".json_encode($payment_source_paypal));
 
             // 添加地址内容
             $addressData = [];
@@ -573,7 +594,7 @@ class ProductController extends Controller
             $addressData['billing']['email'] = $payer['email_address'];
             $addressData['billing']['first_name'] = $payer['name']->given_name;
             $addressData['billing']['last_name'] = $payer['name']->surname;
-            $addressData['billing']['phone'] =  "";
+            $addressData['billing']['phone'] =  $payment_source_paypal['phone_number']->national_number;
             $addressData['billing']['postcode'] = isset($input['address']->postal_code) ? $input['address']->postal_code : "";
             $addressData['billing']['state'] = isset($input['address']->admin_area_2) ? $input['address']->admin_area_2 : "";
             $addressData['billing']['use_for_shipping'] = true;
@@ -828,7 +849,7 @@ class ProductController extends Controller
                 
                 $package_product = [];
                 $package_product['id'] = $i;
-                $package_product['name'] = $i."x" . $product->name;
+                $package_product['name'] = $i."x " . $product->name;
                 $package_product['image'] = $productBaseImage['medium_image_url'];
                 $package_product['amount'] = $i;
                 //$package_product['old_price'] = $productPrice['regular']['price'] * $i;
