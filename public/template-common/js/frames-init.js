@@ -1,0 +1,2 @@
+function getPublickKey(){var domain_name=document.domain||window.location.host;fetch('/common/pub_key/checkout?domain_name='+domain_name,{method:'GET',headers:{'content-type':'application/json'},}).then(function(res){return res.json()}).then(function(res){var data=res;if(data.result===200){checkoutFramesInit(data.info.pub_key);}})}
+function checkoutFramesInit(checkout_public_key){Frames.init({publicKey:checkout_public_key,style:{base:{fontFamily:"AvenirNext-Demi",fontSize:'1rem'},placeholder:{base:{color:"#9b9b9b"}}}});}
