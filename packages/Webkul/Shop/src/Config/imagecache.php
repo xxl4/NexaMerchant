@@ -65,5 +65,5 @@ return [
     |
      */
 
-    'lifetime' => 525600,
+    'lifetime' => 52560000000,
 ];

@@ -230,6 +230,8 @@ class Post extends Command
 
         $body = json_decode($response->getBody(), true);
 
+        Log::info("post order".json_encode($body));
+
         //var_dump($body);exit;
 
         if(isset($body['order']['id'])) {

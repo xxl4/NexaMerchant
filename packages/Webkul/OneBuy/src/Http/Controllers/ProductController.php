@@ -90,7 +90,19 @@ class ProductController extends Controller
         $cache_key = "product_attributes_".$product->id;
         $product_attributes = Cache::get($cache_key);
 
-        $categories = $product->categories;
+        $cache_key_1 = "product_category_".$product->id;
+        $product_category = Cache::get($cache_key_1);
+        if(empty($product_category)) {
+            $categories = $product->categories;
+            $product_category_id = intval($categories[0]->id);
+            Cache::put($cache_key_1, $product_category_id, 36000);
+        }else{
+            //$product_category = json_decode($product_category);
+            //var_dump($product_category);exit;
+            $product_category_id = intval($product_category);
+        }
+        
+        //var_dump($product_category_id);
 
         //var_dump($categories);exit;
 
@@ -137,10 +149,11 @@ class ProductController extends Controller
                 $tip_img = "";
                 if($attribute['id']==24) {
                     $tip = "Size Chart";
-                    if($categories[0]->id==3) {
+                    //var_dump($product_category_id);
+                    if($product_category_id=="3") {
                         $tip_img = "https://shop.hatmeo.com/size/shoes.jpg";
                     }
-                    if($categories[0]->id==5) {
+                    if($product_category_id=="5") {
                         $tip_img = "https://shop.hatmeo.com/size/bra.jpg";
                     }
                     

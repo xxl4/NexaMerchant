@@ -20,9 +20,9 @@
                 <img src="{{ Storage::url(core()->getConfigData('general.design.admin_logo.logo_image', core()->getCurrentChannelCode())) }}" alt="{{ config('app.name') }}" style="height: 40px; width: 110px;"/>
             @else
                 @if (! request()->cookie('dark_mode'))
-                    <img src="{{ bagisto_asset('images/logo.svg') }}" id="logo-image">
+                    <img src="{{ bagisto_asset('images/logo.svg') }}" id="logo-image" height="70" width="100">
                 @else
-                    <img src="{{ bagisto_asset('images/dark-logo.svg') }}" id="logo-image">
+                    <img src="{{ bagisto_asset('images/dark-logo.svg') }}" id="logo-image" height="70" width="100">
                 @endif
             @endif
         </a>

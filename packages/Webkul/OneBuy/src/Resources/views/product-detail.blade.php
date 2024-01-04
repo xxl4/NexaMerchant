@@ -1389,7 +1389,7 @@ COMPLETE SECURE PURCHASE </button>
         }
 
         function getCountryStates(callback) {
-            var url = 'https://lander.heomai.com/template-common/checkout1/state/' + $("#country-select").val().toLowerCase() + '.json';
+            var url = '/template-common/checkout1/state/' + $("#country-select").val().toLowerCase() + '.json';
             fetch(url,{
                 method: 'GET',
             })
@@ -1397,7 +1397,7 @@ COMPLETE SECURE PURCHASE </button>
         }
 
         //fetch('/api/core/countries',{
-        fetch('https://lander.heomai.com/template-common/checkout1/state/countries.json',{
+        fetch('/template-common/checkout1/state/countries.json',{
             method: 'GET',
         })
         .then(function(data){
