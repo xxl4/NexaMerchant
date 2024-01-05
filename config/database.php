@@ -52,6 +52,7 @@ return [
             'prefix' => env('DB_PREFIX', ''),
             'strict' => false,
             'engine' => 'InnoDB ROW_FORMAT=DYNAMIC',
+            'timezone' => env('DB_TIMEZONE','+00:00'),
         ],
 
         'pgsql' => [
