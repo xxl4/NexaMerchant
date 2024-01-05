@@ -227,6 +227,9 @@ return [
         Nicelizhi\OneBuy\Providers\OneBuyServiceProvider::class,
         Nicelizhi\Airwallex\Providers\AirwallexServiceProvider::class,
         Nicelizhi\Shopify\Providers\ShopifyServiceProvider::class,
+
+        Nicelizhi\Admin\Providers\AdminServiceProvider::class,
+
     ])->toArray(),
 
     /*
