@@ -125,7 +125,7 @@ class ProductController extends Controller
                 foreach($attribute['options'] as $kk=>$option) {
 
                     // 获取商品图片内容
-                   
+                    $is_sold_out = false;
                     if($attribute['id']==23) {
                         $new_id = $option['products'][0];
                         $new_product = $this->productRepository->find($new_id);
@@ -137,8 +137,11 @@ class ProductController extends Controller
                         
                     }
 
-                    
+                    // 判断是否有对应的尺码内容
 
+                    
+                    
+                    $option['is_sold_out'] = $is_sold_out;
                     $option['name'] = $option['label'];
                     unset($option['admin_name']);
                     $options[] = $option;
