@@ -228,7 +228,7 @@ return [
         Nicelizhi\Airwallex\Providers\AirwallexServiceProvider::class,
         Nicelizhi\Shopify\Providers\ShopifyServiceProvider::class,
 
-        Nicelizhi\Admin\Providers\AdminServiceProvider::class,
+        //Nicelizhi\Admin\Providers\AdminServiceProvider::class,
 
     ])->toArray(),
 
