@@ -12,6 +12,7 @@ use Webkul\Admin\DataGrids\Sales\OrderDataGrid;
 
 use Nicelizhi\Shopify\Models\ShopifyOrder;
 use Nicelizhi\Shopify\Models\ShopifyStore;
+use Webkul\Sales\Models\Order;
 
 class Post extends Command
 {
@@ -63,11 +64,12 @@ class Post extends Command
             return false;
         }
 
-        $lists = $this->orderRepository->findWhere([
-            'status' => 'processing'
-        ]);
+        // $lists = $this->orderRepository->findWhere([
+        //     'status' => 'processing'
+        // ]);
+        $lists = Order::where(['status'=>'processing'])->orderBy("updated_at", "desc")->limit(10)->get();
 
-        //var_dump($lists);
+        //var_dump($lists);exit;
 
         foreach($lists as $key=>$list) {
             $this->info("start post order " . $list->id);
@@ -229,7 +231,7 @@ class Post extends Command
         ]);
 
         $body = json_decode($response->getBody(), true);
-
+        Log::info("post order body ". json_encode($pOrder));
         Log::info("post order".json_encode($body));
 
         //var_dump($body);exit;
