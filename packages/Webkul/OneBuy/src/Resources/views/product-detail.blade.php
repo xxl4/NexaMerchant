@@ -394,7 +394,7 @@ Secure Checkout </div>
         <?php } ?>
         <div class="list-item-content">
             <div class="list-item-title">
-                <span class="list-item-title-name js-name">
+                <span class="list-item-title-name js-name" style="font-weight:bold;">
                 <?php echo $package_product['name'];?> <br/>
                 </span>
             </div>
@@ -436,7 +436,7 @@ Secure Checkout </div>
         ORDER NOW </div>
     </a> -->
     <div class="split-line shipping_information_paypal_block" style="padding-top:20px;">
-        <div class="split-content" style="left: 0 \9;top: 8px \9;width: 100% \9; font-size:20px;">
+        <div style="left: 0 \9;top: 8px \9;width: 100% \9; font-size:20px;font-weight:bold;">
         Express Checkout </div>
     </div>
     <div class="paypal-wrapper" style="display:block;text-align:-webkit-center;padding: 0;margin-top: 20px;margin: 0;margin-top: 20px;">
