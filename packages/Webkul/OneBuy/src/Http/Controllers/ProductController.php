@@ -81,6 +81,84 @@ class ProductController extends Controller
 
         $package_products = $this->makeProducts($product, [2,1,3,4]);
 
+
+        // skus 数据
+        $skus = [];
+
+        $cache_key = "product_sku_".$product->id;
+        $size_cache_key = "product_sku_size_".$product->id;
+        $color_cache_key = "product_color_size_".$product->id;
+        $skus = Cache::get($cache_key);
+        $qty_items_size = Cache::get($size_cache_key);
+        $qty_items_color = Cache::get($color_cache_key);
+        if(empty($skus)) {
+            $sku_products = $this->productRepository->where("parent_id", $product->id)->get();
+
+            $attributeOptionRepository = app(AttributeOptionRepository::class);
+            
+            foreach($sku_products as $key=>$sku) {
+                $sku_id = $sku->id;
+                $sku_code = $sku->sku;
+                unset($sku);
+                /**
+                 * 
+                 * 
+                 * {"name":"Women's thin no wire lace bra - Black \/ S","sku_code":"CJ02168-C#black-S#m","sku_id":44113194877163,"attribute_name":"S,Black","key":"S_Black"}
+                 * 
+                 * 
+                 */
+                $productAttribute = $this->productAttributeValueRepository->findOneWhere([
+                    'product_id'   => $sku_id,
+                    'attribute_id' => 2,
+                ]);
+    
+                //var_dump($productAttribute);
+    
+                $sku['name'] = $productAttribute['text_value'];
+    
+                
+                
+                $sku['sku_code'] = $sku_code;
+                $sku['sku_id'] = $sku_id;
+    
+                $colorAttribute = $this->productAttributeValueRepository->findOneWhere([
+                    'product_id'   => $sku_id,
+                    'attribute_id' => 23,
+                ]);
+    
+                $sizeAttribute = $this->productAttributeValueRepository->findOneWhere([
+                    'product_id'   => $sku_id,
+                    'attribute_id' => 24,
+                ]);
+    
+                $SizeattributeOptions = $attributeOptionRepository->findOneWhere(['id'=>$sizeAttribute['integer_value']]);
+                $ColorattributeOptions = $attributeOptionRepository->findOneWhere(['id'=>$colorAttribute['integer_value']]);
+                
+    
+               // $attribute_name = $ColorattributeOptions->admin_name.",".$SizeattributeOptions->admin_name;
+                $attribute_name = $SizeattributeOptions->admin_name.",".$ColorattributeOptions->admin_name;
+    
+                $sku['attribute_name'] = $attribute_name;
+                $sku['attr_id'] = "24_".$colorAttribute['integer_value'].",23_".$sizeAttribute['integer_value'];
+    
+                //$sku['key'] = $ColorattributeOptions->admin_name."_".$SizeattributeOptions->admin_name; // 这个数据需要留意他的位置，JS判断会需要使用
+                $sku['key'] = $SizeattributeOptions->admin_name."_".$ColorattributeOptions->admin_name; // 这个数据需要留意他的位置，JS判断会需要使用
+
+                $qty_items_color[$ColorattributeOptions->admin_name][] = $SizeattributeOptions->admin_name;
+                $qty_items_size[$SizeattributeOptions->admin_name][] = $ColorattributeOptions->admin_name;
+                
+                $skus[] = $sku;
+            }
+            Cache::put($cache_key, json_encode($skus), 36000);
+            Cache::put($size_cache_key, json_encode($qty_items_size), 36000);
+            Cache::put($color_cache_key, json_encode($qty_items_color), 36000);
+        }else {
+            $skus = json_decode($skus, JSON_OBJECT_AS_ARRAY);
+            //$qty_items_size = json_decode($qty_items_size, JSON_OBJECT_AS_ARRAY);
+            //$qty_items_color = json_decode($qty_items_color, JSON_OBJECT_AS_ARRAY);
+        }
+
+
         // var_dump($package_products);exit;
 
         $product_attributes = [];
@@ -94,7 +172,12 @@ class ProductController extends Controller
         $product_category = Cache::get($cache_key_1);
         if(empty($product_category)) {
             $categories = $product->categories;
-            $product_category_id = intval($categories[0]->id);
+            if(isset($categories[0])) {
+                $product_category_id = intval($categories[0]->id);
+            }else{
+                $product_category_id = 9;
+            }
+            
             Cache::put($cache_key_1, $product_category_id, 36000);
         }else{
             //$product_category = json_decode($product_category);
@@ -183,70 +266,7 @@ class ProductController extends Controller
         
 
         //var_dump($product);
-        // skus 数据
-        $skus = [];
-
-        $cache_key = "product_sku_".$product->id;
-        $skus = Cache::get($cache_key);
-        if(empty($skus)) {
-            $sku_products = $this->productRepository->where("parent_id", $product->id)->get();
-
-            $attributeOptionRepository = app(AttributeOptionRepository::class);
-            
-            foreach($sku_products as $key=>$sku) {
-                $sku_id = $sku->id;
-                $sku_code = $sku->sku;
-                unset($sku);
-                /**
-                 * 
-                 * 
-                 * {"name":"Women's thin no wire lace bra - Black \/ S","sku_code":"CJ02168-C#black-S#m","sku_id":44113194877163,"attribute_name":"S,Black","key":"S_Black"}
-                 * 
-                 * 
-                 */
-                $productAttribute = $this->productAttributeValueRepository->findOneWhere([
-                    'product_id'   => $sku_id,
-                    'attribute_id' => 2,
-                ]);
-    
-                //var_dump($productAttribute);
-    
-                $sku['name'] = $productAttribute['text_value'];
-    
-                
-                
-                $sku['sku_code'] = $sku_code;
-                $sku['sku_id'] = $sku_id;
-    
-                $colorAttribute = $this->productAttributeValueRepository->findOneWhere([
-                    'product_id'   => $sku_id,
-                    'attribute_id' => 23,
-                ]);
-    
-                $sizeAttribute = $this->productAttributeValueRepository->findOneWhere([
-                    'product_id'   => $sku_id,
-                    'attribute_id' => 24,
-                ]);
-    
-                $SizeattributeOptions = $attributeOptionRepository->findOneWhere(['id'=>$sizeAttribute['integer_value']]);
-                $ColorattributeOptions = $attributeOptionRepository->findOneWhere(['id'=>$colorAttribute['integer_value']]);
-                
-    
-               // $attribute_name = $ColorattributeOptions->admin_name.",".$SizeattributeOptions->admin_name;
-                $attribute_name = $SizeattributeOptions->admin_name.",".$ColorattributeOptions->admin_name;
-    
-                $sku['attribute_name'] = $attribute_name;
-                $sku['attr_id'] = "24_".$colorAttribute['integer_value'].",23_".$sizeAttribute['integer_value'];
-    
-                //$sku['key'] = $ColorattributeOptions->admin_name."_".$SizeattributeOptions->admin_name; // 这个数据需要留意他的位置，JS判断会需要使用
-                $sku['key'] = $SizeattributeOptions->admin_name."_".$ColorattributeOptions->admin_name; // 这个数据需要留意他的位置，JS判断会需要使用
-                
-                $skus[] = $sku;
-            }
-            Cache::put($cache_key, json_encode($skus), 36000);
-        }else {
-            $skus = json_decode($skus, JSON_OBJECT_AS_ARRAY);
-        }
+        
 
         //rsort($skus);
 
