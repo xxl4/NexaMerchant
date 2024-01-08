@@ -196,6 +196,10 @@ class ProductController extends Controller
             $attributes = $productViewHelper->getConfigurationConfig($product);
             
             
+            $productSizeImage = $this->productAttributeValueRepository->findOneWhere([
+                'product_id'   => $product->id,
+                'attribute_id' => 32,
+            ]);
             
 
             //var_dump($customAttributeValues);exit;
@@ -235,13 +239,19 @@ class ProductController extends Controller
                 $tip_img = "";
                 if($attribute['id']==24) {
                     $tip = "Size Chart";
-                    //var_dump($product_category_id);
-                    if($product_category_id=="3") {
-                        $tip_img = "https://shop.hatmeo.com/size/shoes.jpg";
+                    $tip_img = $productSizeImage->text_value;
+                    if(empty($tip_img)) {
+                        if($product_category_id=="3") {
+                            $tip_img = "https://shop.hatmeo.com/size/shoes.jpg";
+                        }
+                        if($product_category_id=="5") {
+                            $tip_img = "https://shop.hatmeo.com/size/bra.jpg";
+                        }
+                    }else{
+                        $tip_img ="https://shop.hatmeo.com/storage/".$tip_img;
                     }
-                    if($product_category_id=="5") {
-                        $tip_img = "https://shop.hatmeo.com/size/bra.jpg";
-                    }
+                    
+
                     
                 }
                 
@@ -284,6 +294,8 @@ class ProductController extends Controller
             'product_id'   => $product->id,
             'attribute_id' => 30,
         ]);
+
+        
 
         //var_dump($productBgAttribute);
 
