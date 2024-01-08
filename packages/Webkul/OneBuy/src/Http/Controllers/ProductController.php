@@ -239,7 +239,8 @@ class ProductController extends Controller
                 $tip_img = "";
                 if($attribute['id']==24) {
                     $tip = "Size Chart";
-                    $tip_img = $productSizeImage->text_value;
+                    if(isset($productSizeImage->text_value)) $tip_img = $productSizeImage->text_value;
+                    
                     if(empty($tip_img)) {
                         if($product_category_id=="3") {
                             $tip_img = "https://shop.hatmeo.com/size/shoes.jpg";
