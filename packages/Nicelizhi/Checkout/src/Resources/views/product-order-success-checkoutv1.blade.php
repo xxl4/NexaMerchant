@@ -471,6 +471,11 @@ All rights reserved
 
             order_param = <?php echo json_encode($order);?>
 
+            <?php
+            $shipping_address = $order->shipping_address;
+            //var_dump($shipping_address);
+            ?>
+
             console.log(order_param);
 
             data = input.data;
@@ -485,21 +490,39 @@ All rights reserved
             document.querySelector('.customer_first_name').innerHTML = order_param.customer_first_name;
             document.querySelector('.customer_last_name').innerHTML = order_param.customer_last_name;
             document.querySelector('.customer_email').innerHTML = order_param.customer_email;
-            document.querySelector('.customer_phone').innerHTML = order_param.phone_full;
-            document.querySelector('.customer_address_1').innerHTML = order_param.address;
-            document.querySelector('.customer_city').innerHTML = order_param.city;
-            document.querySelector('.customer_country').innerHTML = order_param.country;
-            document.querySelector('.customer_state').innerHTML = order_param.province ? order_param.province : '-';
-            document.querySelector('.customer_zip').innerHTML = order_param.code ? order_param.code : '-';
+            document.querySelector('.customer_phone').innerHTML = "<?php echo $shipping_address->phone;?>";
+            document.querySelector('.customer_address_1').innerHTML = "<?php echo $shipping_address->address1;?>";
+            document.querySelector('.customer_city').innerHTML = "<?php echo $shipping_address->city;?>";
+            document.querySelector('.customer_country').innerHTML = "<?php echo $shipping_address->country;?>";
+            document.querySelector('.customer_state').innerHTML = "<?php echo $shipping_address->state;?>";
+            document.querySelector('.customer_zip').innerHTML = "<?php echo $shipping_address->postcode;?>";
             document.querySelector('.product-brand').innerHTML = "hatmeo";
 
             // setProductHtml(order_param.products, order_param.produt_amount_base);
+            setProductHtml();
             showPaySuccess();
             //getRecommendedData(order_param.payment_cancel_url);
             
         }
 
-        function setProductHtml(products, produt_amount_base =1) {
+        function setProductHtml() {
+            var product_html = "";
+            <?php
+            $products = $order->items;
+            foreach($products as $key=>$product) {
+                //var_dump($product);
+            ?>
+
+                product_html += '<p class="order-date"><?php echo $product->name;?> ×<span class="order-count">(<?php echo $product->qty_ordered;?>)</span></p> ';
+
+
+            <?php } ?>
+
+            document.querySelector('.product-content').innerHTML = product_html;
+
+        }
+
+        function setProductHtmlNew(products, produt_amount_base =1) {
             var product_html = ''
 
             for (var i = 0; i < products.length; i++) {
