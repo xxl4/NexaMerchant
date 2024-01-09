@@ -14,5 +14,6 @@ Route::group(['middleware' => ['locale', 'theme', 'currency','web']], function (
     ->name('checkout.v1.product.downsell')
     ->middleware('cacheResponse');
     Route::get('checkout/v1/initialize', [CheckoutV1Controller::class, 'initialize'])->name('checkout.v1.product.initialize')->middleware('cacheResponse');
-    
+
+    Route::get('checkout/v1/success/{order_id}', [CheckoutV1Controller::class, 'success'])->name('checkout.v1.product.success')->middleware('cacheResponse');
 });

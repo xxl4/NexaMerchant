@@ -24,6 +24,7 @@ use Illuminate\Support\Facades\Cache;
 class CheckoutV1Controller extends Controller{
 
     private $cache_prefix_key = "checkout_v1_";
+    private $view_prefix_key = "checkoutv1";
 
       /**
      * Create a new controller instance.
@@ -137,8 +138,23 @@ class CheckoutV1Controller extends Controller{
 
 
 
-        return view('checkout::product-detail-checkoutv1', compact('product','package_products', 'product_attributes', 'skus','productBgAttribute','productBgAttribute_mobile', 'attributes','app_env'));
+        return view('checkout::product-detail-'.$this->view_prefix_key, compact('product','package_products', 'product_attributes', 'skus','productBgAttribute','productBgAttribute_mobile', 'attributes','app_env'));
 
+    }
+
+
+    /**
+     * 
+     * 
+     * 
+     * 
+     */
+    public function success($order_id, Request $request) {
+        $order = [];
+
+        $order = $this->orderRepository->findOrFail($order_id);
+
+        return view('checkout::product-order-success-'.$this->view_prefix_key, compact('order'));
     }
 
     /**
@@ -433,6 +449,7 @@ class CheckoutV1Controller extends Controller{
                 $data['country'] = $input['shippingCountry'];
                 $data['success'] = true;
                 $data['redirect'] = "https://www.baidu.com";
+                $data['order_id'] = $orderId;
             }
 
             return response()->json($data);
