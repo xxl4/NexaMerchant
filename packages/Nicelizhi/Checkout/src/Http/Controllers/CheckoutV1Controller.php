@@ -131,11 +131,13 @@ class CheckoutV1Controller extends Controller{
 
         //var_dump($attributes);exit;
 
+        $app_env = config("app.env");
 
 
 
 
-        return view('checkout::product-detail-checkoutv1', compact('product','package_products', 'product_attributes', 'skus','productBgAttribute','productBgAttribute_mobile', 'attributes'));
+
+        return view('checkout::product-detail-checkoutv1', compact('product','package_products', 'product_attributes', 'skus','productBgAttribute','productBgAttribute_mobile', 'attributes','app_env'));
 
     }
 
@@ -196,6 +198,7 @@ class CheckoutV1Controller extends Controller{
                 $package_product['tip1'] = $tip1_price."% Savings";
                 $tip2_price = $package_product['new_price'] / $i;
                 $package_product['tip2'] = "$".$tip2_price;
+                $package_product['per_product_price'] = $tip2_price;
                 $shipping_fee = 9.99;
                 if($i==4) $shipping_fee = '0.00';
                 $package_product['shipping_fee'] = $shipping_fee;
@@ -348,26 +351,30 @@ class CheckoutV1Controller extends Controller{
 
          Cart::collectTotals();
 
-         //处理支付方式
-        $payment = [];
-        $payment['description'] = "PayPal";
-        $payment['method'] = "paypal_smart_button";
-        $payment['method_title'] = "PayPal Smart Button";
-        $payment['sort'] = "1";
-        // Cart::savePaymentMethod($payment);
-
-        if (
-            Cart::hasError()
-            || ! $payment
-            || ! Cart::savePaymentMethod($payment)
-        ) {
-            return response()->json([
-                'message' => 'save payment error',
-            ]);
-        }
+         
 
 
         if($creditCardType=='paypal') {
+
+            //处理支付方式
+            $payment = [];
+            $payment['description'] = "PayPal";
+            $payment['method'] = "paypal_smart_button";
+            $payment['method_title'] = "PayPal Smart Button";
+            $payment['sort'] = "1";
+            // Cart::savePaymentMethod($payment);
+
+            if (
+                Cart::hasError()
+                || ! $payment
+                || ! Cart::savePaymentMethod($payment)
+            ) {
+                return response()->json([
+                    'message' => 'save payment error',
+                ]);
+            }
+
+
             try {
                 $order = $this->smartButton->createOrder($this->buildRequestBody());
                 $data = [];
@@ -380,6 +387,56 @@ class CheckoutV1Controller extends Controller{
             } catch (\Exception $e) {
                 return response()->json(json_decode($e->getMessage()), 400);
             }
+        }
+
+        if($creditCardType=='airwallex') {
+
+                //处理支付方式
+            $payment = [];
+            $payment['description'] = "airwallex Transfer";
+            $payment['method'] = "airwallex";
+            $payment['method_title'] = "airwallex Transfer";
+            $payment['sort'] = "2";
+            // Cart::savePaymentMethod($payment);
+
+            if (
+                Cart::hasError()
+                || ! $payment
+                || ! Cart::savePaymentMethod($payment)
+            ) {
+                return response()->json([
+                    'message' => 'save payment error',
+                ]);
+            }
+
+            
+
+            Cart::collectTotals();
+            $this->validateOrder();
+            $cart = Cart::getCart();
+            $order = $this->orderRepository->create(Cart::prepareDataForOrder());
+            Cart::deActivateCart();
+            Cart::activateCartIfSessionHasDeactivatedCartId();
+
+
+            $data['result'] = 200;
+            $data['order'] = $order;
+            if ($order) {
+
+                $orderId = $order->id;
+                $transactionManager = $this->airwallex->createPaymentOrder($cart, $order->id);
+                Log::info("transactionManager". json_encode($transactionManager));
+                $data['client_secret'] = $transactionManager->client_secret;
+                $data['payment_intent_id'] = $transactionManager->id;
+                $data['currency'] = $transactionManager->currency;
+                $data['transactionManager'] = $transactionManager;
+                $data['country'] = $input['shippingCountry'];
+                $data['success'] = true;
+                $data['redirect'] = "https://www.baidu.com";
+            }
+
+            return response()->json($data);
+           
         }
 
 
@@ -406,6 +463,55 @@ class CheckoutV1Controller extends Controller{
 
 
 
+    }
+
+    /**
+     * Validate order before creation.
+     *
+     * @return void|\Exception
+     */
+    public function validateOrder()
+    {
+        $cart = Cart::getCart();
+
+        $minimumOrderAmount = core()->getConfigData('sales.order_settings.minimum_order.minimum_order_amount') ?: 0;
+
+        if (
+            auth()->guard('customer')->check()
+            && auth()->guard('customer')->user()->is_suspended
+        ) {
+            throw new \Exception(trans('shop::app.checkout.cart.suspended-account-message'));
+        }
+
+        if (
+            auth()->guard('customer')->user()
+            && ! auth()->guard('customer')->user()->status
+        ) {
+            throw new \Exception(trans('shop::app.checkout.cart.inactive-account-message'));
+        }
+
+        if (! $cart->checkMinimumOrder()) {
+            throw new \Exception(trans('shop::app.checkout.cart.minimum-order-message', ['amount' => core()->currency($minimumOrderAmount)]));
+        }
+
+        if ($cart->haveStockableItems() && ! $cart->shipping_address) {
+            throw new \Exception(trans('shop::app.checkout.cart.check-shipping-address'));
+        }
+
+        if (! $cart->billing_address) {
+            throw new \Exception(trans('shop::app.checkout.cart.check-billing-address'));
+        }
+
+        if (
+            $cart->haveStockableItems()
+            && ! $cart->selected_shipping_rate
+        ) {
+            throw new \Exception(trans('shop::app.checkout.cart.specify-shipping-method'));
+        }
+
+        if (! $cart->payment) {
+            throw new \Exception(trans('shop::app.checkout.cart.specify-payment-method'));
+        }
     }
 
     public function initialize(Request $request) {

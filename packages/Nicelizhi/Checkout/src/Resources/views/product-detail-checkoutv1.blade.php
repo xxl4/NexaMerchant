@@ -650,7 +650,7 @@ window.dataLayer = window.dataLayer || [];
                         <select name="creditCardType" class="required" style="display: none;" data-error-message="Please select valid card type!">
                            <option value="">Card Type</option>
                                                       <option value="paypal">Paypal</option>
-                                                      <option value="external">External</option>
+                                                      <option value="airwallex">Airwallex</option>
                                                    </select>
 
                         <div class="step-title">
@@ -879,42 +879,101 @@ window.dataLayer = window.dataLayer || [];
 
                             <div class="row g-2 mb-3" style="display: none;">
                                 <div class="col-12 ">
-                                    <label class="sr-only" for="id_number">Card Number</label>
+                                    <label class="sr-only" for="id_card">Card Number</label>
                                     <div class="form-cc-card input-group">
-                                        <input type="tel" name="creditCardNumber" maxlength="16" class="form-control" placeholder="Card number" id="id_number" data-error-message="Please enter a valid credit card number!" onkeypress="return event.charCode >= 48 && event.charCode <= 57" />
+                                        <input type="hidden" id="id_card" data-error-message="Please enter a valid credit card number!" />
                                         <span class="input-group-text"><i class="far fa-credit-card"></i></span>
                                     </div>
                                 </div>
 
                                 <div class="col-sm col-lg-12 col-xl-6">
+                                    <label class="sr-only" for="id_number">Card Expiry</label>
                                     <div class="form-floating">
-                                        <select name="expmonth" class="form-select" data-error-message="Please select a valid expiry month!" id="id_expiry_month">
-                                            <option value="">Month</option><option value="01">(01) January</option><option value="02">(02) February</option><option value="03">(03) March</option><option value="04">(04) April</option><option value="05">(05) May</option><option value="06">(06) June</option><option value="07">(07) July</option><option value="08">(08) August</option><option value="09">(09) September</option><option value="10">(10) October</option><option value="11">(11) November</option><option value="12">(12) December</option>                                        </select>
-                                        <label for="id_expiry_month">Month</label>
-                                    </div>
-                                </div>
-
-                                <div class="col-sm col-lg-12 col-xl-6">
-                                    <div class="form-floating">
-                                        <select name="expyear" class="form-select" data-error-message="Please select a valid expiry year!" id="id_expiry_year">
-
-                                            <option value="">Year</option><option value="24">2024</option><option value="25">2025</option><option value="26">2026</option><option value="27">2027</option><option value="28">2028</option><option value="29">2029</option><option value="30">2030</option><option value="31">2031</option><option value="32">2032</option><option value="33">2033</option><option value="34">2034</option><option value="35">2035</option><option value="36">2036</option><option value="37">2037</option><option value="38">2038</option><option value="39">2039</option><option value="40">2040</option><option value="41">2041</option><option value="42">2042</option><option value="43">2043</option>                                        </select>
-                                        <label for="id_expiry_year">Year</label>
+                                        <input type="hidden" id="id_expiry" data-error-message="Please enter a valid credit expiry!"/>
+                                        <label for="id_expiry">Expiry</label>
                                     </div>
                                 </div>
 
                                 <div class="col-12">
                                     <label class="sr-only" for="id_cvc">CVV</label>
                                     <div class="form-cc-cvv input-group">
-                                        <input type="tel" name="CVV" class="form-control" placeholder="Security Code" id="id_cvc" maxlength="3" data-error-message="Please select a valid CVV Code!" data-validate="cvv" onkeypress="return event.charCode >= 48 && event.charCode <= 57" />
+                                        <input type="hidden" id="id_cvc" data-error-message="Please select a valid CVV Code!" />
                                         <button class="input-group-text"  data-bs-toggle="modal" data-bs-target="#cvvModal"><i class="fas fa-question-circle"></i></button>
                                     </div>
                                 </div>
                             </div>
                             
                             <div class="row g-2 mb-3">
-                                <!-- <div id="card"></div> -->
-                                <div class="col-12 ">
+
+                            <!-- <label>
+                            Card number
+                            <div id="cardNumber"></div>
+                            </label>
+                            <label>
+                            Expiry
+                            <div id="cardExpiry"></div>
+                            </label>
+                            <label>
+                            CVC
+                            <div id="cardCvc"></div>
+                            </label>
+                            <br />        
+                            -->
+
+                            <!-- STEP #3a: Add empty containers for each card input element to be injected into -->
+                            <div style={containerStyle}>
+                                <div>Card number</div>
+                                <div id="cardNumber" class="form-floating input-group has-icon-left" style="background: #FFF;
+    border: 1px solid #a7abad;
+    color: #222;
+    height: 32px;
+    line-height: 22px;
+    width: 100%;
+    font-size: 14px;
+    padding: 3px 8px;
+    outline: 0;
+    font-family: Arial, sans-serif;
+    font-weight: 400;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;height: calc(3.5rem + 2px);
+    line-height: 1.25;padding: 1rem 0.75rem "></div>
+                            </div>
+                            <div style={containerStyle}>
+                                <div>Expiry</div>
+                                <div id="cardExpiry" style="background: #FFF;
+    border: 1px solid #a7abad;
+    color: #222;
+    height: 32px;
+    line-height: 22px;
+    width: 100%;
+    font-size: 14px;
+    padding: 3px 8px;
+    outline: 0;
+    font-family: Arial, sans-serif;
+    font-weight: 400;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;height: calc(3.5rem + 2px);
+    line-height: 1.25;padding: 1rem 0.75rem "></div>
+                            </div>
+                            <div style={containerStyle}>
+                                <div>Cvc</div>
+                                <div id="cardCvc" style="background: #FFF;
+    border: 1px solid #a7abad;
+    color: #222;
+    height: 32px;
+    line-height: 22px;
+    width: 100%;
+    font-size: 14px;
+    padding: 3px 8px;
+    outline: 0;
+    font-family: Arial, sans-serif;
+    font-weight: 400;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;height: calc(3.5rem + 2px);
+    line-height: 1.25;padding: 1rem 0.75rem "></div>
+                            </div>
+                                
+                                <!-- <div class="col-12 ">
                                     <label class="sr-only" for="card_number">Card Number</label>
                                     <div class="input-group form-floating">
                                         <div id="spreedly-number-test" class="spf-field-group spf-number spf-field-cc">
@@ -925,10 +984,18 @@ window.dataLayer = window.dataLayer || [];
 
                                 <div class="col-sm col-lg-12 col-xl-6">
                                     <div class="form-floating">
+                                        
                                         <select class="form-select" id="month">
                                             <option value="">Month</option><option value="01">(01) January</option><option value="02">(02) February</option><option value="03">(03) March</option><option value="04">(04) April</option><option value="05">(05) May</option><option value="06">(06) June</option><option value="07">(07) July</option><option value="08">(08) August</option><option value="09">(09) September</option><option value="10">(10) October</option><option value="11">(11) November</option><option value="12">(12) December</option>                                            
                                         </select>
                                         <label for="month">Month</label>
+                                                         
+                                    <label class="sr-only" for="card_expiry">Expiry</label>
+                                    <div class="input-group form-floating">
+                                        <div id="spreedly-number-test" class="spf-field-group spf-number spf-field-cc">
+                                        </div>
+                                        <span class="input-group-text"><i class="far fa-credit-card"></i></span>
+                                    </div>
                                     </div>
                                 </div>
 
@@ -959,7 +1026,7 @@ window.dataLayer = window.dataLayer || [];
                                                                                     </select>
                                         <label for="year">Year</label>
                                     </div>
-                                </div>
+                                </div> 
 
                                 <div class="col-12">
                                     <label class="sr-only" for="cvv">CVV</label>
@@ -969,12 +1036,12 @@ window.dataLayer = window.dataLayer || [];
                                     </div>
                                 </div>
                                 <input type="hidden" id="card_token" name="card_token">
-                            </div>
+                            </div> -->
                         </div>
 
                         <div class="col">
                             <div class="d-grid mb-4">
-                                <button type="button" class="btn btn-lg btn-primary btn-checkout pay-with-cc zoom-fade"><i class="fas fa-lock me-3"></i>Complete Purchase</button>
+                                <button type="button" id="submit" class="btn btn-lg btn-primary btn-checkout pay-with-cc zoom-fade"><i class="fas fa-lock me-3"></i>Complete Purchase</button>
                             </div>
                         </div>
                         <div class="row ps-2 mb-0">
@@ -1280,6 +1347,7 @@ window.dataLayer = window.dataLayer || [];
                 </div>
 
                 <div class="clearfix"></div>
+                                                            </div>
 
                 <div class="col-md-11 col-lg-9">
 
@@ -1815,10 +1883,10 @@ window.dataLayer = window.dataLayer || [];
             <div class="w_inner">
                 <div class="w_item ">
                     <div class="w_thumb">
-                        <img src="/checkout/v1/app/desktop/images/recent-purchase01.png" alt="" class="img-fluid">
+                        <img src="{{ $productBaseImage['small_image_url'] }}" alt="" class="img-fluid">
                     </div>
                     <div class="w_desc">
-                        <p><span id="recentCustomer"></span> bought: <span class="fw-bold text-primary">VolteX Heated Vest</span> <span class="fw-bold"> JUST NOW</span></p>
+                        <p><span id="recentCustomer"></span> bought: <span class="fw-bold text-primary"><?php echo $product['name'];?></span> <span class="fw-bold"> JUST NOW</span></p>
                         <div class="fs-9 d-flex align-items-center">
                             <i class="fas fa-check-circle text-success me-1"></i>
                             <span class="text-dark">Verfified Purchase</span>
@@ -1891,44 +1959,77 @@ window.dataLayer = window.dataLayer || [];
 <script src="/checkout/v1/assets/js/jquery.mask.min.js" type="text/javascript"></script>
 <script src="/checkout/v1/assets/js/validator.js" type="text/javascript"></script>
 <script src="/checkout/v1/assets/js/codebase.js" type="text/javascript"></script>
-<script src="/checkout/v1/assets/js/form_handler.js" type="text/javascript"></script>
+<script src="/checkout/v1/assets/js/form_handler.js?v=11" type="text/javascript"></script>
 <script src="/checkout/v1/assets/js/app.js" type="text/javascript"></script>
 <script src="/checkout/v1/assets/js/outro.js" type="text/javascript"></script>
 <script src="/checkout/v1/extensions/CbUtilityPackage/js/cb-util-pkg.js" type="text/javascript"></script>
       <script type="text/javascript" src="/checkout/v1/app/desktop/js/bootstrap.min.js"></script>
-
-      // from CDN
+    <?php if($app_env=='demo') { ?>
+    <script src="https://checkout-demo.airwallex.com/assets/elements.bundle.min.js"></script>
+    <?php }else{ ?>
     <script src="https://checkout.airwallex.com/assets/elements.bundle.min.js"></script>;
-
-    <!-- <script>
-        Airwallex.init({
-            env: 'prod', // Setup which Airwallex env('demo' | 'prod') to integrate with
-            origin: window.location.origin, // Set up your event target to receive the browser events message
-        });
-        const card = Airwallex.createElement('card');
-    </script> -->
+    <?php } ?>
     <script>
-      try {
             Airwallex.init({
-            env: 'prod', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
+            env: '<?php echo $app_env;?>', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
             origin: window.location.origin, // Setup your event target to receive the browser events message
             });
 
             const cardNumber = Airwallex.createElement('cardNumber',{
                 allowedCardNetworks:['visa','maestro','mastercard','amex','unionpay','jcb']
             });
-            const expiry = Airwallex.createElement('expiry');
-            const cvc = Airwallex.createElement('cvc');
+            const cardExpiry = Airwallex.createElement('expiry');
+            const cardCvc = Airwallex.createElement('cvc');
 
-            cardNumber.mount('cardNumber'); // This 'cardNumber' id MUST MATCH the id on your cardNumber 
-            expiry.mount('expiry'); // Same as above
-            cvc.mount('cvc'); // Same as above
-        } catch (error) {
-            document.getElementById('loading').style.display = 'none'; // Example: hide loading state
-            document.getElementById('error').style.display = 'block'; // Example: show error
-            document.getElementById('error').innerHTML = error.message; // Example: set error message
-            console.error('There was an error', error);
-        }
+            const domcardNumber = cardNumber.mount('cardNumber'); // This 'cardNumber' id MUST MATCH the id on your cardNumber 
+            const domcardExpiry = cardExpiry.mount('cardExpiry'); // Same as above
+            const domcardCvv = cardCvc.mount('cardCvc'); // Same as above
+
+
+            // STEP #7: Add an event listener to ensure the element is mounted
+            domcardNumber.addEventListener('onReady', (event) => {
+                /*
+                ... Handle event
+                */
+                //window.alert(event.detail);
+                console.log(event.detail);
+            });
+
+            // STEP #8: Add an event listener to listen to the changes in each of the input fields
+            domcardNumber.addEventListener('onChange', (event) => {
+                /*
+                ... Handle event
+                */
+                //window.alert(event.detail);
+                console.log(event.detail)
+                //console.log(JSON.stringify(event));
+                console.log(event.detail.complete)
+                $("#id_card").val(event.detail.complete);
+            });
+
+            domcardExpiry.addEventListener('onChange', (event) => {
+                /*
+                ... Handle event
+                */
+                //window.alert(event.detail);
+                console.log(event.detail)
+                //console.log(JSON.stringify(event));
+                console.log(event.detail.complete)
+                $("#id_expiry").val(event.detail.complete);
+            });
+
+            //id_cvc
+            domcardCvv.addEventListener('onChange', (event) => {
+                /*
+                ... Handle event
+                */
+                //window.alert(event.detail);
+                console.log(event.detail)
+                //console.log(JSON.stringify(event));
+                console.log(event.detail.complete)
+                $("#id_cvc").val(event.detail.complete);
+            });
+
     </script>
 
     <script>
@@ -1937,8 +2038,8 @@ window.dataLayer = window.dataLayer || [];
     </script>
 
 
-    <script src="https://core.spreedly.com/iframe/iframe-v1.min.js"></script>
-    <script id="spreedly-iframe" data-environment-key="6hyXvtqVacIHBBOrIGc7NyTbHEv" data-number-id="spreedly-number-test" data-cvv-id="spreedly-cvv-test"></script>
+    <!-- <script src="https://core.spreedly.com/iframe/iframe-v1.min.js"></script>
+    <script id="spreedly-iframe" data-environment-key="6hyXvtqVacIHBBOrIGc7NyTbHEv" data-number-id="spreedly-number-test" data-cvv-id="spreedly-cvv-test"></script> -->
 
     <script type="text/javascript">
         var BarParam = "";
@@ -2039,7 +2140,7 @@ window.dataLayer = window.dataLayer || [];
                 }
             });
 
-            $('select[name=creditCardType]').val('external').trigger('change');
+            $('select[name=creditCardType]').val('airwallex').trigger('change');
             // $('input[name=pay_with_credit_card]').on('change', function(e){
             //     if ($(this).prop('checked') == false) {
             //         $('#form-cc').removeClass("is-visible");
@@ -2056,7 +2157,7 @@ window.dataLayer = window.dataLayer || [];
             //         $('#form-cc').addClass("is-visible");
             //         $('#form-shipping').addClass("is-visible");
             //         $('#form-sub-btn').show();
-            //         $('select[name=creditCardType]').val('external').trigger('change');
+            //         $('select[name=creditCardType]').val('airwallex').trigger('change');
             //     }
             // });
 
@@ -2142,27 +2243,52 @@ window.dataLayer = window.dataLayer || [];
             });
 
             $('.pay-with-cc').on('click', function(e){
+                console.log('pay with cc');
                 window.dataLayer.push({'event': 'complete_order_cta'});
                 e.preventDefault();
+
+                var id_card = $("#id_card").val();
+                var id_expiry = $("#id_expiry").val();
+                var id_cvc = $("#id_cvc").val();
+                console.log("id_cvc" + id_cvc);
+                console.log("id_card" + id_card);
+                console.log("id_expiry" + id_expiry);
+                if(id_card!="true") {
+                    error =  ["Please check your card number!"];
+                    return cb.errorHandler(error);
+                }
+                if(id_cvc!="true") {
+                    error =  ["Please check your card cvc!"];
+                    return cb.errorHandler(error);
+                }
+                if(id_expiry!="true") {
+                    error =  ["Please check your card expiry!"];
+                    return cb.errorHandler(error);
+                }
+                console.log("cb beformsubmitevents");
+
                 var is_check = checkSizeValidation();
                 if(is_check.error_count >0){
                     cb.errorHandler(is_check.error);
                 }else{
                     $('#payment-gateway-input-div').html('<input type="hidden" name="payment_gateway_group" value="37">');
-                    $('select[name=creditCardType]').val('external').trigger('change');
-                    $('#loading-indicator').show();
+                    $('select[name=creditCardType]').val('airwallex').trigger('change');
+                    //$('#loading-indicator').show();
                     var normalBorder = "1px solid #ccc";
                     var paymentMethodFields = ['first_name', 'last_name', 'month', 'year']
-                    options = {};
-                    for(var i = 0; i < paymentMethodFields.length; i++) {
-                        var field = paymentMethodFields[i];
-                        var fieldEl = document.getElementById(field);
-                        fieldEl.style.border = normalBorder;
-                        options[field]  = fieldEl.value
-                    }
-                    Spreedly.setStyle('number', "border: " + normalBorder + ";");
-                    Spreedly.setStyle('cvv', "border: " + normalBorder + ";");
-                    Spreedly.tokenizeCreditCard(options);
+                    // options = {};
+                    // for(var i = 0; i < paymentMethodFields.length; i++) {
+                    //     var field = paymentMethodFields[i];
+                    //     var fieldEl = document.getElementById(field);
+                    //     fieldEl.style.border = normalBorder;
+                    //     options[field]  = fieldEl.value
+                    // }
+                    // Spreedly.setStyle('number', "border: " + normalBorder + ";");
+                    // Spreedly.setStyle('cvv', "border: " + normalBorder + ";");
+                    // Spreedly.tokenizeCreditCard(options);
+
+                    $('form[name=downsell_form1]').submit();
+
                 }
             });
         });
@@ -2284,14 +2410,16 @@ window.dataLayer = window.dataLayer || [];
 
             var productArr = [];
             switch (id) {
-                <?php foreach($package_products as $key=> $package_product) { ?>    
+                <?php foreach($package_products as $key=> $package_product) {
+                    //var_dump($package_product);exit;
+                    ?>    
                 case <?echo $package_product['id'];?>:
-                    productArr['campaign_id'] = <?echo $package_product['id'];?>;
-                    productArr['product_name'] = "1x VolteX Heated Vest ";
-                    productArr['per_product_price'] = 59.99;
-                    productArr['product_qty'] = <?echo $package_product['id'];?>;
-                    productArr['product_total'] = 59.99;
-                    productArr['product_price_original'] = 99.99;
+                    productArr['campaign_id'] = <?php echo $package_product['id'];?>;
+                    productArr['product_name'] = "<?php echo $package_product['name'];?>";
+                    productArr['per_product_price'] = <?php echo $package_product['per_product_price'];?>;
+                    productArr['product_qty'] = <?php echo $package_product['id'];?>;
+                    productArr['product_total'] = <?php echo $package_product['new_price']; ?>;
+                    productArr['product_price_original'] = <?php echo $package_product['srouce_price']; ?>;
 
                      productArr['shipping_price'] = <?php echo $package_product['shipping_fee'];?>
 
@@ -2308,29 +2436,32 @@ window.dataLayer = window.dataLayer || [];
                     productArr['extended_protection_product_name'] = "1x Extended Warranty";
                     productArr['extended_protection_text'] = "By placing your order today, you can have an extended warranty and replacement plan for only an additional $9.99. This means your one product is covered for 1 Year.";
                     break;
-                <?php } ?>
+                <?php if($package_product['id']==3) { ?>
                 default:
-                    productArr['campaign_id'] = 3;
-                    productArr['product_name'] = "3x VolteX Heated Vest ";
-                    productArr['per_product_price'] = 44.99;
-                    productArr['product_qty'] = 3;
-                    productArr['product_total'] = 134.97;
-                    productArr['product_price_original'] = 99.99;
+                    productArr['campaign_id'] = <?php echo $package_product['id'];?>;
+                    productArr['product_name'] = "<?php echo $package_product['name'];?>";
+                    productArr['per_product_price'] = <?php echo $package_product['per_product_price'];?>;
+                    productArr['product_qty'] = <?php echo $package_product['id'];?>;
+                    productArr['product_total'] = <?php echo $package_product['new_price']; ?>;
+                    productArr['product_price_original'] = <?php echo $package_product['srouce_price']; ?>;
 
-                    productArr['shipping_price'] = (ship_price_extra_feature == 1) ? extra_shipping : 0;
+                     productArr['shipping_price'] = <?php echo $package_product['shipping_fee'];?>
 
-                    productArr['offer_coupon_code'] = 'FREESHIP';
-                    productArr['offer_discount_percentage'] = "55";
-                    productArr['coupon_discount_percentage'] = "60%";
-                    productArr['after_coupon_per_product_price'] = 42.7405;
-                    productArr['after_coupon_product_total'] = 128.2215;
-                    productArr['exit_pop_coupon_code'] = 'FREESHIP';
+                    productArr['offer_coupon_code'] = '';
+                    productArr['offer_discount_percentage'] = "40";
+
+                    productArr['coupon_discount_percentage'] = "45%";
+                    productArr['after_coupon_per_product_price'] = 56.9905;
+                    productArr['after_coupon_product_total'] = 56.9905;
+                    productArr['exit_pop_coupon_code'] = '';
 
                     productArr['extended_protection_per_price'] = 9.99;
-                    productArr['extended_protection_total_price'] = 9.99 * 3;
-                    productArr['extended_protection_product_name'] = "3x Extended Warranty"; 
-                    productArr['extended_protection_text'] = "By placing your order today, you can have an extended warranty and replacement plan for only an additional $9.99 per unit. This means your three products are covered for 1 Year.";
+                    productArr['extended_protection_total_price'] = 9.99;
+                    productArr['extended_protection_product_name'] = "1x Extended Warranty";
+                    productArr['extended_protection_text'] = "By placing your order today, you can have an extended warranty and replacement plan for only an additional $9.99. This means your one product is covered for 1 Year.";
                     break;
+                <?php } } ?>
+                
                 }
                 return productArr;
             }
@@ -2650,61 +2781,62 @@ window.dataLayer = window.dataLayer || [];
     </script>
     
     <script>
-        Spreedly.init();
-        Spreedly.on('paymentMethod', function(token, pmData) {
-            $('#card_token').val(token);
-            $('#loading-indicator').hide();
-            $('form[name=downsell_form1]').submit();
-        });
-        Spreedly.on('errors', function(errors) {
-            $('#loading-indicator').hide();
-            var cbErrors = new Array();
-            var errorBorder = "1px solid red";
-            for(var i = 0; i < errors.length; i++) {
-                var error = errors[i];
-                if(error["attribute"] == "number") {
-                    cbErrors.push("Please enter a valid credit card number!");
-                }
-                if(error["attribute"] == "month") {
-                    cbErrors.push("Please select a valid expiry month!");
-                }
-                if(error["attribute"] == "year") {
-                    cbErrors.push("Please select a valid expiry year!");
-                }
-                if(error["attribute"] == "first_name") {
-                    cbErrors.push("Please enter your first name!");
-                }
-                if(error["attribute"] == "last_name") {
-                    cbErrors.push("Please enter your last name!");
-                }
-            }
-            cb.errorHandler(cbErrors);
-        });
-        Spreedly.on('ready', function(frame) {
-            Spreedly.setFieldType('number', 'text');
-            Spreedly.setFieldType('cvv', 'text');
-            Spreedly.setPlaceholder("number", "Card Number");
-            Spreedly.setPlaceholder("cvv", "CVV");
-            Spreedly.setNumberFormat('prettyFormat');
-            Spreedly.setStyle('number','width: 100%; border-radius: 3px; border: 1px solid #ccc; padding: .65em .5em; font-size: 91%; height: 38px; background-color: #fff;');
-            Spreedly.setStyle('cvv', 'width: 100%; border-radius: 3px; border: 1px solid #ccc; padding: .65em .5em; font-size: 91%; height: 38px; background-color: #fff;');
-        });
-        Spreedly.on('fieldEvent', function(name, event, activeElement, inputData) {
-            if (event == 'input') {
-                if (inputData["validCvv"]){
-                    Spreedly.setStyle('cvv', "background-color: #CDFFE6;")
-                } else {
-                    Spreedly.setStyle('cvv', "background-color: #FFFFFF;")
-                }
-                if (inputData["validNumber"]){
-                    Spreedly.setStyle('number', "background-color: #CDFFE6;")
-                } else {
-                    Spreedly.setStyle('number', "background-color: #FFFFFF;")
-                }
-            }
-        });
+        // Spreedly.init();
+        // Spreedly.on('paymentMethod', function(token, pmData) {
+        //     $('#card_token').val(token);
+        //     $('#loading-indicator').hide();
+        //     $('form[name=downsell_form1]').submit();
+        // });
+        // Spreedly.on('errors', function(errors) {
+        //     $('#loading-indicator').hide();
+        //     var cbErrors = new Array();
+        //     var errorBorder = "1px solid red";
+        //     for(var i = 0; i < errors.length; i++) {
+        //         var error = errors[i];
+        //         if(error["attribute"] == "number") {
+        //             cbErrors.push("Please enter a valid credit card number!");
+        //         }
+        //         if(error["attribute"] == "month") {
+        //             cbErrors.push("Please select a valid expiry month!");
+        //         }
+        //         if(error["attribute"] == "year") {
+        //             cbErrors.push("Please select a valid expiry year!");
+        //         }
+        //         if(error["attribute"] == "first_name") {
+        //             cbErrors.push("Please enter your first name!");
+        //         }
+        //         if(error["attribute"] == "last_name") {
+        //             cbErrors.push("Please enter your last name!");
+        //         }
+        //     }
+        //     cb.errorHandler(cbErrors);
+        // });
+        // Spreedly.on('ready', function(frame) {
+        //     Spreedly.setFieldType('number', 'text');
+        //     Spreedly.setFieldType('cvv', 'text');
+        //     Spreedly.setPlaceholder("number", "Card Number");
+        //     Spreedly.setPlaceholder("cvv", "CVV");
+        //     Spreedly.setNumberFormat('prettyFormat');
+        //     Spreedly.setStyle('number','width: 100%; border-radius: 3px; border: 1px solid #ccc; padding: .65em .5em; font-size: 91%; height: 38px; background-color: #fff;');
+        //     Spreedly.setStyle('cvv', 'width: 100%; border-radius: 3px; border: 1px solid #ccc; padding: .65em .5em; font-size: 91%; height: 38px; background-color: #fff;');
+        // });
+        // Spreedly.on('fieldEvent', function(name, event, activeElement, inputData) {
+        //     if (event == 'input') {
+        //         if (inputData["validCvv"]){
+        //             Spreedly.setStyle('cvv', "background-color: #CDFFE6;")
+        //         } else {
+        //             Spreedly.setStyle('cvv', "background-color: #FFFFFF;")
+        //         }
+        //         if (inputData["validNumber"]){
+        //             Spreedly.setStyle('number', "background-color: #CDFFE6;")
+        //         } else {
+        //             Spreedly.setStyle('number', "background-color: #FFFFFF;")
+        //         }
+        //     }
+        // });
 
        cb.beforeFormSubmitEvents.push(function(e) {
+            
             var is_check = checkSizeValidation();
             if(is_check.error_count >0){
                 cb.errorHandler(is_check.error);
@@ -2723,7 +2855,41 @@ window.dataLayer = window.dataLayer || [];
                         }
                         else
                         {
-                            window.location.href = 'https://offer.dailydealswire.com/checkout/v1/upsell2/?' + res[1];
+                            //window.location.href = 'https://offer.dailydealswire.com/checkout/v1/upsell2/?' + res[1];
+
+                            console.log(cardNumber)
+
+                                Airwallex.confirmPaymentIntent({
+                                    element: cardNumber,
+                                    id: data.payment_intent_id,
+                                    client_secret: data.client_secret,
+                                }).then((response) => {
+                                // STEP #6b: Listen to the request response
+                                /* handle confirm response in your business flow */
+                                //window.alert(JSON.stringify(response));
+                                    $("#loading-indicator").hide();
+                                    console.log('success');
+                                    console.log(JSON.stringify(response))
+                                    //cb.errorHandler("Success");
+                                    alert("Success"); 
+                                }).catch((response) => {
+                                    $("#loading-indicator").hide();
+                                    console.log("catch");
+                                    console.log(JSON.stringify(response))
+
+                                    //cb.errorHandler(response.message);
+
+                                    var cbErrors = new Array();
+                                    cbErrors.push(response.message);
+                                    cb.errorHandler(cbErrors);
+
+                                    // cb.errorHandler(response.message);
+
+                                });
+
+                            
+
+
                         }              
                     } else {
                         $("#loading-indicator").length ? $("#loading-indicator").hide() : '';
@@ -2775,7 +2941,7 @@ window.dataLayer = window.dataLayer || [];
             });
         }
     </script>
-
-  
+    
+    <script>(function(){"use strict";function n(n,e){var r;void 0===e&&(e="uclick");var c=null===(r=n.match(/\?.+?$/))||void 0===r?void 0:r[0];return c?Array.from(c.matchAll(new RegExp("[?&](clickid|"+e+")=([^=&]*)","g"))).map((function(n){return{name:n[1],value:n[2]}})):[]}function e(n){var e=n();return 0===e.length?{}:e.reduce((function(n,e){var r;return Object.assign(n,((r={})[e.name]=""+e.value,r))}),{})}function r(r){void 0===r&&(r="uclick");var c,t,u=e((function(){return(function(n){return void 0===n&&(n="uclick"),Array.from(document.cookie.matchAll(new RegExp("(?:^|; )(clickid|"+n+")=([^;]*)","g"))).map((function(n){return{name:n[1],value:n[2]}}))})(r)})),i=e((function(){return n(document.referrer,r)})),o=e((function(){return n(document.location.search,r)}));return(c=[r,"clickid"],t=[u,i,o],c.reduce((function(n,e){return n.concat(t.map((function(n){return[e,n]})))}),[])).map((function(n){return{name:n[0],value:n[1][n[0]]}})).find((function(n){return n.value}))||null}var c,t,u,i;(i=document.createElement("img")).src=(t=""+"https://binom.heomai.com/"+"click"+".php?payout=OPTIONAL",(u=r(c="uclick"))?t+"&cnv_id="+(u.name===c?"OPTIONAL":u.value)+(u.name===c?"&"+c+"="+u.value:""):t+"&cnv_id=OPTIONAL"),i.referrerPolicy="no-referrer-when-downgrade"})();</script>
 </body>
 </html>
