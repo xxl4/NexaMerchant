@@ -93,6 +93,7 @@ class Airwallex extends Payment
 
 
         $this->productionMode = core()->getConfigData('sales.payment_methods.airwallex.production');
+        //var_dump($this->productionMode);
     }
 
     /**

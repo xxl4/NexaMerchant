@@ -229,6 +229,7 @@ return [
         Nicelizhi\Shopify\Providers\ShopifyServiceProvider::class,
 
         //Nicelizhi\Admin\Providers\AdminServiceProvider::class,
+        Nicelizhi\Checkout\Providers\CheckoutServiceProvider::class,
 
     ])->toArray(),
 

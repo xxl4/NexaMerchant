@@ -9,24 +9,12 @@ use GuzzleHttp\Promise;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
 
-
 class Airwallex {
 
-    protected $clientEmail;
-
-    protected $clientPassword;
-
     protected $clientId;
-
-    protected $accountId;
-
-    protected $paDC;
-
-    protected $accountDC;
-
     protected $apiKey;
 
-    protected $host = "https://api.airwallex.com";
+    protected $host = "https://api-demo.airwallex.com";
 
     protected $client;
 
@@ -43,17 +31,10 @@ class Airwallex {
      * 
      */
     public function __construct($config=array(), $productionMode) {
-        $this->clientEmail = $config['clientEmail'];
-        $this->clientPassword = $config['clientPassword'];
         $this->clientId = $config['clientId'];
-        $this->accountId = $config['accountId'];
-        $this->paDC = $config['paDC'];
-        $this->accountDC = $config['accountDC'];
         $this->apiKey = $config['apiKey'];
 
         $this->productionMode = $productionMode;
-
-        
 
         if($productionMode=='on') $this->host = "https://api.airwallex.com"; 
 
@@ -82,10 +63,8 @@ class Airwallex {
 
         $token = Cache::get($cache_key);
 
-        //var_dump($token);
-
-        if(true) {
-        //if(!Cache::has($cache_key)) {
+        if(!Cache::has($cache_key)) {
+        //if(true) {
             $response = $this->client->request('POST', "/api/v1/authentication/login", [ 
                 'headers' => [
                      'Accept' => 'application/json', 
@@ -96,8 +75,9 @@ class Airwallex {
             ]);
     
             $body = $response->getBody();
+            Log::info("token".json_encode($body));
             $json = json_decode($body);
-            Cache::put($cache_key, $json->token, 3600);
+            Cache::put($cache_key, $json->token, 1800);
             return $json->token;
         }else{
             return $token;
@@ -111,7 +91,7 @@ class Airwallex {
      * 
      */
     public function CreatePayment($data) {
-        $myheader= array(
+        $header= array(
                 'Content-Type: application/json; charset=utf-8',
                 'Content-Length: ' . strlen($data),
                 'Authorization: ' ."Bearer ".$this->token
@@ -119,9 +99,7 @@ class Airwallex {
 
         $url = $this->host."/api/v1/pa/payment_intents/create";
 
-        $curlheader = array('Content-Type:application/x-www-form-urlencoded;charset=utf-8');
-
-        $result = $this->http_curl($url, 'xml', $data, 6, FALSE, '',$myheader);
+        $result = $this->http_curl($url, 'xml', $data, 6, FALSE, '',$header);
 
         if($result['code']=='201') return json_decode($result['body']);
 
