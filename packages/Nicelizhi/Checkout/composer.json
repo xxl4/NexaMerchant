@@ -1,0 +1,26 @@
+{
+    "name": "nicelizhi/bagisto-checkout",
+    "license": "MIT",
+    "description" : "checkout package",
+    "authors": [
+        {
+            "name": "nicelizhi",
+            "email": "nice.lizhi@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Nicelizhi\\Checkout\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Nicelizhi\\Checkout\\Providers\\CheckoutServiceProvider"
+            ],
+            "aliases": {}
+        }
+    },
+    "minimum-stability": "dev"
+}
