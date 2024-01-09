@@ -2413,7 +2413,7 @@ window.dataLayer = window.dataLayer || [];
                 <?php foreach($package_products as $key=> $package_product) {
                     //var_dump($package_product);exit;
                     ?>    
-                case <?echo $package_product['id'];?>:
+                case <?php echo $package_product['id'];?>:
                     productArr['campaign_id'] = <?php echo $package_product['id'];?>;
                     productArr['product_name'] = "<?php echo $package_product['name'];?>";
                     productArr['per_product_price'] = <?php echo $package_product['per_product_price'];?>;
