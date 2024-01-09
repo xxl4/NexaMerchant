@@ -1765,13 +1765,13 @@ window.dataLayer = window.dataLayer || [];
 
                     <div class="d-none d-sm-block footer-inf footer-column-header">INFORMATION</div>
 
-                    <a href="https://dailydealswire.com/contact/" target="_blank">Contact Us</a><br>
+                    <a href="/contact/" target="_blank">Contact Us</a><br>
 
-                    <a href="https://dailydealswire.com/terms/" target="_blank">Terms &amp; Conditions</a><br>
+                    <a href="/terms/" target="_blank">Terms &amp; Conditions</a><br>
 
-                    <a href="https://dailydealswire.com/privacy/" target="_blank">Privacy Policy</a><br>
+                    <a href="/privacy/" target="_blank">Privacy Policy</a><br>
 
-                    <a href="https://dailydealswire.com/support/categories/" target="_blank">Returns</a><br>
+                    <a href="/support/categories/" target="_blank">Returns</a><br>
 
                 </div>
 
