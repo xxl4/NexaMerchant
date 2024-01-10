@@ -19,12 +19,16 @@ use Nicelizhi\Airwallex\Payment\Airwallex;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Cache;
+use Webkul\CMS\Repositories\CmsRepository;
+use Illuminate\Support\Facades\Redis;
 
 
 class CheckoutV1Controller extends Controller{
 
     private $cache_prefix_key = "checkout_v1_";
     private $view_prefix_key = "checkoutv1";
+
+    private $faq_cache_key = "faq";
 
       /**
      * Create a new controller instance.
@@ -42,6 +46,7 @@ class CheckoutV1Controller extends Controller{
         protected OrderRepository $orderRepository,
         protected InvoiceRepository $invoiceRepository,
         protected Airwallex $airwallex,
+        protected CmsRepository $cmsRepository,
         protected ThemeCustomizationRepository $themeCustomizationRepository
     )
     {
@@ -134,11 +139,18 @@ class CheckoutV1Controller extends Controller{
 
         $app_env = config("app.env");
 
+        // 获取 faq 数据
+        $redis = Redis::connection('default');
+        $faqItems = $redis->hgetall($this->faq_cache_key);
+
+        //sort($faqItems); // 排序
+        //var_dump($faqItems);
 
 
 
 
-        return view('checkout::product-detail-'.$this->view_prefix_key, compact('product','package_products', 'product_attributes', 'skus','productBgAttribute','productBgAttribute_mobile', 'attributes','app_env'));
+
+        return view('checkout::product-detail-'.$this->view_prefix_key, compact('product','package_products', 'product_attributes', 'skus','productBgAttribute','productBgAttribute_mobile', 'attributes','app_env','faqItems'));
 
     }
 
@@ -195,7 +207,7 @@ class CheckoutV1Controller extends Controller{
                 
                 $package_product = [];
                 $package_product['id'] = $i;
-                $package_product['srouce_price'] = $source_price;
+                $package_product['srouce_price'] = round($source_price,2);
                 $package_product['name'] = $i."x " . $product->name;
                 $package_product['image'] = $productBaseImage['medium_image_url'];
                 
@@ -212,13 +224,13 @@ class CheckoutV1Controller extends Controller{
                 $package_product['new_price_format'] = "$".$package_product['new_price'] ;
                 $tip1_price = (1 - round(($package_product['new_price'] / $package_product['old_price']), 2)) * 100;
                 $package_product['tip1'] = $tip1_price."% Savings";
-                $tip2_price = $package_product['new_price'] / $i;
+                $tip2_price = round($package_product['new_price'] / $i, 2);
                 $package_product['tip2'] = "$".$tip2_price;
                 $package_product['per_product_price'] = $tip2_price;
                 $shipping_fee = 9.99;
                 if($i==4) $shipping_fee = '0.00';
                 $package_product['shipping_fee'] = $shipping_fee;
-                $package_product['amount'] = $package_product['new_price']+$shipping_fee;
+                $package_product['amount'] = round($package_product['new_price']+$shipping_fee, 2);
                 $popup_info['name'] = null;
                 $popup_info['old_price'] = null;
                 $popup_info['new_price'] = null;
@@ -664,6 +676,17 @@ class CheckoutV1Controller extends Controller{
         }
 
         return $addressLines;
+    }
+
+    public function cms($slug, Request $request) {
+
+
+        $page = $this->cmsRepository->findByUrlKeyOrFail($slug);
+        if(!is_null($page)) {
+            return $page->html_content;
+        }
+        return "";
+
     }
 
 }
