@@ -26,6 +26,7 @@ use Illuminate\Support\Facades\Redis;
 class CheckoutV1Controller extends Controller{
 
     private $cache_prefix_key = "checkout_v1_";
+    private $cache_ttl = "360000";
     private $view_prefix_key = "checkoutv1";
 
     private $faq_cache_key = "faq";
@@ -60,8 +61,14 @@ class CheckoutV1Controller extends Controller{
     public function detail($slug, Request $request) {
         \Debugbar::disable(); /* 开启后容易出现前端JS报错的情况 */
 
-        $slugOrPath = $slug;
-        $product = $this->productRepository->findBySlug($slugOrPath);
+        $product_cache_key = $this->cache_prefix_key."product_".$slug;
+        $product = Cache::get($product_cache_key);
+
+        if(empty($product)) {
+            $slugOrPath = $slug;
+            $product = $this->productRepository->findBySlug($slugOrPath);
+            Cache::put($product_cache_key, $product, $this->cache_ttl);
+        }
 
         if (
             ! $product
@@ -73,8 +80,6 @@ class CheckoutV1Controller extends Controller{
         }
 
         visitor()->visit($product);
-
-        
 
         //
         //$package_products = [];
@@ -124,7 +129,7 @@ class CheckoutV1Controller extends Controller{
                 
                 $skus[] = $sku;
             }
-            Cache::put($cache_key, json_encode($skus), 36000);
+            Cache::put($cache_key, json_encode($skus), $this->cache_ttl);
         }else {
             $skus = json_decode($skus, JSON_OBJECT_AS_ARRAY);
         }
@@ -132,10 +137,18 @@ class CheckoutV1Controller extends Controller{
         $productBgAttribute = "";
         $productBgAttribute_mobile = "";
 
-        $productViewHelper = new \Webkul\Product\Helpers\ConfigurableOption();
-        $attributes = $productViewHelper->getConfigurationConfig($product);
+        $product_attributes_key = $this->cache_prefix_key."product_attributes_".$product->id;
 
-        //var_dump($attributes);exit;
+        $attributes = Cache::get($product_attributes_key);
+
+        if(empty($attribute)) {
+            $productViewHelper = new \Webkul\Product\Helpers\ConfigurableOption();
+            $attributes = $productViewHelper->getConfigurationConfig($product);
+            Cache::put($product_attributes_key, $attributes, $this->cache_ttl);
+        }
+
+        
+
 
         $app_env = config("app.env");
 
@@ -143,14 +156,48 @@ class CheckoutV1Controller extends Controller{
         $redis = Redis::connection('default');
         $faqItems = $redis->hgetall($this->faq_cache_key);
 
-        //sort($faqItems); // 排序
-        //var_dump($faqItems);
+        //size
+        $size_image_url_key = $this->cache_prefix_key."product_size_image_".$product->id;
+        $size_image_url = Cache::get($size_image_url_key);
+        if(empty($size_image_url)) {
+            $productSizeImage = $this->productAttributeValueRepository->findOneWhere([
+                'product_id'   => $product->id,
+                'attribute_id' => 32,
+            ]);
+            if(!is_null($productSizeImage)){
+                if(isset($productSizeImage->text_value)) {
+                    $size_image_url = $productSizeImage->text_value;
+                    Cache::set($size_image_url_key, $size_image_url, $this->cache_ttl);
+                }
+                
+            }
+        }
+
+        // ad pc pic
+        $pc_ad_image_url_key = $this->cache_prefix_key."product_pc_ad_image_".$product->id;
+        $pc_ad_image_url = Cache::get($pc_ad_image_url_key);
+        if(empty($pc_ad_image_url)) {
+            $productBgAttribute = $this->productAttributeValueRepository->findOneWhere([
+                'product_id'   => $product->id,
+                'attribute_id' => 29,
+            ]);
+            if(!is_null($productBgAttribute)){
+                if(isset($productBgAttribute->text_value)) {
+                    $pc_ad_image_url = $productBgAttribute->text_value;
+                    Cache::set($pc_ad_image_url_key, $size_image_url, $this->cache_ttl);
+                }
+                
+            }
+        }
+
+        //comments
+        $comments = $redis->hgetall($this->cache_prefix_key."product_comments");
+
+        ///var_dump($comments);exit;
 
 
 
-
-
-        return view('checkout::product-detail-'.$this->view_prefix_key, compact('product','package_products', 'product_attributes', 'skus','productBgAttribute','productBgAttribute_mobile', 'attributes','app_env','faqItems'));
+        return view('checkout::product-detail-'.$this->view_prefix_key, compact('product','package_products', 'product_attributes', 'skus','productBgAttribute','productBgAttribute_mobile', 'attributes','app_env','faqItems','size_image_url','pc_ad_image_url','comments'));
 
     }
 
@@ -239,7 +286,7 @@ class CheckoutV1Controller extends Controller{
                 $package_products[] = $package_product;
             }
 
-            Cache::put($cache_key, json_encode($package_products), 36000);
+            Cache::put($cache_key, json_encode($package_products), $this->cache_ttl);
             return $package_products;
         }
         

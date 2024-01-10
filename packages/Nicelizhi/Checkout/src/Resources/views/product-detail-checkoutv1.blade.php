@@ -1452,11 +1452,15 @@ window.dataLayer = window.dataLayer || [];
                         <hr class="mt-2">
                         <!-- NEW TESTIMONIAL SECTION STARTS HERE -->
                         <div class="testi-sec">
+                        <?php foreach($comments as $key=>$comment) { 
+                            $comment = json_decode($comment);    
+                            //var_dump($comment);exit;
+                        ?>
                             <div class="testi-row">
                                 <div class="testi-row-lft">
                                     <div class="testi-lft-abt">
-                                        <p class="testi-pics">E</p>
-                                        <p class="t-name">Elena M.</p>
+                                        <p class="testi-pics"><?php echo substr($comment->name, 0, 1);?></p>
+                                        <p class="t-name"><?php echo $comment->name;?></p>
                                         <p class="t-vryfd">
                                             <img src="/checkout/v1/app/desktop/images/vrfy-seal-c.png" alt=""> Verified Buyer
                                         </p>
@@ -1470,182 +1474,14 @@ window.dataLayer = window.dataLayer || [];
                                 </div>
                                 
                                 <div class="testi-row-rght">
-                                    <span>Winter Hiker</span>
+                                    <span><?php echo $comment->title;?></span>
                                     <img src="/checkout/v1/app/desktop/images/star.png" class="t-star">
-                                    <p class="testi-paragraph">These heating vests can't be beat. I've never felt this warm during my winter hikes! It truly covers all the right spots for optimal warmth. Wish I found them sooner!</p>
+                                    <p class="testi-paragraph"><?php echo $comment->content;?></p>
                                    
                                 </div>
                             </div>
-                            
-                            <div class="testi-row">
-                                <div class="testi-row-lft">
-                                    <div class="testi-lft-abt">
-                                        <p class="testi-pics">J</p>
-                                        <p class="t-name">Jackson R.</p>
-                                        <p class="t-vryfd">
-                                            <img src="/checkout/v1/app/desktop/images/vrfy-seal-c.png" alt=""> Verified Buyer
-                                        </p>
-                                    </div>
-                                    <div class="test-prod">
-                                        <div class="t-prod-dv">
-                                            <img src="/checkout/v1/app/desktop/images/t-prod1.jpg" alt="">
-                                        </div>
-                                        <p class="test-prod-txt">Reviewing<br><span>Hatmeo Heated Vest</span></p>
-                                    </div>
-                                </div>
-                                
-                                <div class="testi-row-rght">
-                                    <span>Morning Jogger</span>
-                                    <img src="/checkout/v1/app/desktop/images/star.png" class="t-star">
-                                    <p class="testi-paragraph">Instant warmth, even on the coldest mornings. I was skeptical at first, but after trying it out, I'm buying one for my entire family!</p>
-                                    
-                                </div>
-                            </div>
-                            
-                            <div class="testi-row">
-                                <div class="testi-row-lft">
-                                    <div class="testi-lft-abt">
-                                        <p class="testi-pics">L</p>
-                                        <p class="t-name">Lucia N.</p>
-                                        <p class="t-vryfd">
-                                            <img src="/checkout/v1/app/desktop/images/vrfy-seal-c.png" alt=""> Verified Buyer
-                                        </p>
-                                    </div>
-                                    <div class="test-prod">
-                                        <div class="t-prod-dv">
-                                            <img src="/checkout/v1/app/desktop/images/t-prod1.jpg" alt="">
-                                        </div>
-                                        <p class="test-prod-txt">Reviewing<br><span>Hatmeo Heated Vest</span></p>
-                                    </div>
-                                </div>
-                                <div class="testi-row-rght">
-                                    <span>City Commuter</span>
-                                    <img src="/checkout/v1/app/desktop/images/star.png" class="t-star">
-                                    <p class="testi-paragraph">The 8-hour charge is not a joke! Keeps me warm all day while I'm commuting around the city. No more dreading those chilly train platforms.</p>
-                                    
-                                </div>
-                            </div>
-                            
-                            <div class="testi-row">
-                                <div class="testi-row-lft">
-                                    <div class="testi-lft-abt">
-                                        <p class="testi-pics">I</p>
-                                        <p class="t-name">Isabel F.</p>
-                                        <p class="t-vryfd">
-                                            <img src="/checkout/v1/app/desktop/images/vrfy-seal-c.png" alt=""> Verified Buyer
-                                        </p>
-                                    </div>
-                                    <div class="test-prod">
-                                        <div class="t-prod-dv">
-                                            <img src="/checkout/v1/app/desktop/images/t-prod1.jpg" alt="">
-                                        </div>
-                                        <p class="test-prod-txt">Reviewing<br><span>Hatmeo Heated Vest</span></p>
-                                    </div>
-                                </div>
-                                
-                                <div class="testi-row-rght">
-                                    <span>Snowboarder</span>
-                                    <img src="/checkout/v1/app/desktop/images/star.png" class="t-star">
-                                    <p class="testi-paragraph">Press, set, shred! Love how I can easily adjust the heat intensity on the slopes. The battery lasts the entire day, making my snowboarding sessions so much more enjoyable.</p>
-                                </div>
-                            </div>
 
-                            <div class="testi-row">
-                                <div class="testi-row-lft">
-                                    <div class="testi-lft-abt">
-                                        <p class="testi-pics">N</p>
-                                        <p class="t-name">Nathan L.</p>
-                                        <p class="t-vryfd">
-                                            <img src="/checkout/v1/app/desktop/images/vrfy-seal-c.png" alt=""> Verified Buyer
-                                        </p>
-                                    </div>
-                                    <div class="test-prod">
-                                        <div class="t-prod-dv">
-                                            <img src="/checkout/v1/app/desktop/images/t-prod1.jpg" alt="">
-                                        </div>
-                                        <p class="test-prod-txt">Reviewing<br><span>Hatmeo Heated Vest</span></p>
-                                    </div>
-                                </div>
-                                
-                                <div class="testi-row-rght">
-                                    <span>Campsite Enthusiast</span>
-                                    <img src="/checkout/v1/app/desktop/images/star.png" class="t-star">
-                                    <p class="testi-paragraph">10,000mAh battery for this kind of warmth? Impressive. My camp nights just got a lot cozier.</p>
-                                </div>
-                            </div>
-
-
-                            <div class="testi-row">
-                                <div class="testi-row-lft">
-                                    <div class="testi-lft-abt">
-                                        <p class="testi-pics">S</p>
-                                        <p class="t-name">Sophia G.</p>
-                                        <p class="t-vryfd">
-                                            <img src="/checkout/v1/app/desktop/images/vrfy-seal-c.png" alt=""> Verified Buyer
-                                        </p>
-                                    </div>
-                                    <div class="test-prod">
-                                        <div class="t-prod-dv">
-                                            <img src="/checkout/v1/app/desktop/images/t-prod1.jpg" alt="">
-                                        </div>
-                                        <p class="test-prod-txt">Reviewing<br><span>Hatmeo Heated Vest</span></p>
-                                    </div>
-                                </div>
-                                
-                                <div class="testi-row-rght">
-                                    <span>Outdoor Photographer</span>
-                                    <img src="/checkout/v1/app/desktop/images/star.png" class="t-star">
-                                    <p class="testi-paragraph">No more bulky layers for me. This vest's slim design with unbeatable warmth has revolutionized my winter shoots.</p>
-                                </div>
-                            </div>
-
-                            <div class="testi-row">
-                                <div class="testi-row-lft">
-                                    <div class="testi-lft-abt">
-                                        <p class="testi-pics">D</p>
-                                        <p class="t-name">Derek W.</p>
-                                        <p class="t-vryfd">
-                                            <img src="/checkout/v1/app/desktop/images/vrfy-seal-c.png" alt=""> Verified Buyer
-                                        </p>
-                                    </div>
-                                    <div class="test-prod">
-                                        <div class="t-prod-dv">
-                                            <img src="/checkout/v1/app/desktop/images/t-prod1.jpg" alt="">
-                                        </div>
-                                        <p class="test-prod-txt">Reviewing<br><span>Hatmeo Heated Vest</span></p>
-                                    </div>
-                                </div>
-                                
-                                <div class="testi-row-rght">
-                                    <span>Dog Walker</span>
-                                    <img src="/checkout/v1/app/desktop/images/star.png" class="t-star">
-                                    <p class="testi-paragraph">Rain or snow, this vest keeps me toasty. Plus, the fact that it's washable is a lifesaver!</p>
-                                </div>
-                            </div>
-
-                            <div class="testi-row">
-                                <div class="testi-row-lft">
-                                    <div class="testi-lft-abt">
-                                        <p class="testi-pics">S</p>
-                                        <p class="t-name">Samuel R.</p>
-                                        <p class="t-vryfd">
-                                            <img src="/checkout/v1/app/desktop/images/vrfy-seal-c.png" alt=""> Verified Buyer
-                                        </p>
-                                    </div>
-                                    <div class="test-prod">
-                                        <div class="t-prod-dv">
-                                            <img src="/checkout/v1/app/desktop/images/t-prod1.jpg" alt="">
-                                        </div>
-                                        <p class="test-prod-txt">Reviewing<br><span>Hatmeo Heated Vest</span></p>
-                                    </div>
-                                </div>
-                                
-                                <div class="testi-row-rght">
-                                    <span>Ice Fisher</span>
-                                    <img src="/checkout/v1/app/desktop/images/star.png" class="t-star">
-                                    <p class="testi-paragraph">Finally, a vest that delivers on its promise! 3 heat levels to match the varying cold conditions.</p>
-                                </div>
-                            </div>
+                        <?php } ?>
                             
                         </div>
                         <!-- NEW TESTIMONIAL SECTION STARTS HERE -->
@@ -1821,7 +1657,7 @@ window.dataLayer = window.dataLayer || [];
                     <span aria-hidden="true">×</span>
                 </button>
                 <div class="modal-body p-0">
-                    <img src="/checkout/v1/app/desktop/images/discount01.png" class="img-fluid apply_coupon">
+                    <img src="/checkout/v1/app/desktop/images/<?php echo $product['id'];?>_ad.jpg" class="img-fluid apply_coupon">
                 </div>
             </div>
         </div>
@@ -1847,7 +1683,7 @@ window.dataLayer = window.dataLayer || [];
                     <span aria-hidden="true">×</span>
                 </button>
                 <div class="modal-body p-0">
-                    <img src="/checkout/v1/app/desktop/images/size-chart.png" class="img-fluid d-block mx-auto size_chart">
+                    <img src="/storage/<?php echo $size_image_url;?>" class="img-fluid d-block mx-auto size_chart">
                 </div>
             </div>
         </div>

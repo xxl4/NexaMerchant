@@ -40,6 +40,7 @@ class CheckoutServiceProvider extends ServiceProvider
     public function register()
     {
         $this->registerConfig();
+        $this->registerCommands();
     }
 
     /**
@@ -93,5 +94,19 @@ class CheckoutServiceProvider extends ServiceProvider
     protected function createACL()
     {
         
+    }
+
+    /**
+     * Register the console commands of this package.
+     *
+     * @return void
+     */
+    protected function registerCommands(): void
+    {
+        if ($this->app->runningInConsole()) {
+            $this->commands([
+                \Nicelizhi\Checkout\Console\Commands\Redis\Post::class,
+            ]);
+        }
     }
 }
