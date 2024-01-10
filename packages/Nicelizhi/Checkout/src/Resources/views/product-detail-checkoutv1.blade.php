@@ -2256,6 +2256,8 @@ window.dataLayer = window.dataLayer || [];
             <?php foreach($attributes['attributes'] as $key=>$attribute) { ?>
                 <?php if($attribute['id']!=24) continue; ?>
                 var select_option_html = "";
+                $("#size_"+size_id).append(select_option_html);
+
                 // <option value="S" data-camp="1" data-bundle="3">S</option>
                 <?php foreach($attribute['options'] as $kk=>$option) { ?>
                     select_option_html='<option value="<?php echo $option['label'] ?>" data-camp="<?php echo $option['id'] ?>" data-bundle="'+size+'"><?php echo $option['label'] ?></option>';
