@@ -416,13 +416,14 @@ window.dataLayer = window.dataLayer || [];
                             <div class="offer-content d-flex align-items-center py-2">
 
                                 <div class="offer-content-img ms-5">
+                                    
+                                        <img src="{{ $productBaseImage['small_image_url'] }}" alt="" class="img-fluid">
+                                    
 
-                                    <img src="{{ $productBaseImage['small_image_url'] }}" alt="" class="img-fluid">
-
-                                    <div class="d-flex justify-content-center align-items-center size_selection size_selection_three">
+                                    <div class="d-flex justify-content-center align-items-center size_selection <?php if($package_product['id']==3) { echo "size_selection_three"; ?><?php }elseif($package_product['id']==1){ echo "size_selection_single";}elseif($package_product['id']==2){echo "size_selection_two";}?>">
                                                 
                                                 <?php for($i=1;$i<=$package_product['id'];$i++) { ?>
-                                                    <div class="attribute_select" style="float:left;width:60px;">
+                                                    <div class="attribute_select" style="float:left;width:80px;">
                                                     <select name="color_<?php echo $package_product['id'];?>_<?php echo $i;?>" id="color_<?php echo $package_product['id'];?>_<?php echo $i;?>" class="color_filter" onchange="attributeChange(this, '<?php echo $package_product['id'];?>' ,'<?php echo $package_product['id'];?>_<?php echo $i;?>')">
                                                         <option value="" data-bundle="<?php echo $package_product['id'];?>">Color</option>
                                                         <?php foreach($attributes['attributes'] as $key=>$attribute) {
@@ -1279,7 +1280,7 @@ window.dataLayer = window.dataLayer || [];
 
                                         <div class="seal-title mb-1">SHOP WITH CONFIDENCE</div>
 
-                                        <div class="seal-content fs-8">DailyDealsWire.com is Safe & Secure Guaranteed! You'll pay nothing if unauthorized charges are made to your credit card as a result of shopping at DailyDealsWire.com</div>
+                                        <div class="seal-content fs-8">hatmeocom is Safe & Secure Guaranteed! You'll pay nothing if unauthorized charges are made to your credit card as a result of shopping at hatmeocom</div>
 
                                     </div>
 
@@ -1591,7 +1592,7 @@ window.dataLayer = window.dataLayer || [];
 
                                 <div class="accordion-body">
 
-                                    No, the battery is not included with the vest. However, you can use any 5V power banks to power the vest. Additionally, we offer a 10,000mAh lithium-Ion power bank which can be purchased at an exclusive discount during checkout or from our home store: <a href="https://dailydealswire.29next.store/catalogue/powerbank-ultra_344/" target="_blank" style="word-break: break-all;">online store here</a>
+                                    No, the battery is not included with the vest. However, you can use any 5V power banks to power the vest. Additionally, we offer a 10,000mAh lithium-Ion power bank which can be purchased at an exclusive discount during checkout or from our home store: <a href="https://hatmeo29next.store/catalogue/powerbank-ultra_344/" target="_blank" style="word-break: break-all;">online store here</a>
 
                                 </div>
 
@@ -1765,15 +1766,17 @@ window.dataLayer = window.dataLayer || [];
 
                     <div class="d-none d-sm-block footer-inf footer-column-header">INFORMATION</div>
 
-                    <a href="/contact/" target="_blank">Contact Us</a><br>
+                    <a class="btn-action btn" href="/checkout/v1/cms/contact/" >Contact Us</a><br>
 
-                    <a href="/terms/" target="_blank">Terms &amp; Conditions</a><br>
+                    <a class="btn-action btn" href="/checkout/v1/cms/terms/" >Terms &amp; Conditions</a><br>
 
-                    <a href="/privacy/" target="_blank">Privacy Policy</a><br>
+                    <a class="btn-action btn" data-url="/checkout/v1/cms/privacy-policy">Privacy Policy</a><br>
 
-                    <a href="/support/categories/" target="_blank">Returns</a><br>
+                    <a class="btn-action btn" href="/checkout/v1/cms/returns">Returns</a><br>
 
                 </div>
+
+
 
                 <div class="d-none d-sm-block col-sm-4 col-md-3 col-lg-3 footer-column">
 
@@ -1818,6 +1821,23 @@ window.dataLayer = window.dataLayer || [];
         </div>
 
     </footer>
+
+    <!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header"> 
+            </div>
+            <div class="modal-body modal-body-ajax"><div class="te"></div></div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" class="close" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
 
     <!-- CVV modal -->
     <div class="modal fade" id="cvvModal" tabindex="-1" aria-labelledby="cvvLocations" aria-hidden="true">
@@ -2054,6 +2074,28 @@ window.dataLayer = window.dataLayer || [];
         var AppCoupon = 0;
 
         $( document ).ready(function() {
+
+
+
+            $('.btn-action').click(function(){
+                var url = $(this).data("url"); 
+                $.ajax({
+                    type: "GET",
+                    url: url,
+                    success: function(res) {
+                        $('.modal-body-ajax').html(res);
+                        // show modal
+                        $('#myModal').modal('show');
+                        
+                    },
+                    error:function(request, status, error) {
+                        console.log("ajax call went wrong:" + request.responseText);
+                    }
+                });
+            });
+
+
+
             dataLayer.push({ ecommerce: null });  // Clear the previous ecommerce object.
             window.dataLayer.push({'event': 'checkout_page_view'});
             dataLayer.push({
@@ -2080,7 +2122,7 @@ window.dataLayer = window.dataLayer || [];
 
             // setTimeout( ()=>{
             //     $.ajax({
-            //         url: 'https://offer.dailydealswire.com/checkout/v1/set-affiliate.php'+ location.search,
+            //         url: 'https://offer.hatmeocom/checkout/v1/set-affiliate.php'+ location.search,
             //         method: 'post',
             //         //data: {affid:"", afid:"", evclid:EF.getTransactionId(EF.urlParameter('oid'))},
             //         data: { affid: "", afid: "", evclid: typeof EF !== 'undefined' ? EF.getTransactionId(EF.urlParameter('oid')) : Evclid },
@@ -2855,7 +2897,7 @@ window.dataLayer = window.dataLayer || [];
                         }
                         else
                         {
-                            //window.location.href = 'https://offer.dailydealswire.com/checkout/v1/upsell2/?' + res[1];
+                            //window.location.href = 'https://offer.hatmeocom/checkout/v1/upsell2/?' + res[1];
 
                             console.log(cardNumber)
 
