@@ -1550,13 +1550,11 @@ window.dataLayer = window.dataLayer || [];
 
                     <div class="d-none d-sm-block footer-inf footer-column-header">INFORMATION</div>
 
+                    <a class="btn-action btn" data-url="/checkout/v1/cms/contact-us" >About Us</a><br>
                     <a class="btn-action btn" data-url="/checkout/v1/cms/contact-us" >Contact Us</a><br>
-
-                    <a class="btn-action btn" data-url="/checkout/v1/cms/terms-of-use" >Terms &amp; Conditions</a><br>
-
+                    <a class="btn-action btn" data-url="/checkout/v1/cms/shipping-policy" >Shipping Policy</a><br>
                     <a class="btn-action btn" data-url="/checkout/v1/cms/privacy-policy">Privacy Policy</a><br>
-
-                    <a class="btn-action btn" data-url="/checkout/v1/cms/return-policy">Returns</a><br>
+                    <a class="btn-action btn" data-url="/checkout/v1/cms/return-policy">Refund Policy</a><br>
 
                 </div>
 
