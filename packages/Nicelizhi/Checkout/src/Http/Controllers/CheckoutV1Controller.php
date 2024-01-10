@@ -275,7 +275,7 @@ class CheckoutV1Controller extends Controller{
                 $package_product['tip2'] = "$".$tip2_price;
                 $package_product['per_product_price'] = $tip2_price;
                 $shipping_fee = 9.99;
-                if($i==4) $shipping_fee = '0.00';
+                // if($i==4) $shipping_fee = '0.00'; 先不开启免费
                 $package_product['shipping_fee'] = $shipping_fee;
                 $package_product['amount'] = round($package_product['new_price']+$shipping_fee, 2);
                 $popup_info['name'] = null;
