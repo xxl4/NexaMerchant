@@ -2252,11 +2252,11 @@ window.dataLayer = window.dataLayer || [];
             console.log();
 
             var select_option_html = "";
-            $("#size_"+size_id).append(select_option_html);
+            $("#size_"+size_id).empty();
             <?php foreach($attributes['attributes'] as $key=>$attribute) { ?>
                 <?php if($attribute['id']!=24) continue; ?>
                 var select_option_html = "";
-                $("#size_"+size_id).append(select_option_html);
+                $("#size_"+size_id).empty();
 
                 // <option value="S" data-camp="1" data-bundle="3">S</option>
                 <?php foreach($attribute['options'] as $kk=>$option) { ?>
