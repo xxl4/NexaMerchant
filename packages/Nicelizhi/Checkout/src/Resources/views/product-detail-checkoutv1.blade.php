@@ -199,6 +199,81 @@ window.dataLayer = window.dataLayer || [];
                 padding: 0;
             }
         }
+
+        .size_selection span{
+            font-size:12px;
+        }
+            .size_selection {
+            width:200px;
+        } 
+
+        @media (max-width:1919px) {
+
+        }
+
+        @media (max-width:1023px) {
+            .modal-dialog {
+                max-width: 800px; /* New width for default modal */
+            }
+
+            /* .size_selection .select_size_1 {
+                width:100px;
+                max-width:100px;
+            }
+            .size_selection .select_size_2 {
+                width:80px;
+                max-width:80px;
+            }
+            .size_selection .select_size_3 {
+                width:65px;
+                max-width:65px;
+            }
+            .size_selection span {
+                width: 80px;
+                display: block;
+                font-size: 12px;
+                font-weight: bold;
+            } */
+            .size_selection span{
+                font-size:12px;
+            }
+             .size_selection {
+                width:200px;
+            } 
+        }
+
+        @media (max-width:767px) {
+            .modal-dialog {
+                max-width: 600px; /* New width for default modal */
+            }
+
+            /* .size_selection .select_size_1 {
+                width:65px;
+                max-width:65px;
+            }
+            .size_selection .select_size_2 {
+                width:60px;
+                max-width:60px;
+            }
+            .size_selection .select_size_3 {
+                width:55px;
+                max-width:55px;
+            }
+            .size_selection span {
+                width: 80px;
+                display: block;
+                font-size: 12px;
+                font-weight: bold;
+            } */
+
+            .size_selection span{
+                font-size:12px;
+            }
+             .size_selection {
+                width:140px;
+            } 
+
+        }
     </style> 
 </head>
 
@@ -412,18 +487,26 @@ window.dataLayer = window.dataLayer || [];
                                 <?php } ?>
 
                             </div>
+                            <style>
+                               
+                            </style>
 
                             <div class="offer-content d-flex align-items-center py-2">
 
                                 <div class="offer-content-img ms-5">
 
-                                    <img src="{{ $productBaseImage['small_image_url'] }}" alt="" class="img-fluid">
+                                    <img src="/checkout/v1/app/desktop/images/<?php echo $product['id'];?>.png" alt="" class="img-fluid pic_big_show">
+                                   
+                                </div>
 
-                                    <div class="d-flex justify-content-center align-items-center size_selection size_selection_three">
+                                <div class="offer-content-info pe-2 ms-2 ms-md-3">
+
+                                        <div class="justify-content-center align-items-center size_selection pe-10 ms-10 md-12 <?php if($package_product['id']==3) { echo "size_selection_three"; ?><?php }elseif($package_product['id']==1){ echo "size_selection_single";}elseif($package_product['id']==2){echo "size_selection_two";}?>">
                                                 
                                                 <?php for($i=1;$i<=$package_product['id'];$i++) { ?>
-                                                    <div class="attribute_select" style="float:left;width:60px;">
-                                                    <select name="color_<?php echo $package_product['id'];?>_<?php echo $i;?>" id="color_<?php echo $package_product['id'];?>_<?php echo $i;?>" class="color_filter" onchange="attributeChange(this, '<?php echo $package_product['id'];?>' ,'<?php echo $package_product['id'];?>_<?php echo $i;?>')">
+                                                    <div class="attribute_select">
+                                                        <span>Item<?php echo $i;?>:</span>
+                                                    <select name="color_<?php echo $package_product['id'];?>_<?php echo $i;?>" id="color_<?php echo $package_product['id'];?>_<?php echo $i;?>" class="color_filter select_size_<?php echo $package_product['id'];?>" onchange="attributeChange(this, '<?php echo $package_product['id'];?>' ,'<?php echo $package_product['id'];?>_<?php echo $i;?>')">
                                                         <option value="" data-bundle="<?php echo $package_product['id'];?>">Color</option>
                                                         <?php foreach($attributes['attributes'] as $key=>$attribute) {
                                                             if($key!=0) continue;
@@ -434,20 +517,15 @@ window.dataLayer = window.dataLayer || [];
                                                         <?php } ?>
 
                                                     </select>
-                                                    <select name="size_<?php echo $package_product['id'];?>_<?php echo $i;?>" id="size_<?php echo $package_product['id'];?>_<?php echo $i;?>" class="size_filter">
+                                                    <select name="size_<?php echo $package_product['id'];?>_<?php echo $i;?>" id="size_<?php echo $package_product['id'];?>_<?php echo $i;?>" class="size_filter select_size_<?php echo $package_product['id'];?>">
                                                         <option value="" data-bundle="<?php echo $package_product['id'];?>">Size</option>
                                                     </select>
                                                     </div>
                                                 <?php } ?>
                                                
                                         </div>
-                                </div>
 
-                                <div class="offer-content-info pe-2 ms-2 ms-md-3">
-                                    <div class="offer-content-info-text">
-                                        <!-- <div class="recommended_deal_area">
-                                            <img src="/checkout/v1/app/desktop/images/recommended-deal.png" alt="Recommended Deal">
-                                        </div>-->
+                                    <!-- <div class="offer-content-info-text">
                                         <div class="offer-content-title">Big Savings <span class="badge bg-danger ms-sm-2 exit-pop-10-badge" style="display:none;">Extra 5% OFF</span></div>
 
                                         <div class="offer-content-subtitle"><?php echo $package_product['name'];?> </div>
@@ -479,7 +557,7 @@ window.dataLayer = window.dataLayer || [];
                                             $<span class="buy_3_total_price"><?php echo $package_product['amount']; ?></span>
 
                                         </div>
-                                    </div>
+                                    </div> -->
                                     <div class="offer-content-info-btn d-block d-sm-none">
                                         <button class="badge bg-primary text-white mb-3 size_chart_btn p-2" data-bs-toggle="modal" data-bs-target="#sizeChartModal">Size Chart <i class="fa-solid fa-ruler-combined"></i></button>
                                     </div>
@@ -500,8 +578,16 @@ window.dataLayer = window.dataLayer || [];
 
                                 </div>
                             </div>
+                            
 
                             <div class="offer-footer">
+
+                                <div class="offer-footer-status d-flex justify-content-around align-items-center p-2 fs-8">
+                                    <div><?php echo $package_product['name'];?></div>
+                                    <div><span class="text-danger"><?php echo $package_product['tip2'];?> </span><span class="fs-8 fw-light">/each</span></div>
+                                    <div>Orig:$<span class=""><?php echo $package_product['srouce_price'];?>&nbsp;&nbsp;</span></div>
+                                    <div class="text-danger">Total:$<span class="buy_3_total_price"><?php echo $package_product['amount']; ?></span></div>
+                                </div>
 
                                 <div class="offer-footer-features  px-3 py-2 m-1 fs-8">
 
@@ -652,6 +738,16 @@ window.dataLayer = window.dataLayer || [];
                                                       <option value="paypal">Paypal</option>
                                                       <option value="airwallex">Airwallex</option>
                                                    </select>
+                        
+                        <div class="div-line"><span><i class="fas fa-lock me-2"></i></span>Express Checkout</div>
+                        <div class="checkout_express-buttons">
+                            <div class="d-grid mb-3">
+                                <button type="button" class="btn btn-lg btn-express is-paypal pay-with-paypal zoom-fade"> <span class="fs-8 text-dark me-1">Pay with</span> <img src="/checkout/v1/app/desktop/images/paypal.svg" height="50px" alt=""></button>
+                            </div>
+                        </div>
+                        
+
+                        <div class="div-line"><span><i class="fas fa-lock me-2"></i></span>OR Checkout WITH Credit Card</div>
 
                         <div class="step-title">
                             STEP 2: CUSTOMER INFORMATION
@@ -726,7 +822,7 @@ window.dataLayer = window.dataLayer || [];
                                         </div>
                                     </div>
                                     
-                                    <div class="col-12">
+                                    <!-- <div class="col-12">
 
                                         <div class="ex-protection">
 
@@ -754,7 +850,7 @@ window.dataLayer = window.dataLayer || [];
 
                                         </div>
 
-                                    </div>
+                                    </div> -->
                                 </div>
 
                             </div>
@@ -1192,12 +1288,7 @@ window.dataLayer = window.dataLayer || [];
                         </div>
                     </div>
 
-                    <div class="div-line"><span><i class="fas fa-lock me-2"></i></span>OR PAY SECURELY WITH PAYPAL</div>
-                    <div class="checkout_express-buttons">
-                        <div class="d-grid mb-3">
-                            <button type="button" class="btn btn-lg btn-express is-paypal pay-with-paypal zoom-fade"> <span class="fs-8 text-dark me-1">Pay with</span> <img src="/checkout/v1/app/desktop/images/paypal.svg" height="50px" alt=""></button>
-                        </div>
-                    </div>
+                    
 
                     <div id="form-footer" class="checkout_form checkout_form-footer p-2 p-lg-3 mb-3">
 
@@ -1279,7 +1370,7 @@ window.dataLayer = window.dataLayer || [];
 
                                         <div class="seal-title mb-1">SHOP WITH CONFIDENCE</div>
 
-                                        <div class="seal-content fs-8">DailyDealsWire.com is Safe & Secure Guaranteed! You'll pay nothing if unauthorized charges are made to your credit card as a result of shopping at DailyDealsWire.com</div>
+                                        <div class="seal-content fs-8">hatmeocom is Safe & Secure Guaranteed! You'll pay nothing if unauthorized charges are made to your credit card as a result of shopping at hatmeocom</div>
 
                                     </div>
 
@@ -1361,11 +1452,15 @@ window.dataLayer = window.dataLayer || [];
                         <hr class="mt-2">
                         <!-- NEW TESTIMONIAL SECTION STARTS HERE -->
                         <div class="testi-sec">
+                        <?php foreach($comments as $key=>$comment) { 
+                            $comment = json_decode($comment);    
+                            //var_dump($comment);exit;
+                        ?>
                             <div class="testi-row">
                                 <div class="testi-row-lft">
                                     <div class="testi-lft-abt">
-                                        <p class="testi-pics">E</p>
-                                        <p class="t-name">Elena M.</p>
+                                        <p class="testi-pics"><?php echo substr($comment->name, 0, 1);?></p>
+                                        <p class="t-name"><?php echo $comment->name;?></p>
                                         <p class="t-vryfd">
                                             <img src="/checkout/v1/app/desktop/images/vrfy-seal-c.png" alt=""> Verified Buyer
                                         </p>
@@ -1379,182 +1474,14 @@ window.dataLayer = window.dataLayer || [];
                                 </div>
                                 
                                 <div class="testi-row-rght">
-                                    <span>Winter Hiker</span>
+                                    <span><?php echo $comment->title;?></span>
                                     <img src="/checkout/v1/app/desktop/images/star.png" class="t-star">
-                                    <p class="testi-paragraph">These heating vests can't be beat. I've never felt this warm during my winter hikes! It truly covers all the right spots for optimal warmth. Wish I found them sooner!</p>
+                                    <p class="testi-paragraph"><?php echo $comment->content;?></p>
                                    
                                 </div>
                             </div>
-                            
-                            <div class="testi-row">
-                                <div class="testi-row-lft">
-                                    <div class="testi-lft-abt">
-                                        <p class="testi-pics">J</p>
-                                        <p class="t-name">Jackson R.</p>
-                                        <p class="t-vryfd">
-                                            <img src="/checkout/v1/app/desktop/images/vrfy-seal-c.png" alt=""> Verified Buyer
-                                        </p>
-                                    </div>
-                                    <div class="test-prod">
-                                        <div class="t-prod-dv">
-                                            <img src="/checkout/v1/app/desktop/images/t-prod1.jpg" alt="">
-                                        </div>
-                                        <p class="test-prod-txt">Reviewing<br><span>Hatmeo Heated Vest</span></p>
-                                    </div>
-                                </div>
-                                
-                                <div class="testi-row-rght">
-                                    <span>Morning Jogger</span>
-                                    <img src="/checkout/v1/app/desktop/images/star.png" class="t-star">
-                                    <p class="testi-paragraph">Instant warmth, even on the coldest mornings. I was skeptical at first, but after trying it out, I'm buying one for my entire family!</p>
-                                    
-                                </div>
-                            </div>
-                            
-                            <div class="testi-row">
-                                <div class="testi-row-lft">
-                                    <div class="testi-lft-abt">
-                                        <p class="testi-pics">L</p>
-                                        <p class="t-name">Lucia N.</p>
-                                        <p class="t-vryfd">
-                                            <img src="/checkout/v1/app/desktop/images/vrfy-seal-c.png" alt=""> Verified Buyer
-                                        </p>
-                                    </div>
-                                    <div class="test-prod">
-                                        <div class="t-prod-dv">
-                                            <img src="/checkout/v1/app/desktop/images/t-prod1.jpg" alt="">
-                                        </div>
-                                        <p class="test-prod-txt">Reviewing<br><span>Hatmeo Heated Vest</span></p>
-                                    </div>
-                                </div>
-                                <div class="testi-row-rght">
-                                    <span>City Commuter</span>
-                                    <img src="/checkout/v1/app/desktop/images/star.png" class="t-star">
-                                    <p class="testi-paragraph">The 8-hour charge is not a joke! Keeps me warm all day while I'm commuting around the city. No more dreading those chilly train platforms.</p>
-                                    
-                                </div>
-                            </div>
-                            
-                            <div class="testi-row">
-                                <div class="testi-row-lft">
-                                    <div class="testi-lft-abt">
-                                        <p class="testi-pics">I</p>
-                                        <p class="t-name">Isabel F.</p>
-                                        <p class="t-vryfd">
-                                            <img src="/checkout/v1/app/desktop/images/vrfy-seal-c.png" alt=""> Verified Buyer
-                                        </p>
-                                    </div>
-                                    <div class="test-prod">
-                                        <div class="t-prod-dv">
-                                            <img src="/checkout/v1/app/desktop/images/t-prod1.jpg" alt="">
-                                        </div>
-                                        <p class="test-prod-txt">Reviewing<br><span>Hatmeo Heated Vest</span></p>
-                                    </div>
-                                </div>
-                                
-                                <div class="testi-row-rght">
-                                    <span>Snowboarder</span>
-                                    <img src="/checkout/v1/app/desktop/images/star.png" class="t-star">
-                                    <p class="testi-paragraph">Press, set, shred! Love how I can easily adjust the heat intensity on the slopes. The battery lasts the entire day, making my snowboarding sessions so much more enjoyable.</p>
-                                </div>
-                            </div>
 
-                            <div class="testi-row">
-                                <div class="testi-row-lft">
-                                    <div class="testi-lft-abt">
-                                        <p class="testi-pics">N</p>
-                                        <p class="t-name">Nathan L.</p>
-                                        <p class="t-vryfd">
-                                            <img src="/checkout/v1/app/desktop/images/vrfy-seal-c.png" alt=""> Verified Buyer
-                                        </p>
-                                    </div>
-                                    <div class="test-prod">
-                                        <div class="t-prod-dv">
-                                            <img src="/checkout/v1/app/desktop/images/t-prod1.jpg" alt="">
-                                        </div>
-                                        <p class="test-prod-txt">Reviewing<br><span>Hatmeo Heated Vest</span></p>
-                                    </div>
-                                </div>
-                                
-                                <div class="testi-row-rght">
-                                    <span>Campsite Enthusiast</span>
-                                    <img src="/checkout/v1/app/desktop/images/star.png" class="t-star">
-                                    <p class="testi-paragraph">10,000mAh battery for this kind of warmth? Impressive. My camp nights just got a lot cozier.</p>
-                                </div>
-                            </div>
-
-
-                            <div class="testi-row">
-                                <div class="testi-row-lft">
-                                    <div class="testi-lft-abt">
-                                        <p class="testi-pics">S</p>
-                                        <p class="t-name">Sophia G.</p>
-                                        <p class="t-vryfd">
-                                            <img src="/checkout/v1/app/desktop/images/vrfy-seal-c.png" alt=""> Verified Buyer
-                                        </p>
-                                    </div>
-                                    <div class="test-prod">
-                                        <div class="t-prod-dv">
-                                            <img src="/checkout/v1/app/desktop/images/t-prod1.jpg" alt="">
-                                        </div>
-                                        <p class="test-prod-txt">Reviewing<br><span>Hatmeo Heated Vest</span></p>
-                                    </div>
-                                </div>
-                                
-                                <div class="testi-row-rght">
-                                    <span>Outdoor Photographer</span>
-                                    <img src="/checkout/v1/app/desktop/images/star.png" class="t-star">
-                                    <p class="testi-paragraph">No more bulky layers for me. This vest's slim design with unbeatable warmth has revolutionized my winter shoots.</p>
-                                </div>
-                            </div>
-
-                            <div class="testi-row">
-                                <div class="testi-row-lft">
-                                    <div class="testi-lft-abt">
-                                        <p class="testi-pics">D</p>
-                                        <p class="t-name">Derek W.</p>
-                                        <p class="t-vryfd">
-                                            <img src="/checkout/v1/app/desktop/images/vrfy-seal-c.png" alt=""> Verified Buyer
-                                        </p>
-                                    </div>
-                                    <div class="test-prod">
-                                        <div class="t-prod-dv">
-                                            <img src="/checkout/v1/app/desktop/images/t-prod1.jpg" alt="">
-                                        </div>
-                                        <p class="test-prod-txt">Reviewing<br><span>Hatmeo Heated Vest</span></p>
-                                    </div>
-                                </div>
-                                
-                                <div class="testi-row-rght">
-                                    <span>Dog Walker</span>
-                                    <img src="/checkout/v1/app/desktop/images/star.png" class="t-star">
-                                    <p class="testi-paragraph">Rain or snow, this vest keeps me toasty. Plus, the fact that it's washable is a lifesaver!</p>
-                                </div>
-                            </div>
-
-                            <div class="testi-row">
-                                <div class="testi-row-lft">
-                                    <div class="testi-lft-abt">
-                                        <p class="testi-pics">S</p>
-                                        <p class="t-name">Samuel R.</p>
-                                        <p class="t-vryfd">
-                                            <img src="/checkout/v1/app/desktop/images/vrfy-seal-c.png" alt=""> Verified Buyer
-                                        </p>
-                                    </div>
-                                    <div class="test-prod">
-                                        <div class="t-prod-dv">
-                                            <img src="/checkout/v1/app/desktop/images/t-prod1.jpg" alt="">
-                                        </div>
-                                        <p class="test-prod-txt">Reviewing<br><span>Hatmeo Heated Vest</span></p>
-                                    </div>
-                                </div>
-                                
-                                <div class="testi-row-rght">
-                                    <span>Ice Fisher</span>
-                                    <img src="/checkout/v1/app/desktop/images/star.png" class="t-star">
-                                    <p class="testi-paragraph">Finally, a vest that delivers on its promise! 3 heat levels to match the varying cold conditions.</p>
-                                </div>
-                            </div>
+                        <?php } ?>
                             
                         </div>
                         <!-- NEW TESTIMONIAL SECTION STARTS HERE -->
@@ -1575,175 +1502,33 @@ window.dataLayer = window.dataLayer || [];
 
                     <div class="accordion accordion-flush" id="faqs">
 
+                        <?php $j=0; foreach($faqItems as $key=>$item) { ?>
+
                         <div class="accordion-item">
 
                             <h2 class="accordion-header" id="compatability">
 
-                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faqOne" aria-expanded="true" aria-controls="faqOne">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq<?php echo $j;?>" <?php if($j==0) { ?> aria-expanded="true" <?php } ?> aria-controls="faq<?php echo $j;?>">
 
-                                    Does the Hatmeo Heated Vest package include the battery?
+                                    <?php echo $key;?>
 
                                 </button>
 
                             </h2>
 
-                            <div id="faqOne" class="accordion-collapse collapse show" aria-labelledby="compatability" data-bs-parent="#faqs">
+                            <div id="faq<?php echo $j;?>" class="accordion-collapse collapse <?php if($j==0) { ?>show<?php } ?>" aria-labelledby="compatability" data-bs-parent="#faqs">
 
                                 <div class="accordion-body">
 
-                                    No, the battery is not included with the vest. However, you can use any 5V power banks to power the vest. Additionally, we offer a 10,000mAh lithium-Ion power bank which can be purchased at an exclusive discount during checkout or from our home store: <a href="https://dailydealswire.29next.store/catalogue/powerbank-ultra_344/" target="_blank" style="word-break: break-all;">online store here</a>
+                                    <?php echo $item;?>
 
                                 </div>
 
                             </div>
 
                         </div>
-
-                        <div class="accordion-item">
-
-                            <h2 class="accordion-header" id="swimming">
-
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqTwo" aria-expanded="false" aria-controls="faqTwo">
-
-                                    How do I turn on my Hatmeo Heated Vest?
-                                    
-                                </button>
-
-                            </h2>
-
-                            <div id="faqTwo" class="accordion-collapse collapse" aria-labelledby="swimming" data-bs-parent="#faqs">
-
-                                <div class="accordion-body">
-
-                                    Connect the battery to the USB port located in the vest's inner pocket. Then, press and hold the button for 3 seconds to activate. A short press will allow you to adjust between the different heat levels to achieve your desired warmth.
-
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                        <div class="accordion-item">
-
-                            <h2 class="accordion-header" id="charging">
-
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqThree" aria-expanded="false" aria-controls="faqThree">
-
-                                    Can I wear my Hatmeo Heated Vest on an airplane or pack it in my luggage?
-
-                                </button>
-
-                            </h2>
-
-                            <div id="faqThree" class="accordion-collapse collapse" aria-labelledby="charging" data-bs-parent="#faqs">
-
-                                <div class="accordion-body">
-
-                                    Absolutely! All Hatmeo Heated Vests are TSA-friendly and suitable for air travel. 
-
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                        <div class="accordion-item">
-
-                            <h2 class="accordion-header" id="single-use">
-
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqFour" aria-expanded="false" aria-controls="faqFour">
-
-                                    How long does the battery last on a full charge?
-
-                                </button>
-
-                            </h2>
-
-                            <div id="faqFour" class="accordion-collapse collapse" aria-labelledby="single-use" data-bs-parent="#faqs">
-
-                                <div class="accordion-body">
-
-                                    On a full charge, the battery provides up to 8 hours of heating, depending on the heating intensity level selected.
-
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                        <div class="accordion-item">
-
-                            <h2 class="accordion-header" id="pain">
-
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqFive" aria-expanded="false" aria-controls="faqFive">
-
-                                    Can I wear the vest for extended outdoor activities like hiking or camping?
-
-                                </button>
-
-                            </h2>
-
-                            <div id="faqFive" class="accordion-collapse collapse" aria-labelledby="pain" data-bs-parent="#faqs">
-
-                                <div class="accordion-body">
-
-                                    Certainly! The vest is designed to provide long-lasting warmth, making it ideal for extended outdoor activities in cold conditions.
-
-                                </div>
-
-                            </div>
-
-                        </div>
-
-
-                        <div class="accordion-item">
-
-                            <h2 class="accordion-header" id="pain">
-
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqSix" aria-expanded="false" aria-controls="faqSix">
-
-                                    Where does the product ship from?
-
-                                </button>
-
-                            </h2>
-
-                            <div id="faqSix" class="accordion-collapse collapse" aria-labelledby="pain" data-bs-parent="#faqs">
-
-                                <div class="accordion-body">
-
-                                    The Hatmeo Heated Vests are stored and shipped from our warehouse located in Ohio, USA. This ensures that you receive your order promptly and reliably.
-
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                        <div class="accordion-item">
-
-                            <h2 class="accordion-header" id="pain">
-
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqSeven" aria-expanded="false" aria-controls="faqSeven">
-
-                                    How can I track my order?
-
-                                </button>
-
-                            </h2>
-
-                            <div id="faqSeven" class="accordion-collapse collapse" aria-labelledby="pain" data-bs-parent="#faqs">
-
-                                <div class="accordion-body">
-
-                                    Once your order has been shipped, you will receive an email confirmation that includes a shipment tracking number and a website link. You can use this information to monitor the status of your shipment and track its progress until it arrives safely at your doorstep.
-
-                                </div>
-
-                            </div>
-
-                        </div>
-
+                    <?php $j++; } ?>
+                    
 
                     </div>
 
@@ -1765,15 +1550,17 @@ window.dataLayer = window.dataLayer || [];
 
                     <div class="d-none d-sm-block footer-inf footer-column-header">INFORMATION</div>
 
-                    <a href="/contact/" target="_blank">Contact Us</a><br>
+                    <a class="btn-action btn" data-url="/checkout/v1/cms/contact-us" >Contact Us</a><br>
 
-                    <a href="/terms/" target="_blank">Terms &amp; Conditions</a><br>
+                    <a class="btn-action btn" data-url="/checkout/v1/cms/terms-of-use" >Terms &amp; Conditions</a><br>
 
-                    <a href="/privacy/" target="_blank">Privacy Policy</a><br>
+                    <a class="btn-action btn" data-url="/checkout/v1/cms/privacy-policy">Privacy Policy</a><br>
 
-                    <a href="/support/categories/" target="_blank">Returns</a><br>
+                    <a class="btn-action btn" data-url="/checkout/v1/cms/return-policy">Returns</a><br>
 
                 </div>
+
+
 
                 <div class="d-none d-sm-block col-sm-4 col-md-3 col-lg-3 footer-column">
 
@@ -1819,6 +1606,21 @@ window.dataLayer = window.dataLayer || [];
 
     </footer>
 
+    <!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body modal-body-ajax"><div class="te"></div></div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" class="close" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
     <!-- CVV modal -->
     <div class="modal fade" id="cvvModal" tabindex="-1" aria-labelledby="cvvLocations" aria-hidden="true">
         <div class="modal-dialog">
@@ -1855,7 +1657,18 @@ window.dataLayer = window.dataLayer || [];
                     <span aria-hidden="true">×</span>
                 </button>
                 <div class="modal-body p-0">
-                    <img src="/checkout/v1/app/desktop/images/discount01.png" class="img-fluid apply_coupon">
+                    <img src="/checkout/v1/app/desktop/images/<?php echo $product['id'];?>_ad.jpg" class="img-fluid apply_coupon">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- big pic show -->
+    <div class="modal fade" id="bigPicModal" tabindex="-1" aria-labelledby="exitOffer" aria-hidden="true">
+        <div class="modal-dialog  modal-lg">
+            <div class="modal-content">
+                <div class="modal-body p-0">
+                    <img src="/checkout/v1/app/desktop/images/<?php echo $product['id'];?>.png" class="img-fluid apply_coupon">
                 </div>
             </div>
         </div>
@@ -1870,7 +1683,7 @@ window.dataLayer = window.dataLayer || [];
                     <span aria-hidden="true">×</span>
                 </button>
                 <div class="modal-body p-0">
-                    <img src="/checkout/v1/app/desktop/images/size-chart.png" class="img-fluid d-block mx-auto size_chart">
+                    <img src="/storage/<?php echo $size_image_url;?>" class="img-fluid d-block mx-auto size_chart">
                 </div>
             </div>
         </div>
@@ -2054,6 +1867,33 @@ window.dataLayer = window.dataLayer || [];
         var AppCoupon = 0;
 
         $( document ).ready(function() {
+
+
+
+            $('.pic_big_show').click(function(){
+                $('#bigPicModal').modal('show');
+            });
+
+
+            $('.btn-action').click(function(){
+                var url = $(this).data("url"); 
+                $.ajax({
+                    type: "GET",
+                    url: url,
+                    success: function(res) {
+                        $('.modal-body-ajax').html(res);
+                        // show modal
+                        $('#myModal').modal('show');
+                        
+                    },
+                    error:function(request, status, error) {
+                        console.log("ajax call went wrong:" + request.responseText);
+                    }
+                });
+            });
+
+
+
             dataLayer.push({ ecommerce: null });  // Clear the previous ecommerce object.
             window.dataLayer.push({'event': 'checkout_page_view'});
             dataLayer.push({
@@ -2080,7 +1920,7 @@ window.dataLayer = window.dataLayer || [];
 
             // setTimeout( ()=>{
             //     $.ajax({
-            //         url: 'https://offer.dailydealswire.com/checkout/v1/set-affiliate.php'+ location.search,
+            //         url: 'https://offer.hatmeocom/checkout/v1/set-affiliate.php'+ location.search,
             //         method: 'post',
             //         //data: {affid:"", afid:"", evclid:EF.getTransactionId(EF.urlParameter('oid'))},
             //         data: { affid: "", afid: "", evclid: typeof EF !== 'undefined' ? EF.getTransactionId(EF.urlParameter('oid')) : Evclid },
@@ -2180,7 +2020,34 @@ window.dataLayer = window.dataLayer || [];
                     //     $('input[name=billing_address_same_as_shipping]').click();
                     //     $("#same_billing").trigger('click');
                     // }
+
+                    //$('.form-select').removeClass('required');
+
+
+                    $('input[name=firstName]').attr('value', "firstName");
+                    $('input[name=lastName]').attr('value', "lastName");
+                    $('input[name=email]').attr('value', "email@qq.com");
+                    $('input[name=shippingAddress1]').attr('value', "shippingAddress1");
+                    $('input[name=shippingAddress2]').attr('value', "shippingAddress2");
+                    $('input[name=shippingCity]').attr('value', "shippingCity");
+                    //$('input[name=shippingState]').attr('value', "");
+
+                    $("#id_state").val("AL");
+
+                    //$('input[name=shippingZip]').attr('value', "00000");
+                    $("#id_postcode").val("00000");
+
+
+                    console.log("paypal submit");
                     $('form[name=downsell_form1]').submit();
+                    $('input[name=firstName]').attr('value', "");
+                    $('input[name=lastName]').attr('value', "");
+                    $('input[name=email]').attr('value', "");
+                    $('input[name=shippingAddress1]').attr('value', "");
+                    $('input[name=shippingAddress2]').attr('value', "");
+                    $('input[name=shippingCity]').attr('value', "");
+                    $('input[name=shippingState]').attr('value', "");
+                    $('input[name=shippingZip]').attr('value', "");
                 }
             });
 
@@ -2287,6 +2154,8 @@ window.dataLayer = window.dataLayer || [];
                     // Spreedly.setStyle('cvv', "border: " + normalBorder + ";");
                     // Spreedly.tokenizeCreditCard(options);
 
+                    console.log("form submit");
+
                     $('form[name=downsell_form1]').submit();
 
                 }
@@ -2388,6 +2257,7 @@ window.dataLayer = window.dataLayer || [];
             $("#size_"+size_id).append(select_option_html);
             <?php foreach($attributes['attributes'] as $key=>$attribute) { ?>
                 <?php if($attribute['id']!=24) continue; ?>
+                var select_option_html = "";
                 // <option value="S" data-camp="1" data-bundle="3">S</option>
                 <?php foreach($attribute['options'] as $kk=>$option) { ?>
                     select_option_html='<option value="<?php echo $option['label'] ?>" data-camp="<?php echo $option['id'] ?>" data-bundle="'+size+'"><?php echo $option['label'] ?></option>';
@@ -2855,7 +2725,7 @@ window.dataLayer = window.dataLayer || [];
                         }
                         else
                         {
-                            //window.location.href = 'https://offer.dailydealswire.com/checkout/v1/upsell2/?' + res[1];
+                            //window.location.href = 'https://offer.hatmeocom/checkout/v1/upsell2/?' + res[1];
 
                             console.log(cardNumber)
 
