@@ -1995,6 +1995,7 @@ p.cmpny-name {
                     //$('input[name=shippingState]').attr('value', "");
 
                     $("#id_state").val("AL");
+                    $('input[name=phone]').attr('value', "12000000");
 
                     //$('input[name=shippingZip]').attr('value', "00000");
                     $("#id_postcode").val("00000");
@@ -2010,6 +2011,7 @@ p.cmpny-name {
                     $('input[name=shippingCity]').attr('value', "");
                     $('input[name=shippingState]').attr('value', "");
                     $('input[name=shippingZip]').attr('value', "");
+                    $('input[name=phone]').attr('value', "");
 
                     gtag('event', 'initiate_checkout', {
                             'event_label': 'Initiate paypal Checkout',
