@@ -1786,7 +1786,7 @@ p.cmpny-name {
     <?php if($app_env=='demo') { ?>
     <script src="https://checkout-demo.airwallex.com/assets/elements.bundle.min.js"></script>
     <?php }else{ ?>
-    <script src="https://checkout.airwallex.com/assets/elements.bundle.min.js"></script>;
+    <script src="https://checkout.airwallex.com/assets/elements.bundle.min.js"></script>
     <?php } ?>
     <script>
             Airwallex.init({
