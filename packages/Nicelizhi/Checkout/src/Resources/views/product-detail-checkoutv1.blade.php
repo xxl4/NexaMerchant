@@ -1574,7 +1574,7 @@ p.cmpny-name {
 
                         <span>
 
-                            <img class="credit-cards-image" src="/checkout/v1/app/desktop/images/secure-icons.png">
+                            <img class="credit-cards-image" style="max-height:44px;" src="/checkout/v1/app/desktop/images/secure-icons.png">
 
                         </span>
 
