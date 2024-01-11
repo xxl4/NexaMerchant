@@ -1508,32 +1508,34 @@ p.cmpny-name {
 
                     <div class="accordion accordion-flush" id="faqs">
 
-                        <?php $j=0; foreach($faqItems as $key=>$item) { ?>
+                        <?php foreach($faqItems as $key=>$item) {
+                            $item = json_decode($item);    
+                        ?>
 
                         <div class="accordion-item">
 
                             <h2 class="accordion-header" id="compatability">
 
-                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq<?php echo $j;?>" <?php if($j==0) { ?> aria-expanded="true" <?php } ?> aria-controls="faq<?php echo $j;?>">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq<?php echo $key;?>" <?php if($key==0) { ?> aria-expanded="true" <?php } ?> aria-controls="faq<?php echo $key;?>">
 
-                                    <?php echo $key;?>
+                                    <?php echo $item->q;?>
 
                                 </button>
 
                             </h2>
 
-                            <div id="faq<?php echo $j;?>" class="accordion-collapse collapse <?php if($j==0) { ?>show<?php } ?>" aria-labelledby="compatability" data-bs-parent="#faqs">
+                            <div id="faq<?php echo $key;?>" class="accordion-collapse collapse <?php if($key==0) { ?>show<?php } ?>" aria-labelledby="compatability" data-bs-parent="#faqs">
 
                                 <div class="accordion-body">
 
-                                    <?php echo $item;?>
+                                    <?php echo $item->a;?>
 
                                 </div>
 
                             </div>
 
                         </div>
-                    <?php $j++; } ?>
+                    <?php } ?>
                     
 
                     </div>
