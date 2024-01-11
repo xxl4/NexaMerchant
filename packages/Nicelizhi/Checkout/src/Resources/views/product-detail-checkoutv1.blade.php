@@ -299,7 +299,7 @@ p.cmpny-name {
 
             <div class="row justify-content-between align-items-center">
 
-                <div class="col-md-5 d-flex justify-content-center justify-content-md-start align-items-center pb-2 pb-md-0">
+                <div class="col-md-3 d-flex justify-content-center justify-content-md-start align-items-center pb-2 pb-md-0">
 
                     <div class="logo">
 
@@ -307,17 +307,17 @@ p.cmpny-name {
 
                     </div>
 
-                    <div class="ms-3 ps-3 text-start d-none d-md-block secure-checkout">
+                    <!-- <div class="ms-3 ps-3 text-start d-none d-md-block secure-checkout">
 
                         <span class="topbar-secure"></span><br>
 
                         <span class="topbar-checkout"></span><br>
 
-                    </div>
+                    </div> -->
 
                 </div>
 
-                <div class="col-md-7 d-flex justify-content-center justify-content-md-end align-items-center">
+                <div class="col-md-9 d-flex justify-content-center justify-content-md-end align-items-center">
 
                     <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
 
