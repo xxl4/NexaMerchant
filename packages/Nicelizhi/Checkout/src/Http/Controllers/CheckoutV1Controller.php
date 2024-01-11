@@ -157,6 +157,9 @@ class CheckoutV1Controller extends Controller{
         $redis = Redis::connection('default');
         $faqItems = $redis->hgetall($this->faq_cache_key);
 
+        sort($faqItems);
+        //var_dump($faqItems);exit;
+
         //size
         $size_image_url_key = $this->cache_prefix_key."product_size_image_".$product->id;
         $size_image_url = Cache::get($size_image_url_key);
@@ -193,7 +196,7 @@ class CheckoutV1Controller extends Controller{
 
         //comments
         $comments = $redis->hgetall($this->cache_prefix_key."product_comments_".$product['id']);
-
+        //var_dump($comments);exit;
         // ad texts
 
         $product_ad_text = $redis->hgetall($this->cache_prefix_key."product_ads_".$product['id']);
