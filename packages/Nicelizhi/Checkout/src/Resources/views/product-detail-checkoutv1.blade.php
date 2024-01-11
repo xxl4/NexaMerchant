@@ -282,7 +282,7 @@ p.cmpny-name {
 <span class="">
                         <img width="40px" src="/checkout/v1/app/desktop/images/us-flag.png" alt="flag" class="img-fluid" >
                     </span>
-                    <span class="text-secondary fw-bold" id="changeText" style="padding-left:10px">Quick & Convenient Shipping From Our OHIO Warehouse!</span>
+                    <span class="text-secondary fw-bold" id="changeText" style="padding-left:10px">Limited Time Offer - Secure Payment - Fast Shipping - Hassle-Free Returns</span>
                     <span class="flag"><img width="40px" src="/checkout/v1/app/desktop/images/us-flag.png" alt="flag" class="img-fluid"></span>
 </marquee> 
                 </div>
@@ -309,9 +309,9 @@ p.cmpny-name {
 
                     <div class="ms-3 ps-3 text-start d-none d-md-block secure-checkout">
 
-                        <span class="topbar-secure">SECURE</span><br>
+                        <span class="topbar-secure"></span><br>
 
-                        <span class="topbar-checkout">CHECKOUT</span><br>
+                        <span class="topbar-checkout"></span><br>
 
                     </div>
 
@@ -323,11 +323,13 @@ p.cmpny-name {
 
                         <ol class="breadcrumb">
 
-                            <li class="breadcrumb-item is-current"><span>CHECKOUT</span></li>
+                            <li class="breadcrumb-item is-current"><span>Select Item</span></li>
 
-                            <li class="breadcrumb-item">UPGRADES</li>
+                            <li class="breadcrumb-item">Order Summary</li>
 
-                            <li class="breadcrumb-item">SUMMARY</li>
+                            <li class="breadcrumb-item">Personal Information</li>
+
+                            <li class="breadcrumb-item">Select Checkout</li>
 
                         </ol>
 
@@ -431,7 +433,7 @@ p.cmpny-name {
 
                     <div class="step-title">
 
-                        STEP 1: SELECT PACKAGE & SIZE
+                        STEP 1: SELECT ITEM & SIZE
 
                     </div>
 
@@ -579,7 +581,7 @@ p.cmpny-name {
                             <div class="offer-footer">
 
                                 <div class="offer-footer-status d-flex justify-content-around align-items-center p-2 fs-8">
-                                    <div><?php echo $package_product['name'];?></div>
+                                    <div><strong><?php echo $package_product['name'];?></strong></div>
                                     <div><span class="text-danger"><?php echo $package_product['tip2'];?> </span><span class="fs-8 fw-light">/each</span></div>
                                     <div>Orig:$<span class=""><?php echo $package_product['srouce_price'];?>&nbsp;&nbsp;</span></div>
                                     <div class="text-danger">Total:$<span class="buy_3_total_price"><?php echo $package_product['amount']; ?></span></div>
@@ -588,10 +590,9 @@ p.cmpny-name {
                                 <div class="offer-footer-features  px-3 py-2 m-1 fs-8">
 
                                     <ul>
-                                        <li>Instant Warm-Up</li>
-                                        <li>Comfort Heat Levels</li>
-                                        <li>Waterproof & Washable</li>
-                                        <li>Sleek & Light</li>
+                                        <?php foreach($product_ad_text as $key=>$ad_text) { ?>
+                                        <li><?php echo $ad_text;?></li>
+                                        <?php } ?>
                                     </ul>
 
                                 </div>
@@ -617,7 +618,7 @@ p.cmpny-name {
                         <div class="dwn_bundle">
                             <div class="cross-sells">
          
-                                <div class="cross-sells__title pulse">
+                                <div class="cross-sells__title pulse" style="font-family: oswald;">
                                     <img src="/checkout/v1/app/desktop/images/popular-fire-icon.png" alt="Fire Icon"> Order Summary <img src="/checkout/v1/app/desktop/images/popular-fire-icon.png" alt="Fire Icon">
                                 </div>
         
@@ -654,27 +655,27 @@ p.cmpny-name {
 
                                     <div class="order-summary-item justify-content-between pt-2 pb-1 d-flex">
                                         <div class="os_main_product_name">2x Hatmeo Heated Vest</div>
-                                        <div class="os_main_product_each_price">$ 59.99 <span class="fs-8">/ea</span></div>
+                                        <div class="os_main_product_each_price" style="color:red;font-weight:bold;">$ 59.99 <span class="fs-8">/ea</span></div>
 
                                     </div>
 
                                     <div class="order-summary-item justify-content-between pt-2 pb-1 d-flex os_extended_warranty_div" style="display: none !important;">
                                         <div class="os_extended_warranty_product_name">2x Extended Warranty</div>
-                                        <div class="os_extended_warranty_product_each_price">$ 9.99 <span class="fs-8">/ea</span>
+                                        <div class="os_extended_warranty_product_each_price" style="color:red;font-weight:bold;">$ 9.99 <span class="fs-8">/ea</span>
                                         </div> 
                                     </div>
 
                                     <!---- Add-ons start------>
                                   <div class="order-summary-item justify-content-between pt-2 pb-1 d-flex os_add-ons_div" style="display: none !important;">
                                         <div class="os_add-ons_product_name"></div>
-                                        <div class="os_add-ons_product_each_price">$ 19.99 
+                                        <div class="os_add-ons_product_each_price" style="color:red;font-weight:bold;">$ 19.99 
                                         <!--<span class="fs-8">/ea</span>-->
                                         </div>
                                     </div>
 
                                     <div class="order-summary-item justify-content-between pt-2 pb-1 d-flex">
                                         <div>Shipping:</div>
-                                        <div class="os_shipping_price">$0.00</div>
+                                        <div><strong class="os_total_price" style="color:red;">$0.00</strong></div>
                                     </div>
 
                                     <div class="order-summary-item justify-content-between pt-2 pb-1 d-flex">
@@ -684,7 +685,7 @@ p.cmpny-name {
 
                                     <div class="order-summary-total d-flex justify-content-between pt-1 border-top border-secondary">
                                         <div><strong>Today's Total:</strong></div>
-                                        <div><strong class="os_total_price">$ 134.97</strong></div>
+                                        <div><strong class="os_total_price" style="color:red;">$ 134.97</strong></div>
                                     </div>
 
 
@@ -701,6 +702,7 @@ p.cmpny-name {
                 <div id="block--payment_opt1" class="col-12 col-lg-5">
 
                     <form method="post" action="" name="downsell_form1" accept-charset="utf-8" enctype="application/x-www-form-urlencoded;charset=utf-8">
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}" />
                         <div id="main_campaign_div"></div>
                         <div id="extra-add-ons"></div>
                         <div id="protection_input"></div>
@@ -733,9 +735,10 @@ p.cmpny-name {
                            <option value="">Card Type</option>
                                                       <option value="paypal">Paypal</option>
                                                       <option value="airwallex">Airwallex</option>
+                                                      <option value="paypal-standard">PayPal Standard</option>
                                                    </select>
                         
-                        <div class="div-line"><span><i class="fas fa-lock me-2"></i></span>Express Checkout</div>
+                        <div class="div-line"><span><i class="fas fa-lock me-2"></i></span><strong>Express Checkout</strong></div>
                         <div class="checkout_express-buttons">
                             <div class="d-grid mb-3">
                                 <button type="button" class="btn btn-lg btn-express is-paypal pay-with-paypal zoom-fade"> <span class="fs-8 text-dark me-1">Pay with</span> <img src="/checkout/v1/app/desktop/images/paypal.svg" height="50px" alt=""></button>
@@ -743,7 +746,7 @@ p.cmpny-name {
                         </div>
                         
 
-                        <div class="div-line"><span><i class="fas fa-lock me-2"></i></span>OR Checkout WITH Credit Card</div>
+                        <div class="div-line"><span><i class="fas fa-lock me-2"></i></span><strong>OR Checkout WITH Credit Card</strong></div>
 
                         <div class="step-title">
                             STEP 2: CUSTOMER INFORMATION
@@ -804,9 +807,9 @@ p.cmpny-name {
 
                                             <span class="input-group-text bg-white"><i class="fas fa-phone text-light"></i></span>
 
-                                            <input type="tel" name="phone" placeholder="Phone number (Optional)" class="form-control " maxlength="10" onkeypress="return event.charCode >= 48 &amp;&amp; event.charCode <= 57" data-validate="phone" aria-required="true" data-error-message="Please enter a valid phone number!" id="id_phone_number">
+                                            <input type="tel" name="phone" placeholder="Phone number" class="required form-control " maxlength="10" onkeypress="return event.charCode >= 48 &amp;&amp; event.charCode <= 57" data-validate="phone" aria-required="true" data-error-message="Please enter a valid phone number!" id="id_phone_number">
 
-                                            <label for="id_phone_number">Phone (Optional)</label>
+                                            <label for="id_phone_number">Phone</label>
 
                                         </div>
 
@@ -1279,11 +1282,18 @@ p.cmpny-name {
                                 </div>
 
                             </div>
-
+                                                            </div>
 
                         </div>
                     </div>
 
+
+                    <div class="div-line"><span><i class="fas fa-lock me-2"></i></span>OR PAY SECURELY WITH PAYPAL</div>
+                    <div class="checkout_express-buttons">
+                        <div class="d-grid mb-3">
+                            <button type="button" class="btn btn-lg btn-express is-paypal pay-with-paypal-standard zoom-fade"> <span class="fs-8 text-dark me-1">Pay with</span> <img src="/checkout/v1/app/desktop/images/paypal.svg" height="50px" alt=""></button>
+                        </div>
+                    </div>
                     
 
                     <div id="form-footer" class="checkout_form checkout_form-footer p-2 p-lg-3 mb-3">
@@ -1340,7 +1350,7 @@ p.cmpny-name {
 
                                         </div>
 
-                                        <div class="seal-content fs-8">If you are unsatisfied for any reason within 30 days, simple contact our customer care center for a full refund of your initial order. Happy shopping!</div>
+                                        <div class="seal-content fs-8">If you are not satisfied for any reason within 30 days, just contact our customer service to apply for a return or exchange service.</div>
 
                                     </div>
 
@@ -1418,7 +1428,7 @@ p.cmpny-name {
 
                                         <div class="seal-title mb-1">UNITED STATES OWNED</div>
 
-                                        <div class="seal-content fs-8"> Hatmeo is proud to be an United States Owned company.</div>
+                                        <div class="seal-content fs-8">Hatmeo proudly serves over 1 million U.S. consumers</div>
 
                                     </div>
 
@@ -2001,6 +2011,20 @@ p.cmpny-name {
             //         $('select[name=creditCardType]').val('airwallex').trigger('change');
             //     }
             // });
+
+            $('.pay-with-paypal-standard').on('click', function(e){
+                window.dataLayer.push({'event': 'pay_with_paypal_standard_cta'});
+                e.preventDefault();
+                var is_check = checkSizeValidation();
+                if(is_check.error_count >0){
+                    cb.errorHandler(is_check.error);
+                }else{
+                    $('#payment-gateway-input-div').html('');
+                    $('select[name=creditCardType]').val('paypal-standard').trigger('change');
+
+                    $('form[name=downsell_form1]').submit();
+                }
+            });
 
              $('.pay-with-paypal').on('click', function(e){
                 window.dataLayer.push({'event': 'pay_with_paypal_cta'});
@@ -2730,9 +2754,13 @@ p.cmpny-name {
                     method: 'post',
                     data: $('[name=downsell_form1]').serialize()
                 }).success(function(data) {
+                    console.log("downsell_form");
+                    console.log(data);
                     if(data.success) {
                         var str = data.redirect;
                         var res = str.split("?");
+                        console.log("downsell_form" + str);
+                        console.log("creditCardType" + $('select[name=creditCardType]').val());
                         if($('select[name=creditCardType]').val() == "paypal") {
 
                             gtag('event', 'initiate_paypal', {
@@ -2741,9 +2769,14 @@ p.cmpny-name {
                             });
 
                             window.location.href = data.redirect;
-                        }
-                        else
-                        {
+                        }else if($('select[name=creditCardType]').val() == "paypal-standard") {
+                            gtag('event', 'initiate_paypal', {
+                                'event_label': 'Initiate paypal standard redirect',
+                                'event_category': 'ecommerce'
+                            });
+
+                            window.location.href = data.redirect_url;
+                        } else {
                             //window.location.href = 'https://offer.hatmeocom/checkout/v1/upsell2/?' + res[1];
 
                             console.log(cardNumber)
