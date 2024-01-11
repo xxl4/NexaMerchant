@@ -369,6 +369,8 @@ function getClientId() {
         var url = decodeURIComponent(script.src);
         var serachParam = url.split('?');
         var measurementId = ((serachParam[1].split('&'))[0]).split('=')[1]
+        console.log("measurementId")
+        console.log(measurementId)
 
         gtag('get', measurementId, 'client_id', function (clientId) {
             console.log(clientId)
@@ -379,11 +381,11 @@ function getClientId() {
 }
 
 function setClientId(clientId) {
-
+    var product_id = parseInt($('input[name=product_id]').val());
     $.ajax({
-        url: app_config.offer_path + AJAX_PATH + 'set-ga-client-id',
+        url: app_config.offer_path + AJAX_PATH + 'set-ga-client-id?_token='+app_config.token,
         method: 'post',
-        data: { clientId: clientId },
+        data: { clientId: clientId, product_id: product_id },
         success: function (data) {
             console.log(data);
 
