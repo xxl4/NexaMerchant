@@ -325,8 +325,6 @@ p.cmpny-name {
 
                             <li class="breadcrumb-item is-current"><span>Select Item</span></li>
 
-                            <li class="breadcrumb-item">Order Summary</li>
-
                             <li class="breadcrumb-item">Personal Information</li>
 
                             <li class="breadcrumb-item">Select Checkout</li>
@@ -1576,7 +1574,7 @@ p.cmpny-name {
 
                         <span>
 
-                            <img class="credit-cards-image" src="/checkout/v1/app/desktop/images/pay-meth-vmpk.png">
+                            <img class="credit-cards-image" src="/checkout/v1/app/desktop/images/secure-icons.png">
 
                         </span>
 
