@@ -633,7 +633,7 @@ p.cmpny-name {
 
                             <div class="col-lg-6" style="text-align:center;">
 
-                                <img src="{{ $productBaseImage['medium_image_url'] }}" alt="" class="img-fluid" >
+                                <img src="/checkout/v1/app/desktop/images/<?php echo $product['id'];?>_order.jpg" alt="" class="img-fluid" >
 
                             </div>
 
@@ -1065,71 +1065,6 @@ p.cmpny-name {
     -webkit-box-sizing: border-box;height: calc(3.5rem + 2px);
     line-height: 1.25;padding: 1rem 0.75rem "></div>
                             </div>
-                                
-                                <!-- <div class="col-12 ">
-                                    <label class="sr-only" for="card_number">Card Number</label>
-                                    <div class="input-group form-floating">
-                                        <div id="spreedly-number-test" class="spf-field-group spf-number spf-field-cc">
-                                        </div>
-                                        <span class="input-group-text"><i class="far fa-credit-card"></i></span>
-                                    </div>
-                                </div>
-
-                                <div class="col-sm col-lg-12 col-xl-6">
-                                    <div class="form-floating">
-                                        
-                                        <select class="form-select" id="month">
-                                            <option value="">Month</option><option value="01">(01) January</option><option value="02">(02) February</option><option value="03">(03) March</option><option value="04">(04) April</option><option value="05">(05) May</option><option value="06">(06) June</option><option value="07">(07) July</option><option value="08">(08) August</option><option value="09">(09) September</option><option value="10">(10) October</option><option value="11">(11) November</option><option value="12">(12) December</option>                                            
-                                        </select>
-                                        <label for="month">Month</label>
-                                                         
-                                    <label class="sr-only" for="card_expiry">Expiry</label>
-                                    <div class="input-group form-floating">
-                                        <div id="spreedly-number-test" class="spf-field-group spf-number spf-field-cc">
-                                        </div>
-                                        <span class="input-group-text"><i class="far fa-credit-card"></i></span>
-                                    </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-sm col-lg-12 col-xl-6">
-                                    <div class="form-floating">
-                                        <select class="form-select" id="year">
-                                            <option value="">Year</option>
-                                                                                        <option value="2024">2024</option>
-                                                                                        <option value="2025">2025</option>
-                                                                                        <option value="2026">2026</option>
-                                                                                        <option value="2027">2027</option>
-                                                                                        <option value="2028">2028</option>
-                                                                                        <option value="2029">2029</option>
-                                                                                        <option value="2030">2030</option>
-                                                                                        <option value="2031">2031</option>
-                                                                                        <option value="2032">2032</option>
-                                                                                        <option value="2033">2033</option>
-                                                                                        <option value="2034">2034</option>
-                                                                                        <option value="2035">2035</option>
-                                                                                        <option value="2036">2036</option>
-                                                                                        <option value="2037">2037</option>
-                                                                                        <option value="2038">2038</option>
-                                                                                        <option value="2039">2039</option>
-                                                                                        <option value="2040">2040</option>
-                                                                                        <option value="2041">2041</option>
-                                                                                        <option value="2042">2042</option>
-                                                                                        <option value="2043">2043</option>
-                                                                                    </select>
-                                        <label for="year">Year</label>
-                                    </div>
-                                </div> 
-
-                                <div class="col-12">
-                                    <label class="sr-only" for="cvv">CVV</label>
-                                    <div class="form-cc-cvv input-group">
-                                        <div id="spreedly-cvv-test" class="spf-field-group spf-verification_value spf-field-cc"></div>
-                                        <button type="button" class="input-group-text" data-bs-toggle="modal" data-bs-target="#cvvModal"><i class="fas fa-question-circle"></i></button>
-                                    </div>
-                                </div>
-                                <input type="hidden" id="card_token" name="card_token">
-                            </div> -->
                         </div>
 
                         <div class="col">
@@ -1724,6 +1659,7 @@ p.cmpny-name {
                   <div class="progress-bar progress-bar-striped bg-primary progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" ></div>
                 </div>
                <div class="step-review-container">
+
                   <div class="steps1 steps2 descCounterStep1">
                      <div class="step-review-box">
                         <i class="fas fa-star"></i>
@@ -1755,6 +1691,7 @@ p.cmpny-name {
                         <p class="step-review-verified"><i class="fas fa-check-circle text-success me-1"></i>Verified Purchase</p>
                      </div>
                   </div>
+
                </div>
             </div>
          </div>
