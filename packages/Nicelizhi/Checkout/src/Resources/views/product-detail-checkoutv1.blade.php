@@ -1843,10 +1843,15 @@ window.dataLayer = window.dataLayer || [];
 
     </script>
 
-    <script>
-        //const card = Airwallex.createElement('card');
-        //card.mount('card');
-    </script>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P6343Y2GKT"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-P6343Y2GKT');
+</script>
 
 
     <!-- <script src="https://core.spreedly.com/iframe/iframe-v1.min.js"></script>
@@ -2046,6 +2051,11 @@ window.dataLayer = window.dataLayer || [];
                     $('input[name=shippingCity]').attr('value', "");
                     $('input[name=shippingState]').attr('value', "");
                     $('input[name=shippingZip]').attr('value', "");
+
+                    gtag('event', 'initiate_checkout', {
+                            'event_label': 'Initiate paypal Checkout',
+                            'event_category': 'ecommerce'
+                    });
                 }
             });
 
@@ -2155,6 +2165,11 @@ window.dataLayer = window.dataLayer || [];
                     console.log("form submit");
 
                     $('form[name=downsell_form1]').submit();
+
+                    gtag('event', 'initiate_checkout', {
+                            'event_label': 'Initiate Checkout',
+                            'event_category': 'ecommerce'
+                    });
 
                 }
             });
@@ -2721,6 +2736,12 @@ window.dataLayer = window.dataLayer || [];
                         var str = data.redirect;
                         var res = str.split("?");
                         if($('select[name=creditCardType]').val() == "paypal") {
+
+                            gtag('event', 'initiate_paypal', {
+                                'event_label': 'Initiate paypal redirect',
+                                'event_category': 'ecommerce'
+                            });
+
                             window.location.href = data.redirect;
                         }
                         else
@@ -2743,6 +2764,11 @@ window.dataLayer = window.dataLayer || [];
                                     //cb.errorHandler("Success");
                                     //alert("Success"); 
 
+                                    gtag('event', 'initiate_pay_success', {
+                                        'event_label': "Initiate cc success"+data.order_id,
+                                        'event_category': 'ecommerce'
+                                    });
+
                                     window.location.href="/checkout/v1/success/"+data.order_id;
 
                                 }).catch((response) => {
@@ -2756,6 +2782,10 @@ window.dataLayer = window.dataLayer || [];
                                     cbErrors.push(response.message);
                                     cb.errorHandler(cbErrors);
 
+                                    gtag('event', 'initiate_pay_error', {
+                                        'event_label': response.message,
+                                        'event_category': 'ecommerce'
+                                    });
                                     // cb.errorHandler(response.message);
 
                                 });
