@@ -957,10 +957,19 @@ p.cmpny-name {
                         </div>
     
                         <hr class="mt-2">
+
+                        
+                    <div class="checkout_express-buttons">
+                        <div class="d-grid mb-3">
+                            <button type="button" class="btn btn-lg btn-express is-paypal pay-with-paypal-standard"> <span class="fs-8 text-dark me-1">Pay with</span> <img src="/checkout/v1/app/desktop/images/paypal.svg" height="50px" alt=""></button>
+                        </div>
+                    </div>
+
+                    <div class="div-line"><span><i class="fas fa-lock me-2"></i></span><strong>OR PAY SECURELY WITH Credit/Debit</strong></div>
                     
                     <div id="form-info" class="checkout_form checkout_form-info  p-2 p-lg-3">
 
-                        
+                    
                     
                         <div class="form-check form-check-cc d-flex align-items-center" style="padding-left: 0;">
                             <label class="form-check-label pb-3 w-100 fs-6" for="id_use_new_card">
@@ -1215,18 +1224,13 @@ p.cmpny-name {
                                 </div>
 
                             </div>
-                                                            </div>
+                        </div>
 
                         </div>
                     </div>
 
 
-                    <div class="div-line"><span><i class="fas fa-lock me-2"></i></span><strong>OR PAY SECURELY WITH PAYPAL</strong></div>
-                    <div class="checkout_express-buttons">
-                        <div class="d-grid mb-3">
-                            <button type="button" class="btn btn-lg btn-express is-paypal pay-with-paypal-standard zoom-fade"> <span class="fs-8 text-dark me-1">Pay with</span> <img src="/checkout/v1/app/desktop/images/paypal.svg" height="50px" alt=""></button>
-                        </div>
-                    </div>
+                   
                     
 
                     <div id="form-footer" class="checkout_form checkout_form-footer p-2 p-lg-3 mb-3">
