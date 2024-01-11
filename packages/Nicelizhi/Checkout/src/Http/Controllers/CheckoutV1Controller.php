@@ -13,6 +13,7 @@ use Webkul\Shop\Http\Resources\CartResource;
 use Webkul\Sales\Repositories\OrderRepository;
 use Webkul\Shop\Http\Resources\ProductResource;
 use Webkul\Paypal\Payment\SmartButton;
+use Webkul\Payment\Facades\Payment;
 use Webkul\Sales\Repositories\InvoiceRepository;
 use Webkul\Product\Helpers\View;
 use Nicelizhi\Airwallex\Payment\Airwallex;
@@ -193,11 +194,14 @@ class CheckoutV1Controller extends Controller{
         //comments
         $comments = $redis->hgetall($this->cache_prefix_key."product_comments");
 
+        // ad texts
+
+        $product_ad_text = $redis->hgetall($this->cache_prefix_key."product_ads_".$product['id']);
         ///var_dump($comments);exit;
 
 
 
-        return view('checkout::product-detail-'.$this->view_prefix_key, compact('product','package_products', 'product_attributes', 'skus','productBgAttribute','productBgAttribute_mobile', 'attributes','app_env','faqItems','size_image_url','pc_ad_image_url','comments'));
+        return view('checkout::product-detail-'.$this->view_prefix_key, compact('product','package_products', 'product_attributes', 'skus','productBgAttribute','productBgAttribute_mobile', 'attributes','app_env','faqItems','size_image_url','pc_ad_image_url','comments','product_ad_text'));
 
     }
 
@@ -254,7 +258,8 @@ class CheckoutV1Controller extends Controller{
                 
                 $package_product = [];
                 $package_product['id'] = $i;
-                $package_product['srouce_price'] = round($source_price,2);
+                
+                $package_product['srouce_price'] = round($source_price*$i,2);
                 $package_product['name'] = $i."x " . $product->name;
                 $package_product['image'] = $productBaseImage['medium_image_url'];
                 
@@ -513,6 +518,54 @@ class CheckoutV1Controller extends Controller{
 
             return response()->json($data);
            
+        }
+
+        if($creditCardType=='paypal-standard') {
+            //处理支付方式
+            $payment = [];
+            $payment['description'] = "PayPal";
+            $payment['method'] = "paypal_standard";
+            $payment['method_title'] = "PayPal standard Button";
+            $payment['sort'] = "1";
+            // Cart::savePaymentMethod($payment);
+
+            if (
+                Cart::hasError()
+                || ! $payment
+                || ! Cart::savePaymentMethod($payment)
+            ) {
+                return response()->json([
+                    'message' => 'save payment error',
+                ]);
+            }
+
+            Cart::collectTotals();
+
+            $this->validateOrder();
+
+            $cart = Cart::getCart();
+
+            if ($redirectUrl = Payment::getRedirectUrl($cart)) {
+                $data = [];
+                $data['success'] = true;
+                $data['redirect'] = $redirectUrl;
+                $data['redirect_url'] = $redirectUrl;
+                return response()->json($data);
+            }
+    
+            $order = $this->orderRepository->create(Cart::prepareDataForOrder());
+    
+            Cart::deActivateCart();
+    
+            Cart::activateCartIfSessionHasDeactivatedCartId();
+    
+            session()->flash('order', $order);
+    
+            return new JsonResource([
+                'success'       => true,
+                'redirect'     => true,
+                'redirect_url' => route('shop.checkout.onepage.success'),
+            ]);
         }
 
 
