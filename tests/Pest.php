@@ -16,6 +16,7 @@ uses(Webkul\DataGrid\Tests\DataGridTestCase::class)->in('../packages/Webkul/Data
 uses(Webkul\Shop\Tests\ShopTestCase::class)->in('../packages/Webkul/Shop/tests');
 
 uses(Nicelizhi\Shopify\Tests\ShopifyTestCase::class)->in('../packages/Webkul/Shopify/tests');
+uses(Nicelizhi\Checkout\Tests\CheckoutTestCase::class)->in('../packages/Nicelizhi/Checkout/tests');
 
 /*
 |--------------------------------------------------------------------------
