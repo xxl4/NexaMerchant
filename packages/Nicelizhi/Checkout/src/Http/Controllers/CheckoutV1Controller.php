@@ -192,7 +192,7 @@ class CheckoutV1Controller extends Controller{
         }
 
         //comments
-        $comments = $redis->hgetall($this->cache_prefix_key."product_comments");
+        $comments = $redis->hgetall($this->cache_prefix_key."product_comments_".$product['id']);
 
         // ad texts
 
