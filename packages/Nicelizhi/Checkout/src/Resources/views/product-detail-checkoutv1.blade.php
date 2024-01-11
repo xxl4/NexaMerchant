@@ -957,15 +957,23 @@ p.cmpny-name {
                         </div>
     
                         <hr class="mt-2">
-
+                        
+                    <div class="div-line"><span><i class="fas fa-lock me-2"></i></span><strong>(1) PayPal Standard</strong></div>
                         
                     <div class="checkout_express-buttons">
                         <div class="d-grid mb-3">
-                            <button type="button" class="btn btn-lg btn-express is-paypal pay-with-paypal-standard"> <span class="fs-8 text-dark me-1">Pay with</span> <img src="/checkout/v1/app/desktop/images/paypal.svg" height="50px" alt=""></button>
+                            <!-- <button type="button" class="btn btn-lg btn-express is-paypal pay-with-paypal-standard"> <span class="fs-8 text-dark me-1">Pay with</span> <img src="/checkout/v1/app/desktop/images/paypal.svg" height="50px" alt=""></button> -->
+                            <a href="#" class="btn btn-lg pay-with-paypal-standard"><img src="/checkout/v1/app/desktop/images/paypal_standard.png" /></a>
+                            <div class="col-12">
+                                <div class="fs-9 text-center mb-2">
+                                    <i class="fas fa-lock me-2"></i>
+                            (After clicking "Pay with PayPal", you will be redirected to PayPal to complete your purchase securely.)
+                                        </div>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="div-line"><span><i class="fas fa-lock me-2"></i></span><strong>OR PAY SECURELY WITH Credit/Debit</strong></div>
+                    <div class="div-line"><span><i class="fas fa-lock me-2"></i></span><strong>(2) Credit Card</strong></div>
                     
                     <div id="form-info" class="checkout_form checkout_form-info  p-2 p-lg-3">
 
