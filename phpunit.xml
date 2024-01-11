@@ -30,6 +30,11 @@
             <directory suffix="Test.php">./packages/Webkul/Shop/tests/Feature</directory>
         </testsuite>
 
+        <!-- Checkout package testsuites. -->
+        <testsuite name="Checkout Unit Test">
+            <directory suffix="Test.php">./packages/Nicelizhi/Checkout/tests/Feature</directory>
+        </testsuite>
+
         <!-- Shopify package testsuites. -->
         <testsuite name="Shopify Unit Test">
             <directory suffix="Test.php">./packages/Webkul/Shopify/tests/Feature</directory>
