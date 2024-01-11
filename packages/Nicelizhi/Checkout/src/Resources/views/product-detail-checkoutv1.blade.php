@@ -957,7 +957,8 @@ p.cmpny-name {
                         </div>
     
                         <hr class="mt-2">
-
+                        
+                    <div class="div-line"><span><i class="fas fa-lock me-2"></i></span><strong>(1) PAY SECURELY WITH PayPal Standard</strong></div>
                         
                     <div class="checkout_express-buttons">
                         <div class="d-grid mb-3">
@@ -965,7 +966,7 @@ p.cmpny-name {
                         </div>
                     </div>
 
-                    <div class="div-line"><span><i class="fas fa-lock me-2"></i></span><strong>OR PAY SECURELY WITH Credit/Debit</strong></div>
+                    <div class="div-line"><span><i class="fas fa-lock me-2"></i></span><strong>(2) PAY SECURELY WITH Credit/Debit</strong></div>
                     
                     <div id="form-info" class="checkout_form checkout_form-info  p-2 p-lg-3">
 
