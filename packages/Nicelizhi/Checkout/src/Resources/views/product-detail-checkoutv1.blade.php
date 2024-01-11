@@ -967,7 +967,7 @@ p.cmpny-name {
                             <div class="col-12">
                                 <div class="fs-9 text-center mb-2">
                                     <i class="fas fa-lock me-2"></i>
-                            (After clicking "Pay with PayPal", you will be redirected to PayPal to complete your purchase securely.)
+                            After clicking "Pay with PayPal", you will be redirected to PayPal to complete your purchase securely.
                                         </div>
                             </div>
                         </div>
