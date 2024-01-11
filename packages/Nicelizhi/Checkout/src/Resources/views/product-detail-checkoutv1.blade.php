@@ -1286,7 +1286,7 @@ p.cmpny-name {
                     </div>
 
 
-                    <div class="div-line"><span><i class="fas fa-lock me-2"></i></span>OR PAY SECURELY WITH PAYPAL</div>
+                    <div class="div-line"><span><i class="fas fa-lock me-2"></i></span><strong>OR PAY SECURELY WITH PAYPAL</strong></div>
                     <div class="checkout_express-buttons">
                         <div class="d-grid mb-3">
                             <button type="button" class="btn btn-lg btn-express is-paypal pay-with-paypal-standard zoom-fade"> <span class="fs-8 text-dark me-1">Pay with</span> <img src="/checkout/v1/app/desktop/images/paypal.svg" height="50px" alt=""></button>
