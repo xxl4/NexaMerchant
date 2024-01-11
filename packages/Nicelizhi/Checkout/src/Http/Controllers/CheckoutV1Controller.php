@@ -736,4 +736,13 @@ class CheckoutV1Controller extends Controller{
 
     }
 
+    public function setGaClientId(Request $request) {
+        $clientId = $request->input("clientId");
+        $product_id = $request->input("product_id");
+
+        $redis = Redis::connection('default');
+        $redis->hset($this->cache_prefix_key."_access_".date("Ymd")."_".$product_id, $clientId, date("Y-m-d H:i:s"));
+        
+    }
+
 }

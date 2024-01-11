@@ -59,10 +59,6 @@ p.cmpny-name {
 
 <link rel="stylesheet" href="/checkout/v1/assets/css/app.css" />
 
-<script>
-window.dataLayer = window.dataLayer || [];
-</script>
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
    
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -70,7 +66,7 @@ window.dataLayer = window.dataLayer || [];
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="/checkout/v1/app/desktop/css/main.css?v=1704676785">
-    <link rel="stylesheet" type="text/css" href="/checkout/v1/app/desktop/css/spreedly.css">
+    <!-- <link rel="stylesheet" type="text/css" href="/checkout/v1/app/desktop/css/spreedly.css"> -->
     <style>
         .offer .offer-content {
             justify-content: flex-start;
@@ -1756,8 +1752,8 @@ window.dataLayer = window.dataLayer || [];
     
     
         <script type="text/javascript">
-        AJAX_PATH="ajax.php/"; 
-        app_config={"valid_class":"no-error","error_class":"has-error","loading_class":"loading","exit_popup_enabled":false,"exit_popup_element_id":"","exit_popup_page":"","offer_path":"/Hatmeo/en/us/v1/","current_step":1,"cbtoken":"","dev_mode":"N","show_validation_errors":"modal","allowed_tc":"8\"m0l0d0J050k050O0lv8sm\"l\"d4J454k454O4l480mvlsd\"J\"50k151O1l181m1l7dvJs5\"k\"50O1l089m0l3d4J45vks5\"O[r0j0V0H0q0h0k0R0X|Niraj,V1H4q4h4k4R4X4N4r|jiVaH,q6h1k1R1X1N1r1j1V|Hiqah,k6R1X0N0r9j1V9H2q|hikaR]","allowed_country_codes":["US","GB","CA","AU"],"countries":{"US":{"name":"United States","states":{"AL":{"name":"Alabama"},"AK":{"name":"Alaska"},"AS":{"name":"American Samoa"},"AZ":{"name":"Arizona"},"AR":{"name":"Arkansas"},"CA":{"name":"California"},"CO":{"name":"Colorado"},"CT":{"name":"Connecticut"},"DE":{"name":"Delaware"},"DC":{"name":"District of Columbia"},"FM":{"name":"Federated States of Micronesia"},"FL":{"name":"Florida"},"GA":{"name":"Georgia"},"GU":{"name":"Guam"},"HI":{"name":"Hawaii"},"ID":{"name":"Idaho"},"IL":{"name":"Illinois"},"IN":{"name":"Indiana"},"IA":{"name":"Iowa"},"KS":{"name":"Kansas"},"KY":{"name":"Kentucky"},"LA":{"name":"Louisiana"},"ME":{"name":"Maine"},"MD":{"name":"Maryland"},"MA":{"name":"Massachusetts"},"MI":{"name":"Michigan"},"MN":{"name":"Minnesota"},"MS":{"name":"Mississippi"},"MO":{"name":"Missouri"},"MT":{"name":"Montana"},"NE":{"name":"Nebraska"},"NV":{"name":"Nevada"},"NH":{"name":"New Hampshire"},"NJ":{"name":"New Jersey"},"NM":{"name":"New Mexico"},"NY":{"name":"New York"},"NC":{"name":"North Carolina"},"ND":{"name":"North Dakota"},"MP":{"name":"Northern Mariana Islands"},"OH":{"name":"Ohio"},"OK":{"name":"Oklahoma"},"OR":{"name":"Oregon"},"PA":{"name":"Pennsylvania"},"PR":{"name":"Puerto Rico"},"MH":{"name":"Republic of Marshall Islands"},"RI":{"name":"Rhode Island"},"SC":{"name":"South Carolina"},"SD":{"name":"South Dakota"},"TN":{"name":"Tennessee"},"TX":{"name":"Texas"},"UT":{"name":"Utah"},"VT":{"name":"Vermont"},"VI":{"name":"Virgin Islands of the U.S."},"VA":{"name":"Virginia"},"WA":{"name":"Washington"},"WV":{"name":"West Virginia"},"WI":{"name":"Wisconsin"},"WY":{"name":"Wyoming"}}},"GB":{"name":"United Kingdom","states":{}},"CA":{"name":"Canada","states":{"AB":{"name":"Alberta"},"BC":{"name":"British Columbia"},"MB":{"name":"Manitoba"},"NB":{"name":"New Brunswick"},"NL":{"name":"Newfoundland and Labrador"},"NT":{"name":"Northwest Territories"},"NS":{"name":"Nova Scotia"},"NU":{"name":"Nunavut"},"ON":{"name":"Ontario"},"PE":{"name":"Prince Edward Island"},"QC":{"name":"Quebec"},"SK":{"name":"Saskatchewan"},"YT":{"name":"Yukon"}}},"AU":{"name":"Australia","states":{"ACT":{"name":"Australian Capital Territory"},"NSW":{"name":"New South Wales"},"NT":{"name":"Northern Territory"},"QLD":{"name":"Queensland"},"SA":{"name":"South Australia"},"TAS":{"name":"Tasmania"},"VIC":{"name":"Victoria"},"WA":{"name":"Western Australia"}}}},"country_lang_mapping":{"US":{"state":"State:","zip":"Zip Code:"},"GB":{"state":"County:","zip":"Postal Code:"},"CA":{"state":"Province:","zip":"Pin Code:"},"IN":{"state":"State:","zip":"Pin:"}},"device_is_mobile":false,"pageType":"leadPage","enable_browser_back_button":false,"disable_trialoffer_cardexp":false,"enable_csrf_token":false}
+        AJAX_PATH="checkout/v1/"; 
+        app_config={"valid_class":"no-error","error_class":"has-error","loading_class":"loading","exit_popup_enabled":false,"exit_popup_element_id":"","exit_popup_page":"","offer_path":"/","current_step":1,"cbtoken":"","dev_mode":"N","show_validation_errors":"modal","allowed_tc":"8\"m0l0d0J050k050O0lv8sm\"l\"d4J454k454O4l480mvlsd\"J\"50k151O1l181m1l7dvJs5\"k\"50O1l089m0l3d4J45vks5\"O[r0j0V0H0q0h0k0R0X|Niraj,V1H4q4h4k4R4X4N4r|jiVaH,q6h1k1R1X1N1r1j1V|Hiqah,k6R1X0N0r9j1V9H2q|hikaR]","allowed_country_codes":["US","GB","CA","AU"],"countries":{"US":{"name":"United States","states":{"AL":{"name":"Alabama"},"AK":{"name":"Alaska"},"AS":{"name":"American Samoa"},"AZ":{"name":"Arizona"},"AR":{"name":"Arkansas"},"CA":{"name":"California"},"CO":{"name":"Colorado"},"CT":{"name":"Connecticut"},"DE":{"name":"Delaware"},"DC":{"name":"District of Columbia"},"FM":{"name":"Federated States of Micronesia"},"FL":{"name":"Florida"},"GA":{"name":"Georgia"},"GU":{"name":"Guam"},"HI":{"name":"Hawaii"},"ID":{"name":"Idaho"},"IL":{"name":"Illinois"},"IN":{"name":"Indiana"},"IA":{"name":"Iowa"},"KS":{"name":"Kansas"},"KY":{"name":"Kentucky"},"LA":{"name":"Louisiana"},"ME":{"name":"Maine"},"MD":{"name":"Maryland"},"MA":{"name":"Massachusetts"},"MI":{"name":"Michigan"},"MN":{"name":"Minnesota"},"MS":{"name":"Mississippi"},"MO":{"name":"Missouri"},"MT":{"name":"Montana"},"NE":{"name":"Nebraska"},"NV":{"name":"Nevada"},"NH":{"name":"New Hampshire"},"NJ":{"name":"New Jersey"},"NM":{"name":"New Mexico"},"NY":{"name":"New York"},"NC":{"name":"North Carolina"},"ND":{"name":"North Dakota"},"MP":{"name":"Northern Mariana Islands"},"OH":{"name":"Ohio"},"OK":{"name":"Oklahoma"},"OR":{"name":"Oregon"},"PA":{"name":"Pennsylvania"},"PR":{"name":"Puerto Rico"},"MH":{"name":"Republic of Marshall Islands"},"RI":{"name":"Rhode Island"},"SC":{"name":"South Carolina"},"SD":{"name":"South Dakota"},"TN":{"name":"Tennessee"},"TX":{"name":"Texas"},"UT":{"name":"Utah"},"VT":{"name":"Vermont"},"VI":{"name":"Virgin Islands of the U.S."},"VA":{"name":"Virginia"},"WA":{"name":"Washington"},"WV":{"name":"West Virginia"},"WI":{"name":"Wisconsin"},"WY":{"name":"Wyoming"}}},"GB":{"name":"United Kingdom","states":{}},"CA":{"name":"Canada","states":{"AB":{"name":"Alberta"},"BC":{"name":"British Columbia"},"MB":{"name":"Manitoba"},"NB":{"name":"New Brunswick"},"NL":{"name":"Newfoundland and Labrador"},"NT":{"name":"Northwest Territories"},"NS":{"name":"Nova Scotia"},"NU":{"name":"Nunavut"},"ON":{"name":"Ontario"},"PE":{"name":"Prince Edward Island"},"QC":{"name":"Quebec"},"SK":{"name":"Saskatchewan"},"YT":{"name":"Yukon"}}},"AU":{"name":"Australia","states":{"ACT":{"name":"Australian Capital Territory"},"NSW":{"name":"New South Wales"},"NT":{"name":"Northern Territory"},"QLD":{"name":"Queensland"},"SA":{"name":"South Australia"},"TAS":{"name":"Tasmania"},"VIC":{"name":"Victoria"},"WA":{"name":"Western Australia"}}}},"country_lang_mapping":{"US":{"state":"State:","zip":"Zip Code:"},"GB":{"state":"County:","zip":"Postal Code:"},"CA":{"state":"Province:","zip":"Pin Code:"},"IN":{"state":"State:","zip":"Pin:"}},"device_is_mobile":false,"pageType":"leadPage","enable_browser_back_button":false,"disable_trialoffer_cardexp":false,"enable_csrf_token":false,"token":"{{ csrf_token() }}"}
         </script>
         <script type="text/javascript">
         app_lang={"error_messages":{"zip_invalid":"Please enter a valid zip code!","email_invalid":"Please enter a valid email id!","cc_invalid":"Please enter a valid credit card number!","cvv_invalid":"Please enter a valid CVV code!","card_expired":"Card seems to have expired already!","card_expire_soon":"Your credit card is about to expire, please update your card information.","common_error":"Oops! Something went wrong! Can you please retry?","not_checked":"Please check the agreement box in order to proceed.","ca_zip_invalid":"Invalid Canada state code","xv_invalid_shipping":"Your shipping address could not be verified","xv_email":"Your email address could not be verified","xv_phone":"Your phone number could not be verified"},"exceptions":{"config_error":"General config error","config_file_missing":"General config error","invalid_array":"Argument is not a valid array","empty_prospect_id":"Prospect ID is empty or invalid","curl_error":"Something went wrong with the request, Please try again.","generic_error":"Something went wrong with the request, Please try again."}};
@@ -1766,15 +1762,17 @@ window.dataLayer = window.dataLayer || [];
         var cbUtilConfig = {"disable_non_english_char_input":false};
     </script>
 <script src="/checkout/v1/assets/js/promise.min.js" type="text/javascript"></script>
-<script src="/checkout/v1/assets/js/jquery.min.js" type="text/javascript"></script>
+<!-- <script src="/checkout/v1/assets/js/jquery.min.js" type="text/javascript"></script> -->
+<script src="https://code.jquery.com/jquery-2.0.0.min.js" crossorigin="anonymous"></script>
 <script src="/checkout/v1/assets/js/jquery.mask.min.js" type="text/javascript"></script>
 <script src="/checkout/v1/assets/js/validator.js" type="text/javascript"></script>
 <script src="/checkout/v1/assets/js/codebase.js" type="text/javascript"></script>
 <script src="/checkout/v1/assets/js/form_handler.js?v=11" type="text/javascript"></script>
-<script src="/checkout/v1/assets/js/app.js" type="text/javascript"></script>
+<script src="/checkout/v1/assets/js/app.js?v=13" type="text/javascript"></script>
 <script src="/checkout/v1/assets/js/outro.js" type="text/javascript"></script>
 <script src="/checkout/v1/extensions/CbUtilityPackage/js/cb-util-pkg.js" type="text/javascript"></script>
-      <script type="text/javascript" src="/checkout/v1/app/desktop/js/bootstrap.min.js"></script>
+      <!-- <script type="text/javascript" src="/checkout/v1/app/desktop/js/bootstrap.min.js"></script> -->
+      <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
     <?php if($app_env=='demo') { ?>
     <script src="https://checkout-demo.airwallex.com/assets/elements.bundle.min.js"></script>
     <?php }else{ ?>
@@ -1843,10 +1841,15 @@ window.dataLayer = window.dataLayer || [];
 
     </script>
 
-    <script>
-        //const card = Airwallex.createElement('card');
-        //card.mount('card');
-    </script>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P6343Y2GKT"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-P6343Y2GKT');
+</script>
 
 
     <!-- <script src="https://core.spreedly.com/iframe/iframe-v1.min.js"></script>
@@ -2046,6 +2049,11 @@ window.dataLayer = window.dataLayer || [];
                     $('input[name=shippingCity]').attr('value', "");
                     $('input[name=shippingState]').attr('value', "");
                     $('input[name=shippingZip]').attr('value', "");
+
+                    gtag('event', 'initiate_checkout', {
+                            'event_label': 'Initiate paypal Checkout',
+                            'event_category': 'ecommerce'
+                    });
                 }
             });
 
@@ -2155,6 +2163,11 @@ window.dataLayer = window.dataLayer || [];
                     console.log("form submit");
 
                     $('form[name=downsell_form1]').submit();
+
+                    gtag('event', 'initiate_checkout', {
+                            'event_label': 'Initiate Checkout',
+                            'event_category': 'ecommerce'
+                    });
 
                 }
             });
@@ -2721,6 +2734,12 @@ window.dataLayer = window.dataLayer || [];
                         var str = data.redirect;
                         var res = str.split("?");
                         if($('select[name=creditCardType]').val() == "paypal") {
+
+                            gtag('event', 'initiate_paypal', {
+                                'event_label': 'Initiate paypal redirect',
+                                'event_category': 'ecommerce'
+                            });
+
                             window.location.href = data.redirect;
                         }
                         else
@@ -2743,6 +2762,11 @@ window.dataLayer = window.dataLayer || [];
                                     //cb.errorHandler("Success");
                                     //alert("Success"); 
 
+                                    gtag('event', 'initiate_pay_success', {
+                                        'event_label': "Initiate cc success"+data.order_id,
+                                        'event_category': 'ecommerce'
+                                    });
+
                                     window.location.href="/checkout/v1/success/"+data.order_id;
 
                                 }).catch((response) => {
@@ -2756,6 +2780,10 @@ window.dataLayer = window.dataLayer || [];
                                     cbErrors.push(response.message);
                                     cb.errorHandler(cbErrors);
 
+                                    gtag('event', 'initiate_pay_error', {
+                                        'event_label': response.message,
+                                        'event_category': 'ecommerce'
+                                    });
                                     // cb.errorHandler(response.message);
 
                                 });

@@ -18,4 +18,5 @@ Route::group(['middleware' => ['locale', 'theme', 'currency','web']], function (
     Route::get('checkout/v1/success/{order_id}', [CheckoutV1Controller::class, 'success'])->name('checkout.v1.product.success')->middleware('cacheResponse');
 
     Route::get('checkout/v1/cms/{slug}', [CheckoutV1Controller::class, 'cms'])->name('checkout.v1.product.cms')->middleware('cacheResponse'); // 添加 cms 数据内容
+    Route::post('checkout/v1/set-ga-client-id', [CheckoutV1Controller::class, 'setGaClientId'])->name('checkot.v1.product.setclientId')->middleware('cacheResponse');
 });
