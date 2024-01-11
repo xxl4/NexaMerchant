@@ -1671,24 +1671,31 @@ p.cmpny-name {
                   <div class="progress-bar progress-bar-striped bg-primary progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" ></div>
                 </div>
                <div class="step-review-container">
-
-                  <div class="steps1 steps2 descCounterStep1">
+               <?php 
+               $i = 0;
+               foreach($comments as $key=>$comment) { 
+                    $i++;
+                    $comment = json_decode($comment); 
+                    if($i > 2) continue;   
+                            
+                ?>
+                  <div class="steps<?php echo $i+1;?> steps<?php echo $i+2;?> descCounterStep<?php echo $i+1;?>">
                      <div class="step-review-box">
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
-                        <p class="step-review-title">Winter Hiker</p>
+                        <p class="step-review-title"><?php echo $comment->title;?></p>
 
-                        <p class="step-review-body">"These heating vests can't be beat. I've never felt this warm during my winter hikes! It truly covers all the right spots for optimal warmth. Wish I found them sooner!"</p>
+                        <p class="step-review-body"><?php echo $comment->content;?></p>
 
-                        <p class="step-review-author">Elena Martinez</p>
+                        <p class="step-review-author"><?php echo $comment->name;?></p>
                         <p class="step-review-verified"><i class="fas fa-check-circle text-success me-1"></i>Verified Purchase</p>
                      </div>
                   </div>
 
-                  <div class="steps3 steps4 descCounterStep2">
+                  <!-- <div class="steps3 steps4 descCounterStep2">
                      <div class="step-review-box odd">
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
@@ -1702,8 +1709,8 @@ p.cmpny-name {
                         <p class="step-review-author">Jackson Reid</p>
                         <p class="step-review-verified"><i class="fas fa-check-circle text-success me-1"></i>Verified Purchase</p>
                      </div>
-                  </div>
-
+                  </div> -->
+                <?php } ?>
                </div>
             </div>
          </div>
