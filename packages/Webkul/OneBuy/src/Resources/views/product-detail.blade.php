@@ -81,7 +81,12 @@
 <script src="https://lander.heomai.com/template-common/js/frames-init.js"></script>
 <script src="https://lander.heomai.com/template-common/js/paypal-init.js"></script>
 
+<?php if($app_env=='demo') { ?>
+<script src="https://checkout-demo.airwallex.com/assets/elements.bundle.min.js"></script>
+<?php }else{ ?>
 <script src="https://checkout.airwallex.com/assets/elements.bundle.min.js"></script>
+<?php } ?>
+
 <link rel="stylesheet" href="https://lander.heomai.com/template-common/checkout1/css/font-awesome.min.css">
 
 <link rel="stylesheet" href="https://lander.heomai.com/template-common/checkout6/css/order.css?v=11">
@@ -687,15 +692,29 @@ Hatmeo offers a 30 day guarantee on all unused purchases. Simply send the item(s
 </div>
 </div>
 </div>
+<div class="submit-block" style="padding-bottom: 10px;">
+    <div class="submit-content">
+        <div id="checkout-error" style="color:#e51f28;display:none;"></div>
+        <div class="pay-width-paypal-standard">
+            <img src="/checkout/v1/app/desktop/images/paypal_standard.png" style="height:50px;cursor: pointer;" />
+        </div>
+        <!-- <button class="submit-button" onclick="checkout()">Pay With Paypal Standard </button> -->
+    </div>
+</div>
 <div class="submit-block">
-<div class="submit-content">
-<div id="checkout-error" style="color:#e51f28;display:none;"></div>
-<button class="submit-button" onclick="checkout()">
-COMPLETE SECURE PURCHASE </button>
+    <div class="submit-content">
+        <div id="checkout-error" style="color:#e51f28;display:none;"></div>
+        <!-- <button class="submit-button" onclick="checkout()">Pay With credit card</button> -->
+        <div style="background-color: #30BD51;border-top-right-radius: 5px;border-start-end-radius: 5px;border-top-left-radius: 5px;border-start-start-radius: 5px;box-sizing: border-box;cursor: pointer;height: 50px;text-align: center;line-height: 50px;" onclick="checkout()">
+                <span>credit card</span>
+                <img src="/checkout/v1/app/desktop/images/payment_method.png"  style="width:70%"/>
+        </div>
+        
+    </div>
 </div>
-</div>
+
 <div id="airwallex-warpper"></div>
-<div id="dropIn"></div>
+<div id="dropIn" style="padding-top:20px;"></div>
 <p id="error"></p>
 <div id="pay-after-warpper"></div>
 <div class="summary-footer summary-footer-mb">
@@ -1579,6 +1598,7 @@ function GotoNotRequest(url) {
 
 <script>
         window.pay_type = 'airwallex';
+        window.is_paypal_standard = pay_type == 'paypal_standard' ? true : false;
         window.is_checkout_pay = pay_type == 'checkout' ? true : false;
         window.is_payoneer_pay = pay_type == 'payoneer' ? true : false;
         window.is_paypal_card_pay = pay_type == 'paypal_card' ? true : false;
@@ -1969,6 +1989,15 @@ function GotoNotRequest(url) {
             })
         }
 
+        // 实现 paypal standar payment
+        $(".pay-width-paypal-standard").on("click", function(){
+            window.pay_type = "paypal_standard";
+            window.is_paypal_standard = true;
+            console.log("paypal standard payment"+window.pay_type);
+            console.log("paypal standard payment"+window.is_paypal_standard);
+            checkout();
+        });
+
         function checkout() {
             sendInitiateCheckoutEvent();
             gtag('event', 'initiate_checkout', {
@@ -2007,6 +2036,8 @@ function GotoNotRequest(url) {
                 createOrder('', '', 'pacypay');
             } else if(window.is_worldpay){
                 createOrder('', '', 'worldpay');
+            }else if(window.is_paypal_standard) {
+                createOrder('', '', 'paypal_standard');
             } else if(window.is_airwallex){
                 $('#airwallex-warpper').hide();
                 createOrder('', '', 'airwallex');
@@ -2051,6 +2082,9 @@ function GotoNotRequest(url) {
                 params['card'] = card;
             }
 
+            params['pay_type'] = pay_type;
+            console.log(JSON.stringify(params));
+
             var url = '/onebuy/order/add/sync?_token={{ csrf_token() }}&time=' + new Date().getTime();
 
             if(pay_type=="payoneer" || pay_type == 'pacypay') {
@@ -2071,10 +2105,41 @@ function GotoNotRequest(url) {
                 console.log(data);
                 if(data.result === 200){
                     var order_info = data.order;
+
+
+                    if(window.is_paypal_standard) {
+
+                        var paypal_form = '<form action="'+data.pay_url+'" method="post" style="display:none" >';
+                        
+
+                        console.log(data.form);
+
+                        $.each(data.form, function(k, v) {
+
+                            if(k=='cancel_return') v = window.location.href;
+                            //if(k=='return') v = "<?php echo route('onebuy.checkout.success')?>";
+                            /// do stuff
+                            paypal_form +='<input type="hidden" name="'+k+'" value="'+v+'">';
+                        });
+                            // 
+                        paypal_form += '</form>';
+
+                        console.log(paypal_form);
+
+                        $(paypal_form).appendTo('body').submit();
+
+                        return false;
+
+
+                    }
+
+
+
                     document.cookie="voluum_payout="+ order_info.grand_total + order_info.order_currency_code + "; path=/";
                     document.cookie="order_id="+ order_info.id + "; path=/";
                     localStorage.setItem("order_id", order_info.id);
                     localStorage.setItem("order_params", JSON.stringify(params));
+
                     if(window.is_payoneer_pay) {
                         $('#loading').hide();
                         initPayoneerPaymentPage(order_info.client_secret);
@@ -2120,7 +2185,7 @@ function GotoNotRequest(url) {
                                 }
                             }
                         });
-                    } else if (window.is_airwallex){
+                    }else if (window.is_airwallex){
                         $('#loading').hide();
                         document.querySelector(".submit-button").scrollIntoView({
                             behavior: "smooth"
@@ -2132,7 +2197,7 @@ function GotoNotRequest(url) {
                         try {
                             // STEP #2: Initialize the Airwallex global context for event communication
                             Airwallex.init({
-                            env: 'prod', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
+                            env: '<?php echo $app_env;?>', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
                             origin: window.location.origin, // Setup your event target to receive the browser events message
                             fonts: [
                                 // Customizes the font for the payment elements
@@ -2144,12 +2209,14 @@ function GotoNotRequest(url) {
                                 },
                             ],
                             });
+                            
 
                             // STEP #4: Create 'dropIn' element
                             const dropIn = Airwallex.createElement('dropIn', {
                             // Required, dropIn use intent Id, client_secret and currency to prepare checkout
                             intent_id: data.payment_intent_id,
                             client_secret: data.client_secret,
+                            methods: ["card","googlepay","applepay"],
                             currency: data.currency,
                             // customer_id:"cus_hkdm6lm7hglgq1tsh22",
                             googlePayRequestOptions: {
@@ -2836,64 +2903,6 @@ function GotoNotRequest(url) {
             script.src = url;
             document.getElementsByTagName('head')[0].appendChild(script);
         }
-
-                    var cancel_google_map = 0;
-            if(!cancel_google_map) {
-                // loadJS('https://maps.googleapis.com/maps/api/js?key=AIzaSyA-roWtlZOnh7W7am1tQepghp9DTkfOHIc&libraries=places', function() {
-                //     setGoogleMap();
-                // })
-            }
-        
-        function setGoogleMap() {
-            var input = document.querySelector('.address');
-
-            var autocomplete = new window.google.maps.places.Autocomplete(input);
-            autocomplete.setTypes(["geocode", "establishment"]);
-            autocomplete.setFields(["address_component", "formatted_address"]);
-            autocomplete.addListener("place_changed", function(){
-                function getAddressComponentField(index, field, types_one) {
-                    var place = autocomplete.getPlace();
-                    var address_components =  place.address_components;
-
-                    try {
-                        var value = '';
-                        if(address_components[index]) {
-                            value = address_components[index][field];
-                        }
-                        if(!address_components[index] || address_components[index]['types'].indexOf(types_one) == -1) {
-                            for (var i = 0; i < address_components.length; i++) {
-                                var address_component = address_components[i];
-                                if(address_component.types.indexOf(types_one) > -1) {
-                                    value = address_components[i][field];
-                                }
-                            }
-                        }
-                        return value;
-                    } catch {
-                        return '';
-                    }
-                }
-                var address = getAddressComponentField(0, 'long_name') + ' ' + getAddressComponentField(1, 'long_name');
-                var city = getAddressComponentField(2, 'long_name');
-                var state = getAddressComponentField(5, 'short_name');
-                var country = getAddressComponentField(6, 'short_name', 'country');
-                var zip_code = getAddressComponentField(7, 'long_name', 'postal_code');
-
-                var country_replace_obj = {
-                    'PR' : 'US'
-                }
-
-                $('.address').val(address);
-                $('.address').change();
-                $('.city').val(city);
-                $('.city').change();
-                $('#country-select').val(country_replace_obj[country] ? country_replace_obj[country] : country);
-                $('#country-select').change();
-                window.state_select = state;
-                $('.zip_code').val(zip_code);
-                $('.zip_code').change();
-            })
-        }
     </script>
 <script>
         function payAfterSubmit() {
@@ -2901,5 +2910,6 @@ function GotoNotRequest(url) {
             $('#loading').show();
                     }
     </script>
+    <script>(function(){"use strict";function n(n,e){var r;void 0===e&&(e="uclick");var c=null===(r=n.match(/\?.+?$/))||void 0===r?void 0:r[0];return c?Array.from(c.matchAll(new RegExp("[?&](clickid|"+e+")=([^=&]*)","g"))).map((function(n){return{name:n[1],value:n[2]}})):[]}function e(n){var e=n();return 0===e.length?{}:e.reduce((function(n,e){var r;return Object.assign(n,((r={})[e.name]=""+e.value,r))}),{})}function r(r){void 0===r&&(r="uclick");var c,t,u=e((function(){return(function(n){return void 0===n&&(n="uclick"),Array.from(document.cookie.matchAll(new RegExp("(?:^|; )(clickid|"+n+")=([^;]*)","g"))).map((function(n){return{name:n[1],value:n[2]}}))})(r)})),i=e((function(){return n(document.referrer,r)})),o=e((function(){return n(document.location.search,r)}));return(c=[r,"clickid"],t=[u,i,o],c.reduce((function(n,e){return n.concat(t.map((function(n){return[e,n]})))}),[])).map((function(n){return{name:n[0],value:n[1][n[0]]}})).find((function(n){return n.value}))||null}var c,t,u,i;(i=document.createElement("img")).src=(t=""+"https://track.heomai2021.com/"+"click"+".php?payout=OPTIONAL",(u=r(c="uclick"))?t+"&cnv_id="+(u.name===c?"OPTIONAL":u.value)+(u.name===c?"&"+c+"="+u.value:""):t+"&cnv_id=OPTIONAL"),i.referrerPolicy="no-referrer-when-downgrade"})();</script>
 </body>
 </html>

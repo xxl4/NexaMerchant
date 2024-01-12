@@ -68,6 +68,7 @@ class Post extends Command
         //     'status' => 'processing'
         // ]);
         $lists = Order::where(['status'=>'processing'])->orderBy("updated_at", "desc")->limit(10)->get();
+        //$lists = Order::where(['id'=>'433'])->orderBy("updated_at", "desc")->limit(10)->get();
 
         //var_dump($lists);exit;
 
@@ -129,6 +130,8 @@ class Post extends Command
         $products = $order->items;
         foreach($products as $key=>$product) {
             $sku = $product['additional'];
+
+            //var_dump($sku);
 
             //var_dump($sku);
             $skuInfo = explode('-', $sku['product_sku']);

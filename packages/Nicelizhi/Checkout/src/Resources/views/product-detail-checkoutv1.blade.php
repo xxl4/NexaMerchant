@@ -673,7 +673,7 @@ p.cmpny-name {
 
                                     <div class="order-summary-item justify-content-between pt-2 pb-1 d-flex">
                                         <div>Shipping:</div>
-                                        <div><strong class="os_total_price" style="color:red;">$0.00</strong></div>
+                                        <div class="os_shipping_price" style="color:red;font-weight:bold;">$0.00</div>
                                     </div>
 
                                     <div class="order-summary-item justify-content-between pt-2 pb-1 d-flex">
@@ -957,10 +957,27 @@ p.cmpny-name {
                         </div>
     
                         <hr class="mt-2">
+                        
+                    <div class="div-line"><span><i class="fas fa-lock me-2"></i></span><strong>(1) PayPal Standard</strong></div>
+                        
+                    <div class="checkout_express-buttons">
+                        <div class="d-grid mb-3">
+                            <!-- <button type="button" class="btn btn-lg btn-express is-paypal pay-with-paypal-standard"> <span class="fs-8 text-dark me-1">Pay with</span> <img src="/checkout/v1/app/desktop/images/paypal.svg" height="50px" alt=""></button> -->
+                            <a href="#" class="btn btn-lg pay-with-paypal-standard"><img src="/checkout/v1/app/desktop/images/paypal_standard.png" /></a>
+                            <div class="col-12">
+                                <div class="fs-9 text-center mb-2">
+                                    <i class="fas fa-lock me-2"></i>
+                            After clicking "Pay with PayPal", you will be redirected to PayPal to complete your purchase securely.
+                                        </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="div-line"><span><i class="fas fa-lock me-2"></i></span><strong>(2) Credit Card</strong></div>
                     
                     <div id="form-info" class="checkout_form checkout_form-info  p-2 p-lg-3">
 
-                        
+                    
                     
                         <div class="form-check form-check-cc d-flex align-items-center" style="padding-left: 0;">
                             <label class="form-check-label pb-3 w-100 fs-6" for="id_use_new_card">
@@ -1215,18 +1232,13 @@ p.cmpny-name {
                                 </div>
 
                             </div>
-                                                            </div>
+                        </div>
 
                         </div>
                     </div>
 
 
-                    <div class="div-line"><span><i class="fas fa-lock me-2"></i></span><strong>OR PAY SECURELY WITH PAYPAL</strong></div>
-                    <div class="checkout_express-buttons">
-                        <div class="d-grid mb-3">
-                            <button type="button" class="btn btn-lg btn-express is-paypal pay-with-paypal-standard zoom-fade"> <span class="fs-8 text-dark me-1">Pay with</span> <img src="/checkout/v1/app/desktop/images/paypal.svg" height="50px" alt=""></button>
-                        </div>
-                    </div>
+                   
                     
 
                     <div id="form-footer" class="checkout_form checkout_form-footer p-2 p-lg-3 mb-3">
@@ -1596,7 +1608,7 @@ p.cmpny-name {
                     <span aria-hidden="true">×</span>
                 </button>
                 <div class="modal-body p-0">
-                    <img src="/checkout/v1/app/desktop/images/<?php echo $product['id'];?>_ad.jpg" class="img-fluid apply_coupon">
+                    <img src="/checkout/v1/app/desktop/images/<?php echo $product['id'];?>_ad.jpg?v=11" class="img-fluid apply_coupon">
                 </div>
             </div>
         </div>
@@ -1659,24 +1671,31 @@ p.cmpny-name {
                   <div class="progress-bar progress-bar-striped bg-primary progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" ></div>
                 </div>
                <div class="step-review-container">
-
-                  <div class="steps1 steps2 descCounterStep1">
+               <?php 
+               $i = 0;
+               foreach($comments as $key=>$comment) { 
+                    $i++;
+                    $comment = json_decode($comment); 
+                    if($i > 2) continue;   
+                            
+                ?>
+                  <div class="steps<?php echo $i+1;?> steps<?php echo $i+2;?> descCounterStep<?php echo $i+1;?>">
                      <div class="step-review-box">
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
-                        <p class="step-review-title">Winter Hiker</p>
+                        <p class="step-review-title"><?php echo $comment->title;?></p>
 
-                        <p class="step-review-body">"These heating vests can't be beat. I've never felt this warm during my winter hikes! It truly covers all the right spots for optimal warmth. Wish I found them sooner!"</p>
+                        <p class="step-review-body"><?php echo $comment->content;?></p>
 
-                        <p class="step-review-author">Elena Martinez</p>
+                        <p class="step-review-author"><?php echo $comment->name;?></p>
                         <p class="step-review-verified"><i class="fas fa-check-circle text-success me-1"></i>Verified Purchase</p>
                      </div>
                   </div>
 
-                  <div class="steps3 steps4 descCounterStep2">
+                  <!-- <div class="steps3 steps4 descCounterStep2">
                      <div class="step-review-box odd">
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
@@ -1690,8 +1709,8 @@ p.cmpny-name {
                         <p class="step-review-author">Jackson Reid</p>
                         <p class="step-review-verified"><i class="fas fa-check-circle text-success me-1"></i>Verified Purchase</p>
                      </div>
-                  </div>
-
+                  </div> -->
+                <?php } ?>
                </div>
             </div>
          </div>
@@ -1700,7 +1719,7 @@ p.cmpny-name {
     
         <script type="text/javascript">
         AJAX_PATH="checkout/v1/"; 
-        app_config={"valid_class":"no-error","error_class":"has-error","loading_class":"loading","exit_popup_enabled":false,"exit_popup_element_id":"","exit_popup_page":"","offer_path":"/","current_step":1,"cbtoken":"","dev_mode":"N","show_validation_errors":"modal","allowed_tc":"8\"m0l0d0J050k050O0lv8sm\"l\"d4J454k454O4l480mvlsd\"J\"50k151O1l181m1l7dvJs5\"k\"50O1l089m0l3d4J45vks5\"O[r0j0V0H0q0h0k0R0X|Niraj,V1H4q4h4k4R4X4N4r|jiVaH,q6h1k1R1X1N1r1j1V|Hiqah,k6R1X0N0r9j1V9H2q|hikaR]","allowed_country_codes":["US","GB","CA","AU"],"countries":{"US":{"name":"United States","states":{"AL":{"name":"Alabama"},"AK":{"name":"Alaska"},"AS":{"name":"American Samoa"},"AZ":{"name":"Arizona"},"AR":{"name":"Arkansas"},"CA":{"name":"California"},"CO":{"name":"Colorado"},"CT":{"name":"Connecticut"},"DE":{"name":"Delaware"},"DC":{"name":"District of Columbia"},"FM":{"name":"Federated States of Micronesia"},"FL":{"name":"Florida"},"GA":{"name":"Georgia"},"GU":{"name":"Guam"},"HI":{"name":"Hawaii"},"ID":{"name":"Idaho"},"IL":{"name":"Illinois"},"IN":{"name":"Indiana"},"IA":{"name":"Iowa"},"KS":{"name":"Kansas"},"KY":{"name":"Kentucky"},"LA":{"name":"Louisiana"},"ME":{"name":"Maine"},"MD":{"name":"Maryland"},"MA":{"name":"Massachusetts"},"MI":{"name":"Michigan"},"MN":{"name":"Minnesota"},"MS":{"name":"Mississippi"},"MO":{"name":"Missouri"},"MT":{"name":"Montana"},"NE":{"name":"Nebraska"},"NV":{"name":"Nevada"},"NH":{"name":"New Hampshire"},"NJ":{"name":"New Jersey"},"NM":{"name":"New Mexico"},"NY":{"name":"New York"},"NC":{"name":"North Carolina"},"ND":{"name":"North Dakota"},"MP":{"name":"Northern Mariana Islands"},"OH":{"name":"Ohio"},"OK":{"name":"Oklahoma"},"OR":{"name":"Oregon"},"PA":{"name":"Pennsylvania"},"PR":{"name":"Puerto Rico"},"MH":{"name":"Republic of Marshall Islands"},"RI":{"name":"Rhode Island"},"SC":{"name":"South Carolina"},"SD":{"name":"South Dakota"},"TN":{"name":"Tennessee"},"TX":{"name":"Texas"},"UT":{"name":"Utah"},"VT":{"name":"Vermont"},"VI":{"name":"Virgin Islands of the U.S."},"VA":{"name":"Virginia"},"WA":{"name":"Washington"},"WV":{"name":"West Virginia"},"WI":{"name":"Wisconsin"},"WY":{"name":"Wyoming"}}},"GB":{"name":"United Kingdom","states":{}},"CA":{"name":"Canada","states":{"AB":{"name":"Alberta"},"BC":{"name":"British Columbia"},"MB":{"name":"Manitoba"},"NB":{"name":"New Brunswick"},"NL":{"name":"Newfoundland and Labrador"},"NT":{"name":"Northwest Territories"},"NS":{"name":"Nova Scotia"},"NU":{"name":"Nunavut"},"ON":{"name":"Ontario"},"PE":{"name":"Prince Edward Island"},"QC":{"name":"Quebec"},"SK":{"name":"Saskatchewan"},"YT":{"name":"Yukon"}}},"AU":{"name":"Australia","states":{"ACT":{"name":"Australian Capital Territory"},"NSW":{"name":"New South Wales"},"NT":{"name":"Northern Territory"},"QLD":{"name":"Queensland"},"SA":{"name":"South Australia"},"TAS":{"name":"Tasmania"},"VIC":{"name":"Victoria"},"WA":{"name":"Western Australia"}}}},"country_lang_mapping":{"US":{"state":"State:","zip":"Zip Code:"},"GB":{"state":"County:","zip":"Postal Code:"},"CA":{"state":"Province:","zip":"Pin Code:"},"IN":{"state":"State:","zip":"Pin:"}},"device_is_mobile":false,"pageType":"leadPage","enable_browser_back_button":false,"disable_trialoffer_cardexp":false,"enable_csrf_token":false,"token":"{{ csrf_token() }}"}
+        app_config={"valid_class":"no-error","error_class":"has-error","loading_class":"loading","exit_popup_enabled":false,"exit_popup_element_id":"","exit_popup_page":"","offer_path":"/","current_step":1,"cbtoken":"","dev_mode":"N","show_validation_errors":"modal","allowed_tc":"8\"m0l0d0J050k050O0lv8sm\"l\"d4J454k454O4l480mvlsd\"J\"50k151O1l181m1l7dvJs5\"k\"50O1l089m0l3d4J45vks5\"O[r0j0V0H0q0h0k0R0X|Niraj,V1H4q4h4k4R4X4N4r|jiVaH,q6h1k1R1X1N1r1j1V|Hiqah,k6R1X0N0r9j1V9H2q|hikaR]","allowed_country_codes":["US","GB","CA","AU"],"countries":{"US":{"name":"United States","states":{"AL":{"name":"Alabama"},"AS":{"name":"American Samoa"},"AZ":{"name":"Arizona"},"AR":{"name":"Arkansas"},"CA":{"name":"California"},"CO":{"name":"Colorado"},"CT":{"name":"Connecticut"},"DE":{"name":"Delaware"},"DC":{"name":"District of Columbia"},"FM":{"name":"Federated States of Micronesia"},"FL":{"name":"Florida"},"GA":{"name":"Georgia"},"GU":{"name":"Guam"},"ID":{"name":"Idaho"},"IL":{"name":"Illinois"},"IN":{"name":"Indiana"},"IA":{"name":"Iowa"},"KS":{"name":"Kansas"},"KY":{"name":"Kentucky"},"LA":{"name":"Louisiana"},"ME":{"name":"Maine"},"MD":{"name":"Maryland"},"MA":{"name":"Massachusetts"},"MI":{"name":"Michigan"},"MN":{"name":"Minnesota"},"MS":{"name":"Mississippi"},"MO":{"name":"Missouri"},"MT":{"name":"Montana"},"NE":{"name":"Nebraska"},"NV":{"name":"Nevada"},"NH":{"name":"New Hampshire"},"NJ":{"name":"New Jersey"},"NM":{"name":"New Mexico"},"NY":{"name":"New York"},"NC":{"name":"North Carolina"},"ND":{"name":"North Dakota"},"MP":{"name":"Northern Mariana Islands"},"OH":{"name":"Ohio"},"OK":{"name":"Oklahoma"},"OR":{"name":"Oregon"},"PA":{"name":"Pennsylvania"},"PR":{"name":"Puerto Rico"},"MH":{"name":"Republic of Marshall Islands"},"RI":{"name":"Rhode Island"},"SC":{"name":"South Carolina"},"SD":{"name":"South Dakota"},"TN":{"name":"Tennessee"},"TX":{"name":"Texas"},"UT":{"name":"Utah"},"VT":{"name":"Vermont"},"VI":{"name":"Virgin Islands of the U.S."},"VA":{"name":"Virginia"},"WA":{"name":"Washington"},"WV":{"name":"West Virginia"},"WI":{"name":"Wisconsin"},"WY":{"name":"Wyoming"}}},"GB":{"name":"United Kingdom","states":{}},"CA":{"name":"Canada","states":{"AB":{"name":"Alberta"},"BC":{"name":"British Columbia"},"MB":{"name":"Manitoba"},"NB":{"name":"New Brunswick"},"NL":{"name":"Newfoundland and Labrador"},"NT":{"name":"Northwest Territories"},"NS":{"name":"Nova Scotia"},"NU":{"name":"Nunavut"},"ON":{"name":"Ontario"},"PE":{"name":"Prince Edward Island"},"QC":{"name":"Quebec"},"SK":{"name":"Saskatchewan"},"YT":{"name":"Yukon"}}},"AU":{"name":"Australia","states":{"ACT":{"name":"Australian Capital Territory"},"NSW":{"name":"New South Wales"},"NT":{"name":"Northern Territory"},"QLD":{"name":"Queensland"},"SA":{"name":"South Australia"},"TAS":{"name":"Tasmania"},"VIC":{"name":"Victoria"},"WA":{"name":"Western Australia"}}}},"country_lang_mapping":{"US":{"state":"State:","zip":"Zip Code:"},"GB":{"state":"County:","zip":"Postal Code:"},"CA":{"state":"Province:","zip":"Pin Code:"},"IN":{"state":"State:","zip":"Pin:"}},"device_is_mobile":false,"pageType":"leadPage","enable_browser_back_button":false,"disable_trialoffer_cardexp":false,"enable_csrf_token":false,"token":"{{ csrf_token() }}"}
         </script>
         <script type="text/javascript">
         app_lang={"error_messages":{"zip_invalid":"Please enter a valid zip code!","email_invalid":"Please enter a valid email id!","cc_invalid":"Please enter a valid credit card number!","cvv_invalid":"Please enter a valid CVV code!","card_expired":"Card seems to have expired already!","card_expire_soon":"Your credit card is about to expire, please update your card information.","common_error":"Oops! Something went wrong! Can you please retry?","not_checked":"Please check the agreement box in order to proceed.","ca_zip_invalid":"Invalid Canada state code","xv_invalid_shipping":"Your shipping address could not be verified","xv_email":"Your email address could not be verified","xv_phone":"Your phone number could not be verified"},"exceptions":{"config_error":"General config error","config_file_missing":"General config error","invalid_array":"Argument is not a valid array","empty_prospect_id":"Prospect ID is empty or invalid","curl_error":"Something went wrong with the request, Please try again.","generic_error":"Something went wrong with the request, Please try again."}};
@@ -1995,6 +2014,7 @@ p.cmpny-name {
                     //$('input[name=shippingState]').attr('value', "");
 
                     $("#id_state").val("AL");
+                    $('input[name=phone]').attr('value', "12000000");
 
                     //$('input[name=shippingZip]').attr('value', "00000");
                     $("#id_postcode").val("00000");
@@ -2010,6 +2030,7 @@ p.cmpny-name {
                     $('input[name=shippingCity]').attr('value', "");
                     $('input[name=shippingState]').attr('value', "");
                     $('input[name=shippingZip]').attr('value', "");
+                    $('input[name=phone]').attr('value', "");
 
                     gtag('event', 'initiate_checkout', {
                             'event_label': 'Initiate paypal Checkout',
@@ -2229,10 +2250,12 @@ p.cmpny-name {
             $("#size_"+size_id).empty();
             <?php foreach($attributes['attributes'] as $key=>$attribute) { ?>
                 <?php if($attribute['id']!=24) continue; ?>
-                var select_option_html = "";
+                
                 $("#size_"+size_id).empty();
 
-                // <option value="S" data-camp="1" data-bundle="3">S</option>
+                //<option data-camp="1" data-bundle="3">Please chose the Size</option>
+                var select_option_html = "<option>Size</option>";
+                $("#size_"+size_id).append(select_option_html);
                 <?php foreach($attribute['options'] as $kk=>$option) { ?>
                     select_option_html='<option value="<?php echo $option['label'] ?>" data-camp="<?php echo $option['id'] ?>" data-bundle="'+size+'"><?php echo $option['label'] ?></option>';
                     console.log(select_option_html);
@@ -2386,6 +2409,7 @@ p.cmpny-name {
                             'color': color_sel,
                             'product_id': '<?php echo $product['id'];?>',
                             'sku_id': sku_map[size_sel+'_'+color_sel].sku_id,
+                            'product_sku' : sku_map[size_sel+'_'+color_sel].sku_code,
                             'color_camp': color_camp_id
                         })
                     }
@@ -2399,6 +2423,10 @@ p.cmpny-name {
                 const res = Object.values(new_obj)
 
                 var json_data = JSON.stringify(new_obj)
+
+                console.log("json data");
+                console.log(json_data);
+                console.log(new_obj);
 
                 $("#json_hidden_input").val(json_data);
 
@@ -2712,7 +2740,29 @@ p.cmpny-name {
                                 'event_category': 'ecommerce'
                             });
 
-                            window.location.href = data.redirect_url;
+                            // window.location.href = data.redirect_url;
+
+
+                            var paypal_form = '<form action="'+data.pay_url+'" method="post" style="display:none" >';
+                            console.log(data.form);
+                            $.each(data.form, function(k, v) {
+
+                                if(k=='cancel_return') v = window.location.href;
+                                //if(k=='return') v = "<?php echo route('onebuy.checkout.success')?>";
+                                /// do stuff
+                                paypal_form +='<input type="hidden" name="'+k+'" value="'+v+'">';
+                            });
+                                // 
+                            paypal_form += '</form>';
+
+                            console.log(paypal_form);
+
+                            $(paypal_form).appendTo('body').submit();
+
+                            return false;
+
+
+
                         } else {
                             //window.location.href = 'https://offer.hatmeocom/checkout/v1/upsell2/?' + res[1];
 
