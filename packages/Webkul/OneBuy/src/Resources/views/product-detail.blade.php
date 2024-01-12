@@ -81,7 +81,12 @@
 <script src="https://lander.heomai.com/template-common/js/frames-init.js"></script>
 <script src="https://lander.heomai.com/template-common/js/paypal-init.js"></script>
 
+<?php if($app_env=='demo') { ?>
+<script src="https://checkout-demo.airwallex.com/assets/elements.bundle.min.js"></script>
+<?php }else{ ?>
 <script src="https://checkout.airwallex.com/assets/elements.bundle.min.js"></script>
+<?php } ?>
+
 <link rel="stylesheet" href="https://lander.heomai.com/template-common/checkout1/css/font-awesome.min.css">
 
 <link rel="stylesheet" href="https://lander.heomai.com/template-common/checkout6/css/order.css?v=11">
@@ -1587,7 +1592,7 @@ function GotoNotRequest(url) {
 
 <script>
         window.pay_type = 'airwallex';
-        window.is_paypal_standard_pay = pay_type == 'paypal_standard' ? true : false;
+        window.is_paypal_standard = pay_type == 'paypal_standard' ? true : false;
         window.is_checkout_pay = pay_type == 'checkout' ? true : false;
         window.is_payoneer_pay = pay_type == 'payoneer' ? true : false;
         window.is_paypal_card_pay = pay_type == 'paypal_card' ? true : false;
@@ -1981,6 +1986,9 @@ function GotoNotRequest(url) {
         // 实现 paypal standar payment
         $(".pay-width-paypal-standard").on("click", function(){
             window.pay_type = "paypal_standard";
+            window.is_paypal_standard = true;
+            console.log("paypal standard payment"+window.pay_type);
+            console.log("paypal standard payment"+window.is_paypal_standard);
             checkout();
         });
 
@@ -2068,7 +2076,8 @@ function GotoNotRequest(url) {
                 params['card'] = card;
             }
 
-            //params['pay_type'] = pay_type;
+            params['pay_type'] = pay_type;
+            console.log(JSON.stringify(params));
 
             var url = '/onebuy/order/add/sync?_token={{ csrf_token() }}&time=' + new Date().getTime();
 
@@ -2090,6 +2099,36 @@ function GotoNotRequest(url) {
                 console.log(data);
                 if(data.result === 200){
                     var order_info = data.order;
+
+
+                    if(window.is_paypal_standard) {
+
+                        var paypal_form = '<form action="'+data.pay_url+'" method="post" style="display:none" >';
+                        
+
+                        console.log(data.form);
+
+                        $.each(data.form, function(k, v) {
+
+                            if(k=='cancel_return') v = window.location.href;
+                            //if(k=='return') v = "<?php echo route('onebuy.checkout.success')?>";
+                            /// do stuff
+                            paypal_form +='<input type="hidden" name="'+k+'" value="'+v+'">';
+                        });
+                            // 
+                        paypal_form += '</form>';
+
+                        console.log(paypal_form);
+
+                        $(paypal_form).appendTo('body').submit();
+
+                        return false;
+
+
+                    }
+
+
+
                     document.cookie="voluum_payout="+ order_info.grand_total + order_info.order_currency_code + "; path=/";
                     document.cookie="order_id="+ order_info.id + "; path=/";
                     localStorage.setItem("order_id", order_info.id);
@@ -2140,8 +2179,6 @@ function GotoNotRequest(url) {
                                 }
                             }
                         });
-                    }else if(window.is_paypal_standard) {
-
                     }else if (window.is_airwallex){
                         $('#loading').hide();
                         document.querySelector(".submit-button").scrollIntoView({
@@ -2154,7 +2191,7 @@ function GotoNotRequest(url) {
                         try {
                             // STEP #2: Initialize the Airwallex global context for event communication
                             Airwallex.init({
-                            env: 'prod', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
+                            env: '<?php echo $app_env;?>', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
                             origin: window.location.origin, // Setup your event target to receive the browser events message
                             fonts: [
                                 // Customizes the font for the payment elements

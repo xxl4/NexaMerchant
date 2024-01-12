@@ -19,6 +19,7 @@ use Nicelizhi\Airwallex\Payment\Airwallex;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Cache;
+use Webkul\Payment\Facades\Payment;
 
 
 class ProductController extends Controller
@@ -68,6 +69,8 @@ class ProductController extends Controller
         }
 
         visitor()->visit($product);
+
+        //var_dump($product);exit;
 
 
 
@@ -297,13 +300,14 @@ class ProductController extends Controller
         ]);
 
         
+        $app_env = config("app.env");
 
         //var_dump($productBgAttribute);
 
 
 
 
-        return view('onebuy::product-detail', compact('product','package_products', 'product_attributes', 'skus','productBgAttribute','productBgAttribute_mobile'));
+        return view('onebuy::product-detail', compact('app_env','product','package_products', 'product_attributes', 'skus','productBgAttribute','productBgAttribute_mobile'));
     }
 
     // 完成订单生成动作
@@ -403,66 +407,102 @@ class ProductController extends Controller
 
         // 获取支付信息
         
+        if($payment_method=='airwallex') {
+            //处理支付方式
+            $payment = [];
+            $payment['description'] = "Money Transfer";
+            $payment['method'] = $payment_method;
+            $payment['method_title'] = "Money Transfer";
+            $payment['sort'] = "2";
+            // Cart::savePaymentMethod($payment);
 
-        //处理支付方式
-        $payment = [];
-        $payment['description'] = "Money Transfer";
-        $payment['method'] = $payment_method;
-        $payment['method_title'] = "Money Transfer";
-        $payment['sort'] = "2";
-        // Cart::savePaymentMethod($payment);
+            if (
+                Cart::hasError()
+                || ! $payment
+                || ! Cart::savePaymentMethod($payment)
+            ) {
+                return response()->json([
+                    'redirect_url' => route('shop.checkout.cart.index'),
+                ], Response::HTTP_FORBIDDEN);
+            }
 
-        if (
-            Cart::hasError()
-            || ! $payment
-            || ! Cart::savePaymentMethod($payment)
-        ) {
-            return response()->json([
-                'redirect_url' => route('shop.checkout.cart.index'),
-            ], Response::HTTP_FORBIDDEN);
+            // 生成订单，
+            Cart::collectTotals();
+            $this->validateOrder();
+            $cart = Cart::getCart();
+            $order = $this->orderRepository->create(Cart::prepareDataForOrder());
+            Cart::deActivateCart();
+            Cart::activateCartIfSessionHasDeactivatedCartId();
+            // 跳转到支付
+            $data['result'] = 200;
+            $data['order'] = $order;
+            if ($order) {
+                $orderId = $order->id;
+                $transactionManager = $this->airwallex->createPaymentOrder($cart, $order->id);
+
+                $data['client_secret'] = $transactionManager->client_secret;
+                $data['payment_intent_id'] = $transactionManager->id;
+                $data['currency'] = $transactionManager->currency;
+                $data['country'] = $input['country'];
+            }
+
+            return response()->json($data);
         }
 
-        // 生成订单，
+        if($payment_method=='paypal_standard') {
+            //处理支付方式
+            $payment = [];
+            $payment['description'] = "PayPal";
+            $payment['method'] = "paypal_standard";
+            $payment['method_title'] = "PayPal standard Button";
+            $payment['sort'] = "1";
+            // Cart::savePaymentMethod($payment);
 
-        Cart::collectTotals();
+            if (
+                Cart::hasError()
+                || ! $payment
+                || ! Cart::savePaymentMethod($payment)
+            ) {
+                return response()->json([
+                    'message' => 'save payment error',
+                ]);
+            }
 
-        $this->validateOrder();
+            Cart::collectTotals();
 
-        $cart = Cart::getCart();
+            $this->validateOrder();
 
-        $order = $this->orderRepository->create(Cart::prepareDataForOrder());
+            $cart = Cart::getCart();
 
-        Cart::deActivateCart();
+            $order = $this->orderRepository->create(Cart::prepareDataForOrder());
 
-        Cart::activateCartIfSessionHasDeactivatedCartId();
+            if ($redirectUrl = Payment::getRedirectUrl($cart)) {
+                $paypalStandard = app('Webkul\Paypal\Payment\Standard');
+                $data = [];
+                $data['success'] = true;
+                $data['redirect'] = $redirectUrl;
+                $data['redirect_url'] = $redirectUrl;
+                $data['form'] =  $paypalStandard->getFormFields();
+                $data['pay_url'] =  $paypalStandard->getPaypalUrl();
+                $data['result'] = 200;
+                return response()->json($data);
+            }
 
-        // 跳转到支付
+            $order = $this->orderRepository->create(Cart::prepareDataForOrder());
 
+            Cart::deActivateCart();
 
+            Cart::activateCartIfSessionHasDeactivatedCartId();
+
+            session()->flash('order', $order);
+
+            return new JsonResource([
+                'success'       => true,
+                'redirect'     => true,
+                'redirect_url' => route('shop.checkout.onepage.success'),
+            ]);
+        }
         
-
-
-        //Cart::collectTotals();
-
-        //$cart = Cart::getCart();
-
-        $data['result'] = 200;
-        $data['order'] = $order;
-        if ($order) {
-
-            //session(['order' => $order]);
-
-            $orderId = $order->id;
-            $transactionManager = $this->airwallex->createPaymentOrder($cart, $order->id);
-            //$transactionManager = $sdk->CreatePayment(json_encode($buildRequestBody, JSON_OBJECT_AS_ARRAY | JSON_UNESCAPED_UNICODE));
-
-            $data['client_secret'] = $transactionManager->client_secret;
-            $data['payment_intent_id'] = $transactionManager->id;
-            $data['currency'] = $transactionManager->currency;
-            $data['country'] = $input['country'];
-        }
-
-        return response()->json($data);
         // 商品更新到购物车中。http://45.79.79.208:8002/api/checkout/cart
         // 订单基于购物车中的商品完成订单生成
         
