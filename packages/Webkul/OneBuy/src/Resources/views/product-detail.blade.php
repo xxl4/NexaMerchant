@@ -687,12 +687,20 @@ Hatmeo offers a 30 day guarantee on all unused purchases. Simply send the item(s
 </div>
 </div>
 </div>
-<div class="submit-block">
-<div class="submit-content">
-<div id="checkout-error" style="color:#e51f28;display:none;"></div>
-<button class="submit-button" onclick="checkout()">
-COMPLETE SECURE PURCHASE </button>
+<div class="submit-block" style="padding-bottom: 5px;">
+    <div class="submit-content">
+        <div id="checkout-error" style="color:#e51f28;display:none;"></div>
+        <button class="submit-button" onclick="checkout()">COMPLETE SECURE PURCHASE </button>
+    </div>
 </div>
+<div class="submit-block">
+    <div class="submit-content">
+        <div id="checkout-error" style="color:#e51f28;display:none;"></div>
+        <div class="pay-width-paypal-standard">
+            <img src="/checkout/v1/app/desktop/images/paypal_standard.png" />
+        </div>
+        <!-- <button class="submit-button" onclick="checkout()">Pay With Paypal Standard </button> -->
+    </div>
 </div>
 <div id="airwallex-warpper"></div>
 <div id="dropIn" style="padding-top:20px;"></div>
@@ -1579,6 +1587,7 @@ function GotoNotRequest(url) {
 
 <script>
         window.pay_type = 'airwallex';
+        window.is_paypal_standard_pay = pay_type == 'paypal_standard' ? true : false;
         window.is_checkout_pay = pay_type == 'checkout' ? true : false;
         window.is_payoneer_pay = pay_type == 'payoneer' ? true : false;
         window.is_paypal_card_pay = pay_type == 'paypal_card' ? true : false;
@@ -1969,6 +1978,12 @@ function GotoNotRequest(url) {
             })
         }
 
+        // 实现 paypal standar payment
+        $(".pay-width-paypal-standard").on("click", function(){
+            window.pay_type = "paypal_standard";
+            checkout();
+        });
+
         function checkout() {
             sendInitiateCheckoutEvent();
             gtag('event', 'initiate_checkout', {
@@ -2007,6 +2022,8 @@ function GotoNotRequest(url) {
                 createOrder('', '', 'pacypay');
             } else if(window.is_worldpay){
                 createOrder('', '', 'worldpay');
+            }else if(window.is_paypal_standard) {
+                createOrder('', '', 'paypal_standard');
             } else if(window.is_airwallex){
                 $('#airwallex-warpper').hide();
                 createOrder('', '', 'airwallex');
@@ -2051,6 +2068,8 @@ function GotoNotRequest(url) {
                 params['card'] = card;
             }
 
+            //params['pay_type'] = pay_type;
+
             var url = '/onebuy/order/add/sync?_token={{ csrf_token() }}&time=' + new Date().getTime();
 
             if(pay_type=="payoneer" || pay_type == 'pacypay') {
@@ -2075,6 +2094,7 @@ function GotoNotRequest(url) {
                     document.cookie="order_id="+ order_info.id + "; path=/";
                     localStorage.setItem("order_id", order_info.id);
                     localStorage.setItem("order_params", JSON.stringify(params));
+
                     if(window.is_payoneer_pay) {
                         $('#loading').hide();
                         initPayoneerPaymentPage(order_info.client_secret);
@@ -2120,7 +2140,9 @@ function GotoNotRequest(url) {
                                 }
                             }
                         });
-                    } else if (window.is_airwallex){
+                    }else if(window.is_paypal_standard) {
+
+                    }else if (window.is_airwallex){
                         $('#loading').hide();
                         document.querySelector(".submit-button").scrollIntoView({
                             behavior: "smooth"
