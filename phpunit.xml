@@ -37,7 +37,7 @@
 
         <!-- Shopify package testsuites. -->
         <testsuite name="Shopify Unit Test">
-            <directory suffix="Test.php">./packages/Webkul/Shopify/tests/Feature</directory>
+            <directory suffix="Test.php">./packages/Nicelizhi/Shopify/tests/Feature</directory>
         </testsuite>
     </testsuites>
     <source>

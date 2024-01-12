@@ -1608,7 +1608,7 @@ p.cmpny-name {
                     <span aria-hidden="true">×</span>
                 </button>
                 <div class="modal-body p-0">
-                    <img src="/checkout/v1/app/desktop/images/<?php echo $product['id'];?>_ad.jpg" class="img-fluid apply_coupon">
+                    <img src="/checkout/v1/app/desktop/images/<?php echo $product['id'];?>_ad.jpg?v=11" class="img-fluid apply_coupon">
                 </div>
             </div>
         </div>
@@ -2250,10 +2250,12 @@ p.cmpny-name {
             $("#size_"+size_id).empty();
             <?php foreach($attributes['attributes'] as $key=>$attribute) { ?>
                 <?php if($attribute['id']!=24) continue; ?>
-                var select_option_html = "";
+                
                 $("#size_"+size_id).empty();
 
-                // <option value="S" data-camp="1" data-bundle="3">S</option>
+                //<option data-camp="1" data-bundle="3">Please chose the Size</option>
+                var select_option_html = "<option>Size</option>";
+                $("#size_"+size_id).append(select_option_html);
                 <?php foreach($attribute['options'] as $kk=>$option) { ?>
                     select_option_html='<option value="<?php echo $option['label'] ?>" data-camp="<?php echo $option['id'] ?>" data-bundle="'+size+'"><?php echo $option['label'] ?></option>';
                     console.log(select_option_html);
@@ -2421,6 +2423,10 @@ p.cmpny-name {
                 const res = Object.values(new_obj)
 
                 var json_data = JSON.stringify(new_obj)
+
+                console.log("json data");
+                console.log(json_data);
+                console.log(new_obj);
 
                 $("#json_hidden_input").val(json_data);
 

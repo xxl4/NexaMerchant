@@ -93,7 +93,7 @@
             "Webkul\\Theme\\": "packages/Webkul/Theme/src",
             "Nicelizhi\\OneBuy\\": "packages/Webkul/OneBuy/src",
             "Nicelizhi\\Airwallex\\": "packages/Webkul/Airwallex/src",
-            "Nicelizhi\\Shopify\\": "packages/Webkul/Shopify/src",
+            "Nicelizhi\\Shopify\\": "packages/Nicelizhi/Shopify/src",
             "Nicelizhi\\Admin\\": "packages/Nicelizhi/Admin/src",
             "Nicelizhi\\Checkout\\": "packages/Nicelizhi/Checkout/src",
             "Webkul\\User\\": "packages/Webkul/User/src"
@@ -106,7 +106,7 @@
             "Webkul\\DataGrid\\Tests\\": "packages/Webkul/DataGrid/tests",
             "Webkul\\Shop\\Tests\\": "packages/Webkul/Shop/tests",
             "Nicelizhi\\Checkout\\Tests\\": "packages/Nicelizhi/Checkout/tests",
-            "Nicelizhi\\Shopify\\Tests\\": "packages/Webkul/Shopify/tests"
+            "Nicelizhi\\Shopify\\Tests\\": "packages/Nicelizhi/Shopify/tests"
         }
     },
     "scripts": {
