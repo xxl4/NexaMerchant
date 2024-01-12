@@ -705,9 +705,9 @@ Hatmeo offers a 30 day guarantee on all unused purchases. Simply send the item(s
     <div class="submit-content">
         <div id="checkout-error" style="color:#e51f28;display:none;"></div>
         <!-- <button class="submit-button" onclick="checkout()">Pay With credit card</button> -->
-        <div style="background-color: #30BD51;border-top-right-radius: 5px;border-start-end-radius: 5px;border-top-left-radius: 5px;border-start-start-radius: 5px;box-sizing: border-box;cursor: pointer;height: 50px;text-align: center;line-height: 50px;">
+        <div style="background-color: #30BD51;border-top-right-radius: 5px;border-start-end-radius: 5px;border-top-left-radius: 5px;border-start-start-radius: 5px;box-sizing: border-box;cursor: pointer;height: 50px;text-align: center;line-height: 50px;" onclick="checkout()">
                 <span>credit card</span>
-                <img src="/checkout/v1/app/desktop/images/payment_method.png" style="width:70%"/>
+                <img src="/checkout/v1/app/desktop/images/payment_method.png"  style="width:70%"/>
         </div>
         
     </div>
