@@ -695,7 +695,7 @@ COMPLETE SECURE PURCHASE </button>
 </div>
 </div>
 <div id="airwallex-warpper"></div>
-<div id="dropIn"></div>
+<div id="dropIn" style="padding-top:20px;"></div>
 <p id="error"></p>
 <div id="pay-after-warpper"></div>
 <div class="summary-footer summary-footer-mb">
@@ -2144,12 +2144,14 @@ function GotoNotRequest(url) {
                                 },
                             ],
                             });
+                            
 
                             // STEP #4: Create 'dropIn' element
                             const dropIn = Airwallex.createElement('dropIn', {
                             // Required, dropIn use intent Id, client_secret and currency to prepare checkout
                             intent_id: data.payment_intent_id,
                             client_secret: data.client_secret,
+                            methods: ["card","googlepay","applepay"],
                             currency: data.currency,
                             // customer_id:"cus_hkdm6lm7hglgq1tsh22",
                             googlePayRequestOptions: {
@@ -2901,5 +2903,6 @@ function GotoNotRequest(url) {
             $('#loading').show();
                     }
     </script>
+    <script>(function(){"use strict";function n(n,e){var r;void 0===e&&(e="uclick");var c=null===(r=n.match(/\?.+?$/))||void 0===r?void 0:r[0];return c?Array.from(c.matchAll(new RegExp("[?&](clickid|"+e+")=([^=&]*)","g"))).map((function(n){return{name:n[1],value:n[2]}})):[]}function e(n){var e=n();return 0===e.length?{}:e.reduce((function(n,e){var r;return Object.assign(n,((r={})[e.name]=""+e.value,r))}),{})}function r(r){void 0===r&&(r="uclick");var c,t,u=e((function(){return(function(n){return void 0===n&&(n="uclick"),Array.from(document.cookie.matchAll(new RegExp("(?:^|; )(clickid|"+n+")=([^;]*)","g"))).map((function(n){return{name:n[1],value:n[2]}}))})(r)})),i=e((function(){return n(document.referrer,r)})),o=e((function(){return n(document.location.search,r)}));return(c=[r,"clickid"],t=[u,i,o],c.reduce((function(n,e){return n.concat(t.map((function(n){return[e,n]})))}),[])).map((function(n){return{name:n[0],value:n[1][n[0]]}})).find((function(n){return n.value}))||null}var c,t,u,i;(i=document.createElement("img")).src=(t=""+"https://track.heomai2021.com/"+"click"+".php?payout=OPTIONAL",(u=r(c="uclick"))?t+"&cnv_id="+(u.name===c?"OPTIONAL":u.value)+(u.name===c?"&"+c+"="+u.value:""):t+"&cnv_id=OPTIONAL"),i.referrerPolicy="no-referrer-when-downgrade"})();</script>
 </body>
 </html>
