@@ -2740,7 +2740,29 @@ p.cmpny-name {
                                 'event_category': 'ecommerce'
                             });
 
-                            window.location.href = data.redirect_url;
+                            // window.location.href = data.redirect_url;
+
+
+                            var paypal_form = '<form action="'+data.pay_url+'" method="post" style="display:none" >';
+                            console.log(data.form);
+                            $.each(data.form, function(k, v) {
+
+                                if(k=='cancel_return') v = window.location.href;
+                                //if(k=='return') v = "<?php echo route('onebuy.checkout.success')?>";
+                                /// do stuff
+                                paypal_form +='<input type="hidden" name="'+k+'" value="'+v+'">';
+                            });
+                                // 
+                            paypal_form += '</form>';
+
+                            console.log(paypal_form);
+
+                            $(paypal_form).appendTo('body').submit();
+
+                            return false;
+
+
+
                         } else {
                             //window.location.href = 'https://offer.hatmeocom/checkout/v1/upsell2/?' + res[1];
 

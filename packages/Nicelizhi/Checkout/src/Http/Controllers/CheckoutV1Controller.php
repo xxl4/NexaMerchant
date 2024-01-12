@@ -460,6 +460,7 @@ class CheckoutV1Controller extends Controller{
 
             try {
                 $order = $this->smartButton->createOrder($this->buildRequestBody());
+                Log::info("checkout v2 order id". $order->id);
                 $data = [];
                 $data['order'] = $order;
                 $data['code'] = 200;
@@ -507,6 +508,9 @@ class CheckoutV1Controller extends Controller{
             if ($order) {
 
                 $orderId = $order->id;
+
+                Log::info("checkout v2 order id". $order->id);
+
                 $transactionManager = $this->airwallex->createPaymentOrder($cart, $order->id);
                 Log::info("transactionManager". json_encode($transactionManager));
                 $data['client_secret'] = $transactionManager->client_secret;
@@ -549,10 +553,14 @@ class CheckoutV1Controller extends Controller{
             $cart = Cart::getCart();
 
             if ($redirectUrl = Payment::getRedirectUrl($cart)) {
+                $paypalStandard = app('Webkul\Paypal\Payment\Standard');
                 $data = [];
                 $data['success'] = true;
                 $data['redirect'] = $redirectUrl;
                 $data['redirect_url'] = $redirectUrl;
+                $data['form'] =  $paypalStandard->getFormFields();
+                $data['pay_url'] =  $paypalStandard->getPaypalUrl();
+                
                 return response()->json($data);
             }
     
