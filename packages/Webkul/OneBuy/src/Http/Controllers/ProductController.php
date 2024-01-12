@@ -488,19 +488,19 @@ class ProductController extends Controller
                 return response()->json($data);
             }
 
-            $order = $this->orderRepository->create(Cart::prepareDataForOrder());
+            // $order = $this->orderRepository->create(Cart::prepareDataForOrder());
 
-            Cart::deActivateCart();
+            // Cart::deActivateCart();
 
-            Cart::activateCartIfSessionHasDeactivatedCartId();
+            // Cart::activateCartIfSessionHasDeactivatedCartId();
 
-            session()->flash('order', $order);
+            // session()->flash('order', $order);
 
-            return new JsonResource([
-                'success'       => true,
-                'redirect'     => true,
-                'redirect_url' => route('shop.checkout.onepage.success'),
-            ]);
+            // return new JsonResource([
+            //     'success'       => true,
+            //     'redirect'     => true,
+            //     'redirect_url' => route('shop.checkout.onepage.success'),
+            // ]);
         }
         
         // 商品更新到购物车中。http://45.79.79.208:8002/api/checkout/cart
