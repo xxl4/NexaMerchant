@@ -327,6 +327,7 @@ class CheckoutV1Controller extends Controller{
         }
         $AddcartProduct['selected_configurable_option'] = $product_variant_id;
         $AddcartProduct['super_attribute'] = $super_attribute;
+        //$AddcartProduct['product_sku']
 
         $cart = Cart::addProduct($product['product_id'], $AddcartProduct);
         $cart = Cart::getCart();
@@ -346,7 +347,7 @@ class CheckoutV1Controller extends Controller{
 
         $input = $request->all();
 
-        Log::info("order addr after ".json_encode($input));
+        Log::info("order checkout v2 ".json_encode($input));
 
         $products = $request->input("campaigns");
 
@@ -356,8 +357,6 @@ class CheckoutV1Controller extends Controller{
 
         // 添加到购物车
         Cart::deActivateCart();
-
-
 
         $products = json_decode($json_hidden_input);
         foreach($products as $key=>$product) {
@@ -369,6 +368,7 @@ class CheckoutV1Controller extends Controller{
             $super_attribute[24] = $product['camp'];
             $Addproduct['super_attribute'] = $super_attribute;
             $Addproduct['product_id'] = $product['product_id'];
+            $Addproduct['product_sku'] = $product['product_sku'];
             $cart = Cart::addProduct($product['product_id'], $Addproduct);
             if (
                 is_array($cart)

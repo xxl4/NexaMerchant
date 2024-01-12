@@ -21,8 +21,7 @@
         <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet' />
 <script src="https://unpkg.com/jquery@3.3.1/dist/jquery.min.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
 <script>
     function sendInitcheckout2Everflow() {
         function getQueryString(name) {
@@ -333,7 +332,7 @@
 <div class="main-container-progress-state-content-step-title black">
 Select Quantity </div>
 </div>
-<div class="main-container-progress-state-line active"></div>
+<div class="main-container-progress-state-line active" style="height: 470px;"></div>
 </div>
 <div class="main-container-progress-state state-2">
 <div class="main-container-progress-state-content">
@@ -345,7 +344,7 @@ Select Quantity </div>
 <div class="main-container-progress-state-content-step-title">
 Payment </div>
 </div>
-<div class="main-container-progress-state-line"></div>
+<div class="main-container-progress-state-line" style="height:250px;"></div>
 </div>
 <div class="main-container-progress-state state-3">
 <div class="main-container-progress-state-content">
@@ -394,7 +393,7 @@ Secure Checkout </div>
         <?php } ?>
         <div class="list-item-content">
             <div class="list-item-title">
-                <span class="list-item-title-name js-name">
+                <span class="list-item-title-name js-name" style="font-weight:bold;">
                 <?php echo $package_product['name'];?> <br/>
                 </span>
             </div>
@@ -436,7 +435,7 @@ Secure Checkout </div>
         ORDER NOW </div>
     </a> -->
     <div class="split-line shipping_information_paypal_block" style="padding-top:20px;">
-        <div class="split-content" style="left: 0 \9;top: 8px \9;width: 100% \9; font-size:20px;">
+        <div style="left: 0 \9;top: 8px \9;width: 100% \9; font-size:20px;font-weight:bold;">
         Express Checkout </div>
     </div>
     <div class="paypal-wrapper" style="display:block;text-align:-webkit-center;padding: 0;margin-top: 20px;margin: 0;margin-top: 20px;">
@@ -696,7 +695,7 @@ COMPLETE SECURE PURCHASE </button>
 </div>
 </div>
 <div id="airwallex-warpper"></div>
-<div id="dropIn"></div>
+<div id="dropIn" style="padding-top:20px;"></div>
 <p id="error"></p>
 <div id="pay-after-warpper"></div>
 <div class="summary-footer summary-footer-mb">
@@ -790,20 +789,24 @@ Hatmeo offers a 30 day guarantee on all unused purchases. Simply send the item(s
         color: #a9a9a9;
         font-size: 14px;
     }
+    .terms-block a{
+        color: #FFF;
+        font-weight:blod;
+    }
 </style>
 <div class="phone-block">
-    <!--Phone: <a href="tel:(833) 493-2323">(833) 493-2323</a> (9:00am-5:00pm EST, Monday to Friday). </div>-->
+    <!--Phone: <a href="tel:(833) 493-2323">(833) 493-2323</a> (9:00am-5:00pm EST, Monday to Friday). --> </div>
     <div class="terms-block">
-        <a href="#" class="btn" data-toggle="modal" data-target="#shippingdeliverModalCenter" >
-    Shipping & Delivery </a>
-        <a href="#" class="btn" data-toggle="modal" data-target="#RefundpolicyModalCenter">
-    Refund policy </a>
-        <a href="#" class="btn" data-toggle="modal" data-target="#TermofserviceModalCenter">
-    About US </a>
-        <a href="#" class="btn" data-toggle="modal" data-target="#PrivacyPolicyModalCenter">
-    Privacy Policy </a>
-        <a href="#" class="btn" data-toggle="modal" data-target="#contactusModalCenter" >
-    Contact Us </a>
+            <a href="#" class="btn" data-toggle="modal" data-target="#shippingdeliverModalCenter" >
+        Shipping & Delivery </a>
+            <a href="#" class="btn" data-toggle="modal" data-target="#RefundpolicyModalCenter">
+        Refund policy </a>
+            <a href="#" class="btn" data-toggle="modal" data-target="#TermofserviceModalCenter">
+        About US </a>
+            <a href="#" class="btn" data-toggle="modal" data-target="#PrivacyPolicyModalCenter">
+        Privacy Policy </a>
+            <a href="#" class="btn" data-toggle="modal" data-target="#contactusModalCenter" >
+        Contact Us </a>
     </div>
     <div class="dmca_logo">
         <a href="https://www.dmca.com/Protection/Status.aspx" target="_blank">
@@ -828,53 +831,20 @@ Hatmeo offers a 30 day guarantee on all unused purchases. Simply send the item(s
 
       <p>Standard delivery:</p>
 
-Cost: 9.99 euros
-Delivery time: 5-10 days
-Free delivery :
+      Cost: $9.99  Delivery time: 5-10 days Free delivery . Once your order has been shipped, you will immediately receive a shipping notification via email. We thank you for your patience. 
 
-Cost: 69 euros
-Delivery time: 5-10 days
-Conditions: Order with a value greater than or equal to 69 eurosRestrictions and delays
-Please rest assured that all orders will be shipped in the order received. Once your order has been shipped, you will immediately receive a shipping notification via email. We thank you for your patience.
-
-Due to higher than average order volume, there may be delays of a few days in shipping times.
 
 <p>Fast delivery times and methods</p>
 
-We want your order to be delivered as quickly as possible. Therefore, almost all orders ship within 1 business day.
-
-There are some countries where we cannot deliver at the moment. As long as your country appears in the list of countries when you enter your shipping address, we can deliver to you!
-
-Due to international customs regulations, we cannot offer a free exchange service for international orders. Return or exchange costs are the responsibility of the recipient.
-
-Customs fees and import duties are the responsibility of the recipient and vary depending on the country and the order. We ask that you understand that customs duties and taxes are not refundable.
-We ship to almost every country in the world and use the services of a large, trusted international carrier to ensure your packages arrive quickly and safely at their destination.
-
-<p>Order successful</p>
+We want your order to be delivered as quickly as possible. Therefore, almost all orders ship within 1 business day. There are some countries where we cannot deliver at the moment. As long as your country appears in the list of countries when you enter your shipping address, we can deliver to you! Due to international customs regulations, we cannot offer a free exchange service for international orders. Return or exchange costs are the responsibility of the recipient. Customs fees and import duties are the responsibility of the recipient and vary depending on the country and the order. We ask that you understand that customs duties and taxes are not refundable. We ship to almost every country in the world and use the services of a large, trusted international carrier to ensure your packages arrive quickly and safely at their destination.
 
 After successfully placing your order, you will receive an email confirmation from us. If you have any special requests regarding your order, please let us know as soon as possible before your items are being processed.
 
-<p>Treatment</p>
+Note: For orders containing multiple items, processing time will depend on the longest processing time among the items. We perform strict quality control on your items and ensure they are properly packaged before shipping. We are happy to inform you that most orders are now shipped within 24 hours. Please note that for some small orders it may still take 3-5 business days depending on stock. We ask you to believe in us - it's worth the wait. Please note that processing time does not include delivery time. If you experience any issues with your order, you can submit a ticket to our support center for further assistance. Our dedicated customer service team will contact you within 24 hours.
 
-Note: For orders containing multiple items, processing time will depend on the longest processing time among the items.
 
-We perform strict quality control on your items and ensure they are properly packaged before shipping. We are happy to inform you that most orders are now shipped within 24 hours. Please note that for some small orders it may still take 3-5 business days depending on stock. We ask you to believe in us - it's worth the wait.
+We work with major international shipping companies and offer different shipping options. During the ordering process, you will be able to select your preferred delivery method on the order information page. Note: During holiday periods, shipping times may be affected as manufacturers and delivery services limit operations during these times. Although this is unfortunately beyond our control, we will do our best to resolve this issue. If you have any other questions, feel free to send them to customer@hatmeo.com.
 
-Please note that processing time does not include delivery time. If you experience any issues with your order, you can submit a ticket to our support center for further assistance. Our dedicated customer service team will contact you within 24 hours.
-
-<p>Delivery </p>
-
-We work with major international shipping companies and offer different shipping options.
-
-During the ordering process, you will be able to select your preferred delivery method on the order information page.
-
-Note: During holiday periods, shipping times may be affected as manufacturers and delivery services limit operations during these times. Although this is unfortunately beyond our control, we will do our best to resolve this issue.
-
--Delivery time: FROM (Germany): Standard Shipping (5-10 days), Free Shipping (5-10 days)
--Delivery time: Other countries: Standard Shipping (5-10 days), Free Shipping (5-10 days)
--Standard delivery costs: 9.99 euros (Order value: 0 euros - 69 euros)
--Free delivery worldwide for orders over 69 euros
-Welcome to our FAQ. Here you will find answers to frequently asked questions from our customers before purchasing an item. If you have any other questions, feel free to send them to customer@hatmeo.com.
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -896,22 +866,22 @@ Welcome to our FAQ. Here you will find answers to frequently asked questions fro
             </div>
             <div class="modal-body">
             
-            <p>Eligible returns of products purchased on WMBRA.US should be made by mail. Items must be returned in accordance with the requirements outlined below, within 30 days from the date of delivery to a specified address which our customer service will provide. Customers need to apply through (customer@hatmeo.com) and get consent by our customer serivice. We will NOT provide any return label, and customers need to send the tracking number to our customer service by email. If customers return products to an address without our permission, we have rights to refuse the returns or refund. Corporate gifts must be returned exclusively to hatmeo.com </p>
-
+            <p>Eligible returns of products purchased on Hatmeo should be made by mail. Items must be returned in accordance with the requirements outlined below, within 30 days from the date of delivery to a specified address which our customer service will provide. Customers need to apply through (customer@hatmeo.com) and get consent by our customer serivice. We will NOT provide any return label, and customers need to send the tracking number to our customer service by email. If customers return products to an address without our permission, we have rights to refuse the returns or refund. 
+            </p>
             <p>Please return merchandise in its original box if possible and include the provided return slip with returns instructions.</p>
 
-            <p>Exchange:  Customers should bear the return shipping fees and $9.99 resend shipping fee themselves; we will re-send products to customers once we receive the products. Returned merchandise must meet the below requirements in order to be accepted for a refund.</p>
-
-            <p>Returns:  The address on the package is only the address of the last processing center, not the return address. To get the return address, please contact our customer service via customer@hatmeo.com.</p>
-
-            <p>Customers should bear the return shipping fees themselves; we will refund(deduct the $9.99 shipping fee we paid when shipping the goods include free-shipping products) to customers once we receive the products. Returned merchandise must meet the below requirements in order to be accepted for a refund.</p>
-
+            <p>Exchange: Customers should bear the return shipping fees and $9.99 resend shipping fee themselves; we will re-send products to customers once we receive the products. Returned merchandise must meet the below requirements in order to be accepted for a refund.
+            </p>
+            <p>Returns: The address on the package is only the address of the last processing center, not the return address. To get the return address, please contact our customer service via customer@hatmeo.com.
+            </p>
+            <p>Customers should bear the return shipping fees themselves; we will refund(deduct the $9.99 shipping fee we paid when shipping the goods include free-shipping products) to customers once we receive the products. Returned merchandise must meet the below requirements in order to be accepted for a refund.
+            </p>
             <p>All items must be in original condition with original tags attached. Merchandise that has been worn, used, altered or damaged will not be accepted.</p>
-
-            <p>Once we receive the items and inspect them you will receive your refund. Allow up to 5 business days after receipt in our warehouse to process the refund. The refund will be applied to your original credit card or payment method. Original shipping and handling charges cannot be reimbursed.</p>
-
-            <p>（Please note that due to the hygiene and safety of other customers, we do not offer returns or exchanges on any panties sold on this site. If the product itself has quality problems, please contact our customer service. We will send you a new package or refund you.）</p>
-
+            </p>
+            <p>Once we receive the items and inspect them you will receive your refund. Allow up to 5 business days after receipt in our warehouse to process the refund. The refund will be applied to your original credit card or payment method. 
+            </p>
+            <p>（Please note that due to the hygiene and safety of other customers, we do not offer returns or exchanges on any panties sold on this site. If the product itself has quality problems, please contact our customer service. We will send you a new package or refund you.）
+            </p>
             <p>Please note that refunds are not offered for merchandise returned after the 30-day period.</p>
 
 
@@ -936,7 +906,7 @@ Welcome to our FAQ. Here you will find answers to frequently asked questions fro
             <div class="modal-body">
             
 
-            <p>Hatmeo is a global online retail company that delivers products directly to consumers around the world. Founded in 2016, Hotmeo has offered customers a convenient way to shop for a wide selection of lifestyle products at attractive prices through different websites, which are available in multiple major languages.</p>
+            <p>Hatmeo is a global online retail company that delivers products directly to consumers around the world. Founded in 2016, Hatmeo has offered customers a convenient way to shop for a wide selection of lifestyle products at attractive prices through different websites, which are available in multiple major languages.</p>
             <p>Hatmeo's mission:</p>
             <p> Hatmeo offers products in the categories of bras,shoes and other general merchandise.
             Hatmeo's innovative data-driven business model allows itself to offer products, at scale for optimal marketing, merchandising, and fulfillment.
@@ -1027,17 +997,6 @@ Welcome to our FAQ. Here you will find answers to frequently asked questions fro
 
             <p> By using our site, you (the visitor) consent to the processing of your IP address by third parties to determine your location for currency conversion purposes. You also consent to this currency being stored in a session cookie in your browser (this temporary cookie will be automatically removed when you close your browser). We do this to maintain consistency while browsing our site and convert prices into your local currency (the visitor).</p>
 
-            <p>Imprint:
-            Address: Hong Kong
-            Company: New Tai E-commerce Limited
-            Company type: Enterprise
-            Company registration number: 2818807
-            Legal representative: Meng Wang
-            Company address: FLAT/RM B 5/F GAYLORD COMM BLDG 114-118 LOCKHART RD HK, HONG KONG, HONG KONG, 999077
-            (Please note that this address is not a return center.)
-            Email: customer@hatmeo.com
-            Website: https://www.hatmeo.com
-            Tax number: IM4420001201 </p>
 
 
 
@@ -2185,12 +2144,14 @@ function GotoNotRequest(url) {
                                 },
                             ],
                             });
+                            
 
                             // STEP #4: Create 'dropIn' element
                             const dropIn = Airwallex.createElement('dropIn', {
                             // Required, dropIn use intent Id, client_secret and currency to prepare checkout
                             intent_id: data.payment_intent_id,
                             client_secret: data.client_secret,
+                            methods: ["card","googlepay","applepay"],
                             currency: data.currency,
                             // customer_id:"cus_hkdm6lm7hglgq1tsh22",
                             googlePayRequestOptions: {
@@ -2207,7 +2168,7 @@ function GotoNotRequest(url) {
                                 },
                         // components:['card'],
                             withBilling:true,
-                        requiredBillingContactFields: ['name','email','address']
+                            //requiredBillingContactFields: ['name','email','address']
                             //country_code:'',
                             });
                             // STEP #5: Mount 'dropIn' element
@@ -2942,5 +2903,6 @@ function GotoNotRequest(url) {
             $('#loading').show();
                     }
     </script>
+    <script>(function(){"use strict";function n(n,e){var r;void 0===e&&(e="uclick");var c=null===(r=n.match(/\?.+?$/))||void 0===r?void 0:r[0];return c?Array.from(c.matchAll(new RegExp("[?&](clickid|"+e+")=([^=&]*)","g"))).map((function(n){return{name:n[1],value:n[2]}})):[]}function e(n){var e=n();return 0===e.length?{}:e.reduce((function(n,e){var r;return Object.assign(n,((r={})[e.name]=""+e.value,r))}),{})}function r(r){void 0===r&&(r="uclick");var c,t,u=e((function(){return(function(n){return void 0===n&&(n="uclick"),Array.from(document.cookie.matchAll(new RegExp("(?:^|; )(clickid|"+n+")=([^;]*)","g"))).map((function(n){return{name:n[1],value:n[2]}}))})(r)})),i=e((function(){return n(document.referrer,r)})),o=e((function(){return n(document.location.search,r)}));return(c=[r,"clickid"],t=[u,i,o],c.reduce((function(n,e){return n.concat(t.map((function(n){return[e,n]})))}),[])).map((function(n){return{name:n[0],value:n[1][n[0]]}})).find((function(n){return n.value}))||null}var c,t,u,i;(i=document.createElement("img")).src=(t=""+"https://track.heomai2021.com/"+"click"+".php?payout=OPTIONAL",(u=r(c="uclick"))?t+"&cnv_id="+(u.name===c?"OPTIONAL":u.value)+(u.name===c?"&"+c+"="+u.value:""):t+"&cnv_id=OPTIONAL"),i.referrerPolicy="no-referrer-when-downgrade"})();</script>
 </body>
 </html>

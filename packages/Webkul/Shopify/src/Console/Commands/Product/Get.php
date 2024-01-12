@@ -52,7 +52,7 @@ class Get extends Command
     )
     {
         $this->shopify_store_id = "hatmeo";
-        $this->category_id = 3;
+        $this->category_id = 9;
         parent::__construct();
     }
 
@@ -64,7 +64,7 @@ class Get extends Command
     public function handle()
     {
         
-        $shopify_pro_id = "8398348714214";
+        $shopify_pro_id = "8401496441062";
 
         $client = new Client();
 

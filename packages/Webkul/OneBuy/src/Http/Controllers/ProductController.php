@@ -81,113 +81,16 @@ class ProductController extends Controller
 
         $package_products = $this->makeProducts($product, [2,1,3,4]);
 
-        // var_dump($package_products);exit;
 
-        $product_attributes = [];
-
-
-
-        $cache_key = "product_attributes_".$product->id;
-        $product_attributes = Cache::get($cache_key);
-
-        $cache_key_1 = "product_category_".$product->id;
-        $product_category = Cache::get($cache_key_1);
-        if(empty($product_category)) {
-            $categories = $product->categories;
-            $product_category_id = intval($categories[0]->id);
-            Cache::put($cache_key_1, $product_category_id, 36000);
-        }else{
-            //$product_category = json_decode($product_category);
-            //var_dump($product_category);exit;
-            $product_category_id = intval($product_category);
-        }
-        
-        //var_dump($product_category_id);
-
-        //var_dump($categories);exit;
-
-
-        if(empty($product_attributes)) {
-
-            $productViewHelper = new \Webkul\Product\Helpers\ConfigurableOption();
-            $attributes = $productViewHelper->getConfigurationConfig($product);
-            
-            
-            
-
-            //var_dump($customAttributeValues);exit;
-
-            //获取到他底部的商品内容
-        // $attributes = $this->productRepository->getSuperAttributes($product);
-            foreach($attributes['attributes'] as $key=>$attribute) {
-                $attribute['name'] = $attribute['code'];
-                $options = [];
-                foreach($attribute['options'] as $kk=>$option) {
-
-                    // 获取商品图片内容
-                    $is_sold_out = false;
-                    if($attribute['id']==23) {
-                        $new_id = $option['products'][0];
-                        $new_product = $this->productRepository->find($new_id);
-                        $NewproductBaseImage = product_image()->getProductBaseImage($new_product);
-                        $option['image'] = @$NewproductBaseImage['medium_image_url'];
-                        
-                    }else{
-                        $option['image'] = $productBaseImage['medium_image_url'];
-                        
-                    }
-
-                    // 判断是否有对应的尺码内容
-
-                    
-                    
-                    $option['is_sold_out'] = $is_sold_out;
-                    $option['name'] = $option['label'];
-                    unset($option['admin_name']);
-                    $options[] = $option;
-                    //var_dump($option);
-                }
-
-                $tip = "";
-                $tip_img = "";
-                if($attribute['id']==24) {
-                    $tip = "Size Chart";
-                    //var_dump($product_category_id);
-                    if($product_category_id=="3") {
-                        $tip_img = "https://shop.hatmeo.com/size/shoes.jpg";
-                    }
-                    if($product_category_id=="5") {
-                        $tip_img = "https://shop.hatmeo.com/size/bra.jpg";
-                    }
-                    
-                }
-                
-                $attribute['tip'] = $tip;
-                $attribute['tip_img'] = $tip_img;
-
-                unset($attribute['translations']); //去掉多余的数据内容
-                //var_dump($options);
-                $attribute['options'] = $options;
-                $attribute['image'] = $productBaseImage['medium_image_url'];
-                $product_attributes[] = $attribute;
-            }
-
-            Cache::put($cache_key, json_encode($product_attributes), 36000);
-
-        }else{
-            $product_attributes = json_decode($product_attributes, JSON_OBJECT_AS_ARRAY);
-        }
-
-        rsort($product_attributes);
-
-        
-
-        //var_dump($product);
         // skus 数据
         $skus = [];
 
         $cache_key = "product_sku_".$product->id;
+        $size_cache_key = "product_sku_size_".$product->id;
+        $color_cache_key = "product_color_size_".$product->id;
         $skus = Cache::get($cache_key);
+        $qty_items_size = Cache::get($size_cache_key);
+        $qty_items_color = Cache::get($color_cache_key);
         if(empty($skus)) {
             $sku_products = $this->productRepository->where("parent_id", $product->id)->get();
 
@@ -240,13 +143,141 @@ class ProductController extends Controller
     
                 //$sku['key'] = $ColorattributeOptions->admin_name."_".$SizeattributeOptions->admin_name; // 这个数据需要留意他的位置，JS判断会需要使用
                 $sku['key'] = $SizeattributeOptions->admin_name."_".$ColorattributeOptions->admin_name; // 这个数据需要留意他的位置，JS判断会需要使用
+
+                $qty_items_color[$ColorattributeOptions->admin_name][] = $SizeattributeOptions->admin_name;
+                $qty_items_size[$SizeattributeOptions->admin_name][] = $ColorattributeOptions->admin_name;
                 
                 $skus[] = $sku;
             }
             Cache::put($cache_key, json_encode($skus), 36000);
+            Cache::put($size_cache_key, json_encode($qty_items_size), 36000);
+            Cache::put($color_cache_key, json_encode($qty_items_color), 36000);
         }else {
             $skus = json_decode($skus, JSON_OBJECT_AS_ARRAY);
+            //$qty_items_size = json_decode($qty_items_size, JSON_OBJECT_AS_ARRAY);
+            //$qty_items_color = json_decode($qty_items_color, JSON_OBJECT_AS_ARRAY);
         }
+
+
+        // var_dump($package_products);exit;
+
+        $product_attributes = [];
+
+
+
+        $cache_key = "product_attributes_".$product->id;
+        $product_attributes = Cache::get($cache_key);
+
+        $cache_key_1 = "product_category_".$product->id;
+        $product_category = Cache::get($cache_key_1);
+        if(empty($product_category)) {
+            $categories = $product->categories;
+            if(isset($categories[0])) {
+                $product_category_id = intval($categories[0]->id);
+            }else{
+                $product_category_id = 9;
+            }
+            
+            Cache::put($cache_key_1, $product_category_id, 36000);
+        }else{
+            //$product_category = json_decode($product_category);
+            //var_dump($product_category);exit;
+            $product_category_id = intval($product_category);
+        }
+        
+        //var_dump($product_category_id);
+
+        //var_dump($categories);exit;
+
+
+        if(empty($product_attributes)) {
+
+            $productViewHelper = new \Webkul\Product\Helpers\ConfigurableOption();
+            $attributes = $productViewHelper->getConfigurationConfig($product);
+            
+            
+            $productSizeImage = $this->productAttributeValueRepository->findOneWhere([
+                'product_id'   => $product->id,
+                'attribute_id' => 32,
+            ]);
+            
+
+            //var_dump($customAttributeValues);exit;
+
+            //获取到他底部的商品内容
+        // $attributes = $this->productRepository->getSuperAttributes($product);
+            foreach($attributes['attributes'] as $key=>$attribute) {
+                $attribute['name'] = $attribute['code'];
+                $options = [];
+                foreach($attribute['options'] as $kk=>$option) {
+
+                    // 获取商品图片内容
+                    $is_sold_out = false;
+                    if($attribute['id']==23) {
+                        $new_id = $option['products'][0];
+                        $new_product = $this->productRepository->find($new_id);
+                        $NewproductBaseImage = product_image()->getProductBaseImage($new_product);
+                        $option['image'] = @$NewproductBaseImage['medium_image_url'];
+                        
+                    }else{
+                        $option['image'] = $productBaseImage['medium_image_url'];
+                        
+                    }
+
+                    // 判断是否有对应的尺码内容
+
+                    
+                    
+                    $option['is_sold_out'] = $is_sold_out;
+                    $option['name'] = $option['label'];
+                    unset($option['admin_name']);
+                    $options[] = $option;
+                    //var_dump($option);
+                }
+
+                $tip = "";
+                $tip_img = "";
+                if($attribute['id']==24) {
+                    $tip = "Size Chart";
+                    if(isset($productSizeImage->text_value)) $tip_img = $productSizeImage->text_value;
+                    
+                    if(empty($tip_img)) {
+                        if($product_category_id=="3") {
+                            $tip_img = "https://shop.hatmeo.com/size/shoes.jpg";
+                        }
+                        if($product_category_id=="5") {
+                            $tip_img = "https://shop.hatmeo.com/size/bra.jpg";
+                        }
+                    }else{
+                        $tip_img ="https://shop.hatmeo.com/storage/".$tip_img;
+                    }
+                    
+
+                    
+                }
+                
+                $attribute['tip'] = $tip;
+                $attribute['tip_img'] = $tip_img;
+
+                unset($attribute['translations']); //去掉多余的数据内容
+                //var_dump($options);
+                $attribute['options'] = $options;
+                $attribute['image'] = $productBaseImage['medium_image_url'];
+                $product_attributes[] = $attribute;
+            }
+
+            Cache::put($cache_key, json_encode($product_attributes), 36000);
+
+        }else{
+            $product_attributes = json_decode($product_attributes, JSON_OBJECT_AS_ARRAY);
+        }
+
+        rsort($product_attributes);
+
+        
+
+        //var_dump($product);
+        
 
         //rsort($skus);
 
@@ -264,6 +295,8 @@ class ProductController extends Controller
             'product_id'   => $product->id,
             'attribute_id' => 30,
         ]);
+
+        
 
         //var_dump($productBgAttribute);
 

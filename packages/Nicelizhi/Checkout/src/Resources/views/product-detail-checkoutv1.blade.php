@@ -673,7 +673,7 @@ p.cmpny-name {
 
                                     <div class="order-summary-item justify-content-between pt-2 pb-1 d-flex">
                                         <div>Shipping:</div>
-                                        <div><strong class="os_total_price" style="color:red;">$0.00</strong></div>
+                                        <div class="os_shipping_price" style="color:red;font-weight:bold;">$0.00</div>
                                     </div>
 
                                     <div class="order-summary-item justify-content-between pt-2 pb-1 d-flex">
@@ -2407,6 +2407,7 @@ p.cmpny-name {
                             'color': color_sel,
                             'product_id': '<?php echo $product['id'];?>',
                             'sku_id': sku_map[size_sel+'_'+color_sel].sku_id,
+                            'product_sku' : sku_map[size_sel+'_'+color_sel].sku_code,
                             'color_camp': color_camp_id
                         })
                     }
