@@ -255,6 +255,7 @@ class ProductController extends Controller
                         $tip_img ="https://shop.hatmeo.com/storage/".$tip_img;
                     }
                     
+                    if(empty($tip_img)) $tip = "";
 
                     
                 }
