@@ -2838,64 +2838,6 @@ function GotoNotRequest(url) {
             script.src = url;
             document.getElementsByTagName('head')[0].appendChild(script);
         }
-
-                    var cancel_google_map = 0;
-            if(!cancel_google_map) {
-                // loadJS('https://maps.googleapis.com/maps/api/js?key=AIzaSyA-roWtlZOnh7W7am1tQepghp9DTkfOHIc&libraries=places', function() {
-                //     setGoogleMap();
-                // })
-            }
-        
-        function setGoogleMap() {
-            var input = document.querySelector('.address');
-
-            var autocomplete = new window.google.maps.places.Autocomplete(input);
-            autocomplete.setTypes(["geocode", "establishment"]);
-            autocomplete.setFields(["address_component", "formatted_address"]);
-            autocomplete.addListener("place_changed", function(){
-                function getAddressComponentField(index, field, types_one) {
-                    var place = autocomplete.getPlace();
-                    var address_components =  place.address_components;
-
-                    try {
-                        var value = '';
-                        if(address_components[index]) {
-                            value = address_components[index][field];
-                        }
-                        if(!address_components[index] || address_components[index]['types'].indexOf(types_one) == -1) {
-                            for (var i = 0; i < address_components.length; i++) {
-                                var address_component = address_components[i];
-                                if(address_component.types.indexOf(types_one) > -1) {
-                                    value = address_components[i][field];
-                                }
-                            }
-                        }
-                        return value;
-                    } catch {
-                        return '';
-                    }
-                }
-                var address = getAddressComponentField(0, 'long_name') + ' ' + getAddressComponentField(1, 'long_name');
-                var city = getAddressComponentField(2, 'long_name');
-                var state = getAddressComponentField(5, 'short_name');
-                var country = getAddressComponentField(6, 'short_name', 'country');
-                var zip_code = getAddressComponentField(7, 'long_name', 'postal_code');
-
-                var country_replace_obj = {
-                    'PR' : 'US'
-                }
-
-                $('.address').val(address);
-                $('.address').change();
-                $('.city').val(city);
-                $('.city').change();
-                $('#country-select').val(country_replace_obj[country] ? country_replace_obj[country] : country);
-                $('#country-select').change();
-                window.state_select = state;
-                $('.zip_code').val(zip_code);
-                $('.zip_code').change();
-            })
-        }
     </script>
 <script>
         function payAfterSubmit() {
