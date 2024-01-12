@@ -692,7 +692,7 @@ Hatmeo offers a 30 day guarantee on all unused purchases. Simply send the item(s
 </div>
 </div>
 </div>
-<div class="submit-block">
+<div class="submit-block" style="padding-bottom: 10px;">
     <div class="submit-content">
         <div id="checkout-error" style="color:#e51f28;display:none;"></div>
         <div class="pay-width-paypal-standard">
@@ -701,7 +701,7 @@ Hatmeo offers a 30 day guarantee on all unused purchases. Simply send the item(s
         <!-- <button class="submit-button" onclick="checkout()">Pay With Paypal Standard </button> -->
     </div>
 </div>
-<div class="submit-block" style="padding-bottom: 5px;">
+<div class="submit-block">
     <div class="submit-content">
         <div id="checkout-error" style="color:#e51f28;display:none;"></div>
         <button class="submit-button" onclick="checkout()">Pay With credit card</button>
