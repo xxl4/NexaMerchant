@@ -96,6 +96,7 @@
             "Nicelizhi\\Shopify\\": "packages/Nicelizhi/Shopify/src",
             "Nicelizhi\\Admin\\": "packages/Nicelizhi/Admin/src",
             "Nicelizhi\\Checkout\\": "packages/Nicelizhi/Checkout/src",
+            "Nicelizhi\\Binom\\": "packages/Nicelizhi/Binom/src",
             "Webkul\\User\\": "packages/Webkul/User/src"
         }
     },
@@ -106,6 +107,7 @@
             "Webkul\\DataGrid\\Tests\\": "packages/Webkul/DataGrid/tests",
             "Webkul\\Shop\\Tests\\": "packages/Webkul/Shop/tests",
             "Nicelizhi\\Checkout\\Tests\\": "packages/Nicelizhi/Checkout/tests",
+            "Nicelizhi\\Binom\\Tests\\": "packages/Nicelizhi/Binom/tests",
             "Nicelizhi\\Shopify\\Tests\\": "packages/Nicelizhi/Shopify/tests"
         }
     },
