@@ -230,6 +230,7 @@ return [
 
         //Nicelizhi\Admin\Providers\AdminServiceProvider::class,
         Nicelizhi\Checkout\Providers\CheckoutServiceProvider::class,
+        Nicelizhi\Lp\Providers\LpServiceProvider::class,
 
     ])->toArray(),
 
