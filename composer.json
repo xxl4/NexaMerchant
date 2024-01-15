@@ -96,6 +96,7 @@
             "Nicelizhi\\Shopify\\": "packages/Nicelizhi/Shopify/src",
             "Nicelizhi\\Admin\\": "packages/Nicelizhi/Admin/src",
             "Nicelizhi\\Checkout\\": "packages/Nicelizhi/Checkout/src",
+            "Nicelizhi\\Lp\\": "packages/Nicelizhi/Lp/src",
             "Webkul\\User\\": "packages/Webkul/User/src"
         }
     },
