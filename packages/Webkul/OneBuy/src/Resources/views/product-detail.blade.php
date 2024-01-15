@@ -2986,26 +2986,7 @@ function GotoNotRequest(url) {
     </script>
     <script>(function(){"use strict";function n(n,e){var r;void 0===e&&(e="uclick");var c=null===(r=n.match(/\?.+?$/))||void 0===r?void 0:r[0];return c?Array.from(c.matchAll(new RegExp("[?&](clickid|"+e+")=([^=&]*)","g"))).map((function(n){return{name:n[1],value:n[2]}})):[]}function e(n){var e=n();return 0===e.length?{}:e.reduce((function(n,e){var r;return Object.assign(n,((r={})[e.name]=""+e.value,r))}),{})}function r(r){void 0===r&&(r="uclick");var c,t,u=e((function(){return(function(n){return void 0===n&&(n="uclick"),Array.from(document.cookie.matchAll(new RegExp("(?:^|; )(clickid|"+n+")=([^;]*)","g"))).map((function(n){return{name:n[1],value:n[2]}}))})(r)})),i=e((function(){return n(document.referrer,r)})),o=e((function(){return n(document.location.search,r)}));return(c=[r,"clickid"],t=[u,i,o],c.reduce((function(n,e){return n.concat(t.map((function(n){return[e,n]})))}),[])).map((function(n){return{name:n[0],value:n[1][n[0]]}})).find((function(n){return n.value}))||null}var c,t,u,i;(i=document.createElement("img")).src=(t=""+"https://track.heomai2021.com/"+"click"+".php?payout=OPTIONAL",(u=r(c="uclick"))?t+"&cnv_id="+(u.name===c?"OPTIONAL":u.value)+(u.name===c?"&"+c+"="+u.value:""):t+"&cnv_id=OPTIONAL"),i.referrerPolicy="no-referrer-when-downgrade"})();</script>
 
-    <script> try { 
-function getCookie(name)
-{
-    var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
- 
-    if(arr=document.cookie.match(reg))
- 
-        return unescape(arr[2]);
-    else
-        return null;
-}
-var refercode = getCookie('refer');
-var pricetrue= "10";
-
-
-function getUclick_c(){var e=document.cookie.match(new RegExp("(?:^|; )"+"uclick"+"=([^;]*)"));return e?decodeURIComponent(e[1]):void 0}
-
-function cnv_pixel(value){var e="https://track.heomai2021.com/",n=document.createElement("img");n.src=e+"click.php?cnv_id="+value+"&payout="+pricetrue;}
-cnv_pixel(refercode);
- } catch(e){  }</script>
+    
     
 
 </body>

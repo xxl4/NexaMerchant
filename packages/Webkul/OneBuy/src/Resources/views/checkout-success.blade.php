@@ -558,6 +558,27 @@ All rights reserved
             setProductHtml(order_param.products, order_param.produt_amount_base);
             showPaySuccess();
             getRecommendedData(order_param.payment_cancel_url);
+
+            try { 
+                function getCookie(name)
+                {
+                    var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
+                
+                    if(arr=document.cookie.match(reg))
+                
+                        return unescape(arr[2]);
+                    else
+                        return null;
+                }
+                var refercode = getCookie('refer');
+                var pricetrue= order_param.total;
+
+
+                function getUclick_c(){var e=document.cookie.match(new RegExp("(?:^|; )"+"uclick"+"=([^;]*)"));return e?decodeURIComponent(e[1]):void 0}
+
+                function cnv_pixel(value){var e="https://track.heomai2021.com/",n=document.createElement("img");n.src=e+"click.php?cnv_id="+value+"&payout="+pricetrue;}
+                cnv_pixel(refercode);
+                } catch(e){  }
             
         }
 
@@ -616,6 +637,9 @@ All rights reserved
             return null;
         }
     </script>
+
+
+
 <style type="text/css">
         .ba-vol-wrapper {
             margin-top: 20px;
