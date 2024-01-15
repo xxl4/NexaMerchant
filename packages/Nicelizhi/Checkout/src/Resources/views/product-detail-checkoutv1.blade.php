@@ -63,9 +63,10 @@ p.cmpny-name {
    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet' />
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="/checkout/v1/app/desktop/css/main.css?v=1704676785">
+    <link rel="stylesheet" type="text/css" href="/checkout/v1/app/desktop/css/main.css?v=1704676786">
     <!-- <link rel="stylesheet" type="text/css" href="/checkout/v1/app/desktop/css/spreedly.css"> -->
     <style>
         .offer .offer-content {
@@ -317,7 +318,7 @@ p.cmpny-name {
 
                 </div>
 
-                <div class="col-md-9 d-flex justify-content-center justify-content-md-end align-items-center">
+                <div class="col-md-9 d-flex justify-content-center justify-content-md-end align-items-center" style="font-family: oswald;">
 
                     <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
 
@@ -389,7 +390,7 @@ p.cmpny-name {
 
                 <div class="col 50-per-coupon-div">
 
-                    <div class="alert alert-success alert-dismissible fade show fs-5 text-center d-flex align-items-center justify-content-center" role="alert">
+                    <div class="alert alert-success alert-dismissible fade show fs-5 text-center d-flex align-items-center justify-content-center" role="alert" style="font-family: oswald;">
 
                         <i class="far fa-check-circle fa-2x me-3 text-success"></i> <span>Your <span class="text-danger pack-percent"><strong>55%</strong></span> Discount Has Been Applied!</span>
 
@@ -653,18 +654,18 @@ p.cmpny-name {
 
                                     <div class="order-summary-item justify-content-between pt-2 pb-1 d-flex">
                                         <div class="os_main_product_name">2x Hatmeo Heated Vest</div>
-                                        <div class="os_main_product_each_price" style="color:red;font-weight:bold;">$ 59.99 <span class="fs-8">/ea</span></div>
+                                        <div class="os_main_product_each_price" style="font-weight:bold;">$ 59.99 <span class="fs-8">/ea</span></div>
 
                                     </div>
 
-                                    <div class="order-summary-item justify-content-between pt-2 pb-1 d-flex os_extended_warranty_div" style="display: none !important;">
+                                    <div class="order-summary-item justify-content-between pt-2 pb-1 d-flex os_extended_warranty_div">
                                         <div class="os_extended_warranty_product_name">2x Extended Warranty</div>
-                                        <div class="os_extended_warranty_product_each_price" style="color:red;font-weight:bold;">$ 9.99 <span class="fs-8">/ea</span>
+                                        <div class="os_extended_warranty_product_each_price" style="font-weight:bold;">$ 9.99 <span class="fs-8">/ea</span>
                                         </div> 
                                     </div>
 
                                     <!---- Add-ons start------>
-                                  <div class="order-summary-item justify-content-between pt-2 pb-1 d-flex os_add-ons_div" style="display: none !important;">
+                                  <div class="order-summary-item justify-content-between pt-2 pb-1 d-flex os_add-ons_div">
                                         <div class="os_add-ons_product_name"></div>
                                         <div class="os_add-ons_product_each_price" style="color:red;font-weight:bold;">$ 19.99 
                                         <!--<span class="fs-8">/ea</span>-->
@@ -672,8 +673,18 @@ p.cmpny-name {
                                     </div>
 
                                     <div class="order-summary-item justify-content-between pt-2 pb-1 d-flex">
+                                        <div>Subtotal:</div>
+                                        <div class="os_subtotal_price" style="font-weight:bold;">$0.00</div>
+                                    </div>
+
+                                    <div class="order-summary-item justify-content-between pt-2 pb-1 d-flex">
+                                        <div>Discount:</div>
+                                        <div class="os_discount_price" style="color:red;font-weight:bold;">$0.00</div>
+                                    </div>
+
+                                    <div class="order-summary-item justify-content-between pt-2 pb-1 d-flex">
                                         <div>Shipping:</div>
-                                        <div class="os_shipping_price" style="color:red;font-weight:bold;">$0.00</div>
+                                        <div class="os_shipping_price">$0.00</div>
                                     </div>
 
                                     <div class="order-summary-item justify-content-between pt-2 pb-1 d-flex">
@@ -1289,9 +1300,9 @@ p.cmpny-name {
 
                                         <div class="mb-2">
 
-                                            <div class="fs-4 mb-1">Our Guarantee</div>
+                                            <div class="fs-4 mb-1 seal-title">Our Guarantee</div>
 
-                                            <div class="guarantee-item"><i class="fas fa-check-square text-success"></i> 30-Days Moneyback Guarantee</div>
+                                            <div class="guarantee-item seal-title"><i class="fas fa-check-square text-success"></i> 30-Days Moneyback Guarantee</div>
 
                                         </div>
 
@@ -1445,7 +1456,7 @@ p.cmpny-name {
 
                 <div id="block--faq" class="faqs col mt-4 bg-white border p-3">
 
-                    <div class="h2 text-center mb-4">
+                    <div class="h2 text-center mb-4" style="font-family: oswald;">
 
                         Frequently Asked Questions
 
@@ -1471,7 +1482,7 @@ p.cmpny-name {
 
                             <div id="faq<?php echo $key;?>" class="accordion-collapse collapse <?php if($key==0) { ?>show<?php } ?>" aria-labelledby="compatability" data-bs-parent="#faqs">
 
-                                <div class="accordion-body">
+                                <div class="accordion-body" style="font-size:14px;">
 
                                     <?php echo $item->a;?>
 
@@ -1608,7 +1619,7 @@ p.cmpny-name {
                     <span aria-hidden="true">×</span>
                 </button>
                 <div class="modal-body p-0">
-                    <img src="/checkout/v1/app/desktop/images/<?php echo $product['id'];?>_ad.jpg" class="img-fluid apply_coupon">
+                    <img src="/checkout/v1/app/desktop/images/<?php echo $product['id'];?>_ad.jpg?v=11" class="img-fluid apply_coupon">
                 </div>
             </div>
         </div>
@@ -2250,10 +2261,12 @@ p.cmpny-name {
             $("#size_"+size_id).empty();
             <?php foreach($attributes['attributes'] as $key=>$attribute) { ?>
                 <?php if($attribute['id']!=24) continue; ?>
-                var select_option_html = "";
+                
                 $("#size_"+size_id).empty();
 
-                // <option value="S" data-camp="1" data-bundle="3">S</option>
+                //<option data-camp="1" data-bundle="3">Please chose the Size</option>
+                var select_option_html = "<option>Size</option>";
+                $("#size_"+size_id).append(select_option_html);
                 <?php foreach($attribute['options'] as $kk=>$option) { ?>
                     select_option_html='<option value="<?php echo $option['label'] ?>" data-camp="<?php echo $option['id'] ?>" data-bundle="'+size+'"><?php echo $option['label'] ?></option>';
                     console.log(select_option_html);
@@ -2422,6 +2435,10 @@ p.cmpny-name {
 
                 var json_data = JSON.stringify(new_obj)
 
+                console.log("json data");
+                console.log(json_data);
+                console.log(new_obj);
+
                 $("#json_hidden_input").val(json_data);
 
                 // $.each(res, function( index, value ) {
@@ -2468,9 +2485,14 @@ p.cmpny-name {
             $("#shipping_price").val(productDetails(pid).shipping_price.toFixed(2))
 
             $('.os_main_product_name').text(productDetails(pid).product_name);
-            $('.os_main_product_each_price').html('$ '+productDetails(pid).per_product_price.toFixed(2)+' <span class="fs-8">/ea</span>');
+            //$('.os_main_product_each_price').html('$ '+productDetails(pid).per_product_price.toFixed(2)+' <span class="fs-8">/ea</span>');
+            $('.os_main_product_each_price').html('$ '+productDetails(pid).product_total.toFixed(2));
             $('.os_shipping_price').text('$ '+productDetails(pid).shipping_price.toFixed(2));
-            // $('.extended_protection_price').text('$'+productDetails(pid).extended_protection_total_price.toFixed(2));
+
+            $('.os_subtotal_price').text('$ '+productDetails(pid).product_price_original.toFixed(2));
+            
+
+            //$('.extended_protection_price').text('$'+productDetails(pid).extended_protection_total_price.toFixed(2));
             $('.extended_protection_price').text(productDetails(pid).extended_protection_text);
             $('.pack-percent').html('<strong>' + productDetails(pid).offer_discount_percentage + '%</strong>');
 
@@ -2493,6 +2515,9 @@ p.cmpny-name {
                 var total_price = productDetails(pid).product_total + productDetails(pid).shipping_price;
                 $('.os_total_price').text('$ '+total_price.toFixed(2));
             }
+
+            var discount_price = productDetails(pid).product_price_original - total_price;
+            $('.os_discount_price').text('$ '+discount_price.toFixed(2));
 
             
             /********************* add-ons start *********/
@@ -2734,7 +2759,29 @@ p.cmpny-name {
                                 'event_category': 'ecommerce'
                             });
 
-                            window.location.href = data.redirect_url;
+                            // window.location.href = data.redirect_url;
+
+
+                            var paypal_form = '<form action="'+data.pay_url+'" method="post" style="display:none" >';
+                            console.log(data.form);
+                            $.each(data.form, function(k, v) {
+
+                                if(k=='cancel_return') v = window.location.href;
+                                //if(k=='return') v = "<?php echo route('onebuy.checkout.success')?>";
+                                /// do stuff
+                                paypal_form +='<input type="hidden" name="'+k+'" value="'+v+'">';
+                            });
+                                // 
+                            paypal_form += '</form>';
+
+                            console.log(paypal_form);
+
+                            $(paypal_form).appendTo('body').submit();
+
+                            return false;
+
+
+
                         } else {
                             //window.location.href = 'https://offer.hatmeocom/checkout/v1/upsell2/?' + res[1];
 

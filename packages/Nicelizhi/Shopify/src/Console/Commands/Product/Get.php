@@ -64,7 +64,7 @@ class Get extends Command
     public function handle()
     {
         
-        $shopify_pro_id = "8401496441062";
+        $shopify_pro_id = "8406066331878";
 
         $client = new Client();
 
@@ -171,6 +171,7 @@ class Get extends Command
                 $attr_id = 0;
                 if(strpos($option['name'], "Size")!==false) $attr_id = 24;
                 if(strpos($option['name'], "尺码") !==false) $attr_id = 24;
+                if(strpos($option['name'], "Length") !==false) $attr_id = 24;
                 if(strpos($option['name'], "Color") !==false) $attr_id = 23;
                 if(strpos($option['name'], "颜色") !==false) $attr_id = 23;
                 //var_dump($option['name'], $attr_id); exit;
