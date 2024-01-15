@@ -89,7 +89,7 @@
 
 <link rel="stylesheet" href="https://lander.heomai.com/template-common/checkout1/css/font-awesome.min.css">
 
-<link rel="stylesheet" href="https://lander.heomai.com/template-common/checkout6/css/order.css?v=11">
+<link rel="stylesheet" href="https://lander.heomai.com/template-common/checkout6/css/order.css?v=12">
 <link rel="stylesheet" href="https://lander.heomai.com/template-common/checkout-common/css/order.css">
 <style>
         body {
@@ -629,19 +629,19 @@ QTY:
 <span class="summary-total-item-name">
 Subtotal:
 </span>
-<span class="summary-total-item-price js-old-price"></span>
+<span class="summary-total-item-price js-old-price product-price"></span>
 </div>
 <div class="summary-total-item">
 <span class="summary-total-item-name">
 Discount:
 </span>
-<span class="summary-total-item-price js-discount-price red"></span>
+<span class="summary-total-item-price js-discount-price red product-price"></span>
 </div>
 <div class="summary-total-item">
 <span class="summary-total-item-name">
 Shipping:
 </span>
-<span class="summary-total-item-price js-shipping-price"></span>
+<span class="summary-total-item-price js-shipping-price red"></span>
 </div>
 <div class="summary-total-item summary-total-item-shipping-insurance" style="display:none">
 <span class="summary-total-item-name">
@@ -659,7 +659,7 @@ Coupon:
 <span class="summary-total-item-name">
 Total:
 </span>
-<span class="summary-total-item-price js-total"></span>
+<span class="summary-total-item-price js-total red product-price"></span>
 </div>
 </div>
 </div>
@@ -720,9 +720,7 @@ Hatmeo offers a 30 day guarantee on all unused purchases. Simply send the item(s
 <div class="summary-footer summary-footer-mb">
 <div class="agree-block">
 <input type="checkbox" checked>
-I agree with the <a href="#" data-toggle="modal" data-target="#PrivacyPolicyModalCenter">
-Term of service </a>
-& <a href="#"  data-toggle="modal" data-target="#RefundpolicyModalCenter">
+I agree with the <a href="#"  data-toggle="modal" data-target="#RefundpolicyModalCenter">
 Refund policy </a>
 & <a href="#"  data-toggle="modal" data-target="#PrivacyPolicyModalCenter">
 Privacy Policy </a>
@@ -2911,5 +2909,28 @@ function GotoNotRequest(url) {
                     }
     </script>
     <script>(function(){"use strict";function n(n,e){var r;void 0===e&&(e="uclick");var c=null===(r=n.match(/\?.+?$/))||void 0===r?void 0:r[0];return c?Array.from(c.matchAll(new RegExp("[?&](clickid|"+e+")=([^=&]*)","g"))).map((function(n){return{name:n[1],value:n[2]}})):[]}function e(n){var e=n();return 0===e.length?{}:e.reduce((function(n,e){var r;return Object.assign(n,((r={})[e.name]=""+e.value,r))}),{})}function r(r){void 0===r&&(r="uclick");var c,t,u=e((function(){return(function(n){return void 0===n&&(n="uclick"),Array.from(document.cookie.matchAll(new RegExp("(?:^|; )(clickid|"+n+")=([^;]*)","g"))).map((function(n){return{name:n[1],value:n[2]}}))})(r)})),i=e((function(){return n(document.referrer,r)})),o=e((function(){return n(document.location.search,r)}));return(c=[r,"clickid"],t=[u,i,o],c.reduce((function(n,e){return n.concat(t.map((function(n){return[e,n]})))}),[])).map((function(n){return{name:n[0],value:n[1][n[0]]}})).find((function(n){return n.value}))||null}var c,t,u,i;(i=document.createElement("img")).src=(t=""+"https://track.heomai2021.com/"+"click"+".php?payout=OPTIONAL",(u=r(c="uclick"))?t+"&cnv_id="+(u.name===c?"OPTIONAL":u.value)+(u.name===c?"&"+c+"="+u.value:""):t+"&cnv_id=OPTIONAL"),i.referrerPolicy="no-referrer-when-downgrade"})();</script>
+
+    <script> try { 
+function getCookie(name)
+{
+    var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
+ 
+    if(arr=document.cookie.match(reg))
+ 
+        return unescape(arr[2]);
+    else
+        return null;
+}
+var refercode = getCookie('refer');
+var pricetrue= "10";
+
+
+function getUclick_c(){var e=document.cookie.match(new RegExp("(?:^|; )"+"uclick"+"=([^;]*)"));return e?decodeURIComponent(e[1]):void 0}
+
+function cnv_pixel(value){var e="https://track.heomai2021.com/",n=document.createElement("img");n.src=e+"click.php?cnv_id="+value+"&payout="+pricetrue;}
+cnv_pixel(refercode);
+ } catch(e){  }</script>
+    
+
 </body>
 </html>
