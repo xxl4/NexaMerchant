@@ -18,6 +18,7 @@
         <meta http-equiv="content-language" content="{{ app()->getLocale() }}">
         <link rel="alternate icon" class="js-site-favicon" type="image/png" href="/favicon.png">
         <link rel="icon" class="js-site-favicon" type="image/svg+xml" href="/favicon.svg">
+        
         <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet' />
 <script src="https://unpkg.com/jquery@3.3.1/dist/jquery.min.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
@@ -744,6 +745,81 @@ Hatmeo offers a 30 day guarantee on all unused purchases. Simply send the item(s
 </div>
 </div>
 <script type="text/javascript" src="https://lander.heomai.com/template-common/js/myFoldpanel.js"></script>
+<?php if($product['id']=='2807') { ?>
+<link rel="stylesheet" href="https://shop.hatmeo.com/bh03-2/css/index.css">
+<section>
+<div class="section">
+                <div class="speak">
+                    <div class="speak_l">
+                        <span class="stars_average">4.9</span>
+                        <div style="text-align: center;">
+                            <img src="images/4.8.png" alt="">
+                        </div>
+                        <span class="title-average">Average Rating</span>
+                    </div>
+                    <div class="speak_r">
+                        <div id="smb-ul">
+                            <div id="smb-ul-li-1" style="margin-top: 5px;">
+                                <div id="smb-li-1-con"></div>
+                            </div>
+                            <div id="smb-ul-li-2">
+                                <div id="smb-li-2-con"></div>
+                            </div>
+                            <div id="smb-ul-li-3">
+                                <div id="smb-li-3-con"></div>
+                            </div>
+                            <div id="smb-ul-li-4">
+                                <div id="smb-li-4-con"></div>
+                            </div>
+                            <div id="smb-ul-li-5">
+                                <div id="smb-li-5-con"></div>
+                            </div>
+                        </div>
+                        <div id="smb-ul-2">
+                            <span class="count-percent">89%</span>
+                            <span class="count-percent">11%</span>
+                            <span class="count-percent">0%</span>
+                            <span class="count-percent">0%</span>
+                            <span class="count-percent">0%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content_speak">
+                    <div class="cont_left"></div>
+                    <div class="cont_right">
+                        <p class="title-review">Emma Thompson</p>
+                        <img src="https://shop.hatmeo.com/bh03-2/images/5.png" alt="">
+                        <p class="body-item">
+                            "Listen up ladies, you need this in your life! I have been hated the way my bra would pop out my "fat" under the bra band, until I bought Hatmeo. No embarrassing armpit fats! No back straps or wires dig into the skin. Thank you!"
+                        </p>
+                    </div>
+                </div>
+
+                <div class="content_speak">
+                    <div class="cont_left"></div>
+                    <div class="cont_right">
+                        <p class="title-review">Ava Williams</p>
+                        <img src="https://shop.hatmeo.com/bh03-2/images/5.png" alt="">
+                        <p class="body-item">
+                            "Excellent! I've been searching for a bra like this forever. This bra gives me a push-up effect & is comfortable on my shoulders and back. I'll buy another color now! My bra size is 38 D which is impossible to find in most places."
+                        </p>
+                    </div>
+                </div>
+
+                <div class="content_speak">
+                    <div class="cont_left"></div>
+                    <div class="cont_right">
+                        <p class="title-review">Sophia Davis</p>
+                        <img src="https://shop.hatmeo.com/bh03-2/images/5.png" alt="">
+                        <p class="body-item">
+                            "I was looking at reviews for other brands and none of them fully convinced me. Finally came across this brand and this product and saw that almost everything was positive. Best ever!."
+                        </p>
+                    </div>
+                </div>
+            </div>
+</section>
+<?php } ?>
 <div class="section_faq">
 <script>
                     $(function() {
