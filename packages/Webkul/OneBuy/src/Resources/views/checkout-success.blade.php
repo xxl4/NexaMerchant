@@ -441,6 +441,48 @@ All rights reserved
 
   gtag('config', 'G-P6343Y2GKT');
 </script>
+
+<script> try { 
+function getCookie(name)
+{
+    var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
+ 
+    if(arr=document.cookie.match(reg))
+ 
+        return unescape(arr[2]);
+    else
+        return null;
+}
+
+function setCookie(cName, cValue, expDays) {
+        let date = new Date();
+        date.setTime(date.getTime() + (expDays * 24 * 60 * 60 * 1000));
+        const expires = "expires=" + date.toUTCString();
+        document.cookie = cName + "=" + cValue + "; " + expires + "; path=/";
+}
+
+order_param = JSON.parse(localStorage.getItem('order_params'));
+
+var refercode = getCookie('refer');
+var post_order_id = getCookie('post_order_id');
+
+console.log("post order_id " + post_order_id);
+
+var pricetrue= order_param.total;
+
+var order_id = getQueryString('id');
+
+
+function getUclick_c(){var e=document.cookie.match(new RegExp("(?:^|; )"+"uclick"+"=([^;]*)"));return e?decodeURIComponent(e[1]):void 0}
+
+function cnv_pixel(value){var e="https://track.heomai2021.com/",n=document.createElement("img");n.src=e+"click.php?cnv_id="+value+"&payout="+pricetrue;}
+if(post_order_id == null) {
+    cnv_pixel(refercode);
+    setCookie("post_order_id", order_id, 30);
+}
+
+ } catch(e){  }</script>
+
 <script>
         if(getCookie('voluum_payout') && getCookie('order_id') == getQueryString('id')) {
             var order_params = {};
@@ -581,6 +623,8 @@ All rights reserved
                 } catch(e){  }
             
         }
+
+        
 
         function setProductHtml(products, produt_amount_base =1) {
             var product_html = ''

@@ -745,7 +745,7 @@ Hatmeo offers a 30 day guarantee on all unused purchases. Simply send the item(s
 </div>
 </div>
 <script type="text/javascript" src="https://lander.heomai.com/template-common/js/myFoldpanel.js"></script>
-<?php if($product['id']=='2807') { ?>
+<?php if($product['id']=='2778') { ?>
 <link rel="stylesheet" href="https://shop.hatmeo.com/bh03-2/css/index.css">
 <section>
 <div class="section">
