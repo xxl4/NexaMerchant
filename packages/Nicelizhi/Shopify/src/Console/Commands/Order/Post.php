@@ -317,7 +317,5 @@ class Post extends Command
             $shopifyNewOrder->shopify_store_id = $this->shopify_store_id;
             // $shopifyNewOrder->save();
         }
-
-        exit;
     }
 }
