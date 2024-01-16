@@ -88,19 +88,13 @@ class Post extends Command
             'order_id' => $id
         ])->first();
         if(!is_null($shopifyOrder)) {
-            //var_dump($shopifyOrder);
             return false;
         }
-
-        //var_dump($id);
-        //exit;
-
 
         $client = new Client();
 
         $shopify = $shopifyStore->toArray();
 
-        //$shopify = config("shopify");
         /**
          * 
          * @link https://shopify.dev/docs/api/admin-rest/2023-10/resources/order#post-orders
@@ -111,29 +105,14 @@ class Post extends Command
 
         //var_dump($order);exit;
 
-        //var_dump($order->shipping_address);
-
-        //var_dump($order);exit;
-
         $postOrder = [];
 
         $line_items = [];
-/*
-        $line_items [
-            [
-                "variant_id" => '',
-                "quantity" => 1
-            ]
-        ];
-*/
 
         $products = $order->items;
         foreach($products as $key=>$product) {
             $sku = $product['additional'];
 
-            //var_dump($sku);
-
-            //var_dump($sku);
             $skuInfo = explode('-', $sku['product_sku']);
             if(!isset($skuInfo[1])) {
                 $this->error("have error" . $id);
@@ -143,18 +122,12 @@ class Post extends Command
             $line_item = [];
             $line_item['variant_id'] = $skuInfo[1];
             $line_item ['quantity'] = $product['qty_ordered'];
+            $line_item ['requires_shipping'] = true;
 
             array_push($line_items, $line_item);
         }
 
-        //var_dump($line_items);
-
-        //exit;
         $shipping_address = $order->shipping_address;
-
-        
-
-        // products
         $postOrder['line_items'] = $line_items;
 
 
@@ -202,7 +175,7 @@ class Post extends Command
             [
                 "kind" => "sales",
                 "status" => "success",
-                "amount" => $order->sub_total,
+                "amount" => $order->grand_total,
             ]
         ];
 
@@ -210,18 +183,115 @@ class Post extends Command
 
         $postOrder['financial_status'] = "paid";
 
-        //$postOrder['total_tax'] = $order->shipping_amount;
-        $postOrder['total_price'] = $order->sub_total;
-        $total_shipping_price_set = [];
-        $shop_money = [];
-        $shop_money['amount'] = $order->shipping_amount;
-        $shop_money['currency_code'] = $order->order_currency_code;
-        $total_shipping_price_set['shop_money'] = $shop_money;
+        $postOrder['current_subtotal_price'] = $order->sub_total;
+
+        $current_subtotal_price_set = [
+            'shop_money' => [
+                "amount" => $order->sub_total,
+                "currency_code" => $order->order_currency_code,
+            ],
+            'presentment_money' => [
+                "amount" => $order->sub_total,
+                "currency_code" => $order->order_currency_code,
+            ]
+        ];
+        $postOrder['current_subtotal_price_set'] = $current_subtotal_price_set;
+
+
+
+        // $total_shipping_price_set = [];
+        // $shop_money = [];
+        // $shop_money['amount'] = $order->shipping_amount;
+        // $shop_money['currency_code'] = $order->order_currency_code;
+        // $total_shipping_price_set['shop_money'] = $shop_money;
+        // $total_shipping_price_set['presentment_money'] = $shop_money;
+
+        $total_shipping_price_set = [
+            "shop_money" => [
+                "amount" => $order->shipping_amount,
+                "currency_code" => $order->order_currency_code,
+            ],
+            "presentment_money" => [
+                "amount" => $order->shipping_amount,
+                "currency_code" => $order->order_currency_code,
+            ]
+        ];
 
         $postOrder['total_shipping_price_set'] = $total_shipping_price_set;
 
-        $pOrder['order'] = $postOrder;
+        // $discount_codes = [];
+        // $discount_codes = [
+        //     'code' => 'COUPON_CODE',
+        //     'amount' => $order->discount_amount,
+        //     'type' => 'percentage'
+        // ];
 
+        /**
+         * 
+         * If you're working on a private app and order confirmations are still being sent to the customer when send_receipt is set to false, then you need to disable the Storefront API from the private app's page in the Shopify admin.
+         * 
+         */
+
+        $postOrder['send_receipt'] = false; 
+
+        // $postOrder['discount_codes'] = $discount_codes;
+
+        $postOrder['current_total_discounts'] = $order->discount_amount;
+        $current_total_discounts_set = [
+            'shop_money' => [
+                'amount' => $order->discount_amount,
+                'currency_code' => $order->order_currency_code
+            ],
+            'presentment_money' => [
+                'amount' => $order->discount_amount,
+                'currency_code' => $order->order_currency_code
+            ]
+        ];
+        $postOrder['current_total_discounts_set'] = $current_total_discounts_set;
+        $postOrder['total_discount'] = $order->discount_amount;
+        $total_discount_set = [];
+        $total_discount_set = [
+            'shop_money' => [
+                'amount' => $order->discount_amount,
+                'currency_code' => $order->order_currency_code
+            ],
+            'presentment_money' => [
+                'amount' => $order->discount_amount,
+                'currency_code' => $order->order_currency_code
+            ]
+        ];
+        $postOrder['total_discount_set'] = $total_discount_set;
+        $postOrder['total_discounts'] = $order->discount_amount;
+
+
+        $shipping_lines = [];
+
+        $shipping_lines = [
+            'price' => $order->shipping_amount,
+            'code' => 'Standard',
+            "title" => "Standard Shipping",
+            "source" => "us_post",
+            "tax_lines" => [],
+            "carrier_identifier" => "third_party_carrier_identifier",
+            "requested_fulfillment_service_id" => "third_party_fulfillment_service_id",
+            "price_set" => [
+                'shop_money' => [
+                    'amount' => $order->shipping_amount,
+                    'currency_code' => $order->order_currency_code
+                ],
+                'presentment_money' => [
+                    'amount' => $order->shipping_amount,
+                    'currency_code' => $order->order_currency_code
+                ]
+            ]
+        ];
+
+
+
+        $postOrder['shipping_lines'][] = $shipping_lines;
+
+
+        $pOrder['order'] = $postOrder;
         //var_dump($pOrder);exit;
 
         $response = $client->post($shopify['shopify_app_host_name'].'/admin/api/2023-10/orders.json', [
@@ -234,10 +304,8 @@ class Post extends Command
         ]);
 
         $body = json_decode($response->getBody(), true);
-        Log::info("post order body ". json_encode($pOrder));
-        Log::info("post order".json_encode($body));
-
-        //var_dump($body);exit;
+        Log::info("shopify post order body ". json_encode($pOrder));
+        Log::info("shopify post order".json_encode($body));
 
         if(isset($body['order']['id'])) {
             $shopifyNewOrder = $this->ShopifyOrder->where([
@@ -247,7 +315,7 @@ class Post extends Command
             $shopifyNewOrder->order_id = $id;
             $shopifyNewOrder->shopify_order_id = $body['order']['id'];
             $shopifyNewOrder->shopify_store_id = $this->shopify_store_id;
-            $shopifyNewOrder->save();
+            // $shopifyNewOrder->save();
         }
 
         exit;
