@@ -35,6 +35,11 @@
             <directory suffix="Test.php">./packages/Nicelizhi/Checkout/tests/Feature</directory>
         </testsuite>
 
+         <!-- Binom package testsuites. -->
+        <testsuite name="Binom Unit Test">
+            <directory suffix="Test.php">./packages/Nicelizhi/Binom/tests/Feature</directory>
+        </testsuite>
+
         <!-- Shopify package testsuites. -->
         <testsuite name="Shopify Unit Test">
             <directory suffix="Test.php">./packages/Nicelizhi/Shopify/tests/Feature</directory>
