@@ -333,6 +333,7 @@ class ProductController extends Controller
                 $super_attribute[$attr[0]] = $attr[1];
             }
             $product['super_attribute'] = $super_attribute;
+            Log::info("add product into cart ". json_encode($product));
             $cart = Cart::addProduct($product['product_id'], $product);
 
             if (
@@ -534,6 +535,7 @@ class ProductController extends Controller
             }
 
             $product['super_attribute'] = $super_attribute;
+            Log::info("add product into cart ". json_encode($product));
             $cart = Cart::addProduct($product['product_id'], $product);
             if (
                 is_array($cart)
@@ -1023,6 +1025,7 @@ class ProductController extends Controller
 
         //$AddcartProduct['super_attribute'] = $super_attribute;
         //var_dump($AddcartProduct);exit;
+        
         $cart = Cart::addProduct($product['product_id'], $AddcartProduct);
 
         //获取购车中商品价格返回
@@ -1124,5 +1127,13 @@ class ProductController extends Controller
             'recommended_info_title' => 'recommended_info_title'
         ]);
 
+    }
+
+    public function order_log(Request $request) {
+        Log::info("request ". json_encode($request->all()));
+        $session_data = $request->session()->all();
+        Log::info("session ". json_encode($session_data));
+        $refer = $request->cookie('refer');
+        Log::info("cookie refer ". $refer);
     }
 }
