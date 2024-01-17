@@ -3,16 +3,16 @@
 namespace Webkul\User\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Webkul\User\Models\Admin;
+use Webkul\User\Models\Role;
 
-class AdminFactory extends Factory
+class RoleFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Admin::class;
+    protected $model = Role::class;
 
     /**
      * Define the model's default state.
@@ -22,11 +22,8 @@ class AdminFactory extends Factory
     public function definition()
     {
         return [
-            'name'     => $this->faker->name(),
-            'email'    => $this->faker->unique()->email,
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
-            'role_id'  => 1,
-            'status'   => 1,
+            'name'            => $this->faker->name,
+            'permission_type' => $this->faker->randomElement(['custom', 'all']),
         ];
     }
 }
