@@ -16,10 +16,6 @@ class AttributeOptionRepository extends Repository
     }
 
     /**
-<<<<<<< HEAD
-     * @param  array  $data
-=======
->>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      * @return  \Webkul\Attribute\Contracts\AttributeOption
      */
     public function create(array $data)
@@ -32,20 +28,11 @@ class AttributeOptionRepository extends Repository
     }
 
     /**
-<<<<<<< HEAD
-     * @param  array   $data
-     * @param  int     $id
-     * @param  string  $attribute
-     * @return  \Webkul\Attribute\Contracts\AttributeOption
-     */
-    public function update(array $data, $id, $attribute = "id")
-=======
      * @param  int  $id
      * @param  string  $attribute
      * @return  \Webkul\Attribute\Contracts\AttributeOption
      */
     public function update(array $data, $id, $attribute = 'id')
->>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
     {
         $option = parent::update($data, $id);
 
@@ -71,8 +58,4 @@ class AttributeOptionRepository extends Repository
             ], $optionId);
         }
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
