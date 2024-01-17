@@ -653,7 +653,7 @@ p.cmpny-name {
                                     </div>
 
                                     <div class="order-summary-item justify-content-between pt-2 pb-1 d-flex">
-                                        <div class="os_main_product_name">2x Hatmeo Heated Vest</div>
+                                        <div class="os_main_product_name">2x Hatmeo <?php echo $product['name'];?></div>
                                         <div class="os_main_product_each_price" style="font-weight:bold;">$ 59.99 <span class="fs-8">/ea</span></div>
 
                                     </div>
@@ -1408,7 +1408,7 @@ p.cmpny-name {
 
                         <div class="step-title">
 
-                            What customers are saying about Hatmeo Heated Vest
+                            What customers are saying about Hatmeo <?php echo $product['name']; ?>
                         </div>
 
                         <hr class="mt-2">
@@ -1431,7 +1431,7 @@ p.cmpny-name {
                                         <div class="t-prod-dv">
                                             <img src="/checkout/v1/app/desktop/images/t-prod1.jpg" alt="">
                                         </div>
-                                        <p class="test-prod-txt">Reviewing<br><span>Hatmeo Heated Vest</span></p>
+                                        <p class="test-prod-txt">Reviewing<br><span>Hatmeo <?php echo $product['name']; ?></span></p>
                                     </div>
                                 </div>
                                 
@@ -1514,7 +1514,7 @@ p.cmpny-name {
 
                     <div class="d-none d-sm-block footer-inf footer-column-header">INFORMATION</div>
 
-                    <a class="btn-action btn" data-url="/checkout/v1/cms/contact-us" >About Us</a><br>
+                    <a class="btn-action btn" data-url="/checkout/v1/cms/about-us" >About Us</a><br>
                     <a class="btn-action btn" data-url="/checkout/v1/cms/contact-us" >Contact Us</a><br>
                     <a class="btn-action btn" data-url="/checkout/v1/cms/shipping-policy" >Shipping Policy</a><br>
                     <a class="btn-action btn" data-url="/checkout/v1/cms/privacy-policy">Privacy Policy</a><br>
@@ -1556,7 +1556,7 @@ p.cmpny-name {
 
                 <div class="col-12 mt-3 pt-2 text-center footer-copyright">
 
-                    Copyright ©2024                    <span class="text-dark">Hatmeo</span>.
+                    Copyright ©2016                    <span class="text-dark">Hatmeo</span>.
 
                     All Rights Reserved.
 
@@ -1883,7 +1883,7 @@ p.cmpny-name {
                     items: [
                         {
                             item_id: 'HEATEDVEST-L-01-Hatmeo',
-                            item_name: "Hatmeo Heated Vest",
+                            item_name: "Hatmeo <?php echo $product['name']; ?>",
                             affiliation: "",
                             // discount: 60,
                             item_brand: 'Hatmeo',
@@ -2083,7 +2083,7 @@ p.cmpny-name {
                         items: [
                             {
                                 item_id: 'HEATEDVEST-L-01-Hatmeo',
-                                item_name:  "Hatmeo Heated Vest",
+                                item_name:  "Hatmeo <?php echo $product['name']; ?>",
                                 affiliation: "",
                                 quantity: pid,
                                 coupon: '',
@@ -2213,7 +2213,7 @@ p.cmpny-name {
                     items: [
                         {
                             item_id: 'HEATEDVEST-L-01-Hatmeo',
-                            item_name:  "Hatmeo Heated Vest",
+                            item_name:  "Hatmeo <?php echo $product['name']; ?>",
                             affiliation: "",
                             quantity: pid,
                             coupon: '',
@@ -2867,7 +2867,7 @@ p.cmpny-name {
                     /*items: [
                         {
                             item_id: 'HEATEDVEST-L-01-Hatmeo',
-                            item_name:  "Hatmeo Heated Vest",
+                            item_name:  "Hatmeo <?php echo $product['name']; ?>",
                             affiliation: "",
                             quantity: pid,
                             coupon: '',
