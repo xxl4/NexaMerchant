@@ -2,9 +2,15 @@
 
 namespace Webkul\Notification\Listeners;
 
+<<<<<<< HEAD
 use Webkul\Notification\Repositories\NotificationRepository;
 use Webkul\Notification\Events\CreateOrderNotification;
 use Webkul\Notification\Events\UpdateOrderNotification;
+=======
+use Webkul\Notification\Events\CreateOrderNotification;
+use Webkul\Notification\Events\UpdateOrderNotification;
+use Webkul\Notification\Repositories\NotificationRepository;
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 
 class Order
 {
@@ -25,7 +31,11 @@ class Order
     public function createOrder($order)
     {
         $this->notificationRepository->create(['type' => 'order', 'order_id' => $order->id]);
+<<<<<<< HEAD
           
+=======
+
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         event(new CreateOrderNotification);
     }
 
@@ -35,7 +45,11 @@ class Order
      * @return void
      */
     public function updateOrder($order)
+<<<<<<< HEAD
     { 
+=======
+    {
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         event(new UpdateOrderNotification([
             'id'     => $order->id,
             'status' => $order->status,
