@@ -16,5 +16,5 @@ return [
         'class'       => 'Webkul\Payment\Payment\MoneyTransfer',
         'active'      => true,
         'sort'        => 2,
-    ]
+    ],
 ];

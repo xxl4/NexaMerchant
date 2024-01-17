@@ -2,7 +2,6 @@
 
 namespace Webkul\Payment\Payment;
 
-use Illuminate\Support\Facades\Config;
 use Webkul\Checkout\Facades\Cart;
 
 abstract class Payment
@@ -59,6 +58,16 @@ abstract class Payment
     }
 
     /**
+     * Returns payment method image
+     *
+     * @return array
+     */
+    public function getImage()
+    {
+        return $this->getConfigData('image');
+    }
+
+    /**
      * Retrieve information from payment configuration
      *
      * @param  string  $field
@@ -70,6 +79,11 @@ abstract class Payment
         return core()->getConfigData('sales.payment_methods.' . $this->getCode() . '.' . $field);
     }
 
+    /**
+     * Abstract method to get the redirect URL.
+     *
+     * @return string The redirect URL.
+     */
     abstract public function getRedirectUrl();
 
     /**
