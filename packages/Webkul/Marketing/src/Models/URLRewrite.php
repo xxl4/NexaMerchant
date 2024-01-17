@@ -5,19 +5,19 @@ namespace Webkul\Marketing\Models;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Webkul\Marketing\Contracts\Event as EventContract;
-use Webkul\Marketing\Database\Factories\EventFactory;
+use Webkul\Marketing\Contracts\URLRewrite as URLRewriteContract;
+use Webkul\Marketing\Database\Factories\UrlRewriteFactory;
 
-class Event extends Model implements EventContract
+class URLRewrite extends Model implements URLRewriteContract
 {
     use HasFactory;
 
     /**
-     * Define the models table name
+     * Define the table name for the model.
      *
      * @var string
      */
-    protected $table = 'marketing_events';
+    protected $table = 'url_rewrites';
 
     /**
      * The attributes that are mass assignable.
@@ -25,9 +25,11 @@ class Event extends Model implements EventContract
      * @var array
      */
     protected $fillable = [
-        'name',
-        'description',
-        'date',
+        'entity_type',
+        'request_path',
+        'target_path',
+        'redirect_type',
+        'locale',
     ];
 
     /**
@@ -35,6 +37,6 @@ class Event extends Model implements EventContract
      */
     protected static function newFactory(): Factory
     {
-        return EventFactory::new();
+        return UrlRewriteFactory::new();
     }
 }

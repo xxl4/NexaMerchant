@@ -5,19 +5,19 @@ namespace Webkul\Marketing\Models;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Webkul\Marketing\Contracts\Event as EventContract;
-use Webkul\Marketing\Database\Factories\EventFactory;
+use Webkul\Marketing\Contracts\SearchTerm as SearchTermContract;
+use Webkul\Marketing\Database\Factories\SearchTermsFactory;
 
-class Event extends Model implements EventContract
+class SearchTerm extends Model implements SearchTermContract
 {
     use HasFactory;
 
     /**
-     * Define the models table name
+     * Define the table name for the model.
      *
      * @var string
      */
-    protected $table = 'marketing_events';
+    protected $table = 'search_terms';
 
     /**
      * The attributes that are mass assignable.
@@ -25,9 +25,13 @@ class Event extends Model implements EventContract
      * @var array
      */
     protected $fillable = [
-        'name',
-        'description',
-        'date',
+        'term',
+        'results',
+        'uses',
+        'redirect_url',
+        'display_in_suggested_terms',
+        'locale',
+        'channel_id',
     ];
 
     /**
@@ -35,6 +39,6 @@ class Event extends Model implements EventContract
      */
     protected static function newFactory(): Factory
     {
-        return EventFactory::new();
+        return SearchTermsFactory::new();
     }
 }
