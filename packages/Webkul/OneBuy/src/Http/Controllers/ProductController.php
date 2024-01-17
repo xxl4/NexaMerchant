@@ -20,10 +20,15 @@ use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Cache;
 use Webkul\Payment\Facades\Payment;
+use Illuminate\Support\Facades\Redis;
 
 
 class ProductController extends Controller
 {
+
+    private $faq_cache_key = "faq";
+
+    private $cache_prefix_key = "checkout_v1_";
     /**
      * Create a new controller instance.
      *
@@ -305,10 +310,20 @@ class ProductController extends Controller
 
         //var_dump($productBgAttribute);
 
+        // 获取 faq 数据
+        $redis = Redis::connection('default');
+        $faqItems = $redis->hgetall($this->faq_cache_key);
+
+        sort($faqItems);
+
+        $comments = $redis->hgetall($this->cache_prefix_key."product_comments_".$product['id']);
+
+        
 
 
 
-        return view('onebuy::product-detail', compact('app_env','product','package_products', 'product_attributes', 'skus','productBgAttribute','productBgAttribute_mobile'));
+
+        return view('onebuy::product-detail', compact('app_env','product','package_products', 'product_attributes', 'skus','productBgAttribute','productBgAttribute_mobile','faqItems','comments'));
     }
 
     // 完成订单生成动作

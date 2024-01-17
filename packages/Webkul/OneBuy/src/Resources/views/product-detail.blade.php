@@ -6,7 +6,7 @@
 @endphp
 
 <!DOCTYPE html>
-<html lang="{{ app()->getLocale() }}" dir="{{ core()->getCurrentLocale()->direction }}">
+<html lang="{{ app()->getLocale() }}" dir="{{ core()->getCurrentLocale()->direction }}" class="has-reviews has-faq">
     <head>
         <title>{{ trim($product->meta_title) != "" ? $product->meta_title : $product->name }}</title>
         <meta charset="UTF-8">
@@ -23,6 +23,22 @@
 <script src="https://unpkg.com/jquery@3.3.1/dist/jquery.min.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
+<!-- Facebook Pixel Code -->
+<script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '844340774106979');
+  fbq('track', 'PageView');
+  fbq('track', 'ViewContent');
+</script>
+
 <script>
     function sendInitcheckout2Everflow() {
         function getQueryString(name) {
@@ -745,125 +761,123 @@ Hatmeo offers a 30 day guarantee on all unused purchases. Simply send the item(s
 </div>
 </div>
 <script type="text/javascript" src="https://lander.heomai.com/template-common/js/myFoldpanel.js"></script>
-<?php if($product['id']=='2778') { ?>
-<link rel="stylesheet" href="https://shop.hatmeo.com/bh03-2/css/index.css">
-<section>
-<div class="section">
-                <div class="speak">
-                    <div class="speak_l">
-                        <span class="stars_average">4.9</span>
-                        <div style="text-align: center;">
-                            <img src="images/4.8.png" alt="">
-                        </div>
-                        <span class="title-average">Average Rating</span>
-                    </div>
-                    <div class="speak_r">
-                        <div id="smb-ul">
-                            <div id="smb-ul-li-1" style="margin-top: 5px;">
-                                <div id="smb-li-1-con"></div>
-                            </div>
-                            <div id="smb-ul-li-2">
-                                <div id="smb-li-2-con"></div>
-                            </div>
-                            <div id="smb-ul-li-3">
-                                <div id="smb-li-3-con"></div>
-                            </div>
-                            <div id="smb-ul-li-4">
-                                <div id="smb-li-4-con"></div>
-                            </div>
-                            <div id="smb-ul-li-5">
-                                <div id="smb-li-5-con"></div>
-                            </div>
-                        </div>
-                        <div id="smb-ul-2">
-                            <span class="count-percent">89%</span>
-                            <span class="count-percent">11%</span>
-                            <span class="count-percent">0%</span>
-                            <span class="count-percent">0%</span>
-                            <span class="count-percent">0%</span>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="content_speak">
-                    <div class="cont_left"></div>
-                    <div class="cont_right">
-                        <p class="title-review">Emma Thompson</p>
-                        <img src="https://shop.hatmeo.com/bh03-2/images/5.png" alt="">
-                        <p class="body-item">
-                            "Listen up ladies, you need this in your life! I have been hated the way my bra would pop out my "fat" under the bra band, until I bought Hatmeo. No embarrassing armpit fats! No back straps or wires dig into the skin. Thank you!"
-                        </p>
-                    </div>
-                </div>
 
-                <div class="content_speak">
-                    <div class="cont_left"></div>
-                    <div class="cont_right">
-                        <p class="title-review">Ava Williams</p>
-                        <img src="https://shop.hatmeo.com/bh03-2/images/5.png" alt="">
-                        <p class="body-item">
-                            "Excellent! I've been searching for a bra like this forever. This bra gives me a push-up effect & is comfortable on my shoulders and back. I'll buy another color now! My bra size is 38 D which is impossible to find in most places."
-                        </p>
-                    </div>
-                </div>
+<link rel="stylesheet" type="text/css" href="/checkout/v1/app/desktop/css/main.css?v=1704676786">
 
-                <div class="content_speak">
-                    <div class="cont_left"></div>
-                    <div class="cont_right">
-                        <p class="title-review">Sophia Davis</p>
-                        <img src="https://shop.hatmeo.com/bh03-2/images/5.png" alt="">
-                        <p class="body-item">
-                            "I was looking at reviews for other brands and none of them fully convinced me. Finally came across this brand and this product and saw that almost everything was positive. Best ever!."
-                        </p>
-                    </div>
-                </div>
-            </div>
-</section>
-<?php } ?>
-<div class="section_faq">
-<script>
-                    $(function() {
-                        $('dl#my-foldpanel').foldpanel({
-                            init:true,     	 //是否开启初始化功能,默认关闭
-                            init_index: 0, // 传的数字代表初始化展开的索引，0就是第一个，仅在init:true下生效
-                            time: 400, // panel展开动画时间, 默认为 100ms
-                            dbclose: true // 在此点击关闭, 默认为 true
-                        });
-                    })
-                </script>
 <style>
-                    .section_faq{
-                        max-width: 970px;
-                        margin: 0 auto;
-                        padding: 0 15px;
-                    }
-                    
-                    .dt_lists{
-                        padding-left: 0;
-                        padding-bottom: 15px;
-                        background: #f5f5f5;
-                        padding: 10px;
-                        margin-top: 20px;
-                    }
-                    .dt_lists:hover{
-                        cursor: pointer;
-                    }
-                    .dd_items{
-                        border-bottom: 1px dashed #b0b0b0;
-                        text-align:left;
-                        display:none;
-                        margin-left: 0;
-                        line-height: 26px;
-                        color: #191919;
-                        padding: 10px 0 10px 15px;
-                    }
-                </style>
-<div class="container">
-<h2 style="visibility: visible; animation-name: slideInUp;text-align: center;"></h2>
-<dl class="foldpanel" id="my-foldpanel" style="visibility: visible; animation-name: slideInUp;">
-</dl>
+@media (max-width: 767px) {
+    .testi-sec {
+        padding: 8px;
+    }
+}
+@media (min-width: 1024px) {
+    .testi-sec {
+        padding: 0;
+    }
+}
+</style>
+
+<section class="main">
+<div class="row">
+
+<div class="col-md-6 col-lg-6">
+
+                    <div id="block--reviews" class="reviews">
+
+                        <div class="step-title">
+
+                            What customers are saying about Hatmeo <?php echo $product['name']; ?>
+                        </div>
+
+                        <hr class="mt-2">
+                        <!-- NEW TESTIMONIAL SECTION STARTS HERE -->
+                        <div class="testi-sec" style="">
+                        <?php foreach($comments as $key=>$comment) { 
+                            $comment = json_decode($comment);    
+                            //var_dump($comment);exit;
+                        ?>
+                            <div class="testi-row" style="justify-content:left;">
+                                <div class="testi-row-lft" style="width:180px;">
+                                    <div class="testi-lft-abt">
+                                        <p class="testi-pics"><?php echo substr($comment->name, 0, 1);?></p>
+                                        <p class="t-name"><?php echo $comment->name;?></p>
+                                        <p class="t-vryfd">
+                                            <img src="/checkout/v1/app/desktop/images/vrfy-seal-c.png" alt=""> Verified Buyer
+                                        </p>
+                                    </div>
+                                    <div class="test-prod" style="">
+                                        <div class="t-prod-dv">
+                                            <img src="/checkout/v1/app/desktop/images/t-prod1.jpg" alt="">
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="testi-row-rght">
+                                    <span><?php echo $comment->title;?></span>
+                                    <img src="/checkout/v1/app/desktop/images/star.png" class="t-star">
+                                    <p class="testi-paragraph" style="font-size:14px;line-height:18px;"><?php echo $comment->content;?></p>
+                                   
+                                </div>
+                            </div>
+
+                        <?php } ?>
+                            
+                        </div>
+                        <!-- NEW TESTIMONIAL SECTION STARTS HERE -->
+
+                    </div>
+
+                </div>
+
+
+<div id="block--faq" class="faqs col-md-6 bg-white border p-3">
+
+<div class="h2 text-center mb-4" style="font-family: oswald;">
+
+    Frequently Asked Questions
+
 </div>
+
+<div class="accordion accordion-flush" id="faqs">
+
+    <?php foreach($faqItems as $key=>$item) {
+        $item = json_decode($item);    
+    ?>
+
+    <div class="accordion-item">
+
+        <h2 class="accordion-header" id="compatability">
+
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq<?php echo $key;?>" <?php if($key==0) { ?> aria-expanded="true" <?php } ?> aria-controls="faq<?php echo $key;?>">
+
+                <?php echo $item->q;?>
+
+            </button>
+
+        </h2>
+
+        <div id="faq<?php echo $key;?>" class="accordion-collapse collapse <?php if($key==0) { ?>show<?php } ?>" aria-labelledby="compatability" data-bs-parent="#faqs">
+
+            <div class="accordion-body" style="font-size:14px;">
+
+                <?php echo $item->a;?>
+
+            </div>
+
+        </div>
+
+    </div>
+<?php } ?>
+
+
 </div>
+
+</div>
+    </div>
+
+</section>
+
 </div>
 <div class="footer-container">
 <div class="copyright-block">
@@ -1748,6 +1762,7 @@ function GotoNotRequest(url) {
                             'event_label': 'Initiate paypal Checkout',
                             'event_category': 'ecommerce'
                         });
+                        fbq('track', 'InitiateCheckout');
                         // obApi('track', 'Start Checkout'); 
                         var params = getOrderParams( paypal_type || 'paypal');
                         if(params.error) {
@@ -2078,6 +2093,7 @@ function GotoNotRequest(url) {
                 'event_label': 'Initiate Checkout',
                 'event_category': 'ecommerce'
             });
+            fbq('track', 'InitiateCheckout');
             // obApi('track', 'Start Checkout'); 
             var pay_type = 'worldpay';
             var params = getOrderParams(pay_type);
