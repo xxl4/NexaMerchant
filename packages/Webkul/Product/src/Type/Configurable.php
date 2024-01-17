@@ -3,7 +3,10 @@
 namespace Webkul\Product\Type;
 
 use Illuminate\Support\Str;
+<<<<<<< HEAD
 use Illuminate\Support\Arr;
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 use Webkul\Admin\Validations\ConfigurableUniqueSku;
 use Webkul\Checkout\Models\CartItem as CartItemModel;
 use Webkul\Product\DataTypes\CartItemValidationResult;
@@ -134,7 +137,10 @@ class Configurable extends AbstractType
     /**
      * Create configurable product.
      *
+<<<<<<< HEAD
      * @param  array  $data
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      * @return \Webkul\Product\Contracts\Product
      */
     public function create(array $data)
@@ -169,7 +175,10 @@ class Configurable extends AbstractType
     /**
      * Update configurable product.
      *
+<<<<<<< HEAD
      * @param  array  $data
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      * @param  int  $id
      * @param  string  $attribute
      * @return \Webkul\Product\Contracts\Product
@@ -363,7 +372,10 @@ class Configurable extends AbstractType
     /**
      * Update variant.
      *
+<<<<<<< HEAD
      * @param  array  $data
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      * @param  int  $id
      * @return \Webkul\Product\Contracts\Product
      */
@@ -687,7 +699,10 @@ class Configurable extends AbstractType
      * Validate cart item product price.
      *
      * @param  \Webkul\Product\Type\CartItem  $item
+<<<<<<< HEAD
      * @return \Webkul\Product\DataTypes\CartItemValidationResult
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      */
     public function validateCartItem(CartItemModel $item): CartItemValidationResult
     {
@@ -718,9 +733,12 @@ class Configurable extends AbstractType
 
     /**
      * Is product have sufficient quantity.
+<<<<<<< HEAD
      *
      * @param  int  $qty
      * @return bool
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      */
     public function haveSufficientQuantity(int $qty): bool
     {

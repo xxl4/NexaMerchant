@@ -2,6 +2,7 @@
 
 namespace Webkul\Product\Type;
 
+<<<<<<< HEAD
 use Webkul\Customer\Repositories\CustomerRepository;
 use Webkul\Attribute\Repositories\AttributeRepository;
 use Webkul\Product\Repositories\ProductRepository;
@@ -16,6 +17,22 @@ use Webkul\Product\Helpers\BundleOption;
 use Webkul\Checkout\Models\CartItem;
 use Webkul\Product\DataTypes\CartItemValidationResult;
 use Webkul\Product\Helpers\Indexers\Price\Bundle as BundleIndexer;
+=======
+use Webkul\Attribute\Repositories\AttributeRepository;
+use Webkul\Checkout\Models\CartItem;
+use Webkul\Customer\Repositories\CustomerRepository;
+use Webkul\Product\DataTypes\CartItemValidationResult;
+use Webkul\Product\Helpers\BundleOption;
+use Webkul\Product\Helpers\Indexers\Price\Bundle as BundleIndexer;
+use Webkul\Product\Repositories\ProductAttributeValueRepository;
+use Webkul\Product\Repositories\ProductBundleOptionProductRepository;
+use Webkul\Product\Repositories\ProductBundleOptionRepository;
+use Webkul\Product\Repositories\ProductCustomerGroupPriceRepository;
+use Webkul\Product\Repositories\ProductImageRepository;
+use Webkul\Product\Repositories\ProductInventoryRepository;
+use Webkul\Product\Repositories\ProductRepository;
+use Webkul\Product\Repositories\ProductVideoRepository;
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 
 class Bundle extends AbstractType
 {
@@ -62,6 +79,7 @@ class Bundle extends AbstractType
     /**
      * Create a new product type instance.
      *
+<<<<<<< HEAD
      * @param  \Webkul\Customer\Repositories\CustomerRepository  $customerRepository
      * @param  \Webkul\Attribute\Repositories\AttributeRepository  $attributeRepository
      * @param  \Webkul\Product\Repositories\ProductRepository  $productRepository
@@ -73,6 +91,8 @@ class Bundle extends AbstractType
      * @param  \Webkul\Product\Repositories\ProductBundleOptionRepository  $productBundleOptionRepository
      * @param  \Webkul\Product\Repositories\ProductBundleOptionProductRepository  $productBundleOptionProductRepository
      * @param  \Webkul\Product\Helpers\BundleOption  $bundleOptionHelper
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      * @return void
      */
     public function __construct(
@@ -87,8 +107,12 @@ class Bundle extends AbstractType
         protected ProductBundleOptionRepository $productBundleOptionRepository,
         protected ProductBundleOptionProductRepository $productBundleOptionProductRepository,
         protected BundleOption $bundleOptionHelper
+<<<<<<< HEAD
     )
     {
+=======
+    ) {
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         parent::__construct(
             $customerRepository,
             $attributeRepository,
@@ -104,7 +128,10 @@ class Bundle extends AbstractType
     /**
      * Update.
      *
+<<<<<<< HEAD
      * @param  array  $data
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      * @param  int  $id
      * @param  string  $attribute
      * @return \Webkul\Product\Contracts\Product
@@ -258,7 +285,11 @@ class Bundle extends AbstractType
             }
 
             $cartProduct = $product->getTypeInstance()->prepareForCart(array_merge($data, [
+<<<<<<< HEAD
                 'parent_id' => $this->product->id
+=======
+                'parent_id' => $this->product->id,
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             ]));
 
             if (is_string($cartProduct)) {
@@ -332,7 +363,11 @@ class Bundle extends AbstractType
      *
      * @param  array  $options1
      * @param  array  $options2
+<<<<<<< HEAD
      * @return boolean
+=======
+     * @return bool
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      */
     public function compareOptions($options1, $options2)
     {
@@ -469,9 +504,12 @@ class Bundle extends AbstractType
 
     /**
      * Validate cart item product price and other things.
+<<<<<<< HEAD
      *
      * @param  \Webkul\Checkout\Models\CartItem  $item
      * @return \Webkul\Product\DataTypes\CartItemValidationResult
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      */
     public function validateCartItem(CartItem $item): CartItemValidationResult
     {
@@ -520,6 +558,7 @@ class Bundle extends AbstractType
 
     /**
      * Have sufficient quantity.
+<<<<<<< HEAD
      *
      * @param  int  $qty
      * @return bool
@@ -531,12 +570,26 @@ class Bundle extends AbstractType
             if ($option->is_required) {
                 foreach ($option->bundle_option_products as $bundleOptionProduct) {
                     # as long as at least one product in the required group is available we can continue checking other groups
+=======
+     */
+    public function haveSufficientQuantity(int $qty): bool
+    {
+        // to consider a bundle in stock we need to check that at least one product from each required group is available for the given quantity
+        foreach ($this->product->bundle_options as $option) {
+            if ($option->is_required) {
+                foreach ($option->bundle_option_products as $bundleOptionProduct) {
+                    // as long as at least one product in the required group is available we can continue checking other groups
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     if ($bundleOptionProduct->product->haveSufficientQuantity($bundleOptionProduct->qty * $qty)) {
                         continue 2;
                     }
                 }
 
+<<<<<<< HEAD
                 # if any required option does not have any in-stock product option we will get here.
+=======
+                // if any required option does not have any in-stock product option we will get here.
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 return false;
             }
         }

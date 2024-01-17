@@ -17,10 +17,18 @@ class Grouped extends AbstractType
             'max_price'         => $this->getMaximumPrice() ?? 0,
             'regular_max_price' => $this->getRegularMaximumPrice() ?? 0,
             'product_id'        => $this->product->id,
+<<<<<<< HEAD
             'customer_group_id' => $this->customerGroup->id,
         ];
     }
     
+=======
+            'channel_id'        => $this->channel->id,
+            'customer_group_id' => $this->customerGroup->id,
+        ];
+    }
+
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
     /**
      * Get product minimal price.
      *
@@ -35,6 +43,10 @@ class Grouped extends AbstractType
 
             $variantIndexer = $variant->getTypeInstance()
                 ->getPriceIndexer()
+<<<<<<< HEAD
+=======
+                ->setChannel($this->channel)
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 ->setCustomerGroup($this->customerGroup)
                 ->setProduct($variant);
 
@@ -74,6 +86,10 @@ class Grouped extends AbstractType
 
             $variantIndexer = $variant->getTypeInstance()
                 ->getPriceIndexer()
+<<<<<<< HEAD
+=======
+                ->setChannel($this->channel)
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 ->setCustomerGroup($this->customerGroup)
                 ->setProduct($variant);
 
@@ -98,4 +114,8 @@ class Grouped extends AbstractType
 
         return empty($maxPrices) ? 0 : max($maxPrices);
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61

@@ -14,9 +14,9 @@ use Shetabit\Visitor\Traits\Visitable;
 use Webkul\Attribute\Models\AttributeFamilyProxy;
 use Webkul\Attribute\Models\AttributeProxy;
 use Webkul\Attribute\Repositories\AttributeRepository;
+use Webkul\CatalogRule\Models\CatalogRuleProductPriceProxy;
 use Webkul\Category\Models\CategoryProxy;
 use Webkul\Inventory\Models\InventorySourceProxy;
-use Webkul\CatalogRule\Models\CatalogRuleProductPriceProxy;
 use Webkul\Product\Contracts\Product as ProductContract;
 use Webkul\Product\Database\Eloquent\Builder;
 use Webkul\Product\Database\Factories\ProductFactory;
@@ -28,8 +28,6 @@ class Product extends Model implements ProductContract
 
     /**
      * The attributes that are mass assignable.
-     *
-     * @var $fillable
      */
     protected $fillable = [
         'type',
@@ -40,8 +38,6 @@ class Product extends Model implements ProductContract
 
     /**
      * The attributes that should be cast.
-     *
-     * @var $casts
      */
     protected $casts = [
         'additional' => 'array',
@@ -57,8 +53,6 @@ class Product extends Model implements ProductContract
     /**
      * Get the product flat entries that are associated with product.
      * May be one for each locale and each channel.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function product_flats(): HasMany
     {
@@ -67,8 +61,6 @@ class Product extends Model implements ProductContract
 
     /**
      * Get the product that owns the product.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function parent(): BelongsTo
     {
@@ -77,8 +69,6 @@ class Product extends Model implements ProductContract
 
     /**
      * Get the product attribute family that owns the product.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function attribute_family(): BelongsTo
     {
@@ -87,8 +77,6 @@ class Product extends Model implements ProductContract
 
     /**
      * The super attributes that belong to the product.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function super_attributes(): BelongsToMany
     {
@@ -97,8 +85,6 @@ class Product extends Model implements ProductContract
 
     /**
      * Get the product attribute values that owns the product.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function attribute_values(): HasMany
     {
@@ -107,8 +93,6 @@ class Product extends Model implements ProductContract
 
     /**
      * Get the product customer group prices that owns the product.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function customer_group_prices(): HasMany
     {
@@ -117,8 +101,6 @@ class Product extends Model implements ProductContract
 
     /**
      * Get the product customer group prices that owns the product.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function catalog_rule_prices(): HasMany
     {
@@ -127,8 +109,6 @@ class Product extends Model implements ProductContract
 
     /**
      * Get the price indices that owns the product.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function price_indices(): HasMany
     {
@@ -137,8 +117,6 @@ class Product extends Model implements ProductContract
 
     /**
      * Get the inventory indices that owns the product.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function inventory_indices(): HasMany
     {
@@ -147,8 +125,6 @@ class Product extends Model implements ProductContract
 
     /**
      * The categories that belong to the product.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function categories(): BelongsToMany
     {
@@ -157,8 +133,6 @@ class Product extends Model implements ProductContract
 
     /**
      * The images that belong to the product.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function images(): HasMany
     {
@@ -168,8 +142,6 @@ class Product extends Model implements ProductContract
 
     /**
      * The videos that belong to the product.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function videos(): HasMany
     {
@@ -179,8 +151,6 @@ class Product extends Model implements ProductContract
 
     /**
      * Get the product reviews that owns the product.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function reviews(): HasMany
     {
@@ -197,8 +167,6 @@ class Product extends Model implements ProductContract
 
     /**
      * The inventory sources that belong to the product.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function inventory_sources(): BelongsToMany
     {
@@ -209,7 +177,6 @@ class Product extends Model implements ProductContract
     /**
      * Get inventory source quantity.
      *
-     * @param  $inventorySourceId
      * @return bool
      */
     public function inventory_source_qty($inventorySourceId)
@@ -221,8 +188,6 @@ class Product extends Model implements ProductContract
 
     /**
      * The inventories that belong to the product.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function inventories(): HasMany
     {
@@ -231,8 +196,6 @@ class Product extends Model implements ProductContract
 
     /**
      * The ordered inventories that belong to the product.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function ordered_inventories(): HasMany
     {
@@ -241,18 +204,9 @@ class Product extends Model implements ProductContract
 
     /**
      * Get the product variants that owns the product.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function variants(): HasMany
-    {
-        return $this->hasMany(static::class, 'parent_id');
-    }
 
     /**
      * Get the grouped products that owns the product.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function grouped_products(): HasMany
     {
@@ -261,8 +215,6 @@ class Product extends Model implements ProductContract
 
     /**
      * The images that belong to the product.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function downloadable_samples(): HasMany
     {
@@ -271,18 +223,9 @@ class Product extends Model implements ProductContract
 
     /**
      * The images that belong to the product.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function downloadable_links(): HasMany
-    {
-        return $this->hasMany(ProductDownloadableLinkProxy::modelClass());
-    }
 
     /**
      * Get the bundle options that owns the product.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function bundle_options(): HasMany
     {
@@ -291,8 +234,6 @@ class Product extends Model implements ProductContract
 
     /**
      * The related products that belong to the product.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function related_products(): BelongsToMany
     {
@@ -301,8 +242,6 @@ class Product extends Model implements ProductContract
 
     /**
      * The up sells that belong to the product.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function up_sells(): BelongsToMany
     {
@@ -311,8 +250,6 @@ class Product extends Model implements ProductContract
 
     /**
      * The cross sells that belong to the product.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function cross_sells(): BelongsToMany
     {
@@ -323,7 +260,6 @@ class Product extends Model implements ProductContract
      * Is saleable.
      *
      * @param  string  $key
-     * @return bool
      *
      * @throws \Exception
      */
@@ -336,7 +272,6 @@ class Product extends Model implements ProductContract
     /**
      * Is stockable.
      *
-     * @return bool
      *
      * @throws \Exception
      */
@@ -349,7 +284,6 @@ class Product extends Model implements ProductContract
     /**
      * Total quantity.
      *
-     * @return integer
      *
      * @throws \Exception
      */
@@ -362,8 +296,6 @@ class Product extends Model implements ProductContract
     /**
      * Have sufficient quantity.
      *
-     * @param  int  $qty
-     * @return bool
      *
      * @throws \Exception
      */
@@ -376,7 +308,6 @@ class Product extends Model implements ProductContract
     /**
      * Get type instance.
      *
-     * @return AbstractType
      *
      * @throws \Exception
      */
@@ -395,26 +326,6 @@ class Product extends Model implements ProductContract
         $this->typeInstance->setProduct($this);
 
         return $this->typeInstance;
-    }
-
-    /**
-     * Return the product id attribute.
-     *
-     * @return int
-     */
-    public function getProductIdAttribute()
-    {
-        return $this->id;
-    }
-
-    /**
-     * Return the product attribute.
-     *
-     * @return self
-     */
-    public function getProductAttribute()
-    {
-        return $this;
     }
 
     /**
@@ -437,7 +348,6 @@ class Product extends Model implements ProductContract
      */
     public function getAttribute($key)
     {
-
         if (! method_exists(static::class, $key)
             && ! in_array($key, [
                 'pivot',
@@ -463,7 +373,6 @@ class Product extends Model implements ProductContract
      *
      * @param  Group  $group
      * @param  bool  $skipSuperAttribute
-     * @return \Illuminate\Support\Collection
      *
      * @throws \Exception
      */
@@ -503,7 +412,7 @@ class Product extends Model implements ProductContract
                 if (empty($attributeValue[$attribute->column_name])) {
                     $attributeValue = $this->attribute_values
                         ->where('channel', core()->getDefaultChannelCode())
-                        ->where('locale', core()->getDefaultChannelLocaleCode())
+                        ->where('locale', core()->getDefaultLocaleCodeFromDefaultChannel())
                         ->where('attribute_id', $attribute->id)
                         ->first();
                 }
@@ -520,12 +429,12 @@ class Product extends Model implements ProductContract
                     ->where('attribute_id', $attribute->id)
                     ->first();
 
-                    if (empty($attributeValue[$attribute->column_name])) {
-                        $attributeValue = $this->attribute_values
-                            ->where('locale', core()->getDefaultChannelLocaleCode())
-                            ->where('attribute_id', $attribute->id)
-                            ->first();
-                    }
+                if (empty($attributeValue[$attribute->column_name])) {
+                    $attributeValue = $this->attribute_values
+                        ->where('locale', core()->getDefaultLocaleCodeFromDefaultChannel())
+                        ->where('attribute_id', $attribute->id)
+                        ->first();
+                }
             } else {
                 $attributeValue = $this->attribute_values
                     ->where('attribute_id', $attribute->id)
@@ -538,8 +447,6 @@ class Product extends Model implements ProductContract
 
     /**
      * Attributes to array.
-     *
-     * @return array
      */
     public function attributesToArray(): array
     {
@@ -564,8 +471,6 @@ class Product extends Model implements ProductContract
 
     /**
      * Check in loaded family attributes.
-     *
-     * @return object
      */
     public function checkInLoadedFamilyAttributes(): object
     {
@@ -586,8 +491,6 @@ class Product extends Model implements ProductContract
 
     /**
      * Create a new factory instance for the model.
-     *
-     * @return \Illuminate\Database\Eloquent\Factories\Factory
      */
     protected static function newFactory(): Factory
     {

@@ -17,6 +17,10 @@ class Bundle extends AbstractType
             'max_price'         => $this->getMaximumPrice() ?? 0,
             'regular_max_price' => $this->getRegularMaximumPrice() ?? 0,
             'product_id'        => $this->product->id,
+<<<<<<< HEAD
+=======
+            'channel_id'        => $this->channel->id,
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             'customer_group_id' => $this->customerGroup->id,
         ];
     }
@@ -116,6 +120,10 @@ class Bundle extends AbstractType
 
                 $variantIndexer = $variant->getTypeInstance()
                     ->getPriceIndexer()
+<<<<<<< HEAD
+=======
+                    ->setChannel($this->channel)
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     ->setCustomerGroup($this->customerGroup)
                     ->setProduct($variant);
 
@@ -216,6 +224,10 @@ class Bundle extends AbstractType
 
             $variantIndexer = $variant->getTypeInstance()
                 ->getPriceIndexer()
+<<<<<<< HEAD
+=======
+                ->setChannel($this->channel)
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 ->setCustomerGroup($this->customerGroup)
                 ->setProduct($variant);
 
@@ -228,4 +240,8 @@ class Bundle extends AbstractType
 
         return $optionPrices;
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61

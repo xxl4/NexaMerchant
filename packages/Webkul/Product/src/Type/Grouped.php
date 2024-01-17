@@ -2,6 +2,7 @@
 
 namespace Webkul\Product\Type;
 
+<<<<<<< HEAD
 use Webkul\Customer\Repositories\CustomerRepository;
 use Webkul\Attribute\Repositories\AttributeRepository;
 use Webkul\Product\Repositories\ProductRepository;
@@ -12,6 +13,18 @@ use Webkul\Product\Repositories\ProductVideoRepository;
 use Webkul\Product\Repositories\ProductCustomerGroupPriceRepository;
 use Webkul\Product\Repositories\ProductGroupedProductRepository;
 use Webkul\Product\Helpers\Indexers\Price\Grouped as GroupedIndexer;
+=======
+use Webkul\Attribute\Repositories\AttributeRepository;
+use Webkul\Customer\Repositories\CustomerRepository;
+use Webkul\Product\Helpers\Indexers\Price\Grouped as GroupedIndexer;
+use Webkul\Product\Repositories\ProductAttributeValueRepository;
+use Webkul\Product\Repositories\ProductCustomerGroupPriceRepository;
+use Webkul\Product\Repositories\ProductGroupedProductRepository;
+use Webkul\Product\Repositories\ProductImageRepository;
+use Webkul\Product\Repositories\ProductInventoryRepository;
+use Webkul\Product\Repositories\ProductRepository;
+use Webkul\Product\Repositories\ProductVideoRepository;
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 
 class Grouped extends AbstractType
 {
@@ -37,13 +50,18 @@ class Grouped extends AbstractType
     /**
      * Is a composite product type.
      *
+<<<<<<< HEAD
      * @var boolean
+=======
+     * @var bool
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      */
     protected $isComposite = true;
 
     /**
      * Create a new product type instance.
      *
+<<<<<<< HEAD
      * @param  \Webkul\Customer\Repositories\CustomerRepository  $customerRepository
      * @param  \Webkul\Attribute\Repositories\AttributeRepository  $attributeRepository
      * @param  \Webkul\Product\Repositories\ProductRepository  $productRepository
@@ -53,6 +71,8 @@ class Grouped extends AbstractType
      * @param  \Webkul\Product\Repositories\ProductCustomerGroupPriceRepository  $productCustomerGroupPriceRepository
      * @param  \Webkul\Product\Repositories\ProductGroupedProductRepository  $productGroupedProductRepository
      * @param  \Webkul\Product\Repositories\ProductVideoRepository  $productVideoRepository
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      * @return void
      */
     public function __construct(
@@ -65,8 +85,12 @@ class Grouped extends AbstractType
         ProductVideoRepository $productVideoRepository,
         ProductCustomerGroupPriceRepository $productCustomerGroupPriceRepository,
         protected ProductGroupedProductRepository $productGroupedProductRepository
+<<<<<<< HEAD
     )
     {
+=======
+    ) {
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         parent::__construct(
             $customerRepository,
             $attributeRepository,
@@ -82,7 +106,10 @@ class Grouped extends AbstractType
     /**
      * Update.
      *
+<<<<<<< HEAD
      * @param  array  $data
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      * @param  int  $id
      * @param  string  $attribute
      * @return \Webkul\Product\Contracts\Product
@@ -163,9 +190,12 @@ class Grouped extends AbstractType
 
     /**
      * Is product have sufficient quantity.
+<<<<<<< HEAD
      *
      * @param  int  $qty
      * @return bool
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      */
     public function haveSufficientQuantity(int $qty): bool
     {

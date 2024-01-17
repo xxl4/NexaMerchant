@@ -3,16 +3,16 @@
 namespace Webkul\Product\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Webkul\Product\Models\ProductReview;
+use Webkul\Product\Models\ProductGroupedProduct;
 
-class ProductReviewFactory extends Factory
+class ProductGroupedProductFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = ProductReview::class;
+    protected $model = ProductGroupedProduct::class;
 
     /**
      * Define the model's default state.
@@ -20,10 +20,8 @@ class ProductReviewFactory extends Factory
     public function definition(): array
     {
         return [
-            'title'      => $this->faker->words(5, true),
-            'rating'     => $this->faker->numberBetween(0, 10),
-            'status'     => 1,
-            'comment'    => $this->faker->sentence(20),
+            'qty'        => rand(10, 50),
+            'sort_order' => 0,
         ];
     }
 }

@@ -2,22 +2,22 @@
 
 namespace Webkul\Product\Repositories;
 
-use Elasticsearch;
 use Webkul\Attribute\Repositories\AttributeRepository;
+use Webkul\Core\Facades\ElasticSearch;
 use Webkul\Customer\Repositories\CustomerRepository;
+use Webkul\Marketing\Repositories\SearchSynonymRepository;
 
 class ElasticSearchRepository
 {
     /**
      * Create a new repository instance.
      *
-     * @param  \Webkul\Customer\Repositories\CustomerRepository  $customerRepository
-     * @param  \Webkul\Attribute\Repositories\AttributeRepository  $attributeRepository
      * @return void
      */
     public function __construct(
         protected CustomerRepository $customerRepository,
-        protected AttributeRepository $attributeRepository
+        protected AttributeRepository $attributeRepository,
+        protected SearchSynonymRepository $searchSynonymRepository
     ) {
     }
 
@@ -78,6 +78,10 @@ class ElasticSearchRepository
     {
         $params = request()->input();
 
+        if (! empty($params['query'])) {
+            $params['name'] = $params['query'];
+        }
+
         $filterableAttributes = $this->attributeRepository
             ->getProductDefaultAttributes(array_keys($params));
 
@@ -128,11 +132,16 @@ class ElasticSearchRepository
                 ];
 
             case 'text':
+                $synonyms = $this->searchSynonymRepository->getSynonymsByQuery($params[$attribute->code]);
+
+                $synonyms = array_map(function ($synonym) {
+                    return '"' . $synonym . '"';
+                }, $synonyms);
+
                 return [
-                    'wildcard' => [
-                        $attribute->code => [
-                            'value' => '*' . $params[$attribute->code] . '*',
-                        ],
+                    'query_string' => [
+                        'query'         => implode(' OR ', $synonyms),
+                        'default_field' => $attribute->code,
                     ],
                 ];
 

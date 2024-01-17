@@ -3,9 +3,15 @@
 namespace Webkul\Product\Helpers\Indexers\Price;
 
 use Illuminate\Support\Carbon;
+<<<<<<< HEAD
 use Webkul\Customer\Repositories\CustomerRepository;
 use Webkul\Product\Repositories\ProductCustomerGroupPriceRepository;
 use Webkul\CatalogRule\Repositories\CatalogRuleProductPriceRepository;
+=======
+use Webkul\CatalogRule\Repositories\CatalogRuleProductPriceRepository;
+use Webkul\Customer\Repositories\CustomerRepository;
+use Webkul\Product\Repositories\ProductCustomerGroupPriceRepository;
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 
 abstract class AbstractType
 {
@@ -17,6 +23,16 @@ abstract class AbstractType
     protected $product;
 
     /**
+<<<<<<< HEAD
+=======
+     * Channel instance.
+     *
+     * @var \Webkul\Core\Contracts\Channel
+     */
+    protected $channel;
+
+    /**
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      * Customer Group instance.
      *
      * @var \Webkul\Customer\Contracts\CustomerGroup
@@ -26,17 +42,24 @@ abstract class AbstractType
     /**
      * Create a new command instance.
      *
+<<<<<<< HEAD
      * @param  \Webkul\Customer\Repositories\CustomerRepository  $customerRepository
      * @param  \Webkul\Product\Repositories\ProductCustomerGroupPriceRepository  $productCustomerGroupPriceRepository
      * @param  \Webkul\CatalogRule\Repositories\CatalogRuleProductPriceRepository  $catalogRuleProductPriceRepository
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      * @return void
      */
     public function __construct(
         protected CustomerRepository $customerRepository,
         protected ProductCustomerGroupPriceRepository $productCustomerGroupPriceRepository,
         protected CatalogRuleProductPriceRepository $catalogRuleProductPriceRepository
+<<<<<<< HEAD
     )
     {
+=======
+    ) {
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
     }
 
     /**
@@ -53,6 +76,22 @@ abstract class AbstractType
     }
 
     /**
+<<<<<<< HEAD
+=======
+     * Set channel
+     *
+     * @param  \Webkul\Core\Contracts\Channel  $channel
+     * @return \Webkul\Product\Helpers\Indexers\Price\AbstractPriceIndex
+     */
+    public function setChannel($channel)
+    {
+        $this->channel = $channel;
+
+        return $this;
+    }
+
+    /**
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      * Set customer group
      *
      * @param  \Webkul\Customer\Contracts\CustomerGroup  $customerGroup
@@ -78,6 +117,10 @@ abstract class AbstractType
             'max_price'         => $minPrice ?? 0,
             'regular_max_price' => $this->product->price ?? 0,
             'product_id'        => $this->product->id,
+<<<<<<< HEAD
+=======
+            'channel_id'        => $this->channel->id,
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             'customer_group_id' => $this->customerGroup->id,
         ];
     }
@@ -85,7 +128,11 @@ abstract class AbstractType
     /**
      * Get product minimal price.
      *
+<<<<<<< HEAD
      * @param  integer  $qty
+=======
+     * @param  int  $qty
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      * @return float
      */
     public function getMinimalPrice($qty = null)
@@ -140,7 +187,11 @@ abstract class AbstractType
     /**
      * Get product group price.
      *
+<<<<<<< HEAD
      * @param  integer  $qty
+=======
+     * @param  int  $qty
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      * @return float
      */
     public function getCustomerGroupPrice($qty)
@@ -203,8 +254,16 @@ abstract class AbstractType
     {
         return $this->product->catalog_rule_prices
             ->where('customer_group_id', $this->customerGroup->id)
+<<<<<<< HEAD
             ->where('channel_id', core()->getCurrentChannel()->id)
             ->where('rule_date', Carbon::now()->format('Y-m-d'))
             ->first();
     }
 }
+=======
+            ->where('channel_id', $this->channel->id)
+            ->where('rule_date', Carbon::now()->format('Y-m-d'))
+            ->first();
+    }
+}
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61

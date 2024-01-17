@@ -2,6 +2,7 @@
 
 namespace Webkul\Product\Type;
 
+<<<<<<< HEAD
 use Webkul\Customer\Repositories\CustomerRepository;
 use Webkul\Attribute\Repositories\AttributeRepository;
 use Webkul\Product\Repositories\ProductRepository;
@@ -15,6 +16,21 @@ use Webkul\Product\Repositories\ProductDownloadableSampleRepository;
 use Webkul\Checkout\Models\CartItem;
 use Webkul\Product\DataTypes\CartItemValidationResult;
 use Webkul\Product\Helpers\Indexers\Price\Downloadable as DownloadableIndexer;
+=======
+use Webkul\Attribute\Repositories\AttributeRepository;
+use Webkul\Checkout\Models\CartItem;
+use Webkul\Customer\Repositories\CustomerRepository;
+use Webkul\Product\DataTypes\CartItemValidationResult;
+use Webkul\Product\Helpers\Indexers\Price\Downloadable as DownloadableIndexer;
+use Webkul\Product\Repositories\ProductAttributeValueRepository;
+use Webkul\Product\Repositories\ProductCustomerGroupPriceRepository;
+use Webkul\Product\Repositories\ProductDownloadableLinkRepository;
+use Webkul\Product\Repositories\ProductDownloadableSampleRepository;
+use Webkul\Product\Repositories\ProductImageRepository;
+use Webkul\Product\Repositories\ProductInventoryRepository;
+use Webkul\Product\Repositories\ProductRepository;
+use Webkul\Product\Repositories\ProductVideoRepository;
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 
 class Downloadable extends AbstractType
 {
@@ -29,11 +45,19 @@ class Downloadable extends AbstractType
         'height',
         'weight',
         'depth',
+<<<<<<< HEAD
+=======
+        'manage_stock',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         'guest_checkout',
     ];
 
     /**
+<<<<<<< HEAD
      * Is a stokable product type.
+=======
+     * Is a stockable product type.
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      *
      * @var bool
      */
@@ -42,6 +66,7 @@ class Downloadable extends AbstractType
     /**
      * Create a new product type instance.
      *
+<<<<<<< HEAD
      * @param  \Webkul\Customer\Repositories\CustomerRepository  $customerRepository
      * @param  \Webkul\Attribute\Repositories\AttributeRepository  $attributeRepository
      * @param  \Webkul\Product\Repositories\ProductRepository  $productRepository
@@ -52,6 +77,8 @@ class Downloadable extends AbstractType
      * @param  \Webkul\Product\Repositories\ProductDownloadableLinkRepository  $productDownloadableLinkRepository
      * @param  \Webkul\Product\Repositories\ProductDownloadableSampleRepository  $productDownloadableSampleRepository
      * @param  \Webkul\Product\Repositories\ProductVideoRepository  $productVideoRepository
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      * @return void
      */
     public function __construct(
@@ -65,8 +92,12 @@ class Downloadable extends AbstractType
         ProductCustomerGroupPriceRepository $productCustomerGroupPriceRepository,
         protected ProductDownloadableLinkRepository $productDownloadableLinkRepository,
         protected ProductDownloadableSampleRepository $productDownloadableSampleRepository
+<<<<<<< HEAD
     )
     {
+=======
+    ) {
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         parent::__construct(
             $customerRepository,
             $attributeRepository,
@@ -82,7 +113,10 @@ class Downloadable extends AbstractType
     /**
      * Update.
      *
+<<<<<<< HEAD
      * @param  array  $data
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      * @param  int  $id
      * @param  string  $attribute
      * @return \Webkul\Product\Contracts\Product
@@ -113,6 +147,7 @@ class Downloadable extends AbstractType
             return false;
         }
 
+<<<<<<< HEAD
         if (
             is_callable(config('products.isSaleable'))
             && call_user_func(config('products.isSaleable'), $this->product) === false
@@ -120,6 +155,8 @@ class Downloadable extends AbstractType
             return false;
         }
 
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         if ($this->product->downloadable_links()->count()) {
             return true;
         }
@@ -228,9 +265,12 @@ class Downloadable extends AbstractType
 
     /**
      * Validate cart item product price
+<<<<<<< HEAD
      *
      * @param  \Webkul\Checkout\Models\CartItem  $item
      * @return \Webkul\Product\DataTypes\CartItemValidationResult
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      */
     public function validateCartItem(CartItem $item): CartItemValidationResult
     {

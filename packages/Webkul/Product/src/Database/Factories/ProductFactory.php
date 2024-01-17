@@ -21,14 +21,20 @@ class ProductFactory extends Factory
      */
     protected $states = [
         'simple',
+        'configurable',
         'virtual',
+        'grouped',
         'downloadable',
+        'bundle',
     ];
 
     /**
      * Define the model's default state.
+<<<<<<< HEAD
      *
      * @return array
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      */
     public function definition(): array
     {
@@ -38,6 +44,12 @@ class ProductFactory extends Factory
         ];
     }
 
+<<<<<<< HEAD
+=======
+    /**
+     * Simple state.
+     */
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
     public function simple(): ProductFactory
     {
         return $this->state(function (array $attributes) {
@@ -47,6 +59,12 @@ class ProductFactory extends Factory
         });
     }
 
+<<<<<<< HEAD
+=======
+    /**
+     * Virtual state.
+     */
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
     public function virtual(): ProductFactory
     {
         return $this->state(function (array $attributes) {
@@ -56,6 +74,36 @@ class ProductFactory extends Factory
         });
     }
 
+<<<<<<< HEAD
+=======
+    /**
+     * Grouped state.
+     */
+    public function grouped(): ProductFactory
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'type' => 'grouped',
+            ];
+        });
+    }
+
+    /**
+     * Configurable state.
+     */
+    public function configurable(): ProductFactory
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'type' => 'configurable',
+            ];
+        });
+    }
+
+    /**
+     * Downloadable state.
+     */
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
     public function downloadable(): ProductFactory
     {
         return $this->state(function (array $attributes) {
@@ -64,4 +112,19 @@ class ProductFactory extends Factory
             ];
         });
     }
+<<<<<<< HEAD
+=======
+
+    /**
+     * Bundle state.
+     */
+    public function bundle(): ProductFactory
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'type' => 'bundle',
+            ];
+        });
+    }
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 }
