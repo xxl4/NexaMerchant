@@ -17,10 +17,8 @@ class CartRuleCouponRepository extends Repository
 
     /**
      * Specify Model class name
-     *
-     * @return string
      */
-    function model(): string
+    public function model(): string
     {
         return 'Webkul\CartRule\Contracts\CartRuleCoupon';
     }
@@ -65,4 +63,8 @@ class CartRuleCouponRepository extends Repository
 
         return $couponCode;
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
