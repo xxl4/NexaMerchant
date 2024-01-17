@@ -44,16 +44,6 @@ class Virtual extends AbstractType
             return false;
         }
 
-<<<<<<< HEAD
-        if (
-            is_callable(config('products.isSaleable')) &&
-            call_user_func(config('products.isSaleable'), $this->product) === false
-        ) {
-            return false;
-        }
-
-=======
->>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         if ($this->haveSufficientQuantity(1)) {
             return true;
         }
@@ -63,20 +53,10 @@ class Virtual extends AbstractType
 
     /**
      * Have sufficient quantity.
-<<<<<<< HEAD
-     *
-     * @param  int  $qty
-     * @return bool
-     */
-    public function haveSufficientQuantity(int $qty): bool
-    {
-        if (! $this->product->manage_stock){
-=======
      */
     public function haveSufficientQuantity(int $qty): bool
     {
         if (! $this->product->manage_stock) {
->>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             return true;
         }
 

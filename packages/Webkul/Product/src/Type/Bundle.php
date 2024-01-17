@@ -2,22 +2,6 @@
 
 namespace Webkul\Product\Type;
 
-<<<<<<< HEAD
-use Webkul\Customer\Repositories\CustomerRepository;
-use Webkul\Attribute\Repositories\AttributeRepository;
-use Webkul\Product\Repositories\ProductRepository;
-use Webkul\Product\Repositories\ProductAttributeValueRepository;
-use Webkul\Product\Repositories\ProductInventoryRepository;
-use Webkul\Product\Repositories\ProductImageRepository;
-use Webkul\Product\Repositories\ProductVideoRepository;
-use Webkul\Product\Repositories\ProductCustomerGroupPriceRepository;
-use Webkul\Product\Repositories\ProductBundleOptionRepository;
-use Webkul\Product\Repositories\ProductBundleOptionProductRepository;
-use Webkul\Product\Helpers\BundleOption;
-use Webkul\Checkout\Models\CartItem;
-use Webkul\Product\DataTypes\CartItemValidationResult;
-use Webkul\Product\Helpers\Indexers\Price\Bundle as BundleIndexer;
-=======
 use Webkul\Attribute\Repositories\AttributeRepository;
 use Webkul\Checkout\Models\CartItem;
 use Webkul\Customer\Repositories\CustomerRepository;
@@ -32,7 +16,6 @@ use Webkul\Product\Repositories\ProductImageRepository;
 use Webkul\Product\Repositories\ProductInventoryRepository;
 use Webkul\Product\Repositories\ProductRepository;
 use Webkul\Product\Repositories\ProductVideoRepository;
->>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 
 class Bundle extends AbstractType
 {
@@ -79,20 +62,6 @@ class Bundle extends AbstractType
     /**
      * Create a new product type instance.
      *
-<<<<<<< HEAD
-     * @param  \Webkul\Customer\Repositories\CustomerRepository  $customerRepository
-     * @param  \Webkul\Attribute\Repositories\AttributeRepository  $attributeRepository
-     * @param  \Webkul\Product\Repositories\ProductRepository  $productRepository
-     * @param  \Webkul\Product\Repositories\ProductAttributeValueRepository  $attributeValueRepository
-     * @param  \Webkul\Product\Repositories\ProductInventoryRepository  $productInventoryRepository
-     * @param  \Webkul\Product\Repositories\ProductImageRepository  $productImageRepository
-     * @param \Webkul\Product\Repositories\ProductVideoRepository  $productVideoRepository
-     * @param  \Webkul\Product\Repositories\ProductCustomerGroupPriceRepository  $productCustomerGroupPriceRepository
-     * @param  \Webkul\Product\Repositories\ProductBundleOptionRepository  $productBundleOptionRepository
-     * @param  \Webkul\Product\Repositories\ProductBundleOptionProductRepository  $productBundleOptionProductRepository
-     * @param  \Webkul\Product\Helpers\BundleOption  $bundleOptionHelper
-=======
->>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      * @return void
      */
     public function __construct(
@@ -107,12 +76,7 @@ class Bundle extends AbstractType
         protected ProductBundleOptionRepository $productBundleOptionRepository,
         protected ProductBundleOptionProductRepository $productBundleOptionProductRepository,
         protected BundleOption $bundleOptionHelper
-<<<<<<< HEAD
-    )
-    {
-=======
     ) {
->>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         parent::__construct(
             $customerRepository,
             $attributeRepository,
@@ -128,10 +92,6 @@ class Bundle extends AbstractType
     /**
      * Update.
      *
-<<<<<<< HEAD
-     * @param  array  $data
-=======
->>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      * @param  int  $id
      * @param  string  $attribute
      * @return \Webkul\Product\Contracts\Product
@@ -285,11 +245,7 @@ class Bundle extends AbstractType
             }
 
             $cartProduct = $product->getTypeInstance()->prepareForCart(array_merge($data, [
-<<<<<<< HEAD
-                'parent_id' => $this->product->id
-=======
                 'parent_id' => $this->product->id,
->>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             ]));
 
             if (is_string($cartProduct)) {
@@ -363,11 +319,7 @@ class Bundle extends AbstractType
      *
      * @param  array  $options1
      * @param  array  $options2
-<<<<<<< HEAD
-     * @return boolean
-=======
      * @return bool
->>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      */
     public function compareOptions($options1, $options2)
     {
