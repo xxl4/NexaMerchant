@@ -19,6 +19,13 @@ abstract class DataGrid
     protected $primaryColumn = 'id';
 
     /**
+     * Default sort column of datagrid.
+     *
+     * @var ?string
+     */
+    protected $sortColumn;
+
+    /**
      * Default sort order of datagrid.
      *
      * @var string
@@ -146,6 +153,7 @@ abstract class DataGrid
     public function addAction(array $action): void
     {
         $this->actions[] = new Action(
+            index: $action['index'] ?? '',
             icon: $action['icon'] ?? '',
             title: $action['title'],
             method: $action['method'],
@@ -268,7 +276,11 @@ abstract class DataGrid
      */
     public function processRequestedSorting($requestedSort)
     {
-        return $this->queryBuilder->orderBy($requestedSort['column'] ?? $this->primaryColumn, $requestedSort['order'] ?? $this->sortOrder);
+        if (! $this->sortColumn) {
+            $this->sortColumn = $this->primaryColumn;
+        }
+
+        return $this->queryBuilder->orderBy($requestedSort['column'] ?? $this->sortColumn, $requestedSort['order'] ?? $this->sortOrder);
     }
 
     /**
@@ -362,10 +374,11 @@ abstract class DataGrid
 
             $record->actions = [];
 
-            foreach ($this->actions as $action) {
+            foreach ($this->actions as $index => $action) {
                 $getUrl = $action->url;
 
                 $record->actions[] = [
+                    'index'  => ! empty($action->index) ? $action->index : 'action_' . $index + 1,
                     'icon'   => $action->icon,
                     'title'  => $action->title,
                     'method' => $action->method,
