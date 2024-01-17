@@ -32,4 +32,8 @@ class CoreConfig extends Model implements CoreConfigContract
      * @var array
      */
     protected $hidden = ['token'];
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61

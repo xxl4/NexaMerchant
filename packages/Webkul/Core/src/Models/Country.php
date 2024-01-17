@@ -2,8 +2,13 @@
 
 namespace Webkul\Core\Models;
 
+<<<<<<< HEAD
 use Webkul\Core\Eloquent\TranslatableModel;
 use Webkul\Core\Contracts\Country as CountryContract;
+=======
+use Webkul\Core\Contracts\Country as CountryContract;
+use Webkul\Core\Eloquent\TranslatableModel;
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 
 class Country extends TranslatableModel implements CountryContract
 {
@@ -20,4 +25,8 @@ class Country extends TranslatableModel implements CountryContract
     {
         return $this->hasMany(CountryStateProxy::modelClass());
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61

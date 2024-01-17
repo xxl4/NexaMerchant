@@ -2,9 +2,16 @@
 
 namespace Webkul\Core;
 
+<<<<<<< HEAD
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Config;
 use Carbon\Carbon;
+=======
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\DB;
+use Webkul\Core\Models\Channel;
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 use Webkul\Core\Repositories\ChannelRepository;
 use Webkul\Core\Repositories\CoreConfigRepository;
 use Webkul\Core\Repositories\CountryRepository;
@@ -14,8 +21,11 @@ use Webkul\Core\Repositories\ExchangeRateRepository;
 use Webkul\Core\Repositories\LocaleRepository;
 use Webkul\Customer\Repositories\CustomerGroupRepository;
 use Webkul\Tax\Repositories\TaxCategoryRepository;
+<<<<<<< HEAD
 use Webkul\Core\Models\Channel;
 use Illuminate\Support\Facades\Log;
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 
 class Core
 {
@@ -101,6 +111,7 @@ class Core
     /**
      * Create a new instance.
      *
+<<<<<<< HEAD
      * @param  \Webkul\Core\Repositories\ChannelRepository  $channelRepository
      * @param  \Webkul\Core\Repositories\CurrencyRepository  $currencyRepository
      * @param  \Webkul\Core\Repositories\ExchangeRateRepository  $exchangeRateRepository
@@ -110,6 +121,8 @@ class Core
      * @param  \Webkul\Core\Repositories\CoreConfigRepository  $coreConfigRepository
      * @param  \Webkul\Customer\Repositories\CustomerGroupRepository  $customerGroupRepository
      * @param  \Webkul\Tax\Repositories\TaxCategoryRepository  $taxCategoryRepository
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      * @return void
      */
     public function __construct(
@@ -150,16 +163,31 @@ class Core
      *
      * @return \Webkul\Core\Contracts\Channel
      */
+<<<<<<< HEAD
     public function getCurrentChannel()
     {
+=======
+    public function getCurrentChannel(?string $hostname = null)
+    {
+        if (! $hostname) {
+            $hostname = request()->getHttpHost();
+        }
+
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         if ($this->currentChannel) {
             return $this->currentChannel;
         }
 
         $this->currentChannel = $this->channelRepository->findWhereIn('hostname', [
+<<<<<<< HEAD
             request()->getHttpHost(),
             'http://' . request()->getHttpHost(),
             'https://' . request()->getHttpHost(),
+=======
+            $hostname,
+            'http://' . $hostname,
+            'https://' . $hostname,
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         ])->first();
 
         if (! $this->currentChannel) {
@@ -171,12 +199,19 @@ class Core
 
     /**
      * Set the current channel.
+<<<<<<< HEAD
      *
      * @param  Channel  $channel
      */
     public function setCurrentChannel(Channel $channel): void
     {
         $this->currentChannel = $currentChannel;
+=======
+     */
+    public function setCurrentChannel(Channel $channel): void
+    {
+        $this->currentChannel = $channel;
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
     }
 
     /**
@@ -210,9 +245,21 @@ class Core
     }
 
     /**
+<<<<<<< HEAD
      * Returns the default channel code configured in `config/app.php`.
      *
      * @return string
+=======
+     * Set the default channel.
+     */
+    public function setDefaultChannel(Channel $channel): void
+    {
+        $this->defaultChannel = $channel;
+    }
+
+    /**
+     * Returns the default channel code configured in `config/app.php`.
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      */
     public function getDefaultChannelCode(): string
     {
@@ -220,9 +267,15 @@ class Core
     }
 
     /**
+<<<<<<< HEAD
      * Returns default channel locale code.
      */
     public function getDefaultChannelLocaleCode(): string
+=======
+     * Returns default locale code from default channel.
+     */
+    public function getDefaultLocaleCodeFromDefaultChannel(): string
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
     {
         return $this->getDefaultChannel()->default_locale->code;
     }
@@ -230,7 +283,11 @@ class Core
     /**
      * Get channel code from request.
      *
+<<<<<<< HEAD
      * @return string
+=======
+     * @return \Webkul\Core\Contracts\Channel
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      */
     public function getRequestedChannel()
     {
@@ -262,8 +319,11 @@ class Core
 
     /**
      * Returns the channel name.
+<<<<<<< HEAD
      *
      * @return string
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      */
     public function getChannelName($channel): string
     {
@@ -521,7 +581,11 @@ class Core
         ]);
 
         if (
+<<<<<<< HEAD
             null === $exchangeRate
+=======
+            $exchangeRate === null
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             || ! $exchangeRate->rate
         ) {
             return $amount;
@@ -573,8 +637,11 @@ class Core
             $price = 0;
         }
 
+<<<<<<< HEAD
         //$price = floatval($price); // have $9.99 price?? 
 
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         $currency = $currencyCode
             ? $this->getAllCurrencies()->where('code', $currencyCode)->first()
             : $this->getCurrentCurrency();
@@ -589,7 +656,11 @@ class Core
 
         if ($symbol = $currency->symbol) {
             if ($this->currencySymbol($currency) == $symbol) {
+<<<<<<< HEAD
                 return $formatter->formatCurrency($price, $currency->code); // todo have bug??
+=======
+                return $formatter->formatCurrency($price, $currency->code);
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             }
 
             $formatter->setSymbol(\NumberFormatter::CURRENCY_SYMBOL, $symbol);
@@ -1055,16 +1126,22 @@ class Core
 
     /**
      * Returns a string as selector part for identifying elements in views.
+<<<<<<< HEAD
      *
      * @param  float  $taxRate
      * @return string
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      */
     public static function taxRateAsIdentifier(float $taxRate): string
     {
         return str_replace('.', '_', (string) $taxRate);
     }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
     /**
      * Create singleton object through single facade.
      *
@@ -1076,7 +1153,11 @@ class Core
         if (empty($id)) {
             return;
         }
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         if (array_key_exists($id, $this->taxCategoriesById)) {
             return $this->taxCategoriesById[$id];
         }
@@ -1124,8 +1205,11 @@ class Core
     /**
      * Array merge.
      *
+<<<<<<< HEAD
      * @param  array  $array1
      * @param  array  $array2
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      * @return array
      */
     protected function arrayMerge(array &$array1, array &$array2)

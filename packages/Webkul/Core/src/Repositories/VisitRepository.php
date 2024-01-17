@@ -8,6 +8,7 @@ class VisitRepository extends Repository
 {
     /**
      * Specify Model class name
+<<<<<<< HEAD
      *
      * @return string
      */
@@ -16,3 +17,11 @@ class VisitRepository extends Repository
         return 'Webkul\Core\Contracts\Visit';
     }
 }
+=======
+     */
+    public function model(): string
+    {
+        return 'Webkul\Core\Contracts\Visit';
+    }
+}
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61

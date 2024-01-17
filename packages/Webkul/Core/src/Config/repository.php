@@ -15,7 +15,11 @@ return [
     |
     */
     'pagination' => [
+<<<<<<< HEAD
         'limit' => 15
+=======
+        'limit' => 15,
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
     ],
 
     /*
@@ -32,9 +36,15 @@ return [
     */
     'fractal'    => [
         'params'     => [
+<<<<<<< HEAD
             'include' => 'include'
         ],
         'serializer' => League\Fractal\Serializer\DataArraySerializer::class
+=======
+            'include' => 'include',
+        ],
+        'serializer' => League\Fractal\Serializer\DataArraySerializer::class,
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
     ],
 
     /*
@@ -106,7 +116,11 @@ return [
                 'created' => true,
                 'updated' => true,
                 'deleted' => true,
+<<<<<<< HEAD
             ]
+=======
+            ],
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         ],
 
         'params'     => [
@@ -119,7 +133,11 @@ return [
             | Ex: http://prettus.local/?search=lorem&skipCache=true
             |
             */
+<<<<<<< HEAD
             'skipCache' => 'skipCache'
+=======
+            'skipCache' => 'skipCache',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         ],
 
         /*
@@ -139,7 +157,11 @@ return [
        */
         'allowed'    => [
             'only'   => null,
+<<<<<<< HEAD
             'except' => null
+=======
+            'except' => null,
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         ],
 
         'repositories' => [
@@ -147,7 +169,11 @@ return [
                 'enabled' => true,
 
                 // 'minutes'    => 10080,
+<<<<<<< HEAD
                 
+=======
+
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 // 'clean'      => [
                 //     'enabled' => true,
 
@@ -184,7 +210,11 @@ return [
             'Webkul\Core\Repositories\LocaleRepository' => [
                 'enabled' => true,
             ],
+<<<<<<< HEAD
         ]
+=======
+        ],
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
     ],
 
     /*
@@ -214,7 +244,11 @@ return [
         'acceptedConditions' => [
             '=',
             'like',
+<<<<<<< HEAD
             'in'
+=======
+            'in',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         ],
         /*
         |--------------------------------------------------------------------------
@@ -262,8 +296,13 @@ return [
             'sortedBy'     => 'sortedBy',
             'with'         => 'with',
             'searchJoin'   => 'searchJoin',
+<<<<<<< HEAD
             'withCount'    => 'withCount'
         ]
+=======
+            'withCount'    => 'withCount',
+        ],
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
     ],
     /*
     |--------------------------------------------------------------------------
@@ -272,10 +311,17 @@ return [
     |
     */
     'generator'  => [
+<<<<<<< HEAD
         'basePath'      => app()->path(),
         'rootNamespace' => 'App\\',
         'stubsOverridePath' => app()->path(),
         'paths'         => [
+=======
+        'basePath'          => app()->path(),
+        'rootNamespace'     => 'App\\',
+        'stubsOverridePath' => app()->path(),
+        'paths'             => [
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             'models'       => 'Entities',
             'repositories' => 'Repositories',
             'interfaces'   => 'Repositories',
@@ -284,7 +330,13 @@ return [
             'validators'   => 'Validators',
             'controllers'  => 'Http/Controllers',
             'provider'     => 'RepositoryServiceProvider',
+<<<<<<< HEAD
             'criteria'     => 'Criteria'
         ]
     ]
+=======
+            'criteria'     => 'Criteria',
+        ],
+    ],
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 ];

@@ -2,12 +2,21 @@
 
 namespace Webkul\Core\Exceptions;
 
+<<<<<<< HEAD
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Illuminate\Support\Facades\Request;
 use App\Exceptions\Handler as BaseHandler;
 use PDOException;
+=======
+use App\Exceptions\Handler as BaseHandler;
+use Illuminate\Auth\AuthenticationException;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Facades\Request;
+use PDOException;
+use Symfony\Component\HttpKernel\Exception\HttpException;
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 use Throwable;
 
 class Handler extends BaseHandler
@@ -16,7 +25,10 @@ class Handler extends BaseHandler
      * Render an exception into an HTTP response.
      *
      * @param  \Illuminate\Http\Request  $request
+<<<<<<< HEAD
      * @param  \Throwable  $exception
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      * @return \Illuminate\Http\Response
      */
     public function render($request, Throwable $exception)
@@ -32,7 +44,10 @@ class Handler extends BaseHandler
      * Convert an authentication exception into a response.
      *
      * @param  \Illuminate\Http\Request  $request
+<<<<<<< HEAD
      * @param  \Illuminate\Auth\AuthenticationException  $exception
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      * @return \Illuminate\Http\Response
      */
     protected function unauthenticated($request, AuthenticationException $exception)
@@ -53,7 +68,11 @@ class Handler extends BaseHandler
     /**
      * Is admin uri.
      *
+<<<<<<< HEAD
      * @return boolean
+=======
+     * @return bool
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      */
     private function isAdminUri()
     {
@@ -64,7 +83,10 @@ class Handler extends BaseHandler
      * Render custom HTTP response.
      *
      * @param  \Illuminate\Http\Request  $request
+<<<<<<< HEAD
      * @param  \Throwable  $exception
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      * @return \Illuminate\Http\Response|null
      */
     private function renderCustomResponse($request, Throwable $exception)

@@ -13,11 +13,18 @@ return [
     'default' => 'jenssegers',
 
     //except save request or route names
+<<<<<<< HEAD
     'except' =>  ['login', 'register'],
 
 
     //name of the table which visit records should save in
     'table_name' =>  'visits',
+=======
+    'except' => ['login', 'register'],
+
+    //name of the table which visit records should save in
+    'table_name' => 'visits',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 
     /*
     |--------------------------------------------------------------------------
@@ -33,6 +40,11 @@ return [
     */
     'drivers' => [
         'jenssegers' => \Shetabit\Visitor\Drivers\JenssegersAgent::class,
+<<<<<<< HEAD
         'UAParser' => \Shetabit\Visitor\Drivers\UAParser::class,
     ]
+=======
+        'UAParser'   => \Shetabit\Visitor\Drivers\UAParser::class,
+    ],
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 ];

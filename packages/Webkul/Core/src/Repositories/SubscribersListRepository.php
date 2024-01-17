@@ -8,10 +8,15 @@ class SubscribersListRepository extends Repository
 {
     /**
      * Specify Model class name
+<<<<<<< HEAD
      *
      * @return string
      */
     function model(): string
+=======
+     */
+    public function model(): string
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
     {
         return 'Webkul\Core\Contracts\SubscribersList';
     }
@@ -26,4 +31,8 @@ class SubscribersListRepository extends Repository
     {
         return $this->model->destroy($id);
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61

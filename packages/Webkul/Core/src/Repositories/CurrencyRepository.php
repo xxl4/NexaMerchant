@@ -3,15 +3,23 @@
 namespace Webkul\Core\Repositories;
 
 use Illuminate\Support\Facades\Event;
+<<<<<<< HEAD
 use Webkul\Core\Eloquent\Repository;
 use Webkul\Core\Contracts\Currency;
+=======
+use Webkul\Core\Contracts\Currency;
+use Webkul\Core\Eloquent\Repository;
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 
 class CurrencyRepository extends Repository
 {
     /**
      * Specify model class name.
+<<<<<<< HEAD
      *
      * @return string
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      */
     public function model(): string
     {
@@ -21,7 +29,10 @@ class CurrencyRepository extends Repository
     /**
      * Create.
      *
+<<<<<<< HEAD
      * @param  array  $attributes
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      * @return mixed
      */
     public function create(array $attributes)
@@ -38,8 +49,11 @@ class CurrencyRepository extends Repository
     /**
      * Update.
      *
+<<<<<<< HEAD
      * @param  array  $attributes
      * @param  $id
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      * @return mixed
      */
     public function update(array $attributes, $id)

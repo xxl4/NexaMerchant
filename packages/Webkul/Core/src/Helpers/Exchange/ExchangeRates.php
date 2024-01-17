@@ -2,7 +2,10 @@
 
 namespace Webkul\Core\Helpers\Exchange;
 
+<<<<<<< HEAD
 use Webkul\Core\Helpers\Exchange\ExchangeRate;
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 use Webkul\Core\Repositories\CurrencyRepository;
 use Webkul\Core\Repositories\ExchangeRateRepository;
 
@@ -25,6 +28,7 @@ class ExchangeRates extends ExchangeRate
     /**
      * Create a new helper instance.
      *
+<<<<<<< HEAD
      * @param  \Webkul\Core\Repositories\CurrencyRepository  $currencyRepository
      * @param  \Webkul\Core\Repositories\ExchangeRateRepository  $exchangeRateRepository
      * @return  void
@@ -34,6 +38,14 @@ class ExchangeRates extends ExchangeRate
         protected ExchangeRateRepository $exchangeRateRepository
     )
     {
+=======
+     * @return  void
+     */
+    public function __construct(
+        protected CurrencyRepository $currencyRepository,
+        protected ExchangeRateRepository $exchangeRateRepository
+    ) {
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         $this->apiEndPoint = config('services.exchange_api.exchange_rates.url');
 
         $this->apiKey = config('services.exchange_api.exchange_rates.key');
@@ -57,6 +69,7 @@ class ExchangeRates extends ExchangeRate
                 'GET',
                 $this->apiEndPoint, [
                     'headers' => [
+<<<<<<< HEAD
                         'Content-Type' => "text/plain",
                         'apikey'       => $this->apiKey,
                     ], 
@@ -65,6 +78,16 @@ class ExchangeRates extends ExchangeRate
                         'from'   => config('app.currency'),
                         'amount' => 1
                     ]
+=======
+                        'Content-Type' => 'text/plain',
+                        'apikey'       => $this->apiKey,
+                    ],
+                    'query' => [
+                        'to'     => $currency->code,
+                        'from'   => config('app.currency'),
+                        'amount' => 1,
+                    ],
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 ]
             );
 
@@ -89,4 +112,8 @@ class ExchangeRates extends ExchangeRate
             }
         }
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61

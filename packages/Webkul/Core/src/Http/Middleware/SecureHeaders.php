@@ -20,7 +20,10 @@ class SecureHeaders
      * Handle an incoming request.
      *
      * @param  \Illuminate\Http\Request  $request
+<<<<<<< HEAD
      * @param  \Closure  $next
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      * @return mixed
      */
     public function handle($request, Closure $next)

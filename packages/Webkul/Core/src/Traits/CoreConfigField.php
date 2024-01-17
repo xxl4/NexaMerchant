@@ -44,6 +44,10 @@ trait CoreConfigField
             $temp = explode('@', $field['repository']);
             $class = app(current($temp));
             $method = end($temp);
+<<<<<<< HEAD
+=======
+
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             return $class->$method();
         }
 

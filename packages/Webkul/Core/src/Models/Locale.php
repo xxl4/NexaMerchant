@@ -12,7 +12,11 @@ use Webkul\Core\Database\Factories\LocaleFactory;
 class Locale extends Model implements LocaleContract
 {
     use HasFactory;
+<<<<<<< HEAD
    
+=======
+
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
     /**
      * The attributes that are mass assignable.
      *
@@ -36,12 +40,20 @@ class Locale extends Model implements LocaleContract
      */
     protected static function newFactory(): Factory
     {
+<<<<<<< HEAD
         return LocaleFactory::new ();
+=======
+        return LocaleFactory::new();
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
     }
 
     /**
      * Get the logo full path of the locale.
+<<<<<<< HEAD
      * 
+=======
+     *
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      * @return string|null
      */
     public function getLogoUrlAttribute()
@@ -51,7 +63,11 @@ class Locale extends Model implements LocaleContract
 
     /**
      * Get the logo full path of the locale.
+<<<<<<< HEAD
      * 
+=======
+     *
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      * @return string|void
      */
     public function logo_url()
@@ -59,7 +75,11 @@ class Locale extends Model implements LocaleContract
         if (empty($this->logo_path)) {
             return;
         }
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         return Storage::url($this->logo_path);
     }
 }

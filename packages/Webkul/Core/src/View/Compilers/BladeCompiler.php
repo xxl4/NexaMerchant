@@ -22,7 +22,11 @@ class BladeCompiler extends BaseBladeCompiler
             && strpos($this->getPath(), 'master.blade.php') == false
         ) {
             $finalPath = str_replace('/Providers/..', '', str_replace(base_path(), '', $this->getPath()));
+<<<<<<< HEAD
             
+=======
+
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             $contents = '<div class="path-hint" data-toggle="tooltip" data-title="' . $finalPath . '" data-id="' . uniqid() . '"><span class="testing"></span>' . $contents . '</div>';
         }
 
@@ -33,7 +37,13 @@ class BladeCompiler extends BaseBladeCompiler
             $contents .= ' ?>';
         }
 
+<<<<<<< HEAD
 
         return $contents."<?php /**PATH {$this->getPath()} ENDPATH**/ ?>";
     }
 }
+=======
+        return $contents . "<?php /**PATH {$this->getPath()} ENDPATH**/ ?>";
+    }
+}
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61

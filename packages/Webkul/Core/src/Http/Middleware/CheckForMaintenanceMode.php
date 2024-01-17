@@ -4,11 +4,20 @@ namespace Webkul\Core\Http\Middleware;
 
 use Closure;
 use Illuminate\Contracts\Foundation\Application;
+<<<<<<< HEAD
 use Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode as Original;
 use Illuminate\Routing\Route;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class CheckForMaintenanceMode extends Original
+=======
+use Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode as BaseCheckForMaintenanceMode;
+use Illuminate\Routing\Route;
+use Symfony\Component\HttpKernel\Exception\HttpException;
+use Webkul\Installer\Helpers\DatabaseManager;
+
+class CheckForMaintenanceMode extends BaseCheckForMaintenanceMode
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 {
     /**
      * The application implementation.
@@ -18,6 +27,7 @@ class CheckForMaintenanceMode extends Original
     protected $app;
 
     /**
+<<<<<<< HEAD
      * Current channel.
      *
      * @var \Webkul\Core\Models\Channel
@@ -27,11 +37,16 @@ class CheckForMaintenanceMode extends Original
     /**
      * Exclude route names.
      * 
+=======
+     * Exclude route names.
+     *
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      * @var array
      */
     protected $excludedNames = [];
 
     /**
+<<<<<<< HEAD
      * Exclude route uris.
      * 
      * @var array
@@ -41,11 +56,16 @@ class CheckForMaintenanceMode extends Original
     /**
      * Exclude IPs.
      * 
+=======
+     * Exclude Channel Ip's.
+     *
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      * @var array
      */
     protected $excludedIPs = [];
 
     /**
+<<<<<<< HEAD
      * Constructor.
      *
      * @param  \Illuminate\Contracts\Foundation\Application  $app
@@ -63,23 +83,62 @@ class CheckForMaintenanceMode extends Original
 
         /* exclude ips */
         $this->setAllowedIps();
+=======
+     * Exclude route uris.
+     *
+     * @var array
+     */
+    protected $except = [];
+
+    /**
+     * Constructor.
+     */
+    public function __construct(
+        protected DatabaseManager $databaseManager,
+        Application $app
+    ) {
+        /* application */
+        $this->app = $app;
+
+        /* adding exception for admin routes */
+        $this->except[] = config('app.admin_url') . '*';
+
+        if ($this->databaseManager->isInstalled()) {
+            /* exclude ips */
+            $this->setAllowedIps();
+        }
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
     }
 
     /**
      * Handle an incoming request.
      *
      * @param  \Illuminate\Http\Request  $request
+<<<<<<< HEAD
      * @param  \Closure  $next
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      * @return mixed
      *
      * @throws \Symfony\Component\HttpKernel\Exception\HttpException
      */
     public function handle($request, Closure $next)
     {
+<<<<<<< HEAD
         if ($this->app->isDownForMaintenance()) {
             $response = $next($request);
 
             if (in_array($request->ip(), $this->excludedIPs)) {
+=======
+        if ($this->databaseManager->isInstalled() && $this->app->isDownForMaintenance()) {
+            $response = $next($request);
+
+            if (
+                in_array($request->ip(), $this->excludedIPs)
+                || $this->shouldPassThrough($request)
+                || ! (bool) core()->getCurrentChannel()->is_maintenance_on
+            ) {
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 return $response;
             }
 
@@ -91,6 +150,7 @@ class CheckForMaintenanceMode extends Original
                 }
             }
 
+<<<<<<< HEAD
             if ($this->shouldPassThrough($request)) {
                 return $response;
             }
@@ -99,6 +159,8 @@ class CheckForMaintenanceMode extends Original
                 return $response;
             }
 
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             throw new HttpException(503);
         }
 
@@ -107,6 +169,7 @@ class CheckForMaintenanceMode extends Original
 
     /**
      * Set allowed IPs.
+<<<<<<< HEAD
      *
      * @return void
      */
@@ -114,6 +177,13 @@ class CheckForMaintenanceMode extends Original
     {
         if ($this->channel) {
             $this->excludedIPs = array_map('trim', explode(',', $this->channel->allowed_ips));
+=======
+     */
+    protected function setAllowedIps(): void
+    {
+        if ($channel = core()->getCurrentChannel()) {
+            $this->excludedIPs = array_map('trim', explode(',', $channel->allowed_ips ?? ''));
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         }
     }
 
@@ -121,7 +191,11 @@ class CheckForMaintenanceMode extends Original
      * Check for the except routes.
      *
      * @param  \Illuminate\Http\Request  $request
+<<<<<<< HEAD
      * @return boolean
+=======
+     * @return bool
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      */
     protected function shouldPassThrough($request)
     {

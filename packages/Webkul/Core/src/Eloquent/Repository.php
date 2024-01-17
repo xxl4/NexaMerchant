@@ -2,8 +2,11 @@
 
 namespace Webkul\Core\Eloquent;
 
+<<<<<<< HEAD
 use Illuminate\Container\Container as Application;
 use Illuminate\Database\Eloquent\Model;
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 use Prettus\Repository\Contracts\CacheableInterface;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Traits\CacheableRepository;
@@ -13,27 +16,41 @@ abstract class Repository extends BaseRepository implements CacheableInterface
     use CacheableRepository;
 
     /**
+<<<<<<< HEAD
      * @var boolean
+=======
+     * @var bool
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      */
     protected $cacheEnabled = false;
 
     /**
      * @param $method
+<<<<<<< HEAD
      *
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      * @return bool
      */
     public function allowedClean()
     {
         if (! isset($this->cleanEnabled)) {
+<<<<<<< HEAD
             return config("repository.cache.clean.enabled", true);
+=======
+            return config('repository.cache.clean.enabled', true);
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         }
 
         return $this->cleanEnabled;
     }
 
     /**
+<<<<<<< HEAD
      * @param $method
      *
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      * @return bool
      */
     protected function allowedCache($method)
@@ -46,15 +63,24 @@ abstract class Repository extends BaseRepository implements CacheableInterface
             return false;
         }
 
+<<<<<<< HEAD
         $cacheOnly = isset($this->cacheOnly) ? $this->cacheOnly : config("repository.cache.repositories.{$className}.allowed.only", config("repository.cache.allowed.only", null));
         $cacheExcept = isset($this->cacheExcept) ? $this->cacheExcept : config("repository.cache.repositories.{$className}.allowed.except", config("repository.cache.allowed.only", null));
+=======
+        $cacheOnly = isset($this->cacheOnly) ? $this->cacheOnly : config("repository.cache.repositories.{$className}.allowed.only", config('repository.cache.allowed.only', null));
+        $cacheExcept = isset($this->cacheExcept) ? $this->cacheExcept : config("repository.cache.repositories.{$className}.allowed.except", config('repository.cache.allowed.only', null));
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 
         if (is_array($cacheOnly)) {
             return in_array($method, $cacheOnly);
         }
 
         if (is_array($cacheExcept)) {
+<<<<<<< HEAD
             return !in_array($method, $cacheExcept);
+=======
+            return ! in_array($method, $cacheExcept);
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         }
 
         if (is_null($cacheOnly) && is_null($cacheExcept)) {
@@ -65,6 +91,19 @@ abstract class Repository extends BaseRepository implements CacheableInterface
     }
 
     /**
+<<<<<<< HEAD
+=======
+     * @throws RepositoryException
+     */
+    public function resetModel()
+    {
+        $this->makeModel();
+
+        return $this;
+    }
+
+    /**
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      * Find data by field and value
      *
      * @param  string  $field
@@ -128,10 +167,16 @@ abstract class Repository extends BaseRepository implements CacheableInterface
         return $this->parserResult($model);
     }
 
+<<<<<<< HEAD
      /**
      * Count results of repository
      *
      * @param  array  $where
+=======
+    /**
+     * Count results of repository
+     *
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      * @param  string  $columns
      * @return int
      */

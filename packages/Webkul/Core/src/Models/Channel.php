@@ -3,6 +3,7 @@
 namespace Webkul\Core\Models;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+<<<<<<< HEAD
 use Illuminate\Support\Facades\Storage;
 use Webkul\Category\Models\CategoryProxy;
 use Webkul\Core\Eloquent\TranslatableModel;
@@ -12,11 +13,30 @@ use Webkul\Core\Contracts\Channel as ChannelContract;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+=======
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Support\Facades\Storage;
+use Webkul\Category\Models\CategoryProxy;
+use Webkul\Core\Contracts\Channel as ChannelContract;
+use Webkul\Core\Database\Factories\ChannelFactory;
+use Webkul\Core\Eloquent\TranslatableModel;
+use Webkul\Inventory\Models\InventorySourceProxy;
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 
 class Channel extends TranslatableModel implements ChannelContract
 {
     use HasFactory;
 
+<<<<<<< HEAD
+=======
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
     protected $fillable = [
         'code',
         'name',
@@ -32,6 +52,23 @@ class Channel extends TranslatableModel implements ChannelContract
         'allowed_ips',
     ];
 
+<<<<<<< HEAD
+=======
+    /**
+     * Castable.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'home_seo' => 'array',
+    ];
+
+    /**
+     * Translated attributes.
+     *
+     * @var array
+     */
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
     public $translatedAttributes = [
         'name',
         'description',
@@ -73,8 +110,11 @@ class Channel extends TranslatableModel implements ChannelContract
 
     /**
      * Get the base currency.
+<<<<<<< HEAD
      * 
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      */
     public function base_currency(): BelongsTo
     {
@@ -83,8 +123,11 @@ class Channel extends TranslatableModel implements ChannelContract
 
     /**
      * Get the root category.
+<<<<<<< HEAD
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      */
     public function root_category(): BelongsTo
     {
@@ -133,8 +176,11 @@ class Channel extends TranslatableModel implements ChannelContract
 
     /**
      * Create a new factory instance for the model
+<<<<<<< HEAD
      *
      * @return Factory
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      */
     protected static function newFactory(): Factory
     {

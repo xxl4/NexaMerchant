@@ -2,8 +2,13 @@
 
 namespace Webkul\Core\Database\Factories;
 
+<<<<<<< HEAD
 use Webkul\Core\Models\Locale;
 use Illuminate\Database\Eloquent\Factories\Factory;
+=======
+use Illuminate\Database\Eloquent\Factories\Factory;
+use Webkul\Core\Models\Locale;
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 
 class LocaleFactory extends Factory
 {
@@ -23,16 +28,24 @@ class LocaleFactory extends Factory
 
     /**
      * Define the model's default state.
+<<<<<<< HEAD
      *
      * @return array
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      */
     public function definition(): array
     {
         do {
             $languageCode = $this->faker->languageCode;
         } while (Locale::query()
+<<<<<<< HEAD
                        ->where('code', $languageCode)
                        ->exists());
+=======
+            ->where('code', $languageCode)
+            ->exists());
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 
         return [
             'code'      => $languageCode,
@@ -49,4 +62,8 @@ class LocaleFactory extends Factory
             ];
         });
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
