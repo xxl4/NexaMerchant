@@ -2,8 +2,13 @@
 
 namespace Webkul\Inventory\Database\Factories;
 
+<<<<<<< HEAD
 use Webkul\Inventory\Models\InventorySource;
 use Illuminate\Database\Eloquent\Factories\Factory;
+=======
+use Illuminate\Database\Eloquent\Factories\Factory;
+use Webkul\Inventory\Models\InventorySource;
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 
 class InventorySourceFactory extends Factory
 {
@@ -16,6 +21,7 @@ class InventorySourceFactory extends Factory
 
     /**
      * Define the model's default state.
+<<<<<<< HEAD
      *
      * @return array
      */
@@ -23,6 +29,14 @@ class InventorySourceFactory extends Factory
     {
         $now = date("Y-m-d H:i:s");
         $code = $this->faker->unique()->word;
+=======
+     */
+    public function definition(): array
+    {
+        $now = date('Y-m-d H:i:s');
+        $code = $this->faker->unique()->word;
+
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         return [
             'code'           => $this->faker->unique()->word,
             'name'           => $code,
