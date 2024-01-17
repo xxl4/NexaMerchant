@@ -6,18 +6,29 @@ use Illuminate\Support\Facades\Storage;
 use Spatie\Sitemap\Sitemap;
 use Spatie\Sitemap\Tags\Url;
 use Webkul\Core\Eloquent\Repository;
+<<<<<<< HEAD
 use Webkul\Sitemap\Models\Product;
 use Webkul\Sitemap\Models\Category;
 use Webkul\Sitemap\Models\CmsPage;
+=======
+use Webkul\Sitemap\Models\Category;
+use Webkul\Sitemap\Models\Page;
+use Webkul\Sitemap\Models\Product;
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 
 class SitemapRepository extends Repository
 {
     /**
      * Specify Model class name
+<<<<<<< HEAD
      *
      * @return string
      */
     function model(): string
+=======
+     */
+    public function model(): string
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
     {
         return 'Webkul\Sitemap\Contracts\Sitemap';
     }
@@ -25,7 +36,10 @@ class SitemapRepository extends Repository
     /**
      * Create.
      *
+<<<<<<< HEAD
      * @param  array  $attributes
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      * @return mixed
      */
     public function create(array $attributes)
@@ -40,8 +54,11 @@ class SitemapRepository extends Repository
     /**
      * Update.
      *
+<<<<<<< HEAD
      * @param  array  $attributes
      * @param  $id
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      * @return mixed
      */
     public function update(array $attributes, $id)
@@ -67,7 +84,14 @@ class SitemapRepository extends Repository
             ->add(Url::create('/'))
             ->add(Category::all())
             ->add(Product::all())
+<<<<<<< HEAD
             ->add(CmsPage::all())
             ->writeToDisk('public', $sitemap->path . '/' . $sitemap->file_name);
     }
 }
+=======
+            ->add(Page::all())
+            ->writeToDisk('public', $sitemap->path . '/' . $sitemap->file_name);
+    }
+}
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
