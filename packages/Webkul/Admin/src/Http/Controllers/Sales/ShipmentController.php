@@ -2,11 +2,19 @@
 
 namespace Webkul\Admin\Http\Controllers\Sales;
 
+<<<<<<< HEAD
 use Webkul\Admin\Http\Controllers\Controller;
 use Webkul\Sales\Repositories\OrderRepository;
 use Webkul\Sales\Repositories\OrderItemRepository;
 use Webkul\Sales\Repositories\ShipmentRepository;
 use Webkul\Admin\DataGrids\Sales\OrderShipmentsDataGrid;
+=======
+use Webkul\Admin\DataGrids\Sales\OrderShipmentsDataGrid;
+use Webkul\Admin\Http\Controllers\Controller;
+use Webkul\Sales\Repositories\OrderItemRepository;
+use Webkul\Sales\Repositories\OrderRepository;
+use Webkul\Sales\Repositories\ShipmentRepository;
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 
 class ShipmentController extends Controller
 {
@@ -19,8 +27,12 @@ class ShipmentController extends Controller
         protected OrderRepository $orderRepository,
         protected OrderItemRepository $orderItemRepository,
         protected ShipmentRepository $shipmentRepository
+<<<<<<< HEAD
     )
     {
+=======
+    ) {
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
     }
 
     /**
@@ -47,7 +59,11 @@ class ShipmentController extends Controller
     {
         $order = $this->orderRepository->findOrFail($orderId);
 
+<<<<<<< HEAD
         if (!$order->channel || !$order->canShip()) {
+=======
+        if (! $order->channel || ! $order->canShip()) {
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             session()->flash('error', trans('admin::app.sales.shipments.create.creation-error'));
 
             return redirect()->back();
@@ -66,7 +82,11 @@ class ShipmentController extends Controller
     {
         $order = $this->orderRepository->findOrFail($orderId);
 
+<<<<<<< HEAD
         if (!$order->canShip()) {
+=======
+        if (! $order->canShip()) {
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             session()->flash('error', trans('admin::app.sales.shipments.create.order-error'));
 
             return redirect()->back();
@@ -79,7 +99,11 @@ class ShipmentController extends Controller
 
         $data = request()->only(['shipment', 'carrier_name']);
 
+<<<<<<< HEAD
         if (!$this->isInventoryValidate($data)) {
+=======
+        if (! $this->isInventoryValidate($data)) {
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             session()->flash('error', trans('admin::app.sales.shipments.create.quantity-invalid'));
 
             return redirect()->back();
@@ -102,7 +126,11 @@ class ShipmentController extends Controller
      */
     public function isInventoryValidate(&$data)
     {
+<<<<<<< HEAD
         if (!isset($data['shipment']['items'])) {
+=======
+        if (! isset($data['shipment']['items'])) {
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             return;
         }
 
@@ -122,7 +150,11 @@ class ShipmentController extends Controller
 
                 if ($orderItem->getTypeInstance()->isComposite()) {
                     foreach ($orderItem->children as $child) {
+<<<<<<< HEAD
                         if (!$child->qty_ordered) {
+=======
+                        if (! $child->qty_ordered) {
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                             continue;
                         }
 

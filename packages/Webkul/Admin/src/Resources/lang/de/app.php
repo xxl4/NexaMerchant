@@ -485,13 +485,33 @@ return [
                     'transaction-amount' => 'Betrag',
                 ],
 
+<<<<<<< HEAD
                 'edit'  => [
+=======
+                'create'  => [
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     'already-paid'               => 'Bereits bezahlt',
                     'invoice-missing'            => 'Rechnung fehlt',
                     'transaction-amount-zero'    => 'Transaktionsbetrag ist null',
                     'transaction-amount-exceeds' => 'Transaktionsbetrag überschreitet den Betrag',
                     'transaction-saved'          => 'Transaktion erfolgreich gespeichert',
                 ],
+<<<<<<< HEAD
+=======
+
+                'view' => [
+                    'title'            => 'Transaktionsdetails',
+                    'transaction-data' => 'Transaktionsdaten',
+                    'transaction-id'   => 'Transaktions-ID',
+                    'order-id'         => 'Bestellnummer',
+                    'invoice-id'       => 'Rechnungsnummer',
+                    'payment-method'   => 'Zahlungsmethode',
+                    'created-at'       => 'Erstellt am',
+                    'status'           => 'Status',
+                    'payment-details'  => 'Zahlungsdetails',
+                    'amount'           => 'Betrag',
+                ],
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             ],
         ],
     ],
@@ -521,6 +541,7 @@ return [
                 ],
 
                 'datagrid' => [
+<<<<<<< HEAD
                     'attribute-family'       => 'Attributfamilie',
                     'attribute-family-value' => 'Attributfamilie - :attribute_family',
                     'active'                 => 'Aktiv',
@@ -545,10 +566,41 @@ return [
                     'status'                 => 'Status',
                     'type'                   => 'Typ',
                     'update-status'          => 'Status aktualisieren',
+=======
+                    'attribute-family'              => 'Attributfamilie',
+                    'attribute-family-value'        => 'Attributfamilie - :attribute_family',
+                    'active'                        => 'Aktiv',
+                    'category'                      => 'Kategorie',
+                    'copy-of'                       => 'Kopie von :value',
+                    'copy-of-slug'                  => 'kopie-von-:value',
+                    'disable'                       => 'Deaktivieren',
+                    'delete'                        => 'Löschen',
+                    'image'                         => 'Bild',
+                    'id'                            => 'ID',
+                    'id-value'                      => 'ID - :id',
+                    'mass-update-success'           => 'Ausgewählte Produkte wurden erfolgreich aktualisiert',
+                    'mass-delete-success'           => 'Ausgewählte Produkte wurden erfolgreich gelöscht',
+                    'name'                          => 'Name',
+                    'out-of-stock'                  => 'Nicht vorrätig',
+                    'price'                         => 'Preis',
+                    'product-image'                 => 'Produktbild',
+                    'qty'                           => 'Menge',
+                    'qty-value'                     => ':qty verfügbar',
+                    'sku-value'                     => 'Artikelnummer - :sku',
+                    'sku'                           => 'Artikelnummer',
+                    'status'                        => 'Status',
+                    'type'                          => 'Typ',
+                    'update-status'                 => 'Status aktualisieren',
+                    'variant-already-exist-message' => 'Die Variante mit denselben Attributoptionen existiert bereits.',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 ],
             ],
 
             'edit' => [
+<<<<<<< HEAD
+=======
+                'preview'  => 'Vorschau',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'remove'   => 'Entfernen',
                 'save-btn' => 'Produkt speichern',
                 'title'    => 'Produkt bearbeiten',
@@ -573,7 +625,11 @@ return [
                             'fixed'          => 'Festpreis',
                             'price-type'     => 'Preistyp',
                             'price'          => 'Preis',
+<<<<<<< HEAD
                             'qty'            => 'Menge',
+=======
+                            'qty'            => 'Mindestmenge',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                             'save-btn'       => 'Speichern',
                             'update-title'   => 'Kundengruppenpreis aktualisieren',
                         ],
@@ -665,6 +721,7 @@ return [
                         ],
 
                         'mass-edit' => [
+<<<<<<< HEAD
                             'add-images'        => 'Bilder hinzufügen',
                             'apply-to-all-sku'  => 'Einen Preis auf alle Artikelnummern anwenden.',
                             'apply-to-all-btn'  => 'Auf alle anwenden',
@@ -675,6 +732,30 @@ return [
                             'remove-variants'   => 'Varianten entfernen',
                             'select-variants'   => 'Varianten auswählen',
                             'select-action'     => 'Aktion auswählen',
+=======
+                            'add-images'          => 'Bilder hinzufügen',
+                            'apply-to-all-btn'    => 'Auf alle anwenden',
+                            'apply-to-all-name'   => 'Einen Namen auf alle Varianten anwenden.',
+                            'apply-to-all-sku'    => 'Einen Preis auf alle SKU anwenden.',
+                            'apply-to-all-status' => 'Einen Status auf alle Varianten anwenden.',
+                            'apply-to-all-weight' => 'Gewicht auf alle Varianten anwenden.',
+                            'edit-inventories'    => 'Bestände bearbeiten',
+                            'edit-names'          => 'Namen bearbeiten',
+                            'edit-prices'         => 'Preise bearbeiten',
+                            'edit-sku'            => 'SKU bearbeiten',
+                            'edit-status'         => 'Status bearbeiten',
+                            'edit-weight'         => 'Gewicht bearbeiten',
+                            'name'                => 'Namen',
+                            'price'               => 'Preis',
+                            'remove-images'       => 'Bilder entfernen',
+                            'remove-variants'     => 'Varianten entfernen',
+                            'select-action'       => 'Aktion auswählen',
+                            'select-variants'     => 'Varianten auswählen',
+                            'status'              => 'Status',
+                            'variant-name'        => 'Variantenname',
+                            'variant-sku'         => 'Varianten-SKU',
+                            'weight'              => 'Gewicht',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                         ],
                     ],
 
@@ -861,6 +942,10 @@ return [
                 'multiselect'           => 'Multiselect',
                 'no'                    => 'Nein',
                 'number'                => 'Nummer',
+<<<<<<< HEAD
+=======
+                'options'               => 'Optionen',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'price'                 => 'Preis',
                 'position'              => 'Position',
                 'regex'                 => 'Regex',
@@ -923,6 +1008,10 @@ return [
                 'multiselect'           => 'Mehrfachauswahl',
                 'no'                    => 'Nein',
                 'number'                => 'Nummer',
+<<<<<<< HEAD
+=======
+                'options'               => 'Optionen',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'price'                 => 'Preis',
                 'position'              => 'Position',
                 'regex'                 => 'Regex',
@@ -1089,7 +1178,12 @@ return [
                 'enter-name'                       => 'Name eingeben',
                 'column'                           => 'Spalte',
                 'add-group-title'                  => 'Neue Gruppe hinzufügen',
+<<<<<<< HEAD
                 'group-already-exists'             => 'Ein Attributgruppenname existiert bereits.',
+=======
+                'group-code-already-exists'        => 'Ein Attributgruppencode existiert bereits.',
+                'group-name-already-exists'        => 'Ein Attributgruppenname existiert bereits.',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'select-group'                     => 'Bitte wählen Sie eine Attributgruppe aus.',
                 'group-contains-system-attributes' => 'Diese Gruppe enthält Systemattribute. Verschieben Sie zuerst Systemattribute in eine andere Gruppe und versuchen Sie es erneut.',
                 'removal-not-possible'             => 'Sie können Systemattribute nicht aus der Attributfamilie entfernen.',
@@ -1115,7 +1209,12 @@ return [
                 'enter-name'                       => 'Name eingeben',
                 'column'                           => 'Spalte',
                 'add-group-title'                  => 'Neue Gruppe hinzufügen',
+<<<<<<< HEAD
                 'group-already-exists'             => 'Ein Attributgruppenname existiert bereits.',
+=======
+                'group-code-already-exists'        => 'Ein Attributgruppencode existiert bereits.',
+                'group-name-already-exists'        => 'Ein Attributgruppenname existiert bereits.',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'select-group'                     => 'Bitte wählen Sie eine Attributgruppe aus.',
                 'group-contains-system-attributes' => 'Diese Gruppe enthält Systemattribute. Verschieben Sie zuerst Systemattribute in eine andere Gruppe und versuchen Sie es erneut.',
                 'removal-not-possible'             => 'Sie können Systemattribute nicht aus der Attributfamilie entfernen.',
@@ -1247,6 +1346,11 @@ return [
                 'orders'                      => 'Bestellungen (:order_count)',
                 'order-id'                    => 'Bestell-ID',
                 'order-id-prefix'             => '# :order_id',
+<<<<<<< HEAD
+=======
+                'of'                          => 'von',
+                'per-page'                    => 'pro Seite',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'processing'                  => 'In Bearbeitung',
                 'pending'                     => 'Ausstehend',
                 'completed'                   => 'Abgeschlossen',
@@ -1907,6 +2011,7 @@ return [
             ],
         ],
 
+<<<<<<< HEAD
         'sitemaps' => [
             'index' => [
                 'title'      => 'Sitemaps',
@@ -1952,6 +2057,173 @@ return [
             ],
 
             'delete-failed'  => ':name Löschen fehlgeschlagen',
+=======
+        'search-seo' => [
+            'search-terms' => [
+                'index' => [
+                    'title'      => 'Suchbegriffe',
+                    'create-btn' => 'Suchbegriff erstellen',
+
+                    'datagrid' => [
+                        'id'                  => 'ID',
+                        'search-query'        => 'Suchbegriff',
+                        'Channel'             => 'Kanal',
+                        'results'             => 'Ergebnisse',
+                        'uses'                => 'Verwendungen',
+                        'redirect-url'        => 'Weiterleitungs-URL',
+                        'channel'             => 'Kanal',
+                        'locale'              => 'Lokalisierung',
+                        'edit'                => 'Bearbeiten',
+                        'delete'              => 'Löschen',
+                        'actions'             => 'Aktionen',
+                        'mass-delete-success' => 'Ausgewählte Suchbegriffe erfolgreich gelöscht',
+                    ],
+
+                    'create' => [
+                        'search-query'   => 'Suchbegriff',
+                        'Channel'        => 'Kanal',
+                        'results'        => 'Ergebnisse',
+                        'uses'           => 'Verwendungen',
+                        'redirect-url'   => 'Weiterleitungs-URL',
+                        'channel'        => 'Kanal',
+                        'locale'         => 'Lokalisierung',
+                        'save-btn'       => 'Suchbegriff speichern',
+                        'title'          => 'Suchbegriff erstellen',
+                        'success'        => 'Suchbegriff erfolgreich erstellt',
+                        'delete-warning' => 'Möchten Sie diese Aktion wirklich ausführen?',
+                    ],
+
+                    'edit' => [
+                        'title'          => 'Suchbegriff bearbeiten',
+                        'success'        => 'Suchbegriff erfolgreich aktualisiert',
+                        'delete-success' => 'Suchbegriff erfolgreich gelöscht',
+                    ],
+                ],
+            ],
+
+            'search-synonyms' => [
+                'index' => [
+                    'title'      => 'Suchsynonyme',
+                    'create-btn' => 'Suchsynonym erstellen',
+
+                    'datagrid' => [
+                        'id'                  => 'ID',
+                        'name'                => 'Name',
+                        'terms'               => 'Begriffe',
+                        'edit'                => 'Bearbeiten',
+                        'delete'              => 'Löschen',
+                        'actions'             => 'Aktionen',
+                        'mass-delete-success' => 'Ausgewählte Suchsynonyme erfolgreich gelöscht',
+                    ],
+
+                    'create' => [
+                        'name'           => 'Name',
+                        'terms'          => 'Begriffe',
+                        'terms-info'     => 'Geben Sie Synonyme als durch Kommas getrennte Liste ein, z. B. "Schuhe, Schuhwerk." Dies erweitert die Suche, um alle Begriffe einzuschließen.',
+                        'save-btn'       => 'Suchsynonym speichern',
+                        'title'          => 'Suchsynonym erstellen',
+                        'success'        => 'Suchsynonym erfolgreich erstellt',
+                        'delete-warning' => 'Sind Sie sicher, dass Sie diese Aktion durchführen möchten?',
+                    ],
+
+                    'edit' => [
+                        'title'          => 'Suchsynonym bearbeiten',
+                        'success'        => 'Suchsynonym erfolgreich aktualisiert',
+                        'delete-success' => 'Suchsynonym erfolgreich gelöscht',
+                    ],
+                ],
+            ],
+
+            'sitemaps' => [
+                'index' => [
+                    'title'      => 'Sitemaps',
+                    'create-btn' => 'Sitemap erstellen',
+                    'sitemap'    => 'Sitemap',
+
+                    'datagrid' => [
+                        'id'              => 'ID',
+                        'file-name'       => 'Dateiname',
+                        'path'            => 'Pfad',
+                        'link-for-google' => 'Link für Google',
+                        'edit'            => 'Bearbeiten',
+                        'delete'          => 'Löschen',
+                        'actions'         => 'Aktionen',
+                    ],
+
+                    'create'  => [
+                        'file-name'      => 'Dateiname',
+                        'file-name-info' => 'Beispiel: sitemap.xml',
+                        'path'           => 'Pfad',
+                        'path-info'      => 'Beispiel: "/sitemap/" oder "/" für den Basispfad',
+                        'save-btn'       => 'Sitemap speichern',
+                        'title'          => 'Sitemap erstellen',
+                        'success'        => 'Sitemap erfolgreich erstellt',
+                        'delete-warning' => 'Sind Sie sicher, dass Sie diese Aktion ausführen möchten?',
+                    ],
+
+                    'edit'  => [
+                        'title'          => 'Sitemap bearbeiten',
+                        'success'        => 'Sitemap erfolgreich aktualisiert',
+                        'delete-success' => 'Sitemap erfolgreich gelöscht',
+                    ],
+                ],
+
+                'edit'  => [
+                    'back-btn'       => 'Zurück',
+                    'file-name'      => 'Dateiname',
+                    'file-name-info' => 'Beispiel: sitemap.xml',
+                    'general'        => 'Allgemein',
+                    'path'           => 'Pfad',
+                    'path-info'      => 'Beispiel: "/sitemap/" oder "/" für den Basispfad',
+                    'save-btn'       => 'Sitemap speichern',
+                ],
+
+                'delete-failed'  => ':name Löschen fehlgeschlagen',
+            ],
+
+            'url-rewrites' => [
+                'index' => [
+                    'title'      => 'URL-Weiterleitungen',
+                    'create-btn' => 'URL-Weiterleitung erstellen',
+
+                    'datagrid' => [
+                        'id'                  => 'ID',
+                        'for'                 => 'Für',
+                        'request-path'        => 'Anforderungs-Pfad',
+                        'target-path'         => 'Zielpfad',
+                        'redirect-type'       => 'Weiterleitungstyp',
+                        'locale'              => 'Lokalisierung',
+                        'edit'                => 'Bearbeiten',
+                        'delete'              => 'Löschen',
+                        'actions'             => 'Aktionen',
+                        'mass-delete-success' => 'Ausgewählte URL-Weiterleitungen erfolgreich gelöscht',
+                    ],
+
+                    'create' => [
+                        'for'                => 'Für',
+                        'product'            => 'Produkt',
+                        'category'           => 'Kategorie',
+                        'cms-page'           => 'CMS-Seite',
+                        'request-path'       => 'Anforderungs-Pfad',
+                        'target-path'        => 'Zielpfad',
+                        'redirect-type'      => 'Weiterleitungstyp',
+                        'temporary-redirect' => 'Temporär (302)',
+                        'permanent-redirect' => 'Permanent (301)',
+                        'locale'             => 'Lokalisierung',
+                        'save-btn'           => 'URL-Weiterleitung speichern',
+                        'title'              => 'URL-Weiterleitung erstellen',
+                        'success'            => 'URL-Weiterleitung erfolgreich erstellt',
+                        'delete-warning'     => 'Sind Sie sicher, dass Sie diese Aktion ausführen möchten?',
+                    ],
+
+                    'edit' => [
+                        'title'          => 'URL-Weiterleitung bearbeiten',
+                        'success'        => 'URL-Weiterleitung erfolgreich aktualisiert',
+                        'delete-success' => 'URL-Weiterleitung erfolgreich gelöscht',
+                    ],
+                ],
+            ],
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         ],
     ],
 
@@ -2135,8 +2407,13 @@ return [
 
         'inventory-sources' => [
             'index'  => [
+<<<<<<< HEAD
                 'title'      => 'Lagerorte',
                 'create-btn' => 'Lagerorte erstellen',
+=======
+                'create-btn' => 'Inventarquelle erstellen',
+                'title'      => 'Lagerorte',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 
                 'datagrid' => [
                     'id'       => 'ID',
@@ -2257,9 +2534,25 @@ return [
 
             'rates'   => [
                 'index' => [
+<<<<<<< HEAD
                     'title'        => 'Steuersätze',
                     'tax-rate'     => 'Steuersatz',
                     'button-title' => 'Steuersatz erstellen',
+=======
+                    'button-title' => 'Steuerquote erstellen',
+                    'tax-rate'     => 'Steuersatz',
+                    'title'        => 'Steuersätze',
+
+                    'import' => [
+                        'duplicate-error'  => 'Kennung muss eindeutig sein, doppelte Kennung :identifier in Zeile :position.',
+                        'enough-row-error' => 'Die Datei enthält nicht genügend Zeilen',
+                        'import-btn'       => 'Importieren',
+                        'title'            => 'Hochladen',
+                        'upload-error'     => 'Die Datei muss vom Typ sein: xls, xlsx, csv.',
+                        'upload-success'   => 'Steuersatz erfolgreich hochgeladen',
+                        'validation'       => 'Erlaubter Typ: xls, xlsx, csv.',
+                    ],
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 
                     'datagrid' => [
                         'id'         => 'ID',
@@ -2374,6 +2667,7 @@ return [
             ],
 
             'edit' => [
+<<<<<<< HEAD
                 'title'                  => 'Kanal bearbeiten',
                 'back-btn'               => 'Zurück',
                 'save-btn'               => 'Kanal speichern',
@@ -2405,6 +2699,39 @@ return [
                 'settings'               => 'Einstellungen',
                 'status'                 => 'Status',
                 'maintenance-mode-text'  => 'Nachricht',
+=======
+                'allowed-ips'            => 'Erlaubte IPs',
+                'back-btn'               => 'Zurück',
+                'code'                   => 'Code',
+                'currencies-and-locales' => 'Währungen und Lokalisierungen',
+                'currencies'             => 'Währungen',
+                'default-currency'       => 'Standard-Währung',
+                'default-locale'         => 'Standard-Lokalisierung',
+                'description'            => 'Beschreibung',
+                'design'                 => 'Design',
+                'favicon-size'           => 'Bildauflösung sollte wie 16px X 16px sein',
+                'favicon'                => 'Favicon',
+                'general'                => 'Allgemein',
+                'hostname-placeholder'   => 'https://www.example.com (Fügen Sie am Ende keinen Schrägstrich hinzu.)',
+                'hostname'               => 'Hostname',
+                'inventory-sources'      => 'Lagerquellen',
+                'last-delete-error'      => 'Mindestens ein Kanal ist erforderlich.',
+                'locales'                => 'Lokalisierungen',
+                'logo-size'              => 'Bildauflösung sollte wie 192px X 50px sein',
+                'logo'                   => 'Logo',
+                'maintenance-mode-text'  => 'Nachricht',
+                'maintenance-mode'       => 'Wartungsmodus',
+                'name'                   => 'Name',
+                'root-category'          => 'Stammkategorie',
+                'save-btn'               => 'Kanal speichern',
+                'seo-description'        => 'Meta-Beschreibung',
+                'seo-keywords'           => 'Meta-Schlüsselwörter',
+                'seo-title'              => 'Meta-Titel',
+                'seo'                    => 'SEO der Startseite',
+                'status'                 => 'Status',
+                'theme'                  => 'Thema',
+                'title'                  => 'Kanal bearbeiten',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'update-success'         => 'Aktualisierung erfolgreich',
             ],
         ],
@@ -2549,6 +2876,10 @@ return [
                     'image-carousel'    => 'Bild Karussell',
                     'product-carousel'  => 'Produkt Karussell',
                     'static-content'    => 'Statischer Inhalt',
+<<<<<<< HEAD
+=======
+                    'services-content'  => 'Inhalt der Dienste',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     'title'             => 'Typ',
                 ],
             ],
@@ -2587,7 +2918,11 @@ return [
                 'name'                          => 'Name',
                 'product-carousel'              => 'Produkt Karussell',
                 'product-carousel-description'  => 'Produkte mit einem dynamischen und responsiven Produkt Karussell elegant präsentieren.',
+<<<<<<< HEAD
                 'path'                          => 'Pfad',
+=======
+                'url'                           => 'URL',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'preview'                       => 'Vorschau',
                 'slider'                        => 'Slider',
                 'static-content-description'    => 'Verbessern Sie die Interaktion mit prägnantem, informativem statischem Inhalt für Ihr Publikum.',
@@ -2605,6 +2940,27 @@ return [
                 'update-slider'                 => 'Slider aktualisieren',
                 'value-input'                   => 'Wert',
                 'value'                         => 'Wert: :value',
+<<<<<<< HEAD
+=======
+                'image-title'                   => 'Bildtitel',
+                'services-content'              => [
+                    'add-btn'            => 'Dienstleistungen hinzufügen',
+                    'channels'           => 'Kanäle',
+                    'description'        => 'Beschreibung',
+                    'delete'             => 'Löschen',
+                    'general'            => 'Allgemein',
+                    'name'               => 'Name',
+                    'services'           => 'Dienstleistungen',
+                    'sort-order'         => 'Sortierreihenfolge',
+                    'service-info'       => 'Themenbezogene Anpassung von Diensten.',
+                    'status'             => 'Status',
+                    'save-btn'           => 'Speichern',
+                    'service-icon-class' => 'Service-Icon-Klasse',
+                    'service-icon'       => 'Service-Icon',
+                    'title'              => 'Titel',
+                    'update-service'     => 'Dienstleistungen aktualisieren',
+                ],
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             ],
 
             'create-success' => 'Thema erfolgreich erstellt',
@@ -2688,15 +3044,25 @@ return [
 
         'products' => [
             'index' => [
+<<<<<<< HEAD
                 'end-date'                         => 'Enddatum',
                 'id'                               => 'ID',
                 'interval'                         => 'Intervall',
+=======
+                'channel'                          => 'Kanal',
+                'end-date'                         => 'Enddatum',
+                'id'                               => 'ID',
+                'interval'                         => 'Intervall',
+                'last-search-terms'                => 'Zuletzt gesuchte Begriffe',
+                'locale'                           => 'Standort',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'name'                             => 'Name',
                 'orders'                           => 'Bestellungen',
                 'price'                            => 'Preis',
                 'products-added-over-time'         => 'Produkte im Laufe der Zeit hinzugefügt',
                 'products-with-most-reviews'       => 'Produkte mit den meisten Bewertungen',
                 'products-with-most-visits'        => 'Produkte mit den meisten Besuchen',
+<<<<<<< HEAD
                 'quantities'                       => 'Mengen',
                 'quantities-sold-over-time'        => 'Mengen im Laufe der Zeit verkauft',
                 'revenue'                          => 'Einnahmen',
@@ -2708,12 +3074,30 @@ return [
                 'total'                            => 'Gesamt',
                 'total-products-added-to-wishlist' => 'Produkte zur Wunschliste hinzugefügt',
                 'total-sold-quantities'            => 'Verkaufte Produktmenge',
+=======
+                'quantities-sold-over-time'        => 'Mengen im Laufe der Zeit verkauft',
+                'quantities'                       => 'Mengen',
+                'results'                          => 'Ergebnisse',
+                'revenue'                          => 'Einnahmen',
+                'reviews'                          => 'Bewertungen',
+                'search-term'                      => 'Suchbegriff',
+                'start-date'                       => 'Startdatum',
+                'title'                            => 'Produkte',
+                'top-search-terms'                 => 'Top-Suchbegriffe',
+                'top-selling-products-by-quantity' => 'Top-Verkaufsprodukte nach Menge',
+                'top-selling-products-by-revenue'  => 'Top-Verkaufsprodukte nach Einnahmen',
+                'total-products-added-to-wishlist' => 'Produkte zur Wunschliste hinzugefügt',
+                'total-sold-quantities'            => 'Verkaufte Produktmenge',
+                'total'                            => 'Gesamt',
+                'uses'                             => 'Verwendungen',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'view-details'                     => 'Details anzeigen',
                 'visits'                           => 'Besuche',
             ],
         ],
 
         'view' => [
+<<<<<<< HEAD
             'day'        => 'Tag',
             'end-date'   => 'Enddatum',
             'export-csv' => 'CSV exportieren',
@@ -2721,6 +3105,16 @@ return [
             'month'      => 'Monat',
             'start-date' => 'Startdatum',
             'year'       => 'Jahr',
+=======
+            'day'           => 'Tag',
+            'end-date'      => 'Enddatum',
+            'export-csv'    => 'CSV exportieren',
+            'export-xls'    => 'XLS exportieren',
+            'month'         => 'Monat',
+            'not-available' => 'Keine Datensätze verfügbar.',
+            'start-date'    => 'Startdatum',
+            'year'          => 'Jahr',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         ],
 
         'empty' => [
@@ -2731,6 +3125,10 @@ return [
 
     'configuration' => [
         'index' => [
+<<<<<<< HEAD
+=======
+            'back-btn'                     => 'Zurück',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             'delete'                       => 'Löschen',
             'enable-at-least-one-shipping' => 'Mindestens eine Versandmethode aktivieren.',
             'enable-at-least-one-payment'  => 'Mindestens eine Zahlungsmethode aktivieren.',
@@ -2785,6 +3183,51 @@ return [
                         'title-info'      => 'Das Admin-Logo ist das charakteristische Bild oder Emblem, das die Verwaltungsoberfläche eines Systems oder einer Website repräsentiert, oft anpassbar.',
                     ],
                 ],
+<<<<<<< HEAD
+=======
+
+                'magic-ai' => [
+                    'info'  => 'Magische KI-Optionen einstellen.',
+                    'title' => 'Magische KI',
+
+                    'settings' => [
+                        'title'        => 'Allgemeine Einstellungen',
+                        'title-info'   => 'Verbessern Sie Ihre Erfahrung mit der Magic AI-Funktion, indem Sie Ihren exklusiven API-Schlüssel eingeben und die relevante Organisation für eine mühelose Integration angeben. Übernehmen Sie die Kontrolle über Ihre OpenAI-Zugangsdaten und passen Sie die Einstellungen nach Ihren spezifischen Bedürfnissen an.',
+                        'enabled'      => 'Aktiviert',
+                        'api-key'      => 'API-Schlüssel',
+                        'organization' => 'Organisation',
+                    ],
+
+                    'content-generation' => [
+                        'title'                            => 'Inhaltsentwicklung',
+                        'title-info'                       => 'Diese Funktion ermöglicht die Nutzung von Magic AI für jeden WYSIWYG-Editor, in dem Sie Inhalte mithilfe von KI verwalten möchten.<br/><br/>Wenn aktiviert, gehen Sie zu einem beliebigen Editor, um Inhalte zu generieren.',
+                        'enabled'                          => 'Aktiviert',
+                        'product-short-description-prompt' => 'Prompt für kurze Produktbeschreibung',
+                        'product-description-prompt'       => 'Prompt für Produktbeschreibung',
+                        'category-description-prompt'      => 'Prompt für Kategorienbeschreibung',
+                        'cms-page-content-prompt'          => 'Prompt für CMS-Seiteninhalt',
+                    ],
+
+                    'image-generation' => [
+                        'title'      => 'Bildgenerierung',
+                        'title-info' => 'Diese Funktion ermöglicht die Nutzung von Magic AI für jeden Bildupload, bei dem Sie Bilder mithilfe von DALL-E generieren möchten.<br/><br/>Wenn aktiviert, gehen Sie zu einem beliebigen Bildupload, um ein Bild zu generieren.',
+                        'enabled'    => 'Aktiviert',
+                    ],
+
+                    'review-translation' => [
+                        'title'      => 'Bewertungsübersetzung',
+                        'title-info' => 'Bieten Sie Kunden oder Besuchern die Möglichkeit, Kundenbewertungen ins Englische zu übersetzen.<br/><br/>Wenn aktiviert, gehen Sie zu Bewertungen und Sie finden die Schaltfläche "Ins Englische übersetzen", wenn die Bewertung nicht in Englisch ist.',
+                        'enabled'    => 'Aktiviert',
+                    ],
+
+                    'checkout-message' => [
+                        'title'      => 'Persönliche Checkout-Nachricht',
+                        'title-info' => 'Gestalten Sie eine persönliche Checkout-Nachricht für Kunden auf der Dankeschön-Seite, indem Sie den Inhalt an individuelle Präferenzen anpassen und das gesamte Post-Kauf-Erlebnis verbessern.',
+                        'enabled'    => 'Aktiviert',
+                        'prompt'     => 'Aufforderung',
+                    ],
+                ],
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             ],
 
             'catalog' => [
@@ -3074,6 +3517,7 @@ return [
                 ],
 
                 'payment-methods' => [
+<<<<<<< HEAD
                     'page-title'                     => 'Zahlungsmethoden',
                     'info'                           => 'Zahlungsinformationen festlegen',
                     'cash-on-delivery'               => 'Nachnahme',
@@ -3106,6 +3550,42 @@ return [
                     'accepted-currencies'            => 'Akzeptierte Währungen',
                     'accepted-currencies-info'       => 'Fügen Sie Währungscodes mit Komma getrennt hinzu, z. B.: USD, EUR, ...',
                     'business-account'               => 'Geschäftskonto',
+=======
+                    'accepted-currencies'            => 'Akzeptierte Währungen',
+                    'accepted-currencies-info'       => 'Fügen Sie Währungscode durch Komma getrennt hinzu, z.B. USD,INR,...',
+                    'business-account'               => 'Geschäftskonto',
+                    'cash-on-delivery-info'          => 'Zahlungsmethode, bei der Kunden bei Erhalt der Waren oder Dienstleistungen an ihrer Tür in bar zahlen.',
+                    'cash-on-delivery'               => 'Nachnahme',
+                    'client-id'                      => 'Client-ID',
+                    'client-id-info'                 => 'Verwenden Sie "sb" für Tests.',
+                    'client-secret'                  => 'Client-Geheimnis',
+                    'client-secret-info'             => 'Fügen Sie hier Ihren geheimen Schlüssel hinzu',
+                    'description'                    => 'Beschreibung',
+                    'generate-invoice-applicable'    => 'Anwendbar, wenn die automatische Rechnungserstellung aktiviert ist',
+                    'generate-invoice'               => 'Rechnung automatisch nach Bestellung generieren',
+                    'info'                           => 'Zahlungsmethodeninformationen festlegen',
+                    'instructions'                   => 'Anweisungen',
+                    'logo-information'               => 'Die Bildauflösung sollte etwa 55px X 45px betragen',
+                    'logo'                           => 'Logo',
+                    'money-transfer'                 => 'Geldüberweisung',
+                    'money-transfer-info'            => 'Überweisung von Geldern von einer Person oder einem Konto auf ein anderes, oft elektronisch, für verschiedene Zwecke wie Transaktionen oder Überweisungen.',
+                    'mailing-address'                => 'Scheck senden an',
+                    'pending'                        => 'Ausstehend',
+                    'paid'                           => 'Bezahlt',
+                    'processing'                     => 'In Bearbeitung',
+                    'pending-payment'                => 'Ausstehende Zahlung',
+                    'page-title'                     => 'Zahlungsmethoden',
+                    'paypal-standard'                => 'PayPal Standard',
+                    'paypal-standard-info'           => 'PayPal Standard ist eine grundlegende PayPal-Zahlungsoption für Online-Geschäfte, die es Kunden ermöglicht, mit ihren PayPal-Konten oder Kredit-/Debitkarten zu bezahlen.',
+                    'paypal-smart-button'            => 'PayPal',
+                    'paypal-smart-button-info'       => 'PayPal Smart Button: Vereinfacht Online-Zahlungen mit anpassbaren Schaltflächen für sichere, multiformale Transaktionen auf Websites und Apps.',
+                    'set-invoice-status'             => 'Rechnungsstatus nach Erstellung der Rechnung auf',
+                    'status'                         => 'Status',
+                    'sort-order'                     => 'Sortierreihenfolge',
+                    'set-order-status'               => 'Bestellstatus nach Erstellung der Rechnung auf',
+                    'sandbox'                        => 'Sandkasten',
+                    'title'                          => 'Titel',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 ],
 
                 'order-settings' => [
@@ -3250,6 +3730,12 @@ return [
                 'reviews'                  => 'Bewertungen',
                 'roles'                    => 'Rollen',
                 'sales'                    => 'Vertrieb',
+<<<<<<< HEAD
+=======
+                'search-synonyms'          => 'Suchsynonyme',
+                'search-terms'             => 'Suchbegriffe',
+                'search-seo'               => 'Suche & SEO',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'shipments'                => 'Versand',
                 'settings'                 => 'Einstellungen',
                 'sitemaps'                 => 'Sitemaps',
@@ -3257,6 +3743,11 @@ return [
                 'tax-categories'           => 'Steuerkategorien',
                 'tax-rates'                => 'Steuersätze',
                 'transactions'             => 'Transaktionen',
+<<<<<<< HEAD
+=======
+                'themes'                   => 'Themen',
+                'url-rewrites'             => 'URL-Rewrites',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'users'                    => 'Benutzer',
             ],
         ],
@@ -3334,12 +3825,22 @@ return [
 
         'products' => [
             'search' => [
+<<<<<<< HEAD
                 'add-btn'     => 'Ausgewähltes Produkt hinzufügen',
                 'empty-title' => 'Keine Produkte gefunden',
                 'empty-info'  => 'Für den Suchbegriff sind keine Produkte verfügbar.',
                 'qty'         => ':qty verfügbar',
                 'sku'         => 'SKU - :sku',
                 'title'       => 'Produkte auswählen',
+=======
+                'add-btn'       => 'Ausgewähltes Produkt hinzufügen',
+                'empty-info'    => 'Keine Produkte für den Suchbegriff verfügbar.',
+                'empty-title'   => 'Keine Produkte gefunden',
+                'product-image' => 'Produktbild',
+                'qty'           => ':qty verfügbar',
+                'sku'           => 'SKU - :sku',
+                'title'         => 'Produkte auswählen',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             ],
         ],
 
@@ -3348,6 +3849,32 @@ return [
                 'add-image-btn'     => 'Bild hinzufügen',
                 'allowed-types'     => 'png, jpeg, jpg',
                 'not-allowed-error' => 'Nur Bilddateien (.jpeg, .jpg, .png, ..) sind erlaubt.',
+<<<<<<< HEAD
+=======
+                'ai-add-image-btn'  => 'Magie KI',
+                'ai-btn-info'       => 'Bild generieren',
+
+                'ai-generation' => [
+                    '1024x1024'        => '1024x1024',
+                    '1024x1792'        => '1024x1792',
+                    '1792x1024'        => '1792x1024',
+                    'apply'            => 'Anwenden',
+                    'dall-e-2'         => 'Dall.E 2',
+                    'dall-e-3'         => 'Dall.E 3',
+                    'generate'         => 'Generieren',
+                    'generating'       => 'Generiere...',
+                    'hd'               => 'HD',
+                    'model'            => 'Modell',
+                    'number-of-images' => 'Anzahl der Bilder',
+                    'prompt'           => 'Aufforderung',
+                    'quality'          => 'Qualität',
+                    'regenerate'       => 'Neu generieren',
+                    'regenerating'     => 'Regeneriere...',
+                    'size'             => 'Größe',
+                    'standard'         => 'Standard',
+                    'title'            => 'KI-Bildgenerierung',
+                ],
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 
                 'placeholders'  => [
                     'front'     => 'Vorderseite',
@@ -3364,6 +3891,23 @@ return [
                 'not-allowed-error' => 'Nur Videodateien (.mp4, .mov, .ogg ..) sind erlaubt.',
             ],
         ],
+<<<<<<< HEAD
+=======
+
+        'tinymce' => [
+            'ai-btn-tile' => 'Magie KI',
+
+            'ai-generation' => [
+                'title'                  => 'KI-Unterstützung',
+                'prompt'                 => 'Aufforderung',
+                'generating'             => 'Wird generiert...',
+                'generate'               => 'Generieren',
+                'generated-content'      => 'Generierter Inhalt',
+                'generated-content-info' => 'KI-Inhalte können irreführend sein. Bitte überprüfen Sie den generierten Inhalt, bevor Sie ihn anwenden.',
+                'apply'                  => 'Anwenden',
+            ],
+        ],
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
     ],
 
     'acl' => [
@@ -3394,18 +3938,31 @@ return [
         'invoices'                 => 'Rechnungen',
         'inventory-sources'        => 'Inventarquellen',
         'locales'                  => 'Sprachen',
+<<<<<<< HEAD
         'mass-delete'              => 'Massenlöschung',
         'mass-update'              => 'Massenaktualisierung',
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         'marketing'                => 'Marketing',
         'newsletter-subscriptions' => 'Newsletter-Abonnements',
         'note'                     => 'Notiz',
         'orders'                   => 'Bestellungen',
         'products'                 => 'Produkte',
         'promotions'               => 'Promotionen',
+<<<<<<< HEAD
+=======
+        'reporting'                => 'Berichterstattung',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         'refunds'                  => 'Rückerstattungen',
         'reviews'                  => 'Bewertungen',
         'roles'                    => 'Rollen',
         'sales'                    => 'Verkäufe',
+<<<<<<< HEAD
+=======
+        'search-synonyms'          => 'Suchsynonyme',
+        'search-terms'             => 'Suchbegriffe',
+        'search-seo'               => 'Suche & SEO',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         'shipments'                => 'Lieferungen',
         'settings'                 => 'Einstellungen',
         'subscribers'              => 'Newsletter-Abonnenten',
@@ -3415,6 +3972,10 @@ return [
         'tax-categories'           => 'Steuerkategorien',
         'tax-rates'                => 'Steuersätze',
         'transactions'             => 'Transaktionen',
+<<<<<<< HEAD
+=======
+        'url-rewrites'             => 'URL-Rewrites',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         'users'                    => 'Benutzer',
         'view'                     => 'Ansehen',
     ],
@@ -3451,6 +4012,7 @@ return [
     ],
 
     'export' => [
+<<<<<<< HEAD
         'allowed-type'     => 'Zulässiger Typ :',
         'csv'              => 'CSV',
         'download'         => 'Herunterladen',
@@ -3466,6 +4028,12 @@ return [
         'upload'           => 'Hochladen',
         'upload-error'     => 'Die Datei muss ein Dateityp sein: xls, xlsx, csv.',
         'upload-success'   => ':name erfolgreich hochgeladen',
+=======
+        'csv'              => 'CSV',
+        'download'         => 'Herunterladen',
+        'export'           => 'Exportieren',
+        'no-records'       => 'Nichts zu exportieren',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         'xls'              => 'XLS',
     ],
 
@@ -3491,6 +4059,17 @@ return [
             ],
         ],
 
+<<<<<<< HEAD
+=======
+        'customers' => [
+            'registration' => [
+                'description' => 'Ein neues Kundenkonto wurde erfolgreich erstellt. Sie können sich nun mit ihrer E-Mail-Adresse und ihrem Passwort anmelden. Sobald sie angemeldet sind, haben sie Zugriff auf verschiedene Dienste, einschließlich der Möglichkeit, frühere Bestellungen einzusehen, Wunschlisten zu verwalten und ihre Kontoinformationen zu aktualisieren.',
+                'greeting'    => 'Wir heißen den neuen Kunden :customer_name, der sich gerade bei uns registriert hat, herzlich willkommen!',
+                'subject'     => 'Neukundenregistrierung',
+            ],
+        ],
+
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         'orders' => [
             'created' => [
                 'greeting' => 'Sie haben eine neue Bestellung :order_id am :created_at aufgegeben',
@@ -3542,11 +4121,19 @@ return [
             'payment'           => 'Zahlung',
             'price'             => 'Preis',
             'qty'               => 'Menge',
+<<<<<<< HEAD
             'shipping-address'  => 'Lieferadresse',
             'shipping'          => 'Versand',
             'sku'               => 'SKU',
             'subtotal'          => 'Zwischensumme',
             'shipping-handling' => 'Versand und Bearbeitung',
+=======
+            'shipping'          => 'Versand',
+            'shipping-address'  => 'Lieferadresse',
+            'shipping-handling' => 'Versand und Bearbeitung',
+            'sku'               => 'SKU',
+            'subtotal'          => 'Zwischensumme',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             'tax'               => 'Steuer',
         ],
     ],

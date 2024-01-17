@@ -4,9 +4,15 @@ namespace Webkul\Admin\Http\Controllers\Marketing\Communications;
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Event;
+<<<<<<< HEAD
 use Webkul\Admin\Http\Controllers\Controller;
 use Webkul\Marketing\Repositories\TemplateRepository;
 use Webkul\Admin\DataGrids\Marketing\Communications\EmailTemplateDataGrid;
+=======
+use Webkul\Admin\DataGrids\Marketing\Communications\EmailTemplateDataGrid;
+use Webkul\Admin\Http\Controllers\Controller;
+use Webkul\Marketing\Repositories\TemplateRepository;
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 
 class TemplateController extends Controller
 {
@@ -61,7 +67,11 @@ class TemplateController extends Controller
         $template = $this->templateRepository->create(request()->only([
             'name',
             'status',
+<<<<<<< HEAD
             'content'
+=======
+            'content',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         ]));
 
         Event::dispatch('marketing.templates.create.after', $template);
@@ -103,7 +113,11 @@ class TemplateController extends Controller
         $template = $this->templateRepository->update(request()->only([
             'name',
             'status',
+<<<<<<< HEAD
             'content'
+=======
+            'content',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         ]), $id);
 
         Event::dispatch('marketing.templates.update.after', $template);
@@ -116,8 +130,12 @@ class TemplateController extends Controller
     /**
      * Remove the specified resource from storage.
      *
+<<<<<<< HEAD
      * @param int $id
      * @return \Illuminate\Http\JsonResponse
+=======
+     * @param  int  $id
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      */
     public function destroy($id): JsonResponse
     {
@@ -131,13 +149,21 @@ class TemplateController extends Controller
             Event::dispatch('marketing.templates.delete.after', $id);
 
             return new JsonResponse([
+<<<<<<< HEAD
                 'message' => trans('admin::app.marketing.communications.templates.delete-success')
+=======
+                'message' => trans('admin::app.marketing.communications.templates.delete-success'),
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             ]);
         } catch (\Exception $e) {
         }
 
         return new JsonResponse([
             'message' => trans('admin::app.marketing.communications.templates.delete-failed', ['name' => 'admin::app.marketing.communications.templates.email-template']
+<<<<<<< HEAD
         )], 400);
+=======
+            )], 400);
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
     }
 }

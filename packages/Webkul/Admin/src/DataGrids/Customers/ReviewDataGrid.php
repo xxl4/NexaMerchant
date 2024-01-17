@@ -84,7 +84,7 @@ class ReviewDataGrid extends DataGrid
                 } elseif ($value->product_review_status == 'pending') {
                     return '<p class="label-pending">' . trans('admin::app.customers.reviews.index.datagrid.pending') . '</p>';
                 } elseif ($value->product_review_status == 'disapproved') {
-                    return '<p class="label-cancelled">' . trans('admin::app.customers.reviews.index.datagrid.disapproved') . '</p>';
+                    return '<p class="label-canceled">' . trans('admin::app.customers.reviews.index.datagrid.disapproved') . '</p>';
                 }
             },
         ]);
@@ -144,6 +144,7 @@ class ReviewDataGrid extends DataGrid
     {
         if (bouncer()->hasPermission('customers.reviews.edit')) {
             $this->addAction([
+                'index'  => 'edit',
                 'icon'   => 'icon-edit',
                 'title'  => trans('admin::app.customers.reviews.index.datagrid.edit'),
                 'method' => 'GET',
@@ -155,6 +156,7 @@ class ReviewDataGrid extends DataGrid
 
         if (bouncer()->hasPermission('customers.reviews.delete')) {
             $this->addAction([
+                'index'  => 'delete',
                 'icon'   => 'icon-delete',
                 'title'  => trans('admin::app.customers.reviews.index.datagrid.delete'),
                 'method' => 'DELETE',
@@ -172,7 +174,7 @@ class ReviewDataGrid extends DataGrid
      */
     public function prepareMassActions()
     {
-        if (bouncer()->hasPermission('customers.reviews.mass-delete')) {
+        if (bouncer()->hasPermission('customers.reviews.delete')) {
             $this->addMassAction([
                 'title'  => trans('admin::app.customers.reviews.index.datagrid.delete'),
                 'url'    => route('admin.customers.customers.review.mass_delete'),
@@ -180,7 +182,7 @@ class ReviewDataGrid extends DataGrid
             ]);
         }
 
-        if (bouncer()->hasPermission('customers.reviews.mass-update')) {
+        if (bouncer()->hasPermission('customers.reviews.edit')) {
             $this->addMassAction([
                 'title'   => trans('admin::app.customers.reviews.index.datagrid.update-status'),
                 'method'  => 'POST',

@@ -3,6 +3,7 @@
 namespace Webkul\Admin\Http\Controllers\Sales;
 
 use Illuminate\Http\Request;
+<<<<<<< HEAD
 use Webkul\Admin\Http\Controllers\Controller;
 use Webkul\Sales\Repositories\OrderRepository;
 use Webkul\Sales\Repositories\InvoiceRepository;
@@ -10,6 +11,14 @@ use Webkul\Admin\DataGrids\Sales\OrderInvoicesDataGrid;
 use Webkul\Admin\DataGrids\Sales\InvoicesTransactionsDatagrid;
 use Webkul\Admin\Listeners\Invoice as InvoiceListener;
 use Webkul\Core\Traits\PDFHandler;
+=======
+use Illuminate\Support\Facades\Event;
+use Webkul\Admin\DataGrids\Sales\OrderInvoicesDataGrid;
+use Webkul\Admin\Http\Controllers\Controller;
+use Webkul\Core\Traits\PDFHandler;
+use Webkul\Sales\Repositories\InvoiceRepository;
+use Webkul\Sales\Repositories\OrderRepository;
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 
 class InvoiceController extends Controller
 {
@@ -23,9 +32,13 @@ class InvoiceController extends Controller
     public function __construct(
         protected OrderRepository $orderRepository,
         protected InvoiceRepository $invoiceRepository,
+<<<<<<< HEAD
         protected InvoiceListener $invoiceListener
     )
     {
+=======
+    ) {
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
     }
 
     /**
@@ -45,6 +58,7 @@ class InvoiceController extends Controller
     /**
      * Show the form for creating a new resource.
      *
+<<<<<<< HEAD
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -56,6 +70,8 @@ class InvoiceController extends Controller
     /**
      * Show the form for creating a new resource.
      *
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      * @param  int  $orderId
      * @return \Illuminate\View\View
      */
@@ -71,7 +87,11 @@ class InvoiceController extends Controller
     }
 
     /**
+<<<<<<< HEAD
      * Store a newly created resource in storage.
+=======
+     * (Store) a newly created resource in storage.
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      *
      * @param  int  $orderId
      * @return \Illuminate\Http\Response
@@ -130,7 +150,11 @@ class InvoiceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+<<<<<<< HEAD
     public function sendDuplicate(Request $request, $id)
+=======
+    public function sendDuplicateEmail(Request $request, $id)
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
     {
         $request->validate([
             'email' => 'required|email',
@@ -140,11 +164,19 @@ class InvoiceController extends Controller
 
         $invoice->email = request()->input('email');
 
+<<<<<<< HEAD
         $this->invoiceListener->afterCreated($invoice);
 
         session()->flash('success', trans('admin::app.sales.invoices.view.invoice-sent'));
 
         return redirect()->back();
+=======
+        Event::dispatch('sales.invoice.send_duplicate_email', $invoice);
+
+        session()->flash('success', trans('admin::app.sales.invoices.view.invoice-sent'));
+
+        return redirect()->route('admin.sales.invoices.view', $invoice->id);
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
     }
 
     /**

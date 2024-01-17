@@ -485,13 +485,33 @@ return [
                     'transaction-amount' => 'Tutar',
                 ],
 
+<<<<<<< HEAD
                 'edit'  => [
+=======
+                'create'  => [
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     'already-paid'               => 'Zaten ödendi',
                     'invoice-missing'            => 'Fatura eksik',
                     'transaction-amount-zero'    => 'İşlem tutarı sıfır',
                     'transaction-amount-exceeds' => 'İşlem tutarı aşılıyor',
                     'transaction-saved'          => 'İşlem başarıyla kaydedildi',
                 ],
+<<<<<<< HEAD
+=======
+
+                'view' => [
+                    'title'            => 'İşlem Detayları',
+                    'transaction-data' => 'İşlem Verileri',
+                    'transaction-id'   => 'İşlem ID',
+                    'order-id'         => 'Sipariş ID',
+                    'invoice-id'       => 'Fatura ID',
+                    'payment-method'   => 'Ödeme Yöntemi',
+                    'created-at'       => 'Oluşturulma Tarihi',
+                    'status'           => 'Durum',
+                    'payment-details'  => 'Ödeme Detayları',
+                    'amount'           => 'Miktar',
+                ],
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             ],
         ],
     ],
@@ -521,6 +541,7 @@ return [
                 ],
 
                 'datagrid'   => [
+<<<<<<< HEAD
                     'attribute-family'       => 'Özellik Ailesi',
                     'attribute-family-value' => 'Özellik Ailesi - :attribute_family',
                     'active'                 => 'Aktif',
@@ -545,10 +566,41 @@ return [
                     'update-status'          => 'Durumu Güncelle',
                     'mass-update-success'    => 'Seçilen Ürünler Başarıyla Güncellendi',
                     'mass-delete-success'    => 'Seçilen Ürünler Başarıyla Silindi',
+=======
+                    'attribute-family'              => 'Özellik Ailesi',
+                    'attribute-family-value'        => 'Özellik Ailesi - :attribute_family',
+                    'active'                        => 'Aktif',
+                    'category'                      => 'Kategori',
+                    'copy-of'                       => 'Kopyası :value',
+                    'copy-of-slug'                  => 'kopyası-:value',
+                    'disable'                       => 'Devre Dışı',
+                    'delete'                        => 'Sil',
+                    'image'                         => 'Resim',
+                    'id'                            => 'Kimlik',
+                    'id-value'                      => 'Kimlik - :id',
+                    'mass-update-success'           => 'Seçilen Ürünler Başarıyla Güncellendi',
+                    'mass-delete-success'           => 'Seçilen Ürünler Başarıyla Silindi',
+                    'name'                          => 'Ad',
+                    'out-of-stock'                  => 'Stokta Yok',
+                    'price'                         => 'Fiyat',
+                    'product-image'                 => 'Ürün Resmi',
+                    'qty'                           => 'Miktar',
+                    'qty-value'                     => ':qty Mevcut',
+                    'sku-value'                     => 'SKU - :sku',
+                    'sku'                           => 'SKU',
+                    'status'                        => 'Durum',
+                    'type'                          => 'Tür',
+                    'update-status'                 => 'Durumu Güncelle',
+                    'variant-already-exist-message' => 'Aynı özellik seçeneklerine sahip varyant zaten mevcut.',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 ],
             ],
 
             'edit' => [
+<<<<<<< HEAD
+=======
+                'preview'  => 'Önizleme',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'save-btn' => 'Ürünü Kaydet',
                 'title'    => 'Ürünü Düzenle',
                 'remove'   => 'Kaldır',
@@ -573,7 +625,11 @@ return [
                             'fixed'          => 'Sabit',
                             'price-type'     => 'Fiyat Türü',
                             'price'          => 'Fiyat',
+<<<<<<< HEAD
                             'qty'            => 'Miktar',
+=======
+                            'qty'            => 'Minimum Adet',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                             'save-btn'       => 'Kaydet',
                             'update-title'   => 'Müşteri Grubu Fiyatını Güncelle',
                         ],
@@ -665,6 +721,7 @@ return [
                         ],
 
                         'mass-edit' => [
+<<<<<<< HEAD
                             'select-variants'  => 'Varyantları Seç',
                             'select-action'    => 'Eylemi Seç',
                             'edit-prices'      => 'Fiyatları Düzenle',
@@ -675,6 +732,30 @@ return [
                             'price'            => 'Fiyat',
                             'apply-to-all-sku' => 'Tüm SKU\'lara fiyat uygula.',
                             'apply-to-all-btn' => 'Tümüne Uygula',
+=======
+                            'add-images'          => 'Resim Ekle',
+                            'apply-to-all-btn'    => 'Hepsine Uygula',
+                            'apply-to-all-name'   => 'Adı tüm varyantlara uygula.',
+                            'apply-to-all-sku'    => 'Fiyatı tüm SKU\'lara uygula.',
+                            'apply-to-all-status' => 'Durumu tüm varyantlara uygula.',
+                            'apply-to-all-weight' => 'Tüm varyantlara ağırlık uygula.',
+                            'edit-inventories'    => 'Envanterleri Düzenle',
+                            'edit-names'          => 'İsimleri Düzenle',
+                            'edit-prices'         => 'Fiyatları Düzenle',
+                            'edit-sku'            => 'SKU\'ları Düzenle',
+                            'edit-status'         => 'Durumu Düzenle',
+                            'edit-weight'         => 'Ağırlığı Düzenle',
+                            'name'                => 'Ad',
+                            'price'               => 'Fiyat',
+                            'remove-images'       => 'Resimleri Kaldır',
+                            'remove-variants'     => 'Varyantları Kaldır',
+                            'select-action'       => 'Eylemi Seç',
+                            'select-variants'     => 'Varyantları Seç',
+                            'status'              => 'Durum',
+                            'variant-name'        => 'Varyant Adı',
+                            'variant-sku'         => 'Varyant SKU',
+                            'weight'              => 'Ağırlık',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                         ],
                     ],
 
@@ -861,6 +942,10 @@ return [
                 'multiselect'           => 'Çoklu Seçim',
                 'no'                    => 'Hayır',
                 'number'                => 'Sayı',
+<<<<<<< HEAD
+=======
+                'options'               => 'Seçenekler',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'price'                 => 'Fiyat',
                 'position'              => 'Konum',
                 'regex'                 => 'Regex',
@@ -923,6 +1008,10 @@ return [
                 'multiselect'           => 'Çoklu Seçim',
                 'no'                    => 'Hayır',
                 'number'                => 'Sayı',
+<<<<<<< HEAD
+=======
+                'options'               => 'Seçenekler',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'price'                 => 'Fiyat',
                 'position'              => 'Konum',
                 'regex'                 => 'Regex',
@@ -1089,7 +1178,12 @@ return [
                 'enter-name'                       => 'Ad Girin',
                 'column'                           => 'Sütun',
                 'add-group-title'                  => 'Yeni Grup Ekle',
+<<<<<<< HEAD
                 'group-already-exists'             => 'Bir özellik grubu adı zaten mevcut.',
+=======
+                'group-code-already-exists'        => 'Bir özellik grubu kodu zaten mevcut.',
+                'group-name-already-exists'        => 'Bir özellik grubu adı zaten mevcut.',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'select-group'                     => 'Lütfen bir özellik grubu seçin.',
                 'group-contains-system-attributes' => 'Bu grup sistem özelliklerini içeriyor. Önce sistem özelliklerini başka bir gruba taşıyın ve tekrar deneyin.',
                 'removal-not-possible'             => 'Sistem özelliklerini özellik ailesinden kaldıramazsınız.',
@@ -1115,7 +1209,12 @@ return [
                 'enter-name'                       => 'Ad Girin',
                 'column'                           => 'Sütun',
                 'add-group-title'                  => 'Yeni Grup Ekle',
+<<<<<<< HEAD
                 'group-already-exists'             => 'Bir özellik grubu adı zaten mevcut.',
+=======
+                'group-code-already-exists'        => 'Bir özellik grubu kodu zaten mevcut.',
+                'group-name-already-exists'        => 'Bir özellik grubu adı zaten mevcut.',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'select-group'                     => 'Lütfen bir özellik grubu seçin.',
                 'group-contains-system-attributes' => 'Bu grup sistem özelliklerini içeriyor. Önce sistem özelliklerini başka bir gruba taşıyın ve tekrar deneyin.',
                 'removal-not-possible'             => 'Sistem özelliklerini özellik ailesinden kaldıramazsınız.',
@@ -1247,6 +1346,11 @@ return [
                 'orders'                      => 'Siparişler (:sipariş_sayısı)',
                 'order-id'                    => 'Sipariş ID',
                 'order-id-prefix'             => '# :sipariş_id',
+<<<<<<< HEAD
+=======
+                'of'                          => '-den',
+                'per-page'                    => 'sayfa başına',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'processing'                  => 'İşleniyor',
                 'pending'                     => 'Beklemede',
                 'completed'                   => 'Tamamlandı',
@@ -1907,6 +2011,7 @@ return [
             ],
         ],
 
+<<<<<<< HEAD
         'sitemaps' => [
             'index' => [
                 'title'      => 'Site Haritaları',
@@ -1952,6 +2057,173 @@ return [
             ],
 
             'delete-failed'  => ':name Silme Başarısız',
+=======
+        'search-seo' => [
+            'search-terms' => [
+                'index' => [
+                    'title'      => 'Arama Terimleriniz',
+                    'create-btn' => 'Arama Terimi Oluştur',
+
+                    'datagrid' => [
+                        'id'                  => 'ID',
+                        'search-query'        => 'Arama Sorgusu',
+                        'Channel'             => 'Kanal',
+                        'results'             => 'Sonuçlar',
+                        'uses'                => 'Kullanım',
+                        'redirect-url'        => 'Yönlendirme URL\'si',
+                        'channel'             => 'Kanal',
+                        'locale'              => 'Yerel Ayar',
+                        'edit'                => 'Düzenle',
+                        'delete'              => 'Sil',
+                        'actions'             => 'İşlemler',
+                        'mass-delete-success' => 'Seçilen Arama Terimleri Başarıyla Silindi',
+                    ],
+
+                    'create' => [
+                        'search-query'   => 'Arama Sorgusu',
+                        'Channel'        => 'Kanal',
+                        'results'        => 'Sonuçlar',
+                        'uses'           => 'Kullanım',
+                        'redirect-url'   => 'Yönlendirme URL\'si',
+                        'channel'        => 'Kanal',
+                        'locale'         => 'Yerel Ayar',
+                        'save-btn'       => 'Arama Terimini Kaydet',
+                        'title'          => 'Arama Terimi Oluştur',
+                        'success'        => 'Arama Terimi Başarıyla Oluşturuldu',
+                        'delete-warning' => 'Bu işlemi gerçekleştirmek istediğinizden emin misiniz?',
+                    ],
+
+                    'edit' => [
+                        'title'          => 'Arama Terimini Düzenle',
+                        'success'        => 'Arama Terimi Başarıyla Güncellendi',
+                        'delete-success' => 'Arama Terimi Başarıyla Silindi',
+                    ],
+                ],
+            ],
+
+            'search-synonyms' => [
+                'index' => [
+                    'title'      => 'Arama Eşanlamlıları',
+                    'create-btn' => 'Arama Eşanlamlısı Oluştur',
+
+                    'datagrid' => [
+                        'id'                  => 'Kimlik',
+                        'name'                => 'Adı',
+                        'terms'               => 'Terimler',
+                        'edit'                => 'Düzenle',
+                        'delete'              => 'Sil',
+                        'actions'             => 'İşlemler',
+                        'mass-delete-success' => 'Seçilen Arama Eşanlamlıları Başarıyla Silindi',
+                    ],
+
+                    'create' => [
+                        'name'           => 'Adı',
+                        'terms'          => 'Terimler',
+                        'terms-info'     => 'Eşanlamlıları virgülle ayrılmış bir liste olarak girin, örneğin "ayakkabı,ayakkabı." Bu, aramayı tüm terimleri içerecek şekilde genişletir.',
+                        'save-btn'       => 'Arama Eşanlamı Kaydet',
+                        'title'          => 'Arama Eşanlamı Oluştur',
+                        'success'        => 'Arama Eşanlamı başarıyla oluşturuldu',
+                        'delete-warning' => 'Bu işlemi gerçekleştirmek istediğinizden emin misiniz?',
+                    ],
+
+                    'edit' => [
+                        'title'          => 'Arama Eşanlamı Düzenle',
+                        'success'        => 'Arama Eşanlamı başarıyla güncellendi',
+                        'delete-success' => 'Arama Eşanlamı başarıyla silindi',
+                    ],
+                ],
+            ],
+
+            'sitemaps' => [
+                'index' => [
+                    'title'      => 'Site Haritaları',
+                    'create-btn' => 'Site Haritası Oluştur',
+                    'sitemap'    => 'Site Haritası',
+
+                    'datagrid' => [
+                        'id'              => 'ID',
+                        'file-name'       => 'Dosya Adı',
+                        'path'            => 'Yol',
+                        'link-for-google' => 'Google için Link',
+                        'edit'            => 'Düzenle',
+                        'delete'          => 'Sil',
+                        'actions'         => 'İşlemler',
+                    ],
+
+                    'create'  => [
+                        'file-name'      => 'Dosya Adı',
+                        'file-name-info' => 'Örnek: sitemap.xml',
+                        'path'           => 'Yol',
+                        'path-info'      => 'Örnek: "/sitemap/" veya "Ana yol için /"',
+                        'save-btn'       => 'Site Haritasını Kaydet',
+                        'title'          => 'Site Haritası Oluştur',
+                        'success'        => 'Site haritası başarıyla oluşturuldu',
+                        'delete-warning' => 'Emin misiniz, bu işlemi gerçekleştirmek istediğinize?',
+                    ],
+
+                    'edit'  => [
+                        'title'          => 'Site Haritasını Düzenle',
+                        'success'        => 'Site haritası başarıyla güncellendi',
+                        'delete-success' => 'Site haritası başarıyla silindi',
+                    ],
+                ],
+
+                'edit'  => [
+                    'back-btn'       => 'Geri',
+                    'file-name'      => 'Dosya Adı',
+                    'file-name-info' => 'Örnek: sitemap.xml',
+                    'general'        => 'Genel',
+                    'path'           => 'Yol',
+                    'path-info'      => 'Örnek: "/sitemap/" veya "Ana yol için /"',
+                    'save-btn'       => 'Site Haritasını Kaydet',
+                ],
+
+                'delete-failed'  => ':name Silme Başarısız',
+            ],
+
+            'url-rewrites' => [
+                'index' => [
+                    'title'      => 'URL Yeniden Yönlendirmeleri',
+                    'create-btn' => 'URL Yeniden Yönlendirme Oluştur',
+
+                    'datagrid' => [
+                        'id'                  => 'ID',
+                        'for'                 => 'İçin',
+                        'request-path'        => 'İstek Yolu',
+                        'target-path'         => 'Hedef Yol',
+                        'redirect-type'       => 'Yönlendirme Türü',
+                        'locale'              => 'Yerel',
+                        'edit'                => 'Düzenle',
+                        'delete'              => 'Sil',
+                        'actions'             => 'İşlemler',
+                        'mass-delete-success' => 'Seçili URL Yeniden Yönlendirmeleri Başarıyla Silindi',
+                    ],
+
+                    'create' => [
+                        'for'                => 'İçin',
+                        'product'            => 'Ürün',
+                        'category'           => 'Kategori',
+                        'cms-page'           => 'CMS Sayfası',
+                        'request-path'       => 'İstek Yolu',
+                        'target-path'        => 'Hedef Yol',
+                        'redirect-type'      => 'Yönlendirme Türü',
+                        'temporary-redirect' => 'Geçici (302)',
+                        'permanent-redirect' => 'Kalıcı (301)',
+                        'locale'             => 'Yerel',
+                        'save-btn'           => 'URL Yeniden Yönlendirmeyi Kaydet',
+                        'title'              => 'URL Yeniden Yönlendirme Oluştur',
+                        'success'            => 'URL Yeniden Yönlendirmesi başarıyla oluşturuldu',
+                        'delete-warning'     => 'Bu işlemi gerçekleştirmek istediğinizden emin misiniz?',
+                    ],
+
+                    'edit' => [
+                        'title'          => 'URL Yeniden Yönlendirmeyi Düzenle',
+                        'success'        => 'URL Yeniden Yönlendirmesi başarıyla güncellendi',
+                        'delete-success' => 'URL Yeniden Yönlendirmesi başarıyla silindi',
+                    ],
+                ],
+            ],
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         ],
     ],
 
@@ -2136,8 +2408,13 @@ return [
 
         'inventory-sources' => [
             'index'  => [
+<<<<<<< HEAD
                 'title'      => 'Envanter Kaynakları',
                 'create-btn' => 'Envanter Kaynağı Oluştur',
+=======
+                'create-btn' => 'Envanter Kaynağı Oluştur',
+                'title'      => 'Envanter Kaynakları',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 
                 'datagrid' => [
                     'id'       => 'ID',
@@ -2258,9 +2535,25 @@ return [
 
             'rates'   => [
                 'index' => [
+<<<<<<< HEAD
                     'title'        => 'Vergi Oranları',
                     'tax-rate'     => 'Vergi Oranı',
                     'button-title' => 'Vergi Oranı Oluştur',
+=======
+                    'button-title' => 'Vergi Oranı Oluştur',
+                    'tax-rate'     => 'Vergi Oranı',
+                    'title'        => 'Vergi Oranları',
+
+                    'import' => [
+                        'duplicate-error'  => 'Kimlik benzersiz olmalı, satır :position\'da tekrarlanan kimlik :identifier.',
+                        'enough-row-error' => 'Dosyada yeterli satır yok',
+                        'import-btn'       => 'İçe Aktar',
+                        'title'            => 'Yükle',
+                        'upload-error'     => 'Dosya tipi: xls, xlsx, csv olmalıdır.',
+                        'upload-success'   => 'Vergi Oranı Başarıyla Yüklendi',
+                        'validation'       => 'İzin verilen Tür: xls, xlsx, csv.',
+                    ],
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 
                     'datagrid' => [
                         'id'         => 'ID',
@@ -2375,6 +2668,7 @@ return [
             ],
 
             'edit' => [
+<<<<<<< HEAD
                 'title'                  => 'Kanalı Düzenle',
                 'back-btn'               => 'Geri',
                 'save-btn'               => 'Kanalı Kaydet',
@@ -2406,6 +2700,39 @@ return [
                 'settings'               => 'Ayarlar',
                 'status'                 => 'Durum',
                 'maintenance-mode-text'  => 'Mesaj',
+=======
+                'allowed-ips'            => 'İzin Verilen IP Adresleri',
+                'back-btn'               => 'Geri',
+                'code'                   => 'Kod',
+                'currencies-and-locales' => 'Para Birimleri ve Diller',
+                'currencies'             => 'Para Birimleri',
+                'default-currency'       => 'Varsayılan Para Birimi',
+                'default-locale'         => 'Varsayılan Dil',
+                'description'            => 'Açıklama',
+                'design'                 => 'Tasarım',
+                'favicon-size'           => 'Resim çözünürlüğü 16 piksel X 16 piksel gibi olmalıdır',
+                'favicon'                => 'Favicon',
+                'general'                => 'Genel',
+                'hostname-placeholder'   => 'https://www.example.com (Sonuna kesme işareti ekleme.)',
+                'hostname'               => 'Ana Bilgisayar Adı',
+                'inventory-sources'      => 'Envanter Kaynakları',
+                'last-delete-error'      => 'En az bir Kanal gereklidir.',
+                'locales'                => 'Diller',
+                'logo-size'              => 'Resim çözünürlüğü 192 piksel X 50 piksel gibi olmalıdır',
+                'logo'                   => 'Logo',
+                'maintenance-mode-text'  => 'Mesaj',
+                'maintenance-mode'       => 'Bakım Modu',
+                'name'                   => 'Adı',
+                'root-category'          => 'Kök Kategori',
+                'save-btn'               => 'Kanalı Kaydet',
+                'seo-description'        => 'Meta açıklama',
+                'seo-keywords'           => 'Meta anahtar kelimeler',
+                'seo-title'              => 'Meta başlığı',
+                'seo'                    => 'Ana Sayfa SEO',
+                'status'                 => 'Durum',
+                'theme'                  => 'Tema',
+                'title'                  => 'Kanalı Düzenle',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'update-success'         => 'Kanal Başarıyla Güncellendi',
             ],
         ],
@@ -2550,6 +2877,10 @@ return [
                     'image-carousel'    => 'Resim Karuseli',
                     'product-carousel'  => 'Ürün Karuseli',
                     'static-content'    => 'Statik İçerik',
+<<<<<<< HEAD
+=======
+                    'services-content'  => 'Hizmetlerin İçeriği',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     'title'             => 'Tür',
                 ],
             ],
@@ -2588,7 +2919,11 @@ return [
                 'name'                          => 'Ad',
                 'product-carousel'              => 'Ürün Karuseli',
                 'product-carousel-description'  => 'Dinamik ve duyarlı bir ürün karuseli ile ürünleri zarif bir şekilde sergileyin.',
+<<<<<<< HEAD
                 'path'                          => 'Yol',
+=======
+                'url'                           => 'URL',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'preview'                       => 'Önizleme',
                 'slider'                        => 'Slider',
                 'static-content-description'    => 'Kitleniz için özgün, bilgilendirici statik içerikle etkileşimi artırın.',
@@ -2606,6 +2941,27 @@ return [
                 'update-slider'                 => 'Slider\'ı Güncelle',
                 'value-input'                   => 'Değer',
                 'value'                         => 'Değer: :value',
+<<<<<<< HEAD
+=======
+                'image-title'                   => 'Resim Başlığı',
+                'services-content'              => [
+                    'add-btn'            => 'Hizmetler Ekle',
+                    'channels'           => 'Kanallar',
+                    'description'        => 'Açıklama',
+                    'delete'             => 'Sil',
+                    'general'            => 'Genel',
+                    'name'               => 'Ad',
+                    'sort-order'         => 'Sıralama Düzeni',
+                    'services'           => 'Hizmetler',
+                    'service-info'       => 'Hizmetle ilgili tema özelleştirme.',
+                    'status'             => 'Durum',
+                    'save-btn'           => 'Kaydet',
+                    'service-icon-class' => 'Hizmet İkon Sınıfı',
+                    'service-icon'       => 'Hizmet İkonu',
+                    'title'              => 'Başlık',
+                    'update-service'     => 'Hizmetleri Güncelle',
+                ],
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             ],
 
             'create-success' => 'Tema başarıyla oluşturuldu',
@@ -2689,15 +3045,25 @@ return [
 
         'products' => [
             'index' => [
+<<<<<<< HEAD
                 'end-date'                         => 'Bitiş Tarihi',
                 'id'                               => 'Kimlik',
                 'interval'                         => 'Aralık',
+=======
+                'channel'                          => 'Kanal',
+                'end-date'                         => 'Bitiş Tarihi',
+                'id'                               => 'Kimlik',
+                'interval'                         => 'Aralık',
+                'last-search-terms'                => 'Son arama terimleri',
+                'locale'                           => 'Bölge',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'name'                             => 'Ad',
                 'orders'                           => 'Siparişler',
                 'price'                            => 'Fiyat',
                 'products-added-over-time'         => 'Zaman İçinde Eklenen Ürünler',
                 'products-with-most-reviews'       => 'En Çok İnceleme Alan Ürünler',
                 'products-with-most-visits'        => 'En Çok Ziyaret Alan Ürünler',
+<<<<<<< HEAD
                 'quantities'                       => 'Miktarlar',
                 'quantities-sold-over-time'        => 'Zaman İçinde Satılan Miktarlar',
                 'revenue'                          => 'Gelir',
@@ -2709,12 +3075,30 @@ return [
                 'total'                            => 'Toplam',
                 'total-products-added-to-wishlist' => 'İstek Listesine Eklenen Ürünler',
                 'total-sold-quantities'            => 'Satılan Ürün Miktarı',
+=======
+                'quantities-sold-over-time'        => 'Zaman İçinde Satılan Miktarlar',
+                'quantities'                       => 'Miktarlar',
+                'results'                          => 'Sonuçlar',
+                'revenue'                          => 'Gelir',
+                'reviews'                          => 'İncelemeler',
+                'search-term'                      => 'Arama terimi',
+                'start-date'                       => 'Başlangıç Tarihi',
+                'title'                            => 'Ürünler',
+                'top-search-terms'                 => 'En popüler arama terimleri',
+                'top-selling-products-by-quantity' => 'Miktarına Göre En Çok Satılan Ürünler',
+                'top-selling-products-by-revenue'  => 'Gelire Göre En Çok Satılan Ürünler',
+                'total-products-added-to-wishlist' => 'İstek Listesine Eklenen Ürünler',
+                'total-sold-quantities'            => 'Satılan Ürün Miktarı',
+                'total'                            => 'Toplam',
+                'uses'                             => 'Kullanımlar',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'view-details'                     => 'Detayları Görüntüle',
                 'visits'                           => 'Ziyaretler',
             ],
         ],
 
         'view' => [
+<<<<<<< HEAD
             'day'        => 'Gün',
             'end-date'   => 'Bitiş Tarihi',
             'export-csv' => 'CSV Olarak Dışa Aktar',
@@ -2722,6 +3106,16 @@ return [
             'month'      => 'Ay',
             'start-date' => 'Başlangıç Tarihi',
             'year'       => 'Yıl',
+=======
+            'day'           => 'Gün',
+            'end-date'      => 'Bitiş Tarihi',
+            'export-csv'    => 'CSV Olarak Dışa Aktar',
+            'export-xls'    => 'XLS Olarak Dışa Aktar',
+            'month'         => 'Ay',
+            'not-available' => 'Kayıt bulunamadı.',
+            'start-date'    => 'Başlangıç Tarihi',
+            'year'          => 'Yıl',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         ],
 
         'empty' => [
@@ -2732,6 +3126,10 @@ return [
 
     'configuration' => [
         'index' => [
+<<<<<<< HEAD
+=======
+            'back-btn'                     => 'Geri',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             'delete'                       => 'Sil',
             'enable-at-least-one-shipping' => 'En az bir nakliye yöntemi etkinleştirin.',
             'enable-at-least-one-payment'  => 'En az bir ödeme yöntemi etkinleştirin.',
@@ -2785,6 +3183,51 @@ return [
                         'title-info'      => 'Yönetici logosu, bir sistemin veya web sitesinin yönetim arayüzünü temsil eden karakteristik bir resim veya simgedir, genellikle özelleştirilebilir.',
                     ],
                 ],
+<<<<<<< HEAD
+=======
+
+                'magic-ai' => [
+                    'info'  => 'Sihirli AI seçeneklerini ayarla.',
+                    'title' => 'Sihirli AI',
+
+                    'settings' => [
+                        'title'        => 'Genel Ayarlar',
+                        'title-info'   => 'Magic AI özelliğini kullanımınızı geliştirmek için özel API Anahtarınızı girin ve sorunsuz entegrasyon için ilgili Kuruluşu belirtin. OpenAI kimlik bilgilerinizin kontrolünü ele alın ve ayarları belirli ihtiyaçlarınıza göre özelleştirin.',
+                        'enabled'      => 'Etkin',
+                        'api-key'      => 'API Anahtarı',
+                        'organization' => 'Kuruluş',
+                    ],
+
+                    'content-generation' => [
+                        'title'                            => 'İçerik Oluşturma',
+                        'title-info'                       => 'Bu özellik, AI kullanarak içerik yönetmek istediğiniz her WYSIWYG editörü için Magic AI\'yi etkinleştirir.<br/><br/>Etkinleştirildiğinde, içerik oluşturmak için herhangi bir editöre gidin.',
+                        'enabled'                          => 'Etkin',
+                        'product-short-description-prompt' => 'Ürün Kısa Açıklama İpucu',
+                        'product-description-prompt'       => 'Ürün Açıklama İpucu',
+                        'category-description-prompt'      => 'Kategori Açıklama İpucu',
+                        'cms-page-content-prompt'          => 'CMS Sayfa İçeriği İpucu',
+                    ],
+
+                    'image-generation' => [
+                        'title'      => 'Görüntü Oluşturma',
+                        'title-info' => 'Bu özellik, DALL-E kullanarak görüntü oluşturmak istediğiniz her görüntü yüklemesi için Magic AI\'yi etkinleştirir.<br/><br/>Etkinleştirildiğinde, herhangi bir görüntü yüklemeye gidin ve görüntü oluşturun.',
+                        'enabled'    => 'Etkin',
+                    ],
+
+                    'review-translation' => [
+                        'title'      => 'İnceleme Çevirisi',
+                        'title-info' => 'Müşteri veya ziyaretçiye müşteri incelemesini İngilizce\'ye çevirme seçeneği sunun.<br/><br/>Etkinleştirildiğinde, incelemelere gidin ve İngilizce olmayan bir inceleme varsa "İngilizce\'ye Çevir" düğmesini bulacaksınız.',
+                        'enabled'    => 'Etkin',
+                    ],
+
+                    'checkout-message' => [
+                        'title'      => 'Kişiselleştirilmiş Ödeme Mesajı',
+                        'title-info' => 'Müşteriler için Teşekkür Sayfasında kişisel bir ödeme mesajı oluşturun, içeriği bireysel tercihlere uyacak şekilde özelleştirin ve genel satın alma deneyimini iyileştirin.',
+                        'enabled'    => 'Etkin',
+                        'prompt'     => 'İpucu',
+                    ],
+                ],
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             ],
 
             'catalog' => [
@@ -3074,6 +3517,7 @@ return [
                 ],
 
                 'payment-methods' => [
+<<<<<<< HEAD
                     'page-title'                  => 'Ödeme Yöntemleri',
                     'info'                        => 'Ödeme yöntemi bilgilerini ayarlayın',
                     'cash-on-delivery'            => 'Kapıda Ödeme',
@@ -3106,6 +3550,42 @@ return [
                     'accepted-currencies'         => 'Kabul Edilen Para Birimleri',
                     'accepted-currencies-info'    => 'Para birimi kodunu virgülle ayırarak ekleyin, örneğin USD, INR, ...',
                     'business-account'            => 'İş Hesabı',
+=======
+                    'accepted-currencies'            => 'Kabul Edilen Para Birimleri',
+                    'accepted-currencies-info'       => 'Para birimi kodlarını virgülle ayırarak ekleyin, örneğin USD, INR,...',
+                    'business-account'               => 'İş Hesabı',
+                    'cash-on-delivery-info'          => 'Müşterilerin ürün veya hizmeti kapıda teslim alırken nakit ödeme yaptığı ödeme yöntemi.',
+                    'cash-on-delivery'               => 'Kapıda Nakit Ödeme',
+                    'client-id'                      => 'Müşteri Kimliği',
+                    'client-id-info'                 => 'Test için "sb" kullanın.',
+                    'client-secret'                  => 'Müşteri Sırrı',
+                    'client-secret-info'             => 'Buraya gizli anahtarınızı ekleyin',
+                    'description'                    => 'Açıklama',
+                    'generate-invoice-applicable'    => 'Otomatik fatura oluşturma etkinse geçerlidir',
+                    'generate-invoice'               => 'Sipariş verildikten sonra faturayı otomatik olarak oluştur',
+                    'info'                           => 'Ödeme yöntemleri bilgisi ayarla',
+                    'instructions'                   => 'Talimatlar',
+                    'logo-information'               => 'Resim çözünürlüğü 55px x 45px gibi olmalıdır',
+                    'logo'                           => 'Logo',
+                    'money-transfer'                 => 'Havale',
+                    'money-transfer-info'            => 'Fonların bir kişiden veya hesaptan başka birine, genellikle elektronik olarak, çeşitli amaçlar için aktarılması, işlemler veya havaleler gibi.',
+                    'mailing-address'                => 'Çeki Gönderilecek Adres',
+                    'pending'                        => 'Beklemede',
+                    'paid'                           => 'Ödenmiş',
+                    'processing'                     => 'İşleniyor',
+                    'pending-payment'                => 'Beklemede Ödeme',
+                    'page-title'                     => 'Ödeme Yöntemleri',
+                    'paypal-standard'                => 'PayPal Standart',
+                    'paypal-standard-info'           => 'PayPal Standart, online işletmeler için temel bir PayPal ödeme seçeneğidir; müşterilere PayPal hesapları veya kredi/debit kartları kullanarak ödeme yapma olanağı sağlar.',
+                    'paypal-smart-button'            => 'PayPal',
+                    'paypal-smart-button-info'       => 'PayPal Smart Button: Web siteleri ve uygulamalarda güvenli, çoklu yöntemli işlemler için özelleştirilebilir düğmelerle online ödemeleri kolaylaştırır.',
+                    'set-invoice-status'             => 'Fatura oluşturulduktan sonra fatura durumunu şuna ayarla',
+                    'status'                         => 'Durum',
+                    'sort-order'                     => 'Sıralama Sırası',
+                    'set-order-status'               => 'Fatura oluşturulduktan sonra sipariş durumunu şuna ayarla',
+                    'sandbox'                        => 'Kum Havuzu',
+                    'title'                          => 'Başlık',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 ],
 
                 'order-settings' => [
@@ -3250,6 +3730,12 @@ return [
                 'reviews'                  => 'Yorumlar',
                 'roles'                    => 'Roller',
                 'sales'                    => 'Satışlar',
+<<<<<<< HEAD
+=======
+                'search-synonyms'          => 'Arama Eşanlamlıları',
+                'search-terms'             => 'Arama Terimleri',
+                'search-seo'               => 'Arama ve SEO',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'shipments'                => 'Gönderiler',
                 'settings'                 => 'Ayarlar',
                 'sitemaps'                 => 'Site Haritaları',
@@ -3257,6 +3743,11 @@ return [
                 'tax-categories'           => 'Vergi Kategorileri',
                 'tax-rates'                => 'Vergi Oranları',
                 'transactions'             => 'İşlemler',
+<<<<<<< HEAD
+=======
+                'themes'                   => 'Temalar',
+                'url-rewrites'             => 'URL Yeniden Yazma',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'users'                    => 'Kullanıcılar',
             ],
         ],
@@ -3334,12 +3825,22 @@ return [
 
         'products' => [
             'search' => [
+<<<<<<< HEAD
                 'add-btn'     => 'Seçilen Ürünü Ekle',
                 'empty-title' => 'Ürün bulunamadı',
                 'empty-info'  => 'Arama terimi için uygun ürün bulunmuyor.',
                 'qty'         => ':qty Mevcut',
                 'sku'         => 'Stok Kodu - :sku',
                 'title'       => 'Ürünleri Seç',
+=======
+                'add-btn'       => 'Seçilen Ürünü Ekle',
+                'empty-info'    => 'Arama terimi için hiçbir ürün bulunamadı.',
+                'empty-title'   => 'Hiçbir ürün bulunamadı',
+                'product-image' => 'Ürün Resmi',
+                'qty'           => ':qty Mevcut',
+                'sku'           => 'Stok Kodu - :sku',
+                'title'         => 'Ürünleri Seç',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             ],
         ],
 
@@ -3348,6 +3849,32 @@ return [
                 'add-image-btn'     => 'Resim Ekle',
                 'allowed-types'     => 'png, jpeg, jpg',
                 'not-allowed-error' => 'Yalnızca resim dosyaları (.jpeg, .jpg, .png, ..) izin verilir.',
+<<<<<<< HEAD
+=======
+                'ai-add-image-btn'  => 'Sihirli AI',
+                'ai-btn-info'       => 'Resim Oluştur',
+
+                'ai-generation' => [
+                    '1024x1024'        => '1024x1024',
+                    '1024x1792'        => '1024x1792',
+                    '1792x1024'        => '1792x1024',
+                    'apply'            => 'Uygula',
+                    'dall-e-2'         => 'Dall.E 2',
+                    'dall-e-3'         => 'Dall.E 3',
+                    'generate'         => 'Oluştur',
+                    'generating'       => 'Oluşturuluyor...',
+                    'hd'               => 'HD',
+                    'model'            => 'Model',
+                    'number-of-images' => 'Resim Sayısı',
+                    'prompt'           => 'İpucu',
+                    'quality'          => 'Kalite',
+                    'regenerate'       => 'Yeniden Oluştur',
+                    'regenerating'     => 'Yeniden Oluşturuluyor...',
+                    'size'             => 'Boyut',
+                    'standard'         => 'Standart',
+                    'title'            => 'AI İmaj Oluşturma',
+                ],
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 
                 'placeholders'  => [
                     'front'     => 'Ön',
@@ -3364,6 +3891,23 @@ return [
                 'not-allowed-error' => 'Yalnızca video dosyaları (.mp4, .mov, .ogg ..) izin verilir.',
             ],
         ],
+<<<<<<< HEAD
+=======
+
+        'tinymce' => [
+            'ai-btn-tile' => 'Sihirli AI',
+
+            'ai-generation' => [
+                'title'                  => 'AI Yardımı',
+                'prompt'                 => 'İpucu',
+                'generating'             => 'Oluşturuluyor...',
+                'generate'               => 'Oluştur',
+                'generated-content'      => 'Oluşturulan İçerik',
+                'generated-content-info' => 'AI içeriği yanıltıcı olabilir. Lütfen uygulamadan önce oluşturulan içeriği gözden geçirin.',
+                'apply'                  => 'Uygula',
+            ],
+        ],
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
     ],
 
     'acl' => [
@@ -3394,18 +3938,31 @@ return [
         'invoices'                 => 'Faturalar',
         'inventory-sources'        => 'Envanter Kaynakları',
         'locales'                  => 'Yerel Ayarlar',
+<<<<<<< HEAD
         'mass-delete'              => 'Toplu Silme',
         'mass-update'              => 'Toplu Güncelleme',
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         'marketing'                => 'Pazarlama',
         'newsletter-subscriptions' => 'Bülten Abonelikleri',
         'note'                     => 'Not',
         'orders'                   => 'Siparişler',
         'products'                 => 'Ürünler',
         'promotions'               => 'Promosyonlar',
+<<<<<<< HEAD
+=======
+        'reporting'                => 'Raporlama',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         'refunds'                  => 'İade İşlemleri',
         'reviews'                  => 'Yorumlar',
         'roles'                    => 'Roller',
         'sales'                    => 'Satışlar',
+<<<<<<< HEAD
+=======
+        'search-synonyms'          => 'Arama Eşanlamlıları',
+        'search-terms'             => 'Arama Terimleri',
+        'search-seo'               => 'Arama ve SEO',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         'shipments'                => 'Gönderiler',
         'settings'                 => 'Ayarlar',
         'subscribers'              => 'Bülten Aboneleri',
@@ -3415,6 +3972,10 @@ return [
         'tax-categories'           => 'Vergi Kategorileri',
         'tax-rates'                => 'Vergi Oranları',
         'transactions'             => 'İşlemler',
+<<<<<<< HEAD
+=======
+        'url-rewrites'             => 'URL Yeniden Yazma',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         'users'                    => 'Kullanıcılar',
         'view'                     => 'Görüntüle',
     ],
@@ -3451,6 +4012,7 @@ return [
     ],
 
     'export' => [
+<<<<<<< HEAD
         'allowed-type'     => 'İzin Verilen Tür :',
         'csv'              => 'CSV',
         'duplicate-error'  => 'Kimlik benzersiz olmalı, kimlik :identifier sırasında yinelenen kimlik :position.',
@@ -3466,6 +4028,12 @@ return [
         'upload'           => 'Yükle',
         'upload-error'     => 'Dosya, xls, xlsx veya csv türünde bir dosya olmalıdır.',
         'upload-success'   => ':name Başarıyla Yüklendi',
+=======
+        'csv'              => 'CSV',
+        'download'         => 'İndir',
+        'export'           => 'Dışa Aktar',
+        'no-records'       => 'Dışa aktarılacak hiçbir şey yok',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         'xls'              => 'XLS',
     ],
 
@@ -3491,6 +4059,17 @@ return [
             ],
         ],
 
+<<<<<<< HEAD
+=======
+        'customers' => [
+            'registration' => [
+                'description' => 'Yeni bir müşteri hesabı başarıyla oluşturuldu. Artık e-posta adreslerini ve şifre bilgilerini kullanarak giriş yapabilirler. Giriş yaptıktan sonra geçmiş siparişleri inceleme, istek listelerini yönetme ve hesap bilgilerini güncelleme dahil olmak üzere çeşitli hizmetlere erişebilecekler.',
+                'greeting'    => 'Aramıza yeni kaydolan yeni müşterimiz :customer_name `e sıcak bir karşılama dileriz!',
+                'subject'     => 'Yeni Müşteri Kaydı',
+            ],
+        ],
+
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         'orders' => [
             'created' => [
                 'greeting' => ':created_at tarihinde yerleştirilen yeni bir Siparişiniz var :order_id',

@@ -2,16 +2,25 @@
 
 namespace Webkul\Admin\Helpers\Reporting;
 
+<<<<<<< HEAD
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Collection;
+=======
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\DB;
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 use Webkul\Core\Repositories\VisitRepository;
 
 class Visitor extends AbstractReporting
 {
     /**
      * Create a helper instance.
+<<<<<<< HEAD
      * 
      * @param  \Webkul\Core\Repositories\VisitRepository  $visitRepository
+=======
+     *
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      * @return void
      */
     public function __construct(protected VisitRepository $visitRepository)
@@ -21,9 +30,14 @@ class Visitor extends AbstractReporting
 
     /**
      * Retrieves total visitors and their progress.
+<<<<<<< HEAD
      * 
      * @param  string  $visitableType
      * @return array
+=======
+     *
+     * @param  string  $visitableType
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      */
     public function getTotalVisitorsProgress($visitableType = null): array
     {
@@ -36,7 +50,11 @@ class Visitor extends AbstractReporting
 
     /**
      * Retrieves total visitors and their progress.
+<<<<<<< HEAD
      * 
+=======
+     *
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      * @param  \Carbon\Carbon  $startDate
      * @param  \Carbon\Carbon  $endDate
      * @param  string  $visitableType
@@ -46,6 +64,10 @@ class Visitor extends AbstractReporting
     {
         if ($visitableType) {
             return $this->visitRepository
+<<<<<<< HEAD
+=======
+                ->resetModel()
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 ->where('visitable_type', $visitableType)
                 ->whereBetween('created_at', [$startDate, $endDate])
                 ->get()
@@ -53,6 +75,10 @@ class Visitor extends AbstractReporting
         }
 
         return $this->visitRepository
+<<<<<<< HEAD
+=======
+            ->resetModel()
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             ->whereNull('visitable_id')
             ->whereBetween('created_at', [$startDate, $endDate])
             ->get()
@@ -61,9 +87,14 @@ class Visitor extends AbstractReporting
 
     /**
      * Retrieves unique visitors and their progress.
+<<<<<<< HEAD
      * 
      * @param  string  $visitableType
      * @return array
+=======
+     *
+     * @param  string  $visitableType
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      */
     public function getTotalUniqueVisitorsProgress($visitableType = null): array
     {
@@ -76,7 +107,11 @@ class Visitor extends AbstractReporting
 
     /**
      * Retrieves total unique visitors
+<<<<<<< HEAD
      * 
+=======
+     *
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      * @param  \Carbon\Carbon  $startDate
      * @param  \Carbon\Carbon  $endDate
      * @param  string  $visitableType
@@ -86,6 +121,10 @@ class Visitor extends AbstractReporting
     {
         if ($visitableType) {
             return $this->visitRepository
+<<<<<<< HEAD
+=======
+                ->resetModel()
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 ->where('visitable_type', $visitableType)
                 ->groupBy(DB::raw('CONCAT(ip, "-", visitor_id, "-", visitable_type)'))
                 ->whereBetween('created_at', [$startDate, $endDate])
@@ -94,6 +133,10 @@ class Visitor extends AbstractReporting
         }
 
         return $this->visitRepository
+<<<<<<< HEAD
+=======
+            ->resetModel()
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             ->whereNull('visitable_id')
             ->groupBy(DB::raw('CONCAT(ip, "-", visitor_id)'))
             ->whereBetween('created_at', [$startDate, $endDate])
@@ -103,9 +146,14 @@ class Visitor extends AbstractReporting
 
     /**
      * Returns previous sales over time
+<<<<<<< HEAD
      * 
      * @param  string  $visitableType
      * @return array
+=======
+     *
+     * @param  string  $visitableType
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      */
     public function getPreviousTotalVisitorsOverTime($visitableType = null): array
     {
@@ -114,9 +162,14 @@ class Visitor extends AbstractReporting
 
     /**
      * Returns current sales over time
+<<<<<<< HEAD
      * 
      * @param  string  $visitableType
      * @return array
+=======
+     *
+     * @param  string  $visitableType
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      */
     public function getCurrentTotalVisitorsOverTime($visitableType = null): array
     {
@@ -125,9 +178,14 @@ class Visitor extends AbstractReporting
 
     /**
      * Returns previous sales over week
+<<<<<<< HEAD
      * 
      * @param  string  $visitableType
      * @return array
+=======
+     *
+     * @param  string  $visitableType
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      */
     public function getPreviousTotalVisitorsOverWeek($visitableType = null): array
     {
@@ -136,9 +194,14 @@ class Visitor extends AbstractReporting
 
     /**
      * Returns current sales over week
+<<<<<<< HEAD
      * 
      * @param  string  $visitableType
      * @return array
+=======
+     *
+     * @param  string  $visitableType
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      */
     public function getCurrentTotalVisitorsOverWeek($visitableType = null): array
     {
@@ -147,14 +210,24 @@ class Visitor extends AbstractReporting
 
     /**
      * Gets visitable with most visits.
+<<<<<<< HEAD
      * 
      * @param  string  $visitableType
      * @param  integer  $limit
      * @return \Illuminate\Database\Eloquent\Collection
+=======
+     *
+     * @param  string  $visitableType
+     * @param  int  $limit
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      */
     public function getVisitableWithMostVisits($visitableType = null, $limit = null): Collection
     {
         $visits = $this->visitRepository
+<<<<<<< HEAD
+=======
+            ->resetModel()
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             ->addSelect(
                 'id',
                 'visitable_type',
@@ -177,12 +250,19 @@ class Visitor extends AbstractReporting
 
     /**
      * Generates visitor graph data.
+<<<<<<< HEAD
      * 
+=======
+     *
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      * @param  \Carbon\Carbon  $startDate
      * @param  \Carbon\Carbon  $endDate
      * @param  string  $period
      * @param  string  $visitableType
+<<<<<<< HEAD
      * @return array
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      */
     public function getTotalVisitorsOverTime($startDate, $endDate, $period = 'auto', $visitableType = null): array
     {
@@ -191,6 +271,10 @@ class Visitor extends AbstractReporting
         $groupColumn = $config['group_column'];
 
         $results = $this->visitRepository
+<<<<<<< HEAD
+=======
+            ->resetModel()
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             ->select(
                 DB::raw("$groupColumn AS date"),
                 DB::raw('COUNT(*) AS total')
@@ -216,11 +300,18 @@ class Visitor extends AbstractReporting
 
     /**
      * Generates visitor over week graph data.
+<<<<<<< HEAD
      * 
      * @param  \Carbon\Carbon  $startDate
      * @param  \Carbon\Carbon  $endDate
      * @param  string  $visitableType
      * @return array
+=======
+     *
+     * @param  \Carbon\Carbon  $startDate
+     * @param  \Carbon\Carbon  $endDate
+     * @param  string  $visitableType
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      */
     public function getTotalVisitorsOverWeek($startDate, $endDate, $visitableType = null): array
     {
@@ -229,6 +320,10 @@ class Visitor extends AbstractReporting
         $weekDays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
         $visits = $this->visitRepository
+<<<<<<< HEAD
+=======
+            ->resetModel()
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             ->select(
                 DB::raw('DAYNAME(created_at) AS day'),
                 DB::raw('COUNT(*) AS count')
@@ -238,7 +333,10 @@ class Visitor extends AbstractReporting
             ->groupBy('day')
             ->get();
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         foreach ($weekDays as $day) {
             $total = $visits->where('day', $day)->first();
 
@@ -248,4 +346,8 @@ class Visitor extends AbstractReporting
 
         return $stats;
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61

@@ -6,10 +6,17 @@ use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Validation\ValidationException;
+<<<<<<< HEAD
 use Webkul\Admin\Http\Controllers\Controller;
 use Webkul\CartRule\Repositories\CartRuleRepository;
 use Webkul\Admin\DataGrids\Marketing\Promotions\CartRuleDataGrid;
 use Webkul\Admin\Http\Requests\CartRuleRequest;
+=======
+use Webkul\Admin\DataGrids\Marketing\Promotions\CartRuleDataGrid;
+use Webkul\Admin\Http\Controllers\Controller;
+use Webkul\Admin\Http\Requests\CartRuleRequest;
+use Webkul\CartRule\Repositories\CartRuleRepository;
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 
 class CartRuleController extends Controller
 {
@@ -49,13 +56,21 @@ class CartRuleController extends Controller
     /**
      * Copy a given Cart Rule id. Always make the copy is inactive so the
      * user is able to configure it before setting it live.
+<<<<<<< HEAD
      * 
      * @param int $cartRuleId
+=======
+     *
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      * @return \Illuminate\View\View
      */
     public function copy(int $cartRuleId)
     {
+<<<<<<< HEAD
         $cartRule = $this->cartRuleRepository->with(['channels', 'customer_groups',])->findOrFail($cartRuleId);
+=======
+        $cartRule = $this->cartRuleRepository->with(['channels', 'customer_groups'])->findOrFail($cartRuleId);
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 
         $copiedCartRule = $cartRule->replicate()->fill([
             'status' => 0,
@@ -160,8 +175,12 @@ class CartRuleController extends Controller
     /**
      * Remove the specified resource from storage.
      *
+<<<<<<< HEAD
      * @param int $id
      * @return \Illuminate\Http\JsonResponse
+=======
+     * @param  int  $id
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      */
     public function destroy($id): JsonResponse
     {
@@ -176,12 +195,20 @@ class CartRuleController extends Controller
 
             return new JsonResponse([
                 'message' => trans('admin::app.marketing.promotions.cart-rules.delete-success'
+<<<<<<< HEAD
             )]);
+=======
+                )]);
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         } catch (Exception $e) {
         }
 
         return new JsonResponse([
             'message' => trans('admin::app.marketing.promotions.cart-rules.delete-failed'
+<<<<<<< HEAD
         )], 400);
+=======
+            )], 400);
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
     }
 }

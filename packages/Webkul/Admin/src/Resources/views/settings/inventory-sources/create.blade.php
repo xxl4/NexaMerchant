@@ -1,4 +1,5 @@
 <x-admin::layouts>
+<<<<<<< HEAD
     {{-- Title of the page --}}
     <x-slot:title>
         @lang('admin::app.settings.inventory-sources.create.add-title')
@@ -7,6 +8,16 @@
     {!! view_render_event('bagisto.admin.settings.inventory_sources.create.before') !!}
 
     {{-- Create Inventory --}}
+=======
+    <!-- Title of the page -->
+    <x-slot:title>
+        @lang('admin::app.settings.inventory-sources.create.add-title')
+    </x-slot>
+
+    {!! view_render_event('bagisto.admin.settings.inventory_sources.create.before') !!}
+
+    <!-- Create Inventory -->
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
     <v-inventory-create-form></v-inventory-create-form>
 
     {!! view_render_event('bagisto.admin.settings.inventory_sources.create.after') !!}
@@ -22,12 +33,21 @@
                 >
                     {!! view_render_event('bagisto.admin.settings.inventory_sources.create.create_form_controls.before') !!}
 
+<<<<<<< HEAD
                     <div class="flex gap-[16px] justify-between items-center max-sm:flex-wrap">
                         <p class="text-[20px] text-gray-800 dark:text-white font-bold">
                             @lang('admin::app.settings.inventory-sources.create.add-title')
                         </p>
 
                         <div class="flex gap-x-[10px] items-center">
+=======
+                    <div class="flex gap-4 justify-between items-center max-sm:flex-wrap">
+                        <p class="text-xl text-gray-800 dark:text-white font-bold">
+                            @lang('admin::app.settings.inventory-sources.create.add-title')
+                        </p>
+
+                        <div class="flex gap-x-2.5 items-center">
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                             <!-- Cancel Button -->
                             <a
                                 href="{{ route('admin.settings.inventory_sources.index') }}"
@@ -47,20 +67,35 @@
                     </div>
                 
                     <!-- Full Pannel -->
+<<<<<<< HEAD
                     <div class="flex gap-[10px] mt-[14px] max-xl:flex-wrap">
                         <!-- Left Section -->
                         <div class="flex flex-col gap-[8px] flex-1 max-xl:flex-auto">
+=======
+                    <div class="flex gap-2.5 mt-3.5 max-xl:flex-wrap">
+                        <!-- Left Section -->
+                        <div class="flex flex-col gap-2 flex-1 max-xl:flex-auto">
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 
                             {!! view_render_event('bagisto.admin.settings.inventory_sources.create.card.general.before') !!}
 
                             <!-- General -->
+<<<<<<< HEAD
                             <div class="p-[16px] bg-white dark:bg-gray-900 box-shadow rounded-[4px]">
                                 <p class="mb-[16px] text-[16px] text-gray-800 dark:text-white font-semibold">
+=======
+                            <div class="p-4 bg-white dark:bg-gray-900 box-shadow rounded">
+                                <p class="mb-4 text-base text-gray-800 dark:text-white font-semibold">
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                     @lang('admin::app.settings.inventory-sources.create.general')
                                 </p>
 
                                 <!-- Code -->
+<<<<<<< HEAD
                                 <x-admin::form.control-group class="mb-[10px]">
+=======
+                                <x-admin::form.control-group>
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                     <x-admin::form.control-group.label class="required">
                                         @lang('admin::app.settings.inventory-sources.create.code')
                                     </x-admin::form.control-group.label>
@@ -83,7 +118,11 @@
                                 </x-admin::form.control-group>
 
                                 <!-- Name -->
+<<<<<<< HEAD
                                 <x-admin::form.control-group class="mb-[10px]">
+=======
+                                <x-admin::form.control-group>
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                     <x-admin::form.control-group.label class="required">
                                         @lang('admin::app.settings.inventory-sources.create.name')
                                     </x-admin::form.control-group.label>
@@ -106,7 +145,11 @@
                                 </x-admin::form.control-group>
 
                                 <!-- Description -->
+<<<<<<< HEAD
                                 <x-admin::form.control-group class="mb-[10px]">
+=======
+                                <x-admin::form.control-group class="!mb-0">
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                     <x-admin::form.control-group.label>
                                         @lang('admin::app.settings.inventory-sources.create.description')
                                     </x-admin::form.control-group.label>
@@ -116,7 +159,11 @@
                                         name="description"
                                         :value="old('description')"
                                         id="description"
+<<<<<<< HEAD
                                         class="text-gray-600 dark:text-gray-300 !mb-[0px]"
+=======
+                                        class="text-gray-600 dark:text-gray-300 !mb-0"
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                         :label="trans('admin::app.settings.inventory-sources.create.description')"
                                         :placeholder="trans('admin::app.settings.inventory-sources.create.description')"
                                     >
@@ -134,13 +181,22 @@
                             {!! view_render_event('bagisto.admin.settings.inventory_sources.create.card.contact_info.before') !!}
 
                             <!-- Contact Information -->
+<<<<<<< HEAD
                             <div class="p-[16px] bg-white dark:bg-gray-900 box-shadow rounded-[4px]">
                                 <p class="mb-[16px] text-[16px] text-gray-800 dark:text-white font-semibold">
+=======
+                            <div class="p-4 bg-white dark:bg-gray-900 box-shadow rounded">
+                                <p class="mb-4 text-base text-gray-800 dark:text-white font-semibold">
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                     @lang('admin::app.settings.inventory-sources.create.contact-info')
                                 </p>
 
                                 <!-- Contact name -->
+<<<<<<< HEAD
                                 <x-admin::form.control-group class="mb-[10px]">
+=======
+                                <x-admin::form.control-group>
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                     <x-admin::form.control-group.label class="required">
                                         @lang('admin::app.settings.inventory-sources.create.contact-name')
                                     </x-admin::form.control-group.label>
@@ -163,7 +219,11 @@
                                 </x-admin::form.control-group>
 
                                 <!-- Contact Email -->
+<<<<<<< HEAD
                                 <x-admin::form.control-group class="mb-[10px]">
+=======
+                                <x-admin::form.control-group>
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                     <x-admin::form.control-group.label class="required">
                                         @lang('admin::app.settings.inventory-sources.create.contact-email')
                                     </x-admin::form.control-group.label>
@@ -186,7 +246,11 @@
                                 </x-admin::form.control-group>
 
                                 <!-- Contact Number -->
+<<<<<<< HEAD
                                 <x-admin::form.control-group class="mb-[10px]">
+=======
+                                <x-admin::form.control-group>
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                     <x-admin::form.control-group.label class="required">
                                         @lang('admin::app.settings.inventory-sources.create.contact-number')
                                     </x-admin::form.control-group.label>
@@ -209,7 +273,11 @@
                                 </x-admin::form.control-group>
 
                                 <!-- Contact fax -->
+<<<<<<< HEAD
                                 <x-admin::form.control-group class="mb-[10px]">
+=======
+                                <x-admin::form.control-group class="!mb-0">
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                     <x-admin::form.control-group.label>
                                         @lang('admin::app.settings.inventory-sources.create.contact-fax')
                                     </x-admin::form.control-group.label>
@@ -236,13 +304,22 @@
                             {!! view_render_event('bagisto.admin.settings.inventory_sources.create.card.address.before') !!}
 
                             <!-- Source Address -->
+<<<<<<< HEAD
                             <div class="p-[16px] bg-white dark:bg-gray-900 rounded-[4px] box-shadow">
                                 <p class="mb-[16px] text-[16px] text-gray-800 dark:text-white font-semibold">
+=======
+                            <div class="p-4 bg-white dark:bg-gray-900 rounded box-shadow">
+                                <p class="mb-4 text-base text-gray-800 dark:text-white font-semibold">
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                     @lang('admin::app.settings.inventory-sources.create.address')
                                 </p>
 
                                 <!-- Country -->
+<<<<<<< HEAD
                                 <x-admin::form.control-group class="mb-[10px]">
+=======
+                                <x-admin::form.control-group>
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                     <x-admin::form.control-group.label class="required">
                                         @lang('admin::app.settings.inventory-sources.create.country')
                                     </x-admin::form.control-group.label>
@@ -272,7 +349,11 @@
                                 </x-admin::form.control-group>
                                         
                                 <!-- State -->
+<<<<<<< HEAD
                                 <x-admin::form.control-group class="mb-[10px]">
+=======
+                                <x-admin::form.control-group>
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                     <x-admin::form.control-group.label class="required">
                                         @lang('admin::app.settings.inventory-sources.create.state')
                                     </x-admin::form.control-group.label>
@@ -321,7 +402,11 @@
                                 </x-admin::form.control-group>
 
                                 <!-- City -->
+<<<<<<< HEAD
                                 <x-admin::form.control-group class="mb-[10px]">
+=======
+                                <x-admin::form.control-group>
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                     <x-admin::form.control-group.label class="required">
                                         @lang('admin::app.settings.inventory-sources.create.city')
                                     </x-admin::form.control-group.label>
@@ -344,7 +429,11 @@
                                 </x-admin::form.control-group>
 
                                 <!-- Street -->
+<<<<<<< HEAD
                                 <x-admin::form.control-group class="mb-[10px]">
+=======
+                                <x-admin::form.control-group>
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                     <x-admin::form.control-group.label class="required">
                                         @lang('admin::app.settings.inventory-sources.create.street')
                                     </x-admin::form.control-group.label>
@@ -367,7 +456,11 @@
                                 </x-admin::form.control-group>
 
                                 <!-- postcode -->
+<<<<<<< HEAD
                                 <x-admin::form.control-group class="mb-[10px]">
+=======
+                                <x-admin::form.control-group class="!mb-0">
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                     <x-admin::form.control-group.label class="required">
                                         @lang('admin::app.settings.inventory-sources.create.postcode')
                                     </x-admin::form.control-group.label>
@@ -395,15 +488,24 @@
                         </div>
                 
                         <!-- Right Section -->
+<<<<<<< HEAD
                         <div class="flex flex-col gap-[8px] w-[360px] max-w-full">
+=======
+                        <div class="flex flex-col gap-2 w-[360px] max-w-full">
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 
                             {!! view_render_event('bagisto.admin.settings.inventory_sources.create.card.accordion.settings.before') !!}
 
                             <!-- Settings -->
                             <x-admin::accordion>
                                 <x-slot:header>
+<<<<<<< HEAD
                                     <div class="flex items-center justify-between p-[6px]">
                                         <p class="text-gray-600 dark:text-gray-300 text-[16px] p-[10px] font-semibold">
+=======
+                                    <div class="flex items-center justify-between">
+                                        <p class="p-2.5 text-base text-gray-800 dark:text-white font-semibold">
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                             @lang('admin::app.settings.inventory-sources.create.settings')
                                         </p>
                                     </div>
@@ -411,7 +513,11 @@
                             
                                 <x-slot:content>
                                     <!-- Latitude -->
+<<<<<<< HEAD
                                     <x-admin::form.control-group class="mb-[10px]">
+=======
+                                    <x-admin::form.control-group>
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                         <x-admin::form.control-group.label>
                                             @lang('admin::app.settings.inventory-sources.create.latitude')
                                         </x-admin::form.control-group.label>
@@ -433,7 +539,11 @@
                                     </x-admin::form.control-group>
 
                                     <!-- Longitude -->
+<<<<<<< HEAD
                                     <x-admin::form.control-group class="mb-[10px]">
+=======
+                                    <x-admin::form.control-group>
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                         <x-admin::form.control-group.label>
                                             @lang('admin::app.settings.inventory-sources.create.longitude')
                                         </x-admin::form.control-group.label>
@@ -455,7 +565,11 @@
                                     </x-admin::form.control-group>
 
                                     <!-- Priority -->
+<<<<<<< HEAD
                                     <x-admin::form.control-group class="mb-[10px]">
+=======
+                                    <x-admin::form.control-group>
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                         <x-admin::form.control-group.label>
                                             @lang('admin::app.settings.inventory-sources.create.priority')
                                         </x-admin::form.control-group.label>
@@ -477,7 +591,11 @@
                                     </x-admin::form.control-group>
 
                                     <!-- Status -->
+<<<<<<< HEAD
                                     <x-admin::form.control-group class="mb-[10px]">
+=======
+                                    <x-admin::form.control-group class="!mb-0">
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                         <x-admin::form.control-group.label>
                                             @lang('admin::app.settings.inventory-sources.create.status')
                                         </x-admin::form.control-group.label>

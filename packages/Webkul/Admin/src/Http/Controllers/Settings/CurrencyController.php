@@ -3,9 +3,15 @@
 namespace Webkul\Admin\Http\Controllers\Settings;
 
 use Illuminate\Http\JsonResponse;
+<<<<<<< HEAD
 use Webkul\Admin\Http\Controllers\Controller;
 use Webkul\Core\Repositories\CurrencyRepository;
 use Webkul\Admin\DataGrids\Settings\CurrencyDataGrid;
+=======
+use Webkul\Admin\DataGrids\Settings\CurrencyDataGrid;
+use Webkul\Admin\Http\Controllers\Controller;
+use Webkul\Core\Repositories\CurrencyRepository;
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 
 class CurrencyController extends Controller
 {
@@ -34,8 +40,11 @@ class CurrencyController extends Controller
 
     /**
      * Store a newly created resource in storage.
+<<<<<<< HEAD
      *
      * @return \Illuminate\Http\JsonResponse
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      */
     public function store(): JsonResponse
     {
@@ -48,7 +57,11 @@ class CurrencyController extends Controller
             'code',
             'name',
             'symbol',
+<<<<<<< HEAD
             'decimal'
+=======
+            'decimal',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         ]);
 
         $this->currencyRepository->create($data);
@@ -62,7 +75,10 @@ class CurrencyController extends Controller
      * Currency Details
      *
      * @param  int  $id
+<<<<<<< HEAD
      * @return \Illuminate\Http\JsonResponse
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      */
     public function edit($id): JsonResponse
     {
@@ -73,8 +89,11 @@ class CurrencyController extends Controller
 
     /**
      * Update the specified resource in storage.
+<<<<<<< HEAD
      *
      * @return \Illuminate\Http\JsonResponse
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      */
     public function update(): JsonResponse
     {
@@ -89,7 +108,11 @@ class CurrencyController extends Controller
             'code',
             'name',
             'symbol',
+<<<<<<< HEAD
             'decimal'
+=======
+            'decimal',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         ]);
 
         $this->currencyRepository->update($data, $id);
@@ -102,7 +125,11 @@ class CurrencyController extends Controller
     /**
      * Remove the specified resource from storage.
      *
+<<<<<<< HEAD
      * @param int $id
+=======
+     * @param  int  $id
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      * @return void
      */
     public function destroy($id)
@@ -111,7 +138,11 @@ class CurrencyController extends Controller
 
         if ($this->currencyRepository->count() == 1) {
             return response()->json([
+<<<<<<< HEAD
                 'message' => trans('admin::app.settings.currencies.index.last-delete-error')
+=======
+                'message' => trans('admin::app.settings.currencies.index.last-delete-error'),
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             ], 400);
         }
 
@@ -126,7 +157,11 @@ class CurrencyController extends Controller
         }
 
         return response()->json([
+<<<<<<< HEAD
             'message' => trans('admin::app.settings.currencies.index.delete-failed')
+=======
+            'message' => trans('admin::app.settings.currencies.index.delete-failed'),
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         ], 500);
     }
 }

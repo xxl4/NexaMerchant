@@ -79,15 +79,19 @@ class AdminServiceProvider extends ServiceProvider
         ], function ($view) {
             $tree = Tree::create();
 
+<<<<<<< HEAD
             $permissionType = auth()->guard('admin')->user()->role->permission_type;
             
             $allowedPermissions = auth()->guard('admin')->user()->role->permissions;
 
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             foreach (config('menu.admin') as $index => $item) {
                 if (! bouncer()->hasPermission($item['key'])) {
                     continue;
                 }
 
+<<<<<<< HEAD
                 if (
                     $index + 1 < count(config('menu.admin'))
                     && $permissionType != 'all'
@@ -117,6 +121,13 @@ class AdminServiceProvider extends ServiceProvider
                 $tree->add($item, 'menu');
             }
 
+=======
+                $tree->add($item, 'menu');
+            }
+
+            $tree->items = $tree->removeUnauthorizedUrls();
+
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             $tree->items = core()->sortItems($tree->items);
 
             $view->with('menu', $tree);
@@ -124,7 +135,11 @@ class AdminServiceProvider extends ServiceProvider
 
         view()->composer([
             'admin::settings.roles.create',
+<<<<<<< HEAD
             'admin::settings.roles.edit'
+=======
+            'admin::settings.roles.edit',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         ], function ($view) {
             $view->with('acl', $this->createACL());
         });

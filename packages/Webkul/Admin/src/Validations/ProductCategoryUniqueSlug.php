@@ -4,8 +4,13 @@ namespace Webkul\Admin\Validations;
 
 use Illuminate\Contracts\Validation\Rule;
 use Illuminate\Support\Facades\DB;
+<<<<<<< HEAD
 use Webkul\Category\Models\CategoryTranslationProxy;
 use Webkul\Attribute\Repositories\AttributeRepository;
+=======
+use Webkul\Attribute\Repositories\AttributeRepository;
+use Webkul\Category\Models\CategoryTranslationProxy;
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 use Webkul\Product\Repositories\ProductAttributeValueRepository;
 
 class ProductCategoryUniqueSlug implements Rule
@@ -35,8 +40,12 @@ class ProductCategoryUniqueSlug implements Rule
     public function __construct(
         protected $tableName = null,
         protected $id = null
+<<<<<<< HEAD
     )
     {
+=======
+    ) {
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
     }
 
     /**

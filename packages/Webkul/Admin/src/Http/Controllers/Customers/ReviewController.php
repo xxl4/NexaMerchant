@@ -2,13 +2,22 @@
 
 namespace Webkul\Admin\Http\Controllers\Customers;
 
+<<<<<<< HEAD
 use Illuminate\Support\Facades\Event;
 use Illuminate\Http\JsonResponse;
+=======
+use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Event;
+use Webkul\Admin\DataGrids\Customers\ReviewDataGrid;
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 use Webkul\Admin\Http\Controllers\Controller;
 use Webkul\Admin\Http\Requests\MassDestroyRequest;
 use Webkul\Admin\Http\Requests\MassUpdateRequest;
 use Webkul\Product\Repositories\ProductReviewRepository;
+<<<<<<< HEAD
 use Webkul\Admin\DataGrids\Customers\ReviewDataGrid;
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 
 class ReviewController extends Controller
 {
@@ -40,7 +49,10 @@ class ReviewController extends Controller
      * Review Details
      *
      * @param  int  $id
+<<<<<<< HEAD
      * @return \Illuminate\Http\JsonResponse
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      */
     public function edit($id): JsonResponse
     {
@@ -49,7 +61,11 @@ class ReviewController extends Controller
         $review->date = $review->created_at->format('Y-m-d');
 
         return new JsonResponse([
+<<<<<<< HEAD
             'data' => $review
+=======
+            'data' => $review,
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         ]);
     }
 
@@ -75,8 +91,12 @@ class ReviewController extends Controller
     /**
      * Delete the review of the current product
      *
+<<<<<<< HEAD
      * @param int $id
      * @return \Illuminate\Http\JsonResponse
+=======
+     * @param  int  $id
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      */
     public function destroy($id): JsonResponse
     {
@@ -97,9 +117,12 @@ class ReviewController extends Controller
 
     /**
      * Mass delete the reviews on the products.
+<<<<<<< HEAD
      *
      * @param MassDestroyRequest $massDestroyRequest
      * @return \Illuminate\Http\JsonResponse
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      */
     public function massDestroy(MassDestroyRequest $massDestroyRequest): JsonResponse
     {
@@ -115,20 +138,31 @@ class ReviewController extends Controller
             }
 
             return new JsonResponse([
+<<<<<<< HEAD
                 'message' => trans('admin::app.customers.reviews.index.datagrid.mass-delete-success')
             ], 200);
         } catch (\Exception $e) {
             return new JsonResponse([
                 'message' => $e->getMessage()
+=======
+                'message' => trans('admin::app.customers.reviews.index.datagrid.mass-delete-success'),
+            ], 200);
+        } catch (\Exception $e) {
+            return new JsonResponse([
+                'message' => $e->getMessage(),
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             ], 500);
         }
     }
 
     /**
      * Mass approve the reviews on the products.
+<<<<<<< HEAD
      *
      * @param MassUpdateRequest $massUpdateRequest
      * @return \Illuminate\Http\JsonResponse
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      */
     public function massUpdate(MassUpdateRequest $massUpdateRequest): JsonResponse
     {
@@ -145,7 +179,14 @@ class ReviewController extends Controller
         }
 
         return new JsonResponse([
+<<<<<<< HEAD
             'message' => trans('admin::app.customers.reviews.index.datagrid.mass-update-success')
         ], 200);
     }
 }
+=======
+            'message' => trans('admin::app.customers.reviews.index.datagrid.mass-update-success'),
+        ], 200);
+    }
+}
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61

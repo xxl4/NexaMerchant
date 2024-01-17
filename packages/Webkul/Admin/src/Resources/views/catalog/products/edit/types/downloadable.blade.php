@@ -8,6 +8,7 @@
 
 @pushOnce('scripts')
     <script type="text/x-template" id="v-downloadable-links-template">
+<<<<<<< HEAD
         <div class="relative bg-white dark:bg-gray-900 rounded-[4px] box-shadow">
             <!-- Panel Header -->
             <div class="flex gap-[20px] justify-between mb-[10px] p-[16px]">
@@ -17,12 +18,27 @@
                     </p>
 
                     <p class="text-[12px] text-gray-500 dark:text-gray-300 font-medium">
+=======
+        <div class="relative bg-white dark:bg-gray-900 rounded box-shadow">
+            <!-- Panel Header -->
+            <div class="flex gap-5 justify-between mb-2.5 p-4">
+                <div class="flex flex-col gap-2">
+                    <p class="text-base text-gray-800 dark:text-white font-semibold">
+                        @lang('admin::app.catalog.products.edit.types.downloadable.links.title')
+                    </p>
+
+                    <p class="text-xs text-gray-500 dark:text-gray-300 font-medium">
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                         @lang('admin::app.catalog.products.edit.types.downloadable.links.info')
                     </p>
                 </div>
                 
                 <!-- Add Button -->
+<<<<<<< HEAD
                 <div class="flex gap-x-[4px] items-center">
+=======
+                <div class="flex gap-x-1 items-center">
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     <div
                         class="secondary-button"
                         @click="resetForm(); $refs.updateCreateLinkDrawer.open()"
@@ -40,12 +56,20 @@
                 <!-- Draggable Products -->
                 <draggable
                     ghost-class="draggable-ghost"
+<<<<<<< HEAD
+=======
+                    handle=".icon-drag"
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     v-bind="{animation: 200}"
                     :list="links"
                     item-key="id"
                 >
                     <template #item="{ element, index }">
+<<<<<<< HEAD
                         <div class="flex gap-[10px] justify-between p-[16px] border-b-[1px] border-slate-300 dark:border-gray-800 cursor-pointer">
+=======
+                        <div class="flex gap-2.5 justify-between p-4 border-b border-slate-300 dark:border-gray-800">
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                             <!-- Hidden Input -->
                             <input type="hidden" :name="'downloadable_links[' + element.id + '][{{$currentLocale->code}}][title]'" :value="element.title"/>
 
@@ -84,12 +108,21 @@
                             </template>
 
                             <!-- Information -->
+<<<<<<< HEAD
                             <div class="flex gap-[10px]">
                                 <!-- Drag Icon -->
                                 <i class="icon-drag text-[20px] text-gray-600 dark:text-gray-300 transition-all pointer-events-none"></i>
 
                                 <div class="grid gap-[6px] place-content-start">
                                     <p class="text-[16x] text-gray-800 dark:text-white font-semibold">
+=======
+                            <div class="flex gap-2.5">
+                                <!-- Drag Icon -->
+                                <i class="icon-drag text-xl text-gray-600 dark:text-gray-300 transition-all cursor-grab"></i>
+
+                                <div class="grid gap-1.5 place-content-start">
+                                    <p class="text-base text-gray-800 dark:text-white font-semibold">
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                         @{{ element.title }}
                                     </p>
 
@@ -156,12 +189,20 @@
                             </div>
 
                             <!-- Actions -->
+<<<<<<< HEAD
                             <div class="grid gap-[4px] place-content-start text-right">
+=======
+                            <div class="grid gap-1 place-content-start text-right">
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                 <p class="text-gray-800 font-semibold dark:text-white">
                                     @{{ $admin.formatPrice(element.price) }}    
                                 </p>
 
+<<<<<<< HEAD
                                 <div class="flex gap-x-[20px] items-center">
+=======
+                                <div class="flex gap-x-5 items-center">
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                     <p
                                         class="text-red-600 cursor-pointer transition-all hover:underline"
                                         @click="remove(element)"
@@ -184,18 +225,31 @@
 
             <!-- For Empty Links -->
             <div
+<<<<<<< HEAD
                 class="grid gap-[14px] justify-center justify-items-center py-[40px] px-[10px]"
+=======
+                class="grid gap-3.5 justify-center justify-items-center py-10 px-2.5"
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 v-else
             >
                 <!-- Placeholder Image -->
                 <img
                     src="{{ bagisto_asset('images/icon-add-product.svg') }}"
+<<<<<<< HEAD
                     class="w-[80px] h-[80px] dark:invert dark:mix-blend-exclusion"
                 />
 
                 <!-- Add Variants Information -->
                 <div class="flex flex-col items-center">
                     <p class="text-[16px] text-gray-400 font-semibold">
+=======
+                    class="w-20 h-20 dark:invert dark:mix-blend-exclusion"
+                />
+
+                <!-- Add Variants Information -->
+                <div class="flex flex-col gap-1.5 items-center">
+                    <p class="text-base text-gray-400 font-semibold">
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                         @lang('admin::app.catalog.products.edit.types.downloadable.links.empty-title')
                     </p>
 
@@ -206,7 +260,11 @@
                 
                 <!-- Add Row Button -->
                 <div
+<<<<<<< HEAD
                     class="secondary-button text-[14px]"
+=======
+                    class="secondary-button text-sm"
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     @click="resetForm(); $refs.updateCreateLinkDrawer.open()"
                 >
                     @lang('admin::app.catalog.products.edit.types.downloadable.links.add-btn')
@@ -224,6 +282,7 @@
                     <x-admin::drawer ref="updateCreateLinkDrawer">
                         <!-- Drawer Header -->
                         <x-slot:header>
+<<<<<<< HEAD
                             <div class="grid gap-[12px]">
                                 <div class="flex justify-between items-center">
                                     <p class="text-[20px] font-medium dark:text-white">
@@ -231,6 +290,15 @@
                                     </p>
 
                                     <button class="mr-[45px] primary-button">
+=======
+                            <div class="grid gap-3">
+                                <div class="flex justify-between items-center">
+                                    <p class="text-xl font-medium dark:text-white">
+                                        @lang('admin::app.catalog.products.edit.types.downloadable.links.update-create.title')
+                                    </p>
+
+                                    <button class="ltr:mr-11 rtl:ml-11 primary-button">
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                         @lang('admin::app.catalog.products.edit.types.downloadable.links.update-create.save-btn')
                                     </button>
                                 </div>
@@ -240,7 +308,11 @@
                         <!-- Drawer Content -->
                         <x-slot:content class="!p-0">
                             <!-- Modal Content -->
+<<<<<<< HEAD
                             <div class="px-[16px] py-[10px]">
+=======
+                            <div class="px-4 py-2.5">
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                 <x-admin::form.control-group>
                                     <x-admin::form.control-group.label class="required">
                                         @lang('admin::app.catalog.products.edit.types.downloadable.links.update-create.name')
@@ -258,7 +330,11 @@
                                     <x-admin::form.control-group.error control-name="title"></x-admin::form.control-group.error>
                                 </x-admin::form.control-group>
 
+<<<<<<< HEAD
                                 <div class="flex gap-[16px]">
+=======
+                                <div class="flex gap-4">
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                     <x-admin::form.control-group class="flex-1">
                                         <x-admin::form.control-group.label class="required">
                                             @lang('admin::app.catalog.products.edit.types.downloadable.links.update-create.price')
@@ -294,7 +370,11 @@
                                     </x-admin::form.control-group>
                                 </div>
 
+<<<<<<< HEAD
                                 <div class="flex gap-[16px]">
+=======
+                                <div class="flex gap-4">
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                     <x-admin::form.control-group class="flex-1">
                                         <x-admin::form.control-group.label class="required">
                                             @lang('admin::app.catalog.products.edit.types.downloadable.links.update-create.file-type')
@@ -352,7 +432,11 @@
                                             <input
                                                 type="file"
                                                 name="file"
+<<<<<<< HEAD
                                                 class="flex w-full min-h-[39px] py-1 px-3 border rounded-[6px] text-[14px] text-gray-600 dark:text-gray-300 transition-all hover:border-gray-400"
+=======
+                                                class="flex w-full min-h-[39px] py-1 px-3 border rounded-md text-sm text-gray-600 dark:text-gray-300 transition-all hover:border-gray-400"
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                                 :class="[errors['file'] ? 'border border-red-600 hover:border-red-600' : '']"
                                                 ref="file"
                                                 @change="uploadFile('file')"
@@ -392,7 +476,11 @@
                                     </template>
                                 </div>
 
+<<<<<<< HEAD
                                 <div class="flex gap-[16px]">
+=======
+                                <div class="flex gap-4">
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                     <x-admin::form.control-group class="flex-1">
                                         <x-admin::form.control-group.label>
                                             @lang('admin::app.catalog.products.edit.types.downloadable.links.update-create.sample-type')
@@ -444,7 +532,11 @@
                                             <input
                                                 type="file"
                                                 name="sample_file"
+<<<<<<< HEAD
                                                 class="flex w-full min-h-[39px] py-1 px-3 border rounded-[6px] text-[14px] text-gray-600 dark:text-gray-300 transition-all hover:border-gray-400"
+=======
+                                                class="flex w-full min-h-[39px] py-1 px-3 border rounded-md text-sm text-gray-600 dark:text-gray-300 transition-all hover:border-gray-400"
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                                 ref="sample_file"
                                                 @change="uploadFile('sample_file')"
                                             />
@@ -489,6 +581,7 @@
     </script>
 
     <script type="text/x-template" id="v-downloadable-samples-template">
+<<<<<<< HEAD
         <div class="relative bg-white dark:bg-gray-900 rounded-[4px] box-shadow">
             <!-- Panel Header -->
             <div class="flex gap-[20px] justify-between mb-[10px] p-[16px]">
@@ -498,12 +591,27 @@
                     </p>
 
                     <p class="text-[12px] text-gray-500 dark:text-gray-300 font-medium">
+=======
+        <div class="relative bg-white dark:bg-gray-900 rounded box-shadow">
+            <!-- Panel Header -->
+            <div class="flex gap-5 justify-between mb-2.5 p-4">
+                <div class="flex flex-col gap-2">
+                    <p class="text-base text-gray-800 dark:text-white font-semibold">
+                        @lang('admin::app.catalog.products.edit.types.downloadable.samples.title')
+                    </p>
+
+                    <p class="text-xs text-gray-500 dark:text-gray-300 font-medium">
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                         @lang('admin::app.catalog.products.edit.types.downloadable.samples.info')
                     </p>
                 </div>
                 
                 <!-- Add Button -->
+<<<<<<< HEAD
                 <div class="flex gap-x-[4px] items-center">
+=======
+                <div class="flex gap-x-1 items-center">
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     <div
                         class="secondary-button"
                         @click="resetForm(); $refs.updateCreateSampleDrawer.open()"
@@ -521,12 +629,20 @@
                 <!-- Draggable Products -->
                 <draggable
                     ghost-class="draggable-ghost"
+<<<<<<< HEAD
+=======
+                    handle=".icon-drag"
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     v-bind="{animation: 200}"
                     :list="samples"
                     item-key="id"
                 >
                     <template #item="{ element, index }">
+<<<<<<< HEAD
                         <div class="flex gap-[10px] justify-between p-[16px] border-b-[1px] border-slate-300 dark:border-gray-800 cursor-pointer">
+=======
+                        <div class="flex gap-2.5 justify-between p-4 border-b border-slate-300 dark:border-gray-800">
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                             <!-- Hidden Input -->
                             <input type="hidden" :name="'downloadable_samples[' + element.id + '][title]'" :value="element.title"/>
 
@@ -547,12 +663,21 @@
                             </template>
 
                             <!-- Information -->
+<<<<<<< HEAD
                             <div class="flex gap-[10px]">
                                 <!-- Drag Icon -->
                                 <i class="icon-drag text-[20px] text-gray-600 dark:text-gray-300 transition-all pointer-events-none"></i>
 
                                 <div class="grid gap-[6px] place-content-start">
                                     <p class="text-[16x] text-gray-800 dark:text-white font-semibold">
+=======
+                            <div class="flex gap-2.5">
+                                <!-- Drag Icon -->
+                                <i class="icon-drag text-xl text-gray-600 dark:text-gray-300 transition-all cursor-grab"></i>
+
+                                <div class="grid gap-1.5 place-content-start">
+                                    <p class="text-base text-gray-800 dark:text-white font-semibold">
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                         @{{ element.title }}
                                     </p>
 
@@ -589,8 +714,13 @@
                             </div>
 
                             <!-- Actions -->
+<<<<<<< HEAD
                             <div class="grid gap-[4px] place-content-start text-right">
                                 <div class="flex gap-x-[20px] items-center">
+=======
+                            <div class="grid gap-1 place-content-start text-right">
+                                <div class="flex gap-x-5 items-center">
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                     <p
                                         class="text-red-600 cursor-pointer transition-all hover:underline"
                                         @click="remove(element)"
@@ -613,18 +743,31 @@
 
             <!-- For Empty Links -->
             <div
+<<<<<<< HEAD
                 class="grid gap-[14px] justify-center justify-items-center py-[40px] px-[10px]"
+=======
+                class="grid gap-3.5 justify-center justify-items-center py-10 px-2.5"
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 v-else
             >
                 <!-- Placeholder Image -->
                 <img
                     src="{{ bagisto_asset('images/icon-add-product.svg') }}"
+<<<<<<< HEAD
                     class="w-[80px] h-[80px] dark:invert dark:mix-blend-exclusion"
                 />
 
                 <!-- Add Variants Information -->
                 <div class="flex flex-col items-center">
                     <p class="text-[16px] text-gray-400 font-semibold">
+=======
+                    class="w-20 h-20 dark:invert dark:mix-blend-exclusion"
+                />
+
+                <!-- Add Variants Information -->
+                <div class="flex flex-col gap-1.5 items-center">
+                    <p class="text-base text-gray-400 font-semibold">
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                         @lang('admin::app.catalog.products.edit.types.downloadable.samples.empty-title')
                     </p>
 
@@ -635,7 +778,11 @@
                 
                 <!-- Add Row Button -->
                 <div
+<<<<<<< HEAD
                     class="secondary-button text-[14px]"
+=======
+                    class="secondary-button text-sm"
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     @click="resetForm(); $refs.updateCreateSampleDrawer.open()"
                 >
                     @lang('admin::app.catalog.products.edit.types.downloadable.samples.add-btn')
@@ -653,6 +800,7 @@
                     <x-admin::drawer ref="updateCreateSampleDrawer">
                         <!-- Drawer Header -->
                         <x-slot:header>
+<<<<<<< HEAD
                             <div class="grid gap-[12px]">
                                 <div class="flex justify-between items-center">
                                     <p class="text-[20px] font-medium dark:text-white">
@@ -660,6 +808,15 @@
                                     </p>
 
                                     <button class="mr-[45px] primary-button">
+=======
+                            <div class="grid gap-3">
+                                <div class="flex justify-between items-center">
+                                    <p class="text-xl font-medium dark:text-white">
+                                        @lang('admin::app.catalog.products.edit.types.downloadable.samples.update-create.title')
+                                    </p>
+
+                                    <button class="ltr:mr-11 rtl:ml-11 primary-button">
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                         @lang('admin::app.catalog.products.edit.types.downloadable.samples.update-create.save-btn')
                                     </button>
                                 </div>
@@ -669,7 +826,11 @@
                         <!-- Drawer Content -->
                         <x-slot:content class="!p-0">
                             <!-- Modal Content -->
+<<<<<<< HEAD
                             <div class="px-[16px] py-[10px]">
+=======
+                            <div class="px-4 py-2.5">
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                 <x-admin::form.control-group>
                                     <x-admin::form.control-group.label class="required">
                                         @lang('admin::app.catalog.products.edit.types.downloadable.samples.update-create.name')
@@ -687,7 +848,11 @@
                                     <x-admin::form.control-group.error control-name="title"></x-admin::form.control-group.error>
                                 </x-admin::form.control-group>
 
+<<<<<<< HEAD
                                 <div class="flex gap-[16px]">
+=======
+                                <div class="flex gap-4">
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                     <x-admin::form.control-group class="flex-1">
                                         <x-admin::form.control-group.label class="required">
                                             @lang('admin::app.catalog.products.edit.types.downloadable.samples.update-create.file-type')
@@ -745,7 +910,11 @@
                                             <input
                                                 type="file"
                                                 name="file"
+<<<<<<< HEAD
                                                 class="flex w-full min-h-[39px] py-1 px-3 border rounded-[6px] text-[14px] text-gray-600 dark:text-gray-300 transition-all hover:border-gray-400"
+=======
+                                                class="flex w-full min-h-[39px] py-1 px-3 border rounded-md text-sm text-gray-600 dark:text-gray-300 transition-all hover:border-gray-400"
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                                 :class="[errors['file'] ? 'border border-red-600 hover:border-red-600' : '']"
                                                 ref="file"
                                                 @change="uploadFile('file')"

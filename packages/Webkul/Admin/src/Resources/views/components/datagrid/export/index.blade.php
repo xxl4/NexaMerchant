@@ -1,13 +1,19 @@
 <v-datagrid-export {{ $attributes }}>
+<<<<<<< HEAD
     <div class="p-[6px] items-center cursor-pointer transition-all hover:bg-gray-200 dark:hover:bg-gray-800 hover:rounded-[6px]">
         <p class="text-gray-600 dark:text-gray-300 font-semibold leading-[24px]">
             @lang('admin::app.export.export')
         </p>
+=======
+    <div class="transparent-button hover:bg-gray-200 dark:hover:bg-gray-800 dark:text-white">
+        @lang('admin::app.export.export')
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
     </div>
 </v-datagrid-export>
 
 @pushOnce('scripts')
     <script type="text/x-template" id="v-datagrid-export-template">
+<<<<<<< HEAD
         <div class="p-[6px] items-center cursor-pointer transition-all hover:bg-gray-200 dark:hover:bg-gray-800 hover:rounded-[6px]">
             <x-admin::modal ref="exportModal">
                 <x-slot:toggle>
@@ -18,10 +24,26 @@
 
                 <x-slot:header>
                     <p class="text-[18px] text-gray-800 dark:text-white font-bold">
+=======
+        <div>
+            <!-- Modal Component -->
+            <x-admin::modal ref="exportModal">
+                <!-- Modal Toggle -->
+                <x-slot:toggle>
+                    <div class="transparent-button hover:bg-gray-200 dark:hover:bg-gray-800 dark:text-white">
+                        @lang('admin::app.export.export')
+                    </div>
+                </x-slot:toggle>
+
+                <!-- Modal Header -->
+                <x-slot:header>
+                    <p class="text-lg text-gray-800 dark:text-white font-bold">
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                         @lang('admin::app.export.download')
                     </p>
                 </x-slot:header>
 
+<<<<<<< HEAD
                 <x-slot:content>
                     <div class="p-[16px]">
                         <x-admin::form action="">
@@ -39,6 +61,25 @@
                     </div>
                 </x-slot:content>
 
+=======
+                <!-- Modal Content -->
+                <x-slot:content>
+                    <x-admin::form action="">
+                        <x-admin::form.control-group>
+                            <x-admin::form.control-group.control
+                                type="select"
+                                name="format"
+                                v-model="format"
+                            >
+                                <option value="xls">@lang('admin::app.export.xls')</option>
+                                <option value="csv">@lang('admin::app.export.csv')</option>
+                            </x-admin::form.control-group.control>
+                        </x-admin::form.control-group>
+                    </x-admin::form>
+                </x-slot:content>
+
+                <!-- Modal Footer -->
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 <x-slot:footer>
                     <button
                         type="button"

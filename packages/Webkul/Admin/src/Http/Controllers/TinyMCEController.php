@@ -24,7 +24,11 @@ class TinyMCEController extends Controller
 
         if (! empty($media)) {
             return response()->json([
+<<<<<<< HEAD
                 'location' => $media['file_url']
+=======
+                'location' => $media['file_url'],
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             ]);
         }
 

@@ -115,10 +115,17 @@ return [
             'title'                       => 'לוח בקרה',
             'top-performing-categories'   => 'קטגוריות המובילות',
             'top-selling-products'        => 'המוצרים המובילים',
+<<<<<<< HEAD
             'total-customers'             => 'סה"כ לקוחות',
             'total-orders'                => 'סה"כ הזמנות',
             'total-sales'                 => 'סה"כ מכירות',
             'total-unpaid-invoices'       => 'סה"כ חשבוניות לא שולמו',
+=======
+            'total-customers'             => 'סך כל הלקוחות',
+            'total-orders'                => 'סך ההזמנות',
+            'total-sales'                 => 'סך המכירות',
+            'total-unpaid-invoices'       => 'סך החשבוניות שלא שולמו',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             'total-stock'                 => ':total_stock מלאי',
             'today-orders'                => 'הזמנות היום',
             'today-sales'                 => 'מכירות היום',
@@ -485,13 +492,33 @@ return [
                     'transaction-amount' => 'סכום',
                 ],
 
+<<<<<<< HEAD
                 'edit'  => [
+=======
+                'create'  => [
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     'already-paid'               => 'כבר שולם',
                     'invoice-missing'            => 'חשבונית חסרה',
                     'transaction-amount-zero'    => 'סכום העסקה אפס',
                     'transaction-amount-exceeds' => 'סכום העסקה גבוה מדי',
                     'transaction-saved'          => 'העסקה נשמרה בהצלחה',
                 ],
+<<<<<<< HEAD
+=======
+
+                'view' => [
+                    'title'            => 'פרטי התשלום',
+                    'transaction-data' => 'נתוני התשלום',
+                    'transaction-id'   => 'מזהה עסקה',
+                    'order-id'         => 'מספר הזמנה',
+                    'invoice-id'       => 'מספר חשבונית',
+                    'payment-method'   => 'אמצעי תשלום',
+                    'created-at'       => 'נוצר בתאריך',
+                    'status'           => 'סטטוס',
+                    'payment-details'  => 'פרטי התשלום',
+                    'amount'           => 'סכום',
+                ],
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             ],
         ],
     ],
@@ -521,6 +548,7 @@ return [
                 ],
 
                 'datagrid' => [
+<<<<<<< HEAD
                     'attribute-family'       => 'משפחת מאפיינים',
                     'attribute-family-value' => 'משפחת מאפיינים - :attribute_family',
                     'active'                 => 'פעיל',
@@ -545,10 +573,41 @@ return [
                     'status'                 => 'מצב',
                     'type'                   => 'סוג',
                     'update-status'          => 'עדכן מצב',
+=======
+                    'attribute-family'              => 'משפחת מאפיינים',
+                    'attribute-family-value'        => 'משפחת מאפיינים - :attribute_family',
+                    'active'                        => 'פעיל',
+                    'category'                      => 'קטגוריה',
+                    'copy-of'                       => 'העתק של :value',
+                    'copy-of-slug'                  => 'העתק-של-:value',
+                    'disable'                       => 'השבת',
+                    'delete'                        => 'מחק',
+                    'image'                         => 'תמונה',
+                    'id'                            => 'מזהה',
+                    'id-value'                      => 'מזהה - :id',
+                    'mass-update-success'           => 'מוצרים שנבחרו עודכנו בהצלחה',
+                    'mass-delete-success'           => 'מוצרים שנבחרו נמחקו בהצלחה',
+                    'name'                          => 'שם',
+                    'out-of-stock'                  => 'אזל מהמלאי',
+                    'price'                         => 'מחיר',
+                    'product-image'                 => 'תמונת המוצר',
+                    'qty'                           => 'כמות',
+                    'qty-value'                     => ':qty זמינים',
+                    'sku-value'                     => 'SKU - :sku',
+                    'sku'                           => 'SKU',
+                    'status'                        => 'מצב',
+                    'type'                          => 'סוג',
+                    'update-status'                 => 'עדכן מצב',
+                    'variant-already-exist-message' => 'המשתנה עם אותם אפשרויות מאפיינים כבר קיים.',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 ],
             ],
 
             'edit' => [
+<<<<<<< HEAD
+=======
+                'preview'  => 'תצוגה מקדימה',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'save-btn' => 'שמור מוצר',
                 'title'    => 'ערוך מוצר',
                 'remove'   => 'הסר',
@@ -573,7 +632,11 @@ return [
                             'fixed'          => 'קבוע',
                             'price-type'     => 'סוג מחיר',
                             'price'          => 'מחיר',
+<<<<<<< HEAD
                             'qty'            => 'כמות',
+=======
+                            'qty'            => 'כמות מינימלית',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                             'save-btn'       => 'שמור',
                             'update-title'   => 'עדכן מחיר לקבוצת לקוחות',
                         ],
@@ -665,6 +728,7 @@ return [
                         ],
 
                         'mass-edit' => [
+<<<<<<< HEAD
                             'select-variants'  => 'בחר וריאנטים',
                             'select-action'    => 'בחר פעולה',
                             'edit-prices'      => 'ערוך מחירים',
@@ -675,6 +739,30 @@ return [
                             'price'            => 'מחיר',
                             'apply-to-all-sku' => 'החל מחיר לכל ה-SKU.',
                             'apply-to-all-btn' => 'החל לכל',
+=======
+                            'add-images'          => 'הוסף תמונות',
+                            'apply-to-all-btn'    => 'החל לכל',
+                            'apply-to-all-name'   => 'החל שם לכל ההבחרות.',
+                            'apply-to-all-sku'    => 'החל מחיר לכל SKU.',
+                            'apply-to-all-status' => 'החל סטטוס לכל ההבחרות.',
+                            'apply-to-all-weight' => 'להחיל משקל לכל ההפעלות.',
+                            'edit-inventories'    => 'ערוך מלאי',
+                            'edit-names'          => 'ערוך שמות',
+                            'edit-prices'         => 'ערוך מחירים',
+                            'edit-sku'            => 'ערוך SKU',
+                            'edit-status'         => 'ערוך סטטוס',
+                            'edit-weight'         => 'ערוך משקל',
+                            'name'                => 'שם',
+                            'price'               => 'מחיר',
+                            'remove-images'       => 'הסר תמונות',
+                            'remove-variants'     => 'הסר הבחרות',
+                            'select-action'       => 'בחר פעולה',
+                            'select-variants'     => 'בחר הבחרות',
+                            'status'              => 'סטטוס',
+                            'variant-name'        => 'שם הבחירה',
+                            'variant-sku'         => 'SKU של הבחרה',
+                            'weight'              => 'משקל',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                         ],
                     ],
 
@@ -861,6 +949,10 @@ return [
                 'multiselect'           => 'בחירה מרובה',
                 'no'                    => 'לא',
                 'number'                => 'מספר',
+<<<<<<< HEAD
+=======
+                'options'               => 'אפשרויות',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'price'                 => 'מחיר',
                 'position'              => 'מיקום',
                 'regex'                 => 'Regex',
@@ -923,6 +1015,10 @@ return [
                 'multiselect'           => 'בחירה מרובה',
                 'no'                    => 'לא',
                 'number'                => 'מספר',
+<<<<<<< HEAD
+=======
+                'options'               => 'אפשרויות',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'price'                 => 'מחיר',
                 'position'              => 'מיקום',
                 'regex'                 => 'Regex',
@@ -1089,7 +1185,12 @@ return [
                 'enter-name'                       => 'הזן שם',
                 'column'                           => 'עמודה',
                 'add-group-title'                  => 'הוסף קבוצה חדשה',
+<<<<<<< HEAD
                 'group-already-exists'             => 'שם קבוצת מאפיינים כבר קיים.',
+=======
+                'group-code-already-exists'        => 'קוד קבוצת המאפיינים כבר קיים.',
+                'group-name-already-exists'        => 'שם קבוצת מאפיינים כבר קיים.',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'select-group'                     => 'אנא בחר קבוצת מאפיינים.',
                 'group-contains-system-attributes' => 'קבוצה זו מכילה מאפיינים מערכתיים. תחילה העבר את המאפיינים המערכתיים לקבוצה אחרת ונסה שוב.',
                 'removal-not-possible'             => 'אי אפשר להסיר מאפיינים מערכתיים ממשפחת המאפיינים.',
@@ -1115,7 +1216,12 @@ return [
                 'enter-name'                       => 'הזן שם',
                 'column'                           => 'עמודה',
                 'add-group-title'                  => 'הוסף קבוצה חדשה',
+<<<<<<< HEAD
                 'group-already-exists'             => 'שם קבוצת מאפיינים כבר קיים.',
+=======
+                'group-code-already-exists'        => 'קוד קבוצת המאפיינים כבר קיים.',
+                'group-name-already-exists'        => 'שם קבוצת מאפיינים כבר קיים.',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'select-group'                     => 'אנא בחר קבוצת מאפיינים.',
                 'group-contains-system-attributes' => 'קבוצה זו מכילה מאפיינים מערכתיים. תחילה העבר את המאפיינים המערכתיים לקבוצה אחרת ונסה שוב.',
                 'removal-not-possible'             => 'אי אפשר להסיר מאפיינים מערכתיים ממשפחת המאפיינים.',
@@ -1247,6 +1353,11 @@ return [
                 'orders'                      => 'הזמנות (:order_count)',
                 'order-id'                    => 'מזהה הזמנה',
                 'order-id-prefix'             => '# :order_id',
+<<<<<<< HEAD
+=======
+                'of'                          => 'של',
+                'per-page'                    => 'לעמוד',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'processing'                  => 'מעבד',
                 'pending'                     => 'ממתין',
                 'completed'                   => 'הושלם',
@@ -1907,6 +2018,7 @@ return [
             ],
         ],
 
+<<<<<<< HEAD
         'sitemaps' => [
             'index' => [
                 'title'      => 'מפות אתר',
@@ -1952,6 +2064,173 @@ return [
             ],
 
             'delete-failed' => ':name נמחקה בהצלחה',
+=======
+        'search-seo' => [
+            'search-terms' => [
+                'index' => [
+                    'title'      => 'ביטויי חיפוש',
+                    'create-btn' => 'הוסף מונח חיפוש חדש',
+
+                    'datagrid' => [
+                        'id'                  => 'מזהה',
+                        'search-query'        => 'ביטוי חיפוש',
+                        'Channel'             => 'ערוץ',
+                        'results'             => 'תוצאות',
+                        'uses'                => 'הפעלות',
+                        'redirect-url'        => 'URL להפניה',
+                        'channel'             => 'ערוץ',
+                        'locale'              => 'מיקום',
+                        'edit'                => 'עריכה',
+                        'delete'              => 'מחיקה',
+                        'actions'             => 'פעולות',
+                        'mass-delete-success' => 'ביטויי חיפוש שנבחרו נמחקו בהצלחה',
+                    ],
+
+                    'create' => [
+                        'search-query'   => 'ביטוי חיפוש',
+                        'Channel'        => 'ערוץ',
+                        'results'        => 'תוצאות',
+                        'uses'           => 'הפעלות',
+                        'redirect-url'   => 'URL להפניה',
+                        'channel'        => 'ערוץ',
+                        'locale'         => 'מיקום',
+                        'save-btn'       => 'שמור מונח חיפוש',
+                        'title'          => 'הוסף מונח חיפוש חדש',
+                        'success'        => 'מונח חיפוש חדש נוסף בהצלחה',
+                        'delete-warning' => 'האם אתה בטוח שברצונך לבצע פעולה זו?',
+                    ],
+
+                    'edit' => [
+                        'title'          => 'ערוך מונח חיפוש',
+                        'success'        => 'מונח חיפוש עודכן בהצלחה',
+                        'delete-success' => 'מונח חיפוש נמחק בהצלחה',
+                    ],
+                ],
+            ],
+
+            'search-synonyms' => [
+                'index' => [
+                    'title'      => 'מילים נרדפות לחיפוש',
+                    'create-btn' => 'יצירת מילים נרדפות לחיפוש',
+
+                    'datagrid' => [
+                        'id'                  => 'מזהה',
+                        'name'                => 'שם',
+                        'terms'               => 'מונחים',
+                        'edit'                => 'עריכה',
+                        'delete'              => 'מחיקה',
+                        'actions'             => 'פעולות',
+                        'mass-delete-success' => 'מילים נרדפות לחיפוש שנבחרו נמחקו בהצלחה',
+                    ],
+
+                    'create' => [
+                        'name'           => 'שם',
+                        'terms'          => 'מונחים',
+                        'terms-info'     => 'הזן מילים נרדפות כרשימה מופרדת בפסיקים, לדוגמה "נעליים, נעלה." זה מרחיב את החיפוש כך שיכלול את כל המונחים.',
+                        'save-btn'       => 'שמירת מילים נרדפות לחיפוש',
+                        'title'          => 'יצירת מילים נרדפות לחיפוש',
+                        'success'        => 'מילים נרדפות לחיפוש נוצרו בהצלחה',
+                        'delete-warning' => 'האם אתה בטוח שברצונך לבצע פעולה זו?',
+                    ],
+
+                    'edit' => [
+                        'title'          => 'עריכת מילים נרדפות לחיפוש',
+                        'success'        => 'מילים נרדפות לחיפוש עודכנו בהצלחה',
+                        'delete-success' => 'מילים נרדפות לחיפוש נמחקו בהצלחה',
+                    ],
+                ],
+            ],
+
+            'sitemaps' => [
+                'index' => [
+                    'title'      => 'מפות אתר',
+                    'create-btn' => 'יצירת מפת אתר',
+                    'sitemap'    => 'מפת אתר',
+
+                    'datagrid' => [
+                        'id'              => 'מזהה',
+                        'file-name'       => 'שם קובץ',
+                        'path'            => 'נתיב',
+                        'link-for-google' => 'קישור ל-Google',
+                        'edit'            => 'עריכה',
+                        'delete'          => 'מחיקה',
+                        'actions'         => 'פעולות',
+                    ],
+
+                    'create' => [
+                        'file-name'      => 'שם קובץ',
+                        'file-name-info' => 'דוגמה: sitemap.xml',
+                        'path'           => 'נתיב',
+                        'path-info'      => 'דוגמה: "/sitemap/" או "/" לנתיב בסיסי',
+                        'save-btn'       => 'שמור מפת אתר',
+                        'title'          => 'יצירת מפת אתר',
+                        'success'        => 'מפת האתר נוצרה בהצלחה',
+                        'delete-warning' => 'האם אתה בטוח שברצונך לבצע פעולה זו?',
+                    ],
+
+                    'edit' => [
+                        'title'          => 'עריכת מפת אתר',
+                        'success'        => 'מפת האתר עודכנה בהצלחה',
+                        'delete-success' => 'מפת האתר נמחקה בהצלחה',
+                    ],
+                ],
+
+                'edit' => [
+                    'back-btn'       => 'חזור',
+                    'file-name'      => 'שם קובץ',
+                    'file-name-info' => 'דוגמה: sitemap.xml',
+                    'general'        => 'כללי',
+                    'path'           => 'נתיב',
+                    'path-info'      => 'דוגמה: "/sitemap/" או "/" לנתיב בסיסי',
+                    'save-btn'       => 'שמור מפת אתר',
+                ],
+
+                'delete-failed' => ':name נמחקה בהצלחה',
+            ],
+
+            'url-rewrites' => [
+                'index' => [
+                    'title'      => 'כתובות URL משכתבות',
+                    'create-btn' => 'יצירת כתובת URL משכתבת',
+
+                    'datagrid' => [
+                        'id'                  => 'ID',
+                        'for'                 => 'עבור',
+                        'request-path'        => 'נתיב הבקשה',
+                        'target-path'         => 'נתיב היעד',
+                        'redirect-type'       => 'סוג ההפניה',
+                        'locale'              => 'אזור שפה',
+                        'edit'                => 'עריכה',
+                        'delete'              => 'מחיקה',
+                        'actions'             => 'פעולות',
+                        'mass-delete-success' => 'כתובות URL משכתבות שנבחרו נמחקו בהצלחה.',
+                    ],
+
+                    'create' => [
+                        'for'                => 'עבור',
+                        'product'            => 'מוצר',
+                        'category'           => 'קטגוריה',
+                        'cms-page'           => 'דף CMS',
+                        'request-path'       => 'נתיב הבקשה',
+                        'target-path'        => 'נתיב היעד',
+                        'redirect-type'      => 'סוג ההפניה',
+                        'temporary-redirect' => 'זמני (302)',
+                        'permanent-redirect' => 'קבוע (301)',
+                        'locale'             => 'אזור שפה',
+                        'save-btn'           => 'שמור כתובת URL משכתבת',
+                        'title'              => 'יצירת כתובת URL משכתבת',
+                        'success'            => 'כתובת URL משכתבת נוצרה בהצלחה.',
+                        'delete-warning'     => 'האם אתה בטוח שברצונך לבצע פעולה זו?',
+                    ],
+
+                    'edit' => [
+                        'title'          => 'עריכת כתובת URL משכתבת',
+                        'success'        => 'כתובת URL משכתבת עודכנה בהצלחה.',
+                        'delete-success' => 'כתובת URL משכתבת נמחקה בהצלחה.',
+                    ],
+                ],
+            ],
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         ],
     ],
 
@@ -2135,8 +2414,13 @@ return [
 
         'inventory-sources' => [
             'index'  => [
+<<<<<<< HEAD
                 'title'      => 'מקורות מלאי',
                 'create-btn' => 'צור מקורי מלאי',
+=======
+                'create-btn' => 'צור מקור אחסון',
+                'title'      => 'מקורות מלאי',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 
                 'datagrid' => [
                     'id'       => 'מזהה',
@@ -2257,9 +2541,25 @@ return [
 
             'rates'   => [
                 'index' => [
+<<<<<<< HEAD
                     'title'        => 'שערי מס',
                     'tax-rate'     => 'שער מס',
                     'button-title' => 'צור שערי מס',
+=======
+                    'button-title' => 'צור שיעור מס',
+                    'tax-rate'     => 'שער מס',
+                    'title'        => 'שערי מס',
+
+                    'import' => [
+                        'duplicate-error'  => 'הזהות חייבת להיות ייחודית, זהות כפולה :identifier בשורה :position.',
+                        'enough-row-error' => 'הקובץ אינו מכיל מספיק שורות',
+                        'import-btn'       => 'ייבא',
+                        'title'            => 'העלאה',
+                        'upload-error'     => 'הקובץ חייב להיות מסוג: xls, xlsx, csv.',
+                        'upload-success'   => 'שיעור המס הועלה בהצלחה',
+                        'validation'       => 'סוגים מותרים: xls, xlsx, csv.',
+                    ],
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 
                     'datagrid' => [
                         'id'         => 'מזהה',
@@ -2374,6 +2674,7 @@ return [
             ],
 
             'edit' => [
+<<<<<<< HEAD
                 'title'                  => 'ערוך ערוץ',
                 'back-btn'               => 'חזור',
                 'save-btn'               => 'שמור ערוץ',
@@ -2405,6 +2706,39 @@ return [
                 'settings'               => 'הגדרות',
                 'status'                 => 'מצב',
                 'maintenance-mode-text'  => 'הודעה',
+=======
+                'allowed-ips'            => 'כתובות IP מורשות',
+                'back-btn'               => 'חזור',
+                'code'                   => 'קוד',
+                'currencies-and-locales' => 'מטבעות ושפות',
+                'currencies'             => 'מטבעות',
+                'default-currency'       => 'מטבע ברירת המחדל',
+                'default-locale'         => 'שפת ברירת המחדל',
+                'description'            => 'תיאור',
+                'design'                 => 'עיצוב',
+                'favicon-size'           => 'רזולוציה תמונה כזו צריכה להיות כמו 16px X 16px',
+                'favicon'                => 'סמל בשוני',
+                'general'                => 'כללי',
+                'hostname-placeholder'   => 'https://www.example.com (אל תוסיף סלאש בסוף.)',
+                'hostname'               => 'שם המארח',
+                'inventory-sources'      => 'מקורות מלאי',
+                'last-delete-error'      => 'נדרש לפחות ערוץ אחד.',
+                'locales'                => 'שפות',
+                'logo-size'              => 'רזולוציה תמונה כזו צריכה להיות כמו 192px X 50px',
+                'logo'                   => 'לוגו',
+                'maintenance-mode-text'  => 'הודעה',
+                'maintenance-mode'       => 'מצב אחזקה',
+                'name'                   => 'שם',
+                'root-category'          => 'קטגורית שורש',
+                'save-btn'               => 'שמור ערוץ',
+                'seo-description'        => 'תיאור מתא',
+                'seo-keywords'           => 'מילות מפתח מתא',
+                'seo-title'              => 'כותרת מתא',
+                'seo'                    => 'SEO עבור דף הבית',
+                'status'                 => 'מצב',
+                'theme'                  => 'ערכת נושא',
+                'title'                  => 'ערוך ערוץ',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'update-success'         => 'עדכון הער',
             ],
         ],
@@ -2549,6 +2883,10 @@ return [
                     'image-carousel'    => 'קרוסלת תמונות',
                     'product-carousel'  => 'קרוסלת מוצרים',
                     'static-content'    => 'תוכן סטטי',
+<<<<<<< HEAD
+=======
+                    'services-content'  => 'תוכן שירותים',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     'title'             => 'סוג',
                 ],
             ],
@@ -2587,7 +2925,11 @@ return [
                 'name'                          => 'שם',
                 'product-carousel'              => 'קרוסלת מוצרים',
                 'product-carousel-description'  => 'הצגת מוצרים בצורה אלגנטית עם קרוסלת מוצרים דינמית ורספונסיבית.',
+<<<<<<< HEAD
                 'path'                          => 'נתיב',
+=======
+                'url'                           => 'קישור',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'preview'                       => 'תצוגה מקדימה',
                 'slider'                        => 'מחוון',
                 'static-content-description'    => 'שפרו את ההתערבות עם תוכן סטטי כמוי ומידע לקהל שלכם.',
@@ -2605,6 +2947,27 @@ return [
                 'update-slider'                 => 'עדכן מחוון',
                 'value-input'                   => 'ערך',
                 'value'                         => 'ערך: :value',
+<<<<<<< HEAD
+=======
+                'image-title'                   => 'כותרת התמונה',
+                'services-content'              => [
+                    'add-btn'            => 'הוסף שירותים',
+                    'channels'           => 'ערוצים',
+                    'description'        => 'תיאור',
+                    'delete'             => 'מחק',
+                    'general'            => 'כללי',
+                    'name'               => 'שם',
+                    'sort-order'         => 'סדר מיון',
+                    'status'             => 'סטטוס',
+                    'services'           => 'שירותים',
+                    'service-info'       => 'התאמת ערכות נושא הקשורות לשירות.',
+                    'save-btn'           => 'שמור',
+                    'service-icon-class' => 'מחלקת סמל שירות',
+                    'service-icon'       => 'סמל שירות',
+                    'title'              => 'כותרת',
+                    'update-service'     => 'עדכן שירותים',
+                ],
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             ],
 
             'create-success' => 'ערכת העיצוב נוצרה בהצלחה',
@@ -2688,6 +3051,7 @@ return [
 
         'products' => [
             'index' => [
+<<<<<<< HEAD
                 'end-date'                         => 'תאריך סיום',
                 'id'                               => 'מזהה',
                 'interval'                         => 'מרווח זמן',
@@ -2709,11 +3073,42 @@ return [
                 'total-products-added-to-wishlist' => 'סה"כ מוצרים שנוספו לרשימת המשאלות',
                 'total-sold-quantities'            => 'כמויות שנמכרו של המוצרים',
                 'view-details'                     => 'הצג פרטים',
+=======
+                'channel'                          => 'ערוץ',
+                'end-date'                         => 'תאריך סיום',
+                'id'                               => 'מזהה',
+                'interval'                         => 'מרווח זמן',
+                'last-search-terms'                => 'מונחי חיפוש אחרונים',
+                'locale'                           => 'אזור',
+                'name'                             => 'שם',
+                'orders'                           => 'הזמנות',
+                'price'                            => 'מחיר',
+                'products-added-over-time'         => 'מוצרים הוספו לאורך זמן',
+                'products-with-most-reviews'       => 'מוצרים עם הכי הרבה ביקורות',
+                'products-with-most-visits'        => 'מוצרים עם הכי הרבה ביקורים',
+                'quantities-sold-over-time'        => 'כמויות שנמכרו לאורך זמן',
+                'quantities'                       => 'כמויות',
+                'results'                          => 'תוצאות',
+                'revenue'                          => 'הכנסות',
+                'reviews'                          => 'ביקורות',
+                'search-term'                      => 'מונח חיפוש',
+                'start-date'                       => 'תאריך התחלה',
+                'title'                            => 'מוצרים',
+                'top-search-terms'                 => 'מונחי חיפוש מובילים',
+                'top-selling-products-by-quantity' => 'המוצרים הנמכרים בכמויות הגבוהות ביותר',
+                'top-selling-products-by-revenue'  => 'המוצרים הנמכרים בהכנסה הגבוהה ביותר',
+                'total-products-added-to-wishlist' => 'סה"כ מוצרים התווספו לרשימת משאלות',
+                'total-sold-quantities'            => 'סה"כ יחידות שנמכרו',
+                'total'                            => 'סך הכל',
+                'uses'                             => 'שימושים',
+                'view-details'                     => 'צפה בפרטים',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'visits'                           => 'ביקורים',
             ],
         ],
 
         'view' => [
+<<<<<<< HEAD
             'day'        => 'יום',
             'end-date'   => 'תאריך סיום',
             'export-csv' => 'ייצוא ל־CSV',
@@ -2721,6 +3116,16 @@ return [
             'month'      => 'חודש',
             'start-date' => 'תאריך התחלה',
             'year'       => 'שנה',
+=======
+            'day'           => 'יום',
+            'end-date'      => 'תאריך סיום',
+            'export-csv'    => 'ייצוא ל־CSV',
+            'export-xls'    => 'ייצוא ל־XLS',
+            'month'         => 'חודש',
+            'not-available' => 'אין רשומות זמינות.',
+            'start-date'    => 'תאריך התחלה',
+            'year'          => 'שנה',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         ],
 
         'empty' => [
@@ -2731,6 +3136,10 @@ return [
 
     'configuration' => [
         'index' => [
+<<<<<<< HEAD
+=======
+            'back-btn'                     => 'חזרה',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             'delete'                       => 'מחק',
             'enable-at-least-one-shipping' => 'הפעל לפחות אחת משיטות המשלוח.',
             'enable-at-least-one-payment'  => 'הפעל לפחות אחת משיטות התשלום.',
@@ -2785,6 +3194,51 @@ return [
                         'title-info'      => 'לוגו המנהל הוא הדימוי או התמונה המיוחסת שמייצגת את ממשק הניהול של מערכת או אתר, וניתנת להתאמה אישית ממועדפת.',
                     ],
                 ],
+<<<<<<< HEAD
+=======
+
+                'magic-ai' => [
+                    'info'  => 'הגדר אפשרויות קסם בבינה מלאכותית.',
+                    'title' => 'בינה מלאכותית קסומה',
+
+                    'settings' => [
+                        'title'        => 'הגדרות כלליות',
+                        'title-info'   => 'שפר את חוויית השימוש שלך עם יכולות Magic AI על ידי הזנת מפתח API בלעדי שלך וציונו של הארגון הרלוונטי לאינטגרציה ללא מאמץ. קבל שליטה על פרטי הכניסה שלך ל-OpenAI והתאם אישית את ההגדרות לפי צרכיך הספציפיים.',
+                        'enabled'      => 'מופעל',
+                        'api-key'      => 'מפתח API',
+                        'organization' => 'ארגון',
+                    ],
+
+                    'content-generation' => [
+                        'title'                            => 'יצירת תוכן',
+                        'title-info'                       => 'תכלית הפעולה הזו היא לאפשר את יכולת Magic AI עבור כל עורך WYSIWYG, בו תרצה לנהל תוכן באמצעות הבנה מלאכותית. <br/><br/>כאשר מופעל, עבור אל כל עורך כדי ליצור תוכן.',
+                        'enabled'                          => 'מופעל',
+                        'product-short-description-prompt' => 'הכוונה לתיאור קצר של מוצר',
+                        'product-description-prompt'       => 'הכוונה לתיאור מוצר',
+                        'category-description-prompt'      => 'הכוונה לתיאור קטגוריה',
+                        'cms-page-content-prompt'          => 'הכוונה לתוכן דף CMS',
+                    ],
+
+                    'image-generation' => [
+                        'title'      => 'יצירת תמונות',
+                        'title-info' => 'תכונה זו תאפשר את השימוש ב-Magic AI לכל העלאת תמונה, במקום שבו תרצה ליצור תמונות באמצעות DALL-E. <br/><br/>כאשר מופעל, עבור לכל העלאת תמונה כדי ליצור תמונה.',
+                        'enabled'    => 'מופעל',
+                    ],
+
+                    'review-translation' => [
+                        'title'      => 'תרגום ביקורת',
+                        'title-info' => 'ספק אפשרות ללקוח או למבקר לתרגם ביקורת לקוח לאנגלית. <br/><br/>כאשר מופעל, עבור לביקורת ותמצא את הכפתור "תרגם לאנגלית" אם הביקורת אינה באנגלית.',
+                        'enabled'    => 'מופעל',
+                    ],
+
+                    'checkout-message' => [
+                        'title'      => 'הודעת קופה אישית',
+                        'title-info' => 'יצירת הודעה אישית ללקוחות על עמוד ההודעה ותואמת את התוכן לפי ההעדפות האישיות, משפרת את חוויית הרכישה לאחר הרכישה.',
+                        'enabled'    => 'מופעל',
+                        'prompt'     => 'הכוונה',
+                    ],
+                ],
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             ],
 
             'catalog' => [
@@ -3074,6 +3528,7 @@ return [
                 ],
 
                 'payment-methods' => [
+<<<<<<< HEAD
                     'page-title'                     => 'אמצעי תשלום',
                     'info'                           => 'הגדרת מידע לאמצעי תשלום',
                     'cash-on-delivery'               => 'מזומן במסירה',
@@ -3106,6 +3561,42 @@ return [
                     'accepted-currencies'            => 'מטבעות מותרים',
                     'accepted-currencies-info'       => 'הוסף קודי מטבע מופרדים בפסיק, לדוגמה: USD, EUR, ...',
                     'business-account'               => 'חשבון עסקי',
+=======
+                    'accepted-currencies'            => 'מטבעות מקובלים',
+                    'accepted-currencies-info'       => 'הוסף קודי מטבע מופרדים בפסיק, לדוגמה USD, INR,...',
+                    'business-account'               => 'חשבון עסקי',
+                    'cash-on-delivery-info'          => 'אמצעי תשלום שבו לקוחות משלמים במזומן בעת קבלת הסחורה או השירותים לדלתם.',
+                    'cash-on-delivery'               => 'מזומן במסירה',
+                    'client-id'                      => 'מזהה לקוח',
+                    'client-id-info'                 => 'השתמש "sb" לצורך בדיקות.',
+                    'client-secret'                  => 'סוד לקוח',
+                    'client-secret-info'             => 'הוסף את המפתח הסודי שלך כאן',
+                    'description'                    => 'תיאור',
+                    'generate-invoice-applicable'    => 'יש תקפות אם יש הפעלה אוטומטית של הפקת חשבונית',
+                    'generate-invoice'               => 'צור חשבונית באופן אוטומטי לאחר ביצוע הזמנה',
+                    'info'                           => 'הגדרת מידע על אמצעי התשלום',
+                    'instructions'                   => 'הוראות',
+                    'logo-information'               => 'רזולוציית התמונה צריכה להיות בגודל 55 פיקסלים על 45 פיקסלים',
+                    'logo'                           => 'לוגו',
+                    'money-transfer'                 => 'העברת כסף',
+                    'money-transfer-info'            => 'העברת כסף מאדם או חשבון לגוף אחר, לרוב אלקטרונית, למגוון מטרות כמו עסקאות או העברות כספים.',
+                    'mailing-address'                => 'שלח צ\'ק לכתובת',
+                    'pending'                        => 'ממתין',
+                    'paid'                           => 'שולם',
+                    'processing'                     => 'בעיבוד',
+                    'pending-payment'                => 'תשלום ממתין',
+                    'page-title'                     => 'אמצעי תשלום',
+                    'paypal-standard'                => 'פייפאל סטנדרט',
+                    'paypal-standard-info'           => 'פייפאל סטנדרט הוא אפשרות תשלום בפייפאל לעסקים מקוונים, המאפשרת ללקוחות לשלם באמצעות חשבון פייפאל שלהם או כרטיסי אשראי/חיוב.',
+                    'paypal-smart-button'            => 'פייפאל',
+                    'paypal-smart-button-info'       => 'לחצן חכם של פייפאל: מפשט את התשלומים באינטרנט עם לחצנים שניתן להתאים אישית לעסקאות מאובטחות רב-אמצעים באתרים ובאפליקציות.',
+                    'set-invoice-status'             => 'הגדר סטטוס חשבונית לאחר יצירת החשבונית ל',
+                    'status'                         => 'סטטוס',
+                    'sort-order'                     => 'סדר מיון',
+                    'set-order-status'               => 'הגדר סטטוס הזמנה לאחר יצירת החשבונית ל',
+                    'sandbox'                        => 'סנדבוקס',
+                    'title'                          => 'כותרת',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 ],
 
                 'order-settings' => [
@@ -3250,6 +3741,12 @@ return [
                 'reviews'                  => 'ביקורות',
                 'roles'                    => 'תפקידים',
                 'sales'                    => 'מכירות',
+<<<<<<< HEAD
+=======
+                'search-synonyms'          => 'מילים נרדפות לחיפוש',
+                'search-terms'             => 'מונחים לחיפוש',
+                'search-seo'               => 'חיפוש וקידום אתרים',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'shipments'                => 'משלוחים',
                 'settings'                 => 'הגדרות',
                 'sitemaps'                 => 'מפותרכים',
@@ -3257,6 +3754,11 @@ return [
                 'tax-categories'           => 'קטגוריות מס',
                 'tax-rates'                => 'שערי מס',
                 'transactions'             => 'עסקאות',
+<<<<<<< HEAD
+=======
+                'themes'                   => 'נושאים',
+                'url-rewrites'             => 'כתיבת URL מחדש',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'users'                    => 'משתמשים',
             ],
         ],
@@ -3334,12 +3836,22 @@ return [
 
         'products' => [
             'search' => [
+<<<<<<< HEAD
                 'add-btn'     => 'הוסף מוצר שנבחר',
                 'empty-title' => 'לא נמצאו מוצרים',
                 'empty-info'  => 'אין מוצרים זמינים עבור מונח החיפוש.',
                 'qty'         => ':qty זמין',
                 'sku'         => 'SKU - :sku',
                 'title'       => 'בחר מוצרים',
+=======
+                'add-btn'       => 'הוסף מוצר שנבחר',
+                'empty-info'    => 'אין מוצרים זמינים עבור מונח החיפוש.',
+                'empty-title'   => 'לא נמצאו מוצרים',
+                'product-image' => 'תמונת המוצר',
+                'qty'           => ':qty זמין',
+                'sku'           => 'SKU - :sku',
+                'title'         => 'בחר מוצרים',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             ],
         ],
 
@@ -3348,6 +3860,32 @@ return [
                 'add-image-btn'     => 'הוסף תמונה',
                 'allowed-types'     => 'png, jpeg, jpg',
                 'not-allowed-error' => 'ניתן להעלות רק קבצי תמונה (.jpeg, .jpg, .png, ..)',
+<<<<<<< HEAD
+=======
+                'ai-add-image-btn'  => 'בינה מלאכותית',
+                'ai-btn-info'       => 'יצירת תמונה',
+
+                'ai-generation' => [
+                    '1024x1024'        => '1024x1024',
+                    '1024x1792'        => '1024x1792',
+                    '1792x1024'        => '1792x1024',
+                    'apply'            => 'החל',
+                    'dall-e-2'         => 'דאל.ה 2',
+                    'dall-e-3'         => 'דאל.ה 3',
+                    'generate'         => 'יצירה',
+                    'generating'       => 'יוצר...',
+                    'hd'               => 'HD',
+                    'model'            => 'מודל',
+                    'number-of-images' => 'מספר התמונות',
+                    'prompt'           => 'פרומט',
+                    'quality'          => 'איכות',
+                    'regenerate'       => 'יצירה מחדש',
+                    'regenerating'     => 'יוצר מחדש...',
+                    'size'             => 'גודל',
+                    'standard'         => 'תקן',
+                    'title'            => 'יצירת תמונה עם בינה מלאכותית',
+                ],
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 
                 'placeholders'  => [
                     'front'     => 'קדמית',
@@ -3364,6 +3902,23 @@ return [
                 'not-allowed-error' => 'ניתן להעלות רק קבצי וידאו (.mp4, .mov, .ogg ..)',
             ],
         ],
+<<<<<<< HEAD
+=======
+
+        'tinymce' => [
+            'ai-btn-tile' => 'אומץ המגן',
+
+            'ai-generation' => [
+                'title'                  => 'עזרת AI',
+                'prompt'                 => 'בקשה',
+                'generating'             => 'יוצר...',
+                'generate'               => 'יצירה',
+                'generated-content'      => 'תוכן שנוצר',
+                'generated-content-info' => 'תוכן ה- AI יכול להביא לטעות. יש לבדוק את תוכן הנוצר לפני החלטה על החיבור שלו.',
+                'apply'                  => 'החל',
+            ],
+        ],
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
     ],
 
     'acl' => [
@@ -3394,18 +3949,31 @@ return [
         'invoices'                 => 'חשבוניות',
         'inventory-sources'        => 'מקורות מלאי',
         'locales'                  => 'אזורים',
+<<<<<<< HEAD
         'mass-delete'              => 'מחיקה מרובה',
         'mass-update'              => 'עדכון מרובה',
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         'marketing'                => 'שיווק',
         'newsletter-subscriptions' => 'הרשמות לניוזלטר',
         'note'                     => 'הערה',
         'orders'                   => 'הזמנות',
         'products'                 => 'מוצרים',
         'promotions'               => 'קידומות',
+<<<<<<< HEAD
+=======
+        'reporting'                => 'דיווח',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         'refunds'                  => 'החזרים',
         'reviews'                  => 'ביקורות',
         'roles'                    => 'תפקידים',
         'sales'                    => 'מכירות',
+<<<<<<< HEAD
+=======
+        'search-synonyms'          => 'מילים נרדפות לחיפוש',
+        'search-terms'             => 'מונחים לחיפוש',
+        'search-seo'               => 'חיפוש וקידום אתרים',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         'shipments'                => 'שליחות',
         'settings'                 => 'הגדרות',
         'subscribers'              => 'מנויים לניוזלטר',
@@ -3415,6 +3983,10 @@ return [
         'tax-categories'           => 'קטגוריות מס',
         'tax-rates'                => 'שערי מס',
         'transactions'             => 'עסקאות',
+<<<<<<< HEAD
+=======
+        'url-rewrites'             => 'כתיבת URL מחדש',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         'users'                    => 'משתמשים',
         'view'                     => 'הצג',
     ],
@@ -3451,6 +4023,7 @@ return [
     ],
 
     'export' => [
+<<<<<<< HEAD
         'allowed-type'     => 'סוגים מאושרים :',
         'csv'              => 'CSV',
         'download'         => 'הורדה',
@@ -3466,6 +4039,12 @@ return [
         'upload'           => 'העלאה',
         'upload-error'     => 'הקובץ חייב להיות מסוג: xls, xlsx, csv.',
         'upload-success'   => ':name הועלה בהצלחה',
+=======
+        'csv'              => 'CSV',
+        'download'         => 'הורדה',
+        'export'           => 'ייצוא',
+        'no-records'       => 'אין מידע לייצוא',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         'xls'              => 'XLS',
     ],
 
@@ -3491,6 +4070,17 @@ return [
             ],
         ],
 
+<<<<<<< HEAD
+=======
+        'customers' => [
+            'registration' => [
+                'description' => 'חשבון לקוח חדש נוצר בהצלחה. כעת הם יכולים להיכנס באמצעות כתובת הדוא"ל והסיסמה שלהם. לאחר הכניסה, תהיה להם גישה לשירותים שונים, כולל היכולת לסקור הזמנות קודמות, לנהל רשימות משאלות ולעדכן את פרטי החשבון שלהם.',
+                'greeting'    => 'אנו מקבלים בברכה את הלקוח החדש, :customer_name שזה עתה נרשם אלינו!',
+                'subject'     => 'רישום לקוח חדש',
+            ],
+        ],
+
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         'orders' => [
             'created' => [
                 'greeting' => 'יש לך הזמנה חדשה :order_id שהוזמנה בתאריך :created_at',

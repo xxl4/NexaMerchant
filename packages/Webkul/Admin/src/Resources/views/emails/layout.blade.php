@@ -12,7 +12,11 @@
     <body style="font-family: inter;">
         <div style="max-width: 640px; margin-left: auto; margin-right: auto;">
             <div style="padding: 30px;">
+<<<<<<< HEAD
                 {{-- Email Header --}}
+=======
+                <!-- Email Header -->
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 <div style="margin-bottom: 65px;">
                     <a href="{{ route('shop.home.index') }}">
                         @if ($logo = core()->getCurrentChannel()->logo_url)
@@ -31,6 +35,7 @@
                     </a>
                 </div>
 
+<<<<<<< HEAD
                 {{-- Email Content --}}
                 {{ $slot }}
 
@@ -39,6 +44,16 @@
                     @lang('admin::app.emails.thanks', [
                         'link' => 'mailto:customer@hatmeo.com',
                         'email' => 'customer@hatmeo.com',
+=======
+                <!-- Email Content -->
+                {{ $slot }}
+
+                <!-- Email Footer -->
+                <p style="font-size: 16px;color: #202B3C;line-height: 24px;">
+                    @lang('admin::app.emails.thanks', [
+                        'link' => 'mailto:shop@shop.com',
+                        'email' => 'shop@shop.com',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                         'style' => 'color: #2969FF;'
                     ])
                 </p>

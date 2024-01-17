@@ -4,10 +4,17 @@ namespace Webkul\Admin\Http\Controllers\Marketing\Promotions;
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Event;
+<<<<<<< HEAD
 use Webkul\Admin\Http\Controllers\Controller;
 use Webkul\CatalogRule\Repositories\CatalogRuleRepository;
 use Webkul\Admin\DataGrids\Marketing\Promotions\CatalogRuleDataGrid;
 use Webkul\Admin\Http\Requests\CatalogRuleRequest;
+=======
+use Webkul\Admin\DataGrids\Marketing\Promotions\CatalogRuleDataGrid;
+use Webkul\Admin\Http\Controllers\Controller;
+use Webkul\Admin\Http\Requests\CatalogRuleRequest;
+use Webkul\CatalogRule\Repositories\CatalogRuleRepository;
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 
 class CatalogRuleController extends Controller
 {
@@ -99,8 +106,12 @@ class CatalogRuleController extends Controller
     /**
      * Remove the specified resource from storage.
      *
+<<<<<<< HEAD
      * @param int $id
      * @return \Illuminate\Http\JsonResponse
+=======
+     * @param  int  $id
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      */
     public function destroy($id): JsonResponse
     {
@@ -114,13 +125,21 @@ class CatalogRuleController extends Controller
             Event::dispatch('promotions.catalog_rule.delete.after', $id);
 
             return new JsonResponse([
+<<<<<<< HEAD
                 'message' => trans('admin::app.marketing.promotions.catalog-rules.delete-success')
+=======
+                'message' => trans('admin::app.marketing.promotions.catalog-rules.delete-success'),
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             ]);
         } catch (\Exception $e) {
         }
 
         return new JsonResponse([
             'message' => trans('admin::app.marketing.promotions.catalog-rules.delete-failed'
+<<<<<<< HEAD
         )], 400);
+=======
+            )], 400);
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
     }
 }

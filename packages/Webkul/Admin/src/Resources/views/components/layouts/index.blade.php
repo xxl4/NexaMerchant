@@ -6,7 +6,10 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+<<<<<<< HEAD
         <meta name="csrf-token" content="{{ csrf_token() }}">
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         <meta name="base-url" content="{{ url()->to('/') }}">
         <meta name="currency-code" content="{{ core()->getBaseCurrencyCode() }}">
         <meta http-equiv="content-language" content="{{ app()->getLocale() }}">
@@ -25,28 +28,48 @@
             rel="stylesheet"
         />
 
+<<<<<<< HEAD
         @if ($favicon = core()->getConfigData('general.design.admin_logo.favicon', core()->getCurrentChannelCode()))
             <link 
                 type="image/x-icon"
                 href="{{ Storage::url($favicon) }}" 
+=======
+        <link rel="preload" as="image" href="{{ url('cache/logo/bagisto.png') }}">
+
+        @if ($favicon = core()->getConfigData('general.design.admin_logo.favicon'))
+            <link
+                type="image/x-icon"
+                href="{{ Storage::url($favicon) }}"
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 rel="shortcut icon"
                 sizes="16x16"
             >
         @else
+<<<<<<< HEAD
             <link 
                 type="image/x-icon"
                 href="{{ bagisto_asset('images/favicon.ico') }}" 
+=======
+            <link
+                type="image/x-icon"
+                href="{{ bagisto_asset('images/favicon.ico') }}"
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 rel="shortcut icon"
                 sizes="16x16"
             />
         @endif
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         @stack('styles')
 
         <style>
             {!! core()->getConfigData('general.content.custom_scripts.custom_css') !!}
         </style>
 
+<<<<<<< HEAD
         {!! view_render_event('bagisto.shop.layout.head') !!}
     </head>
 
@@ -75,19 +98,60 @@
                 <div class="flex-1 max-w-full px-[16px] pt-[11px] pb-[22px] bg-white dark:bg-gray-950 ltr:pl-[286px] rtl:pr-[286px] max-lg:!px-[16px] transition-all duration-300 group-[.sidebar-collapsed]/container:ltr:pl-[85px] group-[.sidebar-collapsed]/container:rtl:pr-[85px]">
                     {{-- Added dynamic tabs for third level menus  --}}
                     {{-- Todo @suraj-webkul need to optimize below statement. --}}
+=======
+        {!! view_render_event('bagisto.admin.layout.head') !!}
+    </head>
+
+    <body class="h-full dark:bg-gray-950">
+        {!! view_render_event('bagisto.admin.layout.body.before') !!}
+
+        <div id="app" class="h-full">
+            <!-- Flash Message Blade Component -->
+            <x-admin::flash-group />
+
+            <!-- Confirm Modal Blade Component -->
+            <x-admin::modal.confirm />
+
+            {!! view_render_event('bagisto.admin.layout.content.before') !!}
+
+            <!-- Page Header Blade Component -->
+            <x-admin::layouts.header />
+
+            <div
+                class="flex gap-4 group/container {{ (request()->cookie('sidebar_collapsed') ?? 0) ? 'sidebar-collapsed' : 'sidebar-not-collapsed' }}"
+                ref="appLayout"
+            >
+                <!-- Page Sidebar Blade Component -->
+                <x-admin::layouts.sidebar />
+
+                <div class="flex-1 max-w-full px-4 pt-3 pb-6 bg-white dark:bg-gray-950 ltr:pl-[286px] rtl:pr-[286px] max-lg:!px-4 transition-all duration-300 group-[.sidebar-collapsed]/container:ltr:pl-[85px] group-[.sidebar-collapsed]/container:rtl:pr-[85px]">
+                    <!-- Added dynamic tabs for third level menus  -->
+                    <!-- Todo @suraj-webkul need to optimize below statement. -->
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     @if (! request()->routeIs('admin.configuration.index'))
                         <x-admin::layouts.tabs />
                     @endif
 
+<<<<<<< HEAD
                     {{-- Page Content Blade Component --}}
+=======
+                    <!-- Page Content Blade Component -->
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     {{ $slot }}
                 </div>
             </div>
 
+<<<<<<< HEAD
             {!! view_render_event('bagisto.shop.layout.content.after') !!}
         </div>
 
         {!! view_render_event('bagisto.shop.layout.body.after') !!}
+=======
+            {!! view_render_event('bagisto.admin.layout.content.after') !!}
+        </div>
+
+        {!! view_render_event('bagisto.admin.layout.body.after') !!}
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 
         @stack('scripts')
     </body>

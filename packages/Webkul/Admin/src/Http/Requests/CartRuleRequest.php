@@ -24,6 +24,7 @@ class CartRuleRequest extends FormRequest
     public function rules()
     {
         $rules = [
+<<<<<<< HEAD
                 'name'                => 'required',
                 'channels'            => 'required|array|min:1',
                 'customer_groups'     => 'required|array|min:1',
@@ -33,6 +34,17 @@ class CartRuleRequest extends FormRequest
                 'ends_till'           => 'nullable|date|after_or_equal:starts_from',
                 'action_type'         => 'required',
                 'discount_amount'     => 'required|numeric',
+=======
+            'name'                => 'required',
+            'channels'            => 'required|array|min:1',
+            'customer_groups'     => 'required|array|min:1',
+            'coupon_type'         => 'required',
+            'use_auto_generation' => 'required_if:coupon_type,==,1',
+            'starts_from'         => 'nullable|date',
+            'ends_till'           => 'nullable|date|after_or_equal:starts_from',
+            'action_type'         => 'required',
+            'discount_amount'     => 'required|numeric',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         ];
 
         if (! request('id')) {

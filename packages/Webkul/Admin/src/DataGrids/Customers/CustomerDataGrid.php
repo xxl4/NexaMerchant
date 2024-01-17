@@ -155,7 +155,7 @@ class CustomerDataGrid extends DataGrid
                 return app(OrderRepository::class)->scopeQuery(function ($q) use ($row) {
                     return $q->whereNotIn('status', ['canceled', 'closed'])
                         ->where('customer_id', $row->customer_id);
-                })->sum('grand_total_invoiced');
+                })->sum('base_grand_total_invoiced');
             },
         ]);
 
@@ -212,7 +212,7 @@ class CustomerDataGrid extends DataGrid
      */
     public function prepareMassActions()
     {
-        if (bouncer()->hasPermission('customers.customers.mass-delete')) {
+        if (bouncer()->hasPermission('customers.customers.delete')) {
             $this->addMassAction([
                 'title'  => trans('admin::app.customers.customers.index.datagrid.delete'),
                 'method' => 'POST',
@@ -220,7 +220,7 @@ class CustomerDataGrid extends DataGrid
             ]);
         }
 
-        if (bouncer()->hasPermission('customers.customers.mass-update')) {
+        if (bouncer()->hasPermission('customers.customers.edit')) {
             $this->addMassAction([
                 'title'   => trans('admin::app.customers.customers.index.datagrid.update-status'),
                 'method'  => 'POST',

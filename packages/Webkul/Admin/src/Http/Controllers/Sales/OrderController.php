@@ -2,12 +2,21 @@
 
 namespace Webkul\Admin\Http\Controllers\Sales;
 
+<<<<<<< HEAD
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\DB;
 use Webkul\Admin\Http\Controllers\Controller;
 use Webkul\Sales\Repositories\OrderRepository;
 use Webkul\Sales\Repositories\OrderCommentRepository;
 use Webkul\Admin\DataGrids\Sales\OrderDataGrid;
+=======
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Event;
+use Webkul\Admin\DataGrids\Sales\OrderDataGrid;
+use Webkul\Admin\Http\Controllers\Controller;
+use Webkul\Sales\Repositories\OrderCommentRepository;
+use Webkul\Sales\Repositories\OrderRepository;
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 
 class OrderController extends Controller
 {
@@ -19,8 +28,12 @@ class OrderController extends Controller
     public function __construct(
         protected OrderRepository $orderRepository,
         protected OrderCommentRepository $orderCommentRepository
+<<<<<<< HEAD
     )
     {
+=======
+    ) {
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
     }
 
     /**
@@ -66,7 +79,11 @@ class OrderController extends Controller
             session()->flash('error', trans('admin::app.sales.orders.view.create-error'));
         }
 
+<<<<<<< HEAD
         return redirect()->back();
+=======
+        return redirect()->route('admin.sales.orders.view', $id);
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
     }
 
     /**
@@ -81,7 +98,11 @@ class OrderController extends Controller
 
         $data = array_merge(request()->only([
             'comment',
+<<<<<<< HEAD
             'customer_notified'
+=======
+            'customer_notified',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         ]), [
             'order_id'          => $id,
             'customer_notified' => request()->has('customer_notified'),
@@ -93,7 +114,11 @@ class OrderController extends Controller
 
         session()->flash('success', trans('admin::app.sales.orders.view.comment-success'));
 
+<<<<<<< HEAD
         return redirect()->back();
+=======
+        return redirect()->route('admin.sales.orders.view', $id);
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
     }
 
     /**
@@ -105,7 +130,11 @@ class OrderController extends Controller
     {
         $results = [];
 
+<<<<<<< HEAD
         $orders = $this->orderRepository->scopeQuery(function($query) {
+=======
+        $orders = $this->orderRepository->scopeQuery(function ($query) {
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             return $query->where('customer_email', 'like', '%' . urldecode(request()->input('query')) . '%')
                 ->orWhere('status', 'like', '%' . urldecode(request()->input('query')) . '%')
                 ->orWhere(DB::raw('CONCAT(' . DB::getTablePrefix() . 'customer_first_name, " ", ' . DB::getTablePrefix() . 'customer_last_name)'), 'like', '%' . urldecode(request()->input('query')) . '%')

@@ -4,11 +4,18 @@ namespace Webkul\Admin\Http\Controllers\CMS;
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Event;
+<<<<<<< HEAD
 use Webkul\CMS\Repositories\CmsRepository;
 use Webkul\Admin\Http\Controllers\Controller;
 use Webkul\Admin\DataGrids\CMS\CMSPageDataGrid;
 use Webkul\Admin\Http\Requests\MassDestroyRequest;
 
+=======
+use Webkul\Admin\DataGrids\CMS\CMSPageDataGrid;
+use Webkul\Admin\Http\Controllers\Controller;
+use Webkul\Admin\Http\Requests\MassDestroyRequest;
+use Webkul\CMS\Repositories\PageRepository;
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 
 class PageController extends Controller
 {
@@ -17,7 +24,11 @@ class PageController extends Controller
      *
      * @return void
      */
+<<<<<<< HEAD
     public function __construct(protected CmsRepository $cmsRepository)
+=======
+    public function __construct(protected PageRepository $pageRepository)
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
     {
     }
 
@@ -59,7 +70,11 @@ class PageController extends Controller
             'html_content' => 'required',
         ]);
 
+<<<<<<< HEAD
         Event::dispatch('cms.pages.create.before');
+=======
+        Event::dispatch('cms.page.create.before');
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 
         $data = request()->only([
             'page_title',
@@ -71,9 +86,15 @@ class PageController extends Controller
             'meta_description',
         ]);
 
+<<<<<<< HEAD
         $page = $this->cmsRepository->create($data);
 
         Event::dispatch('cms.pages.create.after', $page);
+=======
+        $page = $this->pageRepository->create($data);
+
+        Event::dispatch('cms.page.create.after', $page);
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 
         session()->flash('success', trans('admin::app.cms.create-success'));
 
@@ -88,7 +109,11 @@ class PageController extends Controller
      */
     public function edit($id)
     {
+<<<<<<< HEAD
         $page = $this->cmsRepository->findOrFail($id);
+=======
+        $page = $this->pageRepository->findOrFail($id);
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 
         return view('admin::cms.edit', compact('page'));
     }
@@ -105,7 +130,11 @@ class PageController extends Controller
 
         $this->validate(request(), [
             $locale . '.url_key'      => ['required', new \Webkul\Core\Rules\Slug, function ($attribute, $value, $fail) use ($id) {
+<<<<<<< HEAD
                 if (! $this->cmsRepository->isUrlKeyUnique($id, $value)) {
+=======
+                if (! $this->pageRepository->isUrlKeyUnique($id, $value)) {
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     $fail(trans('admin::app.cms.index.already-taken', ['name' => 'Page']));
                 }
             }],
@@ -114,7 +143,11 @@ class PageController extends Controller
             'channels'                => 'required',
         ]);
 
+<<<<<<< HEAD
         Event::dispatch('cms.pages.update.before', $id);
+=======
+        Event::dispatch('cms.page.update.before', $id);
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 
         $data = [
             $locale    => request()->input($locale),
@@ -122,9 +155,15 @@ class PageController extends Controller
             'locale'   => $locale,
         ];
 
+<<<<<<< HEAD
         $page = $this->cmsRepository->update($data, $id);
 
         Event::dispatch('cms.pages.update.after', $page);
+=======
+        $page = $this->pageRepository->update($data, $id);
+
+        Event::dispatch('cms.page.update.after', $page);
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 
         session()->flash('success', trans('admin::app.cms.update-success'));
 
@@ -134,6 +173,7 @@ class PageController extends Controller
     /**
      * To delete the previously create CMS page.
      *
+<<<<<<< HEAD
      * @param int $id
      * @return \Illuminate\Http\JsonResponse
      */
@@ -144,21 +184,36 @@ class PageController extends Controller
         $this->cmsRepository->delete($id);
 
         Event::dispatch('cms.pages.delete.after', $id);
+=======
+     * @param  int  $id
+     */
+    public function delete($id): JsonResponse
+    {
+        Event::dispatch('cms.page.delete.before', $id);
+
+        $this->pageRepository->delete($id);
+
+        Event::dispatch('cms.page.delete.after', $id);
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 
         return new JsonResponse(['message' => trans('admin::app.cms.delete-success')]);
     }
 
     /**
      * To mass delete the CMS resource from storage.
+<<<<<<< HEAD
      *
      * @param MassDestroyRequest $massDestroyRequest
      * @return \Illuminate\Http\JsonResponse
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      */
     public function massDelete(MassDestroyRequest $massDestroyRequest): JsonResponse
     {
         $indices = $massDestroyRequest->input('indices');
 
         foreach ($indices as $index) {
+<<<<<<< HEAD
             Event::dispatch('cms.pages.delete.before', $index);
 
             $this->cmsRepository->delete($index);
@@ -168,6 +223,17 @@ class PageController extends Controller
 
         return new JsonResponse([
             'message' => trans('admin::app.cms.index.datagrid.mass-delete-success')
+=======
+            Event::dispatch('cms.page.delete.before', $index);
+
+            $this->pageRepository->delete($index);
+
+            Event::dispatch('cms.page.delete.after', $index);
+        }
+
+        return new JsonResponse([
+            'message' => trans('admin::app.cms.index.datagrid.mass-delete-success'),
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         ], 200);
     }
 }

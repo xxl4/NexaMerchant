@@ -36,9 +36,9 @@ class ThemeDatagrid extends DataGrid
                 'theme_customizations.name as name',
             );
 
-        $this->addFilter('type', 'channel_translations.type');
-        $this->addFilter('name', 'channel_translations.name');
-        $this->addFilter('sort_order', 'channel_translations.sort_order');
+        $this->addFilter('type', 'theme_customizations.type');
+        $this->addFilter('name', 'theme_customizations.name');
+        $this->addFilter('sort_order', 'theme_customizations.sort_order');
         $this->addFilter('status', 'theme_customizations.status');
         $this->addFilter('channel_name', 'channel_name');
 
@@ -121,7 +121,7 @@ class ThemeDatagrid extends DataGrid
                 },
             ]);
         }
-    
+
         if (bouncer()->hasPermission('settings.themes.delete')) {
             $this->addAction([
                 'icon'   => 'icon-delete',

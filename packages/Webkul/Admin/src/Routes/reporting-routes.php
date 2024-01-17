@@ -11,13 +11,21 @@ use Webkul\Admin\Http\Controllers\Reporting\SaleController;
 Route::group(['middleware' => ['admin'], 'prefix' => config('app.admin_url')], function () {
     Route::prefix('reporting')->group(function () {
         /**
+<<<<<<< HEAD
          * CUstomer routes.
+=======
+         * Customer routes.
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
          */
         Route::controller(CustomerController::class)->prefix('customers')->group(function () {
             Route::get('', 'index')->name('admin.reporting.customers.index');
 
             Route::get('stats', 'stats')->name('admin.reporting.customers.stats');
+<<<<<<< HEAD
             
+=======
+
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             Route::get('export', 'export')->name('admin.reporting.customers.export');
 
             Route::get('view', 'view')->name('admin.reporting.customers.view');
@@ -32,7 +40,11 @@ Route::group(['middleware' => ['admin'], 'prefix' => config('app.admin_url')], f
             Route::get('', 'index')->name('admin.reporting.products.index');
 
             Route::get('stats', 'stats')->name('admin.reporting.products.stats');
+<<<<<<< HEAD
             
+=======
+
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             Route::get('export', 'export')->name('admin.reporting.products.export');
 
             Route::get('view', 'view')->name('admin.reporting.products.view');
@@ -47,7 +59,11 @@ Route::group(['middleware' => ['admin'], 'prefix' => config('app.admin_url')], f
             Route::get('', 'index')->name('admin.reporting.sales.index');
 
             Route::get('stats', 'stats')->name('admin.reporting.sales.stats');
+<<<<<<< HEAD
             
+=======
+
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             Route::get('export', 'export')->name('admin.reporting.sales.export');
 
             Route::get('view', 'view')->name('admin.reporting.sales.view');
@@ -55,4 +71,8 @@ Route::group(['middleware' => ['admin'], 'prefix' => config('app.admin_url')], f
             Route::get('view/stats', 'viewStats')->name('admin.reporting.sales.view.stats');
         });
     });
+<<<<<<< HEAD
 });
+=======
+});
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61

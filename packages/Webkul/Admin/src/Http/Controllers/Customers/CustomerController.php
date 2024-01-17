@@ -2,6 +2,7 @@
 
 namespace Webkul\Admin\Http\Controllers\Customers;
 
+<<<<<<< HEAD
 use Illuminate\Support\Facades\Event;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
@@ -12,6 +13,20 @@ use Webkul\Admin\DataGrids\Customers\CustomerDataGrid;
 use Webkul\Admin\Http\Requests\MassUpdateRequest;
 use Webkul\Admin\Http\Requests\MassDestroyRequest;
 use Webkul\Customer\Repositories\CustomerNoteRepository;
+=======
+use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Event;
+use Illuminate\Support\Facades\Mail;
+use Webkul\Admin\DataGrids\Customers\CustomerDataGrid;
+use Webkul\Admin\Http\Controllers\Controller;
+use Webkul\Admin\Http\Requests\MassDestroyRequest;
+use Webkul\Admin\Http\Requests\MassUpdateRequest;
+use Webkul\Admin\Mail\Customer\NewCustomerNotification;
+use Webkul\Customer\Repositories\CustomerGroupRepository;
+use Webkul\Customer\Repositories\CustomerNoteRepository;
+use Webkul\Customer\Repositories\CustomerRepository;
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 
 class CustomerController extends Controller
 {
@@ -22,8 +37,12 @@ class CustomerController extends Controller
         protected CustomerRepository $customerRepository,
         protected CustomerGroupRepository $customerGroupRepository,
         protected CustomerNoteRepository $customerNoteRepository
+<<<<<<< HEAD
     )
     {
+=======
+    ) {
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
     }
 
     /**
@@ -44,8 +63,11 @@ class CustomerController extends Controller
 
     /**
      * Store a newly created resource in storage.
+<<<<<<< HEAD
      *
      * @return \Illuminate\Http\JsonResponse
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      */
     public function store(): JsonResponse
     {
@@ -75,7 +97,19 @@ class CustomerController extends Controller
             'is_verified' => 1,
         ]);
 
+<<<<<<< HEAD
         $this->customerRepository->create($data);
+=======
+        $customer = $this->customerRepository->create($data);
+
+        if (core()->getConfigData('emails.general.notifications.emails.general.notifications.customer')) {
+            try {
+                Mail::queue(new NewCustomerNotification($customer, $password));
+            } catch (\Exception $e) {
+                report($e);
+            }
+        }
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 
         return new JsonResponse([
             'message' => trans('admin::app.customers.customers.index.create.create-success'),
@@ -135,7 +169,11 @@ class CustomerController extends Controller
 
         session()->flash('success', trans('admin::app.customers.customers.update-success'));
 
+<<<<<<< HEAD
         return redirect()->back();
+=======
+        return redirect()->route('admin.customers.customers.view', $id);
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
     }
 
     /**
@@ -158,21 +196,37 @@ class CustomerController extends Controller
 
             session()->flash('success', trans('admin::app.customers.customers.delete-success'));
 
+<<<<<<< HEAD
             return redirect(route('admin.customers.customers.index'));
+=======
+            return redirect()->route('admin.customers.customers.index');
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         }
 
         session()->flash('success', trans('admin::app.customers.customers.view.order-pending'));
 
+<<<<<<< HEAD
         return redirect()->back();
+=======
+        return redirect()->route('admin.customers.customers.index');
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
     }
 
     /**
      * Login as customer
+<<<<<<< HEAD
      * 
      * @param int $id
      * @return \Illuminate\Http\RedirectResponse
      */
     public function login_as_customer($id)
+=======
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function loginAsCustomer($id)
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
     {
         $customer = $this->customerRepository->findOrFail($id);
 
@@ -207,14 +261,21 @@ class CustomerController extends Controller
 
         session()->flash('success', trans('admin::app.customers.customers.view.note-created-success'));
 
+<<<<<<< HEAD
         return redirect()->back();
+=======
+        return redirect()->route('admin.customers.customers.view', $id);
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
     }
 
     /**
      * View all details of customer.
      *
      * @param  int  $id
+<<<<<<< HEAD
      * @return
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      */
     public function show($id)
     {
@@ -224,7 +285,11 @@ class CustomerController extends Controller
             'invoices',
             'reviews',
             'notes',
+<<<<<<< HEAD
             'addresses'
+=======
+            'addresses',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         ])->findOrFail($id);
 
         $groups = $this->customerGroupRepository->findWhere([['code', '<>', 'guest']]);
@@ -250,14 +315,21 @@ class CustomerController extends Controller
 
     /**
      * To mass update the customer.
+<<<<<<< HEAD
      *
      * @param MassUpdateRequest $massUpdateRequest
      * @return \Illuminate\Http\JsonResponse
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      */
     public function massUpdate(MassUpdateRequest $massUpdateRequest): JsonResponse
     {
         $selectedCustomerIds = $massUpdateRequest->input('indices');
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         foreach ($selectedCustomerIds as $customerId) {
             Event::dispatch('customer.update.before', $customerId);
 
@@ -269,15 +341,22 @@ class CustomerController extends Controller
         }
 
         return new JsonResponse([
+<<<<<<< HEAD
             'message' => trans('admin::app.customers.customers.index.datagrid.update-success')
+=======
+            'message' => trans('admin::app.customers.customers.index.datagrid.update-success'),
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         ]);
     }
 
     /**
      * To mass delete the customer.
+<<<<<<< HEAD
      *
      * @param MassDestroyRequest $massDestroyRequest
      * @return \Illuminate\Http\JsonResponse
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      */
     public function massDestroy(MassDestroyRequest $massDestroyRequest): JsonResponse
     {
@@ -287,6 +366,7 @@ class CustomerController extends Controller
             try {
                 foreach ($customerIds as $customerId) {
                     Event::dispatch('customer.delete.before', $customerId);
+<<<<<<< HEAD
     
                     $this->customerRepository->delete($customerId);
     
@@ -299,6 +379,20 @@ class CustomerController extends Controller
             } catch (\Exception $e) {
                 return new JsonResponse([
                     'message' => $e->getMessage()
+=======
+
+                    $this->customerRepository->delete($customerId);
+
+                    Event::dispatch('customer.delete.after', $customerId);
+                }
+
+                return new JsonResponse([
+                    'message' => trans('admin::app.customers.customers.index.datagrid.delete-success'),
+                ]);
+            } catch (\Exception $e) {
+                return new JsonResponse([
+                    'message' => $e->getMessage(),
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 ]);
             }
         }

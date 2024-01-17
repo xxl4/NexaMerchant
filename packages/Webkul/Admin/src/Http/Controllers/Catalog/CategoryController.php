@@ -4,6 +4,7 @@ namespace Webkul\Admin\Http\Controllers\Catalog;
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Event;
+<<<<<<< HEAD
 use Webkul\Admin\Http\Controllers\Controller;
 use Webkul\Core\Repositories\ChannelRepository;
 use Webkul\Admin\Http\Requests\MassUpdateRequest;
@@ -14,6 +15,17 @@ use Webkul\Category\Repositories\CategoryRepository;
 use Webkul\Attribute\Repositories\AttributeRepository;
 use Webkul\Admin\DataGrids\Catalog\CategoryProductDataGrid;
 use Webkul\Admin\Http\Resources\CategoryTreeResource;
+=======
+use Webkul\Admin\DataGrids\Catalog\CategoryDataGrid;
+use Webkul\Admin\Http\Controllers\Controller;
+use Webkul\Admin\Http\Requests\CategoryRequest;
+use Webkul\Admin\Http\Requests\MassDestroyRequest;
+use Webkul\Admin\Http\Requests\MassUpdateRequest;
+use Webkul\Admin\Http\Resources\CategoryTreeResource;
+use Webkul\Attribute\Repositories\AttributeRepository;
+use Webkul\Category\Repositories\CategoryRepository;
+use Webkul\Core\Repositories\ChannelRepository;
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 
 class CategoryController extends Controller
 {
@@ -26,8 +38,12 @@ class CategoryController extends Controller
         protected ChannelRepository $channelRepository,
         protected CategoryRepository $categoryRepository,
         protected AttributeRepository $attributeRepository
+<<<<<<< HEAD
     )
     {
+=======
+    ) {
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
     }
 
     /**
@@ -81,7 +97,11 @@ class CategoryController extends Controller
             'display_mode',
             'attributes',
             'logo_path',
+<<<<<<< HEAD
             'banner_path'
+=======
+            'banner_path',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         ]);
 
         $category = $this->categoryRepository->create($data);
@@ -111,6 +131,7 @@ class CategoryController extends Controller
     }
 
     /**
+<<<<<<< HEAD
      * Show the products of specified resource.
      *
      * @param  int  $id
@@ -124,6 +145,8 @@ class CategoryController extends Controller
     }
 
     /**
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      * Update the specified resource in storage.
      *
      * @param  int  $id
@@ -145,8 +168,12 @@ class CategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      *
+<<<<<<< HEAD
      * @param int $id
      * @return \Illuminate\Http\JsonResponse
+=======
+     * @param  int  $id
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      */
     public function destroy($id): JsonResponse
     {
@@ -164,6 +191,7 @@ class CategoryController extends Controller
             Event::dispatch('catalog.category.delete.after', $id);
 
             return new JsonResponse([
+<<<<<<< HEAD
                 'message' => trans('admin::app.catalog.categories.delete-success', ['name' => 'admin::app.catalog.categories.category'
             ])]);
         } catch (\Exception $e) {
@@ -172,20 +200,40 @@ class CategoryController extends Controller
         return new JsonResponse([
             'message' => trans('admin::app.catalog.categories.delete-failed', ['name' => 'admin::app.catalog.categories.category'
         ])], 500);
+=======
+                'message' => trans('admin::app.catalog.categories.delete-success', [
+                    'name' => trans('admin::app.catalog.categories.category'),
+                ]),
+            ]);
+        } catch (\Exception $e) {
+            return new JsonResponse([
+                'message' => trans('admin::app.catalog.categories.delete-failed', [
+                    'name' => trans('admin::app.catalog.categories.category'),
+                ]),
+            ], 500);
+        }
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
     }
 
     /**
      * Remove the specified resources from database.
+<<<<<<< HEAD
      *
      * @param MassDestroyRequest $massDestroyRequest
      * @return \Illuminate\Http\JsonResponse
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      */
     public function massDestroy(MassDestroyRequest $massDestroyRequest): JsonResponse
     {
         $suppressFlash = true;
 
         $categoryIds = $massDestroyRequest->input('indices');
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         foreach ($categoryIds as $categoryId) {
             $category = $this->categoryRepository->find($categoryId);
 
@@ -205,7 +253,11 @@ class CategoryController extends Controller
                         Event::dispatch('catalog.category.delete.after', $categoryId);
                     } catch (\Exception $e) {
                         return new JsonResponse([
+<<<<<<< HEAD
                             'message' => trans('admin::app.catalog.categories.delete-failed')
+=======
+                            'message' => trans('admin::app.catalog.categories.delete-failed'),
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                         ], 500);
                     }
                 }
@@ -217,7 +269,11 @@ class CategoryController extends Controller
             || $suppressFlash == true
         ) {
             return new JsonResponse([
+<<<<<<< HEAD
                 'message' => trans('admin::app.catalog.categories.delete-success')
+=======
+                'message' => trans('admin::app.catalog.categories.delete-success'),
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             ]);
         }
 
@@ -233,6 +289,7 @@ class CategoryController extends Controller
     {
         try {
             $data = $massUpdateRequest->all();
+<<<<<<< HEAD
     
             $categoryIds = $data['indices'];
     
@@ -250,6 +307,25 @@ class CategoryController extends Controller
     
             return new JsonResponse([
                 'message' => trans('admin::app.catalog.categories.update-success')
+=======
+
+            $categoryIds = $data['indices'];
+
+            foreach ($categoryIds as $categoryId) {
+                Event::dispatch('catalog.categories.mass-update.before', $categoryId);
+
+                $category = $this->categoryRepository->find($categoryId);
+
+                $category->status = $massUpdateRequest->input('value');
+
+                $category->save();
+
+                Event::dispatch('catalog.categories.mass-update.after', $category);
+            }
+
+            return new JsonResponse([
+                'message' => trans('admin::app.catalog.categories.update-success'),
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             ]);
         } catch (\Exception $e) {
             return new JsonResponse([
@@ -278,7 +354,11 @@ class CategoryController extends Controller
 
     /**
      * Get all categories in tree format.
+<<<<<<< HEAD
      * 
+=======
+     *
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      * @return \Illuminate\Http\JsonResponse
      */
     public function tree()
@@ -297,7 +377,11 @@ class CategoryController extends Controller
     {
         $results = [];
 
+<<<<<<< HEAD
         $categories = $this->categoryRepository->scopeQuery(function($query) {
+=======
+        $categories = $this->categoryRepository->scopeQuery(function ($query) {
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             return $query
                 ->select('categories.*')
                 ->leftJoin('category_translations', function ($query) {

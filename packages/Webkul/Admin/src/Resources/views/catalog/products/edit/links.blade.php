@@ -6,6 +6,7 @@
 
 @pushOnce('scripts')
     <script type="text/x-template" id="v-product-links-template">
+<<<<<<< HEAD
         <div class="grid gap-[10px]">
             <!-- Panel -->
             <div
@@ -20,11 +21,35 @@
 
                         <p class="text-[12px] text-gray-500 dark:text-gray-300 font-medium">
                             @{{ type.info }}
+=======
+        <div class="grid gap-2.5">
+            <!-- Panel -->
+            <div
+                class="relative bg-white dark:bg-gray-900 rounded box-shadow"
+                v-for="type in types"
+            >
+                <div class="flex gap-5 justify-between mb-2.5 p-4">
+                    <div class="flex flex-col gap-2">
+                        <p
+                            class="text-base text-gray-800 dark:text-white font-semibold"
+                            v-text="type.title"
+                        >
+                        </p>
+
+                        <p
+                            class="text-xs text-gray-500 dark:text-gray-300 font-medium"
+                            v-text="type.info"
+                        >
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                         </p>
                     </div>
                     
                     <!-- Add Button -->
+<<<<<<< HEAD
                     <div class="flex gap-x-[4px] items-center">
+=======
+                    <div class="flex gap-x-1 items-center">
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                         <div
                             class="secondary-button"
                             @click="selectedType = type.key; $refs.productSearch.openDrawer()"
@@ -40,7 +65,11 @@
                     v-if="addedProducts[type.key].length"
                 >
                     <div
+<<<<<<< HEAD
                         class="flex gap-[10px] justify-between p-[16px] border-b-[1px] border-slate-300 dark:border-gray-800"
+=======
+                        class="flex gap-2.5 justify-between p-4 border-b border-slate-300 dark:border-gray-800"
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                         v-for="product in addedProducts[type.key]"
                     >
                         <!-- Hidden Input -->
@@ -51,16 +80,27 @@
                         />
 
                         <!-- Information -->
+<<<<<<< HEAD
                         <div class="flex gap-[10px]">
                             <!-- Image -->
                             <div
                                 class="w-full h-[60px] max-w-[60px] max-h-[60px] relative rounded-[4px] overflow-hidden"
+=======
+                        <div class="flex gap-2.5">
+                            <!-- Image -->
+                            <div
+                                class="w-full h-[60px] max-w-[60px] max-h-[60px] relative rounded overflow-hidden"
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                 :class="{'border border-dashed border-gray-300 dark:border-gray-800 dark:invert dark:mix-blend-exclusion': ! product.images.length}"
                             >
                                 <template v-if="! product.images.length">
                                     <img src="{{ bagisto_asset('images/product-placeholders/front.svg') }}">
                                 
+<<<<<<< HEAD
                                     <p class="w-full absolute bottom-[5px] text-[6px] text-gray-400 text-center font-semibold">
+=======
+                                    <p class="w-full absolute bottom-1.5 text-[6px] text-gray-400 text-center font-semibold">
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                         @lang('admin::app.catalog.products.edit.links.image-placeholder')
                                     </p>
                                 </template>
@@ -71,9 +111,17 @@
                             </div>
 
                             <!-- Details -->
+<<<<<<< HEAD
                             <div class="grid gap-[6px] place-content-start">
                                 <p class="text-[16x] text-gray-800 dark:text-white font-semibold">
                                     @{{ product.name }}
+=======
+                            <div class="grid gap-1.5 place-content-start">
+                                <p
+                                    class="text-base text-gray-800 dark:text-white font-semibold"
+                                    v-text="product.name"
+                                >
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                 </p>
 
                                 <p class="text-gray-600 dark:text-gray-300">
@@ -83,7 +131,11 @@
                         </div>
 
                         <!-- Actions -->
+<<<<<<< HEAD
                         <div class="grid gap-[4px] place-content-start text-right">
+=======
+                        <div class="grid gap-1 place-content-start text-right">
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                             <p class="text-gray-800 font-semibold dark:text-white">
                                 @{{ $admin.formatPrice(product.price) }}    
                             </p>
@@ -100,12 +152,17 @@
 
                 <!-- For Empty Variations -->
                 <div
+<<<<<<< HEAD
                     class="grid gap-[14px] justify-center justify-items-center py-[40px] px-[10px] "
+=======
+                    class="grid gap-3.5 justify-center justify-items-center py-10 px-2.5"
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     v-else
                 >
                     <!-- Placeholder Image -->
                     <img
                         src="{{ bagisto_asset('images/icon-add-product.svg') }}"
+<<<<<<< HEAD
                         class="w-[80px] h-[80px] dark:invert dark:mix-blend-exclusion"
                     />
 
@@ -117,6 +174,21 @@
 
                         <p class="text-gray-400">
                             @{{ type.empty_info }}
+=======
+                        class="w-20 h-20 dark:invert dark:mix-blend-exclusion"
+                    />
+
+                    <!-- Add Variants Information -->
+                    <div class="flex flex-col gap-1.5 items-center">
+                        <p class="text-base text-gray-400 font-semibold">
+                            @lang('admin::app.catalog.products.edit.links.empty-title')
+                        </p>
+
+                        <p
+                            class="text-gray-400"
+                            v-text="type.empty_info"
+                        >
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                         </p>
                     </div>
                 </div>
@@ -144,6 +216,7 @@
                     types: [
                         {
                             key: 'related_products',
+<<<<<<< HEAD
                             title: "@lang('admin::app.catalog.products.edit.links.related-products.title')",
                             info: "@lang('admin::app.catalog.products.edit.links.related-products.info')",
                             empty_info: "@lang('admin::app.catalog.products.edit.links.related-products.empty-info')",
@@ -157,6 +230,21 @@
                             title: "@lang('admin::app.catalog.products.edit.links.cross-sells.title')",
                             info: "@lang('admin::app.catalog.products.edit.links.cross-sells.info')",
                             empty_info: "@lang('admin::app.catalog.products.edit.links.cross-sells.empty-info')",
+=======
+                            title: `@lang('admin::app.catalog.products.edit.links.related-products.title')`,
+                            info: `@lang('admin::app.catalog.products.edit.links.related-products.info')`,
+                            empty_info: `@lang('admin::app.catalog.products.edit.links.related-products.empty-info')`,
+                        }, {
+                            key: 'up_sells',
+                            title: `@lang('admin::app.catalog.products.edit.links.up-sells.title')`,
+                            info: `@lang('admin::app.catalog.products.edit.links.up-sells.info')`,
+                            empty_info: `@lang('admin::app.catalog.products.edit.links.up-sells.empty-info')`,
+                        }, {
+                            key: 'cross_sells',
+                            title: `@lang('admin::app.catalog.products.edit.links.cross-sells.title')`,
+                            info: `@lang('admin::app.catalog.products.edit.links.cross-sells.info')`,
+                            empty_info: `@lang('admin::app.catalog.products.edit.links.cross-sells.empty-info')`,
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                         }
                     ],
 

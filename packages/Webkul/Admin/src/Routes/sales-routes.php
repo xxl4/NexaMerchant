@@ -18,17 +18,26 @@ Route::group(['middleware' => ['admin'], 'prefix' => config('app.admin_url')], f
         Route::controller(InvoiceController::class)->prefix('invoices')->group(function () {
             Route::get('', 'index')->name('admin.sales.invoices.index');
 
+<<<<<<< HEAD
             Route::get('create/{order_id}', 'create')->name('admin.sales.invoices.create');
 
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             Route::post('create/{order_id}', 'store')->name('admin.sales.invoices.store');
 
             Route::get('view/{id}', 'view')->name('admin.sales.invoices.view');
 
+<<<<<<< HEAD
             Route::post('send-duplicate/{id}', 'sendDuplicate')->name('admin.sales.invoices.send_duplicate');
 
             Route::get('print/{id}', 'printInvoice')->name('admin.sales.invoices.print');
 
             Route::get('{id}transactions', 'invoiceTransactions')->name('admin.sales.invoices.transactions');
+=======
+            Route::post('send-duplicate-email/{id}', 'sendDuplicateEmail')->name('admin.sales.invoices.send_duplicate_email');
+
+            Route::get('print/{id}', 'printInvoice')->name('admin.sales.invoices.print');
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         });
 
         /**
@@ -52,8 +61,11 @@ Route::group(['middleware' => ['admin'], 'prefix' => config('app.admin_url')], f
         Route::controller(RefundController::class)->prefix('refunds')->group(function () {
             Route::get('', 'index')->name('admin.sales.refunds.index');
 
+<<<<<<< HEAD
             Route::get('create/{order_id}', 'create')->name('admin.sales.refunds.create');
 
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             Route::post('create/{order_id}', 'store')->name('admin.sales.refunds.store');
 
             Route::post('update-qty/{order_id}', 'updateQty')->name('admin.sales.refunds.update_qty');
@@ -67,8 +79,11 @@ Route::group(['middleware' => ['admin'], 'prefix' => config('app.admin_url')], f
         Route::controller(ShipmentController::class)->prefix('shipments')->group(function () {
             Route::get('', 'index')->name('admin.sales.shipments.index');
 
+<<<<<<< HEAD
             Route::get('create/{order_id}', 'create')->name('admin.sales.shipments.create');
 
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             Route::post('create/{order_id}', 'store')->name('admin.sales.shipments.store');
 
             Route::get('view/{id}', 'view')->name('admin.sales.shipments.view');
@@ -80,8 +95,11 @@ Route::group(['middleware' => ['admin'], 'prefix' => config('app.admin_url')], f
         Route::controller(TransactionController::class)->prefix('transactions')->group(function () {
             Route::get('', 'index')->name('admin.sales.transactions.index');
 
+<<<<<<< HEAD
             Route::get('create', 'create')->name('admin.sales.transactions.create');
 
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             Route::post('create', 'store')->name('admin.sales.transactions.store');
 
             Route::get('view/{id}', 'view')->name('admin.sales.transactions.view');

@@ -2,6 +2,7 @@
 
 namespace Webkul\Admin\Http\Controllers\Sales;
 
+<<<<<<< HEAD
 use Illuminate\Http\Request;
 use Webkul\Admin\Http\Controllers\Controller;
 use Webkul\Sales\Repositories\OrderRepository;
@@ -10,6 +11,17 @@ use Webkul\Sales\Repositories\ShipmentRepository;
 use Webkul\Sales\Repositories\OrderTransactionRepository;
 use Webkul\Admin\DataGrids\Sales\OrderTransactionsDataGrid;
 use Webkul\Payment\Facades\Payment;
+=======
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
+use Webkul\Admin\DataGrids\Sales\OrderTransactionsDataGrid;
+use Webkul\Admin\Http\Controllers\Controller;
+use Webkul\Payment\Facades\Payment;
+use Webkul\Sales\Repositories\InvoiceRepository;
+use Webkul\Sales\Repositories\OrderRepository;
+use Webkul\Sales\Repositories\OrderTransactionRepository;
+use Webkul\Sales\Repositories\ShipmentRepository;
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 
 class TransactionController extends Controller
 {
@@ -23,8 +35,12 @@ class TransactionController extends Controller
         protected InvoiceRepository $invoiceRepository,
         protected ShipmentRepository $shipmentRepository,
         protected OrderTransactionRepository $orderTransactionRepository
+<<<<<<< HEAD
     )
     {
+=======
+    ) {
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
     }
 
     /**
@@ -38,6 +54,7 @@ class TransactionController extends Controller
             return app(OrderTransactionsDataGrid::class)->toJson();
         }
 
+<<<<<<< HEAD
         return view('admin::sales.transactions.index');
     }
 
@@ -51,6 +68,11 @@ class TransactionController extends Controller
         $payment_methods = Payment::getSupportedPaymentMethods();
 
         return view('admin::sales.transactions.create', compact('payment_methods'));
+=======
+        $paymentMethods = Payment::getSupportedPaymentMethods();
+
+        return view('admin::sales.transactions.index', compact('paymentMethods'));
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
     }
 
     /**
@@ -60,18 +82,31 @@ class TransactionController extends Controller
      */
     public function store(Request $request)
     {
+<<<<<<< HEAD
+=======
+
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         $this->validate(request(), [
             'invoice_id'     => 'required',
             'payment_method' => 'required',
             'amount'         => 'required|numeric',
         ]);
 
+<<<<<<< HEAD
         $invoice = $this->invoiceRepository->where('increment_id', $request->invoice_id)->first();
 
         if (! $invoice) {
             session()->flash('error', trans('admin::app.sales.transactions.edit.invoice-missing'));
 
             return redirect()->back();
+=======
+        $invoice = $this->invoiceRepository->where('id', $request->invoice_id)->first();
+
+        if (! $invoice) {
+            session()->flash('error', trans('admin::app.sales.transactions.index.create.invoice-missing'));
+
+            return redirect()->route('admin.sales.transactions.index');
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         }
 
         $transactionAmtBefore = $this->orderTransactionRepository->where('invoice_id', $invoice->id)->sum('amount');
@@ -79,6 +114,7 @@ class TransactionController extends Controller
         $transactionAmtFinal = $request->amount + $transactionAmtBefore;
 
         if ($invoice->state == 'paid') {
+<<<<<<< HEAD
             session()->flash('info', trans('admin::app.sales.transactions.edit.already-paid'));
 
             return redirect(route('admin.sales.transactions.index'));
@@ -94,6 +130,23 @@ class TransactionController extends Controller
             session()->flash('info', trans('admin::app.sales.transactions.edit.transaction-amount-zero'));
 
             return redirect(route('admin.sales.transactions.create'));
+=======
+            session()->flash('info', trans('admin::app.sales.transactions.index.create.already-paid'));
+
+            return redirect()->route('admin.sales.transactions.index');
+        }
+
+        if ($transactionAmtFinal > $invoice->base_grand_total) {
+            session()->flash('info', trans('admin::app.sales.transactions.index.create.transaction-amount-exceeds'));
+
+            return redirect()->route('admin.sales.transactions.index');
+        }
+
+        if ($request->amount <= 0) {
+            session()->flash('info', trans('admin::app.sales.transactions.index.create.transaction-amount-zero'));
+
+            return redirect()->route('admin.sales.transactions.index');
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         }
 
         $order = $this->orderRepository->find($invoice->order_id);
@@ -127,21 +180,32 @@ class TransactionController extends Controller
             $this->invoiceRepository->updateState($invoice, 'paid');
         }
 
+<<<<<<< HEAD
         session()->flash('success', trans('admin::app.sales.transactions.edit.transaction-saved'));
 
         return redirect(route('admin.sales.transactions.index'));
+=======
+        session()->flash('success', trans('admin::app.sales.transactions.index.create.transaction-saved'));
+
+        return redirect()->route('admin.sales.transactions.index');
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
     }
 
     /**
      * Show the view for the specified resource.
      *
      * @param  int  $id
+<<<<<<< HEAD
      * @return \Illuminate\View\View
+=======
+     * @return \Illuminate\Http\JsonResponse
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      */
     public function view($id)
     {
         $transaction = $this->orderTransactionRepository->findOrFail($id);
 
+<<<<<<< HEAD
         $transData = json_decode(json_encode(json_decode($transaction['data'])), true);
 
         $transactionDetailsData = $this->convertIntoSingleDimArray($transData);
@@ -174,5 +238,12 @@ class TransactionController extends Controller
         }
 
         return $data;
+=======
+        return new JsonResponse([
+            'data' => [
+                'transaction' => $transaction,
+            ],
+        ]);
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
     }
 }

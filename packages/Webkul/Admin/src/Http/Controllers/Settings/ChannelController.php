@@ -3,9 +3,15 @@
 namespace Webkul\Admin\Http\Controllers\Settings;
 
 use Illuminate\Support\Facades\Event;
+<<<<<<< HEAD
 use Webkul\Admin\Http\Controllers\Controller;
 use Webkul\Core\Repositories\ChannelRepository;
 use Webkul\Admin\DataGrids\Settings\ChannelDataGrid;
+=======
+use Webkul\Admin\DataGrids\Settings\ChannelDataGrid;
+use Webkul\Admin\Http\Controllers\Controller;
+use Webkul\Core\Repositories\ChannelRepository;
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 
 class ChannelController extends Controller
 {
@@ -147,6 +153,11 @@ class ChannelController extends Controller
             'allowed_ips'                      => 'nullable',
         ]);
 
+<<<<<<< HEAD
+=======
+        $data['is_maintenance_on'] = request()->input('is_maintenance_on') == '1';
+
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         $data = $this->setSEOContent($data, $locale);
 
         Event::dispatch('core.channel.update.before', $id);

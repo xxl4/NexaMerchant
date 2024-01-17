@@ -19,7 +19,10 @@ class CategoryTreeResource extends JsonResource
             'parent_id' => $this->parent_id,
             'name'      => $this->name,
             'slug'      => $this->slug,
+<<<<<<< HEAD
             'url_path'  => $this->url_path,
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             'url'       => $this->url,
             'status'    => $this->status,
             'children'  => self::collection($this->children),

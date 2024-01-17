@@ -77,7 +77,7 @@ class UserDataGrid extends DataGrid
                 if ($row->user_image) {
                     return Storage::url($row->user_image);
                 }
-                
+
                 return null;
             },
         ]);
@@ -126,6 +126,7 @@ class UserDataGrid extends DataGrid
     {
         if (bouncer()->hasPermission('settings.users.users.edit')) {
             $this->addAction([
+                'index'  => 'edit',
                 'icon'   => 'icon-edit',
                 'title'  => trans('admin::app.settings.users.index.datagrid.edit'),
                 'method' => 'GET',
@@ -137,6 +138,7 @@ class UserDataGrid extends DataGrid
 
         if (bouncer()->hasPermission('settings.users.users.delete')) {
             $this->addAction([
+                'index'  => 'delete',
                 'icon'   => 'icon-delete',
                 'title'  => trans('admin::app.settings.users.index.datagrid.delete'),
                 'method' => 'DELETE',

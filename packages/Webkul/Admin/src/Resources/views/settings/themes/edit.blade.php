@@ -1,7 +1,11 @@
 <x-admin::layouts>
     <x-slot:title>
         @lang('admin::app.settings.themes.edit.title')
+<<<<<<< HEAD
     </x-slot:title>
+=======
+    </x-slot>
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
    
     @php
         $channels = core()->getAllChannels();
@@ -17,12 +21,21 @@
         v-slot="{ errors }"
     >
         <div class="flex justify-between items-center">
+<<<<<<< HEAD
             <p class="text-[20px] text-gray-800 dark:text-white font-bold">
                 @lang('admin::app.settings.themes.edit.title')
             </p>
             
             <div class="flex gap-x-[10px] items-center">
                 <div class="flex gap-x-[10px] items-center">
+=======
+            <p class="text-xl text-gray-800 dark:text-white font-bold">
+                @lang('admin::app.settings.themes.edit.title')
+            </p>
+            
+            <div class="flex gap-x-2.5 items-center">
+                <div class="flex gap-x-2.5 items-center">
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     <a 
                         href="{{ route('admin.settings.themes.index') }}"
                         class="transparent-button hover:bg-gray-200 dark:hover:bg-gray-800 dark:text-white"
@@ -40,6 +53,7 @@
             </div>
         </div>
 
+<<<<<<< HEAD
         {{-- Channel and Locale Switcher --}}
         <div class="flex  gap-[16px] justify-between items-center mt-[28px] max-md:flex-wrap">
             <div class="flex gap-x-[4px] items-center">
@@ -67,6 +81,39 @@
                             <a
                                 href="?{{ Arr::query(['channel' => $currentChannel->code, 'locale' => $locale->code]) }}"
                                 class="flex gap-[10px] px-5 py-2 text-[16px] cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-950 dark:text-white {{ $locale->code == $currentLocale->code ? 'bg-gray-100 dark:bg-gray-950' : ''}}"
+=======
+        <!-- Channel and Locale Switcher -->
+        <div class="flex  gap-4 justify-between items-center mt-7 max-md:flex-wrap">
+            <div class="flex gap-x-1 items-center">
+                <!-- Locale Switcher -->
+                <x-admin::dropdown :class="$currentChannel->locales->count() <= 1 ? 'hidden' : ''">
+                    <!-- Dropdown Toggler -->
+                    <x-slot:toggle>
+                        <button
+                            type="button"
+                            class="transparent-button px-1 py-1.5 hover:bg-gray-200 dark:hover:bg-gray-800 focus:bg-gray-200 dark:focus:bg-gray-800 dark:text-white"
+                        >
+                            <span class="icon-language text-2xl"></span>
+
+                            {{ $currentLocale->name }}
+                            
+                            <input
+                                type="hidden"
+                                name="locale"
+                                value="{{ $currentLocale->code }}"
+                            />
+
+                            <span class="icon-sort-down text-2xl"></span>
+                        </button>
+                    </x-slot:toggle>
+
+                    <!-- Dropdown Content -->
+                    <x-slot:content class="!p-0">
+                        @foreach ($currentChannel->locales as $locale)
+                            <a
+                                href="?{{ Arr::query(['channel' => $currentChannel->code, 'locale' => $locale->code]) }}"
+                                class="flex gap-2.5 px-5 py-2 text-base  cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-950 dark:text-white {{ $locale->code == $currentLocale->code ? 'bg-gray-100 dark:bg-gray-950' : ''}}"
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                             >
                                 {{ $locale->name }}
                             </a>
@@ -80,7 +127,11 @@
     </x-admin::form>
 
     @pushOnce('scripts')
+<<<<<<< HEAD
         {{-- Customizer Parent Template--}}
+=======
+        <!-- Customizer Parent Template-->
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         <script type="text/x-template" id="v-theme-customizer-template">
             <div>
                 <component
@@ -91,6 +142,7 @@
                 </component>
             </div>
         </script>
+<<<<<<< HEAD
 
         {{-- Slider Template --}}
         <script type="text/x-template" id="v-slider-theme-template">
@@ -1752,6 +1804,29 @@
         </script>
 
         {{-- Parent Theme Customizer Component --}}
+=======
+        
+        <!-- Image-Carousel Template -->
+        @includeWhen($theme->type === 'image_carousel', 'admin::settings.themes.edit.image-carousel')
+
+        <!-- Product-Carousel Template -->
+        @includeWhen($theme->type === 'product_carousel', 'admin::settings.themes.edit.product-carousel')
+
+        <!-- Category Template -->
+        @includeWhen($theme->type==='category_carousel', 'admin::settings.themes.edit.category-carousel')
+
+        <!-- Static-Content Template -->
+        @includeWhen($theme->type === 'static_content', 'admin::settings.themes.edit.static-content')
+
+        <!-- Footer Template -->
+        @includeWhen($theme->type === 'footer_links', 'admin::settings.themes.edit.footer-links')
+
+        <!-- Services-content Template -->
+        @includeWhen($theme->type === 'services_content', 'admin::settings.themes.edit.services-content')
+
+
+        <!-- Parent Theme Customizer Component -->
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         <script type="module">
             app.component('v-theme-customizer', {
                 template: '#v-theme-customizer-template',
@@ -1760,6 +1835,7 @@
 
                 data() {
                     return {
+<<<<<<< HEAD
                         componentName: 'v-slider-theme',
 
                         themeType: {
@@ -1768,6 +1844,17 @@
                             static_content: 'v-static-theme',
                             image_carousel: 'v-slider-theme',
                             footer_links: 'v-footer-link-theme',
+=======
+                        componentName: 'v-image-carousel',
+
+                        themeType: {
+                            product_carousel: 'v-product-carousel',
+                            category_carousel: 'v-category-carousel',
+                            static_content: 'v-static-content',
+                            image_carousel: 'v-image-carousel',
+                            footer_links: 'v-footer-links',
+                            services_content: 'v-services-content'
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                         } 
                     };
                 },
@@ -1777,6 +1864,7 @@
                 },
             });
         </script>
+<<<<<<< HEAD
 
         {{-- Slider Theme Component --}}
         <script type="module">
@@ -2277,6 +2365,8 @@
             href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.13.4/codemirror.css"
         >
         </link>
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
     @endPushOnce
 </x-admin::layouts>
                             

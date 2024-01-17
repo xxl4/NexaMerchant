@@ -2,6 +2,7 @@
 
 namespace Webkul\Admin\Http\Controllers\Settings\Tax;
 
+<<<<<<< HEAD
 use Illuminate\Support\Facades\Event;
 use Illuminate\Http\JsonResponse;
 use Webkul\Admin\Http\Controllers\Controller;
@@ -9,6 +10,15 @@ use Webkul\Tax\Repositories\TaxCategoryRepository;
 use Webkul\Tax\Repositories\TaxRateRepository;
 use Webkul\Admin\DataGrids\Settings\TaxCategoryDataGrid;
 use Webkul\Admin\Http\Resources\TaxCategoryResource;
+=======
+use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Event;
+use Webkul\Admin\DataGrids\Settings\TaxCategoryDataGrid;
+use Webkul\Admin\Http\Controllers\Controller;
+use Webkul\Admin\Http\Resources\TaxCategoryResource;
+use Webkul\Tax\Repositories\TaxCategoryRepository;
+use Webkul\Tax\Repositories\TaxRateRepository;
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 
 class TaxCategoryController extends Controller
 {
@@ -57,7 +67,11 @@ class TaxCategoryController extends Controller
             'code',
             'name',
             'description',
+<<<<<<< HEAD
             'taxrates'
+=======
+            'taxrates',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         ]);
 
         $taxCategory = $this->taxCategoryRepository->create($data);
@@ -74,7 +88,11 @@ class TaxCategoryController extends Controller
     /**
      * Tax Category Details
      *
+<<<<<<< HEAD
      * @param int $id
+=======
+     * @param  int  $id
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      */
     public function edit($id): TaxCategoryResource
     {
@@ -85,8 +103,11 @@ class TaxCategoryController extends Controller
 
     /**
      * To update the tax category.
+<<<<<<< HEAD
      *
      * @return \Illuminate\Http\JsonResponse
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      */
     public function update(): JsonResponse
     {
@@ -105,7 +126,11 @@ class TaxCategoryController extends Controller
             'code',
             'name',
             'description',
+<<<<<<< HEAD
             'taxrates'
+=======
+            'taxrates',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         ]);
 
         $taxCategory = $this->taxCategoryRepository->update($data, $id);
@@ -122,8 +147,12 @@ class TaxCategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      *
+<<<<<<< HEAD
      * @param int $id
      * @return \Illuminate\Http\JsonResponse
+=======
+     * @param  int  $id
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      */
     public function destroy($id): JsonResponse
     {

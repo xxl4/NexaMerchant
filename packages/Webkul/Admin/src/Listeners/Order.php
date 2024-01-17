@@ -2,8 +2,13 @@
 
 namespace Webkul\Admin\Listeners;
 
+<<<<<<< HEAD
 use Webkul\Admin\Mail\Order\CreatedNotification;
 use Webkul\Admin\Mail\Order\CanceledNotification;
+=======
+use Webkul\Admin\Mail\Order\CanceledNotification;
+use Webkul\Admin\Mail\Order\CreatedNotification;
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 
 class Order extends Base
 {

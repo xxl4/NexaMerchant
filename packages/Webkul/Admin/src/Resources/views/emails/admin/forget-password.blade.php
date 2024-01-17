@@ -1,7 +1,11 @@
 @component('admin::emails.layout')
     <div style="margin-bottom: 34px;">
         <p style="font-weight: bold;font-size: 20px;color: #121A26;line-height: 24px;margin-bottom: 24px">
+<<<<<<< HEAD
             @lang('admin::app.emails.dear', ['customer_name' => $userName]), 👋
+=======
+            @lang('admin::app.emails.dear', ['admin_name' => $userName]), 👋
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         </p>
 
         <p style="font-size: 16px;color: #384860;line-height: 24px;">

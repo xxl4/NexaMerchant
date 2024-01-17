@@ -1,8 +1,15 @@
 <x-admin::layouts>
+<<<<<<< HEAD
     {{-- Title of the page --}}
     <x-slot:title>
         @lang('admin::app.customers.groups.index.title')
     </x-slot:title>
+=======
+    <!-- Title of the page -->
+    <x-slot:title>
+        @lang('admin::app.customers.groups.index.title')
+    </x-slot>
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 
     {!! view_render_event('admin.customers.groups.create.before') !!}
 
@@ -14,6 +21,7 @@
         <script type="text/x-template" id="v-create-group-template">
             <div>
                 <div class="flex justify-between items-center">
+<<<<<<< HEAD
                     <p class="text-[20px] text-gray-800 dark:text-white font-bold">
                         @lang('admin::app.customers.groups.index.title')
                     </p>
@@ -26,6 +34,20 @@
                                     type="button"
                                     class="primary-button"
                                     @click="id=0; $refs.groupUpdateOrCreateModal.open()"
+=======
+                    <p class="text-xl text-gray-800 dark:text-white font-bold">
+                        @lang('admin::app.customers.groups.index.title')
+                    </p>
+
+                    <div class="flex gap-x-2.5 items-center">
+                        <div class="flex gap-x-2.5 items-center">
+                            <!-- Create a new Group -->
+                            @if (bouncer()->hasPermission('customers.groups.create'))
+                                <button
+                                    type="button"
+                                    class="primary-button"
+                                    @click="selectedGroups=0; $refs.groupUpdateOrCreateModal.open()"
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                 >
                                     @lang('admin::app.customers.groups.index.create.create-btn')
                                 </button>
@@ -38,6 +60,7 @@
 
                 <!-- DataGrid -->
                 <x-admin::datagrid src="{{ route('admin.customers.groups.index') }}" ref="datagrid">
+<<<<<<< HEAD
                     @php
                         $hasPermission = bouncer()->hasPermission('customers.groups.edit') || bouncer()->hasPermission('customers.groups.delete');
                     @endphp
@@ -83,12 +106,19 @@
                         </div>
                     </template>
 
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     <!-- DataGrid Body -->
                     <template #body="{ columns, records, performAction }">
                         <div
                             v-for="record in records"
+<<<<<<< HEAD
                             class="row grid gap-[10px] items-center px-[16px] py-[16px] border-b-[1px] dark:border-gray-800 text-gray-600 dark:text-gray-300 transition-all hover:bg-gray-50 dark:hover:bg-gray-950"
                             :style="'grid-template-columns: repeat(' + (record.actions.length ? 4 : 3) + ', 1fr);'"
+=======
+                            class="row grid gap-2.5 items-center px-4 py-4 border-b dark:border-gray-800 text-gray-600 dark:text-gray-300 transition-all hover:bg-gray-50 dark:hover:bg-gray-950"
+                            :style="`grid-template-columns: repeat(${gridsCount}, minmax(0, 1fr))`"
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                         >
                             <!-- Id -->
                             <p v-text="record.id"></p>
@@ -101,6 +131,7 @@
 
                             <!-- Actions -->
                             <div class="flex justify-end">
+<<<<<<< HEAD
                                 <a @click="id=1; editModal(record)">
                                     <span
                                         :class="record.actions.find(action => action.title === 'Edit')?.icon"
@@ -118,6 +149,29 @@
                                     >
                                     </span>
                                 </a>
+=======
+                                @if (bouncer()->hasPermission('customers.groups.edit'))
+                                    <a @click="selectedGroups=1; editModal(record)">
+                                        <span
+                                            :class="record.actions.find(action => action.index === 'edit')?.icon"
+                                            class="cursor-pointer rounded-md p-1.5 text-2xl transition-all hover:bg-gray-200 dark:hover:bg-gray-800 max-sm:place-self-center"
+                                            :title="record.actions.find(action => action.title === '@lang('admin::app.customers.groups.index.datagrid.edit')')?.title"
+                                        >
+                                        </span>
+                                    </a>
+                                @endif
+
+                                @if (bouncer()->hasPermission('customers.groups.delete'))
+                                    <a @click="performAction(record.actions.find(action => action.index === 'delete'))">
+                                        <span
+                                            :class="record.actions.find(action => action.index === 'delete')?.icon"
+                                            class="cursor-pointer rounded-md p-1.5 text-2xl transition-all hover:bg-gray-200 dark:hover:bg-gray-800 max-sm:place-self-center"
+                                            :title="record.actions.find(action => action.title === '@lang('admin::app.customers.groups.index.datagrid.delete')')?.title"
+                                        >
+                                        </span>
+                                    </a>
+                                @endif
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                             </div>
                         </div>
                     </template>
@@ -136,6 +190,7 @@
                         ref="groupCreateForm"
                     >
                         <!-- Create Group Modal -->
+<<<<<<< HEAD
                         <x-admin::modal ref="groupUpdateOrCreateModal">          
                             <x-slot:header>
                                 <!-- Modal Header -->
@@ -208,6 +263,79 @@
                                 <!-- Modal Submission -->
                                 <div class="flex gap-x-[10px] items-center">
                                     <button 
+=======
+                        <x-admin::modal ref="groupUpdateOrCreateModal">
+                            <!-- Modal Header -->
+                            <x-slot:header>
+                                <p class="text-lg text-gray-800 dark:text-white font-bold">
+                                    <span v-if="selectedGroups">
+                                        @lang('admin::app.customers.groups.index.edit.title')
+                                    </span>
+
+                                    <span v-else>
+                                        @lang('admin::app.customers.groups.index.create.title')
+                                    </span>
+
+                                </p>
+                            </x-slot:header>
+
+                            <!-- Modal Content -->
+                            <x-slot:content>
+                                <x-admin::form.control-group>
+                                    <x-admin::form.control-group.label class="required">
+                                        @lang('admin::app.customers.groups.index.create.code')
+                                    </x-admin::form.control-group.label>
+
+                                    <x-admin::form.control-group.control
+                                        type="hidden"
+                                        name="id"
+                                    >
+                                    </x-admin::form.control-group.control>
+
+
+                                    <x-admin::form.control-group.control
+                                        type="text"
+                                        name="code"
+                                        id="code"
+                                        rules="required"
+                                        :label="trans('admin::app.customers.groups.index.create.code')"
+                                        :placeholder="trans('admin::app.customers.groups.index.create.code')"
+                                    >
+                                    </x-admin::form.control-group.control>
+
+                                    <x-admin::form.control-group.error
+                                        control-name="code"
+                                    >
+                                    </x-admin::form.control-group.error>
+                                </x-admin::form.control-group>
+
+                                <x-admin::form.control-group>
+                                    <x-admin::form.control-group.label class="required">
+                                        @lang('admin::app.customers.groups.index.create.name')
+                                    </x-admin::form.control-group.label>
+
+                                    <x-admin::form.control-group.control
+                                        type="text"
+                                        name="name"
+                                        id="last_name"
+                                        rules="required"
+                                        :label="trans('admin::app.customers.groups.index.create.name')"
+                                        :placeholder="trans('admin::app.customers.groups.index.create.name')"
+                                    >
+                                    </x-admin::form.control-group.control>
+
+                                    <x-admin::form.control-group.error
+                                        control-name="name"
+                                    >
+                                    </x-admin::form.control-group.error>
+                                </x-admin::form.control-group>
+                            </x-slot:content>
+
+                            <!-- Modal Footer -->
+                            <x-slot:footer>
+                                <div class="flex gap-x-2.5 items-center">
+                                    <button
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                         type="submit"
                                         class="primary-button"
                                     >
@@ -227,10 +355,33 @@
 
                 data() {
                     return {
+<<<<<<< HEAD
                         id: 0,
                     }
                 },
 
+=======
+                        selectedGroups: 0,
+                    }
+                },
+
+                computed: {
+                    gridsCount() {
+                        let count = this.$refs.datagrid.available.columns.length;
+
+                        if (this.$refs.datagrid.available.actions.length) {
+                            ++count;
+                        }
+
+                        if (this.$refs.datagrid.available.massActions.length) {
+                            ++count;
+                        }
+
+                        return count;
+                    },
+                },
+
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 methods: {
                     updateOrCreate(params, { resetForm, setErrors  }) {
                         let formData = new FormData(this.$refs.groupCreateForm);
@@ -266,4 +417,8 @@
         </script>
     @endPushOnce
 
+<<<<<<< HEAD
 </x-admin::layouts>
+=======
+</x-admin::layouts>
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61

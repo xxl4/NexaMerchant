@@ -2,12 +2,21 @@
 
 namespace Webkul\Admin\Http\Controllers\Reporting;
 
+<<<<<<< HEAD
 use Webkul\Admin\Helpers\Reporting;
 
 class CustomerController extends Controller
 {
     /**
      * Request param functions
+=======
+class CustomerController extends Controller
+{
+    /**
+     * Request param functions.
+     *
+     * @var array
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      */
     protected $typeFunctions = [
         'total-customers'             => 'getTotalCustomersStats',
@@ -19,6 +28,7 @@ class CustomerController extends Controller
     ];
 
     /**
+<<<<<<< HEAD
      * Create a controller instance.
      * 
      * @param  \Webkul\Admin\Helpers\Reporting  $reportingHelper
@@ -29,6 +39,8 @@ class CustomerController extends Controller
     }
 
     /**
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      * Display a listing of the resource.
      *
      * @return \Illuminate\View\View
@@ -54,4 +66,8 @@ class CustomerController extends Controller
             'endDate'   => $this->reportingHelper->getEndDate(),
         ]);
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61

@@ -7,7 +7,11 @@
         {{ $address->name }}
     </p>
     
+<<<<<<< HEAD
     <p class="text-gray-600 dark:text-gray-300 leading-6">
+=======
+    <p class="text-gray-600 dark:text-gray-300 !leading-6">
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         {{ $address->address1 }}<br>
 
         @if ($address->address2)

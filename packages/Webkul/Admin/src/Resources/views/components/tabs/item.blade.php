@@ -6,7 +6,11 @@
 <v-tab-item
     title="{{ $title }}"
     is-selected="{{ $isSelected }}"
+<<<<<<< HEAD
     {{ $attributes->merge(['class' => 'p-5 max-1180:px-[20px]']) }}
+=======
+    {{ $attributes->merge(['class' => 'p-5 max-1180:px-5']) }}
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 >
     <template v-slot>
         {{ $slot }}

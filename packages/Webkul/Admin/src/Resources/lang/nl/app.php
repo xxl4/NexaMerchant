@@ -485,13 +485,33 @@ return [
                     'transaction-amount' => 'Bedrag',
                 ],
 
+<<<<<<< HEAD
                 'edit'  => [
+=======
+                'create'  => [
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     'already-paid'               => 'Al betaald',
                     'invoice-missing'            => 'Factuur ontbreekt',
                     'transaction-amount-zero'    => 'Transactiebedrag is nul',
                     'transaction-amount-exceeds' => 'Transactiebedrag overschrijdt',
                     'transaction-saved'          => 'Transactie succesvol opgeslagen',
                 ],
+<<<<<<< HEAD
+=======
+
+                'view' => [
+                    'title'            => 'Transactiegegevens',
+                    'transaction-data' => 'Transactiegegevens',
+                    'transaction-id'   => 'Transactie-ID',
+                    'order-id'         => 'Bestel-ID',
+                    'invoice-id'       => 'Factuur-ID',
+                    'payment-method'   => 'Betalingsmethode',
+                    'created-at'       => 'Aangemaakt op',
+                    'status'           => 'Status',
+                    'payment-details'  => 'Betalingsgegevens',
+                    'amount'           => 'Bedrag',
+                ],
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             ],
         ],
     ],
@@ -521,6 +541,7 @@ return [
                 ],
 
                 'datagrid'   => [
+<<<<<<< HEAD
                     'attribute-family'       => 'Attribuutfamilie',
                     'attribute-family-value' => 'Attribuutfamilie - :attribute_family',
                     'active'                 => 'Actief',
@@ -545,10 +566,41 @@ return [
                     'update-status'          => 'Status bijwerken',
                     'mass-update-success'    => 'Geselecteerde producten succesvol bijgewerkt',
                     'mass-delete-success'    => 'Geselecteerde producten succesvol verwijderd',
+=======
+                    'attribute-family'              => 'Attribuutfamilie',
+                    'attribute-family-value'        => 'Attribuutfamilie - :attribute_family',
+                    'active'                        => 'Actief',
+                    'category'                      => 'Categorie',
+                    'copy-of'                       => 'Kopie van :value',
+                    'copy-of-slug'                  => 'kopie-van-:value',
+                    'disable'                       => 'Uitschakelen',
+                    'delete'                        => 'Verwijderen',
+                    'image'                         => 'Afbeelding',
+                    'id'                            => 'ID',
+                    'id-value'                      => 'ID - :id',
+                    'mass-update-success'           => 'Geselecteerde producten succesvol bijgewerkt',
+                    'mass-delete-success'           => 'Geselecteerde producten succesvol verwijderd',
+                    'name'                          => 'Naam',
+                    'out-of-stock'                  => 'Niet op voorraad',
+                    'price'                         => 'Prijs',
+                    'product-image'                 => 'Productafbeelding',
+                    'qty'                           => 'Aantal',
+                    'qty-value'                     => ':qty Beschikbaar',
+                    'sku-value'                     => 'SKU - :sku',
+                    'sku'                           => 'SKU',
+                    'status'                        => 'Status',
+                    'type'                          => 'Type',
+                    'update-status'                 => 'Status bijwerken',
+                    'variant-already-exist-message' => 'De variant met dezelfde attribuutopties bestaat al.',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 ],
             ],
 
             'edit' => [
+<<<<<<< HEAD
+=======
+                'preview'  => 'Voorbeeld',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'save-btn' => 'Product Opslaan',
                 'title'    => 'Bewerk Product',
                 'remove'   => 'Verwijderen',
@@ -573,7 +625,11 @@ return [
                             'fixed'          => 'Vast',
                             'price-type'     => 'Prijs Type',
                             'price'          => 'Prijs',
+<<<<<<< HEAD
                             'qty'            => 'Hoeveelheid',
+=======
+                            'qty'            => 'Minimum aantal',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                             'save-btn'       => 'Opslaan',
                             'update-title'   => 'Klantengroep Prijs Bijwerken',
                         ],
@@ -665,6 +721,7 @@ return [
                         ],
 
                         'mass-edit' => [
+<<<<<<< HEAD
                             'select-variants'  => 'Selecteer Varianten',
                             'select-action'    => 'Selecteer Actie',
                             'edit-prices'      => 'Bewerk Prijzen',
@@ -675,6 +732,30 @@ return [
                             'price'            => 'Prijs',
                             'apply-to-all-sku' => 'Pas een prijs toe op alle SKU\'s.',
                             'apply-to-all-btn' => 'Toepassen op Alles',
+=======
+                            'add-images'          => 'Afbeeldingen Toevoegen',
+                            'apply-to-all-btn'    => 'Toepassen op Alles',
+                            'apply-to-all-name'   => 'Pas een naam toe op alle varianten.',
+                            'apply-to-all-sku'    => 'Pas een prijs toe op alle SKU\'s.',
+                            'apply-to-all-status' => 'Pas een status toe op alle varianten.',
+                            'apply-to-all-weight' => 'Gewicht toepassen op alle varianten.',
+                            'edit-inventories'    => 'Voorraden Bewerken',
+                            'edit-names'          => 'Namen Bewerken',
+                            'edit-prices'         => 'Prijzen Bewerken',
+                            'edit-sku'            => 'SKU Bewerken',
+                            'edit-status'         => 'Status Bewerken',
+                            'edit-weight'         => 'Gewicht Bewerken',
+                            'name'                => 'Namen',
+                            'price'               => 'Prijs',
+                            'remove-images'       => 'Afbeeldingen Verwijderen',
+                            'remove-variants'     => 'Varianten Verwijderen',
+                            'select-action'       => 'Actie Selecteren',
+                            'select-variants'     => 'Varianten Selecteren',
+                            'status'              => 'Status',
+                            'variant-name'        => 'Variant Naam',
+                            'variant-sku'         => 'Variant SKU',
+                            'weight'              => 'Gewicht',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                         ],
                     ],
 
@@ -861,6 +942,10 @@ return [
                 'multiselect'             => 'Meerdere selectie',
                 'no'                      => 'Nee',
                 'number'                  => 'Nummer',
+<<<<<<< HEAD
+=======
+                'options'                 => 'Opties',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'price'                   => 'Prijs',
                 'position'                => 'Positie',
                 'regex'                   => 'Regex',
@@ -923,6 +1008,10 @@ return [
                 'multiselect'           => 'Meerdere selectie',
                 'no'                    => 'Nee',
                 'number'                => 'Nummer',
+<<<<<<< HEAD
+=======
+                'options'               => 'Opties',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'price'                 => 'Prijs',
                 'position'              => 'Positie',
                 'regex'                 => 'Regex',
@@ -1090,7 +1179,12 @@ return [
                 'enter-name'                       => 'Voer Naam In',
                 'column'                           => 'Kolom',
                 'add-group-title'                  => 'Nieuwe Groep Toevoegen',
+<<<<<<< HEAD
                 'group-already-exists'             => 'Er bestaat al een attribuutgroepnaam.',
+=======
+                'group-code-already-exists'        => 'Een attribuutgroepcode bestaat al.',
+                'group-name-already-exists'        => 'Er bestaat al een attribuutgroepnaam.',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'select-group'                     => 'Selecteer een attribuutgroep, alstublieft.',
                 'group-contains-system-attributes' => 'Deze groep bevat systeemattributen. Verplaats eerst systeemattributen naar een andere groep en probeer opnieuw.',
                 'removal-not-possible'             => 'U kunt systeemattributen niet uit de attribuutfamilie verwijderen.',
@@ -1115,7 +1209,12 @@ return [
                 'enter-name'                       => 'Voer Naam In',
                 'column'                           => 'Kolom',
                 'add-group-title'                  => 'Nieuwe Groep Toevoegen',
+<<<<<<< HEAD
                 'group-already-exists'             => 'Er bestaat al een attribuutgroepnaam.',
+=======
+                'group-code-already-exists'        => 'Een attribuutgroepcode bestaat al.',
+                'group-name-already-exists'        => 'Er bestaat al een attribuutgroepnaam.',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'select-group'                     => 'Selecteer een attribuutgroep, alstublieft.',
                 'group-contains-system-attributes' => 'Deze groep bevat systeemattributen. Verplaats eerst systeemattributen naar een andere groep en probeer opnieuw.',
                 'removal-not-possible'             => 'U kunt systeemattributen niet uit de attribuutfamilie verwijderen.',
@@ -1247,6 +1346,11 @@ return [
                 'orders'                      => 'Bestellingen (:order_count)',
                 'order-id'                    => 'Bestel-ID',
                 'order-id-prefix'             => '# :order_id',
+<<<<<<< HEAD
+=======
+                'of'                          => 'van',
+                'per-page'                    => 'per pagina',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'processing'                  => 'Verwerking',
                 'pending'                     => 'In Afwachting',
                 'completed'                   => 'Voltooid',
@@ -1908,6 +2012,7 @@ return [
 
         ],
 
+<<<<<<< HEAD
         'sitemaps' => [
             'index' => [
                 'title'      => 'Sitemaps',
@@ -1952,6 +2057,172 @@ return [
             ],
 
             'delete-failed' => ':name Verwijderen Mislukt',
+=======
+        'search-seo' => [
+            'search-terms' => [
+                'index' => [
+                    'title'      => 'Zoektermen',
+                    'create-btn' => 'Zoekterm maken',
+
+                    'datagrid' => [
+                        'id'                  => 'ID',
+                        'search-query'        => 'Zoekopdracht',
+                        'Channel'             => 'Kanaal',
+                        'results'             => 'Resultaten',
+                        'uses'                => 'Gebruiken',
+                        'redirect-url'        => 'Omleidings-URL',
+                        'channel'             => 'Kanaal',
+                        'locale'              => 'Lokale instelling',
+                        'edit'                => 'Bewerken',
+                        'delete'              => 'Verwijderen',
+                        'actions'             => 'Acties',
+                        'mass-delete-success' => 'Geselecteerde zoektermen succesvol verwijderd',
+                    ],
+
+                    'create' => [
+                        'search-query'   => 'Zoekopdracht',
+                        'Channel'        => 'Kanaal',
+                        'results'        => 'Resultaten',
+                        'uses'           => 'Gebruiken',
+                        'redirect-url'   => 'Omleidings-URL',
+                        'channel'        => 'Kanaal',
+                        'locale'         => 'Lokale instelling',
+                        'save-btn'       => 'Zoekterm opslaan',
+                        'title'          => 'Zoekterm maken',
+                        'success'        => 'Zoekterm succesvol gemaakt',
+                        'delete-warning' => 'Weet u zeker dat u deze actie wilt uitvoeren?',
+                    ],
+
+                    'edit' => [
+                        'title'          => 'Zoekterm bewerken',
+                        'success'        => 'Zoekterm succesvol bijgewerkt',
+                        'delete-success' => 'Zoekterm succesvol verwijderd',
+                    ],
+                ],
+            ],
+
+            'search-synonyms' => [
+                'index' => [
+                    'title'      => 'Zoek Synoniemen',
+                    'create-btn' => 'Maak Zoek Synoniem',
+
+                    'datagrid' => [
+                        'id'                  => 'ID',
+                        'name'                => 'Naam',
+                        'terms'               => 'Termen',
+                        'edit'                => 'Bewerk',
+                        'delete'              => 'Verwijder',
+                        'actions'             => 'Acties',
+                        'mass-delete-success' => 'Geselecteerde Zoek Synoniemen Succesvol Verwijderd',
+                    ],
+
+                    'create' => [
+                        'name'           => 'Naam',
+                        'terms'          => 'Termen',
+                        'terms-info'     => 'Voer synoniemen in als een door komma\'s gescheiden lijst, bijvoorbeeld "schoenen, schoeisel." Hiermee wordt de zoekopdracht uitgebreid om alle termen op te nemen.',
+                        'save-btn'       => 'Bewaar Zoek Synoniem',
+                        'title'          => 'Maak Zoek Synoniem',
+                        'success'        => 'Zoek Synoniem succesvol aangemaakt',
+                        'delete-warning' => 'Weet je zeker dat je deze actie wilt uitvoeren?',
+                    ],
+
+                    'edit' => [
+                        'title'          => 'Bewerk Zoek Synoniem',
+                        'success'        => 'Zoek Synoniem succesvol bijgewerkt',
+                        'delete-success' => 'Zoek Synoniem succesvol verwijderd',
+                    ],
+                ],
+            ],
+
+            'sitemaps' => [
+                'index' => [
+                    'title'      => 'Sitemaps',
+                    'create-btn' => 'Maak Sitemap',
+                    'sitemap'    => 'Sitemap',
+                    'datagrid'   => [
+                        'id'              => 'ID',
+                        'file-name'       => 'Bestandsnaam',
+                        'path'            => 'Pad',
+                        'link-for-google' => 'Link voor Google',
+                        'edit'            => 'Bewerk',
+                        'delete'          => 'Verwijderen',
+                        'actions'         => 'Acties',
+                    ],
+
+                    'create' => [
+                        'file-name'      => 'Bestandsnaam',
+                        'file-name-info' => 'Voorbeeld: sitemap.xml',
+                        'path'           => 'Pad',
+                        'path-info'      => 'Voorbeeld: "/sitemap/" of "/" voor basispad',
+                        'save-btn'       => 'Sitemap Opslaan',
+                        'title'          => 'Maak Sitemap',
+                        'success'        => 'Sitemap succesvol aangemaakt',
+                        'delete-warning' => 'Weet je zeker dat je deze actie wilt uitvoeren?',
+                    ],
+
+                    'edit' => [
+                        'title'          => 'Bewerk Sitemap',
+                        'success'        => 'Sitemap succesvol bijgewerkt',
+                        'delete-success' => 'Sitemap succesvol verwijderd',
+                    ],
+                ],
+
+                'edit' => [
+                    'back-btn'       => 'Terug',
+                    'file-name'      => 'Bestandsnaam',
+                    'file-name-info' => 'Voorbeeld: sitemap.xml',
+                    'general'        => 'Algemeen',
+                    'path'           => 'Pad',
+                    'path-info'      => 'Voorbeeld: "/sitemap/" of "/" voor basispad',
+                    'save-btn'       => 'Sitemap Opslaan',
+                ],
+
+                'delete-failed' => ':name Verwijderen Mislukt',
+            ],
+
+            'url-rewrites' => [
+                'index' => [
+                    'title'      => 'URL-herschrijvingen',
+                    'create-btn' => 'URL-herschrijving maken',
+
+                    'datagrid' => [
+                        'id'                  => 'ID',
+                        'for'                 => 'Voor',
+                        'request-path'        => 'Aanvraagpad',
+                        'target-path'         => 'Doelpad',
+                        'redirect-type'       => 'Doorstuurtype',
+                        'locale'              => 'Taal',
+                        'edit'                => 'Bewerken',
+                        'delete'              => 'Verwijderen',
+                        'actions'             => 'Acties',
+                        'mass-delete-success' => 'De geselecteerde URL-herschrijvingen zijn succesvol verwijderd.',
+                    ],
+
+                    'create' => [
+                        'for'                => 'Voor',
+                        'product'            => 'Product',
+                        'category'           => 'Categorie',
+                        'cms-page'           => 'CMS-pagina',
+                        'request-path'       => 'Aanvraagpad',
+                        'target-path'        => 'Doelpad',
+                        'redirect-type'      => 'Doorstuurtype',
+                        'temporary-redirect' => 'Tijdelijke doorstuur (302)',
+                        'permanent-redirect' => 'Permanente doorstuur (301)',
+                        'locale'             => 'Taal',
+                        'save-btn'           => 'URL-herschrijving opslaan',
+                        'title'              => 'URL-herschrijving maken',
+                        'success'            => 'URL-herschrijving succesvol gemaakt',
+                        'delete-warning'     => 'Weet u zeker dat u deze actie wilt uitvoeren?',
+                    ],
+
+                    'edit' => [
+                        'title'          => 'URL-herschrijving bewerken',
+                        'success'        => 'URL-herschrijving succesvol bijgewerkt',
+                        'delete-success' => 'URL-herschrijving succesvol verwijderd',
+                    ],
+                ],
+            ],
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         ],
     ],
 
@@ -2135,8 +2406,13 @@ return [
 
         'inventory-sources' => [
             'index' => [
+<<<<<<< HEAD
                 'title'      => 'Voorraadbronnen',
                 'create-btn' => 'Voorraadbronnen Aanmaken',
+=======
+                'create-btn' => 'Voorraadbron aanmaken',
+                'title'      => 'Voorraadbronnen',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 
                 'datagrid' => [
                     'id'       => 'ID',
@@ -2257,9 +2533,25 @@ return [
 
             'rates' => [
                 'index' => [
+<<<<<<< HEAD
                     'title'        => 'Belastingtarieven',
                     'tax-rate'     => 'Belastingtarief',
                     'button-title' => 'Belastingtarieven Aanmaken',
+=======
+                    'button-title' => 'Belastingtarief maken',
+                    'tax-rate'     => 'Belastingtarief',
+                    'title'        => 'Belastingtarieven',
+
+                    'import' => [
+                        'duplicate-error'  => 'Identificatie moet uniek zijn, dubbele identificatie :identifier in rij :position.',
+                        'enough-row-error' => 'Bestand heeft niet genoeg rijen',
+                        'import-btn'       => 'Importeren',
+                        'title'            => 'Uploaden',
+                        'upload-error'     => 'Het bestand moet van het type: xls, xlsx, csv zijn.',
+                        'upload-success'   => 'Belastingtarief succesvol geüpload',
+                        'validation'       => 'Toegestane type: xls, xlsx, csv.',
+                    ],
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 
                     'datagrid' => [
                         'id'         => 'ID',
@@ -2374,6 +2666,7 @@ return [
             ],
 
             'edit' => [
+<<<<<<< HEAD
                 'title'                  => 'Kanaal Bewerken',
                 'back-btn'               => 'Terug',
                 'save-btn'               => 'Kanaal Opslaan',
@@ -2405,6 +2698,39 @@ return [
                 'settings'               => 'Instellingen',
                 'status'                 => 'Status',
                 'maintenance-mode-text'  => 'Bericht',
+=======
+                'allowed-ips'            => 'Toegestane IP’s',
+                'back-btn'               => 'Terug',
+                'code'                   => 'Code',
+                'currencies-and-locales' => 'Valuta’s en Locaties',
+                'currencies'             => 'Valuta’s',
+                'default-currency'       => 'Standaardvaluta',
+                'default-locale'         => 'Standaardlocatie',
+                'description'            => 'Omschrijving',
+                'design'                 => 'Ontwerp',
+                'favicon-size'           => 'Afbeeldingsresolutie moet zijn zoals 16px X 16px',
+                'favicon'                => 'Favicon',
+                'general'                => 'Algemeen',
+                'hostname-placeholder'   => 'https://www.example.com (Voeg geen slash aan het einde toe.)',
+                'hostname'               => 'Hostnaam',
+                'inventory-sources'      => 'Voorraadbronnen',
+                'last-delete-error'      => 'Minimaal één kanaal is vereist.',
+                'locales'                => 'Locaties',
+                'logo-size'              => 'Afbeeldingsresolutie moet zijn zoals 192px X 50px',
+                'logo'                   => 'Logo',
+                'maintenance-mode-text'  => 'Bericht',
+                'maintenance-mode'       => 'Onderhoudsmodus',
+                'name'                   => 'Naam',
+                'root-category'          => 'Hoofdcategorie',
+                'save-btn'               => 'Kanaal Opslaan',
+                'seo-description'        => 'Meta-beschrijving',
+                'seo-keywords'           => 'Meta-trefwoorden',
+                'seo-title'              => 'Meta-titel',
+                'seo'                    => 'SEO voor startpagina',
+                'status'                 => 'Status',
+                'theme'                  => 'Thema',
+                'title'                  => 'Kanaal Bewerken',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'update-success'         => 'Kanaal succesvol bijgewerkt',
             ],
         ],
@@ -2549,6 +2875,10 @@ return [
                     'image-carousel'    => 'Afbeelding Carrousel',
                     'product-carousel'  => 'Product Carrousel',
                     'static-content'    => 'Statische Inhoud',
+<<<<<<< HEAD
+=======
+                    'services-content'  => 'Diensten Inhoud',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     'title'             => 'Type',
                 ],
             ],
@@ -2587,7 +2917,11 @@ return [
                 'name'                          => 'Naam',
                 'product-carousel'              => 'Product Carrousel',
                 'product-carousel-description'  => 'Toon producten elegant met een dynamische en responsieve productcarrousel.',
+<<<<<<< HEAD
                 'path'                          => 'Pad',
+=======
+                'url'                           => 'URL',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'preview'                       => 'Voorbeeld',
                 'slider'                        => 'Schuifregelaar',
                 'static-content-description'    => 'Verbeter de betrokkenheid met beknopte, informatieve statische inhoud voor uw publiek.',
@@ -2605,6 +2939,27 @@ return [
                 'update-slider'                 => 'Schuifregelaar bijwerken',
                 'value-input'                   => 'Waarde',
                 'value'                         => 'Waarde: :value',
+<<<<<<< HEAD
+=======
+                'image-title'                   => 'Afbeeldingstitel',
+                'services-content'              => [
+                    'add-btn'            => 'Diensten toevoegen',
+                    'channels'           => 'Kanalen',
+                    'description'        => 'Beschrijving',
+                    'delete'             => 'Verwijderen',
+                    'general'            => 'Algemeen',
+                    'name'               => 'Naam',
+                    'sort-order'         => 'Sorteervolgorde',
+                    'status'             => 'Status',
+                    'services'           => 'Diensten',
+                    'service-info'       => 'Servicegerelateerde thema-aanpassing.',
+                    'save-btn'           => 'Opslaan',
+                    'service-icon-class' => 'Servicepictogramklasse',
+                    'service-icon'       => 'Servicepictogram',
+                    'title'              => 'Titel',
+                    'update-service'     => 'Diensten bijwerken',
+                ],
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             ],
 
             'create-success' => 'Thema is succesvol aangemaakt',
@@ -2688,15 +3043,25 @@ return [
 
         'products' => [
             'index' => [
+<<<<<<< HEAD
                 'end-date'                         => 'Einddatum',
                 'id'                               => 'ID',
                 'interval'                         => 'Interval',
+=======
+                'channel'                          => 'Kanaal',
+                'end-date'                         => 'Einddatum',
+                'id'                               => 'ID',
+                'interval'                         => 'Interval',
+                'last-search-terms'                => 'Laatste zoektermen',
+                'locale'                           => 'Regio',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'name'                             => 'Naam',
                 'orders'                           => 'Bestellingen',
                 'price'                            => 'Prijs',
                 'products-added-over-time'         => 'Producten toegevoegd in de loop der tijd',
                 'products-with-most-reviews'       => 'Producten met de meeste beoordelingen',
                 'products-with-most-visits'        => 'Producten met de meeste bezoeken',
+<<<<<<< HEAD
                 'quantities'                       => 'Aantallen',
                 'quantities-sold-over-time'        => 'Verkochte aantallen in de loop der tijd',
                 'revenue'                          => 'Omzet',
@@ -2708,12 +3073,30 @@ return [
                 'total'                            => 'Totaal',
                 'total-products-added-to-wishlist' => 'Producten toegevoegd aan verlanglijst',
                 'total-sold-quantities'            => 'Totaal aantal verkochte producten',
+=======
+                'quantities-sold-over-time'        => 'Verkochte aantallen in de loop der tijd',
+                'quantities'                       => 'Aantallen',
+                'results'                          => 'Resultaten',
+                'revenue'                          => 'Omzet',
+                'reviews'                          => 'Beoordelingen',
+                'search-term'                      => 'Zoekterm',
+                'start-date'                       => 'Startdatum',
+                'title'                            => 'Producten',
+                'top-search-terms'                 => 'Populaire zoektermen',
+                'top-selling-products-by-quantity' => 'Top verkopende producten op basis van aantallen',
+                'top-selling-products-by-revenue'  => 'Top verkopende producten op basis van omzet',
+                'total-products-added-to-wishlist' => 'Producten toegevoegd aan verlanglijst',
+                'total-sold-quantities'            => 'Totaal aantal verkochte producten',
+                'total'                            => 'Totaal',
+                'uses'                             => 'Gebruiken',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'view-details'                     => 'Details weergeven',
                 'visits'                           => 'Bezoeken',
             ],
         ],
 
         'view' => [
+<<<<<<< HEAD
             'day'        => 'Dag',
             'end-date'   => 'Einddatum',
             'export-csv' => 'Exporteer CSV',
@@ -2721,6 +3104,16 @@ return [
             'month'      => 'Maand',
             'start-date' => 'Startdatum',
             'year'       => 'Jaar',
+=======
+            'day'           => 'Dag',
+            'end-date'      => 'Einddatum',
+            'export-csv'    => 'Exporteer CSV',
+            'export-xls'    => 'Exporteer XLS',
+            'month'         => 'Maand',
+            'not-available' => 'Geen gegevens beschikbaar.',
+            'start-date'    => 'Startdatum',
+            'year'          => 'Jaar',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         ],
 
         'empty' => [
@@ -2731,6 +3124,10 @@ return [
 
     'configuration' => [
         'index' => [
+<<<<<<< HEAD
+=======
+            'back-btn'                     => 'Terug',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             'delete'                       => 'Verwijderen',
             'enable-at-least-one-shipping' => 'Schakel ten minste één verzendmethode in.',
             'enable-at-least-one-payment'  => 'Schakel ten minste één betaalmethode in.',
@@ -2785,6 +3182,51 @@ return [
                         'title-info'      => 'Het beheerderslogo is het kenmerkende beeld of embleem dat de beheerinterface van een systeem of website vertegenwoordigt, vaak aanpasbaar.',
                     ],
                 ],
+<<<<<<< HEAD
+=======
+
+                'magic-ai' => [
+                    'info'  => 'Magic AI-opties instellen.',
+                    'title' => 'Magic AI',
+
+                    'settings' => [
+                        'title'        => 'Algemene instellingen',
+                        'title-info'   => 'Verbeter je ervaring met de Magic AI-functie door je exclusieve API-sleutel in te voeren en de relevante organisatie aan te geven voor moeiteloze integratie. Neem de controle over je OpenAI-inloggegevens en pas de instellingen aan volgens je specifieke behoeften.',
+                        'enabled'      => 'Ingeschakeld',
+                        'api-key'      => 'API-sleutel',
+                        'organization' => 'Organisatie',
+                    ],
+
+                    'content-generation' => [
+                        'title'                            => 'Inhoudsgeneratie',
+                        'title-info'                       => 'Deze functie activeert Magic AI voor elke WYSIWYG-editor, waar je inhoud wilt beheren met behulp van AI.<br/><br/>Wanneer ingeschakeld, ga naar elke editor om inhoud te genereren.',
+                        'enabled'                          => 'Ingeschakeld',
+                        'product-short-description-prompt' => 'Prompt voor korte productbeschrijving',
+                        'product-description-prompt'       => 'Prompt voor productbeschrijving',
+                        'category-description-prompt'      => 'Prompt voor categoriebeschrijving',
+                        'cms-page-content-prompt'          => 'Prompt voor CMS-pagina-inhoud',
+                    ],
+
+                    'image-generation' => [
+                        'title'      => 'Afbeeldingsgeneratie',
+                        'title-info' => 'Deze functie activeert Magic AI voor elke afbeeldingsupload, waar je afbeeldingen wilt genereren met behulp van DALL-E.<br/><br/>Wanneer ingeschakeld, ga naar elke afbeeldingsupload om een afbeelding te genereren.',
+                        'enabled'    => 'Ingeschakeld',
+                    ],
+
+                    'review-translation' => [
+                        'title'      => 'Reviewvertaling',
+                        'title-info' => 'Bied de optie aan klanten of bezoekers om klantbeoordelingen naar het Engels te vertalen.<br/><br/>Wanneer ingeschakeld, ga naar de reviews en je zult de knop "Naar het Engels vertalen" vinden als de review niet in het Engels is.',
+                        'enabled'    => 'Ingeschakeld',
+                    ],
+
+                    'checkout-message' => [
+                        'title'      => 'Gepersonaliseerd afrekenbericht',
+                        'title-info' => 'Maak een gepersonaliseerd afrekenbericht voor klanten op de bedankpagina, pas de inhoud aan op individuele voorkeuren en verbeter de algehele post-aankoopervaring.',
+                        'enabled'    => 'Ingeschakeld',
+                        'prompt'     => 'Prompt',
+                    ],
+                ],
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             ],
 
             'catalog' => [
@@ -3074,6 +3516,7 @@ return [
                 ],
 
                 'payment-methods' => [
+<<<<<<< HEAD
                     'page-title'                     => 'Payment Methods',
                     'info'                           => 'Set payment methods information',
                     'cash-on-delivery'               => 'Cash On Delivery',
@@ -3106,6 +3549,42 @@ return [
                     'accepted-currencies'            => 'Accepted currencies',
                     'accepted-currencies-info'       => 'Add currency code comma separated e.g. USD,INR,...',
                     'business-account'               => 'Business Account',
+=======
+                    'accepted-currencies'            => 'Geaccepteerde valuta',
+                    'accepted-currencies-info'       => 'Voeg valutacodes toe, gescheiden door een komma, bijv. USD, INR,...',
+                    'business-account'               => 'Zakelijk account',
+                    'cash-on-delivery-info'          => 'Betaalmethode waarbij klanten contant betalen bij ontvangst van goederen of diensten aan hun deur.',
+                    'cash-on-delivery'               => 'Rembours',
+                    'client-id'                      => 'Klant-ID',
+                    'client-id-info'                 => 'Gebruik "sb" voor testen.',
+                    'client-secret'                  => 'Geheime sleutel van klant',
+                    'client-secret-info'             => 'Voeg hier je geheime sleutel toe',
+                    'description'                    => 'Beschrijving',
+                    'generate-invoice-applicable'    => 'Van toepassing indien automatisch factuur genereren is ingeschakeld',
+                    'generate-invoice'               => 'Genereer automatisch de factuur na het plaatsen van een bestelling',
+                    'info'                           => 'Stel informatie over betaalmethoden in',
+                    'instructions'                   => 'Instructies',
+                    'logo-information'               => 'Beeldresolutie moet zijn zoals 55px x 45px',
+                    'logo'                           => 'Logo',
+                    'money-transfer'                 => 'Geldoverdracht',
+                    'money-transfer-info'            => 'Overdracht van geld van de ene persoon of rekening naar de andere, vaak elektronisch, voor verschillende doeleinden zoals transacties of overmakingen.',
+                    'mailing-address'                => 'Stuur cheque naar',
+                    'pending'                        => 'In behandeling',
+                    'paid'                           => 'Betaald',
+                    'processing'                     => 'Verwerking',
+                    'pending-payment'                => 'Betaling in behandeling',
+                    'page-title'                     => 'Betaalmethoden',
+                    'paypal-standard'                => 'PayPal Standaard',
+                    'paypal-standard-info'           => 'PayPal Standaard is een basis PayPal-betalingsoptie voor online bedrijven, waarmee klanten kunnen betalen met hun PayPal-account of credit-/debetkaarten.',
+                    'paypal-smart-button'            => 'PayPal',
+                    'paypal-smart-button-info'       => 'PayPal Smart Button: Vereenvoudigt online betalingen met aanpasbare knoppen voor veilige, multimethodetransacties op websites en apps.',
+                    'set-invoice-status'             => 'Stel de factuurstatus in na het maken van de factuur op',
+                    'status'                         => 'Status',
+                    'sort-order'                     => 'Sorteervolgorde',
+                    'set-order-status'               => 'Stel de bestelstatus in na het maken van de factuur op',
+                    'sandbox'                        => 'Zandbak',
+                    'title'                          => 'Titel',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 ],
 
                 'order-settings' => [
@@ -3250,6 +3729,12 @@ return [
                 'reviews'                  => 'Beoordelingen',
                 'roles'                    => 'Rollen',
                 'sales'                    => 'Verkopen',
+<<<<<<< HEAD
+=======
+                'search-synonyms'          => 'Zoek Synoniemen',
+                'search-terms'             => 'Zoektermen',
+                'search-seo'               => 'Zoeken en SEO',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'shipments'                => 'Zendingen',
                 'settings'                 => 'Instellingen',
                 'sitemaps'                 => 'Sitemaps',
@@ -3257,6 +3742,11 @@ return [
                 'tax-categories'           => 'Belastingcategorieën',
                 'tax-rates'                => 'Belastingtarieven',
                 'transactions'             => 'Transacties',
+<<<<<<< HEAD
+=======
+                'themes'                   => 'Thema\'s',
+                'url-rewrites'             => 'URL-herschrijvingen',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'users'                    => 'Gebruikers',
             ],
         ],
@@ -3334,12 +3824,22 @@ return [
 
         'products' => [
             'search' => [
+<<<<<<< HEAD
                 'add-btn'     => 'Geselecteerd Product Toevoegen',
                 'empty-title' => 'Geen producten gevonden',
                 'empty-info'  => 'Geen producten beschikbaar voor zoekterm.',
                 'qty'         => ':qty Beschikbaar',
                 'sku'         => 'SKU - :sku',
                 'title'       => 'Selecteer Producten',
+=======
+                'add-btn'       => 'Geselecteerd product toevoegen',
+                'empty-info'    => 'Geen producten beschikbaar voor zoekterm.',
+                'empty-title'   => 'Geen producten gevonden',
+                'product-image' => 'Productafbeelding',
+                'qty'           => ':qty beschikbaar',
+                'sku'           => 'SKU - :sku',
+                'title'         => 'Producten selecteren',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             ],
         ],
 
@@ -3348,6 +3848,32 @@ return [
                 'add-image-btn'     => 'Afbeelding Toevoegen',
                 'allowed-types'     => 'png, jpeg, jpg',
                 'not-allowed-error' => 'Alleen afbeeldingsbestanden (.jpeg, .jpg, .png, ..) zijn toegestaan.',
+<<<<<<< HEAD
+=======
+                'ai-add-image-btn'  => 'Magische AI',
+                'ai-btn-info'       => 'Afbeelding genereren',
+
+                'ai-generation' => [
+                    '1024x1024'        => '1024x1024',
+                    '1024x1792'        => '1024x1792',
+                    '1792x1024'        => '1792x1024',
+                    'apply'            => 'Toepassen',
+                    'dall-e-2'         => 'Dall.E 2',
+                    'dall-e-3'         => 'Dall.E 3',
+                    'generate'         => 'Genereren',
+                    'generating'       => 'Genereren...',
+                    'hd'               => 'HD',
+                    'model'            => 'Model',
+                    'number-of-images' => 'Aantal afbeeldingen',
+                    'prompt'           => 'Prompt',
+                    'quality'          => 'Kwaliteit',
+                    'regenerate'       => 'Regenereren',
+                    'regenerating'     => 'Regenereren...',
+                    'size'             => 'Formaat',
+                    'standard'         => 'Standaard',
+                    'title'            => 'AI Afbeelding Generatie',
+                ],
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 
                 'placeholders'  => [
                     'front'     => 'Voorkant',
@@ -3364,6 +3890,23 @@ return [
                 'not-allowed-error' => 'Alleen videobestanden (.mp4, .mov, .ogg ..) zijn toegestaan.',
             ],
         ],
+<<<<<<< HEAD
+=======
+
+        'tinymce' => [
+            'ai-btn-tile' => 'Magie AI',
+
+            'ai-generation' => [
+                'title'                  => 'AI-ondersteuning',
+                'prompt'                 => 'Prompt',
+                'generating'             => 'Aan het genereren...',
+                'generate'               => 'Genereren',
+                'generated-content'      => 'Gegenereerde Inhoud',
+                'generated-content-info' => 'AI-inhoud kan misleidend zijn. Controleer de gegenereerde inhoud voordat u deze toepast.',
+                'apply'                  => 'Toepassen',
+            ],
+        ],
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
     ],
 
     'acl' => [
@@ -3394,18 +3937,31 @@ return [
         'invoices'                 => 'Facturen',
         'inventory-sources'        => 'Voorraadbronnen',
         'locales'                  => 'Talen',
+<<<<<<< HEAD
         'mass-delete'              => 'Massa Verwijderen',
         'mass-update'              => 'Massa Bijwerken',
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         'marketing'                => 'Marketing',
         'newsletter-subscriptions' => 'Nieuwsbrief Abonnementen',
         'note'                     => 'Notitie',
         'orders'                   => 'Bestellingen',
         'products'                 => 'Producten',
         'promotions'               => 'Promoties',
+<<<<<<< HEAD
+=======
+        'reporting'                => 'Rapportage',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         'refunds'                  => 'Terugbetalingen',
         'reviews'                  => 'Beoordelingen',
         'roles'                    => 'Rollen',
         'sales'                    => 'Verkoop',
+<<<<<<< HEAD
+=======
+        'search-synonyms'          => 'Zoek Synoniemen',
+        'search-terms'             => 'Zoektermen',
+        'search-seo'               => 'Zoeken en SEO',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         'shipments'                => 'Verzendingen',
         'settings'                 => 'Instellingen',
         'subscribers'              => 'Nieuwsbrief Abonnees',
@@ -3415,6 +3971,10 @@ return [
         'tax-categories'           => 'Belastingcategorieën',
         'tax-rates'                => 'Belastingtarieven',
         'transactions'             => 'Transacties',
+<<<<<<< HEAD
+=======
+        'url-rewrites'             => 'URL-herschrijvingen',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         'users'                    => 'Gebruikers',
         'view'                     => 'Bekijken',
     ],
@@ -3451,6 +4011,7 @@ return [
     ],
 
     'export' => [
+<<<<<<< HEAD
         'allowed-type'     => 'Toegestaan formaat:',
         'csv'              => 'CSV',
         'download'         => 'Downloaden',
@@ -3466,6 +4027,12 @@ return [
         'upload'           => 'Uploaden',
         'upload-error'     => 'Het bestand moet van het type zijn: xls, xlsx, csv.',
         'upload-success'   => ':name succesvol geüpload',
+=======
+        'csv'              => 'CSV',
+        'download'         => 'Downloaden',
+        'export'           => 'Exporteer',
+        'no-records'       => 'Niets te exporteren',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         'xls'              => 'XLS',
     ],
 
@@ -3491,6 +4058,17 @@ return [
             ],
         ],
 
+<<<<<<< HEAD
+=======
+        'customers' => [
+            'registration' => [
+                'description' => 'Er is succesvol een nieuw klantaccount aangemaakt. Ze kunnen nu inloggen met hun e-mailadres en wachtwoord. Eenmaal ingelogd hebben ze toegang tot verschillende diensten, waaronder de mogelijkheid om eerdere bestellingen te bekijken, verlanglijstjes te beheren en hun accountgegevens bij te werken.',
+                'greeting'    => 'Wij heten de nieuwe klant, :customer_name, die zich zojuist bij ons heeft geregistreerd, van harte welkom!',
+                'subject'     => 'Nieuwe klantregistratie',
+            ],
+        ],
+
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         'orders' => [
             'created' => [
                 'greeting' => 'U heeft een nieuwe bestelling :order_id geplaatst op :created_at',

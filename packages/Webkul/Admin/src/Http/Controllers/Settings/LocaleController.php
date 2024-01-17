@@ -3,9 +3,15 @@
 namespace Webkul\Admin\Http\Controllers\Settings;
 
 use Illuminate\Http\JsonResponse;
+<<<<<<< HEAD
 use Webkul\Admin\Http\Controllers\Controller;
 use Webkul\Core\Repositories\LocaleRepository;
 use Webkul\Admin\DataGrids\Settings\LocalesDataGrid;
+=======
+use Webkul\Admin\DataGrids\Settings\LocalesDataGrid;
+use Webkul\Admin\Http\Controllers\Controller;
+use Webkul\Core\Repositories\LocaleRepository;
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 
 class LocaleController extends Controller
 {
@@ -34,8 +40,11 @@ class LocaleController extends Controller
 
     /**
      * Store a newly created resource in storage.
+<<<<<<< HEAD
      *
      * @return \Illuminate\Http\JsonResponse
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      */
     public function store(): JsonResponse
     {
@@ -50,7 +59,11 @@ class LocaleController extends Controller
             'name',
             'direction',
         ]);
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         $data['logo_path'] = request()->file('logo_path');
 
         $this->localeRepository->create($data);
@@ -63,8 +76,12 @@ class LocaleController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
+<<<<<<< HEAD
      * @param int $id
      * @return \Illuminate\Http\JsonResponse
+=======
+     * @param  int  $id
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      */
     public function edit($id): JsonResponse
     {
@@ -77,19 +94,28 @@ class LocaleController extends Controller
 
     /**
      * Update the specified resource in storage.
+<<<<<<< HEAD
      *
      * @return \Illuminate\Http\JsonResponse
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      */
     public function update(): JsonResponse
     {
         $this->validate(request(), [
+<<<<<<< HEAD
             'code'      => ['required', 'unique:locales,code,' . request()->id, new \Webkul\Core\Rules\Code],
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             'name'      => 'required',
             'direction' => 'in:ltr,rtl',
         ]);
 
         $data = request()->only([
+<<<<<<< HEAD
             'code',
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             'name',
             'direction',
         ]);
@@ -106,7 +132,11 @@ class LocaleController extends Controller
     /**
      * Remove the specified resource from storage.
      *
+<<<<<<< HEAD
      * @param int $id
+=======
+     * @param  int  $id
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      * @return \Illuminate\Http\JsonResponse
      */
     public function destroy($id)

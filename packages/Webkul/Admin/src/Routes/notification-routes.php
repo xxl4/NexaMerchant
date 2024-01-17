@@ -7,7 +7,10 @@ use Webkul\Admin\Http\Controllers\NotificationController;
  * Notification routes.
  */
 Route::group(['middleware' => ['admin'], 'prefix' => config('app.admin_url')], function () {
+<<<<<<< HEAD
 
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
     Route::controller(NotificationController::class)->group(function () {
         Route::get('notifications', 'index')->name('admin.notification.index');
 

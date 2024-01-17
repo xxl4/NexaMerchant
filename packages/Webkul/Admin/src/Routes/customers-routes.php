@@ -25,7 +25,11 @@ Route::group(['middleware' => ['admin'], 'prefix' => config('app.admin_url') . '
 
             Route::get('search', 'search')->name('admin.customers.customers.search');
 
+<<<<<<< HEAD
             Route::get('login-as-customer/{id}', 'login_as_customer')->name('admin.customers.customers.login_as_customer');
+=======
+            Route::get('login-as-customer/{id}', 'loginAsCustomer')->name('admin.customers.customers.login_as_customer');
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 
             Route::post('note/{id}', 'storeNotes')->name('admin.customer.note.store');
 
@@ -36,8 +40,11 @@ Route::group(['middleware' => ['admin'], 'prefix' => config('app.admin_url') . '
             Route::post('mass-update', 'massUpdate')->name('admin.customers.customers.mass_update');
 
             Route::post('/{id}', 'destroy')->name('admin.customers.customers.delete');
+<<<<<<< HEAD
 
             Route::get('{id}/orders', 'orders')->name('admin.customers.customers.orders.data');
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         });
 
         /**

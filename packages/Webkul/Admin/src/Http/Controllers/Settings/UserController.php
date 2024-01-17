@@ -2,6 +2,7 @@
 
 namespace Webkul\Admin\Http\Controllers\Settings;
 
+<<<<<<< HEAD
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Event;
@@ -12,6 +13,18 @@ use Webkul\User\Repositories\AdminRepository;
 use Webkul\User\Repositories\RoleRepository;
 use Webkul\Admin\Http\Requests\UserForm;
 use Webkul\Admin\DataGrids\Settings\UserDataGrid;
+=======
+use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Event;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
+use Webkul\Admin\DataGrids\Settings\UserDataGrid;
+use Webkul\Admin\Http\Controllers\Controller;
+use Webkul\Admin\Http\Requests\UserForm;
+use Webkul\User\Repositories\AdminRepository;
+use Webkul\User\Repositories\RoleRepository;
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 
 class UserController extends Controller
 {
@@ -23,8 +36,12 @@ class UserController extends Controller
     public function __construct(
         protected AdminRepository $adminRepository,
         protected RoleRepository $roleRepository
+<<<<<<< HEAD
     )
     {
+=======
+    ) {
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
     }
 
     /**
@@ -45,9 +62,12 @@ class UserController extends Controller
 
     /**
      * Store a newly created resource in storage.
+<<<<<<< HEAD
      *
      * @param UserForm $request
      * @return \Illuminate\Http\JsonResponse
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      */
     public function store(UserForm $request): JsonResponse
     {
@@ -57,7 +77,11 @@ class UserController extends Controller
             'password',
             'password_confirmation',
             'role_id',
+<<<<<<< HEAD
             'status'
+=======
+            'status',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         ]);
 
         if ($data['password'] ?? null) {
@@ -86,8 +110,12 @@ class UserController extends Controller
     /**
      * User Details
      *
+<<<<<<< HEAD
      * @param int $id
      * @return \Illuminate\Http\JsonResponse
+=======
+     * @param  int  $id
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      */
     public function edit($id): JsonResponse
     {
@@ -97,15 +125,22 @@ class UserController extends Controller
 
         return new JsonResponse([
             'roles' => $roles,
+<<<<<<< HEAD
             'user' => $user,
+=======
+            'user'  => $user,
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         ]);
     }
 
     /**
      * Update the specified resource in storage.
+<<<<<<< HEAD
      *
      * @param UserForm $request
      * @return \Illuminate\Http\JsonResponse
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      */
     public function update(UserForm $request): JsonResponse
     {
@@ -114,7 +149,13 @@ class UserController extends Controller
         $data = $this->prepareUserData($request, $id);
 
         if ($data instanceof \Illuminate\Http\RedirectResponse) {
+<<<<<<< HEAD
             return $data;
+=======
+            return new JsonResponse([
+                'message' => trans('admin::app.settings.users.update-success'),
+            ]);
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         }
 
         Event::dispatch('user.admin.update.before', $id);
@@ -126,7 +167,11 @@ class UserController extends Controller
         } else {
             if (! request()->has('image.image')) {
                 if (! empty(request()->input('image.image'))) {
+<<<<<<< HEAD
                     Storage::delete($admin->image);    
+=======
+                    Storage::delete($admin->image);
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 }
 
                 $admin->image = null;
@@ -135,7 +180,11 @@ class UserController extends Controller
 
         $admin->save();
 
+<<<<<<< HEAD
         if (!empty($data['password'])) {
+=======
+        if (! empty($data['password'])) {
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             Event::dispatch('admin.password.update.after', $admin);
         }
 
@@ -149,8 +198,12 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      *
+<<<<<<< HEAD
      * @param int $id
      * @return \Illuminate\Http\JsonResponse
+=======
+     * @param  int  $id
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      */
     public function destroy($id): JsonResponse
     {
@@ -214,7 +267,11 @@ class UserController extends Controller
 
                 return new JsonResponse([
                     'redirectUrl' => route('admin.session.create'),
+<<<<<<< HEAD
                     'message' => trans('admin::app.settings.users.delete-success'),
+=======
+                    'message'     => trans('admin::app.settings.users.delete-success'),
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 ]);
             }
         } else {
@@ -239,7 +296,11 @@ class UserController extends Controller
         /**
          * Password check.
          */
+<<<<<<< HEAD
         if (!$data['password']) {
+=======
+        if (! $data['password']) {
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             unset($data['password']);
         } else {
             $data['password'] = bcrypt($data['password']);
@@ -250,12 +311,20 @@ class UserController extends Controller
          */
         $data['status'] = isset($data['status']);
 
+<<<<<<< HEAD
         $isStatusChangedToInactive = !$data['status'] && (bool) $user->status;
+=======
+        $isStatusChangedToInactive = ! $data['status'] && (bool) $user->status;
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 
         if (
             $isStatusChangedToInactive
             && (auth()->guard('admin')->user()->id === (int) $id
+<<<<<<< HEAD
                 || $this->adminRepository->countAdminsWithAllAccessAndActiveStatus() === 1
+=======
+                && $this->adminRepository->countAdminsWithAllAccessAndActiveStatus() === 1
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             )
         ) {
             return $this->cannotChangeRedirectResponse('status');

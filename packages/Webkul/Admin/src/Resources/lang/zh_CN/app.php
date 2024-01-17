@@ -485,13 +485,33 @@ return [
                     'transaction-amount' => '金额',
                 ],
 
+<<<<<<< HEAD
                 'edit'  => [
+=======
+                'create'  => [
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     'already-paid'               => '已支付',
                     'invoice-missing'            => '缺少发票',
                     'transaction-amount-zero'    => '交易金额为零',
                     'transaction-amount-exceeds' => '交易金额超过限制',
                     'transaction-saved'          => '交易保存成功',
                 ],
+<<<<<<< HEAD
+=======
+
+                'view' => [
+                    'title'            => '交易详情',
+                    'transaction-data' => '交易数据',
+                    'transaction-id'   => '交易 ID',
+                    'order-id'         => '订单 ID',
+                    'invoice-id'       => '发票 ID',
+                    'payment-method'   => '付款方式',
+                    'created-at'       => '创建时间',
+                    'status'           => '状态',
+                    'payment-details'  => '付款详情',
+                    'amount'           => '金额',
+                ],
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             ],
         ],
     ],
@@ -521,6 +541,7 @@ return [
                 ],
 
                 'datagrid'   => [
+<<<<<<< HEAD
                     'attribute-family'       => '属性家族',
                     'attribute-family-value' => '属性家族 - :attribute_family',
                     'active'                 => '激活',
@@ -545,10 +566,41 @@ return [
                     'update-status'          => '更新状态',
                     'mass-update-success'    => '已成功更新所选产品',
                     'mass-delete-success'    => '已成功删除所选产品',
+=======
+                    'attribute-family'              => '属性家族',
+                    'attribute-family-value'        => '属性家族 - :attribute_family',
+                    'active'                        => '激活',
+                    'category'                      => '类别',
+                    'copy-of'                       => '复制 :value',
+                    'copy-of-slug'                  => '复制-:value',
+                    'disable'                       => '禁用',
+                    'delete'                        => '删除',
+                    'image'                         => '图像',
+                    'id'                            => 'ID',
+                    'id-value'                      => 'ID - :id',
+                    'mass-update-success'           => '已成功更新所选产品',
+                    'mass-delete-success'           => '已成功删除所选产品',
+                    'name'                          => '名称',
+                    'out-of-stock'                  => '缺货',
+                    'price'                         => '价格',
+                    'product-image'                 => '产品图像',
+                    'qty'                           => '数量',
+                    'qty-value'                     => ':qty 可用',
+                    'sku-value'                     => 'SKU - :sku',
+                    'sku'                           => 'SKU',
+                    'status'                        => '状态',
+                    'type'                          => '类型',
+                    'update-status'                 => '更新状态',
+                    'variant-already-exist-message' => '具有相同属性选项的变体已存在。',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 ],
             ],
 
             'edit' => [
+<<<<<<< HEAD
+=======
+                'preview'  => '预览',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'save-btn' => '保存产品',
                 'title'    => '编辑产品',
                 'remove'   => '删除',
@@ -573,7 +625,11 @@ return [
                             'fixed'          => '固定',
                             'price-type'     => '价格类型',
                             'price'          => '价格',
+<<<<<<< HEAD
                             'qty'            => '数量',
+=======
+                            'qty'            => '最小数量',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                             'save-btn'       => '保存',
                             'update-title'   => '更新客户组价格',
                         ],
@@ -665,6 +721,7 @@ return [
                         ],
 
                         'mass-edit' => [
+<<<<<<< HEAD
                             'select-variants'  => '选择变体',
                             'select-action'    => '选择操作',
                             'edit-prices'      => '编辑价格',
@@ -675,6 +732,29 @@ return [
                             'price'            => '价格',
                             'apply-to-all-sku' => '将价格应用于所有SKU。',
                             'apply-to-all-btn' => '应用于全部',
+=======
+                            'add-images'          => '添加图片',
+                            'apply-to-all-btn'    => '应用于所有',
+                            'apply-to-all-name'   => '将名称应用于所有变体。',
+                            'apply-to-all-sku'    => '将价格应用于所有 SKU。',
+                            'apply-to-all-status' => '将状态应用于所有变体。',
+                            'edit-inventories'    => '编辑库存',
+                            'edit-names'          => '编辑名称',
+                            'edit-prices'         => '编辑价格',
+                            'edit-sku'            => '编辑 SKU',
+                            'edit-status'         => '编辑状态',
+                            'edit-weight'         => '编辑重量',
+                            'name'                => '名称',
+                            'price'               => '价格',
+                            'remove-images'       => '移除图片',
+                            'remove-variants'     => '移除变体',
+                            'select-action'       => '选择操作',
+                            'select-variants'     => '选择变体',
+                            'status'              => '状态',
+                            'variant-name'        => '变体名称',
+                            'variant-sku'         => '变体 SKU',
+                            'weight'              => '重量',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                         ],
                     ],
 
@@ -861,6 +941,10 @@ return [
                 'multiselect'           => '多选',
                 'no'                    => '否',
                 'number'                => '数字',
+<<<<<<< HEAD
+=======
+                'options'               => '选项',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'price'                 => '价格',
                 'position'              => '位置',
                 'regex'                 => '正则表达式',
@@ -923,6 +1007,10 @@ return [
                 'multiselect'           => '多选',
                 'no'                    => '否',
                 'number'                => '数字',
+<<<<<<< HEAD
+=======
+                'options'               => '选项',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'price'                 => '价格',
                 'position'              => '位置',
                 'regex'                 => '正则表达式',
@@ -1089,7 +1177,12 @@ return [
                 'enter-name'                       => '输入名称',
                 'column'                           => '列',
                 'add-group-title'                  => '添加新分组',
+<<<<<<< HEAD
                 'group-already-exists'             => '已存在属性分组名称。',
+=======
+                'group-code-already-exists'        => '属性组代码已经存在。',
+                'group-name-already-exists'        => '已存在属性分组名称。',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'select-group'                     => '请选择属性分组。',
                 'group-contains-system-attributes' => '此分组包含系统属性。请先将系统属性移至其他分组，然后重试。',
                 'removal-not-possible'             => '您无法从属性家族中移除系统属性。',
@@ -1114,7 +1207,12 @@ return [
                 'enter-name'                       => '输入名称',
                 'column'                           => '列',
                 'add-group-title'                  => '添加新分组',
+<<<<<<< HEAD
                 'group-already-exists'             => '已存在属性分组名称。',
+=======
+                'group-code-already-exists'        => '属性组代码已经存在。',
+                'group-name-already-exists'        => '已存在属性分组名称。',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'select-group'                     => '请选择属性分组。',
                 'group-contains-system-attributes' => '此分组包含系统属性。请先将系统属性移至其他分组，然后重试。',
                 'removal-not-possible'             => '您无法从属性家族中移除系统属性。',
@@ -1246,6 +1344,11 @@ return [
                 'orders'                      => '订单 (:order_count)',
                 'order-id'                    => '订单ID',
                 'order-id-prefix'             => '# :order_id',
+<<<<<<< HEAD
+=======
+                'of'                          => '的',
+                'per-page'                    => '每页',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'processing'                  => '处理中',
                 'pending'                     => '待处理',
                 'completed'                   => '已完成',
@@ -1907,6 +2010,7 @@ return [
             ],
         ],
 
+<<<<<<< HEAD
         'sitemaps' => [
             'index' => [
                 'title'      => '站点地图',
@@ -1952,6 +2056,173 @@ return [
             ],
 
             'delete-failed'  => ':name 删除失败',
+=======
+        'search-seo' => [
+            'search-terms' => [
+                'index' => [
+                    'title'      => '搜索词条',
+                    'create-btn' => '创建新搜索词条',
+
+                    'datagrid' => [
+                        'id'                  => 'ID',
+                        'search-query'        => '搜索查询',
+                        'Channel'             => '频道',
+                        'results'             => '结果',
+                        'uses'                => '使用',
+                        'redirect-url'        => '重定向 URL',
+                        'channel'             => '频道',
+                        'locale'              => '本地化',
+                        'edit'                => '编辑',
+                        'delete'              => '删除',
+                        'actions'             => '操作',
+                        'mass-delete-success' => '已成功删除选定的搜索词条',
+                    ],
+
+                    'create' => [
+                        'search-query'   => '搜索查询',
+                        'Channel'        => '频道',
+                        'results'        => '结果',
+                        'uses'           => '使用',
+                        'redirect-url'   => '重定向 URL',
+                        'channel'        => '频道',
+                        'locale'         => '本地化',
+                        'save-btn'       => '保存搜索词条',
+                        'title'          => '创建新搜索词条',
+                        'success'        => '搜索词条已成功创建',
+                        'delete-warning' => '您确定要执行此操作吗？',
+                    ],
+
+                    'edit' => [
+                        'title'          => '编辑搜索词条',
+                        'success'        => '搜索词条已成功更新',
+                        'delete-success' => '搜索词条已成功删除',
+                    ],
+                ],
+            ],
+
+            'search-synonyms' => [
+                'index' => [
+                    'title'      => '搜索同义词',
+                    'create-btn' => '创建搜索同义词',
+
+                    'datagrid' => [
+                        'id'                  => '标识',
+                        'name'                => '名称',
+                        'terms'               => '术语',
+                        'edit'                => '编辑',
+                        'delete'              => '删除',
+                        'actions'             => '操作',
+                        'mass-delete-success' => '成功删除所选的搜索同义词',
+                    ],
+
+                    'create' => [
+                        'name'           => '名称',
+                        'terms'          => '术语',
+                        'terms-info'     => '将同义词输入为以逗号分隔的列表，例如“鞋子，鞋类”。这扩展了搜索以包括所有术语。',
+                        'save-btn'       => '保存搜索同义词',
+                        'title'          => '创建搜索同义词',
+                        'success'        => '成功创建搜索同义词',
+                        'delete-warning' => '您确定要执行此操作吗？',
+                    ],
+
+                    'edit' => [
+                        'title'          => '编辑搜索同义词',
+                        'success'        => '成功更新搜索同义词',
+                        'delete-success' => '成功删除搜索同义词',
+                    ],
+                ],
+            ],
+
+            'sitemaps' => [
+                'index' => [
+                    'title'      => '站点地图',
+                    'create-btn' => '创建站点地图',
+                    'sitemap'    => '站点地图',
+
+                    'datagrid' => [
+                        'id'              => 'ID',
+                        'file-name'       => '文件名',
+                        'path'            => '路径',
+                        'link-for-google' => 'Google链接',
+                        'edit'            => '编辑',
+                        'delete'          => '删除',
+                        'actions'         => '操作',
+                    ],
+
+                    'create'  => [
+                        'file-name'      => '文件名',
+                        'file-name-info' => '示例：sitemap.xml',
+                        'path'           => '路径',
+                        'path-info'      => '示例："/sitemap/" 或 "/" 用于基本路径',
+                        'save-btn'       => '保存站点地图',
+                        'title'          => '创建站点地图',
+                        'success'        => '站点地图创建成功',
+                        'delete-warning' => '您确定要执行此操作吗？',
+                    ],
+
+                    'edit'  => [
+                        'title'          => '编辑站点地图',
+                        'success'        => '站点地图更新成功',
+                        'delete-success' => '站点地图删除成功',
+                    ],
+                ],
+
+                'edit'  => [
+                    'back-btn'       => '返回',
+                    'file-name'      => '文件名',
+                    'file-name-info' => '示例：sitemap.xml',
+                    'general'        => '通用',
+                    'path'           => '路径',
+                    'path-info'      => '示例："/sitemap/" 或 "/" 用于基本路径',
+                    'save-btn'       => '保存站点地图',
+                ],
+
+                'delete-failed'  => ':name 删除失败',
+            ],
+
+            'url-rewrites' => [
+                'index' => [
+                    'title'      => 'URL 重写',
+                    'create-btn' => '创建 URL 重写',
+
+                    'datagrid' => [
+                        'id'                  => 'ID',
+                        'for'                 => '适用对象',
+                        'request-path'        => '请求路径',
+                        'target-path'         => '目标路径',
+                        'redirect-type'       => '重定向类型',
+                        'locale'              => '语言环境',
+                        'edit'                => '编辑',
+                        'delete'              => '删除',
+                        'actions'             => '操作',
+                        'mass-delete-success' => '已成功删除选定的 URL 重写。',
+                    ],
+
+                    'create' => [
+                        'for'                => '适用对象',
+                        'product'            => '产品',
+                        'category'           => '类别',
+                        'cms-page'           => 'CMS 页面',
+                        'request-path'       => '请求路径',
+                        'target-path'        => '目标路径',
+                        'redirect-type'      => '重定向类型',
+                        'temporary-redirect' => '临时（302）',
+                        'permanent-redirect' => '永久（301）',
+                        'locale'             => '语言环境',
+                        'save-btn'           => '保存 URL 重写',
+                        'title'              => '创建 URL 重写',
+                        'success'            => '已成功创建 URL 重写。',
+                        'delete-warning'     => '您确定要执行此操作吗？',
+                    ],
+
+                    'edit' => [
+                        'title'          => '编辑 URL 重写',
+                        'success'        => '已成功更新 URL 重写。',
+                        'delete-success' => '已成功删除 URL 重写。',
+                    ],
+                ],
+            ],
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         ],
     ],
 
@@ -2135,8 +2406,13 @@ return [
 
         'inventory-sources' => [
             'index'  => [
+<<<<<<< HEAD
                 'title'      => '库存来源',
                 'create-btn' => '创建库存来源',
+=======
+                'create-btn' => '创建库存源',
+                'title'      => '库存来源',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 
                 'datagrid' => [
                     'id'       => 'ID',
@@ -2257,9 +2533,25 @@ return [
 
             'rates'   => [
                 'index' => [
+<<<<<<< HEAD
                     'title'        => '税率',
                     'tax-rate'     => '税率',
                     'button-title' => '创建税率',
+=======
+                    'button-title' => '创建税率',
+                    'tax-rate'     => '税率',
+                    'title'        => '税率',
+
+                    'import' => [
+                        'duplicate-error'  => '标识符必须是唯一的，在行 :position 重复标识符 :identifier。',
+                        'enough-row-error' => '文件没有足够的行',
+                        'import-btn'       => '导入',
+                        'title'            => '上传',
+                        'upload-error'     => '文件必须是类型：xls、xlsx、csv。',
+                        'upload-success'   => '税率成功上传',
+                        'validation'       => '允许的类型：xls、xlsx、csv。',
+                    ],
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 
                     'datagrid' => [
                         'id'         => 'ID',
@@ -2374,6 +2666,7 @@ return [
             ],
 
             'edit' => [
+<<<<<<< HEAD
                 'title'                  => '编辑渠道',
                 'back-btn'               => '返回',
                 'save-btn'               => '保存渠道',
@@ -2405,6 +2698,39 @@ return [
                 'settings'               => '设置',
                 'status'                 => '状态',
                 'maintenance-mode-text'  => '消息',
+=======
+                'allowed-ips'            => '允许的IP',
+                'back-btn'               => '返回',
+                'code'                   => '代码',
+                'currencies-and-locales' => '货币和区域设置',
+                'currencies'             => '货币',
+                'default-currency'       => '默认货币',
+                'default-locale'         => '默认区域设置',
+                'description'            => '描述',
+                'design'                 => '设计',
+                'favicon-size'           => '图像分辨率应为16px x 16px',
+                'favicon'                => '网站图标',
+                'general'                => '通用',
+                'hostname-placeholder'   => 'https://www.example.com（不要在结尾添加斜杠。）',
+                'hostname'               => '主机名',
+                'inventory-sources'      => '库存来源',
+                'last-delete-error'      => '至少需要一个渠道。',
+                'locales'                => '区域设置',
+                'logo-size'              => '图像分辨率应为192px x 50px',
+                'logo'                   => '标志',
+                'maintenance-mode-text'  => '消息',
+                'maintenance-mode'       => '维护模式',
+                'name'                   => '名称',
+                'root-category'          => '根分类',
+                'save-btn'               => '保存渠道',
+                'seo-description'        => '元描述',
+                'seo-keywords'           => '元关键字',
+                'seo-title'              => '元标题',
+                'seo'                    => '主页SEO',
+                'status'                 => '状态',
+                'theme'                  => '主题',
+                'title'                  => '编辑渠道',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'update-success'         => '渠道更新成功',
             ],
         ],
@@ -2549,6 +2875,10 @@ return [
                     'image-carousel'    => '图像轮播',
                     'product-carousel'  => '产品轮播',
                     'static-content'    => '静态内容',
+<<<<<<< HEAD
+=======
+                    'services-content'  => '服务内容',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     'title'             => '类型',
                 ],
             ],
@@ -2587,7 +2917,11 @@ return [
                 'name'                          => '名称',
                 'product-carousel'              => '产品轮播',
                 'product-carousel-description'  => '使用动态和响应式产品轮播优雅地展示产品。',
+<<<<<<< HEAD
                 'path'                          => '路径',
+=======
+                'url'                           => '网址',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'preview'                       => '预览',
                 'slider'                        => '滑块',
                 'static-content-description'    => '为您的受众提供简洁、信息丰富的静态内容，提高参与度。',
@@ -2605,6 +2939,27 @@ return [
                 'update-slider'                 => '更新滑块',
                 'value-input'                   => '值',
                 'value'                         => '值：:value',
+<<<<<<< HEAD
+=======
+                'image-title'                   => '图片标题',
+                'services-content'              => [
+                    'add-btn'            => '添加服务',
+                    'channels'           => '渠道',
+                    'description'        => '描述',
+                    'delete'             => '删除',
+                    'general'            => '通用',
+                    'name'               => '名称',
+                    'sort-order'         => '排序顺序',
+                    'services'           => '服务',
+                    'service-info'       => '与服务相关的主题定制。',
+                    'status'             => '状态',
+                    'save-btn'           => '保存',
+                    'service-icon-class' => '服务图标类',
+                    'service-icon'       => '服务图标',
+                    'title'              => '标题',
+                    'update-service'     => '更新服务',
+                ],
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             ],
 
             'create-success' => '成功创建主题',
@@ -2688,15 +3043,25 @@ return [
 
         'products' => [
             'index' => [
+<<<<<<< HEAD
                 'end-date'                         => '结束日期',
                 'id'                               => 'ID',
                 'interval'                         => '间隔',
+=======
+                'channel'                          => '频道',
+                'end-date'                         => '结束日期',
+                'id'                               => 'ID',
+                'interval'                         => '间隔',
+                'last-search-terms'                => '最近的搜索词',
+                'locale'                           => '区域',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'name'                             => '名称',
                 'orders'                           => '订单',
                 'price'                            => '价格',
                 'products-added-over-time'         => '随时间的新增商品',
                 'products-with-most-reviews'       => '最多评价的商品',
                 'products-with-most-visits'        => '最多访问的商品',
+<<<<<<< HEAD
                 'quantities'                       => '数量',
                 'quantities-sold-over-time'        => '随时间的销售数量',
                 'revenue'                          => '收入',
@@ -2708,12 +3073,30 @@ return [
                 'total'                            => '总计',
                 'total-products-added-to-wishlist' => '已添加到愿望清单的商品',
                 'total-sold-quantities'            => '已售商品数量',
+=======
+                'quantities-sold-over-time'        => '随时间的销售数量',
+                'quantities'                       => '数量',
+                'results'                          => '结果',
+                'revenue'                          => '收入',
+                'reviews'                          => '评价',
+                'search-term'                      => '搜索词',
+                'start-date'                       => '开始日期',
+                'title'                            => '商品',
+                'top-search-terms'                 => '最受欢迎的搜索词',
+                'top-selling-products-by-quantity' => '按数量销售最多的商品',
+                'top-selling-products-by-revenue'  => '按收入销售最多的商品',
+                'total-products-added-to-wishlist' => '已添加到愿望清单的商品',
+                'total-sold-quantities'            => '已售商品数量',
+                'total'                            => '总计',
+                'uses'                             => '用途',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'view-details'                     => '查看详情',
                 'visits'                           => '访问次数',
             ],
         ],
 
         'view' => [
+<<<<<<< HEAD
             'day'        => '日',
             'end-date'   => '结束日期',
             'export-csv' => '导出CSV',
@@ -2721,6 +3104,16 @@ return [
             'month'      => '月',
             'start-date' => '开始日期',
             'year'       => '年',
+=======
+            'day'           => '日',
+            'end-date'      => '结束日期',
+            'export-csv'    => '导出CSV',
+            'export-xls'    => '导出XLS',
+            'month'         => '月',
+            'not-available' => '没有可用的记录。',
+            'start-date'    => '开始日期',
+            'year'          => '年',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         ],
 
         'empty' => [
@@ -2731,6 +3124,10 @@ return [
 
     'configuration' => [
         'index' => [
+<<<<<<< HEAD
+=======
+            'back-btn'                     => '返回',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             'delete'                       => '删除',
             'enable-at-least-one-shipping' => '至少启用一种配送方式。',
             'enable-at-least-one-payment'  => '至少启用一种支付方式。',
@@ -2785,6 +3182,51 @@ return [
                         'title-info' => '管理员标志是表示系统或网站管理界面的独特图像或标志，通常可以自定义。',
                     ],
                 ],
+<<<<<<< HEAD
+=======
+
+                'magic-ai' => [
+                    'info'  => '设置魔法人工智能选项。',
+                    'title' => '魔法人工智能',
+
+                    'settings' => [
+                        'title'        => '通用设置',
+                        'title-info'   => '通过输入您的独家 API 密钥并指定相关的组织来增强 Magic AI 功能的体验，以实现轻松集成。掌握您的 OpenAI 凭据并根据您的具体需求自定义设置。',
+                        'enabled'      => '已启用',
+                        'api-key'      => 'API 密钥',
+                        'organization' => '组织',
+                    ],
+
+                    'content-generation' => [
+                        'title'                            => '内容生成',
+                        'title-info'                       => '此功能将启用 Magic AI，适用于您想要使用 AI 管理内容的每个所见即所得编辑器。<br/><br/>启用后，转到任何编辑器以生成内容。',
+                        'enabled'                          => '已启用',
+                        'product-short-description-prompt' => '产品简短描述提示',
+                        'product-description-prompt'       => '产品描述提示',
+                        'category-description-prompt'      => '类别描述提示',
+                        'cms-page-content-prompt'          => 'CMS 页面内容提示',
+                    ],
+
+                    'image-generation' => [
+                        'title'      => '图像生成',
+                        'title-info' => '此功能将启用 Magic AI，适用于您想要使用 DALL-E 生成图像的每个图像上传。<br/><br/>启用后，转到任何图像上传以生成图像。',
+                        'enabled'    => '已启用',
+                    ],
+
+                    'review-translation' => [
+                        'title'      => '评论翻译',
+                        'title-info' => '为客户或访客提供将客户评论翻译成英文的选项。<br/><br/>启用后，转到评论，如果评论不是英文，您将找到“翻译成英文”的按钮。',
+                        'enabled'    => '已启用',
+                    ],
+
+                    'checkout-message' => [
+                        'title'      => '个性化结账消息',
+                        'title-info' => '为感谢页面上的客户制作个性化的结账消息，将内容调整到与个体偏好 reson 響并增强整体购后体验。',
+                        'enabled'    => '已启用',
+                        'prompt'     => '提示',
+                    ],
+                ],
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             ],
 
             'catalog' => [
@@ -3074,6 +3516,7 @@ return [
                 ],
 
                 'payment-methods' => [
+<<<<<<< HEAD
                     'page-title'                     => '支付方式',
                     'info'                           => '设置支付方式信息',
                     'cash-on-delivery'               => '货到付款',
@@ -3099,13 +3542,48 @@ return [
                     'paypal-standard-info'           => 'PayPal 标准是在线企业的基本PayPal付款选项，允许顾客使用他们的PayPal账户或信用卡/借记卡支付。',
                     'paypal-smart-button'            => 'PayPal 智能按钮',
                     'paypal-smart-button-info'       => 'PayPal智能按钮：通过自定义按钮简化网站和应用上的安全多方法交易。',
+=======
+                    'accepted-currencies'            => '接受的货币',
+                    'accepted-currencies-info'       => '以逗号分隔的货币代码，例如 USD，INR，...',
+                    'business-account'               => '商业账户',
+                    'cash-on-delivery-info'          => '客户在收到货物或服务时现金支付的付款方式。',
+                    'cash-on-delivery'               => '货到付款',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     'client-id'                      => '客户端 ID',
                     'client-id-info'                 => '用于测试的 "sb"。',
                     'client-secret'                  => '客户端密钥',
                     'client-secret-info'             => '在这里添加您的秘密密钥',
+<<<<<<< HEAD
                     'accepted-currencies'            => '接受的货币',
                     'accepted-currencies-info'       => '以逗号分隔的货币代码，例如USD，INR，...',
                     'business-account'               => '企业账户',
+=======
+                    'description'                    => '描述',
+                    'generate-invoice-applicable'    => '如果启用自动生成发票，则适用',
+                    'generate-invoice'               => '下单后自动生成发票',
+                    'info'                           => '设置支付方法信息',
+                    'instructions'                   => '说明',
+                    'logo-information'               => '图像分辨率应为约 55px x 45px',
+                    'logo'                           => '标志',
+                    'money-transfer'                 => '汇款',
+                    'money-transfer-info'            => '从一个人或帐户向另一个人或帐户转移资金，通常以电子方式进行，用于各种目的，如交易或汇款。',
+                    'mailing-address'                => '寄送支票至',
+                    'pending'                        => '待处理',
+                    'paid'                           => '已支付',
+                    'processing'                     => '处理中',
+                    'pending-payment'                => '待付款',
+                    'page-title'                     => '支付方法',
+                    'paypal-standard'                => 'PayPal 标准',
+                    'paypal-standard-info'           => 'PayPal 标准是在线业务的基本 PayPal 付款选项，使客户能够使用其 PayPal 帐户或信用/借记卡支付。',
+                    'paypal-smart-button'            => 'PayPal',
+                    'paypal-smart-button-info'       => 'PayPal 智能按钮：通过网站和应用程序上的可自定义按钮简化安全的多方法交易的在线支付。',
+                    'set-invoice-status'             => '在创建发票后将发票状态设置为',
+                    'status'                         => '状态',
+                    'sort-order'                     => '排序顺序',
+                    'set-order-status'               => '在创建发票后将订单状态设置为',
+                    'sandbox'                        => '沙盒',
+                    'title'                          => '标题',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 ],
 
                 'order-settings' => [
@@ -3250,6 +3728,12 @@ return [
                 'reviews'                  => '评论',
                 'roles'                    => '角色',
                 'sales'                    => '销售',
+<<<<<<< HEAD
+=======
+                'search-synonyms'          => '搜索同义词',
+                'search-terms'             => '搜索词',
+                'search-seo'               => '搜索和SEO',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'shipments'                => '发货',
                 'settings'                 => '设置',
                 'sitemaps'                 => '站点地图',
@@ -3257,6 +3741,11 @@ return [
                 'tax-categories'           => '税收分类',
                 'tax-rates'                => '税率',
                 'transactions'             => '交易',
+<<<<<<< HEAD
+=======
+                'themes'                   => '主题',
+                'url-rewrites'             => 'URL 重写',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'users'                    => '用户',
             ],
         ],
@@ -3334,12 +3823,22 @@ return [
 
         'products' => [
             'search' => [
+<<<<<<< HEAD
                 'add-btn'     => '添加已选择的产品',
                 'empty-title' => '未找到产品',
                 'empty-info'  => '未找到符合搜索条件的产品。',
                 'qty'         => ':qty 可用',
                 'sku'         => 'SKU - :sku',
                 'title'       => '选择产品',
+=======
+                'add-btn'       => '添加所选产品',
+                'empty-info'    => '没有找到与搜索词匹配的产品。',
+                'empty-title'   => '未找到任何产品',
+                'product-image' => '产品图片',
+                'qty'           => ':qty 可用',
+                'sku'           => 'SKU - :sku',
+                'title'         => '选择产品',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             ],
         ],
 
@@ -3348,6 +3847,32 @@ return [
                 'add-image-btn'     => '添加图片',
                 'allowed-types'     => 'png, jpeg, jpg',
                 'not-allowed-error' => '仅允许图像文件（.jpeg、.jpg、.png 等）。',
+<<<<<<< HEAD
+=======
+                'ai-add-image-btn'  => '魔法 AI',
+                'ai-btn-info'       => '生成图像',
+
+                'ai-generation' => [
+                    '1024x1024'        => '1024x1024',
+                    '1024x1792'        => '1024x1792',
+                    '1792x1024'        => '1792x1024',
+                    'apply'            => '应用',
+                    'dall-e-2'         => 'Dall.E 2',
+                    'dall-e-3'         => 'Dall.E 3',
+                    'generate'         => '生成',
+                    'generating'       => '生成中...',
+                    'hd'               => '高清',
+                    'model'            => '模型',
+                    'number-of-images' => '图片数量',
+                    'prompt'           => '提示',
+                    'quality'          => '质量',
+                    'regenerate'       => '重新生成',
+                    'regenerating'     => '重新生成中...',
+                    'size'             => '大小',
+                    'standard'         => '标准',
+                    'title'            => 'AI 图像生成',
+                ],
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 
                 'placeholders'  => [
                     'front'     => '正面',
@@ -3364,6 +3889,23 @@ return [
                 'not-allowed-error' => '仅允许视频文件（.mp4、.mov、.ogg 等）。',
             ],
         ],
+<<<<<<< HEAD
+=======
+
+        'tinymce' => [
+            'ai-btn-tile' => '魔法 AI',
+
+            'ai-generation' => [
+                'title'                  => 'AI辅助',
+                'prompt'                 => '提示',
+                'generating'             => '生成中...',
+                'generate'               => '生成',
+                'generated-content'      => '生成的内容',
+                'generated-content-info' => 'AI内容可能具有误导性。请在应用之前审查生成的内容。',
+                'apply'                  => '应用',
+            ],
+        ],
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
     ],
 
     'acl' => [
@@ -3394,18 +3936,31 @@ return [
         'invoices'                 => '发票',
         'inventory-sources'        => '库存来源',
         'locales'                  => '区域设置',
+<<<<<<< HEAD
         'mass-delete'              => '批量删除',
         'mass-update'              => '批量更新',
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         'marketing'                => '营销',
         'newsletter-subscriptions' => '电子报订阅',
         'note'                     => '备注',
         'orders'                   => '订单',
         'products'                 => '产品',
         'promotions'               => '促销活动',
+<<<<<<< HEAD
+=======
+        'reporting'                => '报告',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         'refunds'                  => '退款',
         'reviews'                  => '评论',
         'roles'                    => '角色',
         'sales'                    => '销售',
+<<<<<<< HEAD
+=======
+        'search-synonyms'          => '搜索同义词',
+        'search-terms'             => '搜索词',
+        'search-seo'               => '搜索和SEO',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         'shipments'                => '发货',
         'settings'                 => '设置',
         'subscribers'              => '电子报订阅者',
@@ -3415,6 +3970,10 @@ return [
         'tax-categories'           => '税务类别',
         'tax-rates'                => '税率',
         'transactions'             => '交易',
+<<<<<<< HEAD
+=======
+        'url-rewrites'             => 'URL 重写',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         'users'                    => '用户',
         'view'                     => '查看',
     ],
@@ -3451,6 +4010,7 @@ return [
     ],
 
     'export' => [
+<<<<<<< HEAD
         'allowed-type'     => '允许的类型：',
         'csv'              => 'CSV',
         'duplicate-error'  => '标识符必须是唯一的，行 :position 处存在重复标识符 :identifier。',
@@ -3466,6 +4026,12 @@ return [
         'upload'           => '上传',
         'upload-error'     => '文件必须是以下类型的文件：xls、xlsx、csv。',
         'upload-success'   => ':name 上传成功',
+=======
+        'csv'              => 'CSV',
+        'download'         => '下载',
+        'export'           => '导出',
+        'no-records'       => '没有要导出的内容',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         'xls'              => 'XLS',
     ],
 
@@ -3491,6 +4057,17 @@ return [
             ],
         ],
 
+<<<<<<< HEAD
+=======
+        'customers' => [
+            'registration' => [
+                'description' => '新的客户帐户已成功创建。 他们现在可以使用电子邮件地址和密码凭据登录。 登录后，他们将可以访问各种服务，包括查看过去的订单、管理愿望清单和更新帐户信息的能力。',
+                'greeting'    => '我们热烈欢迎刚刚在我们这里注册的新客户：customer_name！',
+                'subject'     => '新客户注册',
+            ],
+        ],
+
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         'orders' => [
             'created' => [
                 'greeting' => '您在 :created_at 下单了新订单 :order_id',

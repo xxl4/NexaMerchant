@@ -7,7 +7,11 @@
 @endphp
 
 <x-admin::layouts>
+<<<<<<< HEAD
     {{-- Title of the page --}}
+=======
+    <!-- Title of the page -->
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
     <x-slot:title>
         @if ($items = Arr::get($config->items, request()->route('slug') . '.children'))
             @foreach ($items as $key => $item)
@@ -16,13 +20,20 @@
                 @endif
             @endforeach
         @endif
+<<<<<<< HEAD
     </x-slot:title>
 
     {{-- Configuration form fields --}}
+=======
+    </x-slot>
+
+    <!-- Configuration form fields -->
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
     <x-admin::form 
         action="" 
         enctype="multipart/form-data"
     >
+<<<<<<< HEAD
         {{-- Save Inventory --}}
         <div class="flex gap-[16px] justify-between items-center mt-[14px] max-sm:flex-wrap">
             <p class="text-[20px] text-gray-800 dark:text-white font-bold">
@@ -31,6 +42,24 @@
 
             {{-- Save Inventory --}}
             <div class="flex gap-x-[10px] items-center">
+=======
+        <!-- Save Inventory -->
+        <div class="flex gap-4 justify-between items-center mt-3.5 max-sm:flex-wrap">
+            <p class="text-xl text-gray-800 dark:text-white font-bold">
+                {{ $title }}
+            </p>
+
+            <!-- Save Inventory -->
+            <div class="flex gap-x-2.5 items-center">
+                <!-- Back Button -->
+                <a
+                    href="{{ route('admin.configuration.index') }}"
+                    class="transparent-button hover:bg-gray-200 dark:hover:bg-gray-800 dark:text-white"
+                >
+                    @lang('admin::app.configuration.index.back-btn')
+                </a>
+
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 <button 
                     type="submit"
                     class="primary-button"
@@ -40,6 +69,7 @@
             </div>
         </div>
 
+<<<<<<< HEAD
         <div class="flex  gap-[16px] justify-between items-center mt-[28px] max-md:flex-wrap">
             <div class="flex gap-x-[4px] items-center">
                 {{-- Channel Switcher --}}
@@ -51,11 +81,25 @@
                             class="transparent-button px-[4px] py-[6px] hover:bg-gray-200 dark:hover:bg-gray-800 focus:bg-gray-200 dark:focus:bg-gray-800 dark:text-white"
                         >
                             <span class="icon-store text-[24px] "></span>
+=======
+        <div class="flex  gap-4 justify-between items-center mt-7 max-md:flex-wrap">
+            <div class="flex gap-x-1 items-center">
+                <!-- Channel Switcher -->
+                <x-admin::dropdown :class="$channels->count() <= 1 ? 'hidden' : ''">
+                    <!-- Dropdown Toggler -->
+                    <x-slot:toggle>
+                        <button
+                            type="button"
+                            class="transparent-button px-1 py-1.5 hover:bg-gray-200 dark:hover:bg-gray-800 focus:bg-gray-200 dark:focus:bg-gray-800 dark:text-white"
+                        >
+                            <span class="icon-store text-2xl"></span>
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                             
                             {{ $currentChannel->name }}
 
                             <input type="hidden" name="channel" value="{{ $currentChannel->code }}"/>
 
+<<<<<<< HEAD
                             <span class="icon-sort-down text-[24px]"></span>
                         </button>
                     </x-slot:toggle>
@@ -66,6 +110,18 @@
                             <a
                                 href="?{{ Arr::query(['channel' => $channel->code, 'locale' => $currentLocale->code]) }}"
                                 class="flex gap-[10px] px-5 py-2 text-[16px] cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-950 dark:text-white"
+=======
+                            <span class="icon-sort-down text-2xl"></span>
+                        </button>
+                    </x-slot:toggle>
+
+                    <!-- Dropdown Content -->
+                    <x-slot:content class="!p-0">
+                        @foreach ($channels as $channel)
+                            <a
+                                href="?{{ Arr::query(['channel' => $channel->code, 'locale' => $currentLocale->code]) }}"
+                                class="flex gap-2.5 px-5 py-2 text-base  cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-950 dark:text-white"
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                             >
                                 {{ $channel->name }}
                             </a>
@@ -73,6 +129,7 @@
                     </x-slot:content>
                 </x-admin::dropdown>
 
+<<<<<<< HEAD
                 {{-- Channel Switcher --}}
                 <x-admin::dropdown>
                     {{-- Dropdown Toggler --}}
@@ -82,11 +139,23 @@
                             class="transparent-button px-[4px] py-[6px] hover:bg-gray-200 dark:hover:bg-gray-800 focus:bg-gray-200 dark:focus:bg-gray-800 dark:text-white"
                         >
                             <span class="icon-language text-[24px] "></span>
+=======
+                <!-- Locale Switcher -->
+                <x-admin::dropdown :class="$currentChannel->locales->count() <= 1 ? 'hidden' : ''">
+                    <!-- Dropdown Toggler -->
+                    <x-slot:toggle>
+                        <button
+                            type="button"
+                            class="transparent-button px-1 py-1.5 hover:bg-gray-200 dark:hover:bg-gray-800 focus:bg-gray-200 dark:focus:bg-gray-800 dark:text-white"
+                        >
+                            <span class="icon-language text-2xl"></span>
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 
                             {{ $currentLocale->name }}
                             
                             <input type="hidden" name="locale" value="{{ $currentLocale->code }}"/>
 
+<<<<<<< HEAD
                             <span class="icon-sort-down text-[24px]"></span>
                         </button>
                     </x-slot:toggle>
@@ -97,6 +166,18 @@
                             <a
                                 href="?{{ Arr::query(['channel' => $currentChannel->code, 'locale' => $locale->code]) }}"
                                 class="flex gap-[10px] px-5 py-2 text-[16px] cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-950 dark:text-white {{ $locale->code == $currentLocale->code ? 'bg-gray-100 dark:bg-gray-950' : ''}}"
+=======
+                            <span class="icon-sort-down text-2xl"></span>
+                        </button>
+                    </x-slot:toggle>
+
+                    <!-- Dropdown Content -->
+                    <x-slot:content class="!p-0">
+                        @foreach ($currentChannel->locales as $locale)
+                            <a
+                                href="?{{ Arr::query(['channel' => $currentChannel->code, 'locale' => $locale->code]) }}"
+                                class="flex gap-2.5 px-5 py-2 text-base  cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-950 dark:text-white {{ $locale->code == $currentLocale->code ? 'bg-gray-100 dark:bg-gray-950' : ''}}"
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                             >
                                 {{ $locale->name }}
                             </a>
@@ -107,6 +188,7 @@
         </div>
 
         @if ($groups)
+<<<<<<< HEAD
             <div class="grid grid-cols-[1fr_2fr] gap-[10px] mt-[25px] max-xl:flex-wrap">
                 @foreach ($groups as $key => $item)
                     <div>
@@ -115,11 +197,25 @@
                         </p>
 
                         <p class="text-gray-600 dark:text-gray-300 mt-[4px]">
+=======
+            <div class="grid grid-cols-[1fr_2fr] gap-10 mt-6 max-xl:flex-wrap">
+                @foreach ($groups as $key => $item)
+                    <div class="grid gap-2.5 content-start">
+                        <p class="text-base text-gray-600 dark:text-gray-300 font-semibold">
+                            @lang($item['name'])
+                        </p>
+
+                        <p class="text-gray-600 dark:text-gray-300 leading-[140%]">
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                             @lang($item['info'] ?? '')
                         </p>
                     </div>
 
+<<<<<<< HEAD
                     <div class="p-[16px] bg-white dark:bg-gray-900 rounded-[4px] box-shadow">
+=======
+                    <div class="p-4 bg-white dark:bg-gray-900 rounded box-shadow">
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                         @foreach ($item['fields'] as $field)
                             @include ('admin::configuration.field-type')
                         
@@ -128,7 +224,11 @@
                             @if ($hint !== __($hint))
                                 <label 
                                     for="@lang($hint)"
+<<<<<<< HEAD
                                     class="block leading-[20px] text-[12px] text-gray-600 dark:text-gray-300 font-medium"
+=======
+                                    class="block leading-5 text-xs text-gray-600 dark:text-gray-300 font-medium"
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                 >
                                     @lang($hint)
                                 </label>

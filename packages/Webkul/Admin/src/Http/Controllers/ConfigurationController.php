@@ -74,7 +74,11 @@ class ConfigurationController extends Controller
      */
     public function store(ConfigurationForm $request)
     {
+<<<<<<< HEAD
         $data = $request->request->all();
+=======
+        $data = $request->all();
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 
         if (isset($data['sales']['carriers'])) {
             $atLeastOneCarrierEnabled = false;

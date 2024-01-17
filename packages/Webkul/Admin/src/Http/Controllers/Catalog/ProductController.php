@@ -5,6 +5,7 @@ namespace Webkul\Admin\Http\Controllers\Catalog;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Storage;
+<<<<<<< HEAD
 use Illuminate\Support\Arr;
 use Webkul\Admin\Http\Controllers\Controller;
 use Webkul\Admin\Http\Requests\InventoryRequest;
@@ -12,10 +13,24 @@ use Webkul\Admin\Http\Requests\ProductForm;
 use Webkul\Attribute\Repositories\AttributeFamilyRepository;
 use Webkul\Inventory\Repositories\InventorySourceRepository;
 use Webkul\Product\Repositories\ProductRepository;
+=======
+use Webkul\Admin\DataGrids\Catalog\ProductDataGrid;
+use Webkul\Admin\Http\Controllers\Controller;
+use Webkul\Admin\Http\Requests\InventoryRequest;
+use Webkul\Admin\Http\Requests\MassDestroyRequest;
+use Webkul\Admin\Http\Requests\MassUpdateRequest;
+use Webkul\Admin\Http\Requests\ProductForm;
+use Webkul\Admin\Http\Resources\AttributeResource;
+use Webkul\Attribute\Repositories\AttributeFamilyRepository;
+use Webkul\Core\Rules\Slug;
+use Webkul\Inventory\Repositories\InventorySourceRepository;
+use Webkul\Product\Helpers\ProductType;
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 use Webkul\Product\Repositories\ProductAttributeValueRepository;
 use Webkul\Product\Repositories\ProductDownloadableLinkRepository;
 use Webkul\Product\Repositories\ProductDownloadableSampleRepository;
 use Webkul\Product\Repositories\ProductInventoryRepository;
+<<<<<<< HEAD
 use Webkul\Admin\Http\Resources\AttributeResource;
 use Webkul\Admin\DataGrids\Catalog\ProductDataGrid;
 use Webkul\Admin\Http\Requests\MassUpdateRequest;
@@ -23,11 +38,18 @@ use Webkul\Admin\Http\Requests\MassDestroyRequest;
 use Webkul\Core\Rules\Slug;
 use Webkul\Product\Helpers\ProductType;
 use Webkul\Product\Facades\ProductImage;
+=======
+use Webkul\Product\Repositories\ProductRepository;
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 
 class ProductController extends Controller
 {
     /*
+<<<<<<< HEAD
     * Using const variable for status 
+=======
+    * Using const variable for status
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
     */
     const ACTIVE_STATUS = 1;
 
@@ -44,8 +66,12 @@ class ProductController extends Controller
         protected ProductDownloadableLinkRepository $productDownloadableLinkRepository,
         protected ProductDownloadableSampleRepository $productDownloadableSampleRepository,
         protected ProductInventoryRepository $productInventoryRepository
+<<<<<<< HEAD
     )
     {
+=======
+    ) {
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
     }
 
     /**
@@ -107,7 +133,11 @@ class ProductController extends Controller
             return new JsonResponse([
                 'data' => [
                     'attributes' => AttributeResource::collection($configurableFamily->configurable_attributes),
+<<<<<<< HEAD
                 ]
+=======
+                ],
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             ]);
         }
 
@@ -118,7 +148,11 @@ class ProductController extends Controller
             'attribute_family_id',
             'sku',
             'super_attributes',
+<<<<<<< HEAD
             'family'
+=======
+            'family',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         ]);
 
         $product = $this->productRepository->create($data);
@@ -130,7 +164,11 @@ class ProductController extends Controller
         return new JsonResponse([
             'data' => [
                 'redirect_url' => route('admin.catalog.products.edit', $product->id),
+<<<<<<< HEAD
             ]
+=======
+            ],
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         ]);
     }
 
@@ -239,8 +277,12 @@ class ProductController extends Controller
     /**
      * Remove the specified resource from storage.
      *
+<<<<<<< HEAD
      * @param int $id
      * @return \Illuminate\Http\JsonResponse
+=======
+     * @param  int  $id
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      */
     public function destroy($id): JsonResponse
     {
@@ -267,9 +309,12 @@ class ProductController extends Controller
 
     /**
      * Mass delete the products.
+<<<<<<< HEAD
      *
      * @param MassDestroyRequest $massDestroyRequest
      * @return \Illuminate\Http\JsonResponse
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      */
     public function massDestroy(MassDestroyRequest $massDestroyRequest): JsonResponse
     {
@@ -278,31 +323,51 @@ class ProductController extends Controller
         try {
             foreach ($productIds as $productId) {
                 $product = $this->productRepository->find($productId);
+<<<<<<< HEAD
     
                 if (isset($product)) {
                     Event::dispatch('catalog.product.delete.before', $productId);
     
                     $this->productRepository->delete($productId);
     
+=======
+
+                if (isset($product)) {
+                    Event::dispatch('catalog.product.delete.before', $productId);
+
+                    $this->productRepository->delete($productId);
+
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     Event::dispatch('catalog.product.delete.after', $productId);
                 }
             }
 
             return new JsonResponse([
+<<<<<<< HEAD
                 'message' => trans('admin::app.catalog.products.index.datagrid.mass-delete-success')
             ]);
         } catch (\Exception $e) {
             return new JsonResponse([
                 'message' => $e->getMessage()
+=======
+                'message' => trans('admin::app.catalog.products.index.datagrid.mass-delete-success'),
+            ]);
+        } catch (\Exception $e) {
+            return new JsonResponse([
+                'message' => $e->getMessage(),
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             ], 500);
         }
     }
 
     /**
      * Mass update the products.
+<<<<<<< HEAD
      *
      * @param MassUpdateRequest $massUpdateRequest
      * @return \Illuminate\Http\JsonResponse
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      */
     public function massUpdate(MassUpdateRequest $massUpdateRequest): JsonResponse
     {
@@ -319,9 +384,15 @@ class ProductController extends Controller
 
             Event::dispatch('catalog.product.update.after', $product);
         }
+<<<<<<< HEAD
         
         return new JsonResponse([
             'message' => trans('admin::app.catalog.products.index.datagrid.mass-update-success')
+=======
+
+        return new JsonResponse([
+            'message' => trans('admin::app.catalog.products.index.datagrid.mass-update-success'),
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         ], 200);
     }
 

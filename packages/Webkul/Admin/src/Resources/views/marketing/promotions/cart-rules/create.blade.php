@@ -1,8 +1,15 @@
 <x-admin::layouts>
+<<<<<<< HEAD
     {{-- Title of the page --}}
     <x-slot:title>
         @lang('admin::app.marketing.promotions.cart-rules.create.title')
     </x-slot:title>
+=======
+    <!-- Title of the page -->
+    <x-slot:title>
+        @lang('admin::app.marketing.promotions.cart-rules.create.title')
+    </x-slot>
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 
     {!! view_render_event('bagisto.admin.marketing.promotions.cart_rules.create.before') !!}
 
@@ -12,12 +19,17 @@
 
 
     @pushOnce('scripts')
+<<<<<<< HEAD
         {{-- v cart rules create form template --}}
+=======
+        <!-- v cart rules create form template -->
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         <script
             type="text/x-template"
             id="v-cart-rule-create-form-template"
         >
             <div>
+<<<<<<< HEAD
                 <x-admin::form 
                     :action="route('admin.marketing.promotions.cart_rules.store')"
                     enctype="multipart/form-data"
@@ -31,6 +43,21 @@
                         </p>
                 
                         <div class="flex gap-x-[10px] items-center">
+=======
+                <x-admin::form
+                    :action="route('admin.marketing.promotions.cart_rules.store')"
+                    enctype="multipart/form-data"
+                >
+
+                    {!! view_render_event('bagisto.admin.marketing.promotions.cart_rules.create.create_form_controls.before') !!}
+
+                    <div class="flex gap-4 justify-between items-center mt-3 max-sm:flex-wrap">
+                        <p class="text-xl text-gray-800 dark:text-white font-bold">
+                            @lang('admin::app.marketing.promotions.cart-rules.create.title')
+                        </p>
+
+                        <div class="flex gap-x-2.5 items-center">
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                             <!-- Cancel button -->
                             <a
                                 href="{{ route('admin.marketing.promotions.cart_rules.index') }}"
@@ -40,7 +67,11 @@
                             </a>
 
                             <!-- Save button -->
+<<<<<<< HEAD
                             <button 
+=======
+                            <button
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                 type="submit"
                                 class="primary-button"
                             >
@@ -50,19 +81,34 @@
                     </div>
 
                     <!-- body content  -->
+<<<<<<< HEAD
                     <div class="flex gap-[10px] mt-[14px] max-xl:flex-wrap">
                         <!-- Left sub-component -->
                         <div class=" flex flex-col gap-[8px] flex-1 max-xl:flex-auto">
+=======
+                    <div class="flex gap-2.5 mt-3.5 max-xl:flex-wrap">
+                        <!-- Left sub-component -->
+                        <div class="flex flex-col gap-2 flex-1 max-xl:flex-auto">
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 
                             {!! view_render_event('bagisto.admin.marketing.promotions.cart_rules.create.card.general.before') !!}
 
                             <!-- General -->
+<<<<<<< HEAD
                             <div class="p-[16px] bg-white dark:bg-gray-900 rounded-[4px] box-shadow">
                                 <p class="text-[16px] text-gray-800 dark:text-white font-semibold mb-[16px]">
                                     @lang('admin::app.marketing.promotions.cart-rules.create.general')
                                 </p>
 
                                 <x-admin::form.control-group class="mb-[10px]">
+=======
+                            <div class="p-4 bg-white dark:bg-gray-900 rounded box-shadow">
+                                <p class="text-base text-gray-800 dark:text-white font-semibold mb-4">
+                                    @lang('admin::app.marketing.promotions.cart-rules.create.general')
+                                </p>
+
+                                <x-admin::form.control-group>
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                     <x-admin::form.control-group.label class="required">
                                         @lang('admin::app.marketing.promotions.cart-rules.create.name')
                                     </x-admin::form.control-group.label>
@@ -84,7 +130,11 @@
                                     </x-admin::form.control-group.error>
                                 </x-admin::form.control-group>
 
+<<<<<<< HEAD
                                 <x-admin::form.control-group class="mb-[10px]">
+=======
+                                <x-admin::form.control-group>
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                     <x-admin::form.control-group.label>
                                         @lang('admin::app.marketing.promotions.cart-rules.create.description')
                                     </x-admin::form.control-group.label>
@@ -106,11 +156,19 @@
                                     </x-admin::form.control-group.error>
                                 </x-admin::form.control-group>
 
+<<<<<<< HEAD
                                 <x-admin::form.control-group class="mb-[10px]">
                                     <x-admin::form.control-group.label class="required">
                                         @lang('admin::app.marketing.promotions.cart-rules.create.coupon-type')
                                     </x-admin::form.control-group.label>
                                 
+=======
+                                <x-admin::form.control-group>
+                                    <x-admin::form.control-group.label class="required">
+                                        @lang('admin::app.marketing.promotions.cart-rules.create.coupon-type')
+                                    </x-admin::form.control-group.label>
+
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                     <x-admin::form.control-group.control
                                         type="select"
                                         name="coupon_type"
@@ -123,17 +181,26 @@
                                         <option value="0">
                                             @lang('admin::app.marketing.promotions.cart-rules.create.no-coupon')
                                         </option>
+<<<<<<< HEAD
                                 
+=======
+
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                         <option value="1">
                                             @lang('admin::app.marketing.promotions.cart-rules.create.specific-coupon')
                                         </option>
                                     </x-admin::form.control-group.control>
+<<<<<<< HEAD
                                 
+=======
+
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                     <x-admin::form.control-group.error
                                         control-name="coupon_type"
                                     >
                                     </x-admin::form.control-group.error>
                                 </x-admin::form.control-group>
+<<<<<<< HEAD
                                 
                                 <template v-if="parseInt(couponType)">
                                     <x-admin::form.control-group class="mb-[10px]">
@@ -141,6 +208,15 @@
                                             @lang('admin::app.marketing.promotions.cart-rules.create.auto-generate-coupon')
                                         </x-admin::form.control-group.label>
                                 
+=======
+
+                                <template v-if="parseInt(couponType)">
+                                    <x-admin::form.control-group>
+                                        <x-admin::form.control-group.label class="required">
+                                            @lang('admin::app.marketing.promotions.cart-rules.create.auto-generate-coupon')
+                                        </x-admin::form.control-group.label>
+
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                         <x-admin::form.control-group.control
                                             type="select"
                                             name="use_auto_generation"
@@ -153,26 +229,43 @@
                                             <option value="0">
                                                 @lang('admin::app.marketing.promotions.cart-rules.create.no')
                                             </option>
+<<<<<<< HEAD
                                 
+=======
+
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                             <option value="1">
                                                 @lang('admin::app.marketing.promotions.cart-rules.create.yes')
                                             </option>
                                         </x-admin::form.control-group.control>
+<<<<<<< HEAD
                                 
+=======
+
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                         <x-admin::form.control-group.error
                                             control-name="use_auto_generation"
                                         >
                                         </x-admin::form.control-group.error>
                                     </x-admin::form.control-group>
+<<<<<<< HEAD
                                 
                                     <x-admin::form.control-group
                                         class="mb-[10px]"
                                         v-if="! parseInt(useAutoGeneration)"
+=======
+
+                                    <x-admin::form.control-group v-if="! parseInt(useAutoGeneration)"
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                     >
                                         <x-admin::form.control-group.label class="required">
                                             @lang('admin::app.marketing.promotions.cart-rules.create.coupon-code')
                                         </x-admin::form.control-group.label>
+<<<<<<< HEAD
                                 
+=======
+
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                         <x-admin::form.control-group.control
                                             type="text"
                                             name="coupon_code"
@@ -182,18 +275,30 @@
                                             :placeholder="trans('admin::app.marketing.promotions.cart-rules.create.coupon-code')"
                                         >
                                         </x-admin::form.control-group.control>
+<<<<<<< HEAD
                                 
+=======
+
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                         <x-admin::form.control-group.error
                                             control-name="coupon_code"
                                         >
                                         </x-admin::form.control-group.error>
                                     </x-admin::form.control-group>
                                     
+<<<<<<< HEAD
                                     <x-admin::form.control-group class="mb-[10px]">
                                         <x-admin::form.control-group.label>
                                             @lang('admin::app.marketing.promotions.cart-rules.create.uses-per-coupon')
                                         </x-admin::form.control-group.label>
                                 
+=======
+                                    <x-admin::form.control-group>
+                                        <x-admin::form.control-group.label>
+                                            @lang('admin::app.marketing.promotions.cart-rules.create.uses-per-coupon')
+                                        </x-admin::form.control-group.label>
+
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                         <x-admin::form.control-group.control
                                             type="text"
                                             name="uses_per_coupon"
@@ -203,7 +308,11 @@
                                             :placeholder="trans('admin::app.marketing.promotions.cart-rules.create.uses-per-coupon')"
                                         >
                                         </x-admin::form.control-group.control>
+<<<<<<< HEAD
                                 
+=======
+
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                         <x-admin::form.control-group.error
                                             control-name="uses_per_coupon"
                                         >
@@ -211,11 +320,19 @@
                                     </x-admin::form.control-group>
                                 </template>
 
+<<<<<<< HEAD
                                 <x-admin::form.control-group class="mb-[10px]">
                                     <x-admin::form.control-group.label>
                                         @lang('admin::app.marketing.promotions.cart-rules.create.uses-per-customer')
                                     </x-admin::form.control-group.label>
                             
+=======
+                                <x-admin::form.control-group>
+                                    <x-admin::form.control-group.label>
+                                        @lang('admin::app.marketing.promotions.cart-rules.create.uses-per-customer')
+                                    </x-admin::form.control-group.label>
+
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                     <x-admin::form.control-group.control
                                         type="text"
                                         name="usage_per_customer"
@@ -224,7 +341,11 @@
                                         :placeholder="trans('admin::app.marketing.promotions.cart-rules.create.uses-per-customer')"
                                     >
                                     </x-admin::form.control-group.control>
+<<<<<<< HEAD
                             
+=======
+
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                     <x-admin::form.control-group.error
                                         control-name="usage_per_customer"
                                     >
@@ -237,6 +358,7 @@
                             </div>
 
                             {!! view_render_event('bagisto.admin.marketing.promotions.cart_rules.create.card.general.after') !!}
+<<<<<<< HEAD
                 
                             {!! view_render_event('bagisto.admin.marketing.promotions.cart_rules.create.card.conditions.before') !!}
 
@@ -244,15 +366,35 @@
                             <div class="p-[16px] bg-white dark:bg-gray-900 rounded-[4px] box-shadow">
                                 <div class="flex gap-[16px] items-center justify-between">
                                     <p class="text-[16px] text-gray-800 dark:text-white font-semibold">
+=======
+
+                            {!! view_render_event('bagisto.admin.marketing.promotions.cart_rules.create.card.conditions.before') !!}
+
+                            <!-- Conditions -->
+                            <div class="p-4 bg-white dark:bg-gray-900 rounded box-shadow">
+                                <div class="flex gap-4 items-center justify-between mb-8">
+                                    <p class="text-base text-gray-800 dark:text-white font-semibold">
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                         @lang('admin::app.marketing.promotions.cart-rules.create.conditions')
                                     </p>
 
                                     <x-admin::form.control-group class="!mb-0">
+<<<<<<< HEAD
+=======
+                                        <x-admin::form.control-group.label>
+                                            @lang('admin::app.marketing.promotions.cart-rules.create.condition-type')
+                                        </x-admin::form.control-group.label>
+
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                         <x-admin::form.control-group.control
                                             type="select"
                                             name="condition_type"
                                             id="condition_type"
+<<<<<<< HEAD
                                             class="ltr:pr-[40px] rtl:pl-[40px]"
+=======
+                                            class="ltr:pr-10 rtl:pl-10"
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                             :label="trans('admin::app.marketing.promotions.cart-rules.create.condition-type')"
                                             :placeholder="trans('admin::app.marketing.promotions.cart-rules.create.condition-type')"
                                             v-model="conditionType"
@@ -272,7 +414,11 @@
                                         </x-admin::form.control-group.error>
                                     </x-admin::form.control-group>
                                 </div>
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                 <v-cart-rule-condition-item
                                     v-for='(condition, index) in conditions'
                                     :condition="condition"
@@ -281,14 +427,24 @@
                                     @onRemoveCondition="removeCondition($event)">
                                 >
                                 </v-cart-rule-condition-item>
+<<<<<<< HEAD
                       
                                 <div 
                                     class="secondary-button max-w-max mt-[15px]"
+=======
+
+                                <div
+                                    class="secondary-button max-w-max mt-4"
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                     @click="addCondition"
                                 >
                                     @lang('admin::app.marketing.promotions.cart-rules.create.add-condition')
                                 </div>
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                             </div>
 
                             {!! view_render_event('bagisto.admin.marketing.promotions.cart_rules.create.card.conditions.after') !!}
@@ -296,6 +452,7 @@
                             {!! view_render_event('bagisto.admin.marketing.promotions.cart_rules.create.card.conditions.before') !!}
 
                             <!-- Action -->
+<<<<<<< HEAD
                             <div class="p-[16px] bg-white dark:bg-gray-900 rounded-[4px] box-shadow">
                                 <div class="grid gap-[6px]">
                                     <p class="mb-[16px] text-[16px] text-gray-800 dark:text-white font-semibold">
@@ -303,6 +460,15 @@
                                     </p>
                 
                                     <div class="flex gap-[16px] max-sm:flex-wrap">
+=======
+                            <div class="p-4 bg-white dark:bg-gray-900 rounded box-shadow">
+                                <div class="grid gap-1.5">
+                                    <p class="mb-4 text-base text-gray-800 dark:text-white font-semibold">
+                                        @lang('admin::app.marketing.promotions.cart-rules.create.actions')
+                                    </p>
+
+                                    <div class="flex gap-4 max-sm:flex-wrap">
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                         <div class="w-full">
                                             <x-admin::form.control-group>
                                                 <x-admin::form.control-group.label class="required">
@@ -325,21 +491,33 @@
                                                         @lang('admin::app.marketing.promotions.cart-rules.create.percentage-product-price')
                                                     </option>
 
+<<<<<<< HEAD
                                                     <option 
+=======
+                                                    <option
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                                         value="by_fixed"
                                                         {{ old('action_type') == 'by_fixed' ? 'selected' : '' }}
                                                     >
                                                         @lang('admin::app.marketing.promotions.cart-rules.create.fixed-amount')
                                                     </option>
 
+<<<<<<< HEAD
                                                     <option 
+=======
+                                                    <option
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                                         value="cart_fixed"
                                                         {{ old('action_type') == 'cart_fixed' ? 'selected' : '' }}
                                                     >
                                                         @lang('admin::app.marketing.promotions.cart-rules.create.fixed-amount-whole-cart')
                                                     </option>
 
+<<<<<<< HEAD
                                                     <option 
+=======
+                                                    <option
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                                         value="buy_x_get_y"
                                                         {{ old('action_type') == 'buy_x_get_y' ? 'selected' : '' }}
                                                     >
@@ -379,7 +557,11 @@
                                         </div>
                                     </div>
 
+<<<<<<< HEAD
                                     <div class="flex gap-[16px] max-sm:flex-wrap">
+=======
+                                    <div class="flex gap-4 max-sm:flex-wrap">
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                         <div class="w-full">
                                             <x-admin::form.control-group>
                                                 <x-admin::form.control-group.label>
@@ -426,8 +608,13 @@
                                             </x-admin::form.control-group>
                                         </div>
                                     </div>
+<<<<<<< HEAD
                 
                                     <div class="flex gap-[16px] max-sm:flex-wrap">
+=======
+
+                                    <div class="flex gap-4 max-sm:flex-wrap">
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                         <div class="w-full">
                                             <x-admin::form.control-group>
                                                 <x-admin::form.control-group.label>
@@ -442,14 +629,22 @@
                                                     :label="trans('admin::app.marketing.promotions.cart-rules.create.apply-to-shipping')"
                                                     :placeholder="trans('admin::app.marketing.promotions.cart-rules.create.apply-to-shipping')"
                                                 >
+<<<<<<< HEAD
                                                     <option 
+=======
+                                                    <option
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                                         value="0"
                                                         {{ ! old('apply_to_shipping') ? 'selected' : '' }}
                                                     >
                                                         @lang('admin::app.marketing.promotions.cart-rules.create.no')
                                                     </option>
 
+<<<<<<< HEAD
                                                     <option 
+=======
+                                                    <option
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                                         value="1"
                                                         {{ old('apply_to_shipping') ? 'selected' : '' }}
                                                     >
@@ -500,10 +695,17 @@
                                             </x-admin::form.control-group>
                                         </div>
                                     </div>
+<<<<<<< HEAD
                 
                                     <div class="flex gap-[16px] justify-between max-sm:flex-wrap">
                                         <div class="w-full">
                                             <x-admin::form.control-group>
+=======
+
+                                    <div class="flex gap-4 justify-between max-sm:flex-wrap">
+                                        <div class="w-full">
+                                            <x-admin::form.control-group class="!mb-0">
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                                 <x-admin::form.control-group.label>
                                                     @lang('admin::app.marketing.promotions.cart-rules.create.end-of-other-rules')
                                                 </x-admin::form.control-group.label>
@@ -513,7 +715,11 @@
                                                     name="end_other_rules"
                                                     :value="old('end_other_rules', 0)"
                                                     id="end_other_rules"
+<<<<<<< HEAD
                                                     class="!w-1/2 max-sm:!w-full" 
+=======
+                                                    class="!w-1/2 max-sm:!w-full"
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                                     :label="trans('admin::app.marketing.promotions.cart-rules.create.end-of-other-rules')"
                                                     :placeholder="trans('admin::app.marketing.promotions.cart-rules.create.end-of-other-rules')"
                                                 >
@@ -547,13 +753,18 @@
                         </div>
 
                         <!-- Right sub-component -->
+<<<<<<< HEAD
                         <div class="flex flex-col gap-[8px] w-[360px] max-w-full max-sm:w-full">
+=======
+                        <div class="flex flex-col gap-2 w-[360px] max-w-full max-sm:w-full">
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 
                             {!! view_render_event('bagisto.admin.marketing.promotions.cart_rules.create.card.accordion.settings.before') !!}
 
                             <!-- Settings -->
                             <x-admin::accordion>
                                 <x-slot:header>
+<<<<<<< HEAD
                                     <div class="flex items-center justify-between p-[6px]">
                                         <p class="text-gray-800 dark:text-white text-[16px] p-[10px] font-semibold">
                                             @lang('admin::app.marketing.promotions.cart-rules.create.settings')
@@ -563,6 +774,15 @@
                             
                                 <x-slot:content>
                                     <x-admin::form.control-group class="mb-[10px]">
+=======
+                                    <p class="p-2.5 text-gray-800 dark:text-white text-base font-semibold">
+                                        @lang('admin::app.marketing.promotions.cart-rules.create.settings')
+                                    </p>
+                                </x-slot:header>
+
+                                <x-slot:content>
+                                    <x-admin::form.control-group>
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                         <x-admin::form.control-group.label>
                                             @lang('admin::app.marketing.promotions.cart-rules.create.priority')
                                         </x-admin::form.control-group.label>
@@ -584,6 +804,7 @@
                                     </x-admin::form.control-group>
 
                                     <!-- channels -->
+<<<<<<< HEAD
                                     <div class="mb-[10px]">
                                         <p class="required block leading-[24px] text-gray-800 dark:text-white font-medium">
                                             @lang('admin::app.marketing.promotions.cart-rules.create.channels')
@@ -591,6 +812,15 @@
                                         
                                         @foreach(core()->getAllChannels() as $channel)
                                             <x-admin::form.control-group class="flex gap-[10px] !mb-0 p-[6px]">
+=======
+                                    <div class="mb-2.5">
+                                        <x-admin::form.control-group.label class="required">
+                                            @lang('admin::app.marketing.promotions.cart-rules.create.channels')
+                                        </x-admin::form.control-group.label>
+
+                                        @foreach(core()->getAllChannels() as $channel)
+                                            <x-admin::form.control-group class="flex items-center gap-2.5 !mb-2">
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                                 <x-admin::form.control-group.control
                                                     type="checkbox"
                                                     name="channels[]"
@@ -602,6 +832,7 @@
                                                     :checked="in_array($channel->id, old('channels', []))"
                                                 >
                                                 </x-admin::form.control-group.control>
+<<<<<<< HEAD
                                 
                                                 <x-admin::form.control-group.label
                                                     :for="'channel_' . '_' . $channel->id"
@@ -609,6 +840,15 @@
                                                 >
                                                     {{ core()->getChannelName($channel) }}
                                                 </x-admin::form.control-group.label>
+=======
+
+                                                <label
+                                                    class="text-xs text-gray-600 dark:text-gray-300 font-medium cursor-pointer"
+                                                    for="{{ 'channel_' . '_' . $channel->id }}"
+                                                >
+                                                    {{ core()->getChannelName($channel) }}
+                                                </label>
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                             </x-admin::form.control-group>
                                         @endforeach
 
@@ -617,6 +857,7 @@
                                         >
                                         </x-admin::form.control-group.error>
                                     </div>
+<<<<<<< HEAD
     
                                     <!-- Customer Grous -->
                                     <div class="mb-[10px]">
@@ -626,6 +867,17 @@
                                         
                                         @foreach(app('Webkul\Customer\Repositories\CustomerGroupRepository')->all() as $customerGroup)
                                             <x-admin::form.control-group class="flex gap-[10px] !mb-0 p-[6px]">
+=======
+
+                                    <!-- Customer Grous -->
+                                    <div class="mb-2.5">
+                                        <x-admin::form.control-group.label class="required">
+                                            @lang('admin::app.marketing.promotions.cart-rules.create.customer-groups')
+                                        </x-admin::form.control-group.label>
+
+                                        @foreach(app('Webkul\Customer\Repositories\CustomerGroupRepository')->all() as $customerGroup)
+                                            <x-admin::form.control-group class="flex items-center gap-2.5 !mb-2">
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                                 <x-admin::form.control-group.control
                                                     type="checkbox"
                                                     name="customer_groups[]"
@@ -638,12 +890,21 @@
                                                 >
                                                 </x-admin::form.control-group.control>
 
+<<<<<<< HEAD
                                                 <x-admin::form.control-group.label
                                                     :for="'customer_group_' . '_' . $customerGroup->id"
                                                     class="!text-[14px] !text-gray-600 dark:!text-gray-300 font-semibold cursor-pointer"
                                                 >
                                                     {{ $customerGroup->name }}
                                                 </x-admin::form.control-group.label>
+=======
+                                                <label
+                                                    class="text-xs text-gray-600 dark:text-gray-300 font-medium cursor-pointer"
+                                                    for="{{ 'customer_group_' . '_' . $customerGroup->id }}"
+                                                >
+                                                    {{ $customerGroup->name }}
+                                                </label>
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                             </x-admin::form.control-group>
                                         @endforeach
 
@@ -654,6 +915,7 @@
                                     </div>
 
                                     <!-- Status -->
+<<<<<<< HEAD
                                     <div class="mb-[10px]">
                                         <p class="block leading-[24px] text-gray-800 dark:text-white font-medium">
                                             @lang('admin::app.marketing.promotions.cart-rules.create.status')
@@ -687,6 +949,30 @@
                                 </x-slot:content>
                             </x-admin::accordion>
                 
+=======
+                                    <x-admin::form.control-group class="!mb-0">
+                                        <x-admin::form.control-group.label>
+                                            @lang('admin::app.marketing.promotions.cart-rules.create.status')
+                                        </x-admin::form.control-group.label>
+
+                                        <x-admin::form.control-group.control
+                                            type="switch"
+                                            name="status"
+                                            value="1"
+                                            :label="trans('admin::app.marketing.promotions.cart-rules.create.status')"
+                                            :checked="(boolean) old('status')"
+                                        >
+                                        </x-admin::form.control-group.control>
+
+                                        <x-admin::form.control-group.error
+                                            control-name="status"
+                                        >
+                                        </x-admin::form.control-group.error>
+                                    </x-admin::form.control-group>
+                                </x-slot:content>
+                            </x-admin::accordion>
+
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                             {!! view_render_event('bagisto.admin.marketing.promotions.cart_rules.create.card.accordion.settings.after') !!}
 
                             {!! view_render_event('bagisto.admin.marketing.promotions.cart_rules.create.card.accordion.marketing_time.before') !!}
@@ -694,6 +980,7 @@
                             <!-- Marketing Time -->
                             <x-admin::accordion>
                                 <x-slot:header>
+<<<<<<< HEAD
                                     <div class="flex items-center justify-between p-[6px]">
                                         <p class="text-gray-800 dark:text-white text-[16px] p-[10px] font-semibold">
                                             @lang('admin::app.marketing.promotions.cart-rules.create.marketing-time')
@@ -745,6 +1032,55 @@
                                             </x-admin::form.control-group.error>
                                         </x-admin::form.control-group>
                                     </div>
+=======
+                                    <p class="p-2.5 text-gray-800 dark:text-white text-base font-semibold">
+                                        @lang('admin::app.marketing.promotions.cart-rules.create.marketing-time')
+                                    </p>
+                                </x-slot:header>
+
+                                <x-slot:content>
+                                    <x-admin::form.control-group>
+                                        <x-admin::form.control-group.label>
+                                            @lang('admin::app.marketing.promotions.cart-rules.create.from')
+                                        </x-admin::form.control-group.label>
+
+                                        <x-admin::form.control-group.control
+                                            type="datetime"
+                                            name="starts_from"
+                                            :value="old('starts_from')"
+                                            id="starts_from"
+                                            :label="trans('admin::app.marketing.promotions.cart-rules.create.from')"
+                                            :placeholder="trans('admin::app.marketing.promotions.cart-rules.create.from')"
+                                        >
+                                        </x-admin::form.control-group.control>
+
+                                        <x-admin::form.control-group.error
+                                            control-name="starts_from"
+                                        >
+                                        </x-admin::form.control-group.error>
+                                    </x-admin::form.control-group>
+
+                                    <x-admin::form.control-group class="!mb-0">
+                                        <x-admin::form.control-group.label>
+                                            @lang('admin::app.marketing.promotions.cart-rules.create.to')
+                                        </x-admin::form.control-group.label>
+
+                                        <x-admin::form.control-group.control
+                                            type="datetime"
+                                            name="ends_till"
+                                            :value="old('ends_till')"
+                                            id="ends_till"
+                                            :label="trans('admin::app.marketing.promotions.cart-rules.create.to')"
+                                            :placeholder="trans('admin::app.marketing.promotions.cart-rules.create.to')"
+                                        >
+                                        </x-admin::form.control-group.control>
+
+                                        <x-admin::form.control-group.error
+                                            control-name="ends_till"
+                                        >
+                                        </x-admin::form.control-group.error>
+                                    </x-admin::form.control-group>
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                 </x-slot:content>
                             </x-admin::accordion>
 
@@ -795,6 +1131,7 @@
             });
         </script>
 
+<<<<<<< HEAD
         {{-- v catalog rule condition item form template --}}
         <script 
             type="text/x-template"
@@ -815,6 +1152,28 @@
                             :label="conditionAttribute.label"
                         >
                             <option 
+=======
+        <!-- v catalog rule condition item form template -->
+        <script
+            type="text/x-template"
+            id="v-cart-rule-condition-item-template"
+        >
+            <div class="flex gap-4 justify-between mt-4">
+                <div class="flex gap-4 flex-1 max-sm:flex-wrap max-sm:flex-1">
+                    <select
+                        :name="['conditions[' + index + '][attribute]']"
+                        :id="['conditions[' + index + '][attribute]']"
+                        class="custom-select flex w-1/3 min:w-1/3 h-10 py-2.5 px-3 bg-white dark:bg-gray-900 border dark:border-gray-800 rounded-md text-sm text-gray-600 dark:text-gray-300 font-normal transition-all hover:border-gray-400 dark:hover:border-gray-400 max-sm:flex-auto max-sm:max-w-full"
+                        v-model="condition.attribute"
+                    > 
+                        <option value="">@lang('admin::app.marketing.promotions.cart-rules.create.choose-condition-to-add')</option>
+
+                        <optgroup
+                            v-for='(conditionAttribute, index) in conditionAttributes'
+                            :label="conditionAttribute.label"
+                        >
+                            <option
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                 v-for='(childAttribute, index) in conditionAttribute.children'
                                 :value="childAttribute.key"
                                 :text="childAttribute.label"
@@ -823,6 +1182,7 @@
                         </optgroup>
                     </select>
 
+<<<<<<< HEAD
                     <select 
                         :name="['conditions[' + index + '][operator]']"
                         class="custom-select flex w-1/3 min:w-1/3 h-[40px] py-[6px] px-[12px] bg-white dark:bg-gray-900 border dark:border-gray-800 rounded-[6px] text-[14px] text-gray-600 dark:text-gray-300 font-normal transition-all hover:border-gray-400 ltr:pr-[40px] rtl:pl-[40px]"
@@ -830,6 +1190,15 @@
                         v-if="matchedAttribute"
                     >
                         <option 
+=======
+                    <select
+                        :name="['conditions[' + index + '][operator]']"
+                        class="custom-select inline-flex gap-x-1 justify-between items-center h-10 w-full max-w-[196px] py-2.5 px-3 bg-white dark:bg-gray-900 border dark:border-gray-800 rounded-md text-sm text-gray-600 dark:text-gray-300 font-normal transition-all hover:border-gray-400 dark:hover:border-gray-400 max-sm:flex-auto max-sm:max-w-full"
+                        v-model="condition.operator"
+                        v-if="matchedAttribute"
+                    >
+                        <option
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                             v-for='operator in conditionOperators[matchedAttribute.type]'
                             :value="operator.operator"
                             :text="operator.label"
@@ -838,24 +1207,42 @@
                     </select>
 
                     <div v-if="matchedAttribute">
+<<<<<<< HEAD
                         <input 
+=======
+                        <input
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                             type="hidden"
                             :name="['conditions[' + index + '][attribute_type]']"
                             v-model="matchedAttribute.type"
                         >
 
+<<<<<<< HEAD
                         <div 
                             v-if="matchedAttribute.key == 'product|category_ids' 
+=======
+                        <div
+                            v-if="matchedAttribute.key == 'product|category_ids'
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                             || matchedAttribute.key == 'product|category_ids'
                             || matchedAttribute.key == 'product|parent::category_ids'"
                         >
                             <x-admin::tree.view
+<<<<<<< HEAD
                                 value-field="id"
                                 id-field="id"
                                 ::name-field="'conditions[' + index + '][value]'"
                                 input-type="checkbox"
                                 ::items='matchedAttribute.options'
                                 :behavior="'no'"
+=======
+                                input-type="checkbox"
+                                selection-type="individual"
+                                ::name-field="'conditions[' + index + '][value]'"
+                                value-field="id"
+                                id-field="id"
+                                ::items='matchedAttribute.options'
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                 :fallback-locale="config('app.fallback_locale')"
                             >
                             </x-admin::tree.view>
@@ -863,23 +1250,38 @@
 
                         <div v-else>
                             <div
+<<<<<<< HEAD
                                 v-if="matchedAttribute.type == 'text' 
+=======
+                                v-if="matchedAttribute.type == 'text'
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                     || matchedAttribute.type == 'price'
                                     || matchedAttribute.type == 'decimal'
                                     || matchedAttribute.type == 'integer'"
                             >
+<<<<<<< HEAD
                                 <v-field 
+=======
+                                <v-field
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                     :name="`['conditions[${index}][value]']`"
                                     v-slot="{ field, errorMessage }"
                                     :id="`['conditions[${index}][value]']`"
                                     :rules="
+<<<<<<< HEAD
                                         matchedAttribute.type == 'price' ? 'regex:^[0-9]+\.[0-9]{2}$' : ''
                                         || matchedAttribute.type == 'decimal' ? 'regex:^[0-9]+\.[0-9]{2}$' : ''
                                         || matchedAttribute.type == 'integer' ? 'regex:^[0-9]+\.[0-9]{2}$' : ''
+=======
+                                        matchedAttribute.type == 'price' ? 'regex:^[0-9]+(\.[0-9]+)?$' : ''
+                                        || matchedAttribute.type == 'decimal' ? 'regex:^[0-9]+(\.[0-9]+)?$' : ''
+                                        || matchedAttribute.type == 'integer' ? 'regex:^[0-9]+(\.[0-9]+)?$' : ''
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                         || matchedAttribute.type == 'text' ? 'regex:^([A-Za-z0-9_ \'\-]+)$' : ''"
                                     label="Conditions"
                                     v-model="condition.value"
                                 >
+<<<<<<< HEAD
                                     <input 
                                         type="text"
                                         v-bind="field"
@@ -888,6 +1290,16 @@
                                     />
                                 </v-field>
                                 
+=======
+                                    <input
+                                        type="text"
+                                        v-bind="field"
+                                        :class="{ 'border border-red-500': errorMessage }"
+                                        class="flex w-[289px] min:w-1/3 h-10 py-2.5 px-3 border rounded-md text-sm text-gray-600 dark:text-gray-300 transition-all hover:border-gray-400 dark:hover:border-gray-400 focus:border-gray-400 dark:focus:border-gray-400 dark:bg-gray-900 dark:border-gray-800"
+                                    />
+                                </v-field>
+
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                 <v-error-message
                                     :name="`['conditions[${index}][value]']`"
                                     class="mt-1 text-red-500 text-xs italic"
@@ -896,6 +1308,7 @@
                             </div>
 
                             <div v-if="matchedAttribute.type == 'date'">
+<<<<<<< HEAD
                                 <input 
                                     type="date"
                                     :name="['conditions[' + index + '][value]']"
@@ -917,6 +1330,33 @@
                                 <select 
                                     :name="['conditions[' + index + '][value]']"
                                     class="custom-select inline-flex gap-x-[4px] justify-between items-center h-[40px] w-[196px] max-w-[196px] py-[6px] ltr:pl-[12px] rtl:pr-[12px] px-[12px] bg-white dark:bg-gray-900 border dark:border-gray-800 rounded-[6px] text-[14px] text-gray-600 dark:text-gray-300 font-normal cursor-pointer marker:shadow appearance-none focus:ring-2 focus:outline-none focus:ring-black transition-all hover:border-gray-400"
+=======
+                                <x-admin::flat-picker.date class="!w-[140px]" ::allow-input="false">
+                                    <input
+                                        type="date"
+                                        :name="['conditions[' + index + '][value]']"
+                                        class="flex min-h-[39px] w-full rounded-md border px-3 py-2 text-sm text-gray-600 transition-all hover:border-gray-400 dark:hover:border-gray-400 dark:border-gray-800 dark:bg-gray-900 dark:text-gray-300"
+                                        v-model="condition.value"
+                                    />
+                                </x-admin::flat-picker.date>
+                            </div>
+
+                            <div v-if="matchedAttribute.type == 'datetime'">
+                                <x-admin::flat-picker.date class="!w-[140px]" ::allow-input="false">
+                                    <input
+                                        type="datetime"
+                                        :name="['conditions[' + index + '][value]']"
+                                        class="flex min-h-[39px] w-full rounded-md border px-3 py-2 text-sm text-gray-600 transition-all hover:border-gray-400 dark:hover:border-gray-400 dark:border-gray-800 dark:bg-gray-900 dark:text-gray-300"
+                                        v-model="condition.value"
+                                    />
+                                </x-admin::flat-picker.date>
+                            </div>
+
+                            <div v-if="matchedAttribute.type == 'boolean'">
+                                <select
+                                    :name="['conditions[' + index + '][value]']"
+                                    class="custom-select inline-flex gap-x-1 justify-between items-center h-10 w-[196px] max-w-[196px] py-2.5 px-3 bg-white dark:bg-gray-900 border dark:border-gray-800 rounded-md text-sm text-gray-600 dark:text-gray-300 font-normal transition-all hover:border-gray-400 dark:hover:border-gray-400"
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                     v-model="condition.value"
                                 >
                                     <option value="1">
@@ -932,7 +1372,11 @@
                             <div v-if="matchedAttribute.type == 'select' || matchedAttribute.type == 'radio'">
                                 <select
                                     :name="['conditions[' + index + '][value]']"
+<<<<<<< HEAD
                                     class="custom-select inline-flex gap-x-[4px] justify-between items-center h-[40px] w-[196px] max-w-[196px] py-[6px] ltr:pl-[12px] rtl:pr-[12px] px-[12px] bg-white dark:bg-gray-900  border dark:border-gray-800   rounded-[6px] text-[14px] text-gray-600 dark:text-gray-300 font-normal cursor-pointer marker:shadow appearance-none focus:ring-2 focus:outline-none focus:ring-black transition-all hover:border-gray-400"
+=======
+                                    class="custom-select inline-flex gap-x-1 justify-between items-center h-10 w-full min-w-[196px] py-2.5 px-3 bg-white dark:bg-gray-900 border dark:border-gray-800 rounded-md text-sm text-gray-600 dark:text-gray-300 font-normal transition-all hover:border-gray-400 dark:hover:border-gray-400"
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                     v-if="matchedAttribute.key != 'catalog|state'"
                                     v-model="condition.value"
                                 >
@@ -944,10 +1388,17 @@
                                     </option>
                                 </select>
 
+<<<<<<< HEAD
                                 <select 
                                     :name="['conditions[' + index + '][value]']"
                                     class="custom-select inline-flex gap-x-[4px] justify-between items-center h-[40px] w-[196px] max-w-[196px] py-[6px] ltr:pl-[12px] rtl:pr-[12px] px-[12px] bg-white dark:bg-gray-900 border dark:border-gray-800 rounded-[6px] text-[14px] text-gray-600 dark:text-gray-300 font-normal cursor-pointer marker:shadow appearance-none focus:ring-2 focus:outline-none focus:ring-black transition-all hover:border-gray-400"
                                     v-model="condition.value" 
+=======
+                                <select
+                                    :name="['conditions[' + index + '][value]']"
+                                    class="custom-select inline-flex gap-x-1 justify-between items-center h-10 w-full max-w-[196px] py-2.5 px-3 bg-white dark:bg-gray-900 border dark:border-gray-800 rounded-md text-sm text-gray-600 dark:text-gray-300 font-normal transition-all hover:border-gray-400 dark:hover:border-gray-400 max-sm:flex-auto max-sm:max-w-full"
+                                    v-model="condition.value"
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                     v-else
                                 >
                                     <optgroup
@@ -965,9 +1416,15 @@
                             </div>
 
                             <div v-if="matchedAttribute.type == 'multiselect' || matchedAttribute.type == 'checkbox'">
+<<<<<<< HEAD
                                 <select 
                                     :name="['conditions[' + index + '][value][]']"
                                     class="custom-select inline-flex gap-x-[4px] justify-between items-center h-[40px] w-[196px] max-w-[196px] py-[6px] ltr:pl-[12px] rtl:pr-[12px] px-[12px] bg-white dark:bg-gray-900 border dark:border-gray-800 rounded-[6px] text-[14px] text-gray-600 dark:text-gray-300 font-normal cursor-pointer marker:shadow appearance-none focus:ring-2 focus:outline-none focus:ring-black transition-all hover:border-gray-400"
+=======
+                                <select
+                                    :name="['conditions[' + index + '][value][]']"
+                                    class="inline-flex gap-x-1 justify-between items-center h-10 w-[196px] max-w-[196px] py-2 px-3 border rounded-md text-sm text-gray-600 dark:text-gray-300 transition-all hover:border-gray-400 dark:hover:border-gray-400 focus:border-gray-400 dark:focus:border-gray-400 dark:bg-gray-900 dark:border-gray-800"
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                     v-model="condition.value"
                                     multiple
                                 >
@@ -983,15 +1440,24 @@
                     </div>
                 </div>
 
+<<<<<<< HEAD
                 <span 
                     class="icon-delete max-h-[36px] max-w-[36px] text-[24px] p-[6px] rounded-[6px] cursor-pointer transition-all hover:bg-gray-100 dark:hover:bg-gray-950 max-sm:place-self-center"
+=======
+                <span
+                    class="icon-delete max-h-9 max-w-9 text-2xl p-1.5 rounded-md cursor-pointer transition-all hover:bg-gray-100 dark:hover:bg-gray-950 max-sm:place-self-center"
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     @click="removeCondition"
                 >
                 </span>
             </div>
         </script>
 
+<<<<<<< HEAD
         {{-- v catalog rule condition item component --}}
+=======
+        <!-- v catalog rule condition item component -->
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         <script type="module">
             app.component('v-cart-rule-condition-item', {
                 template: "#v-cart-rule-condition-item-template",
@@ -1188,4 +1654,8 @@
             });
         </script>
     @endPushOnce
+<<<<<<< HEAD
 </x-admin::layouts>
+=======
+</x-admin::layouts>
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61

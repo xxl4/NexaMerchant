@@ -5,7 +5,11 @@
         </span> <br>
 
         <p style="font-size: 16px;color: #5E5E5E;line-height: 24px;">
+<<<<<<< HEAD
             {{ __('admin::app.emails.dear', ['customer_name' => $refund->order->customer_full_name]) }},👋
+=======
+            {{ __('admin::app.emails.dear', ['admin_name' => core()->getAdminEmailDetails()['name']]) }},👋
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         </p>
 
         <p style="font-size: 16px;color: #5E5E5E;line-height: 24px;">

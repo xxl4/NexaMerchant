@@ -2,12 +2,21 @@
 
 namespace Webkul\Admin\Http\Controllers\Settings;
 
+<<<<<<< HEAD
 use Illuminate\Support\Facades\Event;
 use Illuminate\Http\JsonResponse;
 use Webkul\Admin\Http\Controllers\Controller;
 use Webkul\Core\Repositories\ExchangeRateRepository;
 use Webkul\Core\Repositories\CurrencyRepository;
 use Webkul\Admin\DataGrids\Settings\ExchangeRatesDataGrid;
+=======
+use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Event;
+use Webkul\Admin\DataGrids\Settings\ExchangeRatesDataGrid;
+use Webkul\Admin\Http\Controllers\Controller;
+use Webkul\Core\Repositories\CurrencyRepository;
+use Webkul\Core\Repositories\ExchangeRateRepository;
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 
 class ExchangeRateController extends Controller
 {
@@ -19,8 +28,12 @@ class ExchangeRateController extends Controller
     public function __construct(
         protected ExchangeRateRepository $exchangeRateRepository,
         protected CurrencyRepository $currencyRepository
+<<<<<<< HEAD
     )
     {
+=======
+    ) {
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
     }
 
     /**
@@ -41,8 +54,11 @@ class ExchangeRateController extends Controller
 
     /**
      * Store a newly created resource in storage.
+<<<<<<< HEAD
      *
      * @return \Illuminate\Http\JsonResponse
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      */
     public function store(): JsonResponse
     {
@@ -55,7 +71,11 @@ class ExchangeRateController extends Controller
 
         $exchangeRate = $this->exchangeRateRepository->create(request()->only([
             'target_currency',
+<<<<<<< HEAD
             'rate'
+=======
+            'rate',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         ]));
 
         Event::dispatch('core.exchange_rate.create.after', $exchangeRate);
@@ -68,8 +88,12 @@ class ExchangeRateController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
+<<<<<<< HEAD
      * @param int $id
      * @return \Illuminate\Http\JsonResponse
+=======
+     * @param  int  $id
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      */
     public function edit($id): JsonResponse
     {
@@ -79,16 +103,25 @@ class ExchangeRateController extends Controller
 
         return new JsonResponse([
             'data' => [
+<<<<<<< HEAD
                 'currencies' => $currencies,
                 'exchangeRate' => $exchangeRate,
             ]
+=======
+                'currencies'   => $currencies,
+                'exchangeRate' => $exchangeRate,
+            ],
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         ]);
     }
 
     /**
      * Update the specified resource in storage.
+<<<<<<< HEAD
      *
      * @return \Illuminate\Http\JsonResponse
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      */
     public function update(): JsonResponse
     {
@@ -101,7 +134,11 @@ class ExchangeRateController extends Controller
 
         $exchangeRate = $this->exchangeRateRepository->update(request()->only([
             'target_currency',
+<<<<<<< HEAD
             'rate'
+=======
+            'rate',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         ]), request()->id);
 
         Event::dispatch('core.exchange_rate.update.after', $exchangeRate);
@@ -121,18 +158,30 @@ class ExchangeRateController extends Controller
         try {
             app(config('services.exchange_api.' . config('services.exchange_api.default') . '.class'))->updateRates();
 
+<<<<<<< HEAD
             session()->flash('success', trans('admin::app.settings.exchange-rates.update-success'));
+=======
+            session()->flash('success', trans('admin::app.settings.exchange-rates.index.update-success'));
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         } catch (\Exception $e) {
             session()->flash('error', $e->getMessage());
         }
 
+<<<<<<< HEAD
         return redirect()->back();
+=======
+        return redirect()->route('admin.settings.exchange_rates.index');
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
     }
 
     /**
      * Remove the specified resource from storage.
      *
+<<<<<<< HEAD
      * @param int $id
+=======
+     * @param  int  $id
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      * @return void
      */
     public function destroy($id)
@@ -156,7 +205,11 @@ class ExchangeRateController extends Controller
         return response()->json([
             'message' => trans(
                 'admin::app.settings.exchange-rates.index.delete-error'
+<<<<<<< HEAD
             )
+=======
+            ),
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         ], 500);
     }
 }

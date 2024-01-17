@@ -2,11 +2,19 @@
 
 namespace Webkul\Admin\Http\Controllers\Sales;
 
+<<<<<<< HEAD
 use Webkul\Admin\Http\Controllers\Controller;
 use Webkul\Sales\Repositories\OrderRepository;
 use Webkul\Sales\Repositories\OrderItemRepository;
 use Webkul\Sales\Repositories\RefundRepository;
 use Webkul\Admin\DataGrids\Sales\OrderRefundDataGrid;
+=======
+use Webkul\Admin\DataGrids\Sales\OrderRefundDataGrid;
+use Webkul\Admin\Http\Controllers\Controller;
+use Webkul\Sales\Repositories\OrderItemRepository;
+use Webkul\Sales\Repositories\OrderRepository;
+use Webkul\Sales\Repositories\RefundRepository;
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 
 class RefundController extends Controller
 {
@@ -19,14 +27,22 @@ class RefundController extends Controller
         protected OrderRepository $orderRepository,
         protected OrderItemRepository $orderItemRepository,
         protected RefundRepository $refundRepository
+<<<<<<< HEAD
     )
     {
+=======
+    ) {
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
     }
 
     /**
      * Display a listing of the resource.
      *
+<<<<<<< HEAD
      * @return \Illuminate\Http\View
+=======
+     * @return \Illuminate\View\View
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      */
     public function index()
     {
@@ -41,7 +57,11 @@ class RefundController extends Controller
      * Show the form for creating a new resource.
      *
      * @param  int  $orderId
+<<<<<<< HEAD
      * @return \Illuminate\Http\View
+=======
+     * @return \Illuminate\View\View
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      */
     public function create($orderId)
     {
@@ -72,7 +92,11 @@ class RefundController extends Controller
 
         $data = request()->all();
 
+<<<<<<< HEAD
         if (! $data['refund']['shipping']) {
+=======
+        if (! isset($data['refund']['shipping'])) {
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             $data['refund']['shipping'] = 0;
         }
 
@@ -111,7 +135,11 @@ class RefundController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  int  $orderId
+<<<<<<< HEAD
      * @return \Illuminate\Http\JsonResponse
+=======
+     * @return \Illuminate\Http\JsonResponse|mixed
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      */
     public function updateQty($orderId)
     {
@@ -128,7 +156,11 @@ class RefundController extends Controller
      * Show the view for the specified resource.
      *
      * @param  int  $id
+<<<<<<< HEAD
      * @return \Illuminate\Http\View
+=======
+     * @return \Illuminate\View\View
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      */
     public function view($id)
     {

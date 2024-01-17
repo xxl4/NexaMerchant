@@ -3,7 +3,10 @@
 namespace Webkul\Admin\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+<<<<<<< HEAD
 use Webkul\Core\Rules\CommaSeparatedInteger;
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 
 class ConfigurationForm extends FormRequest
 {
@@ -24,6 +27,7 @@ class ConfigurationForm extends FormRequest
      */
     public function rules()
     {
+<<<<<<< HEAD
         $this->rules = [];
 
         if (
@@ -88,5 +92,23 @@ class ConfigurationForm extends FormRequest
             'sales.invoice_settings.invoice_slip_design.logo'  => 'Invoice Logo',
             'catalog.products.storefront.products_per_page'    => 'Product Per Page',
         ];
+=======
+        return collect(request()->input('keys', []))->mapWithKeys(function ($item) {
+            $data = json_decode($item, true);
+
+            return collect($data['fields'])->mapWithKeys(function ($field) use ($data) {
+                $key = $data['key'] . '.' . $field['name'];
+
+                // Check delete key exist in the request
+                if (! $this->has($key . '.delete')) {
+                    $validation = isset($field['validation']) && $field['validation'] ? $field['validation'] : 'nullable';
+
+                    return [$key => $validation];
+                }
+
+                return [];
+            })->toArray();
+        })->toArray();
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
     }
 }

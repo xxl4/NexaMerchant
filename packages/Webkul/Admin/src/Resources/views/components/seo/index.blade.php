@@ -1,9 +1,18 @@
+<<<<<<< HEAD
 <v-seo-helper></v-seo-helper>
 
 @pushOnce('scripts')
     {{-- SEO Vue Component Template --}}
     <script type="text/x-template" id="v-seo-helper-template">
         <div class="flex flex-col gap-[3px] mb-[30px]">
+=======
+<v-seo-helper {{ $attributes }}></v-seo-helper>
+
+@pushOnce('scripts')
+    <!-- SEO Vue Component Template -->
+    <script type="text/x-template" id="v-seo-helper-template">
+        <div class="flex flex-col gap-1 mb-8">
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             <p 
                 class="text-[#161B9D] dark:text-white"
                 v-text="metaTitle"
@@ -13,7 +22,11 @@
             <!-- SEO Meta Title -->
             <p 
                 class="text-[#135F29]"
+<<<<<<< HEAD
                 v-text="'{{ URL::to('/') }}/' + (metaTitle ? metaTitle.toLowerCase().replace(/\s+/g, '-') : '')"
+=======
+                v-text="'{{ URL::to('/') }}/' + (slug ? slug + '/' : '') + (metaTitle ? metaTitle.toLowerCase().replace(/\s+/g, '-') : '')"
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             >
             </p>
 
@@ -30,6 +43,11 @@
         app.component('v-seo-helper', {
             template: '#v-seo-helper-template',
 
+<<<<<<< HEAD
+=======
+            props: ["slug"],
+
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             data() {
                 return {
                     metaTitle: this.$parent.getValues()['meta_title'],

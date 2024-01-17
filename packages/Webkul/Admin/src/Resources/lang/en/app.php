@@ -41,12 +41,21 @@ return [
         'view-all'              => 'View All',
 
         'order-status-messages' => [
+<<<<<<< HEAD
             'completed'       => 'Order Completed',
             'closed'          => 'Order Closed',
             'canceled'        => 'Order Canceled',
             'pending'         => 'Order Pending',
             'processing'      => 'Order Processing',
             'pending-payment' => 'Pending Payment',
+=======
+            'canceled'        => 'Order Canceled',
+            'closed'          => 'Order Closed',
+            'completed'       => 'Order Completed',
+            'pending'         => 'Order Pending',
+            'pending-payment' => 'Pending Payment',
+            'processing'      => 'Order Processing',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         ],
 
         'status'  => [
@@ -62,25 +71,40 @@ return [
     'account' => [
         'edit' => [
             'back-btn'          => 'Back',
+<<<<<<< HEAD
             'confirm-password'  => 'Confirm Password',
             'change-password'   => 'Change Password',
+=======
+            'change-password'   => 'Change Password',
+            'confirm-password'  => 'Confirm Password',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             'current-password'  => 'Current Password',
             'email'             => 'Email',
             'general'           => 'General',
             'invalid-password'  => 'The current password you entered is incorrect.',
             'name'              => 'Name',
+<<<<<<< HEAD
             'profile-image'     => 'Profile Image',
             'password'          => 'Password',
             'save-btn'          => 'Save Account',
             'title'             => 'My Account',
             'upload-image-info' => 'Upload a Profile Image (110px X 110px) in PNG or JPG Format',
             'update-success'    => 'Account updated successfully',
+=======
+            'password'          => 'Password',
+            'profile-image'     => 'Profile Image',
+            'save-btn'          => 'Save Account',
+            'title'             => 'My Account',
+            'update-success'    => 'Account updated successfully',
+            'upload-image-info' => 'Upload a Profile Image (110px X 110px) in PNG or JPG Format',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         ],
     ],
 
     'dashboard' => [
         'index' => [
             'add-customer'                => 'Add Customer',
+<<<<<<< HEAD
             'average-sale'                => 'Average Order Sale',
             'add-product'                 => 'Add Product',
             'attribute-code'              => 'Attribute Code',
@@ -106,18 +130,56 @@ return [
             'product-info'                => 'Add related products on the go.',
             'revenue'                     => 'Revenue :total',
             'stock-threshold'             => 'Stock Threshold',
+=======
+            'add-product'                 => 'Add Product',
+            'attribute-code'              => 'Attribute Code',
+            'average-sale'                => 'Average Order Sale',
+            'color'                       => 'Color',
+            'customer-info'               => 'No Customer Found With Most Sales',
+            'customer-with-most-sales'    => 'Customer With Most Sales',
+            'date-duration'               => ':start - :end',
+            'decreased'                   => ':progress%',
+            'empty-threshold'             => 'Empty Threshold',
+            'empty-threshold-description' => 'There is no product available',
+            'end-date'                    => 'End Date',
+            'from'                        => 'From',
+            'increased'                   => ':progress%',
+            'more-products'               => ':product_count+ More Images',
+            'order'                       => ':total_orders Orders',
+            'order-count'                 => ':count Orders',
+            'order-id'                    => '#:id',
+            'overall-details'             => 'Overall Details',
+            'pay-by'                      => 'Pay By - :method',
+            'product-count'               => ':count Products',
+            'product-image'               => 'Product Image',
+            'product-info'                => 'Add related products on the go.',
+            'product-number'              => 'Product - :product_number',
+            'revenue'                     => 'Revenue :total',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             'sale-count'                  => ':count Sales',
             'sales'                       => 'Sales',
             'sku'                         => 'SKU - :sku',
             'start-date'                  => 'Start Date',
+<<<<<<< HEAD
             'store-stats'                 => 'Store Stats',
             'to'                          => 'To',
             'title'                       => 'Dashboard',
+=======
+            'stock-threshold'             => 'Stock Threshold',
+            'store-stats'                 => 'Store Stats',
+            'title'                       => 'Dashboard',
+            'to'                          => 'To',
+            'today-customers'             => 'Today’s Customers',
+            'today-details'               => 'Today’s Details',
+            'today-orders'                => 'Today’s Orders',
+            'today-sales'                 => 'Today’s Sales',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             'top-performing-categories'   => 'Top Performing Categories',
             'top-selling-products'        => 'Top Selling Products',
             'total-customers'             => 'Total Customers',
             'total-orders'                => 'Total Orders',
             'total-sales'                 => 'Total Sales',
+<<<<<<< HEAD
             'total-unpaid-invoices'       => 'Total Unpaid Invoices',
             'total-stock'                 => ':total_stock Stock',
             'today-orders'                => 'Today’s Orders',
@@ -127,6 +189,13 @@ return [
             'unique-visitors'             => ':count unique',
             'user-name'                   => 'Hi ! :user_name',
             'user-info'                   => 'Quickly Review what’s going on in your store',
+=======
+            'total-stock'                 => ':total_stock Stock',
+            'total-unpaid-invoices'       => 'Total Unpaid Invoices',
+            'unique-visitors'             => ':count unique',
+            'user-info'                   => 'Quickly Review what’s going on in your store',
+            'user-name'                   => 'Hi ! :user_name',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             'visitors'                    => 'Visitors',
         ],
     ],
@@ -137,11 +206,19 @@ return [
                 'title' => 'Orders',
 
                 'datagrid' => [
+<<<<<<< HEAD
                     'customer'        => 'Customer',
                     'channel-name'    => 'Channel',
                     'completed'       => 'Completed',
                     'canceled'        => 'Canceled',
                     'closed'          => 'Closed',
+=======
+                    'canceled'        => 'Canceled',
+                    'channel-name'    => 'Channel',
+                    'closed'          => 'Closed',
+                    'completed'       => 'Completed',
+                    'customer'        => 'Customer',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     'date'            => 'Date',
                     'email'           => 'Email',
                     'fraud'           => 'Fraud',
@@ -150,11 +227,19 @@ return [
                     'images'          => 'Images',
                     'location'        => 'Location',
                     'order-id'        => 'Order ID',
+<<<<<<< HEAD
                     'pay-via'         => 'Pay Via',
                     'pay-by'          => 'Pay By - :method',
                     'processing'      => 'Processing',
                     'pending'         => 'Pending',
                     'pending-payment' => 'Pending Payment',
+=======
+                    'pay-by'          => 'Pay By - :method',
+                    'pay-via'         => 'Pay Via',
+                    'pending'         => 'Pending',
+                    'pending-payment' => 'Pending Payment',
+                    'processing'      => 'Processing',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     'product-count'   => ':count + More Products',
                     'status'          => 'Status',
                     'success'         => 'Success',
@@ -166,6 +251,7 @@ return [
                 'amount-per-unit'       => ':amount Per Unit x :qty Quantity',
                 'billing-address'       => 'Billing Address',
                 'cancel'                => 'Cancel',
+<<<<<<< HEAD
                 'comments'              => 'Comments',
                 'cancel-msg'            => 'Are your sure you want to cancel this order',
                 'customer-notified'     => ':date | Customer <b>Notified</b>',
@@ -228,6 +314,70 @@ return [
                 'total-paid'            => 'Total Paid',
                 'total-refund'          => 'Total Refund',
                 'total-due'             => 'Total Due',
+=======
+                'cancel-msg'            => 'Are your sure you want to cancel this order',
+                'cancel-success'        => 'Order cancelled successfully',
+                'canceled'              => 'Canceled',
+                'channel'               => 'Channel',
+                'closed'                => 'Closed',
+                'comment-success'       => 'Comment added successfully.',
+                'comments'              => 'Comments',
+                'completed'             => 'Completed',
+                'contact'               => 'Contact',
+                'create-success'        => 'Order created successfully',
+                'currency'              => 'Currency',
+                'customer'              => 'Customer',
+                'customer-group'        => 'Customer Group',
+                'customer-not-notified' => ':date | Customer <b>Not Notified</b>',
+                'customer-notified'     => ':date | Customer <b>Notified</b>',
+                'discount'              => 'Discount - :discount',
+                'download-pdf'          => 'Download PDF',
+                'grand-total'           => 'Grand Total - :grand_total',
+                'invoice-id'            => 'Invoice #:invoice',
+                'invoices'              => 'Invoices',
+                'item-canceled'         => 'Canceled (:qty_canceled)',
+                'item-invoice'          => 'Invoiced (:qty_invoiced)',
+                'item-ordered'          => 'Ordered (:qty_ordered)',
+                'item-refunded'         => 'Refunded (:qty_refunded)',
+                'item-shipped'          => 'Shipped (:qty_shipped)',
+                'name'                  => 'Name',
+                'no-invoice-found'      => 'No Invoice Found',
+                'no-refund-found'       => 'No Refund Found',
+                'no-shipment-found'     => 'No Shipments Found',
+                'notify-customer'       => 'Notify Customer',
+                'order-date'            => 'Order Date',
+                'order-information'     => 'Order Information',
+                'order-status'          => 'Order Status',
+                'payment-and-shipping'  => 'Payment and Shipping',
+                'payment-method'        => 'Payment method',
+                'pending'               => 'Pending',
+                'per-unit'              => 'Per Unit',
+                'price'                 => 'Price - :price',
+                'processing'            => 'Processing',
+                'quantity'              => 'Quantity',
+                'refund'                => 'Refund',
+                'refund-id'             => 'Refund #:refund',
+                'refunded'              => 'Refunded',
+                'ship'                  => 'Ship',
+                'shipment'              => 'Shipment #:shipment',
+                'shipments'             => 'Shipments',
+                'shipping-address'      => 'Shipping Address',
+                'shipping-and-handling' => 'Shipping and Handling',
+                'shipping-method'       => 'Shipping Method',
+                'shipping-price'        => 'Shipping Price',
+                'sku'                   => 'SKU - :sku',
+                'status'                => 'Status',
+                'sub-total'             => 'Sub Total - :sub_total',
+                'submit-comment'        => 'Submit Comment',
+                'summary-grand-total'   => 'Grand Total',
+                'summary-sub-total'     => 'Sub Total',
+                'summary-tax'           => 'Tax',
+                'tax'                   => 'Tax - :tax',
+                'title'                 => 'Order #:order_id',
+                'total-due'             => 'Total Due',
+                'total-paid'            => 'Total Paid',
+                'total-refund'          => 'Total Refund',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'view'                  => 'View',
                 'write-your-comment'    => 'Write your comment',
             ],
@@ -240,8 +390,13 @@ return [
                 'datagrid'  => [
                     'id'               => 'ID',
                     'inventory-source' => 'Inventory Source',
+<<<<<<< HEAD
                     'order-id'         => 'Order ID',
                     'order-date'       => 'Order Date',
+=======
+                    'order-date'       => 'Order Date',
+                    'order-id'         => 'Order ID',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     'shipment-date'    => 'Shipment Date',
                     'shipment-to'      => 'Shipment To',
                     'total-qty'        => 'Total Quantity',
@@ -253,6 +408,7 @@ return [
                 'amount-per-unit'  => ':amount Per Unit x :qty Quantity',
                 'cancel-error'     => 'Order not be canceled',
                 'carrier-name'     => 'Carrier Name',
+<<<<<<< HEAD
                 'creation-error'   => 'Error on Shipment creation',
                 'create-btn'       => 'Create Shipment',
                 'item-ordered'     => 'Ordered (:qty_ordered)',
@@ -267,6 +423,22 @@ return [
                 'quantity-invalid' => 'Qty. Invalid',
                 'source'           => 'Source',
                 'sku'              => 'SKU - :sku',
+=======
+                'create-btn'       => 'Create Shipment',
+                'creation-error'   => 'Error on Shipment creation',
+                'item-canceled'    => 'Canceled (:qty_canceled)',
+                'item-invoice'     => 'Invoiced (:qty_invoiced)',
+                'item-ordered'     => 'Ordered (:qty_ordered)',
+                'item-refunded'    => 'Refunded (:qty_refunded)',
+                'item-shipped'     => 'Shipped (:qty_shipped)',
+                'order-error'      => 'Shipment is not valid',
+                'per-unit'         => 'Per Unit',
+                'qty-available'    => 'Qty. Available',
+                'qty-to-ship'      => 'Qty. To Ship',
+                'quantity-invalid' => 'Qty. Invalid',
+                'sku'              => 'SKU - :sku',
+                'source'           => 'Source',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'success'          => 'Shipment created successfully',
                 'title'            => 'Create new Shipment',
                 'tracking-number'  => 'Tracking Number',
@@ -275,6 +447,7 @@ return [
             'view' => [
                 'billing-address'      => 'Billing Address',
                 'carrier-title'        => 'Carrier Title',
+<<<<<<< HEAD
                 'currency'             => 'Currency',
                 'channel'              => 'Channel',
                 'customer'             => 'Customer',
@@ -293,6 +466,26 @@ return [
                 'shipping-address'     => 'Shipping Address',
                 'shipping-method'      => 'Shipping Method',
                 'shipping-price'       => 'Shipping Price',
+=======
+                'channel'              => 'Channel',
+                'currency'             => 'Currency',
+                'customer'             => 'Customer',
+                'email'                => 'Email - :email',
+                'inventory-source'     => 'Inventory Source',
+                'order-date'           => 'Order Date',
+                'order-id'             => 'Order ID',
+                'order-information'    => 'Order Information',
+                'order-status'         => 'Order Status',
+                'ordered-items'        => 'Ordered Items',
+                'payment-and-shipping' => 'Payment and Shipping',
+                'payment-method'       => 'Payment Method',
+                'product-image'        => 'Product Image',
+                'qty'                  => 'Quantity - :qty',
+                'shipping-address'     => 'Shipping Address',
+                'shipping-method'      => 'Shipping Method',
+                'shipping-price'       => 'Shipping Price',
+                'sku'                  => 'SKU - :sku ',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'title'                => 'Shipment #:shipment_id',
                 'tracking-number'      => 'Tracking Number',
             ],
@@ -314,13 +507,19 @@ return [
 
             'view' => [
                 'account-information'    => 'Account Information',
+<<<<<<< HEAD
                 'adjustment-refund'      => 'Adjustment Refund',
                 'adjustment-fee'         => 'Adjustment Fee',
+=======
+                'adjustment-fee'         => 'Adjustment Fee',
+                'adjustment-refund'      => 'Adjustment Refund',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'base-discounted-amount' => 'Discounted Amount - :base_discounted_amount',
                 'billing-address'        => 'Billing Address',
                 'currency'               => 'Currency',
                 'discounted-amount'      => 'Sub Total - :discounted_amount',
                 'grand-total'            => 'Grand Total',
+<<<<<<< HEAD
                 'order-information'      => 'Order Information',
                 'order-id'               => 'Order Id',
                 'order-status'           => 'Order status',
@@ -368,6 +567,55 @@ return [
                 'sku'                         => 'SKU - :sku',
                 'title'                       => 'Create Refund',
                 'tax-amount'                  => 'Tax Amount',
+=======
+                'order-channel'          => 'Order Channel',
+                'order-date'             => 'Order Date',
+                'order-id'               => 'Order Id',
+                'order-information'      => 'Order Information',
+                'order-status'           => 'Order status',
+                'payment-information'    => 'Payment Information',
+                'payment-method'         => 'Payment Method',
+                'price'                  => 'Price - :price',
+                'product-image'          => 'Product Image',
+                'product-ordered'        => 'Products Ordered',
+                'qty'                    => 'QTY - :qty',
+                'refund'                 => 'Refund',
+                'shipping-address'       => 'Shipping Address',
+                'shipping-handling'      => 'Shipping & Handling',
+                'shipping-method'        => 'Shipping Method',
+                'shipping-price'         => 'Shipping Price',
+                'sku'                    => 'SKU - :sku',
+                'sub-total'              => 'Sub Total',
+                'tax'                    => 'Tax',
+                'tax-amount'             => 'Tax Amount - :tax_amount',
+                'title'                  => 'Refund #:refund_id',
+            ],
+
+            'create' => [
+                'adjustment-fee'              => 'Adjustment Fee',
+                'adjustment-refund'           => 'Adjustment Refund',
+                'amount-per-unit'             => ':amount Per Unit x :qty Quantity',
+                'create-success'              => 'Refund created successfully',
+                'discount-amount'             => 'Discount Amount',
+                'grand-total'                 => 'Grand Total',
+                'invalid-qty'                 => 'We found an invalid quantity to invoice items.',
+                'invalid-refund-amount-error' => 'Refund amount should be non zero.',
+                'item-canceled'               => 'Canceled (:qty_canceled)',
+                'item-invoice'                => 'Invoiced (:qty_invoiced)',
+                'item-ordered'                => 'Ordered (:qty_ordered)',
+                'item-refunded'               => 'Refunded (:qty_refunded)',
+                'item-shipped'                => 'Shipped (:qty_shipped)',
+                'per-unit'                    => 'Per Unit',
+                'price'                       => 'Price',
+                'qty-to-refund'               => 'Qty To Refund',
+                'refund-btn'                  => 'Refund',
+                'refund-limit-error'          => 'Refund Amount :amount can not proceed.',
+                'refund-shipping'             => 'Refund Shipping',
+                'sku'                         => 'SKU - :sku',
+                'subtotal'                    => 'Subtotal',
+                'tax-amount'                  => 'Tax Amount',
+                'title'                       => 'Create Refund',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'update-quantity-btn'         => 'Update Quantity',
             ],
         ],
@@ -378,9 +626,15 @@ return [
 
                 'datagrid' => [
                     'action'       => 'Actions',
+<<<<<<< HEAD
                     'id'           => 'ID',
                     'invoice-date' => 'Invoice Date',
                     'grand-total'  => 'Grand Total',
+=======
+                    'grand-total'  => 'Grand Total',
+                    'id'           => 'ID',
+                    'invoice-date' => 'Invoice Date',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     'order-id'     => 'Order ID',
                     'overdue'      => 'Overdue',
                     'paid'         => 'Paid',
@@ -393,6 +647,7 @@ return [
                 'amount-per-unit'        => ':amount Per Unit x :qty Quantity',
                 'channel'                => 'Channel',
                 'customer'               => 'Customer',
+<<<<<<< HEAD
                 'discount'               => 'Discount Amount - :discount',
                 'customer-email'         => 'Email - :email',
                 'email'                  => 'Email',
@@ -403,11 +658,24 @@ return [
                 'order-information'      => 'Order Information',
                 'order-id'               => 'Order ID',
                 'order-date'             => 'Order Date',
+=======
+                'customer-email'         => 'Email - :email',
+                'discount'               => 'Discount Amount - :discount',
+                'email'                  => 'Email',
+                'grand-total'            => 'Grand Total',
+                'invoice-items'          => 'Invoice Items',
+                'invoice-sent'           => 'Invoice sent successfully',
+                'invoice-status'         => 'Invoice Status',
+                'order-date'             => 'Order Date',
+                'order-id'               => 'Order ID',
+                'order-information'      => 'Order Information',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'order-status'           => 'Order Status',
                 'price'                  => 'Price - :price',
                 'print'                  => 'Print',
                 'product-image'          => 'Product Image',
                 'qty'                    => 'Quantity - :qty',
+<<<<<<< HEAD
                 'shipping-and-handling'  => 'Shipping and Handling',
                 'send-duplicate-invoice' => 'Send Duplicate Invoice',
                 'send'                   => 'Send',
@@ -419,11 +687,25 @@ return [
                 'summary-discount'       => 'Discount Amount',
                 'title'                  => 'Invoice #:invoice_id',
                 'tax'                    => 'Tax Amount - :tax',
+=======
+                'send'                   => 'Send',
+                'send-btn'               => 'Send',
+                'send-duplicate-invoice' => 'Send Duplicate Invoice',
+                'shipping-and-handling'  => 'Shipping and Handling',
+                'sku'                    => 'SKU - :sku',
+                'sub-total'              => 'Sub Total - :sub_total',
+                'sub-total-summary'      => 'Sub Total',
+                'summary-discount'       => 'Discount Amount',
+                'summary-tax'            => 'Tax Amount',
+                'tax'                    => 'Tax Amount - :tax',
+                'title'                  => 'Invoice #:invoice_id',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             ],
 
             'create'   => [
                 'amount-per-unit' => ':amount Per Unit x :qty Quantity',
                 'create-invoice'  => 'Create Invoice',
+<<<<<<< HEAD
                 'creation-error'  => 'Order invoice creation is not allowed.',
                 'create-success'  => 'Invoice created successfully',
                 'invoice'         => 'Invoice',
@@ -431,11 +713,21 @@ return [
                 'new-invoice'     => 'New Invoice',
                 'product-image'   => 'Product Image',
                 'product-error'   => 'Invoice can not be created without products.',
+=======
+                'create-success'  => 'Invoice created successfully',
+                'creation-error'  => 'Order invoice creation is not allowed.',
+                'invalid-qty'     => 'We found an invalid quantity to invoice items.',
+                'invoice'         => 'Invoice',
+                'new-invoice'     => 'New Invoice',
+                'product-error'   => 'Invoice can not be created without products.',
+                'product-image'   => 'Product Image',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'qty-to-invoiced' => 'Qty. to invoiced',
                 'sku'             => 'SKU - :sku',
             ],
 
             'invoice-pdf' => [
+<<<<<<< HEAD
                 'bill-to'           => 'Bill to',
                 'bank-details'      => 'Bank Details',
                 'contact'           => 'Contact',
@@ -459,6 +751,31 @@ return [
                 'shipping-handling' => 'Shipping Handling',
                 'tax-amount'        => 'Tax Amount',
                 'tax'               => 'Tax',
+=======
+                'bank-details'      => 'Bank Details',
+                'bill-to'           => 'Bill to',
+                'contact'           => 'Contact',
+                'contact-number'    => 'Contact Number',
+                'date'              => 'Invoice Date',
+                'discount'          => 'Discount',
+                'grand-total'       => 'Grand Total',
+                'invoice'           => 'Invoice',
+                'invoice-id'        => 'Invoice ID',
+                'order-date'        => 'Order Date',
+                'order-id'          => 'Order ID',
+                'payment-method'    => 'Payment Method',
+                'payment-terms'     => 'Payment Terms',
+                'price'             => 'Price',
+                'product-name'      => 'Product Name',
+                'qty'               => 'Quantity',
+                'ship-to'           => 'Ship to',
+                'shipping-handling' => 'Shipping Handling',
+                'shipping-method'   => 'Shipping Method',
+                'sku'               => 'SKU',
+                'subtotal'          => 'Subtotal',
+                'tax'               => 'Tax',
+                'tax-amount'        => 'Tax Amount',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'vat-number'        => 'Vat Number',
             ],
         ],
@@ -480,6 +797,7 @@ return [
                     'invoice-id'         => 'Invoice ID',
                     'order-id'           => 'Order ID',
                     'status'             => 'Status',
+<<<<<<< HEAD
                     'transaction-id'     => 'Transaction ID',
                     'transaction-date'   => 'Date',
                     'transaction-amount' => 'Amount',
@@ -491,6 +809,32 @@ return [
                     'transaction-amount-zero'    => 'Transaction Amount zero',
                     'transaction-amount-exceeds' => 'Transaction Amount exceeds',
                     'transaction-saved'          => 'Transaction Saved successfully',
+=======
+                    'transaction-amount' => 'Amount',
+                    'transaction-date'   => 'Date',
+                    'transaction-id'     => 'Transaction ID',
+                    'view'               => 'View',
+                ],
+
+                'create'  => [
+                    'already-paid'               => 'Already paid',
+                    'invoice-missing'            => 'Invoice Missing',
+                    'transaction-amount-exceeds' => 'Transaction Amount exceeds',
+                    'transaction-amount-zero'    => 'Transaction Amount zero',
+                ],
+
+                'view' => [
+                    'amount'           => 'Amount',
+                    'created-at'       => 'Created At',
+                    'invoice-id'       => 'Invoice ID',
+                    'order-id'         => 'Order ID',
+                    'payment-details'  => 'Payment Details',
+                    'payment-method'   => 'Payment Method',
+                    'status'           => 'Status',
+                    'title'            => 'Transaction Details',
+                    'transaction-data' => 'Transaction Data',
+                    'transaction-id'   => 'Transaction ID ',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 ],
             ],
         ],
@@ -512,8 +856,13 @@ return [
                     'downloadable'            => 'Downloadable',
                     'family'                  => 'Family',
                     'grouped'                 => 'Grouped',
+<<<<<<< HEAD
                     'simple'                  => 'Simple',
                     'save-btn'                => 'Save Product',
+=======
+                    'save-btn'                => 'Save Product',
+                    'simple'                  => 'Simple',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     'sku'                     => 'SKU',
                     'title'                   => 'Create New Product',
                     'type'                    => 'Type',
@@ -521,6 +870,7 @@ return [
                 ],
 
                 'datagrid' => [
+<<<<<<< HEAD
                     'attribute-family'       => 'Attribute Family',
                     'attribute-family-value' => 'Attribute Family - :attribute_family',
                     'active'                 => 'Active',
@@ -545,10 +895,41 @@ return [
                     'status'                 => 'Status',
                     'type'                   => 'Type',
                     'update-status'          => 'Update Status',
+=======
+                    'active'                        => 'Active',
+                    'attribute-family'              => 'Attribute Family',
+                    'attribute-family-value'        => 'Attribute Family - :attribute_family',
+                    'category'                      => 'Category',
+                    'copy-of'                       => 'Copy Of :value',
+                    'copy-of-slug'                  => 'copy-of-:value',
+                    'delete'                        => 'Delete',
+                    'disable'                       => 'Disable',
+                    'id'                            => 'Id',
+                    'id-value'                      => 'Id - :id',
+                    'image'                         => 'Image',
+                    'mass-delete-success'           => 'Selected Products Deleted Successfully',
+                    'mass-update-success'           => 'Selected Products Updated Successfully',
+                    'name'                          => 'Name',
+                    'out-of-stock'                  => 'Out of Stock',
+                    'price'                         => 'Price',
+                    'product-image'                 => 'Product Image',
+                    'qty'                           => 'Quantity',
+                    'qty-value'                     => ':qty Available',
+                    'sku'                           => 'SKU',
+                    'sku-value'                     => 'SKU - :sku',
+                    'status'                        => 'Status',
+                    'type'                          => 'Type',
+                    'update-status'                 => 'Update Status',
+                    'variant-already-exist-message' => 'Variant with same attribute options already exists.',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 ],
             ],
 
             'edit' => [
+<<<<<<< HEAD
+=======
+                'preview'  => 'Preview',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'remove'   => 'Remove',
                 'save-btn' => 'Save Product',
                 'title'    => 'Edit Product',
@@ -568,12 +949,21 @@ return [
                             'all-groups'     => 'All Groups',
                             'create-title'   => 'Create Customer Group Price',
                             'customer-group' => 'Customer Group',
+<<<<<<< HEAD
                             'discount'       => 'Discount',
                             'delete-btn'     => 'Delete',
                             'fixed'          => 'Fixed',
                             'price-type'     => 'Price Type',
                             'price'          => 'Price',
                             'qty'            => 'Qty',
+=======
+                            'delete-btn'     => 'Delete',
+                            'discount'       => 'Discount',
+                            'fixed'          => 'Fixed',
+                            'price'          => 'Price',
+                            'price-type'     => 'Price Type',
+                            'qty'            => 'Minimum Qty',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                             'save-btn'       => 'Save',
                             'update-title'   => 'Update Customer Group Price',
                         ],
@@ -632,10 +1022,17 @@ return [
                         'add-btn'           => 'Add Variant',
                         'delete-btn'        => 'Delete',
                         'edit-btn'          => 'Edit',
+<<<<<<< HEAD
                         'empty-title'       => 'Add Variant',
                         'empty-info'        => 'To create various combination of product on a go.',
                         'info'              => 'Variation products are depend on all possible combination of attribute.',
                         'image-placeholder' => 'Product Image',
+=======
+                        'empty-info'        => 'To create various combination of product on a go.',
+                        'empty-title'       => 'Add Variant',
+                        'image-placeholder' => 'Product Image',
+                        'info'              => 'Variation products are depend on all possible combination of attribute.',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                         'qty'               => ':qty Qty',
                         'sku'               => 'SKU - :sku',
                         'title'             => 'Variations',
@@ -665,6 +1062,7 @@ return [
                         ],
 
                         'mass-edit' => [
+<<<<<<< HEAD
                             'add-images'        => 'Add Images',
                             'apply-to-all-sku'  => 'Apply a price to all SKU.',
                             'apply-to-all-btn'  => 'Apply to All',
@@ -675,15 +1073,46 @@ return [
                             'remove-variants'   => 'Remove Variants',
                             'select-variants'   => 'Select Variants',
                             'select-action'     => 'Select Action',
+=======
+                            'add-images'          => 'Add Images',
+                            'apply-to-all-btn'    => 'Apply to All',
+                            'apply-to-all-name'   => 'Apply a name to all variants.',
+                            'apply-to-all-sku'    => 'Apply a price to all SKU.',
+                            'apply-to-all-status' => 'Apply a status to all variants.',
+                            'apply-to-all-weight' => 'Apply a weight to all variants.',
+                            'edit-inventories'    => 'Edit Inventories',
+                            'edit-names'          => 'Edit Names',
+                            'edit-prices'         => 'Edit Prices',
+                            'edit-sku'            => 'Edit SKU',
+                            'edit-status'         => 'Edit Status',
+                            'edit-weight'         => 'Edit Weight',
+                            'name'                => 'Name',
+                            'price'               => 'Price',
+                            'remove-images'       => 'Remove Images',
+                            'remove-variants'     => 'Remove Variants',
+                            'select-action'       => 'Select Action',
+                            'select-variants'     => 'Select Variants',
+                            'status'              => 'Status',
+                            'variant-name'        => 'Variant Name',
+                            'variant-sku'         => 'Variant SKU',
+                            'weight'              => 'Weight',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                         ],
                     ],
 
                     'grouped' => [
                         'add-btn'           => 'Add Product',
+<<<<<<< HEAD
                         'delete'            => 'Delete',
                         'default-qty'       => 'Default Qty',
                         'empty-title'       => 'Add Product',
                         'empty-info'        => 'To create various combination of product on a go.',
+=======
+                        'default-qty'       => 'Default Qty',
+                        'delete'            => 'Delete',
+                        'empty-info'        => 'To create various combination of product on a go.',
+                        'empty-title'       => 'Add Product',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                         'image-placeholder' => 'Product Image',
                         'info'              => 'A grouped product comprises standalone items presented as a set, allowing variations or coordination by season or theme. Each product can be bought individually or as part of the group.',
                         'sku'               => 'SKU - :sku',
@@ -692,8 +1121,13 @@ return [
 
                     'bundle' => [
                         'add-btn'           => 'Add Option',
+<<<<<<< HEAD
                         'empty-title'       => 'Add Option',
                         'empty-info'        => 'To create bundle options on a go.',
+=======
+                        'empty-info'        => 'To create bundle options on a go.',
+                        'empty-title'       => 'Add Option',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                         'image-placeholder' => 'Product Image',
                         'info'              => 'A bundle product is a package of multiple items or services sold together at a special price, providing value and convenience to customers.',
                         'title'             => 'Bundle Items',
@@ -705,8 +1139,13 @@ return [
                             'name'        => 'Title',
                             'no'          => 'No',
                             'radio'       => 'Radio',
+<<<<<<< HEAD
                             'select'      => 'Select',
                             'save-btn'    => 'Save',
+=======
+                            'save-btn'    => 'Save',
+                            'select'      => 'Select',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                             'title'       => 'Option',
                             'type'        => 'Type',
                             'yes'         => 'Yes',
@@ -714,12 +1153,21 @@ return [
 
                         'option' => [
                             'add-btn'     => 'Add Product',
+<<<<<<< HEAD
                             'delete-btn'  => 'Delete',
                             'default-qty' => 'Default Qty',
                             'delete'      => 'Delete',
                             'edit-btn'    => 'Edit',
                             'empty-title' => 'Add Product',
                             'empty-info'  => 'To create various combination of product on a go.',
+=======
+                            'default-qty' => 'Default Qty',
+                            'delete'      => 'Delete',
+                            'delete-btn'  => 'Delete',
+                            'edit-btn'    => 'Edit',
+                            'empty-info'  => 'To create various combination of product on a go.',
+                            'empty-title' => 'Add Product',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                             'sku'         => 'SKU - :sku',
 
                             'types' => [
@@ -751,8 +1199,13 @@ return [
                             'add-btn'     => 'Add Link',
                             'delete-btn'  => 'Delete',
                             'edit-btn'    => 'Edit',
+<<<<<<< HEAD
                             'empty-title' => 'Add Link',
                             'empty-info'  => 'To create link on a go.',
+=======
+                            'empty-info'  => 'To create link on a go.',
+                            'empty-title' => 'Add Link',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                             'file'        => 'File : ',
                             'info'        => 'Downloadable product type allows to sell digital products, such as eBooks, software applications, music, games, etc.',
                             'sample-file' => 'Sample File : ',
@@ -762,12 +1215,21 @@ return [
 
                             'update-create' => [
                                 'downloads'   => 'Download Allowed',
+<<<<<<< HEAD
                                 'file-type'   => 'File Type',
                                 'file'        => 'File',
                                 'name'        => 'Title',
                                 'price'       => 'Price',
                                 'sample-type' => 'Sample Type',
                                 'sample'      => 'Sample',
+=======
+                                'file'        => 'File',
+                                'file-type'   => 'File Type',
+                                'name'        => 'Title',
+                                'price'       => 'Price',
+                                'sample'      => 'Sample',
+                                'sample-type' => 'Sample Type',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                 'save-btn'    => 'Save',
                                 'title'       => 'Link',
                                 'url'         => 'URL',
@@ -778,8 +1240,13 @@ return [
                             'add-btn'     => 'Add Sample',
                             'delete-btn'  => 'Delete',
                             'edit-btn'    => 'Edit',
+<<<<<<< HEAD
                             'empty-title' => 'Add Sample',
                             'empty-info'  => 'To create sample on a go.',
+=======
+                            'empty-info'  => 'To create sample on a go.',
+                            'empty-title' => 'Add Sample',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                             'file'        => 'File : ',
                             'info'        => 'Downloadable product type allows to sell digital products, such as eBooks, software applications, music, games, etc.',
                             'title'       => 'Downloadable Samples',
@@ -812,6 +1279,7 @@ return [
                 'create-btn' => 'Create Attributes',
 
                 'datagrid' => [
+<<<<<<< HEAD
                     'id'                  => 'ID',
                     'name'                => 'Name',
                     'code'                => 'Code',
@@ -824,10 +1292,25 @@ return [
                     'edit'                => 'Edit',
                     'delete'              => 'Delete',
                     'mass-delete-success' => 'Selected Attribute Deleted Successfully',
+=======
+                    'channel-based'       => 'Channel Based',
+                    'code'                => 'Code',
+                    'created-at'          => 'Created At',
+                    'delete'              => 'Delete',
+                    'edit'                => 'Edit',
+                    'id'                  => 'ID',
+                    'locale-based'        => 'Locale Based',
+                    'mass-delete-success' => 'Selected Attribute Deleted Successfully',
+                    'name'                => 'Name',
+                    'required'            => 'Required',
+                    'type'                => 'Type',
+                    'unique'              => 'Unique',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 ],
             ],
 
             'create'  => [
+<<<<<<< HEAD
                 'admin'                 => 'Admin',
                 'add-row'               => 'Add Row',
                 'add-option'            => 'Add Option',
@@ -844,10 +1327,30 @@ return [
                 'datetime'              => 'Datetime',
                 'date'                  => 'Date',
                 'decimal'               => 'Decimal',
+=======
+                'add-attribute-options' => 'Add Attribute Options',
+                'add-option'            => 'Add Option',
+                'add-options-info'      => 'To create various combination of Attribute Option on a go.',
+                'add-row'               => 'Add Row',
+                'admin'                 => 'Admin',
+                'admin-name'            => 'Admin Name',
+                'back-btn'              => 'Back',
+                'boolean'               => 'Boolean',
+                'checkbox'              => 'Checkbox',
+                'code'                  => 'Attribute Code',
+                'color'                 => 'Color',
+                'configuration'         => 'Configuration',
+                'create-empty-option'   => 'Create default empty option',
+                'date'                  => 'Date',
+                'datetime'              => 'Datetime',
+                'decimal'               => 'Decimal',
+                'default-value'         => 'Default Value',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'email'                 => 'Email',
                 'enable-wysiwyg'        => 'Enable Wysiwyg Editor',
                 'file'                  => 'File',
                 'general'               => 'General',
+<<<<<<< HEAD
                 'is-required'           => 'Is Required',
                 'image'                 => 'Image',
                 'input-validation'      => 'Input Validation',
@@ -857,10 +1360,22 @@ return [
                 'is-visible-on-front'   => 'Visible on Product View Page on Front-end',
                 'input-options'         => 'Input Options',
                 'is-comparable'         => 'Attribute is comparable',
+=======
+                'image'                 => 'Image',
+                'input-options'         => 'Input Options',
+                'input-validation'      => 'Input Validation',
+                'is-comparable'         => 'Attribute is comparable',
+                'is-configurable'       => 'Use To Create Configurable Product',
+                'is-filterable'         => 'Use in Layered Navigation',
+                'is-required'           => 'Is Required',
+                'is-unique'             => 'Is Unique',
+                'is-visible-on-front'   => 'Visible on Product View Page on Front-end',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'label'                 => 'Label',
                 'multiselect'           => 'Multiselect',
                 'no'                    => 'No',
                 'number'                => 'Number',
+<<<<<<< HEAD
                 'price'                 => 'Price',
                 'position'              => 'Position',
                 'regex'                 => 'Regex',
@@ -879,6 +1394,26 @@ return [
                 'value-per-channel'     => 'Value Per Channel',
                 'yes'                   => 'Yes',
                 'default-value'         => 'Default Value',
+=======
+                'options'               => 'Options',
+                'position'              => 'Position',
+                'price'                 => 'Price',
+                'regex'                 => 'Regex',
+                'save-btn'              => 'Save Attribute',
+                'select'                => 'Select',
+                'select-type'           => 'Select Attribute Type',
+                'swatch'                => 'Swatch',
+                'text'                  => 'Text',
+                'textarea'              => 'Textarea',
+                'title'                 => 'Add Attribute',
+                'type'                  => 'Attribute Type',
+                'url'                   => 'URL',
+                'use-in-flat'           => 'Create in Product Flat Table',
+                'validations'           => 'Validations',
+                'value-per-channel'     => 'Value Per Channel',
+                'value-per-locale'      => 'Value Per Locale',
+                'yes'                   => 'Yes',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 
                 'option'                => [
                     'color'    => 'Color Swatch',
@@ -890,6 +1425,7 @@ return [
             ],
 
             'edit'  => [
+<<<<<<< HEAD
                 'admin'                 => 'Admin',
                 'add-row'               => 'Add Row',
                 'add-option'            => 'Add Option',
@@ -906,10 +1442,30 @@ return [
                 'datetime'              => 'Datetime',
                 'date'                  => 'Date',
                 'decimal'               => 'Decimal',
+=======
+                'add-attribute-options' => 'Add Attribute Options',
+                'add-option'            => 'Add Option',
+                'add-options-info'      => 'To create various combination of Attribute Option on a go.',
+                'add-row'               => 'Add Row',
+                'admin'                 => 'Admin',
+                'admin-name'            => 'Admin Name',
+                'back-btn'              => 'Back',
+                'boolean'               => 'Boolean',
+                'checkbox'              => 'Checkbox',
+                'code'                  => 'Attribute Code',
+                'color'                 => 'Color',
+                'configuration'         => 'Configuration',
+                'create-empty-option'   => 'Create default empty option',
+                'date'                  => 'Date',
+                'datetime'              => 'Datetime',
+                'decimal'               => 'Decimal',
+                'default-value'         => 'Default Value',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'email'                 => 'Email',
                 'enable-wysiwyg'        => 'Enable Wysiwyg Editor',
                 'file'                  => 'File',
                 'general'               => 'General',
+<<<<<<< HEAD
                 'is-required'           => 'Is Required',
                 'input-validation'      => 'Input Validation',
                 'image'                 => 'Image',
@@ -919,10 +1475,22 @@ return [
                 'is-visible-on-front'   => 'Visible on Product View Page on Front-end',
                 'input-options'         => 'Input Options',
                 'is-comparable'         => 'Attribute is comparable',
+=======
+                'image'                 => 'Image',
+                'input-options'         => 'Input Options',
+                'input-validation'      => 'Input Validation',
+                'is-comparable'         => 'Attribute is comparable',
+                'is-configurable'       => 'Use To Create Configurable Product',
+                'is-filterable'         => 'Use in Layered Navigation',
+                'is-required'           => 'Is Required',
+                'is-unique'             => 'Is Unique',
+                'is-visible-on-front'   => 'Visible on Product View Page on Front-end',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'label'                 => 'Label',
                 'multiselect'           => 'Multiselect',
                 'no'                    => 'No',
                 'number'                => 'Number',
+<<<<<<< HEAD
                 'price'                 => 'Price',
                 'position'              => 'Position',
                 'regex'                 => 'Regex',
@@ -941,6 +1509,26 @@ return [
                 'value-per-channel'     => 'Value Per Channel',
                 'yes'                   => 'Yes',
                 'default-value'         => 'Default Value',
+=======
+                'options'               => 'Options',
+                'position'              => 'Position',
+                'price'                 => 'Price',
+                'regex'                 => 'Regex',
+                'save-btn'              => 'Save Attribute',
+                'select'                => 'Select',
+                'select-type'           => 'Select Attribute Type',
+                'swatch'                => 'Swatch',
+                'text'                  => 'Text',
+                'textarea'              => 'Textarea',
+                'title'                 => 'Edit Attribute',
+                'type'                  => 'Attribute Type',
+                'url'                   => 'URL',
+                'use-in-flat'           => 'Create in Product Flat Table',
+                'validations'           => 'Validations',
+                'value-per-channel'     => 'Value Per Channel',
+                'value-per-locale'      => 'Value Per Locale',
+                'yes'                   => 'Yes',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 
                 'option' => [
                     'color'    => 'Color Swatch',
@@ -952,14 +1540,22 @@ return [
             ],
 
             'create-success'    => 'Attribute Created Successfully',
+<<<<<<< HEAD
             'update-success'    => 'Attribute Updated Successfully',
             'user-define-error' => 'Can not delete system Attribute',
             'delete-success'    => 'Attribute Deleted Successfully',
             'delete-failed'     => 'Attribute Deleted Failed',
+=======
+            'delete-failed'     => 'Attribute Deleted Failed',
+            'delete-success'    => 'Attribute Deleted Successfully',
+            'update-success'    => 'Attribute Updated Successfully',
+            'user-define-error' => 'Can not delete system Attribute',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         ],
 
         'categories'  => [
             'index' => [
+<<<<<<< HEAD
                 'title'   => 'Categories',
                 'add-btn' => 'Create Category',
 
@@ -975,16 +1571,41 @@ return [
                     'delete'         => 'Delete',
                     'update-status'  => 'Update Status',
                     'delete-success' => 'Selected :resource were successfully deleted',
+=======
+                'add-btn' => 'Create Category',
+                'title'   => 'Categories',
+
+                'datagrid' => [
+                    'active'         => 'Active',
+                    'delete'         => 'Delete',
+                    'delete-success' => 'Selected :resource were successfully deleted',
+                    'edit'           => 'Edit',
+                    'id'             => 'ID',
+                    'inactive'       => 'Inactive',
+                    'name'           => 'Name',
+                    'no-of-products' => 'Number of Products',
+                    'position'       => 'Position',
+                    'status'         => 'Visible In Menu',
+                    'update-status'  => 'Update Status',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 ],
             ],
 
             'create' => [
+<<<<<<< HEAD
                 'add-logo'                 => 'Add Logo',
                 'add-banner'               => 'Add Banner',
                 'banner'                   => 'Banner',
                 'banner-size'              => 'Banner aspect ration (1320px X 300px)',
                 'back-btn'                 => 'Back',
                 'name'                     => 'Name',
+=======
+                'add-banner'               => 'Add Banner',
+                'add-logo'                 => 'Add Logo',
+                'back-btn'                 => 'Back',
+                'banner'                   => 'Banner',
+                'banner-size'              => 'Banner aspect ration (1320px X 300px)',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'description'              => 'Description',
                 'description-and-images'   => 'Description and Images',
                 'description-only'         => 'Description Only',
@@ -997,26 +1618,45 @@ return [
                 'meta-description'         => 'Meta Description',
                 'meta-keywords'            => 'Meta Keywords',
                 'meta-title'               => 'Meta Title',
+<<<<<<< HEAD
+=======
+                'name'                     => 'Name',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'parent-category'          => 'Parent Category',
                 'position'                 => 'Position',
                 'products-and-description' => 'Products and Description',
                 'products-only'            => 'Products Only',
                 'save-btn'                 => 'Save Category',
+<<<<<<< HEAD
                 'slug'                     => 'Slug',
                 'settings'                 => 'Settings',
                 'seo-details'              => 'SEO Details',
                 'select-display-mode'      => 'Select Display Mode',
+=======
+                'select-display-mode'      => 'Select Display Mode',
+                'seo-details'              => 'SEO Details',
+                'settings'                 => 'Settings',
+                'slug'                     => 'Slug',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'title'                    => 'Add New Category',
                 'visible-in-menu'          => 'Visible In Menu',
             ],
 
             'edit'  => [
+<<<<<<< HEAD
                 'add-logo'                 => 'Add Logo',
                 'add-banner'               => 'Add Banner',
                 'banner'                   => 'Banner',
                 'banner-size'              => 'Banner aspect ration (1320px X 300px)',
                 'back-btn'                 => 'Back',
                 'name'                     => 'Name',
+=======
+                'add-banner'               => 'Add Banner',
+                'add-logo'                 => 'Add Logo',
+                'back-btn'                 => 'Back',
+                'banner'                   => 'Banner',
+                'banner-size'              => 'Banner aspect ration (1320px X 300px)',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'description'              => 'Description',
                 'description-and-images'   => 'Description and Images',
                 'description-only'         => 'Description Only',
@@ -1029,25 +1669,46 @@ return [
                 'meta-description'         => 'Meta Description',
                 'meta-keywords'            => 'Meta Keywords',
                 'meta-title'               => 'Meta Title',
+<<<<<<< HEAD
+=======
+                'name'                     => 'Name',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'position'                 => 'Position',
                 'products-and-description' => 'Products and Description',
                 'products-only'            => 'Products Only',
                 'save-btn'                 => 'Save Category',
+<<<<<<< HEAD
                 'slug'                     => 'Slug',
                 'settings'                 => 'Settings',
                 'seo-details'              => 'SEO Details',
                 'select-parent-category'   => 'Select Parent Category',
                 'select-display-mode'      => 'Select Display Mode',
+=======
+                'select-display-mode'      => 'Select Display Mode',
+                'select-parent-category'   => 'Select Parent Category',
+                'seo-details'              => 'SEO Details',
+                'settings'                 => 'Settings',
+                'slug'                     => 'Slug',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'title'                    => 'Edit Category',
                 'visible-in-menu'          => 'Visible In Menu',
             ],
 
+<<<<<<< HEAD
             'create-success'       => 'category created successfully.',
             'category'             => 'Category',
             'update-success'       => 'category updated successfully.',
             'delete-success'       => 'The category has been successfully deleted.',
             'delete-category-root' => 'The Root category can not be deleted.',
             'delete-failed'        => 'Error encountered while deleting category',
+=======
+            'category'             => 'Category',
+            'create-success'       => 'category created successfully.',
+            'delete-category-root' => 'The Root category can not be deleted.',
+            'delete-failed'        => 'Error encountered while deleting category',
+            'delete-success'       => 'The category has been successfully deleted.',
+            'update-success'       => 'category updated successfully.',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         ],
 
         'families'   => [
@@ -1056,6 +1717,7 @@ return [
                 'add'   => 'Create Attribute Family',
 
                 'datagrid' => [
+<<<<<<< HEAD
                     'id'             => 'ID',
                     'code'           => 'Code',
                     'name'           => 'Name',
@@ -1066,10 +1728,23 @@ return [
                     'update-success' => 'Selected :resource were successfully updated',
                     'no-resource'    => 'The resource provided for insufficient for the action',
                     'method-error'   => 'Error! Wrong method detected, please check mass action configuration',
+=======
+                    'code'           => 'Code',
+                    'delete'         => 'Delete',
+                    'delete-success' => 'Selected :resource were successfully deleted',
+                    'edit'           => 'Edit',
+                    'id'             => 'ID',
+                    'method-error'   => 'Error! Wrong method detected, please check mass action configuration',
+                    'name'           => 'Name',
+                    'no-resource'    => 'The resource provided for insufficient for the action',
+                    'partial-action' => 'Some actions were not performed due restricted system constraints on :resource',
+                    'update-success' => 'Selected :resource were successfully updated',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 ],
             ],
 
             'create' => [
+<<<<<<< HEAD
                 'title'                            => 'Create Attribute Family',
                 'save-btn'                         => 'Save Attribute Family',
                 'back-btn'                         => 'Back',
@@ -1130,6 +1805,70 @@ return [
             'user-define-error'       => 'Can not delete system Attribute family',
             'last-delete-error'       => 'At least one family is required.',
             'attribute-product-error' => 'family is used in products.',
+=======
+                'add-group-btn'                    => 'Add Group',
+                'add-group-title'                  => 'Add New Group',
+                'back-btn'                         => 'Back',
+                'code'                             => 'Code',
+                'column'                           => 'Column',
+                'delete-group-btn'                 => 'Delete Group',
+                'edit-group-info'                  => 'Double Click to edit Group',
+                'enter-code'                       => 'Enter Code',
+                'enter-name'                       => 'Enter Name',
+                'general'                          => 'General',
+                'group-code-already-exists'        => 'An attribute group code already exists.',
+                'group-contains-system-attributes' => 'This group contains system attributes. First move system attributes to another group and try again.',
+                'group-name-already-exists'        => 'An attribute group name already exists.',
+                'groups'                           => 'Groups',
+                'groups-info'                      => 'Manage attribute family groups',
+                'main-column'                      => 'Main Column',
+                'name'                             => 'Name',
+                'removal-not-possible'             => 'You can not remove system attributes from attribute family.',
+                'right-column'                     => 'Right Side Column',
+                'save-btn'                         => 'Save Attribute Family',
+                'select-group'                     => 'Please select an attribute group.',
+                'title'                            => 'Create Attribute Family',
+                'unassigned-attributes'            => 'Unassigned Attributes',
+                'unassigned-attributes-info'       => 'Drag these attribute to add into columns or groups.',
+            ],
+
+            'edit' => [
+                'add-group-btn'                    => 'Add Group',
+                'add-group-title'                  => 'Add New Group',
+                'back-btn'                         => 'Back',
+                'code'                             => 'Code',
+                'column'                           => 'Column',
+                'delete-group-btn'                 => 'Delete Group',
+                'edit-group-info'                  => 'Double Click to edit Group',
+                'enter-code'                       => 'Enter Code',
+                'enter-name'                       => 'Enter Name',
+                'general'                          => 'General',
+                'group-code-already-exists'        => 'An attribute group code already exists.',
+                'group-contains-system-attributes' => 'This group contains system attributes. First move system attributes to another group and try again.',
+                'group-name-already-exists'        => 'An attribute group name already exists.',
+                'groups'                           => 'Groups',
+                'groups-info'                      => 'Manage attribute family groups',
+                'main-column'                      => 'Main Column',
+                'name'                             => 'Name',
+                'removal-not-possible'             => 'You can not remove system attributes from attribute family.',
+                'right-column'                     => 'Right Side Column',
+                'save-btn'                         => 'Save Attribute Family',
+                'select-group'                     => 'Please select an attribute group.',
+                'title'                            => 'Edit Attribute Family',
+                'unassigned-attributes'            => 'Unassigned Attributes',
+                'unassigned-attributes-info'       => 'Drag these attribute to add into columns or groups.',
+            ],
+
+            'attribute-family'        => 'Attribute Family',
+            'attribute-product-error' => 'family is used in products.',
+            'create-success'          => 'Family created successfully.',
+            'delete-failed'           => 'Error encountered while deleting Family.',
+            'delete-success'          => 'Family deleted successfully.',
+            'family'                  => 'Family',
+            'last-delete-error'       => 'At least one family is required.',
+            'update-success'          => 'Family updated successfully.',
+            'user-define-error'       => 'Can not delete system Attribute family',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         ],
     ],
 
@@ -1140,6 +1879,7 @@ return [
                 'title'         => 'Customers',
 
                 'datagrid'  => [
+<<<<<<< HEAD
                     'id'             => 'Customer ID',
                     'order'          => ':order Order(s)',
                     'address'        => ':address  Address(s)',
@@ -1170,6 +1910,38 @@ return [
                     'contact-number'        => 'Contact Number',
                     'customer-group'        => 'Customer Group',
                     'create-success'        => 'Customer created successfully',
+=======
+                    'active'         => 'Active',
+                    'address'        => ':address  Address(s)',
+                    'address-count'  => 'Address Count',
+                    'delete'         => 'Delete',
+                    'delete-success' => 'Selected data successfully deleted',
+                    'email'          => 'Email',
+                    'gender'         => 'Gender',
+                    'group'          => 'Group',
+                    'id'             => 'Customer ID',
+                    'inactive'       => 'Inactive',
+                    'method-error'   => 'Error! Wrong method detected, please check mass action configuration',
+                    'name'           => 'Customer Name',
+                    'no-resource'    => 'The resource provided for insufficient for the action',
+                    'order'          => ':order Order(s)',
+                    'order-count'    => 'Order Count',
+                    'order-pending'  => 'Customer have pending order',
+                    'partial-action' => 'Some actions were not performed due restricted system constraints on :resource',
+                    'phone'          => 'Contact Number',
+                    'revenue'        => 'Revenue',
+                    'status'         => 'Status',
+                    'suspended'      => 'Suspended',
+                    'update-status'  => 'Update Status',
+                    'update-success' => 'Selected Customers successfully updated',
+                ],
+
+                'create' => [
+                    'contact-number'        => 'Contact Number',
+                    'create-btn'            => 'Create Customer',
+                    'create-success'        => 'Customer created successfully',
+                    'customer-group'        => 'Customer Group',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     'date-of-birth'         => 'Date of Birth',
                     'email'                 => 'Email',
                     'female'                => 'Female',
@@ -1179,38 +1951,63 @@ return [
                     'male'                  => 'Male',
                     'other'                 => 'Other',
                     'save-btn'              => 'Save customer',
+<<<<<<< HEAD
                     'select-gender'         => 'Select Gender',
                     'select-customer-group' => 'Select Customer Group',
+=======
+                    'select-customer-group' => 'Select Customer Group',
+                    'select-gender'         => 'Select Gender',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     'title'                 => 'Create New Customer',
                 ],
             ],
 
+<<<<<<< HEAD
             'delete-success' => 'Customer Deleted Successfully',
             'delete-failed'  => 'Customer Deleted Failed',
             'update-success' => 'Customer Updated Successfully',
             'order-pending'  => 'Orders is Pending',
+=======
+            'delete-failed'  => 'Customer Deleted Failed',
+            'delete-success' => 'Customer Deleted Successfully',
+            'order-pending'  => 'Orders is Pending',
+            'update-success' => 'Customer Updated Successfully',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 
             'edit' => [
                 'contact-number'        => 'Contact Number',
                 'customer-group'        => 'Customer Group',
                 'date-of-birth'         => 'Date of Birth',
+<<<<<<< HEAD
                 'email'                 => 'Email',
                 'edit-btn'              => 'Edit',
+=======
+                'edit-btn'              => 'Edit',
+                'email'                 => 'Email',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'female'                => 'Female',
                 'first-name'            => 'First Name',
                 'gender'                => 'Gender',
                 'last-name'             => 'Last Name',
                 'male'                  => 'Male',
                 'other'                 => 'Other',
+<<<<<<< HEAD
                 'select-customer-group' => 'Select Customer Group',
                 'select-gender'         => 'Select Gender',
                 'status'                => 'Status',
                 'save-btn'              => 'Save customer',
+=======
+                'save-btn'              => 'Save customer',
+                'select-customer-group' => 'Select Customer Group',
+                'select-gender'         => 'Select Gender',
+                'status'                => 'Status',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'suspended'             => 'Suspended',
                 'title'                 => 'Edit Customer',
             ],
 
             'view' => [
+<<<<<<< HEAD
                 'address'                     => 'Address',
                 'back-btn'                    => 'Back',
                 'add-note'                    => 'Add Note',
@@ -1267,6 +2064,66 @@ return [
                 'order-pending'               => 'Cannot delete account because some Order(s) are pending or processing state.',
                 'account-delete-confirmation' => 'Are you sure you want to delete this account?',
                 'address-delete-confirmation' => 'Are you sure you want to delete this address?',
+=======
+                'account-delete-confirmation' => 'Are you sure you want to delete this account?',
+                'active'                      => 'Active',
+                'add-note'                    => 'Add Note',
+                'address'                     => 'Address',
+                'address-delete-confirmation' => 'Are you sure you want to delete this address?',
+                'address-delete-success'      => 'Address Deleted Successfully',
+                'approved'                    => 'Approved',
+                'back-btn'                    => 'Back',
+                'canceled'                    => 'Canceled',
+                'closed'                      => 'Closed',
+                'completed'                   => 'Completed',
+                'customer'                    => 'Customer',
+                'customer-not-notified'       => ':date | Customer <b>Not Notified</b>',
+                'customer-notified'           => ':date | Customer <b>Notified</b>',
+                'date-of-birth'               => 'DOB - :dob',
+                'default-address'             => 'Default Address',
+                'delete'                      => 'Delete',
+                'delete-account'              => 'Delete Account',
+                'disapproved'                 => 'Disapproved',
+                'edit'                        => 'Edit',
+                'email'                       => 'Email - :email',
+                'empty-description'           => 'Create New Addresses for Customer',
+                'empty-invoice'               => 'No Invoices Available',
+                'empty-order'                 => 'No Orders Available',
+                'empty-review'                => 'No Reviews Available',
+                'empty-title'                 => 'Add Customer Address',
+                'gender'                      => 'Gender - :gender',
+                'group'                       => 'Group - :group_code',
+                'id'                          => 'ID - :id',
+                'inactive'                    => 'Inactive',
+                'increment-id'                => '# :increment_id',
+                'invoice'                     => 'Invoices (:invoice_count)',
+                'invoice-amount'              => 'Invoice Amount',
+                'invoice-date'                => 'Invoice Date',
+                'invoice-id'                  => 'Invoice ID',
+                'invoice-id-prefix'           => '# :invoice_id',
+                'mobile'                      => 'Mobile',
+                'note'                        => 'Note',
+                'note-created-success'        => 'Note Created Successfully',
+                'note-placeholder'            => 'Write Your Note here',
+                'notify-customer'             => 'Notify Customer',
+                'of'                          => 'of',
+                'order-id'                    => 'Order ID',
+                'order-id-prefix'             => '# :order_id',
+                'order-pending'               => 'Cannot delete account because some Order(s) are pending or processing state.',
+                'orders'                      => 'Orders (:order_count)',
+                'pay-by'                      => 'Pay By',
+                'pending'                     => 'Pending',
+                'per-page'                    => 'per Page',
+                'phone'                       => 'Phone - :phone',
+                'processing'                  => 'Processing',
+                'reviews'                     => 'Reviews',
+                'set-as-default'              => 'Set as Default',
+                'set-default-success'         => 'Default Address Updated Successfully',
+                'submit-btn-title'            => 'Submit Note',
+                'suspended'                   => 'Suspended',
+                'title'                       => 'Customer View',
+                'total-revenue'               => 'Total Revenue - :revenue',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             ],
         ],
 
@@ -1275,36 +2132,64 @@ return [
                 'title' => 'Groups',
 
                 'create' => [
+<<<<<<< HEAD
                     'create-btn' => 'Create Group',
                     'code'       => 'Code',
                     'success'    => 'Group created successfully',
                     'name'       => 'Name',
                     'save-btn'   => 'Save Group',
+=======
+                    'code'       => 'Code',
+                    'create-btn' => 'Create Group',
+                    'name'       => 'Name',
+                    'save-btn'   => 'Save Group',
+                    'success'    => 'Group created successfully',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     'title'      => 'Create new Group',
                 ],
 
                 'edit'  => [
+<<<<<<< HEAD
                     'title'          => 'Edit Group',
                     'success'        => 'Group Updated Successfully',
                     'delete-success' => 'Group Deleted Successfully',
                     'delete-failed'  => 'Group Deleted Failed',
                     'group-default'  => 'Default Group Can not be Deleted',
+=======
+                    'delete-failed'  => 'Group Deleted Failed',
+                    'delete-success' => 'Group Deleted Successfully',
+                    'group-default'  => 'Default Group Can not be Deleted',
+                    'success'        => 'Group Updated Successfully',
+                    'title'          => 'Edit Group',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 ],
 
                 'datagrid'  => [
                     'code'   => 'Code',
+<<<<<<< HEAD
                     'id'     => 'ID',
                     'name'   => 'Name',
                     'edit'   => 'Edit',
                     'delete' => 'Delete',
+=======
+                    'delete' => 'Delete',
+                    'edit'   => 'Edit',
+                    'id'     => 'ID',
+                    'name'   => 'Name',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 ],
             ],
         ],
 
         'reviews' => [
             'index' => [
+<<<<<<< HEAD
                 'description' => 'Description',
                 'date'        => 'Date',
+=======
+                'date'        => 'Date',
+                'description' => 'Description',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'id'          => 'Id',
                 'name'        => 'Name',
                 'product'     => 'Product',
@@ -1313,6 +2198,7 @@ return [
                 'title'       => 'Reviews',
 
                 'edit'  => [
+<<<<<<< HEAD
                     'title'          => 'Edit Review',
                     'save-btn'       => 'Save',
                     'customer'       => 'Customer',
@@ -1327,10 +2213,27 @@ return [
                     'review-title'   => 'Title',
                     'review-comment' => 'Comment',
                     'images'         => 'Images',
+=======
+                    'approved'       => 'Approved',
+                    'customer'       => 'Customer',
+                    'date'           => 'Date',
+                    'disapproved'    => 'Disapproved',
+                    'id'             => 'ID',
+                    'images'         => 'Images',
+                    'pending'        => 'Pending',
+                    'product'        => 'Product',
+                    'rating'         => 'Rating',
+                    'review-comment' => 'Comment',
+                    'review-title'   => 'Title',
+                    'save-btn'       => 'Save',
+                    'status'         => 'Status',
+                    'title'          => 'Edit Review',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     'update-success' => 'Update Successfully',
                 ],
 
                 'datagrid'   => [
+<<<<<<< HEAD
                     'customer-names'      => 'Name',
                     'comment'             => 'Comment',
                     'date'                => 'Date',
@@ -1350,12 +2253,34 @@ return [
                     'mass-delete-success' => 'Selected Review Deleted Successfully',
                     'mass-delete-error'   => 'Something went wrong',
                     'mass-update-success' => 'Selected Review Updated Successfully',
+=======
+                    'approved'            => 'Approved',
+                    'comment'             => 'Comment',
+                    'customer-names'      => 'Name',
+                    'date'                => 'Date',
+                    'delete'              => 'Delete',
+                    'delete-success'      => 'Review Deleted Successfully',
+                    'disapproved'         => 'Disapproved',
+                    'edit'                => 'Edit',
+                    'id'                  => 'Id',
+                    'mass-delete-error'   => 'Something went wrong',
+                    'mass-delete-success' => 'Selected Review Deleted Successfully',
+                    'mass-update-success' => 'Selected Review Updated Successfully',
+                    'pending'             => 'Pending',
+                    'product'             => 'Product',
+                    'rating'              => 'Rating',
+                    'review-id'           => 'ID - :review_id',
+                    'status'              => 'Status',
+                    'title'               => 'Title',
+                    'update-status'       => 'Update Status',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 ],
             ],
         ],
 
         'addresses' => [
             'create' => [
+<<<<<<< HEAD
                 'title'              => 'Create Customer\'s Address',
                 'create-address-btn' => 'Add New Address',
                 'company-name'       => 'Company Name',
@@ -1366,10 +2291,19 @@ return [
                 'state'              => 'State',
                 'select-country'     => 'Select Country',
                 'country'            => 'Country',
+=======
+                'address-1'          => 'Address 1',
+                'address-2'          => 'Address 2',
+                'city'               => 'City',
+                'company-name'       => 'Company Name',
+                'country'            => 'Country',
+                'create-address-btn' => 'Add New Address',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'default-address'    => 'Default Address',
                 'first-name'         => 'First Name',
                 'last-name'          => 'Last Name',
                 'phone'              => 'Phone',
+<<<<<<< HEAD
                 'street-address'     => 'Street Address',
                 'post-code'          => 'Post Code',
                 'save-btn-title'     => 'Save Address',
@@ -1384,11 +2318,28 @@ return [
                 'city'             => 'City',
                 'state'            => 'State',
                 'select-country'   => 'Select Country',
+=======
+                'post-code'          => 'Post Code',
+                'save-btn-title'     => 'Save Address',
+                'select-country'     => 'Select Country',
+                'state'              => 'State',
+                'street-address'     => 'Street Address',
+                'title'              => 'Create Customer\'s Address',
+                'vat-id'             => 'Vat ID',
+            ],
+
+            'edit' => [
+                'address-1'        => 'Address 1',
+                'address-2'        => 'Address 2',
+                'city'             => 'City',
+                'company-name'     => 'Company Name',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'country'          => 'Country',
                 'default-address'  => 'Default Address',
                 'first-name'       => 'First Name',
                 'last-name'        => 'Last Name',
                 'phone'            => 'Phone',
+<<<<<<< HEAD
                 'street-address'   => 'Street Address',
                 'post-code'        => 'Post Code',
                 'save-btn-title'   => 'Save Address',
@@ -1397,6 +2348,20 @@ return [
             'create-success'      => 'Address Created Successfully',
             'update-success'      => 'Address Updated Successfully',
             'success-mass-delete' => 'Address Mass Delete Successfully',
+=======
+                'post-code'        => 'Post Code',
+                'save-btn-title'   => 'Save Address',
+                'select-country'   => 'Select Country',
+                'state'            => 'State',
+                'street-address'   => 'Street Address',
+                'title'            => 'Address Edit',
+                'vat-id'           => 'Vat ID',
+            ],
+
+            'create-success'      => 'Address Created Successfully',
+            'success-mass-delete' => 'Address Mass Delete Successfully',
+            'update-success'      => 'Address Updated Successfully',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         ],
     ],
 
@@ -1404,6 +2369,7 @@ return [
         'communications' => [
             'templates' => [
                 'index' => [
+<<<<<<< HEAD
                     'title'      => 'Email Templates',
                     'create-btn' => 'Create Template',
 
@@ -1414,19 +2380,39 @@ return [
                         'active'   => 'Active',
                         'inactive' => 'Inactive',
                         'draft'    => 'Draft',
+=======
+                    'create-btn' => 'Create Template',
+                    'title'      => 'Email Templates',
+
+                    'datagrid' => [
+                        'active'   => 'Active',
+                        'draft'    => 'Draft',
+                        'id'       => 'ID',
+                        'inactive' => 'Inactive',
+                        'name'     => 'Name',
+                        'status'   => 'Status',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     ],
                 ],
 
                 'create' => [
+<<<<<<< HEAD
                     'title'          => 'Create Template',
                     'active'         => 'Active',
                     'content'        => 'Content',
                     'back-btn'       => 'Back',
+=======
+                    'active'         => 'Active',
+                    'back-btn'       => 'Back',
+                    'content'        => 'Content',
+                    'create-success' => 'Email template created successfully.',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     'draft'          => 'Draft',
                     'general'        => 'General',
                     'inactive'       => 'Inactive',
                     'name'           => 'Name',
                     'save-btn'       => 'Save Template',
+<<<<<<< HEAD
                     'status'         => 'Status',
                     'select-status'  => 'Select Status',
                     'create-success' => 'Email template created successfully.',
@@ -1437,22 +2423,44 @@ return [
                     'active'         => 'Active',
                     'content'        => 'Content',
                     'back-btn'       => 'Back',
+=======
+                    'select-status'  => 'Select Status',
+                    'status'         => 'Status',
+                    'title'          => 'Create Template',
+                ],
+
+                'edit' => [
+                    'active'         => 'Active',
+                    'back-btn'       => 'Back',
+                    'content'        => 'Content',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     'draft'          => 'Draft',
                     'general'        => 'General',
                     'inactive'       => 'Inactive',
                     'name'           => 'Name',
                     'save-btn'       => 'Save Template',
                     'status'         => 'Status',
+<<<<<<< HEAD
                     'update-success' => 'Updated successfully',
                 ],
 
                 'email-template' => 'Email Template',
                 'delete-success' => 'Template Deleted successfully',
                 'delete-failed'  => ':name Deleted Failed',
+=======
+                    'title'          => 'Edit Template',
+                    'update-success' => 'Updated successfully',
+                ],
+
+                'delete-failed'  => ':name Deleted Failed',
+                'delete-success' => 'Template Deleted successfully',
+                'email-template' => 'Email Template',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             ],
 
             'campaigns' => [
                 'index' => [
+<<<<<<< HEAD
                     'title'       => 'Campaigns',
                     'create-btn'  => 'Create Campaign',
 
@@ -1465,20 +2473,40 @@ return [
                         'inactive' => 'Inactive',
                         'edit'     => 'Edit',
                         'delete'   => 'Delete',
+=======
+                    'create-btn'  => 'Create Campaign',
+                    'title'       => 'Campaigns',
+
+                    'datagrid' => [
+                        'active'   => 'Active',
+                        'delete'   => 'Delete',
+                        'edit'     => 'Edit',
+                        'id'       => 'ID',
+                        'inactive' => 'Inactive',
+                        'name'     => 'Name',
+                        'status'   => 'Status',
+                        'subject'  => 'Subject',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     ],
                 ],
 
                 'create'    => [
                     'active'          => 'Active',
                     'back-btn'        => 'Back',
+<<<<<<< HEAD
                     'customer-group'  => 'Customer Group',
                     'channel'         => 'Channel',
+=======
+                    'channel'         => 'Channel',
+                    'customer-group'  => 'Customer Group',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     'email-template'  => 'Email Template',
                     'event'           => 'Event',
                     'general'         => 'General',
                     'inactive'        => 'Inactive',
                     'name'            => 'Name',
                     'save-btn'        => 'Save Campaign',
+<<<<<<< HEAD
                     'setting'         => 'Setting',
                     'status'          => 'Status',
                     'select-template' => 'Select Template',
@@ -1486,6 +2514,15 @@ return [
                     'select-status'   => 'Select Status',
                     'select-channel'  => 'Select Channel',
                     'select-group'    => 'Select Group',
+=======
+                    'select-channel'  => 'Select Channel',
+                    'select-event'    => 'Select Event',
+                    'select-group'    => 'Select Group',
+                    'select-status'   => 'Select Status',
+                    'select-template' => 'Select Template',
+                    'setting'         => 'Setting',
+                    'status'          => 'Status',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     'subject'         => 'Subject',
                     'title'           => 'Create Campaign',
                 ],
@@ -1494,32 +2531,53 @@ return [
                     'active'          => 'Active',
                     'audience'        => 'Audience',
                     'back-btn'        => 'Back',
+<<<<<<< HEAD
                     'customer-group'  => 'Customer Group',
                     'channel'         => 'Channel',
+=======
+                    'channel'         => 'Channel',
+                    'customer-group'  => 'Customer Group',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     'email-template'  => 'Email Template',
                     'event'           => 'Event',
                     'general'         => 'General',
                     'inactive'        => 'Inactive',
                     'name'            => 'Name',
                     'save-btn'        => 'Save Campaign',
+<<<<<<< HEAD
                     'status'          => 'Status',
                     'select-template' => 'Select Template',
                     'select-event'    => 'Select Event',
                     'select-status'   => 'Select Status',
+=======
+                    'select-event'    => 'Select Event',
+                    'select-status'   => 'Select Status',
+                    'select-template' => 'Select Template',
+                    'status'          => 'Status',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     'subject'         => 'Subject',
                     'title'           => 'Edit Campaign',
                 ],
 
+<<<<<<< HEAD
                 'email-campaign' => 'Email Campaign',
                 'create-success' => 'Campaign created successfully.',
                 'update-success' => 'Campaign updated successfully.',
                 'delete-success' => 'Campaign deleted successfully',
                 'delete-failed'  => ':name Delete failed',
+=======
+                'create-success' => 'Campaign created successfully.',
+                'delete-failed'  => ':name Delete failed',
+                'delete-success' => 'Campaign deleted successfully',
+                'email-campaign' => 'Email Campaign',
+                'update-success' => 'Campaign updated successfully.',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             ],
 
             'events' => [
                 'index'  => [
                     'create-btn' => 'Create Event',
+<<<<<<< HEAD
                     'title'      => 'Events',
                     'event'      => 'Event',
 
@@ -1552,6 +2610,40 @@ return [
                 'edit-error'     => 'Event can not be Edit',
                 'delete-failed'  => ':name Delete Failed',
                 'delete-success' => 'Events Deleted Successfully',
+=======
+                    'event'      => 'Event',
+                    'title'      => 'Events',
+
+                    'datagrid' => [
+                        'actions' => 'Actions',
+                        'date'    => 'Date',
+                        'delete'  => 'Delete',
+                        'edit'    => 'Edit',
+                        'id'      => 'ID',
+                        'name'    => 'Name',
+                    ],
+
+                    'create'   => [
+                        'date'           => 'Date',
+                        'delete-warning' => 'Are you sure, you want to perform this action?',
+                        'description'    => 'Description',
+                        'general'        => 'General',
+                        'name'           => 'Name',
+                        'save-btn'       => 'Save Event',
+                        'success'        => 'Events Created Successfully',
+                        'title'          => 'Create Events',
+                    ],
+
+                    'edit'  => [
+                        'success' => 'Events Updated Successfully',
+                        'title'   => 'Edit Events',
+                    ],
+                ],
+
+                'delete-failed'  => ':name Delete Failed',
+                'delete-success' => 'Events Deleted Successfully',
+                'edit-error'     => 'Event can not be Edit',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             ],
 
             'subscribers' => [
@@ -1559,6 +2651,7 @@ return [
                     'title' => 'Newsletter Subscriptions',
 
                     'datagrid' => [
+<<<<<<< HEAD
                         'id'         => 'ID',
                         'subscribed' => 'Subscribed',
                         'true'       => 'True',
@@ -1578,24 +2671,57 @@ return [
                         'true'          => 'True',
                         'false'         => 'False',
                         'success'       => 'Newsletter Subscription Updated Successfully',
+=======
+                        'actions'    => 'Actions',
+                        'delete'     => 'Delete',
+                        'edit'       => 'Edit',
+                        'email'      => 'Email',
+                        'false'      => 'False',
+                        'id'         => 'ID',
+                        'subscribed' => 'Subscribed',
+                        'true'       => 'True',
+                    ],
+
+                    'edit'  => [
+                        'back-btn'      => 'Back',
+                        'email'         => 'Email',
+                        'false'         => 'False',
+                        'save-btn'      => 'Save Subscriber',
+                        'subscribed'    => 'Subscribed',
+                        'success'       => 'Newsletter Subscription Updated Successfully',
+                        'title'         => 'Edit Newsletter Subscriber',
+                        'true'          => 'True',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                         'update-failed' => 'Newsletter Subscription Not Updated',
                     ],
                 ],
 
+<<<<<<< HEAD
                 'delete-warning' => 'Are you sure, you want to perform this action?',
                 'delete-success' => 'Subscriber Deleted Successfully',
                 'delete-failed'  => 'Subscriber Deleted Failure',
+=======
+                'delete-failed'  => 'Subscriber Deleted Failure',
+                'delete-success' => 'Subscriber Deleted Successfully',
+                'delete-warning' => 'Are you sure, you want to perform this action?',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             ],
         ],
 
         'promotions' => [
             'index' => [
+<<<<<<< HEAD
                 'catalog-rule-title' => 'Catalog Rules',
                 'cart-rule-title'    => 'Cart Rules',
+=======
+                'cart-rule-title'    => 'Cart Rules',
+                'catalog-rule-title' => 'Catalog Rules',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             ],
 
             'cart-rules' => [
                 'index' => [
+<<<<<<< HEAD
                     'title'      => 'Cart Rules',
                     'create-btn' => 'Create Cart Rule',
 
@@ -1614,10 +2740,31 @@ return [
                         'priority'    => 'Priority',
                         'edit'        => 'Edit',
                         'delete'      => 'Delete',
+=======
+                    'create-btn' => 'Create Cart Rule',
+                    'title'      => 'Cart Rules',
+
+                    'datagrid' => [
+                        'active'      => 'Active',
+                        'copy'        => 'Copy',
+                        'copy-of'     => ':value',
+                        'coupon-code' => 'Coupon Code',
+                        'delete'      => 'Delete',
+                        'draft'       => 'Draft',
+                        'edit'        => 'Edit',
+                        'end'         => 'End',
+                        'id'          => 'ID',
+                        'inactive'    => 'Inactive',
+                        'name'        => 'Name',
+                        'priority'    => 'Priority',
+                        'start'       => 'Start',
+                        'status'      => 'Status',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     ],
                 ],
 
                 'create' => [
+<<<<<<< HEAD
                     'back-btn'                                  => 'Back',
                     'title'                                     => 'Create Cart Rule',
                     'save-btn'                                  => 'Save Cart Rule',
@@ -1779,10 +2926,174 @@ return [
 
                 'delete-success' => 'Cart Rule Deleted Successfully',
                 'delete-failed'  => 'Cart Rule Deleted Failed',
+=======
+                    'action-type'                               => 'Action Type',
+                    'actions'                                   => 'Actions',
+                    'add-condition'                             => 'Add Condition',
+                    'additional'                                => 'Additional',
+                    'all-conditions-true'                       => 'All Conditions Are True',
+                    'any-conditions-true'                       => 'Any Conditions Are True',
+                    'apply-to-shipping'                         => 'Apply to Shipping',
+                    'attribute-family'                          => 'Attribute Family',
+                    'attribute-name-children-only'              => 'Attribute name Children Only',
+                    'attribute-name-parent-only'                => 'Attribute name Parent Only',
+                    'auto-generate-coupon'                      => 'Auto Generate Coupon',
+                    'back-btn'                                  => 'Back',
+                    'buy-x-get-y-free'                          => 'Buy X Get Y Free',
+                    'buy-x-quantity'                            => 'Buy X Quantity',
+                    'cart-attribute'                            => 'Cart attribute',
+                    'cart-item-attribute'                       => 'Cart item attribute',
+                    'categories'                                => 'Categories',
+                    'channels'                                  => 'Channels',
+                    'children-categories'                       => 'Categories(Children Only)',
+                    'choose-condition-to-add'                   => 'Choose condition to add',
+                    'condition-type'                            => 'Condition Type',
+                    'conditions'                                => 'Conditions',
+                    'contain'                                   => 'Contain',
+                    'contains'                                  => 'Contains',
+                    'coupon-code'                               => 'Coupon Code',
+                    'coupon-type'                               => 'Coupon Type',
+                    'create-success'                            => 'Cart rule created successfully',
+                    'customer-groups'                           => 'Customer Groups',
+                    'description'                               => 'Description',
+                    'discount-amount'                           => 'Discount Amount',
+                    'does-not-contain'                          => 'Does not contain',
+                    'end-of-other-rules'                        => 'End Of Other Rules',
+                    'equals-or-greater-than'                    => 'Equals or greater than',
+                    'equals-or-less-than'                       => 'Equals or less than',
+                    'fixed-amount'                              => 'Fixed Amount',
+                    'fixed-amount-whole-cart'                   => 'Fixed Amount Whole Cart',
+                    'free-shipping'                             => 'Free Shipping',
+                    'from'                                      => 'From',
+                    'general'                                   => 'General',
+                    'greater-than'                              => 'Greater than',
+                    'is-equal-to'                               => 'Is equal to',
+                    'is-not-equal-to'                           => 'Is not equal to',
+                    'less-than'                                 => 'Less than',
+                    'marketing-time'                            => 'Marketing Time',
+                    'maximum-quantity-allowed-to-be-discounted' => 'Maximum Quantity allowed to be discounted',
+                    'name'                                      => 'Name',
+                    'no'                                        => 'No',
+                    'no-coupon'                                 => 'No Coupon',
+                    'parent-categories'                         => 'Categories(Parent Only)',
+                    'payment-method'                            => 'Payment method',
+                    'percentage-product-price'                  => 'Percentage Product Price',
+                    'price-in-cart'                             => 'Price in cart',
+                    'priority'                                  => 'Priority',
+                    'product-attribute'                         => 'Product attribute',
+                    'qty-in-cart'                               => 'Quantity in cart',
+                    'save-btn'                                  => 'Save Cart Rule',
+                    'settings'                                  => 'Settings',
+                    'shipping-country'                          => 'Shipping country',
+                    'shipping-method'                           => 'Shipping method',
+                    'shipping-postcode'                         => 'Shipping postcode',
+                    'shipping-state'                            => 'Shipping state',
+                    'specific-coupon'                           => 'Specific Coupon',
+                    'status'                                    => 'Status',
+                    'subtotal'                                  => 'Subtotal',
+                    'title'                                     => 'Create Cart Rule',
+                    'to'                                        => 'To',
+                    'total-items-qty'                           => 'Total items-qty',
+                    'total-weight'                              => 'Total Weight',
+                    'uses-per-coupon'                           => 'Uses Per Coupon',
+                    'uses-per-customer'                         => 'Uses Per Customer',
+                    'uses-per-customer-control-info'            => 'Will be used for logged in customers only.',
+                    'yes'                                       => 'Yes',
+                ],
+
+                'edit' => [
+                    'action-type'                               => 'Action Type',
+                    'actions'                                   => 'Actions',
+                    'add-condition'                             => 'Add Condition',
+                    'additional'                                => 'Additional',
+                    'all-conditions-true'                       => 'All Conditions Are True',
+                    'alphabetical'                              => 'Alphabetical',
+                    'alphanumeric'                              => 'Alphanumeric',
+                    'any-conditions-true'                       => 'Any Conditions Are True',
+                    'apply-to-shipping'                         => 'Apply to Shipping',
+                    'attribute-family'                          => 'Attribute Family',
+                    'attribute-name-children-only'              => 'Attribute name children only',
+                    'attribute-name-parent-only'                => 'Attribute name parent only',
+                    'auto-generate-coupon'                      => 'Auto Generate Coupon',
+                    'back-btn'                                  => 'Back',
+                    'buy-x-get-y-free'                          => 'Buy X Get Y Free',
+                    'buy-x-quantity'                            => 'Buy X Quantity',
+                    'cart-attribute'                            => 'Cart attribute',
+                    'cart-item-attribute'                       => 'Cart item attribute',
+                    'categories'                                => 'Categories',
+                    'channels'                                  => 'Channels',
+                    'children-categories'                       => 'Children Categories',
+                    'choose-condition-to-add'                   => 'Choose condition to add',
+                    'code-format'                               => 'Code Format',
+                    'code-prefix'                               => 'Code Prefix',
+                    'code-suffix'                               => 'Code Suffix',
+                    'condition-type'                            => 'Condition Type',
+                    'conditions'                                => 'Conditions',
+                    'contain'                                   => 'Contain',
+                    'contains'                                  => 'Contains',
+                    'coupon-code'                               => 'Coupon Code',
+                    'coupon-length'                             => 'Coupon Length',
+                    'coupon-qty'                                => 'Coupon Quantity',
+                    'coupon-type'                               => 'Coupon Type',
+                    'customer-group'                            => 'Customer Group',
+                    'customer-groups'                           => 'Customer Groups',
+                    'description'                               => 'Description',
+                    'discount-amount'                           => 'Discount Amount',
+                    'does-not-contain'                          => 'Does not contain',
+                    'end-of-other-rules'                        => 'End Of Other Rules',
+                    'equals-or-greater-than'                    => 'Equals or greater than',
+                    'equals-or-less-than'                       => 'Equals or less than',
+                    'fixed-amount'                              => 'Fixed Amount',
+                    'fixed-amount-whole-cart'                   => 'Fixed Amount Whole Cart',
+                    'free-shipping'                             => 'Free Shipping',
+                    'from'                                      => 'From',
+                    'general'                                   => 'General',
+                    'generate'                                  => 'Generate',
+                    'greater-than'                              => 'Greater than',
+                    'is-equal-to'                               => 'Is equal to',
+                    'is-not-equal-to'                           => 'Is not equal to',
+                    'less-than'                                 => 'Less than',
+                    'marketing-time'                            => 'Marketing Time',
+                    'maximum-quantity-allowed-to-be-discounted' => 'Maximum Quantity allowed to be discounted',
+                    'name'                                      => 'Name',
+                    'no'                                        => 'No',
+                    'no-coupon'                                 => 'No Coupon',
+                    'numeric'                                   => 'Numeric',
+                    'parent-categories'                         => 'Parent Categories',
+                    'payment-method'                            => 'Payment method',
+                    'percentage-product-price'                  => 'Percentage Product Price',
+                    'price-in-cart'                             => 'Price in cart',
+                    'priority'                                  => 'Priority',
+                    'product-attribute'                         => 'Product attribute',
+                    'qty-in-cart'                               => 'Quantity in cart',
+                    'save-btn'                                  => 'Save Cart Rule',
+                    'settings'                                  => 'Settings',
+                    'shipping-country'                          => 'Shipping country',
+                    'shipping-method'                           => 'Shipping method',
+                    'shipping-postcode'                         => 'Shipping postcode',
+                    'shipping-state'                            => 'Shipping state',
+                    'specific-coupon'                           => 'Specific Coupon',
+                    'status'                                    => 'Status',
+                    'subtotal'                                  => 'Subtotal',
+                    'title'                                     => 'Edit Cart Rule',
+                    'to'                                        => 'To',
+                    'total-items-qty'                           => 'Total items-qty',
+                    'total-weight'                              => 'Total Weight',
+                    'update-success'                            => 'Cart rule updated successfully',
+                    'uses-per-coupon'                           => 'Uses Per Coupon',
+                    'uses-per-customer'                         => 'Uses Per Customer',
+                    'uses-per-customer-control-info'            => 'Will be used for logged in customers only.',
+                    'yes'                                       => 'Yes',
+                ],
+
+                'delete-failed'  => 'Cart Rule Deleted Failed',
+                'delete-success' => 'Cart Rule Deleted Successfully',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             ],
 
             'catalog-rules' => [
                 'index' => [
+<<<<<<< HEAD
                     'title'      => 'Catalog Rules',
                     'create-btn' => 'Create Catalog Rule',
 
@@ -1797,10 +3108,27 @@ return [
                         'priority' => 'Priority',
                         'edit'     => 'Edit',
                         'delete'   => 'Delete',
+=======
+                    'create-btn' => 'Create Catalog Rule',
+                    'title'      => 'Catalog Rules',
+
+                    'datagrid' => [
+                        'active'   => 'Active',
+                        'delete'   => 'Delete',
+                        'edit'     => 'Edit',
+                        'end'      => 'End',
+                        'id'       => 'ID',
+                        'inactive' => 'Inactive',
+                        'name'     => 'Name',
+                        'priority' => 'Priority',
+                        'start'    => 'Start',
+                        'status'   => 'Status',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     ],
                 ],
 
                 'create' => [
+<<<<<<< HEAD
                     'back-btn'                 => 'Back',
                     'title'                    => 'Create Catalog Rule',
                     'save-btn'                 => 'Save Catalog Rule',
@@ -1888,6 +3216,95 @@ return [
                 'create-success' => 'Catalog rule created successfully',
                 'delete-success' => 'Catalog rule deleted successfully',
                 'update-success' => 'Catalog rule updated successfully',
+=======
+                    'action-type'              => 'Action Type',
+                    'actions'                  => 'Actions',
+                    'add-condition'            => 'Add Condition',
+                    'all-conditions-true'      => 'All Conditions are true',
+                    'any-conditions-true'      => 'Any Conditions are true',
+                    'attribute-family'         => 'Attribute Family',
+                    'back-btn'                 => 'Back',
+                    'categories'               => 'Categories',
+                    'channels'                 => 'Channels',
+                    'choose-condition-to-add'  => 'Choose Condition To Add',
+                    'condition-type'           => 'Condition Type',
+                    'conditions'               => 'Conditions',
+                    'contain'                  => 'Contain',
+                    'contains'                 => 'Contains',
+                    'customer-groups'          => 'Customer Groups',
+                    'description'              => 'Description',
+                    'discount-amount'          => 'Discount Amount',
+                    'does-not-contain'         => 'Does not contain',
+                    'end-other-rules'          => 'End other rules',
+                    'equals-or-greater-than'   => 'Equals or greater than',
+                    'equals-or-less-than'      => 'Equals or less than',
+                    'fixed-amount'             => 'Fixed Amount',
+                    'from'                     => 'From',
+                    'general'                  => 'General',
+                    'greater-than'             => 'Greater than',
+                    'is-equal-to'              => 'Is equal to',
+                    'is-not-equal-to'          => 'Is not equal to',
+                    'less-than'                => 'Less than',
+                    'marketing-time'           => 'Marketing Time',
+                    'name'                     => 'Name',
+                    'no'                       => 'No',
+                    'percentage-product-price' => 'Percentage of Product Price',
+                    'priority'                 => 'Priority',
+                    'product-attribute'        => 'Product attribute',
+                    'save-btn'                 => 'Save Catalog Rule',
+                    'settings'                 => 'Settings',
+                    'status'                   => 'Status',
+                    'title'                    => 'Create Catalog Rule',
+                    'to'                       => 'To',
+                    'yes'                      => 'Yes',
+                ],
+
+                'edit' => [
+                    'action-type'              => 'Action Type',
+                    'actions'                  => 'Actions',
+                    'add-condition'            => 'Add Condition',
+                    'all-conditions-true'      => 'All Conditions are true',
+                    'any-conditions-true'      => 'Any Conditions are true',
+                    'back-btn'                 => 'Back',
+                    'categories'               => 'Categories',
+                    'channels'                 => 'Channels',
+                    'choose-condition-to-add'  => 'Choose Condition To Add',
+                    'condition-type'           => 'Condition Type',
+                    'conditions'               => 'Conditions',
+                    'contain'                  => 'Contain',
+                    'contains'                 => 'Contains',
+                    'customer-groups'          => 'Customer Groups',
+                    'description'              => 'Description',
+                    'discount-amount'          => 'Discount Amount',
+                    'does-not-contain'         => 'Does not contain',
+                    'end-other-rules'          => 'End other rules',
+                    'equals-or-greater-than'   => 'Equals or greater than',
+                    'equals-or-less-than'      => 'Equals or less than',
+                    'fixed-amount'             => 'Fixed Amount',
+                    'from'                     => 'From',
+                    'general'                  => 'General',
+                    'greater-than'             => 'Greater than',
+                    'is-equal-to'              => 'Is equal to',
+                    'is-not-equal-to'          => 'Is not equal to',
+                    'less-than'                => 'Less than',
+                    'marketing-time'           => 'Marketing Time',
+                    'name'                     => 'Name',
+                    'no'                       => 'No',
+                    'percentage-product-price' => 'Percentage of Product Price',
+                    'priority'                 => 'Priority',
+                    'product-attribute'        => 'Product attribute',
+                    'save-btn'                 => 'Save Catalog Rule',
+                    'settings'                 => 'Settings',
+                    'status'                   => 'Status',
+                    'title'                    => 'Edit Catalog Rule',
+                    'to'                       => 'To',
+                    'yes'                      => 'Yes',
+                ],
+
+                'update-success' => 'Catalog rule updated successfully',
+                'delete-success' => 'Catalog rule deleted successfully',
+                'create-success' => 'Catalog rule created successfully',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             ],
 
             'cart-rules-coupons' => [
@@ -1899,14 +3316,20 @@ return [
                 'datagrid' => [
                     'coupon-code'     => 'Coupon Code',
                     'created-date'    => 'Created Date',
+<<<<<<< HEAD
                     'expiration-date' => 'Expiration Date',
                     'delete'          => 'Delete',
+=======
+                    'delete'          => 'Delete',
+                    'expiration-date' => 'Expiration Date',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     'id'              => 'ID',
                     'times-used'      => 'Times Used',
                 ],
             ],
         ],
 
+<<<<<<< HEAD
         'sitemaps' => [
             'index' => [
                 'title'      => 'Sitemaps',
@@ -1952,11 +3375,179 @@ return [
             ],
 
             'delete-failed'  => ':name Deleted Failed',
+=======
+        'search-seo' => [
+            'search-terms' => [
+                'index' => [
+                    'create-btn' => 'Create Search Term',
+                    'title'      => 'Search Terms',
+
+                    'datagrid' => [
+                        'actions'             => 'Actions',
+                        'Channel'             => 'Channel',
+                        'channel'             => 'Channel',
+                        'delete'              => 'Delete',
+                        'edit'                => 'Edit',
+                        'id'                  => 'ID',
+                        'locale'              => 'Locale',
+                        'mass-delete-success' => 'Selected Search Terms Deleted Successfully',
+                        'redirect-url'        => 'Redirect Url',
+                        'results'             => 'Results',
+                        'search-query'        => 'Search Query',
+                        'uses'                => 'Uses',
+                    ],
+
+                    'create' => [
+                        'Channel'        => 'Channel',
+                        'channel'        => 'Channel',
+                        'delete-warning' => 'Are you sure, you want to perform this action?',
+                        'locale'         => 'Locale',
+                        'redirect-url'   => 'Redirect Url',
+                        'results'        => 'Results',
+                        'save-btn'       => 'Save Search Term',
+                        'search-query'   => 'Search Query',
+                        'success'        => 'Search Term created successfully',
+                        'title'          => 'Create Search Term',
+                        'uses'           => 'Uses',
+                    ],
+
+                    'edit' => [
+                        'delete-success' => 'Search Term deleted successfully',
+                        'success'        => 'Search Term updated successfully',
+                        'title'          => 'Edit Search Term',
+                    ],
+                ],
+            ],
+
+            'search-synonyms' => [
+                'index' => [
+                    'create-btn' => 'Create Search Synonym',
+                    'title'      => 'Search Synonyms',
+
+                    'datagrid' => [
+                        'actions'             => 'Actions',
+                        'delete'              => 'Delete',
+                        'edit'                => 'Edit',
+                        'id'                  => 'ID',
+                        'mass-delete-success' => 'Selected Search Synonyms Deleted Successfully',
+                        'name'                => 'Name',
+                        'terms'               => 'Terms',
+                    ],
+
+                    'create' => [
+                        'delete-warning' => 'Are you sure, you want to perform this action?',
+                        'name'           => 'Name',
+                        'save-btn'       => 'Save Search Synonym',
+                        'success'        => 'Search Synonym created successfully',
+                        'terms'          => 'Terms',
+                        'terms-info'     => 'Enter synonyms as a comma-separated list, e.g., "shoes,footwear." This expands the search to include both terms.',
+                        'title'          => 'Create Search Synonym',
+                    ],
+
+                    'edit' => [
+                        'delete-success' => 'Search Synonym deleted successfully',
+                        'success'        => 'Search Synonym updated successfully',
+                        'title'          => 'Edit Search Synonym',
+                    ],
+                ],
+            ],
+
+            'sitemaps' => [
+                'index' => [
+                    'create-btn' => 'Create Sitemap',
+                    'sitemap'    => 'Sitemap',
+                    'title'      => 'Sitemaps',
+
+                    'datagrid' => [
+                        'actions'         => 'Actions',
+                        'delete'          => 'Delete',
+                        'edit'            => 'Edit',
+                        'file-name'       => 'File Name',
+                        'id'              => 'ID',
+                        'link-for-google' => 'Link for Google',
+                        'path'            => 'Path',
+                    ],
+
+                    'create'  => [
+                        'delete-warning' => 'Are you sure, you want to perform this action?',
+                        'file-name'      => 'File Name',
+                        'file-name-info' => 'Example: sitemap.xml',
+                        'path'           => 'Path',
+                        'path-info'      => 'Example: "/sitemap/" or "/" for base path',
+                        'save-btn'       => 'Save Sitemap',
+                        'success'        => 'Sitemap created successfully',
+                        'title'          => 'Create Sitemap',
+                    ],
+
+                    'edit'  => [
+                        'delete-success' => 'Sitemap Deleted successfully',
+                        'success'        => 'Sitemap Updated successfully',
+                        'title'          => 'Edit Sitemap',
+                    ],
+                ],
+
+                'edit'  => [
+                    'save-btn'       => 'Save Sitemap',
+                    'path-info'      => 'Example: "/sitemap/" or "/" for base path',
+                    'path'           => 'Path',
+                    'general'        => 'General',
+                    'file-name-info' => 'Example: sitemap.xml',
+                    'file-name'      => 'File Name',
+                    'back-btn'       => 'Back',
+                ],
+
+                'delete-failed'  => ':name Deleted Failed',
+            ],
+
+            'url-rewrites' => [
+                'index' => [
+                    'create-btn' => 'Create URL Rewrite',
+                    'title'      => 'URL Rewrites',
+
+                    'datagrid' => [
+                        'actions'             => 'Actions',
+                        'delete'              => 'Delete',
+                        'edit'                => 'Edit',
+                        'for'                 => 'For',
+                        'id'                  => 'ID',
+                        'locale'              => 'Locale',
+                        'mass-delete-success' => 'Selected URL Rewrites Deleted Successfully',
+                        'redirect-type'       => 'Redirect Type',
+                        'request-path'        => 'Request Path',
+                        'target-path'         => 'Target Path',
+                    ],
+
+                    'create' => [
+                        'category'           => 'Category',
+                        'cms-page'           => 'CMS Page',
+                        'delete-warning'     => 'Are you sure, you want to perform this action?',
+                        'for'                => 'For',
+                        'locale'             => 'Locale',
+                        'permanent-redirect' => 'Permanent (301)',
+                        'product'            => 'Product',
+                        'redirect-type'      => 'Redirect Type',
+                        'request-path'       => 'Request Path',
+                        'save-btn'           => 'Save URL Rewrite',
+                        'success'            => 'URL Rewrite created successfully',
+                        'target-path'        => 'Target Path',
+                        'temporary-redirect' => 'Temporary (302)',
+                        'title'              => 'Create URL Rewrite',
+                    ],
+
+                    'edit' => [
+                        'delete-success' => 'URL Rewrite deleted successfully',
+                        'success'        => 'URL Rewrite updated successfully',
+                        'title'          => 'Edit URL Rewrite',
+                    ],
+                ],
+            ],
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         ],
     ],
 
     'cms' => [
         'index' => [
+<<<<<<< HEAD
             'title'             => 'Pages',
             'create-btn'        => 'Create Page',
             'already-taken'     => 'The :name has already been taken.',
@@ -1969,10 +3560,25 @@ return [
                 'edit'                => 'Edit',
                 'delete'              => 'Delete',
                 'mass-delete-success' => 'Selected Data Deleted Successfully',
+=======
+            'already-taken'     => 'The :name has already been taken.',
+            'create-btn'        => 'Create Page',
+            'title'             => 'Pages',
+
+            'datagrid' => [
+                'delete'              => 'Delete',
+                'edit'                => 'Edit',
+                'id'                  => 'ID',
+                'mass-delete-success' => 'Selected Data Deleted Successfully',
+                'page-title'          => 'Page Title',
+                'url-key'             => 'URL Key',
+                'view'                => 'View',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             ],
         ],
 
         'create' => [
+<<<<<<< HEAD
             'title'            => 'Create Page',
             'save-btn'         => 'Save Page',
             'general'          => 'General',
@@ -2002,17 +3608,54 @@ return [
             'meta-title'       => 'Meta Title',
             'url-key'          => 'URL Key',
             'description'      => 'Description',
+=======
+            'channels'         => 'Channels',
+            'content'          => 'Content',
+            'description'      => 'Description',
+            'general'          => 'General',
+            'meta-description' => 'Meta Description',
+            'meta-keywords'    => 'Meta Keywords',
+            'meta-title'       => 'Meta Title',
+            'page-title'       => 'Title',
+            'save-btn'         => 'Save Page',
+            'seo'              => 'SEO',
+            'title'            => 'Create Page',
+            'url-key'          => 'URL Key',
+        ],
+
+        'edit' => [
+            'back-btn'         => 'Back',
+            'channels'         => 'Channels',
+            'content'          => 'Content',
+            'description'      => 'Description',
+            'general'          => 'General',
+            'meta-description' => 'Meta Description',
+            'meta-keywords'    => 'Meta Keywords',
+            'meta-title'       => 'Meta Title',
+            'page-title'       => 'Page Title',
+            'preview-btn'      => 'Preview Page',
+            'save-btn'         => 'Save Page',
+            'seo'              => 'SEO',
+            'title'            => 'Edit Page',
+            'url-key'          => 'URL Key',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         ],
 
         'create-success' => 'CMS created successfully.',
         'delete-success' => 'CMS deleted successfully.',
+<<<<<<< HEAD
         'update-success' => 'CMS updated successfully.',
         'no-resource'    => 'Resource not exists.',
+=======
+        'no-resource'    => 'Resource not exists.',
+        'update-success' => 'CMS updated successfully.',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
     ],
 
     'settings' => [
         'locales' => [
             'index' => [
+<<<<<<< HEAD
                 'title'      => 'Locales',
                 'locale'     => 'Locale',
                 'create-btn' => 'Create Locale',
@@ -2028,16 +3671,42 @@ return [
                     'rtl'       => 'RTL',
                     'edit'      => 'Edit',
                     'delete'    => 'Delete',
+=======
+                'create-btn' => 'Create Locale',
+                'locale'     => 'Locale',
+                'logo-size'  => 'Image resolution should be like 24px X 16px',
+                'title'      => 'Locales',
+
+                'datagrid' => [
+                    'actions'   => 'Actions',
+                    'code'      => 'Code',
+                    'delete'    => 'Delete',
+                    'direction' => 'Direction',
+                    'edit'      => 'Edit',
+                    'id'        => 'ID',
+                    'ltr'       => 'LTR',
+                    'name'      => 'Name',
+                    'rtl'       => 'RTL',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 ],
 
                 'create' => [
                     'code'             => 'Code',
+<<<<<<< HEAD
                     'name'             => 'Name',
                     'direction'        => 'Direction',
                     'locale-logo'      => 'Locale Logo',
                     'title'            => 'Create Locale',
                     'save-btn'         => 'Save Locale',
                     'select-direction' => 'Select Direction',
+=======
+                    'direction'        => 'Direction',
+                    'locale-logo'      => 'Locale Logo',
+                    'name'             => 'Name',
+                    'save-btn'         => 'Save Locale',
+                    'select-direction' => 'Select Direction',
+                    'title'            => 'Create Locale',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 ],
 
                 'edit' => [
@@ -2045,16 +3714,25 @@ return [
                 ],
 
                 'create-success'    => 'Locale created successfully.',
+<<<<<<< HEAD
                 'update-success'    => 'Locale updated successfully.',
                 'delete-success'    => 'Locale deleted successfully.',
                 'last-delete-error' => 'At least one Locale is required.',
                 'delete-warning'    => 'Are you sure, you want to perform this action?',
                 'delete-failed'     => 'Locale deletion failed',
+=======
+                'delete-failed'     => 'Locale deletion failed',
+                'delete-success'    => 'Locale deleted successfully.',
+                'delete-warning'    => 'Are you sure, you want to perform this action?',
+                'last-delete-error' => 'At least one Locale is required.',
+                'update-success'    => 'Locale updated successfully.',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             ],
         ],
 
         'currencies' => [
             'index' => [
+<<<<<<< HEAD
                 'title'      => 'Currencies',
                 'create-btn' => 'Create Currency',
                 'currency'   => 'Currency',
@@ -2075,6 +3753,28 @@ return [
                 'create' => [
                     'create-btn'     => 'Create Currency',
                     'code'           => 'Code',
+=======
+                'create-btn' => 'Create Currency',
+                'currency'   => 'Currency',
+                'title'      => 'Currencies',
+
+                'datagrid' => [
+                    'actions'        => 'Actions',
+                    'code'           => 'Code',
+                    'delete'         => 'Delete',
+                    'edit'           => 'Edit',
+                    'id'             => 'ID',
+                    'method-error'   => 'Error! Wrong method detected, please check mass action configuration',
+                    'name'           => 'Name',
+                    'no-resource'    => 'The resource provided for insufficient for the action',
+                    'partial-action' => 'Some actions were not performed due restricted system constraints on :resource',
+                    'update-success' => 'Selected :resource were successfully updated',
+                ],
+
+                'create' => [
+                    'code'           => 'Code',
+                    'create-btn'     => 'Create Currency',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     'decimal'        => 'Decimal',
                     'delete-warning' => 'Are you sure, you want to perform this action?',
                     'general'        => 'General',
@@ -2089,8 +3789,13 @@ return [
                 ],
 
                 'create-success'    => 'Currency created successfully.',
+<<<<<<< HEAD
                 'delete-success'    => 'Currency deleted successfully.',
                 'delete-failed'     => 'Currency Deleted Failed',
+=======
+                'delete-failed'     => 'Currency Deleted Failed',
+                'delete-success'    => 'Currency deleted successfully.',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'last-delete-error' => 'At least one Currency is required.',
                 'update-success'    => 'Currency updated successfully.',
             ],
@@ -2098,19 +3803,34 @@ return [
 
         'exchange-rates' => [
             'index' => [
+<<<<<<< HEAD
                 'title'         => 'Exchange Rates',
                 'create-btn'    => 'Create Exchange Rate',
                 'exchange-rate' => 'Exchange Rate',
+=======
+                'create-btn'    => 'Create Exchange Rate',
+                'exchange-rate' => 'Exchange Rate',
+                'title'         => 'Exchange Rates',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'update-rates'  => 'Update Exchange Rate',
 
                 'create' => [
                     'delete-warning'         => 'Are you sure, you want to perform this action?',
+<<<<<<< HEAD
                     'title'                  => 'Create Exchange Rate',
                     'rate'                   => 'Rate',
                     'save-btn'               => 'Save Exchange Rate',
                     'source-currency'        => 'Source Currency',
                     'select-target-currency' => 'Select Target Currency',
                     'target-currency'        => 'Target Currency',
+=======
+                    'rate'                   => 'Rate',
+                    'save-btn'               => 'Save Exchange Rate',
+                    'select-target-currency' => 'Select Target Currency',
+                    'source-currency'        => 'Source Currency',
+                    'target-currency'        => 'Target Currency',
+                    'title'                  => 'Create Exchange Rate',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 ],
 
                 'edit' => [
@@ -2118,6 +3838,7 @@ return [
                 ],
 
                 'datagrid' => [
+<<<<<<< HEAD
                     'id'            => 'ID',
                     'currency-name' => 'Currency Name',
                     'exchange-rate' => 'Exchange Rate',
@@ -2130,11 +3851,26 @@ return [
                 'update-success'  => 'Exchange Rate Updated Successfully',
                 'delete-success'  => 'Exchange Rate Deleted Successfully',
                 'delete-error'    => 'Exchange Rate Deleted Error',
+=======
+                    'actions'       => 'Actions',
+                    'currency-name' => 'Currency Name',
+                    'delete'        => 'Delete',
+                    'edit'          => 'Edit',
+                    'exchange-rate' => 'Exchange Rate',
+                    'id'            => 'ID',
+                ],
+
+                'create-success'  => 'Exchange Rate Created Successfully',
+                'delete-error'    => 'Exchange Rate Deleted Error',
+                'delete-success'  => 'Exchange Rate Deleted Successfully',
+                'update-success'  => 'Exchange Rate Updated Successfully',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             ],
         ],
 
         'inventory-sources' => [
             'index'  => [
+<<<<<<< HEAD
                 'title'      => 'Inventory Sources',
                 'create-btn' => 'Create Inventory Sources',
 
@@ -2148,11 +3884,27 @@ return [
                     'inactive' => 'Inactive',
                     'edit'     => 'Edit',
                     'delete'   => 'Delete',
+=======
+                'create-btn' => 'Create Inventory Source',
+                'title'      => 'Inventory Sources',
+
+                'datagrid' => [
+                    'active'   => 'Active',
+                    'code'     => 'Code',
+                    'delete'   => 'Delete',
+                    'edit'     => 'Edit',
+                    'id'       => 'ID',
+                    'inactive' => 'Inactive',
+                    'name'     => 'Name',
+                    'priority' => 'Priority',
+                    'status'   => 'Status',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 ],
             ],
 
             'create' => [
                 'add-title'      => 'Add Inventory Source',
+<<<<<<< HEAD
                 'title'          => 'Inventory Sources',
                 'general'        => 'General',
                 'save-btn'       => 'Save Inventory Sources',
@@ -2211,6 +3963,66 @@ return [
             'create-success'    => 'Inventory Source Created Successfully',
             'delete-success'    => 'Inventory Sources Deleted Successfully',
             'delete-failed'     => 'Inventory Sources Delete Failed',
+=======
+                'address'        => 'Source Address',
+                'back-btn'       => 'Back',
+                'city'           => 'City',
+                'code'           => 'Code',
+                'contact-email'  => 'Email',
+                'contact-fax'    => 'Fax',
+                'contact-info'   => 'Contact Information',
+                'contact-name'   => 'Name',
+                'contact-number' => 'Contact Number',
+                'country'        => 'Country',
+                'description'    => 'Description',
+                'general'        => 'General',
+                'latitude'       => 'Latitude',
+                'longitude'      => 'Longitude',
+                'name'           => 'Name',
+                'postcode'       => 'Postcode',
+                'priority'       => 'Priority',
+                'save-btn'       => 'Save Inventory Sources',
+                'select-country' => 'Select Country',
+                'select-state'   => 'Select State',
+                'settings'       => 'Settings',
+                'state'          => 'State',
+                'status'         => 'Status',
+                'street'         => 'Street',
+                'title'          => 'Inventory Sources',
+            ],
+
+            'edit' => [
+                'back-btn'       => 'Back',
+                'city'           => 'City',
+                'code'           => 'Code',
+                'contact-email'  => 'Email',
+                'contact-fax'    => 'Fax',
+                'contact-info'   => 'Contact Information',
+                'contact-name'   => 'Name',
+                'contact-number' => 'Contact Number',
+                'country'        => 'Country',
+                'description'    => 'Description',
+                'general'        => 'General',
+                'latitude'       => 'Latitude',
+                'longitude'      => 'Longitude',
+                'name'           => 'Name',
+                'postcode'       => 'Postcode',
+                'priority'       => 'Priority',
+                'save-btn'       => 'Save Inventory Sources',
+                'select-country' => 'Select Country',
+                'select-state'   => 'Select State',
+                'settings'       => 'Settings',
+                'source-address' => 'Source Address',
+                'state'          => 'State',
+                'status'         => 'Status',
+                'street'         => 'Street',
+                'title'          => 'Edit Inventory Sources',
+            ],
+
+            'create-success'    => 'Inventory Source Created Successfully',
+            'delete-failed'     => 'Inventory Sources Delete Failed',
+            'delete-success'    => 'Inventory Sources Deleted Successfully',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             'last-delete-error' => 'Last Inventory Sources Can Not Deleted',
             'update-success'    => 'Inventory Sources Updated Successfully',
         ],
@@ -2218,6 +4030,7 @@ return [
         'taxes' => [
             'categories' => [
                 'index' => [
+<<<<<<< HEAD
                     'title'          => 'Tax Categories',
                     'tax-category'   => 'Tax Category',
                     'delete-warning' => 'Are You sure you want to delete ?',
@@ -2242,6 +4055,32 @@ return [
                         'select'        => 'Select',
                         'add-tax-rates' => 'Add Tax Rates',
                         'empty-text'    => 'Tax Rates are not available please create new Tax Rates.',
+=======
+                    'delete-warning' => 'Are You sure you want to delete ?',
+                    'tax-category'   => 'Tax Category',
+                    'title'          => 'Tax Categories',
+
+                    'datagrid' => [
+                        'actions' => 'Actions',
+                        'code'    => 'Code',
+                        'delete'  => 'Delete',
+                        'edit'    => 'Edit',
+                        'id'      => 'ID',
+                        'name'    => 'Name',
+                    ],
+
+                    'create' => [
+                        'add-tax-rates' => 'Add Tax Rates',
+                        'code'          => 'Code',
+                        'description'   => 'Description',
+                        'empty-text'    => 'Tax Rates are not available please create new Tax Rates.',
+                        'general'       => 'Tax Category',
+                        'name'          => 'Name',
+                        'save-btn'      => 'Save Tax Category',
+                        'select'        => 'Select',
+                        'tax-rates'     => 'Tax Rates',
+                        'title'         => 'Create Tax Category',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     ],
 
                     'edit'  => [
@@ -2249,14 +4088,21 @@ return [
                     ],
 
                     'create-success'  => 'New Tax Category Created',
+<<<<<<< HEAD
                     'update-success'  => 'Tax Category Successfully Updated',
                     'delete-success'  => 'Tax Category Deleted Successfully',
                     'delete-failed'   => 'Tax Category Deleted Failed',
+=======
+                    'delete-failed'   => 'Tax Category Deleted Failed',
+                    'delete-success'  => 'Tax Category Deleted Successfully',
+                    'update-success'  => 'Tax Category Successfully Updated',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 ],
             ],
 
             'rates'   => [
                 'index' => [
+<<<<<<< HEAD
                     'title'        => 'Tax Rates',
                     'tax-rate'     => 'Tax Rate',
                     'button-title' => 'Create Tax Rates',
@@ -2272,10 +4118,38 @@ return [
                         'tax-rate'   => 'Tax Rate',
                         'edit'       => 'Edit',
                         'delete'     => 'Delete',
+=======
+                    'button-title' => 'Create Tax Rate',
+                    'tax-rate'     => 'Tax Rate',
+                    'title'        => 'Tax Rates',
+
+                    'import' => [
+                        'duplicate-error'  => 'Identifier must be unique, duplicate identifier :identifier at row :position.',
+                        'enough-row-error' => 'file has not enough rows',
+                        'import-btn'       => 'Import',
+                        'title'            => 'Upload',
+                        'upload-error'     => 'The file must be a file of type: xls, xlsx, csv.',
+                        'upload-success'   => 'Tax Rate Uploaded successfully',
+                        'validation'       => 'Allowed Type : xls, xlsx, csv.',
+                    ],
+
+                    'datagrid' => [
+                        'country'    => 'Country',
+                        'delete'     => 'Delete',
+                        'edit'       => 'Edit',
+                        'id'         => 'ID',
+                        'identifier' => 'Identifier',
+                        'state'      => 'State',
+                        'tax-rate'   => 'Tax Rate',
+                        'zip-code'   => 'Zip Code',
+                        'zip-from'   => 'Zip From',
+                        'zip-to'     => 'Zip To',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     ],
                 ],
 
                 'create'  => [
+<<<<<<< HEAD
                     'country'        => 'Country',
                     'back-btn'       => 'Back',
                     'general'        => 'General',
@@ -2288,12 +4162,27 @@ return [
                     'state'          => 'State',
                     'title'          => 'Create Tax Rate',
                     'tax-rate'       => 'Rate',
+=======
+                    'back-btn'       => 'Back',
+                    'country'        => 'Country',
+                    'general'        => 'General',
+                    'identifier'     => 'Identifier',
+                    'is-zip'         => 'Enable Zip Range',
+                    'save-btn'       => 'Save Tax Rate',
+                    'select-country' => 'Select Country',
+                    'select-state'   => 'Select State',
+                    'settings'       => 'Settings',
+                    'state'          => 'State',
+                    'tax-rate'       => 'Rate',
+                    'title'          => 'Create Tax Rate',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     'zip-code'       => 'Zip Code',
                     'zip-from'       => 'Zip From',
                     'zip-to'         => 'Zip To',
                 ],
 
                 'edit'  => [
+<<<<<<< HEAD
                     'basic-settings' => 'Basic Settings',
                     'country'        => 'Country',
                     'back-btn'       => 'Back',
@@ -2304,6 +4193,18 @@ return [
                     'state'          => 'State',
                     'title'          => 'Edit Tax Rate',
                     'tax-rate'       => 'Rate',
+=======
+                    'back-btn'       => 'Back',
+                    'basic-settings' => 'Basic Settings',
+                    'country'        => 'Country',
+                    'identifier'     => 'Identifier',
+                    'save-btn'       => 'Save Tax Rate',
+                    'select-country' => 'Select Country',
+                    'select-state'   => 'Select State',
+                    'state'          => 'State',
+                    'tax-rate'       => 'Rate',
+                    'title'          => 'Edit Tax Rate',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     'zip-code'       => 'Zip Code',
                     'zip-from'       => 'Zip From',
                     'zip-to'         => 'Zip To',
@@ -2318,6 +4219,7 @@ return [
 
         'channels' => [
             'index' => [
+<<<<<<< HEAD
                 'title'             => 'Channels',
                 'create-btn'        => 'Create Channel',
                 'delete-success'    => 'Channel deleted successfully.',
@@ -2331,10 +4233,26 @@ return [
                     'host-name' => 'Host Name',
                     'edit'      => 'Edit',
                     'delete'    => 'Delete',
+=======
+                'create-btn'        => 'Create Channel',
+                'delete-failed'     => 'Channel Delete Failed',
+                'delete-success'    => 'Channel deleted successfully.',
+                'last-delete-error' => 'Last Channel deleted failed.',
+                'title'             => 'Channels',
+
+                'datagrid' => [
+                    'code'      => 'Code',
+                    'delete'    => 'Delete',
+                    'edit'      => 'Edit',
+                    'host-name' => 'Host Name',
+                    'id'        => 'ID',
+                    'name'      => 'Name',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 ],
             ],
 
             'create' => [
+<<<<<<< HEAD
                 'title'                   => 'Create Channel',
                 'cancel'                  => 'Back',
                 'save-btn'                => 'Save Channel',
@@ -2405,15 +4323,93 @@ return [
                 'settings'               => 'Settings',
                 'status'                 => 'Status',
                 'maintenance-mode-text'  => 'Message',
+=======
+                'allowed-ips'             => 'Allowed IPs',
+                'cancel'                  => 'Back',
+                'code'                    => 'Code',
+                'create-success'          => 'Channel created successfully.',
+                'currencies'              => 'Currencies',
+                'currencies-and-locales'  => 'Currencies and Locales',
+                'default-currency'        => 'Default Currency',
+                'default-locale'          => 'Default Locale',
+                'description'             => 'Description',
+                'design'                  => 'Design',
+                'favicon'                 => 'Favicon',
+                'favicon-size'            => 'Image resolution should be like 16px X 16px',
+                'general'                 => 'General',
+                'hostname'                => 'Hostname',
+                'hostname-placeholder'    => 'https://www.example.com (Don\'t add slash in the end.)',
+                'inventory-sources'       => 'Inventory Sources',
+                'last-delete-error'       => 'At least one Channel is required.',
+                'locales'                 => 'Locales',
+                'logo'                    => 'Logo',
+                'logo-size'               => 'Image resolution should be like 192px X 50px',
+                'maintenance-mode-text'   => 'Message',
+                'name'                    => 'Name',
+                'root-category'           => 'Root Category',
+                'save-btn'                => 'Save Channel',
+                'select-default-currency' => 'Select Default Currency',
+                'select-default-locale'   => 'Select Default Locale',
+                'select-root-category'    => 'Select Root Category',
+                'select-theme'            => 'Select Theme',
+                'seo'                     => 'Home page SEO',
+                'seo-description'         => 'Meta description',
+                'seo-keywords'            => 'Meta keywords',
+                'seo-title'               => 'Meta title',
+                'settings'                => 'Settings',
+                'status'                  => 'Status',
+                'theme'                   => 'Theme',
+                'title'                   => 'Create Channel',
+            ],
+
+            'edit' => [
+                'allowed-ips'            => 'Allowed IPs',
+                'back-btn'               => 'Back',
+                'code'                   => 'Code',
+                'currencies'             => 'Currencies',
+                'currencies-and-locales' => 'Currencies and Locales',
+                'default-currency'       => 'Default Currency',
+                'default-locale'         => 'Default Locale',
+                'description'            => 'Description',
+                'design'                 => 'Design',
+                'favicon'                => 'Favicon',
+                'favicon-size'           => 'Image resolution should be like 16px X 16px',
+                'general'                => 'General',
+                'hostname'               => 'Hostname',
+                'hostname-placeholder'   => 'https://www.example.com (Don\'t add slash in the end.)',
+                'inventory-sources'      => 'Inventory Sources',
+                'last-delete-error'      => 'At least one Channel is required.',
+                'locales'                => 'Locales',
+                'logo'                   => 'Logo',
+                'logo-size'              => 'Image resolution should be like 192px X 50px',
+                'maintenance-mode'       => 'Maintenance Mode',
+                'maintenance-mode-text'  => 'Message',
+                'name'                   => 'Name',
+                'root-category'          => 'Root Category',
+                'save-btn'               => 'Save Channel',
+                'seo'                    => 'Home page SEO',
+                'seo-description'        => 'Meta description',
+                'seo-keywords'           => 'Meta keywords',
+                'seo-title'              => 'Meta title',
+                'status'                 => 'Status',
+                'theme'                  => 'Theme',
+                'title'                  => 'Edit Channel',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'update-success'         => 'Update Channel Successfully',
             ],
         ],
 
         'users' => [
             'index' => [
+<<<<<<< HEAD
                 'admin' => 'Admin',
                 'title' => 'Users',
                 'user'  => 'User',
+=======
+                'user'  => 'User',
+                'title' => 'Users',
+                'admin' => 'Admin',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 
                 'create'  => [
                     'confirm-password'  => 'Confirm Password',
@@ -2421,8 +4417,13 @@ return [
                     'name'              => 'Name',
                     'password'          => 'Password',
                     'role'              => 'Role',
+<<<<<<< HEAD
                     'status'            => 'Status',
                     'save-btn'          => 'Save User',
+=======
+                    'save-btn'          => 'Save User',
+                    'status'            => 'Status',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     'title'             => 'Create User',
                     'upload-image-info' => 'Upload a Profile Image (110px X 110px) in PNG or JPG Format',
                 ],
@@ -2431,8 +4432,13 @@ return [
                     'actions'  => 'Actions',
                     'active'   => 'Active',
                     'delete'   => 'Delete',
+<<<<<<< HEAD
                     'email'    => 'Email',
                     'edit'     => 'Edit',
+=======
+                    'edit'     => 'Edit',
+                    'email'    => 'Email',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     'id'       => 'ID',
                     'inactive' => 'Inactive',
                     'name'     => 'Name',
@@ -2453,8 +4459,13 @@ return [
                 'name'             => 'Name',
                 'password'         => 'Password',
                 'role'             => 'Role',
+<<<<<<< HEAD
                 'status'           => 'Status',
                 'save-btn'         => 'Save User',
+=======
+                'save-btn'         => 'Save User',
+                'status'           => 'Status',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'title'            => 'Edit User',
             ],
 
@@ -2465,8 +4476,13 @@ return [
             'delete-success'     => 'User deleted successfully.',
             'delete-warning'     => 'Are you sure, you want to perform this action?',
             'incorrect-password' => 'Incorrect password',
+<<<<<<< HEAD
             'login-error'        => 'Please check your credentials and try again.',
             'last-delete-error'  => 'Last User delete failed',
+=======
+            'last-delete-error'  => 'Last User delete failed',
+            'login-error'        => 'Please check your credentials and try again.',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             'update-success'     => 'User updated successfully.',
         ],
 
@@ -2476,11 +4492,19 @@ return [
                 'title'      => 'Roles',
 
                 'datagrid'  => [
+<<<<<<< HEAD
                     'delete'          => 'Delete',
                     'edit'            => 'Edit',
                     'id'              => 'Id',
                     'name'            => 'Name',
                     'permission-type' => 'Permission Type',
+=======
+                    'permission-type' => 'Permission Type',
+                    'name'            => 'Name',
+                    'id'              => 'Id',
+                    'edit'            => 'Edit',
+                    'delete'          => 'Delete',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 ],
             ],
 
@@ -2512,8 +4536,13 @@ return [
 
             'being-used'        => 'Role is already used in Admin User',
             'create-success'    => 'Roles Created Successfully',
+<<<<<<< HEAD
             'delete-success'    => 'Roles is deleted successfully',
             'delete-failed'     => 'Roles is deleted failed',
+=======
+            'delete-failed'     => 'Roles is deleted failed',
+            'delete-success'    => 'Roles is deleted successfully',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             'last-delete-error' => 'Last Roles can not be deleted',
             'update-success'    => 'Roles is updated successfully',
         ],
@@ -2527,11 +4556,19 @@ return [
                     'active'       => 'Active',
                     'channel_name' => 'Channel Name',
                     'delete'       => 'Delete',
+<<<<<<< HEAD
                     'inactive'     => 'Inactive',
                     'id'           => 'Id',
                     'name'         => 'Name',
                     'status'       => 'Status',
                     'sort-order'   => 'Sort Order',
+=======
+                    'id'           => 'Id',
+                    'inactive'     => 'Inactive',
+                    'name'         => 'Name',
+                    'sort-order'   => 'Sort Order',
+                    'status'       => 'Status',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     'type'         => 'Type',
                     'view'         => 'View',
                 ],
@@ -2548,12 +4585,17 @@ return [
                     'footer-links'      => 'Footer Links',
                     'image-carousel'    => 'Slider Carousel',
                     'product-carousel'  => 'Product Carousel',
+<<<<<<< HEAD
+=======
+                    'services-content'  => 'Services Content',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     'static-content'    => 'Static Content',
                     'title'             => 'Type',
                 ],
             ],
 
             'edit' => [
+<<<<<<< HEAD
                 'add-image-btn'                 => 'Add Image',
                 'add-filter-btn'                => 'Add Filter',
                 'add-footer-link-btn'           => 'Add Footer Link',
@@ -2605,6 +4647,77 @@ return [
                 'update-slider'                 => 'Update Slider',
                 'value-input'                   => 'Value',
                 'value'                         => 'Value: :value',
+=======
+                'add-filter-btn'                => 'Add Filter',
+                'add-footer-link-btn'           => 'Add Footer Link',
+                'add-image-btn'                 => 'Add Image',
+                'add-link'                      => 'Add Link',
+                'asc'                           => 'Asc',
+                'back'                          => 'Back',
+                'category-carousel'             => 'Category Carousel',
+                'category-carousel-description' => 'Display dynamic categories attractively using a responsive category carousel.',
+                'channels'                      => 'Channels',
+                'column'                        => 'Column',
+                'create-filter'                 => 'Create Filter',
+                'css'                           => 'CSS',
+                'delete'                        => 'Delete',
+                'desc'                          => 'Desc',
+                'edit'                          => 'Edit',
+                'filter-title'                  => 'Title',
+                'filters'                       => 'Filters',
+                'footer-link'                   => 'Footer Links',
+                'footer-link-description'       => 'Navigate via footer links for seamless website exploration and information.',
+                'footer-link-form-title'        => 'Footer Link',
+                'footer-title'                  => 'Title',
+                'general'                       => 'General',
+                'html'                          => 'HTML',
+                'image'                         => 'Image',
+                'image-size'                    => 'Image resolution should be (1920px X 700px)',
+                'image-title'                   => 'Image Title',
+                'image-upload-message'          => 'Only images (.jpeg, .jpg, .png, .webp, ..) are allowed.',
+                'key'                           => 'Key: :key',
+                'key-input'                     => 'Key',
+                'limit'                         => 'Limit',
+                'link'                          => 'Link',
+                'name'                          => 'Name',
+                'preview'                       => 'Preview',
+                'product-carousel'              => 'Product Carousel',
+                'product-carousel-description'  => 'Showcase products elegantly with a dynamic and responsive product carousel.',
+                'save-btn'                      => 'Save',
+                'select'                        => 'Select',
+                'slider'                        => 'Slider',
+                'slider-add-btn'                => 'Add Slider',
+                'slider-description'            => 'Slider related theme customization.',
+                'slider-image'                  => 'Slider Image',
+                'slider-required'               => 'Slider field is Required.',
+                'sort'                          => 'Sort',
+                'sort-order'                    => 'Sort Order',
+                'static-content'                => 'Static Content',
+                'static-content-description'    => 'Improve engagement with concise, informative static content for your audience.',
+                'status'                        => 'Status',
+                'title'                         => 'Edit Theme',
+                'update-slider'                 => 'Update Slider',
+                'url'                           => 'URL',
+                'value'                         => 'Value: :value',
+                'value-input'                   => 'Value',
+                'services-content'              => [
+                    'add-btn'            => 'Add Services',
+                    'channels'           => 'Channels',
+                    'delete'             => 'Delete',
+                    'description'        => 'Description',
+                    'general'            => 'General',
+                    'name'               => 'Name',
+                    'save-btn'           => 'Save',
+                    'service-icon'       => 'Service Icon',
+                    'service-icon-class' => 'Service Icon Class',
+                    'service-info'       => 'Service related theme customization.',
+                    'services'           => 'Services',
+                    'sort-order'         => 'Sort Order',
+                    'status'             => 'Status',
+                    'title'              => 'Title',
+                    'update-service'     => 'Update Services',
+                ],
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             ],
 
             'create-success' => 'Theme created successfully',
@@ -2620,10 +4733,17 @@ return [
                 'abandoned-products'            => 'Abandoned Products',
                 'abandoned-rate'                => 'Abandoned Rate',
                 'abandoned-revenue'             => 'Abandoned Revenue',
+<<<<<<< HEAD
                 'average-order-value-over-time' => 'Average Order Value Over Time',
                 'average-sales'                 => 'Average Order Value',
                 'added-to-cart'                 => 'Added to Cart',
                 'added-to-cart-info'            => 'Only :progress visitors added products to cart',
+=======
+                'added-to-cart'                 => 'Added to Cart',
+                'added-to-cart-info'            => 'Only :progress visitors added products to cart',
+                'average-order-value-over-time' => 'Average Order Value Over Time',
+                'average-sales'                 => 'Average Order Value',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'count'                         => 'Count',
                 'end-date'                      => 'End Date',
                 'id'                            => 'Id',
@@ -2631,18 +4751,32 @@ return [
                 'name'                          => 'Name',
                 'orders'                        => 'Orders',
                 'orders-over-time'              => 'Orders Over Time',
+<<<<<<< HEAD
                 'purchased'                     => 'Purchased',
                 'purchased-info'                => 'Only :progress visitors do the purchasing',
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'payment-method'                => 'Payment Method',
                 'product-views'                 => 'Product Views',
                 'product-views-info'            => 'Only :progress visitors view products',
                 'purchase-funnel'               => 'Purchase Funnel',
+<<<<<<< HEAD
                 'refunds'                       => 'Refunds',
                 'refunds-over-time'             => 'Refunds Over Time',
                 'sales-over-time'               => 'Sales Over Time',
                 'start-date'                    => 'Start Date',
                 'shipping-collected'            => 'Shipping Collected',
                 'shipping-collected-over-time'  => 'Shipping Collected Over Time',
+=======
+                'purchased'                     => 'Purchased',
+                'purchased-info'                => 'Only :progress visitors do the purchasing',
+                'refunds'                       => 'Refunds',
+                'refunds-over-time'             => 'Refunds Over Time',
+                'sales-over-time'               => 'Sales Over Time',
+                'shipping-collected'            => 'Shipping Collected',
+                'shipping-collected-over-time'  => 'Shipping Collected Over Time',
+                'start-date'                    => 'Start Date',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'tax-collected'                 => 'Tax Collected',
                 'tax-collected-over-time'       => 'Tax Collected Over Time',
                 'title'                         => 'Sales',
@@ -2688,32 +4822,59 @@ return [
 
         'products' => [
             'index' => [
+<<<<<<< HEAD
                 'end-date'                         => 'End Date',
                 'id'                               => 'Id',
                 'interval'                         => 'Interval',
                 'name'                             => 'Name',
                 'orders'                           => 'Orders',
                 'price'                            => 'price',
+=======
+                'channel'                          => 'Channel',
+                'end-date'                         => 'End Date',
+                'id'                               => 'Id',
+                'interval'                         => 'Interval',
+                'last-search-terms'                => 'Last Search Terms',
+                'locale'                           => 'Locale',
+                'name'                             => 'Name',
+                'orders'                           => 'Orders',
+                'price'                            => 'Price',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'products-added-over-time'         => 'Products Added Over Time',
                 'products-with-most-reviews'       => 'Products With Most Reviews',
                 'products-with-most-visits'        => 'Products With Most Visits',
                 'quantities'                       => 'Quantities',
                 'quantities-sold-over-time'        => 'Quantities Sold Over Time',
+<<<<<<< HEAD
                 'revenue'                          => 'Revenue',
                 'reviews'                          => 'Reviews',
                 'start-date'                       => 'Start Date',
                 'title'                            => 'Products',
+=======
+                'results'                          => 'Results',
+                'revenue'                          => 'Revenue',
+                'reviews'                          => 'Reviews',
+                'search-term'                      => 'Search Term',
+                'start-date'                       => 'Start Date',
+                'title'                            => 'Products',
+                'top-search-terms'                 => 'Top Search Terms',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'top-selling-products-by-quantity' => 'Top Selling Products By Quantity',
                 'top-selling-products-by-revenue'  => 'Top Selling Products By Revenue',
                 'total'                            => 'Total',
                 'total-products-added-to-wishlist' => 'Products Added To Wishlist',
                 'total-sold-quantities'            => 'Sold Products Quantity',
+<<<<<<< HEAD
+=======
+                'uses'                             => 'Uses',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'view-details'                     => 'View Details',
                 'visits'                           => 'Visits',
             ],
         ],
 
         'view' => [
+<<<<<<< HEAD
             'day'        => 'Day',
             'end-date'   => 'End Date',
             'export-csv' => 'Export CSV',
@@ -2721,6 +4882,16 @@ return [
             'month'      => 'Month',
             'start-date' => 'Start Date',
             'year'       => 'Year',
+=======
+            'day'           => 'Day',
+            'end-date'      => 'End Date',
+            'export-csv'    => 'Export CSV',
+            'export-xls'    => 'Export XLS',
+            'month'         => 'Month',
+            'not-available' => 'No Records Available.',
+            'start-date'    => 'Start Date',
+            'year'          => 'Year',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         ],
 
         'empty' => [
@@ -2731,9 +4902,16 @@ return [
 
     'configuration' => [
         'index' => [
+<<<<<<< HEAD
             'delete'                       => 'Delete',
             'enable-at-least-one-shipping' => 'Enable at least one shipping method.',
             'enable-at-least-one-payment'  => 'Enable at least one payment method.',
+=======
+            'back-btn'                     => 'Back',
+            'delete'                       => 'Delete',
+            'enable-at-least-one-payment'  => 'Enable at least one payment method.',
+            'enable-at-least-one-shipping' => 'Enable at least one shipping method.',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             'save-btn'                     => 'Save Configuration',
             'save-message'                 => 'Configuration saved successfully',
             'title'                        => 'Configuration',
@@ -2785,6 +4963,51 @@ return [
                         'title-info'      => 'Admin logo is the distinctive image or emblem representing the administration interface of a system or website, often customizable.',
                     ],
                 ],
+<<<<<<< HEAD
+=======
+
+                'magic-ai' => [
+                    'info'  => 'Set Magic AI options.',
+                    'title' => 'Magic AI',
+
+                    'settings' => [
+                        'api-key'      => 'API Key',
+                        'enabled'      => 'Enabled',
+                        'organization' => 'Organization',
+                        'title'        => 'General Settings',
+                        'title-info'   => 'Enhance your experience with the Magic AI feature by entering your exclusive API Key and indicating the pertinent Organization for effortless integration. Seize command over your OpenAI credentials and customize the settings according to your specific needs.',
+                    ],
+
+                    'content-generation' => [
+                        'category-description-prompt'      => 'Category Description Prompt',
+                        'cms-page-content-prompt'          => 'CMS Page Content Prompt',
+                        'enabled'                          => 'Enabled',
+                        'product-description-prompt'       => 'Product Description Prompt',
+                        'product-short-description-prompt' => 'Product Short Description Prompt',
+                        'title'                            => 'Content Generation',
+                        'title-info'                       => 'This feature will enable the Magic AI for every WYSIWYG editor, where you want to mange content using AI.<br/><br/>When Enable, go to any editor to generate content.',
+                    ],
+
+                    'image-generation' => [
+                        'enabled'    => 'Enabled',
+                        'title'      => 'Image Generation',
+                        'title-info' => 'This feature will enable the Magic AI for every image upload, where you want to generate images using DALL-E.<br/><br/>When Enable, go to any image upload to generate image.',
+                    ],
+
+                    'review-translation' => [
+                        'enabled'    => 'Enabled',
+                        'title'      => 'Review Translation',
+                        'title-info' => 'Provide option to customer or visitor to translate customer review into english.<br/><br/>When enable, go to review and you will find the button ‘Translate to English’ if you review other then English.',
+                    ],
+
+                    'checkout-message' => [
+                        'enabled'    => 'Enabled',
+                        'prompt'     => 'Prompt',
+                        'title'      => 'Personalized Checkout Message',
+                        'title-info' => 'Craft a personalized checkout message for customers on the Thank-You page, tailoring the content to resonate with individual preferences and enhancing the overall post-purchase experience.',
+                    ],
+                ],
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             ],
 
             'catalog' => [
@@ -2828,6 +5051,7 @@ return [
 
                     'storefront' => [
                         'buy-now-button-display' => 'Allow customers to directly buy products',
+<<<<<<< HEAD
                         'comma-separated'        => 'Comma Separated',
                         'cheapest-first'         => 'Cheapest First',
                         'default-list-mode'      => 'Default List Mode',
@@ -2843,6 +5067,23 @@ return [
                         'products-per-page'      => 'Products Per Page',
                         'sort-by'                => 'Sort By',
                         'search-mode'            => 'Search Mode',
+=======
+                        'cheapest-first'         => 'Cheapest First',
+                        'comma-separated'        => 'Comma Separated',
+                        'database'               => 'Database',
+                        'default-list-mode'      => 'Default List Mode',
+                        'elastic'                => 'Elastic Search',
+                        'expensive-first'        => 'Expensive First',
+                        'from-a-z'               => 'From A-Z',
+                        'from-z-a'               => 'From Z-A',
+                        'grid'                   => 'Grid',
+                        'latest-first'           => 'Newest First',
+                        'list'                   => 'List',
+                        'oldest-first'           => 'Oldest First',
+                        'products-per-page'      => 'Products Per Page',
+                        'search-mode'            => 'Search Mode',
+                        'sort-by'                => 'Sort By',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                         'title'                  => 'Storefront',
                         'title-info'             => 'Storefront is the customer-facing interface of an online shop, showcasing products, categories, and navigation for a seamless shopping experience.',
                     ],
@@ -2862,10 +5103,17 @@ return [
                     ],
 
                     'large-image' => [
+<<<<<<< HEAD
                         'width'      => 'Width',
                         'height'     => 'Height',
                         'title'      => 'Large image',
                         'title-info' => 'Large image represents a high-resolution picture providing enhanced detail and visual impact, often used for showcasing products or graphics.',
+=======
+                        'height'     => 'Height',
+                        'title'      => 'Large image',
+                        'title-info' => 'Large image represents a high-resolution picture providing enhanced detail and visual impact, often used for showcasing products or graphics.',
+                        'width'      => 'Width',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     ],
 
                     'review' => [
@@ -2882,6 +5130,7 @@ return [
                     ],
 
                     'social-share' => [
+<<<<<<< HEAD
                         'enable-social-share'    => 'Enable Social Share?',
                         'enable-share-facebook'  => 'Enable Share in Facebook?',
                         'enable-share-twitter'   => 'Enable Share in Twitter?',
@@ -2891,6 +5140,17 @@ return [
                         'enable-share-email'     => 'Enable Share in Email?',
                         'share-message'          => 'Share Message',
                         'share'                  => 'Share',
+=======
+                        'enable-share-email'     => 'Enable Share in Email?',
+                        'enable-share-facebook'  => 'Enable Share in Facebook?',
+                        'enable-share-linkedin'  => 'Enable Share in Linkedin?',
+                        'enable-share-pinterest' => 'Enable Share in Pinterest?',
+                        'enable-share-twitter'   => 'Enable Share in Twitter?',
+                        'enable-share-whatsapp'  => 'Enable Share in What\'s App?',
+                        'enable-social-share'    => 'Enable Social Share?',
+                        'share'                  => 'Share',
+                        'share-message'          => 'Share Message',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                         'title'                  => 'Social Share',
                         'title-info'             => 'Sharing things from a website with friends on social media platforms like Facebook, Twitter, or Instagram.',
                     ],
@@ -2902,6 +5162,7 @@ return [
 
                     'products' => [
                         'enable'          => 'Enable',
+<<<<<<< HEAD
                         'show-weight'     => 'Show Weight',
                         'show-categories' => 'Show Categories',
                         'show-images'     => 'Show Images',
@@ -2909,15 +5170,31 @@ return [
                         'show-ratings'    => 'Show Ratings',
                         'show-offers'     => 'Show Offers',
                         'show-sku'        => 'Show SKU',
+=======
+                        'show-categories' => 'Show Categories',
+                        'show-images'     => 'Show Images',
+                        'show-offers'     => 'Show Offers',
+                        'show-ratings'    => 'Show Ratings',
+                        'show-reviews'    => 'Show Reviews',
+                        'show-sku'        => 'Show SKU',
+                        'show-weight'     => 'Show Weight',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                         'title'           => 'Products',
                         'title-info'      => 'Items available for purchase or use, offered by a business or seller.',
                     ],
 
                     'categories' => [
+<<<<<<< HEAD
                         'enable'                  => 'Enable',
                         'show-search-input-field' => 'Show Search Input Field',
                         'title'                   => 'Categories',
                         'title-info'              => '"Categories" refer to groups or classifications that help organize and group similar products or items together for easier browsing and navigation.',
+=======
+                        'title-info'              => '"Categories" refer to groups or classifications that help organize and group similar products or items together for easier browsing and navigation.',
+                        'title'                   => 'Categories',
+                        'show-search-input-field' => 'Show Search Input Field',
+                        'enable'                  => 'Enable',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     ],
                 ],
             ],
@@ -2931,8 +5208,13 @@ return [
                     'title' => 'Address',
 
                     'requirements' => [
+<<<<<<< HEAD
                         'country'    => 'Country',
                         'city'       => 'City',
+=======
+                        'city'       => 'City',
+                        'country'    => 'Country',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                         'state'      => 'State',
                         'title'      => 'Requirements',
                         'title-info' => 'Requirements are the conditions, features, or specifications necessary for something to be fulfilled, achieved, or met successfully.',
@@ -2982,10 +5264,17 @@ return [
 
                     'social-login' => [
                         'enable-facebook'   => 'Enable Facebook',
+<<<<<<< HEAD
                         'enable-twitter'    => 'Enable Twitter',
                         'enable-google'     => 'Enable Google',
                         'enable-linkedin'   => 'Enable LinkedIn',
                         'enable-github'     => 'Enable Github',
+=======
+                        'enable-github'     => 'Enable Github',
+                        'enable-google'     => 'Enable Google',
+                        'enable-linkedin'   => 'Enable LinkedIn',
+                        'enable-twitter'    => 'Enable Twitter',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                         'social-login'      => 'Social Login',
                         'social-login-info' => '"Social login" enables users to access websites using their social media accounts, streamlining registration and login processes for convenience.',
                     ],
@@ -2997,10 +5286,17 @@ return [
                 'title' => 'Email',
 
                 'email-settings' => [
+<<<<<<< HEAD
                     'admin-name'             => 'Admin Name',
                     'admin-name-tip'         => 'This name will be displayed in all admin emails',
                     'admin-email'            => 'Admin Email',
                     'admin-email-tip'        => 'The email address of the admin for this channel to receive emails',
+=======
+                    'admin-email'            => 'Admin Email',
+                    'admin-email-tip'        => 'The email address of the admin for this channel to receive emails',
+                    'admin-name'             => 'Admin Name',
+                    'admin-name-tip'         => 'This name will be displayed in all admin emails',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     'admin-page-limit'       => 'Default Items Per Page (Admin)',
                     'email-sender-name'      => 'Email Sender Name',
                     'email-sender-name-tip'  => 'This name will be displayed in the customers inbox',
@@ -3011,6 +5307,7 @@ return [
                 ],
 
                 'notifications' => [
+<<<<<<< HEAD
                     'customer-registration-confirmation-mail-to-admin' => 'Send a confirmation e-mail to admin after customer registration',
                     'customer'                                         => 'Send the customer account credentials after registration',
                     'cancel-order'                                     => 'Send a notification after canceling an order',
@@ -3021,6 +5318,18 @@ return [
                     'new-refund'                                       => 'Send a notification e-mail to the customer after creating a refund',
                     'new-shipment'                                     => 'Send a notification e-mail to the customer after creating a shipment',
                     'new-inventory-source'                             => 'Send a notification e-mail to the inventory source after creating a shipment',
+=======
+                    'cancel-order'                                     => 'Send a notification after canceling an order',
+                    'customer'                                         => 'Send the customer account credentials after registration',
+                    'customer-registration-confirmation-mail-to-admin' => 'Send a confirmation e-mail to admin after customer registration',
+                    'info'                                             => '"Notification" is a message or alert that informs users about events, updates, or actions, enhancing user engagement and awareness.',
+                    'new-admin'                                        => 'Send a confirmation e-mail to the admin after placing a new order',
+                    'new-inventory-source'                             => 'Send a notification e-mail to the inventory source after creating a shipment',
+                    'new-invoice'                                      => 'Send a notification e-mail to the customer after creating a new invoice',
+                    'new-order'                                        => 'Send a confirmation e-mail to the customer after placing a new order',
+                    'new-refund'                                       => 'Send a notification e-mail to the customer after creating a refund',
+                    'new-shipment'                                     => 'Send a notification e-mail to the customer after creating a shipment',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     'registration'                                     => 'Send a confirmation e-mail after customer registration',
                     'title'                                            => 'Notifications',
                     'verification'                                     => 'Send a verification e-mail after customer registration',
@@ -3037,12 +5346,21 @@ return [
 
                     'origin' => [
                         'bank-details'   => 'Bank Details',
+<<<<<<< HEAD
                         'contact-number' => 'Contact Number',
                         'city'           => 'City',
                         'country'        => 'Country',
                         'state'          => 'State',
                         'street-address' => 'Street Address',
                         'store-name'     => 'Store Name',
+=======
+                        'city'           => 'City',
+                        'contact-number' => 'Contact Number',
+                        'country'        => 'Country',
+                        'state'          => 'State',
+                        'store-name'     => 'Store Name',
+                        'street-address' => 'Street Address',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                         'title'          => 'Origin',
                         'title-info'     => 'Shipping origin refers to the location where goods or products originate before being transported to their destination.',
                         'vat-number'     => 'Vat Number',
@@ -3058,8 +5376,13 @@ return [
                         'description' => 'Description',
                         'page-title'  => 'Free Shipping',
                         'status'      => 'Status',
+<<<<<<< HEAD
                         'title-info'  => '"Free shipping" refers to a shipping method where the cost of shipping is waived, and the seller covers the shipping expenses for delivering goods to the buyer.',
                         'title'       => 'Title',
+=======
+                        'title'       => 'Title',
+                        'title-info'  => '"Free shipping" refers to a shipping method where the cost of shipping is waived, and the seller covers the shipping expenses for delivering goods to the buyer.',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     ],
 
                     'flat-rate-shipping' => [
@@ -3074,6 +5397,7 @@ return [
                 ],
 
                 'payment-methods' => [
+<<<<<<< HEAD
                     'page-title'                     => 'Payment Methods',
                     'info'                           => 'Set payment methods information',
                     'cash-on-delivery'               => 'Cash On Delivery',
@@ -3099,13 +5423,48 @@ return [
                     'paypal-standard-info'           => 'PayPal Standard is a basic PayPal payment option for online businesses, enabling customers to pay using their PayPal accounts or credit/debit cards.',
                     'paypal-smart-button'            => 'PayPal',
                     'paypal-smart-button-info'       => 'PayPal Smart Button: Simplifies online payments with customizable buttons for secure, multi-method transactions on websites and apps.',
+=======
+                    'accepted-currencies'            => 'Accepted currencies',
+                    'accepted-currencies-info'       => 'Add currency code comma separated e.g. USD,INR,...',
+                    'business-account'               => 'Business Account',
+                    'cash-on-delivery'               => 'Cash On Delivery',
+                    'cash-on-delivery-info'          => 'Payment method where customers pay in cash upon receiving goods or services at their doorstep.',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     'client-id'                      => 'Client ID',
                     'client-id-info'                 => 'Use "sb" for testing.',
                     'client-secret'                  => 'Client Secret',
                     'client-secret-info'             => 'Add your secret key here',
+<<<<<<< HEAD
                     'accepted-currencies'            => 'Accepted currencies',
                     'accepted-currencies-info'       => 'Add currency code comma separated e.g. USD,INR,...',
                     'business-account'               => 'Business Account',
+=======
+                    'description'                    => 'Description',
+                    'generate-invoice'               => 'Automatically generate the invoice after placing an order',
+                    'generate-invoice-applicable'    => 'Applicable if automatic generate invoice is enabled',
+                    'info'                           => 'Set payment methods information',
+                    'instructions'                   => 'Instructions',
+                    'logo'                           => 'Logo',
+                    'logo-information'               => 'Image resolution should be like 55px X 45px',
+                    'mailing-address'                => 'Send Check to',
+                    'money-transfer'                 => 'Money Transfer',
+                    'money-transfer-info'            => 'Transfer of funds from one person or account to another, often electronically, for various purposes such as transactions or remittances.',
+                    'page-title'                     => 'Payment Methods',
+                    'paid'                           => 'Paid',
+                    'paypal-smart-button'            => 'PayPal',
+                    'paypal-smart-button-info'       => 'PayPal Smart Button: Simplifies online payments with customizable buttons for secure, multi-method transactions on websites and apps.',
+                    'paypal-standard'                => 'PayPal Standard',
+                    'paypal-standard-info'           => 'PayPal Standard is a basic PayPal payment option for online businesses, enabling customers to pay using their PayPal accounts or credit/debit cards.',
+                    'pending'                        => 'Pending',
+                    'pending-payment'                => 'Pending Payment',
+                    'processing'                     => 'Processing',
+                    'sandbox'                        => 'Sandbox',
+                    'set-invoice-status'             => 'Set the invoice status after creating the invoice to',
+                    'set-order-status'               => 'Set the order status after creating the invoice to',
+                    'sort-order'                     => 'Sort Order',
+                    'status'                         => 'Status',
+                    'title'                          => 'Title',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 ],
 
                 'order-settings' => [
@@ -3113,12 +5472,21 @@ return [
                     'title' => 'Order Settings',
 
                     'order-number' => [
+<<<<<<< HEAD
                         'generator'   => 'Order Number Generator',
                         'length'      => 'Order Number Length',
                         'prefix'      => 'Order Number Prefix',
                         'suffix'      => 'Order Number Suffix',
                         'title'       => 'Order Number Settings',
                         'title-info'  => 'Unique identifier assigned to a specific customer order, aiding tracking, communication, and reference throughout the purchasing process.',
+=======
+                        'title-info'  => 'Unique identifier assigned to a specific customer order, aiding tracking, communication, and reference throughout the purchasing process.',
+                        'title'       => 'Order Number Settings',
+                        'suffix'      => 'Order Number Suffix',
+                        'prefix'      => 'Order Number Prefix',
+                        'length'      => 'Order Number Length',
+                        'generator'   => 'Order Number Generator',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     ],
 
                     'minimum-order' => [
@@ -3192,8 +5560,13 @@ return [
     'components' => [
         'layouts' => [
             'header' => [
+<<<<<<< HEAD
                 'app-version'   => 'Version : :version',
                 'account-title' => 'Account',
+=======
+                'account-title' => 'Account',
+                'app-version'   => 'Version : :version',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'logout'        => 'Logout',
                 'my-account'    => 'My Account',
                 'notifications' => 'Notifications',
@@ -3202,6 +5575,7 @@ return [
                 'mega-search' => [
                     'categories'                      => 'Categories',
                     'customers'                       => 'Customers',
+<<<<<<< HEAD
                     'explore-all-matching-products'   => 'Explore all products matching “:query” (:count)',
                     'explore-all-products'            => 'Explore all products',
                     'explore-all-matching-orders'     => 'Explore all Orders matching “:query” (:count)',
@@ -3210,6 +5584,16 @@ return [
                     'explore-all-categories'          => 'Explore all categories',
                     'explore-all-matching-customers'  => 'Explore all customers matching “:query” (:count)',
                     'explore-all-customers'           => 'Explore all customers',
+=======
+                    'explore-all-categories'          => 'Explore all categories',
+                    'explore-all-customers'           => 'Explore all customers',
+                    'explore-all-matching-categories' => 'Explore all categories matching “:query” (:count)',
+                    'explore-all-matching-customers'  => 'Explore all customers matching “:query” (:count)',
+                    'explore-all-matching-orders'     => 'Explore all Orders matching “:query” (:count)',
+                    'explore-all-matching-products'   => 'Explore all products matching “:query” (:count)',
+                    'explore-all-orders'              => 'Explore all Orders',
+                    'explore-all-products'            => 'Explore all products',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     'orders'                          => 'Orders',
                     'products'                        => 'Products',
                     'sku'                             => 'SKU: :sku',
@@ -3218,6 +5602,7 @@ return [
             ],
 
             'sidebar' => [
+<<<<<<< HEAD
                 'attributes'               => 'Attributes',
                 'attribute-families'       => 'Attribute Families',
                 'collapse'                 => 'Collapse',
@@ -3232,12 +5617,33 @@ return [
                 'cms'                      => 'CMS',
                 'discount'                 => 'Discount',
                 'dashboard'                => 'Dashboard',
+=======
+                'attribute-families'       => 'Attribute Families',
+                'attributes'               => 'Attributes',
+                'campaigns'                => 'Campaigns',
+                'catalog'                  => 'Catalog',
+                'categories'               => 'Categories',
+                'channels'                 => 'Channels',
+                'cms'                      => 'CMS',
+                'collapse'                 => 'Collapse',
+                'communications'           => 'Communications',
+                'configure'                => 'Configure',
+                'currencies'               => 'Currencies',
+                'customers'                => 'Customers',
+                'dashboard'                => 'Dashboard',
+                'discount'                 => 'Discount',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'email-templates'          => 'Email Templates',
                 'events'                   => 'Events',
                 'exchange-rates'           => 'Exchange Rates',
                 'groups'                   => 'Groups',
+<<<<<<< HEAD
                 'invoices'                 => 'Invoices',
                 'inventory-sources'        => 'Inventory Sources',
+=======
+                'inventory-sources'        => 'Inventory Sources',
+                'invoices'                 => 'Invoices',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'locales'                  => 'Locales',
                 'marketing'                => 'Marketing',
                 'mode'                     => 'Dark Mode',
@@ -3245,6 +5651,7 @@ return [
                 'orders'                   => 'Orders',
                 'products'                 => 'Products',
                 'promotions'               => 'Promotions',
+<<<<<<< HEAD
                 'reporting'                => 'Reporting',
                 'refunds'                  => 'Refunds',
                 'reviews'                  => 'Reviews',
@@ -3257,22 +5664,53 @@ return [
                 'tax-categories'           => 'Tax Categories',
                 'tax-rates'                => 'Tax Rates',
                 'transactions'             => 'Transactions',
+=======
+                'refunds'                  => 'Refunds',
+                'reporting'                => 'Reporting',
+                'reviews'                  => 'Reviews',
+                'roles'                    => 'Roles',
+                'sales'                    => 'Sales',
+                'search-seo'               => 'Search & SEO',
+                'search-synonyms'          => 'Search Synonyms',
+                'search-terms'             => 'Search Terms',
+                'settings'                 => 'Settings',
+                'shipments'                => 'Shipments',
+                'sitemaps'                 => 'Sitemaps',
+                'tax-categories'           => 'Tax Categories',
+                'tax-rates'                => 'Tax Rates',
+                'taxes'                    => 'Taxes',
+                'themes'                   => 'Themes',
+                'transactions'             => 'Transactions',
+                'url-rewrites'             => 'URL Rewrites',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'users'                    => 'Users',
             ],
         ],
 
         'datagrid' => [
             'index' => [
+<<<<<<< HEAD
                 'must-select-a-mass-action'        => 'You must select a mass action.',
                 'must-select-a-mass-action-option' => 'You must select a mass action\'s option.',
                 'no-records-selected'              => 'No records have been selected.',
+=======
+                'no-records-selected'              => 'No records have been selected.',
+                'must-select-a-mass-action-option' => 'You must select a mass action\'s option.',
+                'must-select-a-mass-action'        => 'You must select a mass action.',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             ],
 
             'toolbar' => [
                 'mass-actions' => [
+<<<<<<< HEAD
                     'select-action' => 'Select Action',
                     'select-option' => 'Select Option',
                     'submit'        => 'Submit',
+=======
+                    'submit'        => 'Submit',
+                    'select-option' => 'Select Option',
+                    'select-action' => 'Select Action',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 ],
 
                 'filter' => [
@@ -3307,12 +5745,21 @@ return [
 
                 'date-options' => [
                     'last-month'        => 'Last Month',
+<<<<<<< HEAD
                     'last-three-months' => 'Last 3 Months',
                     'last-six-months'   => 'Last 6 Months',
                     'today'             => 'Today',
                     'this-week'         => 'This Week',
                     'this-month'        => 'This Month',
                     'this-year'         => 'This Year',
+=======
+                    'last-six-months'   => 'Last 6 Months',
+                    'last-three-months' => 'Last 3 Months',
+                    'this-month'        => 'This Month',
+                    'this-week'         => 'This Week',
+                    'this-year'         => 'This Year',
+                    'today'             => 'Today',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     'yesterday'         => 'Yesterday',
                 ],
             ],
@@ -3334,21 +5781,60 @@ return [
 
         'products' => [
             'search' => [
+<<<<<<< HEAD
                 'add-btn'     => 'Add Selected Product',
                 'empty-title' => 'No products found',
                 'empty-info'  => 'No products available for search term.',
                 'qty'         => ':qty Available',
                 'sku'         => 'SKU - :sku',
                 'title'       => 'Select Products',
+=======
+                'add-btn'       => 'Add Selected Product',
+                'empty-info'    => 'No products available for search term.',
+                'empty-title'   => 'No products found',
+                'product-image' => 'Product Image',
+                'qty'           => ':qty Available',
+                'sku'           => 'SKU - :sku',
+                'title'         => 'Select Products',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             ],
         ],
 
         'media' => [
             'images' => [
                 'add-image-btn'     => 'Add Image',
+<<<<<<< HEAD
                 'allowed-types'     => 'png, jpeg, jpg',
                 'not-allowed-error' => 'Only images files (.jpeg, .jpg, .png, ..) are allowed.',
 
+=======
+                'ai-add-image-btn'  => 'Magic AI',
+                'ai-btn-info'       => 'Generate Image',
+                'allowed-types'     => 'png, jpeg, jpg',
+                'not-allowed-error' => 'Only images files (.jpeg, .jpg, .png, ..) are allowed.',
+
+                'ai-generation' => [
+                    '1024x1024'        => '1024x1024',
+                    '1024x1792'        => '1024x1792',
+                    '1792x1024'        => '1792x1024',
+                    'apply'            => 'Apply',
+                    'dall-e-2'         => 'Dall.E 2',
+                    'dall-e-3'         => 'Dall.E 3',
+                    'generate'         => 'Generate',
+                    'generating'       => 'Generating...',
+                    'hd'               => 'HD',
+                    'model'            => 'Model',
+                    'number-of-images' => 'Number of Images',
+                    'prompt'           => 'Prompt',
+                    'quality'          => 'Quality',
+                    'regenerate'       => 'Regenerate',
+                    'regenerating'     => 'Regenerating...',
+                    'size'             => 'Size',
+                    'standard'         => 'Standard',
+                    'title'            => 'AI Image Generation',
+                ],
+
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'placeholders'  => [
                     'front'     => 'Front',
                     'next'      => 'Next',
@@ -3364,6 +5850,7 @@ return [
                 'not-allowed-error' => 'Only videos files (.mp4, .mov, .ogg ..) are allowed.',
             ],
         ],
+<<<<<<< HEAD
     ],
 
     'acl' => [
@@ -3396,6 +5883,52 @@ return [
         'locales'                  => 'Locales',
         'mass-delete'              => 'Mass Delete',
         'mass-update'              => 'Mass Update',
+=======
+
+        'tinymce' => [
+            'ai-btn-tile' => 'Magic AI',
+
+            'ai-generation' => [
+                'apply'                  => 'Apply',
+                'generate'               => 'Generate',
+                'generated-content'      => 'Generated Content',
+                'generated-content-info' => 'AI content can be misleading. Please review the generated content before applying it.',
+                'generating'             => 'Generating...',
+                'prompt'                 => 'Prompt',
+                'title'                  => 'AI Assistance',
+            ],
+        ],
+    ],
+
+    'acl' => [
+        'addresses'                => 'Addresses',
+        'attribute-families'       => 'Attribute Families',
+        'attributes'               => 'Attributes',
+        'campaigns'                => 'Campaigns',
+        'cancel'                   => 'Cancel',
+        'cart-rules'               => 'Cart Rules',
+        'catalog'                  => 'Catalog',
+        'catalog-rules'            => 'Catalog Rules',
+        'categories'               => 'Categories',
+        'channels'                 => 'Channels',
+        'cms'                      => 'CMS',
+        'communications'           => 'Communications',
+        'configure'                => 'Configure',
+        'copy'                     => 'Copy',
+        'create'                   => 'Add',
+        'currencies'               => 'Currencies',
+        'customers'                => 'Customers',
+        'dashboard'                => 'Dashboard',
+        'delete'                   => 'Delete',
+        'edit'                     => 'Edit',
+        'email-templates'          => 'Email Templates',
+        'events'                   => 'Events',
+        'exchange-rates'           => 'Exchange Rates',
+        'groups'                   => 'Groups',
+        'inventory-sources'        => 'Inventory Sources',
+        'invoices'                 => 'Invoices',
+        'locales'                  => 'Locales',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         'marketing'                => 'Marketing',
         'newsletter-subscriptions' => 'Newsletter Subscriptions',
         'note'                     => 'Note',
@@ -3403,6 +5936,7 @@ return [
         'products'                 => 'Products',
         'promotions'               => 'Promotions',
         'refunds'                  => 'Refunds',
+<<<<<<< HEAD
         'reviews'                  => 'Reviews',
         'roles'                    => 'Roles',
         'sales'                    => 'Sales',
@@ -3415,6 +5949,25 @@ return [
         'tax-categories'           => 'Tax Categories',
         'tax-rates'                => 'Tax Rates',
         'transactions'             => 'Transactions',
+=======
+        'reporting'                => 'Reporting',
+        'reviews'                  => 'Reviews',
+        'roles'                    => 'Roles',
+        'sales'                    => 'Sales',
+        'search-seo'               => 'Search & SEO',
+        'search-synonyms'          => 'Search Synonyms',
+        'search-terms'             => 'Search Terms',
+        'settings'                 => 'Settings',
+        'shipments'                => 'Shipments',
+        'sitemaps'                 => 'Sitemaps',
+        'subscribers'              => 'Newsletter Subscribers',
+        'tax-categories'           => 'Tax Categories',
+        'tax-rates'                => 'Tax Rates',
+        'taxes'                    => 'Taxes',
+        'themes'                   => 'Themes',
+        'transactions'             => 'Transactions',
+        'url-rewrites'             => 'URL Rewrites',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         'users'                    => 'Users',
         'view'                     => 'View',
     ],
@@ -3451,6 +6004,7 @@ return [
     ],
 
     'export' => [
+<<<<<<< HEAD
         'allowed-type'     => 'Allowed Type :',
         'csv'              => 'CSV',
         'download'         => 'Download',
@@ -3466,6 +6020,12 @@ return [
         'upload'           => 'Upload',
         'upload-error'     => 'The file must be a file of type: xls, xlsx, csv.',
         'upload-success'   => ':name Uploaded successfully',
+=======
+        'csv'              => 'CSV',
+        'download'         => 'Download',
+        'export'           => 'Export',
+        'no-records'       => 'Nothing to export',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         'xls'              => 'XLS',
     ],
 
@@ -3491,6 +6051,17 @@ return [
             ],
         ],
 
+<<<<<<< HEAD
+=======
+        'customers' => [
+            'registration' => [
+                'description' => 'A new customer account has been successfully created. They can now log in using their email address and password credentials. Once logged in, they will have access to various services, including the ability to review past orders, manage wishlists, and update their account information.',
+                'greeting'    => 'We extend a warm welcome to the new customer, :customer_name who has just registered with us!',
+                'subject'     => 'New Customer Registration',
+            ],
+        ],
+
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         'orders' => [
             'created' => [
                 'greeting' => 'You have a new Order :order_id placed on :created_at',
@@ -3500,10 +6071,17 @@ return [
             ],
 
             'invoiced' => [
+<<<<<<< HEAD
                 'subject'  => 'New Invoice Confirmation',
                 'title'    => 'Invoice Confirmation!',
                 'greeting' => 'Your invoice #:invoice_id for order :order_id created on :created_at',
                 'summary'  => 'Summary of Invoice',
+=======
+                'greeting' => 'Your invoice #:invoice_id for order :order_id created on :created_at',
+                'subject'  => 'New Invoice Confirmation',
+                'summary'  => 'Summary of Invoice',
+                'title'    => 'Invoice Confirmation!',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             ],
 
             'shipped' => [
@@ -3542,11 +6120,19 @@ return [
             'payment'           => 'Payment',
             'price'             => 'Price',
             'qty'               => 'Qty',
+<<<<<<< HEAD
             'shipping-address'  => 'Shipping Address',
             'shipping'          => 'Shipping',
             'sku'               => 'SKU',
             'subtotal'          => 'Subtotal',
             'shipping-handling' => 'Shipping Handling',
+=======
+            'shipping'          => 'Shipping',
+            'shipping-address'  => 'Shipping Address',
+            'shipping-handling' => 'Shipping Handling',
+            'sku'               => 'SKU',
+            'subtotal'          => 'Subtotal',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             'tax'               => 'Tax',
         ],
     ],

@@ -33,6 +33,7 @@
                     class="fixed inset-0 z-[10002] transform transition overflow-y-auto"
                     v-if="isOpen"
                 >
+<<<<<<< HEAD
                     <div class="flex min-h-full items-end justify-center p-[20px] sm:items-center sm:p-0">
                         <div class="w-full max-w-[400px] z-[999] absolute left-[50%] top-[50%] rounded-lg bg-white dark:bg-gray-900 box-shadow max-md:w-[90%] -translate-x-[50%] -translate-y-[50%]">
                             <div class="flex justify-between items-center gap-[10px] px-[16px] py-[11px] border-b-[1px] dark:border-gray-800 text-[18px] text-gray-800 dark:text-white font-bold">
@@ -44,6 +45,19 @@
                             </div>
                             
                             <div class="flex gap-[10px] justify-end px-[16px] py-[10px]">
+=======
+                    <div class="flex min-h-full items-end justify-center p-5 sm:items-center sm:p-0">
+                        <div class="w-full max-w-[400px] z-[999] absolute left-1/2 top-1/2 rounded-lg bg-white dark:bg-gray-900 box-shadow max-md:w-[90%] -translate-x-1/2 -translate-y-1/2">
+                            <div class="flex justify-between items-center gap-2.5 px-4 py-3 border-b dark:border-gray-800 text-lg text-gray-800 dark:text-white font-bold">
+                                @{{ title }}
+                            </div>
+
+                            <div class="px-4 py-3 text-gray-600 dark:text-gray-300 text-left">
+                                @{{ message }}
+                            </div>
+                            
+                            <div class="flex gap-2.5 justify-end px-4 py-2.5">
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                 <button type="button" class="transparent-button" @click="disagree">
                                     @{{ options.btnDisagree }}
                                 </button>

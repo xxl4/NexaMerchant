@@ -14,7 +14,11 @@
         <div>
             <x-admin::datagrid.toolbar></x-admin::datagrid.toolbar>
 
+<<<<<<< HEAD
             <div class="flex mt-[16px]">
+=======
+            <div class="flex mt-4">
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 <x-admin::datagrid.table :isMultiRow="$isMultiRow">
                     <template #header>
                         <slot
@@ -26,6 +30,10 @@
                             :meta="available.meta"
                             :sort-page="sortPage"
                             :selectAllRecords="selectAllRecords"
+<<<<<<< HEAD
+=======
+                            :available="available"
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                             :applied="applied"
                             :is-loading="isLoading"
                         >
@@ -42,6 +50,10 @@
                             :meta="available.meta"
                             :setCurrentSelectionMode="setCurrentSelectionMode"
                             :performAction="performAction"
+<<<<<<< HEAD
+=======
+                            :available="available"
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                             :applied="applied"
                             :is-loading="isLoading"
                         >
@@ -105,7 +117,11 @@
                             columns: [
                                 {
                                     index: 'all',
+<<<<<<< HEAD
                                     value: @json(request()->has('search') ? [request()->get('search')] : []),
+=======
+                                    value: [],
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                 },
                             ],
                         },
@@ -126,6 +142,17 @@
                 boot() {
                     let datagrids = this.getDatagrids();
 
+<<<<<<< HEAD
+=======
+                    const urlParams = new URLSearchParams(window.location.search);
+
+                    if (urlParams.has('search')) {
+                        let searchAppliedColumn = this.findAppliedColumn('all');
+
+                        searchAppliedColumn.value = [urlParams.get('search')];
+                    }
+
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     if (datagrids?.length) {
                         const currentDatagrid = datagrids.find(({ src }) => src === this.src);
 
@@ -136,6 +163,15 @@
 
                             this.applied.filters = currentDatagrid.applied.filters;
 
+<<<<<<< HEAD
+=======
+                            if (urlParams.has('search')) {
+                                let searchAppliedColumn = this.findAppliedColumn('all');
+
+                                searchAppliedColumn.value = [urlParams.get('search')];
+                            }
+
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                             this.get();
 
                             return;
@@ -150,7 +186,11 @@
                  *
                  * @returns {void}
                  */
+<<<<<<< HEAD
                 get() {
+=======
+                get(extraParams = {}) {
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     let params = {
                         pagination: {
                             page: this.applied.pagination.page,
@@ -179,7 +219,11 @@
 
                     this.$axios
                         .get(this.src, {
+<<<<<<< HEAD
                             params
+=======
+                            params: { ...params, ...extraParams }
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                         })
                         .then((response) => {
                             /**
@@ -362,6 +406,14 @@
                         }
                     }
 
+<<<<<<< HEAD
+=======
+                    /**
+                     * We need to reset the page on filtering.
+                     */
+                    this.applied.pagination.page = 1;
+
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     this.get();
                 },
 
@@ -373,11 +425,19 @@
                      * activated. In this case, we will search for `all` indices and update the
                      * value accordingly.
                      */
+<<<<<<< HEAD
                     if (!column) {
                         let appliedColumn = this.findAppliedColumn('all');
 
                         if (!requestedValue) {
                             this.applied.filters.columns = this.applied.filters.columns.filter(column => column.index !== 'all');
+=======
+                    if (! column) {
+                        let appliedColumn = this.findAppliedColumn('all');
+
+                        if (! requestedValue) {
+                            appliedColumn.value = [];
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 
                             return;
                         }
@@ -507,7 +567,11 @@
                 setCurrentSelectionMode() {
                     this.applied.massActions.meta.mode = 'none';
 
+<<<<<<< HEAD
                     if (!this.available.records.length) {
+=======
+                    if (! this.available.records.length) {
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                         return;
                     }
 

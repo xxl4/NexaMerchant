@@ -1,15 +1,6 @@
-{{--Flash message --}}
-<x-flash-group></x-flash-group>
+<!-- Form Control Group -->
 
-<x-panel>
-    <x-slot:header>Panel Title</x-slot:header>
-
-    <x-slot:body>Panel Body</x-slot:body>
-</x-panel>
-
-{{-- Form Control Group --}}
-
-{{-- Type Text --}}
+<!-- Type Text -->
 <x-admin::form.control-group>
     <x-admin::form.control-group.label class="required">
         @lang('name')
@@ -31,7 +22,7 @@
     </x-admin::form.control-group.error>
 </x-admin::form.control-group>
 
-{{-- Type Select --}}
+<!-- Type Select -->
 <x-admin::form.control-group>
     <x-admin::form.control-group.label>
         @lang('admin::app.catalog.families.create.column')
@@ -57,13 +48,13 @@
         </option>
     </x-admin::form.control-group.control>
 
-    <x-admin::form.control-group.error 
+    <x-admin::form.control-group.error
         control-name="column"
     >
     </x-admin::form.control-group.error>
 </x-admin::form.control-group>
 
-{{--Type Checkbox --}}
+<!--Type Checkbox -->
 <x-admin::form.control-group>
     <x-admin::form.control-group.control
         type="checkbox"
@@ -81,7 +72,7 @@
     </x-admin::form.control-group.label>
 </x-admin::form.control-group>
 
-{{--Type Radio --}}
+<!--Type Radio -->
 <x-admin::form.control-group>
     <x-admin::form.control-group.control
         type="radio"
@@ -99,7 +90,7 @@
     </x-admin::form.control-group.label>
 </x-admin::form.control-group>
 
-{{-- basic/traditional form  --}}
+<!-- basic/traditional form  -->
 <x-admin::form action="">
     <x-admin::form.control-group>
         <x-admin::form.control-group.label>
@@ -123,7 +114,7 @@
     </x-admin::form.control-group>
 </x-admin::form>
 
-{{-- customized/ajax form --}}
+<!-- customized/ajax form -->
 <x-admin::form
     v-slot="{ meta, errors, handleSubmit }"
     as="div"
@@ -154,7 +145,7 @@
     </form>
 </x-admin::form>
 
-{{-- Accordion Component --}}
+<!-- Accordion Component -->
 <x-admin::accordion title="Test Accordion">
     <x-slot:header>
         Accordion Header
@@ -165,7 +156,7 @@
     </x-slot:content>
 </x-admin::accordion>
 
-{{-- Modal Component --}}
+<!-- Modal Component -->
 <x-admin::modal>
     <x-slot:toggle>
         Modal Toggle
@@ -180,7 +171,7 @@
     </x-slot:content>
 </x-admin::modal>
 
-{{-- Drawer Component --}}
+<!-- Drawer Component -->
 <x-admin::drawer>
     <x-slot:toggle>
         Drawer Toggle
@@ -195,7 +186,7 @@
     </x-slot:content>
 </x-admin::drawer>
 
-{{-- Dropdown Component--}}
+<!-- Dropdown Component-->
 <x-admin::dropdown>
     <x-slot:toggle>
         Toogle
@@ -206,7 +197,7 @@
     </x-slot:content>
 </x-admin::dropdown>
 
-{{-- Tinymce Component --}}
+<!-- Tinymce Component -->
 <x-admin::form.control-group>
     <x-admin::form.control-group.label>
         Content
@@ -230,30 +221,30 @@
     </x-admin::form.control-group.error>
 </x-admin::form.control-group>
 
-{{-- SEO Title & Description Blade Componnet --}}
+<!-- SEO Title & Description Blade Componnet -->
 <x-admin::seo/>
 
-{{-- Star Rating Component --}}
-<x-admin::star-rating 
+<!-- Star Rating Component -->
+<x-admin::star-rating
     :is-editable="false"
     :value="$review->rating"
 >
 </x-admin::star-rating>
 
-{{-- Exportdatagrid Component--}}
-<x-admin::datagrid.export 
+<!-- Exportdatagrid Component-->
+<x-admin::datagrid.export
     src=""
 >
 </x-admin::datagrid.export>
 
-{{-- Datagrid Component --}}
-<x-admin::datagrid 
-    :src="route('admin.sales.orders.index')" 
+<!-- Datagrid Component -->
+<x-admin::datagrid
+    :src="route('admin.sales.orders.index')"
     :isMultiRow="true"
 >
 </x-admin::datagrid>
 
-{{-- Image Blade Component --}}
+<!-- Image Blade Component -->
 <x-admin::media.images
     name="images[files]"
     allow-multiple="true"
@@ -262,7 +253,7 @@
 >
 </x-admin::media.images>
 
-{{-- Video Blade Component --}}
+<!-- Video Blade Component -->
 <x-admin::media.videos
     name="videos[files]"
     :allow-multiple="true"
@@ -270,16 +261,40 @@
 >
 </x-admin::media.videos>
 
-{{-- Tree Component --}}
+<!-- Radio Tree Component -->
+<x-admin::tree.view
+    input-type="radio"
+    name-field="parent_id"
+    value-field="id"
+    id-field="id"
+    :items="json_encode($availableItems)"
+    :value="$savedValue"
+    :fallback-locale="config('app.fallback_locale')"
+>
+</x-admin::tree.view>
 
+<!-- Checkbox Tree Component | Individual -->
 <x-admin::tree.view
     input-type="checkbox"
-    name-field="categories"
-    id-field="id"
-    value-field="id"
-    ::items="categories"
-    :value="json_encode($product->categories->pluck('id'))"
-    behavior="no"
+    selection-type="hierarchical"
+    name-field="parent_id"
+    value-field="key"
+    id-field="key"
+    :items="json_encode($availableItems)"
+    :value="json_encode($savedValues)"
+    :fallback-locale="config('app.fallback_locale')"
+>
+</x-admin::tree.view>
+
+<!-- Checkbox Tree Component | Hierarchical -->
+<x-admin::tree.view
+    input-type="checkbox"
+    selection-type="hierarchical"
+    name-field="parent_id"
+    value-field="key"
+    id-field="key"
+    :items="json_encode($availableItems)"
+    :value="json_encode($savedValues)"
     :fallback-locale="config('app.fallback_locale')"
 >
 </x-admin::tree.view>

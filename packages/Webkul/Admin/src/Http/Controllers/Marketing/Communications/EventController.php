@@ -4,9 +4,15 @@ namespace Webkul\Admin\Http\Controllers\Marketing\Communications;
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Event;
+<<<<<<< HEAD
 use Webkul\Admin\Http\Controllers\Controller;
 use Webkul\Marketing\Repositories\EventRepository;
 use Webkul\Admin\DataGrids\Marketing\Communications\EventDataGrid;
+=======
+use Webkul\Admin\DataGrids\Marketing\Communications\EventDataGrid;
+use Webkul\Admin\Http\Controllers\Controller;
+use Webkul\Marketing\Repositories\EventRepository;
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 
 class EventController extends Controller
 {
@@ -51,7 +57,11 @@ class EventController extends Controller
         $event = $this->eventRepository->create(request()->only([
             'name',
             'description',
+<<<<<<< HEAD
             'date'
+=======
+            'date',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         ]));
 
         Event::dispatch('marketing.events.create.after', $event);
@@ -65,7 +75,10 @@ class EventController extends Controller
      * Event Details
      *
      * @param  int  $id
+<<<<<<< HEAD
      * @return \Illuminate\Http\JsonResponse
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      */
     public function edit($id): JsonResponse
     {
@@ -100,7 +113,11 @@ class EventController extends Controller
         $event = $this->eventRepository->update(request()->only([
             'name',
             'description',
+<<<<<<< HEAD
             'date'
+=======
+            'date',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         ]), $id);
 
         Event::dispatch('marketing.events.update.after', $event);
@@ -113,7 +130,11 @@ class EventController extends Controller
     /**
      * Remove the specified resource from storage.
      *
+<<<<<<< HEAD
      * @param int $id
+=======
+     * @param  int  $id
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      * @return \Illuminate\Http\JsonResponse
      */
     public function destroy($id)

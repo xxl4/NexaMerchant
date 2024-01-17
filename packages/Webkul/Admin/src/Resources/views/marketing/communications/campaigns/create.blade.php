@@ -1,24 +1,44 @@
 <x-admin::layouts>
+<<<<<<< HEAD
     {{-- Title of the page --}}
     <x-slot:title>
         @lang('admin::app.marketing.communications.campaigns.create.title')
     </x-slot:title>
+=======
+    <!-- Title of the page -->
+    <x-slot:title>
+        @lang('admin::app.marketing.communications.campaigns.create.title')
+    </x-slot>
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
     
 
     {!! view_render_event('bagisto.admin.marketing.communications.campaigns.create.before') !!}
 
+<<<<<<< HEAD
     {{-- Input Form --}}
+=======
+    <!-- Input Form -->
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
     <x-admin::form :action="route('admin.marketing.communications.campaigns.store')">
 
         {!! view_render_event('bagisto.admin.marketing.communications.campaigns.create.create_form_controls.before') !!}
 
         <div class="flex justify-between items-center">
+<<<<<<< HEAD
             <p class="text-[20px] text-gray-800 dark:text-white font-bold">
                 @lang('admin::app.marketing.communications.campaigns.create.title')
             </p>
 
             <div class="flex gap-x-[10px] items-center">
                 {{-- Cancel Button --}}
+=======
+            <p class="text-xl text-gray-800 dark:text-white font-bold">
+                @lang('admin::app.marketing.communications.campaigns.create.title')
+            </p>
+
+            <div class="flex gap-x-2.5 items-center">
+                <!-- Cancel Button -->
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 <a
                     href="{{ route('admin.marketing.communications.campaigns.index') }}"
                     class="transparent-button hover:bg-gray-200 dark:hover:bg-gray-800 dark:text-white"
@@ -26,15 +46,23 @@
                     @lang('admin::app.marketing.communications.campaigns.create.back-btn')
                 </a>
 
+<<<<<<< HEAD
                 {{-- Save Button --}}
                 <button 
                     type="submit" 
                     class="py-[6px] px-[12px] bg-blue-600 border border-blue-700 rounded-[6px] text-gray-50 font-semibold cursor-pointer"
+=======
+                <!-- Save Button -->
+                <button 
+                    type="submit" 
+                    class="primary-button"
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 >
                     @lang('admin::app.marketing.communications.campaigns.create.save-btn')
                 </button>
             </div>
         </div>
+<<<<<<< HEAD
         {{-- Informations --}}
         <div class="flex gap-[10px] mt-[14px] max-xl:flex-wrap">
             {{-- Left Section --}}
@@ -51,6 +79,24 @@
                     <div class="mb-[10px]">
                         {{-- Name --}}
                         <x-admin::form.control-group class="mb-[10px]">
+=======
+        <!-- Informations -->
+        <div class="flex gap-2.5 mt-3.5 max-xl:flex-wrap">
+            <!-- Left Section -->
+            <div class="flex flex-col gap-2 flex-1 max-xl:flex-auto">
+
+                {!! view_render_event('bagisto.admin.marketing.communications.campaigns.create.card.general.before') !!}
+
+                <!-- General Section -->
+                <div class="p-4 bg-white dark:bg-gray-900 rounded box-shadow">
+                    <p class="mb-4 text-base text-gray-800 dark:text-white font-semibold">
+                        @lang('admin::app.marketing.communications.campaigns.create.general')
+                    </p>
+
+                    <div class="mb-2.5">
+                        <!-- Name -->
+                        <x-admin::form.control-group>
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                             <x-admin::form.control-group.label class="required">
                                 @lang('admin::app.marketing.communications.campaigns.create.name')
                             </x-admin::form.control-group.label>
@@ -71,8 +117,13 @@
                             </x-admin::form.control-group.error>
                         </x-admin::form.control-group>
 
+<<<<<<< HEAD
                         {{-- Subject --}}
                         <x-admin::form.control-group class="mb-[10px]">
+=======
+                        <!-- Subject -->
+                        <x-admin::form.control-group>
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                             <x-admin::form.control-group.label class="required">
                                 @lang('admin::app.marketing.communications.campaigns.create.subject')
                             </x-admin::form.control-group.label>
@@ -93,8 +144,13 @@
                             </x-admin::form.control-group.error>
                         </x-admin::form.control-group>
 
+<<<<<<< HEAD
                          {{-- Event --}}
                          <x-admin::form.control-group class="mb-[10px]">
+=======
+                         <!-- Event -->
+                         <x-admin::form.control-group>
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                             <x-admin::form.control-group.label class="required">
                                 @lang('admin::app.marketing.communications.campaigns.create.event')
                             </x-admin::form.control-group.label>
@@ -127,8 +183,13 @@
                             </x-admin::form.control-group.error>
                         </x-admin::form.control-group>
 
+<<<<<<< HEAD
                         {{-- Email Template --}}
                         <x-admin::form.control-group class="mb-[10px]">
+=======
+                        <!-- Email Template -->
+                        <x-admin::form.control-group class="!mb-0">
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                             <x-admin::form.control-group.label class="required">
                                 @lang('admin::app.marketing.communications.campaigns.create.email-template')
                             </x-admin::form.control-group.label>
@@ -167,6 +228,7 @@
 
             </div>
 
+<<<<<<< HEAD
             {{-- Right Section --}}
             <div class="flex flex-col gap-[8px] w-[360px] max-w-full max-md:w-full">
 
@@ -183,6 +245,24 @@
                     <x-slot:content>
                         {{-- Channel --}}
                         <x-admin::form.control-group class="mb-[10px]">
+=======
+            <!-- Right Section -->
+            <div class="flex flex-col gap-2 w-[360px] max-w-full max-md:w-full">
+
+                {!! view_render_event('bagisto.admin.marketing.communications.campaigns.create.card.accordion.setting.before') !!}
+
+                <!-- Setting -->
+                <x-admin::accordion>
+                    <x-slot:header>
+                        <p class="p-2.5 text-base text-gray-800 dark:text-white font-semibold">
+                            @lang('admin::app.marketing.communications.campaigns.create.setting')
+                        </p>
+                    </x-slot:header>
+                    
+                    <x-slot:content>
+                        <!-- Channel -->
+                        <x-admin::form.control-group>
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                             <x-admin::form.control-group.label class="required">
                                 @lang('admin::app.marketing.communications.campaigns.create.channel')
                             </x-admin::form.control-group.label>
@@ -215,8 +295,13 @@
                             </x-admin::form.control-group.error>
                         </x-admin::form.control-group>
 
+<<<<<<< HEAD
                         {{-- Customer Group --}}
                         <x-admin::form.control-group class="mb-[10px]">
+=======
+                        <!-- Customer Group -->
+                        <x-admin::form.control-group>
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                             <x-admin::form.control-group.label class="required">
                                 @lang('admin::app.marketing.communications.campaigns.create.customer-group')
                             </x-admin::form.control-group.label>
@@ -249,8 +334,13 @@
                             </x-admin::form.control-group.error>
                         </x-admin::form.control-group>
 
+<<<<<<< HEAD
                          {{-- Status --}}
                          <x-admin::form.control-group class="mb-[10px]">
+=======
+                         <!-- Status -->
+                         <x-admin::form.control-group class="!mb-0">
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                             <x-admin::form.control-group.label>
                                 @lang('admin::app.marketing.communications.campaigns.create.status')
                             </x-admin::form.control-group.label>

@@ -39,10 +39,18 @@ class Base
 
         try {
             Mail::queue($notification);
+<<<<<<< HEAD
         } catch(\Exception $e) {
+=======
+        } catch (\Exception $e) {
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             \Log::error('Error in Sending Email' . $e->getMessage());
         }
 
         app()->setLocale($previousLocale);
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61

@@ -62,25 +62,40 @@ return [
     'account' => [
         'edit' => [
             'back-btn'          => 'بازگشت',
+<<<<<<< HEAD
             'confirm-password'  => 'تأیید رمز عبور',
             'change-password'   => 'تغییر رمز عبور',
+=======
+            'change-password'   => 'تغییر رمز عبور',
+            'confirm-password'  => 'تأیید رمز عبور',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             'current-password'  => 'رمز عبور فعلی',
             'email'             => 'ایمیل',
             'general'           => 'عمومی',
             'invalid-password'  => 'رمز عبور فعلی اشتباه است.',
             'name'              => 'نام',
+<<<<<<< HEAD
             'profile-image'     => 'تصویر پروفایل',
             'password'          => 'رمز عبور',
             'save-btn'          => 'ذخیره حساب کاربری',
             'title'             => 'حساب کاربری من',
             'upload-image-info' => 'تصویر پروفایل را (110px X 110px) به فرمت PNG یا JPG بارگذاری کنید',
             'update-success'    => 'حساب با موفقیت به‌روزرسانی شد',
+=======
+            'password'          => 'رمز عبور',
+            'profile-image'     => 'تصویر پروفایل',
+            'save-btn'          => 'ذخیره حساب کاربری',
+            'title'             => 'حساب کاربری من',
+            'update-success'    => 'حساب با موفقیت به‌روزرسانی شد',
+            'upload-image-info' => 'تصویر پروفایل را (110px X 110px) به فرمت PNG یا JPG بارگذاری کنید',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         ],
     ],
 
     'dashboard' => [
         'index' => [
             'add-customer'                => 'افزودن مشتری',
+<<<<<<< HEAD
             'average-sale'                => 'میانگین فروش سفارش',
             'add-product'                 => 'افزودن محصول',
             'attribute-code'              => 'کد ویژگی',
@@ -106,18 +121,56 @@ return [
             'product-info'                => 'محصولات مرتبط را در حال حرکت اضافه کنید.',
             'revenue'                     => 'درآمد :total',
             'stock-threshold'             => 'آستانه موجودی',
+=======
+            'add-product'                 => 'افزودن محصول',
+            'attribute-code'              => 'کد ویژگی',
+            'average-sale'                => 'میانگین فروش سفارش',
+            'color'                       => 'رنگ',
+            'customer-info'               => 'هیچ مشتری با بیشترین فروش یافت نشد',
+            'customer-with-most-sales'    => 'مشتری با بیشترین فروش',
+            'date-duration'               => ':start - :end',
+            'decreased'                   => ':progress%',
+            'empty-threshold'             => 'آستانه خالی',
+            'empty-threshold-description' => 'هیچ محصولی در دسترس نیست',
+            'end-date'                    => 'تاریخ پایان',
+            'from'                        => 'از',
+            'increased'                   => ':progress%',
+            'more-products'               => ':product_count+ تصویر دیگر',
+            'order'                       => ':total_orders سفارش',
+            'order-count'                 => ':count سفارش',
+            'order-id'                    => '#:id',
+            'overall-details'             => 'جزئیات کلی',
+            'pay-by'                      => 'پرداخت با - :method',
+            'product-count'               => ':count محصول',
+            'product-image'               => 'تصویر محصول',
+            'product-info'                => 'محصولات مرتبط را در حال حرکت اضافه کنید.',
+            'product-number'              => 'محصول - :product_number',
+            'revenue'                     => 'درآمد :total',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             'sale-count'                  => ':count فروش',
             'sales'                       => 'فروش‌ها',
             'sku'                         => 'کد SKU - :sku',
             'start-date'                  => 'تاریخ شروع',
+<<<<<<< HEAD
             'store-stats'                 => 'آمار فروشگاه',
             'to'                          => 'تا',
             'title'                       => 'داشبورد',
+=======
+            'stock-threshold'             => 'آستانه موجودی',
+            'store-stats'                 => 'آمار فروشگاه',
+            'title'                       => 'داشبورد',
+            'to'                          => 'تا',
+            'today-customers'             => 'مشتریان امروز',
+            'today-details'               => 'جزئیات امروز',
+            'today-orders'                => 'سفارش‌های امروز',
+            'today-sales'                 => 'فروش‌های امروز',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             'top-performing-categories'   => 'بالاترین دسته‌های عملکرد',
             'top-selling-products'        => 'بالاترین محصولات فروش',
             'total-customers'             => 'کل مشتریان',
             'total-orders'                => 'کل سفارش‌ها',
             'total-sales'                 => 'کل فروش‌ها',
+<<<<<<< HEAD
             'total-unpaid-invoices'       => 'کل فاکتورهای پرداخت نشده',
             'total-stock'                 => ':total_stock موجودی',
             'today-orders'                => 'سفارش‌های امروز',
@@ -127,6 +180,13 @@ return [
             'unique-visitors'             => ':count یکتا',
             'user-name'                   => '! سلام :user_name',
             'user-info'                   => 'سریعاً نگاهی به وضعیت فروشگاه خود بیندازید',
+=======
+            'total-stock'                 => ':total_stock موجودی',
+            'total-unpaid-invoices'       => 'کل فاکتورهای پرداخت نشده',
+            'unique-visitors'             => ':count یکتا',
+            'user-info'                   => 'سریعاً نگاهی به وضعیت فروشگاه خود بیندازید',
+            'user-name'                   => '! سلام :user_name',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             'visitors'                    => 'بازدیدکننده',
         ],
     ],
@@ -137,11 +197,19 @@ return [
                 'title' => 'سفارش‌ها',
 
                 'datagrid' => [
+<<<<<<< HEAD
                     'customer'        => 'مشتری',
                     'channel-name'    => 'کانال',
                     'completed'       => 'تکمیل شده',
                     'canceled'        => 'لغو شده',
                     'closed'          => 'بسته شده',
+=======
+                    'canceled'        => 'لغو شده',
+                    'channel-name'    => 'کانال',
+                    'closed'          => 'بسته شده',
+                    'completed'       => 'تکمیل شده',
+                    'customer'        => 'مشتری',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     'date'            => 'تاریخ',
                     'email'           => 'ایمیل',
                     'fraud'           => 'تقلب',
@@ -150,11 +218,19 @@ return [
                     'images'          => 'تصاویر',
                     'location'        => 'موقعیت',
                     'order-id'        => 'شماره سفارش',
+<<<<<<< HEAD
                     'pay-via'         => 'پرداخت توسط',
                     'pay-by'          => 'پرداخت توسط - :method',
                     'processing'      => 'در حال پردازش',
                     'pending'         => 'در انتظار',
                     'pending-payment' => 'در انتظار پرداخت',
+=======
+                    'pay-by'          => 'پرداخت توسط - :method',
+                    'pay-via'         => 'پرداخت توسط',
+                    'pending'         => 'در انتظار',
+                    'pending-payment' => 'در انتظار پرداخت',
+                    'processing'      => 'در حال پردازش',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     'product-count'   => ':count + محصولات بیشتر',
                     'status'          => 'وضعیت',
                     'success'         => 'موفقیت',
@@ -166,6 +242,7 @@ return [
                 'amount-per-unit'       => ':amount در واحد x :qty تعداد',
                 'billing-address'       => 'آدرس صورتحساب',
                 'cancel'                => 'لغو',
+<<<<<<< HEAD
                 'comments'              => 'نظرات',
                 'cancel-msg'            => 'آیا مطمئن هستید که می‌خواهید این سفارش را لغو کنید؟',
                 'customer-notified'     => ':date | مشتری <b>آگاه شد</b>',
@@ -228,6 +305,70 @@ return [
                 'total-paid'            => 'مجموع پرداختی',
                 'total-refund'          => 'مجموع بازپرداخت',
                 'total-due'             => 'مجموع بدهی',
+=======
+                'cancel-msg'            => 'آیا مطمئن هستید که می‌خواهید این سفارش را لغو کنید؟',
+                'cancel-success'        => 'سفارش با موفقیت لغو شد',
+                'canceled'              => 'لغو شده',
+                'channel'               => 'کانال',
+                'closed'                => 'بسته شده',
+                'comment-success'       => 'نظر با موفقیت افزوده شد.',
+                'comments'              => 'نظرات',
+                'completed'             => 'تکمیل شده',
+                'contact'               => 'تماس',
+                'create-success'        => 'سفارش با موفقیت ایجاد شد',
+                'currency'              => 'واحد پول',
+                'customer'              => 'مشتری',
+                'customer-group'        => 'گروه مشتری',
+                'customer-not-notified' => ':date | مشتری <b>آگاه نشد</b>',
+                'customer-notified'     => ':date | مشتری <b>آگاه شد</b>',
+                'discount'              => 'تخفیف - :discount',
+                'download-pdf'          => 'دانلود PDF',
+                'grand-total'           => 'مجموع کل - :grand_total',
+                'invoice-id'            => 'شماره فاکتور #:invoice',
+                'invoices'              => 'فاکتورها',
+                'item-canceled'         => 'لغو شده (:qty_canceled)',
+                'item-invoice'          => 'صورتحساب شده (:qty_invoiced)',
+                'item-ordered'          => 'سفارش داده شده (:qty_ordered)',
+                'item-refunded'         => 'بازپرداخت شده (:qty_refunded)',
+                'item-shipped'          => 'ارسال شده (:qty_shipped)',
+                'name'                  => 'نام',
+                'no-invoice-found'      => 'فاکتوری یافت نشد',
+                'no-refund-found'       => 'بازپرداختی یافت نشد',
+                'no-shipment-found'     => 'ارسالی یافت نشد',
+                'notify-customer'       => 'آگاهی به مشتری',
+                'order-date'            => 'تاریخ سفارش',
+                'order-information'     => 'اطلاعات سفارش',
+                'order-status'          => 'وضعیت سفارش',
+                'payment-and-shipping'  => 'پرداخت و ارسال',
+                'payment-method'        => 'روش پرداخت',
+                'pending'               => 'در انتظار',
+                'per-unit'              => 'در واحد',
+                'price'                 => 'قیمت - :price',
+                'processing'            => 'در حال پردازش',
+                'quantity'              => 'تعداد',
+                'refund'                => 'بازپرداخت',
+                'refund-id'             => 'بازپرداخت #:refund',
+                'refunded'              => 'بازپرداخت',
+                'ship'                  => 'ارسال',
+                'shipment'              => 'ارسال #:shipment',
+                'shipments'             => 'ارسال‌ها',
+                'shipping-address'      => 'آدرس حمل و نقل',
+                'shipping-and-handling' => 'حمل و نقل و بسته‌بندی',
+                'shipping-method'       => 'روش حمل و نقل',
+                'shipping-price'        => 'هزینه حمل و نقل',
+                'sku'                   => 'کد SKU - :sku',
+                'status'                => 'وضعیت',
+                'sub-total'             => 'مجموع جزئی - :sub_total',
+                'submit-comment'        => 'ارسال نظر',
+                'summary-grand-total'   => 'مجموع کل',
+                'summary-sub-total'     => 'مجموع جزئی',
+                'summary-tax'           => 'مالیات',
+                'tax'                   => 'مالیات - :tax',
+                'title'                 => 'سفارش #:order_id',
+                'total-due'             => 'مجموع بدهی',
+                'total-paid'            => 'مجموع پرداختی',
+                'total-refund'          => 'مجموع بازپرداخت',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'view'                  => 'مشاهده',
                 'write-your-comment'    => 'نظر خود را بنویسید',
             ],
@@ -240,8 +381,13 @@ return [
                 'datagrid'  => [
                     'id'               => 'شناسه',
                     'inventory-source' => 'منبع موجودی',
+<<<<<<< HEAD
                     'order-id'         => 'شماره سفارش',
                     'order-date'       => 'تاریخ سفارش',
+=======
+                    'order-date'       => 'تاریخ سفارش',
+                    'order-id'         => 'شماره سفارش',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     'shipment-date'    => 'تاریخ ارسال',
                     'shipment-to'      => 'ارسال به',
                     'total-qty'        => 'تعداد کل',
@@ -253,6 +399,7 @@ return [
                 'amount-per-unit'  => ':amount در هر واحد x :qty تعداد',
                 'cancel-error'     => 'سفارش نمی‌تواند لغو شود',
                 'carrier-name'     => 'نام حامل',
+<<<<<<< HEAD
                 'creation-error'   => 'خطا در ایجاد ارسال',
                 'create-btn'       => 'ایجاد ارسال',
                 'item-ordered'     => 'سفارش داده شده (:qty_ordered)',
@@ -267,6 +414,22 @@ return [
                 'quantity-invalid' => 'تعداد نامعتبر',
                 'source'           => 'منبع',
                 'sku'              => 'کد SKU - :sku',
+=======
+                'create-btn'       => 'ایجاد ارسال',
+                'creation-error'   => 'خطا در ایجاد ارسال',
+                'item-canceled'    => 'لغو شده (:qty_canceled)',
+                'item-invoice'     => 'صورتحساب شده (:qty_invoiced)',
+                'item-ordered'     => 'سفارش داده شده (:qty_ordered)',
+                'item-refunded'    => 'بازپرداخت شده (:qty_refunded)',
+                'item-shipped'     => 'ارسال شده (:qty_shipped)',
+                'order-error'      => 'ارسال معتبر نمی‌باشد',
+                'per-unit'         => 'در هر واحد',
+                'qty-available'    => 'تعداد موجود',
+                'qty-to-ship'      => 'تعداد برای ارسال',
+                'quantity-invalid' => 'تعداد نامعتبر',
+                'sku'              => 'کد SKU - :sku',
+                'source'           => 'منبع',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'success'          => 'ارسال با موفقیت ایجاد شد',
                 'title'            => 'ایجاد ارسال جدید',
                 'tracking-number'  => 'شماره پیگیری',
@@ -275,6 +438,7 @@ return [
             'view' => [
                 'billing-address'      => 'آدرس صورتحساب',
                 'carrier-title'        => 'عنوان حامل',
+<<<<<<< HEAD
                 'currency'             => 'واحد پول',
                 'channel'              => 'کانال',
                 'customer'             => 'مشتری',
@@ -293,6 +457,26 @@ return [
                 'shipping-address'     => 'آدرس حمل و نقل',
                 'shipping-method'      => 'روش حمل و نقل',
                 'shipping-price'       => 'هزینه حمل و نقل',
+=======
+                'channel'              => 'کانال',
+                'currency'             => 'واحد پول',
+                'customer'             => 'مشتری',
+                'email'                => 'ایمیل - :email',
+                'inventory-source'     => 'منبع موجودی',
+                'order-date'           => 'تاریخ سفارش',
+                'order-id'             => 'شماره سفارش',
+                'order-information'    => 'اطلاعات سفارش',
+                'order-status'         => 'وضعیت سفارش',
+                'ordered-items'        => 'موارد سفارش داده شده',
+                'payment-and-shipping' => 'پرداخت و حمل و نقل',
+                'payment-method'       => 'روش پرداخت',
+                'product-image'        => 'تصویر محصول',
+                'qty'                  => 'تعداد - :qty',
+                'shipping-address'     => 'آدرس حمل و نقل',
+                'shipping-method'      => 'روش حمل و نقل',
+                'shipping-price'       => 'هزینه حمل و نقل',
+                'sku'                  => 'کد SKU - :sku ',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'title'                => 'ارسال #:shipment_id',
                 'tracking-number'      => 'شماره پیگیری',
             ],
@@ -314,13 +498,19 @@ return [
 
             'view' => [
                 'account-information'    => 'اطلاعات حساب',
+<<<<<<< HEAD
                 'adjustment-refund'      => 'بازپرداخت تنظیمی',
                 'adjustment-fee'         => 'هزینه تنظیمی',
+=======
+                'adjustment-fee'         => 'هزینه تنظیمی',
+                'adjustment-refund'      => 'بازپرداخت تنظیمی',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'base-discounted-amount' => 'مقدار تخفیف - :base_discounted_amount',
                 'billing-address'        => 'آدرس صورتحساب',
                 'currency'               => 'واحد پول',
                 'discounted-amount'      => 'جمع کل - :discounted_amount',
                 'grand-total'            => 'جمع کل',
+<<<<<<< HEAD
                 'order-information'      => 'اطلاعات سفارش',
                 'order-id'               => 'شماره سفارش',
                 'order-status'           => 'وضعیت سفارش',
@@ -368,6 +558,55 @@ return [
                 'sku'                         => 'کد SKU - :sku',
                 'title'                       => 'ایجاد بازپرداخت',
                 'tax-amount'                  => 'مقدار مالیات',
+=======
+                'order-channel'          => 'کانال سفارش',
+                'order-date'             => 'تاریخ سفارش',
+                'order-id'               => 'شماره سفارش',
+                'order-information'      => 'اطلاعات سفارش',
+                'order-status'           => 'وضعیت سفارش',
+                'payment-information'    => 'اطلاعات پرداخت',
+                'payment-method'         => 'روش پرداخت',
+                'price'                  => 'قیمت - :price',
+                'product-image'          => 'تصویر محصول',
+                'product-ordered'        => 'محصولات سفارش داده شده',
+                'qty'                    => 'تعداد - :qty',
+                'refund'                 => 'بازپرداخت',
+                'shipping-address'       => 'آدرس حمل و نقل',
+                'shipping-handling'      => 'حمل و نقل و بسته‌بندی',
+                'shipping-method'        => 'روش حمل و نقل',
+                'shipping-price'         => 'هزینه حمل و نقل',
+                'sku'                    => 'کد SKU - :sku',
+                'sub-total'              => 'جمع جزئی',
+                'tax'                    => 'مالیات',
+                'tax-amount'             => 'مقدار مالیات - :tax_amount',
+                'title'                  => 'بازپرداخت #:refund_id',
+            ],
+
+            'create' => [
+                'adjustment-fee'              => 'هزینه تنظیمی',
+                'adjustment-refund'           => 'بازپرداخت تنظیمی',
+                'amount-per-unit'             => ':amount در هر واحد x :qty تعداد',
+                'create-success'              => 'بازپرداخت با موفقیت ایجاد شد',
+                'discount-amount'             => 'مقدار تخفیف',
+                'grand-total'                 => 'جمع کل',
+                'invalid-qty'                 => 'ما تعداد نامعتبری برای موارد صورتحسابی پیدا کردیم.',
+                'invalid-refund-amount-error' => 'مقدار بازپرداخت باید غیر صفر باشد.',
+                'item-canceled'               => 'لغو شده (:qty_canceled)',
+                'item-invoice'                => 'صورتحساب شده (:qty_invoiced)',
+                'item-ordered'                => 'سفارش داده شده (:qty_ordered)',
+                'item-refunded'               => 'بازپرداخت شده (:qty_refunded)',
+                'item-shipped'                => 'ارسال شده (:qty_shipped)',
+                'per-unit'                    => 'در هر واحد',
+                'price'                       => 'قیمت',
+                'qty-to-refund'               => 'تعداد برای بازپرداخت',
+                'refund-btn'                  => 'بازپرداخت',
+                'refund-limit-error'          => 'مقدار بازپرداخت :amount نمی‌تواند ادامه پیدا کند.',
+                'refund-shipping'             => 'بازپرداخت هزینه حمل و نقل',
+                'sku'                         => 'کد SKU - :sku',
+                'subtotal'                    => 'جمع جزئی',
+                'tax-amount'                  => 'مقدار مالیات',
+                'title'                       => 'ایجاد بازپرداخت',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'update-quantity-btn'         => 'به‌روزرسانی تعداد',
             ],
         ],
@@ -378,9 +617,15 @@ return [
 
                 'datagrid' => [
                     'action'       => 'عملیات',
+<<<<<<< HEAD
                     'id'           => 'شناسه',
                     'invoice-date' => 'تاریخ صورتحساب',
                     'grand-total'  => 'جمع کل',
+=======
+                    'grand-total'  => 'جمع کل',
+                    'id'           => 'شناسه',
+                    'invoice-date' => 'تاریخ صورتحساب',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     'order-id'     => 'شماره سفارش',
                     'overdue'      => 'سررسید',
                     'paid'         => 'پرداخت شده',
@@ -393,6 +638,7 @@ return [
                 'amount-per-unit'        => ':amount در هر واحد x :qty تعداد',
                 'channel'                => 'کانال',
                 'customer'               => 'مشتری',
+<<<<<<< HEAD
                 'discount'               => 'مقدار تخفیف - :discount',
                 'customer-email'         => 'ایمیل مشتری - :email',
                 'email'                  => 'ایمیل',
@@ -403,11 +649,24 @@ return [
                 'order-information'      => 'اطلاعات سفارش',
                 'order-id'               => 'شماره سفارش',
                 'order-date'             => 'تاریخ سفارش',
+=======
+                'customer-email'         => 'ایمیل مشتری - :email',
+                'discount'               => 'مقدار تخفیف - :discount',
+                'email'                  => 'ایمیل',
+                'grand-total'            => 'جمع کل',
+                'invoice-items'          => 'موارد صورتحساب',
+                'invoice-sent'           => 'صورتحساب با موفقیت ارسال شد',
+                'invoice-status'         => 'وضعیت صورتحساب',
+                'order-date'             => 'تاریخ سفارش',
+                'order-id'               => 'شماره سفارش',
+                'order-information'      => 'اطلاعات سفارش',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'order-status'           => 'وضعیت سفارش',
                 'price'                  => 'قیمت - :price',
                 'print'                  => 'چاپ',
                 'product-image'          => 'تصویر محصول',
                 'qty'                    => 'تعداد - :qty',
+<<<<<<< HEAD
                 'shipping-and-handling'  => 'حمل و نقل و بسته‌بندی',
                 'send-duplicate-invoice' => 'ارسال صورتحساب تکراری',
                 'send'                   => 'ارسال',
@@ -419,11 +678,25 @@ return [
                 'summary-discount'       => 'مبلغ تخفیف',
                 'title'                  => 'صورتحساب #:invoice_id',
                 'tax'                    => 'مقدار مالیات - :tax',
+=======
+                'send'                   => 'ارسال',
+                'send-btn'               => 'ارسال',
+                'send-duplicate-invoice' => 'ارسال صورتحساب تکراری',
+                'shipping-and-handling'  => 'حمل و نقل و بسته‌بندی',
+                'sku'                    => 'کد SKU - :sku',
+                'sub-total'              => 'جمع کل جزئی - :sub_total',
+                'sub-total-summary'      => 'جمع کل جزئی',
+                'summary-discount'       => 'مبلغ تخفیف',
+                'summary-tax'            => 'مبلغ مالیات',
+                'tax'                    => 'مقدار مالیات - :tax',
+                'title'                  => 'صورتحساب #:invoice_id',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             ],
 
             'create'   => [
                 'amount-per-unit' => ':amount در هر واحد x :qty تعداد',
                 'create-invoice'  => 'ایجاد فاکتور',
+<<<<<<< HEAD
                 'creation-error'  => 'ایجاد فاکتور سفارش مجاز نمی‌باشد.',
                 'create-success'  => 'فاکتور با موفقیت ایجاد شد',
                 'invoice'         => 'فاکتور',
@@ -431,11 +704,21 @@ return [
                 'new-invoice'     => 'فاکتور جدید',
                 'product-image'   => 'تصویر محصول',
                 'product-error'   => 'فاکتور بدون محصول ایجاد نمی‌شود.',
+=======
+                'create-success'  => 'فاکتور با موفقیت ایجاد شد',
+                'creation-error'  => 'ایجاد فاکتور سفارش مجاز نمی‌باشد.',
+                'invalid-qty'     => 'ما تعداد نامعتبری برای موارد فاکتوری یافتیم.',
+                'invoice'         => 'فاکتور',
+                'new-invoice'     => 'فاکتور جدید',
+                'product-error'   => 'فاکتور بدون محصول ایجاد نمی‌شود.',
+                'product-image'   => 'تصویر محصول',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'qty-to-invoiced' => 'تعداد برای صدور فاکتور',
                 'sku'             => 'شناسه SKU - :sku',
             ],
 
             'invoice-pdf' => [
+<<<<<<< HEAD
                 'bill-to'           => 'صورتحساب به',
                 'bank-details'      => 'جزئیات بانکی',
                 'contact'           => 'تماس',
@@ -459,6 +742,31 @@ return [
                 'shipping-handling' => 'هزینه حمل و نقل',
                 'tax-amount'        => 'مقدار مالیات',
                 'tax'               => 'مالیات',
+=======
+                'bank-details'      => 'جزئیات بانکی',
+                'bill-to'           => 'صورتحساب به',
+                'contact'           => 'تماس',
+                'contact-number'    => 'شماره تماس',
+                'date'              => 'تاریخ فاکتور',
+                'discount'          => 'تخفیف',
+                'grand-total'       => 'مجموع کل',
+                'invoice'           => 'فاکتور',
+                'invoice-id'        => 'شناسه فاکتور',
+                'order-date'        => 'تاریخ سفارش',
+                'order-id'          => 'شناسه سفارش',
+                'payment-method'    => 'روش پرداخت',
+                'payment-terms'     => 'شرایط پرداخت',
+                'price'             => 'قیمت',
+                'product-name'      => 'نام محصول',
+                'qty'               => 'تعداد',
+                'ship-to'           => 'ارسال به',
+                'shipping-handling' => 'هزینه حمل و نقل',
+                'shipping-method'   => 'روش ارسال',
+                'sku'               => 'شناسه SKU',
+                'subtotal'          => 'جمع جزئی',
+                'tax'               => 'مالیات',
+                'tax-amount'        => 'مقدار مالیات',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'vat-number'        => 'شماره مالیات بر ارزش افزوده',
             ],
         ],
@@ -480,6 +788,7 @@ return [
                     'invoice-id'         => 'شماره صورتحساب',
                     'order-id'           => 'شماره سفارش',
                     'status'             => 'وضعیت',
+<<<<<<< HEAD
                     'transaction-id'     => 'شناسه تراکنش',
                     'transaction-date'   => 'تاریخ',
                     'transaction-amount' => 'مقدار',
@@ -492,6 +801,33 @@ return [
                     'transaction-amount-exceeds' => 'مقدار تراکنش بیشتر از حد مجاز است',
                     'transaction-saved'          => 'تراکنش با موفقیت ذخیره شد',
                 ],
+=======
+                    'transaction-amount' => 'مقدار',
+                    'transaction-date'   => 'تاریخ',
+                    'transaction-id'     => 'شناسه تراکنش',
+                ],
+
+                'create'  => [
+                    'already-paid'               => 'قبلاً پرداخت شده',
+                    'invoice-missing'            => 'صورتحساب موجود نیست',
+                    'transaction-amount-exceeds' => 'مقدار تراکنش بیشتر از حد مجاز است',
+                    'transaction-amount-zero'    => 'مقدار تراکنش صفر است',
+                    'transaction-saved'          => 'تراکنش با موفقیت ذخیره شد',
+                ],
+
+                'view' => [
+                    'amount'           => 'مبلغ',
+                    'created-at'       => 'تاریخ ایجاد',
+                    'invoice-id'       => 'شماره فاکتور',
+                    'order-id'         => 'شماره سفارش',
+                    'payment-details'  => 'جزئیات پرداخت',
+                    'payment-method'   => 'روش پرداخت',
+                    'status'           => 'وضعیت',
+                    'title'            => 'جزئیات تراکنش',
+                    'transaction-data' => 'اطلاعات تراکنش',
+                    'transaction-id'   => 'شناسه تراکنش',
+                ],
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             ],
         ],
     ],
@@ -512,8 +848,13 @@ return [
                     'downloadable'            => 'قابل دانلود',
                     'family'                  => 'خانواده',
                     'grouped'                 => 'گروه‌بندی شده',
+<<<<<<< HEAD
                     'simple'                  => 'ساده',
                     'save-btn'                => 'ذخیره محصول',
+=======
+                    'save-btn'                => 'ذخیره محصول',
+                    'simple'                  => 'ساده',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     'sku'                     => 'شناسه SKU',
                     'title'                   => 'ایجاد محصول جدید',
                     'type'                    => 'نوع',
@@ -521,6 +862,7 @@ return [
                 ],
 
                 'datagrid' => [
+<<<<<<< HEAD
                     'attribute-family'       => 'خانواده ویژگی',
                     'attribute-family-value' => 'خانواده ویژگی - :attribute_family',
                     'active'                 => 'فعال',
@@ -545,10 +887,41 @@ return [
                     'status'                 => 'وضعیت',
                     'type'                   => 'نوع',
                     'update-status'          => 'به‌روزرسانی وضعیت',
+=======
+                    'active'                        => 'فعال',
+                    'attribute-family'              => 'خانواده ویژگی',
+                    'attribute-family-value'        => 'خانواده ویژگی - :attribute_family',
+                    'category'                      => 'دسته‌بندی',
+                    'copy-of'                       => 'رونویسی از :value',
+                    'copy-of-slug'                  => 'رونویسی-:value',
+                    'delete'                        => 'حذف',
+                    'disable'                       => 'غیرفعال‌سازی',
+                    'id'                            => 'شناسه',
+                    'id-value'                      => 'شناسه - :id',
+                    'image'                         => 'تصویر',
+                    'mass-delete-success'           => 'محصولات انتخابی با موفقیت حذف شدند',
+                    'mass-update-success'           => 'محصولات انتخابی با موفقیت به‌روزرسانی شدند',
+                    'name'                          => 'نام',
+                    'out-of-stock'                  => 'تمام شده',
+                    'price'                         => 'قیمت',
+                    'product-image'                 => 'تصویر محصول',
+                    'qty'                           => 'تعداد',
+                    'qty-value'                     => ':qty در دسترس است',
+                    'sku'                           => 'شناسه SKU',
+                    'sku-value'                     => 'شناسه SKU - :sku',
+                    'status'                        => 'وضعیت',
+                    'type'                          => 'نوع',
+                    'update-status'                 => 'به‌روزرسانی وضعیت',
+                    'variant-already-exist-message' => 'واریانت با همان گزینه‌های ویژگی ها از قبل وجود دارد.',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 ],
             ],
 
             'edit' => [
+<<<<<<< HEAD
+=======
+                'preview'  => 'پیش‌نمایش',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'remove'   => 'حذف',
                 'save-btn' => 'ذخیره محصول',
                 'title'    => 'ویرایش محصول',
@@ -568,12 +941,21 @@ return [
                             'all-groups'     => 'تمام گروه‌ها',
                             'create-title'   => 'ایجاد قیمت گروه مشتری',
                             'customer-group' => 'گروه مشتری',
+<<<<<<< HEAD
                             'discount'       => 'تخفیف',
                             'delete-btn'     => 'حذف',
                             'fixed'          => 'ثابت',
                             'price-type'     => 'نوع قیمت',
                             'price'          => 'قیمت',
                             'qty'            => 'تعداد',
+=======
+                            'delete-btn'     => 'حذف',
+                            'discount'       => 'تخفیف',
+                            'fixed'          => 'ثابت',
+                            'price'          => 'قیمت',
+                            'price-type'     => 'نوع قیمت',
+                            'qty'            => 'حداقل تعداد',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                             'save-btn'       => 'ذخیره',
                             'update-title'   => 'بروزرسانی قیمت گروه مشتری',
                         ],
@@ -621,8 +1003,13 @@ return [
 
                     'add-btn'           => 'افزودن محصول',
                     'delete'            => 'حذف',
+<<<<<<< HEAD
                     'empty-title'       => 'افزودن محصول',
                     'empty-info'        => 'برای افزودن محصولات :type به طور پویا.',
+=======
+                    'empty-info'        => 'برای افزودن محصولات :type به طور پویا.',
+                    'empty-title'       => 'افزودن محصول',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     'image-placeholder' => 'تصویر محصول',
                     'sku'               => 'شناسه SKU - :sku',
                 ],
@@ -632,10 +1019,17 @@ return [
                         'add-btn'           => 'افزودن نسخه',
                         'delete-btn'        => 'حذف',
                         'edit-btn'          => 'ویرایش',
+<<<<<<< HEAD
                         'empty-title'       => 'افزودن نسخه',
                         'empty-info'        => 'برای ایجاد ترکیب‌های مختلف محصول به طور پویا.',
                         'info'              => 'محصولات تغییریافته بر اساس تمام ترکیب‌های ممکن ویژگی‌ها تولید می‌شوند.',
                         'image-placeholder' => 'تصویر محصول',
+=======
+                        'empty-info'        => 'برای ایجاد ترکیب‌های مختلف محصول به طور پویا.',
+                        'empty-title'       => 'افزودن نسخه',
+                        'image-placeholder' => 'تصویر محصول',
+                        'info'              => 'محصولات تغییریافته بر اساس تمام ترکیب‌های ممکن ویژگی‌ها تولید می‌شوند.',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                         'qty'               => ':qty تعداد',
                         'sku'               => 'شناسه SKU - :sku',
                         'title'             => 'تغییریافته‌ها',
@@ -665,6 +1059,7 @@ return [
                         ],
 
                         'mass-edit' => [
+<<<<<<< HEAD
                             'add-images'        => 'افزودن تصاویر',
                             'apply-to-all-sku'  => 'یک قیمت را به تمام SKU اعمال کنید.',
                             'apply-to-all-btn'  => 'اعمال به همه',
@@ -675,15 +1070,46 @@ return [
                             'remove-variants'   => 'حذف نسخه‌ها',
                             'select-variants'   => 'انتخاب نسخه‌ها',
                             'select-action'     => 'انتخاب عملیات',
+=======
+                            'add-images'          => 'افزودن تصاویر',
+                            'apply-to-all-btn'    => 'اعمال به همه',
+                            'apply-to-all-name'   => 'اعمال یک نام برای تمامی نوع‌ها.',
+                            'apply-to-all-sku'    => 'اعمال یک قیمت به تمامی SKU.',
+                            'apply-to-all-status' => 'اعمال یک وضعیت به تمامی نوع‌ها.',
+                            'apply-to-all-weight' => 'اعمال وزن بر روی تمامی واریانت‌ها.',
+                            'edit-inventories'    => 'ویرایش موجودی‌ها',
+                            'edit-names'          => 'ویرایش نام‌ها',
+                            'edit-prices'         => 'ویرایش قیمت‌ها',
+                            'edit-sku'            => 'ویرایش SKU',
+                            'edit-status'         => 'ویرایش وضعیت',
+                            'edit-weight'         => 'ویرایش وزن',
+                            'name'                => 'نام',
+                            'price'               => 'قیمت',
+                            'remove-images'       => 'حذف تصاویر',
+                            'remove-variants'     => 'حذف نوع‌ها',
+                            'select-action'       => 'انتخاب عمل',
+                            'select-variants'     => 'انتخاب نوع‌ها',
+                            'status'              => 'وضعیت',
+                            'variant-name'        => 'نام نوع',
+                            'variant-sku'         => 'SKU نوع',
+                            'weight'              => 'وزن',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                         ],
                     ],
 
                     'grouped' => [
                         'add-btn'           => 'افزودن محصول',
+<<<<<<< HEAD
                         'delete'            => 'حذف',
                         'default-qty'       => 'تعداد پیش‌فرض',
                         'empty-title'       => 'افزودن محصول',
                         'empty-info'        => 'برای ایجاد ترکیب‌های مختلف محصول به طور پویا.',
+=======
+                        'default-qty'       => 'تعداد پیش‌فرض',
+                        'delete'            => 'حذف',
+                        'empty-info'        => 'برای ایجاد ترکیب‌های مختلف محصول به طور پویا.',
+                        'empty-title'       => 'افزودن محصول',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                         'image-placeholder' => 'تصویر محصول',
                         'info'              => 'محصول گروهی شامل موارد مستقلی است که به عنوان یک مجموعه ارائه می‌شود، که امکان تغییرات یا هماهنگی بر اساس فصل یا موضوع را فراهم می‌کند. هر محصول می‌تواند به صورت مستقل یا به عنوان قسمتی از گروه خریداری شود.',
                         'sku'               => 'شناسه SKU - :sku',
@@ -692,8 +1118,13 @@ return [
 
                     'bundle' => [
                         'add-btn'           => 'افزودن گزینه',
+<<<<<<< HEAD
                         'empty-title'       => 'افزودن گزینه',
                         'empty-info'        => 'برای ایجاد گزینه‌های بسته به طور پویا.',
+=======
+                        'empty-info'        => 'برای ایجاد گزینه‌های بسته به طور پویا.',
+                        'empty-title'       => 'افزودن گزینه',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                         'image-placeholder' => 'تصویر محصول',
                         'info'              => 'محصول بسته یک بسته از موارد یا خدمات چندگانه است که به عنوان یک واحد به قیمت ویژه عرضه می‌شود و به مشتریان ارزش و سهولت فراهم می‌کند.',
                         'title'             => 'آیتم‌های بسته',
@@ -705,8 +1136,13 @@ return [
                             'name'        => 'عنوان',
                             'no'          => 'خیر',
                             'radio'       => 'رادیو',
+<<<<<<< HEAD
                             'select'      => 'انتخاب',
                             'save-btn'    => 'ذخیره',
+=======
+                            'save-btn'    => 'ذخیره',
+                            'select'      => 'انتخاب',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                             'title'       => 'گزینه',
                             'type'        => 'نوع',
                             'yes'         => 'بله',
@@ -714,12 +1150,21 @@ return [
 
                         'option' => [
                             'add-btn'     => 'افزودن محصول',
+<<<<<<< HEAD
                             'delete-btn'  => 'حذف',
                             'default-qty' => 'تعداد پیش‌فرض',
                             'delete'      => 'حذف',
                             'edit-btn'    => 'ویرایش',
                             'empty-title' => 'افزودن محصول',
                             'empty-info'  => 'برای ایجاد ترکیب‌های مختلف محصول به طور پویا.',
+=======
+                            'default-qty' => 'تعداد پیش‌فرض',
+                            'delete'      => 'حذف',
+                            'delete-btn'  => 'حذف',
+                            'edit-btn'    => 'ویرایش',
+                            'empty-info'  => 'برای ایجاد ترکیب‌های مختلف محصول به طور پویا.',
+                            'empty-title' => 'افزودن محصول',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                             'sku'         => 'شناسه SKU - :sku',
 
                             'types' => [
@@ -751,8 +1196,13 @@ return [
                             'add-btn'     => 'افزودن لینک',
                             'delete-btn'  => 'حذف',
                             'edit-btn'    => 'ویرایش',
+<<<<<<< HEAD
                             'empty-title' => 'افزودن لینک',
                             'empty-info'  => 'برای ایجاد لینک به طور پویا.',
+=======
+                            'empty-info'  => 'برای ایجاد لینک به طور پویا.',
+                            'empty-title' => 'افزودن لینک',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                             'file'        => 'فایل : ',
                             'info'        => 'نوع محصول قابل دانلود اجازه فروش محصولات دیجیتالی را مانند کتاب‌های الکترونیکی، برنامه‌های نرم‌افزاری، موسیقی، بازی‌ها و غیره فراهم می‌کند.',
                             'sample-file' => 'فایل نمونه : ',
@@ -762,12 +1212,21 @@ return [
 
                             'update-create' => [
                                 'downloads'   => 'دانلود مجاز است',
+<<<<<<< HEAD
                                 'file-type'   => 'نوع فایل',
                                 'file'        => 'فایل',
                                 'name'        => 'عنوان',
                                 'price'       => 'قیمت',
                                 'sample-type' => 'نوع نمونه',
                                 'sample'      => 'نمونه',
+=======
+                                'file'        => 'فایل',
+                                'file-type'   => 'نوع فایل',
+                                'name'        => 'عنوان',
+                                'price'       => 'قیمت',
+                                'sample'      => 'نمونه',
+                                'sample-type' => 'نوع نمونه',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                 'save-btn'    => 'ذخیره',
                                 'title'       => 'لینک',
                                 'url'         => 'آدرس اینترنتی : ',
@@ -778,8 +1237,13 @@ return [
                             'add-btn'     => 'افزودن نمونه',
                             'delete-btn'  => 'حذف',
                             'edit-btn'    => 'ویرایش',
+<<<<<<< HEAD
                             'empty-title' => 'افزودن نمونه',
                             'empty-info'  => 'برای ایجاد نمونه به طور پویا.',
+=======
+                            'empty-info'  => 'برای ایجاد نمونه به طور پویا.',
+                            'empty-title' => 'افزودن نمونه',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                             'file'        => 'فایل : ',
                             'info'        => 'نوع محصول قابل دانلود اجازه فروش محصولات دیجیتالی را مانند کتاب‌های الکترونیکی، برنامه‌های نرم‌افزاری، موسیقی، بازی‌ها و غیره فراهم می‌کند.',
                             'title'       => 'نمونه‌های قابل دانلود',
@@ -799,8 +1263,13 @@ return [
             ],
 
             'create-success'           => 'محصول با موفقیت ایجاد شد',
+<<<<<<< HEAD
             'delete-success'           => 'محصول با موفقیت حذف شد',
             'delete-failed'            => 'حذف محصول ناموفق بود',
+=======
+            'delete-failed'            => 'حذف محصول ناموفق بود',
+            'delete-success'           => 'محصول با موفقیت حذف شد',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             'product-copied'           => 'محصول با موفقیت کپی شد',
             'saved-inventory-message'  => 'محصول با موفقیت ذخیره شد',
             'update-success'           => 'محصول با موفقیت به‌روزرسانی شد',
@@ -808,6 +1277,7 @@ return [
 
         'attributes' => [
             'index' => [
+<<<<<<< HEAD
                 'title'      => 'ویژگی‌ها',
                 'create-btn' => 'ایجاد ویژگی‌ها',
 
@@ -824,10 +1294,29 @@ return [
                     'edit'                => 'ویرایش',
                     'delete'              => 'حذف',
                     'mass-delete-success' => 'ویژگی‌های انتخاب شده با موفقیت حذف شدند',
+=======
+                'create-btn' => 'ایجاد ویژگی‌ها',
+                'title'      => 'ویژگی‌ها',
+
+                'datagrid' => [
+                    'channel-based'       => 'بر اساس کانال',
+                    'code'                => 'کد',
+                    'created-at'          => 'تاریخ ایجاد',
+                    'delete'              => 'حذف',
+                    'edit'                => 'ویرایش',
+                    'id'                  => 'شناسه',
+                    'locale-based'        => 'بر اساس مکان (Locale)',
+                    'mass-delete-success' => 'ویژگی‌های انتخاب شده با موفقیت حذف شدند',
+                    'name'                => 'نام',
+                    'required'            => 'الزامی',
+                    'type'                => 'نوع',
+                    'unique'              => 'یکتا',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 ],
             ],
 
             'create'  => [
+<<<<<<< HEAD
                 'admin'                 => 'مدیر',
                 'add-row'               => 'افزودن ردیف',
                 'add-option'            => 'افزودن گزینه',
@@ -844,10 +1333,30 @@ return [
                 'datetime'              => 'تاریخ و زمان',
                 'date'                  => 'تاریخ',
                 'decimal'               => 'اعشاری',
+=======
+                'add-attribute-options' => 'افزودن گزینه‌های ویژگی',
+                'add-option'            => 'افزودن گزینه',
+                'add-options-info'      => 'برای ایجاد ترکیب‌های مختلف گزینه‌های ویژگی به صورت سریع.',
+                'add-row'               => 'افزودن ردیف',
+                'admin'                 => 'مدیر',
+                'admin-name'            => 'نام مدیر',
+                'back-btn'              => 'بازگشت',
+                'boolean'               => 'بولین',
+                'checkbox'              => 'چک باکس',
+                'code'                  => 'کد ویژگی',
+                'color'                 => 'رنگ',
+                'configuration'         => 'پیکربندی',
+                'create-empty-option'   => 'ایجاد گزینه خالی پیش‌فرض',
+                'date'                  => 'تاریخ',
+                'datetime'              => 'تاریخ و زمان',
+                'decimal'               => 'اعشاری',
+                'default-value'         => 'مقدار پیش‌فرض',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'email'                 => 'ایمیل',
                 'enable-wysiwyg'        => 'فعال کردن ویرایشگر WYSIWYG',
                 'file'                  => 'فایل',
                 'general'               => 'عمومی',
+<<<<<<< HEAD
                 'is-required'           => 'الزامی است',
                 'image'                 => 'تصویر',
                 'input-validation'      => 'اعتبارسنجی ورودی',
@@ -857,10 +1366,22 @@ return [
                 'is-visible-on-front'   => 'قابل مشاهده در صفحه محصول در جلوی وب‌سایت',
                 'input-options'         => 'گزینه‌های ورودی',
                 'is-comparable'         => 'قابل مقایسه است',
+=======
+                'image'                 => 'تصویر',
+                'input-options'         => 'گزینه‌های ورودی',
+                'input-validation'      => 'اعتبارسنجی ورودی',
+                'is-comparable'         => 'قابل مقایسه است',
+                'is-configurable'       => 'برای ایجاد محصولات پیکربندی‌پذیر استفاده شود',
+                'is-filterable'         => 'استفاده در ناوبری لایه‌ای',
+                'is-required'           => 'الزامی است',
+                'is-unique'             => 'یکتا است',
+                'is-visible-on-front'   => 'قابل مشاهده در صفحه محصول در جلوی وب‌سایت',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'label'                 => 'برچسب',
                 'multiselect'           => 'چندانتخابی',
                 'no'                    => 'خیر',
                 'number'                => 'عدد',
+<<<<<<< HEAD
                 'price'                 => 'قیمت',
                 'position'              => 'موقعیت',
                 'regex'                 => 'عبارت باقاعده (Regex)',
@@ -879,6 +1400,26 @@ return [
                 'value-per-channel'     => 'مقدار برای کانال',
                 'yes'                   => 'بله',
                 'default-value'         => 'مقدار پیش‌فرض',
+=======
+                'options'               => 'گزینه ها',
+                'position'              => 'موقعیت',
+                'price'                 => 'قیمت',
+                'regex'                 => 'عبارت باقاعده (Regex)',
+                'save-btn'              => 'ذخیره ویژگی',
+                'select'                => 'انتخابی',
+                'select-type'           => 'نوع ویژگی انتخابی',
+                'swatch'                => 'نمونه رنگ',
+                'text'                  => 'متن',
+                'textarea'              => 'متن طولانی',
+                'title'                 => 'افزودن ویژگی',
+                'type'                  => 'نوع ویژگی',
+                'url'                   => 'URL',
+                'use-in-flat'           => 'ایجاد در جدول محصول',
+                'validations'           => 'اعتبارسنجی‌ها',
+                'value-per-channel'     => 'مقدار برای کانال',
+                'value-per-locale'      => 'مقدار برای مکان (Locale)',
+                'yes'                   => 'بله',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 
                 'option'                => [
                     'color'    => 'نمونه رنگ',
@@ -890,6 +1431,7 @@ return [
             ],
 
             'edit'  => [
+<<<<<<< HEAD
                 'admin'                 => 'مدیر',
                 'add-row'               => 'افزودن ردیف',
                 'add-option'            => 'افزودن گزینه',
@@ -906,10 +1448,30 @@ return [
                 'datetime'              => 'تاریخ و زمان',
                 'date'                  => 'تاریخ',
                 'decimal'               => 'اعشاری',
+=======
+                'add-attribute-options' => 'افزودن گزینه‌های ویژگی',
+                'add-option'            => 'افزودن گزینه',
+                'add-options-info'      => 'برای ایجاد ترکیب‌های مختلف گزینه‌های ویژگی به صورت سریع.',
+                'add-row'               => 'افزودن ردیف',
+                'admin'                 => 'مدیر',
+                'admin-name'            => 'نام مدیر',
+                'back-btn'              => 'بازگشت',
+                'boolean'               => 'بولین',
+                'checkbox'              => 'چک باکس',
+                'code'                  => 'کد ویژگی',
+                'color'                 => 'رنگ',
+                'configuration'         => 'پیکربندی',
+                'create-empty-option'   => 'ایجاد گزینه خالی پیش‌فرض',
+                'date'                  => 'تاریخ',
+                'datetime'              => 'تاریخ و زمان',
+                'decimal'               => 'اعشاری',
+                'default-value'         => 'مقدار پیش‌فرض',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'email'                 => 'ایمیل',
                 'enable-wysiwyg'        => 'فعال کردن ویرایشگر WYSIWYG',
                 'file'                  => 'فایل',
                 'general'               => 'عمومی',
+<<<<<<< HEAD
                 'is-required'           => 'الزامی است',
                 'input-validation'      => 'اعتبارسنجی ورودی',
                 'image'                 => 'تصویر',
@@ -919,10 +1481,22 @@ return [
                 'is-visible-on-front'   => 'قابل مشاهده در صفحه محصول در جلوی وب‌سایت',
                 'input-options'         => 'گزینه‌های ورودی',
                 'is-comparable'         => 'قابل مقایسه است',
+=======
+                'image'                 => 'تصویر',
+                'input-options'         => 'گزینه‌های ورودی',
+                'input-validation'      => 'اعتبارسنجی ورودی',
+                'is-comparable'         => 'قابل مقایسه است',
+                'is-configurable'       => 'برای ایجاد محصولات پیکربندی‌پذیر استفاده شود',
+                'is-filterable'         => 'استفاده در ناوبری لایه‌ای',
+                'is-required'           => 'الزامی است',
+                'is-unique'             => 'یکتا است',
+                'is-visible-on-front'   => 'قابل مشاهده در صفحه محصول در جلوی وب‌سایت',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'label'                 => 'برچسب',
                 'multiselect'           => 'چندانتخابی',
                 'no'                    => 'خیر',
                 'number'                => 'عدد',
+<<<<<<< HEAD
                 'price'                 => 'قیمت',
                 'position'              => 'موقعیت',
                 'regex'                 => 'عبارت باقاعده (Regex)',
@@ -941,6 +1515,26 @@ return [
                 'value-per-channel'     => 'مقدار برای کانال',
                 'yes'                   => 'بله',
                 'default-value'         => 'مقدار پیش‌فرض',
+=======
+                'options'               => 'گزینه ها',
+                'position'              => 'موقعیت',
+                'price'                 => 'قیمت',
+                'regex'                 => 'عبارت باقاعده (Regex)',
+                'save-btn'              => 'ذخیره ویژگی',
+                'select'                => 'انتخابی',
+                'select-type'           => 'نوع ویژگی انتخابی',
+                'swatch'                => 'نمونه رنگ',
+                'text'                  => 'متن',
+                'textarea'              => 'متن طولانی',
+                'title'                 => 'ویرایش ویژگی',
+                'type'                  => 'نوع ویژگی',
+                'url'                   => 'URL',
+                'use-in-flat'           => 'ایجاد در جدول محصول',
+                'validations'           => 'اعتبارسنجی‌ها',
+                'value-per-channel'     => 'مقدار برای کانال',
+                'value-per-locale'      => 'مقدار برای مکان (Locale)',
+                'yes'                   => 'بله',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 
                 'option' => [
                     'color'    => 'نمونه رنگ',
@@ -952,14 +1546,22 @@ return [
             ],
 
             'create-success'    => 'ویژگی با موفقیت ایجاد شد',
+<<<<<<< HEAD
             'update-success'    => 'ویژگی با موفقیت به‌روزرسانی شد',
             'user-define-error' => 'امکان حذف ویژگی سیستمی وجود ندارد',
             'delete-success'    => 'ویژگی با موفقیت حذف شد',
             'delete-failed'     => 'حذف ویژگی ناموفق بود',
+=======
+            'delete-failed'     => 'حذف ویژگی ناموفق بود',
+            'delete-success'    => 'ویژگی با موفقیت حذف شد',
+            'update-success'    => 'ویژگی با موفقیت به‌روزرسانی شد',
+            'user-define-error' => 'امکان حذف ویژگی سیستمی وجود ندارد',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         ],
 
         'categories'  => [
             'index' => [
+<<<<<<< HEAD
                 'title'   => 'دسته‌بندی‌ها',
                 'add-btn' => 'ایجاد دسته‌بندی',
 
@@ -975,16 +1577,41 @@ return [
                     'delete'         => 'حذف',
                     'update-status'  => 'به‌روزرسانی وضعیت',
                     'delete-success' => 'دسته‌بندی‌های انتخاب‌شده با موفقیت حذف شدند',
+=======
+                'add-btn' => 'ایجاد دسته‌بندی',
+                'title'   => 'دسته‌بندی‌ها',
+
+                'datagrid' => [
+                    'active'         => 'فعال',
+                    'delete'         => 'حذف',
+                    'delete-success' => 'دسته‌بندی‌های انتخاب‌شده با موفقیت حذف شدند',
+                    'edit'           => 'ویرایش',
+                    'id'             => 'شناسه',
+                    'inactive'       => 'غیرفعال',
+                    'name'           => 'نام',
+                    'no-of-products' => 'تعداد محصولات',
+                    'position'       => 'موقعیت',
+                    'status'         => 'قابل مشاهده در منو',
+                    'update-status'  => 'به‌روزرسانی وضعیت',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 ],
             ],
 
             'create' => [
+<<<<<<< HEAD
                 'add-logo'                 => 'افزودن لوگو',
                 'add-banner'               => 'افزودن بنر',
                 'banner'                   => 'بنر',
                 'banner-size'              => 'نسبت ابعاد بنر (1320px X 300px)',
                 'back-btn'                 => 'بازگشت',
                 'name'                     => 'نام',
+=======
+                'add-banner'               => 'افزودن بنر',
+                'add-logo'                 => 'افزودن لوگو',
+                'back-btn'                 => 'بازگشت',
+                'banner'                   => 'بنر',
+                'banner-size'              => 'نسبت ابعاد بنر (1320px X 300px)',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'description'              => 'توضیحات',
                 'description-and-images'   => 'توضیحات و تصاویر',
                 'description-only'         => 'توضیحات فقط',
@@ -997,26 +1624,45 @@ return [
                 'meta-description'         => 'توضیحات متا',
                 'meta-keywords'            => 'کلمات کلیدی متا',
                 'meta-title'               => 'عنوان متا',
+<<<<<<< HEAD
+=======
+                'name'                     => 'نام',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'parent-category'          => 'دسته‌بندی والد',
                 'position'                 => 'موقعیت',
                 'products-and-description' => 'محصولات و توضیحات',
                 'products-only'            => 'فقط محصولات',
                 'save-btn'                 => 'ذخیره دسته‌بندی',
+<<<<<<< HEAD
                 'slug'                     => 'نامک',
                 'settings'                 => 'تنظیمات',
                 'seo-details'              => 'جزئیات SEO',
                 'select-display-mode'      => 'حالت نمایش را انتخاب کنید',
+=======
+                'select-display-mode'      => 'حالت نمایش را انتخاب کنید',
+                'seo-details'              => 'جزئیات SEO',
+                'settings'                 => 'تنظیمات',
+                'slug'                     => 'نامک',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'title'                    => 'ایجاد دسته‌بندی جدید',
                 'visible-in-menu'          => 'قابل مشاهده در منو',
             ],
 
             'edit' => [
+<<<<<<< HEAD
                 'add-logo'                 => 'افزودن لوگو',
                 'add-banner'               => 'افزودن بنر',
                 'banner'                   => 'بنر',
                 'banner-size'              => 'نسبت ابعاد بنر (1320px X 300px)',
                 'back-btn'                 => 'بازگشت',
                 'name'                     => 'نام',
+=======
+                'add-banner'               => 'افزودن بنر',
+                'add-logo'                 => 'افزودن لوگو',
+                'back-btn'                 => 'بازگشت',
+                'banner'                   => 'بنر',
+                'banner-size'              => 'نسبت ابعاد بنر (1320px X 300px)',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'description'              => 'توضیحات',
                 'description-and-images'   => 'توضیحات و تصاویر',
                 'description-only'         => 'توضیحات فقط',
@@ -1029,29 +1675,51 @@ return [
                 'meta-description'         => 'توضیحات متا',
                 'meta-keywords'            => 'کلمات کلیدی متا',
                 'meta-title'               => 'عنوان متا',
+<<<<<<< HEAD
+=======
+                'name'                     => 'نام',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'position'                 => 'موقعیت*',
                 'products-and-description' => 'محصولات و توضیحات',
                 'products-only'            => 'فقط محصولات',
                 'save-btn'                 => 'ذخیره دسته‌بندی',
+<<<<<<< HEAD
                 'slug'                     => 'نامک',
                 'settings'                 => 'تنظیمات',
                 'seo-details'              => 'جزئیات SEO',
                 'select-parent-category'   => 'دسته‌بندی والد را انتخاب کنید*',
                 'select-display-mode'      => 'حالت نمایش را انتخاب کنید',
+=======
+                'select-display-mode'      => 'حالت نمایش را انتخاب کنید',
+                'select-parent-category'   => 'دسته‌بندی والد را انتخاب کنید*',
+                'seo-details'              => 'جزئیات SEO',
+                'settings'                 => 'تنظیمات',
+                'slug'                     => 'نامک',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'title'                    => 'ویرایش دسته‌بندی',
                 'visible-in-menu'          => 'قابل مشاهده در منو',
             ],
 
+<<<<<<< HEAD
             'create-success'       => 'دسته‌بندی با موفقیت ایجاد شد.',
             'category'             => 'دسته‌بندی',
             'update-success'       => 'دسته‌بندی با موفقیت به‌روزرسانی شد.',
             'delete-success'       => 'دسته‌بندی با موفق',
             'delete-category-root' => 'دسته بندی اصلی قابل حذف نیست.',
             'delete-failed'        => 'خطا در حذف دسته بندی رخ داده است',
+=======
+            'category'             => 'دسته‌بندی',
+            'create-success'       => 'دسته‌بندی با موفقیت ایجاد شد.',
+            'delete-category-root' => 'دسته بندی اصلی قابل حذف نیست.',
+            'delete-failed'        => 'خطا در حذف دسته بندی رخ داده است',
+            'delete-success'       => 'دسته‌بندی با موفق',
+            'update-success'       => 'دسته‌بندی با موفقیت به‌روزرسانی شد.',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         ],
 
         'families'   => [
             'index' => [
+<<<<<<< HEAD
                 'title' => 'خانواده‌ها',
                 'add'   => 'ایجاد خانواده ویژگی',
 
@@ -1066,10 +1734,27 @@ return [
                     'update-success' => 'انتخاب‌شده‌های :resource با موفقیت به‌روزرسانی شدند',
                     'no-resource'    => 'منبع ارائه‌شده برای انجام اقدام کافی نیست',
                     'method-error'   => 'خطا! روش اشتباه شناسایی شده است، لطفاً تنظیمات اقدام جمعی را بررسی کنید',
+=======
+                'add'   => 'ایجاد خانواده ویژگی',
+                'title' => 'خانواده‌ها',
+
+                'datagrid' => [
+                    'code'           => 'کد',
+                    'delete'         => 'حذف',
+                    'delete-success' => 'انتخاب‌شده‌های :resource با موفقیت حذف شدند',
+                    'edit'           => 'ویرایش',
+                    'id'             => 'شناسه',
+                    'method-error'   => 'خطا! روش اشتباه شناسایی شده است، لطفاً تنظیمات اقدام جمعی را بررسی کنید',
+                    'name'           => 'نام',
+                    'no-resource'    => 'منبع ارائه‌شده برای انجام اقدام کافی نیست',
+                    'partial-action' => 'بعضی از اقدامات به دلیل محدودیت‌های سیستمی در :resource انجام نشدند',
+                    'update-success' => 'انتخاب‌شده‌های :resource با موفقیت به‌روزرسانی شدند',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 ],
             ],
 
             'create' => [
+<<<<<<< HEAD
                 'title'                            => 'ایجاد خانواده ویژگی',
                 'save-btn'                         => 'ذخیره خانواده ویژگی',
                 'back-btn'                         => 'بازگشت',
@@ -1130,6 +1815,70 @@ return [
             'user-define-error'       => 'نمی‌توان خانواده ویژگی سیستمی را حذف کرد',
             'last-delete-error'       => 'حداقل یک خانواده لازم است.',
             'attribute-product-error' => 'این خانواده در محصولات استفاده شده است.',
+=======
+                'add-group-btn'                    => 'افزودن گروه',
+                'add-group-title'                  => 'افزودن گروه جدید',
+                'back-btn'                         => 'بازگشت',
+                'code'                             => 'کد',
+                'column'                           => 'ستون',
+                'delete-group-btn'                 => 'حذف گروه',
+                'edit-group-info'                  => 'برای ویرایش گروه دوباره کلیک کنید',
+                'enter-code'                       => 'کد را وارد کنید',
+                'enter-name'                       => 'نام را وارد کنید',
+                'general'                          => 'عمومی',
+                'group-code-already-exists'        => 'یک کد گروه ویژگی از قبل وجود دارد.',
+                'group-contains-system-attributes' => 'این گروه ویژگی حاوی ویژگی‌های سیستمی است. ابتدا ویژگی‌های سیستمی را به یک گروه دیگر منتقل کرده و دوباره امتحان کنید.',
+                'group-name-already-exists'        => 'یک نام گروه ویژگی از قبل وجود دارد.',
+                'groups'                           => 'گروه‌ها',
+                'groups-info'                      => 'مدیریت گروه‌های خانواده ویژگی',
+                'main-column'                      => 'ستون اصلی',
+                'name'                             => 'نام',
+                'removal-not-possible'             => 'شما نمی‌توانید ویژگی‌های سیستمی را از خانواده ویژگی حذف کنید.',
+                'right-column'                     => 'ستون سمت راست',
+                'save-btn'                         => 'ذخیره خانواده ویژگی',
+                'select-group'                     => 'لطفاً یک گروه ویژگی انتخاب کنید.',
+                'title'                            => 'ایجاد خانواده ویژگی',
+                'unassigned-attributes'            => 'ویژگی‌های غیرمتصل',
+                'unassigned-attributes-info'       => 'این ویژگی‌ها را برای اضافه کردن به ستون‌ها یا گروه‌ها بکشید.',
+            ],
+
+            'edit' => [
+                'add-group-btn'                    => 'افزودن گروه',
+                'add-group-title'                  => 'افزودن گروه جدید',
+                'back-btn'                         => 'بازگشت',
+                'code'                             => 'کد',
+                'column'                           => 'ستون',
+                'delete-group-btn'                 => 'حذف گروه',
+                'edit-group-info'                  => 'برای ویرایش گروه دوباره کلیک کنید',
+                'enter-code'                       => 'کد را وارد کنید',
+                'enter-name'                       => 'نام را وارد کنید',
+                'general'                          => 'عمومی',
+                'group-code-already-exists'        => 'یک کد گروه ویژگی از قبل وجود دارد.',
+                'group-contains-system-attributes' => 'این گروه ویژگی حاوی ویژگی‌های سیستمی است. ابتدا ویژگی‌های سیستمی را به یک گروه دیگر منتقل کرده و دوباره امتحان کنید.',
+                'group-name-already-exists'        => 'یک نام گروه ویژگی از قبل وجود دارد.',
+                'groups'                           => 'گروه‌ها',
+                'groups-info'                      => 'مدیریت گروه‌های خانواده ویژگی',
+                'main-column'                      => 'ستون اصلی',
+                'name'                             => 'نام',
+                'removal-not-possible'             => 'شما نمی‌توانید ویژگی‌های سیستمی را از خانواده ویژگی حذف کنید.',
+                'right-column'                     => 'ستون سمت راست',
+                'save-btn'                         => 'ذخیره خانواده ویژگی',
+                'select-group'                     => 'لطفاً یک گروه ویژگی انتخاب کنید.',
+                'title'                            => 'ویرایش خانواده ویژگی',
+                'unassigned-attributes'            => 'ویژگی‌های غیرمتصل',
+                'unassigned-attributes-info'       => 'این ویژگی‌ها را برای اضافه کردن به ستون‌ها یا گروه‌ها بکشید.',
+            ],
+
+            'attribute-family'        => 'خانواده ویژگی',
+            'attribute-product-error' => 'این خانواده در محصولات استفاده شده است.',
+            'create-success'          => 'خانواده با موفقیت ایجاد شد.',
+            'delete-failed'           => 'خطا در حذف خانواده.',
+            'delete-success'          => 'خانواده با موفقیت حذف شد.',
+            'family'                  => 'خانواده',
+            'last-delete-error'       => 'حداقل یک خانواده لازم است.',
+            'update-success'          => 'خانواده با موفقیت به‌روزرسانی شد.',
+            'user-define-error'       => 'نمی‌توان خانواده ویژگی سیستمی را حذف کرد',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         ],
     ],
 
@@ -1140,6 +1889,7 @@ return [
                 'title'         => 'مشتریان',
 
                 'datagrid'  => [
+<<<<<<< HEAD
                     'id'             => 'شناسه مشتری',
                     'order'          => ':order سفارش',
                     'address'        => ':address آدرس',
@@ -1170,6 +1920,38 @@ return [
                     'contact-number'        => 'شماره تماس',
                     'customer-group'        => 'گروه مشتری',
                     'create-success'        => 'مشتری با موفقیت ایجاد شد',
+=======
+                    'active'         => 'فعال',
+                    'address'        => ':address آدرس',
+                    'address-count'  => 'تعداد آدرس‌ها',
+                    'delete'         => 'حذف',
+                    'delete-success' => 'داده‌های انتخاب شده با موفقیت حذف شدند',
+                    'email'          => 'ایمیل',
+                    'gender'         => 'جنسیت',
+                    'group'          => 'گروه',
+                    'id'             => 'شناسه مشتری',
+                    'inactive'       => 'غیرفعال',
+                    'method-error'   => 'خطا! متد اشتباه شناسایی شد، لطفاً تنظیمات اقدام جمعی را بررسی کنید',
+                    'name'           => 'نام مشتری',
+                    'no-resource'    => 'منبع ارائه‌شده برای انجام اقدام کافی نیست',
+                    'order'          => ':order سفارش',
+                    'order-count'    => 'تعداد سفارش‌ها',
+                    'order-pending'  => 'مشتری دارای سفارش در انتظار است',
+                    'partial-action' => 'بعضی از اقدامات به دلیل محدودیت‌های سیستمی بر روی :resource انجام نشدند',
+                    'phone'          => 'شماره تماس',
+                    'revenue'        => 'درآمد',
+                    'status'         => 'وضعیت',
+                    'suspended'      => 'تعلیق شده',
+                    'update-status'  => 'به‌روزرسانی وضعیت',
+                    'update-success' => 'مشتریان انتخاب‌شده با موفقیت به‌روزرسانی شدند',
+                ],
+
+                'create' => [
+                    'contact-number'        => 'شماره تماس',
+                    'create-btn'            => 'ایجاد مشتری',
+                    'create-success'        => 'مشتری با موفقیت ایجاد شد',
+                    'customer-group'        => 'گروه مشتری',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     'date-of-birth'         => 'تاریخ تولد',
                     'email'                 => 'ایمیل',
                     'female'                => 'زن',
@@ -1179,38 +1961,63 @@ return [
                     'male'                  => 'مرد',
                     'other'                 => 'سایر',
                     'save-btn'              => 'ذخیره مشتری',
+<<<<<<< HEAD
                     'select-gender'         => 'جنسیت را انتخاب کنید',
                     'select-customer-group' => 'گروه مشتری را انتخاب کنید',
+=======
+                    'select-customer-group' => 'گروه مشتری را انتخاب کنید',
+                    'select-gender'         => 'جنسیت را انتخاب کنید',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     'title'                 => 'ایجاد مشتری جدید',
                 ],
             ],
 
+<<<<<<< HEAD
             'delete-success' => 'مشتری با موفقیت حذف شد',
             'delete-failed'  => 'حذف مشتری با شکست مواجه شد',
             'update-success' => 'مشتری با موفقیت به‌روزرسانی شد',
             'order-pending'  => 'سفارش‌ها در انتظار است',
+=======
+            'delete-failed'  => 'حذف مشتری با شکست مواجه شد',
+            'delete-success' => 'مشتری با موفقیت حذف شد',
+            'order-pending'  => 'سفارش‌ها در انتظار است',
+            'update-success' => 'مشتری با موفقیت به‌روزرسانی شد',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 
             'edit' => [
                 'contact-number'        => 'شماره تماس',
                 'customer-group'        => 'گروه مشتری',
                 'date-of-birth'         => 'تاریخ تولد',
+<<<<<<< HEAD
                 'email'                 => 'ایمیل',
                 'edit-btn'              => 'ویرایش',
+=======
+                'edit-btn'              => 'ویرایش',
+                'email'                 => 'ایمیل',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'female'                => 'زن',
                 'first-name'            => 'نام',
                 'gender'                => 'جنسیت',
                 'last-name'             => 'نام خانوادگی',
                 'male'                  => 'مرد',
                 'other'                 => 'سایر',
+<<<<<<< HEAD
                 'select-customer-group' => 'گروه مشتری را انتخاب کنید',
                 'select-gender'         => 'جنسیت را انتخاب کنید',
                 'status'                => 'وضعیت',
                 'save-btn'              => 'ذخیره مشتری',
+=======
+                'save-btn'              => 'ذخیره مشتری',
+                'select-customer-group' => 'گروه مشتری را انتخاب کنید',
+                'select-gender'         => 'جنسیت را انتخاب کنید',
+                'status'                => 'وضعیت',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'suspended'             => 'تعلیق شده',
                 'title'                 => 'ویرایش مشتری',
             ],
 
             'view' => [
+<<<<<<< HEAD
                 'address'                     => 'آدرس',
                 'back-btn'                    => 'بازگشت',
                 'add-note'                    => 'افزودن یادداشت',
@@ -1267,6 +2074,66 @@ return [
                 'order-pending'               => 'امکان حذف حساب وجود ندارد چرا که برخی از سفارش‌ها در وضعیت در انتظار یا در حال پردازش هستند.',
                 'account-delete-confirmation' => 'آیا از حذف این حساب اطمینان دارید؟',
                 'address-delete-confirmation' => 'آیا از حذف این آدرس اطمینان دارید؟',
+=======
+                'account-delete-confirmation' => 'آیا از حذف این حساب اطمینان دارید؟',
+                'active'                      => 'فعال',
+                'add-note'                    => 'افزودن یادداشت',
+                'address'                     => 'آدرس',
+                'address-delete-confirmation' => 'آیا از حذف این آدرس اطمینان دارید؟',
+                'address-delete-success'      => 'آدرس با موفقیت حذف شد',
+                'approved'                    => 'تایید شده',
+                'back-btn'                    => 'بازگشت',
+                'canceled'                    => 'لغو شده',
+                'closed'                      => 'بسته شده',
+                'completed'                   => 'تکمیل شده',
+                'customer'                    => 'مشتری',
+                'customer-not-notified'       => ':date | مشتری <b>آگاه نشد</b>',
+                'customer-notified'           => ':date | مشتری <b>آگاه شد</b>',
+                'date-of-birth'               => 'تاریخ تولد - :dob',
+                'default-address'             => 'آدرس پیش‌فرض',
+                'delete'                      => 'حذف',
+                'delete-account'              => 'حذف حساب',
+                'disapproved'                 => 'تایید نشده',
+                'edit'                        => 'ویرایش',
+                'email'                       => 'ایمیل - :email',
+                'empty-description'           => 'برای مشتری آدرس جدید ایجاد کنید',
+                'empty-invoice'               => 'فاکتوری موجود نیست',
+                'empty-order'                 => 'سفارشی موجود نیست',
+                'empty-review'                => 'نقد و بررسی موجود نیست',
+                'empty-title'                 => 'افزودن آدرس مشتری',
+                'gender'                      => 'جنسیت - :gender',
+                'group'                       => 'گروه - :group_code',
+                'id'                          => 'شناسه - :id',
+                'inactive'                    => 'غیرفعال',
+                'increment-id'                => '# :increment_id',
+                'invoice'                     => 'فاکتورها (:invoice_count)',
+                'invoice-amount'              => 'مبلغ فاکتور',
+                'invoice-date'                => 'تاریخ فاکتور',
+                'invoice-id'                  => 'شناسه فاکتور',
+                'invoice-id-prefix'           => '# :invoice_id',
+                'mobile'                      => 'تلفن همراه',
+                'note'                        => 'یادداشت',
+                'note-created-success'        => 'یادداشت با موفقیت ایجاد شد',
+                'note-placeholder'            => 'یادداشت خود را اینجا بنویسید',
+                'notify-customer'             => 'اطلاع‌رسانی به مشتری',
+                'of'                          => 'از',
+                'order-id'                    => 'شناسه سفارش',
+                'order-id-prefix'             => '# :order_id',
+                'order-pending'               => 'امکان حذف حساب وجود ندارد چرا که برخی از سفارش‌ها در وضعیت در انتظار یا در حال پردازش هستند.',
+                'orders'                      => 'سفارش‌ها (:order_count)',
+                'pay-by'                      => 'پرداخت توسط',
+                'pending'                     => 'در انتظار',
+                'per-page'                    => 'در هر صفحه',
+                'phone'                       => 'تلفن - :phone',
+                'processing'                  => 'در حال پردازش',
+                'reviews'                     => 'نقد و بررسی‌ها',
+                'set-as-default'              => 'تنظیم به عنوان پیش‌فرض',
+                'set-default-success'         => 'آدرس پیش‌فرض با موفقیت به‌روزرسانی شد',
+                'submit-btn-title'            => 'ثبت یادداشت',
+                'suspended'                   => 'تعلیق شده',
+                'title'                       => 'مشاهده مشتری',
+                'total-revenue'               => 'کل درآمد - :revenue',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             ],
         ],
 
@@ -1275,36 +2142,64 @@ return [
                 'title' => 'گروه‌ها',
 
                 'create' => [
+<<<<<<< HEAD
                     'create-btn' => 'ساخت گروه',
                     'code'       => 'کد',
                     'success'    => 'گروه با موفقیت ایجاد شد',
                     'name'       => 'نام',
                     'save-btn'   => 'ذخیره گروه',
+=======
+                    'code'       => 'کد',
+                    'create-btn' => 'ساخت گروه',
+                    'name'       => 'نام',
+                    'save-btn'   => 'ذخیره گروه',
+                    'success'    => 'گروه با موفقیت ایجاد شد',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     'title'      => 'ایجاد گروه جدید',
                 ],
 
                 'edit'  => [
+<<<<<<< HEAD
                     'title'          => 'ویرایش گروه',
                     'success'        => 'گروه با موفقیت به‌روزرسانی شد',
                     'delete-success' => 'گروه با موفقیت حذف شد',
                     'delete-failed'  => 'حذف گروه با شکست مواجه شد',
                     'group-default'  => 'گروه پیش‌فرض قابل حذف نیست',
+=======
+                    'delete-failed'  => 'حذف گروه با شکست مواجه شد',
+                    'delete-success' => 'گروه با موفقیت حذف شد',
+                    'group-default'  => 'گروه پیش‌فرض قابل حذف نیست',
+                    'success'        => 'گروه با موفقیت به‌روزرسانی شد',
+                    'title'          => 'ویرایش گروه',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 ],
 
                 'datagrid'  => [
                     'code'   => 'کد',
+<<<<<<< HEAD
                     'id'     => 'شناسه',
                     'name'   => 'نام',
                     'edit'   => 'ویرایش',
                     'delete' => 'حذف',
+=======
+                    'delete' => 'حذف',
+                    'edit'   => 'ویرایش',
+                    'id'     => 'شناسه',
+                    'name'   => 'نام',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 ],
             ],
         ],
 
         'reviews' => [
             'index' => [
+<<<<<<< HEAD
                 'description' => 'توضیحات',
                 'date'        => 'تاریخ',
+=======
+                'date'        => 'تاریخ',
+                'description' => 'توضیحات',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'id'          => 'شناسه',
                 'name'        => 'نام',
                 'product'     => 'محصول',
@@ -1313,6 +2208,7 @@ return [
                 'title'       => 'نقد و بررسی‌ها',
 
                 'edit'  => [
+<<<<<<< HEAD
                     'title'          => 'ویرایش نقد و بررسی',
                     'save-btn'       => 'ذخیره',
                     'customer'       => 'مشتری',
@@ -1327,10 +2223,27 @@ return [
                     'review-title'   => 'عنوان',
                     'review-comment' => 'نظر',
                     'images'         => 'تصاویر',
+=======
+                    'approved'       => 'تایید شده',
+                    'customer'       => 'مشتری',
+                    'date'           => 'تاریخ',
+                    'disapproved'    => 'رد شده',
+                    'id'             => 'شناسه',
+                    'images'         => 'تصاویر',
+                    'pending'        => 'در انتظار',
+                    'product'        => 'محصول',
+                    'rating'         => 'امتیاز',
+                    'review-comment' => 'نظر',
+                    'review-title'   => 'عنوان',
+                    'save-btn'       => 'ذخیره',
+                    'status'         => 'وضعیت',
+                    'title'          => 'ویرایش نقد و بررسی',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     'update-success' => 'با موفقیت به‌روزرسانی شد',
                 ],
 
                 'datagrid'   => [
+<<<<<<< HEAD
                     'customer-names'      => 'نام',
                     'comment'             => 'نظر',
                     'date'                => 'تاریخ',
@@ -1350,12 +2263,34 @@ return [
                     'mass-delete-success' => 'نقد و بررسی‌های انتخاب‌شده با موفقیت حذف شدند',
                     'mass-delete-error'   => 'مشکلی پیش آمد',
                     'mass-update-success' => 'نقد و بررسی‌های انتخاب‌شده با موفقیت به‌روزرسانی شدند',
+=======
+                    'approved'            => 'تایید شده',
+                    'comment'             => 'نظر',
+                    'customer-names'      => 'نام',
+                    'date'                => 'تاریخ',
+                    'delete'              => 'حذف',
+                    'delete-success'      => 'نقد و بررسی با موفقیت حذف شد',
+                    'disapproved'         => 'رد شده',
+                    'edit'                => 'ویرایش',
+                    'id'                  => 'شناسه',
+                    'mass-delete-error'   => 'مشکلی پیش آمد',
+                    'mass-delete-success' => 'نقد و بررسی‌های انتخاب‌شده با موفقیت حذف شدند',
+                    'mass-update-success' => 'نقد و بررسی‌های انتخاب‌شده با موفقیت به‌روزرسانی شدند',
+                    'pending'             => 'در انتظار',
+                    'product'             => 'محصول',
+                    'rating'              => 'امتیاز',
+                    'review-id'           => 'شناسه - :review_id',
+                    'status'              => 'وضعیت',
+                    'title'               => 'عنوان',
+                    'update-status'       => 'وضعیت را به‌روزرسانی کنید',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 ],
             ],
         ],
 
         'addresses' => [
             'create' => [
+<<<<<<< HEAD
                 'title'              => 'ایجاد آدرس مشتری',
                 'create-address-btn' => 'افزودن آدرس جدید',
                 'company-name'       => 'نام شرکت',
@@ -1366,10 +2301,19 @@ return [
                 'state'              => 'استان',
                 'select-country'     => 'انتخاب کشور',
                 'country'            => 'کشور',
+=======
+                'address-1'          => 'آدرس 1',
+                'address-2'          => 'آدرس 2',
+                'city'               => 'شهر',
+                'company-name'       => 'نام شرکت',
+                'country'            => 'کشور',
+                'create-address-btn' => 'افزودن آدرس جدید',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'default-address'    => 'آدرس پیش‌فرض',
                 'first-name'         => 'نام',
                 'last-name'          => 'نام خانوادگی',
                 'phone'              => 'تلفن',
+<<<<<<< HEAD
                 'street-address'     => 'آدرس خیابانی',
                 'post-code'          => 'کد پستی',
                 'save-btn-title'     => 'ذخیره آدرس',
@@ -1384,11 +2328,28 @@ return [
                 'city'             => 'شهر',
                 'state'            => 'استان',
                 'select-country'   => 'انتخاب کشور',
+=======
+                'post-code'          => 'کد پستی',
+                'save-btn-title'     => 'ذخیره آدرس',
+                'select-country'     => 'انتخاب کشور',
+                'state'              => 'استان',
+                'street-address'     => 'آدرس خیابانی',
+                'title'              => 'ایجاد آدرس مشتری',
+                'vat-id'             => 'شناسه مالیاتی (VAT)',
+            ],
+
+            'edit' => [
+                'address-1'        => 'آدرس 1',
+                'address-2'        => 'آدرس 2',
+                'city'             => 'شهر',
+                'company-name'     => 'نام شرکت',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'country'          => 'کشور',
                 'default-address'  => 'آدرس پیش‌فرض',
                 'first-name'       => 'نام',
                 'last-name'        => 'نام خانوادگی',
                 'phone'            => 'تلفن',
+<<<<<<< HEAD
                 'street-address'   => 'آدرس خیابانی',
                 'post-code'        => 'کد پستی',
                 'save-btn-title'   => 'ذخیره آدرس',
@@ -1397,6 +2358,20 @@ return [
             'create-success'      => 'آدرس با موفقیت ایجاد شد',
             'update-success'      => 'آدرس با موفقیت به‌روزرسانی شد',
             'success-mass-delete' => 'حذف گروهی آدرس با موفقیت انجام شد',
+=======
+                'post-code'        => 'کد پستی',
+                'save-btn-title'   => 'ذخیره آدرس',
+                'select-country'   => 'انتخاب کشور',
+                'state'            => 'استان',
+                'street-address'   => 'آدرس خیابانی',
+                'title'            => 'ویرایش آدرس',
+                'vat-id'           => 'شناسه مالیاتی (VAT)',
+            ],
+
+            'create-success'      => 'آدرس با موفقیت ایجاد شد',
+            'success-mass-delete' => 'حذف گروهی آدرس با موفقیت انجام شد',
+            'update-success'      => 'آدرس با موفقیت به‌روزرسانی شد',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         ],
     ],
 
@@ -1404,6 +2379,7 @@ return [
         'communications' => [
             'templates' => [
                 'index' => [
+<<<<<<< HEAD
                     'title'      => 'قالب‌های ایمیل',
                     'create-btn' => 'ساخت قالب',
 
@@ -1414,19 +2390,39 @@ return [
                         'active'   => 'فعال',
                         'inactive' => 'غیرفعال',
                         'draft'    => 'پیش‌نویس',
+=======
+                    'create-btn' => 'ساخت قالب',
+                    'title'      => 'قالب‌های ایمیل',
+
+                    'datagrid' => [
+                        'active'   => 'فعال',
+                        'draft'    => 'پیش‌نویس',
+                        'id'       => 'شناسه',
+                        'inactive' => 'غیرفعال',
+                        'name'     => 'نام',
+                        'status'   => 'وضعیت',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     ],
                 ],
 
                 'create' => [
+<<<<<<< HEAD
                     'title'          => 'ساخت قالب',
                     'active'         => 'فعال',
                     'content'        => 'محتوا',
                     'back-btn'       => 'بازگشت',
+=======
+                    'active'         => 'فعال',
+                    'back-btn'       => 'بازگشت',
+                    'content'        => 'محتوا',
+                    'create-success' => 'قالب ایمیل با موفقیت ساخته شد.',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     'draft'          => 'پیش‌نویس',
                     'general'        => 'عمومی',
                     'inactive'       => 'غیرفعال',
                     'name'           => 'نام',
                     'save-btn'       => 'ذخیره قالب',
+<<<<<<< HEAD
                     'status'         => 'وضعیت',
                     'select-status'  => 'انتخاب وضعیت',
                     'create-success' => 'قالب ایمیل با موفقیت ساخته شد.',
@@ -1437,18 +2433,39 @@ return [
                     'active'         => 'فعال',
                     'content'        => 'محتوا*',
                     'back-btn'       => 'بازگشت',
+=======
+                    'select-status'  => 'انتخاب وضعیت',
+                    'status'         => 'وضعیت',
+                    'title'          => 'ساخت قالب',
+                ],
+
+                'edit' => [
+                    'active'         => 'فعال',
+                    'back-btn'       => 'بازگشت',
+                    'content'        => 'محتوا*',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     'draft'          => 'پیش‌نویس',
                     'general'        => 'عمومی',
                     'inactive'       => 'غیرفعال',
                     'name'           => 'نام',
                     'save-btn'       => 'ذخیره قالب',
                     'status'         => 'وضعیت',
+<<<<<<< HEAD
                     'update-success' => 'با موفقیت به‌روزرسانی شد',
                 ],
 
                 'email-template' => 'قالب ایمیل',
                 'delete-success' => 'قالب با موفقیت حذف شد',
                 'delete-failed'  => ':name حذف نشد',
+=======
+                    'title'          => 'ویرایش قالب',
+                    'update-success' => 'با موفقیت به‌روزرسانی شد',
+                ],
+
+                'delete-failed'  => ':name حذف نشد',
+                'delete-success' => 'قالب با موفقیت حذف شد',
+                'email-template' => 'قالب ایمیل',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             ],
 
             'campaigns' => [
@@ -1471,14 +2488,20 @@ return [
                 'create' => [
                     'active'          => 'فعال',
                     'back-btn'        => 'بازگشت',
+<<<<<<< HEAD
                     'customer-group'  => 'گروه مشتریان',
                     'channel'         => 'کانال',
+=======
+                    'channel'         => 'کانال',
+                    'customer-group'  => 'گروه مشتریان',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     'email-template'  => 'قالب ایمیل',
                     'event'           => 'رویداد',
                     'general'         => 'عمومی',
                     'inactive'        => 'غیرفعال',
                     'name'            => 'نام',
                     'save-btn'        => 'ذخیره کمپین',
+<<<<<<< HEAD
                     'setting'         => 'تنظیمات',
                     'status'          => 'وضعیت',
                     'select-template' => 'انتخاب قالب',
@@ -1486,6 +2509,15 @@ return [
                     'select-status'   => 'انتخاب وضعیت',
                     'select-channel'  => 'انتخاب کانال',
                     'select-group'    => 'انتخاب گروه',
+=======
+                    'select-channel'  => 'انتخاب کانال',
+                    'select-event'    => 'انتخاب رویداد',
+                    'select-group'    => 'انتخاب گروه',
+                    'select-status'   => 'انتخاب وضعیت',
+                    'select-template' => 'انتخاب قالب',
+                    'setting'         => 'تنظیمات',
+                    'status'          => 'وضعیت',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     'subject'         => 'موضوع',
                     'title'           => 'ساخت کمپین',
                 ],
@@ -1494,32 +2526,53 @@ return [
                     'active'          => 'فعال',
                     'audience'        => 'مخاطبین',
                     'back-btn'        => 'بازگشت',
+<<<<<<< HEAD
                     'customer-group'  => 'گروه مشتریان',
                     'channel'         => 'کانال',
+=======
+                    'channel'         => 'کانال',
+                    'customer-group'  => 'گروه مشتریان',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     'email-template'  => 'قالب ایمیل',
                     'event'           => 'رویداد',
                     'general'         => 'عمومی',
                     'inactive'        => 'غیرفعال',
                     'name'            => 'نام',
                     'save-btn'        => 'ذخیره کمپین',
+<<<<<<< HEAD
                     'status'          => 'وضعیت',
                     'select-template' => 'انتخاب قالب',
                     'select-event'    => 'انتخاب رویداد',
                     'select-status'   => 'انتخاب وضعیت',
+=======
+                    'select-event'    => 'انتخاب رویداد',
+                    'select-status'   => 'انتخاب وضعیت',
+                    'select-template' => 'انتخاب قالب',
+                    'status'          => 'وضعیت',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     'subject'         => 'موضوع',
                     'title'           => 'ویرایش کمپین',
                 ],
 
+<<<<<<< HEAD
                 'email-campaign' => 'کمپین ایمیل',
                 'create-success' => 'کمپین با موفقیت ایجاد شد.',
                 'update-success' => 'کمپین با موفقیت به‌روزرسانی شد.',
                 'delete-success' => 'کمپین با موفقیت حذف شد',
                 'delete-failed'  => ':name حذف نشد',
+=======
+                'create-success' => 'کمپین با موفقیت ایجاد شد.',
+                'delete-failed'  => ':name حذف نشد',
+                'delete-success' => 'کمپین با موفقیت حذف شد',
+                'email-campaign' => 'کمپین ایمیل',
+                'update-success' => 'کمپین با موفقیت به‌روزرسانی شد.',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             ],
 
             'events' => [
                 'index' => [
                     'create-btn' => 'ایجاد رویداد',
+<<<<<<< HEAD
                     'title'      => 'رویدادها',
                     'event'      => 'رویداد',
 
@@ -1552,6 +2605,40 @@ return [
                 'edit-error'     => 'رویداد قابل ویرایش نمی‌باشد',
                 'delete-failed'  => ':name حذف نشد',
                 'delete-success' => 'رویدادها با موفقیت حذف شدند',
+=======
+                    'event'      => 'رویداد',
+                    'title'      => 'رویدادها',
+
+                    'datagrid' => [
+                        'actions' => 'عملیات',
+                        'date'    => 'تاریخ',
+                        'delete'  => 'حذف',
+                        'edit'    => 'ویرایش',
+                        'id'      => 'شناسه',
+                        'name'    => 'نام',
+                    ],
+
+                    'create' => [
+                        'date'           => 'تاریخ',
+                        'delete-warning' => 'آیا مطمئن هستید که می‌خواهید این عمل را انجام دهید؟',
+                        'description'    => 'توضیحات',
+                        'general'        => 'عمومی',
+                        'name'           => 'نام',
+                        'save-btn'       => 'ذخیره رویداد',
+                        'success'        => 'رویدادها با موفقیت ایجاد شدند',
+                        'title'          => 'ایجاد رویدادها',
+                    ],
+
+                    'edit' => [
+                        'success' => 'رویدادها با موفقیت به‌روزرسانی شدند',
+                        'title'   => 'ویرایش رویدادها',
+                    ],
+                ],
+
+                'delete-failed'  => ':name حذف نشد',
+                'delete-success' => 'رویدادها با موفقیت حذف شدند',
+                'edit-error'     => 'رویداد قابل ویرایش نمی‌باشد',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             ],
 
             'subscribers' => [
@@ -1559,6 +2646,7 @@ return [
                     'title' => 'اشتراک خبرنامه',
 
                     'datagrid' => [
+<<<<<<< HEAD
                         'id'         => 'شناسه',
                         'subscribed' => 'مشترک',
                         'true'       => 'بله',
@@ -1578,24 +2666,57 @@ return [
                         'true'          => 'بله',
                         'false'         => 'خیر',
                         'success'       => 'اشتراک خبرنامه با موفقیت به‌روزرسانی شد',
+=======
+                        'actions'    => 'عملیات',
+                        'delete'     => 'حذف',
+                        'edit'       => 'ویرایش',
+                        'email'      => 'ایمیل',
+                        'false'      => 'خیر',
+                        'id'         => 'شناسه',
+                        'subscribed' => 'مشترک',
+                        'true'       => 'بله',
+                    ],
+
+                    'edit' => [
+                        'back-btn'      => 'بازگشت',
+                        'email'         => 'ایمیل',
+                        'false'         => 'خیر',
+                        'save-btn'      => 'ذخیره مشترک',
+                        'subscribed'    => 'مشترک',
+                        'success'       => 'اشتراک خبرنامه با موفقیت به‌روزرسانی شد',
+                        'title'         => 'ویرایش مشترک خبرنامه',
+                        'true'          => 'بله',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                         'update-failed' => 'اشتراک خبرنامه به‌روزرسانی نشد',
                     ],
                 ],
 
+<<<<<<< HEAD
                 'delete-warning' => 'آیا مطمئن هستید که می‌خواهید این عمل را انجام دهید؟',
                 'delete-success' => 'مشترک با موفقیت حذف شد',
                 'delete-failed'  => 'حذف مشترک با شکست مواجه شد',
+=======
+                'delete-failed'  => 'حذف مشترک با شکست مواجه شد',
+                'delete-success' => 'مشترک با موفقیت حذف شد',
+                'delete-warning' => 'آیا مطمئن هستید که می‌خواهید این عمل را انجام دهید؟',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             ],
         ],
 
         'promotions' => [
             'index' => [
+<<<<<<< HEAD
                 'catalog-rule-title' => 'قوانین کاتالوگ',
                 'cart-rule-title'    => 'قوانین سبد خرید',
+=======
+                'cart-rule-title'    => 'قوانین سبد خرید',
+                'catalog-rule-title' => 'قوانین کاتالوگ',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             ],
 
             'cart-rules' => [
                 'index' => [
+<<<<<<< HEAD
                     'title'      => 'قوانین سبد خرید',
                     'create-btn' => 'ایجاد قانون سبد خرید',
 
@@ -1614,10 +2735,31 @@ return [
                         'priority'    => 'اولویت',
                         'edit'        => 'ویرایش',
                         'delete'      => 'حذف',
+=======
+                    'create-btn' => 'ایجاد قانون سبد خرید',
+                    'title'      => 'قوانین سبد خرید',
+
+                    'datagrid' => [
+                        'active'      => 'فعال',
+                        'copy'        => 'کپی',
+                        'copy-of'     => ':value',
+                        'coupon-code' => 'کد تخفیف',
+                        'delete'      => 'حذف',
+                        'draft'       => 'پیش‌نویس',
+                        'edit'        => 'ویرایش',
+                        'end'         => 'پایان',
+                        'id'          => 'شناسه',
+                        'inactive'    => 'غیرفعال',
+                        'name'        => 'نام',
+                        'priority'    => 'اولویت',
+                        'start'       => 'شروع',
+                        'status'      => 'وضعیت',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     ],
                 ],
 
                 'create' => [
+<<<<<<< HEAD
                     'back-btn'                                  => 'بازگشت',
                     'title'                                     => 'ایجاد قانون سبد خرید',
                     'save-btn'                                  => 'ذخیره قانون سبد خرید',
@@ -1779,10 +2921,174 @@ return [
 
                 'delete-success' => 'قانون سبد خرید با موفقیت حذف شد',
                 'delete-failed'  => 'حذف قانون سبد خرید ناموفق بود',
+=======
+                    'action-type'                               => 'نوع عملیات',
+                    'actions'                                   => 'عملیات',
+                    'add-condition'                             => 'افزودن شرط',
+                    'additional'                                => 'اضافی',
+                    'all-conditions-true'                       => 'تمامی شرایط درست باشند',
+                    'any-conditions-true'                       => 'حداقل یکی از شرایط درست باشد',
+                    'apply-to-shipping'                         => 'اعمال به هزینه ارسال',
+                    'attribute-family'                          => 'خانواده ویژگی',
+                    'attribute-name-children-only'              => 'نام ویژگی فقط در دسته‌بندی‌های فرزند',
+                    'attribute-name-parent-only'                => 'نام ویژگی فقط در دسته‌بندی‌های والد',
+                    'auto-generate-coupon'                      => 'تولید خودکار کد تخفیف',
+                    'back-btn'                                  => 'بازگشت',
+                    'buy-x-get-y-free'                          => 'خرید X تا بگیرید Y رایگان',
+                    'buy-x-quantity'                            => 'خرید X تعداد',
+                    'cart-attribute'                            => 'ویژگی سبد خرید',
+                    'cart-item-attribute'                       => 'ویژگی مورد سبد خرید',
+                    'categories'                                => 'دسته‌بندی‌ها',
+                    'channels'                                  => 'کانال‌ها',
+                    'children-categories'                       => 'دسته‌بندی‌های فرزند',
+                    'choose-condition-to-add'                   => 'شرطی را برای اضافه کردن انتخاب کنید',
+                    'condition-type'                            => 'نوع شرط',
+                    'conditions'                                => 'شرایط',
+                    'contain'                                   => 'شامل باشد',
+                    'contains'                                  => 'شامل باشد',
+                    'coupon-code'                               => 'کد تخفیف',
+                    'coupon-type'                               => 'نوع کد تخفیف',
+                    'create-success'                            => 'قانون سبد خرید با موفقیت ایجاد شد',
+                    'customer-groups'                           => 'گروه‌های مشتریان',
+                    'description'                               => 'توضیحات',
+                    'discount-amount'                           => 'مقدار تخفیف',
+                    'does-not-contain'                          => 'شامل نشود',
+                    'end-of-other-rules'                        => 'پایان قوانین دیگر',
+                    'equals-or-greater-than'                    => 'برابر یا بزرگتر از',
+                    'equals-or-less-than'                       => 'برابر یا کوچکتر از',
+                    'fixed-amount'                              => 'مبلغ ثابت',
+                    'fixed-amount-whole-cart'                   => 'مبلغ ثابت برای کل سبد خرید',
+                    'free-shipping'                             => 'ارسال رایگان',
+                    'from'                                      => 'از تاریخ',
+                    'general'                                   => 'عمومی',
+                    'greater-than'                              => 'بزرگتر از',
+                    'is-equal-to'                               => 'برابر باشد با',
+                    'is-not-equal-to'                           => 'برابر نباشد با',
+                    'less-than'                                 => 'کوچکتر از',
+                    'marketing-time'                            => 'زمان بازاریابی',
+                    'maximum-quantity-allowed-to-be-discounted' => 'حداکثر تعداد قابل تخفیف',
+                    'name'                                      => 'نام',
+                    'no'                                        => 'خیر',
+                    'no-coupon'                                 => 'بدون کد تخفیف',
+                    'parent-categories'                         => 'دسته‌بندی‌های والد',
+                    'payment-method'                            => 'روش پرداخت',
+                    'percentage-product-price'                  => 'درصد از قیمت محصول',
+                    'price-in-cart'                             => 'قیمت در سبد خرید',
+                    'priority'                                  => 'اولویت',
+                    'product-attribute'                         => 'ویژگی محصول',
+                    'qty-in-cart'                               => 'تعداد در سبد خرید',
+                    'save-btn'                                  => 'ذخیره قانون سبد خرید',
+                    'settings'                                  => 'تنظیمات',
+                    'shipping-country'                          => 'کشور ارسال',
+                    'shipping-method'                           => 'روش ارسال',
+                    'shipping-postcode'                         => 'کد پستی ارسال',
+                    'shipping-state'                            => 'استان ارسال',
+                    'specific-coupon'                           => 'کد تخفیف خاص',
+                    'status'                                    => 'وضعیت',
+                    'subtotal'                                  => 'جمع کل',
+                    'title'                                     => 'ایجاد قانون سبد خرید',
+                    'to'                                        => 'تا تاریخ',
+                    'total-items-qty'                           => 'تعداد کل موارد',
+                    'total-weight'                              => 'وزن کل',
+                    'uses-per-coupon'                           => 'تعداد استفاده برای هر کد تخفیف',
+                    'uses-per-customer'                         => 'تعداد استفاده برای هر مشتری',
+                    'uses-per-customer-control-info'            => 'تنها برای مشتریان وارد شده استفاده خواهد شد.',
+                    'yes'                                       => 'بله',
+                ],
+
+                'edit' => [
+                    'action-type'                               => 'نوع عملیات',
+                    'actions'                                   => 'عملیات',
+                    'add-condition'                             => 'افزودن شرط',
+                    'additional'                                => 'اضافی',
+                    'all-conditions-true'                       => 'تمامی شرایط درست باشند',
+                    'alphabetical'                              => 'حروف الفبا',
+                    'alphanumeric'                              => 'حروف و اعداد',
+                    'any-conditions-true'                       => 'حداقل یکی از شرایط درست باشد',
+                    'apply-to-shipping'                         => 'اعمال به هزینه ارسال',
+                    'attribute-family'                          => 'خانواده ویژگی',
+                    'attribute-name-children-only'              => 'نام ویژگی فقط در دسته‌بندی‌های فرزند',
+                    'attribute-name-parent-only'                => 'نام ویژگی فقط در دسته‌بندی‌های والد',
+                    'auto-generate-coupon'                      => 'تولید خودکار کد تخفیف',
+                    'back-btn'                                  => 'بازگشت',
+                    'buy-x-get-y-free'                          => 'خرید X تا بگیرید Y رایگان',
+                    'buy-x-quantity'                            => 'خرید X تعداد',
+                    'cart-attribute'                            => 'ویژگی سبد خرید',
+                    'cart-item-attribute'                       => 'ویژگی مورد سبد خرید',
+                    'categories'                                => 'دسته‌بندی‌ها',
+                    'channels'                                  => 'کانال‌ها',
+                    'children-categories'                       => 'دسته‌بندی‌های فرزند',
+                    'choose-condition-to-add'                   => 'شرطی را برای اضافه کردن انتخاب کنید',
+                    'code-format'                               => 'فرمت کد',
+                    'code-prefix'                               => 'پیشوند کد',
+                    'code-suffix'                               => 'پسوند کد',
+                    'condition-type'                            => 'نوع شرط',
+                    'conditions'                                => 'شرایط',
+                    'contain'                                   => 'شامل باشد',
+                    'contains'                                  => 'شامل باشد',
+                    'coupon-code'                               => 'کد تخفیف',
+                    'coupon-length'                             => 'طول کد تخفیف',
+                    'coupon-qty'                                => 'تعداد کدهای تخفیف',
+                    'coupon-type'                               => 'نوع کد تخفیف',
+                    'customer-group'                            => 'گروه مشتریان',
+                    'customer-groups'                           => 'گروه‌های مشتریان',
+                    'description'                               => 'توضیحات',
+                    'discount-amount'                           => 'مقدار تخفیف',
+                    'does-not-contain'                          => 'شامل نشود',
+                    'end-of-other-rules'                        => 'پایان قوانین دیگر',
+                    'equals-or-greater-than'                    => 'برابر یا بزرگتر از',
+                    'equals-or-less-than'                       => 'برابر یا کوچکتر از',
+                    'fixed-amount'                              => 'مبلغ ثابت',
+                    'fixed-amount-whole-cart'                   => 'مبلغ ثابت برای کل سبد خرید',
+                    'free-shipping'                             => 'ارسال رایگان',
+                    'from'                                      => 'از تاریخ',
+                    'general'                                   => 'عمومی',
+                    'generate'                                  => 'تولید',
+                    'greater-than'                              => 'بزرگتر از',
+                    'is-equal-to'                               => 'برابر باشد با',
+                    'is-not-equal-to'                           => 'برابر نباشد با',
+                    'less-than'                                 => 'کوچکتر از',
+                    'marketing-time'                            => 'زمان بازاریابی',
+                    'maximum-quantity-allowed-to-be-discounted' => 'حداکثر تعداد قابل تخفیف',
+                    'name'                                      => 'نام',
+                    'no'                                        => 'خیر',
+                    'no-coupon'                                 => 'بدون کد تخفیف',
+                    'numeric'                                   => 'اعداد',
+                    'parent-categories'                         => 'دسته‌بندی‌های والد',
+                    'payment-method'                            => 'روش پرداخت',
+                    'percentage-product-price'                  => 'درصد از قیمت محصول',
+                    'price-in-cart'                             => 'قیمت در سبد خرید',
+                    'priority'                                  => 'اولویت',
+                    'product-attribute'                         => 'ویژگی محصول',
+                    'qty-in-cart'                               => 'تعداد در سبد خرید',
+                    'save-btn'                                  => 'ذخیره قانون سبد خرید',
+                    'settings'                                  => 'تنظیمات',
+                    'shipping-country'                          => 'کشور ارسال',
+                    'shipping-method'                           => 'روش ارسال',
+                    'shipping-postcode'                         => 'کد پستی ارسال',
+                    'shipping-state'                            => 'استان ارسال',
+                    'specific-coupon'                           => 'کد تخفیف خاص',
+                    'status'                                    => 'وضعیت',
+                    'subtotal'                                  => 'جمع کل',
+                    'title'                                     => 'ویرایش قانون سبد خرید',
+                    'to'                                        => 'تا تاریخ',
+                    'total-items-qty'                           => 'تعداد کل موارد',
+                    'total-weight'                              => 'وزن کل',
+                    'update-success'                            => 'قانون سبد خرید با موفقیت به‌روزرسانی شد',
+                    'uses-per-coupon'                           => 'تعداد استفاده برای هر کد تخفیف',
+                    'uses-per-customer'                         => 'تعداد استفاده برای هر مشتری',
+                    'uses-per-customer-control-info'            => 'تنها برای مشتریان وارد شده استفاده خواهد شد.',
+                    'yes'                                       => 'بله',
+                ],
+
+                'delete-failed'  => 'حذف قانون سبد خرید ناموفق بود',
+                'delete-success' => 'قانون سبد خرید با موفقیت حذف شد',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             ],
 
             'catalog-rules' => [
                 'index' => [
+<<<<<<< HEAD
                     'title'      => 'قوانین کاتالوگ',
                     'create-btn' => 'ایجاد قانون کاتالوگ',
 
@@ -1797,10 +3103,27 @@ return [
                         'priority' => 'اولویت',
                         'edit'     => 'ویرایش',
                         'delete'   => 'حذف',
+=======
+                    'create-btn' => 'ایجاد قانون کاتالوگ',
+                    'title'      => 'قوانین کاتالوگ',
+
+                    'datagrid' => [
+                        'active'   => 'فعال',
+                        'delete'   => 'حذف',
+                        'edit'     => 'ویرایش',
+                        'end'      => 'پایان',
+                        'id'       => 'شناسه',
+                        'inactive' => 'غیرفعال',
+                        'name'     => 'نام',
+                        'priority' => 'اولویت',
+                        'start'    => 'شروع',
+                        'status'   => 'وضعیت',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     ],
                 ],
 
                 'create' => [
+<<<<<<< HEAD
                     'back-btn'                 => 'بازگشت',
                     'title'                    => 'ایجاد قانون کاتالوگ',
                     'save-btn'                 => 'ذخیره قانون کاتالوگ',
@@ -1883,6 +3206,90 @@ return [
                     'categories'               => 'دسته‌بندی‌ها',
                     'product-attribute'        => 'ویژگی محصول',
                     'action-type'              => 'نوع عملیات',
+=======
+                    'action-type'              => 'نوع عملیات',
+                    'actions'                  => 'عملیات',
+                    'add-condition'            => 'افزودن شرط',
+                    'all-conditions-true'      => 'تمامی شرایط درست باشند',
+                    'any-conditions-true'      => 'حداقل یکی از شرایط درست باشد',
+                    'attribute-family'         => 'خانواده ویژگی',
+                    'back-btn'                 => 'بازگشت',
+                    'categories'               => 'دسته‌بندی‌ها',
+                    'channels'                 => 'کانال‌ها',
+                    'choose-condition-to-add'  => 'شرطی را برای اضافه کردن انتخاب کنید',
+                    'condition-type'           => 'نوع شرط',
+                    'conditions'               => 'شرایط',
+                    'contain'                  => 'شامل باشد',
+                    'contains'                 => 'شامل باشد',
+                    'customer-groups'          => 'گروه‌های مشتریان',
+                    'description'              => 'توضیحات',
+                    'discount-amount'          => 'مقدار تخفیف',
+                    'does-not-contain'         => 'شامل نشود',
+                    'end-other-rules'          => 'پایان سایر قوانین',
+                    'equals-or-greater-than'   => 'برابر یا بزرگتر از',
+                    'equals-or-less-than'      => 'برابر یا کوچکتر از',
+                    'fixed-amount'             => 'مقدار ثابت',
+                    'from'                     => 'از تاریخ',
+                    'general'                  => 'عمومی',
+                    'greater-than'             => 'بزرگتر از',
+                    'is-equal-to'              => 'برابر باشد با',
+                    'is-not-equal-to'          => 'برابر نباشد با',
+                    'less-than'                => 'کوچکتر از',
+                    'marketing-time'           => 'زمان بازاریابی',
+                    'name'                     => 'نام',
+                    'no'                       => 'خیر',
+                    'percentage-product-price' => 'درصد از قیمت محصول',
+                    'priority'                 => 'اولویت',
+                    'product-attribute'        => 'ویژگی محصول',
+                    'save-btn'                 => 'ذخیره قانون کاتالوگ',
+                    'settings'                 => 'تنظیمات',
+                    'status'                   => 'وضعیت',
+                    'title'                    => 'ایجاد قانون کاتالوگ',
+                    'to'                       => 'تا تاریخ',
+                    'yes'                      => 'بله',
+                ],
+
+                'edit' => [
+                    'action-type'              => 'نوع عملیات',
+                    'actions'                  => 'عملیات',
+                    'add-condition'            => 'افزودن شرط',
+                    'all-conditions-true'      => 'تمامی شرایط درست باشند',
+                    'any-conditions-true'      => 'حداقل یکی از شرایط درست باشد',
+                    'back-btn'                 => 'بازگشت',
+                    'categories'               => 'دسته‌بندی‌ها',
+                    'channels'                 => 'کانال‌ها',
+                    'choose-condition-to-add'  => 'شرطی را برای اضافه کردن انتخاب کنید',
+                    'condition-type'           => 'نوع شرط',
+                    'conditions'               => 'شرایط',
+                    'contain'                  => 'شامل باشد',
+                    'contains'                 => 'شامل باشد',
+                    'customer-groups'          => 'گروه‌های مشتریان',
+                    'description'              => 'توضیحات',
+                    'discount-amount'          => 'مقدار تخفیف',
+                    'does-not-contain'         => 'شامل نشود',
+                    'end-other-rules'          => 'پایان سایر قوانین',
+                    'equals-or-greater-than'   => 'برابر یا بزرگتر از',
+                    'equals-or-less-than'      => 'برابر یا کوچکتر از',
+                    'fixed-amount'             => 'مقدار ثابت',
+                    'from'                     => 'از تاریخ',
+                    'general'                  => 'عمومی',
+                    'greater-than'             => 'بزرگتر از',
+                    'is-equal-to'              => 'برابر باشد با',
+                    'is-not-equal-to'          => 'برابر نباشد با',
+                    'less-than'                => 'کوچکتر از',
+                    'marketing-time'           => 'زمان بازاریابی',
+                    'name'                     => 'نام',
+                    'no'                       => 'خیر',
+                    'percentage-product-price' => 'درصد از قیمت محصول',
+                    'priority'                 => 'اولویت',
+                    'product-attribute'        => 'ویژگی محصول',
+                    'save-btn'                 => 'ذخیره قانون کاتالوگ',
+                    'settings'                 => 'تنظیمات',
+                    'status'                   => 'وضعیت',
+                    'title'                    => 'ویرایش قانون کاتالوگ',
+                    'to'                       => 'تا تاریخ',
+                    'yes'                      => 'بله',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 ],
 
                 'create-success' => 'قانون کاتالوگ با موفقیت ایجاد شد',
@@ -1907,6 +3314,7 @@ return [
             ],
         ],
 
+<<<<<<< HEAD
         'sitemaps' => [
             'index' => [
                 'title'      => 'نقشه‌های سایت',
@@ -1952,11 +3360,179 @@ return [
             ],
 
             'delete-failed'  => ':name حذف نشد',
+=======
+        'search-seo' => [
+            'search-terms' => [
+                'index' => [
+                    'create-btn' => 'ایجاد اصطلاح جستجوی جدید',
+                    'title'      => 'عبارات جستجو',
+
+                    'datagrid' => [
+                        'Channel'             => 'کانال',
+                        'actions'             => 'اقدامات',
+                        'channel'             => 'کانال',
+                        'delete'              => 'حذف',
+                        'edit'                => 'ویرایش',
+                        'id'                  => 'شناسه',
+                        'locale'              => 'موقعیت',
+                        'mass-delete-success' => 'اصطلاحات جستجو انتخاب شده با موفقیت حذف شدند',
+                        'redirect-url'        => 'URL تغییر مسیر',
+                        'results'             => 'نتایج',
+                        'search-query'        => 'پرسجوی جستجوی',
+                        'uses'                => 'کاربردها',
+                    ],
+
+                    'create' => [
+                        'Channel'        => 'کانال',
+                        'channel'        => 'کانال',
+                        'delete-warning' => 'آیا مطمئن هستید که می خواهید این کار را انجام دهید؟',
+                        'locale'         => 'موقعیت',
+                        'redirect-url'   => 'URL تغییر مسیر',
+                        'results'        => 'نتایج',
+                        'save-btn'       => 'ذخیره اصطلاح جستجو',
+                        'search-query'   => 'پرسجوی جستجوی',
+                        'success'        => 'اصطلاح جستجوی جدید با موفقیت ایجاد شد',
+                        'title'          => 'ایجاد اصطلاح جستجوی جدید',
+                        'uses'           => 'کاربردها',
+                    ],
+
+                    'edit' => [
+                        'delete-success' => 'اصطلاح جستجوی با موفقیت حذف شد',
+                        'success'        => 'اصطلاح جستجوی با موفقیت به روز شد',
+                        'title'          => 'ویرایش اصطلاح جستجوی',
+                    ],
+                ],
+            ],
+
+            'search-synonyms' => [
+                'index' => [
+                    'create-btn' => 'ایجاد مرادف جستجو',
+                    'title'      => 'مرادف‌های جستجو',
+
+                    'datagrid' => [
+                        'actions'             => 'اقدامات',
+                        'delete'              => 'حذف',
+                        'edit'                => 'ویرایش',
+                        'id'                  => 'شناسه',
+                        'mass-delete-success' => 'مرادف‌های جستجوی انتخاب‌شده با موفقیت حذف شدند',
+                        'name'                => 'نام',
+                        'terms'               => 'اصطلاحات',
+                    ],
+
+                    'create' => [
+                        'delete-warning' => 'آیا از انجام این عمل اطمینان دارید؟',
+                        'name'           => 'نام',
+                        'save-btn'       => 'ذخیره مرادف جستجو',
+                        'success'        => 'مرادف جستجو با موفقیت ایجاد شد',
+                        'terms'          => 'اصطلاحات',
+                        'terms-info'     => 'مرادف‌ها را به صورت لیستی که با ویرگول جدا شده‌اند وارد کنید، مثلاً "کفش، پاپوش". این عبارت جستجو را گسترش می‌دهد تا همه مصطلحات را شامل کند.',
+                        'title'          => 'ایجاد مرادف جستجو',
+                    ],
+
+                    'edit' => [
+                        'delete-success' => 'مرادف جستجو با موفقیت حذف شد',
+                        'success'        => 'مرادف جستجو با موفقیت به‌روزرسانی شد',
+                        'title'          => 'ویرایش مرادف جستجو',
+                    ],
+                ],
+            ],
+
+            'sitemaps' => [
+                'index' => [
+                    'create-btn' => 'ایجاد نقشه‌ی سایت',
+                    'sitemap'    => 'نقشه‌ی سایت',
+                    'title'      => 'نقشه‌های سایت',
+
+                    'datagrid' => [
+                        'actions'         => 'عملیات',
+                        'delete'          => 'حذف',
+                        'edit'            => 'ویرایش',
+                        'file-name'       => 'نام فایل',
+                        'id'              => 'شناسه',
+                        'link-for-google' => 'لینک برای گوگل',
+                        'path'            => 'مسیر',
+                    ],
+
+                    'create'  => [
+                        'delete-warning' => 'آیا از انجام این عملیات مطمئن هستید؟',
+                        'file-name'      => 'نام فایل',
+                        'file-name-info' => 'مثال: sitemap.xml',
+                        'path'           => 'مسیر',
+                        'path-info'      => 'مثال: "/sitemap/" یا "/" برای مسیر پایه',
+                        'save-btn'       => 'ذخیره نقشه‌ی سایت',
+                        'success'        => 'نقشه‌ی سایت با موفقیت ایجاد شد',
+                        'title'          => 'ایجاد نقشه‌ی سایت',
+                    ],
+
+                    'edit'  => [
+                        'delete-success' => 'نقشه‌ی سایت با موفقیت حذف شد',
+                        'success'        => 'نقشه‌ی سایت با موفقیت به‌روزرسانی شد',
+                        'title'          => 'ویرایش نقشه‌ی سایت',
+                    ],
+                ],
+
+                'edit'  => [
+                    'back-btn'       => 'بازگشت',
+                    'file-name'      => 'نام فایل',
+                    'file-name-info' => 'مثال: sitemap.xml',
+                    'general'        => 'عمومی',
+                    'path'           => 'مسیر',
+                    'path-info'      => 'مثال: "/sitemap/" یا "/" برای مسیر پایه',
+                    'save-btn'       => 'ذخیره نقشه‌ی سایت',
+                ],
+
+                'delete-failed'  => ':name حذف نشد',
+            ],
+
+            'url-rewrites' => [
+                'index' => [
+                    'create-btn' => 'ایجاد بازنویسی URL',
+                    'title'      => 'بازنویسی URL ها',
+
+                    'datagrid' => [
+                        'actions'             => 'عملیات',
+                        'delete'              => 'حذف',
+                        'edit'                => 'ویرایش',
+                        'for'                 => 'برای',
+                        'id'                  => 'شناسه',
+                        'locale'              => 'منطقه',
+                        'mass-delete-success' => 'بازنویسی URL های انتخاب شده با موفقیت حذف شدند',
+                        'redirect-type'       => 'نوع تغییر مسیر',
+                        'request-path'        => 'مسیر درخواست',
+                        'target-path'         => 'مسیر هدف',
+                    ],
+
+                    'create' => [
+                        'category'           => 'دسته بندی',
+                        'cms-page'           => 'صفحه CMS',
+                        'delete-warning'     => 'آیا مطمئن هستید که می خواهید این عمل را انجام دهید؟',
+                        'for'                => 'برای',
+                        'locale'             => 'منطقه',
+                        'permanent-redirect' => 'دائمی (301)',
+                        'product'            => 'محصول',
+                        'redirect-type'      => 'نوع تغییر مسیر',
+                        'request-path'       => 'مسیر درخواست',
+                        'save-btn'           => 'ذخیره بازنویسی URL',
+                        'success'            => 'بازنویسی URL با موفقیت ایجاد شد',
+                        'target-path'        => 'مسیر هدف',
+                        'temporary-redirect' => 'موقت (302)',
+                        'title'              => 'ایجاد بازنویسی URL',
+                    ],
+
+                    'edit' => [
+                        'delete-success' => 'بازنویسی URL با موفقیت حذف شد',
+                        'success'        => 'بازنویسی URL با موفقیت به روز شد',
+                        'title'          => 'ویرایش بازنویسی URL',
+                    ],
+                ],
+            ],
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         ],
     ],
 
     'cms' => [
         'index' => [
+<<<<<<< HEAD
             'title'             => 'صفحه‌ها',
             'create-btn'        => 'ایجاد صفحه',
             'already-taken'     => ':name قبلا استفاده شده است.',
@@ -1969,10 +3545,25 @@ return [
                 'edit'                => 'ویرایش',
                 'delete'              => 'حذف',
                 'mass-delete-success' => 'داده‌های انتخاب شده با موفقیت حذف شدند',
+=======
+            'already-taken'     => ':name قبلا استفاده شده است.',
+            'create-btn'        => 'ایجاد صفحه',
+            'title'             => 'صفحه‌ها',
+
+            'datagrid' => [
+                'delete'              => 'حذف',
+                'edit'                => 'ویرایش',
+                'id'                  => 'شناسه',
+                'mass-delete-success' => 'داده‌های انتخاب شده با موفقیت حذف شدند',
+                'page-title'          => 'عنوان صفحه',
+                'url-key'             => 'کلید URL',
+                'view'                => 'مشاهده',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             ],
         ],
 
         'create' => [
+<<<<<<< HEAD
             'title'            => 'ایجاد صفحه',
             'save-btn'         => 'ذخیره صفحه',
             'general'          => 'عمومی',
@@ -2002,17 +3593,54 @@ return [
             'meta-title'       => 'متا عنوان',
             'url-key'          => 'کلید URL',
             'description'      => 'توضیح',
+=======
+            'channels'         => 'کانال‌ها',
+            'content'          => 'محتوا',
+            'description'      => 'توضیح',
+            'general'          => 'عمومی',
+            'meta-description' => 'متا توضیحات',
+            'meta-keywords'    => 'متا کلمات کلیدی',
+            'meta-title'       => 'متا عنوان',
+            'page-title'       => 'عنوان صفحه',
+            'save-btn'         => 'ذخیره صفحه',
+            'seo'              => 'سئو',
+            'title'            => 'ایجاد صفحه',
+            'url-key'          => 'کلید URL',
+        ],
+
+        'edit' => [
+            'back-btn'         => 'بازگشت',
+            'channels'         => 'کانال‌ها',
+            'content'          => 'محتوا',
+            'description'      => 'توضیح',
+            'general'          => 'عمومی',
+            'meta-description' => 'متا توضیحات',
+            'meta-keywords'    => 'متا کلمات کلیدی',
+            'meta-title'       => 'متا عنوان',
+            'page-title'       => 'عنوان صفحه',
+            'preview-btn'      => 'پیش‌نمایش صفحه',
+            'save-btn'         => 'ذخیره صفحه',
+            'seo'              => 'سئو',
+            'title'            => 'ویرایش صفحه',
+            'url-key'          => 'کلید URL',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         ],
 
         'create-success' => 'CMS با موفقیت ایجاد شد.',
         'delete-success' => 'CMS با موفقیت حذف شد.',
+<<<<<<< HEAD
         'update-success' => 'CMS با موفقیت به‌روزرسانی شد.',
         'no-resource'    => 'منبع وجود ندارد.',
+=======
+        'no-resource'    => 'منبع وجود ندارد.',
+        'update-success' => 'CMS با موفقیت به‌روزرسانی شد.',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
     ],
 
     'settings' => [
         'locales' => [
             'index' => [
+<<<<<<< HEAD
                 'title'      => 'زبان‌ها',
                 'locale'     => 'زبان',
                 'create-btn' => 'ایجاد زبان',
@@ -2028,16 +3656,42 @@ return [
                     'rtl'       => 'راست به چپ',
                     'edit'      => 'ویرایش',
                     'delete'    => 'حذف',
+=======
+                'create-btn' => 'ایجاد زبان',
+                'locale'     => 'زبان',
+                'logo-size'  => 'وضوح تصویر باید مانند 24px × 16px باشد',
+                'title'      => 'زبان‌ها',
+
+                'datagrid' => [
+                    'actions'   => 'عملیات',
+                    'code'      => 'کد',
+                    'delete'    => 'حذف',
+                    'direction' => 'جهت',
+                    'edit'      => 'ویرایش',
+                    'id'        => 'شناسه',
+                    'ltr'       => 'چپ به راست',
+                    'name'      => 'نام',
+                    'rtl'       => 'راست به چپ',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 ],
 
                 'create'  => [
                     'code'             => 'کد',
+<<<<<<< HEAD
                     'name'             => 'نام',
                     'direction'        => 'جهت',
                     'locale-logo'      => 'لوگو زبان',
                     'title'            => 'ایجاد زبان',
                     'save-btn'         => 'ذخیره زبان',
                     'select-direction' => 'انتخاب جهت',
+=======
+                    'direction'        => 'جهت',
+                    'locale-logo'      => 'لوگو زبان',
+                    'name'             => 'نام',
+                    'save-btn'         => 'ذخیره زبان',
+                    'select-direction' => 'انتخاب جهت',
+                    'title'            => 'ایجاد زبان',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 ],
 
                 'edit'  => [
@@ -2045,16 +3699,25 @@ return [
                 ],
 
                 'create-success'    => 'زبان با موفقیت ایجاد شد.',
+<<<<<<< HEAD
                 'update-success'    => 'زبان با موفقیت به‌روزرسانی شد.',
                 'delete-success'    => 'زبان با موفقیت حذف شد.',
                 'last-delete-error' => 'حداقل یک زبان مورد نیاز است.',
                 'delete-warning'    => 'آیا مطمئن هستید که می‌خواهید این عملیات را انجام دهید؟',
                 'delete-failed'     => 'حذف زبان با شکست مواجه شد.',
+=======
+                'delete-failed'     => 'حذف زبان با شکست مواجه شد.',
+                'delete-success'    => 'زبان با موفقیت حذف شد.',
+                'delete-warning'    => 'آیا مطمئن هستید که می‌خواهید این عملیات را انجام دهید؟',
+                'last-delete-error' => 'حداقل یک زبان مورد نیاز است.',
+                'update-success'    => 'زبان با موفقیت به‌روزرسانی شد.',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             ],
         ],
 
         'currencies' => [
             'index' => [
+<<<<<<< HEAD
                 'title'      => 'ارزها',
                 'create-btn' => 'ساخت ارز',
                 'currency'   => 'ارز',
@@ -2075,6 +3738,28 @@ return [
                 'create' => [
                     'create-btn'     => 'ساخت ارز',
                     'code'           => 'کد',
+=======
+                'create-btn' => 'ساخت ارز',
+                'currency'   => 'ارز',
+                'title'      => 'ارزها',
+
+                'datagrid' => [
+                    'actions'        => 'عملیات',
+                    'code'           => 'کد',
+                    'delete'         => 'حذف',
+                    'edit'           => 'ویرایش',
+                    'id'             => 'شناسه',
+                    'method-error'   => 'خطا! روش اشتباه تشخیص داده شده است، لطفاً پیکربندی عملیات دسته‌ای را بررسی کنید',
+                    'name'           => 'نام',
+                    'no-resource'    => 'منبع ارائه شده برای انجام عمل کافی نیست',
+                    'partial-action' => 'بعضی از عملیات به دلیل محدودیت‌های سیستمی در :resource انجام نشد',
+                    'update-success' => ':resource انتخابی با موفقیت به‌روزرسانی شدند',
+                ],
+
+                'create' => [
+                    'code'           => 'کد',
+                    'create-btn'     => 'ساخت ارز',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     'decimal'        => 'معادله اعشار',
                     'delete-warning' => 'آیا مطمئن هستید که می‌خواهید این عملیات را انجام دهید؟',
                     'general'        => 'عمومی',
@@ -2089,8 +3774,13 @@ return [
                 ],
 
                 'create-success'    => 'ارز با موفقیت ساخته شد.',
+<<<<<<< HEAD
                 'delete-success'    => 'ارز با موفقیت حذف شد.',
                 'delete-failed'     => 'حذف ارز ناموفق بود',
+=======
+                'delete-failed'     => 'حذف ارز ناموفق بود',
+                'delete-success'    => 'ارز با موفقیت حذف شد.',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'last-delete-error' => 'حداقل یک ارز مورد نیاز است.',
                 'update-success'    => 'ارز با موفقیت به‌روزرسانی شد.',
             ],
@@ -2098,19 +3788,34 @@ return [
 
         'exchange-rates' => [
             'index' => [
+<<<<<<< HEAD
                 'title'         => 'نرخ‌های ارزی',
                 'create-btn'    => 'ساخت نرخ ارز',
                 'exchange-rate' => 'نرخ ارز',
+=======
+                'create-btn'    => 'ساخت نرخ ارز',
+                'exchange-rate' => 'نرخ ارز',
+                'title'         => 'نرخ‌های ارزی',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'update-rates'  => 'به‌روزرسانی نرخ ارز',
 
                 'create' => [
                     'delete-warning'         => 'آیا مطمئن هستید که می‌خواهید این عملیات را انجام دهید؟',
+<<<<<<< HEAD
                     'title'                  => 'ساخت نرخ ارز',
                     'rate'                   => 'نرخ',
                     'save-btn'               => 'ذخیره نرخ ارز',
                     'source-currency'        => 'ارز مبدأ',
                     'select-target-currency' => 'انتخاب ارز مقصد',
                     'target-currency'        => 'ارز مقصد',
+=======
+                    'rate'                   => 'نرخ',
+                    'save-btn'               => 'ذخیره نرخ ارز',
+                    'select-target-currency' => 'انتخاب ارز مقصد',
+                    'source-currency'        => 'ارز مبدأ',
+                    'target-currency'        => 'ارز مقصد',
+                    'title'                  => 'ساخت نرخ ارز',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 ],
 
                 'edit' => [
@@ -2118,6 +3823,7 @@ return [
                 ],
 
                 'datagrid' => [
+<<<<<<< HEAD
                     'id'            => 'شناسه',
                     'currency-name' => 'نام ارز',
                     'exchange-rate' => 'نرخ ارز',
@@ -2130,11 +3836,26 @@ return [
                 'update-success'  => 'نرخ ارز با موفقیت به‌روزرسانی شد',
                 'delete-success'  => 'نرخ ارز با موفقیت حذف شد',
                 'delete-error'    => 'خطا در حذف نرخ ارز',
+=======
+                    'actions'       => 'عملیات',
+                    'currency-name' => 'نام ارز',
+                    'delete'        => 'حذف',
+                    'edit'          => 'ویرایش',
+                    'exchange-rate' => 'نرخ ارز',
+                    'id'            => 'شناسه',
+                ],
+
+                'create-success'  => 'نرخ ارز با موفقیت ساخته شد',
+                'delete-error'    => 'خطا در حذف نرخ ارز',
+                'delete-success'  => 'نرخ ارز با موفقیت حذف شد',
+                'update-success'  => 'نرخ ارز با موفقیت به‌روزرسانی شد',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             ],
         ],
 
         'inventory-sources' => [
             'index' => [
+<<<<<<< HEAD
                 'title'      => 'منابع موجودی',
                 'create-btn' => 'ساخت منابع موجودی',
 
@@ -2148,11 +3869,27 @@ return [
                     'inactive' => 'غیرفعال',
                     'edit'     => 'ویرایش',
                     'delete'   => 'حذف',
+=======
+                'create-btn' => 'ایجاد منبع موجودی',
+                'title'      => 'منابع موجودی',
+
+                'datagrid' => [
+                    'active'   => 'فعال',
+                    'code'     => 'کد',
+                    'delete'   => 'حذف',
+                    'edit'     => 'ویرایش',
+                    'id'       => 'شناسه',
+                    'inactive' => 'غیرفعال',
+                    'name'     => 'نام',
+                    'priority' => 'اولویت',
+                    'status'   => 'وضعیت',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 ],
             ],
 
             'create' => [
                 'add-title'      => 'افزودن منبع موجودی',
+<<<<<<< HEAD
                 'title'          => 'منابع موجودی',
                 'general'        => 'عمومی',
                 'save-btn'       => 'ذخیره منابع موجودی',
@@ -2211,6 +3948,66 @@ return [
             'create-success'    => 'منبع موجودی با موفقیت ایجاد شد.',
             'delete-success'    => 'منابع موجودی با موفقیت حذف شد.',
             'delete-failed'     => 'حذف منابع موجودی با شکست مواجه شد.',
+=======
+                'address'        => 'آدرس منبع',
+                'back-btn'       => 'بازگشت',
+                'city'           => 'شهر',
+                'code'           => 'کد',
+                'contact-email'  => 'ایمیل',
+                'contact-fax'    => 'فکس',
+                'contact-info'   => 'اطلاعات تماس',
+                'contact-name'   => 'نام',
+                'contact-number' => 'شماره تماس',
+                'country'        => 'کشور',
+                'description'    => 'توضیحات',
+                'general'        => 'عمومی',
+                'latitude'       => 'عرض جغرافیایی',
+                'longitude'      => 'طول جغرافیایی',
+                'name'           => 'نام',
+                'postcode'       => 'کد پستی',
+                'priority'       => 'اولویت',
+                'save-btn'       => 'ذخیره منابع موجودی',
+                'select-country' => 'انتخاب کشور',
+                'select-state'   => 'انتخاب استان',
+                'settings'       => 'تنظیمات',
+                'state'          => 'استان',
+                'status'         => 'وضعیت',
+                'street'         => 'خیابان',
+                'title'          => 'منابع موجودی',
+            ],
+
+            'edit' => [
+                'back-btn'       => 'بازگشت',
+                'city'           => 'شهر',
+                'code'           => 'کد',
+                'contact-email'  => 'ایمیل',
+                'contact-fax'    => 'فکس',
+                'contact-info'   => 'اطلاعات تماس',
+                'contact-name'   => 'نام',
+                'contact-number' => 'شماره تماس',
+                'country'        => 'کشور',
+                'description'    => 'توضیحات',
+                'general'        => 'عمومی',
+                'latitude'       => 'عرض جغرافیایی',
+                'longitude'      => 'طول جغرافیایی',
+                'name'           => 'نام',
+                'postcode'       => 'کد پستی',
+                'priority'       => 'اولویت',
+                'save-btn'       => 'ذخیره منابع موجودی',
+                'select-country' => 'انتخاب کشور',
+                'select-state'   => 'انتخاب استان',
+                'settings'       => 'تنظیمات',
+                'source-address' => 'آدرس منبع',
+                'state'          => 'استان',
+                'status'         => 'وضعیت',
+                'street'         => 'خیابان',
+                'title'          => 'ویرایش منابع موجودی',
+            ],
+
+            'create-success'    => 'منبع موجودی با موفقیت ایجاد شد.',
+            'delete-failed'     => 'حذف منابع موجودی با شکست مواجه شد.',
+            'delete-success'    => 'منابع موجودی با موفقیت حذف شد.',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             'last-delete-error' => 'آخرین منابع موجودی قابل حذف شدن نیستند.',
             'update-success'    => 'منابع موجودی با موفقیت به‌روزرسانی شدند.',
         ],
@@ -2218,6 +4015,7 @@ return [
         'taxes' => [
             'categories' => [
                 'index' => [
+<<<<<<< HEAD
                     'title'          => 'دسته‌بندی مالیاتی',
                     'tax-category'   => 'دسته‌بندی مالیاتی',
                     'delete-warning' => 'آیا مطمئن هستید که می‌خواهید حذف کنید؟',
@@ -2242,6 +4040,32 @@ return [
                         'select'        => 'انتخاب',
                         'add-tax-rates' => 'افزودن نرخ‌های مالیات',
                         'empty-text'    => 'نرخ‌های مالیاتی موجود نیستند، لطفاً نرخ‌های مالیاتی جدیدی ایجاد کنید.',
+=======
+                    'delete-warning' => 'آیا مطمئن هستید که می‌خواهید حذف کنید؟',
+                    'tax-category'   => 'دسته‌بندی مالیاتی',
+                    'title'          => 'دسته‌بندی مالیاتی',
+
+                    'datagrid' => [
+                        'actions' => 'عملیات',
+                        'code'    => 'کد',
+                        'delete'  => 'حذف',
+                        'edit'    => 'ویرایش',
+                        'id'      => 'شناسه',
+                        'name'    => 'نام',
+                    ],
+
+                    'create' => [
+                        'add-tax-rates' => 'افزودن نرخ‌های مالیات',
+                        'code'          => 'کد',
+                        'description'   => 'توضیحات',
+                        'empty-text'    => 'نرخ‌های مالیاتی موجود نیستند، لطفاً نرخ‌های مالیاتی جدیدی ایجاد کنید.',
+                        'general'       => 'دسته‌بندی مالیاتی',
+                        'name'          => 'نام',
+                        'save-btn'      => 'ذخیره دسته‌بندی مالیاتی',
+                        'select'        => 'انتخاب',
+                        'tax-rates'     => 'نرخ‌های مالیات',
+                        'title'         => 'ایجاد دسته‌بندی مالیاتی',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     ],
 
                     'edit'  => [
@@ -2249,14 +4073,21 @@ return [
                     ],
 
                     'create-success'  => 'دسته‌بندی مالیاتی جدید ایجاد شد.',
+<<<<<<< HEAD
                     'update-success'  => 'دسته‌بندی مالیاتی با موفقیت به‌روزرسانی شد.',
                     'delete-success'  => 'دسته‌بندی مالیاتی با موفقیت حذف شد.',
                     'delete-failed'   => 'حذف دسته‌بندی مالیاتی با شکست مواجه شد.',
+=======
+                    'delete-failed'   => 'حذف دسته‌بندی مالیاتی با شکست مواجه شد.',
+                    'delete-success'  => 'دسته‌بندی مالیاتی با موفقیت حذف شد.',
+                    'update-success'  => 'دسته‌بندی مالیاتی با موفقیت به‌روزرسانی شد.',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 ],
             ],
 
             'rates'   => [
                 'index' => [
+<<<<<<< HEAD
                     'title'        => 'نرخ‌های مالیاتی',
                     'tax-rate'     => 'نرخ مالیات',
                     'button-title' => 'ایجاد نرخ مالیاتی',
@@ -2272,10 +4103,38 @@ return [
                         'tax-rate'   => 'نرخ مالیات',
                         'edit'       => 'ویرایش',
                         'delete'     => 'حذف',
+=======
+                    'button-title' => 'ایجاد نرخ مالیات',
+                    'tax-rate'     => 'نرخ مالیات',
+                    'title'        => 'نرخ‌های مالیاتی',
+
+                    'import' => [
+                        'duplicate-error'  => 'شناسه باید یکتا باشد، شناسه تکراری :identifier در ردیف :position.',
+                        'enough-row-error' => 'تعداد کافی از ردیف‌ها در فایل وجود ندارد',
+                        'import-btn'       => 'وارد کردن',
+                        'title'            => 'آپلود',
+                        'upload-error'     => 'فایل باید از نوع: xls، xlsx، csv باشد.',
+                        'upload-success'   => 'نرخ مالیات با موفقیت آپلود شد',
+                        'validation'       => 'انواع مجاز: xls، xlsx، csv.',
+                    ],
+
+                    'datagrid' => [
+                        'country'    => 'کشور',
+                        'delete'     => 'حذف',
+                        'edit'       => 'ویرایش',
+                        'id'         => 'شناسه',
+                        'identifier' => 'شناسه',
+                        'state'      => 'استان',
+                        'tax-rate'   => 'نرخ مالیات',
+                        'zip-code'   => 'کد پستی',
+                        'zip-from'   => 'از کد پستی',
+                        'zip-to'     => 'تا کد پستی',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     ],
                 ],
 
                 'create'  => [
+<<<<<<< HEAD
                     'country'        => 'کشور',
                     'back-btn'       => 'بازگشت',
                     'general'        => 'عمومی',
@@ -2288,12 +4147,27 @@ return [
                     'state'          => 'استان',
                     'title'          => 'ایجاد نرخ مالیات',
                     'tax-rate'       => 'نرخ',
+=======
+                    'back-btn'       => 'بازگشت',
+                    'country'        => 'کشور',
+                    'general'        => 'عمومی',
+                    'identifier'     => 'شناسه',
+                    'is-zip'         => 'فعال کردن محدوده کد پستی',
+                    'save-btn'       => 'ذخیره نرخ مالیاتی',
+                    'select-country' => 'انتخاب کشور',
+                    'select-state'   => 'انتخاب استان',
+                    'settings'       => 'تنظیمات',
+                    'state'          => 'استان',
+                    'tax-rate'       => 'نرخ',
+                    'title'          => 'ایجاد نرخ مالیات',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     'zip-code'       => 'کد پستی',
                     'zip-from'       => 'از کد پستی',
                     'zip-to'         => 'تا کد پستی',
                 ],
 
                 'edit'  => [
+<<<<<<< HEAD
                     'basic-settings' => 'تنظیمات پایه',
                     'country'        => 'کشور',
                     'back-btn'       => 'بازگشت',
@@ -2304,6 +4178,18 @@ return [
                     'state'          => 'استان',
                     'title'          => 'ویرایش نرخ مالیات',
                     'tax-rate'       => 'نرخ',
+=======
+                    'back-btn'       => 'بازگشت',
+                    'basic-settings' => 'تنظیمات پایه',
+                    'country'        => 'کشور',
+                    'identifier'     => 'شناسه',
+                    'save-btn'       => 'ذخیره نرخ مالیاتی',
+                    'select-country' => 'انتخاب کشور',
+                    'select-state'   => 'انتخاب استان',
+                    'state'          => 'استان',
+                    'tax-rate'       => 'نرخ',
+                    'title'          => 'ویرایش نرخ مالیات',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     'zip-code'       => 'کد پستی',
                     'zip-from'       => 'از کد پستی',
                     'zip-to'         => 'تا کد پستی',
@@ -2318,6 +4204,7 @@ return [
 
         'channels' => [
             'index' => [
+<<<<<<< HEAD
                 'title'             => 'کانال‌ها',
                 'create-btn'        => 'ساخت کانال',
                 'delete-success'    => 'کانال با موفقیت حذف شد.',
@@ -2331,10 +4218,26 @@ return [
                     'host-name' => 'نام میزبان',
                     'edit'      => 'ویرایش',
                     'delete'    => 'حذف',
+=======
+                'create-btn'        => 'ساخت کانال',
+                'delete-failed'     => 'حذف کانال ناموفق بود',
+                'delete-success'    => 'کانال با موفقیت حذف شد.',
+                'last-delete-error' => 'حذف آخرین کانال ناموفق بود.',
+                'title'             => 'کانال‌ها',
+
+                'datagrid' => [
+                    'code'      => 'کد',
+                    'delete'    => 'حذف',
+                    'edit'      => 'ویرایش',
+                    'host-name' => 'نام میزبان',
+                    'id'        => 'شناسه',
+                    'name'      => 'نام',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 ],
             ],
 
             'create' => [
+<<<<<<< HEAD
                 'title'                   => 'ساخت کانال',
                 'cancel'                  => 'بازگشت',
                 'save-btn'                => 'ذخیره کانال',
@@ -2405,6 +4308,78 @@ return [
                 'settings'               => 'تنظیمات',
                 'status'                 => 'وضعیت',
                 'maintenance-mode-text'  => 'پیام',
+=======
+                'allowed-ips'             => 'آی‌پی‌های مجاز',
+                'cancel'                  => 'بازگشت',
+                'code'                    => 'کد',
+                'create-success'          => 'کانال با موفقیت ایجاد شد.',
+                'currencies'              => 'واحد پول',
+                'currencies-and-locales'  => 'واحد پول و محلی‌ها',
+                'default-currency'        => 'واحد پول پیش‌فرض',
+                'default-locale'          => 'محلی پیش‌فرض',
+                'description'             => 'توضیحات',
+                'design'                  => 'طراحی',
+                'favicon'                 => 'آیکون سایت (Favicon)',
+                'favicon-size'            => 'رزولوشن تصویر باید مانند ۱۶px × ۱۶px باشد',
+                'general'                 => 'عمومی',
+                'hostname'                => 'نام میزبان',
+                'hostname-placeholder'    => 'https://www.example.com (پایان خط‌کشی نکنید.)',
+                'inventory-sources'       => 'منابع موجودی',
+                'last-delete-error'       => 'حداقل یک کانال الزامی است.',
+                'locales'                 => 'محلی‌ها',
+                'logo'                    => 'لوگو',
+                'logo-size'               => 'رزولوشن تصویر باید مانند ۱۹۲px × ۵۰px باشد',
+                'maintenance-mode-text'   => 'پیام',
+                'name'                    => 'نام',
+                'root-category'           => 'دسته بندی ریشه',
+                'save-btn'                => 'ذخیره کانال',
+                'select-default-currency' => 'انتخاب ارز پیشفرض',
+                'select-default-locale'   => 'انتخاب زبان پیشفرض',
+                'select-root-category'    => 'انتخاب دسته بندی ریشه',
+                'select-theme'            => 'انتخاب تم',
+                'seo'                     => 'سئو صفحه اصلی',
+                'seo-description'         => 'توضیحات متا (Meta description)',
+                'seo-keywords'            => 'کلمات کلیدی متا (Meta keywords)',
+                'seo-title'               => 'عنوان متا (Meta title)',
+                'settings'                => 'تنظیمات',
+                'status'                  => 'وضعیت',
+                'theme'                   => 'قالب',
+                'title'                   => 'ساخت کانال',
+            ],
+
+            'edit' => [
+                'allowed-ips'            => 'آی‌پی‌های مجاز',
+                'back-btn'               => 'بازگشت',
+                'code'                   => 'کد',
+                'currencies'             => 'واحد پول',
+                'currencies-and-locales' => 'واحد پول و محلی‌ها',
+                'default-currency'       => 'واحد پول پیش‌فرض',
+                'default-locale'         => 'محلی پیش‌فرض',
+                'description'            => 'توضیحات',
+                'design'                 => 'طراحی',
+                'favicon'                => 'آیکون سایت (Favicon)',
+                'favicon-size'           => 'رزولوشن تصویر باید مانند ۱۶px × ۱۶px باشد',
+                'general'                => 'عمومی',
+                'hostname'               => 'نام میزبان',
+                'hostname-placeholder'   => 'https://www.example.com (پایان خط‌کشی نکنید.)',
+                'inventory-sources'      => 'منابع موجودی',
+                'last-delete-error'      => 'حداقل یک کانال الزامی است.',
+                'locales'                => 'محلی‌ها',
+                'logo'                   => 'لوگو',
+                'logo-size'              => 'رزولوشن تصویر باید مانند ۱۹۲px × ۵۰px باشد',
+                'maintenance-mode'       => 'حالت نگهداری',
+                'maintenance-mode-text'  => 'پیام',
+                'name'                   => 'نام',
+                'root-category'          => 'دسته بندی ریشه',
+                'save-btn'               => 'ذخیره کانال',
+                'seo'                    => 'سئو صفحه اصلی',
+                'seo-description'        => 'توضیحات متا (Meta description)',
+                'seo-keywords'           => 'کلمات کلیدی متا (Meta keywords)',
+                'seo-title'              => 'عنوان متا (Meta title)',
+                'status'                 => 'وضعیت',
+                'theme'                  => 'قالب',
+                'title'                  => 'ویرایش کانال',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'update-success'         => 'به‌روزرسانی کانال با موفقیت انجام شد.',
             ],
         ],
@@ -2421,8 +4396,13 @@ return [
                     'name'              => 'نام',
                     'password'          => 'رمز عبور',
                     'role'              => 'نقش',
+<<<<<<< HEAD
                     'status'            => 'وضعیت',
                     'save-btn'          => 'ذخیره کاربر',
+=======
+                    'save-btn'          => 'ذخیره کاربر',
+                    'status'            => 'وضعیت',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     'title'             => 'ایجاد کاربر',
                     'upload-image-info' => 'آپلود تصویر پروفایل (110px X 110px) به فرمت PNG یا JPG',
                 ],
@@ -2431,8 +4411,13 @@ return [
                     'actions'  => 'عملیات',
                     'active'   => 'فعال',
                     'delete'   => 'حذف کردن',
+<<<<<<< HEAD
                     'email'    => 'ایمیل',
                     'edit'     => 'ویرایش',
+=======
+                    'edit'     => 'ویرایش',
+                    'email'    => 'ایمیل',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     'id'       => 'شناسه',
                     'inactive' => 'غیرفعال',
                     'name'     => 'نام',
@@ -2453,8 +4438,13 @@ return [
                 'name'             => 'نام',
                 'password'         => 'رمز عبور',
                 'role'             => 'نقش',
+<<<<<<< HEAD
                 'status'           => 'وضعیت',
                 'save-btn'         => 'ذخیره کاربر',
+=======
+                'save-btn'         => 'ذخیره کاربر',
+                'status'           => 'وضعیت',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'title'            => 'ویرایش کاربر',
             ],
 
@@ -2463,10 +4453,17 @@ return [
             'create-success'     => 'کاربر با موفقیت ایجاد شد.',
             'delete-failed'      => 'حذف کاربر ناموفق بود.',
             'delete-success'     => 'کاربر با موفقیت حذف شد.',
+<<<<<<< HEAD
             'incorrect-password' => 'رمزعبور نادرست است',
             'delete-warning'     => 'آیا از انجام این عمل مطمئن هستید؟',
             'login-error'        => 'لطفاً اطلاعات ورود خود را بررسی کرده و دوباره تلاش کنید.',
             'last-delete-error'  => 'حذف آخرین کاربر ناموفق بود.',
+=======
+            'delete-warning'     => 'آیا از انجام این عمل مطمئن هستید؟',
+            'incorrect-password' => 'رمزعبور نادرست است',
+            'last-delete-error'  => 'حذف آخرین کاربر ناموفق بود.',
+            'login-error'        => 'لطفاً اطلاعات ورود خود را بررسی کرده و دوباره تلاش کنید.',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             'update-success'     => 'کاربر با موفقیت به‌روزرسانی شد.',
         ],
 
@@ -2512,8 +4509,13 @@ return [
 
             'being-used'        => 'نقش در حال استفاده در کاربر مدیریتی است',
             'create-success'    => 'نقش‌ها با موفقیت ایجاد شدند',
+<<<<<<< HEAD
             'delete-success'    => 'نقش با موفقیت حذف شد',
             'delete-failed'     => 'حذف نقش ناموفق بود',
+=======
+            'delete-failed'     => 'حذف نقش ناموفق بود',
+            'delete-success'    => 'نقش با موفقیت حذف شد',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             'last-delete-error' => 'نقش آخری نمی‌تواند حذف شود',
             'update-success'    => 'نقش‌ها با موفقیت به‌روزرسانی شدند',
         ],
@@ -2527,11 +4529,19 @@ return [
                     'active'       => 'فعال',
                     'channel_name' => 'نام کانال',
                     'delete'       => 'حذف',
+<<<<<<< HEAD
                     'inactive'     => 'غیرفعال',
                     'id'           => 'شناسه',
                     'name'         => 'نام',
                     'status'       => 'وضعیت',
                     'sort-order'   => 'ترتیب مرتب‌سازی',
+=======
+                    'id'           => 'شناسه',
+                    'inactive'     => 'غیرفعال',
+                    'name'         => 'نام',
+                    'sort-order'   => 'ترتیب مرتب‌سازی',
+                    'status'       => 'وضعیت',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     'type'         => 'نوع',
                     'view'         => 'مشاهده',
                 ],
@@ -2548,12 +4558,17 @@ return [
                     'footer-links'      => 'لینک‌های پاورقی',
                     'image-carousel'    => 'کاروسل تصاویر',
                     'product-carousel'  => 'کاروسل محصولات',
+<<<<<<< HEAD
+=======
+                    'services-content'  => 'محتوای خدمات',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     'static-content'    => 'محتوای استاتیک',
                     'title'             => 'نوع',
                 ],
             ],
 
             'edit' => [
+<<<<<<< HEAD
                 'add-image-btn'                 => 'افزودن تصویر',
                 'add-filter-btn'                => 'افزودن فیلتر',
                 'add-footer-link-btn'           => 'افزودن لینک پاورقی',
@@ -2605,6 +4620,77 @@ return [
                 'update-slider'                 => 'به‌روزرسانی اسلایدر',
                 'value-input'                   => 'مقدار',
                 'value'                         => 'مقدار: :value',
+=======
+                'add-filter-btn'                => 'افزودن فیلتر',
+                'add-footer-link-btn'           => 'افزودن لینک پاورقی',
+                'add-image-btn'                 => 'افزودن تصویر',
+                'add-link'                      => 'افزودن لینک',
+                'asc'                           => 'صعودی',
+                'back'                          => 'بازگشت',
+                'category-carousel'             => 'کاروسل دسته‌بندی',
+                'category-carousel-description' => 'نمایش دسته‌بندی‌ها به شکل جذاب با استفاده از کاروسل دسته‌بندی واکنش‌گرا.',
+                'channels'                      => 'کانال‌ها',
+                'column'                        => 'ستون',
+                'create-filter'                 => 'ایجاد فیلتر',
+                'css'                           => 'CSS',
+                'delete'                        => 'حذف',
+                'desc'                          => 'نزولی',
+                'edit'                          => 'ویرایش',
+                'filter-title'                  => 'عنوان',
+                'filters'                       => 'فیلترها',
+                'footer-link'                   => 'لینک‌های پاورقی',
+                'footer-link-description'       => 'برای جستجوی سایت بدون وقفه و به دسترسی به اطلاعات، از طریق لینک‌های پاورقی پیمایش کنید.',
+                'footer-link-form-title'        => 'لینک پاورقی',
+                'footer-title'                  => 'عنوان',
+                'general'                       => 'عمومی',
+                'html'                          => 'HTML',
+                'image'                         => 'تصویر',
+                'image-size'                    => 'اندازه تصویر باید (۱۹۲۰px × ۷۰۰px) باشد.',
+                'image-title'                   => 'عنوان تصویر',
+                'image-upload-message'          => 'تنها تصاویر (.jpeg، .jpg، .png، .webp، ..) مجاز هستند.',
+                'key'                           => 'کلید: :key',
+                'key-input'                     => 'کلید',
+                'limit'                         => 'محدودیت',
+                'link'                          => 'لینک',
+                'name'                          => 'نام',
+                'preview'                       => 'پیش‌نمایش',
+                'product-carousel'              => 'کاروسل محصولات',
+                'product-carousel-description'  => 'نمایش محصولات به شیوه‌ای شیک با کاروسل محصولات پویا و واکنش‌گرا.',
+                'save-btn'                      => 'ذخیره',
+                'select'                        => 'انتخاب',
+                'slider'                        => 'اسلایدر',
+                'slider-add-btn'                => 'افزودن اسلایدر',
+                'slider-description'            => 'سفارشی‌سازی مرتبط با اسلایدر تم.',
+                'slider-image'                  => 'تصویر اسلایدر',
+                'slider-required'               => 'فیلد اسلایدر اجباری است.',
+                'sort'                          => 'مرتب‌سازی',
+                'sort-order'                    => 'ترتیب مرتب‌سازی',
+                'static-content'                => 'محتوای استاتیک',
+                'static-content-description'    => 'با استفاده از محتوای استاتیک مختصر و اطلاعاتی، بازخورد مخاطبان خود را بهبود ببخشید.',
+                'status'                        => 'وضعیت',
+                'title'                         => 'ویرایش تم',
+                'update-slider'                 => 'به‌روزرسانی اسلایدر',
+                'url'                           => 'آدرس اینترنتی',
+                'value'                         => 'مقدار: :value',
+                'value-input'                   => 'مقدار',
+                'services-content'              => [
+                    'add-btn'               => 'افزودن خدمات',
+                    'channels'              => 'کانال ها',
+                    'delete'                => 'حذف',
+                    'description'           => 'توضیحات',
+                    'general'               => 'عمومی',
+                    'name'                  => 'نام',
+                    'save-btn'              => 'ذخیره',
+                    'service-icon'          => 'آیکون سرویس',
+                    'service-icon-class'    => 'کلاس آیکون سرویس',
+                    'service-info'          => 'سفارشی سازی موضوعات مربوط به خدمت.',
+                    'services'              => 'خدمات',
+                    'sort-order'            => 'ترتیب مرتب سازی',
+                    'status'                => 'وضعیت',
+                    'title'                 => 'عنوان',
+                    'update-service'        => 'به روزرسانی خدمات',
+                ],
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             ],
 
             'create-success' => 'تم با موفقیت ایجاد شد',
@@ -2620,10 +4706,17 @@ return [
                 'abandoned-products'            => 'محصولات ترک شده',
                 'abandoned-rate'                => 'نرخ ترک',
                 'abandoned-revenue'             => 'درآمد ترک شده',
+<<<<<<< HEAD
                 'average-order-value-over-time' => 'میانگین ارزش سفارش در طول زمان',
                 'average-sales'                 => 'میانگین ارزش سفارش',
                 'added-to-cart'                 => 'افزوده شده به سبد خرید',
                 'added-to-cart-info'            => 'تنها :progress بازدیدکننده محصولات را به سبد خرید اضافه کرده‌اند',
+=======
+                'added-to-cart'                 => 'افزوده شده به سبد خرید',
+                'added-to-cart-info'            => 'تنها :progress بازدیدکننده محصولات را به سبد خرید اضافه کرده‌اند',
+                'average-order-value-over-time' => 'میانگین ارزش سفارش در طول زمان',
+                'average-sales'                 => 'میانگین ارزش سفارش',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'count'                         => 'تعداد',
                 'end-date'                      => 'تاریخ پایان',
                 'id'                            => 'شناسه',
@@ -2631,18 +4724,32 @@ return [
                 'name'                          => 'نام',
                 'orders'                        => 'سفارش‌ها',
                 'orders-over-time'              => 'سفارش‌ها در طول زمان',
+<<<<<<< HEAD
                 'purchased'                     => 'خریداری شده',
                 'purchased-info'                => 'تنها :progress بازدیدکننده خرید می‌کنند',
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'payment-method'                => 'روش پرداخت',
                 'product-views'                 => 'نمایش محصولات',
                 'product-views-info'            => 'تنها :progress بازدیدکننده محصولات را مشاهده کرده‌اند',
                 'purchase-funnel'               => 'مسیر خرید',
+<<<<<<< HEAD
                 'refunds'                       => 'بازپرداخت',
                 'refunds-over-time'             => 'بازپرداخت‌ها در طول زمان',
                 'sales-over-time'               => 'فروش در طول زمان',
                 'start-date'                    => 'تاریخ شروع',
                 'shipping-collected'            => 'هزینه حمل جمع‌آوری شده',
                 'shipping-collected-over-time'  => 'هزینه حمل جمع‌آوری شده در طول زمان',
+=======
+                'purchased'                     => 'خریداری شده',
+                'purchased-info'                => 'تنها :progress بازدیدکننده خرید می‌کنند',
+                'refunds'                       => 'بازپرداخت',
+                'refunds-over-time'             => 'بازپرداخت‌ها در طول زمان',
+                'sales-over-time'               => 'فروش در طول زمان',
+                'shipping-collected'            => 'هزینه حمل جمع‌آوری شده',
+                'shipping-collected-over-time'  => 'هزینه حمل جمع‌آوری شده در طول زمان',
+                'start-date'                    => 'تاریخ شروع',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'tax-collected'                 => 'مالیات جمع‌آوری شده',
                 'tax-collected-over-time'       => 'مالیات جمع‌آوری شده در طول زمان',
                 'title'                         => 'فروش',
@@ -2688,9 +4795,18 @@ return [
 
         'products' => [
             'index' => [
+<<<<<<< HEAD
                 'end-date'                         => 'تاریخ پایان',
                 'id'                               => 'شناسه',
                 'interval'                         => 'فاصله زمانی',
+=======
+                'channel'                          => 'کانال',
+                'end-date'                         => 'تاریخ پایان',
+                'id'                               => 'شناسه',
+                'interval'                         => 'فاصله زمانی',
+                'last-search-terms'                => 'آخرین اصطلاحات جستجو',
+                'locale'                           => 'محلی',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'name'                             => 'نام',
                 'orders'                           => 'سفارش‌ها',
                 'price'                            => 'قیمت',
@@ -2699,21 +4815,36 @@ return [
                 'products-with-most-visits'        => 'محصولات با بیشترین بازدیدها',
                 'quantities'                       => 'مقادیر',
                 'quantities-sold-over-time'        => 'مقادیر فروخته شده در طول زمان',
+<<<<<<< HEAD
                 'revenue'                          => 'درآمد',
                 'reviews'                          => 'بررسی‌ها',
                 'start-date'                       => 'تاریخ شروع',
                 'title'                            => 'محصولات',
+=======
+                'results'                          => 'نتایج',
+                'revenue'                          => 'درآمد',
+                'reviews'                          => 'بررسی‌ها',
+                'search-term'                      => 'اصطلاح جستجو',
+                'start-date'                       => 'تاریخ شروع',
+                'title'                            => 'محصولات',
+                'top-search-terms'                 => 'اصطلاحات جستجوی برتر',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'top-selling-products-by-quantity' => 'برترین محصولات بر اساس تعداد',
                 'top-selling-products-by-revenue'  => 'برترین محصولات بر اساس درآمد',
                 'total'                            => 'مجموع',
                 'total-products-added-to-wishlist' => 'محصولات افزوده شده به لیست دلخواه',
                 'total-sold-quantities'            => 'مقادیر محصولات فروخته شده',
+<<<<<<< HEAD
+=======
+                'uses'                             => 'استفاده',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'view-details'                     => 'مشاهده جزئیات',
                 'visits'                           => 'بازدیدها',
             ],
         ],
 
         'view' => [
+<<<<<<< HEAD
             'day'        => 'روز',
             'end-date'   => 'تاریخ پایان',
             'export-csv' => 'خروجی CSV',
@@ -2721,6 +4852,16 @@ return [
             'month'      => 'ماه',
             'start-date' => 'تاریخ شروع',
             'year'       => 'سال',
+=======
+            'day'           => 'روز',
+            'end-date'      => 'تاریخ پایان',
+            'export-csv'    => 'خروجی CSV',
+            'export-xls'    => 'خروجی XLS',
+            'month'         => 'ماه',
+            'not-available' => 'رکوردی موجود نیست.',
+            'start-date'    => 'تاریخ شروع',
+            'year'          => 'سال',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         ],
 
         'empty' => [
@@ -2731,9 +4872,16 @@ return [
 
     'configuration' => [
         'index' => [
+<<<<<<< HEAD
             'delete'                       => 'حذف',
             'enable-at-least-one-shipping' => 'حداقل یک روش حمل و نقل را فعال کنید.',
             'enable-at-least-one-payment'  => 'حداقل یک روش پرداخت را فعال کنید.',
+=======
+            'back-btn'                     => 'بازگشت',
+            'delete'                       => 'حذف',
+            'enable-at-least-one-payment'  => 'حداقل یک روش پرداخت را فعال کنید.',
+            'enable-at-least-one-shipping' => 'حداقل یک روش حمل و نقل را فعال کنید.',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             'save-btn'                     => 'ذخیره پیکربندی',
             'save-message'                 => 'پیکربندی با موفقیت ذخیره شد',
             'title'                        => 'پیکربندی',
@@ -2785,6 +4933,51 @@ return [
                         'title-info'  => 'لوگوی مدیریت تصویر ممیزی است که رابط مدیریت یک سیستم یا وب‌سایت را نمایان می‌کند، اغلب قابل تنظیم است.',
                     ],
                 ],
+<<<<<<< HEAD
+=======
+
+                'magic-ai' => [
+                    'info'  => 'تنظیم گزینه‌های هوش مصنوعی جادویی.',
+                    'title' => 'هوش مصنوعی جادویی',
+
+                    'settings' => [
+                        'api-key'      => 'کلید API',
+                        'enabled'      => 'فعال',
+                        'organization' => 'سازمان',
+                        'title'        => 'تنظیمات عمومی',
+                        'title-info'   => 'تجربه خود را با ویژگی Magic AI ارتقا دهید، با وارد کردن کلید API اختصاصی و اعلام سازمان مربوط برای یک ادغام بی‌دردسر. کنترل اعتبارات OpenAI خود را در دست بگیرید و تنظیمات را بر اساس نیازهای خاص خود سفارشی‌سازی کنید.',
+                    ],
+
+                    'content-generation' => [
+                        'category-description-prompt'      => 'پیشنهاد توضیح دسته',
+                        'cms-page-content-prompt'          => 'پیشنهاد محتوای صفحه CMS',
+                        'enabled'                          => 'فعال',
+                        'product-description-prompt'       => 'پیشنهاد توضیح محصول',
+                        'product-short-description-prompt' => 'پیشنهاد کوتاه توضیح محصول',
+                        'title'                            => 'تولید محتوا',
+                        'title-info'                       => 'این ویژگی Magic AI را برای هر ویرایشگر WYSIWYG فعال می‌کند، جایی که می‌خواهید محتوا را با استفاده از هوش مصنوعی مدیریت کنید.<br/><br/>هنگامی که فعال شود، به هر ویرایشگر بروید تا محتوا تولید کنید.',
+                    ],
+
+                    'image-generation' => [
+                        'title'      => 'تولید تصویر',
+                        'title-info' => 'این ویژگی Magic AI را برای هر بار بارگذاری تصویر فعال می‌کند، جایی که می‌خواهید تصاویر را با استفاده از DALL-E تولید کنید.<br/><br/>هنگامی که فعال شود، به هر بار بارگذاری تصویر بروید تا تصویر تولید کنید.',
+                        'enabled'    => 'فعال',
+                    ],
+
+                    'review-translation' => [
+                        'title'      => 'ترجمه نقد و بررسی',
+                        'title-info' => 'گزینه ای برای مشتری یا بازدیدکننده برای ترجمه نقد مشتری به انگلیسی فراهم کنید.<br/><br/>هنگام فعال شدن، به نقد و بررسی بروید و دکمه "ترجمه به انگلیسی" را پیدا کنید اگر نقد به زبانی غیر از انگلیسی باشد.',
+                        'enabled'    => 'فعال',
+                    ],
+
+                    'checkout-message' => [
+                        'enabled'    => 'فعال',
+                        'prompt'     => 'پیشنهاد',
+                        'title'      => 'پیام شخصی در پرداخت',
+                        'title-info' => 'یک پیام پرداخت شخصی برای مشتریان در صفحه سپاسگزاری بسازید، محتوا را برای تطابق با ترجیحات فردی سفارشی کنید و تجربه کلی پس از خرید را بهبود بخشید.',
+                    ],
+                ],
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             ],
 
             'catalog' => [
@@ -2828,6 +5021,7 @@ return [
 
                     'storefront' => [
                         'buy-now-button-display' => 'امکان خرید مستقیم محصول برای مشتریان',
+<<<<<<< HEAD
                         'comma-separated'        => 'با کاما جداشده',
                         'cheapest-first'         => 'ارزان‌ترین اول',
                         'default-list-mode'      => 'حالت پیش‌فرض لیست',
@@ -2843,6 +5037,23 @@ return [
                         'products-per-page'      => 'تعداد محصولات در هر صفحه',
                         'sort-by'                => 'مرتب‌سازی بر اساس',
                         'search-mode'            => 'حالت جستجو',
+=======
+                        'cheapest-first'         => 'ارزان‌ترین اول',
+                        'comma-separated'        => 'با کاما جداشده',
+                        'database'               => 'پایگاه داده',
+                        'default-list-mode'      => 'حالت پیش‌فرض لیست',
+                        'elastic'                => 'جستجوی انعطاف‌پذیر',
+                        'expensive-first'        => 'گران‌ترین اول',
+                        'from-a-z'               => 'از A تا Z',
+                        'from-z-a'               => 'از Z تا A',
+                        'grid'                   => 'شبکه',
+                        'latest-first'           => 'جدیدترین اول',
+                        'list'                   => 'لیست',
+                        'oldest-first'           => 'قدیمی‌ترین اول',
+                        'products-per-page'      => 'تعداد محصولات در هر صفحه',
+                        'search-mode'            => 'حالت جستجو',
+                        'sort-by'                => 'مرتب‌سازی بر اساس',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                         'title'                  => 'جلوه فروشگاه',
                         'title-info'             => 'جلوه فروشگاه رابط کاربری یک فروشگاه آنلاین است که محصولات، دسته‌بندی‌ها و مسیریابی را برای تجربه خریدی بدون شکست ارائه می‌دهد.',
                     ],
@@ -2882,6 +5093,7 @@ return [
                     ],
 
                     'social-share' => [
+<<<<<<< HEAD
                         'enable-social-share'    => 'فعال کردن اشتراک‌گذاری اجتماعی',
                         'enable-share-facebook'  => 'فعال کردن اشتراک‌گذاری در فیس‌بوک',
                         'enable-share-twitter'   => 'فعال کردن اشتراک‌گذاری در توییتر',
@@ -2891,6 +5103,17 @@ return [
                         'enable-share-email'     => 'فعال کردن اشتراک‌گذاری از طریق ایمیل',
                         'share-message'          => 'پیام اشتراک‌گذاری',
                         'share'                  => 'اشتراک‌گذاری',
+=======
+                        'enable-share-email'     => 'فعال کردن اشتراک‌گذاری از طریق ایمیل',
+                        'enable-share-facebook'  => 'فعال کردن اشتراک‌گذاری در فیس‌بوک',
+                        'enable-share-linkedin'  => 'فعال کردن اشتراک‌گذاری در لینکدین',
+                        'enable-share-pinterest' => 'فعال کردن اشتراک‌گذاری در پین‌ترست',
+                        'enable-share-twitter'   => 'فعال کردن اشتراک‌گذاری در توییتر',
+                        'enable-share-whatsapp'  => 'فعال کردن اشتراک‌گذاری در واتس‌اپ',
+                        'enable-social-share'    => 'فعال کردن اشتراک‌گذاری اجتماعی',
+                        'share'                  => 'اشتراک‌گذاری',
+                        'share-message'          => 'پیام اشتراک‌گذاری',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                         'title'                  => 'اشتراک‌گذاری اجتماعی',
                         'title-info'             => 'اشیاء را از وب‌سایت با دوستان در پلتفرم‌های رسانه‌های اجتماعی مانند فیس‌بوک، توییتر یا اینستاگرام به اشتراک بگذارید.',
                     ],
@@ -2902,6 +5125,7 @@ return [
 
                     'products' => [
                         'enable'          => 'فعال کردن',
+<<<<<<< HEAD
                         'show-weight'     => 'نمایش وزن',
                         'show-categories' => 'نمایش دسته‌بندی‌ها',
                         'show-images'     => 'نمایش تصاویر',
@@ -2909,6 +5133,15 @@ return [
                         'show-ratings'    => 'نمایش امتیازات',
                         'show-offers'     => 'نمایش پیشنهادها',
                         'show-sku'        => 'نمایش کد SKU',
+=======
+                        'show-categories' => 'نمایش دسته‌بندی‌ها',
+                        'show-images'     => 'نمایش تصاویر',
+                        'show-offers'     => 'نمایش پیشنهادها',
+                        'show-ratings'    => 'نمایش امتیازات',
+                        'show-reviews'    => 'نمایش نقد و بررسی‌ها',
+                        'show-sku'        => 'نمایش کد SKU',
+                        'show-weight'     => 'نمایش وزن',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                         'title'           => 'محصولات',
                         'title-info'      => 'مواردی هستند که برای خرید یا استفاده از طرف یک شرکت یا فروشنده ارائه می‌شوند.',
                     ],
@@ -2997,10 +5230,17 @@ return [
                 'title' => 'ایمیل',
 
                 'email-settings' => [
+<<<<<<< HEAD
                     'admin-name'            => 'نام مدیر',
                     'admin-name-tip'        => 'این نام در تمامی ایمیل‌های مدیر نمایش داده می‌شود.',
                     'admin-email'           => 'ایمیل مدیر',
                     'admin-email-tip'       => 'این آدرس ایمیل برای دریافت ایمیل‌ها در این کانال استفاده می‌شود.',
+=======
+                    'admin-email'           => 'ایمیل مدیر',
+                    'admin-email-tip'       => 'این آدرس ایمیل برای دریافت ایمیل‌ها در این کانال استفاده می‌شود.',
+                    'admin-name'            => 'نام مدیر',
+                    'admin-name-tip'        => 'این نام در تمامی ایمیل‌های مدیر نمایش داده می‌شود.',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     'admin-page-limit'      => 'محدودیت تعداد صفحات پیش‌فرض (مدیر)',
                     'email-sender-name'     => 'نام فرستنده ایمیل',
                     'email-sender-name-tip' => 'این نام در صندوق ورودی مشتری نمایش داده می‌شود.',
@@ -3011,6 +5251,7 @@ return [
                 ],
 
                 'notifications' => [
+<<<<<<< HEAD
                     'customer-registration-confirmation-mail-to-admin' => 'ارسال ایمیل تأییدیه به مدیر پس از ثبت‌نام مشتری',
                     'customer'                                         => 'ارسال اطلاعات ورود به مشتریان پس از ثبت‌نام',
                     'cancel-order'                                     => 'ارسال اعلان پس از لغو سفارش',
@@ -3022,6 +5263,19 @@ return [
                     'new-inventory-source'                             => 'ارسال اعلان به مشتری پس از ایجاد منبع موجودی جدید',
                     'registration'                                     => 'ارسال ایمیل تأییدیه به مشتریان پس از ثبت‌نام',
                     'new-order'                                        => 'ارسال ایمیل تأییدیه به مشتری پس از سفارش جدید',
+=======
+                    'cancel-order'                                     => 'ارسال اعلان پس از لغو سفارش',
+                    'customer'                                         => 'ارسال اطلاعات ورود به مشتریان پس از ثبت‌نام',
+                    'customer-registration-confirmation-mail-to-admin' => 'ارسال ایمیل تأییدیه به مدیر پس از ثبت‌نام مشتری',
+                    'info'                                             => '«اطلاعیه‌ها» پیام‌ها یا هشدارهایی هستند که کاربران را از رویدادها، به‌روزرسانی‌ها یا اقدامات آگاه می‌کنند و گزینه‌ها و آگاهی کاربران را افزایش می‌دهند.',
+                    'new-admin'                                        => 'ارسال ایمیل تأییدیه به مدیر پس از سفارش جدید',
+                    'new-inventory-source'                             => 'ارسال اعلان به مشتری پس از ایجاد منبع موجودی جدید',
+                    'new-invoice'                                      => 'ارسال اعلان به مشتری پس از ایجاد فاکتور جدید',
+                    'new-order'                                        => 'ارسال ایمیل تأییدیه به مشتری پس از سفارش جدید',
+                    'new-refund'                                       => 'ارسال اعلان به مشتری پس از ایجاد استرداد جدید',
+                    'new-shipment'                                     => 'ارسال اعلان به مشتری پس از ایجاد محموله جدید',
+                    'registration'                                     => 'ارسال ایمیل تأییدیه به مشتریان پس از ثبت‌نام',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     'title'                                            => 'اعلان‌ها',
                     'verification'                                     => 'ارسال ایمیل تأیید به مشتریان پس از ثبت‌نام',
                 ],
@@ -3037,12 +5291,21 @@ return [
 
                     'origin' => [
                         'bank-details'   => 'جزئیات بانکی',
+<<<<<<< HEAD
                         'contact-number' => 'شماره تماس',
                         'city'           => 'شهر',
                         'country'        => 'کشور',
                         'state'          => 'استان',
                         'street-address' => 'آدرس خیابان',
                         'store-name'     => 'نام فروشگاه',
+=======
+                        'city'           => 'شهر',
+                        'contact-number' => 'شماره تماس',
+                        'country'        => 'کشور',
+                        'state'          => 'استان',
+                        'store-name'     => 'نام فروشگاه',
+                        'street-address' => 'آدرس خیابان',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                         'title'          => 'مبدأ حمل و نقل',
                         'title-info'     => 'محلی که محصولات یا کالاها به مقصد ارسال می‌شوند، مشخص می‌کند. این به عنوان یک شناسه استفاده می‌شود.',
                         'vat-number'     => 'شماره مالیات بر ارزش افزوده',
@@ -3058,8 +5321,13 @@ return [
                         'description' => 'توضیحات',
                         'page-title'  => 'ارسال رایگان',
                         'status'      => 'وضعیت',
+<<<<<<< HEAD
                         'title-info'  => '«ارسال رایگان» به عنوان یک روش حمل و نقل استفاده می‌شود که هزینه حمل و نقل پس از خرید توسط فروشنده تهیه می‌شود.',
                         'title'       => 'عنوان',
+=======
+                        'title'       => 'عنوان',
+                        'title-info'  => '«ارسال رایگان» به عنوان یک روش حمل و نقل استفاده می‌شود که هزینه حمل و نقل پس از خرید توسط فروشنده تهیه می‌شود.',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     ],
 
                     'flat-rate-shipping' => [
@@ -3074,6 +5342,7 @@ return [
                 ],
 
                 'payment-methods' => [
+<<<<<<< HEAD
                     'page-title'                     => 'روش‌های پرداخت',
                     'info'                           => 'تنظیم اطلاعات روش‌های پرداخت',
                     'cash-on-delivery'               => 'پرداخت نقدی در محل تحویل',
@@ -3106,6 +5375,42 @@ return [
                     'accepted-currencies'            => 'ارزهای پذیرفته‌شده',
                     'accepted-currencies-info'       => 'کدهای ارز را با ویرگول جدا شده وارد کنید، مثلاً USD, INR, ...',
                     'business-account'               => 'حساب تجاری',
+=======
+                    'accepted-currencies'            => 'ارزهای قابل قبول',
+                    'accepted-currencies-info'       => 'کد ارز را با کاما جدا کنید، مانند USD، INR، ...',
+                    'business-account'               => 'حساب تجاری',
+                    'cash-on-delivery'               => 'پرداخت نقدی',
+                    'cash-on-delivery-info'          => 'روش پرداخت که مشتریان دریافت کالا یا خدمات را در محل با پرداخت نقدی انجام می‌دهند.',
+                    'client-id'                      => 'شناسه مشتری',
+                    'client-id-info'                 => 'برای آزمایش از "sb" استفاده کنید.',
+                    'client-secret'                  => 'رمز مشتری',
+                    'client-secret-info'             => 'کلید مخفی خود را اینجا اضافه کنید',
+                    'description'                    => 'توضیحات',
+                    'generate-invoice'               => 'به صورت خودکار پس از ثبت سفارش فاکتور تولید کنید',
+                    'generate-invoice-applicable'    => 'قابل اجرا اگر صدور خودکار فاکتور فعال باشد',
+                    'info'                           => 'تنظیم اطلاعات روش‌های پرداخت',
+                    'instructions'                   => 'دستورالعمل‌ها',
+                    'logo'                           => 'لوگو',
+                    'logo-information'               => 'رزولوشن تصویر باید حدود 55px × 45px باشد',
+                    'mailing-address'                => 'چک را بفرستید به',
+                    'money-transfer'                 => 'انتقال وجه',
+                    'money-transfer-info'            => 'انتقال وجه از یک شخص یا حساب به دیگری، معمولاً به صورت الکترونیکی، برای اهداف مختلف مانند تراکنش‌ها یا حواله‌ها.',
+                    'page-title'                     => 'روش‌های پرداخت',
+                    'paid'                           => 'پرداخت شده',
+                    'paypal-smart-button'            => 'پیپال',
+                    'paypal-smart-button-info'       => 'دکمه هوشمند پیپال: پرداخت‌های آنلاین را با دکمه‌های قابل تنظیم برای معاملات امن و چندراهی در وب سایت‌ها و برنامه‌ها ساده می‌کند.',
+                    'paypal-standard'                => 'پیپال استاندارد',
+                    'paypal-standard-info'           => 'پیپال استاندارد یک گزینه پرداخت پیپال پایه برای کسب و کارهای آنلاین است که به مشتریان امکان پرداخت با حساب‌های پیپال یا کارت‌های اعتباری/پیش‌پرداخت فراهم می‌کند.',
+                    'pending'                        => 'در انتظار',
+                    'pending-payment'                => 'پرداخت در انتظار',
+                    'processing'                     => 'در حال پردازش',
+                    'sandbox'                        => 'شن بازی',
+                    'set-invoice-status'             => 'وضعیت فاکتور را پس از ایجاد فاکتور به',
+                    'set-order-status'               => 'وضعیت سفارش را پس از ایجاد فاکتور به',
+                    'sort-order'                     => 'ترتیب مرتب‌سازی',
+                    'status'                         => 'وضعیت',
+                    'title'                          => 'عنوان',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 ],
 
                 'order-settings' => [
@@ -3192,8 +5497,13 @@ return [
     'components' => [
         'layouts' => [
             'header' => [
+<<<<<<< HEAD
                 'app-version'   => 'نسخه : :version',
                 'account-title' => 'حساب کاربری',
+=======
+                'account-title' => 'حساب کاربری',
+                'app-version'   => 'نسخه : :version',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'logout'        => 'خروج',
                 'my-account'    => 'حساب من',
                 'notifications' => 'اطلاعیه‌ها',
@@ -3202,6 +5512,7 @@ return [
                 'mega-search' => [
                     'categories'                      => 'دسته‌بندی‌ها',
                     'customers'                       => 'مشتریان',
+<<<<<<< HEAD
                     'explore-all-matching-products'   => 'مشاهده تمام محصولات مطابق با \":query\" (:count)',
                     'explore-all-products'            => 'مشاهده تمام محصولات',
                     'explore-all-matching-orders'     => 'مشاهده تمام سفارش‌ها مطابق با \":query\" (:count)',
@@ -3210,6 +5521,16 @@ return [
                     'explore-all-categories'          => 'مشاهده تمام دسته‌بندی‌ها',
                     'explore-all-matching-customers'  => 'مشاهده تمام مشتریان مطابق با \":query\" (:count)',
                     'explore-all-customers'           => 'مشاهده تمام مشتریان',
+=======
+                    'explore-all-categories'          => 'مشاهده تمام دسته‌بندی‌ها',
+                    'explore-all-customers'           => 'مشاهده تمام مشتریان',
+                    'explore-all-matching-categories' => 'مشاهده تمام دسته‌بندی‌ها مطابق با \":query\" (:count)',
+                    'explore-all-matching-customers'  => 'مشاهده تمام مشتریان مطابق با \":query\" (:count)',
+                    'explore-all-matching-orders'     => 'مشاهده تمام سفارش‌ها مطابق با \":query\" (:count)',
+                    'explore-all-matching-products'   => 'مشاهده تمام محصولات مطابق با \":query\" (:count)',
+                    'explore-all-orders'              => 'مشاهده تمام سفارش‌ها',
+                    'explore-all-products'            => 'مشاهده تمام محصولات',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     'orders'                          => 'سفارش‌ها',
                     'products'                        => 'محصولات',
                     'sku'                             => 'SKU: :sku',
@@ -3218,6 +5539,7 @@ return [
             ],
 
             'sidebar' => [
+<<<<<<< HEAD
                 'attributes'               => 'ویژگی‌ها',
                 'attribute-families'       => 'خانواده‌های ویژگی',
                 'collapse'                 => 'جمع‌شدن',
@@ -3232,12 +5554,33 @@ return [
                 'cms'                      => 'سی‌ام‌اس',
                 'discount'                 => 'تخفیف',
                 'dashboard'                => 'پیشخوان',
+=======
+                'attribute-families'       => 'خانواده‌های ویژگی',
+                'attributes'               => 'ویژگی‌ها',
+                'campaigns'                => 'کمپین‌ها',
+                'catalog'                  => 'کاتالوگ',
+                'categories'               => 'دسته‌بندی‌ها',
+                'channels'                 => 'کانال‌ها',
+                'cms'                      => 'سی‌ام‌اس',
+                'collapse'                 => 'جمع‌شدن',
+                'communications'           => 'ارتباطات',
+                'configure'                => 'پیکربندی',
+                'currencies'               => 'ارزها',
+                'customers'                => 'مشتریان',
+                'dashboard'                => 'پیشخوان',
+                'discount'                 => 'تخفیف',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'email-templates'          => 'قالب‌های ایمیل',
                 'events'                   => 'رویدادها',
                 'exchange-rates'           => 'نرخ‌های تبادل',
                 'groups'                   => 'گروه‌ها',
+<<<<<<< HEAD
                 'invoices'                 => 'فاکتورها',
                 'inventory-sources'        => 'منابع موجودی',
+=======
+                'inventory-sources'        => 'منابع موجودی',
+                'invoices'                 => 'فاکتورها',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'locales'                  => 'محلی‌ها',
                 'marketing'                => 'بازاریابی',
                 'mode'                     => 'حالت تاریک',
@@ -3245,6 +5588,7 @@ return [
                 'orders'                   => 'سفارش‌ها',
                 'products'                 => 'محصولات',
                 'promotions'               => 'تبلیغات',
+<<<<<<< HEAD
                 'reporting'                => 'گزارش‌دهی',
                 'refunds'                  => 'بازپرداخت‌ها',
                 'reviews'                  => 'نقد و بررسی‌ها',
@@ -3257,15 +5601,40 @@ return [
                 'tax-categories'           => 'دسته‌های مالیات',
                 'tax-rates'                => 'نرخ‌های مالیاتی',
                 'transactions'             => 'تراکنش‌ها',
+=======
+                'refunds'                  => 'بازپرداخت‌ها',
+                'reporting'                => 'گزارش‌دهی',
+                'reviews'                  => 'نقد و بررسی‌ها',
+                'roles'                    => 'نقش‌ها',
+                'sales'                    => 'فروش‌ها',
+                'search-seo'               => 'جستجو و بهینه‌سازی سئو',
+                'search-synonyms'          => 'مرادف‌های جستجو',
+                'search-terms'             => 'اصطلاحات جستجو',
+                'settings'                 => 'تنظیمات',
+                'shipments'                => 'ارسال‌ها',
+                'sitemaps'                 => 'نقشه‌های سایت',
+                'tax-categories'           => 'دسته‌های مالیات',
+                'tax-rates'                => 'نرخ‌های مالیاتی',
+                'taxes'                    => 'مالیات‌ها',
+                'themes'                   => 'موضوعات',
+                'transactions'             => 'تراکنش‌ها',
+                'url-rewrites'             => 'بازنویسی URL',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'users'                    => 'کاربران',
             ],
         ],
 
         'datagrid' => [
             'index' => [
+<<<<<<< HEAD
                 'must-select-a-mass-action'        => 'شما باید یک عمل جمعی انتخاب کنید.',
                 'must-select-a-mass-action-option' => 'شما باید یک گزینه عمل جمعی انتخاب کنید.',
                 'no-records-selected'              => 'هیچ سابقه‌ای انتخاب نشده است.',
+=======
+                'no-records-selected'              => 'هیچ سابقه‌ای انتخاب نشده است.',
+                'must-select-a-mass-action-option' => 'شما باید یک گزینه عمل جمعی انتخاب کنید.',
+                'must-select-a-mass-action'        => 'شما باید یک عمل جمعی انتخاب کنید.',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             ],
 
             'toolbar' => [
@@ -3307,12 +5676,21 @@ return [
 
                 'date-options' => [
                     'last-month'        => 'ماه گذشته',
+<<<<<<< HEAD
                     'last-three-months' => 'سه ماه گذشته',
                     'last-six-months'   => 'شش ماه گذشته',
                     'today'             => 'امروز',
                     'this-week'         => 'این هفته',
                     'this-month'        => 'این ماه',
                     'this-year'         => 'امسال',
+=======
+                    'last-six-months'   => 'شش ماه گذشته',
+                    'last-three-months' => 'سه ماه گذشته',
+                    'this-month'        => 'این ماه',
+                    'this-week'         => 'این هفته',
+                    'this-year'         => 'امسال',
+                    'today'             => 'امروز',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     'yesterday'         => 'دیروز',
                 ],
             ],
@@ -3334,21 +5712,60 @@ return [
 
         'products' => [
             'search' => [
+<<<<<<< HEAD
                 'add-btn'     => 'افزودن محصول منتخب',
                 'empty-title' => 'محصولی یافت نشد',
                 'empty-info'  => 'محصولی برای عبارت جستجویی موجود نیست.',
                 'qty'         => ':qty موجود است',
                 'sku'         => 'کد محصول - :sku',
                 'title'       => 'انتخاب محصولات',
+=======
+                'add-btn'       => 'افزودن محصول منتخب',
+                'empty-info'    => 'هیچ محصولی برای عبارت جستجو موجود نیست.',
+                'empty-title'   => 'هیچ محصولی یافت نشد',
+                'product-image' => 'تصویر محصول',
+                'qty'           => ':qty موجود است',
+                'sku'           => 'شناسه محصول (SKU) - :sku',
+                'title'         => 'انتخاب محصولات',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             ],
         ],
 
         'media' => [
             'images' => [
                 'add-image-btn'     => 'افزودن تصویر',
+<<<<<<< HEAD
                 'allowed-types'     => 'png، jpeg، jpg',
                 'not-allowed-error' => 'فقط فایل‌های تصویری (.jpeg، .jpg، .png، ..) مجاز هستند.',
 
+=======
+                'ai-add-image-btn'  => 'هوش مصنوعی',
+                'ai-btn-info'       => 'تولید تصویر',
+                'allowed-types'     => 'png، jpeg، jpg',
+                'not-allowed-error' => 'فقط فایل‌های تصویری (.jpeg، .jpg، .png، ..) مجاز هستند.',
+
+                'ai-generation' => [
+                    '1024x1024'        => '1024x1024',
+                    '1024x1792'        => '1024x1792',
+                    '1792x1024'        => '1792x1024',
+                    'apply'            => 'اعمال',
+                    'dall-e-2'         => 'دال.إ 2',
+                    'dall-e-3'         => 'دال.إ 3',
+                    'generate'         => 'تولید',
+                    'generating'       => 'در حال تولید...',
+                    'hd'               => 'بالا (HD)',
+                    'model'            => 'مدل',
+                    'number-of-images' => 'تعداد تصاویر',
+                    'prompt'           => 'ترغیب',
+                    'quality'          => 'کیفیت',
+                    'regenerate'       => 'تولید مجدد',
+                    'regenerating'     => 'در حال تولید مجدد...',
+                    'size'             => 'اندازه',
+                    'standard'         => 'استاندارد',
+                    'title'            => 'تولید تصویر با هوش مصنوعی',
+                ],
+
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'placeholders'  => [
                     'front'     => 'جلو',
                     'next'      => 'بعدی',
@@ -3364,6 +5781,7 @@ return [
                 'not-allowed-error' => 'فقط فایل‌های ویدیویی (.mp4، .mov، .ogg ..) مجاز هستند.',
             ],
         ],
+<<<<<<< HEAD
     ],
 
     'acl' => [
@@ -3396,6 +5814,52 @@ return [
         'locales'                  => 'منطقه‌ها',
         'mass-delete'              => 'حذف دسته‌ای',
         'mass-update'              => 'به‌روزرسانی دسته‌ای',
+=======
+
+        'tinymce' => [
+            'ai-btn-tile' => 'هوش مصنوعی',
+
+            'ai-generation' => [
+                'apply'                  => 'اعمال',
+                'generate'               => 'تولید',
+                'generated-content'      => 'محتوای تولید شده',
+                'generated-content-info' => 'محتوای هوش مصنوعی ممکن است گمراه‌کننده باشد. لطفاً محتوای تولید شده را قبل از اعمال آن بررسی کنید.',
+                'generating'             => 'در حال تولید...',
+                'prompt'                 => 'پرسش',
+                'title'                  => 'کمک هوش مصنوعی',
+            ],
+        ],
+    ],
+
+    'acl' => [
+        'addresses'                => 'آدرس‌ها',
+        'attribute-families'       => 'خانواده‌های ویژگی',
+        'attributes'               => 'ویژگی‌ها',
+        'campaigns'                => 'کمپین‌ها',
+        'cancel'                   => 'لغو',
+        'cart-rules'               => 'قوانین سبد خرید',
+        'catalog'                  => 'کاتالوگ',
+        'catalog-rules'            => 'قوانین کاتالوگ',
+        'categories'               => 'دسته‌بندی‌ها',
+        'channels'                 => 'کانال‌ها',
+        'cms'                      => 'مدیریت محتوا',
+        'communications'           => 'ارتباطات',
+        'configure'                => 'پیکربندی',
+        'copy'                     => 'کپی',
+        'create'                   => 'افزودن',
+        'currencies'               => 'ارزها',
+        'customers'                => 'مشتریان',
+        'dashboard'                => 'داشبورد',
+        'delete'                   => 'حذف',
+        'edit'                     => 'ویرایش',
+        'email-templates'          => 'قالب‌های ایمیل',
+        'events'                   => 'رویدادها',
+        'exchange-rates'           => 'نرخ‌های ارزی',
+        'groups'                   => 'گروه‌ها',
+        'inventory-sources'        => 'منابع موجودی',
+        'invoices'                 => 'فاکتورها',
+        'locales'                  => 'منطقه‌ها',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         'marketing'                => 'بازاریابی',
         'newsletter-subscriptions' => 'اشتراک‌های خبرنامه',
         'note'                     => 'یادداشت',
@@ -3403,6 +5867,7 @@ return [
         'products'                 => 'محصولات',
         'promotions'               => 'تبلیغات',
         'refunds'                  => 'بازپرداخت‌ها',
+<<<<<<< HEAD
         'reviews'                  => 'نقدها',
         'roles'                    => 'نقش‌ها',
         'sales'                    => 'فروش‌ها',
@@ -3415,6 +5880,25 @@ return [
         'tax-categories'           => 'دسته‌بندی‌های مالیات',
         'tax-rates'                => 'نرخ‌های مالیات',
         'transactions'             => 'تراکنش‌ها',
+=======
+        'reporting'                => 'گزارش‌دهی',
+        'reviews'                  => 'نقدها',
+        'roles'                    => 'نقش‌ها',
+        'sales'                    => 'فروش‌ها',
+        'search-seo'               => 'جستجو و بهینه‌سازی سئو',
+        'search-synonyms'          => 'مرادف‌های جستجو',
+        'search-terms'             => 'اصطلاحات جستجو',
+        'settings'                 => 'تنظیمات',
+        'shipments'                => 'ارسال‌ها',
+        'sitemaps'                 => 'نقشه‌های سایت',
+        'subscribers'              => 'مشترکان خبرنامه',
+        'tax-categories'           => 'دسته‌بندی‌های مالیات',
+        'tax-rates'                => 'نرخ‌های مالیات',
+        'taxes'                    => 'مالیات‌ها',
+        'themes'                   => 'قالب‌ها',
+        'transactions'             => 'تراکنش‌ها',
+        'url-rewrites'             => 'بازنویسی URL',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         'users'                    => 'کاربران',
         'view'                     => 'مشاهده',
     ],
@@ -3451,6 +5935,7 @@ return [
     ],
 
     'export' => [
+<<<<<<< HEAD
         'allowed-type'     => 'انواع مجاز:',
         'csv'              => 'CSV',
         'download'         => 'دانلود',
@@ -3466,6 +5951,12 @@ return [
         'upload'           => 'آپلود',
         'upload-error'     => 'فایل باید یک فایل از نوع: xls، xlsx، csv باشد.',
         'upload-success'   => ':name با موفقیت بارگذاری شد',
+=======
+        'csv'              => 'CSV',
+        'download'         => 'دانلود',
+        'export'           => 'خروجی گرفتن',
+        'no-records'       => 'چیزی برای خروجی گرفتن وجود ندارد',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         'xls'              => 'XLS',
     ],
 
@@ -3491,6 +5982,17 @@ return [
             ],
         ],
 
+<<<<<<< HEAD
+=======
+        'customers' => [
+            'registration' => [
+                'description' => 'یک حساب کاربری جدید با موفقیت ایجاد شد. آنها اکنون می توانند با استفاده از آدرس ایمیل و اعتبار رمز عبور خود وارد سیستم شوند. پس از ورود به سیستم، به سرویس‌های مختلفی از جمله امکان بررسی سفارش‌های گذشته، مدیریت فهرست‌های خواسته‌ها و به‌روزرسانی اطلاعات حساب خود دسترسی خواهند داشت.',
+                'greeting'    => 'ما به مشتری جدید، :customer_name که به تازگی با ما ثبت نام کرده است، خوش آمد می گوییم!',
+                'subject'     => 'ثبت نام مشتری جدید',
+            ],
+        ],
+
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         'orders' => [
             'created' => [
                 'greeting' => 'شما یک سفارش جدید با شماره :order_id در تاریخ :created_at دارید',
@@ -3539,6 +6041,7 @@ return [
             'discount'          => 'تخفیف',
             'grand-total'       => 'مجموع کل',
             'name'              => 'نام',
+<<<<<<< HEAD
             'price'             => 'قیمت',
             'payment'           => 'پرداخت',
             'qty'               => 'تعداد',
@@ -3547,6 +6050,16 @@ return [
             'sku'               => 'کد SKU',
             'subtotal'          => 'جمع جزء',
             'shipping-handling' => 'هزینه ارسال و بسته‌بندی',
+=======
+            'payment'           => 'پرداخت',
+            'price'             => 'قیمت',
+            'qty'               => 'تعداد',
+            'shipping'          => 'ارسال',
+            'shipping-address'  => 'آدرس ارسال',
+            'shipping-handling' => 'هزینه ارسال و بسته‌بندی',
+            'sku'               => 'کد SKU',
+            'subtotal'          => 'جمع جزء',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             'tax'               => 'مالیات',
         ],
     ],

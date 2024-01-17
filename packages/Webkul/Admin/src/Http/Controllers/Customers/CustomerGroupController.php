@@ -2,12 +2,21 @@
 
 namespace Webkul\Admin\Http\Controllers\Customers;
 
+<<<<<<< HEAD
 use Illuminate\Support\Facades\Event;
 use Illuminate\Http\JsonResponse;
 use Webkul\Admin\Http\Controllers\Controller;
 use Webkul\Customer\Repositories\CustomerGroupRepository;
 use Webkul\Admin\DataGrids\Customers\GroupDataGrid;
 use Webkul\Core\Rules\Code;
+=======
+use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Event;
+use Webkul\Admin\DataGrids\Customers\GroupDataGrid;
+use Webkul\Admin\Http\Controllers\Controller;
+use Webkul\Core\Rules\Code;
+use Webkul\Customer\Repositories\CustomerGroupRepository;
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 
 class CustomerGroupController extends Controller
 {
@@ -37,8 +46,11 @@ class CustomerGroupController extends Controller
 
     /**
      * Store a newly created resource in storage.
+<<<<<<< HEAD
      *
      * @return \Illuminate\Http\JsonResponse
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      */
     public function store(): JsonResponse
     {
@@ -51,7 +63,11 @@ class CustomerGroupController extends Controller
 
         $data = array_merge(request()->only([
             'code',
+<<<<<<< HEAD
             'name'
+=======
+            'name',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         ]), [
             'is_user_defined' => 1,
         ]);
@@ -67,8 +83,11 @@ class CustomerGroupController extends Controller
 
     /**
      * Update the specified resource in storage.
+<<<<<<< HEAD
      *
      * @return \Illuminate\Http\JsonResponse
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      */
     public function update(): JsonResponse
     {
@@ -83,7 +102,11 @@ class CustomerGroupController extends Controller
 
         $data = request()->only([
             'code',
+<<<<<<< HEAD
             'name'
+=======
+            'name',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         ]);
 
         $customerGroup = $this->customerGroupRepository->update($data, $id);
@@ -98,14 +121,22 @@ class CustomerGroupController extends Controller
     /**
      * Remove the specified resource from storage.
      *
+<<<<<<< HEAD
      * @param int $id
      * @return \Illuminate\Http\JsonResponse
+=======
+     * @param  int  $id
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      */
     public function destroy($id): JsonResponse
     {
         $customerGroup = $this->customerGroupRepository->findOrFail($id);
 
+<<<<<<< HEAD
         if (!$customerGroup->is_user_defined) {
+=======
+        if (! $customerGroup->is_user_defined) {
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             return new JsonResponse([
                 'message' => trans('admin::app.customers.groups.index.edit.group-default'),
             ], 400);

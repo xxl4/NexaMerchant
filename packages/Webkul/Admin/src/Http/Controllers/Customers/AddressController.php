@@ -4,12 +4,21 @@ namespace Webkul\Admin\Http\Controllers\Customers;
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Event;
+<<<<<<< HEAD
 use Webkul\Core\Rules\AlphaNumericSpace;
 use Webkul\Core\Rules\PhoneNumber;
 use Webkul\Customer\Rules\VatIdRule;
 use Webkul\Admin\Http\Controllers\Controller;
 use Webkul\Customer\Repositories\CustomerRepository;
 use Webkul\Customer\Repositories\CustomerAddressRepository;
+=======
+use Webkul\Admin\Http\Controllers\Controller;
+use Webkul\Core\Rules\AlphaNumericSpace;
+use Webkul\Core\Rules\PhoneNumber;
+use Webkul\Customer\Repositories\CustomerAddressRepository;
+use Webkul\Customer\Repositories\CustomerRepository;
+use Webkul\Customer\Rules\VatIdRule;
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 
 class AddressController extends Controller
 {
@@ -21,8 +30,12 @@ class AddressController extends Controller
     public function __construct(
         protected CustomerRepository $customerRepository,
         protected CustomerAddressRepository $customerAddressRepository
+<<<<<<< HEAD
     )
     {
+=======
+    ) {
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
     }
 
     /**
@@ -53,8 +66,11 @@ class AddressController extends Controller
 
     /**
      * Store a newly created resource in storage.
+<<<<<<< HEAD
      *
      * @return \Illuminate\Http\JsonResponse
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      */
     public function store(): JsonResponse
     {
@@ -115,7 +131,10 @@ class AddressController extends Controller
      * Edit's the pre made resource of customer called address.
      *
      * @param  int  $id
+<<<<<<< HEAD
      * @return \Illuminate\Http\JsonResponse
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      */
     public function update($id): JsonResponse
     {
@@ -173,7 +192,11 @@ class AddressController extends Controller
 
         $address = $this->customerAddressRepository->findOneWhere([
             'id'              => request('set_as_default'),
+<<<<<<< HEAD
             'customer_id'     => $id
+=======
+            'customer_id'     => $id,
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         ]);
 
         if ($address) {

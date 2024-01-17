@@ -485,13 +485,33 @@ return [
                     'transaction-amount' => '金額',
                 ],
 
+<<<<<<< HEAD
                 'edit'  => [
+=======
+                'create'  => [
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     'already-paid'               => '既に支払済み',
                     'invoice-missing'            => '請求書が不足しています',
                     'transaction-amount-zero'    => '取引金額がゼロです',
                     'transaction-amount-exceeds' => '取引金額が超過しています',
                     'transaction-saved'          => '取引が正常に保存されました',
                 ],
+<<<<<<< HEAD
+=======
+
+                'view' => [
+                    'title'            => '取引の詳細',
+                    'transaction-data' => '取引データ',
+                    'transaction-id'   => '取引ID',
+                    'order-id'         => '注文ID',
+                    'invoice-id'       => '請求書ID',
+                    'payment-method'   => '支払い方法',
+                    'created-at'       => '作成日時',
+                    'status'           => 'ステータス',
+                    'payment-details'  => '支払い詳細',
+                    'amount'           => '金額',
+                ],
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             ],
         ],
     ],
@@ -521,6 +541,7 @@ return [
                 ],
 
                 'datagrid'   => [
+<<<<<<< HEAD
                     'attribute-family'       => '属性ファミリー',
                     'attribute-family-value' => '属性ファミリー - :attribute_family',
                     'active'                 => 'アクティブ',
@@ -545,10 +566,41 @@ return [
                     'update-status'          => 'ステータスを更新',
                     'mass-update-success'    => '選択した製品が正常に更新されました',
                     'mass-delete-success'    => '選択した製品が正常に削除されました',
+=======
+                    'attribute-family'              => '属性ファミリー',
+                    'attribute-family-value'        => '属性ファミリー - :attribute_family',
+                    'active'                        => 'アクティブ',
+                    'category'                      => 'カテゴリー',
+                    'copy-of'                       => 'コピー :value',
+                    'copy-of-slug'                  => 'コピー-:value',
+                    'disable'                       => '無効',
+                    'delete'                        => '削除',
+                    'image'                         => '画像',
+                    'id'                            => 'ID',
+                    'id-value'                      => 'ID - :id',
+                    'mass-update-success'           => '選択した製品が正常に更新されました',
+                    'mass-delete-success'           => '選択した製品が正常に削除されました',
+                    'name'                          => '名前',
+                    'out-of-stock'                  => '在庫切れ',
+                    'price'                         => '価格',
+                    'product-image'                 => '製品画像',
+                    'qty'                           => '数量',
+                    'qty-value'                     => ':qty 個の利用可能',
+                    'sku-value'                     => 'SKU - :sku',
+                    'sku'                           => 'SKU',
+                    'status'                        => 'ステータス',
+                    'type'                          => 'タイプ',
+                    'update-status'                 => 'ステータスを更新',
+                    'variant-already-exist-message' => '同じ属性オプションを持つバリアントはすでに存在しています。',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 ],
             ],
 
             'edit' => [
+<<<<<<< HEAD
+=======
+                'preview'  => 'プレビュー',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'save-btn' => '製品を保存',
                 'title'    => '製品を編集',
                 'remove'   => '削除',
@@ -573,7 +625,11 @@ return [
                             'fixed'          => '固定',
                             'price-type'     => '価格タイプ',
                             'price'          => '価格',
+<<<<<<< HEAD
                             'qty'            => '数量',
+=======
+                            'qty'            => '最小数量',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                             'save-btn'       => '保存',
                             'update-title'   => '顧客グループ価格を更新',
                         ],
@@ -665,6 +721,7 @@ return [
                         ],
 
                         'mass-edit' => [
+<<<<<<< HEAD
                             'select-variants'  => 'バリアントを選択',
                             'select-action'    => 'アクションを選択',
                             'edit-prices'      => '価格を編集',
@@ -675,6 +732,30 @@ return [
                             'price'            => '価格',
                             'apply-to-all-sku' => 'すべてのSKUに価格を適用する。',
                             'apply-to-all-btn' => 'すべてに適用',
+=======
+                            'add-images'          => '画像を追加',
+                            'apply-to-all-btn'    => 'すべてに適用',
+                            'apply-to-all-name'   => 'すべてのバリアントに名前を適用',
+                            'apply-to-all-sku'    => 'すべてのSKUに価格を適用',
+                            'apply-to-all-status' => 'すべてのバリアントにステータスを適用',
+                            'apply-to-all-weight' => 'すべてのバリエーションに重みを適用する。',
+                            'edit-inventories'    => '在庫を編集',
+                            'edit-names'          => '名前を編集',
+                            'edit-prices'         => '価格を編集',
+                            'edit-sku'            => 'SKUを編集',
+                            'edit-status'         => 'ステータスを編集',
+                            'edit-weight'         => '重さを編集',
+                            'name'                => '名前',
+                            'price'               => '価格',
+                            'remove-images'       => '画像を削除',
+                            'remove-variants'     => 'バリアントを削除',
+                            'select-action'       => 'アクションを選択',
+                            'select-variants'     => 'バリアントを選択',
+                            'status'              => 'ステータス',
+                            'variant-name'        => 'バリアント名',
+                            'variant-sku'         => 'バリアントSKU',
+                            'weight'              => '重さ',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                         ],
                     ],
 
@@ -861,6 +942,10 @@ return [
                 'multiselect'           => 'マルチセレクト',
                 'no'                    => 'いいえ',
                 'number'                => '数値',
+<<<<<<< HEAD
+=======
+                'options'               => 'オプション',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'price'                 => '価格',
                 'position'              => '位置',
                 'regex'                 => '正規表現',
@@ -923,6 +1008,10 @@ return [
                 'multiselect'           => 'マルチセレクト',
                 'no'                    => 'いいえ',
                 'number'                => '数値',
+<<<<<<< HEAD
+=======
+                'options'               => 'オプション',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'price'                 => '価格',
                 'position'              => '位置',
                 'regex'                 => '正規表現',
@@ -1089,7 +1178,12 @@ return [
                 'enter-name'                       => '名前を入力',
                 'column'                           => 'カラム',
                 'add-group-title'                  => '新しいグループを追加',
+<<<<<<< HEAD
                 'group-already-exists'             => '属性グループ名はすでに存在します。',
+=======
+                'group-code-already-exists'        => '属性グループコードはすでに存在しています。',
+                'group-name-already-exists'        => '属性グループ名はすでに存在します。',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'select-group'                     => '属性グループを選択してください。',
                 'group-contains-system-attributes' => 'このグループにはシステム属性が含まれています。まずシステム属性を別のグループに移動してから再試行してください。',
                 'removal-not-possible'             => '属性ファミリーからシステム属性を削除することはできません。',
@@ -1115,7 +1209,12 @@ return [
                 'enter-name'                       => '名前を入力',
                 'column'                           => 'カラム',
                 'add-group-title'                  => '新しいグループを追加',
+<<<<<<< HEAD
                 'group-already-exists'             => '属性グループ名はすでに存在します。',
+=======
+                'group-code-already-exists'        => '属性グループコードはすでに存在しています。',
+                'group-name-already-exists'        => '属性グループ名はすでに存在します。',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'select-group'                     => '属性グループを選択してください。',
                 'group-contains-system-attributes' => 'このグループにはシステム属性が含まれています。まずシステム属性を別のグループに移動してから再試行してください。',
                 'removal-not-possible'             => '属性ファミリーからシステム属性を削除することはできません。',
@@ -1247,6 +1346,11 @@ return [
                 'orders'                      => '注文 (:order_count)',
                 'order-id'                    => '注文 ID',
                 'order-id-prefix'             => '# :order_id',
+<<<<<<< HEAD
+=======
+                'of'                          => 'の',
+                'per-page'                    => 'ページごと',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'processing'                  => '処理中',
                 'pending'                     => '保留中',
                 'completed'                   => '完了',
@@ -1907,6 +2011,7 @@ return [
             ],
         ],
 
+<<<<<<< HEAD
         'sitemaps' => [
             'index' => [
                 'title'      => 'サイトマップ',
@@ -1952,6 +2057,173 @@ return [
             ],
 
             'delete-failed'  => ':name 削除に失敗しました',
+=======
+        'search-seo' => [
+            'search-terms' => [
+                'index' => [
+                    'title'      => '検索キーワード',
+                    'create-btn' => '新しい検索キーワードを作成',
+
+                    'datagrid' => [
+                        'id'                  => 'ID',
+                        'search-query'        => '検索クエリ',
+                        'Channel'             => 'チャンネル',
+                        'results'             => '結果',
+                        'uses'                => '使用',
+                        'redirect-url'        => 'リダイレクトURL',
+                        'channel'             => 'チャンネル',
+                        'locale'              => 'ロケール',
+                        'edit'                => '編集',
+                        'delete'              => '削除',
+                        'actions'             => 'アクション',
+                        'mass-delete-success' => '選択した検索キーワードを正常に削除しました。',
+                    ],
+
+                    'create' => [
+                        'search-query'   => '検索クエリ',
+                        'Channel'        => 'チャンネル',
+                        'results'        => '結果',
+                        'uses'           => '使用',
+                        'redirect-url'   => 'リダイレクトURL',
+                        'channel'        => 'チャンネル',
+                        'locale'         => 'ロケール',
+                        'save-btn'       => '検索キーワードを保存',
+                        'title'          => '新しい検索キーワードを作成',
+                        'success'        => '検索キーワードを正常に作成しました。',
+                        'delete-warning' => 'この操作を実行してもよろしいですか？',
+                    ],
+
+                    'edit' => [
+                        'title'          => '検索キーワードを編集',
+                        'success'        => '検索キーワードを正常に更新しました。',
+                        'delete-success' => '検索キーワードを正常に削除しました。',
+                    ],
+                ],
+            ],
+
+            'search-synonyms' => [
+                'index' => [
+                    'title'      => '検索の同義語',
+                    'create-btn' => '検索の同義語を作成',
+
+                    'datagrid' => [
+                        'id'                  => 'ID',
+                        'name'                => '名前',
+                        'terms'               => '用語',
+                        'edit'                => '編集',
+                        'delete'              => '削除',
+                        'actions'             => 'アクション',
+                        'mass-delete-success' => '選択した検索の同義語が正常に削除されました',
+                    ],
+
+                    'create' => [
+                        'name'           => '名前',
+                        'terms'          => '用語',
+                        'terms-info'     => 'シノニムをコンマで区切られたリストとして入力してください、例："靴,履物"。これにより、検索をすべての用語に拡張します。',
+                        'save-btn'       => '検索の同義語を保存',
+                        'title'          => '検索の同義語を作成',
+                        'success'        => '検索の同義語が正常に作成されました',
+                        'delete-warning' => 'このアクションを実行してもよろしいですか？',
+                    ],
+
+                    'edit' => [
+                        'title'          => '検索の同義語を編集',
+                        'success'        => '検索の同義語が正常に更新されました',
+                        'delete-success' => '検索の同義語が正常に削除されました',
+                    ],
+                ],
+            ],
+
+            'sitemaps' => [
+                'index' => [
+                    'title'      => 'サイトマップ',
+                    'create-btn' => 'サイトマップを作成',
+                    'sitemap'    => 'サイトマップ',
+
+                    'datagrid' => [
+                        'id'              => 'ID',
+                        'file-name'       => 'ファイル名',
+                        'path'            => 'パス',
+                        'link-for-google' => 'Googleへのリンク',
+                        'edit'            => '編集',
+                        'delete'          => '削除',
+                        'actions'         => 'アクション',
+                    ],
+
+                    'create'  => [
+                        'file-name'      => 'ファイル名',
+                        'file-name-info' => '例: sitemap.xml',
+                        'path'           => 'パス',
+                        'path-info'      => '例: "/sitemap/"または"/"（基本パス用）',
+                        'save-btn'       => 'サイトマップを保存',
+                        'title'          => 'サイトマップを作成',
+                        'success'        => 'サイトマップが正常に作成されました',
+                        'delete-warning' => '本当にこのアクションを実行しますか？',
+                    ],
+
+                    'edit'  => [
+                        'title'          => 'サイトマップを編集',
+                        'success'        => 'サイトマップが正常に更新されました',
+                        'delete-success' => 'サイトマップが正常に削除されました',
+                    ],
+                ],
+
+                'edit'  => [
+                    'back-btn'       => '戻る',
+                    'file-name'      => 'ファイル名',
+                    'file-name-info' => '例: sitemap.xml',
+                    'general'        => '一般',
+                    'path'           => 'パス',
+                    'path-info'      => '例: "/sitemap/"または"/"（基本パス用）',
+                    'save-btn'       => 'サイトマップを保存',
+                ],
+
+                'delete-failed'  => ':name 削除に失敗しました',
+            ],
+
+            'url-rewrites' => [
+                'index' => [
+                    'title'      => 'URLリライト',
+                    'create-btn' => 'URLリライトを作成',
+
+                    'datagrid' => [
+                        'id'                  => 'ID',
+                        'for'                 => '対象',
+                        'request-path'        => 'リクエストパス',
+                        'target-path'         => 'ターゲットパス',
+                        'redirect-type'       => 'リダイレクトタイプ',
+                        'locale'              => 'ロケール',
+                        'edit'                => '編集',
+                        'delete'              => '削除',
+                        'actions'             => 'アクション',
+                        'mass-delete-success' => '選択したURLリライトが正常に削除されました',
+                    ],
+
+                    'create' => [
+                        'for'                => '対象',
+                        'product'            => '製品',
+                        'category'           => 'カテゴリ',
+                        'cms-page'           => 'CMSページ',
+                        'request-path'       => 'リクエストパス',
+                        'target-path'        => 'ターゲットパス',
+                        'redirect-type'      => 'リダイレクトタイプ',
+                        'temporary-redirect' => '一時的なリダイレクト(302)',
+                        'permanent-redirect' => '恒久的なリダイレクト(301)',
+                        'locale'             => 'ロケール',
+                        'save-btn'           => 'URLリライトを保存',
+                        'title'              => 'URLリライトの作成',
+                        'success'            => 'URLリライトが正常に作成されました',
+                        'delete-warning'     => 'このアクションを実行してもよろしいですか？',
+                    ],
+
+                    'edit' => [
+                        'title'          => 'URLリライトの編集',
+                        'success'        => 'URLリライトが正常に更新されました',
+                        'delete-success' => 'URLリライトが正常に削除されました',
+                    ],
+                ],
+            ],
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         ],
     ],
 
@@ -2135,8 +2407,13 @@ return [
 
         'inventory-sources' => [
             'index'  => [
+<<<<<<< HEAD
                 'title'      => '在庫ソース',
                 'create-btn' => '在庫ソースを作成',
+=======
+                'create-btn' => '在庫ソースを作成する',
+                'title'      => '在庫ソース',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 
                 'datagrid' => [
                     'id'       => 'ID',
@@ -2257,9 +2534,25 @@ return [
 
             'rates'   => [
                 'index' => [
+<<<<<<< HEAD
                     'title'        => '税率',
                     'tax-rate'     => '税率',
                     'button-title' => '税率を作成',
+=======
+                    'button-title' => '税率を作成する',
+                    'tax-rate'     => '税率',
+                    'title'        => '税率',
+
+                    'import' => [
+                        'duplicate-error'  => '識別子はユニークでなければなりません、行:positionで重複する識別子 :identifier。',
+                        'enough-row-error' => 'ファイルに十分な行がありません',
+                        'import-btn'       => 'インポート',
+                        'title'            => 'アップロード',
+                        'upload-error'     => 'ファイルの種類は: xls、xlsx、csvでなければなりません。',
+                        'upload-success'   => '税率が正常にアップロードされました',
+                        'validation'       => '許可されたタイプ: xls、xlsx、csv。',
+                    ],
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 
                     'datagrid' => [
                         'id'         => 'ID',
@@ -2374,6 +2667,7 @@ return [
             ],
 
             'edit' => [
+<<<<<<< HEAD
                 'title'                  => 'チャネルを編集',
                 'back-btn'               => '戻る',
                 'save-btn'               => 'チャネルを保存',
@@ -2405,6 +2699,39 @@ return [
                 'settings'               => '設定',
                 'status'                 => 'ステータス',
                 'maintenance-mode-text'  => 'メッセージ',
+=======
+                'allowed-ips'            => '許可されたIP',
+                'back-btn'               => '戻る',
+                'code'                   => 'コード',
+                'currencies-and-locales' => '通貨とロケール',
+                'currencies'             => '通貨',
+                'default-currency'       => 'デフォルト通貨',
+                'default-locale'         => 'デフォルトロケール',
+                'description'            => '説明',
+                'design'                 => 'デザイン',
+                'favicon-size'           => '画像の解像度は16px X 16pxのようにする必要があります',
+                'favicon'                => 'ファビコン',
+                'general'                => '一般',
+                'hostname-placeholder'   => 'https://www.example.com（末尾にスラッシュを追加しないでください。）',
+                'hostname'               => 'ホスト名',
+                'inventory-sources'      => '在庫ソース',
+                'last-delete-error'      => '少なくとも1つのチャネルが必要です。',
+                'locales'                => 'ロケール',
+                'logo-size'              => '画像の解像度は192px X 50pxのようにする必要があります',
+                'logo'                   => 'ロゴ',
+                'maintenance-mode-text'  => 'メッセージ',
+                'maintenance-mode'       => 'メンテナンスモード',
+                'name'                   => '名前',
+                'root-category'          => 'ルートカテゴリー',
+                'save-btn'               => 'チャネルを保存',
+                'seo-description'        => 'メタディスクリプション',
+                'seo-keywords'           => 'メタキーワード',
+                'seo-title'              => 'メタタイトル',
+                'seo'                    => 'ホームページのSEO',
+                'status'                 => 'ステータス',
+                'theme'                  => 'テーマ',
+                'title'                  => 'チャネルを編集',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'update-success'         => 'チャネルが正常に更新されました。',
             ],
         ],
@@ -2549,6 +2876,10 @@ return [
                     'image-carousel'    => '画像カルーセル',
                     'product-carousel'  => '商品カルーセル',
                     'static-content'    => '静的コンテンツ',
+<<<<<<< HEAD
+=======
+                    'services-content'  => 'サービス内容',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     'title'             => 'タイプ',
                 ],
             ],
@@ -2587,7 +2918,11 @@ return [
                 'name'                          => '名前',
                 'product-carousel'              => '商品カルーセル',
                 'product-carousel-description'  => '動的でレスポンシブな商品カルーセルを使用して、製品をエレガントにショーケースします。',
+<<<<<<< HEAD
                 'path'                          => 'パス',
+=======
+                'url'                           => 'URL',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'preview'                       => 'プレビュー',
                 'slider'                        => 'スライダー',
                 'static-content-description'    => '観客に向けて簡潔で情報豊かな静的コンテンツでエンゲージメントを向上させます。',
@@ -2605,6 +2940,27 @@ return [
                 'update-slider'                 => 'スライダーを更新',
                 'value-input'                   => '値',
                 'value'                         => '値：:value',
+<<<<<<< HEAD
+=======
+                'image-title'                   => '画像のタイトル',
+                'services-content'              => [
+                    'add-btn'            => 'サービスを追加',
+                    'channels'           => 'チャンネル',
+                    'description'        => '説明',
+                    'delete'             => '削除',
+                    'general'            => '一般',
+                    'name'               => '名前',
+                    'sort-order'         => '並べ替え順序',
+                    'services'           => 'サービス',
+                    'service-info'       => 'サービス関連のテーマのカスタマイズ。',
+                    'status'             => 'ステータス',
+                    'save-btn'           => '保存',
+                    'service-icon-class' => 'サービスアイコンクラス',
+                    'service-icon'       => 'サービスアイコン',
+                    'title'              => 'タイトル',
+                    'update-service'     => 'サービスを更新',
+                ],
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             ],
 
             'create-success' => 'テーマが正常に作成されました',
@@ -2688,15 +3044,25 @@ return [
 
         'products' => [
             'index' => [
+<<<<<<< HEAD
                 'end-date'                         => '終了日',
                 'id'                               => 'ID',
                 'interval'                         => 'インターバル',
+=======
+                'channel'                          => 'チャンネル',
+                'end-date'                         => '終了日',
+                'id'                               => 'ID',
+                'interval'                         => 'インターバル',
+                'last-search-terms'                => '直近の検索語',
+                'locale'                           => 'ロケール',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'name'                             => '名前',
                 'orders'                           => '注文',
                 'price'                            => '価格',
                 'products-added-over-time'         => '時間別商品追加数',
                 'products-with-most-reviews'       => '最多レビュー商品',
                 'products-with-most-visits'        => '最多訪問商品',
+<<<<<<< HEAD
                 'quantities'                       => '数量',
                 'quantities-sold-over-time'        => '時間別販売数量',
                 'revenue'                          => '売上',
@@ -2710,10 +3076,30 @@ return [
                 'total-sold-quantities'            => '販売済商品数量',
                 'view-details'                     => '詳細を表示',
                 'visits'                           => '訪問数',
+=======
+                'quantities-sold-over-time'        => '時間別販売数量',
+                'quantities'                       => '数量',
+                'results'                          => '検索結果',
+                'revenue'                          => '売上',
+                'reviews'                          => 'レビュー',
+                'search-term'                      => '検索語',
+                'start-date'                       => '開始日',
+                'title'                            => '商品',
+                'top-search-terms'                 => '人気検索語',
+                'top-selling-products-by-quantity' => '数量別最売商品',
+                'top-selling-products-by-revenue'  => '売上別最売商品',
+                'total-products-added-to-wishlist' => 'ウィッシュリストへの商品追加数',
+                'total-sold-quantities'            => '販売済商品数量',
+                'total'                            => '合計',
+                'uses'                             => '利用',
+                'view-details'                     => '詳細を表示',
+                'visits'                           => 'アクセス数',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             ],
         ],
 
         'view' => [
+<<<<<<< HEAD
             'day'        => '日',
             'end-date'   => '終了日',
             'export-csv' => 'CSVエクスポート',
@@ -2721,6 +3107,16 @@ return [
             'month'      => '月',
             'start-date' => '開始日',
             'year'       => '年',
+=======
+            'day'           => '日',
+            'end-date'      => '終了日',
+            'export-csv'    => 'CSVエクスポート',
+            'export-xls'    => 'XLSエクスポート',
+            'month'         => '月',
+            'not-available' => '利用可能なレコードはありません。',
+            'start-date'    => '開始日',
+            'year'          => '年',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         ],
 
         'empty' => [
@@ -2731,6 +3127,10 @@ return [
 
     'configuration' => [
         'index' => [
+<<<<<<< HEAD
+=======
+            'back-btn'                     => '戻る',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             'delete'                       => '削除',
             'enable-at-least-one-shipping' => '少なくとも1つの配送方法を有効にしてください。',
             'enable-at-least-one-payment'  => '少なくとも1つの支払い方法を有効にしてください。',
@@ -2785,6 +3185,51 @@ return [
                         'title-info' => '管理者ロゴは、システムまたはウェブサイトの管理インターフェースを表す独自の画像またはエンブレムで、通常はカスタマイズ可能です。',
                     ],
                 ],
+<<<<<<< HEAD
+=======
+
+                'magic-ai' => [
+                    'info'  => 'マジックAIオプションを設定します。',
+                    'title' => 'マジックAI',
+
+                    'settings' => [
+                        'title'        => '一般設定',
+                        'title-info'   => 'Magic AI 機能を最適に活用するために、独自の API キーを入力し、関連する組織を指定してシームレスに統合します。OpenAI の資格情報を管理し、特定のニーズに応じて設定をカスタマイズします。',
+                        'enabled'      => '有効',
+                        'api-key'      => 'API キー',
+                        'organization' => '組織',
+                    ],
+
+                    'content-generation' => [
+                        'title'                            => 'コンテンツ生成',
+                        'title-info'                       => 'この機能は、どの WYSIWYG エディタでも AI を使用してコンテンツを管理したい場合に、Magic AI を有効にします。<br/><br/>有効にした場合、任意のエディタでコンテンツを生成できます。',
+                        'enabled'                          => '有効',
+                        'product-short-description-prompt' => '商品の短い説明プロンプト',
+                        'product-description-prompt'       => '商品の説明プロンプト',
+                        'category-description-prompt'      => 'カテゴリの説明プロンプト',
+                        'cms-page-content-prompt'          => 'CMS ページのコンテンツプロンプト',
+                    ],
+
+                    'image-generation' => [
+                        'title'      => '画像生成',
+                        'title-info' => 'この機能は、どの画像アップロードでも DALL-E を使用して画像を生成する場合に、Magic AI を有効にします。<br/><br/>有効にした場合、任意の画像アップロードで画像を生成できます。',
+                        'enabled'    => '有効',
+                    ],
+
+                    'review-translation' => [
+                        'title'      => 'レビュー翻訳',
+                        'title-info' => 'お客様や訪問者に、お客様のレビューを英語に翻訳するオプションを提供します。<br/><br/>有効にした場合、レビューに移動すると、英語以外のレビューの場合に「英語に翻訳」ボタンが表示されます。',
+                        'enabled'    => '有効',
+                    ],
+
+                    'checkout-message' => [
+                        'title'      => '個別のチェックアウトメッセージ',
+                        'title-info' => '購入後のサンクスページで顧客に対して個別のチェックアウトメッセージを作成し、コンテンツを個々の好みに合わせて調整し、総合的な購入後のエクスペリエンスを向上させます。',
+                        'enabled'    => '有効',
+                        'prompt'     => 'プロンプト',
+                    ],
+                ],
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             ],
 
             'catalog' => [
@@ -3074,6 +3519,7 @@ return [
                 ],
 
                 'payment-methods' => [
+<<<<<<< HEAD
                     'page-title'                     => '支払い方法',
                     'info'                           => '支払い方法情報を設定します。',
                     'cash-on-delivery'               => '代金引換',
@@ -3106,6 +3552,42 @@ return [
                     'accepted-currencies'            => '受け入れる通貨',
                     'accepted-currencies-info'       => '通貨コードをカンマ区切りで追加してください。例：USD、INR、...',
                     'business-account'               => 'ビジネスアカウント',
+=======
+                    'accepted-currencies'            => '受け入れ通貨',
+                    'accepted-currencies-info'       => '通貨コードをカンマで区切って追加してください（例：USD、INR、...）',
+                    'business-account'               => 'ビジネスアカウント',
+                    'cash-on-delivery-info'          => '顧客が商品やサービスを受け取る際に現金で支払う支払い方法。',
+                    'cash-on-delivery'               => '代金引換',
+                    'client-id'                      => 'クライアントID',
+                    'client-id-info'                 => 'テストの場合は「sb」を使用してください。',
+                    'client-secret'                  => 'クライアントシークレット',
+                    'client-secret-info'             => 'ここに秘密鍵を追加してください',
+                    'description'                    => '説明',
+                    'generate-invoice-applicable'    => '自動請求書生成が有効な場合に適用される',
+                    'generate-invoice'               => '注文後に自動的に請求書を生成する',
+                    'info'                           => '支払い方法の情報を設定する',
+                    'instructions'                   => '手順',
+                    'logo-information'               => '画像の解像度は55px × 45pxのようにする必要があります',
+                    'logo'                           => 'ロゴ',
+                    'money-transfer'                 => '送金',
+                    'money-transfer-info'            => 'さまざまな目的（取引や送金など）のために電子的に頻繁に行われる、一人またはアカウントから別の人やアカウントへの資金移動。',
+                    'mailing-address'                => '小切手送付先',
+                    'pending'                        => '保留中',
+                    'paid'                           => '支払済み',
+                    'processing'                     => '処理中',
+                    'pending-payment'                => '支払い保留中',
+                    'page-title'                     => '支払い方法',
+                    'paypal-standard'                => 'PayPalスタンダード',
+                    'paypal-standard-info'           => 'PayPalスタンダードは、オンラインビジネス向けの基本的なPayPal支払いオプションで、顧客がPayPalアカウントまたはクレジット/デビットカードを使用して支払うことができます。',
+                    'paypal-smart-button'            => 'PayPal',
+                    'paypal-smart-button-info'       => 'PayPalスマートボタン：ウェブサイトやアプリでセキュアで多様なトランザクションのためのカスタマイズ可能なボタンでオンライン支払いを簡素化します。',
+                    'set-invoice-status'             => '請求書作成後の請求書のステータスを設定する',
+                    'status'                         => 'ステータス',
+                    'sort-order'                     => '並べ替え順',
+                    'set-order-status'               => '請求書作成後の注文ステータスを設定する',
+                    'sandbox'                        => 'サンドボックス',
+                    'title'                          => 'タイトル',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 ],
 
                 'order-settings' => [
@@ -3250,6 +3732,12 @@ return [
                 'reviews'                  => 'レビュー',
                 'roles'                    => 'ロール',
                 'sales'                    => '販売',
+<<<<<<< HEAD
+=======
+                'search-synonyms'          => '検索の同義語',
+                'search-terms'             => '検索用語',
+                'search-seo'               => '検索とSEO',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'shipments'                => '発送',
                 'settings'                 => '設定',
                 'sitemaps'                 => 'サイトマップ',
@@ -3257,6 +3745,11 @@ return [
                 'tax-categories'           => '税カテゴリ',
                 'tax-rates'                => '税率',
                 'transactions'             => '取引',
+<<<<<<< HEAD
+=======
+                'themes'                   => 'テーマ',
+                'url-rewrites'             => 'URL書き換え',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'users'                    => 'ユーザー',
             ],
         ],
@@ -3334,12 +3827,22 @@ return [
 
         'products' => [
             'search' => [
+<<<<<<< HEAD
                 'add-btn'     => '選択した製品を追加',
                 'empty-title' => '製品が見つかりません',
                 'empty-info'  => '検索語句に一致する製品はありません。',
                 'qty'         => ':qty 個利用可能',
                 'sku'         => 'SKU - :sku',
                 'title'       => '製品を選択',
+=======
+                'add-btn'       => '選択した製品を追加',
+                'empty-info'    => '検索語に該当する製品はありません。',
+                'empty-title'   => '製品が見つかりませんでした',
+                'product-image' => '製品画像',
+                'qty'           => ':qty 利用可能',
+                'sku'           => 'SKU - :sku',
+                'title'         => '製品を選択',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             ],
         ],
 
@@ -3348,6 +3851,32 @@ return [
                 'add-image-btn'     => '画像を追加',
                 'allowed-types'     => 'png、jpeg、jpg',
                 'not-allowed-error' => '画像ファイル（.jpeg、.jpg、.png、..）のみ許可されています。',
+<<<<<<< HEAD
+=======
+                'ai-add-image-btn'  => 'マジックAI',
+                'ai-btn-info'       => '画像生成',
+
+                'ai-generation' => [
+                    '1024x1024'        => '1024x1024',
+                    '1024x1792'        => '1024x1792',
+                    '1792x1024'        => '1792x1024',
+                    'apply'            => '適用',
+                    'dall-e-2'         => 'Dall.E 2',
+                    'dall-e-3'         => 'Dall.E 3',
+                    'generate'         => '生成',
+                    'generating'       => '生成中...',
+                    'hd'               => 'HD',
+                    'model'            => 'モデル',
+                    'number-of-images' => '画像の数',
+                    'prompt'           => 'プロンプト',
+                    'quality'          => '品質',
+                    'regenerate'       => '再生成',
+                    'regenerating'     => '再生成中...',
+                    'size'             => 'サイズ',
+                    'standard'         => '標準',
+                    'title'            => 'AI画像生成',
+                ],
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 
                 'placeholders'  => [
                     'front'     => '前面',
@@ -3364,6 +3893,23 @@ return [
                 'not-allowed-error' => 'ビデオファイルのみ許可されています（.mp4、.mov、.ogg ..）。',
             ],
         ],
+<<<<<<< HEAD
+=======
+
+        'tinymce' => [
+            'ai-btn-tile' => 'マジックAI',
+
+            'ai-generation' => [
+                'title'                  => 'AIアシスタンス',
+                'prompt'                 => 'プロンプト',
+                'generating'             => '生成中...',
+                'generate'               => '生成',
+                'generated-content'      => '生成されたコンテンツ',
+                'generated-content-info' => 'AIコンテンツは誤解を招く可能性があります。適用する前に生成されたコンテンツを確認してください。',
+                'apply'                  => '適用',
+            ],
+        ],
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
     ],
 
     'acl' => [
@@ -3394,18 +3940,31 @@ return [
         'invoices'                 => '請求書',
         'inventory-sources'        => '在庫ソース',
         'locales'                  => 'ロケール',
+<<<<<<< HEAD
         'mass-delete'              => '一括削除',
         'mass-update'              => '一括更新',
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         'marketing'                => 'マーケティング',
         'newsletter-subscriptions' => 'ニュースレター購読',
         'note'                     => 'メモ',
         'orders'                   => '注文',
         'products'                 => '製品',
         'promotions'               => 'プロモーション',
+<<<<<<< HEAD
+=======
+        'reporting'                => '報告',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         'refunds'                  => '返金',
         'reviews'                  => 'レビュー',
         'roles'                    => '役割',
         'sales'                    => '販売',
+<<<<<<< HEAD
+=======
+        'search-synonyms'          => '検索の同義語',
+        'search-terms'             => '検索用語',
+        'search-seo'               => '検索とSEO',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         'shipments'                => '出荷',
         'settings'                 => '設定',
         'subscribers'              => 'ニュースレター購読者',
@@ -3415,6 +3974,10 @@ return [
         'tax-categories'           => '税カテゴリー',
         'tax-rates'                => '税率',
         'transactions'             => '取引',
+<<<<<<< HEAD
+=======
+        'url-rewrites'             => 'URL書き換え',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         'users'                    => 'ユーザー',
         'view'                     => '表示',
     ],
@@ -3451,6 +4014,7 @@ return [
     ],
 
     'export' => [
+<<<<<<< HEAD
         'allowed-type'     => '許可されるタイプ：',
         'csv'              => 'CSV',
         'download'         => 'ダウンロード',
@@ -3466,6 +4030,12 @@ return [
         'upload'           => 'アップロード',
         'upload-error'     => 'ファイルは次のタイプのファイルである必要があります：xls、xlsx、csv。',
         'upload-success'   => ':name が正常にアップロードされました',
+=======
+        'csv'              => 'CSV',
+        'download'         => 'ダウンロード',
+        'export'           => 'エクスポート',
+        'no-records'       => 'エクスポート対象がありません',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         'xls'              => 'XLS',
     ],
 
@@ -3491,6 +4061,17 @@ return [
             ],
         ],
 
+<<<<<<< HEAD
+=======
+        'customers' => [
+            'registration' => [
+                'description' => '新しい顧客アカウントが正常に作成されました。 これで、電子メール アドレスとパスワードの資格情報を使用してログインできるようになります。 ログインすると、過去の注文の確認、ウィッシュリストの管理、アカウント情報の更新など、さまざまなサービスにアクセスできるようになります。',
+                'greeting'    => '私たちに登録したばかりの新しい顧客、:customer_name を温かく歓迎します。',
+                'subject'     => '新規顧客登録',
+            ],
+        ],
+
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         'orders' => [
             'created' => [
                 'greeting' => ':created_at に注文 #:order_id が新しく受け付けられました',

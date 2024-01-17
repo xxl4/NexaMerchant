@@ -1,4 +1,5 @@
 <x-admin::layouts>
+<<<<<<< HEAD
     {{-- Title of the page --}}
     <x-slot:title>
         @lang('admin::app.marketing.communications.subscribers.index.title')
@@ -6,12 +7,25 @@
 
     <div class="flex gap-[16px] justify-between items-center max-sm:flex-wrap">
         <p class="text-[20px] text-gray-800 dark:text-white font-bold">
+=======
+    <!-- Title of the page -->
+    <x-slot:title>
+        @lang('admin::app.marketing.communications.subscribers.index.title')
+    </x-slot>
+
+    <div class="flex gap-4 justify-between items-center max-sm:flex-wrap">
+        <p class="text-xl text-gray-800 dark:text-white font-bold">
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             @lang('admin::app.marketing.communications.subscribers.index.title')
         </p>
     </div>
 
     <v-subscribers>
+<<<<<<< HEAD
         {{-- DataGrid Shimmer --}}
+=======
+        <!-- DataGrid Shimmer -->
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         <x-admin::shimmer.datagrid/>
     </v-subscribers>
 
@@ -23,6 +37,7 @@
                     src="{{ route('admin.marketing.communications.subscribers.index') }}"
                     ref="datagrid"
                 >
+<<<<<<< HEAD
                     @php
                         $hasPermission = bouncer()->hasPermission('marketing.communications.subscribers.edit') || bouncer()->hasPermission('marketing.communications.subscribers.delete');
                     @endphp
@@ -68,10 +83,13 @@
                         </div>
                     </template>
         
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     <!-- DataGrid Body -->
                     <template #body="{ columns, records, performAction }">
                         <div
                             v-for="record in records"
+<<<<<<< HEAD
                             class="row grid gap-[10px] items-center px-[16px] py-[16px] border-b-[1px] dark:border-gray-800 text-gray-600 dark:text-gray-300 transition-all hover:bg-gray-50 dark:hover:bg-gray-950"
                             :style="'grid-template-columns: repeat(' + (record.actions.length ? 4 : 3) + ', 1fr);'"
                         >
@@ -101,6 +119,41 @@
                                     >
                                     </span>
                                 </a>
+=======
+                            class="row grid gap-2.5 items-center px-4 py-4 border-b dark:border-gray-800 text-gray-600 dark:text-gray-300 transition-all hover:bg-gray-50 dark:hover:bg-gray-950"
+                                :style="`grid-template-columns: repeat(${gridsCount}, minmax(0, 1fr))`"
+                        >
+                            <!-- Id -->
+                            <p v-text="record.id"></p>
+
+                            <!-- Status -->
+                            <p v-text="record.status"></p>
+
+                            <!-- Email -->
+                            <p v-text="record.email"></p>
+
+                            <!-- Actions -->
+                            <div class="flex justify-end">
+                                @if (bouncer()->hasPermission('marketing.communications.subscribers.edit'))
+                                    <a @click="editModal(record.actions.find(action => action.index === 'edit')?.url)">
+                                        <span
+                                            :class="record.actions.find(action => action.index === 'edit')?.icon"
+                                            class="cursor-pointer rounded-md p-1.5 text-2xl transition-all hover:bg-gray-200 dark:hover:bg-gray-800 max-sm:place-self-center"
+                                        >
+                                        </span>
+                                    </a>
+                                @endif
+
+                                @if (bouncer()->hasPermission('marketing.communications.subscribers.delete'))
+                                    <a @click="performAction(record.actions.find(action => action.index === 'delete'))">
+                                        <span
+                                            :class="record.actions.find(action => action.index === 'delete')?.icon"
+                                            class="cursor-pointer rounded-md p-1.5 text-2xl transition-all hover:bg-gray-200 dark:hover:bg-gray-800 max-sm:place-self-center"
+                                        >
+                                        </span>
+                                    </a>
+                                @endif
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                             </div>
                         </div>
                     </template>
@@ -116,6 +169,7 @@
                         ref="subscriberCreateForm"
                     >
                         <!-- Create Group Modal -->
+<<<<<<< HEAD
                         <x-admin::modal ref="groupCreateModal">          
                             <x-slot:header>
                                 <!-- Modal Header -->
@@ -204,6 +258,94 @@
                                 <!-- Modal Submission -->
                                 <div class="flex gap-x-[10px] items-center">
                                     <button 
+=======
+                        <x-admin::modal ref="groupCreateModal">
+                            <!-- Modal Header -->
+                            <x-slot:header>
+                                <p class="text-lg text-gray-800 dark:text-white font-bold">
+                                    @lang('admin::app.marketing.communications.subscribers.index.edit.title')
+                                </p>
+                            </x-slot:header>
+
+                            <!-- Modal Content -->
+                            <x-slot:content>
+                                <!-- Id -->
+                                <x-admin::form.control-group.control
+                                    type="hidden"
+                                    name="id"
+                                >
+                                </x-admin::form.control-group.control>
+
+                                <!-- Email -->
+                                <x-admin::form.control-group>
+                                    <x-admin::form.control-group.label class="required">
+                                        @lang('admin::app.marketing.communications.subscribers.index.edit.email')
+                                    </x-admin::form.control-group.label>
+
+                                    <x-admin::form.control-group.control
+                                        type="hidden"
+                                        name="id"
+                                        v-model="selectedSubscriber.id"
+                                    >
+                                    </x-admin::form.control-group.control>
+
+                                    <x-admin::form.control-group.control
+                                        type="text"
+                                        name="email"
+                                        :value="old('email')"
+                                        rules="required"
+                                        class="mb-1 cursor-not-allowed"
+                                        v-model="selectedSubscriber.email"
+                                        :label="trans('admin::app.marketing.communications.subscribers.index.edit.email')"
+                                        disabled
+                                    >
+                                    </x-admin::form.control-group.control>
+
+                                    <x-admin::form.control-group.error
+                                        control-name="email"
+                                    >
+                                    </x-admin::form.control-group.error>
+                                </x-admin::form.control-group>
+
+                                <!-- Subscribed -->
+                                <x-admin::form.control-group class="!mb-0">
+                                    <x-admin::form.control-group.label class="required">
+                                        @lang('admin::app.marketing.communications.subscribers.index.edit.subscribed')
+                                    </x-admin::form.control-group.label>
+
+                                    @php
+                                        $selectedOption = old('status');
+                                    @endphp
+
+                                    <x-admin::form.control-group.control
+                                        type="select"
+                                        name="is_subscribed"
+                                        class="cursor-pointer mb-1"
+                                        rules="required"
+                                        v-model="selectedSubscriber.is_subscribed"
+                                        :label="trans('admin::app.marketing.communications.subscribers.index.edit.subscribed')"
+                                    >
+                                        @foreach (['true', 'false'] as $state)
+                                            <option
+                                                value="{{ $state == 'true' ? 1 : 0 }}"
+                                            >
+                                                @lang('admin::app.marketing.communications.subscribers.index.edit.' . $state)
+                                            </option>
+                                        @endforeach
+                                    </x-admin::form.control-group.control>
+
+                                    <x-admin::form.control-group.error
+                                        control-name="is_subscribed"
+                                    >
+                                    </x-admin::form.control-group.error>
+                                </x-admin::form.control-group>
+                            </x-slot:content>
+
+                            <!-- Modal Footer -->
+                            <x-slot:footer>
+                                <div class="flex gap-x-2.5 items-center">
+                                    <button
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                         type="submit"
                                         class="primary-button"
                                     >
@@ -227,6 +369,25 @@
                     }
                 },
 
+<<<<<<< HEAD
+=======
+                computed: {
+                    gridsCount() {
+                        let count = this.$refs.datagrid.available.columns.length;
+
+                        if (this.$refs.datagrid.available.actions.length) {
+                            ++count;
+                        }
+
+                        if (this.$refs.datagrid.available.massActions.length) {
+                            ++count;
+                        }
+
+                        return count;
+                    },
+                },
+
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 methods: {
                     update(params, { resetForm, setErrors  }) {
                         let formData = new FormData(this.$refs.subscriberCreateForm);
@@ -244,7 +405,11 @@
                             resetForm();
                         })
                         .catch(error => {
+<<<<<<< HEAD
                             if (error.response.status ==422) {
+=======
+                            if (error.response.status == 422) {
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                 setErrors(error.response.data.errors);
                             }
                         });
@@ -257,12 +422,22 @@
 
                                 this.$refs.groupCreateModal.toggle();
                             })
+<<<<<<< HEAD
                             .catch(error => [
                                 this.$emitter.emit('add-flash', { type: 'error', message: error.response.data.message })
                             ]);
+=======
+                            .catch(error => this.$emitter.emit('add-flash', { 
+                                type: 'error', message: error.response.data.message 
+                            }));
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     }
                 }
             })
         </script>
     @endPushOnce
+<<<<<<< HEAD
 </x-admin::layouts>
+=======
+</x-admin::layouts>
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61

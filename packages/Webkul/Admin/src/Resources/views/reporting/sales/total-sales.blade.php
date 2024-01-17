@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 {{-- Total Sales Stats Vue Component --}}
+=======
+<!-- Total Sales Stats Vue Component -->
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 <v-reporting-sales-total-sales>
     <!-- Shimmer -->
     <x-admin::shimmer.reporting.sales.total-sales/>
@@ -13,22 +17,34 @@
 
         <!-- Total Sales Section -->
         <template v-else>
+<<<<<<< HEAD
             <div class="relative p-[16px] bg-white dark:bg-gray-900 rounded-[4px] box-shadow">
                 <!-- Header -->
                 <div class="flex items-center justify-between mb-[16px]">
                     <p class="text-[16px] text-gray-600 dark:text-white font-semibold">
+=======
+            <div class="relative p-4 bg-white dark:bg-gray-900 rounded box-shadow">
+                <!-- Header -->
+                <div class="flex items-center justify-between mb-4">
+                    <p class="text-base text-gray-600 dark:text-white font-semibold">
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                         @lang('admin::app.reporting.sales.index.total-sales')
                     </p>
 
                     <a
                         href="{{ route('admin.reporting.sales.view', ['type' => 'total-sales']) }}"
+<<<<<<< HEAD
                         class="text-[14px] text-blue-600 cursor-pointer transition-all hover:underline"
+=======
+                        class="text-sm text-blue-600 cursor-pointer transition-all hover:underline"
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     >
                         @lang('admin::app.reporting.sales.index.view-details')
                     </a>
                 </div>
                 
                 <!-- Content -->
+<<<<<<< HEAD
                 <div class="grid gap-[16px]">
                     <div class="flex gap-[16px] place-content-start">
                         <p class="text-[30px] text-gray-600 dark:text-gray-300 font-bold leading-9">
@@ -45,12 +61,34 @@
 
                             <span
                                 class="text-[16px] text-emerald-500"
+=======
+                <div class="grid gap-4">
+                    <div class="flex gap-4 place-content-start">
+                        <p class="text-3xl text-gray-600 dark:text-gray-300 font-bold leading-9">
+                            @{{ report.statistics.sales.formatted_total }}
+                        </p>
+                        
+                        <div class="flex gap-0.5 items-center">
+                            <p
+                                class="text-base  text-emerald-500"
+                                :class="[report.statistics.sales.progress < 0 ?  'text-red-500' : 'text-emerald-500']"
+                            >
+                                @{{ Math.abs(report.statistics.sales.progress.toFixed(2)) }}%
+                            </p>
+
+                            <span
+                                class="text-base  text-emerald-500"
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                 :class="[report.statistics.sales.progress < 0 ? 'icon-down-stat text-red-500 dark:!text-red-500' : 'icon-up-stat text-emerald-500 dark:!text-emerald-500']"
                             ></span>
                         </div>
                     </div>
 
+<<<<<<< HEAD
                     <p class="text-[16px] text-gray-600 dark:text-gray-300 font-semibold">
+=======
+                    <p class="text-base text-gray-600 dark:text-gray-300 font-semibold">
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                         @lang('admin::app.reporting.sales.index.sales-over-time')
                     </p>
 
@@ -61,19 +99,34 @@
                     />
 
                     <!-- Date Range Section -->
+<<<<<<< HEAD
                     <div class="flex gap-[20px] justify-center">
                         <div class="flex gap-[4px] items-center">
                             <span class="w-[14px] h-[14px] rounded-[3px] bg-emerald-400"></span>
 
                             <p class="text-[12px] dark:text-gray-300">
+=======
+                    <div class="flex gap-5 justify-center">
+                        <div class="flex gap-1 items-center">
+                            <span class="w-3.5 h-3.5 rounded-md bg-emerald-400"></span>
+
+                            <p class="text-xs dark:text-gray-300">
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                 @{{ report.date_range.previous }}
                             </p>
                         </div>
 
+<<<<<<< HEAD
                         <div class="flex gap-[4px] items-center">
                             <span class="w-[14px] h-[14px] rounded-[3px] bg-sky-400"></span>
 
                             <p class="text-[12px] dark:text-gray-300">
+=======
+                        <div class="flex gap-1 items-center">
+                            <span class="w-3.5 h-3.5 rounded-md bg-sky-400"></span>
+
+                            <p class="text-xs dark:text-gray-300">
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                 @{{ report.date_range.current }}
                             </p>
                         </div>

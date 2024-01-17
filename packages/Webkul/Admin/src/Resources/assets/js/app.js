@@ -9,6 +9,7 @@ import.meta.glob(["../images/**", "../fonts/**"]);
 import { createApp } from "vue/dist/vue.esm-bundler";
 
 /**
+<<<<<<< HEAD
  * We are defining all the global rules here and configuring
  * all the `vee-validate` settings.
  */
@@ -92,6 +93,8 @@ configure({
 });
 
 /**
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
  * Main root application registry.
  */
 window.app = createApp({
@@ -102,13 +105,31 @@ window.app = createApp({
     methods: {
         onSubmit() {},
 
+<<<<<<< HEAD
         onInvalidSubmit() {},
+=======
+        onInvalidSubmit({ values, errors, results }) {
+            setTimeout(() => {
+                const errorKeys = Object.entries(errors)
+                    .map(([key, value]) => ({ key, value }))
+                    .filter(error => error["value"].length);
+        
+                let firstErrorElement = document.querySelector('[name="' + errorKeys[0]["key"] + '"]');
+        
+                firstErrorElement.scrollIntoView({
+                    behavior: "smooth",
+                    block: "center"
+                });
+            }, 100);
+        },
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
     },
 });
 
 /**
  * Global plugins registration.
  */
+<<<<<<< HEAD
 import Axios from "./plugins/axios";
 import CreateElement from "./plugins/createElement";
 import Emitter from "./plugins/emitter";
@@ -131,6 +152,27 @@ app.component("VForm", Form);
 app.component("VField", Field);
 app.component("VErrorMessage", ErrorMessage);
 app.component("draggable", Draggable);
+=======
+import Admin from "./plugins/admin";
+import Axios from "./plugins/axios";
+import CreateElement from "./plugins/createElement";
+import Emitter from "./plugins/emitter";
+import Flatpickr from "./plugins/flatpickr";
+import VeeValidate from "./plugins/vee-validate";
+import Draggable from "./plugins/draggable";
+
+[
+    Admin,
+    Axios,
+    CreateElement,
+    Emitter,
+    Flatpickr,
+    VeeValidate,
+    Draggable,
+].forEach((plugin) => app.use(plugin));
+
+
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 
 /**
  * Global directives.
@@ -145,10 +187,13 @@ app.directive("slugify-target", SlugifyTarget);
 app.directive("debounce", Debounce);
 app.directive("code", Code);
 
+<<<<<<< HEAD
 import Flatpickr from "flatpickr";
 import 'flatpickr/dist/flatpickr.css';
 window.Flatpickr = Flatpickr;
 
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 /**
  * Load event, the purpose of using the event is to mount the application
  * after all of our `Vue` components which is present in blade file have

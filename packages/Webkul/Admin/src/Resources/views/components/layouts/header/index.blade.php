@@ -2,15 +2,24 @@
     $admin = auth()->guard('admin')->user();
 @endphp
 
+<<<<<<< HEAD
 <header class="flex justify-between items-center px-[16px] py-[10px] bg-white dark:bg-gray-900  border-b-[1px] dark:border-gray-800 sticky top-0 z-[10001]">
     <div class="flex gap-[6px] items-center">
         {{-- Hamburger Menu --}}
         <i
             class="hidden icon-menu text-[24px] p-[6px] max-lg:block cursor-pointer"
+=======
+<header class="flex justify-between items-center px-4 py-2.5 bg-white dark:bg-gray-900  border-b dark:border-gray-800 sticky top-0 z-[10001]">
+    <div class="flex gap-1.5 items-center">
+        <!-- Hamburger Menu -->
+        <i
+            class="hidden icon-menu text-2xl p-1.5 rounded-md cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-950 max-lg:block"
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             @click="$refs.sidebarMenuDrawer.open()"
         >
         </i>
 
+<<<<<<< HEAD
         {{-- Logo --}}
         <a
             href="{{ route('admin.dashboard.index') }}" 
@@ -35,18 +44,54 @@
                 <input 
                     type="text" 
                     class="bg-white dark:bg-gray-900 border dark:border-gray-800 rounded-lg block w-full px-[40px] py-[5px] leading-6 text-gray-600 dark:text-gray-300 transition-all hover:border-gray-400"
+=======
+        <!-- Logo -->
+        <a href="{{ route('admin.dashboard.index') }}">
+            @if ($logo = core()->getConfigData('general.design.admin_logo.logo_image'))
+                <img
+                    class="w-[110px] h-10"
+                    src="{{ Storage::url($logo) }}"
+                    alt="{{ config('app.name') }}"
+                />
+            @else
+                <img
+                    src="{{ request()->cookie('dark_mode') ? bagisto_asset('images/dark-logo.svg') : bagisto_asset('images/logo.svg') }}"
+                    id="logo-image"
+                    alt="{{ config('app.name') }}"
+                />
+            @endif
+        </a>
+
+        <!-- Mega Search Bar Vue Component -->
+        <v-mega-search>
+            <div class="flex items-center relative w-[525px] max-w-[525px] ltr:ml-2.5 rtl:mr-2.5 max-lg:w-[400px]">
+                <i class="icon-search absolute flex items-center ltr:left-3 rtl:right-3 text-2xl top-1.5"></i>
+
+                <input 
+                    type="text" 
+                    class="w-full px-10 py-1.5 block bg-white dark:bg-gray-900 border dark:border-gray-800 rounded-lg leading-6 text-gray-600 dark:text-gray-300 transition-all hover:border-gray-400"
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     placeholder="@lang('admin::app.components.layouts.header.mega-search.title')" 
                 >
             </div>
         </v-mega-search>
     </div>
 
+<<<<<<< HEAD
     <div class="flex gap-[10px] items-center">
         {{-- Dark mode Switcher --}}
         <v-dark>
             <div class="flex">
                 <span
                     class="{{ request()->cookie('dark_mode') ? 'icon-light' : 'icon-dark' }} p-[6px] rounded-[6px] text-[24px] cursor-pointer transition-all hover:bg-gray-100 dark:hover:bg-gray-950"
+=======
+    <div class="flex gap-2.5 items-center">
+        <!-- Dark mode Switcher -->
+        <v-dark>
+            <div class="flex">
+                <span
+                    class="{{ request()->cookie('dark_mode') ? 'icon-light' : 'icon-dark' }} p-1.5 rounded-md text-2xl cursor-pointer transition-all hover:bg-gray-100 dark:hover:bg-gray-950"
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 ></span>
             </div>
         </v-dark>
@@ -57,58 +102,105 @@
             class="flex"
         >
             <span 
+<<<<<<< HEAD
                 class="icon-store p-[6px] rounded-[6px] text-[24px] cursor-pointer transition-all hover:bg-gray-100 dark:hover:bg-gray-950 "
+=======
+                class="icon-store p-1.5 rounded-md text-2xl cursor-pointer transition-all hover:bg-gray-100 dark:hover:bg-gray-950"
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 title="@lang('admin::app.components.layouts.header.visit-shop')"
             >
             </span>
         </a>
 
+<<<<<<< HEAD
        {{-- Notification Component --}}
         <v-notifications {{ $attributes }}>
             <span class="flex relative">
                 <span 
                     class="icon-notification p-[6px] rounded-[6px] text-[24px] cursor-pointer transition-all hover:bg-gray-100 dark:hover:bg-gray-950" 
+=======
+       <!-- Notification Component -->
+        <v-notifications {{ $attributes }}>
+            <span class="flex relative">
+                <span 
+                    class="icon-notification p-1.5 rounded-md text-2xl cursor-pointer transition-all hover:bg-gray-100 dark:hover:bg-gray-950" 
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     title="@lang('admin::app.components.layouts.header.notifications')"
                 >
                 </span>
             </span>
         </v-notifications>
 
+<<<<<<< HEAD
         {{-- Admin profile --}}
         <x-admin::dropdown position="bottom-{{ core()->getCurrentLocale()->direction === 'ltr' ? 'right' : 'left' }}">
             <x-slot:toggle>
                 @if ($admin->image)
                     <button class="flex w-[36px] h-[36px] overflow-hidden rounded-full cursor-pointer hover:opacity-80 focus:opacity-80">
+=======
+        <!-- Admin profile -->
+        <x-admin::dropdown position="bottom-{{ core()->getCurrentLocale()->direction === 'ltr' ? 'right' : 'left' }}">
+            <x-slot:toggle>
+                @if ($admin->image)
+                    <button class="flex w-9 h-9 overflow-hidden rounded-full cursor-pointer hover:opacity-80 focus:opacity-80">
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                         <img
                             src="{{ $admin->image_url }}"
                             class="w-full"
                         />
                     </button>
                 @else
+<<<<<<< HEAD
                     <button class="flex justify-center items-center w-[36px] h-[36px] bg-blue-400 rounded-full text-[14px] text-white font-semibold cursor-pointer leading-6 transition-all hover:bg-blue-500 focus:bg-blue-500">
+=======
+                    <button class="flex justify-center items-center w-9 h-9 bg-blue-400 rounded-full text-sm text-white font-semibold cursor-pointer leading-6 transition-all hover:bg-blue-500 focus:bg-blue-500">
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                         {{ substr($admin->name, 0, 1) }}
                     </button>
                 @endif
             </x-slot:toggle>
 
+<<<<<<< HEAD
             {{-- Admin Dropdown --}}
             <x-slot:content class="!p-[0px]">
                 <div class="grid gap-[10px] px-[20px] py-[10px] border border-b-gray-300 dark:border-gray-800">
                     {{-- Version --}}
+=======
+            <!-- Admin Dropdown -->
+            <x-slot:content class="!p-0">
+                <div class="flex gap-1.5 items-center px-5 py-2.5 border border-b-gray-300 dark:border-gray-800">
+                    <img
+                        src="{{ url('cache/logo/bagisto.png') }}"
+                        width="24"
+                        height="24"
+                    />
+
+                    <!-- Version -->
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     <p class="text-gray-400">
                         @lang('admin::app.components.layouts.header.app-version', ['version' => 'v' . core()->version()])
                     </p>
                 </div>
 
+<<<<<<< HEAD
                 <div class="grid gap-[4px] pb-[10px]">
                     <a
                         class="px-5 py-2 text-[16px] text-gray-800 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-950 cursor-pointer"
+=======
+                <div class="grid gap-1 pb-2.5">
+                    <a
+                        class="px-5 py-2 text-base  text-gray-800 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-950 cursor-pointer"
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                         href="{{ route('admin.account.edit') }}"
                     >
                         @lang('admin::app.components.layouts.header.my-account')
                     </a>
 
+<<<<<<< HEAD
                     {{--Admin logout--}}
+=======
+                    <!--Admin logout-->
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     <x-admin::form
                         method="DELETE"
                         action="{{ route('admin.session.destroy') }}"
@@ -117,7 +209,11 @@
                     </x-admin::form>
 
                     <a
+<<<<<<< HEAD
                         class="px-5 py-2 text-[16px] text-gray-800 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-950 cursor-pointer"
+=======
+                        class="px-5 py-2 text-base  text-gray-800 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-950 cursor-pointer"
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                         href="{{ route('admin.session.destroy') }}"
                         onclick="event.preventDefault(); document.getElementById('adminLogout').submit();"
                     >
@@ -138,26 +234,54 @@
     <!-- Drawer Header -->
     <x-slot:header>
         <div class="flex justify-between items-center">
+<<<<<<< HEAD
             @if (core()->getConfigData('general.design.admin_logo.logo_image', core()->getCurrentChannelCode()))
                 <img src="{{ Storage::url(core()->getConfigData('general.design.admin_logo.logo_image', core()->getCurrentChannelCode())) }}" alt="{{ config('app.name') }}" style="height: 40px; width: 110px;"/>
             @else
                 <img src="{{ bagisto_asset('images/logo.svg') }}">
+=======
+            @if ($logo = core()->getConfigData('general.design.admin_logo.logo_image'))
+                <img
+                    class="w-[110px] h-10"
+                    src="{{ Storage::url($logo) }}"
+                    alt="{{ config('app.name') }}"
+                />
+            @else
+                <img
+                    src="{{ request()->cookie('dark_mode') ? bagisto_asset('images/dark-logo.svg') : bagisto_asset('images/logo.svg') }}"
+                    id="logo-image"
+                    alt="{{ config('app.name') }}"
+                />
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             @endif
         </div>
     </x-slot:header>
 
     <!-- Drawer Content -->
+<<<<<<< HEAD
     <x-slot:content class="p-[16px]">
         <div class="h-[calc(100vh-100px)] overflow-auto journal-scroll">
             <nav class="grid gap-[7px] w-full">
                 {{-- Navigation Menu --}}
+=======
+    <x-slot:content class="p-4">
+        <div class="h-[calc(100vh-100px)] overflow-auto journal-scroll">
+            <nav class="grid gap-2 w-full">
+                <!-- Navigation Menu -->
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 @foreach ($menu->items as $menuItem)
                     <div class="relative group/item">
                         <a
                             href="{{ $menuItem['url'] }}"
+<<<<<<< HEAD
                             class="flex gap-[10px] p-[6px] items-center cursor-pointer {{ $menu->getActive($menuItem) == 'active' ? 'bg-blue-600 rounded-[8px]' : ' hover:bg-gray-100 dark:hover:bg-gray-950 ' }} peer"
                         >
                             <span class="{{ $menuItem['icon'] }} text-[24px] {{ $menu->getActive($menuItem) ? 'text-white' : ''}}"></span>
+=======
+                            class="flex gap-2.5 p-1.5 items-center cursor-pointer {{ $menu->getActive($menuItem) == 'active' ? 'bg-blue-600 rounded-lg' : ' hover:bg-gray-100 dark:hover:bg-gray-950 ' }} peer"
+                        >
+                            <span class="{{ $menuItem['icon'] }} text-2xl {{ $menu->getActive($menuItem) ? 'text-white' : ''}}"></span>
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                             
                             <p class="text-gray-600 dark:text-gray-300 font-semibold whitespace-nowrap {{ $menu->getActive($menuItem) ? 'text-white' : ''}}">
                                 @lang($menuItem['name'])
@@ -165,11 +289,19 @@
                         </a>
 
                         @if (count($menuItem['children']))
+<<<<<<< HEAD
                             <div class="{{ $menu->getActive($menuItem) ? ' !grid bg-gray-100' : '' }} hidden min-w-[180px] ltr:pl-[40px] rtl:pr-[40px] pb-[7px] rounded-b-[8px] z-[100]">
                                 @foreach ($menuItem['children'] as $subMenuItem)
                                     <a
                                         href="{{ $subMenuItem['url'] }}"
                                         class="text-[14px] text-{{ $menu->getActive($subMenuItem) ? 'blue':'gray' }}-600 whitespace-nowrap py-[4px]"
+=======
+                            <div class="{{ $menu->getActive($menuItem) ? ' !grid bg-gray-100 dark:bg-gray-950' : '' }} hidden min-w-[180px] ltr:pl-10 rtl:pr-10 pb-2 rounded-b-lg z-[100]">
+                                @foreach ($menuItem['children'] as $subMenuItem)
+                                    <a
+                                        href="{{ $subMenuItem['url'] }}"
+                                        class="text-sm text-{{ $menu->getActive($subMenuItem) ? 'blue':'gray' }}-600 dark:text-{{ $menu->getActive($subMenuItem) ? 'blue':'gray' }}-300 whitespace-nowrap py-1 dark:hover:bg-gray-950"
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                     >
                                         @lang($subMenuItem['name'])
                                     </a>
@@ -185,12 +317,21 @@
 
 @pushOnce('scripts')
     <script type="text/x-template" id="v-mega-search-template">
+<<<<<<< HEAD
         <div class="flex items-center relative w-[525px] max-w-[525px] ltr:ml-[10px] rtl:mr-[10px]">
             <i class="icon-search text-[22px] flex items-center absolute ltr:left-[12px] rtl:right-[12px] top-[6px]"></i>
 
             <input 
                 type="text"
                 class="bg-white dark:bg-gray-900 border dark:border-gray-800 rounded-lg block w-full px-[40px] py-[5px] leading-6 text-gray-600 dark:text-gray-300 transition-all hover:border-gray-400 dark:hover:border-gray-400 focus:border-gray-400 dark:focus:border-gray-400 peer"
+=======
+        <div class="flex items-center relative w-[525px] max-w-[525px] ltr:ml-2.5 rtl:mr-2.5 max-lg:w-[400px]">
+            <i class="icon-search text-2xl flex items-center absolute ltr:left-3 rtl:right-3 top-1.5"></i>
+
+            <input 
+                type="text"
+                class="bg-white dark:bg-gray-900 border dark:border-gray-800 rounded-lg block w-full px-10 py-1.5 leading-6 text-gray-600 dark:text-gray-300 transition-all hover:border-gray-400 dark:hover:border-gray-400 focus:border-gray-400 dark:focus:border-gray-400 peer"
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 :class="{'border-gray-400': isDropdownOpen}"
                 placeholder="@lang('admin::app.components.layouts.header.mega-search.title')"
                 v-model.lazy="searchTerm"
@@ -199,6 +340,7 @@
             >
 
             <div
+<<<<<<< HEAD
                 class="absolute top-[40px] w-full bg-white dark:bg-gray-900 shadow-[0px_0px_0px_0px_rgba(0,0,0,0.10),0px_1px_3px_0px_rgba(0,0,0,0.10),0px_5px_5px_0px_rgba(0,0,0,0.09),0px_12px_7px_0px_rgba(0,0,0,0.05),0px_22px_9px_0px_rgba(0,0,0,0.01),0px_34px_9px_0px_rgba(0,0,0,0.00)] border dark:border-gray-800 rounded-[8px] z-10"
                 v-if="isDropdownOpen"
             >
@@ -207,6 +349,16 @@
                     <div
                         class="p-[16px] hover:bg-gray-100 dark:hover:bg-gray-950 cursor-pointer"
                         :class="{ 'border-b-[2px] border-blue-600': activeTab == tab.key }"
+=======
+                class="absolute top-10 w-full bg-white dark:bg-gray-900 shadow-[0px_0px_0px_0px_rgba(0,0,0,0.10),0px_1px_3px_0px_rgba(0,0,0,0.10),0px_5px_5px_0px_rgba(0,0,0,0.09),0px_12px_7px_0px_rgba(0,0,0,0.05),0px_22px_9px_0px_rgba(0,0,0,0.01),0px_34px_9px_0px_rgba(0,0,0,0.00)] border dark:border-gray-800 rounded-lg z-10"
+                v-if="isDropdownOpen"
+            >
+                <!-- Search Tabs -->
+                <div class="flex border-b dark:border-gray-800 text-sm text-gray-600 dark:text-gray-300">
+                    <div
+                        class="p-4 hover:bg-gray-100 dark:hover:bg-gray-950 cursor-pointer"
+                        :class="{ 'border-b-2 border-blue-600': activeTab == tab.key }"
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                         v-for="tab in tabs"
                         @click="activeTab = tab.key; search();"
                     >
@@ -224,6 +376,7 @@
                         <div class="grid max-h-[400px] overflow-y-auto">
                             <a
                                 :href="'{{ route('admin.catalog.products.edit', ':id') }}'.replace(':id', product.id)"
+<<<<<<< HEAD
                                 class="flex gap-[10px] justify-between p-[16px] border-b-[1px] border-slate-300 dark:border-gray-800 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-950 last:border-b-0"
                                 v-for="product in searchedResults.products.data"
                             >
@@ -233,11 +386,26 @@
                                     <div
                                         class="w-full h-[60px] max-w-[60px] max-h-[60px] relative rounded-[4px] overflow-hidden"
                                         :class="{'border border-dashed border-gray-300 dark:border-gray-800 rounded-[4px] dark:invert dark:mix-blend-exclusion overflow-hidden': ! product.images.length}"
+=======
+                                class="flex gap-2.5 justify-between p-4 border-b border-slate-300 dark:border-gray-800 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-950 last:border-b-0"
+                                v-for="product in searchedResults.products.data"
+                            >
+                                <!-- Left Information -->
+                                <div class="flex gap-2.5">
+                                    <!-- Image -->
+                                    <div
+                                        class="w-full h-[60px] max-w-[60px] max-h-[60px] relative rounded overflow-hidden"
+                                        :class="{'border border-dashed border-gray-300 dark:border-gray-800 rounded dark:invert dark:mix-blend-exclusion overflow-hidden': ! product.images.length}"
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                     >
                                         <template v-if="! product.images.length">
                                             <img src="{{ bagisto_asset('images/product-placeholders/front.svg') }}">
                                         
+<<<<<<< HEAD
                                             <p class="w-full absolute bottom-[5px] text-[6px] text-gray-400 text-center font-semibold">
+=======
+                                            <p class="w-full absolute bottom-1.5 text-[6px] text-gray-400 text-center font-semibold">
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                                 @lang('admin::app.catalog.products.edit.types.grouped.image-placeholder')
                                             </p>
                                         </template>
@@ -248,9 +416,17 @@
                                     </div>
 
                                     <!-- Details -->
+<<<<<<< HEAD
                                     <div class="grid gap-[6px] place-content-start">
                                         <p class="text-[16x] text-gray-600 dark:text-gray-300 font-semibold">
                                             @{{ product.name }}
+=======
+                                    <div class="grid gap-1.5 place-content-start">
+                                        <p
+                                            class="text-base  text-gray-600 dark:text-gray-300 font-semibold"
+                                            v-text="product.name"
+                                        >
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                         </p>
 
                                         <p class="text-gray-500">
@@ -260,18 +436,33 @@
                                 </div>
 
                                 <!-- Right Information -->
+<<<<<<< HEAD
                                 <div class="grid gap-[4px] place-content-center text-right">
                                     <p class="text-gray-600 dark:text-gray-300 font-semibold">
                                         @{{ product.formatted_price }}
+=======
+                                <div class="grid gap-1 place-content-center text-right">
+                                    <p
+                                        class="text-gray-600 dark:text-gray-300 font-semibold"
+                                        v-text="product.formatted_price"
+                                    >
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                     </p>
                                 </div>
                             </a>
                         </div>
 
+<<<<<<< HEAD
                         <div class="flex p-[12px] border-t-[1px] dark:border-gray-800">
                             <a
                                 :href="'{{ route('admin.catalog.products.index') }}?search=:query'.replace(':query', searchTerm)"
                                 class="text-[12px] text-blue-600 font-semibold cursor-pointer transition-all hover:underline"
+=======
+                        <div class="flex p-3 border-t dark:border-gray-800">
+                            <a
+                                :href="'{{ route('admin.catalog.products.index') }}?search=:query'.replace(':query', searchTerm)"
+                                class="text-xs text-blue-600 font-semibold cursor-pointer transition-all hover:underline"
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                 v-if="searchedResults.products.data.length"
                             >
                                 @{{ "@lang('admin::app.components.layouts.header.mega-search.explore-all-matching-products')".replace(':query', searchTerm).replace(':count', searchedResults.products.total) }}
@@ -279,7 +470,11 @@
 
                             <a
                                 href="{{ route('admin.catalog.products.index') }}"
+<<<<<<< HEAD
                                 class="text-[12px] text-blue-600 font-semibold cursor-pointer transition-all hover:underline"
+=======
+                                class="text-xs text-blue-600 font-semibold cursor-pointer transition-all hover:underline"
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                 v-else
                             >
                                 @lang('admin::app.components.layouts.header.mega-search.explore-all-products')
@@ -297,10 +492,17 @@
                         <div class="grid max-h-[400px] overflow-y-auto">
                             <a
                                 :href="'{{ route('admin.sales.orders.view', ':id') }}'.replace(':id', order.id)"
+<<<<<<< HEAD
                                 class="grid gap-[6px] place-content-start p-[16px] border-b-[1px] border-slate-300 dark:border-gray-800 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-950 last:border-b-0"
                                 v-for="order in searchedResults.orders.data"
                             >
                                 <p class="text-[16x] text-gray-600 dark:text-gray-300 font-semibold">
+=======
+                                class="grid gap-1.5 place-content-start p-4 border-b border-slate-300 dark:border-gray-800 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-950 last:border-b-0"
+                                v-for="order in searchedResults.orders.data"
+                            >
+                                <p class="text-base text-gray-600 dark:text-gray-300 font-semibold">
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                     #@{{ order.increment_id }}
                                 </p>
 
@@ -310,10 +512,17 @@
                             </a>
                         </div>
 
+<<<<<<< HEAD
                         <div class="flex p-[12px] border-t-[1px] dark:border-gray-800  ">
                             <a
                                 :href="'{{ route('admin.sales.orders.index') }}?search=:query'.replace(':query', searchTerm)"
                                 class=" text-[12px] text-blue-600 font-semibold cursor-pointer transition-all hover:underline"
+=======
+                        <div class="flex p-3 border-t dark:border-gray-800">
+                            <a
+                                :href="'{{ route('admin.sales.orders.index') }}?search=:query'.replace(':query', searchTerm)"
+                                class="text-xs text-blue-600 font-semibold cursor-pointer transition-all hover:underline"
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                 v-if="searchedResults.orders.data.length"
                             >
                                 @{{ "@lang('admin::app.components.layouts.header.mega-search.explore-all-matching-orders')".replace(':query', searchTerm).replace(':count', searchedResults.orders.total) }}
@@ -321,7 +530,11 @@
 
                             <a
                                 href="{{ route('admin.sales.orders.index') }}"
+<<<<<<< HEAD
                                 class=" text-[12px] text-blue-600 font-semibold cursor-pointer transition-all hover:underline"
+=======
+                                class="text-xs text-blue-600 font-semibold cursor-pointer transition-all hover:underline"
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                 v-else
                             >
                                 @lang('admin::app.components.layouts.header.mega-search.explore-all-orders')
@@ -339,17 +552,28 @@
                         <div class="grid max-h-[400px] overflow-y-auto">
                             <a
                                 :href="'{{ route('admin.catalog.categories.edit', ':id') }}'.replace(':id', category.id)"
+<<<<<<< HEAD
                                 class="p-[16px] border-b-[1px] dark:border-gray-800 text-[14px] text-gray-600 dark:text-gray-300 font-semibold cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-950 last:border-b-0"
+=======
+                                class="p-4 border-b dark:border-gray-800 text-sm text-gray-600 dark:text-gray-300 font-semibold cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-950 last:border-b-0"
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                 v-for="category in searchedResults.categories.data"
                             >
                                 @{{ category.name }}
                             </a>
                         </div>
 
+<<<<<<< HEAD
                         <div class="flex p-[12px] border-t-[1px] dark:border-gray-800">
                             <a
                                 :href="'{{ route('admin.catalog.categories.index') }}?search=:query'.replace(':query', searchTerm)"
                                 class=" text-[12px] text-blue-600 font-semibold cursor-pointer transition-all hover:underline"
+=======
+                        <div class="flex p-3 border-t dark:border-gray-800">
+                            <a
+                                :href="'{{ route('admin.catalog.categories.index') }}?search=:query'.replace(':query', searchTerm)"
+                                class="text-xs text-blue-600 font-semibold cursor-pointer transition-all hover:underline"
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                 v-if="searchedResults.categories.data.length"
                             >
                                 @{{ "@lang('admin::app.components.layouts.header.mega-search.explore-all-matching-categories')".replace(':query', searchTerm).replace(':count', searchedResults.categories.total) }}
@@ -357,7 +581,11 @@
 
                             <a
                                 href="{{ route('admin.catalog.categories.index') }}"
+<<<<<<< HEAD
                                 class=" text-[12px] text-blue-600 font-semibold cursor-pointer transition-all hover:underline"
+=======
+                                class="text-xs text-blue-600 font-semibold cursor-pointer transition-all hover:underline"
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                 v-else
                             >
                                 @lang('admin::app.components.layouts.header.mega-search.explore-all-categories')
@@ -375,10 +603,17 @@
                         <div class="grid max-h-[400px] overflow-y-auto">
                             <a
                                 :href="'{{ route('admin.customers.customers.view', ':id') }}'.replace(':id', customer.id)"
+<<<<<<< HEAD
                                 class="grid gap-[6px] place-content-start p-[16px] border-b-[1px] border-slate-300 dark:border-gray-800 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-950 last:border-b-0"
                                 v-for="customer in searchedResults.customers.data"
                             >
                                 <p class="text-[16x] text-gray-600 dark:text-gray-300 font-semibold">
+=======
+                                class="grid gap-1.5 place-content-start p-4 border-b border-slate-300 dark:border-gray-800 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-950 last:border-b-0"
+                                v-for="customer in searchedResults.customers.data"
+                            >
+                                <p class="text-base text-gray-600 dark:text-gray-300 font-semibold">
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                     @{{ customer.first_name + ' ' + customer.last_name }}
                                 </p>
 
@@ -388,10 +623,17 @@
                             </a>
                         </div>
 
+<<<<<<< HEAD
                         <div class="flex p-[12px] border-t-[1px] dark:border-gray-800">
                             <a
                                 :href="'{{ route('admin.customers.customers.index') }}?search=:query'.replace(':query', searchTerm)"
                                 class=" text-[12px] text-blue-600 font-semibold cursor-pointer transition-all hover:underline"
+=======
+                        <div class="flex p-3 border-t dark:border-gray-800">
+                            <a
+                                :href="'{{ route('admin.customers.customers.index') }}?search=:query'.replace(':query', searchTerm)"
+                                class="text-xs text-blue-600 font-semibold cursor-pointer transition-all hover:underline"
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                 v-if="searchedResults.customers.data.length"
                             >
                                 @{{ "@lang('admin::app.components.layouts.header.mega-search.explore-all-matching-customers')".replace(':query', searchTerm).replace(':count', searchedResults.customers.total) }}
@@ -399,7 +641,11 @@
 
                             <a
                                 href="{{ route('admin.customers.customers.index') }}"
+<<<<<<< HEAD
                                 class=" text-[12px] text-blue-600 font-semibold cursor-pointer transition-all hover:underline"
+=======
+                                class="text-xs text-blue-600 font-semibold cursor-pointer transition-all hover:underline"
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                 v-else
                             >
                                 @lang('admin::app.components.layouts.header.mega-search.explore-all-customers')
@@ -512,22 +758,34 @@
         });
     </script>
 
+<<<<<<< HEAD
     <script 
         type="text/x-template"
         id="v-notifications-template"
     >
+=======
+    <script type="text/x-template" id="v-notifications-template">
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         <x-admin::dropdown position="bottom-{{ core()->getCurrentLocale()->direction === 'ltr' ? 'right' : 'left' }}">
             <!-- Notification Toggle -->
             <x-slot:toggle>
                 <span class="flex relative">
                     <span
+<<<<<<< HEAD
                         class="icon-notification p-[6px] rounded-[6px] text-[24px] text-red cursor-pointer transition-all hover:bg-gray-100 dark:hover:bg-gray-950" 
+=======
+                        class="icon-notification p-1.5 rounded-md text-2xl text-red cursor-pointer transition-all hover:bg-gray-100 dark:hover:bg-gray-950" 
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                         title="@lang('admin::app.components.layouts.header.notifications')"
                     >
                     </span>
                 
                     <span
+<<<<<<< HEAD
                         class="flex justify-center items-center min-w-[20px] h-[20px] absolute top-[-8px] p-[5px] ltr:left-[18px] rtl:right-[18px] bg-blue-600 rounded-[44px] text-white text-[10px] font-semibold leading-[9px] cursor-pointer"
+=======
+                        class="flex justify-center items-center min-w-5 h-5 absolute -top-2 p-1.5 ltr:left-5 rtl:right-5 bg-blue-600 rounded-full text-white text-[10px] font-semibold leading-[9px] cursor-pointer"
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                         v-text="totalUnRead"
                         v-if="totalUnRead"
                     >
@@ -538,14 +796,22 @@
             <!-- Notification Content -->
             <x-slot:content class="!p-0 min-w-[250px] max-w-[250px]">
                 <!-- Header -->
+<<<<<<< HEAD
                 <div class="text-[16px] p-[12px] text-gray-600 dark:text-gray-300 font-semibold border-b-[1px] dark:border-gray-800">
+=======
+                <div class="text-base  p-3 text-gray-600 dark:text-gray-300 font-semibold border-b dark:border-gray-800">
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     @lang('admin::app.notifications.title', ['read' => 0])
                 </div>
 
                 <!-- Content -->
                 <div class="grid">
                     <a
+<<<<<<< HEAD
                         class="flex gap-[5px] items-start p-[12px] hover:bg-gray-50 dark:hover:bg-gray-950 border-b-[1px] dark:border-gray-800 last:border-b-0"
+=======
+                        class="flex gap-1.5 items-start p-3 hover:bg-gray-50 dark:hover:bg-gray-950 border-b dark:border-gray-800 last:border-b-0"
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                         v-for="notification in notifications"
                         :href="'{{ route('admin.notification.viewed_notification', ':orderId') }}'.replace(':orderId', notification.order_id)"
                     >
@@ -564,8 +830,13 @@
                                 @{{ orderTypeMessages[notification.order.status] }}
                             </p>
 
+<<<<<<< HEAD
                             <!-- Craeted Date In humand Readable Format -->
                             <p class="text-[12px] text-gray-600 dark:text-gray-300">
+=======
+                            <!-- Created Date In humand Readable Format -->
+                            <p class="text-xs text-gray-600 dark:text-gray-300">
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                 @{{ notification.order.datetime }}
                             </p>
                         </div>
@@ -573,16 +844,27 @@
                 </div>
 
                 <!-- Footer -->
+<<<<<<< HEAD
                 <div class="flex gap-[10px] justify-between p-[12px] border-t-[1px] dark:border-gray-800">
                     <a
                         href="{{ route('admin.notification.index') }}"
                         class="text-[12px] text-blue-600 font-semibold cursor-pointer transition-all hover:underline"
+=======
+                <div class="flex gap-1.5 justify-between h-[47px] py-4 px-6 border-t dark:border-gray-800">
+                    <a
+                        href="{{ route('admin.notification.index') }}"
+                        class="text-xs text-blue-600 font-semibold cursor-pointer transition-all hover:underline"
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     >
                         @lang('admin::app.notifications.view-all')
                     </a>
 
                     <a
+<<<<<<< HEAD
                         class="text-[12px] text-blue-600 font-semibold cursor-pointer transition-all hover:underline"
+=======
+                        class="text-xs text-blue-600 font-semibold cursor-pointer transition-all hover:underline"
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                         v-if="notifications?.length"
                         @click="readAll()"
                     >
@@ -609,6 +891,7 @@
                         ordertype: {
                             pending: {
                                 icon: 'icon-information',
+<<<<<<< HEAD
                                 message: 'Order Pending',
                             },
                             processing: {
@@ -630,6 +913,34 @@
                             pending_payment: {
                                 icon: 'icon-information',
                                 message: 'Payment Pending'
+=======
+                                message: "@lang('admin::app.notifications.order-status-messages.pending-payment')"
+                            },
+
+                            processing: {
+                                icon: 'icon-processing',
+                                message: "@lang('admin::app.notifications.order-status-messages.processing')",
+                            },
+
+                            canceled: {
+                                icon: 'icon-cancel-1',
+                                message: "@lang('admin::app.notifications.order-status-messages.canceled')"
+                            },
+
+                            completed: {
+                                icon: 'icon-done',
+                                message: "@lang('admin::app.notifications.order-status-messages.completed')"
+                            },
+
+                            closed: {
+                                icon: 'icon-cancel-1',
+                                message: "@lang('admin::app.notifications.order-status-messages.closed')"
+                            },
+
+                            pending_payment: {
+                                icon: "icon-information",
+                                message: "@lang('admin::app.notifications.order-status-messages.pending-payment')"
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                             },
                         },
 
@@ -649,11 +960,19 @@
                 computed: {
                     notificationStatusIcon() {
                         return {
+<<<<<<< HEAD
                             pending: 'icon-information text-[24px] text-amber-600 bg-amber-100 rounded-full',
                             closed: 'icon-repeat text-[24px] text-red-600 bg-red-100 rounded-full',
                             completed: 'icon-done text-[24px] text-blue-600 bg-blue-100 rounded-full',
                             canceled: 'icon-cancel-1 text-[24px] text-red-600 bg-red-100 rounded-full',
                             processing: 'icon-sort-right text-[24px] text-green-600 bg-green-100 rounded-full',
+=======
+                            pending: 'icon-information text-2xl text-amber-600 bg-amber-100 rounded-full',
+                            closed: 'icon-repeat text-2xl text-red-600 bg-red-100 rounded-full',
+                            completed: 'icon-done text-2xl text-blue-600 bg-blue-100 rounded-full',
+                            canceled: 'icon-cancel-1 text-2xl text-red-600 bg-red-100 rounded-full',
+                            processing: 'icon-sort-right text-2xl text-green-600 bg-green-100 rounded-full',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                         };
                     },
                 },
@@ -696,7 +1015,11 @@
     <script type="text/x-template" id="v-dark-template">
         <div class="flex">
             <span
+<<<<<<< HEAD
                 class="p-[6px] rounded-[6px] text-[24px] cursor-pointer transition-all hover:bg-gray-100 dark:hover:bg-gray-950"
+=======
+                class="p-1.5 rounded-md text-2xl cursor-pointer transition-all hover:bg-gray-100 dark:hover:bg-gray-950"
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 :class="[isDarkMode ? 'icon-light' : 'icon-dark']"
                 @click="toggle"
             ></span>
@@ -730,9 +1053,19 @@
                     document.documentElement.classList.toggle('dark', this.isDarkMode === 1);
 
                     if (this.isDarkMode) {
+<<<<<<< HEAD
                         document.getElementById('logo-image').src= this.dark_logo;
                     } else {
                         document.getElementById('logo-image').src=this.logo;
+=======
+                        this.$emitter.emit('change-theme', 'dark');
+
+                        document.getElementById('logo-image').src = this.dark_logo;
+                    } else {
+                        this.$emitter.emit('change-theme', 'light');
+
+                        document.getElementById('logo-image').src = this.logo;
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     }
                 },
 

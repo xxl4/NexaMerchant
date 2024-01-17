@@ -4,12 +4,21 @@ use Illuminate\Support\Facades\Route;
 use Webkul\Admin\Http\Controllers\Settings\ChannelController;
 use Webkul\Admin\Http\Controllers\Settings\CurrencyController;
 use Webkul\Admin\Http\Controllers\Settings\ExchangeRateController;
+<<<<<<< HEAD
 use Webkul\Admin\Http\Controllers\Settings\LocaleController;
 use Webkul\Admin\Http\Controllers\Settings\InventorySourceController;
 use Webkul\Admin\Http\Controllers\Settings\Tax\TaxCategoryController;
 use Webkul\Admin\Http\Controllers\Settings\Tax\TaxRateController;
 use Webkul\Admin\Http\Controllers\Settings\ThemeController;
 use Webkul\Admin\Http\Controllers\Settings\RoleController;
+=======
+use Webkul\Admin\Http\Controllers\Settings\InventorySourceController;
+use Webkul\Admin\Http\Controllers\Settings\LocaleController;
+use Webkul\Admin\Http\Controllers\Settings\RoleController;
+use Webkul\Admin\Http\Controllers\Settings\Tax\TaxCategoryController;
+use Webkul\Admin\Http\Controllers\Settings\Tax\TaxRateController;
+use Webkul\Admin\Http\Controllers\Settings\ThemeController;
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 use Webkul\Admin\Http\Controllers\Settings\UserController;
 
 /**
@@ -169,6 +178,7 @@ Route::group(['middleware' => ['admin'], 'prefix' => config('app.admin_url')], f
 
             Route::put('confirm', 'destroySelf')->name('admin.settings.users.destroy');
         });
+<<<<<<< HEAD
     });
 
     Route::controller(ThemeController::class)->prefix('settings/themes')->group(function () {
@@ -181,5 +191,19 @@ Route::group(['middleware' => ['admin'], 'prefix' => config('app.admin_url')], f
         Route::post('edit/{id}', 'update')->name('admin.settings.themes.update');
 
         Route::delete('edit/{id}', 'destroy')->name('admin.settings.themes.delete');
+=======
+
+        Route::controller(ThemeController::class)->prefix('themes')->group(function () {
+            Route::get('', 'index')->name('admin.settings.themes.index');
+
+            Route::get('edit/{id}', 'edit')->name('admin.settings.themes.edit');
+
+            Route::post('store', 'store')->name('admin.settings.themes.store');
+
+            Route::post('edit/{id}', 'update')->name('admin.settings.themes.update');
+
+            Route::delete('edit/{id}', 'destroy')->name('admin.settings.themes.delete');
+        });
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
     });
 });

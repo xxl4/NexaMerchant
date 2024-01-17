@@ -4,10 +4,17 @@ namespace Webkul\Admin\Http\Controllers\Settings;
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Event;
+<<<<<<< HEAD
 use Webkul\Admin\Http\Controllers\Controller;
 use Webkul\User\Repositories\RoleRepository;
 use Webkul\User\Repositories\AdminRepository;
 use Webkul\Admin\DataGrids\Settings\RolesDataGrid;
+=======
+use Webkul\Admin\DataGrids\Settings\RolesDataGrid;
+use Webkul\Admin\Http\Controllers\Controller;
+use Webkul\User\Repositories\AdminRepository;
+use Webkul\User\Repositories\RoleRepository;
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 
 class RoleController extends Controller
 {
@@ -19,8 +26,12 @@ class RoleController extends Controller
     public function __construct(
         protected RoleRepository $roleRepository,
         protected AdminRepository $adminRepository
+<<<<<<< HEAD
     )
     {
+=======
+    ) {
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
     }
 
     /**
@@ -62,10 +73,17 @@ class RoleController extends Controller
         Event::dispatch('user.role.create.before');
 
         $data = request()->only([
+<<<<<<< HEAD
             "name",
             "description",
             "permission_type",
             "permissions"
+=======
+            'name',
+            'description',
+            'permission_type',
+            'permissions',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         ]);
 
         $role = $this->roleRepository->create($data);
@@ -118,9 +136,15 @@ class RoleController extends Controller
         }
 
         $data = array_merge(request()->only([
+<<<<<<< HEAD
             "name",
             "description",
             "permission_type",
+=======
+            'name',
+            'description',
+            'permission_type',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         ]), [
             'permissions' => request()->has('permissions') ? request('permissions') : [],
         ]);
@@ -139,8 +163,12 @@ class RoleController extends Controller
     /**
      * Remove the specified resource from storage.
      *
+<<<<<<< HEAD
      * @param int $id
      * @return \Illuminate\Http\JsonResponse
+=======
+     * @param  int  $id
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      */
     public function destroy($id): JsonResponse
     {
@@ -149,7 +177,11 @@ class RoleController extends Controller
         if ($role->admins->count() >= 1) {
             return new JsonResponse(['message' => trans('admin::app.settings.roles.being-used', [
                 'name'   => 'admin::app.settings.roles.index.title',
+<<<<<<< HEAD
                 'source' => 'admin::app.settings.roles.index.admin-user'
+=======
+                'source' => 'admin::app.settings.roles.index.admin-user',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             ])], 400);
         }
 
@@ -157,7 +189,11 @@ class RoleController extends Controller
             return new JsonResponse([
                 'message' => trans(
                     'admin::app.settings.roles.last-delete-error'
+<<<<<<< HEAD
                 )
+=======
+                ),
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             ], 400);
         }
 
@@ -175,7 +211,11 @@ class RoleController extends Controller
         return new JsonResponse([
             'message' => trans(
                 'admin::app.settings.roles.delete-failed'
+<<<<<<< HEAD
             )
+=======
+            ),
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         ], 500);
     }
 }

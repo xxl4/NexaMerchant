@@ -2,12 +2,21 @@
 
 namespace Webkul\Admin\Http\Controllers\Settings;
 
+<<<<<<< HEAD
 use Illuminate\Support\Facades\Event;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Storage;
 use Webkul\Admin\Http\Controllers\Controller;
 use Webkul\Shop\Repositories\ThemeCustomizationRepository;
 use Webkul\Admin\DataGrids\Theme\ThemeDatagrid;
+=======
+use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Event;
+use Illuminate\Support\Facades\Storage;
+use Webkul\Admin\DataGrids\Theme\ThemeDatagrid;
+use Webkul\Admin\Http\Controllers\Controller;
+use Webkul\Theme\Repositories\ThemeCustomizationRepository;
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 
 class ThemeController extends Controller
 {
@@ -36,7 +45,11 @@ class ThemeController extends Controller
 
     /**
      * Store a newly created resource in storage.
+<<<<<<< HEAD
      * 
+=======
+     *
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      * @return \Illuminate\Http\JsonResponse|string
      */
     public function store()
@@ -50,8 +63,13 @@ class ThemeController extends Controller
         $this->validate(request(), [
             'name'       => 'required',
             'sort_order' => 'required|numeric',
+<<<<<<< HEAD
             'type'       => 'in:product_carousel,category_carousel,static_content,image_carousel,footer_links',
             'channel_id' => 'required|in:'.implode(',', (core()->getAllChannels()->pluck("id")->toArray())),
+=======
+            'type'       => 'in:product_carousel,category_carousel,static_content,image_carousel,footer_links,services_content',
+            'channel_id' => 'required|in:' . implode(',', (core()->getAllChannels()->pluck('id')->toArray())),
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         ]);
 
         Event::dispatch('theme_customization.create.before');
@@ -73,7 +91,11 @@ class ThemeController extends Controller
     /**
      * Edit the theme
      *
+<<<<<<< HEAD
      * @param integer $id
+=======
+     * @param  int  $id
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      * @return \Illuminate\View\View
      */
     public function edit($id)
@@ -86,7 +108,11 @@ class ThemeController extends Controller
     /**
      * Update the specified resource
      *
+<<<<<<< HEAD
      * @param integer $id
+=======
+     * @param  int  $id
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      * @return \Illuminate\Http\RedirectResponse
      */
     public function update($id)
@@ -96,25 +122,43 @@ class ThemeController extends Controller
         $data = request()->all();
 
         if ($data['type'] == 'static_content') {
+<<<<<<< HEAD
             $data[$locale]['options']['html'] = preg_replace('/<script\b[^>]*>(.*?)<\/script>/is', "", $data[$locale]['options']['html']); 
             $data[$locale]['options']['css'] = preg_replace('/<script\b[^>]*>(.*?)<\/script>/is', "", $data[$locale]['options']['css']); 
+=======
+            $data[$locale]['options']['html'] = preg_replace('/<script\b[^>]*>(.*?)<\/script>/is', '', $data[$locale]['options']['html']);
+            $data[$locale]['options']['css'] = preg_replace('/<script\b[^>]*>(.*?)<\/script>/is', '', $data[$locale]['options']['css']);
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         }
 
         $data['status'] = request()->input('status') == 'on';
 
+<<<<<<< HEAD
         if ($data['type'] == 'image_carousel') {
             unset($data['options']);
+=======
+        if (in_array($data['type'], ['image_carousel', 'services_content'])) {
+            unset($data[$locale]['options']);
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         }
 
         Event::dispatch('theme_customization.update.before', $id);
 
         $theme = $this->themeCustomizationRepository->update($data, $id);
 
+<<<<<<< HEAD
         if ($data['type'] == 'image_carousel') {
             $this->themeCustomizationRepository->uploadImage(
                 request()->all('options'), 
                 $theme,
                 request()->input('deleted_sliders', [])
+=======
+        if (in_array($data['type'], ['image_carousel', 'services_content'])) {
+            $this->themeCustomizationRepository->uploadImage(
+                $data[$locale],
+                $theme,
+                request()->input('deleted_sliders', []),
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             );
         }
 
@@ -128,7 +172,11 @@ class ThemeController extends Controller
     /**
      * Delete a specified theme.
      *
+<<<<<<< HEAD
      * @param int $id
+=======
+     * @param  int  $id
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      * @return \Illuminate\Http\JsonResponse
      */
     public function destroy($id)
@@ -139,7 +187,11 @@ class ThemeController extends Controller
 
         $theme?->delete();
 
+<<<<<<< HEAD
         Storage::deleteDirectory('theme/'. $theme->id);
+=======
+        Storage::deleteDirectory('theme/' . $theme->id);
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 
         Event::dispatch('theme_customization.delete.after', $id);
 

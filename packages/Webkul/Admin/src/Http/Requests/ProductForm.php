@@ -22,8 +22,11 @@ class ProductForm extends FormRequest
     /**
      * Create a new form request instance.
      *
+<<<<<<< HEAD
      * @param  \Webkul\Product\Repositories\ProductRepository  $productRepository
      * @param  \Webkul\Product\Repositories\ProductAttributeValueRepository  $productAttributeValueRepository
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      * @return void
      */
     public function __construct(

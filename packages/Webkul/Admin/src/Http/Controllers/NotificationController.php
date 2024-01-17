@@ -2,7 +2,10 @@
 
 namespace Webkul\Admin\Http\Controllers;
 
+<<<<<<< HEAD
 use Webkul\Admin\Http\Controllers\Controller;
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 use Webkul\Notification\Repositories\NotificationRepository;
 
 class NotificationController extends Controller
@@ -50,7 +53,10 @@ class NotificationController extends Controller
         ];
     }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
     /**
      * Update the notification is reade or not.
      *

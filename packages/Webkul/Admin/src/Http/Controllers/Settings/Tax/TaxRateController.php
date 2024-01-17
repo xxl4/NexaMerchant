@@ -6,10 +6,17 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Validator;
 use Maatwebsite\Excel\Validators\Failure;
+<<<<<<< HEAD
 use Webkul\Admin\Http\Controllers\Controller;
 use Webkul\Tax\Repositories\TaxRateRepository;
 use Webkul\Admin\Imports\DataGridImport;
 use Webkul\Admin\DataGrids\Settings\TaxRateDataGrid;
+=======
+use Webkul\Admin\DataGrids\Settings\TaxRateDataGrid;
+use Webkul\Admin\Http\Controllers\Controller;
+use Webkul\Admin\Imports\DataGridImport;
+use Webkul\Tax\Repositories\TaxRateRepository;
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 
 class TaxRateController extends Controller
 {
@@ -78,7 +85,10 @@ class TaxRateController extends Controller
             'zip_to',
         ]);
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         if ($data['is_zip'] ?? false) {
             $data['is_zip'] = 1;
         }
@@ -150,8 +160,12 @@ class TaxRateController extends Controller
     /**
      * Remove the specified resource from storage.
      *
+<<<<<<< HEAD
      * @param int $id
      * @return \Illuminate\Http\JsonResponse
+=======
+     * @param  int  $id
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      */
     public function destroy($id): JsonResponse
     {
@@ -171,27 +185,43 @@ class TaxRateController extends Controller
         return new JsonResponse([
             'message' => trans(
                 'admin::app.settings.taxes.rates.delete-failed'
+<<<<<<< HEAD
             )
+=======
+            ),
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         ], 500);
     }
 
     /**
      * Import function for the upload.
      *
+<<<<<<< HEAD
      * @return \Illuminate\Http\Response
+=======
+     * @return \Illuminate\Http\JsonResponse
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      */
     public function import()
     {
         $valid_extension = ['xlsx', 'csv', 'xls'];
 
+<<<<<<< HEAD
         if (!in_array(request()->file('file')->getClientOriginalExtension(), $valid_extension)) {
             session()->flash('error', trans('admin::app.export.upload-error'));
+=======
+        if (! in_array(request()->file('file')->getClientOriginalExtension(), $valid_extension)) {
+            return new JsonResponse([
+                'message' => trans('admin::app.settings.taxes.rates.index.import.upload-error'),
+            ], 500);
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         } else {
             try {
                 $excelData = (new DataGridImport)->toArray(request()->file('file'));
 
                 foreach ($excelData as $data) {
                     foreach ($data as $column => $uploadData) {
+<<<<<<< HEAD
                         if (is_null($uploadData['state'])) {
                             $uploadData['state'] = '';
                         }
@@ -199,6 +229,13 @@ class TaxRateController extends Controller
                         if (
                             !is_null($uploadData['zip_from'])
                             && !is_null($uploadData['zip_to'])
+=======
+                        $uploadData['state'] = $uploadData['state'] ?? '';
+
+                        if (
+                            ! is_null($uploadData['zip_from'])
+                            && ! is_null($uploadData['zip_to'])
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                         ) {
                             $uploadData['is_zip'] = 1;
                         }
@@ -229,12 +266,21 @@ class TaxRateController extends Controller
 
                 if ($filtered) {
                     foreach ($filtered as $position => $identifier) {
+<<<<<<< HEAD
                         $message[] = trans('admin::app.export.duplicate-error', ['identifier' => $identifier, 'position' => $position]);
                     }
 
                     $finalMsg = implode(' ', $message);
 
                     session()->flash('error', $finalMsg);
+=======
+                        $message[] = trans('admin::app.settings.taxes.rates.index.import.duplicate-error', ['identifier' => $identifier, 'position' => $position]);
+                    }
+
+                    return new JsonResponse([
+                        'message' => implode(' ', $message),
+                    ]);
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 } else {
                     $errorMsg = [];
 
@@ -276,9 +322,15 @@ class TaxRateController extends Controller
                             $message[] = $msg . ' at Row ' . $key . '.';
                         }
 
+<<<<<<< HEAD
                         $finalMsg = implode(' ', $message);
 
                         session()->flash('error', $finalMsg);
+=======
+                        return new JsonResponse([
+                            'message' => implode(' ', $message),
+                        ]);
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     } else {
                         $taxRate = $this->taxRateRepository->get()->toArray();
 
@@ -288,6 +340,7 @@ class TaxRateController extends Controller
 
                         foreach ($excelData as $data) {
                             foreach ($data as $column => $uploadData) {
+<<<<<<< HEAD
                                 if (is_null($uploadData['state'])) {
                                     $uploadData['state'] = '';
                                 }
@@ -308,18 +361,41 @@ class TaxRateController extends Controller
                                     } else {
                                         $this->taxRateRepository->create($uploadData);
                                     }
+=======
+                                $uploadData['state'] = $uploadData['state'] ?? '';
+
+                                if (
+                                    ! is_null($uploadData['zip_from'])
+                                    && ! is_null($uploadData['zip_to'])
+                                ) {
+                                    $uploadData += ['is_zip' => 1, 'zip_code' => null];
+                                }
+
+                                if (
+                                    isset($rateIdentifier)
+                                    && ($id = array_search($uploadData['identifier'], $rateIdentifier)) !== false
+                                ) {
+                                    $this->taxRateRepository->update($uploadData, $id);
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                 } else {
                                     $this->taxRateRepository->create($uploadData);
                                 }
                             }
                         }
 
+<<<<<<< HEAD
                         session()->flash('success', trans('admin::app.export.upload-success', ['name' => 'Tax Rate']));
+=======
+                        return new JsonResponse([
+                            'message' => trans('admin::app.settings.taxes.rates.index.import.upload-success'),
+                        ]);
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     }
                 }
             } catch (\Exception $e) {
                 report($e);
 
+<<<<<<< HEAD
                 $failure = new Failure(1, 'rows', [0 => trans('admin::app.export.enough-row-error')]);
 
                 session()->flash('error', $failure->errors()[0]);
@@ -327,5 +403,14 @@ class TaxRateController extends Controller
         }
 
         return redirect()->route('admin.settings.taxes.rates.index');
+=======
+                $failure = new Failure(1, 'rows', [0 => trans('admin::app.settings.taxes.rates.index.import.enough-row-error')]);
+
+                return new JsonResponse([
+                    'message' => $failure->errors()[0],
+                ]);
+            }
+        }
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
     }
 }

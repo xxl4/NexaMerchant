@@ -5,7 +5,11 @@
         </span> <br>
 
         <p style="font-size: 16px;color: #5E5E5E;line-height: 24px;">
+<<<<<<< HEAD
             @lang('admin::app.emails.dear', ['customer_name' => $order->customer_full_name]),👋
+=======
+            @lang('admin::app.emails.dear', ['admin_name' => core()->getAdminEmailDetails()['name']]),👋
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         </p>
 
         <p style="font-size: 16px;color: #5E5E5E;line-height: 24px;">
@@ -32,11 +36,19 @@
                     {{ $order->shipping_address->company_name ?? '' }}<br/>
 
                     {{ $order->shipping_address->name }}<br/>
+<<<<<<< HEAD
                     
                     {{ $order->shipping_address->address1 }}<br/>
                     
                     {{ $order->shipping_address->postcode . " " . $order->shipping_address->city }}<br/>
                     
+=======
+
+                    {{ $order->shipping_address->address1 }}<br/>
+
+                    {{ $order->shipping_address->postcode . " " . $order->shipping_address->city }}<br/>
+
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     {{ $order->shipping_address->state }}<br/>
 
                     ---<br/>
@@ -64,11 +76,19 @@
                     {{ $order->billing_address->company_name ?? '' }}<br/>
 
                     {{ $order->billing_address->name }}<br/>
+<<<<<<< HEAD
                     
                     {{ $order->billing_address->address1 }}<br/>
                     
                     {{ $order->billing_address->postcode . " " . $order->billing_address->city }}<br/>
                     
+=======
+
+                    {{ $order->billing_address->address1 }}<br/>
+
+                    {{ $order->billing_address->postcode . " " . $order->billing_address->city }}<br/>
+
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     {{ $order->billing_address->state }}<br/>
 
                     ---<br/>
@@ -101,7 +121,11 @@
         border-spacing: 0;width: 100%">
             <thead>
                 <tr style="color: #121A26;border-top: 1px solid #CBD5E1;border-bottom: 1px solid #CBD5E1;">
+<<<<<<< HEAD
                     @foreach (['sku', 'name', 'price', 'wty'] as $item)
+=======
+                    @foreach (['sku', 'name', 'price', 'qty'] as $item)
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                         <th style="text-align: left;padding: 15px">
                             @lang('admin::app.emails.orders.' . $item)
                         </th>
@@ -185,7 +209,11 @@
             </div>
         @endif
 
+<<<<<<< HEAD
         <div style="display: grid;gap: 100px;grid-template-columns: repeat(2, minmax(0, 1fr));font-weight: bold">
+=======
+        <div style="display: grid; gap: 100px; grid-template-columns: repeat(2, minmax(0, 1fr)); font-weight: bold;">
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             <span>
                 @lang('admin::app.emails.orders.grand-total')
             </span>

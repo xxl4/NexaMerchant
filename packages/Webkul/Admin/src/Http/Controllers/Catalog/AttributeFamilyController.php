@@ -4,10 +4,17 @@ namespace Webkul\Admin\Http\Controllers\Catalog;
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Event;
+<<<<<<< HEAD
 use Webkul\Admin\Http\Controllers\Controller;
 use Webkul\Attribute\Repositories\AttributeRepository;
 use Webkul\Attribute\Repositories\AttributeFamilyRepository;
 use Webkul\Admin\DataGrids\Catalog\AttributeFamilyDataGrid;
+=======
+use Webkul\Admin\DataGrids\Catalog\AttributeFamilyDataGrid;
+use Webkul\Admin\Http\Controllers\Controller;
+use Webkul\Attribute\Repositories\AttributeFamilyRepository;
+use Webkul\Attribute\Repositories\AttributeRepository;
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 use Webkul\Core\Rules\Code;
 
 class AttributeFamilyController extends Controller
@@ -20,8 +27,12 @@ class AttributeFamilyController extends Controller
     public function __construct(
         protected AttributeFamilyRepository $attributeFamilyRepository,
         protected AttributeRepository $attributeRepository
+<<<<<<< HEAD
     )
     {
+=======
+    ) {
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
     }
 
     /**
@@ -60,8 +71,16 @@ class AttributeFamilyController extends Controller
     public function store()
     {
         $this->validate(request(), [
+<<<<<<< HEAD
             'code' => ['required', 'unique:attribute_families,code', new Code],
             'name' => 'required',
+=======
+            'code'                      => ['required', 'unique:attribute_families,code', new Code],
+            'name'                      => 'required',
+            'attribute_groups.*.code'   => 'required',
+            'attribute_groups.*.name'   => 'required',
+            'attribute_groups.*.column' => 'required|in:1,2',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         ]);
 
         Event::dispatch('catalog.attribute_family.create.before');
@@ -103,8 +122,16 @@ class AttributeFamilyController extends Controller
     public function update($id)
     {
         $this->validate(request(), [
+<<<<<<< HEAD
             'code' => ['required', 'unique:attribute_families,code,' . $id, new Code],
             'name' => 'required',
+=======
+            'code'                      => ['required', 'unique:attribute_families,code,' . $id, new Code],
+            'name'                      => 'required',
+            'attribute_groups.*.code'   => 'required',
+            'attribute_groups.*.name'   => 'required',
+            'attribute_groups.*.column' => 'required|in:1,2',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         ]);
 
         Event::dispatch('catalog.attribute_family.update.before', $id);
@@ -125,8 +152,12 @@ class AttributeFamilyController extends Controller
     /**
      * Remove the specified resource from storage.
      *
+<<<<<<< HEAD
      * @param int $id
      * @return \Illuminate\Http\JsonResponse
+=======
+     * @param  int  $id
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      */
     public function destroy($id): JsonResponse
     {
@@ -158,7 +189,10 @@ class AttributeFamilyController extends Controller
             report($e);
         }
 
+<<<<<<< HEAD
         
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         return new JsonResponse([
             'message' => trans('admin::app.catalog.families.delete-failed', ['name' => 'admin::app.catalog.families.family']),
         ], 500);

@@ -4,10 +4,17 @@ namespace Webkul\Admin\Http\Controllers\Settings;
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Event;
+<<<<<<< HEAD
 use Webkul\Admin\Http\Controllers\Controller;
 use Webkul\Inventory\Repositories\InventorySourceRepository;
 use Webkul\Admin\DataGrids\Settings\InventorySourcesDataGrid;
 use Webkul\Admin\Http\Requests\InventorySourceRequest;
+=======
+use Webkul\Admin\DataGrids\Settings\InventorySourcesDataGrid;
+use Webkul\Admin\Http\Controllers\Controller;
+use Webkul\Admin\Http\Requests\InventorySourceRequest;
+use Webkul\Inventory\Repositories\InventorySourceRepository;
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 
 class InventorySourceController extends Controller
 {
@@ -139,8 +146,12 @@ class InventorySourceController extends Controller
     /**
      * Remove the specified resource from storage.
      *
+<<<<<<< HEAD
      * @param int $id
      * @return \Illuminate\Http\JsonResponse
+=======
+     * @param  int  $id
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      */
     public function destroy($id): JsonResponse
     {
@@ -158,14 +169,22 @@ class InventorySourceController extends Controller
             Event::dispatch('inventory.inventory_source.delete.after', $id);
 
             return new JsonResponse([
+<<<<<<< HEAD
                 'message' => trans('admin::app.settings.inventory-sources.delete-success')
+=======
+                'message' => trans('admin::app.settings.inventory-sources.delete-success'),
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             ]);
         } catch (\Exception $e) {
             report($e);
         }
 
         return new JsonResponse([
+<<<<<<< HEAD
             'message' => trans('admin::app.settings.inventory-sources.delete-failed', ['name' => 'admin::app.settings.inventory_sources.index.title'])
+=======
+            'message' => trans('admin::app.settings.inventory-sources.delete-failed', ['name' => 'admin::app.settings.inventory_sources.index.title']),
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         ], 500);
     }
 }
