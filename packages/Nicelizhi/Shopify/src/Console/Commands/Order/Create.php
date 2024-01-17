@@ -14,14 +14,14 @@ use Nicelizhi\Shopify\Models\ShopifyOrder;
 use Nicelizhi\Shopify\Models\ShopifyStore;
 use Webkul\Sales\Models\Order;
 
-class Post extends Command
+class Create extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'shopify:order:post';
+    protected $signature = 'shopify:order:create';
 
     /**
      * The console command description.
@@ -67,8 +67,9 @@ class Post extends Command
         // $lists = $this->orderRepository->findWhere([
         //     'status' => 'processing'
         // ]);
-        $lists = Order::where(['status'=>'processing'])->orderBy("updated_at", "desc")->limit(10)->get();
-        //$lists = Order::where(['id'=>'433'])->orderBy("updated_at", "desc")->limit(10)->get();
+        //$lists = Order::where(['status'=>'processing'])->orderBy("updated_at", "desc")->limit(10)->get();
+        $lists = Order::where(['id'=>'433'])->orderBy("updated_at", "desc")->limit(10)->get();
+       // $lists = Order::where(['id'=>'305'])->orderBy("updated_at", "desc")->limit(10)->get();
 
         //var_dump($lists);exit;
 
@@ -315,7 +316,9 @@ class Post extends Command
             $shopifyNewOrder->order_id = $id;
             $shopifyNewOrder->shopify_order_id = $body['order']['id'];
             $shopifyNewOrder->shopify_store_id = $this->shopify_store_id;
-            $shopifyNewOrder->save();
+            // $shopifyNewOrder->save();
         }
+
+        exit;
     }
 }
