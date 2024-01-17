@@ -37,6 +37,7 @@
 		-moz-osx-font-smoothing: grayscale;
 	}
 
+<<<<<<< HEAD
 	.icon-cross:before {
 		content: "\e900";
 	}
@@ -82,3 +83,41 @@
 		background-color: #3B82F6;
 	}
 }
+=======
+	.icon-limited:before {
+		content: "\e900";
+	}
+
+	.icon-cross:before {
+		content: "\e901";
+	}
+
+	.icon-arrow-down:before {
+		content: "\e902";
+	}
+
+	.icon-right:before {
+		content: "\e903";
+	}
+
+	.icon-checkbox-active:before {
+		content: "\e904";
+	}
+
+	.icon-checkbox-normal:before {
+		content: "\e905";
+	}
+
+	.icon-tick:before {
+		content: "\e906";
+	}
+
+	.icon-view:before {
+		content: "\e907";
+	}
+
+	.required:after {
+        @apply content-['*'];
+	}
+}
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61

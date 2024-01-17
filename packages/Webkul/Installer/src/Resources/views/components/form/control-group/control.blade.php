@@ -19,7 +19,11 @@
                 name="{{ $name }}"
                 v-bind="field"
                 :class="[errors['{{ $name }}'] ? 'border border-red-600 hover:border-red-600' : '']"
+<<<<<<< HEAD
                 {{ $attributes->except(['value', ':value', 'v-model', 'rules', ':rules', 'label', ':label'])->merge(['class' => 'text-[14px] text-gray-600 appearance-none border rounded-[6px] w-full py-2 px-3 transition-all hover:border-gray-400']) }}
+=======
+                {{ $attributes->except(['value', ':value', 'v-model', 'rules', ':rules', 'label', ':label'])->merge(['class' => 'text-[14px] text-gray-600 appearance-none border rounded-md w-full py-2 px-3 transition-all hover:border-gray-400']) }}
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             >
         </v-field>
 
@@ -35,11 +39,45 @@
                 name="{{ $name }}"
                 v-bind="field"
                 :class="[errors['{{ $name }}'] ? 'border border-red-500' : '']"
+<<<<<<< HEAD
                 {{ $attributes->except(['value', ':value', 'v-model', 'rules', ':rules', 'label', ':label'])->merge(['class' => 'inline-flex gap-x-[4px] items-center justify-between text-gray-600 text-[14px] font-normal py-[0.8rem] px-3 w-full bg-white border border-gray-300 rounded-[6px] cursor-pointer transition-all hover:border-gray-400']) }}
+=======
+                {{ $attributes->except(['value', ':value', 'v-model', 'rules', ':rules', 'label', ':label'])->merge(['class' => 'inline-flex gap-x-1 items-center justify-between text-gray-600 text-[14px] font-normal py-[0.8rem] px-3 w-full bg-white border border-gray-300 rounded-md cursor-pointer transition-all hover:border-gray-400']) }}
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             >
                 {{ $slot }}
             </select>
         </v-field>
 
         @break
+<<<<<<< HEAD
+=======
+
+    @case('checkbox')
+        <v-field
+            v-slot="{ field }"
+            name="{{ $name }}"
+            type="checkbox"
+            class="hidden"
+            {{ $attributes->only(['value', ':value', 'v-model', 'rules', ':rules', 'label', ':label']) }}
+        >
+            <input
+                type="checkbox"
+                name="{{ $name }}"
+                v-bind="field"
+                class="sr-only peer"
+                {{ $attributes->except(['rules', 'label', ':label']) }}
+            />
+
+            <v-checkbox-handler :field="field" checked="{{ $attributes->get('checked') }}"></v-checkbox-handler>
+        </v-field>
+
+        <label
+            class="icon-checkbox-normal text-[24px] peer-checked:icon-checkbox-active peer-checked:text-blue-600  cursor-pointer"
+            {{ $attributes->except(['value', ':value', 'v-model', 'rules', ':rules', 'label', ':label']) }}
+        >
+        </label>
+
+        @break
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 @endswitch

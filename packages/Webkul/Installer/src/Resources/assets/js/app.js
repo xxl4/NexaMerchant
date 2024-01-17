@@ -1,7 +1,11 @@
 /**
  * This will track all the images and fonts for publishing.
  */
+<<<<<<< HEAD
 import.meta.glob(["../images/**", "../fonts/**"]);
+=======
+import.meta.glob(["../images/installer/**", "../fonts/**"]);
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 
 /**
  * Main vue bundler.
