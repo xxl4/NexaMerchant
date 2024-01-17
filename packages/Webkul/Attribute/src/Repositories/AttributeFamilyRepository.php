@@ -5,40 +5,31 @@ namespace Webkul\Attribute\Repositories;
 use Illuminate\Container\Container;
 use Illuminate\Support\Str;
 use Webkul\Core\Eloquent\Repository;
-use Webkul\Attribute\Repositories\AttributeRepository;
-use Webkul\Attribute\Repositories\AttributeGroupRepository;
 
 class AttributeFamilyRepository extends Repository
 {
     /**
      * Create a new repository instance.
      *
-     * @param  \Webkul\Attribute\Repositories\AttributeRepository  $attributeRepository
-     * @param  \Webkul\Attribute\Repositories\AttributeGroupRepository  $attributeGroupRepository
-     * @param  \Illuminate\Container\Container  $container
      * @return void
      */
     public function __construct(
         protected AttributeRepository $attributeRepository,
         protected AttributeGroupRepository $attributeGroupRepository,
         Container $container
-    )
-    {
+    ) {
         parent::__construct($container);
     }
 
     /**
      * Specify Model class name
-     *
-     * @return string
      */
-    function model(): string
+    public function model(): string
     {
         return 'Webkul\Attribute\Contracts\AttributeFamily';
     }
 
     /**
-     * @param  array  $data
      * @return \Webkul\Attribute\Contracts\AttributeFamily
      */
     public function create(array $data)
@@ -71,12 +62,19 @@ class AttributeFamilyRepository extends Repository
     }
 
     /**
+<<<<<<< HEAD
      * @param  array  $data
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      * @param  int  $id
      * @param  string  $attribute
      * @return \Webkul\Attribute\Contracts\AttributeFamily
      */
+<<<<<<< HEAD
     public function update(array $data, $id, $attribute = "id")
+=======
+    public function update(array $data, $id, $attribute = 'id')
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
     {
         $family = parent::update($data, $id, $attribute);
 
@@ -147,7 +145,11 @@ class AttributeFamilyRepository extends Repository
         foreach ($attributeFamilies as $key => $attributeFamily) {
             if (
                 $attributeFamily->name != null
+<<<<<<< HEAD
                 || $attributeFamily->name != ""
+=======
+                || $attributeFamily->name != ''
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             ) {
                 $trimmed[$key] = [
                     'id'   => $attributeFamily->id,
@@ -166,6 +168,10 @@ class AttributeFamilyRepository extends Repository
     public function getComparableAttributesBelongsToFamily()
     {
         return $this->attributeRepository
+<<<<<<< HEAD
+=======
+            ->with(['options', 'options.translations'])
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             ->join('attribute_group_mappings', 'attribute_group_mappings.attribute_id', '=', 'attributes.id')
             ->select('attributes.*')
             ->where('attributes.is_comparable', 1)
@@ -173,4 +179,8 @@ class AttributeFamilyRepository extends Repository
             ->distinct()
             ->get();
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61

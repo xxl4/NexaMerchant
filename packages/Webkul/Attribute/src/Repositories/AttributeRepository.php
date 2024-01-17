@@ -13,8 +13,6 @@ class AttributeRepository extends Repository
     /**
      * Create a new repository instance.
      *
-     * @param  \Webkul\Attribute\Repositories\AttributeOptionRepository  $attributeOptionRepository
-     * @param  \Illuminate\Container\Container  $container
      * @return void
      */
     public function __construct(
@@ -26,8 +24,11 @@ class AttributeRepository extends Repository
 
     /**
      * Specify model class name.
+<<<<<<< HEAD
      *
      * @return string
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      */
     public function model(): string
     {
@@ -37,7 +38,10 @@ class AttributeRepository extends Repository
     /**
      * Create attribute.
      *
+<<<<<<< HEAD
      * @param  array  $data
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      * @return \Webkul\Attribute\Contracts\Attribute
      */
     public function create(array $data)
@@ -64,7 +68,10 @@ class AttributeRepository extends Repository
     /**
      * Update attribute.
      *
+<<<<<<< HEAD
      * @param  array  $data
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      * @param  int  $id
      * @param  string  $attribute
      * @return \Webkul\Attribute\Contracts\Attribute
