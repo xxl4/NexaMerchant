@@ -16,7 +16,6 @@ class RefundItem extends Model implements RefundItemContract
     protected $casts = [
         'additional' => 'array',
     ];
-    
     /**
      * Get the Refund record associated with the Refund item.
      */

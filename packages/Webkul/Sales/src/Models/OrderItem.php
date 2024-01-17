@@ -3,15 +3,15 @@
 namespace Webkul\Sales\Models;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasOne;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\MorphTo;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Webkul\Sales\Database\Factories\OrderItemFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Webkul\Product\Type\AbstractType;
 use Webkul\Sales\Contracts\OrderItem as OrderItemContract;
+use Webkul\Sales\Database\Factories\OrderItemFactory;
 
 class OrderItem extends Model implements OrderItemContract
 {
@@ -33,8 +33,6 @@ class OrderItem extends Model implements OrderItemContract
 
     /**
      * Retrieve type instance
-     *
-     * @return AbstractType
      */
     public function getTypeInstance(): AbstractType
     {
@@ -51,9 +49,12 @@ class OrderItem extends Model implements OrderItemContract
         return $this->typeInstance;
     }
 
+<<<<<<< HEAD
     /**
      * @return bool
      */
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
     public function isStockable(): bool
     {
         return $this->getTypeInstance()->isStockable();
@@ -203,9 +204,12 @@ class OrderItem extends Model implements OrderItemContract
         return $this->hasMany(DownloadableLinkPurchasedProxy::modelClass());
     }
 
+<<<<<<< HEAD
     /**
      * @return array
      */
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
     public function toArray(): array
     {
         $array = parent::toArray();
@@ -222,18 +226,31 @@ class OrderItem extends Model implements OrderItemContract
 
         $array['qty_to_refund'] = $this->qty_to_refund;
 
+<<<<<<< HEAD
         $array['downloadable_links'] = $this->downloadable_link_purchased;
+=======
+        if ($this->type == 'downloadable') {
+            $array['downloadable_links'] = $this->downloadable_link_purchased;
+        }
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 
         return $array;
     }
 
     /**
      * Create a new factory instance for the model.
+<<<<<<< HEAD
      *
      * @return Factory
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      */
     protected static function newFactory(): Factory
     {
         return OrderItemFactory::new();
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61

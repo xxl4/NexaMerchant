@@ -2,11 +2,17 @@
 
 namespace Webkul\Sales\Database\Factories;
 
+<<<<<<< HEAD
 use Webkul\Customer\Models\Customer;
 use Webkul\Customer\Models\CustomerAddress;
 use Webkul\Sales\Models\Order;
 use Webkul\Sales\Models\OrderAddress;
 use Illuminate\Database\Eloquent\Factories\Factory;
+=======
+use Illuminate\Database\Eloquent\Factories\Factory;
+use Webkul\Sales\Models\Order;
+use Webkul\Sales\Models\OrderAddress;
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 
 class OrderAddressFactory extends Factory
 {
@@ -26,6 +32,7 @@ class OrderAddressFactory extends Factory
 
     /**
      * Define the model's default state.
+<<<<<<< HEAD
      *
      * @return array
      */
@@ -45,6 +52,12 @@ class OrderAddressFactory extends Factory
             'city'         => $customerAddress->city,
             'postcode'     => $customerAddress->postcode,
             'phone'        => $customerAddress->phone,
+=======
+     */
+    public function definition(): array
+    {
+        return [
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             'address_type' => OrderAddress::ADDRESS_TYPE_BILLING,
             'order_id'     => Order::factory(),
         ];
@@ -52,10 +65,18 @@ class OrderAddressFactory extends Factory
 
     public function shipping(): void
     {
+<<<<<<< HEAD
         $this->state(function (array $attributes) {
+=======
+        $this->state(function () {
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             return [
                 'address_type' => OrderAddress::ADDRESS_TYPE_SHIPPING,
             ];
         });
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
