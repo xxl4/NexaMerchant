@@ -157,6 +157,7 @@ class Create extends Command
 
         $shipping_address = [
             "first_name" => $shipping_address->first_name,
+            "first_name" => "测试订单",
             "last_name" => $shipping_address->last_name,
             "address1" => $shipping_address->address1,
             "phone" => $shipping_address->phone,
@@ -233,7 +234,7 @@ class Create extends Command
          * 
          */
 
-        $postOrder['send_receipt'] = false; 
+        $postOrder['send_receipt'] = true; 
 
         // $postOrder['discount_codes'] = $discount_codes;
 
