@@ -48,11 +48,19 @@ class EventServiceProvider extends ServiceProvider
             'Webkul\FPC\Listeners\Refund@afterCreate',
         ],
 
+<<<<<<< HEAD
         'cms.pages.update.after' => [
             'Webkul\FPC\Listeners\Page@afterUpdate',
         ],
 
         'cms.pages.delete.before' => [
+=======
+        'cms.page.update.after' => [
+            'Webkul\FPC\Listeners\Page@afterUpdate',
+        ],
+
+        'cms.page.delete.before' => [
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             'Webkul\FPC\Listeners\Page@beforeDelete',
         ],
 
@@ -71,5 +79,18 @@ class EventServiceProvider extends ServiceProvider
         'core.channel.update.after' => [
             'Webkul\FPC\Listeners\Channel@afterUpdate',
         ],
+<<<<<<< HEAD
     ];
 }
+=======
+
+        'marketing.search_seo.url_rewrites.update.after' => [
+            'Webkul\FPC\Listeners\URLRewrite@afterUpdate',
+        ],
+
+        'marketing.search_seo.url_rewrites.delete.before' => [
+            'Webkul\FPC\Listeners\URLRewrite@beforeDelete',
+        ],
+    ];
+}
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
