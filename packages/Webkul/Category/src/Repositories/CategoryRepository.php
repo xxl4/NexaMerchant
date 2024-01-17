@@ -3,9 +3,8 @@
 namespace Webkul\Category\Repositories;
 
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Str;
 use Intervention\Image\ImageManager;
 use Webkul\Category\Contracts\Category;
 use Webkul\Category\Models\CategoryTranslationProxy;
@@ -90,7 +89,6 @@ class CategoryRepository extends Repository
         $category = $this->model->create($data);
 
         $this->uploadImages($data, $category);
-        
         $this->uploadImages($data, $category, 'banner_path');
 
         if (isset($data['attributes'])) {
@@ -225,16 +223,6 @@ class CategoryRepository extends Repository
     public function findBySlugOrFail($slug)
     {
         return $this->model->whereTranslation('slug', $slug)->firstOrFail();
-    }
-
-    /**
-     * Find by path.
-     *
-     * @return \Webkul\Category\Contracts\Category
-     */
-    public function findByPath(string $urlPath)
-    {
-        return $this->model->whereTranslation('url_path', $urlPath)->first();
     }
 
     /**
