@@ -3,7 +3,10 @@
 namespace Webkul\Customer\Repositories;
 
 use Carbon\Carbon;
+<<<<<<< HEAD
 use Illuminate\Container\Container;
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 use Illuminate\Support\Facades\Storage;
 use Webkul\Core\Eloquent\Repository;
 use Webkul\Sales\Models\Order;
@@ -12,8 +15,11 @@ class CustomerRepository extends Repository
 {
     /**
      * Specify model class name.
+<<<<<<< HEAD
      *
      * @return string
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      */
     public function model(): string
     {
@@ -24,7 +30,11 @@ class CustomerRepository extends Repository
      * Check if customer has order pending or processing.
      *
      * @param  \Webkul\Customer\Models\Customer
+<<<<<<< HEAD
      * @return boolean
+=======
+     * @return bool
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      */
     public function checkIfCustomerHasOrderPendingOrProcessing($customer)
     {
@@ -40,18 +50,28 @@ class CustomerRepository extends Repository
      */
     public function getCurrentGroup()
     {
+<<<<<<< HEAD
         if ($customer = auth()->guard()->user()) {
             return $customer->group;
         }
 
         return core()->getGuestCustomerGroup();
+=======
+        $customer = auth()->guard()->user();
+
+        return $customer->group ?? core()->getGuestCustomerGroup();
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
     }
 
     /**
      * Check if bulk customers, if they have order pending or processing.
      *
      * @param  array
+<<<<<<< HEAD
      * @return boolean
+=======
+     * @return bool
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      */
     public function checkBulkCustomerIfTheyHaveOrderPendingOrProcessing($customerIds)
     {
@@ -71,7 +91,11 @@ class CustomerRepository extends Repository
      *
      * @param  array  $data
      * @param  \Webkul\Customer\Models\Customer  $customer
+<<<<<<< HEAD
      * @param  string $type
+=======
+     * @param  string  $type
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      * @return void
      */
     public function uploadImages($data, $customer, $type = 'image')
@@ -146,7 +170,11 @@ class CustomerRepository extends Repository
     /**
      * Get customers count by date.
      */
+<<<<<<< HEAD
     public function getCustomersCountByDate(?Carbon $from = null, Carbon $to = null): ?int
+=======
+    public function getCustomersCountByDate(?Carbon $from = null, ?Carbon $to = null): ?int
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
     {
         if ($from && $to) {
             return $this->count([['created_at', '>=', $from], ['created_at', '<=', $to]]);

@@ -8,9 +8,16 @@ class VatValidator
      * Regular expression patterns per country code
      *
      * @var array
+<<<<<<< HEAD
      * @link http://ec.europa.eu/taxation_customs/vies/faq.html?locale=en#item_11
      */
     protected static $pattern_expression = array(
+=======
+     *
+     * @link http://ec.europa.eu/taxation_customs/vies/faq.html?locale=en#item_11
+     */
+    protected static $pattern_expression = [
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         'AT' => 'U[A-Z\d]{8}',
         'AE' => '\d{15}',
         'BE' => '(0\d{9}|\d{10})',
@@ -42,6 +49,7 @@ class VatValidator
         'SI' => '\d{8}',
         'SK' => '\d{10}',
         'JP' => '\d{12}|\d{13}',
+<<<<<<< HEAD
     );
 
     /**
@@ -49,16 +57,27 @@ class VatValidator
      *
      * @param  string  $vatNumber
      * @return boolean
+=======
+    ];
+
+    /**
+     * Validate a VAT number format.
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      */
     public function validate(string $vatNumber): bool
     {
         $vatNumber = $this->vatCleaner($vatNumber);
 
+<<<<<<< HEAD
         list($country, $number) = $this->splitVat($vatNumber);
+=======
+        [$country, $number] = $this->splitVat($vatNumber);
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 
         if (! isset(self::$pattern_expression[$country])) {
             return false;
         }
+<<<<<<< HEAD
         
         return preg_match('/^' . self::$pattern_expression[$country] . '$/', $number) > 0;
     }
@@ -78,6 +97,19 @@ class VatValidator
      * @param  string  $vatNumber
      * @return array
      */
+=======
+
+        return preg_match('/^' . self::$pattern_expression[$country] . '$/', $number) > 0;
+    }
+
+    private function vatCleaner(string $vatNumber): string
+    {
+        $vatNumber_no_spaces = trim($vatNumber);
+
+        return strtoupper($vatNumber_no_spaces);
+    }
+
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
     private function splitVat(string $vatNumber): array
     {
         return [

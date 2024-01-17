@@ -3,16 +3,16 @@
 namespace Webkul\Customer\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Webkul\Customer\Models\CustomerGroup;
+use Webkul\Customer\Models\CompareItem;
 
-class CustomerGroupFactory extends Factory
+class CompareItemFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = CustomerGroup::class;
+    protected $model = CompareItem::class;
 
     /**
      * Define the model's default state.
@@ -21,12 +21,6 @@ class CustomerGroupFactory extends Factory
      */
     public function definition(): array
     {
-        $name = ucfirst($this->faker->word);
-
-        return [
-            'name'            => $name,
-            'is_user_defined' => $this->faker->boolean,
-            'code'            => lcfirst($name),
-        ];
+        return [];
     }
 }

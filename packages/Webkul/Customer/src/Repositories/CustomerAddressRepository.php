@@ -8,16 +8,24 @@ class CustomerAddressRepository extends Repository
 {
     /**
      * Specify Model class name
+<<<<<<< HEAD
      *
      * @return string
      */
     function model(): string
+=======
+     */
+    public function model(): string
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
     {
         return 'Webkul\Customer\Contracts\CustomerAddress';
     }
 
     /**
+<<<<<<< HEAD
      * @param  array  $data
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      * @return \Webkul\Customer\Contracts\CustomerAddress
      */
     public function create(array $data)
@@ -41,7 +49,10 @@ class CustomerAddressRepository extends Repository
     }
 
     /**
+<<<<<<< HEAD
      * @param  array  $data
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      * @param  int  $id
      * @return \Webkul\Customer\Contracts\CustomerAddress
      */
