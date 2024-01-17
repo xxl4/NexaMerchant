@@ -20,10 +20,6 @@ class SmartButtonController extends Controller
     ) {
     }
 
-    public function createOneBuyOrder() {
-
-    }
-
     /**
      * Paypal order creation for approval of client.
      *
@@ -46,8 +42,6 @@ class SmartButtonController extends Controller
     public function captureOrder()
     {
         try {
-            //$order = $this->smartButton->getOrder(request()->input('orderData.orderID'));
-            ///var_dump($order);
             $this->smartButton->captureOrder(request()->input('orderData.orderID'));
 
             return $this->saveOrder();

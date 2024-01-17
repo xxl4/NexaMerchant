@@ -2,8 +2,8 @@
 
 namespace Webkul\Paypal\Http\Controllers;
 
-use Webkul\Paypal\Helpers\Ipn;
 use Webkul\Checkout\Facades\Cart;
+use Webkul\Paypal\Helpers\Ipn;
 use Webkul\Sales\Repositories\OrderRepository;
 
 class StandardController extends Controller
@@ -12,14 +12,12 @@ class StandardController extends Controller
      * Create a new controller instance.
      *
      * @param  \Webkul\Attribute\Repositories\OrderRepository  $orderRepository
-     * @param  \Webkul\Paypal\Helpers\Ipn  $ipnHelper
      * @return void
      */
     public function __construct(
         protected OrderRepository $orderRepository,
         protected Ipn $ipnHelper
-    )
-    {
+    ) {
     }
 
     /**
@@ -39,7 +37,7 @@ class StandardController extends Controller
      */
     public function cancel()
     {
-        session()->flash('error', trans('shop::app.checkout.cart.paypal-payment-canceled'));
+        session()->flash('error', trans('shop::app.checkout.cart.paypal-payment-cancelled'));
 
         return redirect()->route('shop.checkout.cart.index');
     }
