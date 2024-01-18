@@ -432,6 +432,26 @@ All rights reserved
 </p>
 </footer>
 </div>
+
+<!-- Facebook Pixel Code -->
+<script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '844340774106979');
+  fbq('track', 'PageView');
+</script>
+<noscript>
+  <img height="1" width="1" style="display:none" 
+       src="https://www.facebook.com/tr?id=844340774106979&ev=PageView&noscript=1"/>
+</noscript>
+<!-- End Facebook Pixel Code -->
+
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-P6343Y2GKT"></script>
 <script>
@@ -475,16 +495,17 @@ var order_id = getQueryString('id');
 
 function getUclick_c(){var e=document.cookie.match(new RegExp("(?:^|; )"+"uclick"+"=([^;]*)"));return e?decodeURIComponent(e[1]):void 0}
 
-function cnv_pixel(value){
+function cnv_pixel(value, pricetrue){
     var e="https://track.heomai2021.com/",
     n=document.createElement("img");
     n.src=e+"click.php?cnv_id="+value+"&payout="+pricetrue;
     var e2 = "https://shop.hatmeo.com/onebuy/order/log";
     n2=document.createElement("img");
     n2.src=e2+"?cnv_id="+value+"&payout="+pricetrue+"&order_id="+order_id;
+    fbq('track', 'Purchase', {value: pricetrue, currency: 'USD'});
 }
 if(post_order_id == null || order_id != post_order_id) {
-    cnv_pixel(refercode);
+    cnv_pixel(refercode, pricetrue);
     setCookie("post_order_id", order_id, 30);
 }
 

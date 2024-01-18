@@ -20,10 +20,15 @@ use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Cache;
 use Webkul\Payment\Facades\Payment;
+use Illuminate\Support\Facades\Redis;
 
 
 class ProductController extends Controller
 {
+
+    private $faq_cache_key = "faq";
+
+    private $cache_prefix_key = "checkout_v1_";
     /**
      * Create a new controller instance.
      *
@@ -43,6 +48,7 @@ class ProductController extends Controller
         protected ThemeCustomizationRepository $themeCustomizationRepository
     )
     {
+        
     }
 
 
@@ -69,6 +75,9 @@ class ProductController extends Controller
         }
 
         visitor()->visit($product);
+
+        $refer = $request->session()->get('refer');
+        Log::info("refer checkout v1 ".$refer);
 
         //var_dump($product);exit;
 
@@ -305,10 +314,20 @@ class ProductController extends Controller
 
         //var_dump($productBgAttribute);
 
+        // 获取 faq 数据
+        $redis = Redis::connection('default');
+        $faqItems = $redis->hgetall($this->faq_cache_key);
+
+        sort($faqItems);
+
+        $comments = $redis->hgetall($this->cache_prefix_key."product_comments_".$product['id']);
+
+        
 
 
 
-        return view('onebuy::product-detail', compact('app_env','product','package_products', 'product_attributes', 'skus','productBgAttribute','productBgAttribute_mobile'));
+
+        return view('onebuy::product-detail', compact('app_env','product','package_products', 'product_attributes', 'skus','productBgAttribute','productBgAttribute_mobile','faqItems','comments'));
     }
 
     // 完成订单生成动作
@@ -318,6 +337,9 @@ class ProductController extends Controller
         $payment_method = $request->input('payment_method');
 
         $input = $request->all();
+
+        $refer = $request->session()->get('refer');
+        Log::info("refer checkout v1 ".$refer);
 
         
         $products = $request->input("products");
@@ -333,7 +355,7 @@ class ProductController extends Controller
                 $super_attribute[$attr[0]] = $attr[1];
             }
             $product['super_attribute'] = $super_attribute;
-            Log::info("add product into cart ". json_encode($product));
+            //Log::info("add product into cart ". json_encode($product));
             $cart = Cart::addProduct($product['product_id'], $product);
 
             if (
@@ -412,9 +434,9 @@ class ProductController extends Controller
         if($payment_method=='airwallex') {
             //处理支付方式
             $payment = [];
-            $payment['description'] = "Money Transfer";
+            $payment['description'] = "Money Transfer-".$refer;
             $payment['method'] = $payment_method;
-            $payment['method_title'] = "Money Transfer";
+            $payment['method_title'] = "Money Transfer-".$refer;
             $payment['sort'] = "2";
             // Cart::savePaymentMethod($payment);
 
@@ -454,9 +476,9 @@ class ProductController extends Controller
         if($payment_method=='paypal_standard') {
             //处理支付方式
             $payment = [];
-            $payment['description'] = "PayPal";
+            $payment['description'] = "PayPal-".$refer;
             $payment['method'] = "paypal_standard";
-            $payment['method_title'] = "PayPal standard Button";
+            $payment['method_title'] = "PayPal standard Button-".$refer;
             $payment['sort'] = "1";
             // Cart::savePaymentMethod($payment);
 
@@ -521,6 +543,9 @@ class ProductController extends Controller
 
         Log::info("order addr after ".json_encode($input));
 
+        $refer = $request->session()->get('refer');
+        Log::info("refer checkout v1 ".$refer);
+
         $products = $request->input("products");
         // 添加到购物车
         Cart::deActivateCart();
@@ -571,7 +596,7 @@ class ProductController extends Controller
 
         $addressData['shipping']['address1'] = implode(PHP_EOL, $addressData['shipping']['address1']);
 
-        Log::info("paypal pay".json_encode($addressData));
+        Log::info("paypal pay ".$refer.'--'.json_encode($addressData));
 
 
         if (
@@ -604,9 +629,9 @@ class ProductController extends Controller
 
         //处理支付方式
         $payment = [];
-        $payment['description'] = "PayPal";
+        $payment['description'] = "PayPal-".$refer;
         $payment['method'] = "paypal_smart_button";
-        $payment['method_title'] = "PayPal Smart Button";
+        $payment['method_title'] = "PayPal Smart Button-".$refer;
         $payment['sort'] = "1";
         // Cart::savePaymentMethod($payment);
 
@@ -656,6 +681,9 @@ class ProductController extends Controller
      */
     public function order_status(Request $request) {
 
+        $refer = $request->session()->get('refer');
+        Log::info("refer checkout v1 ".$refer);
+
         try {
             $order = $this->smartButton->getOrder(request()->input('orderData.orderID'));
             // return response()->json($order);
@@ -701,7 +729,7 @@ class ProductController extends Controller
 
             $addressData['shipping']['address1'] = implode(PHP_EOL, $addressData['shipping']['address1']);
 
-            Log::info("address data".json_encode($addressData));
+            Log::info("address data-".$refer.'--'.json_encode($addressData));
 
             if (
                 Cart::hasError()

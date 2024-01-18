@@ -167,7 +167,7 @@ class Post extends Command
 
         $postOrder['shipping_address'] = $shipping_address;
 
-        $postOrder['email'] = "";
+        //$postOrder['email'] = "";
         
         $transactions = [];
 
@@ -232,7 +232,8 @@ class Post extends Command
          * 
          */
 
-        $postOrder['send_receipt'] = false; 
+        //$postOrder['send_receipt'] = false; 
+        $postOrder['send_receipt'] = true; 
 
         // $postOrder['discount_codes'] = $discount_codes;
 

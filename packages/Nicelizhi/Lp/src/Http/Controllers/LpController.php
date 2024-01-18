@@ -37,7 +37,10 @@ class LpController extends Controller
 
         $refer = $request->input("refer");
 
-        $request->session()->put('refer', $refer);
+        if(!empty($refer)) { 
+            $request->session()->put('refer', $refer);
+        }
+        
 
         $session_id = session()->getId();
 
