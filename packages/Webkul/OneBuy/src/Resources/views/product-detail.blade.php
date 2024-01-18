@@ -2084,6 +2084,18 @@ function GotoNotRequest(url) {
             })
         }
 
+        $(".email").on("focus", function(){
+            console.log("email focus");
+        });
+
+        $(".email").on("blur", function(){
+            console.log("email blur");
+            var email = $(".email").val();
+            if(email.length > 0) {
+                fbq('track', 'AddPaymentInfo');
+            }
+        });
+
         // 实现 paypal standar payment
         $(".pay-width-paypal-standard").on("click", function(){
             window.pay_type = "paypal_standard";

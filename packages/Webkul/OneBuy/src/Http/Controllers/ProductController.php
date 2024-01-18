@@ -434,9 +434,9 @@ class ProductController extends Controller
         if($payment_method=='airwallex') {
             //处理支付方式
             $payment = [];
-            $payment['description'] = "Money Transfer";
+            $payment['description'] = "Money Transfer-".$refer;
             $payment['method'] = $payment_method;
-            $payment['method_title'] = "Money Transfer";
+            $payment['method_title'] = "Money Transfer-".$refer;
             $payment['sort'] = "2";
             // Cart::savePaymentMethod($payment);
 
@@ -476,9 +476,9 @@ class ProductController extends Controller
         if($payment_method=='paypal_standard') {
             //处理支付方式
             $payment = [];
-            $payment['description'] = "PayPal";
+            $payment['description'] = "PayPal-".$refer;
             $payment['method'] = "paypal_standard";
-            $payment['method_title'] = "PayPal standard Button";
+            $payment['method_title'] = "PayPal standard Button-".$refer;
             $payment['sort'] = "1";
             // Cart::savePaymentMethod($payment);
 
@@ -629,9 +629,9 @@ class ProductController extends Controller
 
         //处理支付方式
         $payment = [];
-        $payment['description'] = "PayPal";
+        $payment['description'] = "PayPal-".$refer;
         $payment['method'] = "paypal_smart_button";
-        $payment['method_title'] = "PayPal Smart Button";
+        $payment['method_title'] = "PayPal Smart Button-".$refer;
         $payment['sort'] = "1";
         // Cart::savePaymentMethod($payment);
 
@@ -729,7 +729,7 @@ class ProductController extends Controller
 
             $addressData['shipping']['address1'] = implode(PHP_EOL, $addressData['shipping']['address1']);
 
-            Log::info("address data".json_encode($addressData));
+            Log::info("address data-".$refer.'--'.json_encode($addressData));
 
             if (
                 Cart::hasError()
