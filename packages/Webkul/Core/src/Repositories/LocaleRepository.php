@@ -5,23 +5,13 @@ namespace Webkul\Core\Repositories;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Storage;
-<<<<<<< HEAD
-use Webkul\Core\Eloquent\Repository;
-use Webkul\Core\Contracts\Locale;
-=======
 use Webkul\Core\Contracts\Locale;
 use Webkul\Core\Eloquent\Repository;
->>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 
 class LocaleRepository extends Repository
 {
     /**
      * Specify model class name.
-<<<<<<< HEAD
-     *
-     * @return string
-=======
->>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      */
     public function model(): string
     {
@@ -31,10 +21,6 @@ class LocaleRepository extends Repository
     /**
      * Create.
      *
-<<<<<<< HEAD
-     * @param  array  $attributes
-=======
->>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      * @return mixed
      */
     public function create(array $attributes)
@@ -53,11 +39,6 @@ class LocaleRepository extends Repository
     /**
      * Update.
      *
-<<<<<<< HEAD
-     * @param  array  $attributes
-     * @param  $id
-=======
->>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      * @return mixed
      */
     public function update(array $attributes, $id)
@@ -112,22 +93,12 @@ class LocaleRepository extends Repository
 
             return;
         }
-<<<<<<< HEAD
-        
-=======
-
->>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         foreach ($localeImages['logo_path'] as $image) {
             if ($image instanceof UploadedFile) {
                 $locale->logo_path = $image->storeAs(
                     'locales',
                     $locale->code . '.' . $image->getClientOriginalExtension()
                 );
-<<<<<<< HEAD
-    
-=======
-
->>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 $locale->save();
             }
         }

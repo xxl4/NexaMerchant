@@ -75,10 +75,6 @@ class EnvValidatorServiceProvider extends ServiceProvider
     /**
      * Write the error information to the screen and exit.
      *
-<<<<<<< HEAD
-     * @param  \Dotenv\Exception\InvalidFileException  $e
-=======
->>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      * @return void
      */
     private function writeErrorAndDie(InvalidFileException $e)
@@ -88,10 +84,6 @@ class EnvValidatorServiceProvider extends ServiceProvider
         $output->writeln('The environment file is invalid!');
         $output->writeln($e->getMessage());
 
-<<<<<<< HEAD
-        die(1);
-=======
         exit(1);
->>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
     }
 }
