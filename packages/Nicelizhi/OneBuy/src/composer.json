@@ -1,0 +1,25 @@
+{
+    "name": "Nicelizhi/onebuy",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Steve Liu",
+            "email": "nice.lzhi@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Nicelizhi\\OneBuy\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Nicelizhi\\OneBuy\\Providers\\OneBuyServiceProvider"
+            ],
+            "aliases": {}
+        }
+    },
+    "minimum-stability": "dev"
+}
