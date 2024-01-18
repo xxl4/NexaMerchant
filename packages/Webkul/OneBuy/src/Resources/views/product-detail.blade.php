@@ -468,7 +468,9 @@ Secure Checkout </div>
 </div>
 <div class="shipping-and-payment-wrapper">
 <div class="shipping-and-payment">
-<div class="payment-block">
+    <br />
+    <br />
+<div class="payment-block" style="display:none;">
 <div class="payment-title">
 Or Pay With Credit Card </div>
 
@@ -683,9 +685,7 @@ Total:
 <div class="summary-footer">
 <div class="agree-block">
 <input type="checkbox" checked>
-I agree with the <a href="#" data-toggle="modal" data-target="#PrivacyPolicyModalCenter">
-Term of service </a>
-& <a href="#" data-toggle="modal" data-target="#RefundpolicyModalCenter">
+I agree with the <a href="#" data-toggle="modal" data-target="#RefundpolicyModalCenter">
 Refund policy </a>
 & <a href="#"  data-toggle="modal" data-target="#PrivacyPolicyModalCenter">
 Privacy Policy </a>
@@ -770,9 +770,15 @@ Hatmeo offers a 30 day guarantee on all unused purchases. Simply send the item(s
     .testi-sec {
         padding: 8px;
     }
+    .testi-row {
+        padding: 0;
+    }
 }
 @media (min-width: 1024px) {
     .testi-sec {
+        padding: 0;
+    }
+    .testi-row {
         padding: 0;
     }
 }
@@ -831,7 +837,7 @@ Hatmeo offers a 30 day guarantee on all unused purchases. Simply send the item(s
                 </div>
 
 
-<div id="block--faq" class="faqs col-md-6 bg-white border p-3">
+<div id="block--faq" class="faqs col-md-5 bg-white border p-3">
 
 <div class="h2 text-center mb-4" style="font-family: oswald;">
 

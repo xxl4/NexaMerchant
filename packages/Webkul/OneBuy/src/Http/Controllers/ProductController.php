@@ -48,6 +48,7 @@ class ProductController extends Controller
         protected ThemeCustomizationRepository $themeCustomizationRepository
     )
     {
+        
     }
 
 
@@ -74,6 +75,9 @@ class ProductController extends Controller
         }
 
         visitor()->visit($product);
+
+        $refer = $request->session()->get('refer');
+        Log::info("refer checkout v1 ".$refer);
 
         //var_dump($product);exit;
 
@@ -334,6 +338,9 @@ class ProductController extends Controller
 
         $input = $request->all();
 
+        $refer = $request->session()->get('refer');
+        Log::info("refer checkout v1 ".$refer);
+
         
         $products = $request->input("products");
         // 添加到购物车
@@ -348,7 +355,7 @@ class ProductController extends Controller
                 $super_attribute[$attr[0]] = $attr[1];
             }
             $product['super_attribute'] = $super_attribute;
-            Log::info("add product into cart ". json_encode($product));
+            //Log::info("add product into cart ". json_encode($product));
             $cart = Cart::addProduct($product['product_id'], $product);
 
             if (
@@ -536,6 +543,9 @@ class ProductController extends Controller
 
         Log::info("order addr after ".json_encode($input));
 
+        $refer = $request->session()->get('refer');
+        Log::info("refer checkout v1 ".$refer);
+
         $products = $request->input("products");
         // 添加到购物车
         Cart::deActivateCart();
@@ -586,7 +596,7 @@ class ProductController extends Controller
 
         $addressData['shipping']['address1'] = implode(PHP_EOL, $addressData['shipping']['address1']);
 
-        Log::info("paypal pay".json_encode($addressData));
+        Log::info("paypal pay ".$refer.'--'.json_encode($addressData));
 
 
         if (
@@ -670,6 +680,9 @@ class ProductController extends Controller
      * 
      */
     public function order_status(Request $request) {
+
+        $refer = $request->session()->get('refer');
+        Log::info("refer checkout v1 ".$refer);
 
         try {
             $order = $this->smartButton->getOrder(request()->input('orderData.orderID'));
