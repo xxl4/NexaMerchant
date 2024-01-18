@@ -3,15 +3,23 @@
 namespace Webkul\Shop\Http\Controllers\Customer\Account;
 
 use Illuminate\Support\Facades\Storage;
+<<<<<<< HEAD
 use Webkul\Shop\Http\Controllers\Controller;
 use Webkul\Sales\Repositories\DownloadableLinkPurchasedRepository;
+=======
+use Webkul\Sales\Repositories\DownloadableLinkPurchasedRepository;
+use Webkul\Shop\Http\Controllers\Controller;
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 
 class DownloadableProductController extends Controller
 {
     /**
      * Create a new controller instance.
      *
+<<<<<<< HEAD
      * @param  \Webkul\Sales\Repositories\DownloadableLinkPurchasedRepository  $downloadableLinkPurchasedRepository
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      * @return void
      */
     public function __construct(protected DownloadableLinkPurchasedRepository $downloadableLinkPurchasedRepository)
@@ -22,7 +30,11 @@ class DownloadableProductController extends Controller
      * Display a listing of the resource.
      *
      * @return \Illuminate\View\View
+<<<<<<< HEAD
     */
+=======
+     */
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
     public function index()
     {
         $downloadableLinkPurchased = $this->downloadableLinkPurchasedRepository->findWhere([
@@ -50,6 +62,10 @@ class DownloadableProductController extends Controller
         }
 
         $totalInvoiceQty = 0;
+<<<<<<< HEAD
+=======
+
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         if (isset($downloadableLinkPurchased->order->invoices)) {
             foreach ($downloadableLinkPurchased->order->invoices as $invoice) {
                 $totalInvoiceQty = $totalInvoiceQty + $invoice->total_qty;
@@ -63,19 +79,31 @@ class DownloadableProductController extends Controller
             $downloadableLinkPurchased->download_used == $totalInvoiceQty
             || $downloadableLinkPurchased->download_used > $totalInvoiceQty
         ) {
+<<<<<<< HEAD
             session()->flash('warning', trans('shop::app.customers.account.downloadable_products.payment-error'));
 
             return redirect()->route('shop.customer.downloadable_products.index');
+=======
+            session()->flash('warning', trans('shop::app.customers.account.downloadable-products.download-error'));
+
+            return redirect()->route('shop.customers.account.downloadable_products.index');
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         }
 
         if (
             $downloadableLinkPurchased->download_bought
             && ($downloadableLinkPurchased->download_bought - ($downloadableLinkPurchased->download_used + $downloadableLinkPurchased->download_canceled)) <= 0
         ) {
+<<<<<<< HEAD
 
             session()->flash('warning', trans('shop::app.customers.account.downloadable-products.download-error'));
 
             return redirect()->route('shop.customer.downloadable_products.index');
+=======
+            session()->flash('warning', trans('shop::app.customers.account.downloadable-products.download-error'));
+
+            return redirect()->route('shop.customers.account.downloadable_products.index');
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         }
 
         $remainingDownloads = $downloadableLinkPurchased->download_bought - ($downloadableLinkPurchased->download_used + $downloadableLinkPurchased->download_canceled + 1);
@@ -103,4 +131,8 @@ class DownloadableProductController extends Controller
             return response()->download($tempImage, $fileName);
         }
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61

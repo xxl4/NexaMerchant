@@ -4,6 +4,10 @@ return [
     'customers' => [
         'forgot-password' => [
             'back'                 => 'Terug naar Aanmelden?',
+<<<<<<< HEAD
+=======
+            'bagisto'              => 'Bagisto',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             'email-not-exist'      => 'We kunnen geen gebruiker vinden met dat e-mailadres.',
             'email'                => 'E-mail',
             'forgot-password-text' => 'Als u uw wachtwoord bent vergeten, kunt u het herstellen door uw e-mailadres in te voeren.',
@@ -17,6 +21,10 @@ return [
 
         'reset-password' => [
             'back-link-title'  => 'Terug naar Aanmelden',
+<<<<<<< HEAD
+=======
+            'bagisto'          => 'Bagisto',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             'confirm-password' => 'Bevestig Wachtwoord',
             'email'            => 'Geregistreerde E-mail',
             'footer'           => '© Auteursrecht 2010 - :current_year, Webkul Software (geregistreerd in India). Alle rechten voorbehouden.',
@@ -27,6 +35,10 @@ return [
 
         'login-form' => [
             'button-title'        => 'Aanmelden',
+<<<<<<< HEAD
+=======
+            'bagisto'             => 'Bagisto',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             'create-your-account' => 'Maak uw account aan',
             'email'               => 'E-mail',
             'form-login-text'     => 'Als u een account heeft, meld u dan aan met uw e-mailadres.',
@@ -44,6 +56,10 @@ return [
 
         'signup-form' => [
             'account-exists'              => 'Heeft u al een account?',
+<<<<<<< HEAD
+=======
+            'bagisto'                     => 'Bagisto',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             'button-title'                => 'Registreren',
             'confirm-pass'                => 'Bevestig Wachtwoord',
             'email'                       => 'E-mail',
@@ -91,6 +107,10 @@ return [
                 'phone'                   => 'Telefoon',
                 'save'                    => 'Opslaan',
                 'subscribe-to-newsletter' => 'Abonneer op nieuwsbrief',
+<<<<<<< HEAD
+=======
+                'select-gender'           => 'Geslacht selecteren',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'title'                   => 'Profiel',
                 'unmatch'                 => 'Het oude wachtwoord komt niet overeen.',
                 'wrong-password'          => 'Verkeerd Wachtwoord!',
@@ -127,11 +147,22 @@ return [
             ],
 
             'orders' => [
+<<<<<<< HEAD
                 'order-id'   => 'Bestelnummer',
                 'order'      => 'Bestelling',
                 'order-date' => 'Besteldatum',
                 'title'      => 'Bestellingen',
                 'total'      => 'Totaal',
+=======
+                'order-id'    => 'Bestel-ID',
+                'order'       => 'Bestelling',
+                'order-date'  => 'Besteldatum',
+                'title'       => 'Bestellingen',
+                'total'       => 'Totaal',
+                'action-view' => 'Bekijken',
+                'action'      => 'Actie',
+                'empty-order' => 'U heeft nog geen product besteld',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 
                 'status' => [
                     'title' => 'Status',
@@ -147,9 +178,12 @@ return [
                     ],
                 ],
 
+<<<<<<< HEAD
                 'action'      => 'Actie',
                 'empty-order' => 'U heeft nog geen product besteld',
 
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'view' => [
                     'billing-address'    => 'Factuuradres',
                     'cancel-btn-title'   => 'Annuleren',
@@ -316,6 +350,7 @@ return [
 
         'layouts' => [
             'header' => [
+<<<<<<< HEAD
                 'account'       => 'Account',
                 'compare'       => 'Vergelijken',
                 'cart'          => 'Winkelwagen',
@@ -331,6 +366,25 @@ return [
                 'welcome'       => 'Welkom',
                 'welcome-guest' => 'Welkom Gast',
                 'wishlist'      => 'Verlanglijst',
+=======
+                'account'           => 'Account',
+                'bagisto'           => 'Bagisto',
+                'cart'              => 'Winkelwagen',
+                'compare'           => 'Vergelijken',
+                'dropdown-text'     => 'Beheer Winkelwagen, Bestellingen en Verlanglijst',
+                'logout'            => 'Uitloggen',
+                'no-category-found' => 'Geen categorie gevonden.',
+                'orders'            => 'Bestellingen',
+                'profile'           => 'Profiel',
+                'search'            => 'Zoeken',
+                'search-text'       => 'Zoek hier producten',
+                'sign-in'           => 'Inloggen',
+                'sign-up'           => 'Aanmelden',
+                'title'             => 'Account',
+                'welcome'           => 'Welkom',
+                'welcome-guest'     => 'Welkom Gast',
+                'wishlist'          => 'Verlanglijst',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             ],
 
             'footer' => [
@@ -338,6 +392,10 @@ return [
                 'customer-service'       => 'Klantenservice',
                 'contact-us'             => 'Neem contact met ons op',
                 'currency'               => 'Valuta',
+<<<<<<< HEAD
+=======
+                'email'                  => 'E-mail',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'footer-text'            => '© Auteursrecht 2010 - 2023, Webkul Software (geregistreerd in India). Alle rechten voorbehouden.',
                 'locale'                 => 'Taal',
                 'newsletter-text'        => 'Maak je klaar voor onze leuke nieuwsbrief!',
@@ -399,6 +457,13 @@ return [
             'table' => [
                 'actions'              => 'Acties',
                 'no-records-available' => 'Geen records beschikbaar.',
+<<<<<<< HEAD
+=======
+                'next-page'            => 'Volgende Pagina',
+                'page-navigation'      => 'Pagina Navigatie',
+                'previous-page'        => 'Vorige Pagina',
+                'page-number'          => 'Paginanummer',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             ],
         ],
 
@@ -416,6 +481,7 @@ return [
 
         'products' => [
             'card' => [
+<<<<<<< HEAD
                 'add-to-compare'     => 'Item succesvol toegevoegd aan vergelijkingslijst.',
                 'already-in-compare' => 'Item is al toegevoegd aan de vergelijkingslijst.',
                 'add-to-cart'        => 'Toevoegen aan winkelwagen',
@@ -425,12 +491,44 @@ return [
             ],
 
             'carousel' => [
+=======
+                'add-to-compare-success'      => 'Item succesvol toegevoegd aan vergelijkingslijst.',
+                'already-in-compare'          => 'Item is al toegevoegd aan vergelijkingslijst.',
+                'add-to-cart'                 => 'Toevoegen aan winkelwagen',
+                'add-to-wishlist'             => 'Toevoegen aan verlanglijstje',
+                'add-to-compare'              => 'Toevoegen aan vergelijkingslijst',
+                'new'                         => 'Nieuw',
+                'review-description'          => 'Wees de eerste om dit product te beoordelen',
+                'sale'                        => 'Uitverkoop',
+            ],
+
+            'carousel' => [
+                'next'     => 'Volgende',
+                'previous' => 'Vorige',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'view-all' => 'Alles bekijken',
             ],
         ],
 
         'range-slider' => [
+<<<<<<< HEAD
             'range' => 'Bereik:',
+=======
+            'min-range' => 'Minimale Bereik',
+            'max-range' => 'Maximale Bereik',
+            'range'     => 'Bereik:',
+        ],
+
+        'carousel' => [
+            'image-slide' => 'Afbeeldingslide',
+            'next'        => 'Volgende',
+            'previous'    => 'Vorige',
+        ],
+
+        'quantity-changer' => [
+            'decrease-quantity' => 'Hoeveelheid verminderen',
+            'increase-quantity' => 'Hoeveelheid verhogen',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         ],
     ],
 
@@ -486,21 +584,39 @@ return [
 
             'reviews' => [
                 'attachments'      => 'Bijlagen',
+<<<<<<< HEAD
                 'comment'          => 'Opmerking',
                 'customer-review'  => 'Klantbeoordelingen',
                 'cancel'           => 'Annuleren',
+=======
+                'cancel'           => 'Annuleren',
+                'comment'          => 'Opmerking',
+                'customer-review'  => 'Klantbeoordelingen',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'empty-review'     => 'Geen beoordeling gevonden, wees de eerste om dit product te beoordelen',
                 'failed-to-upload' => 'Het uploaden van de afbeelding is mislukt',
                 'load-more'        => 'Meer laden',
                 'name'             => 'Naam',
                 'rating'           => 'Beoordeling',
+<<<<<<< HEAD
                 'success'          => 'Beoordeling succesvol ingediend.',
                 'submit-review'    => 'Beoordeling indienen',
                 'title'            => 'Titel',
+=======
+                'submit-review'    => 'Beoordeling indienen',
+                'success'          => 'Beoordeling succesvol ingediend.',
+                'title'            => 'Titel',
+                'translate'        => 'Vertalen',
+                'translating'      => 'Vertalen...',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'write-a-review'   => 'Schrijf een beoordeling',
             ],
 
             'add-to-cart'            => 'Toevoegen aan winkelwagen',
+<<<<<<< HEAD
+=======
+            'add-to-wishlist'        => 'Toevoegen aan verlanglijstje',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             'add-to-compare'         => 'Product toegevoegd aan vergelijking.',
             'already-in-compare'     => 'Product staat al in de vergelijking.',
             'additional-information' => 'Aanvullende informatie',
@@ -515,7 +631,11 @@ return [
 
         'type' => [
             'abstract' => [
+<<<<<<< HEAD
                 'offers' => 'Koop :qty voor :price per stuk en bespaar :discount%',
+=======
+                'offers' => 'Koop :qty voor :price per stuk en bespaar :discount',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             ],
         ],
     ],
@@ -529,6 +649,11 @@ return [
         ],
 
         'toolbar' => [
+<<<<<<< HEAD
+=======
+            'grid' => 'Raster',
+            'list' => 'Lijst',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             'show' => 'Tonen',
         ],
 
@@ -539,6 +664,7 @@ return [
     ],
 
     'search' => [
+<<<<<<< HEAD
         'title' => 'Zoekresultaten voor: :query',
     ],
 
@@ -548,6 +674,31 @@ return [
         'empty-text'         => 'Je hebt geen items in je vergelijkingslijst',
         'item-add-success'   => 'Item succesvol toegevoegd aan de vergelijkingslijst',
         'product-compare'    => 'Product Vergelijking',
+=======
+        'title'   => 'Zoekresultaten voor : :query',
+        'results' => 'Zoekresultaten',
+
+        'images' => [
+            'index' => [
+                'something-went-wrong' => 'Er is iets misgegaan, probeer het later opnieuw.',
+                'size-limit-error'     => 'Grootte Limiet Fout',
+                'search'               => 'Zoeken',
+                'only-images-allowed'  => 'Alleen afbeeldingen (.jpeg, .jpg, .png, ..) zijn toegestaan.',
+            ],
+
+            'results' => [
+                'analysed-keywords' => 'Geanalyseerde Trefwoorden:',
+            ],
+        ],
+    ],
+
+    'compare'  => [
+        'already-added'      => 'Item is al toegevoegd aan de vergelijkingslijst',
+        'delete-all'         => 'Alles Verwijderen',
+        'empty-text'         => 'Je hebt geen items in je vergelijkingslijst',
+        'item-add-success'   => 'Item succesvol toegevoegd aan de vergelijkingslijst',
+        'product-compare'    => 'Producten Vergelijken',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         'remove-success'     => 'Item succesvol verwijderd.',
         'remove-all-success' => 'Alle items succesvol verwijderd.',
         'remove-error'       => 'Er is iets misgegaan, probeer het later opnieuw.',
@@ -578,8 +729,15 @@ return [
             'suspended-account-message' => 'Uw account is opgeschort.',
             'select-hourly-duration'    => 'Selecteer een slotduur van één uur.',
             'success-remove'            => 'Item is succesvol verwijderd uit de winkelwagen.',
+<<<<<<< HEAD
 
             'index' => [
+=======
+            'paypal-payment-cancelled'  => 'PayPal-betaling is geannuleerd.',
+
+            'index' => [
+                'bagisto'                  => 'Bagisto',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'cart'                     => 'Winkelwagen',
                 'continue-shopping'        => 'Doorgaan met winkelen',
                 'empty-product'            => 'U heeft geen product in uw winkelwagen.',
@@ -594,10 +752,22 @@ return [
                 'remove'                   => 'Verwijderen',
                 'remove-selected-success'  => 'Geselecteerde items succesvol uit de winkelwagen verwijderd.',
                 'see-details'              => 'Details bekijken',
+<<<<<<< HEAD
+=======
+                'select-all'               => 'Alles selecteren',
+                'select-cart-item'         => 'Selecteer winkelwagenitem',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'tax'                      => 'Belasting',
                 'total'                    => 'Totaal',
                 'update-cart'              => 'Winkelwagen bijwerken',
                 'view-cart'                => 'Bekijk winkelwagen',
+<<<<<<< HEAD
+=======
+
+                'cross-sell' => [
+                    'title' => 'Meer keuzes',
+                ],
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             ],
 
             'coupon'   => [
@@ -663,6 +833,10 @@ return [
 
                 'index' => [
                     'confirm' => 'Bevestigen',
+<<<<<<< HEAD
+=======
+                    'bagisto' => 'Bagisto',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 ],
 
                 'shipping' => [
@@ -686,6 +860,7 @@ return [
                 ],
             ],
 
+<<<<<<< HEAD
             'coupon' => [
                 'applied'         => 'Coupon toegepast',
                 'applied-coupon'  => 'Toegepaste coupon',
@@ -700,6 +875,8 @@ return [
                 'subtotal'        => 'Subtotaal',
             ],
 
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             'index' => [
                 'checkout' => 'Afrekenen',
                 'home'     => 'Home',
@@ -720,6 +897,10 @@ return [
                 'grand-total'      => 'Eindtotaal',
                 'place-order'      => 'Bestelling plaatsen',
                 'processing'       => 'Verwerken',
+<<<<<<< HEAD
+=======
+                'price_&_qty'      => ':price × :qty',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'sub-total'        => 'Subtotaal',
                 'tax'              => 'Belasting',
             ],
@@ -785,10 +966,20 @@ return [
 
         'customers' => [
             'registration' => [
+<<<<<<< HEAD
                 'description' => 'Je account is nu succesvol aangemaakt en je kunt inloggen met je e-mailadres en wachtwoord. Na het inloggen kun je andere diensten gebruiken, waaronder het bekijken van eerdere bestellingen, verlanglijstjes en het bewerken van je accountgegevens.',
                 'greeting'    => 'Welkom en bedankt voor je registratie bij ons!',
                 'subject'     => 'Nieuwe Klantregistratie',
                 'sign-in'     => 'Inloggen',
+=======
+                'subject'                 => 'Nieuwe Klantregistratie',
+                'description'             => 'Je account is nu succesvol aangemaakt en je kunt inloggen met je e-mailadres en wachtwoord. Na het inloggen kun je andere diensten gebruiken, waaronder het bekijken van eerdere bestellingen, verlanglijstjes en het bewerken van je accountgegevens.',
+                'credentials-description' => 'Uw account is aangemaakt. Uw accountgegevens staan hieronder:',
+                'greeting'                => 'Welkom en bedankt voor je registratie bij ons!',
+                'sign-in'                 => 'Inloggen',
+                'username-email'          => 'Gebruikersnaam/E-mail',
+                'password'                => 'Wachtwoord',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             ],
 
             'forgot-password' => [

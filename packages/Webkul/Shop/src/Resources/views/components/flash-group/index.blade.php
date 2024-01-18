@@ -11,7 +11,11 @@
             leave-from-class="ltr:translate-x-0 rtl:-translate-x-0"
             leave-active-class="transform transition ease-in-out duration-200"
             leave-to-class="ltr:translate-x-full rtl:-translate-x-full"
+<<<<<<< HEAD
             class='grid gap-[10px] fixed top-[20px] ltr:right-[20px] rtl:left-[20px] z-[1] justify-items-end'
+=======
+            class='grid gap-2.5 fixed z-[1001] top-5 ltr:right-5 rtl:left-5 justify-items-end'
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         >
             <x-shop::flash-group.item></x-shop::flash-group.item>
         </transition-group>

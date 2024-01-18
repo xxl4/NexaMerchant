@@ -11,7 +11,11 @@
 
     @isset($content)
         <template v-slot:content>
+<<<<<<< HEAD
             <div {{ $content->attributes->merge(['class' => 'p-[20px]']) }}>
+=======
+            <div {{ $content->attributes->merge(['class' => 'p-5']) }}>
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 {{ $content }}
             </div>
         </template>
@@ -19,7 +23,11 @@
 
     @isset($menu)
         <template v-slot:menu>
+<<<<<<< HEAD
             <ul {{ $menu->attributes->merge(['class' => 'py-[15px]']) }}>
+=======
+            <ul {{ $menu->attributes->merge(['class' => 'py-4']) }}>
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 {{ $menu }}
             </ul>
         </template>

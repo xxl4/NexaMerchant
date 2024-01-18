@@ -14,25 +14,32 @@
                 :href="image.link || '#'"
                 ref="slides"
                 :key="index"
-                aria-label="Image Slide "
+                aria-label="@lang('shop::components.carousel.image-slide')"
             >
                 <x-shop::media.images.lazy
                     class="w-full aspect-[2.743/1]"
+                    ::lazy="false"
                     ::src="image.image"
                     ::srcset="image.image + ' 1920w, ' + image.image.replace('storage', 'cache/large') + ' 1280w,' + image.image.replace('storage', 'cache/medium') + ' 1024w, ' + image.image.replace('storage', 'cache/small') + ' 525w'"
-                    alt=""
+                    ::alt="image?.title"
                 ></x-shop::media.images.lazy>
             </a>
 
             <span
-                class="icon-arrow-left text-[24px] font-bold text-white w-auto -mt-[22px] p-[12px] absolute top-1/2 left-[10px] bg-[rgba(0,0,0,0.8)] transition-all opacity-30 rounded-full hover:opacity-100 cursor-pointer"
+                class="icon-arrow-left text-2xl font-bold text-white w-auto -mt-[22px] p-3 absolute top-1/2 left-2.5 bg-black/80 transition-all opacity-30 rounded-full hover:opacity-100 cursor-pointer"
+                role="button"
+                aria-label="@lang('shop::components.carousel.previous')"
+                tabindex="0"
                 v-if="images?.length >= 2"
                 @click="navigate(currentIndex -= 1)"
             >
             </span>
 
             <span
-                class="icon-arrow-right text-[24px] font-bold text-white w-auto -mt-[22px] p-[12px] absolute top-1/2 right-[10px] bg-[rgba(0,0,0,0.8)] transition-all opacity-30 rounded-full hover:opacity-100 cursor-pointer"
+                class="icon-arrow-right text-2xl font-bold text-white w-auto -mt-[22px] p-3 absolute top-1/2 right-2.5 bg-black/80 transition-all opacity-30 rounded-full hover:opacity-100 cursor-pointer"
+                role="button"
+                aria-label="@lang('shop::components.carousel.next')"
+                tabindex="0"
                 v-if="images?.length >= 2"
                 @click="navigate(currentIndex += 1)"
             >
@@ -46,6 +53,8 @@
 
             data() {
                 return {
+                    autoPlayInterval: null,
+
                     currentIndex: 1,
 
                     images: @json($options['images'] ?? []),
@@ -79,15 +88,17 @@
                     }
 
                     slides[this.currentIndex - 1].style.display = 'block';
+
+                    this.play();
                 },
 
                 play() {
-                    let self = this;
+                    clearInterval(this.autoPlayInterval);
 
-                    setInterval(() => {
+                    this.autoPlayInterval = setInterval(() => {
                         this.navigate(this.currentIndex += 1);
                     }, 5000);
-                }
+                },
             }
         });
     </script>
@@ -95,9 +106,9 @@
     <style>
         .fade {
             -webkit-animation-name: fade;
-            -webkit-animation-duration: 1.5s;
+            -webkit-animation-duration: 2.5s;
             animation-name: fade;
-            animation-duration: 1.5s;
+            animation-duration: 2.5s;
         }
 
         @-webkit-keyframes fade {

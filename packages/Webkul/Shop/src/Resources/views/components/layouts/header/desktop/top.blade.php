@@ -1,23 +1,51 @@
+<<<<<<< HEAD
 <div class="flex justify-between items-center w-full py-[11px] px-16 border border-t-0 border-b-[1px] border-l-0 border-r-0">
     {{-- Currency Switcher --}}
     <x-shop::dropdown>
         <!-- Dropdown Toggler -->
         <x-slot:toggle>
             <div class="flex gap-[10px] cursor-pointer">
+=======
+{!! view_render_event('bagisto.shop.components.layouts.header.desktop.top.before') !!}
+
+<div class="flex justify-between items-center w-full py-3 px-16 border border-t-0 border-b border-l-0 border-r-0">
+    {!! view_render_event('bagisto.shop.components.layouts.header.desktop.top.currency_switcher.before') !!}
+
+    <!-- Currency Switcher -->
+    <x-shop::dropdown>
+        <!-- Dropdown Toggler -->
+        <x-slot:toggle>
+            <div
+                class="flex gap-2.5 cursor-pointer" role="button"
+                tabindex="0"
+            >
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 <span>
                     {{ core()->getCurrentCurrency()->symbol . ' ' . core()->getCurrentCurrencyCode() }}
                 </span>
 
+<<<<<<< HEAD
                 <span class="text-[24px] icon-arrow-down"></span>
+=======
+                <span
+                    class="text-2xl icon-arrow-down"
+                    role="presentation"
+                ></span>
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             </div>
         </x-slot:toggle>
 
         <!-- Dropdown Content -->
+<<<<<<< HEAD
         <x-slot:content class="!p-[0px]">
+=======
+        <x-slot:content class="!p-0">
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             <v-currency-switcher></v-currency-switcher>
         </x-slot:content>
     </x-shop::dropdown>
 
+<<<<<<< HEAD
     <p class="text-xs font-medium">Get UPTO 40% OFF on your 1st order <a href="#" class="underline">SHOP NOW</a></p>
 
     {{-- Locales Switcher --}}
@@ -25,6 +53,25 @@
         <x-slot:toggle>
             {{-- Dropdown Toggler --}}
             <div class="flex items-center gap-[10px] cursor-pointer">
+=======
+    {!! view_render_event('bagisto.shop.components.layouts.header.desktop.top.currency_switcher.after') !!}
+
+    <p class="text-xs font-medium">
+        Get UPTO 40% OFF on your 1st order <a href="{{ route('shop.home.index') }}" class="underline">SHOP NOW</a>
+    </p>
+
+    {!! view_render_event('bagisto.shop.components.layouts.header.desktop.top.locale_switcher.before') !!}
+
+    <!-- Locales Switcher -->
+    <x-shop::dropdown position="bottom-{{ core()->getCurrentLocale()->direction === 'ltr' ? 'right' : 'left' }}">
+        <x-slot:toggle>
+            <!-- Dropdown Toggler -->
+            <div
+                class="flex items-center gap-2.5 cursor-pointer"
+                role="button"
+                tabindex="0"
+            >
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 <img 
                     src="{{ ! empty(core()->getCurrentLocale()->logo_url) 
                             ? core()->getCurrentLocale()->logo_url 
@@ -40,22 +87,44 @@
                     {{ core()->getCurrentChannel()->locales()->orderBy('name')->where('code', app()->getLocale())->value('name') }}
                 </span>
 
+<<<<<<< HEAD
                 <span class="icon-arrow-down text-[24px]"></span>
+=======
+                <span
+                    class="icon-arrow-down text-2xl"
+                    role="presentation"
+                ></span>
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             </div>
         </x-slot:toggle>
     
         <!-- Dropdown Content -->
+<<<<<<< HEAD
         <x-slot:content class="!p-[0px]">
             <v-locale-switcher></v-locale-switcher>
         </x-slot:content>
     </x-shop::dropdown>
+=======
+        <x-slot:content class="!p-0">
+            <v-locale-switcher></v-locale-switcher>
+        </x-slot:content>
+    </x-shop::dropdown>
+
+    {!! view_render_event('bagisto.shop.components.layouts.header.desktop.top.locale_switcher.after') !!}
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 </div>
 
 @pushOnce('scripts')
     <script type="text/x-template" id="v-currency-switcher-template">
+<<<<<<< HEAD
         <div class="grid gap-[4px] mt-[10px] pb-[10px]">
             <span
                 class="px-5 py-2 text-[16px] cursor-pointer hover:bg-gray-100"
+=======
+        <div class="grid gap-1 mt-2.5 pb-2.5">
+            <span
+                class="px-5 py-2 text-base cursor-pointer hover:bg-gray-100"
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 v-for="currency in currencies"
                 :class="{'bg-gray-100': currency.code == '{{ core()->getCurrentCurrencyCode() }}'}"
                 @click="change(currency)"
@@ -66,9 +135,15 @@
     </script>
 
     <script type="text/x-template" id="v-locale-switcher-template">
+<<<<<<< HEAD
         <div class="grid gap-[4px] mt-[10px] pb-[10px]">
             <span
                 class="flex items-center gap-[10px] px-5 py-2 text-[16px] cursor-pointer hover:bg-gray-100"
+=======
+        <div class="grid gap-1 mt-2.5 pb-2.5">
+            <span
+                class="flex items-center gap-2.5 px-5 py-2 text-base cursor-pointer hover:bg-gray-100"
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 v-for="locale in locales"
                 :class="{'bg-gray-100': locale.code == '{{ app()->getLocale() }}'}"
                 @click="change(locale)"                  
@@ -126,3 +201,8 @@
         });
     </script>
 @endPushOnce
+<<<<<<< HEAD
+=======
+
+{!! view_render_event('bagisto.shop.components.layouts.header.desktop.top.after') !!}
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61

@@ -49,7 +49,11 @@ class AddressController extends APIController
             'city',
             'postcode',
             'phone',
+<<<<<<< HEAD
             'default_address'
+=======
+            'default_address',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         ]), [
             'customer_id'     => $customer->id,
             'address1'        => implode(PHP_EOL, array_filter($request->input('address1'))),

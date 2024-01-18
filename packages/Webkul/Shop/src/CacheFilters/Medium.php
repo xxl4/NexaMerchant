@@ -3,20 +3,15 @@
 namespace Webkul\Shop\CacheFilters;
 
 use Illuminate\Support\Str;
-use Intervention\Image\Image;
 use Intervention\Image\Filters\FilterInterface;
+use Intervention\Image\Image;
 
 class Medium implements FilterInterface
 {
     /**
      * Apply filter.
      *
-     * @param  \Intervention\Image\Image  $image
      * @return \Intervention\Image\Image
-     */
-    public function applyFilter(Image $image)
-    {
-        /**
          * If the current url is product image
          */
         if (Str::contains(url()->current(), '/product')) {

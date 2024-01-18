@@ -33,14 +33,14 @@
                     </a>
                 </div>
 
-                {{-- Email Content --}}
+                <!-- Email Content -->
                 {{ $slot }}
 
-                {{-- Email Footer --}}
+                <!-- Email Footer -->
                 <p style="font-size: 16px;color: #202B3C;line-height: 24px;">
                     @lang('shop::app.emails.thanks', [
-                        'link' => 'mailto:customer@hatmeo.com',
-                        'email' => 'customer@hatmeo.com',
+                        'link' => 'mailto:shop@shop.com',
+                        'email' => 'shop@shop.com',
                         'style' => 'color: #2969FF;'
                     ])
                 </p>

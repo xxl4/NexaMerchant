@@ -12,7 +12,10 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+<<<<<<< HEAD
         <meta name="csrf-token" content="{{ csrf_token() }}">
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         <meta name="base-url" content="{{ url()->to('/') }}">
         <meta name="currency-code" content="{{ core()->getCurrentCurrencyCode() }}">
         <meta http-equiv="content-language" content="{{ app()->getLocale() }}">
@@ -45,6 +48,7 @@
     <body>
         {!! view_render_event('bagisto.shop.layout.body.before') !!}
 
+<<<<<<< HEAD
         <div id="app">
             {{-- Flash Message Blade Component --}}
             <x-shop::flash-group />
@@ -53,12 +57,25 @@
             <x-shop::modal.confirm />
 
             {{-- Page Header Blade Component --}}
+=======
+        <a href="#main" class="skip-to-main-content-link">Skip to main content</a>
+
+        <div id="app">
+            <!-- Flash Message Blade Component -->
+            <x-shop::flash-group />
+
+            <!-- Confirm Modal Blade Component -->
+            <x-shop::modal.confirm />
+
+            <!-- Page Header Blade Component -->
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             @if ($hasHeader)
                 <x-shop::layouts.header />
             @endif
 
             {!! view_render_event('bagisto.shop.layout.content.before') !!}
 
+<<<<<<< HEAD
             {{-- Page Content Blade Component --}}
             {{ $slot }}
 
@@ -70,6 +87,22 @@
             @endif
 
             {{-- Page Footer Blade Component --}}
+=======
+            <!-- Page Content Blade Component -->
+            <main id="main" class="bg-white">
+                {{ $slot }}
+            </main>
+
+            {!! view_render_event('bagisto.shop.layout.content.after') !!}
+
+            
+            <!-- Page Services Blade Component -->
+            @if ($hasFeature)
+                <x-shop::layouts.services />
+            @endif
+
+            <!-- Page Footer Blade Component -->
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             @if ($hasFooter)
                 <x-shop::layouts.footer />
             @endif

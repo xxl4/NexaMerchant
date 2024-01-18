@@ -5,10 +5,17 @@ namespace Webkul\Shop\Http\Controllers\Customer;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
+<<<<<<< HEAD
 use Webkul\Shop\Http\Controllers\Controller;
 use Webkul\Customer\Repositories\CustomerRepository;
 use Webkul\Product\Repositories\ProductReviewRepository;
 use Webkul\Core\Repositories\SubscribersListRepository;
+=======
+use Webkul\Core\Repositories\SubscribersListRepository;
+use Webkul\Customer\Repositories\CustomerRepository;
+use Webkul\Product\Repositories\ProductReviewRepository;
+use Webkul\Shop\Http\Controllers\Controller;
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 use Webkul\Shop\Http\Requests\Customer\ProfileRequest;
 
 class CustomerController extends Controller
@@ -22,8 +29,12 @@ class CustomerController extends Controller
         protected CustomerRepository $customerRepository,
         protected ProductReviewRepository $productReviewRepository,
         protected SubscribersListRepository $subscriptionRepository
+<<<<<<< HEAD
     )
     {
+=======
+    ) {
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
     }
 
     /**
@@ -130,16 +141,25 @@ class CustomerController extends Controller
             } else {
                 if (isset($data['image'])) {
                     if (! empty($data['image'])) {
+<<<<<<< HEAD
                         Storage::delete((string)$customer->image);
                     }
                 
+=======
+                        Storage::delete((string) $customer->image);
+                    }
+
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     $customer->image = null;
 
                     $customer->save();
                 }
             }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             session()->flash('success', trans('shop::app.customers.account.profile.edit-success'));
 
             return redirect()->route('shop.customers.account.profile.index');

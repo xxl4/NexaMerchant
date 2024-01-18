@@ -1,4 +1,5 @@
 <div v-if="! forms.billing.isUsedForShipping">
+<<<<<<< HEAD
     <div 
         class="mt-[30px]"
         v-if="! forms.shipping.isNew"
@@ -10,21 +11,45 @@
             <x-slot:header>
                 <div class="flex justify-between items-center">
                     <h2 class="text-[26px] font-medium max-sm:text-[20px]">
+=======
+    <template v-if="! forms.shipping.isNew">
+        {!! view_render_event('bagisto.shop.checkout.onepage.shipping.accordion.before') !!}
+
+        <x-shop::accordion class="!border-b-0 mt-8">
+            <x-slot:header class="!p-0">
+                <div class="flex justify-between items-center">
+                    <h2 class="text-2xl font-medium max-sm:text-xl">
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                         @lang('shop::app.checkout.onepage.addresses.shipping.shipping-address')
                     </h2>
                 </div>
             </x-slot:header>
         
+<<<<<<< HEAD
             <x-slot:content>
+=======
+            <x-slot:content class="!p-0 mt-8">
+                {!! view_render_event('bagisto.shop.checkout.onepage.addresses.shipping.before') !!}
+
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 <x-shop::form
                     v-slot="{ meta, errors, handleSubmit }"
                     as="div"
                 >
                     <form @submit="handleSubmit($event, store)">
+<<<<<<< HEAD
                         <div class="grid grid-cols-2 mt-[30px] gap-[20px] max-1060:grid-cols-[1fr] max-lg:grid-cols-2 max-sm:grid-cols-1 max-sm:mt-[15px]">
                             <div 
                                 class="relative max-w-[414px] p-[0px] border border-[#e5e5e5] rounded-[12px] max-sm:flex-wrap select-none cursor-pointer"
                                 v-for="(address, index) in addresses"
+=======
+                        {!! view_render_event('bagisto.shop.checkout.onepage.addresses.shipping.before') !!}
+
+                        <div class="grid grid-cols-2 gap-5 max-1060:grid-cols-[1fr] max-lg:grid-cols-2 max-sm:grid-cols-1 max-sm:mt-4">
+                            <div 
+                                class="relative max-w-[414px] p-0 border border-[#e5e5e5] rounded-xl max-sm:flex-wrap select-none cursor-pointer"
+                                v-for="(address, index) in addresses.shipping"
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                             >
                                 <v-field
                                     type="radio"
@@ -40,24 +65,39 @@
                                 />
                                 
                                 <label 
+<<<<<<< HEAD
                                     class="icon-radio-unselect absolute ltr:right-[20px] rtl:left-[20px] top-[20px] text-[24px] text-navyBlue peer-checked:icon-radio-select cursor-pointer"
+=======
+                                    class="icon-radio-unselect absolute ltr:right-5 rtl:left-5 top-5 text-2xl text-navyBlue peer-checked:icon-radio-select cursor-pointer"
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                     :for="'shipping_address_id_' + address.id"
                                 >
                                 </label>
 
                                 <label 
                                     :for="'shipping_address_id_' + address.id"
+<<<<<<< HEAD
                                     class="block p-[20px] rounded-[12px] cursor-pointer"
                                 >
                                     <div class="flex justify-between items-center">
                                         <p class="text-[16px] font-medium">
+=======
+                                    class="block p-5 rounded-xl cursor-pointer"
+                                >
+                                    <div class="flex justify-between items-center">
+                                        <p class="text-base font-medium">
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                             @{{ address.first_name }} @{{ address.last_name }}
 
                                             <span v-if="address.company_name">(@{{ address.company_name }})</span>
                                         </p>
                                     </div>
 
+<<<<<<< HEAD
                                     <p class="mt-[25px] text-[#6E6E6E] text-[14px]">
+=======
+                                    <p class="mt-6 text-[#6E6E6E] text-sm">
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                         <template v-if="typeof address.address1 === 'string'">
                                             @{{ address.address1 }},
                                         </template>
@@ -78,6 +118,7 @@
                             </div>
 
                             <div 
+<<<<<<< HEAD
                                 class="flex justify-center items-center max-w-[414px] p-[20px] border border-[#e5e5e5] rounded-[12px] max-sm:flex-wrap"
                                 @click="showNewShippingAddressForm"
                             >
@@ -85,6 +126,22 @@
                                     <span class="icon-plus p-[10px] text-[30px]  border border-black rounded-full"></span>
 
                                     <p class="text-[16px]">@lang('shop::app.checkout.onepage.addresses.shipping.add-new-address')</p>
+=======
+                                class="flex justify-center items-center max-w-[414px] p-5 border border-[#e5e5e5] rounded-xl max-sm:flex-wrap cursor-pointer"
+                                @click="showNewShippingAddressForm"
+                            >
+                                <div
+                                    class="flex gap-x-2.5 items-center"
+                                    role="button"
+                                    tabindex="0"
+                                >
+                                    <span
+                                        class="icon-plus p-2.5 text-3xl  border border-black rounded-full"
+                                        role="presentation"
+                                    ></span>
+
+                                    <p class="text-base">@lang('shop::app.checkout.onepage.addresses.shipping.add-new-address')</p>
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                 </div>
                             </div>
                         </div>
@@ -97,17 +154,46 @@
 
 
                         <template v-if="meta.valid">
+<<<<<<< HEAD
                             <div v-if="! forms.billing.isNew && ! forms.shipping.isNew && ! forms.billing.isUsedForShipping">
                                 <div class="flex justify-end mt-4 mb-4">
                                     <button
                                         class="block py-[11px] px-[43px] bg-navyBlue text-white text-base w-max font-medium rounded-[18px] text-center cursor-pointer"
                                         @click="store"
                                     >
+=======
+                            <div v-if="! forms.billing.isNew && ! forms.shipping.isNew && ! forms.billing.isUsedForShipping && addresses.shipping.length">
+                                {!! view_render_event('bagisto.shop.checkout.onepage.addresses.shipping.confirm_button.before') !!}
+
+                                <div class="flex justify-end mt-4">
+                                    <x-shop::button
+                                        class="primary-button py-3 px-11 rounded-2xl"
+                                        :title="trans('shop::app.checkout.onepage.addresses.shipping.confirm')"
+                                        :loading="false"
+                                        ref="storeAddress"
+                                        @click="store"
+                                    >
+                                    </x-shop::button>
+                                </div>
+
+                                {!! view_render_event('bagisto.shop.checkout.onepage.addresses.shipping.confirm_button.after') !!}
+                            </div>
+                        </template>
+    
+                        <template v-else>
+                            <div v-if="! forms.billing.isNew && ! forms.shipping.isNew && ! forms.billing.isUsedForShipping">
+                                <div class="flex justify-end mt-4">
+                                    <button
+                                        type="submit"
+                                        class="primary-button py-3 px-11 rounded-2xl"
+                                    >
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                         @lang('shop::app.checkout.onepage.addresses.shipping.confirm')
                                     </button>
                                 </div>
                             </div>
                         </template>
+<<<<<<< HEAD
     
                         <template v-else>
                             <div v-if="! forms.billing.isNew && ! forms.shipping.isNew && ! forms.billing.isUsedForShipping">
@@ -123,10 +209,19 @@
                         </template> 
                     </form>
                 </x-shop::form>
+=======
+                        
+                        {!! view_render_event('bagisto.shop.checkout.onepage.addresses.shipping.after') !!}
+                    </form>
+                </x-shop::form>
+
+                {!! view_render_event('bagisto.shop.checkout.onepage.addresses.shipping.before') !!}
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             </x-slot:content>
         </x-shop::accordion>
 
         {!! view_render_event('bagisto.shop.checkout.onepage.shipping.accordion.after') !!}
+<<<<<<< HEAD
 
     </div>
 
@@ -138,16 +233,32 @@
             <x-slot:header>
                 <div class="flex justify-between items-center">
                     <h2 class="text-[26px] font-medium max-sm:text-[20px]">
+=======
+    </template>
+
+    <template v-else>
+        <x-shop::accordion class="!border-b-0 mt-8">
+            <x-slot:header class="!p-0">
+                <div class="flex justify-between items-center">
+                    <h2 class="text-2xl font-medium max-sm:text-xl">
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                         @lang('shop::app.checkout.onepage.addresses.shipping.shipping-address')
                     </h2>
                 </div>
             </x-slot:header>
         
+<<<<<<< HEAD
             <x-slot:content>
 
                 {!! view_render_event('bagisto.shop.checkout.onepage.shipping_address.before') !!}
 
                 {{-- Shipping address form --}}
+=======
+            <x-slot:content class="!p-0 mt-8">
+                {!! view_render_event('bagisto.shop.checkout.onepage.shipping_address.before') !!}
+
+                <!-- Shipping address form -->
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 <x-shop::form
                     v-slot="{ meta, errors, handleSubmit }"
                     as="div"
@@ -157,10 +268,17 @@
                             <a 
                                 class="flex justify-end"
                                 href="javascript:void(0)" 
+<<<<<<< HEAD
                                 v-if="addresses.length > 0"
                                 @click="forms.shipping.isNew = ! forms.shipping.isNew"
                             >
                                 <span class="icon-arrow-left text-[24px]"></span>
+=======
+                                v-if="addresses.shipping.length > 0"
+                                @click="forms.shipping.isNew = ! forms.shipping.isNew"
+                            >
+                                <span class="icon-arrow-left text-2xl"></span>
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 
                                 <span>@lang('shop::app.checkout.onepage.addresses.shipping.back')</span>
                             </a>
@@ -190,9 +308,15 @@
 
                         {!! view_render_event('bagisto.shop.checkout.onepage.shipping_address.company_name.after') !!}
 
+<<<<<<< HEAD
                         <div class="grid grid-cols-2 gap-x-[20px]">
                             <x-shop::form.control-group>
                                 <x-shop::form.control-group.label class="!mt-[0px] required">
+=======
+                        <div class="grid grid-cols-2 gap-x-5">
+                            <x-shop::form.control-group>
+                                <x-shop::form.control-group.label class="!mt-0 required">
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                     @lang('shop::app.checkout.onepage.addresses.shipping.first-name')
                                 </x-shop::form.control-group.label>
                             
@@ -215,7 +339,11 @@
                             {!! view_render_event('bagisto.shop.checkout.onepage.shipping_address.first_name.after') !!}
                             
                             <x-shop::form.control-group>
+<<<<<<< HEAD
                                 <x-shop::form.control-group.label class="!mt-[0px] required">
+=======
+                                <x-shop::form.control-group.label class="!mt-0 required">
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                     @lang('shop::app.checkout.onepage.addresses.shipping.last-name')
                                 </x-shop::form.control-group.label>
                             
@@ -240,7 +368,11 @@
                         </div>
                         
                         <x-shop::form.control-group>
+<<<<<<< HEAD
                             <x-shop::form.control-group.label class="!mt-[0px] required">
+=======
+                            <x-shop::form.control-group.label class="!mt-0 required">
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                 @lang('shop::app.checkout.onepage.addresses.shipping.email')
                             </x-shop::form.control-group.label>
                         
@@ -263,14 +395,22 @@
                         {!! view_render_event('bagisto.shop.checkout.onepage.shipping_address.email.after') !!}
                         
                         <x-shop::form.control-group>
+<<<<<<< HEAD
                             <x-shop::form.control-group.label class="!mt-[0px] required">
+=======
+                            <x-shop::form.control-group.label class="!mt-0 required">
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                 @lang('shop::app.checkout.onepage.addresses.shipping.street-address')
                             </x-shop::form.control-group.label>
                         
                             <x-shop::form.control-group.control
                                 type="text"
                                 name="shipping[address1][]"
+<<<<<<< HEAD
                                 rules="required"
+=======
+                                rules="required|address"
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                 :label="trans('shop::app.checkout.onepage.addresses.shipping.street-address')"
                                 :placeholder="trans('shop::app.checkout.onepage.addresses.shipping.street-address')"
                                 v-model="forms.shipping.address.address1[0]"
@@ -299,19 +439,31 @@
 
                         {!! view_render_event('bagisto.shop.checkout.onepage.shipping_address.street_address.after') !!}
                         
+<<<<<<< HEAD
                         <div class="grid grid-cols-2 gap-x-[20px]">
                             <x-shop::form.control-group
                                 class="!mb-4"
                             >
                                 <x-shop::form.control-group.label class="!mt-[0px] required">
+=======
+                        <div class="grid grid-cols-2 gap-x-5">
+                            <x-shop::form.control-group
+                                class="!mb-4"
+                            >
+                                <x-shop::form.control-group.label class="{{ core()->isCountryRequired() ? 'required' : '' }} !mt-0">
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                     @lang('shop::app.checkout.onepage.addresses.shipping.country')
                                 </x-shop::form.control-group.label>
                             
                                 <x-shop::form.control-group.control
                                     type="select"
                                     name="shipping[country]"
+<<<<<<< HEAD
                                     class="py-2 mb-2"
                                     rules="required"
+=======
+                                    rules="{{ core()->isCountryRequired() ? 'required' : '' }}"
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                     :label="trans('shop::app.checkout.onepage.addresses.shipping.country')"
                                     :placeholder="trans('shop::app.checkout.onepage.addresses.shipping.country')"
                                     v-model="forms.shipping.address.country"
@@ -335,14 +487,22 @@
                             {!! view_render_event('bagisto.shop.checkout.onepage.shipping_address.country.after') !!}
                             
                             <x-shop::form.control-group>
+<<<<<<< HEAD
                                 <x-shop::form.control-group.label class="!mt-[0px] required">
+=======
+                                <x-shop::form.control-group.label class="{{ core()->isStateRequired() ? 'required' : '' }} !mt-0">
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                     @lang('shop::app.checkout.onepage.addresses.shipping.state')
                                 </x-shop::form.control-group.label>
                             
                                 <x-shop::form.control-group.control
                                     type="text"
                                     name="shipping[state]"
+<<<<<<< HEAD
                                     rules="required"
+=======
+                                    rules="{{ core()->isStateRequired() ? 'required' : '' }}"
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                     :label="trans('shop::app.checkout.onepage.addresses.shipping.state')"
                                     :placeholder="trans('shop::app.checkout.onepage.addresses.shipping.state')"
                                     v-model="forms.shipping.address.state"
@@ -353,8 +513,12 @@
                                 <x-shop::form.control-group.control
                                     type="select"
                                     name="shipping[state]"
+<<<<<<< HEAD
                                     class="py-2 mb-2"
                                     rules="required"
+=======
+                                    rules="{{ core()->isStateRequired() ? 'required' : '' }}"
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                     :label="trans('shop::app.checkout.onepage.addresses.shipping.state')"
                                     :placeholder="trans('shop::app.checkout.onepage.addresses.shipping.state')"
                                     v-model="forms.shipping.address.state"
@@ -380,9 +544,15 @@
 
                         </div>
 
+<<<<<<< HEAD
                         <div class="grid grid-cols-2 gap-x-[20px]">
                             <x-shop::form.control-group>
                                 <x-shop::form.control-group.label class="!mt-[0px] required">
+=======
+                        <div class="grid grid-cols-2 gap-x-5">
+                            <x-shop::form.control-group>
+                                <x-shop::form.control-group.label class="!mt-0 required">
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                     @lang('shop::app.checkout.onepage.addresses.shipping.city')
                                 </x-shop::form.control-group.label>
                             
@@ -405,14 +575,22 @@
                             {!! view_render_event('bagisto.shop.checkout.onepage.shipping_address.city.after') !!}
                             
                             <x-shop::form.control-group>
+<<<<<<< HEAD
                                 <x-shop::form.control-group.label class="!mt-[0px] required">
+=======
+                                <x-shop::form.control-group.label class="!mt-0 required">
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                     @lang('shop::app.checkout.onepage.addresses.shipping.postcode')
                                 </x-shop::form.control-group.label>
                             
                                 <x-shop::form.control-group.control
                                     type="text"
                                     name="shipping[postcode]"
+<<<<<<< HEAD
                                     rules="required"
+=======
+                                    rules="{{ core()->isPostCodeRequired() ? 'required' : '' }}"
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                     :label="trans('shop::app.checkout.onepage.addresses.shipping.postcode')"
                                     :placeholder="trans('shop::app.checkout.onepage.addresses.shipping.postcode')"
                                     v-model="forms.shipping.address.postcode"
@@ -430,7 +608,11 @@
                         </div>
 
                         <x-shop::form.control-group>
+<<<<<<< HEAD
                             <x-shop::form.control-group.label class="!mt-[0px] required">
+=======
+                            <x-shop::form.control-group.label class="!mt-0 required">
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                 @lang('shop::app.checkout.onepage.addresses.shipping.telephone')
                             </x-shop::form.control-group.label>
                             
@@ -452,6 +634,7 @@
 
                         {!! view_render_event('bagisto.shop.checkout.onepage.shipping_address.phone.after') !!}
 
+<<<<<<< HEAD
                         <div class="mt-[30px] pb-[15px]">
                             <div class="grid gap-[10px]">
                                 @auth('customer')
@@ -484,6 +667,38 @@
                             <button
                                 type="submit"
                                 class="block w-max px-[43px] py-[11px] bg-navyBlue rounded-[18px] text-white text-base font-medium text-center cursor-pointer"
+=======
+                        <div class="grid gap-2.5 pb-4">
+                            @auth('customer')
+                                <div class="flex gap-x-1.5 items-center text-md text-[#6E6E6E] select-none">
+                                    <input 
+                                        type="checkbox"
+                                        name="shipping[is_save_as_address]"
+                                        id="shipping[is_save_as_address]"
+                                        class="hidden peer"
+                                        v-model="forms.shipping.address.isSaved"
+                                    >
+
+                                    <label
+                                        class="icon-uncheck text-2xl text-navyBlue peer-checked:icon-check-box peer-checked:text-navyBlue cursor-pointer"
+                                        for="shipping[is_save_as_address]"
+                                    >
+                                    </label>
+
+                                    <label for="shipping[is_save_as_address]">
+                                        @lang('shop::app.checkout.onepage.addresses.shipping.save-address')
+                                    </label>
+                                </div>
+                            @endauth
+                        </div>
+
+                        <div 
+                            class="flex justify-end mt-4"
+                        >
+                            <button
+                                type="submit"
+                                class="block w-max px-11 py-3 bg-navyBlue rounded-2xl text-white text-base font-medium text-center cursor-pointer"
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                             >
                                 @lang('shop::app.checkout.onepage.addresses.shipping.confirm')
                             </button>
@@ -498,5 +713,9 @@
 
             </x-slot:content>
         </x-shop::accordion>
+<<<<<<< HEAD
     </div>
+=======
+    </template>
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 </div>

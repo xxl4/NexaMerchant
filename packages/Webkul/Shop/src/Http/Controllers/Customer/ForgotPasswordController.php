@@ -24,7 +24,10 @@ class ForgotPasswordController extends Controller
     /**
      * Store a newly created resource in storage.
      *
+<<<<<<< HEAD
      * @param ForgotPasswordRequest $request
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      * @return void
      */
     public function store(ForgotPasswordRequest $request)

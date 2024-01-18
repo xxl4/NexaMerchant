@@ -6,8 +6,13 @@ use Cart;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Webkul\Customer\Repositories\WishlistRepository;
 use Webkul\Product\Repositories\ProductRepository;
+<<<<<<< HEAD
 use Webkul\Shop\Http\Resources\WishlistResource;
 use Webkul\Shop\Http\Resources\CartResource;
+=======
+use Webkul\Shop\Http\Resources\CartResource;
+use Webkul\Shop\Http\Resources\WishlistResource;
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 
 class WishlistController extends APIController
 {
@@ -19,8 +24,12 @@ class WishlistController extends APIController
     public function __construct(
         protected WishlistRepository $wishlistRepository,
         protected ProductRepository $productRepository
+<<<<<<< HEAD
     )
     {
+=======
+    ) {
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
     }
 
     /**

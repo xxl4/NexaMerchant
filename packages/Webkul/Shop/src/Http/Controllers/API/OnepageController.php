@@ -2,6 +2,7 @@
 
 namespace Webkul\Shop\Http\Controllers\API;
 
+<<<<<<< HEAD
 use Illuminate\Http\Response;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Webkul\Sales\Repositories\OrderRepository;
@@ -11,6 +12,17 @@ use Webkul\Payment\Facades\Payment;
 use Webkul\Shipping\Facades\Shipping;
 use Webkul\Shop\Http\Resources\CartResource;
 use Webkul\Shop\Http\Requests\Customer\CustomerAddressForm;
+=======
+use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Http\Response;
+use Webkul\Checkout\Facades\Cart;
+use Webkul\Customer\Repositories\CustomerRepository;
+use Webkul\Payment\Facades\Payment;
+use Webkul\Sales\Repositories\OrderRepository;
+use Webkul\Shipping\Facades\Shipping;
+use Webkul\Shop\Http\Requests\Customer\CustomerAddressForm;
+use Webkul\Shop\Http\Resources\CartResource;
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 
 class OnepageController extends APIController
 {
@@ -22,8 +34,12 @@ class OnepageController extends APIController
     public function __construct(
         protected OrderRepository $orderRepository,
         protected CustomerRepository $customerRepository
+<<<<<<< HEAD
     )
     {
+=======
+    ) {
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
     }
 
     /**

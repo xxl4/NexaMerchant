@@ -4,6 +4,10 @@ return [
     'customers' => [
         'forgot-password' => [
             'back'                 => '返回登录？',
+<<<<<<< HEAD
+=======
+            'bagisto'              => '巴基斯托',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             'email-not-exist'      => '我们找不到使用该电子邮件地址的用户。',
             'email'                => '电子邮件',
             'forgot-password-text' => '如果您忘记了密码，请通过输入您的电子邮件地址来找回密码。',
@@ -17,6 +21,10 @@ return [
 
         'reset-password' => [
             'back-link-title'  => '返回登录',
+<<<<<<< HEAD
+=======
+            'bagisto'          => '巴基斯托',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             'confirm-password' => '确认密码',
             'email'            => '注册电子邮件',
             'footer'           => '© 版权 2010 - :current_year，Webkul Software（注册于印度）。保留所有权利。',
@@ -27,6 +35,10 @@ return [
 
         'login-form' => [
             'button-title'        => '登录',
+<<<<<<< HEAD
+=======
+            'bagisto'             => '巴基斯托',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             'create-your-account' => '创建您的帐户',
             'email'               => '电子邮件',
             'form-login-text'     => '如果您已经有帐户，请使用您的电子邮件登录。',
@@ -44,6 +56,10 @@ return [
 
         'signup-form' => [
             'account-exists'              => '已经有账户？',
+<<<<<<< HEAD
+=======
+            'bagisto'                     => '巴基斯托',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             'button-title'                => '注册',
             'confirm-pass'                => '确认密码',
             'email'                       => '电子邮件',
@@ -67,6 +83,7 @@ return [
         'account' => [
             'home'      => '主页',
 
+<<<<<<< HEAD
             'profile'   => [
                 'title'                   => '个人资料',
                 'first-name'              => '名字',
@@ -94,6 +111,36 @@ return [
                 'other'                   => '其他',
                 'save'                    => '保存',
                 'unmatch'                 => '旧密码不匹配。',
+=======
+            'profile' => [
+                'current-password'        => '当前密码',
+                'confirm-password'        => '确认密码',
+                'dob'                     => '出生日期',
+                'delete-profile'          => '删除个人资料',
+                'delete-success'          => '成功删除用户',
+                'delete-failed'           => '删除用户时出错。',
+                'delete'                  => '删除',
+                'email'                   => '邮箱',
+                'edit-profile'            => '编辑个人资料',
+                'edit'                    => '编辑',
+                'edit-success'            => '个人资料已成功更新',
+                'enter-password'          => '请输入您的密码',
+                'first-name'              => '名字',
+                'female'                  => '女',
+                'gender'                  => '性别',
+                'last-name'               => '姓氏',
+                'male'                    => '男',
+                'new-password'            => '新密码',
+                'other'                   => '其他',
+                'order-pending'           => '无法删除用户帐户，因为有待处理的订单。',
+                'phone'                   => '电话',
+                'save'                    => '保存',
+                'subscribe-to-newsletter' => '订阅通讯',
+                'select-gender'           => '选择性别',
+                'title'                   => '个人资料',
+                'unmatch'                 => '旧密码不匹配。',
+                'wrong-password'          => '密码错误！',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             ],
 
             'addresses' => [
@@ -127,11 +174,22 @@ return [
             ],
 
             'orders' => [
+<<<<<<< HEAD
                 'title'      => '订单',
                 'order-id'   => '订单号',
                 'order'      => '订单',
                 'order-date' => '订单日期',
                 'total'      => '总计',
+=======
+                'order-id'    => '订单ID',
+                'order'       => '订单',
+                'order-date'  => '订单日期',
+                'title'       => '订单',
+                'total'       => '总计',
+                'action-view' => '查看',
+                'action'      => '操作',
+                'empty-order' => '您还没有订购任何产品',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 
                 'status'        => [
                     'title' => '状态',
@@ -147,9 +205,12 @@ return [
                     ],
                 ],
 
+<<<<<<< HEAD
                 'action'      => '操作',
                 'empty-order' => '您尚未订购任何产品',
 
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'view' => [
                     'title'              => '查看',
                     'page-title'         => '订单 #:order_id',
@@ -316,6 +377,7 @@ return [
 
         'layouts' => [
             'header' => [
+<<<<<<< HEAD
                 'account'       => '账户',
                 'compare'       => '比较',
                 'cart'          => '购物车',
@@ -331,6 +393,25 @@ return [
                 'welcome'       => '欢迎',
                 'welcome-guest' => '欢迎访客',
                 'wishlist'      => '心愿单',
+=======
+                'account'           => '账户',
+                'bagisto'           => '巴基斯托',
+                'cart'              => '购物车',
+                'compare'           => '比较',
+                'dropdown-text'     => '管理购物车、订单和心愿单',
+                'logout'            => '登出',
+                'no-category-found' => '未找到类别。',
+                'orders'            => '订单',
+                'profile'           => '个人资料',
+                'search'            => '搜索',
+                'search-text'       => '在此搜索产品',
+                'sign-in'           => '登录',
+                'sign-up'           => '注册',
+                'title'             => '账户',
+                'welcome'           => '欢迎',
+                'welcome-guest'     => '欢迎访客',
+                'wishlist'          => '心愿单',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             ],
 
             'footer' => [
@@ -338,6 +419,10 @@ return [
                 'customer-service'       => '客户服务',
                 'contact-us'             => '联系我们',
                 'currency'               => '货币',
+<<<<<<< HEAD
+=======
+                'email'                  => '电子邮件',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'footer-text'            => '© 版权所有 2010 - 2023，Webkul Software（印度注册）。 保留所有权利。',
                 'locale'                 => '语言',
                 'newsletter-text'        => '准备好我们有趣的新闻通讯！',
@@ -399,6 +484,13 @@ return [
             'table' => [
                 'actions'              => '操作',
                 'no-records-available' => '没有可用记录。',
+<<<<<<< HEAD
+=======
+                'next-page'            => '下一页',
+                'page-navigation'      => '页面导航',
+                'previous-page'        => '上一页',
+                'page-number'          => '页码',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             ],
         ],
 
@@ -416,6 +508,7 @@ return [
 
         'products' => [
             'card' => [
+<<<<<<< HEAD
                 'add-to-compare'     => '成功添加到比较列表。',
                 'already-in-compare' => '该项目已添加到比较列表。',
                 'add-to-cart'        => '加入购物车',
@@ -425,12 +518,44 @@ return [
             ],
 
             'carousel' => [
+=======
+                'add-to-compare-success'      => '商品已成功添加到比较列表。',
+                'already-in-compare'          => '商品已经在比较列表中。',
+                'add-to-cart'                 => '添加到购物车',
+                'add-to-wishlist'             => '添加到愿望清单',
+                'add-to-compare'              => '添加到比较列表',
+                'new'                         => '新品',
+                'review-description'          => '成为第一个评价这个产品的人',
+                'sale'                        => '特卖',
+            ],
+
+            'carousel' => [
+                'next'     => '下一个',
+                'previous' => '上一个',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'view-all' => '查看全部',
             ],
         ],
 
         'range-slider' => [
+<<<<<<< HEAD
             'range' => '范围：',
+=======
+            'min-range' => '最小范围',
+            'max-range' => '最大范围',
+            'range'     => '范围：',
+        ],
+
+        'carousel' => [
+            'image-slide' => '图片幻灯片',
+            'next'        => '下一个',
+            'previous'    => '上一个',
+        ],
+
+        'quantity-changer' => [
+            'decrease-quantity' => '减少数量',
+            'increase-quantity' => '增加数量',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         ],
     ],
 
@@ -486,21 +611,39 @@ return [
 
             'reviews' => [
                 'attachments'      => '附件',
+<<<<<<< HEAD
                 'comment'          => '评论',
                 'customer-review'  => '客户评论',
                 'cancel'           => '取消',
+=======
+                'cancel'           => '取消',
+                'comment'          => '评论',
+                'customer-review'  => '客户评论',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'empty-review'     => '未找到评论，成为第一个评论此产品的人',
                 'failed-to-upload' => '图片上传失败',
                 'load-more'        => '加载更多',
                 'name'             => '名称',
                 'rating'           => '评分',
+<<<<<<< HEAD
                 'success'          => '评论成功提交。',
                 'submit-review'    => '提交评论',
                 'title'            => '标题',
+=======
+                'submit-review'    => '提交评论',
+                'success'          => '评论成功提交。',
+                'title'            => '标题',
+                'translate'        => '翻译',
+                'translating'      => '翻译中...',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'write-a-review'   => '写评论',
             ],
 
             'add-to-cart'            => '加入购物车',
+<<<<<<< HEAD
+=======
+            'add-to-wishlist'        => '添加到愿望清单',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             'add-to-compare'         => '已添加到比较。',
             'already-in-compare'     => '产品已经添加到比较列表中。',
             'additional-information' => '附加信息',
@@ -515,7 +658,11 @@ return [
 
         'type' => [
             'abstract' => [
+<<<<<<< HEAD
                 'offers' => '购买 :qty 件，每件 :price，节省 :discount%',
+=======
+                'offers' => '购买 :qty 件，每件 :price，节省 :discount',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             ],
         ],
     ],
@@ -529,6 +676,11 @@ return [
         ],
 
         'toolbar' => [
+<<<<<<< HEAD
+=======
+            'grid' => '网格',
+            'list' => '列表',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             'show' => '显示',
         ],
 
@@ -539,17 +691,32 @@ return [
     ],
 
     'search' => [
+<<<<<<< HEAD
         'title' => '搜索结果：:query',
+=======
+        'title'   => '搜索结果为：:query',
+        'results' => '搜索结果',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 
         'images' => [
             'index' => [
                 'something-went-wrong' => '出了点问题，请稍后重试。',
+<<<<<<< HEAD
                 'size-limit-error'     => '尺寸限制错误',
                 'only-images-allowed'  => '仅允许图片（.jpeg、.jpg、.png 等）。',
             ],
 
             'results' => [
                 'analysed-keywords' => '分析关键字：',
+=======
+                'size-limit-error'     => '大小限制错误',
+                'search'               => '搜索',
+                'only-images-allowed'  => '只允许图像（.jpeg，.jpg，.png，..）。',
+            ],
+
+            'results' => [
+                'analysed-keywords' => '分析关键词：',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             ],
         ],
     ],
@@ -590,8 +757,15 @@ return [
             'suspended-account-message' => '您的帐户已被暂停。',
             'select-hourly-duration'    => '选择一小时的时段。',
             'success-remove'            => '项目已成功从购物车中移除。',
+<<<<<<< HEAD
 
             'index'                     => [
+=======
+            'paypal-payment-cancelled'  => 'Paypal付款已被取消。',
+
+            'index'  => [
+                'bagisto'                  => '巴基斯托',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'cart'                     => '购物车',
                 'continue-shopping'        => '继续购物',
                 'empty-product'            => '您的购物车中没有产品。',
@@ -606,10 +780,22 @@ return [
                 'remove'                   => '删除',
                 'remove-selected-success'  => '已成功从购物车中删除选定的项目。',
                 'see-details'              => '查看详情',
+<<<<<<< HEAD
+=======
+                'select-all'               => '全选',
+                'select-cart-item'         => '选择购物车项目',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'tax'                      => '税',
                 'total'                    => '总计',
                 'update-cart'              => '更新购物车',
                 'view-cart'                => '查看购物车',
+<<<<<<< HEAD
+=======
+
+                'cross-sell' => [
+                    'title' => '更多选择',
+                ],
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             ],
 
             'coupon' => [
@@ -674,6 +860,10 @@ return [
                 ],
 
                 'index' => [
+<<<<<<< HEAD
+=======
+                    'bagisto' => '巴基斯托',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     'confirm' => '确认',
                 ],
 
@@ -698,6 +888,7 @@ return [
                 ],
             ],
 
+<<<<<<< HEAD
             'coupon' => [
                 'applied'         => '优惠券已应用',
                 'applied-coupon'  => '应用的优惠券',
@@ -712,6 +903,8 @@ return [
                 'subtotal'        => '小计',
             ],
 
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             'index' => [
                 'checkout' => '结帐',
                 'home'     => '主页',
@@ -732,6 +925,10 @@ return [
                 'grand-total'      => '总计',
                 'place-order'      => '下订单',
                 'processing'       => '处理中',
+<<<<<<< HEAD
+=======
+                'price_&_qty'      => ':price × :qty',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'sub-total'        => '小计',
                 'tax'              => '税',
             ],
@@ -797,10 +994,20 @@ return [
 
         'customers' => [
             'registration' => [
+<<<<<<< HEAD
                 'description' => '您的帐户已成功创建，您可以使用电子邮件地址和密码凭据登录。登录后，您将能够访问其他服务，包括查看过去的订单、愿望清单和编辑您的帐户信息。',
                 'greeting'    => '欢迎并感谢您注册我们的网站！',
                 'subject'     => '新客户注册',
                 'sign-in'     => '登录',
+=======
+                'subject'                 => '新客户注册',
+                'description'             => '您的帐户已成功创建，您可以使用电子邮件地址和密码凭据登录。登录后，您将能够访问其他服务，包括查看过去的订单、愿望清单和编辑您的帐户信息。',
+                'credentials-description' => '您的账户已创建。您的账户详细信息如下：',
+                'greeting'                => '欢迎并感谢您注册我们的网站！',
+                'sign-in'                 => '登录',
+                'password'                => '用户名/电子邮件',
+                'username-email'          => '密码',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             ],
 
             'forgot-password' => [

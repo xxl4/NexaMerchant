@@ -1,23 +1,43 @@
+<<<<<<< HEAD
 {{--
     This code needs to be refactored to reduce the amount of PHP in the Blade
     template as much as possible.
 --}}
+=======
+<!--
+    This code needs to be refactored to reduce the amount of PHP in the Blade
+    template as much as possible.
+-->
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 @php
     $showCompare = (bool) core()->getConfigData('general.content.shop.compare_option');
 
     $showWishlist = (bool) core()->getConfigData('general.content.shop.wishlist_option');
 @endphp
 
+<<<<<<< HEAD
 <div class="gap-[15px] flex-wrap px-[15px] pt-[25px] hidden max-lg:flex max-lg:mb-[15px]">
     <div class="w-full flex justify-between items-center">
         {{-- Left Navigation --}}
         <div class="flex items-center gap-x-[5px]">
+=======
+<div class="gap-4 flex-wrap px-4 pt-6 hidden max-lg:flex max-lg:mb-4">
+    <div class="w-full flex justify-between items-center">
+        <!-- Left Navigation -->
+        <div class="flex items-center gap-x-1.5">
+            {!! view_render_event('bagisto.shop.components.layouts.header.mobile.drawer.before') !!}
+
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             <x-shop::drawer
                 position="left"
                 width="80%"
             >
                 <x-slot:toggle>
+<<<<<<< HEAD
                     <span class="icon-hamburger text-[24px] cursor-pointer"></span>
+=======
+                    <span class="icon-hamburger text-2xl cursor-pointer"></span>
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 </x-slot:toggle>
 
                 <x-slot:header>
@@ -25,7 +45,11 @@
                         <a href="{{ route('shop.home.index') }}">
                             <img
                                 src="{{ bagisto_asset('images/logo.svg') }}"
+<<<<<<< HEAD
                                 alt="Bagisto"
+=======
+                                alt="{{ config('app.name') }}"
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                 width="131"
                                 height="29"
                             >
@@ -34,8 +58,13 @@
                 </x-slot:header>
 
                 <x-slot:content>
+<<<<<<< HEAD
                     {{-- Account Profile Hero Section --}}
                     <div class="grid grid-cols-[auto_1fr] gap-[15px] items-center mb-[15px] p-[10px] border border-[#E9E9E9] rounded-[12px]">
+=======
+                    <!-- Account Profile Hero Section -->
+                    <div class="grid grid-cols-[auto_1fr] gap-4 items-center mb-4 p-2.5 border border-[#E9E9E9] rounded-xl">
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                         <div class="">
                             <img
                                 src="{{ auth()->user()?->image_url ??  bagisto_asset('images/user-placeholder.png') }}"
@@ -46,23 +75,37 @@
                         @guest('customer')
                             <a
                                 href="{{ route('shop.customer.session.create') }}"
+<<<<<<< HEAD
                                 class="flex text-[16px] font-medium"
                             >
                                 @lang('Sign up or Login')
 
                                 <i class="icon-double-arrow text-[24px] ml-[10px]"></i>
+=======
+                                class="flex text-base font-medium"
+                            >
+                                @lang('Sign up or Login')
+
+                                <i class="icon-double-arrow text-2xl ltr:ml-2.5 rtl:mr-2.5"></i>
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                             </a>
                         @endguest
 
                         @auth('customer')
+<<<<<<< HEAD
                             <div class="flex flex-col gap-[10px] justify-between">
                                 <p class="text-[25px] font-mediums">Hello! {{ auth()->user()?->first_name }}</p>
+=======
+                            <div class="flex flex-col gap-2.5 justify-between">
+                                <p class="text-2xl font-mediums">Hello! {{ auth()->user()?->first_name }}</p>
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 
                                 <p class="text-[#6E6E6E] ">{{ auth()->user()?->email }}</p>
                             </div>
                         @endauth
                     </div>
 
+<<<<<<< HEAD
                     {{-- Mobile category view --}}
                     <v-mobile-category></v-mobile-category>
 
@@ -72,24 +115,51 @@
                             <!-- Dropdown Toggler -->
                             <x-slot:toggle>
                                 <div class="w-full flex gap-[10px] justify-between items-center cursor-pointer">
+=======
+                    <!-- Mobile category view -->
+                    <v-mobile-category></v-mobile-category>
+
+                    <!-- Localization & Currency Section -->
+                    <div class="absolute w-full flex bottom-0 left-0 bg-white shadow-lg p-4 gap-x-5 justify-between items-center mb-4">
+                        <x-shop::dropdown position="top-left">
+                            <!-- Dropdown Toggler -->
+                            <x-slot:toggle>
+                                <div class="w-full flex gap-2.5 justify-between items-center cursor-pointer" role="button">
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                     <span>
                                         {{ core()->getCurrentCurrency()->symbol . ' ' . core()->getCurrentCurrencyCode() }}
                                     </span>
 
+<<<<<<< HEAD
                                     <span class="icon-arrow-down text-[24px]"></span>
+=======
+                                    <span
+                                        class="icon-arrow-down text-2xl"
+                                        role="presentation"
+                                    ></span>
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                 </div>
                             </x-slot:toggle>
 
                             <!-- Dropdown Content -->
+<<<<<<< HEAD
                             <x-slot:content class="!p-[0px]">
+=======
+                            <x-slot:content class="!p-0">
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                 <v-currency-switcher></v-currency-switcher>
                             </x-slot:content>
                         </x-shop::dropdown>
 
                         <x-shop::dropdown position="top-right">
                             <x-slot:toggle>
+<<<<<<< HEAD
                                 {{-- Dropdown Toggler --}}
                                 <div class="w-full flex gap-[10px] justify-between items-center cursor-pointer">
+=======
+                                <!-- Dropdown Toggler -->
+                                <div class="w-full flex gap-2.5 justify-between items-center cursor-pointer" role="button">
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                     <img
                                         src="{{ ! empty(core()->getCurrentLocale()->logo_url)
                                                 ? core()->getCurrentLocale()->logo_url
@@ -105,12 +175,23 @@
                                         {{ core()->getCurrentChannel()->locales()->orderBy('name')->where('code', app()->getLocale())->value('name') }}
                                     </span>
 
+<<<<<<< HEAD
                                     <span class="icon-arrow-down text-[24px]"></span>
+=======
+                                    <span
+                                        class="icon-arrow-down text-2xl"
+                                        role="presentation"
+                                    ></span>
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                 </div>
                             </x-slot:toggle>
 
                             <!-- Dropdown Content -->
+<<<<<<< HEAD
                             <x-slot:content class="!p-[0px]">
+=======
+                            <x-slot:content class="!p-0">
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                 <v-locale-switcher></v-locale-switcher>
                             </x-slot:content>
                         </x-shop::dropdown>
@@ -120,6 +201,7 @@
                 <x-slot:footer></x-slot:footer>
             </x-shop::drawer>
 
+<<<<<<< HEAD
             <a
                 href="{{ route('shop.home.index') }}"
                 class="max-h-[30px]"
@@ -128,10 +210,25 @@
                 <img
                     src="{{ bagisto_asset('images/logo.svg') }}"
                     alt="Bagisto"
+=======
+            {!! view_render_event('bagisto.shop.components.layouts.header.mobile.drawer.after') !!}
+
+            {!! view_render_event('bagisto.shop.components.layouts.header.mobile.logo.before') !!}
+
+            <a
+                href="{{ route('shop.home.index') }}"
+                class="max-h-[30px]"
+                aria-label="@lang('shop::app.components.layouts.header.bagisto')"
+            >
+                <img
+                    src="{{ core()->getCurrentChannel()->logo_url ?? bagisto_asset('images/logo.svg') }}"
+                    alt="{{ config('app.name') }}"
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     width="131"
                     height="29"
                 >
             </a>
+<<<<<<< HEAD
         </div>
 
         {{-- Right Navigation --}}
@@ -162,23 +259,78 @@
                                 </p>
 
                                 <p class="text-[14px]">
+=======
+            
+            {!! view_render_event('bagisto.shop.components.layouts.header.mobile.logo.after') !!}
+        </div>
+
+        <!-- Right Navigation -->
+        <div>
+            <div class="flex items-center gap-x-5">
+                {!! view_render_event('bagisto.shop.components.layouts.header.mobile.compare.before') !!}
+
+                @if($showCompare)
+                    <a
+                        href="{{ route('shop.compare.index') }}"
+                        aria-label="@lang('shop::app.components.layouts.header.compare')"
+                    >
+                        <span class="icon-compare text-2xl cursor-pointer"></span>
+                    </a>
+                @endif
+
+                {!! view_render_event('bagisto.shop.components.layouts.header.mobile.compare.after') !!}
+
+                {!! view_render_event('bagisto.shop.components.layouts.header.mobile.mini_cart.before') !!}
+
+                @include('shop::checkout.cart.mini-cart')
+
+                {!! view_render_event('bagisto.shop.components.layouts.header.mobile.mini_cart.after') !!}
+
+                <x-shop::dropdown position="bottom-{{ core()->getCurrentLocale()->direction === 'ltr' ? 'right' : 'left' }}">
+                    <x-slot:toggle>
+                        <span class="icon-users text-2xl cursor-pointer"></span>
+                    </x-slot:toggle>
+
+                    <!-- Guest Dropdown -->
+                    @guest('customer')
+                        <x-slot:content>
+                            <div class="grid gap-2.5">
+                                <p class="text-xl font-dmserif">
+                                    @lang('shop::app.components.layouts.header.welcome-guest')
+                                </p>
+
+                                <p class="text-sm">
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                     @lang('shop::app.components.layouts.header.dropdown-text')
                                 </p>
                             </div>
 
+<<<<<<< HEAD
                             <p class="w-full mt-[12px] py-2px border border-[#E9E9E9]"></p>
 
                             <div class="flex gap-[16px] mt-[25px]">
                                 <a
                                     href="{{ route('shop.customer.session.create') }}"
                                     class="block w-max mx-auto m-0 ml-[0px] py-[15px] px-[29px] bg-navyBlue rounded-[18px] text-white text-base font-medium text-center cursor-pointer"
+=======
+                            <p class="w-full mt-3 py-2px border border-[#E9E9E9]"></p>
+
+                            <div class="flex gap-4 mt-6">
+                                <a
+                                    href="{{ route('shop.customer.session.create') }}"
+                                    class="block w-max mx-auto m-0 ltr:ml-0 rtl:mr-0 py-4 px-7 bg-navyBlue rounded-2xl text-white text-base font-medium text-center cursor-pointer"
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                 >
                                     @lang('shop::app.components.layouts.header.sign-in')
                                 </a>
 
                                 <a
                                     href="{{ route('shop.customers.register.index') }}"
+<<<<<<< HEAD
                                     class="block w-max mx-auto m-0 ml-[0px] py-[14px] px-[29px] bg-white border-2 border-navyBlue rounded-[18px] text-navyBlue text-base font-medium  text-center cursor-pointer"
+=======
+                                    class="block w-max mx-auto m-0 ltr:ml-0 rtl:mr-0 py-3.5 px-7 bg-white border-2 border-navyBlue rounded-2xl text-navyBlue text-base font-medium  text-center cursor-pointer"
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                 >
                                     @lang('shop::app.components.layouts.header.sign-up')
                                 </a>
@@ -186,32 +338,56 @@
                         </x-slot:content>
                     @endguest
 
+<<<<<<< HEAD
                     {{-- Customers Dropdown --}}
                     @auth('customer')
                         <x-slot:content class="!p-[0px]">
                             <div class="grid gap-[10px] p-[20px] pb-0">
                                 <p class="text-[20px] font-dmserif">
+=======
+                    <!-- Customers Dropdown -->
+                    @auth('customer')
+                        <x-slot:content class="!p-0">
+                            <div class="grid gap-2.5 p-5 pb-0">
+                                <p class="text-xl font-dmserif">
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                     @lang('shop::app.components.layouts.header.welcome')’
                                     {{ auth()->guard('customer')->user()->first_name }}
                                 </p>
 
+<<<<<<< HEAD
                                 <p class="text-[14px]">
+=======
+                                <p class="text-sm">
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                     @lang('shop::app.components.layouts.header.dropdown-text')
                                 </p>
                             </div>
 
+<<<<<<< HEAD
                             <p class="w-full mt-[12px] py-2px border border-[#E9E9E9]"></p>
 
                             <div class="grid gap-[4px] mt-[10px] pb-[10px]">
                                 <a
                                     class="px-5 py-2 text-[16px] hover:bg-gray-100 cursor-pointer"
+=======
+                            <p class="w-full mt-3 py-2px border border-[#E9E9E9]"></p>
+
+                            <div class="grid gap-1 mt-2.5 pb-2.5">
+                                <a
+                                    class="px-5 py-2 text-base hover:bg-gray-100 cursor-pointer"
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                     href="{{ route('shop.customers.account.profile.index') }}"
                                 >
                                     @lang('shop::app.components.layouts.header.profile')
                                 </a>
 
                                 <a
+<<<<<<< HEAD
                                     class="px-5 py-2 text-[16px] hover:bg-gray-100 cursor-pointer"
+=======
+                                    class="px-5 py-2 text-base hover:bg-gray-100 cursor-pointer"
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                     href="{{ route('shop.customers.account.orders.index') }}"
                                 >
                                     @lang('shop::app.components.layouts.header.orders')
@@ -219,14 +395,22 @@
 
                                 @if ($showWishlist)
                                     <a
+<<<<<<< HEAD
                                         class="px-5 py-2 text-[16px] hover:bg-gray-100 cursor-pointer"
+=======
+                                        class="px-5 py-2 text-base hover:bg-gray-100 cursor-pointer"
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                         href="{{ route('shop.customers.account.wishlist.index') }}"
                                     >
                                         @lang('shop::app.components.layouts.header.wishlist')
                                     </a>
                                 @endif
 
+<<<<<<< HEAD
                                 {{--Customers logout--}}
+=======
+                                <!--Customers logout-->
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                 @auth('customer')
                                     <x-shop::form
                                         method="DELETE"
@@ -236,7 +420,11 @@
                                     </x-shop::form>
 
                                     <a
+<<<<<<< HEAD
                                         class="px-5 py-2 text-[16px] hover:bg-gray-100 cursor-pointer"
+=======
+                                        class="px-5 py-2 text-base hover:bg-gray-100 cursor-pointer"
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                         href="{{ route('shop.customer.session.destroy') }}"
                                         onclick="event.preventDefault(); document.getElementById('customerLogout').submit();"
                                     >
@@ -251,6 +439,7 @@
         </div>
     </div>
 
+<<<<<<< HEAD
     {{-- Serach Catalog Form --}}
     <form action="{{ route('shop.search.index') }}" class="flex items-center w-full">
         <label for="organic-search" class="sr-only">Search</label>
@@ -258,6 +447,22 @@
         <div class="relative w-full">
             <div
                 class="icon-search flex items-center absolute left-[12px] top-[12px] text-[25px] pointer-events-none">
+=======
+    {!! view_render_event('bagisto.shop.components.layouts.header.mobile.search.before') !!}
+
+    <!-- Serach Catalog Form -->
+    <form action="{{ route('shop.search.index') }}" class="flex items-center w-full">
+        <label 
+            for="organic-search" 
+            class="sr-only"
+        >
+            @lang('shop::app.components.layouts.header.search')
+        </label>
+
+        <div class="relative w-full">
+            <div
+                class="icon-search flex items-center absolute ltr:left-3 rtl:right-3 top-3 text-2xl pointer-events-none">
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             </div>
 
             <input
@@ -269,6 +474,7 @@
                 required
             >
 
+<<<<<<< HEAD
             <button
                 type="button"
                 class="icon-camera flex items-center absolute top-[12px] right-[12px] pr-3 text-[22px]"
@@ -277,22 +483,44 @@
             </button>
         </div>
     </form>
+=======
+            @if (core()->getConfigData('general.content.shop.image_search'))
+                @include('shop::search.images.index')
+            @endif
+        </div>
+    </form>
+
+    {!! view_render_event('bagisto.shop.components.layouts.header.mobile.search.after') !!}
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 </div>
 
 @pushOnce('scripts')
     <script type="text/x-template" id="v-mobile-category-template">
         <div>
             <template v-for="(category) in categories">
+<<<<<<< HEAD
                 <div class="flex justify-between items-center border border-b-[1px] border-l-0 border-r-0 border-t-0 border-[#f3f3f5]">
                     <a
                         :href="category.url"
                         class="flex items-center justify-between pb-[20px] mt-[20px]"
+=======
+                {!! view_render_event('bagisto.shop.components.layouts.header.mobile.category.before') !!}
+
+                <div class="flex justify-between items-center border border-b border-l-0 border-r-0 border-t-0 border-[#f3f3f5]">
+                    <a
+                        :href="category.url"
+                        class="flex items-center justify-between pb-5 mt-5"
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                         v-text="category.name"
                     >
                     </a>
 
                     <span
+<<<<<<< HEAD
                         class="text-[24px] cursor-pointer"
+=======
+                        class="text-2xl cursor-pointer"
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                         :class="{'icon-arrow-down': category.isOpen, 'icon-arrow-right': ! category.isOpen}"
                         @click="toggle(category)"
                     >
@@ -300,21 +528,36 @@
                 </div>
 
                 <div
+<<<<<<< HEAD
                     class="grid gap-[8px]"
+=======
+                    class="grid gap-2"
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     v-if="category.isOpen"
                 >
                     <ul v-if="category.children.length">
                         <li v-for="secondLevelCategory in category.children">
+<<<<<<< HEAD
                             <div class="flex justify-between items-center ml-3 border border-b-[1px] border-l-0 border-r-0 border-t-0 border-[#f3f3f5]">
                                 <a
                                     :href="secondLevelCategory.url"
                                     class="flex items-center justify-between pb-[20px] mt-[20px]"
+=======
+                            <div class="flex justify-between items-center ltr:ml-3 rtl:mr-3 border border-b border-l-0 border-r-0 border-t-0 border-[#f3f3f5]">
+                                <a
+                                    :href="secondLevelCategory.url"
+                                    class="flex items-center justify-between pb-5 mt-5"
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                     v-text="secondLevelCategory.name"
                                 >
                                 </a>
 
                                 <span
+<<<<<<< HEAD
                                     class="text-[24px] cursor-pointer"
+=======
+                                    class="text-2xl cursor-pointer"
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                     :class="{
                                         'icon-arrow-down': secondLevelCategory.category_show,
                                         'icon-arrow-right': ! secondLevelCategory.category_show
@@ -327,10 +570,17 @@
                             <div v-if="secondLevelCategory.category_show">
                                 <ul v-if="secondLevelCategory.children.length">
                                     <li v-for="thirdLevelCategory in secondLevelCategory.children">
+<<<<<<< HEAD
                                         <div class="flex justify-between items-center ml-3 border border-b-[1px] border-l-0 border-r-0 border-t-0 border-[#f3f3f5]">
                                             <a
                                                 :href="thirdLevelCategory.url"
                                                 class="flex items-center justify-between mt-[20px] ml-3 pb-[20px]"
+=======
+                                        <div class="flex justify-between items-center ltr:ml-3 rtl:mr-3 border border-b border-l-0 border-r-0 border-t-0 border-[#f3f3f5]">
+                                            <a
+                                                :href="thirdLevelCategory.url"
+                                                class="flex items-center justify-between mt-5 ltr:ml-3 rtl:mr-3 pb-5"
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                                 v-text="thirdLevelCategory.name"
                                             >
                                             </a>
@@ -339,22 +589,40 @@
                                 </ul>
 
                                 <span
+<<<<<<< HEAD
                                     class="ml-2"
                                     v-else
                                 >
                                     @lang('No category found.')
+=======
+                                    class="ltr:ml-2 rtl:mr-2"
+                                    v-else
+                                >
+                                    @lang('shop::app.components.layouts.header.no-category-found')
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                 </span>
                             </div>
                         </li>
                     </ul>
 
                     <span
+<<<<<<< HEAD
                         class="ml-2"
                         v-else
                     >
                         @lang('No category found.')
                     </span>
                 </div>
+=======
+                        class="ltr:ml-2 rtl:mr-2 mt-2"
+                        v-else
+                    >
+                        @lang('shop::app.components.layouts.header.no-category-found')
+                    </span>
+                </div>
+
+                {!! view_render_event('bagisto.shop.components.layouts.header.mobile.category.after') !!}
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             </template>
         </div>
     </script>

@@ -4,6 +4,10 @@ return [
     'customers' => [
         'forgot-password' => [
             'back'                 => 'Girişe geri dön?',
+<<<<<<< HEAD
+=======
+            'bagisto'              => 'Bagisto',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             'email-not-exist'      => 'Bu e-posta adresiyle kullanıcı bulunamadı.',
             'email'                => 'E-posta',
             'forgot-password-text' => 'Parolanızı unuttuysanız, e-posta adresinizi girerek kurtarabilirsiniz.',
@@ -17,6 +21,10 @@ return [
 
         'reset-password' => [
             'back-link-title'  => 'Girişe Geri Dön',
+<<<<<<< HEAD
+=======
+            'bagisto'          => 'Bagisto',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             'confirm-password' => 'Parolayı Onayla',
             'email'            => 'Kayıtlı E-posta',
             'footer'           => '© Telif Hakkı 2010 - :current_year, Webkul Software (Hindistan\'da kayıtlı). Tüm hakları saklıdır.',
@@ -27,6 +35,10 @@ return [
 
         'login-form' => [
             'button-title'        => 'Oturum Aç',
+<<<<<<< HEAD
+=======
+            'bagisto'             => 'Bagisto',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             'create-your-account' => 'Hesabınızı oluşturun',
             'email'               => 'E-posta',
             'form-login-text'     => 'Bir hesabınız varsa, e-posta adresinizle oturum açın.',
@@ -44,6 +56,10 @@ return [
 
         'signup-form' => [
             'account-exists'              => 'Zaten bir hesabınız var mı?',
+<<<<<<< HEAD
+=======
+            'bagisto'                     => 'Bagisto',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             'button-title'                => 'Kaydol',
             'confirm-pass'                => 'Parolayı Onayla',
             'email'                       => 'E-posta',
@@ -91,6 +107,10 @@ return [
                 'phone'                   => 'Telefon',
                 'save'                    => 'Kaydet',
                 'subscribe-to-newsletter' => 'Bültenimize Abone Ol',
+<<<<<<< HEAD
+=======
+                'select-gender'           => 'Cinsiyet Seçin',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'title'                   => 'Profil',
                 'unmatch'                 => 'Eski şifre uyuşmuyor.',
                 'wrong-password'          => 'Yanlış Şifre!',
@@ -127,11 +147,22 @@ return [
             ],
 
             'orders' => [
+<<<<<<< HEAD
                 'order-id'   => 'Sipariş ID',
                 'order'      => 'Sipariş',
                 'order-date' => 'Sipariş Tarihi',
                 'title'      => 'Siparişler',
                 'total'      => 'Toplam',
+=======
+                'order-id'    => 'Pedido ID',
+                'order'       => 'Pedido',
+                'order-date'  => 'Pedido Tarihi',
+                'title'       => 'Pedidos',
+                'total'       => 'Toplam',
+                'action-view' => 'Görüntüle',
+                'action'      => 'İşlem',
+                'empty-order' => 'Son bir ürümüyü pedido yapmadınız',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 
                 'status' => [
                     'title' => 'Durum',
@@ -147,9 +178,12 @@ return [
                     ],
                 ],
 
+<<<<<<< HEAD
                 'action'      => 'Eylem',
                 'empty-order' => 'Henüz hiçbir ürün sipariş etmediniz',
 
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'view' => [
                     'billing-address'    => 'Fatura Adresi',
                     'cancel-btn-title'   => 'İptal Et',
@@ -316,6 +350,7 @@ return [
 
         'layouts' => [
             'header' => [
+<<<<<<< HEAD
                 'account'       => 'Hesap',
                 'compare'       => 'Karşılaştır',
                 'cart'          => 'Sepet',
@@ -331,6 +366,25 @@ return [
                 'welcome'       => 'Hoş geldiniz',
                 'welcome-guest' => 'Hoş geldiniz Misafir',
                 'wishlist'      => 'İstek Listesi',
+=======
+                'account'           => 'Hesap',
+                'bagisto'           => 'Bagisto',
+                'cart'              => 'Sepet',
+                'compare'           => 'Karşılaştır',
+                'dropdown-text'     => 'Sepeti Yönet, Siparişleri ve İstek Listesini Görüntüle',
+                'logout'            => 'Çıkış Yap',
+                'no-category-found' => 'Kategori bulunamadı.',
+                'orders'            => 'Siparişler',
+                'profile'           => 'Profil',
+                'search'            => 'Ara',
+                'search-text'       => 'Ürünleri burada ara',
+                'sign-in'           => 'Giriş Yap',
+                'sign-up'           => 'Kaydol',
+                'title'             => 'Hesap',
+                'welcome'           => 'Hoş geldiniz',
+                'welcome-guest'     => 'Hoş geldiniz Misafir',
+                'wishlist'          => 'İstek Listesi',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             ],
 
             'footer' => [
@@ -338,6 +392,10 @@ return [
                 'customer-service'       => 'Müşteri Hizmetleri',
                 'contact-us'             => 'Bizimle İletişime Geçin',
                 'currency'               => 'Para Birimi',
+<<<<<<< HEAD
+=======
+                'email'                  => 'E-posta',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'footer-text'            => '© Telif Hakkı 2010 - 2023, Webkul Software (Hindistan\'da kayıtlı). Tüm hakları saklıdır.',
                 'locale'                 => 'Yerel Ayar',
                 'newsletter-text'        => 'Eğlenceli Bültenimize Hazır Olun!',
@@ -398,7 +456,15 @@ return [
 
             'table' => [
                 'actions'              => 'Eylemler',
+<<<<<<< HEAD
                 'no-records-available' => 'Kayıt Bulunamadı.',
+=======
+                'no-records-available' => 'Uygun kayıt bulunamadı.',
+                'next-page'            => 'Sonraki Sayfa',
+                'page-navigation'      => 'Sayfa Gezinme',
+                'previous-page'        => 'Önceki Sayfa',
+                'page-number'          => 'Sayfa Numarası',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             ],
         ],
 
@@ -416,6 +482,7 @@ return [
 
         'products' => [
             'card' => [
+<<<<<<< HEAD
                 'add-to-compare'     => 'Ürün karşılaştırmaya başarıyla eklendi.',
                 'already-in-compare' => 'Ürün zaten karşılaştırmaya eklenmiş.',
                 'add-to-cart'        => 'Sepete Ekle',
@@ -426,11 +493,44 @@ return [
 
             'carousel' => [
                 'view-all' => 'Hepsini Görüntüle',
+=======
+                'add-to-compare-success'      => 'Öğe karşılaştırma listesine başarıyla eklendi.',
+                'already-in-compare'          => 'Öğe zaten karşılaştırma listesine eklenmiş.',
+                'add-to-cart'                 => 'Sepete Ekle',
+                'add-to-wishlist'             => 'Dilek Listesine Ekle',
+                'add-to-compare'              => 'Karşılaştırma Listesine Ekle',
+                'new'                         => 'Yeni',
+                'review-description'          => 'Bu ürünü değerlendiren ilk kişi olun',
+                'sale'                        => 'Satış',
+            ],
+
+            'carousel' => [
+                'next'     => 'Sonraki',
+                'previous' => 'Önceki',
+                'view-all' => 'Tümünü Görüntüle',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             ],
         ],
 
         'range-slider' => [
+<<<<<<< HEAD
             'range' => 'Aralık:',
+=======
+            'min-range' => 'Minimum Aralık',
+            'max-range' => 'Maksimum Aralık',
+            'range'     => 'Aralık:',
+        ],
+
+        'carousel' => [
+            'image-slide' => 'Resim Slaytı',
+            'next'        => 'Sonraki',
+            'previous'    => 'Önceki',
+        ],
+
+        'quantity-changer' => [
+            'decrease-quantity' => 'Miktarı Azalt',
+            'increase-quantity' => 'Miktarı Artır',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         ],
     ],
 
@@ -485,6 +585,7 @@ return [
             ],
 
             'reviews' => [
+<<<<<<< HEAD
                 'attachments'      => 'Ekler',
                 'comment'          => 'Yorum',
                 'customer-review'  => 'Müşteri Yorumları',
@@ -501,6 +602,28 @@ return [
             ],
 
             'add-to-cart'            => 'Sepete Ekle',
+=======
+                'attachments'       => 'Ekler',
+                'cancel'            => 'İptal',
+                'comment'           => 'Yorum',
+                'customer-review'   => 'Müşteri Yorumları',
+                'empty-review'      => 'Henüz yorum bulunamadı, ilk yorumu siz yapın',
+                'failed-to-upload'  => 'Resim yüklemesi başarısız oldu',
+                'load-more'         => 'Daha Fazla Yükle',
+                'name'              => 'Adı',
+                'rating'            => 'Derecelendirme',
+                'submit-review'     => 'Yorumu Gönder',
+                'success'           => 'Yorum başarıyla gönderildi.',
+                'title'             => 'Başlık',
+                'translate'         => 'Çevir',
+                'translating'       => 'Çevriliyor...',
+                'write-a-review'    => 'Yorum Yazın',
+
+            ],
+
+            'add-to-cart'            => 'Sepete Ekle',
+            'add-to-wishlist'        => 'Dilek Listesine Ekle',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             'add-to-compare'         => 'Ürün karşılaştırmada',
             'already-in-compare'     => 'Ürün zaten karşılaştırmada',
             'additional-information' => 'Ek Bilgiler',
@@ -515,7 +638,11 @@ return [
 
         'type' => [
             'abstract' => [
+<<<<<<< HEAD
                 'offers' => ':qty adet için :price her biri ve %:discount tasarruf edin',
+=======
+                'offers' => ':qty adet için :price her biri ve :discount tasarruf edin',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             ],
         ],
     ],
@@ -529,7 +656,13 @@ return [
         ],
 
         'toolbar' => [
+<<<<<<< HEAD
             'show' => 'Göster',
+=======
+            'grid' => 'Сітка',
+            'list' => 'Список',
+            'show' => 'Показати',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         ],
 
         'view' => [
@@ -539,7 +672,25 @@ return [
     ],
 
     'search' => [
+<<<<<<< HEAD
         'title' => ':query için arama sonuçları',
+=======
+        'title'   => ': :query için arama sonuçları',
+        'results' => 'Arama sonuçları',
+
+        'images' => [
+            'index' => [
+                'something-went-wrong' => 'Bir şeyler yanlış gitti, lütfen daha sonra tekrar deneyin.',
+                'size-limit-error'     => 'Boyut Sınırı Hatası',
+                'search'               => 'Ara',
+                'only-images-allowed'  => 'Yalnızca resimler (.jpeg, .jpg, .png, ..) izin verilmiştir.',
+            ],
+
+            'results' => [
+                'analysed-keywords' => 'Analiz Edilen Anahtar Kelimeler:',
+            ],
+        ],
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
     ],
 
     'compare' => [
@@ -578,8 +729,15 @@ return [
             'suspended-account-message' => 'Hesabınız askıya alınmıştır.',
             'select-hourly-duration'    => 'Bir saatlik süre aralığı seçin.',
             'success-remove'            => 'Ürün başarıyla sepetten kaldırıldı.',
+<<<<<<< HEAD
 
             'index' => [
+=======
+            'paypal-payment-cancelled'  => 'Paypal ödemesi iptal edildi.',
+
+            'index' => [
+                'bagisto'                  => 'Bagisto',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'cart'                     => 'Sepet',
                 'continue-shopping'        => 'Alışverişe Devam Et',
                 'empty-product'            => 'Sepetinizde ürün bulunmuyor.',
@@ -594,10 +752,22 @@ return [
                 'remove'                   => 'Kaldır',
                 'remove-selected-success'  => 'Seçilen ürünler başarıyla sepetten kaldırıldı.',
                 'see-details'              => 'Detayları Gör',
+<<<<<<< HEAD
+=======
+                'select-all'               => 'Hepsini Seç',
+                'select-cart-item'         => 'Alışveriş Sepeti Öğesini Seç',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'tax'                      => 'Vergi',
                 'total'                    => 'Toplam',
                 'update-cart'              => 'Sepeti Güncelle',
                 'view-cart'                => 'Sepeti Görüntüle',
+<<<<<<< HEAD
+=======
+
+                'cross-sell' => [
+                    'title' => 'Daha fazla seçenek',
+                ],
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             ],
 
             'coupon'   => [
@@ -662,6 +832,10 @@ return [
                 ],
 
                 'index' => [
+<<<<<<< HEAD
+=======
+                    'bagisto' => 'Bagisto',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     'confirm' => 'Onayla',
                 ],
 
@@ -686,6 +860,7 @@ return [
                 ],
             ],
 
+<<<<<<< HEAD
             'coupon' => [
                 'applied'         => 'Kupon Uygulandı',
                 'applied-coupon'  => 'Uygulanan Kupon',
@@ -700,6 +875,8 @@ return [
                 'subtotal'        => 'Ara Toplam',
             ],
 
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             'index' => [
                 'checkout' => 'Ödeme',
                 'home'     => 'Anasayfa',
@@ -720,6 +897,10 @@ return [
                 'grand-total'      => 'Genel Toplam',
                 'place-order'      => 'Sipariş Ver',
                 'processing'       => 'İşleniyor',
+<<<<<<< HEAD
+=======
+                'price_&_qty'      => ':price × :qty',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'sub-total'        => 'Ara Toplam',
                 'tax'              => 'Vergi',
             ],
@@ -785,10 +966,20 @@ return [
 
         'customers' => [
             'registration' => [
+<<<<<<< HEAD
                 'description' => 'Hesabınız başarıyla oluşturuldu ve şimdi e-posta adresiniz ve parola bilgilerinizle giriş yapabilirsiniz. Giriş yaptıktan sonra, geçmiş siparişleri inceleme, favorileri gözden geçirme ve hesap bilgilerinizi düzenleme gibi diğer hizmetlere erişebilirsiniz.',
                 'greeting'    => 'Hoş geldiniz ve bize kaydolduğunuz için teşekkür ederiz!',
                 'subject'     => 'Yeni Müşteri Kaydı',
                 'sign-in'     => 'Giriş yap',
+=======
+                'subject'                 => 'Yeni Müşteri Kaydı',
+                'description'             => 'Hesabınız başarıyla oluşturuldu ve şimdi e-posta adresiniz ve parola bilgilerinizle giriş yapabilirsiniz. Giriş yaptıktan sonra, geçmiş siparişleri inceleme, favorileri gözden geçirme ve hesap bilgilerinizi düzenleme gibi diğer hizmetlere erişebilirsiniz.',
+                'credentials-description' => 'Hesabınız oluşturuldu. Hesap detaylarınız aşağıdadır.',
+                'greeting'                => 'Hoş geldiniz ve bize kaydolduğunuz için teşekkür ederiz!',
+                'sign-in'                 => 'Giriş yap',
+                'username-email'          => 'Kullanıcı adı/E-posta',
+                'password'                => 'Şifre',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             ],
 
             'forgot-password' => [

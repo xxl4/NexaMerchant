@@ -4,6 +4,10 @@ return [
     'customers' => [
         'forgot-password' => [
             'back'                 => 'サインインに戻る？',
+<<<<<<< HEAD
+=======
+            'bagisto'              => 'バギスト',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             'email-not-exist'      => 'そのメールアドレスを持つユーザーが見つかりません。',
             'email'                => 'メール',
             'forgot-password-text' => 'パスワードを忘れた場合は、メールアドレスを入力して回復してください。',
@@ -17,6 +21,10 @@ return [
 
         'reset-password' => [
             'back-link-title'  => 'サインインに戻る',
+<<<<<<< HEAD
+=======
+            'bagisto'          => 'バギスト',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             'confirm-password' => 'パスワードの確認',
             'email'            => '登録済みのメール',
             'footer'           => '© 2010 - :current_year、Webkul Software（インドで登録）。全著作権所有。',
@@ -27,6 +35,10 @@ return [
 
         'login-form' => [
             'button-title'        => 'サインイン',
+<<<<<<< HEAD
+=======
+            'bagisto'             => 'バギスト',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             'create-your-account' => 'アカウントを作成',
             'email'               => 'メール',
             'form-login-text'     => 'アカウントをお持ちの場合、メールアドレスでサインインしてください。',
@@ -44,6 +56,10 @@ return [
 
         'signup-form' => [
             'account-exists'              => 'すでにアカウントをお持ちですか？',
+<<<<<<< HEAD
+=======
+            'bagisto'                     => 'バギスト',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             'button-title'                => '登録',
             'confirm-pass'                => 'パスワードの確認',
             'email'                       => 'メール',
@@ -91,6 +107,10 @@ return [
                 'phone'                   => '電話',
                 'save'                    => '保存',
                 'subscribe-to-newsletter' => 'ニュースレターに登録',
+<<<<<<< HEAD
+=======
+                'select-gender'           => '性別を選択',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'title'                   => 'プロフィール',
                 'unmatch'                 => '古いパスワードが一致しません。',
                 'wrong-password'          => '間違ったパスワード！',
@@ -127,11 +147,22 @@ return [
             ],
 
             'orders' => [
+<<<<<<< HEAD
                 'order-id'   => '注文ID',
                 'order'      => '注文',
                 'order-date' => '注文日',
                 'title'      => '注文',
                 'total'      => '合計',
+=======
+                'order-id'    => '注文ID',
+                'order'       => '注文',
+                'order-date'  => '注文日',
+                'title'       => '注文',
+                'total'       => '合計',
+                'action-view' => '表示',
+                'action'      => 'アクション',
+                'empty-order' => 'まだ製品を注文していません',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 
                 'status' => [
                     'title' => 'ステータス',
@@ -147,9 +178,12 @@ return [
                     ],
                 ],
 
+<<<<<<< HEAD
                 'action'      => 'アクション',
                 'empty-order' => 'まだ製品を注文していません',
 
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'view' => [
                     'billing-address'    => '請求先住所',
                     'cancel-btn-title'   => 'キャンセル',
@@ -316,6 +350,7 @@ return [
 
         'layouts' => [
             'header' => [
+<<<<<<< HEAD
                 'account'       => 'アカウント',
                 'compare'       => '比較',
                 'cart'          => 'カート',
@@ -331,6 +366,25 @@ return [
                 'welcome'       => 'ようこそ',
                 'welcome-guest' => 'ゲストさん、ようこそ',
                 'wishlist'      => 'ウィッシュリスト',
+=======
+                'account'           => 'アカウント',
+                'bagisto'           => 'バギスト',
+                'cart'              => 'カート',
+                'compare'           => '比較',
+                'dropdown-text'     => 'カート、注文、ウィッシュリストの管理',
+                'logout'            => 'ログアウト',
+                'no-category-found' => 'カテゴリが見つかりませんでした。',
+                'orders'            => '注文',
+                'profile'           => 'プロフィール',
+                'search'            => '検索',
+                'search-text'       => 'ここで製品を検索',
+                'sign-in'           => 'サインイン',
+                'sign-up'           => '新規登録',
+                'title'             => 'アカウント',
+                'welcome'           => 'ようこそ',
+                'welcome-guest'     => 'ゲストさん、ようこそ',
+                'wishlist'          => 'ウィッシュリスト',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             ],
 
             'footer' => [
@@ -338,6 +392,10 @@ return [
                 'customer-service'       => 'カスタマーサービス',
                 'contact-us'             => 'お問い合わせ',
                 'currency'               => '通貨',
+<<<<<<< HEAD
+=======
+                'email'                  => 'Email',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'footer-text'            => '© 2010 - 2023年、Webkul Software（インドで登録）の著作権所有。全著作権所有。',
                 'locale'                 => 'ロケール',
                 'newsletter-text'        => '楽しいニュースレターの準備をしてください！',
@@ -398,7 +456,15 @@ return [
 
             'table' => [
                 'actions'              => 'アクション',
+<<<<<<< HEAD
                 'no-records-available' => '利用可能なレコードがありません。',
+=======
+                'no-records-available' => '利用可能なレコードはありません。',
+                'next-page'            => '次のページ',
+                'page-navigation'      => 'ページナビゲーション',
+                'previous-page'        => '前のページ',
+                'page-number'          => 'ページ番号',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             ],
         ],
 
@@ -416,6 +482,7 @@ return [
 
         'products' => [
             'card' => [
+<<<<<<< HEAD
                 'add-to-compare'     => '商品が比較リストに正常に追加されました。',
                 'already-in-compare' => '商品は既に比較リストに追加されています。',
                 'add-to-cart'        => 'カートに追加',
@@ -426,11 +493,44 @@ return [
 
             'carousel' => [
                 'view-all' => 'すべてを表示',
+=======
+                'add-to-compare-success'      => 'アイテムが比較リストに追加されました。',
+                'already-in-compare'          => 'アイテムはすでに比較リストに追加されています。',
+                'add-to-cart'                 => 'カートに追加',
+                'add-to-wishlist'             => 'ウィッシュリストに追加',
+                'add-to-compare'              => '比較リストに追加',
+                'new'                         => '新着',
+                'review-description'          => 'この製品の最初のレビュアになる',
+                'sale'                        => 'セール',
+            ],
+
+            'carousel' => [
+                'next'     => '次へ',
+                'previous' => '前へ',
+                'view-all' => 'すべて表示',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             ],
         ],
 
         'range-slider' => [
+<<<<<<< HEAD
             'range' => '範囲:',
+=======
+            'min-range' => '最小範囲',
+            'max-range' => '最大範囲',
+            'range'     => '範囲:',
+        ],
+
+        'carousel' => [
+            'image-slide' => '画像スライド',
+            'next'        => '次へ',
+            'previous'    => '前へ',
+        ],
+
+        'quantity-changer' => [
+            'decrease-quantity' => '数量を減らす',
+            'increase-quantity' => '数量を増やす',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         ],
     ],
 
@@ -486,21 +586,39 @@ return [
 
             'reviews' => [
                 'attachments'      => '添付ファイル',
+<<<<<<< HEAD
                 'comment'          => 'コメント',
                 'customer-review'  => 'カスタマーレビュー',
                 'cancel'           => 'キャンセル',
+=======
+                'cancel'           => 'キャンセル',
+                'comment'          => 'コメント',
+                'customer-review'  => 'カスタマーレビュー',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'empty-review'     => 'レビューが見つかりません。最初のレビューを投稿してください',
                 'failed-to-upload' => '画像のアップロードに失敗しました',
                 'load-more'        => 'さらに読み込む',
                 'name'             => '名前',
                 'rating'           => '評価',
+<<<<<<< HEAD
                 'success'          => 'レビューが正常に送信されました。',
                 'submit-review'    => 'レビューを送信',
                 'title'            => 'タイトル',
+=======
+                'submit-review'    => 'レビューを送信',
+                'success'          => 'レビューが正常に送信されました。',
+                'title'            => 'タイトル',
+                'translate'        => '翻訳',
+                'translating'      => '翻訳中...',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'write-a-review'   => 'レビューを書く',
             ],
 
             'add-to-cart'            => 'カートに追加',
+<<<<<<< HEAD
+=======
+            'add-to-wishlist'        => 'ウィッシュリストに追加',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             'add-to-compare'         => '比較に追加',
             'already-in-compare'     => '製品はすでに比較に追加されています。',
             'additional-information' => '追加情報',
@@ -515,7 +633,11 @@ return [
 
         'type' => [
             'abstract' => [
+<<<<<<< HEAD
                 'offers' => ':qty 個を :price で購入し、:discount% 節約',
+=======
+                'offers' => ':qty 個を :price で購入し、:discount 節約',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             ],
         ],
     ],
@@ -529,6 +651,11 @@ return [
         ],
 
         'toolbar' => [
+<<<<<<< HEAD
+=======
+            'grid' => 'グリッド',
+            'list' => 'リスト',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             'show' => '表示',
         ],
 
@@ -539,7 +666,25 @@ return [
     ],
 
     'search' => [
+<<<<<<< HEAD
         'title' => ':queryの検索結果',
+=======
+        'title'   => ':queryの検索結果',
+        'results' => '検索結果',
+
+        'images' => [
+            'index' => [
+                'something-went-wrong' => '問題が発生しました。後でもう一度お試しください。',
+                'size-limit-error'     => 'サイズ制限エラー',
+                'search'               => '検索',
+                'only-images-allowed'  => '画像のみ (.jpeg、.jpg、.png など) が許可されています。',
+            ],
+
+            'results' => [
+                'analysed-keywords' => '分析されたキーワード:',
+            ],
+        ],
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
     ],
 
     'compare' => [
@@ -572,6 +717,10 @@ return [
             'missing-options'           => 'この製品にはオプションがありません。',
             'missing-links'             => 'この製品にはダウンロードリンクがありません。',
             'minimum-order-message'     => '最小注文金額は :amount です',
+<<<<<<< HEAD
+=======
+            'paypal-payment-cancelled'  => 'PayPalの支払いがキャンセルされました。',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             'qty-missing'               => '少なくとも1つの製品は1以上の数量を持つ必要があります。',
             'return-to-shop'            => 'ショップに戻る',
             'rule-applied'              => 'カートルールが適用されました',
@@ -580,6 +729,10 @@ return [
             'success-remove'            => 'アイテムはカートから正常に削除されました。',
 
             'index' => [
+<<<<<<< HEAD
+=======
+                'bagisto'                  => 'バギスト',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'cart'                     => 'カート',
                 'continue-shopping'        => 'ショッピングを続ける',
                 'empty-product'            => 'カートに製品がありません。',
@@ -594,6 +747,11 @@ return [
                 'remove'                   => '削除',
                 'remove-selected-success'  => '選択したアイテムはカートから正常に削除されました。',
                 'see-details'              => '詳細を表示',
+<<<<<<< HEAD
+=======
+                'select-all'               => 'すべて選択',
+                'select-cart-item'         => 'カートのアイテムを選択',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'tax'                      => '税金',
                 'total'                    => '合計',
                 'update-cart'              => 'カートを更新',
@@ -614,6 +772,13 @@ return [
                 'remove'          => 'クーポンを削除',
                 'success-apply'   => 'クーポンコードが正常に適用されました。',
                 'subtotal'        => '小計',
+<<<<<<< HEAD
+=======
+
+                'cross-sell' => [
+                    'title' => 'さらなる選択肢',
+                ],
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             ],
 
             'mini-cart' => [
@@ -662,6 +827,10 @@ return [
                 ],
 
                 'index' => [
+<<<<<<< HEAD
+=======
+                    'bagisto' => 'バギスト',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     'confirm' => '確認',
                 ],
 
@@ -686,6 +855,7 @@ return [
                 ],
             ],
 
+<<<<<<< HEAD
             'coupon' => [
                 'applied'         => 'クーポンが適用されました',
                 'applied-coupon'  => '適用されたクーポン',
@@ -700,6 +870,8 @@ return [
                 'subtotal'        => '小計',
             ],
 
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             'index' => [
                 'checkout' => 'チェックアウト',
                 'home'     => 'ホーム',
@@ -720,6 +892,10 @@ return [
                 'grand-total'      => '合計金額',
                 'place-order'      => '注文する',
                 'processing'       => '処理中',
+<<<<<<< HEAD
+=======
+                'price_&_qty'      => ':price × :qty',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'sub-total'        => '小計',
                 'tax'              => '税金',
             ],
@@ -785,10 +961,20 @@ return [
 
         'customers' => [
             'registration' => [
+<<<<<<< HEAD
                 'description' => 'アカウントが正常に作成され、メールアドレスとパスワードの資格情報を使用してログインできるようになりました。ログインすると、過去の注文の確認、ウィッシュリストの表示、アカウント情報の編集など、他のサービスにアクセスできます。',
                 'greeting'    => 'お買い物いただき、ありがとうございます！',
                 'subject'     => '新規顧客登録',
                 'sign-in'     => 'サインイン',
+=======
+                'subject'                 => '新規顧客登録',
+                'description'             => 'アカウントが正常に作成され、メールアドレスとパスワードの資格情報を使用してログインできるようになりました。ログインすると、過去の注文の確認、ウィッシュリストの表示、アカウント情報の編集など、他のサービスにアクセスできます。',
+                'credentials-description' => 'ご登録いただき、アカウントが作成されました。アカウントの詳細は以下の通りです：',
+                'greeting'                => 'お買い物いただき、ありがとうございます！',
+                'sign-in'                 => 'サインイン',
+                'username-email'          => 'ユーザー名/メールアドレス',
+                'password'                => 'パスワード',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             ],
 
             'forgot-password' => [

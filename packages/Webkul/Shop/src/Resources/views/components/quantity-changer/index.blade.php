@@ -14,18 +14,36 @@
     <script type="text/x-template" id="v-quantity-changer-template">
         <div>
             <span 
+<<<<<<< HEAD
                 class="icon-minus text-[24px] cursor-pointer" 
+=======
+                class="icon-minus text-2xl cursor-pointer"
+                role="button"
+                tabindex="0"
+                aria-label="@lang('shop::app.components.quantity-changer.decrease-quantity')"
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 @click="decrease"
             >
             </span>
 
             <p
+<<<<<<< HEAD
                 class="w-[10px] text-center select-none"
+=======
+                class="w-2.5 text-center select-none"
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 v-text="quantity"
             ></p>
             
             <span 
+<<<<<<< HEAD
                 class="icon-plus text-[24px] cursor-pointer"
+=======
+                class="icon-plus text-2xl cursor-pointer"
+                role="button"
+                tabindex="0"
+                aria-label="@lang('shop::app.components.quantity-changer.increase-quantity')"
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 @click="increase"
             >
             </span>

@@ -1,10 +1,17 @@
 <v-tinymce {{ $attributes }}></v-tinymce>
 
 @pushOnce('scripts')
+<<<<<<< HEAD
     {{--
         TODO (@devansh-webkul): Only this portion is pending; it just needs to be integrated using the Vite bundler. Currently,
         there is an issue with relative paths in the plugins. I intend to address this task at the end.
     --}}
+=======
+    <!--
+        TODO (@devansh-webkul): Only this portion is pending; it just needs to be integrated using the Vite bundler. Currently,
+        there is an issue with relative paths in the plugins. I intend to address this task at the end.
+    -->
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
     <script
         src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/6.6.2/tinymce.min.js"
         crossorigin="anonymous"

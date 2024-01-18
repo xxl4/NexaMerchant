@@ -4,6 +4,10 @@ return [
     'customers' => [
         'forgot-password' => [
             'back'                 => 'Retour à la connexion ?',
+<<<<<<< HEAD
+=======
+            'bagisto'              => 'Bagisto',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             'email-not-exist'      => 'Nous ne pouvons pas trouver d\'utilisateur avec cette adresse e-mail',
             'email'                => 'E-mail',
             'forgot-password-text' => 'Si vous avez oublié votre mot de passe, récupérez-le en entrant votre adresse e-mail.',
@@ -17,6 +21,10 @@ return [
 
         'reset-password' => [
             'back-link-title'  => 'Retour à la connexion',
+<<<<<<< HEAD
+=======
+            'bagisto'          => 'Bagisto',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             'confirm-password' => 'Confirmer le mot de passe',
             'email'            => 'E-mail enregistré',
             'footer'           => '© Droits d’auteur 2010 - :current_year, Webkul Software (enregistré en Inde). Tous droits réservés.',
@@ -27,6 +35,10 @@ return [
 
         'login-form' => [
             'button-title'        => 'Se connecter',
+<<<<<<< HEAD
+=======
+            'bagisto'             => 'Bagisto',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             'create-your-account' => 'Créez votre compte',
             'email'               => 'E-mail',
             'form-login-text'     => 'Si vous avez un compte, connectez-vous avec votre adresse e-mail.',
@@ -44,6 +56,10 @@ return [
 
         'signup-form' => [
             'account-exists'              => 'Vous avez déjà un compte ?',
+<<<<<<< HEAD
+=======
+            'bagisto'                     => 'Bagisto',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             'button-title'                => 'S\'inscrire',
             'confirm-pass'                => 'Confirmer le mot de passe',
             'email'                       => 'E-mail',
@@ -91,6 +107,10 @@ return [
                 'phone'                   => 'Téléphone',
                 'save'                    => 'Enregistrer',
                 'subscribe-to-newsletter' => 'Souscrire à la newsletter',
+<<<<<<< HEAD
+=======
+                'select-gender'           => 'Sélectionner le sexe',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'title'                   => 'Profil',
                 'unmatch'                 => 'L\'ancien mot de passe ne correspond pas.',
                 'wrong-password'          => 'Mot de passe incorrect !',
@@ -127,11 +147,22 @@ return [
             ],
 
             'orders' => [
+<<<<<<< HEAD
                 'order-id'   => 'Numéro de commande',
                 'order'      => 'Commande',
                 'order-date' => 'Date de commande',
                 'title'      => 'Commandes',
                 'total'      => 'Total',
+=======
+                'order-id'    => 'ID de commande',
+                'order'       => 'Commande',
+                'order-date'  => 'Date de commande',
+                'title'       => 'Commandes',
+                'total'       => 'Total',
+                'action-view' => 'Voir',
+                'action'      => 'Action',
+                'empty-order' => 'Vous n\'avez encore commandé aucun produit',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 
                 'status'        => [
                     'title' => 'Statut',
@@ -261,7 +292,11 @@ return [
                 ],
             ],
 
+<<<<<<< HEAD
             'reviews'    => [
+=======
+            'reviews' => [
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'empty-review' => 'Vous n\'avez pas encore examiné de produit',
                 'title'        => 'Avis',
             ],
@@ -316,6 +351,7 @@ return [
 
         'layouts' => [
             'header' => [
+<<<<<<< HEAD
                 'account'       => 'Compte',
                 'compare'       => 'Comparer',
                 'cart'          => 'Panier',
@@ -331,6 +367,25 @@ return [
                 'welcome'       => 'Bienvenue',
                 'welcome-guest' => 'Bienvenue, invité',
                 'wishlist'      => 'Liste de souhaits',
+=======
+                'account'           => 'Compte',
+                'bagisto'           => 'Bagisto',
+                'cart'              => 'Panier',
+                'compare'           => 'Comparer',
+                'dropdown-text'     => 'Gérez le panier, les commandes et la liste de souhaits',
+                'logout'            => 'Déconnexion',
+                'no-category-found' => 'Aucune catégorie trouvée.',
+                'orders'            => 'Commandes',
+                'profile'           => 'Profil',
+                'search'            => 'Rechercher',
+                'search-text'       => 'Recherchez des produits ici',
+                'sign-in'           => 'Se connecter',
+                'sign-up'           => 'S\'inscrire',
+                'title'             => 'Compte',
+                'welcome'           => 'Bienvenue',
+                'welcome-guest'     => 'Bienvenue, invité',
+                'wishlist'          => 'Liste de souhaits',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             ],
 
             'footer' => [
@@ -338,6 +393,10 @@ return [
                 'customer-service'       => 'Service client',
                 'contact-us'             => 'Contactez-nous',
                 'currency'               => 'Devise',
+<<<<<<< HEAD
+=======
+                'email'                  => 'E-mail',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'footer-text'            => '© Droits d\'auteur 2010 - 2023, Webkul Software (enregistré en Inde). Tous droits réservés.',
                 'locale'                 => 'Langue',
                 'newsletter-text'        => 'Préparez-vous pour notre newsletter amusante !',
@@ -399,6 +458,13 @@ return [
             'table' => [
                 'actions'              => 'Actions',
                 'no-records-available' => 'Aucun enregistrement disponible.',
+<<<<<<< HEAD
+=======
+                'next-page'            => 'Page suivante',
+                'page-navigation'      => 'Navigation de page',
+                'previous-page'        => 'Page précédente',
+                'page-number'          => 'Numéro de page',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             ],
         ],
 
@@ -414,6 +480,7 @@ return [
             ],
         ],
 
+<<<<<<< HEAD
         'products'   => [
             'card' => [
                 'add-to-compare'     => 'Ajouter à la comparaison',
@@ -425,12 +492,46 @@ return [
             ],
 
             'carousel' => [
+=======
+        'products' => [
+            'card' => [
+                'add-to-compare-success'      => 'Article ajouté avec succès à la liste de comparaison.',
+                'already-in-compare'          => 'L\'article est déjà ajouté à la liste de comparaison.',
+                'add-to-cart'                 => 'Ajouter au panier',
+                'add-to-wishlist'             => 'Ajouter à la liste de souhaits',
+                'add-to-compare'              => 'Ajouter à la liste de comparaison',
+                'new'                         => 'Nouveau',
+                'review-description'          => 'Soyez le premier à évaluer ce produit',
+                'sale'                        => 'En solde',
+            ],
+
+            'carousel' => [
+                'next'     => 'Suivant',
+                'previous' => 'Précédent',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'view-all' => 'Voir tout',
             ],
         ],
 
         'range-slider' => [
+<<<<<<< HEAD
             'range' => 'Plage :',
+=======
+            'min-range' => 'Plage minimale',
+            'max-range' => 'Plage maximale',
+            'range'     => 'Plage :',
+        ],
+
+        'carousel' => [
+            'image-slide' => 'Diapositive d\'image',
+            'next'        => 'Suivant',
+            'previous'    => 'Précédent',
+        ],
+
+        'quantity-changer' => [
+            'decrease-quantity' => 'Diminuer la quantité',
+            'increase-quantity' => 'Augmenter la quantité',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         ],
     ],
 
@@ -486,21 +587,39 @@ return [
 
             'reviews' => [
                 'attachments'      => 'Pièces jointes',
+<<<<<<< HEAD
                 'comment'          => 'Commentaire',
                 'customer-review'  => 'Avis clients',
                 'cancel'           => 'Annuler',
+=======
+                'cancel'           => 'Annuler',
+                'comment'          => 'Commentaire',
+                'customer-review'  => 'Avis clients',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'empty-review'     => 'Aucun avis trouvé, soyez le premier à évaluer ce produit.',
                 'failed-to-upload' => 'Échec du téléchargement de l\'image',
                 'load-more'        => 'Charger plus',
                 'name'             => 'Nom',
                 'rating'           => 'Évaluation',
+<<<<<<< HEAD
                 'success'          => 'Avis soumis avec succès.',
                 'submit-review'    => 'Envoyer un avis',
                 'title'            => 'Titre',
+=======
+                'submit-review'    => 'Envoyer un avis',
+                'success'          => 'Avis soumis avec succès.',
+                'title'            => 'Titre',
+                'translate'        => 'Traduire',
+                'translating'      => 'En cours de traduction...',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'write-a-review'   => 'Rédiger un avis',
             ],
 
             'add-to-cart'            => 'Ajouter au panier',
+<<<<<<< HEAD
+=======
+            'add-to-wishlist'        => 'Ajouter à la liste de souhaits',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             'add-to-compare'         => 'Produit ajouté à la liste de comparaison.',
             'already-in-compare'     => 'Le produit est déjà ajouté à la liste de comparaison.',
             'additional-information' => 'Informations complémentaires',
@@ -515,7 +634,11 @@ return [
 
         'type' => [
             'abstract' => [
+<<<<<<< HEAD
                 'offers' => 'Achetez :qty pour :price chacun et économisez :discount%',
+=======
+                'offers' => 'Achetez :qty pour :price chacun et économisez :discount',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             ],
         ],
     ],
@@ -529,6 +652,11 @@ return [
         ],
 
         'toolbar' => [
+<<<<<<< HEAD
+=======
+            'grid' => 'Grille',
+            'list' => 'Liste',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             'show' => 'Afficher',
         ],
 
@@ -539,12 +667,21 @@ return [
     ],
 
     'search' => [
+<<<<<<< HEAD
         'title' => 'Résultats de recherche pour : :query',
+=======
+        'title'   => 'Résultats de recherche pour : :query',
+        'results' => 'Résultats de recherche',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 
         'images' => [
             'index' => [
                 'something-went-wrong' => 'Quelque chose s\'est mal passé, veuillez réessayer ultérieurement.',
                 'size-limit-error'     => 'Erreur de limite de taille',
+<<<<<<< HEAD
+=======
+                'search'               => 'Rechercher',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'only-images-allowed'  => 'Seules les images (.jpeg, .jpg, .png, ..) sont autorisées.',
             ],
 
@@ -590,8 +727,15 @@ return [
             'suspended-account-message' => 'Votre compte a été suspendu.',
             'select-hourly-duration'    => 'Sélectionnez une durée d\'une heure.',
             'success-remove'            => 'L\'article a été supprimé avec succès du panier.',
+<<<<<<< HEAD
 
             'index' => [
+=======
+            'paypal-payment-cancelled'  => 'Le paiement Paypal a été annulé.',
+
+            'index' => [
+                'bagisto'                  => 'Bagisto',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'cart'                     => 'Panier',
                 'continue-shopping'        => 'Continuer vos achats',
                 'move-to-wishlist-success' => 'Les articles sélectionnés ont été déplacés avec succès dans la liste de souhaits.',
@@ -606,10 +750,22 @@ return [
                 'remove'                   => 'Supprimer',
                 'remove-selected-success'  => 'Les articles sélectionnés ont été supprimés avec succès du panier.',
                 'see-details'              => 'Voir les détails',
+<<<<<<< HEAD
+=======
+                'select-all'               => 'Sélectionner tout',
+                'select-cart-item'         => 'Sélectionner l\'article du panier',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'tax'                      => 'Taxes',
                 'total'                    => 'Total',
                 'update-cart'              => 'Mettre à jour le panier',
                 'view-cart'                => 'Voir le panier',
+<<<<<<< HEAD
+=======
+
+                'cross-sell' => [
+                    'title' => 'Plus de choix',
+                ],
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             ],
 
             'coupon'   => [
@@ -674,6 +830,10 @@ return [
                 ],
 
                 'index' => [
+<<<<<<< HEAD
+=======
+                    'bagisto' => 'Bagisto',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     'confirm' => 'Confirmer',
                 ],
 
@@ -698,6 +858,7 @@ return [
                 ],
             ],
 
+<<<<<<< HEAD
             'coupon' => [
                 'applied'         => 'Coupon appliqué',
                 'applied-coupon'  => 'Coupon appliqué',
@@ -712,6 +873,8 @@ return [
                 'subtotal'        => 'Sous-total',
             ],
 
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             'index' => [
                 'checkout' => 'Caisse',
                 'home'     => 'Accueil',
@@ -732,6 +895,10 @@ return [
                 'grand-total'      => 'Total général',
                 'place-order'      => 'Passer la commande',
                 'processing'       => 'En cours de traitement',
+<<<<<<< HEAD
+=======
+                'price_&_qty'      => ':price × :qty',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'sub-total'        => 'Sous-total',
                 'tax'              => 'Taxes',
             ],
@@ -797,10 +964,20 @@ return [
 
         'customers' => [
             'registration' => [
+<<<<<<< HEAD
                 'description' => 'Votre compte a été créé avec succès et vous pouvez vous connecter en utilisant votre adresse e-mail et vos informations d\'identification par mot de passe. Après vous être connecté, vous pourrez accéder à d\'autres services, y compris la consultation de commandes passées, de listes de souhaits et la modification de vos informations de compte.',
                 'greeting'    => 'Bienvenue et merci de vous être inscrit chez nous !',
                 'subject'     => 'Nouvelle inscription de client',
                 'sign-in'     => 'Se connecter',
+=======
+                'subject'                 => 'Nouvelle inscription de client',
+                'description'             => 'Votre compte a été créé avec succès et vous pouvez vous connecter en utilisant votre adresse e-mail et vos informations d\'identification par mot de passe. Après vous être connecté, vous pourrez accéder à d\'autres services, y compris la consultation de commandes passées, de listes de souhaits et la modification de vos informations de compte.',
+                'credentials-description' => 'Votre compte a été créé. Les détails de votre compte sont ci-dessous :',
+                'greeting'                => 'Bienvenue et merci de vous être inscrit chez nous !',
+                'sign-in'                 => 'Se connecter',
+                'username-email'          => 'Nom d\'utilisateur/Email',
+                'password'                => 'Mot de passe',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             ],
 
             'forgot-password' => [

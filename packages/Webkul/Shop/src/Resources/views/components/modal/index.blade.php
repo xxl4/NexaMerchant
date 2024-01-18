@@ -13,14 +13,41 @@
     @endisset
 
     @isset($header)
+<<<<<<< HEAD
         <template v-slot:header>
             {{ $header }}
+=======
+        <template v-slot:header="{ toggle, isOpen }">
+            <div {{ $header->attributes->merge(['class' => 'flex gap-5 justify-between items-center p-8 bg-white border-b border-[#E9E9E9]']) }}>
+                {{ $header }}
+
+                <span
+                    class="icon-cancel text-3xl cursor-pointer"
+                    @click="toggle"
+                >
+                </span>
+            </div>
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         </template>
     @endisset
 
     @isset($content)
         <template v-slot:content>
+<<<<<<< HEAD
             {{ $content }}
+=======
+            <div {{ $content->attributes->merge(['class' => 'p-8 bg-white']) }}>
+                {{ $content }}
+            </div>
+        </template>
+    @endisset
+
+    @isset($footer)
+        <template v-slot:footer>
+            <div {{ $content->attributes->merge(['class' => 'p-8 bg-white mt-5']) }}>
+                {{ $footer }}
+            </div>
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         </template>
     @endisset
 </v-modal>
@@ -63,6 +90,7 @@
                     class="fixed inset-0 z-10 transform transition overflow-y-auto" v-show="isOpen"
                 >
                     <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+<<<<<<< HEAD
                         <div class="w-full max-w-[595px] z-[999] absolute left-[50%] top-[50%] bg-[#F5F5F5] max-md:w-[90%] -translate-x-[50%] -translate-y-[50%]">
                             <div>
                                 <div class="flex gap-[20px] justify-between items-center p-[30px] bg-white border-b-[1px] border-[#E9E9E9]">
@@ -83,6 +111,24 @@
                                     @lang('admin::app.components.modal.default-content')
                                 </slot>
                             </div>
+=======
+                        <div class="w-full max-w-[595px] z-[999] absolute left-1/2 top-1/2 bg-[#F5F5F5] max-md:w-[90%] -translate-x-1/2 -translate-y-1/2">
+                            <slot
+                                name="header"
+                                :toggle="toggle"
+                                :isOpen="isOpen"
+                            >
+                                @lang('admin::app.components.modal.default-header')
+                            </slot>
+
+                            <slot name="content">
+                                Default Content
+                            </slot>
+
+                            <slot name="footer">
+                                Default Content
+                            </slot>
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                         </div>
                     </div>
                 </div>

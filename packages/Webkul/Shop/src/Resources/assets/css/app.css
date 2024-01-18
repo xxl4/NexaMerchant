@@ -11,6 +11,13 @@
 }
 
 @layer components {
+<<<<<<< HEAD
+=======
+    ::selection {
+        background-color: rgba(6, 12, 59, .2);
+    }
+
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
     input {
         @apply outline-none;
     }
@@ -32,7 +39,11 @@
         font-weight: normal;
         font-variant: normal;
         text-transform: none;
+<<<<<<< HEAD
         line-height: 1;
+=======
+        line-height: 1 !important;
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 
         /* Better Font Rendering =========== */
         -webkit-font-smoothing: antialiased;
@@ -339,6 +350,13 @@
         background-position-y: 50%;
     }
 
+<<<<<<< HEAD
+=======
+    [dir="rtl"] .custom-select {
+        background-position-x: calc(100% - (100% - 10px));
+    }
+
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
     * {
         @apply box-border font-poppins;
     }
@@ -362,6 +380,7 @@
     .direction-rtl {
         direction: rtl;
     }
+<<<<<<< HEAD
 
     .primary-button {
         @apply font-medium rounded-[12px] text-white bg-navyBlue border border-navyBlue px-[30px] py-[15px] max-w-max cursor-pointer transition-all hover:opacity-[0.9];
@@ -369,6 +388,47 @@
     
     .secondary-button {
         @apply font-medium rounded-[12px] bg-white text-navyBlue border border-navyBlue  px-[30px] py-[15px] max-w-max cursor-pointer transition-all hover:bg-[#050e3a0d];
+=======
+    
+    .label-pending,
+    .label-processing,
+    .label-closed,
+    .label-canceled,
+    .label-info,
+    .label-completed,
+    .label-active {
+        @apply text-[12px] text-white font-semibold py-px px-1.5 max-w-max rounded-[35px];
+    }
+
+	.label-pending {
+		@apply bg-yellow-500;
+	}
+
+	.label-processing,
+	.label-completed,
+    .label-active {
+		@apply bg-darkGreen;
+	}
+
+	.label-closed {
+		@apply bg-darkBlue;
+	}
+
+    .label-canceled {
+        @apply bg-darkPink;
+    }
+
+    .label-info {
+        @apply bg-slate-400;
+    }
+
+    .primary-button {
+        @apply flex gap-x-1.5 items-center place-content-center font-medium rounded-xl text-white bg-navyBlue border border-navyBlue px-8 py-4 max-w-max cursor-pointer transition-all hover:opacity-[0.9];
+    }
+    
+    .secondary-button {
+        @apply flex gap-x-1.5 items-center place-content-center font-medium rounded-xl bg-white text-navyBlue border border-navyBlue px-8 py-4 max-w-max cursor-pointer transition-all hover:bg-[#050e3a0d];
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
     }
 
     .shimmer {
@@ -451,4 +511,15 @@
     .required:after {
         content: "*";
     }
+<<<<<<< HEAD
+=======
+
+    .skip-to-main-content-link {
+        @apply absolute ltr:left-[-9999px] rtl:right-[-9999px] z-[999] p-[1em] bg-black text-white opacity-0;
+    }
+
+    .skip-to-main-content-link:focus {
+        @apply ltr:left-1/2 rtl:right-1/2 ltr:translate-x-1/2 rtl:translate-x-[-50%] opacity-100;
+    }
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 }

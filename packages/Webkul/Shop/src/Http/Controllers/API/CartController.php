@@ -3,6 +3,7 @@
 namespace Webkul\Shop\Http\Controllers\API;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+<<<<<<< HEAD
 use Illuminate\Support\Facades\Event;
 use Illuminate\Http\Response;
 use Webkul\Customer\Repositories\WishlistRepository;
@@ -10,6 +11,16 @@ use Webkul\Product\Repositories\ProductRepository;
 use Webkul\CartRule\Repositories\CartRuleCouponRepository;
 use Webkul\Checkout\Facades\Cart;
 use Webkul\Shop\Http\Resources\CartResource;
+=======
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Event;
+use Webkul\CartRule\Repositories\CartRuleCouponRepository;
+use Webkul\Checkout\Facades\Cart;
+use Webkul\Customer\Repositories\WishlistRepository;
+use Webkul\Product\Repositories\ProductRepository;
+use Webkul\Shop\Http\Resources\CartResource;
+use Webkul\Shop\Http\Resources\ProductResource;
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 
 class CartController extends APIController
 {
@@ -22,8 +33,12 @@ class CartController extends APIController
         protected WishlistRepository $wishlistRepository,
         protected ProductRepository $productRepository,
         protected CartRuleCouponRepository $cartRuleCouponRepository
+<<<<<<< HEAD
     )
     {
+=======
+    ) {
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
     }
 
     /**
@@ -34,7 +49,11 @@ class CartController extends APIController
         Cart::collectTotals();
 
         $response = [
+<<<<<<< HEAD
             'data' => ($cart = Cart::getCart()) ? new CartResource($cart) : null
+=======
+            'data' => ($cart = Cart::getCart()) ? new CartResource($cart) : null,
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         ];
 
         if (session()->has('info')) {
@@ -54,7 +73,11 @@ class CartController extends APIController
 
             if (request()->get('is_buy_now')) {
                 Cart::deActivateCart();
+<<<<<<< HEAD
             } 
+=======
+            }
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 
             $cart = Cart::addProduct($product->id, request()->all());
 
@@ -95,7 +118,11 @@ class CartController extends APIController
             }
         } catch (\Exception $exception) {
             return new JsonResource([
+<<<<<<< HEAD
                 'redirect_uri' => route('shop.product_or_category.index', $product->product->url_key),
+=======
+                'redirect_uri' => route('shop.product_or_category.index', $product->url_key),
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'message'      => $exception->getMessage(),
             ]);
         }
@@ -118,8 +145,11 @@ class CartController extends APIController
 
     /**
      * Method for remove selected items from cart
+<<<<<<< HEAD
      * 
      * @return \Illuminate\Http\Resources\Json\JsonResource
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      */
     public function destroySelected(): JsonResource
     {
@@ -135,8 +165,11 @@ class CartController extends APIController
 
     /**
      * Method for move to wishlist selected items from cart
+<<<<<<< HEAD
      * 
      * @return \Illuminate\Http\Resources\Json\JsonResource
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
      */
     public function moveToWishlist(): JsonResource
     {
@@ -204,6 +237,14 @@ class CartController extends APIController
                         ]);
                     }
                 }
+<<<<<<< HEAD
+=======
+
+                return (new JsonResource([
+                    'data'     => new CartResource(Cart::getCart()),
+                    'message'  => trans('Coupon not found.'),
+                ]))->response()->setStatusCode(Response::HTTP_UNPROCESSABLE_ENTITY);
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             }
         } catch (\Exception $e) {
             return (new JsonResource([
@@ -225,4 +266,34 @@ class CartController extends APIController
             'message'  => trans('shop::app.checkout.cart.coupon.remove'),
         ]);
     }
+<<<<<<< HEAD
+=======
+
+    /**
+     * Cross-sell product listings.
+     *
+     * @return \Illuminate\Http\Resources\Json\JsonResource::collection
+     */
+    public function crossSellProducts()
+    {
+        $cart = Cart::getCart();
+
+        if (! $cart) {
+            return new JsonResource([
+                'data' => [],
+            ]);
+        }
+
+        $productIds = $cart->items->pluck('product_id')->toArray();
+
+        $products = $this->productRepository
+            ->select('products.*', 'product_cross_sells.child_id')
+            ->join('product_cross_sells', 'products.id', '=', 'product_cross_sells.child_id')
+            ->whereIn('product_cross_sells.parent_id', $productIds)
+            ->groupBy('product_cross_sells.child_id')
+            ->paginate();
+
+        return ProductResource::collection($products);
+    }
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 }

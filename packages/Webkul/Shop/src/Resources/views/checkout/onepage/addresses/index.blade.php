@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 {!! view_render_event('bagisto.shop.checkout.addresses.before') !!}
+=======
+{!! view_render_event('bagisto.shop.checkout.onepage.addresses.before') !!}
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 
 <v-checkout-addresses 
     ref="vCheckoutAddress"
@@ -6,7 +10,11 @@
 >
 </v-checkout-addresses>
 
+<<<<<<< HEAD
 {!! view_render_event('bagisto.shop.checkout.addresses.after') !!}
+=======
+{!! view_render_event('bagisto.shop.checkout.onepage.addresses.after') !!}
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 
 @pushOnce('scripts')
     <script type="text/x-template" id="v-checkout-addresses-template">
@@ -16,16 +24,35 @@
         </template>
         
         <template v-else>
+<<<<<<< HEAD
             <div class="mt-[30px]">
                 @include('shop::checkout.onepage.addresses.billing')
 
                 @include('shop::checkout.onepage.addresses.shipping')
+=======
+            <div class="mt-8 mb-7">
+                {!! view_render_event('bagisto.shop.checkout.onepage.addresses.billing.before') !!}
+
+                @include('shop::checkout.onepage.addresses.billing')
+
+                {!! view_render_event('bagisto.shop.checkout.onepage.addresses.billing.after') !!}
+
+                {!! view_render_event('bagisto.shop.checkout.onepage.addresses.shipping.before') !!}
+
+                @include('shop::checkout.onepage.addresses.shipping')
+
+                {!! view_render_event('bagisto.shop.checkout.onepage.addresses.shipping.after') !!}
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             </div>
         </template>
     </script>
 
     <script type="module">
+<<<<<<< HEAD
          app.component('v-checkout-addresses', {
+=======
+        app.component('v-checkout-addresses', {
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             template: '#v-checkout-addresses-template',
 
             props: ['haveStockableItems'],
@@ -56,7 +83,14 @@
                         },
                     },
 
+<<<<<<< HEAD
                     addresses: [],
+=======
+                    addresses: {
+                        billing: [],
+                        shipping: [],
+                    },
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 
                     countries: [],
 
@@ -67,7 +101,11 @@
                     isCustomer: "{{ auth()->guard('customer')->check() }}",
 
                     isTempAddress: false,
+<<<<<<< HEAD
                 }
+=======
+                };
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             }, 
             
             created() {
@@ -105,6 +143,7 @@
                     if (this.isCustomer) {
                         this.$axios.get("{{ route('api.shop.customers.account.addresses.index') }}")
                             .then(response => {
+<<<<<<< HEAD
                                 this.addresses = response.data.data.map((address, index) => {
                                     let isDefault = address.default_address ? address.default_address : index === 0;
 
@@ -112,12 +151,31 @@
                                         this.forms.billing.address.address_id = address.id;
 
                                         this.forms.shipping.address.address_id = address.id;
+=======
+                                this.addresses.billing = response.data.data.map((address, index, row) => {
+                                    if (! this.forms.billing.address.address_id) {
+                                        let isDefault = address.default_address ? address.default_address : index === 0;
+
+                                        if (isDefault) {
+                                            this.forms.billing.address.address_id = address.id;
+
+                                            this.forms.shipping.address.address_id = address.id;
+                                        }
+                                    }
+
+                                    if (! this.forms.billing.isUsedForShipping) {
+                                        this.forms.shipping.address.address_id = row[row.length - 1].id;
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                     }
 
                                     return {
                                         ...address,
                                         isSaved: true,
+<<<<<<< HEAD
                                         isDefault: isDefault
+=======
+                                        isDefault: typeof isDefault === 'undefined' ? false : isDefault,
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                     };
                                 });
 
@@ -159,7 +217,11 @@
 
                         this.isTempAddress = true;
 
+<<<<<<< HEAD
                         this.addresses.push({
+=======
+                        this.addresses.billing.push({
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                             ...this.forms.billing.address,
                             isSaved: false,
                         });
@@ -192,7 +254,11 @@
 
                         this.isTempAddress = true;
                         
+<<<<<<< HEAD
                         this.addresses.push({
+=======
+                        this.addresses.shipping.push({
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                             ...this.forms.shipping.address,
                             isSaved: false,
                         });
@@ -212,6 +278,11 @@
                 },
 
                 store() {
+<<<<<<< HEAD
+=======
+                    this.$refs.storeAddress.isLoading = true;
+
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     if (this.haveStockableItems) {
                         this.$parent.$refs.vShippingMethod.isShowShippingMethod = false;
                         
@@ -234,6 +305,13 @@
                             },
                         })
                         .then(response => {
+<<<<<<< HEAD
+=======
+                            this.$parent.$refs.vPaymentMethod.isShowPaymentMethod = false;
+
+                            this.$parent.$refs.vCartSummary.canPlaceOrder = false;
+
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                             if (response.data.data.payment_methods) {
                                 this.$parent.$refs.vPaymentMethod.payment_methods = response.data.data.payment_methods;
                                 
@@ -255,9 +333,17 @@
                             ) {
                                 this.getCustomerAddresses();
                             }
+<<<<<<< HEAD
                         })
                         .catch(error => {                 
                             console.log(error);
+=======
+
+                            this.$refs.storeAddress.isLoading = false;
+                        })
+                        .catch(error => {
+                            this.$refs.storeAddress.isLoading = false;
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                         });
                 },
 

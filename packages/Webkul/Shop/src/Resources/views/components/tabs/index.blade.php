@@ -11,6 +11,7 @@
     <script type="text/x-template" id="v-tabs-template">
         <div>
             <div
+<<<<<<< HEAD
                 class="flex gap-[30px] justify-center pt-[18px] bg-[#F5F5F5] max-1180:hidden"
                 :style="positionStyles"
             >
@@ -18,6 +19,17 @@
                     v-for="tab in tabs"
                     class="pb-[18px] px-[30px] text-[20px] font-medium text-[#6E6E6E] cursor-pointer"
                     :class="{'text-black border-navyBlue border-b-[2px] transition': tab.isActive }"
+=======
+                class="flex gap-8 justify-center pt-5 bg-[#F5F5F5] max-1180:hidden"
+                :style="positionStyles"
+            >
+                <div
+                    role="button"
+                    tabindex="0"
+                    v-for="tab in tabs"
+                    class="pb-5 px-8 text-xl font-medium text-[#6E6E6E] cursor-pointer"
+                    :class="{'text-black border-navyBlue border-b-2 transition': tab.isActive }"
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     v-text="tab.title"
                     @click="change(tab)"
                 >

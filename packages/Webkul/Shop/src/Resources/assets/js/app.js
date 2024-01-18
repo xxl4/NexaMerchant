@@ -9,6 +9,7 @@ import.meta.glob(["../images/**", "../fonts/**"]);
 import { createApp } from "vue/dist/vue.esm-bundler";
 
 /**
+<<<<<<< HEAD
  * We are defining all the global rules here and configuring
  * all the `vee-validate` settings.
  */
@@ -65,6 +66,8 @@ configure({
 });
 
 /**
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
  * Main root application registry.
  */
 window.app = createApp({
@@ -73,6 +76,7 @@ window.app = createApp({
     },
 
     mounted() {
+<<<<<<< HEAD
         var lazyImages = [].slice.call(document.querySelectorAll('img.lazy'));
 
         let lazyImageObserver = new IntersectionObserver(function(entries, observer) {
@@ -92,12 +96,64 @@ window.app = createApp({
         lazyImages.forEach(function(lazyImage) {
             lazyImageObserver.observe(lazyImage);
         });
+=======
+        this.lazyImages();
+
+        this.animateBoxes();
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
     },
 
     methods: {
         onSubmit() {},
 
         onInvalidSubmit() {},
+<<<<<<< HEAD
+=======
+
+        lazyImages() {
+            var lazyImages = [].slice.call(document.querySelectorAll('img.lazy'));
+
+            let lazyImageObserver = new IntersectionObserver(function(entries, observer) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting) {
+                        let lazyImage = entry.target;
+    
+                        lazyImage.src = lazyImage.dataset.src;
+                        
+                        lazyImage.classList.remove('lazy');
+    
+                        lazyImageObserver.unobserve(lazyImage);
+                    }
+                });
+            });
+    
+            lazyImages.forEach(function(lazyImage) {
+                lazyImageObserver.observe(lazyImage);
+            });
+        },
+
+        animateBoxes() {
+            let animateBoxes = document.querySelectorAll('.scroll-trigger');
+
+            if (! animateBoxes.length) {
+                return;
+            }
+
+            animateBoxes.forEach((animateBox) => {
+                let animateBoxObserver = new IntersectionObserver(function(entries, observer) {
+                    entries.forEach(function(entry) {
+                        if (entry.isIntersecting) {
+                            animateBox.classList.remove('scroll-trigger--offscreen');
+
+                            animateBoxObserver.unobserve(animateBox);
+                        }
+                    });
+                });
+        
+                animateBoxObserver.observe(animateBox);
+            });
+        }
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
     },
 });
 
@@ -107,6 +163,7 @@ window.app = createApp({
 import Axios from "./plugins/axios";
 import Emitter from "./plugins/emitter";
 import Shop from "./plugins/shop";
+<<<<<<< HEAD
 
 [Axios, Emitter, Shop].forEach((plugin) => app.use(plugin));
 
@@ -120,6 +177,18 @@ window.Flatpickr = Flatpickr;
 app.component("VForm", Form);
 app.component("VField", Field);
 app.component("VErrorMessage", ErrorMessage);
+=======
+import VeeValidate from "./plugins/vee-validate";
+import Flatpickr from "./plugins/flatpickr";
+
+[
+    Axios,
+    Emitter, 
+    Shop, 
+    VeeValidate, 
+    Flatpickr,
+].forEach((plugin) => app.use(plugin));
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 
 /**
  * Load event, the purpose of using the event is to mount the application

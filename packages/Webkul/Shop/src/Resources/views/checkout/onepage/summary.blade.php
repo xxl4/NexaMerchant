@@ -17,6 +17,7 @@
         </template>
 
         <template v-else>
+<<<<<<< HEAD
             <div class="sticky top-[30px] h-max w-[442px] max-w-full pl-[30px] max-lg:w-auto max-lg:max-w-[442px] max-lg:pl-0 ">
                 <h2 class="text-[26px] font-medium max-sm:text-[20px]">
                     @lang('shop::app.checkout.onepage.summary.cart-summary')
@@ -27,6 +28,21 @@
                         class="flex gap-x-[15px] pb-[20px]"
                         v-for="item in cart.items"
                     >
+=======
+            <div class="sticky top-8 h-max w-[442px] max-w-full ltr:pl-8 rtl:pr-8 max-lg:w-auto max-lg:max-w-[442px] max-lg:ltr:pl-0 max-lg:rtl:pr-0">
+                <h1 class="text-2xl font-medium max-sm:text-xl">
+                    @lang('shop::app.checkout.onepage.summary.cart-summary')
+                </h1>
+                
+                <div class="grid mt-10 border-b border-[#E9E9E9] max-sm:mt-5">
+                    <div 
+                        class="flex gap-x-4 pb-5"
+                        v-for="item in cart.items"
+                    >
+                    
+                        {!! view_render_event('bagisto.shop.checkout.onepage.summary.item_image.before') !!}
+
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                         <img
                             class="max-w-[90px] max-h-[90px] w-[90px] h-[90px] rounded-md"
                             :src="item.base_image.small_image_url"
@@ -35,103 +51,212 @@
                             height="110"
                         />
 
+<<<<<<< HEAD
                         <div>
                             <p 
                                 class="text-[16px] text-navyBlue max-sm:text-[14px] max-sm:font-medium" 
+=======
+                        {!! view_render_event('bagisto.shop.checkout.onepage.summary.item_image.after') !!}
+
+                        <div>
+                            {!! view_render_event('bagisto.shop.checkout.onepage.summary.item_name.before') !!}
+
+                            <p 
+                                class="text-base text-navyBlue max-sm:text-sm max-sm:font-medium" 
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                 v-text="item.name"
                             >
                             </p>
 
+<<<<<<< HEAD
                             <p class="mt-[10px] text-[18px] font-medium max-sm:text-[14px] max-sm:font-normal">
                                 @{{ item.formatted_price }} X @{{ item.quantity }}
+=======
+                            {!! view_render_event('bagisto.shop.checkout.onepage.summary.item_name.after') !!}
+
+                            <p class="mt-2.5 text-lg font-medium max-sm:text-sm max-sm:font-normal">
+                                @lang('shop::app.checkout.onepage.summary.price_&_qty', ['price' => '@{{ item.formatted_price }}', 'qty' => '@{{ item.quantity }}'])
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                             </p>
                         </div>
                     </div>
                 </div>
 
+<<<<<<< HEAD
                 <div class="grid gap-[15px] mt-[25px] mb-[30px]">
                     <div class="flex text-right justify-between">
                         <p class="text-[16px] max-sm:text-[14px] max-sm:font-normal">
+=======
+                <div class="grid gap-4 mt-6 mb-8">
+
+                    {!! view_render_event('bagisto.shop.checkout.onepage.summary.sub_total.before') !!}
+
+                    <div class="flex text-right justify-between">
+                        <p class="text-base max-sm:text-sm max-sm:font-normal">
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                             @lang('shop::app.checkout.onepage.summary.sub-total')
                         </p>
 
                         <p 
+<<<<<<< HEAD
                             class="text-[16px] font-medium max-sm:text-[14px]"
+=======
+                            class="text-base font-medium max-sm:text-sm"
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                             v-text="cart.base_sub_total"
                         >
                         </p>
                     </div>
 
+<<<<<<< HEAD
+=======
+                    {!! view_render_event('bagisto.shop.checkout.onepage.summary.sub_total.after') !!}
+
+
+                    {!! view_render_event('bagisto.shop.checkout.onepage.summary.tax.before') !!}
+
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     <div 
                         class="flex text-right justify-between"
                         v-for="(amount, index) in cart.base_tax_amounts"
                         v-if="parseFloat(cart.base_tax_total)"
                     >
+<<<<<<< HEAD
                         <p class="text-[16px] max-sm:text-[14px] max-sm:font-normal">
+=======
+                        <p class="text-base max-sm:text-sm max-sm:font-normal">
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                             @lang('shop::app.checkout.onepage.summary.tax') (@{{ index }})%
                         </p>
 
                         <p 
+<<<<<<< HEAD
                             class="text-[16px] font-medium max-sm:text-[14px]"
+=======
+                            class="text-base font-medium max-sm:text-sm"
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                             v-text="amount"
                         >
                         </p>
                     </div>
 
+<<<<<<< HEAD
+=======
+                    {!! view_render_event('bagisto.shop.checkout.onepage.summary.tax.after') !!}
+
+                    {!! view_render_event('bagisto.shop.checkout.onepage.summary.delivery_charges.before') !!}
+
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     <div 
                         class="flex text-right justify-between"
                         v-if="cart.selected_shipping_rate"
                     >
+<<<<<<< HEAD
                         <p class="text-[16px]">
+=======
+                        <p class="text-base">
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                             @lang('shop::app.checkout.onepage.summary.delivery-charges')
                         </p>
 
                         <p 
+<<<<<<< HEAD
                             class="text-[16px] font-medium"
+=======
+                            class="text-base font-medium"
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                             v-text="cart.selected_shipping_rate"
                         >
                         </p>
                     </div>
 
+<<<<<<< HEAD
+=======
+                    {!! view_render_event('bagisto.shop.checkout.onepage.summary.delivery_charges.after') !!}
+
+                    {!! view_render_event('bagisto.shop.checkout.onepage.summary.discount_amount.before') !!}
+
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     <div 
                         class="flex text-right justify-between"
                         v-if="cart.base_discount_amount && parseFloat(cart.base_discount_amount) > 0"
                     >
+<<<<<<< HEAD
                         <p class="text-[16px]">
+=======
+                        <p class="text-base">
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                             @lang('shop::app.checkout.onepage.summary.discount-amount')
                         </p>
 
                         <p 
+<<<<<<< HEAD
                             class="text-[16px] font-medium"
+=======
+                            class="text-base font-medium"
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                             v-text="cart.formatted_base_discount_amount"
                         >
                         </p>
                     </div>
 
+<<<<<<< HEAD
                     @include('shop::checkout.onepage.coupon')
 
                     <div class="flex text-right justify-between">
                         <p class="text-[18px] font-semibold">
+=======
+                    {!! view_render_event('bagisto.shop.checkout.onepage.summary.discount_amount.after') !!}
+
+                    {!! view_render_event('bagisto.shop.checkout.onepage.summary.coupon.before') !!}
+
+                    @include('shop::checkout.cart.coupon')
+
+                    {!! view_render_event('bagisto.shop.checkout.onepage.summary.coupon.after') !!}
+
+                    {!! view_render_event('bagisto.shop.checkout.onepage.summary.grand_total.before') !!}
+
+                    <div class="flex text-right justify-between">
+                        <p class="text-lg font-semibold">
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                             @lang('shop::app.checkout.onepage.summary.grand-total')
                         </p>
 
                         <p 
+<<<<<<< HEAD
                             class="text-[18px] font-semibold"
+=======
+                            class="text-lg font-semibold"
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                             v-text="cart.base_grand_total"
                         >
                         </p>
                     </div>
+<<<<<<< HEAD
+=======
+
+                    {!! view_render_event('bagisto.shop.checkout.onepage.summary.grand_total.after') !!}
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 </div>
 
                 <template v-if="canPlaceOrder">
                     <div v-if="selectedPaymentMethod?.method == 'paypal_smart_button'">
+<<<<<<< HEAD
                         <v-paypal-smart-button></v-paypal-smart-button>
+=======
+                        {!! view_render_event('bagisto.shop.checkout.onepage.summary.paypal_smart_button.before') !!}
+
+                        <v-paypal-smart-button></v-paypal-smart-button>
+
+                        {!! view_render_event('bagisto.shop.checkout.onepage.summary.paypal_smart_button.after') !!}
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     </div>
 
                     <div
                         class="flex justify-end"
                         v-else
                     >
+<<<<<<< HEAD
                         <button
                             v-if="! isLoading"
                             class="block w-max py-[11px] px-[43px] bg-navyBlue text-white text-base font-medium rounded-[18px] text-center cursor-pointer max-sm:text-[14px] max-sm:px-[25px] max-sm:mb-[40px]"
@@ -166,6 +291,20 @@
 
                             @lang('shop::app.checkout.onepage.summary.processing')
                         </button>
+=======
+                        {!! view_render_event('bagisto.shop.checkout.onepage.summary.place_order_button.before') !!}
+
+                        <x-shop::button
+                            class="primary-button w-max py-3 px-11 bg-navyBlue rounded-2xl max-sm:text-sm max-sm:px-6 max-sm:mb-10"
+                            :title="trans('shop::app.checkout.onepage.summary.place-order')"
+                            :loading="false"
+                            ref="placeOrder"
+                            @click="placeOrder"
+                        >
+                        </x-shop::button>
+
+                        {!! view_render_event('bagisto.shop.checkout.onepage.summary.place_order_button.after') !!}
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     </div>
                 </template>
             </div>
@@ -190,7 +329,11 @@
 
             methods: {
                 placeOrder() {
+<<<<<<< HEAD
                     this.isLoading = true;
+=======
+                    this.$refs.placeOrder.isLoading = true;
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 
                     this.$axios.post('{{ route('shop.checkout.onepage.orders.store') }}')
                         .then(response => {
@@ -199,8 +342,18 @@
                             } else {
                                 window.location.href = '{{ route('shop.checkout.onepage.success') }}';
                             }
+<<<<<<< HEAD
                         })
                         .catch(error => console.log(error));
+=======
+
+                            this.$refs.placeOrder.isLoading = false;
+
+                        })
+                        .catch(error => {
+                            this.$refs.placeOrder.isLoading = false;
+                        });
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 },
             },
         });

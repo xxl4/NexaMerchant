@@ -3,20 +3,33 @@
 @pushOnce('scripts')
     <script type="text/x-template" id="v-range-slider-template">
         <div>
+<<<<<<< HEAD
             <div class="flex items-center gap-[15px]">
                 <p class="text-[14px]">
+=======
+            <div class="flex items-center gap-4">
+                <p class="text-sm">
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     @lang('shop::app.components.range-slider.range')
                 </p>
 
                 <p
+<<<<<<< HEAD
                     class="text-[14px] font-semibold"
+=======
+                    class="text-sm font-semibold"
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     v-text="rangeText"
                 >
                 </p>
             </div>
 
             <div class="flex relative justify-center items-center p-2 h-20 w-full mx-auto">
+<<<<<<< HEAD
                 <div class="relative w-full h-[4px] bg-gray-200 rounded-2xl">
+=======
+                <div class="relative w-full h-1 bg-gray-200 rounded-2xl">
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     <div
                         ref="progress"
                         class="absolute left-1/4 right-0 h-full bg-navyBlue rounded-xl"
@@ -28,10 +41,17 @@
                             ref="minRange"
                             type="range"
                             :value="minRange"
+<<<<<<< HEAD
                             class="absolute w-full h-[4px] appearance-none pointer-events-none bg-transparent outline-none cursor-pointer [&::-webkit-slider-thumb]:pointer-events-auto [&::-webkit-slider-thumb]:bg-white [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:h-[18px] [&::-webkit-slider-thumb]:w-[18px] [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:ring-navyBlue [&::-webkit-slider-thumb]:ring [&::-moz-range-thumb]:pointer-events-auto [&::-moz-range-thumb]:bg-white [&::-moz-range-thumb]:appearance-none [&::-moz-range-thumb]:h-[18px] [&::-moz-range-thumb]:w-[18px] [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:ring-navyBlue [&::-moz-range-thumb]:ring [&::-ms-thumb]:pointer-events-auto [&::-ms-thumb]:bg-white [&::-ms-thumb]:appearance-none [&::-ms-thumb]:h-[18px] [&::-ms-thumb]:w-[18px] [&::-ms-thumb]:rounded-full [&::-ms-thumb]:ring-navyBlue [&::-ms-thumb]:ring"
                             :min="allowedMinRange"
                             :max="allowedMaxRange"
                             aria-label="Min Range"
+=======
+                            class="absolute w-full h-1 appearance-none pointer-events-none bg-transparent outline-none cursor-pointer [&::-webkit-slider-thumb]:pointer-events-auto [&::-webkit-slider-thumb]:bg-white [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:h-[18px] [&::-webkit-slider-thumb]:w-[18px] [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:ring-navyBlue [&::-webkit-slider-thumb]:ring [&::-moz-range-thumb]:pointer-events-auto [&::-moz-range-thumb]:bg-white [&::-moz-range-thumb]:appearance-none [&::-moz-range-thumb]:h-[18px] [&::-moz-range-thumb]:w-[18px] [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:ring-navyBlue [&::-moz-range-thumb]:ring [&::-ms-thumb]:pointer-events-auto [&::-ms-thumb]:bg-white [&::-ms-thumb]:appearance-none [&::-ms-thumb]:h-[18px] [&::-ms-thumb]:w-[18px] [&::-ms-thumb]:rounded-full [&::-ms-thumb]:ring-navyBlue [&::-ms-thumb]:ring"
+                            :min="allowedMinRange"
+                            :max="allowedMaxRange"
+                            aria-label="@lang('shop::app.components.range-slider.min-range')"
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                             @input="handle('min')"
                             @change="change"
                         >
@@ -42,10 +62,17 @@
                             ref="maxRange"
                             type="range"
                             :value="maxRange"
+<<<<<<< HEAD
                             class="absolute w-full h-[4px] appearance-none pointer-events-none bg-transparent outline-none cursor-pointer [&::-webkit-slider-thumb]:pointer-events-auto [&::-webkit-slider-thumb]:bg-white [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:h-[18px] [&::-webkit-slider-thumb]:w-[18px] [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:ring-navyBlue [&::-webkit-slider-thumb]:ring [&::-moz-range-thumb]:pointer-events-auto [&::-moz-range-thumb]:bg-white [&::-moz-range-thumb]:appearance-none [&::-moz-range-thumb]:h-[18px] [&::-moz-range-thumb]:w-[18px] [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:ring-navyBlue [&::-moz-range-thumb]:ring [&::-ms-thumb]:pointer-events-auto [&::-ms-thumb]:bg-white [&::-ms-thumb]:appearance-none [&::-ms-thumb]:h-[18px] [&::-ms-thumb]:w-[18px] [&::-ms-thumb]:rounded-full [&::-ms-thumb]:ring-navyBlue [&::-ms-thumb]:ring"
                             :min="allowedMinRange"
                             :max="allowedMaxRange"
                             aria-label="Max Range"
+=======
+                            class="absolute w-full h-1 appearance-none pointer-events-none bg-transparent outline-none cursor-pointer [&::-webkit-slider-thumb]:pointer-events-auto [&::-webkit-slider-thumb]:bg-white [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:h-[18px] [&::-webkit-slider-thumb]:w-[18px] [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:ring-navyBlue [&::-webkit-slider-thumb]:ring [&::-moz-range-thumb]:pointer-events-auto [&::-moz-range-thumb]:bg-white [&::-moz-range-thumb]:appearance-none [&::-moz-range-thumb]:h-[18px] [&::-moz-range-thumb]:w-[18px] [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:ring-navyBlue [&::-moz-range-thumb]:ring [&::-ms-thumb]:pointer-events-auto [&::-ms-thumb]:bg-white [&::-ms-thumb]:appearance-none [&::-ms-thumb]:h-[18px] [&::-ms-thumb]:w-[18px] [&::-ms-thumb]:rounded-full [&::-ms-thumb]:ring-navyBlue [&::-ms-thumb]:ring"
+                            :min="allowedMinRange"
+                            :max="allowedMaxRange"
+                            aria-label="@lang('shop::app.components.range-slider.max-range')"
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                             @input="handle('max')"
                             @change="change"
                         >

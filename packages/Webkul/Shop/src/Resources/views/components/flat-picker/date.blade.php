@@ -7,7 +7,11 @@
         <span class="relative">
             <slot></slot>
 
+<<<<<<< HEAD
             <i class="icon-calendar text-[24px] text-gray-400 absolute ltr:right-[8px] rtl:left-[8px] top-[50%] -translate-y-[50%]"></i>
+=======
+            <i class="icon-calendar text-2xl text-gray-400 absolute ltr:right-2 rtl:left-2 top-1/2 -translate-y-1/2 pointer-events-none"></i>
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         </span>
     </script>
 

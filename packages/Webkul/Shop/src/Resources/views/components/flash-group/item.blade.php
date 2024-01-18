@@ -8,6 +8,7 @@
 @pushOnce('scripts')
     <script type="text/x-template" id="v-flash-item-template">
         <div
+<<<<<<< HEAD
             class="flex gap-[46px] justify-between w-max max-w-[408px] px-[20px] py-[12px] rounded-[8px]"
             :style="typeStyles[flash.type]['container']"
         >
@@ -17,6 +18,17 @@
             >
                 <span
                     class="icon-toast-done mr-[10px] text-[24px]"
+=======
+            class="flex gap-12 justify-between w-max max-w-[408px] px-5 py-3 rounded-lg"
+            :style="typeStyles[flash.type]['container']"
+        >
+            <p
+                class="flex text-sm break-all"
+                :style="typeStyles[flash.type]['message']"
+            >
+                <span
+                    class="icon-toast-done ltr:mr-2.5 rtl:ml-2.5 text-2xl"
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     :class="iconClasses[flash.type]"
                     :style="typeStyles[flash.type]['icon']"
                 ></span>
@@ -25,7 +37,11 @@
             </p>
 
 			<span
+<<<<<<< HEAD
                 class="icon-cancel max-h-[16px] max-w-[16px] cursor-pointer"
+=======
+                class="icon-cancel max-h-4 max-w-4 cursor-pointer"
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 :style="typeStyles[flash.type]['icon']"
                 @click="remove"
             ></span>

@@ -4,6 +4,10 @@ return [
     'customers' => [
         'forgot-password' => [
             'back'                 => 'Volver a iniciar sesión',
+<<<<<<< HEAD
+=======
+            'bagisto'              => 'Bagisto',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             'email-not-exist'      => 'No podemos encontrar un usuario con esa dirección de correo electrónico.',
             'email'                => 'Correo electrónico',
             'forgot-password-text' => 'Si olvidó su contraseña, recupérela ingresando su dirección de correo electrónico.',
@@ -17,6 +21,10 @@ return [
 
         'reset-password' => [
             'back-link-title'  => 'Volver a Iniciar Sesión',
+<<<<<<< HEAD
+=======
+            'bagisto'          => 'Bagisto',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             'confirm-password' => 'Confirmar Contraseña',
             'email'            => 'Correo Electrónico Registrado',
             'footer'           => '© Derechos de autor 2010 - :current_year, Webkul Software (Registrada en India). Todos los derechos reservados.',
@@ -27,6 +35,10 @@ return [
 
         'login-form' => [
             'button-title'        => 'Iniciar Sesión',
+<<<<<<< HEAD
+=======
+            'bagisto'             => 'Bagisto',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             'create-your-account' => 'Crea tu cuenta',
             'email'               => 'Correo Electrónico',
             'form-login-text'     => 'Si tienes una cuenta, inicia sesión con tu dirección de correo electrónico.',
@@ -44,6 +56,10 @@ return [
 
         'signup-form' => [
             'account-exists'              => '¿Ya tienes una cuenta?',
+<<<<<<< HEAD
+=======
+            'bagisto'                     => 'Bagisto',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             'button-title'                => 'Registrarse',
             'confirm-pass'                => 'Confirmar Contraseña',
             'email'                       => 'Correo Electrónico',
@@ -91,6 +107,10 @@ return [
                 'phone'                   => 'Teléfono',
                 'save'                    => 'Guardar',
                 'subscribe-to-newsletter' => 'Suscribirse al boletín',
+<<<<<<< HEAD
+=======
+                'select-gender'           => 'Seleccionar género',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'title'                   => 'Perfil',
                 'unmatch'                 => 'La antigua contraseña no coincide.',
                 'wrong-password'          => '¡Contraseña Incorrecta!',
@@ -127,11 +147,22 @@ return [
             ],
 
             'orders' => [
+<<<<<<< HEAD
                 'order-id'   => 'ID de Pedido',
                 'order'      => 'Pedido',
                 'order-date' => 'Fecha del Pedido',
                 'title'      => 'Pedidos',
                 'total'      => 'Total',
+=======
+                'order-id'    => 'ID de pedido',
+                'order'       => 'Pedido',
+                'order-date'  => 'Fecha del pedido',
+                'title'       => 'Pedidos',
+                'total'       => 'Total',
+                'action-view' => 'Ver',
+                'action'      => 'Acción',
+                'empty-order' => 'Aún no ha realizado ningún pedido',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 
                 'status'        => [
                     'title' => 'Estado',
@@ -147,9 +178,12 @@ return [
                     ],
                 ],
 
+<<<<<<< HEAD
                 'action'      => 'Acción',
                 'empty-order' => 'Aún no has ordenado ningún producto',
 
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'view' => [
                     'billing-address'    => 'Dirección de Facturación',
                     'cancel-btn-title'   => 'Cancelar',
@@ -261,7 +295,11 @@ return [
                 ],
             ],
 
+<<<<<<< HEAD
             'reviews'    => [
+=======
+            'reviews' => [
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'empty-review' => 'Todavía no has revisado ningún producto',
                 'title'        => 'Opiniones',
             ],
@@ -316,6 +354,7 @@ return [
 
         'layouts' => [
             'header' => [
+<<<<<<< HEAD
                 'account'       => 'Konto',
                 'cart'          => 'Warenkorb',
                 'compare'       => 'Vergleichen',
@@ -331,6 +370,25 @@ return [
                 'welcome'       => 'Willkommen',
                 'welcome-guest' => 'Willkommen Gast',
                 'wishlist'      => 'Wunschliste',
+=======
+                'account'           => 'Konto',
+                'bagisto'           => 'Bagisto',
+                'cart'              => 'Warenkorb',
+                'compare'           => 'Vergleichen',
+                'dropdown-text'     => 'Warenkorb, Bestellungen & Wunschliste verwalten',
+                'logout'            => 'Abmelden',
+                'no-category-found' => 'No se encontró categoría.',
+                'orders'            => 'Bestellungen',
+                'profile'           => 'Profil',
+                'search'            => 'Suchen',
+                'search-text'       => 'Produkte hier suchen',
+                'sign-in'           => 'Anmelden',
+                'sign-up'           => 'Registrieren',
+                'title'             => 'Konto',
+                'welcome'           => 'Willkommen',
+                'welcome-guest'     => 'Willkommen Gast',
+                'wishlist'          => 'Wunschliste',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             ],
 
             'footer' => [
@@ -338,6 +396,10 @@ return [
                 'customer-service'       => 'Kundendienst',
                 'contact-us'             => 'Kontakt',
                 'currency'               => 'Währung',
+<<<<<<< HEAD
+=======
+                'email'                  => 'Correo Electrónico',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'footer-text'            => '© Urheberrecht 2010 - 2023, Webkul Software (registriert in Indien). Alle Rechte vorbehalten.',
                 'locale'                 => 'Sprache',
                 'newsletter-text'        => 'Bereiten Sie sich auf unseren unterhaltsamen Newsletter vor!',
@@ -397,8 +459,17 @@ return [
             ],
 
             'table' => [
+<<<<<<< HEAD
                 'actions'              => 'Aktionen',
                 'no-records-available' => 'Keine Datensätze verfügbar.',
+=======
+                'actions'              => 'Acciones',
+                'no-records-available' => 'No hay registros disponibles.',
+                'next-page'            => 'Siguiente página',
+                'page-navigation'      => 'Navegación de página',
+                'previous-page'        => 'Página anterior',
+                'page-number'          => 'Número de página',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             ],
         ],
 
@@ -408,12 +479,17 @@ return [
 
             'confirm' => [
                 'agree-btn'    => 'Aceptar',
+<<<<<<< HEAD
                 'disagree-btn' => 'No aceptar',
+=======
+                'disagree-btn' => 'No estar de acuerdo',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'message'      => '¿Estás seguro de que quieres realizar esta acción?',
                 'title'        => '¿Estás seguro?',
             ],
         ],
 
+<<<<<<< HEAD
         'products'   => [
             'card' => [
                 'add-to-compare'     => 'Artikel erfolgreich zur Vergleichsliste hinzugefügt.',
@@ -426,11 +502,46 @@ return [
 
             'carousel' => [
                 'view-all' => 'Alle anzeigen',
+=======
+        'products' => [
+            'card' => [
+                'add-to-compare-success'      => 'Elemento añadido correctamente a la lista de comparación.',
+                'already-in-compare'          => 'El elemento ya está agregado a la lista de comparación.',
+                'add-to-cart'                 => 'Agregar al carrito',
+                'add-to-wishlist'             => 'Agregar a la lista de deseos',
+                'add-to-compare'              => 'Agregar a comparar',
+                'new'                         => 'Nuevo',
+                'review-description'          => 'Sé el primero en revisar este producto',
+                'sale'                        => 'Venta',
+            ],
+
+            'carousel' => [
+                'next'     => 'Siguiente',
+                'previous' => 'Anterior',
+                'view-all' => 'Ver todo',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             ],
         ],
 
         'range-slider' => [
+<<<<<<< HEAD
             'range' => 'Bereich:',
+=======
+            'min-range' => 'Rango mínimo',
+            'max-range' => 'Rango máximo',
+            'range'     => 'Rango:',
+        ],
+
+        'carousel' => [
+            'image-slide' => 'Diapositiva de imagen',
+            'next'        => 'Siguiente',
+            'previous'    => 'Anterior',
+        ],
+
+        'quantity-changer' => [
+            'decrease-quantity' => 'Disminuir cantidad',
+            'increase-quantity' => 'Aumentar cantidad',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         ],
     ],
 
@@ -485,6 +596,7 @@ return [
             ],
 
             'reviews' => [
+<<<<<<< HEAD
                 'attachments'            => 'Adjuntos',
                 'comment'                => 'Comentario',
                 'customer-review'        => 'Opiniones de clientes',
@@ -501,6 +613,27 @@ return [
             ],
 
             'add-to-cart'            => 'Agregar al carrito',
+=======
+                'attachments'      => 'Adjuntos',
+                'cancel'           => 'Cancelar',
+                'comment'          => 'Comentario',
+                'customer-review'  => 'Opiniones de clientes',
+                'empty-review'     => 'No se encontraron reseñas, sé el primero en calificar este producto.',
+                'failed-to-upload' => 'La imagen no se pudo cargar',
+                'load-more'        => 'Cargar más',
+                'name'             => 'Nombre',
+                'rating'           => 'Calificación',
+                'submit-review'    => 'Enviar reseña',
+                'success'          => 'Revisión enviada con éxito.',
+                'title'            => 'Título',
+                'translate'        => 'Traducir',
+                'translating'      => 'Traduciendo...',
+                'write-a-review'   => 'Escribir una reseña',
+            ],
+
+            'add-to-cart'            => 'Agregar al carrito',
+            'add-to-wishlist'        => 'Agregar a la lista de deseos',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             'add-to-compare'         => 'Producto añadido a la lista de comparación.',
             'already-in-compare'     => 'El producto ya está en la lista de comparación.',
             'additional-information' => 'Información adicional',
@@ -515,7 +648,11 @@ return [
 
         'type' => [
             'abstract' => [
+<<<<<<< HEAD
                 'offers' => 'Compra :qty a :price cada uno y ahorra :discount%',
+=======
+                'offers' => 'Compra :qty a :price cada uno y ahorra :discount',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             ],
         ],
     ],
@@ -529,7 +666,13 @@ return [
         ],
 
         'toolbar' => [
+<<<<<<< HEAD
             'show' => 'Anzeigen',
+=======
+            'grid' => 'Cuadrícula',
+            'list' => 'Lista',
+            'show' => 'Mostrar',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         ],
 
         'view' => [
@@ -539,12 +682,21 @@ return [
     ],
 
     'search' => [
+<<<<<<< HEAD
         'title' => 'Suchergebnisse für: :query',
+=======
+        'title'   => 'Suchergebnisse für: :query',
+        'results' => 'Resultados de búsqueda',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 
         'images' => [
             'index' => [
                 'something-went-wrong' => 'Algo salió mal, por favor inténtelo de nuevo más tarde.',
                 'size-limit-error'     => 'Error de límite de tamaño',
+<<<<<<< HEAD
+=======
+                'search'               => 'Suchen',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'only-images-allowed'  => 'Solo se permiten imágenes (.jpeg, .jpg, .png, ..).',
             ],
 
@@ -590,8 +742,15 @@ return [
             'suspended-account-message' => 'Tu cuenta ha sido suspendida.',
             'select-hourly-duration'    => 'Selecciona una duración de una hora.',
             'success-remove'            => 'El artículo se ha eliminado correctamente del carrito.',
+<<<<<<< HEAD
 
             'index' => [
+=======
+            'paypal-payment-cancelled'  => 'El pago de Paypal ha sido cancelado.',
+
+            'index' => [
+                'bagisto'                  => 'Bagisto',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'cart'                     => 'Carrito',
                 'continue-shopping'        => 'Continuar Comprando',
                 'empty-product'            => 'No tienes productos en tu carrito.',
@@ -606,6 +765,11 @@ return [
                 'remove'                   => 'Eliminar',
                 'remove-selected-success'  => 'Los artículos seleccionados se han eliminado correctamente del carrito.',
                 'see-details'              => 'Ver Detalles',
+<<<<<<< HEAD
+=======
+                'select-all'               => 'Seleccionar todo',
+                'select-cart-item'         => 'Seleccionar artículo del carrito',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'tax'                      => 'Impuesto',
                 'total'                    => 'Total',
                 'update-cart'              => 'Actualizar Carrito',
@@ -626,6 +790,13 @@ return [
                 'remove'          => 'Eliminar Cupón',
                 'success-apply'   => 'Código de cupón aplicado con éxito.',
                 'subtotal'        => 'Subtotal',
+<<<<<<< HEAD
+=======
+
+                'cross-sell' => [
+                    'title' => 'Más opciones',
+                ],
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             ],
 
             'mini-cart' => [
@@ -674,6 +845,10 @@ return [
                 ],
 
                 'index' => [
+<<<<<<< HEAD
+=======
+                    'bagisto' => 'Bagisto',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     'confirm' => 'Confirmar',
                 ],
 
@@ -698,6 +873,7 @@ return [
                 ],
             ],
 
+<<<<<<< HEAD
             'coupon' => [
                 'applied'         => 'Cupón Aplicado',
                 'applied-coupon'  => 'Cupón Aplicado',
@@ -712,6 +888,8 @@ return [
                 'subtotal'        => 'Subtotal',
             ],
 
+=======
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             'index' => [
                 'checkout' => 'Realizar Pedido',
                 'home'     => 'Inicio',
@@ -732,6 +910,10 @@ return [
                 'grand-total'      => 'Gran Total',
                 'place-order'      => 'Realizar Pedido',
                 'processing'       => 'Procesando',
+<<<<<<< HEAD
+=======
+                'price_&_qty'      => ':price × :qty',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 'sub-total'        => 'Subtotal',
                 'tax'              => 'Impuesto',
             ],
@@ -797,10 +979,20 @@ return [
 
         'customers' => [
             'registration' => [
+<<<<<<< HEAD
                 'description' => 'Ihr Konto wurde erfolgreich erstellt und Sie können sich mit Ihren E-Mail-Adresse und Passwort anmelden. Nach der Anmeldung können Sie auf weitere Dienste zugreifen, einschließlich der Überprüfung früherer Bestellungen, Wunschlisten und der Bearbeitung Ihrer Kontoinformationen.',
                 'greeting'    => 'Willkommen und vielen Dank für Ihre Registrierung bei uns!',
                 'subject'     => 'Neue Kundenregistrierung',
                 'sign-in'     => 'Anmelden',
+=======
+                'subject'                 => 'Neue Kundenregistrierung',
+                'description'             => 'Ihr Konto wurde erfolgreich erstellt und Sie können sich mit Ihren E-Mail-Adresse und Passwort anmelden. Nach der Anmeldung können Sie auf weitere Dienste zugreifen, einschließlich der Überprüfung früherer Bestellungen, Wunschlisten und der Bearbeitung Ihrer Kontoinformationen.',
+                'credentials-description' => 'Su cuenta ha sido creada. Los detalles de su cuenta se encuentran a continuación:',
+                'greeting'                => 'Willkommen und vielen Dank für Ihre Registrierung bei uns!',
+                'sign-in'                 => 'Anmelden',
+                'username-email'          => 'Nombre de usuario/Correo electrónico',
+                'password'                => 'Contraseña',
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             ],
 
             'forgot-password' => [

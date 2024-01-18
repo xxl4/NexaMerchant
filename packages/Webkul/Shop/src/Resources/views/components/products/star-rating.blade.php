@@ -17,7 +17,12 @@
     <script type="text/x-template" id="v-star-rating-template">
         <div class="flex">
             <span
+<<<<<<< HEAD
                 class="icon-star-fill text-[24px] cursor-pointer"
+=======
+                class="icon-star-fill text-2xl cursor-pointer"
+                role="presentation"
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 v-for="rating in availableRatings"
                 v-if="! disabled"
                 :style="[`color: ${appliedRatings >= rating ? '#ffb600' : '#7d7d7d'}`]"
@@ -26,7 +31,12 @@
             </span>
 
             <span
+<<<<<<< HEAD
                 class="icon-star-fill text-[24px]"
+=======
+                class="icon-star-fill text-2xl"
+                role="presentation"
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 v-for="rating in availableRatings"
                 :style="[`color: ${appliedRatings >= rating ? '#ffb600' : '#7d7d7d'}`]"
                 v-else

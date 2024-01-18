@@ -12,12 +12,28 @@
             v-show="isLoading"
         >
         </div>
+<<<<<<< HEAD
+=======
+        
+        <img
+            v-bind="$attrs"
+            :data-src="src"
+            :id="'image-' + $.uid"
+            @load="onLoad"
+            v-show="! isLoading"
+            v-if="lazy"
+        >
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 
         <img
             v-bind="$attrs"
             :data-src="src"
             :id="'image-' + $.uid"
             @load="onLoad"
+<<<<<<< HEAD
+=======
+            v-else
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             v-show="! isLoading"
         >
     </script>
@@ -26,7 +42,21 @@
         app.component('v-shimmer-image', {
             template: '#v-shimmer-image-template',
 
+<<<<<<< HEAD
             props: ['src'],
+=======
+            props: {
+                lazy: {
+                    type: Boolean, 
+                    default: true,
+                },
+
+                src: {
+                    type: String, 
+                    default: '',
+                },
+            },
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 
             data() {
                 return {
@@ -36,6 +66,13 @@
 
             mounted() {
                 let self = this;
+<<<<<<< HEAD
+=======
+
+                if (! this.lazy) {
+                    return;
+                }
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                 
                 let lazyImageObserver = new IntersectionObserver(function(entries, observer) {
                     entries.forEach(function(entry) {

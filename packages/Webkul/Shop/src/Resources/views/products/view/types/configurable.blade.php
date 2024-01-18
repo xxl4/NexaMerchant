@@ -17,7 +17,11 @@
                 >
 
                 <div
+<<<<<<< HEAD
                     class="mt-[20px]"
+=======
+                    class="mt-5"
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     v-for='(attribute, index) in childAttributes'
                 >
                     <!-- Dropdown Options Container -->
@@ -25,20 +29,35 @@
                         v-if="! attribute.swatch_type || attribute.swatch_type == '' || attribute.swatch_type == 'dropdown'"
                     >
                         <!-- Dropdown Label -->
+<<<<<<< HEAD
                         <h3
                             class="mb-[15px] text-[20px] max-sm:text-[16px]"
                             v-text="attribute.label"
                         ></h3>
+=======
+                        <h2
+                            class="mb-4 text-xl max-sm:text-base"
+                            v-text="attribute.label"
+                        ></h2>
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                         
                         <!-- Dropdown Options -->
                         <v-field
                             as="select"
                             :name="'super_attribute[' + attribute.id + ']'"
+<<<<<<< HEAD
                             class="custom-select block w-full p-[14px] pr-[36px] bg-white border border-[#E9E9E9] rounded-lg text-[16px] text-[#6E6E6E] focus:ring-blue-500 focus:border-blue-500 max-md:border-0 max-md:outline-none max-md:w-[110px] cursor-pointer"
+=======
+                            class="custom-select block w-full mb-3 py-3 px-5 bg-white border border-[#E9E9E9] rounded-lg text-base text-[#6E6E6E] focus:ring-blue-500 focus:border-blue-500 max-md:border-0 max-md:outline-none max-md:w-[110px] cursor-pointer"
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                             :class="[errors['super_attribute[' + attribute.id + ']'] ? 'border border-red-500' : '']"
                             :id="'attribute_' + attribute.id"
                             rules="required"
                             :label="attribute.label"
+<<<<<<< HEAD
+=======
+                            :aria-label="attribute.label"
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                             :disabled="attribute.disabled"
                             @change="configure(attribute, $event.target.value)"
                         >
@@ -55,6 +74,7 @@
                     <!-- Swatch Options Container -->
                     <template v-else>
                         <!-- Option Label -->
+<<<<<<< HEAD
                         <h3
                             class="mb-[15px] text-[20px] max-sm:text-[16px]"
                             v-text="attribute.label"
@@ -62,6 +82,15 @@
 
                         <!-- Swatch Options -->
                         <div class="flex items-center space-x-3">
+=======
+                        <h2
+                            class="mb-4 text-xl max-sm:text-base"
+                            v-text="attribute.label"
+                        ></h2>
+
+                        <!-- Swatch Options -->
+                        <div class="flex gap-3 items-center">
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                             <template v-for="(option, index) in attribute.options">
                                 <!-- Color Swatch Options -->
                                 <template v-if="option.id">
@@ -78,6 +107,10 @@
                                             v-slot="{ field }"
                                             rules="required"
                                             :label="attribute.label"
+<<<<<<< HEAD
+=======
+                                            :aria-label="attribute.label"
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                         >
                                             <input
                                                 type="radio"
@@ -111,6 +144,10 @@
                                             v-slot="{ field }"
                                             rules="required"
                                             :label="attribute.label"
+<<<<<<< HEAD
+=======
+                                            :aria-label="attribute.label"
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                         >
                                             <input
                                                 type="radio"
@@ -144,6 +181,10 @@
                                             v-slot="{ field }"
                                             rules="required"
                                             :label="attribute.label"
+<<<<<<< HEAD
+=======
+                                            :aria-label="attribute.label"
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                         >
                                             <input
                                                 type="radio"
@@ -158,7 +199,11 @@
                                         </v-field>
 
                                         <span
+<<<<<<< HEAD
                                             class="text-[18px] max-sm:text-[14px]"
+=======
+                                            class="text-lg max-sm:text-sm"
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                             v-text="option.label"
                                         ></span>
 
@@ -168,7 +213,11 @@
                             </template>
 
                             <span
+<<<<<<< HEAD
                                 class="text-gray-600 text-sm max-sm:text-[12px]"
+=======
+                                class="text-gray-600 text-sm max-sm:text-xs"
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                                 v-if="! attribute.options.length"
                             >
                                 @lang('shop::app.products.view.type.configurable.select-above-options')
@@ -429,10 +478,19 @@
                                 regularPriceElement.style.display = 'inline-block';
                             }
 
+<<<<<<< HEAD
+=======
+                            this.$emitter.emit('configurable-variant-selected-event',this.simpleProduct);
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                         } else {
                             priceLabelElement.style.display = 'inline-block';
 
                             priceElement.innerHTML = this.config.regular.formatted_price;
+<<<<<<< HEAD
+=======
+
+                            this.$emitter.emit('configurable-variant-selected-event', 0);
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                         }
                     },
 
@@ -456,6 +514,11 @@
                         if (galleryImages.length) {
                             this.$parent.$parent.$refs.gallery.media.images =  { ...galleryImages };
                         }
+<<<<<<< HEAD
+=======
+
+                        this.$emitter.emit('configurable-variant-update-images-event', galleryImages);
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
                     },
                 }
             });

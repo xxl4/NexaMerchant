@@ -2,6 +2,7 @@
 
 namespace Webkul\Shop\Http\Controllers\Customer;
 
+<<<<<<< HEAD
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
@@ -10,6 +11,16 @@ use Webkul\Shop\Http\Controllers\Controller;
 use Webkul\Customer\Repositories\CustomerRepository;
 use Webkul\Customer\Repositories\CustomerGroupRepository;
 use Webkul\Core\Repositories\SubscribersListRepository;
+=======
+use Cookie;
+use Illuminate\Support\Facades\Event;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
+use Webkul\Core\Repositories\SubscribersListRepository;
+use Webkul\Customer\Repositories\CustomerGroupRepository;
+use Webkul\Customer\Repositories\CustomerRepository;
+use Webkul\Shop\Http\Controllers\Controller;
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
 use Webkul\Shop\Http\Requests\Customer\RegistrationRequest;
 use Webkul\Shop\Mail\Customer\EmailVerificationNotification;
 
@@ -25,8 +36,12 @@ class RegistrationController extends Controller
         protected CustomerRepository $customerRepository,
         protected CustomerGroupRepository $customerGroupRepository,
         protected SubscribersListRepository $subscriptionRepository
+<<<<<<< HEAD
     )
     {
+=======
+    ) {
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
     }
 
     /**
@@ -46,7 +61,11 @@ class RegistrationController extends Controller
      */
     public function store(RegistrationRequest $registrationRequest)
     {
+<<<<<<< HEAD
         $data = array_merge(request()->only([
+=======
+        $data = array_merge($registrationRequest->only([
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             'first_name',
             'last_name',
             'email',
@@ -58,7 +77,11 @@ class RegistrationController extends Controller
             'is_verified'               => ! core()->getConfigData('customer.settings.email.verification'),
             'customer_group_id'         => $this->customerGroupRepository->findOneWhere(['code' => 'general'])->id,
             'token'                     => md5(uniqid(rand(), true)),
+<<<<<<< HEAD
             'subscribed_to_news_letter' => request()->input('is_subscribed') ?? 0,
+=======
+            'subscribed_to_news_letter' => (bool) request()->input('is_subscribed'),
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
         ]);
 
         Event::dispatch('customer.registration.before');
@@ -111,7 +134,11 @@ class RegistrationController extends Controller
         if ($customer) {
             $this->customerRepository->update([
                 'is_verified' => 1,
+<<<<<<< HEAD
                 'token'       => NULL,
+=======
+                'token'       => null,
+>>>>>>> 6db7346497c8511a570d5e8471c9287634998b61
             ], $customer->id);
 
             $this->customerRepository->syncNewRegisteredCustomerInformation($customer);
