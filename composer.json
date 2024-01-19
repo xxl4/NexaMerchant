@@ -91,7 +91,7 @@
             "Webkul\\SocialShare\\": "packages/Webkul/SocialShare/src",
             "Webkul\\Tax\\": "packages/Webkul/Tax/src",
             "Webkul\\Theme\\": "packages/Webkul/Theme/src",
-            "Nicelizhi\\OneBuy\\": "packages/Webkul/OneBuy/src",
+            "Nicelizhi\\OneBuy\\": "packages/Nicelizhi/OneBuy/src",
             "Nicelizhi\\Airwallex\\": "packages/Webkul/Airwallex/src",
             "Nicelizhi\\Shopify\\": "packages/Nicelizhi/Shopify/src",
             "Nicelizhi\\Admin\\": "packages/Nicelizhi/Admin/src",
