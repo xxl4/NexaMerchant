@@ -1,0 +1,26 @@
+{
+    "name": "nicelizhi/bagisto-binom",
+    "license": "MIT",
+    "description" : "binom package",
+    "authors": [
+        {
+            "name": "nicelizhi",
+            "email": "nice.lizhi@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Nicelizhi\\Binom\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Nicelizhi\\Binom\\Providers\\CheckoutServiceProvider"
+            ],
+            "aliases": {}
+        }
+    },
+    "minimum-stability": "dev"
+}
