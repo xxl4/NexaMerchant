@@ -1703,10 +1703,9 @@ function GotoNotRequest(url) {
         window.is_stripe_pay = pay_type == 'stripe' ? true : false;
         window.is_stripe_local = pay_type == 'stripe_local' ? true : false;
 
-        var currency = 'USD';
-        var paypal_pay_acc = "AQQSyBOPRLNaH1zE6JXa6QQ9QY04nfgF_J5SBZzILZXPM3Jkp7yaU0BOAgh43wFyuaUnpgeO5ZqywpgW";
-        var paypal_pay_acc = "AdgqTmBT75iYoiq_dgPSCOoGYXDnlVuxRw5yOAH3BPNVLb4Ie9g8uhLR9LxsqX2NPFr8XzhngwtBO5qe";
-        //var paypal_pay_acc = "AUJbEnrfr7UfGYTUT09supZXuAGrUMyw2y4BWeHBvWk_uyxZTWC5gzKk1hduPcTXZzOVZiyv19tj4udn";
+        var currency = '{{ core()->getCurrentCurrencyCode() }}';
+        var paypal_pay_acc = "<?php echo $paypal_client_id;?>"; // test
+
         var script = document.createElement('script');
         if (script.readyState) { // IE
             script.onreadystatechange = function () {
@@ -1753,18 +1752,7 @@ function GotoNotRequest(url) {
     
                     // Call your server to set up the transaction
                     createOrder: function(data, actions) {
-
-                                        // check the address info
-                        var email = $(".email").val();
-                        if(email.length < 1) {
-                            //alert("email is empty");
-                            //return false;
-                        }
-                        
-
-
                         sendInitiateCheckoutEvent();
-
 
                         gtag('event', 'initiate_paypal_checkout', {
                             'event_label': 'Initiate paypal Checkout',
@@ -1829,6 +1817,7 @@ function GotoNotRequest(url) {
                      * 
                      */
                     onApprove: function(data, actions) {
+                        console.log("on app rove");
                         if(!data.orderID) {
                             throw new Error('orderid is not exisit');
                         }
@@ -2016,7 +2005,7 @@ function GotoNotRequest(url) {
                 product_sku  : '',
                 product_id  : '<?php echo $product->id;?>',
                 sku_id  : '',
-                currency : 'USD',
+                currency : '{{ core()->getCurrentCurrencyCode() }}',
                 shipping_fee : shipping_fee,
                 amount : product.amount,
                 product_image : '{{ $productBaseImage['small_image_url'] }}'
@@ -2486,7 +2475,7 @@ function GotoNotRequest(url) {
                 product_sku  : '',
                 product_id  : '<?php echo $product->id;?>',
                 sku_id  : '',
-                currency : 'USD',
+                currency : '{{ core()->getCurrentCurrencyCode() }}',
                 shipping_fee : shipping_fee,
                 amount : product.amount,
                 product_image : '{{ $productBaseImage['small_image_url'] }}'
