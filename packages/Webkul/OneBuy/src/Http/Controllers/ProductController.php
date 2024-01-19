@@ -434,9 +434,9 @@ class ProductController extends Controller
         if($payment_method=='airwallex') {
             //处理支付方式
             $payment = [];
-            $payment['description'] = "Money Transfer-".$refer;
+            $payment['description'] = $payment_method."-".$refer;
             $payment['method'] = $payment_method;
-            $payment['method_title'] = "Money Transfer-".$refer;
+            $payment['method_title'] = $payment_method."-".$refer;
             $payment['sort'] = "2";
             // Cart::savePaymentMethod($payment);
 
