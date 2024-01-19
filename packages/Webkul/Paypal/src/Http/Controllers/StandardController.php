@@ -5,6 +5,7 @@ namespace Webkul\Paypal\Http\Controllers;
 use Webkul\Paypal\Helpers\Ipn;
 use Webkul\Checkout\Facades\Cart;
 use Webkul\Sales\Repositories\OrderRepository;
+use Illuminate\Support\Facades\Log;
 
 class StandardController extends Controller
 {
@@ -57,6 +58,8 @@ class StandardController extends Controller
 
         session()->flash('order', $order);
 
+        return redirect()->route("checkout.v1.product.success", $order->id);
+
         return redirect()->route('shop.checkout.onepage.success');
     }
 
@@ -67,6 +70,8 @@ class StandardController extends Controller
      */
     public function ipn()
     {
+        Log::info('paypal st ipn--'.json_encode(request()->all()));
+
         $this->ipnHelper->processIpn(request()->all());
     }
 }
