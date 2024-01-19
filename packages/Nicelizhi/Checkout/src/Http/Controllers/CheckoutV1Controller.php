@@ -460,7 +460,8 @@ class CheckoutV1Controller extends Controller{
 
             try {
                 $order = $this->smartButton->createOrder($this->buildRequestBody());
-                Log::info("checkout v2 order id". $order->id);
+                //Log::info("checkout v2 order id". $order->id);
+                Log::info("checkout v2 order ". json_encode($order)); 
                 $data = [];
                 $data['order'] = $order;
                 $data['code'] = 200;
@@ -469,7 +470,7 @@ class CheckoutV1Controller extends Controller{
                 $data['redirect'] = $order->result->links[1]->href;
                 return response()->json($data);
             } catch (\Exception $e) {
-                return response()->json(json_decode($e->getMessage()), 400);
+                return response()->json($e->getMessage(), 400);
             }
         }
 
