@@ -712,8 +712,8 @@ Hatmeo offers a 30 day guarantee on all unused purchases. Simply send the item(s
 <div class="submit-block" style="padding-bottom: 10px;">
     <div class="submit-content">
         <div id="checkout-error" style="color:#e51f28;display:none;"></div>
-        <div class="pay-width-paypal-standard">
-            <img src="/checkout/v1/app/desktop/images/paypal_standard.png" style="height:50px;cursor: pointer;" />
+        <div class="pay-width-paypal-standard zoom-fade">
+            <img src="/checkout/v1/app/desktop/images/paypal_standard_412.jpg?v=11" style="cursor: pointer;"  />
         </div>
         <!-- <button class="submit-button" onclick="checkout()">Pay With Paypal Standard </button> -->
     </div>
@@ -722,9 +722,9 @@ Hatmeo offers a 30 day guarantee on all unused purchases. Simply send the item(s
     <div class="submit-content">
         <div id="checkout-error" style="color:#e51f28;display:none;"></div>
         <!-- <button class="submit-button" onclick="checkout()">Pay With credit card</button> -->
-        <div style="background-color: #30BD51;border-top-right-radius: 5px;border-start-end-radius: 5px;border-top-left-radius: 5px;border-start-start-radius: 5px;box-sizing: border-box;cursor: pointer;height: 50px;text-align: center;line-height: 50px;" onclick="checkout()">
-                <span>credit card</span>
-                <img src="/checkout/v1/app/desktop/images/payment_method.png"  style="width:70%"/>
+        <div class="airwallex-pay zoom-fade" >
+                
+                <img src="/checkout/v1/app/desktop/images/pay-with-checkout-412.jpg"  style="cursor: pointer;"/>
         </div>
         
     </div>
@@ -1764,10 +1764,13 @@ function GotoNotRequest(url) {
 
 
                         sendInitiateCheckoutEvent();
-                        gtag('event', 'initiate_checkout', {
+
+
+                        gtag('event', 'initiate_paypal_checkout', {
                             'event_label': 'Initiate paypal Checkout',
                             'event_category': 'ecommerce'
                         });
+
                         fbq('track', 'InitiateCheckout');
                         // obApi('track', 'Start Checkout'); 
                         var params = getOrderParams( paypal_type || 'paypal');
@@ -2098,12 +2101,28 @@ function GotoNotRequest(url) {
 
         // 实现 paypal standar payment
         $(".pay-width-paypal-standard").on("click", function(){
+
+            gtag('event', 'initiate_paypal_standard_checkout', {
+                'event_label': 'Initiate paypal_standard Checkout',
+                'event_category': 'ecommerce'
+            });
+            //fbq('track', 'InitiateCheckout');
+
             window.pay_type = "paypal_standard";
             window.is_paypal_standard = true;
             console.log("paypal standard payment"+window.pay_type);
             console.log("paypal standard payment"+window.is_paypal_standard);
             checkout();
         });
+
+        // airwallex
+        $(".airwallex-pay").on("click", function(){
+            gtag('event', 'initiate_airwallex_checkout', {
+                'event_label': 'Initiate airwallex Checkout',
+                'event_category': 'ecommerce'
+            });
+            checkout();
+        })
 
         function checkout() {
             sendInitiateCheckoutEvent();

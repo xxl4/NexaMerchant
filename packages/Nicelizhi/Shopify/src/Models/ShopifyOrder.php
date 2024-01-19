@@ -13,6 +13,25 @@ class ShopifyOrder extends Model implements ShopifyOrderContract
 {
     use HasFactory;
 
+    protected $casts = [
+        'current_subtotal_price_set' => 'json',
+        'current_total_discounts_set' => 'json',
+        'current_total_tax_set' => 'json',
+        'discount_codes' => 'json',
+        'total_discounts_set' => 'json',
+        'total_line_items_price_set' => 'json',
+        'total_price_set' => 'json',
+        'total_shipping_price_set' => 'json',
+        'total_tax_set' => 'json',
+        'billing_address' => 'json',
+        'customer' => 'json',
+        'discount_applications' => 'json',
+        'line_items' => 'json',
+        'shipping_address' => 'json',
+        'shipping_lines' => 'json',
+        'current_total_price_set' => 'json'
+    ];
+
     /**
      * Castable.
      *

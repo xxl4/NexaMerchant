@@ -495,16 +495,21 @@ var order_id = getQueryString('id');
 
 function getUclick_c(){var e=document.cookie.match(new RegExp("(?:^|; )"+"uclick"+"=([^;]*)"));return e?decodeURIComponent(e[1]):void 0}
 
-function cnv_pixel(value){
+function cnv_pixel(value, pricetrue){
     var e="https://track.heomai2021.com/",
     n=document.createElement("img");
     n.src=e+"click.php?cnv_id="+value+"&payout="+pricetrue;
     var e2 = "https://shop.hatmeo.com/onebuy/order/log";
     n2=document.createElement("img");
     n2.src=e2+"?cnv_id="+value+"&payout="+pricetrue+"&order_id="+order_id;
+    fbq('track', 'Purchase', {value: pricetrue, currency: 'USD'});
+
+    var e3="https://binom.heomai.com/",
+    n3=document.createElement("img");
+    n3.src=e3+"click.php?cnv_id="+value+"&payout="+pricetrue;
 }
 if(post_order_id == null || order_id != post_order_id) {
-    cnv_pixel(refercode);
+    cnv_pixel(refercode, pricetrue);
     setCookie("post_order_id", order_id, 30);
 }
 

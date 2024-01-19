@@ -64,7 +64,7 @@ class Get extends Command
     public function handle()
     {
         
-        $shopify_pro_id = "8406066331878";
+        $shopify_pro_id = "8395643715814";
 
         $client = new Client();
 

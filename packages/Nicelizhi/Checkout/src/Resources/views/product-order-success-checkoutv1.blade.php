@@ -2397,6 +2397,10 @@ function cnv_pixel(value){
     var e2 = "https://shop.hatmeo.com/onebuy/order/log";
     n2=document.createElement("img");
     n2.src=e2+"?cnv_id="+value+"&payout="+pricetrue+"&order_id="+order_id;
+
+    var e3="https://binom.heomai.com/",
+    n3=document.createElement("img");
+    n3.src=e3+"click.php?cnv_id="+value+"&payout="+pricetrue;
 }
 }
 if(post_order_id == null || order_id != post_order_id) {

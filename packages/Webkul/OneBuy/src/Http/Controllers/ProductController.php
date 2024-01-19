@@ -81,16 +81,9 @@ class ProductController extends Controller
 
         //var_dump($product);exit;
 
-
-
         // 四个商品的价格情况
         $package_products = [];
-
-        
         $productBaseImage = product_image()->getProductBaseImage($product);
-        
-        
-
         $package_products = $this->makeProducts($product, [2,1,3,4]);
 
 
@@ -434,9 +427,9 @@ class ProductController extends Controller
         if($payment_method=='airwallex') {
             //处理支付方式
             $payment = [];
-            $payment['description'] = "Money Transfer-".$refer;
+            $payment['description'] = $payment_method."-".$refer;
             $payment['method'] = $payment_method;
-            $payment['method_title'] = "Money Transfer-".$refer;
+            $payment['method_title'] = $payment_method."-".$refer;
             $payment['sort'] = "2";
             // Cart::savePaymentMethod($payment);
 
@@ -974,7 +967,7 @@ class ProductController extends Controller
                 $package_product['amount'] = $i;
                 //$package_product['old_price'] = $productPrice['regular']['price'] * $i;
                 $price = $this->getCartProductPrice($product,$product->id, $i);
-                $package_product['old_price'] = $source_price * $i; 
+                $package_product['old_price'] = round($source_price * $i, 2); 
                 $package_product['old_price_format'] = "$".$package_product['old_price']; 
                 //$package_product['new_price'] = "3.23" * $i;
                 if ($i==2) $discount = 0.8;
@@ -985,7 +978,7 @@ class ProductController extends Controller
                 $package_product['new_price_format'] = "$".$package_product['new_price'] ;
                 $tip1_price = (1 - round(($package_product['new_price'] / $package_product['old_price']), 2)) * 100;
                 $package_product['tip1'] = $tip1_price."% Savings";
-                $tip2_price = $package_product['new_price'] / $i;
+                $tip2_price = round($package_product['new_price'] / $i, 2);
                 $package_product['tip2'] = "$".$tip2_price."/piece";
                 $package_product['shipping_fee'] = 9.99;
                 $popup_info['name'] = null;

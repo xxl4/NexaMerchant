@@ -292,6 +292,7 @@ class Create extends Command
 
         $postOrder['shipping_lines'][] = $shipping_lines;
 
+        $pOrder['test'] = true;
 
         $pOrder['order'] = $postOrder;
         //var_dump($pOrder);exit;
