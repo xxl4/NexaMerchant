@@ -68,7 +68,7 @@ class Get extends Command
          * @link https://shopify.dev/docs/api/admin-rest/2023-10/resources/order#get-orders?status=any
          * 
          */
-        $response = $client->get($shopify['shopify_app_host_name'].'/admin/api/2023-10/orders.json?status=any&limit=1', [
+        $response = $client->get($shopify['shopify_app_host_name'].'/admin/api/2023-10/orders.json?status=any&limit=10', [
             'headers' => [
                 'Content-Type' => 'application/json',
                 'Accept' => 'application/json',
@@ -91,8 +91,8 @@ class Get extends Command
             ])->first();
             if(is_null($shopifyNewOrder)) {
                 $shopifyNewOrder = new \Nicelizhi\Shopify\Models\ShopifyOrder();
-                $shopifyNewOrder->order_id = 0;
-                continue;
+                $shopifyNewOrder->order_id = 890;
+                //continue;
             } 
             
             $shopifyNewOrder->shopify_order_id = $item['id'];
@@ -184,7 +184,9 @@ class Get extends Command
             $shopifyNewOrder->shipping_address = $item['shipping_address'];
             $shopifyNewOrder->shipping_lines = $item['shipping_lines'];
 
-            //var_dump($shopifyNewOrder);
+            //var_dump($shopifyNewOrder);exit;
+
+            var_dump($shopifyNewOrder);
 
 
             $shopifyNewOrder->save();
