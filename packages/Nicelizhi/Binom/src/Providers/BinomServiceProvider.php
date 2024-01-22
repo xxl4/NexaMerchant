@@ -30,7 +30,7 @@ class BinomServiceProvider extends ServiceProvider
         
 
         
-        $this->app->register(EventServiceProvider::class);
+        //$this->app->register(EventServiceProvider::class);
         
 
         if ($this->app->runningInConsole()) {
