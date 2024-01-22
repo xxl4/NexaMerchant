@@ -2313,7 +2313,7 @@ function GotoNotRequest(url) {
                             }
                         });
                     }else if (window.is_airwallex){
-                        $('#loading').hide();
+                        
                         document.querySelector(".submit-button").scrollIntoView({
                             behavior: "smooth"
                         })
@@ -2375,6 +2375,7 @@ function GotoNotRequest(url) {
 
                         // STEP #6: Add an event listener to handle events when the element is mounted
                         window.addEventListener('onReady', (event) => {
+                            $('#loading').hide();
                             /*
                             ... Handle event
                             */
@@ -2385,6 +2386,7 @@ function GotoNotRequest(url) {
 
                         // STEP #7: Add an event listener to handle events when the payment is successful.
                         window.addEventListener('onSuccess', (event) => {
+                            $('#loading').hide();
                             /*
                             ... Handle event on success
                             */
