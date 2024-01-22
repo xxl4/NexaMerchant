@@ -74,9 +74,10 @@ class Get extends Command
          * 
          */
         $processed_at_min = date("c", strtotime("-1 week"));
+        $processed_at_max = date("c");
         $this->info("processed at min ". $processed_at_min);
         // 5585627676902
-        $base_url = $shopify['shopify_app_host_name'].'/admin/api/2023-10/orders.json?status=any&processed_at_min='.$processed_at_min.'&limit=250';
+        $base_url = $shopify['shopify_app_host_name'].'/admin/api/2023-10/orders.json?status=any&processed_at_min='.$processed_at_min.'&processed_at_max='.$processed_at_max.'&limit=250';
         //$base_url = $shopify['shopify_app_host_name'].'/admin/api/2023-10/orders.json?fulfillment_status=unshipped&limit=250';
         //$base_url = $shopify['shopify_app_host_name'].'/admin/api/2023-10/orders.json?ids=5585627676902';
         $response = $client->get($base_url, [
@@ -216,6 +217,7 @@ class Get extends Command
                 $order = $this->orderRepository->findOrFail($orderId);
                 if (!$order->canShip()) {
                     $this->error($orderId.'---'.trans('admin::app.sales.shipments.create.order-error'));
+                    $i++;
                     continue;
                 }
 
@@ -304,19 +306,17 @@ class Get extends Command
 
 
 
+            }
+            // 5594243432678
+            // todo
+            if($item['fulfillment_status']=='restocked' && $shopifyNewOrder->order_id!=0) { //restocked
 
-
-
-
-
-
+                $orderId = $shopifyNewOrder->order_id;
+                $result = $this->orderRepository->cancel($orderId);
+                $this->error($orderId. " cancel ". $result);
             }
 
-
             $i++;
-            
-           
-
         }
     }
 
