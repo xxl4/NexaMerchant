@@ -67,7 +67,7 @@ class Post extends Command
         // $lists = $this->orderRepository->findWhere([
         //     'status' => 'processing'
         // ]);
-        $lists = Order::where(['status'=>'processing'])->orderBy("updated_at", "desc")->limit(10)->get();
+        $lists = Order::where(['status'=>'processing'])->orderBy("updated_at", "desc")->limit(20)->get();
         //$lists = Order::where(['id'=>'433'])->orderBy("updated_at", "desc")->limit(10)->get();
 
         //var_dump($lists);exit;
@@ -75,6 +75,7 @@ class Post extends Command
         foreach($lists as $key=>$list) {
             $this->info("start post order " . $list->id);
             $this->postOrder($list->id, $shopifyStore);
+            //exit;
         }
 
 
@@ -91,6 +92,8 @@ class Post extends Command
             return false;
         }
 
+        $this->info("sync to order to shopify ".$id);
+
         $client = new Client();
 
         $shopify = $shopifyStore->toArray();
@@ -102,6 +105,7 @@ class Post extends Command
          */
         // $id = 147;
         $order = $this->orderRepository->findOrFail($id);
+        
 
         //var_dump($order);exit;
 

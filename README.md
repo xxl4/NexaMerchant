@@ -1,1 +1,1 @@
-# Bagisto Laravel ecommerce
+# Nexa Merchant Laravel ecommerce

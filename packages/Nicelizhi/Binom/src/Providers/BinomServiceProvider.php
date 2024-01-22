@@ -1,5 +1,5 @@
 <?php
-namespace Nicelizhi\Shopify\Providers;
+namespace Nicelizhi\Binom\Providers;
 
 use Illuminate\Pagination\Paginator;
 use Illuminate\Routing\Router;
@@ -11,7 +11,7 @@ use Webkul\Shop\Http\Middleware\Currency;
 use Webkul\Shop\Http\Middleware\Locale;
 use Webkul\Shop\Http\Middleware\Theme;
 
-class ShopifyServiceProvider extends ServiceProvider
+class BinomServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap services.
@@ -22,9 +22,9 @@ class ShopifyServiceProvider extends ServiceProvider
     {
         Route::middleware('web')->group(__DIR__ . '/../Routes/web.php');
 
-        $this->loadTranslationsFrom(__DIR__ . '/../Resources/lang', 'shopify');
+        $this->loadTranslationsFrom(__DIR__ . '/../Resources/lang', 'binom');
 
-        $this->loadViewsFrom(__DIR__ . '/../Resources/views', 'shopify');
+        $this->loadViewsFrom(__DIR__ . '/../Resources/views', 'binom');
 
         $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
         
@@ -36,7 +36,7 @@ class ShopifyServiceProvider extends ServiceProvider
         if ($this->app->runningInConsole()) {
             $this->publishes([
                 __DIR__.'/../Resources/views' => $this->app->resourcePath('themes/default/views'),
-            ], 'shopify');
+            ], 'binom');
         }
 
     }
@@ -64,14 +64,9 @@ class ShopifyServiceProvider extends ServiceProvider
             dirname(__DIR__) . '/Config/menu.php', 'menu.admin'
         );
 
-        $this->mergeConfigFrom(
-            dirname(__DIR__) . '/Config/acl.php',
-            'acl'
-        );
-
         
         $this->mergeConfigFrom(
-            dirname(__DIR__) . '/Config/shopify.php', 'shopify'
+            dirname(__DIR__) . '/Config/binom.php', 'binom'
         );
         
     }
@@ -85,15 +80,6 @@ class ShopifyServiceProvider extends ServiceProvider
     {
         if ($this->app->runningInConsole()) {
             $this->commands([
-                \Nicelizhi\Shopify\Console\Commands\Product\Get::class,
-                \Nicelizhi\Shopify\Console\Commands\Product\Post::class,
-                \Nicelizhi\Shopify\Console\Commands\Product\Put::class,
-                \Nicelizhi\Shopify\Console\Commands\Product\Delete::class,
-                \Nicelizhi\Shopify\Console\Commands\Order\Get::class,
-                \Nicelizhi\Shopify\Console\Commands\Order\Post::class,
-                \Nicelizhi\Shopify\Console\Commands\Order\Create::class,
-                \Nicelizhi\Shopify\Console\Commands\Order\Put::class,
-                \Nicelizhi\Shopify\Console\Commands\Collect\Get::class,
             ]);
         }
     }

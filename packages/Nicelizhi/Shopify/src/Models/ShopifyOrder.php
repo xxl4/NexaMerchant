@@ -29,6 +29,13 @@ class ShopifyOrder extends Model implements ShopifyOrderContract
         'line_items' => 'json',
         'shipping_address' => 'json',
         'shipping_lines' => 'json',
+        'subtotal_price_set' => 'json',
+        'refunds' => 'json',
+        'fulfillments' => 'json',
+        'tax_lines' => 'json',
+        'payment_gateway_names' => 'json',
+        'note_attributes' => 'json',
+        'client_details' => 'json',
         'current_total_price_set' => 'json'
     ];
 

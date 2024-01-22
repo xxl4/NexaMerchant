@@ -9,6 +9,9 @@ use Illuminate\Support\Facades\Log;
 use Webkul\Sales\Repositories\OrderRepository;
 use Webkul\Sales\Repositories\OrderCommentRepository;
 use Webkul\Admin\DataGrids\Sales\OrderDataGrid;
+use Webkul\Sales\Repositories\ShipmentRepository;
+use Webkul\Sales\Repositories\OrderItemRepository;
+
 
 use Nicelizhi\Shopify\Models\ShopifyOrder;
 use Nicelizhi\Shopify\Models\ShopifyStore;
@@ -39,6 +42,8 @@ class Get extends Command
         protected OrderRepository $orderRepository,
         protected ShopifyOrder $ShopifyOrder,
         protected ShopifyStore $ShopifyStore,
+        protected ShipmentRepository $shipmentRepository,
+        protected OrderItemRepository $orderItemRepository,
         protected OrderCommentRepository $orderCommentRepository
     )
     {
@@ -68,7 +73,14 @@ class Get extends Command
          * @link https://shopify.dev/docs/api/admin-rest/2023-10/resources/order#get-orders?status=any
          * 
          */
-        $response = $client->get($shopify['shopify_app_host_name'].'/admin/api/2023-10/orders.json?status=any&limit=1', [
+        $processed_at_min = date("c", strtotime("-1 week"));
+        $processed_at_max = date("c");
+        $this->info("processed at min ". $processed_at_min);
+        // 5585627676902
+        $base_url = $shopify['shopify_app_host_name'].'/admin/api/2023-10/orders.json?status=any&processed_at_min='.$processed_at_min.'&processed_at_max='.$processed_at_max.'&limit=250';
+        //$base_url = $shopify['shopify_app_host_name'].'/admin/api/2023-10/orders.json?fulfillment_status=unshipped&limit=250';
+        //$base_url = $shopify['shopify_app_host_name'].'/admin/api/2023-10/orders.json?ids=5585627676902';
+        $response = $client->get($base_url, [
             'headers' => [
                 'Content-Type' => 'application/json',
                 'Accept' => 'application/json',
@@ -81,9 +93,10 @@ class Get extends Command
         $body = $response->getBody();
         $body = json_decode($body, true);
         //var_dump($body);
+        $i = 1;
         foreach($body['orders'] as $key=>$item) {
 
-            $this->info("sync...".$item['id']);
+            $this->info("sync...-".$i."-".$item['id']);
             
             $shopifyNewOrder = $this->ShopifyOrder->where([
                 'shopify_store_id' => $this->shopify_store_id,
@@ -92,7 +105,7 @@ class Get extends Command
             if(is_null($shopifyNewOrder)) {
                 $shopifyNewOrder = new \Nicelizhi\Shopify\Models\ShopifyOrder();
                 $shopifyNewOrder->order_id = 0;
-                continue;
+                //continue;
             } 
             
             $shopifyNewOrder->shopify_order_id = $item['id'];
@@ -184,13 +197,193 @@ class Get extends Command
             $shopifyNewOrder->shipping_address = $item['shipping_address'];
             $shopifyNewOrder->shipping_lines = $item['shipping_lines'];
 
+            //var_dump($shopifyNewOrder);exit;
+
             //var_dump($shopifyNewOrder);
 
 
             $shopifyNewOrder->save();
-            
-           
 
+
+            // sync to local software
+            if($item['fulfillment_status']=='fulfilled' && $shopifyNewOrder->order_id!=0) {
+
+
+                //var_dump($item['fulfillments']);
+                //var_dump($shopifyNewOrder->order_id);
+
+                $orderId = $shopifyNewOrder->order_id;
+                $this->info("shipping order id ". $orderId);
+                $order = $this->orderRepository->findOrFail($orderId);
+                if (!$order->canShip()) {
+                    $this->error($orderId.'---'.trans('admin::app.sales.shipments.create.order-error'));
+                    $i++;
+                    continue;
+                }
+
+                /**
+                 * 
+                 * 
+                 *  shipment[carrier_title]: CNE Express
+                 *  shipment[track_number]: 3A5V649727570
+                 *  shipment[source]: 1
+                 *  shipment[items][2589][1]: 1
+                 *  shipment[items][2591][1]: 1
+                 *  shipment[items][2593][1]: 1
+                 *  shipment[items][2595][1]: 1
+                 * 
+                 * 
+                 */
+                $shipment = [];
+                $shipment['carrier_title'] = $item['fulfillments'][0]['tracking_company'];
+                $shipment['track_number'] = $item['fulfillments'][0]['tracking_number'];
+                $shipment['source'] = 1;
+
+                $products = $order->items;
+
+                //var_dump($products);
+
+                $line_items = [];
+
+                foreach($products as $key=>$product) {
+                    $sku = $product['additional'];
+
+                    //var_dump($sku);
+        
+                    $skuInfo = explode('-', $sku['product_sku']);
+                    if(!isset($skuInfo[1])) {
+                        $this->error("have error" . $id);
+                        return false;
+                    }
+        
+                    $line_item = [];
+                    $line_item['variant_id'] = $skuInfo[1];
+                    $line_item ['quantity'] = $product['qty_ordered'];
+                    //$line_item ['requires_shipping'] = true;
+                    //$line_item['item_id'] = $sku['variant_id'];
+                    $line_item['order_item_id'] = $product['id'];
+
+                    $line_items[$skuInfo[1]] = $line_item;
+        
+                    //array_push($line_items, $line_item);
+                }
+
+                //var_dump($line_items);exit;
+
+                // 获取已经发货的数据内容
+                $shipment_items = [];
+                foreach($item['fulfillments'][0]['line_items'] as $key=>$line_item) {
+                    //var_dump($line_item['variant_id'],$line_item['quantity'], $line_items[$line_item['variant_id']]);
+                    if(isset($line_items[$line_item['variant_id']])) {
+                        if($line_items[$line_item['variant_id']]['quantity']==$line_item['quantity']) {
+                            $shipment_item = [];
+                            $shipment_items[$line_items[$line_item['variant_id']]['order_item_id']][1] = $line_item['quantity'];
+                            //array_push($shipment_items, $shipment_item);
+                            //$shipment_items[] = $shipment_item;
+                        }
+                    }
+                }
+
+                //var_dump($shipment_items);exit;
+
+                $shipment['items'] = $shipment_items;
+                //var_dump($line_items, $shipment_items, $shipment);
+
+                $data = [];
+                //$data['shipment']
+                $data['shipment'] = $shipment;
+                //var_dump($data, $orderId);
+
+                //var_dump($data, $orderId, $item['fulfillments'][0]['line_items']); exit;
+
+                $response = $this->shipmentRepository->create(array_merge($data, [
+                    'order_id' => $orderId,
+                ]));
+
+                //var_dump($response);
+
+                //exit;
+
+
+
+            }
+            // 5594243432678
+            // todo
+            if($item['fulfillment_status']=='restocked' && $shopifyNewOrder->order_id!=0) { //restocked
+
+                $orderId = $shopifyNewOrder->order_id;
+                $result = $this->orderRepository->cancel($orderId);
+                $this->error($orderId. " cancel ". $result);
+            }
+
+            $i++;
         }
+    }
+
+    /**
+     * Checks if requested quantity available or not.
+     *
+     * @param  array  $data
+     * @return bool
+     */
+    public function isInventoryValidate(&$data)
+    {
+        if (!isset($data['shipment']['items'])) {
+            return;
+        }
+
+        $valid = false;
+
+        $inventorySourceId = $data['shipment']['source'];
+
+        foreach ($data['shipment']['items'] as $itemId => $inventorySource) {
+            $qty = $inventorySource[$inventorySourceId];
+
+            if ((int) $qty) {
+                $orderItem = $this->orderItemRepository->find($itemId);
+
+                if ($orderItem->qty_to_ship < $qty) {
+                    return false;
+                }
+
+                if ($orderItem->getTypeInstance()->isComposite()) {
+                    foreach ($orderItem->children as $child) {
+                        if (!$child->qty_ordered) {
+                            continue;
+                        }
+
+                        $finalQty = ($child->qty_ordered / $orderItem->qty_ordered) * $qty;
+
+                        $availableQty = $child->product->inventories()
+                            ->where('inventory_source_id', $inventorySourceId)
+                            ->sum('qty');
+
+                        if (
+                            $child->qty_to_ship < $finalQty
+                            || $availableQty < $finalQty
+                        ) {
+                            return false;
+                        }
+                    }
+                } else {
+                    $availableQty = $orderItem->product->inventories()
+                        ->where('inventory_source_id', $inventorySourceId)
+                        ->sum('qty');
+
+                    if (
+                        $orderItem->qty_to_ship < $qty
+                        || $availableQty < $qty
+                    ) {
+                        return false;
+                    }
+                }
+
+                $valid = true;
+            } else {
+                unset($data['shipment']['items'][$itemId]);
+            }
+        }
+
+        return $valid;
     }
 }
