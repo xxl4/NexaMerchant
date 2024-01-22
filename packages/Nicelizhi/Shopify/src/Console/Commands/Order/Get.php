@@ -24,7 +24,7 @@ class Get extends Command
      *
      * @var string
      */
-    protected $signature = 'shopify:order:get';
+    protected $signature = 'shopify:order:get {shopify_store_id?}';
 
     /**
      * The console command description.
@@ -59,6 +59,12 @@ class Get extends Command
      */
     public function handle()
     {
+
+        $shopify_store_id = $this->argument('shopify_store_id');
+        if(!empty($shopify_store_id)) $this->shopify_store_id = $shopify_store_id;
+
+        $this->line('Display this on the screen '. $this->shopify_store_id);
+
         $client = new Client();
 
         $shopifyStore = $this->ShopifyStore->where('shopify_store_id', $this->shopify_store_id)->first();
@@ -73,7 +79,7 @@ class Get extends Command
          * @link https://shopify.dev/docs/api/admin-rest/2023-10/resources/order#get-orders?status=any
          * 
          */
-        $processed_at_min = date("c", strtotime("-1 week"));
+        $processed_at_min = date("c", strtotime("-2 week"));
         $processed_at_max = date("c");
         $this->info("processed at min ". $processed_at_min);
         // 5585627676902
