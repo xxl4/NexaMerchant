@@ -64,6 +64,11 @@ class ShopifyServiceProvider extends ServiceProvider
             dirname(__DIR__) . '/Config/menu.php', 'menu.admin'
         );
 
+        $this->mergeConfigFrom(
+            dirname(__DIR__) . '/Config/acl.php',
+            'acl'
+        );
+
         
         $this->mergeConfigFrom(
             dirname(__DIR__) . '/Config/shopify.php', 'shopify'
