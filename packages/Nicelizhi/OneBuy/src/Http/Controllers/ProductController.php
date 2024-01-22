@@ -59,8 +59,6 @@ class ProductController extends Controller
      */
     public function detail($slug, Request $request) {
         \Debugbar::disable(); /* 开启后容易出现前端JS报错的情况 */
-
-
         
         $slugOrPath = $slug;
         $product = $this->productRepository->findBySlug($slugOrPath);
@@ -159,16 +157,9 @@ class ProductController extends Controller
             Cache::put($color_cache_key, json_encode($qty_items_color), 36000);
         }else {
             $skus = json_decode($skus, JSON_OBJECT_AS_ARRAY);
-            //$qty_items_size = json_decode($qty_items_size, JSON_OBJECT_AS_ARRAY);
-            //$qty_items_color = json_decode($qty_items_color, JSON_OBJECT_AS_ARRAY);
         }
 
-
-        // var_dump($package_products);exit;
-
         $product_attributes = [];
-
-
 
         $cache_key = "product_attributes_".$product->id;
         $product_attributes = Cache::get($cache_key);
@@ -190,10 +181,6 @@ class ProductController extends Controller
             $product_category_id = intval($product_category);
         }
         
-        //var_dump($product_category_id);
-
-        //var_dump($categories);exit;
-
 
         if(empty($product_attributes)) {
 
@@ -245,21 +232,7 @@ class ProductController extends Controller
                 if($attribute['id']==24) {
                     $tip = "Size Chart";
                     if(isset($productSizeImage->text_value)) $tip_img = $productSizeImage->text_value;
-                    
-                    if(empty($tip_img)) {
-                        if($product_category_id=="3") {
-                            $tip_img = "https://shop.hatmeo.com/size/shoes.jpg";
-                        }
-                        if($product_category_id=="5") {
-                            $tip_img = "https://shop.hatmeo.com/size/bra.jpg";
-                        }
-                    }else{
-                        $tip_img ="https://shop.hatmeo.com/storage/".$tip_img;
-                    }
-                    
                     if(empty($tip_img)) $tip = "";
-
-                    
                 }
                 
                 $attribute['tip'] = $tip;
@@ -279,15 +252,6 @@ class ProductController extends Controller
         }
 
         rsort($product_attributes);
-
-        
-
-        //var_dump($product);
-        
-
-        //rsort($skus);
-
-
 
         //商品的背景图片获取
 
@@ -316,11 +280,10 @@ class ProductController extends Controller
         $comments = $redis->hgetall($this->cache_prefix_key."product_comments_".$product['id']);
 
         
+        //获取 paypal smart key
+        $paypal_client_id = core()->getConfigData('sales.payment_methods.paypal_smart_button.client_id');
 
-
-
-
-        return view('onebuy::product-detail', compact('app_env','product','package_products', 'product_attributes', 'skus','productBgAttribute','productBgAttribute_mobile','faqItems','comments'));
+        return view('onebuy::product-detail', compact('app_env','product','package_products', 'product_attributes', 'skus','productBgAttribute','productBgAttribute_mobile','faqItems','comments','paypal_client_id'));
     }
 
     // 完成订单生成动作
@@ -707,7 +670,8 @@ class ProductController extends Controller
             $addressData['billing']['email'] = $payer['email_address'];
             $addressData['billing']['first_name'] = $payer['name']->given_name;
             $addressData['billing']['last_name'] = $payer['name']->surname;
-            $addressData['billing']['phone'] =  $payment_source_paypal['phone_number']->national_number;
+            $national_number = isset($payment_source_paypal['phone_number']) ? $payment_source_paypal['phone_number']->national_number : "";
+            $addressData['billing']['phone'] =  $national_number;
             $addressData['billing']['postcode'] = isset($input['address']->postal_code) ? $input['address']->postal_code : "";
             $addressData['billing']['state'] = isset($input['address']->admin_area_2) ? $input['address']->admin_area_2 : "";
             $addressData['billing']['use_for_shipping'] = true;
