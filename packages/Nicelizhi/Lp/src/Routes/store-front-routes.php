@@ -24,15 +24,7 @@ Route::group(['middleware' => ['locale', 'theme', 'currency'],'prefix'=>'product
     
 
     Route::get('{slug}', [LpController::class, 'index'])
-        ->name('lp.slug.page')
+        ->name('lp.products.slug.page')
         ->middleware('cacheResponse');
-
-    /**
-     * Fallback route.
-     */
-    Route::fallback(LpController::class . '@index')
-        ->name('shop.lp.index')
-        ->middleware('cacheResponse');
-
 
 });
