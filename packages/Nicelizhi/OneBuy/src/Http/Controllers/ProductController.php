@@ -75,7 +75,6 @@ class ProductController extends Controller
         visitor()->visit($product);
 
         $refer = $request->session()->get('refer');
-        Log::info("refer checkout v1 ".$refer);
 
         //var_dump($product);exit;
 
@@ -282,7 +281,15 @@ class ProductController extends Controller
         //获取 paypal smart key
         $paypal_client_id = core()->getConfigData('sales.payment_methods.paypal_smart_button.client_id');
 
-        return view('onebuy::product-detail', compact('app_env','product','package_products', 'product_attributes', 'skus','productBgAttribute','productBgAttribute_mobile','faqItems','comments','paypal_client_id'));
+
+        //支持的区域
+        $countries = config("countries");
+
+        $default_country = config('onebuy.default_country');
+
+        //var_dump($default_country);exit;
+
+        return view('onebuy::product-detail', compact('app_env','product','package_products', 'product_attributes', 'skus','productBgAttribute','productBgAttribute_mobile','faqItems','comments','paypal_client_id','default_country'));
     }
 
     // 完成订单生成动作

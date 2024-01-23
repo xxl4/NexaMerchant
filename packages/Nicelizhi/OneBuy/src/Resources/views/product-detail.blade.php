@@ -1409,7 +1409,7 @@ COMPLETE SECURE PURCHASE </button>
                 getStateSelect();
             })
 
-            var cur_country = 'US';
+            var cur_country = '<?php echo $default_country;?>';
             if(cur_country) {
                 $('#country-select').val(cur_country);
                 $('#country-select').parent(".shipping-info-item").find(".shipping-info-label").css({
