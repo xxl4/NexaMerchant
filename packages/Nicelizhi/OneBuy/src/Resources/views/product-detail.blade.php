@@ -1976,24 +1976,6 @@ function GotoNotRequest(url) {
             }
         }
 
-        function testCheckout() {
-            pay_type = "test"
-            var params = getOrderParams(pay_type);
-            if(params.error && params.error.length) {
-                $('#checkout-error').html(params.error.join('<br />'));
-                $('#checkout-error').show();
-                return;
-            }
-            $('#loading').show();
-            $('#checkout-error').hide();
-
-
-            
-
-            
-            testCreateOrder('test');
-        }
-
         // 添加到购买车中
         function addToCart(pay_type) {
             var product = getSelectProduct();
@@ -2037,44 +2019,6 @@ function GotoNotRequest(url) {
 
         }
 
-        
-
-        function testCreateOrder(pay_type) {
-            var params = getOrderParams(pay_type);
-            params["page_id"]='4766';
-
-            var url = '/onebuy/order/add/sync?_token={{ csrf_token() }}&time=' + new Date().getTime();
-
-            $('#loading').show();
-            fetch(url,{
-                body: JSON.stringify(params),
-                method: 'POST',
-                headers: {
-                    'content-type': 'application/json'
-                },
-            })
-            .then(function(res){return res.json()})
-            .then(function(res) {
-                var data = res;
-                if(data.result === 200){
-                    var order_info = data.info;
-                    document.cookie="voluum_payout="+ params.total + params.currency + "; path=/";
-                    document.cookie="order_id="+ order_info._id.$oid + "; path=/";
-                    localStorage.setItem("order_id", order_info._id.$oid);
-                    localStorage.setItem("order_params", JSON.stringify(params));
-
-                    $('#loading').hide();
-                    Goto('/onebuy/checkout/success?id='+localStorage.getItem('order_id'));
-                }else {
-                    $('#loading').hide();
-                    var pay_error = data.error;
-                    if(pay_error && pay_error.length) {
-                        $('#checkout-error').html(pay_error.join('<br />')+'<br /><br />');
-                        $('#checkout-error').show();
-                    }
-                }
-            })
-        }
 
         $(".email").on("focus", function(){
             console.log("email focus");
@@ -2315,15 +2259,6 @@ function GotoNotRequest(url) {
                             Airwallex.init({
                             env: '<?php echo $app_env;?>', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
                             origin: window.location.origin, // Setup your event target to receive the browser events message
-                            fonts: [
-                                // Customizes the font for the payment elements
-                                {
-                                src:
-                                    'https://checkout-demo.airwallex.com/fonts/CircularXXWeb/CircularXXWeb-Regular.woff2',
-                                family: 'AxLLCircular',
-                                weight: 400,
-                                },
-                            ],
                             });
                             
 
@@ -2332,7 +2267,7 @@ function GotoNotRequest(url) {
                             // Required, dropIn use intent Id, client_secret and currency to prepare checkout
                             intent_id: data.payment_intent_id,
                             client_secret: data.client_secret,
-                            methods: ["card","googlepay","applepay"],
+                            methods: <?php echo json_encode($airwallex_method);?>,
                             currency: data.currency,
                             // customer_id:"cus_hkdm6lm7hglgq1tsh22",
                             googlePayRequestOptions: {

@@ -287,9 +287,11 @@ class ProductController extends Controller
 
         $default_country = config('onebuy.default_country');
 
+        $airwallex_method = config('onebuy.airwallex.method');
+
         //var_dump($default_country);exit;
 
-        return view('onebuy::product-detail', compact('app_env','product','package_products', 'product_attributes', 'skus','productBgAttribute','productBgAttribute_mobile','faqItems','comments','paypal_client_id','default_country'));
+        return view('onebuy::product-detail', compact('app_env','product','package_products', 'product_attributes', 'skus','productBgAttribute','productBgAttribute_mobile','faqItems','comments','paypal_client_id','default_country','airwallex_method'));
     }
 
     // 完成订单生成动作
