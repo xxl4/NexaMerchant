@@ -421,11 +421,11 @@ class Post extends Command
 
             $cnv_id = explode('-',$orderPayment['method_title']);
             $url = "https://track.heomai2021.com/click.php?cnv_id=".$cnv_id[1]."&payout=".$order->grand_total;
-            $res = @file_get_contents($url);
-            Log::info("post to bm url".$url." res".json_encode($res));
+            $res = $this->get_content($url);
+            Log::info("post to bm url ".$url." res ".json_encode($res));
             $res = $url = "https://binom.heomai.com/click.php?cnv_id=".$cnv_id[1]."&payout=".$order->grand_total;
-            $res = @file_get_contents($url);
-            Log::info("post to bm url".$url." res".json_encode($res));
+            $res = $this->get_content($url);
+            Log::info("post to bm url ".$url." res ".json_encode($res));
 
             
 
@@ -435,4 +435,14 @@ class Post extends Command
 
         }
     }
+
+    private function get_content($URL){
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_URL, $URL);
+        $data = curl_exec($ch);
+        curl_close($ch);
+        return $data;
+    }
+    
 }
