@@ -180,7 +180,6 @@ class ProductController extends Controller
             //var_dump($product_category);exit;
             $product_category_id = intval($product_category);
         }
-        
 
         if(empty($product_attributes)) {
 
@@ -905,7 +904,8 @@ class ProductController extends Controller
         $cache_key = "product_ext_".$product->id."_".count($nums);
         $package_products = Cache::get($cache_key);
         
-        if(empty($package_products)) {
+        if(true) {
+        //if(empty($package_products)) {
         //if($package_products) {
             $package_products = [];
             $productBaseImage = product_image()->getProductBaseImage($product);
@@ -932,18 +932,18 @@ class ProductController extends Controller
                 //$package_product['old_price'] = $productPrice['regular']['price'] * $i;
                 $price = $this->getCartProductPrice($product,$product->id, $i);
                 $package_product['old_price'] = round($source_price * $i, 2); 
-                $package_product['old_price_format'] = "$".$package_product['old_price']; 
+                $package_product['old_price_format'] = core()->currency($package_product['old_price']); 
                 //$package_product['new_price'] = "3.23" * $i;
                 if ($i==2) $discount = 0.8;
                 if ($i==3) $discount = 0.7;
                 if ($i==4) $discount = 0.6;
                 if ($i==1) $discount = 1;
                 $package_product['new_price'] = $this->getCartProductPrice($product,$product->id, $i) * $discount;
-                $package_product['new_price_format'] = "$".$package_product['new_price'] ;
+                $package_product['new_price_format'] = core()->currency($package_product['new_price']) ;
                 $tip1_price = (1 - round(($package_product['new_price'] / $package_product['old_price']), 2)) * 100;
                 $package_product['tip1'] = $tip1_price."% Savings";
                 $tip2_price = round($package_product['new_price'] / $i, 2);
-                $package_product['tip2'] = "$".$tip2_price."/piece";
+                $package_product['tip2'] = core()->currency($tip2_price)."/piece";
                 $package_product['shipping_fee'] = 9.99;
                 $popup_info['name'] = null;
                 $popup_info['old_price'] = null;

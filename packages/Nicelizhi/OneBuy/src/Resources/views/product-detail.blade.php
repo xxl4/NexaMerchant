@@ -1332,7 +1332,7 @@ COMPLETE SECURE PURCHASE </button>
         }
 
         function getFormatPrice(price) {
-            var price_template = '$price',
+            var price_template = '{{ core()->currencySymbol(core()->getCurrentCurrencyCode()) }}price',
                 price_prefix = '';
             if(price*1 < 0) {
                 price = Math.abs(price);
@@ -2526,7 +2526,7 @@ function GotoNotRequest(url) {
                 shopify_store_name  : '',
                 produt_amount_base  : '1',
                 domain_name         : document.domain || window.location.host,
-                price_template      : '$price',
+                price_template      : '{{ core()->currencySymbol(core()->getBaseCurrencyCode()) }}price',
                 omnisend            : '',
                 payment_account     : 'viusd',
             }
