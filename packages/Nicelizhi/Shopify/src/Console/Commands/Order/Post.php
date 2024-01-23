@@ -105,7 +105,8 @@ class Post extends Command
          */
         // $id = 147;
         $order = $this->orderRepository->findOrFail($id);
-        
+
+        $orderPayment = $order->payment;  
 
         //var_dump($order);exit;
 
@@ -413,6 +414,24 @@ class Post extends Command
 
 
             $shopifyNewOrder->save();
+
+            
+
+            // order sync to other job
+
+            $cnv_id = explode('-',$orderPayment['method_title']);
+
+            $url = "https://track.heomai2021.com/click.php?cnv_id=".$cnv_id[1]."&payout=".$order->grand_total;
+            Log::info("post to bm url".$url);
+            $url = "https://binom.heomai.com/click.php?cnv_id=".$cnv_id[1]."&payout=".$order->grand_total;
+            Log::info("post to bm url".$url);
+
+            
+
+
+
+
+
         }
     }
 }
