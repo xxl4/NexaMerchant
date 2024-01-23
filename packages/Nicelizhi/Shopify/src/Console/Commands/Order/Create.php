@@ -68,7 +68,7 @@ class Create extends Command
         //     'status' => 'processing'
         // ]);
         //$lists = Order::where(['status'=>'processing'])->orderBy("updated_at", "desc")->limit(10)->get();
-        $lists = Order::where(['id'=>'433'])->orderBy("updated_at", "desc")->limit(10)->get();
+        $lists = Order::where(['id'=>'1037'])->orderBy("updated_at", "desc")->limit(10)->get();
        // $lists = Order::where(['id'=>'305'])->orderBy("updated_at", "desc")->limit(10)->get();
 
         //var_dump($lists);exit;
@@ -103,6 +103,16 @@ class Create extends Command
          */
         // $id = 147;
         $order = $this->orderRepository->findOrFail($id);
+
+        $orderPayment = $order->payment;   
+        
+        $cnv_id = explode('-',$orderPayment['method_title']);
+
+        var_dump($cnv_id);exit;
+        
+        //$orderPayment = $orderPayment->toArray();
+
+        //var_dump($orderPayment['method_title']);exit;
 
         //var_dump($order);exit;
 
