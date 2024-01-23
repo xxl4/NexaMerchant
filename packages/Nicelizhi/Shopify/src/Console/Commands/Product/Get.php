@@ -51,7 +51,8 @@ class Get extends Command
         protected ShopifyStore $ShopifyStore,
     )
     {
-        $this->shopify_store_id = "hatmeo";
+        $this->shopify_store_id = "wmbracom";
+        $this->lang = "de";
         $this->category_id = 9;
         parent::__construct();
     }
@@ -64,7 +65,7 @@ class Get extends Command
     public function handle()
     {
         
-        $shopify_pro_id = "8395643715814";
+        $shopify_pro_id = "8924785377562";
 
         $client = new Client();
 
@@ -170,10 +171,12 @@ class Get extends Command
             foreach($options as $kk => $option) {
                 $attr_id = 0;
                 if(strpos($option['name'], "Size")!==false) $attr_id = 24;
+                if(strpos($option['name'], "GRÖSSE")!==false) $attr_id = 24;
                 if(strpos($option['name'], "尺码") !==false) $attr_id = 24;
                 if(strpos($option['name'], "Length") !==false) $attr_id = 24;
                 if(strpos($option['name'], "Color") !==false) $attr_id = 23;
                 if(strpos($option['name'], "颜色") !==false) $attr_id = 23;
+                if(strpos($option['name'], "FARBE") !==false) $attr_id = 23;
                 //var_dump($option['name'], $attr_id); exit;
                 //if($option['position']==2) $attr_id = 24;
                 if(empty($attr_id)) {
@@ -208,7 +211,7 @@ class Get extends Command
                         $attr_opt_tran = AttributeOptionTranslation::where("attribute_option_id", $attribute_option_id)->where("locale", $locale)->first();
                         if(is_null($attr_opt_tran)) {
                             $attr_opt_tran = new AttributeOptionTranslation();
-                            if($locale=='en') {
+                            if($locale==$this->lang) {
                                 $attr_opt_tran->label = $value;
                             } else{
                                 $attr_opt_tran->label = "";
@@ -263,7 +266,7 @@ class Get extends Command
             $updateData['status'] = 1;
             $updateData['guest_checkout'] = 1;
             $updateData['channel'] = "default";
-            $updateData['locale'] = "en";
+            $updateData['locale'] = $this->lang;
             $categories[] = $this->category_id;
             $updateData['categories'] = $categories;
 
@@ -446,7 +449,7 @@ class Get extends Command
                 $updateData['status'] = 1;
                 $updateData['guest_checkout'] = 1;
                 $updateData['channel'] = "default";
-                $updateData['locale'] = "en";
+                $updateData['locale'] = $this->lang;
                 $categories[] = $this->category_id;
                 $updateData['categories'] = $categories;
 
