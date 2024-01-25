@@ -14,6 +14,6 @@ use Nicelizhi\Airwallex\Controllers\OnePageController;
     Route::prefix('airwallex')->group(function () {
         Route::get('payment-methods', [AirwallexController::class, 'showPaymentMethods'])->name('airwallex.payment_methods');
 
-        Route::any('payment-success', [AirwallexController::class, 'paymentSuccess']) ->name('airwallex.payment.success');
+        
     });
 });

@@ -214,7 +214,7 @@ class Airwallex extends Payment
       $klarna['country_code'] = $shipping_address->country;
       $klarna['language'] = app()->getLocale();
       $billing = [];
-      $billing['data_of_birth'] = "";
+      //$billing['data_of_birth'] = "";
       $billing['email'] = $order->customer_email;
       $billing['first_name'] = $order->customer_first_name;
       $billing['last_name'] = $order->customer_last_name;
@@ -227,7 +227,7 @@ class Airwallex extends Payment
       $address['street'] = $shipping_address->address1." ".$shipping_address->address2;
       $address['postcode'] = $shipping_address->postcode;
       $billing['address'] = $address;
-      $billing['personal_id'] = "";
+      //$billing['personal_id'] = "";
       $klarna['billing'] = $billing;
 
 

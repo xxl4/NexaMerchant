@@ -125,7 +125,7 @@ class Airwallex {
 
         $result = $this->http_curl($url, 'xml', $data, 6, FALSE, '',$header);
 
-        if($result['code']=='201') return json_decode($result['body']);
+        if($result['code']=='200') return json_decode($result['body']);
 
         return $result;
     }
