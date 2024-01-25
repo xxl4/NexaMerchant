@@ -1954,6 +1954,12 @@ function GotoNotRequest(url) {
                     }
 
                     if(window.is_airwallex_klarna) {
+
+                        document.cookie="voluum_payout="+ order_info.grand_total + order_info.order_currency_code + "; path=/";
+                        document.cookie="order_id="+ order_info.id + "; path=/";
+                        localStorage.setItem("order_id", order_info.id);
+                        localStorage.setItem("order_params", JSON.stringify(params));
+
                         url = "/onebuy/order/confirm?_token={{ csrf_token() }}&payment_intent_id="+data.payment_intent_id+"&order_id="+data.order.id;
                         fetch(url, {
                             method: 'GET',
