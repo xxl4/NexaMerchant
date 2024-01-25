@@ -171,6 +171,10 @@ class AirwallexController extends Controller
         }
     }
 
+    public function paymentSuccess(Request $request) {
+        Log::info(json_encode("airwallex payment success". $request->all()));
+    }
+
     /**
      * Prepares invoice data
      *

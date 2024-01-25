@@ -201,6 +201,47 @@ class Airwallex extends Payment
       return $transactionManager;
     }
 
+    public function confirmPayment($payment_intents_id, $order) {
+      $sdk = new AirwallexSdk($this->paymentConfig, $this->productionMode);
+      $buildRequestBody = [];
+      $payment_method = [];
+      $payment_method['type'] = "klarna";
+
+      $shipping_address = $order->shipping_address;
+      //var_dump($shipping_address);
+
+      $klarna = [];
+      $klarna['country_code'] = $shipping_address->country;
+      $klarna['language'] = app()->getLocale();
+      $billing = [];
+      $billing['data_of_birth'] = "";
+      $billing['email'] = $order->customer_email;
+      $billing['first_name'] = $order->customer_first_name;
+      $billing['last_name'] = $order->customer_last_name;
+      //$billing['personal_id'] = "";
+      $billing['phone_number'] = $shipping_address->phone;
+      $address = [];
+      $address['country_code'] = $shipping_address->country;
+      $address['state'] = $shipping_address->state;
+      $address['city'] = $shipping_address->city;
+      $address['street'] = $shipping_address->address1." ".$shipping_address->address2;
+      $address['postcode'] = $shipping_address->postcode;
+      $billing['address'] = $address;
+      $billing['personal_id'] = "";
+      $klarna['billing'] = $billing;
+
+
+      $payment_method['klarna'] = $klarna;
+      $buildRequestBody['payment_method'] = $payment_method;
+      $buildRequestBody['request_id'] = $order->id."_".time();
+      //var_dump($order, $buildRequestBody);exit;
+      //var_dump($buildRequestBody);
+      $transactionManager = $sdk->confirm($payment_intents_id, json_encode($buildRequestBody, JSON_OBJECT_AS_ARRAY | JSON_UNESCAPED_UNICODE));
+
+      return $transactionManager;
+      
+    }
+
     /**
      * 
      * @link https://www.airwallex.com/docs/api#/Payment_Acceptance/Payment_Intents/_api_v1_pa_payment_intents_create/post
@@ -248,7 +289,7 @@ class Airwallex extends Payment
         $product['quantity'] = 1;
         $product['sku'] = "11111";
         $product['type'] = "11111";
-        $product['unit_price'] = 14.99;
+        $product['unit_price'] = $data['amount'];
         $product['url'] = "https://www.baidu.com/";
 
         $products[] = $product;
@@ -262,7 +303,7 @@ class Airwallex extends Payment
         $order['shipping'] = $shipping;
         $order['type'] = "Online Mobile Phone Purchases";
         $data['order'] = $order;
-        $data['return_url'] = "https://shop.hatmeo.com/";
+        $data['return_url'] = route('airwallex.payment.success');
         return $data;
 
         $data = '"amount": '.',
