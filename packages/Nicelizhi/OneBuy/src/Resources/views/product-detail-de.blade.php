@@ -251,7 +251,7 @@
 </a>
 </div>
 <div class="main-container-progress-state-content-step-title black">
-Select Quantity </div>
+@lang('onebuy::app.product.step.Select Quantity')</div>
 </div>
 <div class="main-container-progress-state-line active" style="height: 470px;"></div>
 </div>
@@ -263,7 +263,7 @@ Select Quantity </div>
 </a>
 </div>
 <div class="main-container-progress-state-content-step-title">
-Payment </div>
+ @lang('onebuy::app.product.step.Payment') </div>
 </div>
 <div class="main-container-progress-state-line" style="height:250px;"></div>
 </div>
@@ -275,7 +275,7 @@ Payment </div>
 </a>
 </div>
 <div class="main-container-progress-state-content-step-title">
-Shipping Information </div>
+ @lang('onebuy::app.product.step.Shipping Information') </div>
 </div>
 <div class="main-container-progress-state-line"></div>
 </div>
@@ -287,7 +287,7 @@ Shipping Information </div>
 </a>
 </div>
 <div class="main-container-progress-state-content-step-title">
-Place Order </div>
+ @lang('onebuy::app.product.step.Place Order')  </div>
 </div>
 </div>
 </div>
@@ -298,7 +298,7 @@ Place Order </div>
 <div class="checkout-security-title">
 <img class="checkout-security-title-img" src="https://lander.heomai.com/template-common/checkout1/images/secure-checkout.png" />
 <div class="checkout-security-title-font">
-Secure Checkout </div>
+ @lang('onebuy::app.product.order.Secure Checkout') </div>
 </div>
 <img class="checkout-security-img" src="https://lander.heomai.com/template-common/checkout1/images/secure-icons.png?v=1111" />
 </div>
@@ -309,7 +309,7 @@ Secure Checkout </div>
         <div class="recommend_deal" style="display:flex;">
             <img class="recommend_deal_img" src="https://lander.heomai.com/template-common/checkout1/images/star.png">
             <div class="recommend_deal_font">
-            RECOMMENDED DEAL </div>
+             @lang('onebuy::app.product.order.RECOMMENDED DEAL') </div>
         </div>
         <?php } ?>
         <div class="list-item-content">
@@ -357,7 +357,7 @@ Secure Checkout </div>
     </a> -->
     <div class="split-line shipping_information_paypal_block" style="padding-top:20px;">
         <div style="left: 0 \9;top: 8px \9;width: 100% \9; font-size:20px;font-weight:bold;">
-        Express Checkout </div>
+         @lang('onebuy::app.product.order.Express Checkout') </div>
     </div>
     <div class="paypal-wrapper" style="display:block;text-align:-webkit-center;padding: 0;margin-top: 20px;margin: 0;margin-top: 20px;">
         <div id="paypal-error" style="color:#e51f28;display:none"></div>
@@ -371,7 +371,7 @@ Secure Checkout </div>
     <br />
 <div class="payment-block" style="display:none;">
 <div class="payment-title">
-Or Pay With Credit Card </div>
+ @lang('onebuy::app.product.order.Or Pay With Credit Card') </div>
 
 
 <div class="checkout-block" id="checkout-block-up">
@@ -390,7 +390,7 @@ $('#checkout-block-up').on('click', function() {
 <form>
 <div class="checkout-title">
 <div class="checkout-title-font">
-Credit Card Information: </div>
+@lang('onebuy::app.product.order.Credit Card Information'): </div>
 <img src="https://lander.heomai.com/template-common/checkout1/images/paypal_creditcard_images_jcb.png" />
 </div>
 <div id="cc-form" style="display:none">
@@ -423,23 +423,23 @@ Credit Card Information: </div>
 </div>
 </div>
 <div id="checkout-card-error">
-Your Card Info is invaild </div>
+ @lang('onebuy::app.product.order.Your Card Info is invaild') </div>
 </form>
 </div>
 </div>
 <div class="split-line-safe shipping_information_block">
 <div class="split-line-safe-content">
-GUARANTEED <span style="color: #00d2be;">
-SAFE </span>
-CHECKOUT </div>
+ @lang('onebuy::app.product.order.GUARANTEED')<span style="color: #00d2be;">
+ @lang('onebuy::app.product.order.SAFE')</span>
+ @lang('onebuy::app.product.order.CHECKOUT') </div>
 </div>
 <img class="payment-img" src="https://lander.heomai.com/template-common/checkout1/images/gsc-en.png?v=111" />
 </div>
 <div class="shipping-block">
 <div class="shipping-title">
-Shipping </div>
+@lang('onebuy::app.product.order.Shipping')</div>
 <div class="shipping-tip">
-Enter your contact information:
+@lang('onebuy::app.product.order.Enter your contact information'):
 </div>
 <div class="shipping-info-form">
 <form>
@@ -448,35 +448,35 @@ Enter your contact information:
 <label id="email-error" class="shipping-info-error">
 </label>
 <label class="shipping-info-label">
-Email </label>
+@lang('onebuy::app.product.order.Email') </label>
 </div>
 <div class="shipping-info-item">
 <input name="first_name" class="shipping-info-input first_name" oninput="checkoutName(this)" />
 <label id="first_name-error" class="shipping-info-error">
 </label>
 <label class="shipping-info-label">
-First Name </label>
+@lang('onebuy::app.product.order.First Name') </label>
 </div>
 <div class="shipping-info-item">
 <input name="last_name" class="shipping-info-input last_name" oninput="checkoutName(this)" />
 <label id="last_name-error" class="shipping-info-error">
 </label>
 <label class="shipping-info-label">
-Last Name </label>
+@lang('onebuy::app.product.order.Last Name') </label>
 </div>
 <div class="shipping-info-item">
 <input name="phone_number" type="tel" class="shipping-info-input phone_number" />
 <label id="phone_number-error" class="shipping-info-error">
 </label>
 <label class="shipping-info-label">
-Phone Number </label>
+@lang('onebuy::app.product.order.Phone Number') </label>
 </div>
 <div class="shipping-info-item">
 <input name="address" class="shipping-info-input address" placeholder />
 <label id="address-error" class="shipping-info-error">
 </label>
 <label class="shipping-info-label">
-Street Address </label>
+@lang('onebuy::app.product.order.Street Address') </label>
 </div>
 <!-- <div class="shipping-info-item">
 <input name="apt_other" class="shipping-info-input apt_other" />
@@ -490,14 +490,14 @@ Apt / Suite / Other </label>
 <label id="city-error" class="shipping-info-error">
 </label>
 <label class="shipping-info-label">
-City </label>
+@lang('onebuy::app.product.order.City') </label>
 </div>
 <div class="shipping-info-item">
 <select class="shipping-info-select" name="country" id="country-select"></select>
 <label id="country-error" class="shipping-info-error">
 </label>
 <label class="shipping-info-label">
-Country </label>
+@lang('onebuy::app.product.order.Country') </label>
 </div>
 <div class="shipping-info-flex place_order_block">
 <div class="shipping-info-item shipping-info-flex-half">
@@ -505,14 +505,14 @@ Country </label>
 <label id="state-error" class="shipping-info-error">
 </label>
 <label class="shipping-info-label">
-State/Province </label>
+@lang('onebuy::app.product.order.State/Province') </label>
 </div>
 <div class="shipping-info-item shipping-info-flex-half">
 <input name="zip_code" class="shipping-info-input zip_code" />
 <label id="zip_code-error" class="shipping-info-error">
 </label>
 <label class="shipping-info-label">
-Zip/Postal Code </label>
+ @lang('onebuy::app.product.order.Zip/Postal Code')</label>
 </div>
 </div>
 <input type="hidden" id="id_card" name="id_card" /> 
@@ -524,7 +524,7 @@ Zip/Postal Code </label>
 <div class="summary-block-sticky">
 <div class="summary-wrapper">
 <div class="summary-title">
-Order Summary </div>
+@lang('onebuy::app.product.order.Order Summary') </div>
 <div class="summary-content">
 <ul class="summary-list">
 <li class="summary-list-item">
@@ -532,12 +532,12 @@ Order Summary </div>
 <span class="product-name js-product-name"></span>
 <div class="edit-block">
 <a class="click_scroll" anchor=".main-container">
-EDIT </a>
+ @lang('onebuy::app.product.order.EDIT')</a>
 </div>
 </div>
 <div class="qty-price">
 <div class="qty">
-QTY:
+ @lang('onebuy::app.product.order.QTY'):
 <span class="js-product-qty"></span>
 </div>
 <span class="product-price js-product-price"></span>
@@ -548,37 +548,37 @@ QTY:
 <div class="summary-total-content">
 <div class="summary-total-item">
 <span class="summary-total-item-name">
-Subtotal:
+@lang('onebuy::app.product.order.Subtotal'):
 </span>
 <span class="summary-total-item-price js-old-price product-price"></span>
 </div>
 <div class="summary-total-item">
 <span class="summary-total-item-name">
-Discount:
+@lang('onebuy::app.product.order.Discount'):
 </span>
 <span class="summary-total-item-price js-discount-price red product-price"></span>
 </div>
 <div class="summary-total-item">
 <span class="summary-total-item-name">
-Shipping:
+@lang('onebuy::app.product.order.Shipping'):
 </span>
 <span class="summary-total-item-price js-shipping-price red"></span>
 </div>
 <div class="summary-total-item summary-total-item-shipping-insurance" style="display:none">
 <span class="summary-total-item-name">
-Shipping Insurance:
+@lang('onebuy::app.product.order.Shipping Insurance'):
 </span>
 <span class="summary-total-item-price js-shipping-insurance-fee"></span>
 </div>
 <div class="summary-total-item coupon-price-item" style="display:none">
 <span class="summary-total-item-name">
-Coupon:
+@lang('onebuy::app.product.order.Coupon'):
 </span>
 <span class="summary-total-item-price js-coupon-price red"></span>
 </div>
 <div class="summary-total-item">
 <span class="summary-total-item-name">
-Total:
+@lang('onebuy::app.product.order.Total'):
 </span>
 <span class="summary-total-item-price js-total red product-price"></span>
 </div>
@@ -588,20 +588,16 @@ Total:
 <div class="agree-block">
 <input type="checkbox" checked>
 I agree with the <a href="#" data-toggle="modal" data-target="#RefundpolicyModalCenter">
-Refund policy </a>
+ @lang('onebuy::app.product.order.Refund policy')  </a>
 & <a href="#"  data-toggle="modal" data-target="#PrivacyPolicyModalCenter">
-Privacy Policy </a>
+ @lang('onebuy::app.product.order.Privacy Policy') </a>
 . </div>
 <div class="guarantee-block">
 <img class="guarantee-img" src="https://lander.heomai.com/template-common/checkout1/images/warranty-30days.png" />
 <div class="guarantee-font">
-<div class="price-tip">
-All pricing is in <strong>
-United States Dollars </strong>
-. </div>
 <div class="guarantee-tip">
 <strong>
-30 DAY GUARANTEE:
+@lang('onebuy::app.product.order.30 DAY GUARANTEE'):
 </strong>
 Hatmeo offers a 30 day guarantee on all unused purchases. Simply send the item(s) back to us in the original packaging for a full refund or replacement, less S&H. </div>
 </div>
@@ -855,20 +851,17 @@ Hatmeo offers a 30 day guarantee on all unused purchases. Simply send the item(s
 <div class="agree-block">
 <input type="checkbox" checked>
 I agree with the <a href="#"  data-toggle="modal" data-target="#RefundpolicyModalCenter">
-Refund policy </a>
+@lang('onebuy::app.product.order.Refund policy') </a>
 & <a href="#"  data-toggle="modal" data-target="#PrivacyPolicyModalCenter">
-Privacy Policy </a>
+ @lang('onebuy::app.product.order.Privacy Policy') </a>
 . </div>
-<div class="price-tip tc">
-All pricing is in <strong>
-United States Dollars </strong>
-. </div>
+
 <div class="guarantee-block">
 <img class="guarantee-img" src="https://lander.heomai.com/template-common/checkout1/images/warranty-30days.png" />
 <div class="guarantee-font">
 <div class="guarantee-tip">
 <strong>
-30 DAY GUARANTEE:
+@lang('onebuy::app.product.order.30 DAY GUARANTEE'):
 </strong>
 Hatmeo offers a 30 day guarantee on all unused purchases. Simply send the item(s) back to us in the original packaging for a full refund or replacement, less S&H. </div>
 </div>
@@ -910,7 +903,7 @@ Hatmeo offers a 30 day guarantee on all unused purchases. Simply send the item(s
 
                         <div class="step-title">
 
-                            What customers are saying about Hatmeo <?php echo $product['name']; ?>
+                             @lang('onebuy::app.product.order.What customers are saying about') Hatmeo <?php echo $product['name']; ?>
                         </div>
 
                         <hr class="mt-2">
@@ -958,7 +951,7 @@ Hatmeo offers a 30 day guarantee on all unused purchases. Simply send the item(s
 
 <div class="h2 text-center mb-4" style="font-family: oswald;">
 
-    Frequently Asked Questions
+     @lang('onebuy::app.product.order.What customers are saying about')
 
 </div>
 
@@ -1002,50 +995,7 @@ Hatmeo offers a 30 day guarantee on all unused purchases. Simply send the item(s
 </section>
 
 </div>
-<div class="footer-container">
-<div class="copyright-block">
-©2016- Hatmeo
-</div>
-<style>
-    .phone-block {
-        color: #000;
-        font-size: 14px;
-        font-family: Helvetica Bold;
-        margin: 0 0 15px;
-        text-align: center;
-        padding: 5px 0;
-    }
-    .phone-block a {
-        color: #a9a9a9;
-        font-size: 14px;
-    }
-    .terms-block a{
-        color: #FFF;
-        font-weight:blod;
-    }
-</style>
-<div class="phone-block">
-    <!--Phone: <a href="tel:(833) 493-2323">(833) 493-2323</a> (9:00am-5:00pm EST, Monday to Friday). --> </div>
-    <div class="terms-block">
-            <a href="#" class="btn" data-toggle="modal" data-target="#shippingdeliverModalCenter" >
-        Shipping & Delivery </a>
-            <a href="#" class="btn" data-toggle="modal" data-target="#RefundpolicyModalCenter">
-        Refund policy </a>
-            <a href="#" class="btn" data-toggle="modal" data-target="#TermofserviceModalCenter">
-        About US </a>
-            <a href="#" class="btn" data-toggle="modal" data-target="#PrivacyPolicyModalCenter">
-        Privacy Policy </a>
-            <a href="#" class="btn" data-toggle="modal" data-target="#contactusModalCenter" >
-        Contact Us </a>
-    </div>
-    <div class="dmca_logo">
-        <a href="https://www.dmca.com/Protection/Status.aspx" target="_blank">
-            <img src="https://lander.heomai.com/template-common/checkout1/images/dmca-grey.png" />
-        </a>
-    </div>
-
-    
-</div>
+@include('onebuy::footer-container')
 </div>
 <div class="comment-block" id="comment-block">
 <div class="comment-content">
@@ -1063,7 +1013,7 @@ just purchased:
 <strong class="comment-productName">product name</strong>
 </div>
 <div class="comment-time">
-JUST NOW </div>
+ @lang('onebuy::app.product.order.JUST NOW') </div>
 </div>
 </div>
 </div>
@@ -1104,7 +1054,7 @@ JUST NOW </div>
 <div class="payoneer-card-container"></div>
 <div id="payoneerSubmitBtnContainer" class="submit-buttons-container">
 <button id="payoneerSubmitBtn" class="submit-button" type="button">
-COMPLETE SECURE PURCHASE </button>
+ @lang('onebuy::app.product.order.COMPLETE SECURE PURCHASE') </button>
 </div>
 </div>
 </div>
@@ -1574,8 +1524,8 @@ function GotoNotRequest(url) {
         window.product_attributes = <?php echo json_encode($product_attributes);?>;
 
         var is_more_attribute = 1;
-        setAttributeTemplate('SELECT YOUR', '', '23', is_more_attribute ? true : false, 'common15', 'Sold out, please select another Attributes');
-        showAttributeSelecet('Item');
+        setAttributeTemplate('@lang('onebuy::app.product.order.SELECT YOUR')', '', '23', is_more_attribute ? true : false, 'common15', 'Sold out, please select another Attributes');
+        showAttributeSelecet('@lang('onebuy::app.product.order.Item')');
     </script>
 
 <!-- Google tag (gtag.js) -->
