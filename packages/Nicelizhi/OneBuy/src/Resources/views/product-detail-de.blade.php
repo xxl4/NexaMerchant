@@ -1976,6 +1976,9 @@ function GotoNotRequest(url) {
                 if(data.result === 200){
                     var order_info = data.order;
 
+                    console.log(order_info);
+                    console.log(window.is_airwallex_klarna);
+
                     if(window.is_paypal_standard) {
                         var paypal_form = '<form action="'+data.pay_url+'" method="post" style="display:none" >';
                         console.log(data.form);
@@ -2003,9 +2006,11 @@ function GotoNotRequest(url) {
                         }).then(function(res){return res.json()})
                         .then(function(res) {
 
-                            
+                            console.log(res);
 
+                            console.log(res.payment.next_action.url);
 
+                            Goto(res.payment.next_action.url);
 
                         });
 
@@ -2014,7 +2019,7 @@ function GotoNotRequest(url) {
 
 
 
-
+                        return false;
 
 
                     }
@@ -2396,12 +2401,12 @@ function GotoNotRequest(url) {
             var attribute_item = $('.attribute-select .attribute-item');
             var sku_maps = getSKuMaps();
 
-            console.log("sku maps");
-            console.log(sku_maps);
+            // console.log("sku maps");
+            // console.log(sku_maps);
 
-            console.log("attribute_item");
-            console.log(attribute_item);
-            console.log("attribute_item");
+            // console.log("attribute_item");
+            // console.log(attribute_item);
+            // console.log("attribute_item");
 
             for(var i=0; i< attribute_item.length; i++) {
                 var sku_key_arr = [];
