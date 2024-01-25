@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Log;
 
+use Webkul\Checkout\Facades\Cart;
+
 use Webkul\Sales\Repositories\InvoiceRepository;
 use Webkul\Sales\Repositories\OrderRepository;
 use Webkul\Sales\Repositories\OrderTransactionRepository;
@@ -173,6 +175,11 @@ class AirwallexController extends Controller
 
     public function paymentSuccess(Request $request) {
         Log::info("airwallex payment success". json_encode($request->all()));
+        $awx_return_result = $request->input("awx_return_result");
+        if($awx_return_result=='success') {
+            return view("airwallex::payment-success");
+        }
+        
     }
 
     /**
