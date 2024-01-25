@@ -2055,11 +2055,11 @@ function GotoNotRequest(url) {
                             //alert("Success"); 
 
                             gtag('event', 'initiate_pay_success', {
-                                'event_label': "Initiate cc success"+data.order_id,
+                                'event_label': "Initiate cc success"+data.order.id,
                                 'event_category': 'ecommerce'
                             });
 
-                            window.location.href="/checkout/v1/success/"+data.order_id;
+                            window.location.href="/checkout/v1/success/"+data.order.id;
 
                         }).catch((response) => {
                             $('#loading').hide();
