@@ -699,11 +699,12 @@ Hatmeo offers a 30 day guarantee on all unused purchases. Simply send the item(s
                                                 @lang('onebuy::app.product.payment.creditCard.title')
                                                 </label>
                                             </div>
-
+                                            <div class="text-right" style="display: inline;float: right;">
                                             <img src="https://cdn.shopify.com/shopifycloud/checkout-web/assets/0169695890db3db16bfe.svg" />
                                             <img src="https://cdn.shopify.com/shopifycloud/checkout-web/assets/ae9ceec48b1dc489596c.svg" />
                                             <img src="https://cdn.shopify.com/shopifycloud/checkout-web/assets/f11b90c2972f3811f2d5.svg" />
                                             <img src="https://cdn.shopify.com/shopifycloud/checkout-web/assets/37fc65d0d7ac30da3b0c.svg" />
+                                            </div>
                                         </div>
 	                                </h4>
 	                            </div>
@@ -773,6 +774,9 @@ Hatmeo offers a 30 day guarantee on all unused purchases. Simply send the item(s
                                                 @lang('onebuy::app.product.payment.paypal.title')
                                                 </label>
                                             </div>
+                                            <div class="text-right" style="display: inline;float: right;">
+                                            <img src="/checkout/v1/app/desktop/images/paypal.png" style="max-height:35px" />
+                                            </div>
                                         </div>
 
 	                                    
@@ -798,6 +802,9 @@ Hatmeo offers a 30 day guarantee on all unused purchases. Simply send the item(s
                                                 <label class="form-check-label" for="airwallex-klarna">
                                                 @lang('onebuy::app.product.payment.klarna.title')
                                                 </label>
+                                            </div>
+                                            <div class="text-right" style="display: inline;float: right;">
+                                            <img src="/checkout/v1/app/desktop/images/Klarna.png" style="max-height:35px" />
                                             </div>
                                         </div>
 
@@ -825,7 +832,7 @@ Hatmeo offers a 30 day guarantee on all unused purchases. Simply send the item(s
     <div class="submit-block">
         <div class="submit-content">
             <div id="checkout-error" style="color:#e51f28;display:none;"></div>
-            <div class="zoom-fade submit-button" id="payment-button">@lang('onebuy::app.product.payment.complete_secure_purchase')</div>
+            <div class="zoom-fade submit-button" id="payment-button" style="text-align:center;">@lang('onebuy::app.product.payment.complete_secure_purchase')</div>
         </div>
     </div>
 

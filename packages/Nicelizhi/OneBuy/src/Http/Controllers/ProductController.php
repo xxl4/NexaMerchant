@@ -21,6 +21,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Cache;
 use Webkul\Payment\Facades\Payment;
 use Illuminate\Support\Facades\Redis;
+use Webkul\CMS\Repositories\CmsRepository;
 
 
 class ProductController extends Controller
@@ -45,6 +46,7 @@ class ProductController extends Controller
         protected OrderRepository $orderRepository,
         protected InvoiceRepository $invoiceRepository,
         protected Airwallex $airwallex,
+        protected CmsRepository $cmsRepository,
         protected ThemeCustomizationRepository $themeCustomizationRepository
     )
     {
@@ -292,6 +294,15 @@ class ProductController extends Controller
         //var_dump($default_country);exit;
 
         return view('onebuy::product-detail-'.config('app.locale'), compact('app_env','product','package_products', 'product_attributes', 'skus','productBgAttribute','productBgAttribute_mobile','faqItems','comments','paypal_client_id','default_country','airwallex_method'));
+    }
+
+    public function cms($slug, Request $request) {
+        \Debugbar::disable(); /* 开启后容易出现前端JS报错的情况 */
+
+        $page = $this->cmsRepository->findByUrlKeyOrFail($slug);
+        
+        return view('onebuy::cms.page')->with('page', $page);
+
     }
 
     // 完成订单生成动作
