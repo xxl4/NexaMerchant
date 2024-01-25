@@ -27,6 +27,9 @@ Route::group(['middleware' => ['locale', 'theme', 'currency','web']], function (
     Route::get('onebuy/recommended/query', [ProductController::class, "recommended_query"])->name('onebuy.recommended.query');
 
     Route::get('onebuy/order/log', [ProductController::class, "order_log"])->name('onebuy.order.log');
+    Route::get('onebuy/order/confirm', [ProductController::class, "confirm"])->name('onebuy.order.confirm');
+
+
 
 
 

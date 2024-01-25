@@ -291,7 +291,7 @@ class ProductController extends Controller
 
         //var_dump($default_country);exit;
 
-        return view('onebuy::product-detail', compact('app_env','product','package_products', 'product_attributes', 'skus','productBgAttribute','productBgAttribute_mobile','faqItems','comments','paypal_client_id','default_country','airwallex_method'));
+        return view('onebuy::product-detail-'.config('app.locale'), compact('app_env','product','package_products', 'product_attributes', 'skus','productBgAttribute','productBgAttribute_mobile','faqItems','comments','paypal_client_id','default_country','airwallex_method'));
     }
 
     // 完成订单生成动作
@@ -392,6 +392,8 @@ class ProductController extends Controller
         }
 
         Cart::collectTotals();
+
+        if($payment_method=="airwallex_klarna") $payment_method = "airwallex";
 
         // 获取支付信息
         
@@ -636,6 +638,30 @@ class ProductController extends Controller
         }
 
         // return response()->json($order);
+    }
+
+
+    /**
+     * 
+     * 
+     * 
+     */
+    public function confirm(Request $request) {
+        $payment_intent_id = $request->input("payment_intent_id");
+        $order_id = $request->input("order_id");
+
+        $order = $this->orderRepository->find($order_id);
+        
+        $transactionManager = $this->airwallex->confirmPayment($payment_intent_id, $order);
+
+        $data = [];
+        $data['payment'] = $transactionManager;
+        $data['code'] = 200;
+        $data['result'] = 200;
+        $data['order_id'] = $order_id;
+        $data['order_id'] = $order_id;
+        return response()->json($data);
+        
     }
 
     /**
