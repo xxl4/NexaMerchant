@@ -435,7 +435,7 @@ $('#checkout-block-up').on('click', function() {
 </div>
 <img class="payment-img" src="https://lander.heomai.com/template-common/checkout1/images/gsc-en.png?v=111" />
 </div>
-<div class="shipping-block">
+<div class="shipping-block" style="max-width:512px;">
 <div class="shipping-title">
 @lang('onebuy::app.product.order.Shipping')</div>
 <div class="shipping-tip">
@@ -609,6 +609,29 @@ Hatmeo offers a 30 day guarantee on all unused purchases. Simply send the item(s
 </div>
 
 <style type="text/css">
+        #accordion {
+            border-bottom-color: rgb(0, 0, 0);
+            border-bottom-style: none;
+            border-bottom-width: 0px;
+            border-image-outset: 0;
+            border-image-repeat: stretch;
+            border-image-slice: 100%;
+            border-image-source: none;
+            border-image-width: 1;
+            border-left-color: rgb(0, 0, 0);
+            border-left-style: none;
+            border-left-width: 0px;
+            border-right-color: rgb(0, 0, 0);
+            border-right-style: none;
+            border-right-width: 0px;
+            border-top-color: rgb(0, 0, 0);
+            border-top-style: none;
+            border-top-width: 0px;
+            box-sizing: border-box;
+            border-width: thin;
+            border-style: solid;
+            border-color: rgb(222, 222, 222);
+        }
 		a:hover,a:focus{
 		    text-decoration: none;
 		    outline: none;
@@ -627,14 +650,24 @@ Hatmeo offers a 30 day guarantee on all unused purchases. Simply send the item(s
 		    text-align: center;
             padding-top: 10px;
 		}
+        #accordion .panel-title {
+            background-color:rgb(255, 255, 255);
+            border-block-start-color: rgb(222, 222, 222);
+            border-block-start-style: solid;
+            border-block-start-width: 0.666667px;
+            border-top-color: rgb(222, 222, 222);
+            border-top-style: solid;
+            border-top-width: 0.666667px;
+            box-sizing: border-box;
+        }
 		#accordion .panel-title .panel-title-header {
 		    display: block;
 		    padding: 17px 20px;
 		    font-size: 16px;
 		    font-weight: bold;
 		    color: #000;
-		    background: rgb(240, 245, 255);
-		    border: 1px solid #0d6efd;
+		    /* background: rgb(240, 245, 255); */
+		    /* border: 1px solid #0d6efd; */
 		    position: relative;
             width: 100%;
             text-align: left;
@@ -655,7 +688,7 @@ Hatmeo offers a 30 day guarantee on all unused purchases. Simply send the item(s
 		    padding: 10px; 
 		    border: none;
 		    position: relative;
-            border: 1px solid cadetblue;
+            /* border: 1px solid cadetblue; */
 		}
 		#accordion .panel-body p{
 		    font-size: 14px;
@@ -677,14 +710,22 @@ Hatmeo offers a 30 day guarantee on all unused purchases. Simply send the item(s
         #accordion a {
             text-decoration: auto;
         }
+        #accordion .panel-collapse {
+            background-color: rgba(0, 0, 0, 0.043);
+        }
 	</style>
 	<!--[if IE]>
 		<script src="http://libs.useso.com/js/html5shiv/3.7/html5shiv.min.js"></script>
 	<![endif]-->
 
-
+    <div class="shipping-title" style="padding-top:10px;">
+@lang('onebuy::app.product.step.Payment')</div>
+<div class="shipping-tip">
+@lang('onebuy::app.product.order.All transactions are secure and encrypted'):
+</div>
 <div class="htmleaf-container">
             <form id="myForm">
+
 	        <div class="full-container">
 	            <div class="row">
 	                <div class="col-md-offset-3 col-md-12">
@@ -724,6 +765,7 @@ Hatmeo offers a 30 day guarantee on all unused purchases. Simply send the item(s
             font-family: Arial, sans-serif;
             font-weight: 400;
             box-sizing: border-box;
+            background-color: #fff;
             -webkit-box-sizing: border-box;height: calc(3.5rem + 2px);
             line-height: 1.25;padding: 1rem 0.75rem "></div>
                                     </div>
@@ -741,6 +783,7 @@ Hatmeo offers a 30 day guarantee on all unused purchases. Simply send the item(s
             font-family: Arial, sans-serif;
             font-weight: 400;
             box-sizing: border-box;
+            background-color: #fff;
             -webkit-box-sizing: border-box;height: calc(3.5rem + 2px);
             line-height: 1.25;padding: 1rem 0.75rem "></div>
                                     </div>
@@ -758,6 +801,7 @@ Hatmeo offers a 30 day guarantee on all unused purchases. Simply send the item(s
             font-family: Arial, sans-serif;
             font-weight: 400;
             box-sizing: border-box;
+            background-color: #fff;
             -webkit-box-sizing: border-box;height: calc(3.5rem + 2px);
             line-height: 1.25;padding: 1rem 0.75rem "></div>
                                     </div>
@@ -775,7 +819,7 @@ Hatmeo offers a 30 day guarantee on all unused purchases. Simply send the item(s
                                                 </label>
                                             </div>
                                             <div class="text-right" style="display: inline;float: right;">
-                                            <img src="/checkout/v1/app/desktop/images/paypal.png" style="max-height:35px" />
+                                            <img src="/checkout/v1/app/desktop/images/paypal.png" style="max-height:24px" />
                                             </div>
                                         </div>
 
@@ -804,14 +848,14 @@ Hatmeo offers a 30 day guarantee on all unused purchases. Simply send the item(s
                                                 </label>
                                             </div>
                                             <div class="text-right" style="display: inline;float: right;">
-                                            <img src="/checkout/v1/app/desktop/images/Klarna.png" style="max-height:35px" />
+                                            <img src="/checkout/v1/app/desktop/images/Klarna.png" style="max-height:24px" />
                                             </div>
                                         </div>
 
 	                                    
 	                                </h4>
 	                            </div>
-	                            <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+	                            <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree" style="background-color: rgba(0,0,0,.045);">
 	                                <div class="panel-body">
 	                                    <p>
                                         <div>

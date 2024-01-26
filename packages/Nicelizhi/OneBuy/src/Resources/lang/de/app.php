@@ -9,7 +9,7 @@ return [
                 'cvc' => 'Lebenslauf',
             ],
             'paypal' => [
-                'title' => 'PayPal Standard',
+                'title' => 'PayPal',
                 'description' => 'Nachdem du auf "Mit PayPal bezahlen" geklickt hast, wirst du zu PayPal weitergeleitet, um deinen Einkauf sicher abzuschließen.'
             ],
             'klarna' => [
@@ -62,6 +62,7 @@ return [
             'COMPLETE SECURE PURCHASE' => 'VOLLSTÄNDIG SICHERER KAUF',
             'Item' => 'Artikel',
             'SELECT YOUR' => 'WÄHLE DEINE',
+            'All transactions are secure and encrypted' => 'Alle Transaktionen sind sicher und verschlüsselt',
         ]
     ],
     'order-success' => [
