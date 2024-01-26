@@ -741,18 +741,21 @@ Hatmeo offers a 30 day guarantee on all unused purchases. Simply send the item(s
 	                            <div class="panel-heading"  id="headingOne">
 	                                <h4 class="panel-title">
 	                                    <div class="panel-title-header" id="headingOne1">
-                                            <div class="form-check form-check-inline">
+                                            <div class="form-check form-check-inline" style="width: 100%;">
                                                 <input class="form-check-input" type="radio" name="payment_method" id="payment_method_airwallex" checked value="airwallex">
                                                 <label class="form-check-label" for="payment_method_airwallex">
-                                                @lang('onebuy::app.product.payment.creditCard.title')
+                                                    <span>@lang('onebuy::app.product.payment.creditCard.title')</span>
+
+                                                    <div class="text-right" style="min-width:190px; display: inline;float: right;">
+                                                        <img src="https://cdn.shopify.com/shopifycloud/checkout-web/assets/0169695890db3db16bfe.svg" />
+                                                        <img src="https://cdn.shopify.com/shopifycloud/checkout-web/assets/ae9ceec48b1dc489596c.svg" />
+                                                        <img src="https://cdn.shopify.com/shopifycloud/checkout-web/assets/f11b90c2972f3811f2d5.svg" />
+                                                        <img src="https://cdn.shopify.com/shopifycloud/checkout-web/assets/37fc65d0d7ac30da3b0c.svg" />
+                                                    </div>
+
                                                 </label>
                                             </div>
-                                            <div class="text-right" style="display: inline;float: right;">
-                                            <img src="https://cdn.shopify.com/shopifycloud/checkout-web/assets/0169695890db3db16bfe.svg" />
-                                            <img src="https://cdn.shopify.com/shopifycloud/checkout-web/assets/ae9ceec48b1dc489596c.svg" />
-                                            <img src="https://cdn.shopify.com/shopifycloud/checkout-web/assets/f11b90c2972f3811f2d5.svg" />
-                                            <img src="https://cdn.shopify.com/shopifycloud/checkout-web/assets/37fc65d0d7ac30da3b0c.svg" />
-                                            </div>
+                                            
                                         </div>
 	                                </h4>
 	                            </div>
@@ -819,15 +822,17 @@ Hatmeo offers a 30 day guarantee on all unused purchases. Simply send the item(s
 	                            <div class="panel-heading" role="tab" id="headingTwo">
 	                                <h4 class="panel-title">
                                         <div class="panel-title-header" id="headingOne2">
-                                            <div class="form-check form-check-inline">
+                                            <div class="form-check form-check-inline" style="width: 100%;">
                                                 <input class="form-check-input" type="radio" value="paypal_standard" id="payal_standard" name="payment_method">
                                                 <label class="form-check-label" for="payal_standard">
-                                                @lang('onebuy::app.product.payment.paypal.title')
+                                                <span>@lang('onebuy::app.product.payment.paypal.title') </span>
+                                                <div style="float: right;min-width: 200px;display: inline;text-align: right;"><img src="/checkout/v1/app/desktop/images/paypal.png" style="max-height:24px" /></div>
                                                 </label>
+
+                                                
+
                                             </div>
-                                            <div class="text-right" style="display: inline;float: right;">
-                                            <img src="/checkout/v1/app/desktop/images/paypal.png" style="max-height:24px" />
-                                            </div>
+                                            
                                         </div>
 
 	                                    
@@ -848,14 +853,12 @@ Hatmeo offers a 30 day guarantee on all unused purchases. Simply send the item(s
 	                            <div class="panel-heading" role="tab" id="headingThree">
 	                                <h4 class="panel-title">
                                         <div class="panel-title-header" id="headingThree2">
-                                            <div class="form-check form-check-inline">
+                                            <div class="form-check form-check-inline" style="width: 100%;">
                                                 <input class="form-check-input" type="radio" value="airwallex-klarna" id="airwallex-klarna" name="payment_method">
                                                 <label class="form-check-label" for="airwallex-klarna">
-                                                @lang('onebuy::app.product.payment.klarna.title')
+                                                <span>@lang('onebuy::app.product.payment.klarna.title')</span>
+                                                <div style="float: right;min-width: 200px;display: inline;text-align: right;"><img src="/checkout/v1/app/desktop/images/Klarna.png" style="max-height:24px" /></div>
                                                 </label>
-                                            </div>
-                                            <div class="text-right" style="display: inline;float: right;">
-                                            <img src="/checkout/v1/app/desktop/images/Klarna.png" style="max-height:24px" />
                                             </div>
                                         </div>
 

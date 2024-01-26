@@ -21,7 +21,7 @@ return [
         'step' => [
             'Select Quantity' => 'Wählen Sie die Menge',
             'Payment' => 'Zahlung',
-            'Shipping Information' => 'Versandinformationen',
+            'Shipping Information' => 'Versand',
             'Place Order' => 'Bestellung aufgeben',
         ],
         "order" => [
