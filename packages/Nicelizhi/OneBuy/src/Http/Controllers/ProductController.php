@@ -21,6 +21,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Cache;
 use Webkul\Payment\Facades\Payment;
 use Illuminate\Support\Facades\Redis;
+use Webkul\CMS\Repositories\CmsRepository;
 
 
 class ProductController extends Controller
@@ -45,6 +46,7 @@ class ProductController extends Controller
         protected OrderRepository $orderRepository,
         protected InvoiceRepository $invoiceRepository,
         protected Airwallex $airwallex,
+        protected CmsRepository $cmsRepository,
         protected ThemeCustomizationRepository $themeCustomizationRepository
     )
     {
@@ -291,7 +293,16 @@ class ProductController extends Controller
 
         //var_dump($default_country);exit;
 
-        return view('onebuy::product-detail', compact('app_env','product','package_products', 'product_attributes', 'skus','productBgAttribute','productBgAttribute_mobile','faqItems','comments','paypal_client_id','default_country','airwallex_method'));
+        return view('onebuy::product-detail-'.config('app.locale'), compact('app_env','product','package_products', 'product_attributes', 'skus','productBgAttribute','productBgAttribute_mobile','faqItems','comments','paypal_client_id','default_country','airwallex_method'));
+    }
+
+    public function cms($slug, Request $request) {
+        \Debugbar::disable(); /* 开启后容易出现前端JS报错的情况 */
+
+        $page = $this->cmsRepository->findByUrlKeyOrFail($slug);
+        
+        return view('onebuy::cms.page')->with('page', $page);
+
     }
 
     // 完成订单生成动作
@@ -393,6 +404,8 @@ class ProductController extends Controller
 
         Cart::collectTotals();
 
+        if($payment_method=="airwallex_klarna") $payment_method = "airwallex";
+
         // 获取支付信息
         
         if($payment_method=='airwallex') {
@@ -419,8 +432,8 @@ class ProductController extends Controller
             $this->validateOrder();
             $cart = Cart::getCart();
             $order = $this->orderRepository->create(Cart::prepareDataForOrder());
-            Cart::deActivateCart();
-            Cart::activateCartIfSessionHasDeactivatedCartId();
+            //Cart::deActivateCart();
+            //Cart::activateCartIfSessionHasDeactivatedCartId();
             // 跳转到支付
             $data['result'] = 200;
             $data['order'] = $order;
@@ -636,6 +649,30 @@ class ProductController extends Controller
         }
 
         // return response()->json($order);
+    }
+
+
+    /**
+     * 
+     * 
+     * 
+     */
+    public function confirm(Request $request) {
+        $payment_intent_id = $request->input("payment_intent_id");
+        $order_id = $request->input("order_id");
+
+        $order = $this->orderRepository->find($order_id);
+        
+        $transactionManager = $this->airwallex->confirmPayment($payment_intent_id, $order);
+
+        $data = [];
+        $data['payment'] = $transactionManager;
+        $data['code'] = 200;
+        $data['result'] = 200;
+        $data['order_id'] = $order_id;
+        $data['order_id'] = $order_id;
+        return response()->json($data);
+        
     }
 
     /**

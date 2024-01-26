@@ -109,6 +109,29 @@ class Airwallex {
 
     /**
      * 
+     * 
+     * @link https://www.airwallex.com/docs/payments__global__klarna-beta__desktopmobile-website-browser
+     * 
+     */
+
+    public function confirm($payment_intents_id, $data) {
+        $header= array(
+                'Content-Type: application/json; charset=utf-8',
+                'Content-Length: ' . strlen($data),
+                'Authorization: ' ."Bearer ".$this->token
+        );
+
+        $url = $this->host."/api/v1/pa/payment_intents/".$payment_intents_id."/confirm";
+
+        $result = $this->http_curl($url, 'xml', $data, 6, FALSE, '',$header);
+
+        if($result['code']=='200') return json_decode($result['body']);
+
+        return $result;
+    }
+
+    /**
+     * 
      * 注意授权方式有差异
      * @param json input
      * 

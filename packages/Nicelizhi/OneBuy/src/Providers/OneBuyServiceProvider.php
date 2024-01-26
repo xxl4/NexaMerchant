@@ -26,6 +26,8 @@ class OneBuyServiceProvider extends ServiceProvider
 
         $this->loadViewsFrom(__DIR__ . '/../Resources/views', 'onebuy');
 
+        $this->loadTranslationsFrom(__DIR__ . '/../Resources/lang', 'onebuy');
+
         /* aliases */
         $router->aliasMiddleware('currency', Currency::class);
         $router->aliasMiddleware('locale', Locale::class);
