@@ -24,15 +24,15 @@
      </div>
     <div class="terms-block">
             <a href="/onebuy/page/shipping-policy?locale={{ app()->getLocale() }}" class="btn">
-        Shipping &amp; Delivery </a>
+         @lang('onebuy::app.product.footer.Shipping Delivery') </a>
             <a href="/onebuy/page/refund-policy?locale={{ app()->getLocale() }}" class="btn">
-        Refund policy </a>
+         @lang('onebuy::app.product.footer.Refund policy')  </a>
             <a href="/onebuy/page/about-us?locale={{ app()->getLocale() }}" class="btn" >
-        About US </a>
+         @lang('onebuy::app.product.footer.About US')</a>
             <a href="/onebuy/page/privacy-policy?locale={{ app()->getLocale() }}" class="btn" >
-        Privacy Policy </a>
+         @lang('onebuy::app.product.footer.Privacy Policy') </a>
             <a href="/onebuy/page/contact-uslocale={{ app()->getLocale() }}" class="btn">
-        Contact Us </a>
+         @lang('onebuy::app.product.footer.Contact Us')  </a>
     </div>
     <div class="dmca_logo">
         <a href="https://www.dmca.com/Protection/Status.aspx" target="_blank">

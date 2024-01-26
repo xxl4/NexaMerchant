@@ -631,6 +631,7 @@ Hatmeo offers a 30 day guarantee on all unused purchases. Simply send the item(s
             border-width: thin;
             border-style: solid;
             border-color: rgb(222, 222, 222);
+            background-color: rgba(0, 0, 0, 0.043);
         }
 		a:hover,a:focus{
 		    text-decoration: none;
@@ -648,7 +649,7 @@ Hatmeo offers a 30 day guarantee on all unused purchases. Simply send the item(s
 		    border-radius: 0;
 		    border: none;
 		    text-align: center;
-            padding-top: 10px;
+            /* padding-top: 10px; */
 		}
         #accordion .panel-title {
             background-color:rgb(255, 255, 255);
@@ -660,6 +661,11 @@ Hatmeo offers a 30 day guarantee on all unused purchases. Simply send the item(s
             border-top-width: 0.666667px;
             box-sizing: border-box;
         }
+
+        #accordion .action {
+
+        }
+
 		#accordion .panel-title .panel-title-header {
 		    display: block;
 		    padding: 17px 20px;
@@ -677,7 +683,8 @@ Hatmeo offers a 30 day guarantee on all unused purchases. Simply send the item(s
 		}
 
         #accordion .panel-title .action {
-            /* background: rgb(23, 115, 176); */
+            background: rgb(240, 245, 255);
+		    border: 1px solid #0d6efd;
         }
 		
 		#accordion .panel-title a.collapsed:after{
@@ -711,7 +718,7 @@ Hatmeo offers a 30 day guarantee on all unused purchases. Simply send the item(s
             text-decoration: auto;
         }
         #accordion .panel-collapse {
-            background-color: rgba(0, 0, 0, 0.043);
+            /* background-color: rgba(0, 0, 0, 0.043); */
         }
 	</style>
 	<!--[if IE]>
@@ -855,7 +862,7 @@ Hatmeo offers a 30 day guarantee on all unused purchases. Simply send the item(s
 	                                    
 	                                </h4>
 	                            </div>
-	                            <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree" style="background-color: rgba(0,0,0,.045);">
+	                            <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
 	                                <div class="panel-body">
 	                                    <p>
                                         <div>
@@ -2772,7 +2779,7 @@ function GotoNotRequest(url) {
    <script>
     $(document).ready(function(){
         $("#collapseOne").show();
-        // $("#headingOne1").addClass("action");
+        $("#headingOne1").addClass("action");
         $("#payment-button").addClass("airwallex-pay");
 
         $("#payment_method_airwallex").on("click", function(){
@@ -2780,6 +2787,11 @@ function GotoNotRequest(url) {
             $("#collapseOne").show();
             $("#collapseTwo").hide();
             $("#collapseThree").hide();
+
+            $("#headingOne1").addClass("action");
+            $("#headingThree2").removeClass("action");
+            $("#headingOne2").removeClass("action");
+
         });
 
         $("#payal_standard").on("click", function(){
@@ -2787,12 +2799,20 @@ function GotoNotRequest(url) {
             $("#collapseTwo").show();
             $("#collapseThree").hide();
 
+            $("#headingOne2").addClass("action");
+            $("#headingOne1").removeClass("action");
+            $("#headingThree2").removeClass("action");
+
         });
 
         $("#airwallex-klarna").on("click", function(){
             $("#collapseOne").hide();
             $("#collapseTwo").hide();
             $("#collapseThree").show();
+
+            $("#headingThree2").addClass("action");
+            $("#headingOne1").removeClass("action");
+            $("#headingOne2").removeClass("action");
         })
 
         $("#payment-button").on("click", function(){

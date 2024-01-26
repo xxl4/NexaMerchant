@@ -63,6 +63,13 @@ return [
             'Item' => 'Artikel',
             'SELECT YOUR' => 'WÄHLE DEINE',
             'All transactions are secure and encrypted' => 'Alle Transaktionen sind sicher und verschlüsselt',
+        ],
+        'footer' => [
+            'Shipping Delivery' => 'Versand & Lieferung',
+            'Refund policy' => 'Rückgaberecht',
+            'About US' => 'Über uns',
+            'Privacy Policy' => 'Datenschutzrichtlinie',
+            'Contact Us' => 'Kontaktiere uns',
         ]
     ],
     'order-success' => [
