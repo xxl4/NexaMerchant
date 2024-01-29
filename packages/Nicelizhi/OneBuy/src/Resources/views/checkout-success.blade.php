@@ -574,7 +574,7 @@ All rights reserved
 
             setProductHtml(order_param.products, order_param.produt_amount_base);
             showPaySuccess();
-            getRecommendedData(order_param.payment_cancel_url);
+            //getRecommendedData(order_param.payment_cancel_url);
 
             
             
