@@ -892,35 +892,20 @@ Hatmeo offers a 30 day guarantee on all unused purchases. Simply send the item(s
 
     <div class="submit-block">
         <div class="submit-content">
-            <div id="checkout-error" style="color:#e51f28;display:none;"></div>
+            
             <div class="zoom-fade submit-button" id="payment-button" style="text-align:center;">@lang('onebuy::app.product.payment.complete_secure_purchase')</div>
+            <div id="checkout-error" style="color:#e51f28;display:none;"></div>
         </div>
     </div>
 
-<!-- <div class="submit-block" style="padding-bottom: 10px;">
-    <div class="submit-content">
-        <div id="checkout-error" style="color:#e51f28;display:none;"></div>
-        <div class="pay-width-paypal-standard zoom-fade">
-            <img src="/checkout/v1/app/desktop/images/paypal_standard_412.jpg?v=11" style="cursor: pointer;"  />
-        </div>
-    </div>
-</div>
-<div class="submit-block">
-    <div class="submit-content">
-        <div id="checkout-error" style="color:#e51f28;display:none;"></div>
-        <div class="airwallex-pay zoom-fade" >
-                <img src="/checkout/v1/app/desktop/images/pay-with-checkout-412.jpg"  style="cursor: pointer;"/>
-        </div>
-    </div>
-</div> -->
 
 <div id="pay-after-warpper"></div>
 <div class="summary-footer summary-footer-mb">
 <div class="agree-block">
 <input type="checkbox" checked>
-I agree with the <a href="#"  data-toggle="modal" data-target="#RefundpolicyModalCenter">
+I agree with the <a href="/onebuy/page/refund-policy?locale={{ app()->getLocale() }}" target="_blank">
 @lang('onebuy::app.product.order.Refund policy') </a>
-& <a href="#"  data-toggle="modal" data-target="#PrivacyPolicyModalCenter">
+& <a href="/onebuy/page/privacy-policy?locale={{ app()->getLocale() }}" target="_blank"  >
  @lang('onebuy::app.product.order.Privacy Policy') </a>
 . </div>
 
