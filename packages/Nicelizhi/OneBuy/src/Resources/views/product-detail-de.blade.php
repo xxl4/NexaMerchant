@@ -735,12 +735,73 @@ Hatmeo offers a 30 day guarantee on all unused purchases. Simply send the item(s
 	            <div class="row">
 	                <div class="col-md-offset-3 col-md-12">
 	                    <div class="panel-group" id="accordion">
+
+
+                        <div class="panel panel-default">
+	                            <div class="panel-heading" role="tab" id="headingThree">
+	                                <h4 class="panel-title">
+                                        <div class="panel-title-header" id="headingThree2">
+                                            <div class="form-check form-check-inline" style="width: 100%;">
+                                                <input class="form-check-input" type="radio" value="airwallex-klarna" id="airwallex-klarna" checked name="payment_method">
+                                                <label class="form-check-label" for="airwallex-klarna">
+                                                <span>@lang('onebuy::app.product.payment.klarna.title')</span>
+                                                <div style="float: right;min-width: 200px;display: inline;text-align: right;"><img src="/checkout/v1/app/desktop/images/Klarna.png" style="max-height:24px" /></div>
+                                                </label>
+                                            </div>
+                                        </div>
+
+	                                    
+	                                </h4>
+	                            </div>
+	                            <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+	                                <div class="panel-body">
+	                                    <p>
+                                        <div>
+                                            @lang('onebuy::app.product.payment.klarna.description')
+                                        </div>
+                                        </p>
+	                                </div>
+	                            </div>
+	                        </div>
+
+                            <div class="panel panel-default">
+	                            <div class="panel-heading" role="tab" id="headingTwo">
+	                                <h4 class="panel-title">
+                                        <div class="panel-title-header" id="headingOne2">
+                                            <div class="form-check form-check-inline" style="width: 100%;">
+                                                <input class="form-check-input" type="radio" value="paypal_standard" id="payal_standard" name="payment_method">
+                                                <label class="form-check-label" for="payal_standard">
+                                                <span>@lang('onebuy::app.product.payment.paypal.title') </span>
+                                                <div style="float: right;min-width: 200px;display: inline;text-align: right;"><img src="/checkout/v1/app/desktop/images/paypal.png" style="max-height:24px" /></div>
+                                                </label>
+
+                                                
+
+                                            </div>
+                                            
+                                        </div>
+
+	                                    
+	                                </h4>
+	                            </div>
+	                            <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+	                                <div class="panel-body">
+	                                    <p>
+                                        <div>
+                                            @lang('onebuy::app.product.payment.paypal.description')
+                                        </div>
+                                        </p>
+	                                </div>
+	                            </div>
+	                        </div>
+
+
 	                        <div class="panel panel-default">
 	                            <div class="panel-heading"  id="headingOne">
 	                                <h4 class="panel-title">
 	                                    <div class="panel-title-header" id="headingOne1">
                                             <div class="form-check form-check-inline" style="width: 100%;">
-                                                <input class="form-check-input" type="radio" name="payment_method" id="payment_method_airwallex" checked value="airwallex">
+                                                <input class="form-check-input" type="radio" name="payment_method" id="payment_method_airwallex" value="airwallex">
                                                 <label class="form-check-label" for="payment_method_airwallex">
                                                     <span>@lang('onebuy::app.product.payment.creditCard.title')</span>
 
@@ -816,63 +877,11 @@ Hatmeo offers a 30 day guarantee on all unused purchases. Simply send the item(s
 	                                </div>
 	                            </div>
 	                        </div>
-	                        <div class="panel panel-default">
-	                            <div class="panel-heading" role="tab" id="headingTwo">
-	                                <h4 class="panel-title">
-                                        <div class="panel-title-header" id="headingOne2">
-                                            <div class="form-check form-check-inline" style="width: 100%;">
-                                                <input class="form-check-input" type="radio" value="paypal_standard" id="payal_standard" name="payment_method">
-                                                <label class="form-check-label" for="payal_standard">
-                                                <span>@lang('onebuy::app.product.payment.paypal.title') </span>
-                                                <div style="float: right;min-width: 200px;display: inline;text-align: right;"><img src="/checkout/v1/app/desktop/images/paypal.png" style="max-height:24px" /></div>
-                                                </label>
 
-                                                
+	                        
 
-                                            </div>
-                                            
-                                        </div>
 
-	                                    
-	                                </h4>
-	                            </div>
-	                            <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-	                                <div class="panel-body">
-	                                    <p>
-                                        <div>
-                                            @lang('onebuy::app.product.payment.paypal.description')
-                                        </div>
-                                        </p>
-	                                </div>
-	                            </div>
-	                        </div>
-
-                            <div class="panel panel-default">
-	                            <div class="panel-heading" role="tab" id="headingThree">
-	                                <h4 class="panel-title">
-                                        <div class="panel-title-header" id="headingThree2">
-                                            <div class="form-check form-check-inline" style="width: 100%;">
-                                                <input class="form-check-input" type="radio" value="airwallex-klarna" id="airwallex-klarna" name="payment_method">
-                                                <label class="form-check-label" for="airwallex-klarna">
-                                                <span>@lang('onebuy::app.product.payment.klarna.title')</span>
-                                                <div style="float: right;min-width: 200px;display: inline;text-align: right;"><img src="/checkout/v1/app/desktop/images/Klarna.png" style="max-height:24px" /></div>
-                                                </label>
-                                            </div>
-                                        </div>
-
-	                                    
-	                                </h4>
-	                            </div>
-	                            <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-	                                <div class="panel-body">
-	                                    <p>
-                                        <div>
-                                            @lang('onebuy::app.product.payment.klarna.description')
-                                        </div>
-                                        </p>
-	                                </div>
-	                            </div>
-	                        </div>
+                            
 	                        
 	                    </div>
 	                </div>
@@ -932,7 +941,7 @@ Hatmeo offers a 30 day guarantee on all unused purchases. Simply send the item(s
 <script type="text/javascript" src="https://lander.heomai.com/template-common/js/myFoldpanel.js"></script>
 
 
-<link rel="stylesheet" type="text/css" href="/checkout/v1/app/desktop/css/main.css?v=1704676786">
+<link rel="stylesheet" type="text/css" href="/checkout/v1/app/desktop/css/main.css?v=1704676786" />
 
 <style>
 @media (max-width: 767px) {
@@ -2779,8 +2788,11 @@ function GotoNotRequest(url) {
    
    <script>
     $(document).ready(function(){
-        $("#collapseOne").show();
-        $("#headingOne1").addClass("action");
+
+        //$("#collapseOne").show();
+        $("#collapseThree").show();
+        //$("#headingOne1").addClass("action");
+        $("#headingThree2").addClass("action");
         $("#payment-button").addClass("airwallex-pay");
 
         $("#payment_method_airwallex").on("click", function(){
