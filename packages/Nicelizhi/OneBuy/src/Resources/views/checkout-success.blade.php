@@ -570,7 +570,7 @@ All rights reserved
             document.querySelector('.customer_country').innerHTML = order_param.country;
             document.querySelector('.customer_state').innerHTML = order_param.province ? order_param.province : '-';
             document.querySelector('.customer_zip').innerHTML = order_param.code ? order_param.code : '-';
-            document.querySelector('.product-brand').innerHTML = "hatmeo";
+            //document.querySelector('.product-brand').innerHTML = "hatmeo";
 
             setProductHtml(order_param.products, order_param.produt_amount_base);
             showPaySuccess();
