@@ -691,6 +691,7 @@ class ProductController extends Controller
             
 
             Log::info("paypal ".json_encode($order));
+            Log::info("paypal request ".json_encode($request->all()));
 
             $order = (array)$order;
 
@@ -710,7 +711,7 @@ class ProductController extends Controller
             $addressData['billing'] = [];
             $address1 = [];
             array_push($address1, $input['address']->address_line_1);
-            $addressData['billing']['city'] = $input['address']->admin_area_1;
+            $addressData['billing']['city'] = isset($input['address']->admin_area_1) ? $input['address']->admin_area_1 : "";
             $addressData['billing']['country'] = $input['address']->country_code;
             $addressData['billing']['email'] = $payer['email_address'];
             $addressData['billing']['first_name'] = $payer['name']->given_name;

@@ -16,8 +16,12 @@
         <meta name="base-url" content="{{ url()->to('/') }}">
         <meta name="currency-code" content="{{ core()->getCurrentCurrencyCode() }}">
         <meta http-equiv="content-language" content="{{ app()->getLocale() }}">
-        <link rel="alternate icon" class="js-site-favicon" type="image/png" href="/favicon.png">
-        <link rel="icon" class="js-site-favicon" type="image/svg+xml" href="/favicon.svg">
+        <link 
+                type="image/x-icon"
+                href="/storage/configuration/kXMSPSveA3eaK1w2RbcdiiIAv6OPs5UJRiaqANId.png" 
+                rel="shortcut icon"
+                sizes="16x16"
+            >
         
         <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet' />
 <script src="https://unpkg.com/jquery@3.3.1/dist/jquery.min.js"></script>
@@ -188,13 +192,7 @@
         }
     </style>
 
-<script type="text/javascript">
-    (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "kdssdtdq6l");
-</script>
+<script type="text/javascript"> (function(c,l,a,r,i,t,y){ c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)}; t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i; y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y); })(window, document, "clarity", "script", "kruepex7cm"); </script>
 </head>
 <body>
 <div class="smb-body">
@@ -1409,7 +1407,7 @@ just purchased:
             product_template += '<div class="attribute-value-item-title">'+select_language+' ' + (product_attribute.name || '') + select_language_after;
             
             if(product_attribute.tip) {
-                product_template += ' <span style="text-decoration: underline;font-size: 14px;cursor:pointer;color:#0000ff;" onclick="showImgProp(&quot;'+product_attribute.tip_img+'&quot;)">'+product_attribute.tip+'</span>'
+                product_template += ' <span style="text-decoration: underline;font-size: 14px;cursor:pointer;color:#0000ff;" onclick="showImgProp(&quot;'+"/storage/"+product_attribute.tip_img+'&quot;)">'+product_attribute.tip+'</span>'
             }
             
             product_template += '</div>';
@@ -2333,12 +2331,12 @@ function GotoNotRequest(url) {
                 error_log.push('phone_full is empty');
             }
 
-            var phone_format = /^[0-9\+\-\(\)\s]+$/;
-            if(!phone_format.test(params.phone_full)){
-                has_error = true;
-                showError('phone_number-error',  "Please enter valid phoneNumber");
-                error_log.push('phone_full is Invaild');
-            }
+            // var phone_format = /^[0-9\+\-\(\)\s]+$/;
+            // if(!phone_format.test(params.phone_full)){
+            //     has_error = true;
+            //     showError('phone_number-error',  "Please enter valid phoneNumber");
+            //     error_log.push('phone_full is Invaild');
+            // }
 
             if(!params.country){
                 has_error = true;
