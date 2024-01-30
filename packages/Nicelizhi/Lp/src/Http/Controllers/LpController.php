@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redis;
+use Illuminate\Support\Facades\Log;
 
 class LpController extends Controller
 {
@@ -40,6 +41,8 @@ class LpController extends Controller
         if(!empty($refer)) { 
             $request->session()->put('refer', $refer);
         }
+
+        Log::info("refer start ".$refer);
         
 
         $session_id = session()->getId();
