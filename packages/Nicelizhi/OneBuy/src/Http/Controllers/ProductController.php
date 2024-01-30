@@ -76,7 +76,15 @@ class ProductController extends Controller
 
         visitor()->visit($product);
 
-        $refer = $request->session()->get('refer');
+        $refer = $request->input("refer");
+
+        if(!empty($refer)) { 
+            $request->session()->put('refer', $refer);
+        }else{
+            $refer = $request->session()->get('refer');
+        }
+
+        
 
         //var_dump($product);exit;
 
@@ -353,6 +361,8 @@ class ProductController extends Controller
         $addressData['billing']['email'] = $input['email'];
         $addressData['billing']['first_name'] = $input['first_name'];
         $addressData['billing']['last_name'] = $input['second_name'];
+        //undefined+
+        $input['phone_full'] = str_replace('undefined+','', $input['phone_full']);
         $addressData['billing']['phone'] = $input['phone_full'];
         $addressData['billing']['postcode'] = $input['code'];
         $addressData['billing']['state'] = $input['province'];
@@ -558,6 +568,7 @@ class ProductController extends Controller
         $addressData['billing']['email'] = $input['email'];
         $addressData['billing']['first_name'] = $input['first_name'];
         $addressData['billing']['last_name'] = $input['second_name'];
+        $input['phone_full'] = str_replace('undefined+','', $input['phone_full']);
         $addressData['billing']['phone'] = $input['phone_full'];
         $addressData['billing']['postcode'] = $input['code'];
         $addressData['billing']['state'] = $input['province'];

@@ -181,7 +181,7 @@
 <div class="smb-body">
     <section>
         <div class="smb-content" style="padding:10px; padding-left:40px;padding-right:40px;">
-        <h2><img src="/storage/configuration/kXMSPSveA3eaK1w2RbcdiiIAv6OPs5UJRiaqANId.png" style="height:80px;" /><?php echo $page->meta_title;?></h2>
+        <h2><img src="/storage/configuration/x0RQydtdYpfcn6k1gF9dLyqGBnCieMYCQ0CVWISF.png" style="height:80px;" /><?php echo $page->meta_title;?></h2>
         <?php echo $page->html_content;?>
     </div>
     </section>
