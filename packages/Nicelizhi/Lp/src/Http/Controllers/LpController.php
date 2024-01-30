@@ -44,13 +44,6 @@ class LpController extends Controller
 
         Log::info("refer start ".$refer);
         
-
-        $session_id = session()->getId();
-
-        $redis->hset($this->cache_prefix_key."_access_".date("Ymd"), $refer.'-'.$session_id, date("Y-m-d H:i:s"));
-
-        $redis->hset($this->cache_prefix_key."_access_".date("Ymd")."_".$session_id, $refer, date("Y-m-d H:i:s"));
-
         return view('lp::Lp.index', compact('html'));
     }
 }
