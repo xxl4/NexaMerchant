@@ -45,6 +45,7 @@ class Post extends Command
     )
     {
         $this->shopify_store_id = "hatmeo";
+        $this->shopify_store_id = "wmbracom";
         parent::__construct();
     }
 
@@ -67,8 +68,8 @@ class Post extends Command
         // $lists = $this->orderRepository->findWhere([
         //     'status' => 'processing'
         // ]);
-        $lists = Order::where(['status'=>'processing'])->orderBy("updated_at", "desc")->limit(20)->get();
-        //$lists = Order::where(['id'=>'433'])->orderBy("updated_at", "desc")->limit(10)->get();
+        $lists = Order::where(['status'=>'processing'])->orderBy("updated_at", "desc")->limit(10)->get();
+        //$lists = Order::where(['id'=>'1093'])->orderBy("updated_at", "desc")->limit(10)->get();
 
         //var_dump($lists);exit;
 
@@ -144,12 +145,15 @@ class Post extends Command
         ];
         $postOrder['customer'] = $customer;
 
-        
+        $shipping_address->phone = str_replace('undefined', '', $shipping_address->phone);
+        $shipping_address->city = empty($shipping_address->city) ? $shipping_address->state : $shipping_address->city;
 
         $billing_address = [
             "first_name" => $shipping_address->first_name,
             "last_name" => $shipping_address->last_name,
             "address1" => $shipping_address->address1,
+            //$input['phone_full'] = str_replace('undefined+','', $input['phone_full']);
+            
             "phone" => $shipping_address->phone,
             "city" => $shipping_address->city,
             "province" => $shipping_address->state,
@@ -299,6 +303,8 @@ class Post extends Command
 
         $pOrder['order'] = $postOrder;
         //var_dump($pOrder);exit;
+
+        Log::info("post to shopify order ". json_encode($pOrder));
 
         $response = $client->post($shopify['shopify_app_host_name'].'/admin/api/2023-10/orders.json', [
             'headers' => [

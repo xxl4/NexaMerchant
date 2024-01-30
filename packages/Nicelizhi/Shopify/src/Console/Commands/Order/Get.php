@@ -49,6 +49,7 @@ class Get extends Command
     {
         $this->shopify_store_id = "wmshoe";
         $this->shopify_store_id = "hatmeo";
+        $this->shopify_store_id = "wmbracom";
         parent::__construct();
     }
 
