@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('shopline_orders', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger("order_id");
+            $table->string("store_id");
             $table->timestamps();
         });
     }

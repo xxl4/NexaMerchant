@@ -85,6 +85,7 @@ class ShopLineServiceProvider extends ServiceProvider
     {
         if ($this->app->runningInConsole()) {
             $this->commands([
+                \Nicelizhi\ShopLine\Console\Commands\Products\Get::class,
             ]);
         }
     }
