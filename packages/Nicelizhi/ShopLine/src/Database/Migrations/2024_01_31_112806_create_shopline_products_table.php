@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('shopline_products', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger("product_id");
+            $table->char("product_id", 32);
             $table->string("store_id");
             $table->timestamps();
         });
