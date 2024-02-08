@@ -15,6 +15,12 @@ return new class extends Migration
             $table->id();
             $table->char("product_id", 32);
             $table->string("store_id");
+            $table->text("body_html");
+            $table->string("title", 250);
+            $table->text('variants');
+            $table->text('options');
+            $table->text('images');
+            $table->text('image');
             $table->timestamps();
         });
     }

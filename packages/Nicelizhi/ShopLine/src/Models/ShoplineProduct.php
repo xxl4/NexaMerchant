@@ -18,11 +18,12 @@ class ShoplineProduct extends Model implements ShopLineProductContract
      *
      * @var array
      */
-    // protected $casts = [
-    //     'options' => 'json',
-    //     'variants' => 'json',
-    //     'images' => 'json',
-    // ];
+    protected $casts = [
+        'options' => 'json',
+        'variants' => 'json',
+        'images' => 'json',
+        'image' => 'json',
+    ];
 
     /**
      * Add fillable properties
@@ -30,6 +31,13 @@ class ShoplineProduct extends Model implements ShopLineProductContract
      * @var array
      */
     protected $fillable = [
-        'product_id'
+        'product_id',
+        'store_id',
+        "body_html",
+        "title",
+        "options",
+        "variants",
+        "images",
+        "image",
     ];
 }

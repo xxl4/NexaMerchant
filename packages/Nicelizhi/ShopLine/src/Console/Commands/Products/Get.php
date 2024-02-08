@@ -100,19 +100,21 @@ class Get extends Command
         $body = json_decode($response->getBody(), true);
 
         $body = $response->getBody();
-        Log::info($body);
         $body = json_decode($body, true);
-        var_dump($body);exit;
         foreach($body['products'] as $key=>$item) {
-            //var_dump($item['collection_id']);exit;
-
-            $shopifyProduct = \Nicelizhi\ShopLine\Models\ShoplineProduct::where("product_id", $item['id'])->first();
-            if(is_null($shopifyProduct)) {
-                $shopifyProduct = new \Nicelizhi\ShopLine\Models\ShoplineProduct();
+            $Product = \Nicelizhi\ShopLine\Models\ShoplineProduct::where("product_id", $item['id'])->first();
+            if(is_null($Product)) {
+                $Product = new \Nicelizhi\ShopLine\Models\ShoplineProduct();
                 $item['product_id'] = $item['id'];
                 unset($item['id']);
                 $item['store_id'] = $this->store_id;
-                $shopifyProduct::create($item);
+                $item['body_html'] = $item['body_html'];
+                $item['title'] = $item['title'];
+                $item['variants'] = $item['variants'];
+                $item['options'] = $item['options'];
+                $item['images'] = $item['images'];
+                $item['image'] = $item['image'];
+                $Product::create($item);
             }else{
                 //$shopifyProduct::where("product_id", $item['id'])->update($item);
             }
@@ -152,8 +154,8 @@ class Get extends Command
      * sync product to local product
      * 
      */
-    public function syncProductToLocal($shopify_pro_id) {
-        $items = \Nicelizhi\Shopify\Models\ShopifyProduct::where("shopify_store_id", $this->shopify_store_id)->where("product_id", $shopify_pro_id)->get();
+    public function syncProductToLocal($pro_id) {
+        $items = \Nicelizhi\Shopline\Models\ShoplineProduct::where("store_id", $this->store_id)->where("product_id", $pro_id)->get();
         foreach($items as $key=>$item) {
             // if($item['product_id']!='8126562107640') continue;
 
