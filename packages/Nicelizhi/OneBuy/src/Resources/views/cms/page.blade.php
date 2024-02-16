@@ -13,28 +13,10 @@
         <link rel="icon" class="js-site-favicon" type="image/svg+xml" href="/favicon.svg">
         
         <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet' />
-<script src="https://unpkg.com/jquery@3.3.1/dist/jquery.min.js"></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
-<!-- Facebook Pixel Code -->
-<script>
-  !function(f,b,e,v,n,t,s)
-  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-  n.queue=[];t=b.createElement(e);t.async=!0;
-  t.src=v;s=b.getElementsByTagName(e)[0];
-  s.parentNode.insertBefore(t,s)}(window, document,'script',
-  'https://connect.facebook.net/en_US/fbevents.js');
-  fbq('init', '844340774106979');
-  fbq('track', 'PageView');
-  fbq('track', 'ViewContent');
-</script>
+
+
 <link rel="stylesheet" href="https://lander.heomai.com/template-common/checkout1/css/font-awesome.min.css">
 
-<link rel="stylesheet" href="https://lander.heomai.com/template-common/checkout6/css/order.css?v=12">
-<link rel="stylesheet" href="https://lander.heomai.com/template-common/checkout-common/css/order.css">
 <style>
         body {
             font-family: "Poppins"
@@ -169,22 +151,13 @@
         }
     </style>
 
-<script type="text/javascript">
-    (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "kdssdtdq6l");
-</script>
 </head>
 <body>
 <div class="smb-body">
     <section>
-        <div class="smb-content" style="padding:10px; padding-left:40px;padding-right:40px;">
-        <h2><img src="/storage/configuration/x0RQydtdYpfcn6k1gF9dLyqGBnCieMYCQ0CVWISF.png" style="height:80px;" /><?php echo $page->meta_title;?></h2>
+        <h2><?php echo $page->meta_title;?></h2>
         <?php echo $page->html_content;?>
     </div>
     </section>
-@include('onebuy::footer-container')
 </div></div>
 </body>
