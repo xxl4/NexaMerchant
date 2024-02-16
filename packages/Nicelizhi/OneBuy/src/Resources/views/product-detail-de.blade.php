@@ -585,9 +585,9 @@ Apt / Suite / Other </label>
 <div class="summary-footer">
 <div class="agree-block">
 <input type="checkbox" checked>
-I agree with the <a href="#" data-toggle="modal" data-target="#RefundpolicyModalCenter">
+I agree with the <a href="/onebuy/page/refund-policy?locale={{ app()->getLocale() }}" target="_blank">
  @lang('onebuy::app.product.order.Refund policy')  </a>
-& <a href="#"  data-toggle="modal" data-target="#PrivacyPolicyModalCenter">
+& <a href="/onebuy/page/privacy-policy?locale={{ app()->getLocale() }}" target="_blank" >
  @lang('onebuy::app.product.order.Privacy Policy') </a>
 . </div>
 <div class="guarantee-block">
@@ -597,7 +597,7 @@ I agree with the <a href="#" data-toggle="modal" data-target="#RefundpolicyModal
 <strong>
 @lang('onebuy::app.product.order.30 DAY GUARANTEE'):
 </strong>
-Hatmeo offers a 30 day guarantee on all unused purchases. Simply send the item(s) back to us in the original packaging for a full refund or replacement, less S&H. </div>
+ @lang('onebuy::app.product.order.Hatmeo offers 30')</div>
 </div>
 </div>
 </div>
