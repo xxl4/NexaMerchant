@@ -28,6 +28,8 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery-colorbox@1.6.4/jquery.colorbox.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/jquery-colorbox@1.6.4/example1/colorbox.min.css" rel="stylesheet">
 <!-- Facebook Pixel Code -->
 <script>
   !function(f,b,e,v,n,t,s)
@@ -585,9 +587,9 @@ Apt / Suite / Other </label>
 <div class="summary-footer">
 <div class="agree-block">
 <input type="checkbox" checked>
-I agree with the <a href="#" data-toggle="modal" data-target="#RefundpolicyModalCenter">
+I agree with the <a href="/onebuy/page/refund-policy?locale={{ app()->getLocale() }}" target="_blank">
  @lang('onebuy::app.product.order.Refund policy')  </a>
-& <a href="#"  data-toggle="modal" data-target="#PrivacyPolicyModalCenter">
+& <a href="/onebuy/page/privacy-policy?locale={{ app()->getLocale() }}" target="_blank" >
  @lang('onebuy::app.product.order.Privacy Policy') </a>
 . </div>
 <div class="guarantee-block">
@@ -597,7 +599,7 @@ I agree with the <a href="#" data-toggle="modal" data-target="#RefundpolicyModal
 <strong>
 @lang('onebuy::app.product.order.30 DAY GUARANTEE'):
 </strong>
-Hatmeo offers a 30 day guarantee on all unused purchases. Simply send the item(s) back to us in the original packaging for a full refund or replacement, less S&H. </div>
+ @lang('onebuy::app.product.order.Hatmeo offers 30')</div>
 </div>
 </div>
 </div>
