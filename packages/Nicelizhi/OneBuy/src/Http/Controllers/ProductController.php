@@ -301,7 +301,7 @@ class ProductController extends Controller
 
         //var_dump($default_country);exit;
 
-        return view('onebuy::product-detail-'.config('app.locale'), compact('app_env','product','package_products', 'product_attributes', 'skus','productBgAttribute','productBgAttribute_mobile','faqItems','comments','paypal_client_id','default_country','airwallex_method'));
+        return view('onebuy::product-detail', compact('app_env','product','package_products', 'product_attributes', 'skus','productBgAttribute','productBgAttribute_mobile','faqItems','comments','paypal_client_id','default_country','airwallex_method'));
     }
 
     public function cms($slug, Request $request) {

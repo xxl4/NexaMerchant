@@ -16,14 +16,20 @@
         <meta name="base-url" content="{{ url()->to('/') }}">
         <meta name="currency-code" content="{{ core()->getCurrentCurrencyCode() }}">
         <meta http-equiv="content-language" content="{{ app()->getLocale() }}">
-        <link rel="alternate icon" class="js-site-favicon" type="image/png" href="/favicon.png">
-        <link rel="icon" class="js-site-favicon" type="image/svg+xml" href="/favicon.svg">
+        <link 
+                type="image/x-icon"
+                href="/storage/configuration/kXMSPSveA3eaK1w2RbcdiiIAv6OPs5UJRiaqANId.png" 
+                rel="shortcut icon"
+                sizes="16x16"
+            >
         
         <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet' />
 <script src="https://unpkg.com/jquery@3.3.1/dist/jquery.min.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery-colorbox@1.6.4/jquery.colorbox.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/jquery-colorbox@1.6.4/example1/colorbox.min.css" rel="stylesheet">
 <!-- Facebook Pixel Code -->
 <script>
   !function(f,b,e,v,n,t,s)
@@ -39,62 +45,6 @@
   fbq('track', 'ViewContent');
 </script>
 
-<script>
-    function sendInitcheckout2Everflow() {
-        function getQueryString(name) {
-            var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
-            var r = window.location.search.substr(1).match(reg);
-
-            if (r != null) {
-            return unescape(r[2]);
-            }
-            return null;
-        }
-
-        var params = {
-            ef_transaction_id : getQueryString('_ef_transaction_id')
-        }
-
-        /*
-        fetch('https://shoes.Hatmeo.com/common/send/everflow/init_checkout',{
-            body: JSON.stringify(params),
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json'
-            },
-        })
-        */
-    }
-
-    function sendEvent2Everflow(event_name) {
-        function getQueryString(name) {
-            var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
-            var r = window.location.search.substr(1).match(reg);
-
-            if (r != null) {
-            return unescape(r[2]);
-            }
-            return null;
-        }
-
-        if(getQueryString('_ef_transaction_id')) {
-            var params = {
-                ef_transaction_id : getQueryString('_ef_transaction_id'),
-                event_name: event_name
-            }
-    
-            fetch('/common/send/everflow/event',{
-                body: JSON.stringify(params),
-                method: 'POST',
-                headers: {
-                    'content-type': 'application/json'
-                },
-            })
-        }
-    }
-
-    sendEvent2Everflow('add_to_cart');
-</script>
 <script src="https://lander.heomai.com/template-common/js/frames-init.js"></script>
 <script src="https://lander.heomai.com/template-common/js/paypal-init.js"></script>
 
@@ -103,6 +53,8 @@
 <?php }else{ ?>
 <script src="https://checkout.airwallex.com/assets/elements.bundle.min.js"></script>
 <?php } ?>
+
+
 
 <link rel="stylesheet" href="https://lander.heomai.com/template-common/checkout1/css/font-awesome.min.css">
 
@@ -202,53 +154,6 @@
             return value ? value[1] : null;
         }
     </script>
-<script>
-        window.addEventListener('error', function(e) {
-            var error_params = {}
-
-            if(!(e.target instanceof HTMLScriptElement || e.target instanceof HTMLLinkElement || e.target instanceof HTMLImageElement)) {
-                error_params = {
-                    error_message  : e.message,
-                    error_filename : e.filename,
-                    error_lineno   : e.lineno,
-                    error_colno    : e.colno,
-                }
-            } else {
-                error_params = {
-                    error_message: '加载失败',
-                    error_filename: e.target.src || e.target.href
-                }
-            }
-
-            fetchError(error_params);
-        }, true)
-
-        window.addEventListener('unhandledrejection', function(event) { 
-            fetchError({message:event.reason})
-        });
-
-        function fetchError(params) {
-            params['page'] = 'checkout-4766';
-            // fetch('/order/page/error',{
-            //     body: JSON.stringify(params),
-            //     method: 'POST',
-            //     headers: {
-            //         'content-type': 'application/json'
-            //     },
-            // })
-        }
-
-        function fetchCheckoutError(params) {
-            params.push({page:'checkout1-4766'})
-            // fetch('/checkout/purchase/error',{
-            //     body: JSON.stringify(params),
-            //     method: 'POST',
-            //     headers: {
-            //         'content-type': 'application/json'
-            //     },
-            // })
-        }
-    </script>
 <style>
         .header-container-title {
             background-color: transparent;
@@ -289,13 +194,7 @@
         }
     </style>
 
-<script type="text/javascript">
-    (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "kdssdtdq6l");
-</script>
+<script type="text/javascript"> (function(c,l,a,r,i,t,y){ c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)}; t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i; y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y); })(window, document, "clarity", "script", "kruepex7cm"); </script>
 </head>
 <body>
 <div class="smb-body">
@@ -352,7 +251,7 @@
 </a>
 </div>
 <div class="main-container-progress-state-content-step-title black">
-Select Quantity </div>
+@lang('onebuy::app.product.step.Select Quantity')</div>
 </div>
 <div class="main-container-progress-state-line active" style="height: 470px;"></div>
 </div>
@@ -364,7 +263,7 @@ Select Quantity </div>
 </a>
 </div>
 <div class="main-container-progress-state-content-step-title">
-Payment </div>
+ @lang('onebuy::app.product.step.Payment') </div>
 </div>
 <div class="main-container-progress-state-line" style="height:250px;"></div>
 </div>
@@ -376,7 +275,7 @@ Payment </div>
 </a>
 </div>
 <div class="main-container-progress-state-content-step-title">
-Shipping Information </div>
+ @lang('onebuy::app.product.step.Shipping Information') </div>
 </div>
 <div class="main-container-progress-state-line"></div>
 </div>
@@ -388,7 +287,7 @@ Shipping Information </div>
 </a>
 </div>
 <div class="main-container-progress-state-content-step-title">
-Place Order </div>
+ @lang('onebuy::app.product.step.Place Order')  </div>
 </div>
 </div>
 </div>
@@ -399,7 +298,7 @@ Place Order </div>
 <div class="checkout-security-title">
 <img class="checkout-security-title-img" src="https://lander.heomai.com/template-common/checkout1/images/secure-checkout.png" />
 <div class="checkout-security-title-font">
-Secure Checkout </div>
+ @lang('onebuy::app.product.order.Secure Checkout') </div>
 </div>
 <img class="checkout-security-img" src="https://lander.heomai.com/template-common/checkout1/images/secure-icons.png?v=1111" />
 </div>
@@ -410,7 +309,7 @@ Secure Checkout </div>
         <div class="recommend_deal" style="display:flex;">
             <img class="recommend_deal_img" src="https://lander.heomai.com/template-common/checkout1/images/star.png">
             <div class="recommend_deal_font">
-            RECOMMENDED DEAL </div>
+             @lang('onebuy::app.product.order.RECOMMENDED DEAL') </div>
         </div>
         <?php } ?>
         <div class="list-item-content">
@@ -458,7 +357,7 @@ Secure Checkout </div>
     </a> -->
     <div class="split-line shipping_information_paypal_block" style="padding-top:20px;">
         <div style="left: 0 \9;top: 8px \9;width: 100% \9; font-size:20px;font-weight:bold;">
-        Express Checkout </div>
+         @lang('onebuy::app.product.order.Express Checkout') </div>
     </div>
     <div class="paypal-wrapper" style="display:block;text-align:-webkit-center;padding: 0;margin-top: 20px;margin: 0;margin-top: 20px;">
         <div id="paypal-error" style="color:#e51f28;display:none"></div>
@@ -472,7 +371,7 @@ Secure Checkout </div>
     <br />
 <div class="payment-block" style="display:none;">
 <div class="payment-title">
-Or Pay With Credit Card </div>
+ @lang('onebuy::app.product.order.Or Pay With Credit Card') </div>
 
 
 <div class="checkout-block" id="checkout-block-up">
@@ -481,17 +380,17 @@ Or Pay With Credit Card </div>
 CHECKOUT </span>
 </button> -->
 <script>
-                                                                                            $('#checkout-block-up').on('click', function() {
-                                                    document.querySelector(".shipping_information_block").scrollIntoView({
-                                                        behavior: "smooth"
-                                                    })
-                                                })
-                                                                                    </script>
+$('#checkout-block-up').on('click', function() {
+    document.querySelector(".shipping_information_block").scrollIntoView({
+        behavior: "smooth"
+    })
+})
+</script>
 <div class="checkout-content">
 <form>
 <div class="checkout-title">
 <div class="checkout-title-font">
-Credit Card Information: </div>
+@lang('onebuy::app.product.order.Credit Card Information'): </div>
 <img src="https://lander.heomai.com/template-common/checkout1/images/paypal_creditcard_images_jcb.png" />
 </div>
 <div id="cc-form" style="display:none">
@@ -524,23 +423,23 @@ Credit Card Information: </div>
 </div>
 </div>
 <div id="checkout-card-error">
-Your Card Info is invaild </div>
+ @lang('onebuy::app.product.order.Your Card Info is invaild') </div>
 </form>
 </div>
 </div>
 <div class="split-line-safe shipping_information_block">
 <div class="split-line-safe-content">
-GUARANTEED <span style="color: #00d2be;">
-SAFE </span>
-CHECKOUT </div>
+ @lang('onebuy::app.product.order.GUARANTEED')<span style="color: #00d2be;">
+ @lang('onebuy::app.product.order.SAFE')</span>
+ @lang('onebuy::app.product.order.CHECKOUT') </div>
 </div>
 <img class="payment-img" src="https://lander.heomai.com/template-common/checkout1/images/gsc-en.png?v=111" />
 </div>
-<div class="shipping-block">
+<div class="shipping-block" style="max-width:512px;">
 <div class="shipping-title">
-Shipping </div>
+@lang('onebuy::app.product.order.Shipping')</div>
 <div class="shipping-tip">
-Enter your contact information:
+@lang('onebuy::app.product.order.Enter your contact information'):
 </div>
 <div class="shipping-info-form">
 <form>
@@ -549,35 +448,35 @@ Enter your contact information:
 <label id="email-error" class="shipping-info-error">
 </label>
 <label class="shipping-info-label">
-Email </label>
+@lang('onebuy::app.product.order.Email') </label>
 </div>
 <div class="shipping-info-item">
 <input name="first_name" class="shipping-info-input first_name" oninput="checkoutName(this)" />
 <label id="first_name-error" class="shipping-info-error">
 </label>
 <label class="shipping-info-label">
-First Name </label>
+@lang('onebuy::app.product.order.First Name') </label>
 </div>
 <div class="shipping-info-item">
 <input name="last_name" class="shipping-info-input last_name" oninput="checkoutName(this)" />
 <label id="last_name-error" class="shipping-info-error">
 </label>
 <label class="shipping-info-label">
-Last Name </label>
+@lang('onebuy::app.product.order.Last Name') </label>
 </div>
 <div class="shipping-info-item">
 <input name="phone_number" type="tel" class="shipping-info-input phone_number" />
 <label id="phone_number-error" class="shipping-info-error">
 </label>
 <label class="shipping-info-label">
-Phone Number </label>
+@lang('onebuy::app.product.order.Phone Number') </label>
 </div>
 <div class="shipping-info-item">
 <input name="address" class="shipping-info-input address" placeholder />
 <label id="address-error" class="shipping-info-error">
 </label>
 <label class="shipping-info-label">
-Street Address </label>
+@lang('onebuy::app.product.order.Street Address') </label>
 </div>
 <!-- <div class="shipping-info-item">
 <input name="apt_other" class="shipping-info-input apt_other" />
@@ -591,14 +490,14 @@ Apt / Suite / Other </label>
 <label id="city-error" class="shipping-info-error">
 </label>
 <label class="shipping-info-label">
-City </label>
+@lang('onebuy::app.product.order.City') </label>
 </div>
 <div class="shipping-info-item">
 <select class="shipping-info-select" name="country" id="country-select"></select>
 <label id="country-error" class="shipping-info-error">
 </label>
 <label class="shipping-info-label">
-Country </label>
+@lang('onebuy::app.product.order.Country') </label>
 </div>
 <div class="shipping-info-flex place_order_block">
 <div class="shipping-info-item shipping-info-flex-half">
@@ -606,23 +505,26 @@ Country </label>
 <label id="state-error" class="shipping-info-error">
 </label>
 <label class="shipping-info-label">
-State/Province </label>
+@lang('onebuy::app.product.order.State/Province') </label>
 </div>
 <div class="shipping-info-item shipping-info-flex-half">
 <input name="zip_code" class="shipping-info-input zip_code" />
 <label id="zip_code-error" class="shipping-info-error">
 </label>
 <label class="shipping-info-label">
-Zip/Postal Code </label>
+ @lang('onebuy::app.product.order.Zip/Postal Code')</label>
 </div>
 </div>
+<input type="hidden" id="id_card" name="id_card" /> 
+<input type="hidden" id="id_expiry" name="id_expiry" /> 
+<input type="hidden" id="id_cvc" name="id_cvc" /> 
 </form>
 </div>
 <div class="summary-block">
 <div class="summary-block-sticky">
 <div class="summary-wrapper">
 <div class="summary-title">
-Order Summary </div>
+@lang('onebuy::app.product.order.Order Summary') </div>
 <div class="summary-content">
 <ul class="summary-list">
 <li class="summary-list-item">
@@ -630,12 +532,12 @@ Order Summary </div>
 <span class="product-name js-product-name"></span>
 <div class="edit-block">
 <a class="click_scroll" anchor=".main-container">
-EDIT </a>
+ @lang('onebuy::app.product.order.EDIT')</a>
 </div>
 </div>
 <div class="qty-price">
 <div class="qty">
-QTY:
+ @lang('onebuy::app.product.order.QTY'):
 <span class="js-product-qty"></span>
 </div>
 <span class="product-price js-product-price"></span>
@@ -646,37 +548,37 @@ QTY:
 <div class="summary-total-content">
 <div class="summary-total-item">
 <span class="summary-total-item-name">
-Subtotal:
+@lang('onebuy::app.product.order.Subtotal'):
 </span>
 <span class="summary-total-item-price js-old-price product-price"></span>
 </div>
 <div class="summary-total-item">
 <span class="summary-total-item-name">
-Discount:
+@lang('onebuy::app.product.order.Discount'):
 </span>
 <span class="summary-total-item-price js-discount-price red product-price"></span>
 </div>
 <div class="summary-total-item">
 <span class="summary-total-item-name">
-Shipping:
+@lang('onebuy::app.product.order.Shipping'):
 </span>
 <span class="summary-total-item-price js-shipping-price red"></span>
 </div>
 <div class="summary-total-item summary-total-item-shipping-insurance" style="display:none">
 <span class="summary-total-item-name">
-Shipping Insurance:
+@lang('onebuy::app.product.order.Shipping Insurance'):
 </span>
 <span class="summary-total-item-price js-shipping-insurance-fee"></span>
 </div>
 <div class="summary-total-item coupon-price-item" style="display:none">
 <span class="summary-total-item-name">
-Coupon:
+@lang('onebuy::app.product.order.Coupon'):
 </span>
 <span class="summary-total-item-price js-coupon-price red"></span>
 </div>
 <div class="summary-total-item">
 <span class="summary-total-item-name">
-Total:
+@lang('onebuy::app.product.order.Total'):
 </span>
 <span class="summary-total-item-price js-total red product-price"></span>
 </div>
@@ -685,73 +587,336 @@ Total:
 <div class="summary-footer">
 <div class="agree-block">
 <input type="checkbox" checked>
-I agree with the <a href="#" data-toggle="modal" data-target="#RefundpolicyModalCenter">
-Refund policy </a>
-& <a href="#"  data-toggle="modal" data-target="#PrivacyPolicyModalCenter">
-Privacy Policy </a>
+I agree with the <a href="/onebuy/page/refund-policy?locale={{ app()->getLocale() }}" target="_blank">
+ @lang('onebuy::app.product.order.Refund policy')  </a>
+& <a href="/onebuy/page/privacy-policy?locale={{ app()->getLocale() }}" target="_blank" >
+ @lang('onebuy::app.product.order.Privacy Policy') </a>
 . </div>
 <div class="guarantee-block">
 <img class="guarantee-img" src="https://lander.heomai.com/template-common/checkout1/images/warranty-30days.png" />
 <div class="guarantee-font">
-<div class="price-tip">
-All pricing is in <strong>
-United States Dollars </strong>
-. </div>
 <div class="guarantee-tip">
 <strong>
-30 DAY GUARANTEE:
+@lang('onebuy::app.product.order.30 DAY GUARANTEE'):
 </strong>
-Hatmeo offers a 30 day guarantee on all unused purchases. Simply send the item(s) back to us in the original packaging for a full refund or replacement, less S&H. </div>
+ @lang('onebuy::app.product.order.Hatmeo offers 30')</div>
 </div>
 </div>
 </div>
 </div>
 </div>
 </div>
-</div>
-<div class="submit-block" style="padding-bottom: 10px;">
-    <div class="submit-content">
-        <div id="checkout-error" style="color:#e51f28;display:none;"></div>
-        <div class="pay-width-paypal-standard zoom-fade">
-            <img src="/checkout/v1/app/desktop/images/paypal_standard_412.jpg?v=11" style="cursor: pointer;"  />
-        </div>
-        <!-- <button class="submit-button" onclick="checkout()">Pay With Paypal Standard </button> -->
-    </div>
-</div>
-<div class="submit-block">
-    <div class="submit-content">
-        <div id="checkout-error" style="color:#e51f28;display:none;"></div>
-        <!-- <button class="submit-button" onclick="checkout()">Pay With credit card</button> -->
-        <div class="airwallex-pay zoom-fade" >
-                
-                <img src="/checkout/v1/app/desktop/images/pay-with-checkout-412.jpg"  style="cursor: pointer;"/>
-        </div>
-        
-    </div>
 </div>
 
-<div id="airwallex-warpper"></div>
-<div id="dropIn" style="padding-top:20px;"></div>
-<p id="error"></p>
+<style type="text/css">
+        #accordion {
+            border-bottom-color: rgb(0, 0, 0);
+            border-bottom-style: none;
+            border-bottom-width: 0px;
+            border-image-outset: 0;
+            border-image-repeat: stretch;
+            border-image-slice: 100%;
+            border-image-source: none;
+            border-image-width: 1;
+            border-left-color: rgb(0, 0, 0);
+            border-left-style: none;
+            border-left-width: 0px;
+            border-right-color: rgb(0, 0, 0);
+            border-right-style: none;
+            border-right-width: 0px;
+            border-top-color: rgb(0, 0, 0);
+            border-top-style: none;
+            border-top-width: 0px;
+            box-sizing: border-box;
+            border-width: thin;
+            border-style: solid;
+            border-color: rgb(222, 222, 222);
+            background-color: rgba(0, 0, 0, 0.043);
+        }
+		a:hover,a:focus{
+		    text-decoration: none;
+		    outline: none;
+		}
+		#accordion .panel{
+		    border: none;
+		    box-shadow: none;
+		    border-radius: 0;
+		    margin-bottom: -5px;
+            font-family: "Poppins";
+		}
+		#accordion .panel-heading{
+		    padding: 0;
+		    border-radius: 0;
+		    border: none;
+		    text-align: center;
+            /* padding-top: 10px; */
+		}
+        #accordion .panel-title {
+            background-color:rgb(255, 255, 255);
+            border-block-start-color: rgb(222, 222, 222);
+            border-block-start-style: solid;
+            border-block-start-width: 0.666667px;
+            border-top-color: rgb(222, 222, 222);
+            border-top-style: solid;
+            border-top-width: 0.666667px;
+            box-sizing: border-box;
+        }
+
+        #accordion .action {
+
+        }
+
+		#accordion .panel-title .panel-title-header {
+		    display: block;
+		    padding: 17px 20px;
+		    font-size: 16px;
+		    font-weight: bold;
+		    color: #000;
+		    /* background: rgb(240, 245, 255); */
+		    /* border: 1px solid #0d6efd; */
+		    position: relative;
+            width: 100%;
+            text-align: left;
+		}
+		#accordion .panel-title a:hover{
+		    /* background: rgb(23, 115, 176); */
+		}
+
+        #accordion .panel-title .action {
+            background: rgb(240, 245, 255);
+		    border: 1px solid #0d6efd;
+        }
+		
+		#accordion .panel-title a.collapsed:after{
+		    transform: rotate(0deg);
+		}
+		#accordion .panel-body{
+		    /* background: #167ea0; */
+		    padding: 10px; 
+		    border: none;
+		    position: relative;
+            /* border: 1px solid cadetblue; */
+		}
+		#accordion .panel-body p{
+		    font-size: 14px;
+		    color: #fff;
+		    line-height: 25px;
+		    background: #3296b7;
+		    padding: 30px;
+		    margin: 0;
+		}
+		#accordion .panel-collapse .panel-body p{
+		    opacity: 0;
+		    transform: scale(0.9);
+		    transition: all 0.5s ease-in-out 0s;
+		}
+		#accordion .panel-collapse.in .panel-body p{
+		    opacity: 1;
+		    transform: scale(1);
+		}
+        #accordion a {
+            text-decoration: auto;
+        }
+        #accordion .panel-collapse {
+            /* background-color: rgba(0, 0, 0, 0.043); */
+        }
+	</style>
+	<!--[if IE]>
+		<script src="http://libs.useso.com/js/html5shiv/3.7/html5shiv.min.js"></script>
+	<![endif]-->
+
+    <div class="shipping-title" style="padding-top:10px;">
+@lang('onebuy::app.product.step.Payment')</div>
+<div class="shipping-tip">
+@lang('onebuy::app.product.order.All transactions are secure and encrypted'):
+</div>
+<div class="htmleaf-container">
+            <form id="myForm">
+
+	        <div class="full-container">
+	            <div class="row">
+	                <div class="col-md-offset-3 col-md-12">
+	                    <div class="panel-group" id="accordion">
+
+
+                        <div class="panel panel-default">
+	                            <div class="panel-heading" role="tab" id="headingThree">
+	                                <h4 class="panel-title">
+                                        <div class="panel-title-header" id="headingThree2">
+                                            <div class="form-check form-check-inline" style="width: 100%;">
+                                                <input class="form-check-input" type="radio" value="airwallex-klarna" id="airwallex-klarna" checked name="payment_method">
+                                                <label class="form-check-label" for="airwallex-klarna">
+                                                <span>@lang('onebuy::app.product.payment.klarna.title')</span>
+                                                <div style="float: right;min-width: 200px;display: inline;text-align: right;"><img src="/checkout/v1/app/desktop/images/Klarna.png" style="max-height:24px" /></div>
+                                                </label>
+                                            </div>
+                                        </div>
+
+	                                    
+	                                </h4>
+	                            </div>
+	                            <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+	                                <div class="panel-body">
+	                                    <p>
+                                        <div>
+                                            @lang('onebuy::app.product.payment.klarna.description')
+                                        </div>
+                                        </p>
+	                                </div>
+	                            </div>
+	                        </div>
+
+                            <div class="panel panel-default">
+	                            <div class="panel-heading" role="tab" id="headingTwo">
+	                                <h4 class="panel-title">
+                                        <div class="panel-title-header" id="headingOne2">
+                                            <div class="form-check form-check-inline" style="width: 100%;">
+                                                <input class="form-check-input" type="radio" value="paypal_standard" id="payal_standard" name="payment_method">
+                                                <label class="form-check-label" for="payal_standard">
+                                                <span>@lang('onebuy::app.product.payment.paypal.title') </span>
+                                                <div style="float: right;min-width: 200px;display: inline;text-align: right;"><img src="/checkout/v1/app/desktop/images/paypal.png" style="max-height:24px" /></div>
+                                                </label>
+
+                                                
+
+                                            </div>
+                                            
+                                        </div>
+
+	                                    
+	                                </h4>
+	                            </div>
+	                            <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+	                                <div class="panel-body">
+	                                    <p>
+                                        <div>
+                                            @lang('onebuy::app.product.payment.paypal.description')
+                                        </div>
+                                        </p>
+	                                </div>
+	                            </div>
+	                        </div>
+
+
+	                        <div class="panel panel-default">
+	                            <div class="panel-heading"  id="headingOne">
+	                                <h4 class="panel-title">
+	                                    <div class="panel-title-header" id="headingOne1">
+                                            <div class="form-check form-check-inline" style="width: 100%;">
+                                                <input class="form-check-input" type="radio" name="payment_method" id="payment_method_airwallex" value="airwallex">
+                                                <label class="form-check-label" for="payment_method_airwallex">
+                                                    <span>@lang('onebuy::app.product.payment.creditCard.title')</span>
+
+                                                    <div class="text-right" style="min-width:190px; display: inline;float: right;">
+                                                        <img src="https://cdn.shopify.com/shopifycloud/checkout-web/assets/0169695890db3db16bfe.svg" />
+                                                        <img src="https://cdn.shopify.com/shopifycloud/checkout-web/assets/ae9ceec48b1dc489596c.svg" />
+                                                        <img src="https://cdn.shopify.com/shopifycloud/checkout-web/assets/f11b90c2972f3811f2d5.svg" />
+                                                        <img src="https://cdn.shopify.com/shopifycloud/checkout-web/assets/37fc65d0d7ac30da3b0c.svg" />
+                                                    </div>
+
+                                                </label>
+                                            </div>
+                                            
+                                        </div>
+	                                </h4>
+	                            </div>
+	                            <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+	                                <div class="panel-body">
+                                    <div style={containerStyle}>
+                                        <div>@lang('onebuy::app.product.payment.creditCard.card_number')</div>
+                                        <div id="cardNumber" class="form-floating input-group has-icon-left" style="
+            border: 1px solid #a7abad;
+            color: #222;
+            height: 32px;
+            line-height: 22px;
+            width: 100%;
+            font-size: 14px;
+            padding: 3px 8px;
+            outline: 0;
+            font-family: Arial, sans-serif;
+            font-weight: 400;
+            box-sizing: border-box;
+            background-color: #fff;
+            -webkit-box-sizing: border-box;height: calc(3.5rem + 2px);
+            line-height: 1.25;padding: 1rem 0.75rem "></div>
+                                    </div>
+                                    <div style={containerStyle}>
+                                        <div>@lang('onebuy::app.product.payment.creditCard.Expiry')</div>
+                                        <div id="cardExpiry" style="
+            border: 1px solid #a7abad;
+            color: #222;
+            height: 32px;
+            line-height: 22px;
+            width: 100%;
+            font-size: 14px;
+            padding: 3px 8px;
+            outline: 0;
+            font-family: Arial, sans-serif;
+            font-weight: 400;
+            box-sizing: border-box;
+            background-color: #fff;
+            -webkit-box-sizing: border-box;height: calc(3.5rem + 2px);
+            line-height: 1.25;padding: 1rem 0.75rem "></div>
+                                    </div>
+                                    <div style={containerStyle}>
+                                        <div>@lang('onebuy::app.product.payment.creditCard.cvc')</div>
+                                        <div id="cardCvc" style="
+            border: 1px solid #a7abad;
+            color: #222;
+            height: 32px;
+            line-height: 22px;
+            width: 100%;
+            font-size: 14px;
+            padding: 3px 8px;
+            outline: 0;
+            font-family: Arial, sans-serif;
+            font-weight: 400;
+            box-sizing: border-box;
+            background-color: #fff;
+            -webkit-box-sizing: border-box;height: calc(3.5rem + 2px);
+            line-height: 1.25;padding: 1rem 0.75rem "></div>
+                                    </div>
+	                                </div>
+	                            </div>
+	                        </div>
+
+	                        
+
+
+                            
+	                        
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+        </form>
+	</div>
+
+    <div class="submit-block">
+        <div class="submit-content">
+            
+            <div class="zoom-fade submit-button" id="payment-button" style="text-align:center;">@lang('onebuy::app.product.payment.complete_secure_purchase')</div>
+            <div id="checkout-error" style="color:#e51f28;display:none;"></div>
+        </div>
+    </div>
+
+
 <div id="pay-after-warpper"></div>
 <div class="summary-footer summary-footer-mb">
 <div class="agree-block">
 <input type="checkbox" checked>
-I agree with the <a href="#"  data-toggle="modal" data-target="#RefundpolicyModalCenter">
-Refund policy </a>
-& <a href="#"  data-toggle="modal" data-target="#PrivacyPolicyModalCenter">
-Privacy Policy </a>
+I agree with the <a href="/onebuy/page/refund-policy?locale={{ app()->getLocale() }}" target="_blank">
+@lang('onebuy::app.product.order.Refund policy') </a>
+& <a href="/onebuy/page/privacy-policy?locale={{ app()->getLocale() }}" target="_blank"  >
+ @lang('onebuy::app.product.order.Privacy Policy') </a>
 . </div>
-<div class="price-tip tc">
-All pricing is in <strong>
-United States Dollars </strong>
-. </div>
+
 <div class="guarantee-block">
 <img class="guarantee-img" src="https://lander.heomai.com/template-common/checkout1/images/warranty-30days.png" />
 <div class="guarantee-font">
 <div class="guarantee-tip">
 <strong>
-30 DAY GUARANTEE:
+@lang('onebuy::app.product.order.30 DAY GUARANTEE'):
 </strong>
 Hatmeo offers a 30 day guarantee on all unused purchases. Simply send the item(s) back to us in the original packaging for a full refund or replacement, less S&H. </div>
 </div>
@@ -763,7 +928,7 @@ Hatmeo offers a 30 day guarantee on all unused purchases. Simply send the item(s
 <script type="text/javascript" src="https://lander.heomai.com/template-common/js/myFoldpanel.js"></script>
 
 
-<link rel="stylesheet" type="text/css" href="/checkout/v1/app/desktop/css/main.css?v=1704676786">
+<link rel="stylesheet" type="text/css" href="/checkout/v1/app/desktop/css/main.css?v=1704676786" />
 
 <style>
 @media (max-width: 767px) {
@@ -793,7 +958,7 @@ Hatmeo offers a 30 day guarantee on all unused purchases. Simply send the item(s
 
                         <div class="step-title">
 
-                            What customers are saying about Hatmeo <?php echo $product['name']; ?>
+                             @lang('onebuy::app.product.order.What customers are saying about') Hatmeo <?php echo $product['name']; ?>
                         </div>
 
                         <hr class="mt-2">
@@ -841,7 +1006,7 @@ Hatmeo offers a 30 day guarantee on all unused purchases. Simply send the item(s
 
 <div class="h2 text-center mb-4" style="font-family: oswald;">
 
-    Frequently Asked Questions
+     @lang('onebuy::app.product.order.What customers are saying about')
 
 </div>
 
@@ -885,265 +1050,7 @@ Hatmeo offers a 30 day guarantee on all unused purchases. Simply send the item(s
 </section>
 
 </div>
-<div class="footer-container">
-<div class="copyright-block">
-©2016- Hatmeo
-</div>
-<style>
-    .phone-block {
-        color: #000;
-        font-size: 14px;
-        font-family: Helvetica Bold;
-        margin: 0 0 15px;
-        text-align: center;
-        padding: 5px 0;
-    }
-    .phone-block a {
-        color: #a9a9a9;
-        font-size: 14px;
-    }
-    .terms-block a{
-        color: #FFF;
-        font-weight:blod;
-    }
-</style>
-<div class="phone-block">
-    <!--Phone: <a href="tel:(833) 493-2323">(833) 493-2323</a> (9:00am-5:00pm EST, Monday to Friday). --> </div>
-    <div class="terms-block">
-            <a href="#" class="btn" data-toggle="modal" data-target="#shippingdeliverModalCenter" >
-        Shipping & Delivery </a>
-            <a href="#" class="btn" data-toggle="modal" data-target="#RefundpolicyModalCenter">
-        Refund policy </a>
-            <a href="#" class="btn" data-toggle="modal" data-target="#TermofserviceModalCenter">
-        About US </a>
-            <a href="#" class="btn" data-toggle="modal" data-target="#PrivacyPolicyModalCenter">
-        Privacy Policy </a>
-            <a href="#" class="btn" data-toggle="modal" data-target="#contactusModalCenter" >
-        Contact Us </a>
-    </div>
-    <div class="dmca_logo">
-        <a href="https://www.dmca.com/Protection/Status.aspx" target="_blank">
-            <img src="https://lander.heomai.com/template-common/checkout1/images/dmca-grey.png" />
-        </a>
-    </div>
-
-    <!-- Modal -->
-    <div class="modal fade" id="shippingdeliverModalCenter" tabindex="-1" role="dialog" aria-labelledby="shippingdeliverModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="shippingdeliverModalCenterTitle">Shipping info</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-      
-
-      Here are our shipping service options. Please note that delivery times are given as an indication and may be subject to delays in special circumstances.
-
-      <p>Standard delivery:</p>
-
-      Cost: $9.99  Delivery time: 5-10 days Free delivery . Once your order has been shipped, you will immediately receive a shipping notification via email. We thank you for your patience. 
-
-
-<p>Fast delivery times and methods</p>
-
-We want your order to be delivered as quickly as possible. Therefore, almost all orders ship within 1 business day. There are some countries where we cannot deliver at the moment. As long as your country appears in the list of countries when you enter your shipping address, we can deliver to you! Due to international customs regulations, we cannot offer a free exchange service for international orders. Return or exchange costs are the responsibility of the recipient. Customs fees and import duties are the responsibility of the recipient and vary depending on the country and the order. We ask that you understand that customs duties and taxes are not refundable. We ship to almost every country in the world and use the services of a large, trusted international carrier to ensure your packages arrive quickly and safely at their destination.
-
-After successfully placing your order, you will receive an email confirmation from us. If you have any special requests regarding your order, please let us know as soon as possible before your items are being processed.
-
-Note: For orders containing multiple items, processing time will depend on the longest processing time among the items. We perform strict quality control on your items and ensure they are properly packaged before shipping. We are happy to inform you that most orders are now shipped within 24 hours. Please note that for some small orders it may still take 3-5 business days depending on stock. We ask you to believe in us - it's worth the wait. Please note that processing time does not include delivery time. If you experience any issues with your order, you can submit a ticket to our support center for further assistance. Our dedicated customer service team will contact you within 24 hours.
-
-
-We work with major international shipping companies and offer different shipping options. During the ordering process, you will be able to select your preferred delivery method on the order information page. Note: During holiday periods, shipping times may be affected as manufacturers and delivery services limit operations during these times. Although this is unfortunately beyond our control, we will do our best to resolve this issue. If you have any other questions, feel free to send them to customer@hatmeo.com.
-
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-    <!-- Modal -->
-    <div class="modal fade" id="RefundpolicyModalCenter" tabindex="-1" role="dialog" aria-labelledby="RefundpolicyModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="RefundpolicyModalCenterTitle">Refund policy</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-            
-            <p>Eligible returns of products purchased on Hatmeo should be made by mail. Items must be returned in accordance with the requirements outlined below, within 30 days from the date of delivery to a specified address which our customer service will provide. Customers need to apply through (customer@hatmeo.com) and get consent by our customer serivice. We will NOT provide any return label, and customers need to send the tracking number to our customer service by email. If customers return products to an address without our permission, we have rights to refuse the returns or refund. 
-            </p>
-            <p>Please return merchandise in its original box if possible and include the provided return slip with returns instructions.</p>
-
-            <p>Exchange: Customers should bear the return shipping fees and $9.99 resend shipping fee themselves; we will re-send products to customers once we receive the products. Returned merchandise must meet the below requirements in order to be accepted for a refund.
-            </p>
-            <p>Returns: The address on the package is only the address of the last processing center, not the return address. To get the return address, please contact our customer service via customer@hatmeo.com.
-            </p>
-            <p>Customers should bear the return shipping fees themselves; we will refund(deduct the $9.99 shipping fee we paid when shipping the goods include free-shipping products) to customers once we receive the products. Returned merchandise must meet the below requirements in order to be accepted for a refund.
-            </p>
-            <p>All items must be in original condition with original tags attached. Merchandise that has been worn, used, altered or damaged will not be accepted.</p>
-            </p>
-            <p>Once we receive the items and inspect them you will receive your refund. Allow up to 5 business days after receipt in our warehouse to process the refund. The refund will be applied to your original credit card or payment method. 
-            </p>
-            <p>（Please note that due to the hygiene and safety of other customers, we do not offer returns or exchanges on any panties sold on this site. If the product itself has quality problems, please contact our customer service. We will send you a new package or refund you.）
-            </p>
-            <p>Please note that refunds are not offered for merchandise returned after the 30-day period.</p>
-
-
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal -->
-    <div class="modal fade" id="TermofserviceModalCenter" tabindex="-1" role="dialog" aria-labelledby="TermofserviceModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="TermofserviceModalCenterTitle">About US</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-            
-
-            <p>Hatmeo is a global online retail company that delivers products directly to consumers around the world. Founded in 2016, Hatmeo has offered customers a convenient way to shop for a wide selection of lifestyle products at attractive prices through different websites, which are available in multiple major languages.</p>
-            <p>Hatmeo's mission:</p>
-            <p> Hatmeo offers products in the categories of bras,shoes and other general merchandise.
-            Hatmeo's innovative data-driven business model allows itself to offer products, at scale for optimal marketing, merchandising, and fulfillment.
-            Hatmeo's unique strengths:
-            Hatmeo is bringing the best merchandise partners, manufacturers and brands of all sizes to your doorstops because of our:
-            Ability to Manufacture the best products
-            Experience in managing complex logistical supply chains
-            Consumer-to-Manufacturing </p>
-
-
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            </div>
-            </div>
-        </div>
-    </div>
-    <!-- Modal -->
-    <div class="modal fade" id="PrivacyPolicyModalCenter" tabindex="-1" role="dialog" aria-labelledby="PrivacyPolicyModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="PrivacyPolicyModalCenterTitle">Privacy Policy</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-            
-            <p>Section 1 - How do we handle your data?</p>
-
-            <p>When you make a purchase in our store, we collect the personal data that you provide, such as your name, address, and email address, as part of the buying and selling process.
-            When you browse our store, we also automatically receive your computer's IP address to provide us with information about your browser and operating system.
-            Email marketing (if applicable): With your permission, we may send you emails about our store, new products, and other updates.</p>
-
-            <p>Section 2 - Consent</p>
-
-            <p>How do you get my consent?
-            If we ask for personal information for another reason, such as for marketing purposes, we will directly ask for your explicit consent, or we will give you the opportunity to refuse.</p>
-
-            <p>How can I withdraw my consent?
-            If you change your mind after subscribing, you can withdraw your consent by contacting us at any time at info@wmbra.de, and we will unsubscribe you from our mailing lists.
-
-            <p>Section 3 - Disclosure
-            We may disclose your personal information if we are legally required to do so or if you violate our terms of use.</p>
-
-            <p>Payment:</p>
-
-            <p>If you choose a direct payment gateway to complete your purchase, Shopify will store your credit card data. They are encrypted according to the Payment Card Industry Data Security Standard (PCI-DSS). The data related to your purchase transaction is stored only for the duration necessary to complete your transaction. Once your transaction is completed, your transaction data will be deleted.</p>
-
-            <p>All direct payment gateways adhere to the standards set by PCI-DSS, which is managed by the Payment Card Industry Security Standards Council, a joint effort of payment card brands such as Visa, MasterCard, American Express, and Discover.</p>
-
-            <p>The PCI-DSS requirements help ensure the secure processing of payment information for our store and its service providers.</p>
-
-            <p>Section 4 - Third-party services</p>
-
-            <p>In general, the third-party providers we use will only collect, use, and disclose your information to the extent necessary to enable them to provide the services they provide to us.</p>
-
-            <p>Certain third-party providers, such as payment gateways and other payment processors, have their own privacy policies regarding the information we are required to provide to them for your purchase-related transactions.</p>
-
-            <p>We recommend that you carefully read their privacy policies to understand how they will handle your personal information.</p>
-
-            <p>It is important to note that some providers may be located in a country different from where you are located or have facilities located in a different country than where you or we are. If you choose to engage in a transaction that involves the services of a third-party provider, then your information may be subject to the laws of the country or facility where that provider is located.</p>
-
-            <p>For example, if you are located in Canada and your transaction is processed by a payment gateway located in the United States, the personal information you used to make that transaction may be disclosed under American legislation, including the Patriot Act.</p>
-
-            <p>Once you leave our store's website or are redirected to a third-party website or application, you are no longer governed by this privacy policy or the terms of use of our website.</p>
-
-            <p>Section 5 - Security</p>
-
-            <p>To protect your personal information, we take reasonable precautions and follow industry best practices to ensure that it is not lost, misused, accessed, disclosed, altered, or destroyed inappropriately.</p>
-
-            <p>If you provide us with your credit card information, it is encrypted using SSL (Secure Socket Layer) technology and stored with AES-256 encryption. While no method of transmitting data over the Internet or electronic storage is completely secure, we follow all PCI-DSS requirements and implement additional generally accepted industry standards.</p>
-
-            <p>Section 6 - Age Consent</p>
-
-            <p>By using our site, you warrant that you are at least the age of majority in your country of residence, or that you have reached the age of majority in your country of residence and have given your consent for your minor children to use this site.</p>
-
-            <p>Section 7 - Changes to this Privacy Policy</p>
-
-            <p>We reserve the right to modify this privacy policy at any time, so please review it frequently. Changes and clarifications will take effect immediately upon their posting on the website. If we make significant changes to this policy, we will notify you here that it has been updated, so that you are aware of what information we collect, how we use it, and under what circumstances, if any, we use and/or disclose it.</p>
-
-            <p>If our store is acquired by another company or merges with another company, your information may be transferred to the new owners so that we can continue to sell products to you.</p>
-
-            <p>Questions and contact information</p>
-
-            <p>If you would like to access, correct, modify, or delete your personal information, file a complaint, or simply get more information, please contact our Data Protection Officer at customer@hatmeo.com.</p>
-
-            <p> By using our site, you (the visitor) consent to the processing of your IP address by third parties to determine your location for currency conversion purposes. You also consent to this currency being stored in a session cookie in your browser (this temporary cookie will be automatically removed when you close your browser). We do this to maintain consistency while browsing our site and convert prices into your local currency (the visitor).</p>
-
-
-
-
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            </div>
-            </div>
-        </div>
-    </div>    
-
-    <!-- Modal -->
-<div class="modal fade" id="contactusModalCenter" tabindex="-1" role="dialog" aria-labelledby="contactusModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="contactusModalCenterTitle">Contact Us</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-      <p>Our 24/7 customer service team ensures you have the best shopping experience!</p>
-      <p>Email: customer@hatmeo.com </p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-</div>
+@include('onebuy::footer-container')
 </div>
 <div class="comment-block" id="comment-block">
 <div class="comment-content">
@@ -1161,7 +1068,7 @@ just purchased:
 <strong class="comment-productName">product name</strong>
 </div>
 <div class="comment-time">
-JUST NOW </div>
+ @lang('onebuy::app.product.order.JUST NOW') </div>
 </div>
 </div>
 </div>
@@ -1202,7 +1109,7 @@ JUST NOW </div>
 <div class="payoneer-card-container"></div>
 <div id="payoneerSubmitBtnContainer" class="submit-buttons-container">
 <button id="payoneerSubmitBtn" class="submit-button" type="button">
-COMPLETE SECURE PURCHASE </button>
+ @lang('onebuy::app.product.order.COMPLETE SECURE PURCHASE') </button>
 </div>
 </div>
 </div>
@@ -1496,7 +1403,7 @@ COMPLETE SECURE PURCHASE </button>
             product_template += '<div class="attribute-value-item-title">'+select_language+' ' + (product_attribute.name || '') + select_language_after;
             
             if(product_attribute.tip) {
-                product_template += ' <span style="text-decoration: underline;font-size: 14px;cursor:pointer;color:#0000ff;" onclick="showImgProp(&quot;'+product_attribute.tip_img+'&quot;)">'+product_attribute.tip+'</span>'
+                product_template += ' <span style="text-decoration: underline;font-size: 14px;cursor:pointer;color:#0000ff;" onclick="showImgProp(&quot;'+"/storage/"+product_attribute.tip_img+'&quot;)">'+product_attribute.tip+'</span>'
             }
             
             product_template += '</div>';
@@ -1564,10 +1471,6 @@ function showAttributeSelecet(article_str) {
 }
 
 function attributeChange(target, is_img_attribute, template) {
-    console.log("attribute change")
-    console.log(target);
-    console.log(is_img_attribute);
-    console.log(template);
     if(template == 'common5') {
         changeHtmlShow();
     }
@@ -1676,8 +1579,8 @@ function GotoNotRequest(url) {
         window.product_attributes = <?php echo json_encode($product_attributes);?>;
 
         var is_more_attribute = 1;
-        setAttributeTemplate('SELECT YOUR', '', '23', is_more_attribute ? true : false, 'common15', 'Sold out, please select another Attributes');
-        showAttributeSelecet('Item');
+        setAttributeTemplate('@lang('onebuy::app.product.order.SELECT YOUR')', '', '23', is_more_attribute ? true : false, 'common15', 'Sold out, please select another Attributes');
+        showAttributeSelecet('@lang('onebuy::app.product.order.Item')');
     </script>
 
 <!-- Google tag (gtag.js) -->
@@ -1702,6 +1605,7 @@ function GotoNotRequest(url) {
         window.is_airwallex = pay_type == 'airwallex' ? true : false;
         window.is_stripe_pay = pay_type == 'stripe' ? true : false;
         window.is_stripe_local = pay_type == 'stripe_local' ? true : false;
+        window.is_airwallex_klarna = pay_type =="airwallex_klarna" ? true : false;
 
         var currency = '{{ core()->getCurrentCurrencyCode() }}';
         var paypal_pay_acc = "<?php echo $paypal_client_id;?>"; // test
@@ -1876,31 +1780,6 @@ function GotoNotRequest(url) {
             })
         }
 
-                    if(window.is_checkout_pay) {
-                getPublickKey();
-        
-                Frames.addEventHandler(Frames.Events.CARD_TOKENIZED, onCardTokenized);
-                Frames.addEventHandler(Frames.Events.CARD_VALIDATION_CHANGED, onCardValidationChange);
-            } else if (window.is_wintopay) {
-                window.cc_form_is_valid = true;
-                var cc_form_obj = vgsInit({validCallback: function() {
-                    $('#checkout-card-error').hide();
-                }});
-                var cc_form = cc_form_obj.cc_form;
-            } else {
-                if(window.is_stripe_pay) {
-                    if(typeof changeStripeAcc == 'function') {
-                        changeStripeAcc('viusd')
-                    }
-                    stripeInit();
-                }
-            }
-        
-        function onCardValidationChange() {
-            if(Frames.isCardValid()) {
-                $('#checkout-card-error').hide();
-            }
-        }
 
         function onCardTokenized(event) {
             $('#loading').hide();
@@ -1915,48 +1794,7 @@ function GotoNotRequest(url) {
             }
         }
 
-        function initPayoneerPaymentPage(listId) {
-            document.querySelector('.payoneer-card-container').innerHTML = '<div id="payoneerPaymentNetworks" class="payment-networks-container"></div>';
-
-            checkoutList('payoneerPaymentNetworks', {
-                payButton: 'payoneerSubmitBtn',
-                payButtonContainer: 'payoneerSubmitBtnContainer',
-                baseUrl: 'https://api.live.oscato.com/pci/v1/',
-                // baseUrl: 'https://api.sandbox.oscato.com/pci/v1/',
-                listId: listId,
-                // listUrl: listURL,
-                widgetCssUrl: 'https://boutiquesgift.com/css/widget.min.css',
-                proceedFunction: function(res) {
-                    console.log("payoneer response:");
-                    console.log(res);
-                    switch (res.interaction.code) {
-                        case 'PROCEED':
-                            // 当交互代码是'PROCEED'时，代码在此处
-                            // 支付成功
-                            Goto('/onebuy/checkout/success?id='+localStorage.getItem('order_id'));
-                            break;
-                
-                        case 'ABORT':
-                            // 当交互代码是'ABORT'时，代码在此处                
-                        case 'TRY_OTHER_ACCOUNT':
-                        case 'RETRY':
-                            // 当交互代码是'TRY_OTHER_ACCOUNT'或'RETRY'时，代码在此处
-                        case 'TRY_OTHER_NETWORK':
-                        case 'RELOAD':
-                            // 当交互代码是'TRY_OTHER_NETWORK'或'RELOAD'时，代码在此处
-                        case 'VERIFY':
-                            // 当交互代码是'VERIFY'时，代码在此处
-                            hidePayoneerPopup();
-                            var payoneer_err_info ="Please double check your information and try again";
-                            $('#checkout-error').html(payoneer_err_info);
-                            $('#checkout-error').show();
-                            postOrderPayFailed('payoneer');
-                            break;
-                    }
-                }
-            });
-            document.querySelector('.payoneer-popup').style.display = 'block';
-        }
+       
 
         function postOrderPayFailed(pay_type) {
             var order_id = localStorage.getItem('order_id');
@@ -2032,30 +1870,7 @@ function GotoNotRequest(url) {
             }
         });
 
-        // 实现 paypal standar payment
-        $(".pay-width-paypal-standard").on("click", function(){
-
-            gtag('event', 'initiate_paypal_standard_checkout', {
-                'event_label': 'Initiate paypal_standard Checkout',
-                'event_category': 'ecommerce'
-            });
-            //fbq('track', 'InitiateCheckout');
-
-            window.pay_type = "paypal_standard";
-            window.is_paypal_standard = true;
-            console.log("paypal standard payment"+window.pay_type);
-            console.log("paypal standard payment"+window.is_paypal_standard);
-            checkout();
-        });
-
-        // airwallex
-        $(".airwallex-pay").on("click", function(){
-            gtag('event', 'initiate_airwallex_checkout', {
-                'event_label': 'Initiate airwallex Checkout',
-                'event_category': 'ecommerce'
-            });
-            checkout();
-        })
+        
 
         function checkout() {
             sendInitiateCheckoutEvent();
@@ -2076,10 +1891,7 @@ function GotoNotRequest(url) {
             $('#loading').show();
             $('#checkout-error').hide();
 
-            if(window.is_payoneer_pay) {
-                createOrder('', '', 'payoneer');
-                return;
-            }
+            
 
             if(window.is_checkout_pay) {
                 Frames.submitCard();
@@ -2098,7 +1910,9 @@ function GotoNotRequest(url) {
                 createOrder('', '', 'worldpay');
             }else if(window.is_paypal_standard) {
                 createOrder('', '', 'paypal_standard');
-            } else if(window.is_airwallex){
+            }else if(window.is_airwallex_klarna) {
+                createOrder('', '', 'airwallex_klarna');
+            }else if(window.is_airwallex){
                 $('#airwallex-warpper').hide();
                 createOrder('', '', 'airwallex');
             } else if(window.is_stripe_local){
@@ -2144,6 +1958,7 @@ function GotoNotRequest(url) {
 
             params['pay_type'] = pay_type;
             console.log(JSON.stringify(params));
+            //return false;
 
             var url = '/onebuy/order/add/sync?_token={{ csrf_token() }}&time=' + new Date().getTime();
 
@@ -2166,14 +1981,12 @@ function GotoNotRequest(url) {
                 if(data.result === 200){
                     var order_info = data.order;
 
+                    console.log(order_info);
+                    console.log(window.is_airwallex_klarna);
 
                     if(window.is_paypal_standard) {
-
                         var paypal_form = '<form action="'+data.pay_url+'" method="post" style="display:none" >';
-                        
-
                         console.log(data.form);
-
                         $.each(data.form, function(k, v) {
 
                             if(k=='cancel_return') v = window.location.href;
@@ -2183,199 +1996,107 @@ function GotoNotRequest(url) {
                         });
                             // 
                         paypal_form += '</form>';
-
                         console.log(paypal_form);
-
                         $(paypal_form).appendTo('body').submit();
+                        return false;
+                    }
+
+                    if(window.is_airwallex_klarna) {
+
+                        document.cookie="voluum_payout="+ order_info.grand_total + order_info.order_currency_code + "; path=/";
+                        document.cookie="order_id="+ order_info.id + "; path=/";
+                        localStorage.setItem("order_id", order_info.id);
+                        localStorage.setItem("order_params", JSON.stringify(params));
+
+                        url = "/onebuy/order/confirm?_token={{ csrf_token() }}&payment_intent_id="+data.payment_intent_id+"&order_id="+data.order.id;
+                        fetch(url, {
+                            method: 'GET',
+                            headers: {
+                                'content-type': 'application/json'
+                            }
+                        }).then(function(res){return res.json()})
+                        .then(function(res) {
+
+                            console.log(res);
+
+                            console.log(res.payment.next_action.url);
+
+                            Goto(res.payment.next_action.url);
+
+                        });
+
+                        
+
+
+
 
                         return false;
 
 
                     }
 
-
-
                     document.cookie="voluum_payout="+ order_info.grand_total + order_info.order_currency_code + "; path=/";
                     document.cookie="order_id="+ order_info.id + "; path=/";
                     localStorage.setItem("order_id", order_info.id);
                     localStorage.setItem("order_params", JSON.stringify(params));
 
-                    if(window.is_payoneer_pay) {
-                        $('#loading').hide();
-                        initPayoneerPaymentPage(order_info.client_secret);
-                        return;
-                    }
-                    if(window.is_checkout_pay) {
-                        if(order_info.payment_3ds) {
-                            if(order_info.payment_3ds.redirect_url) {
-                                GotoNotRequest(order_info.payment_3ds.redirect_url);
-                            }
-                        } else {
-                            Goto('/onebuy/checkout/success?id='+localStorage.getItem('order_id'));
-                        }
-                    } else if (window.is_wintopay) {
-                        Goto('/onebuy/checkout/success?id='+localStorage.getItem('order_id'));
-                    } else if (window.is_pacypay) {
-                        if(order_info.client_secret) {
-                            Goto(order_info.client_secret, true);
-                        }
-                    } else if (window.is_worldpay){
-                        console.log(data)
-                        $('#loading').hide();
-                        document.querySelector(".submit-button").scrollIntoView({
-                            behavior: "smooth"
-                        })
-                        worldpayInit({
-                            helper_html: window.location.protocol + '//' + window.location.host + '/worldpay/helper.html',
-                            redirect_url: data.client_secret,
-                            target: 'worldpay-warpper',
-                            language: 'en',
-                            country: order_info.order_currency_code,
-                            resultCallback: function(responseData) {
-                                var status = responseData.order.status;
-                                if("success" == status) {
-                                    Goto('/onebuy/checkout/success?id='+localStorage.getItem('order_id'));
-                                } else {
-                                    var pay_error = responseData.error.messages;
+                    
 
-                                    if(pay_error && pay_error.length) {
-                                        $('#checkout-error').html(pay_error.join('<br />')+'<br /><br />');
-                                        $('#checkout-error').show();
-                                    }
-                                }
-                            }
-                        });
-                    }else if (window.is_airwallex){
+                    if (window.is_airwallex){
                         
                         document.querySelector(".submit-button").scrollIntoView({
                             behavior: "smooth"
                         })
-                        $('#airwallex-warpper').show();
+                        //$('#airwallex-warpper').show();
 
                         console.log(order_info);
 
-                        try {
-                            // STEP #2: Initialize the Airwallex global context for event communication
-                            Airwallex.init({
-                            env: '<?php echo $app_env;?>', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
-                            origin: window.location.origin, // Setup your event target to receive the browser events message
-                            });
-                            
-
-                            // STEP #4: Create 'dropIn' element
-                            const dropIn = Airwallex.createElement('dropIn', {
-                            // Required, dropIn use intent Id, client_secret and currency to prepare checkout
-                            intent_id: data.payment_intent_id,
+                        Airwallex.confirmPaymentIntent({
+                            element: cardNumber,
+                            id: data.payment_intent_id,
                             client_secret: data.client_secret,
-                            methods: <?php echo json_encode($airwallex_method);?>,
-                            currency: data.currency,
-                            // customer_id:"cus_hkdm6lm7hglgq1tsh22",
-                            googlePayRequestOptions: {
-                            countryCode: data.country,
-                            merchantInfo: {
-                                merchantName: "Example Merchant",
-                                },
-                                buttonType: 'buy', // Indicate the type of button you want displayed on your payments form. Like 'buy'
-                            },
-                            applePayRequestOptions: {
-                                buttonType: 'buy', // Indicate the type of button you want displayed on your payments form. Like 'buy'
-                                countryCode: data.country,  // The merchant's two-letter ISO 3166 country code. Like 'HK'
-                                totalPriceLabel: 'COMPANY, INC.' // Provide a business name for the label field.
-                                },
-                        // components:['card'],
-                            withBilling:true,
-                            //requiredBillingContactFields: ['name','email','address']
-                            //country_code:'',
+                        }).then((response) => {
+                        // STEP #6b: Listen to the request response
+                        /* handle confirm response in your business flow */
+                        //window.alert(JSON.stringify(response));
+                            $('#loading').hide();
+                            console.log('success');
+                            console.log(JSON.stringify(response))
+                            //cb.errorHandler("Success");
+                            //alert("Success"); 
+
+                            gtag('event', 'initiate_pay_success', {
+                                'event_label': "Initiate cc success"+data.order.id,
+                                'event_category': 'ecommerce'
                             });
-                            // STEP #5: Mount 'dropIn' element
-                            dropIn.mount('dropIn'); // This 'dropIn' id MUST MATCH the id on your empty container created in Step 3
-                        } catch (error) {
-                            document.getElementById('loading').style.display = 'none'; // Example: hide loading state
-                            document.getElementById('error').style.display = 'block'; // Example: show error
-                            document.getElementById('error').innerHTML = error.message; // Example: set error message
-                            console.error('There was an error', error);
-                        }
 
+                            window.location.href="/checkout/v1/success/"+data.order.id;
 
-                        // STEP #6: Add an event listener to handle events when the element is mounted
-                        window.addEventListener('onReady', (event) => {
+                        }).catch((response) => {
                             $('#loading').hide();
-                            /*
-                            ... Handle event
-                            */
-                            document.getElementById('dropIn').style.display = 'block'; // Example: show element when mounted
-                            document.getElementById('loading').style.display = 'none'; // Example: hide loading tag when element is mounted
-                            console.log('Element is ready', event.detail);
+                            console.log("catch");
+                            console.log(JSON.stringify(response))
+
+                            //cb.errorHandler(response.message);
+                            //alert(response.message);
+
+                            //$("#checkout-error").val(response.message);
+
+                            $('#checkout-error').html(response.message+'<br /><br />');
+                            $('#checkout-error').show();
+                            // var cbErrors = new Array();
+                            // cbErrors.push(response.message);
+                            // cb.errorHandler(cbErrors);
+
+                            gtag('event', 'initiate_pay_error', {
+                                'event_label': response.message,
+                                'event_category': 'ecommerce'
+                            });
+                            // cb.errorHandler(response.message);
+                            return false;
+
                         });
-
-                        // STEP #7: Add an event listener to handle events when the payment is successful.
-                        window.addEventListener('onSuccess', (event) => {
-                            $('#loading').hide();
-                            /*
-                            ... Handle event on success
-                            */
-                            //document.getElementById('success').style.display = 'block'; // Example: show success block
-
-                            console.log("success");
-                            console.log(event.detail);
-
-                            Goto('/onebuy/checkout/success?id='+localStorage.getItem('order_id'));
-
-                            // window.alert(JSON.stringify(event.detail));
-                        });
-
-                        // STEP #8: Add an event listener to handle events when the payment has failed.
-                        window.addEventListener('onError', (event) => {
-                            /*
-                            ... Handle event on error
-                            */
-                            const { error } = event.detail;
-                            document.getElementById('error').style.display = 'block'; // Example: show error block
-                            document.getElementById('error').innerHTML = error.message; // Example: set error message
-                            console.error('There was an error', error);
-                        });
-
-                       
-
-                       
-
-                    } else if (window.is_stripe_local){
-                        var client_secret = order_info.client_secret;
-                        var stripe_init_data = {
-                            name        : params.first_name + ' ' + params.second_name,
-                            email       : params.email,
-                            country     : params.country,
-                            state       : params.province,
-                            code        : params.code,
-                            address     : params.address,
-                            city        : params.city
-                        }
-                        stripeElementsInit(client_secret, stripe_init_data);
-                        $('#loading').hide();
-                        document.querySelector(".submit-button").scrollIntoView({
-                            behavior: "smooth"
-                        });
-                        $('.pay-after-submit-button').show();
-                    } else {
-                        var client_secret = order_info.client_secret;
-                        var need_3ds_stripe = order_info.stripe_extra_info.need_3ds;
-                        if(need_3ds_stripe) {
-                            window.removeEventListener('message', messageListener);
-                            window.addEventListener('message', messageListener, false);
-                            create3DSPopup(order_info.stripe_extra_info.next_action.redirect_to_url.url);
-                        } else {
-                            Goto('/onebuy/checkout/success?id='+localStorage.getItem('order_id'));
-                        }
-                        // stripe.handleCardPayment(client_secret, cardNumber).then(function(result) {
-                        //     if (result.error) {
-                        //         $('#checkout-error').html(result.error.message+'<br /><br />');
-                        //         $('#checkout-error').show();
-                        //         $('#loading').hide();
-                        //     } else {
-                        // Goto('/template-common/en/thankyou1/?id='+localStorage.getItem('order_id'));
-                        //     }
-                        // });
-                    }
+                    } 
                 } else {
                     $('#loading').hide();
                     var pay_error = data.error;
@@ -2427,8 +2148,8 @@ function GotoNotRequest(url) {
             
             var products = getSubmitProducts(product_info.product_price,product_info.amount);
 
-            console.log("order products");
-            console.log(products);
+            //console.log("order products");
+            //console.log(products);
 
             var product_price = product_info.product_price;
 
@@ -2606,12 +2327,12 @@ function GotoNotRequest(url) {
                 error_log.push('phone_full is empty');
             }
 
-            var phone_format = /^[0-9\+\-\(\)\s]+$/;
-            if(!phone_format.test(params.phone_full)){
-                has_error = true;
-                showError('phone_number-error',  "Please enter valid phoneNumber");
-                error_log.push('phone_full is Invaild');
-            }
+            // var phone_format = /^[0-9\+\-\(\)\s]+$/;
+            // if(!phone_format.test(params.phone_full)){
+            //     has_error = true;
+            //     showError('phone_number-error',  "Please enter valid phoneNumber");
+            //     error_log.push('phone_full is Invaild');
+            // }
 
             if(!params.country){
                 has_error = true;
@@ -2672,7 +2393,7 @@ function GotoNotRequest(url) {
 
             if(has_error) {
                 error_log.push({params:params});
-                fetchCheckoutError(error_log);
+                //fetchCheckoutError(error_log);
             }
 
             return has_error && show_error
@@ -2691,20 +2412,17 @@ function GotoNotRequest(url) {
             var attribute_item = $('.attribute-select .attribute-item');
             var sku_maps = getSKuMaps();
 
-            console.log("sku maps");
-            console.log(sku_maps);
+            // console.log("sku maps");
+            // console.log(sku_maps);
 
-            console.log("attribute_item");
-            console.log(attribute_item);
-            console.log("attribute_item");
+            // console.log("attribute_item");
+            // console.log(attribute_item);
+            // console.log("attribute_item");
 
             for(var i=0; i< attribute_item.length; i++) {
                 var sku_key_arr = [];
                 var img_key = '';
                 var attribute_select = $(attribute_item[i]).find('.attribute_select');
-                console.log("attribute select 11111111 ");
-                console.log(attribute_select);
-                console.log("attribute select 111111112 ");
                 for(var j=0; j<attribute_select.length; j++) {
                     sku_key_arr.push($(attribute_select[j]).val());
                     if($(attribute_select[j]).data('has-img')) {
@@ -2865,7 +2583,7 @@ function GotoNotRequest(url) {
     </script>
 <script>
         function sendInitiateCheckoutEvent() {
-            sendInitcheckout2Everflow();
+            //sendInitcheckout2Everflow();
             // sendFbInitiateCheckoutEvent();
         }
 
@@ -2964,8 +2682,189 @@ function GotoNotRequest(url) {
                     }
     </script>
     <script>(function(){"use strict";function n(n,e){var r;void 0===e&&(e="uclick");var c=null===(r=n.match(/\?.+?$/))||void 0===r?void 0:r[0];return c?Array.from(c.matchAll(new RegExp("[?&](clickid|"+e+")=([^=&]*)","g"))).map((function(n){return{name:n[1],value:n[2]}})):[]}function e(n){var e=n();return 0===e.length?{}:e.reduce((function(n,e){var r;return Object.assign(n,((r={})[e.name]=""+e.value,r))}),{})}function r(r){void 0===r&&(r="uclick");var c,t,u=e((function(){return(function(n){return void 0===n&&(n="uclick"),Array.from(document.cookie.matchAll(new RegExp("(?:^|; )(clickid|"+n+")=([^;]*)","g"))).map((function(n){return{name:n[1],value:n[2]}}))})(r)})),i=e((function(){return n(document.referrer,r)})),o=e((function(){return n(document.location.search,r)}));return(c=[r,"clickid"],t=[u,i,o],c.reduce((function(n,e){return n.concat(t.map((function(n){return[e,n]})))}),[])).map((function(n){return{name:n[0],value:n[1][n[0]]}})).find((function(n){return n.value}))||null}var c,t,u,i;(i=document.createElement("img")).src=(t=""+"https://track.heomai2021.com/"+"click"+".php?payout=OPTIONAL",(u=r(c="uclick"))?t+"&cnv_id="+(u.name===c?"OPTIONAL":u.value)+(u.name===c?"&"+c+"="+u.value:""):t+"&cnv_id=OPTIONAL"),i.referrerPolicy="no-referrer-when-downgrade"})();</script>
+    <script>
+            Airwallex.init({
+            env: '<?php echo $app_env;?>', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
+            origin: window.location.origin, // Setup your event target to receive the browser events message
+            });
 
-    
+            const cardNumber = Airwallex.createElement('cardNumber',{
+                allowedCardNetworks:['visa','maestro','mastercard','amex','unionpay','jcb']
+            });
+            const cardExpiry = Airwallex.createElement('expiry');
+            const cardCvc = Airwallex.createElement('cvc');
+
+            const domcardNumber = cardNumber.mount('cardNumber'); // This 'cardNumber' id MUST MATCH the id on your cardNumber 
+            const domcardExpiry = cardExpiry.mount('cardExpiry'); // Same as above
+            const domcardCvv = cardCvc.mount('cardCvc'); // Same as above
+
+
+            // STEP #7: Add an event listener to ensure the element is mounted
+            domcardNumber.addEventListener('onReady', (event) => {
+                /*
+                ... Handle event
+                */
+                //window.alert(event.detail);
+                console.log(event.detail);
+            });
+
+            // STEP #8: Add an event listener to listen to the changes in each of the input fields
+            domcardNumber.addEventListener('onChange', (event) => {
+                /*
+                ... Handle event
+                */
+                //window.alert(event.detail);
+                console.log(event.detail)
+                //console.log(JSON.stringify(event));
+                console.log(event.detail.complete)
+                if(event.detail.complete==true) {
+                    $("#id_card").val(event.detail.complete);
+                    $("#cardNumber").removeClass("shipping-info-input-error");
+                }
+                if(event.detail.complete==false) {
+                    $("#id_card").val(event.detail.complete);
+                    $("#cardNumber").addClass("shipping-info-input-error");
+                }
+                
+            });
+
+            domcardExpiry.addEventListener('onChange', (event) => {
+                /*
+                ... Handle event
+                */
+                //window.alert(event.detail);
+                console.log(event.detail)
+                //console.log(JSON.stringify(event));
+                console.log(event.detail.complete)
+                $("#id_expiry").val(event.detail.complete);
+
+                if(event.detail.complete==true) {
+                    $("#id_expiry").val(event.detail.complete);
+                    $("#cardExpiry").removeClass("shipping-info-input-error");
+                }
+
+                if(event.detail.complete==false) {
+                    $("#id_expiry").val(event.detail.complete);
+                    $("#cardExpiry").removeClass("shipping-info-input-error");
+                }
+            });
+
+            //id_cvc
+            domcardCvv.addEventListener('onChange', (event) => {
+                /*
+                ... Handle event
+                */
+                //window.alert(event.detail);
+                console.log(event.detail)
+                //console.log(JSON.stringify(event));
+                console.log(event.detail.complete)
+                //$("#id_cvc").val(event.detail.complete);
+
+                if(event.detail.complete==true) {
+                    $("#id_cvc").val(event.detail.complete);
+                    $("#cardCvc").removeClass("shipping-info-input-error");
+                }
+
+                if(event.detail.complete==false) {
+                    $("#id_cvc").val(event.detail.complete);
+                    $("#cardCvc").removeClass("shipping-info-input-error");
+                }
+            });
+
+    </script>
+   
+   <script>
+    $(document).ready(function(){
+
+        //$("#collapseOne").show();
+        $("#collapseThree").show();
+        //$("#headingOne1").addClass("action");
+        $("#headingThree2").addClass("action");
+        $("#payment-button").addClass("airwallex-pay");
+
+        $("#payment_method_airwallex").on("click", function(){
+            console.log("click headingOne ");
+            $("#collapseOne").show();
+            $("#collapseTwo").hide();
+            $("#collapseThree").hide();
+
+            $("#headingOne1").addClass("action");
+            $("#headingThree2").removeClass("action");
+            $("#headingOne2").removeClass("action");
+
+        });
+
+        $("#payal_standard").on("click", function(){
+            $("#collapseOne").hide();
+            $("#collapseTwo").show();
+            $("#collapseThree").hide();
+
+            $("#headingOne2").addClass("action");
+            $("#headingOne1").removeClass("action");
+            $("#headingThree2").removeClass("action");
+
+        });
+
+        $("#airwallex-klarna").on("click", function(){
+            $("#collapseOne").hide();
+            $("#collapseTwo").hide();
+            $("#collapseThree").show();
+
+            $("#headingThree2").addClass("action");
+            $("#headingOne1").removeClass("action");
+            $("#headingOne2").removeClass("action");
+        })
+
+        $("#payment-button").on("click", function(){
+            var payment_method = $('input[name=payment_method]:checked', '#myForm').val();
+            console.log("payment method" + payment_method);
+            if(payment_method=="airwallex") {
+                var id_card = $("#id_card").val();
+                var id_expiry = $("#id_expiry").val();
+                var id_cvc = $("#id_cvc").val();
+                console.log(id_card);
+                console.log(id_expiry);
+                console.log(id_cvc);
+                if(id_card!="true" && id_expiry!="true" && id_cvc!="true") {
+                    
+                    if(id_card!="true") $("#cardExpiry").addClass("shipping-info-input-error");
+                    if(id_expiry!="true") $("#cardNumber").addClass("shipping-info-input-error");
+                    if(id_cvc!="true") $("#cardCvc").addClass("shipping-info-input-error");
+                    return false;
+                }
+                console.log("airwallex-pay");
+                gtag('event', 'initiate_airwallex_checkout', {
+                    'event_label': 'Initiate airwallex Checkout',
+                    'event_category': 'ecommerce'
+                });
+            }
+            if(payment_method=="paypal_standard") {
+                gtag('event', 'initiate_paypal_standard_checkout', {
+                    'event_label': 'Initiate paypal_standard Checkout',
+                    'event_category': 'ecommerce'
+                });
+                //fbq('track', 'InitiateCheckout');
+
+                window.pay_type = "paypal_standard";
+                window.is_paypal_standard = true;
+                console.log("paypal standard payment "+window.pay_type);
+                console.log("paypal standard payment "+window.is_paypal_standard);
+            }
+            if(payment_method=='airwallex-klarna') {
+                gtag('event', 'initiate_airwallex_klarna_checkout', {
+                    'event_label': 'Initiate airwallex_klarna Checkout',
+                    'event_category': 'ecommerce'
+                });
+                window.pay_tpe = "airwallex_klarna";
+                window.is_airwallex_klarna = true;
+
+            }
+
+            checkout();
+        })
+    });
+
+</script>
     
 
 </body>
