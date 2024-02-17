@@ -30,7 +30,8 @@ class Post extends Command
      */
     protected $description = 'create Order';
 
-    private $shopify_store_id = "";
+    private $shopify_store_id = null;
+    private $lang = null;
 
     /**
      * Create a new command instance.
@@ -46,6 +47,8 @@ class Post extends Command
     {
         $this->shopify_store_id = "hatmeo";
         $this->shopify_store_id = "wmbracom";
+        $this->shopify_store_id = config('shopify.shopify_store_id');
+        $this->lang = config('shopify.store_lang');
         parent::__construct();
     }
 

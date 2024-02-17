@@ -39,6 +39,8 @@ class Get extends Command
 
     private $category_id = 0;
 
+    private $lang = null;
+
     /**
      * Create a new command instance.
      *
@@ -51,8 +53,8 @@ class Get extends Command
         protected ShopifyStore $ShopifyStore,
     )
     {
-        $this->shopify_store_id = "wmbracom";
-        $this->lang = "de";
+        $this->shopify_store_id = config('shopify.shopify_store_id');
+        $this->lang = config('shopify.store_lang');
         $this->category_id = 9;
         parent::__construct();
     }

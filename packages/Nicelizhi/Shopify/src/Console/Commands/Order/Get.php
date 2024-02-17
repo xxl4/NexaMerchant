@@ -33,6 +33,9 @@ class Get extends Command
      */
     protected $description = 'Get Order List';
 
+    private $lang = null;
+    private $shopify_store_id = null;
+
     /**
      * Create a new command instance.
      *
@@ -49,7 +52,8 @@ class Get extends Command
     {
         $this->shopify_store_id = "wmshoe";
         $this->shopify_store_id = "hatmeo";
-        $this->shopify_store_id = "wmbracom";
+        $this->shopify_store_id = config('shopify.shopify_store_id');
+        $this->lang = config('shopify.store_lang');
         parent::__construct();
     }
 
