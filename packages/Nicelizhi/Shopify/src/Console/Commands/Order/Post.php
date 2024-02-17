@@ -69,6 +69,7 @@ class Post extends Command
         //     'status' => 'processing'
         // ]);
         $lists = Order::where(['status'=>'processing'])->orderBy("updated_at", "desc")->limit(10)->get();
+        //var_dump($lists);exit;
         //$lists = Order::where(['id'=>'1093'])->orderBy("updated_at", "desc")->limit(10)->get();
 
         //var_dump($lists);exit;
@@ -76,10 +77,28 @@ class Post extends Command
         foreach($lists as $key=>$list) {
             $this->info("start post order " . $list->id);
             $this->postOrder($list->id, $shopifyStore);
+            $this->syncOrderPrice($list); // sync price to system
             //exit;
         }
 
 
+        
+    }
+
+    /**
+     * 
+     * 
+     * @param object orderitem
+     * 
+     */
+    public function syncOrderPrice($orderItem) {
+        if($orderItem->grand_total_invoiced=='0.0000') {
+            
+            $base_grand_total_invoiced = $orderItem->base_grand_total;
+            $grand_total_invoiced = $orderItem->grand_total;
+            Order::where(['id'=>$orderItem->id])->update(['grand_total_invoiced'=>$grand_total_invoiced, 'base_grand_total_invoiced'=>$base_grand_total_invoiced]);
+
+        }
         
     }
 
@@ -429,9 +448,14 @@ class Post extends Command
             $url = "https://track.heomai2021.com/click.php?cnv_id=".$cnv_id[1]."&payout=".$order->grand_total;
             $res = $this->get_content($url);
             Log::info("post to bm url ".$url." res ".json_encode($res));
-            $res = $url = "https://binom.heomai.com/click.php?cnv_id=".$cnv_id[1]."&payout=".$order->grand_total;
+            $url = "https://binom.heomai.com/click.php?cnv_id=".$cnv_id[1]."&payout=".$order->grand_total;
             $res = $this->get_content($url);
             Log::info("post to bm url ".$url." res ".json_encode($res));
+
+            
+            $url = "http://45.79.79.208:8009/api/offers/callBack?refer=".$cnv_id[1]."&revenue=".$order->grand_total;
+            $res = $this->get_content($url);
+            Log::info("post to bm 2 url ".$url." res ".json_encode($res));
 
             
 
