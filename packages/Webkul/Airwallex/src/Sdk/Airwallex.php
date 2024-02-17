@@ -14,7 +14,7 @@ class Airwallex {
     protected $clientId;
     protected $apiKey;
 
-    protected $host = "https://api-demo.airwallex.com";
+    protected $host = "https://api.airwallex.com";
 
     protected $client;
 
@@ -30,7 +30,7 @@ class Airwallex {
      * 
      * 
      */
-    public function __construct($config=array(), $productionMode) {
+    public function __construct($config=array(), $productionMode="") {
         $this->clientId = $config['clientId'];
         $this->apiKey = $config['apiKey'];
 

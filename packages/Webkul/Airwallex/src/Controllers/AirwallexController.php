@@ -179,7 +179,7 @@ class AirwallexController extends Controller
         if($awx_return_result=='success') {
             return view("airwallex::payment-success");
         }
-        
+        return view("airwallex::payment-success");
     }
 
     /**
