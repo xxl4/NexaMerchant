@@ -55,6 +55,7 @@ class OneBuyServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->registerCommands();
         $this->registerConfig();
     }
 
@@ -73,5 +74,19 @@ class OneBuyServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(
             dirname(__DIR__) . '/Config/onebuy.php', 'onebuy'
         );
+    }
+
+     /**
+     * Register the console commands of this package.
+     *
+     * @return void
+     */
+    protected function registerCommands(): void
+    {
+        if ($this->app->runningInConsole()) {
+            $this->commands([
+                \Nicelizhi\OneBuy\Console\Commands\Countries\Get::class,
+            ]);
+        }
     }
 }
