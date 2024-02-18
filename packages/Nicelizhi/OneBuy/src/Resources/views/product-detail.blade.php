@@ -1376,7 +1376,7 @@ just purchased:
         }
 
         //fetch('/api/core/countries',{
-        fetch('/template-common/checkout1/state/countries_{{ app()->getLocale() }}.json',{
+        fetch('/template-common/checkout1/state/countries_<?php echo strtolower($default_country);?>.json',{
             method: 'GET',
         })
         .then(function(data){
