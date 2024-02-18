@@ -1050,7 +1050,7 @@ Hatmeo offers a 30 day guarantee on all unused purchases. Simply send the item(s
 </section>
 
 </div>
-@include('onebuy::footer-container')
+@include('onebuy::footer-container-'.strtolower($default_country))
 </div>
 <div class="comment-block" id="comment-block">
 <div class="comment-content">
