@@ -559,10 +559,6 @@ All rights reserved
             data = input.data;
             purchase(data.info.grand_total);
             console.log(data)
-            if(!getCookie('voluum_payout') || getCookie('order_id') != getQueryString('id')) {
-                console.log('data');
-                sendPurchaseEvent(data);
-            }
 
             //document.querySelector('.order-total').innerHTML = getFormatPrice(data.info.grand_total, order_param.price_template);
             document.querySelector('.customer_first_name').innerHTML = order_param.first_name;
@@ -574,32 +570,13 @@ All rights reserved
             document.querySelector('.customer_country').innerHTML = order_param.country;
             document.querySelector('.customer_state').innerHTML = order_param.province ? order_param.province : '-';
             document.querySelector('.customer_zip').innerHTML = order_param.code ? order_param.code : '-';
-            document.querySelector('.product-brand').innerHTML = "hatmeo";
+            //document.querySelector('.product-brand').innerHTML = "hatmeo";
 
             setProductHtml(order_param.products, order_param.produt_amount_base);
             showPaySuccess();
-            getRecommendedData(order_param.payment_cancel_url);
+            //getRecommendedData(order_param.payment_cancel_url);
 
-            try { 
-                function getCookie(name)
-                {
-                    var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
-                
-                    if(arr=document.cookie.match(reg))
-                
-                        return unescape(arr[2]);
-                    else
-                        return null;
-                }
-                var refercode = getCookie('refer');
-                var pricetrue= order_param.total;
-
-
-                function getUclick_c(){var e=document.cookie.match(new RegExp("(?:^|; )"+"uclick"+"=([^;]*)"));return e?decodeURIComponent(e[1]):void 0}
-
-                function cnv_pixel(value){var e="https://track.heomai2021.com/",n=document.createElement("img");n.src=e+"click.php?cnv_id="+value+"&payout="+pricetrue;}
-                cnv_pixel(refercode);
-                } catch(e){  }
+            
             
         }
 

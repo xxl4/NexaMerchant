@@ -227,6 +227,7 @@ return [
         Nicelizhi\OneBuy\Providers\OneBuyServiceProvider::class,
         Nicelizhi\Airwallex\Providers\AirwallexServiceProvider::class,
         Nicelizhi\Shopify\Providers\ShopifyServiceProvider::class,
+        Nicelizhi\ShopLine\Providers\ShopLineServiceProvider::class,
 
         //Nicelizhi\Admin\Providers\AdminServiceProvider::class,
         Nicelizhi\Checkout\Providers\CheckoutServiceProvider::class,

@@ -30,7 +30,8 @@ class Post extends Command
      */
     protected $description = 'create Order';
 
-    private $shopify_store_id = "";
+    private $shopify_store_id = null;
+    private $lang = null;
 
     /**
      * Create a new command instance.
@@ -45,6 +46,9 @@ class Post extends Command
     )
     {
         $this->shopify_store_id = "hatmeo";
+        $this->shopify_store_id = "wmbracom";
+        $this->shopify_store_id = config('shopify.shopify_store_id');
+        $this->lang = config('shopify.store_lang');
         parent::__construct();
     }
 
@@ -67,18 +71,37 @@ class Post extends Command
         // $lists = $this->orderRepository->findWhere([
         //     'status' => 'processing'
         // ]);
-        $lists = Order::where(['status'=>'processing'])->orderBy("updated_at", "desc")->limit(20)->get();
-        //$lists = Order::where(['id'=>'433'])->orderBy("updated_at", "desc")->limit(10)->get();
+        $lists = Order::where(['status'=>'processing'])->orderBy("updated_at", "desc")->limit(10)->get();
+        //var_dump($lists);exit;
+        //$lists = Order::where(['id'=>'1093'])->orderBy("updated_at", "desc")->limit(10)->get();
 
         //var_dump($lists);exit;
 
         foreach($lists as $key=>$list) {
             $this->info("start post order " . $list->id);
             $this->postOrder($list->id, $shopifyStore);
+            $this->syncOrderPrice($list); // sync price to system
             //exit;
         }
 
 
+        
+    }
+
+    /**
+     * 
+     * 
+     * @param object orderitem
+     * 
+     */
+    public function syncOrderPrice($orderItem) {
+        if($orderItem->grand_total_invoiced=='0.0000') {
+            
+            $base_grand_total_invoiced = $orderItem->base_grand_total;
+            $grand_total_invoiced = $orderItem->grand_total;
+            Order::where(['id'=>$orderItem->id])->update(['grand_total_invoiced'=>$grand_total_invoiced, 'base_grand_total_invoiced'=>$base_grand_total_invoiced]);
+
+        }
         
     }
 
@@ -144,12 +167,15 @@ class Post extends Command
         ];
         $postOrder['customer'] = $customer;
 
-        
+        $shipping_address->phone = str_replace('undefined', '', $shipping_address->phone);
+        $shipping_address->city = empty($shipping_address->city) ? $shipping_address->state : $shipping_address->city;
 
         $billing_address = [
             "first_name" => $shipping_address->first_name,
             "last_name" => $shipping_address->last_name,
             "address1" => $shipping_address->address1,
+            //$input['phone_full'] = str_replace('undefined+','', $input['phone_full']);
+            
             "phone" => $shipping_address->phone,
             "city" => $shipping_address->city,
             "province" => $shipping_address->state,
@@ -300,6 +326,8 @@ class Post extends Command
         $pOrder['order'] = $postOrder;
         //var_dump($pOrder);exit;
 
+        Log::info("post to shopify order ". json_encode($pOrder));
+
         $response = $client->post($shopify['shopify_app_host_name'].'/admin/api/2023-10/orders.json', [
             'headers' => [
                 'Content-Type' => 'application/json',
@@ -423,9 +451,14 @@ class Post extends Command
             $url = "https://track.heomai2021.com/click.php?cnv_id=".$cnv_id[1]."&payout=".$order->grand_total;
             $res = $this->get_content($url);
             Log::info("post to bm url ".$url." res ".json_encode($res));
-            $res = $url = "https://binom.heomai.com/click.php?cnv_id=".$cnv_id[1]."&payout=".$order->grand_total;
+            $url = "https://binom.heomai.com/click.php?cnv_id=".$cnv_id[1]."&payout=".$order->grand_total;
             $res = $this->get_content($url);
             Log::info("post to bm url ".$url." res ".json_encode($res));
+
+            
+            $url = "http://45.79.79.208:8009/api/offers/callBack?refer=".$cnv_id[1]."&revenue=".$order->grand_total;
+            $res = $this->get_content($url);
+            Log::info("post to bm 2 url ".$url." res ".json_encode($res));
 
             
 

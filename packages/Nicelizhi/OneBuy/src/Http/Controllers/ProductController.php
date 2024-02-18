@@ -21,6 +21,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Cache;
 use Webkul\Payment\Facades\Payment;
 use Illuminate\Support\Facades\Redis;
+use Webkul\CMS\Repositories\CmsRepository;
 
 
 class ProductController extends Controller
@@ -45,6 +46,7 @@ class ProductController extends Controller
         protected OrderRepository $orderRepository,
         protected InvoiceRepository $invoiceRepository,
         protected Airwallex $airwallex,
+        protected CmsRepository $cmsRepository,
         protected ThemeCustomizationRepository $themeCustomizationRepository
     )
     {
@@ -74,7 +76,15 @@ class ProductController extends Controller
 
         visitor()->visit($product);
 
-        $refer = $request->session()->get('refer');
+        $refer = $request->input("refer");
+
+        if(!empty($refer)) { 
+            $request->session()->put('refer', $refer);
+        }else{
+            $refer = $request->session()->get('refer');
+        }
+
+        
 
         //var_dump($product);exit;
 
@@ -294,6 +304,15 @@ class ProductController extends Controller
         return view('onebuy::product-detail', compact('app_env','product','package_products', 'product_attributes', 'skus','productBgAttribute','productBgAttribute_mobile','faqItems','comments','paypal_client_id','default_country','airwallex_method'));
     }
 
+    public function cms($slug, Request $request) {
+        \Debugbar::disable(); /* 开启后容易出现前端JS报错的情况 */
+
+        $page = $this->cmsRepository->findByUrlKeyOrFail($slug);
+        
+        return view('onebuy::cms.page')->with('page', $page);
+
+    }
+
     // 完成订单生成动作
     public function order_add_sync(Request $request) {
         //var_dump($request->all());
@@ -342,6 +361,8 @@ class ProductController extends Controller
         $addressData['billing']['email'] = $input['email'];
         $addressData['billing']['first_name'] = $input['first_name'];
         $addressData['billing']['last_name'] = $input['second_name'];
+        //undefined+
+        $input['phone_full'] = str_replace('undefined+','', $input['phone_full']);
         $addressData['billing']['phone'] = $input['phone_full'];
         $addressData['billing']['postcode'] = $input['code'];
         $addressData['billing']['state'] = $input['province'];
@@ -393,6 +414,8 @@ class ProductController extends Controller
 
         Cart::collectTotals();
 
+        if($payment_method=="airwallex_klarna") $payment_method = "airwallex";
+
         // 获取支付信息
         
         if($payment_method=='airwallex') {
@@ -419,8 +442,8 @@ class ProductController extends Controller
             $this->validateOrder();
             $cart = Cart::getCart();
             $order = $this->orderRepository->create(Cart::prepareDataForOrder());
-            Cart::deActivateCart();
-            Cart::activateCartIfSessionHasDeactivatedCartId();
+            //Cart::deActivateCart();
+            //Cart::activateCartIfSessionHasDeactivatedCartId();
             // 跳转到支付
             $data['result'] = 200;
             $data['order'] = $order;
@@ -545,6 +568,7 @@ class ProductController extends Controller
         $addressData['billing']['email'] = $input['email'];
         $addressData['billing']['first_name'] = $input['first_name'];
         $addressData['billing']['last_name'] = $input['second_name'];
+        $input['phone_full'] = str_replace('undefined+','', $input['phone_full']);
         $addressData['billing']['phone'] = $input['phone_full'];
         $addressData['billing']['postcode'] = $input['code'];
         $addressData['billing']['state'] = $input['province'];
@@ -638,6 +662,30 @@ class ProductController extends Controller
         // return response()->json($order);
     }
 
+
+    /**
+     * 
+     * 
+     * 
+     */
+    public function confirm(Request $request) {
+        $payment_intent_id = $request->input("payment_intent_id");
+        $order_id = $request->input("order_id");
+
+        $order = $this->orderRepository->find($order_id);
+        
+        $transactionManager = $this->airwallex->confirmPayment($payment_intent_id, $order);
+
+        $data = [];
+        $data['payment'] = $transactionManager;
+        $data['code'] = 200;
+        $data['result'] = 200;
+        $data['order_id'] = $order_id;
+        $data['order_id'] = $order_id;
+        return response()->json($data);
+        
+    }
+
     /**
      * 
      * 订单状态查询
@@ -654,6 +702,7 @@ class ProductController extends Controller
             
 
             Log::info("paypal ".json_encode($order));
+            Log::info("paypal request ".json_encode($request->all()));
 
             $order = (array)$order;
 
@@ -673,7 +722,7 @@ class ProductController extends Controller
             $addressData['billing'] = [];
             $address1 = [];
             array_push($address1, $input['address']->address_line_1);
-            $addressData['billing']['city'] = $input['address']->admin_area_1;
+            $addressData['billing']['city'] = isset($input['address']->admin_area_1) ? $input['address']->admin_area_1 : "";
             $addressData['billing']['country'] = $input['address']->country_code;
             $addressData['billing']['email'] = $payer['email_address'];
             $addressData['billing']['first_name'] = $payer['name']->given_name;
