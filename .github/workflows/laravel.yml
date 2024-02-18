@@ -60,3 +60,12 @@ jobs:
           cd ${{ secrets.WWW_DIR }} && sudo git pull
           php artisan migrate
           composer update
+          cd ${{ secrets.WWW_DIR_2 }} && sudo git pull
+          php artisan migrate
+          composer update
+          cd ${{ secrets.WWW_DIR_3 }} && sudo git pull
+          php artisan migrate
+          composer update
+          cd ${{ secrets.WWW_DIR_4 }} && sudo git pull
+          php artisan migrate
+          composer update
