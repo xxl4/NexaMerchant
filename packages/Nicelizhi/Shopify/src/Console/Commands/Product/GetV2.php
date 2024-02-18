@@ -57,6 +57,7 @@ class GetV2 extends Command
         $this->lang = config('shopify.store_lang');
         $this->category_id = 9;
         parent::__construct();
+        
     }
 
     /**
@@ -66,12 +67,16 @@ class GetV2 extends Command
      */
     public function handle()
     {
+        $this->error("lang ". $this->lang);
+        $this->error("shopify_store_id ". $this->shopify_store_id);
         
-        $shopify_pro_id = "8924785377562";
+        $shopify_pro_id = "8444768977126";
 
         $client = new Client();
 
         $shopifyStore = $this->ShopifyStore->where('shopify_store_id', $this->shopify_store_id)->first();
+
+        //var_dump($shopifyStore);exit;
 
         if(is_null($shopifyStore)) {
             $this->error("no store");
@@ -135,6 +140,7 @@ class GetV2 extends Command
     }
 
     private $locales = [
+        'us',
         'en',
         'fr',
         'nl',
@@ -153,17 +159,9 @@ class GetV2 extends Command
      */
     public function syncProductToLocal($shopify_pro_id) {
         $items = \Nicelizhi\Shopify\Models\ShopifyProduct::where("shopify_store_id", $this->shopify_store_id)->where("product_id", $shopify_pro_id)->get();
+
         foreach($items as $key=>$item) {
-            // if($item['product_id']!='8126562107640') continue;
-
             $this->info($item['product_id']);
-
-            //var_dump($item->options);exit;
-
-            // 23 color
-            // 24 size
-            // ba_attribute_options
-            // ba_attribute_option_translations
             $options = $item->options;
             $shopifyVariants = $item->variants;
             $shopifyImages = $item->images;
@@ -192,7 +190,7 @@ class GetV2 extends Command
 
                 $values = $option['values'];
                 foreach($values as $kky => $value) {
-                    $this->info($value);
+                    $this->error($value);
                     if($value==35 && $attr_id==23) {
                         var_dump($item);exit;
                     }
@@ -223,10 +221,18 @@ class GetV2 extends Command
                             $attr_opt_tran->save();
                         }
                     }
-                    if($attr_id==23) $color[$attribute_option_id] = $attribute_option_id; //array_push($color, $attribute_option_id); 
-                    if($attr_id==24) $size[$attribute_option_id] = $attribute_option_id;
+                    if($attr_id==23) {
+                        $color[$attribute_option_id] = $attribute_option_id; //array_push($color, $attribute_option_id); 
+                        $super_attributes['color'] = $color;
+                    } 
+                    if($attr_id==24) {
+                        $size[$attribute_option_id] = $attribute_option_id;
+                        $super_attributes['size'] = $size;
+                    } 
                 }
             }
+
+            //exit;
 
             if($error==1) continue;
 
@@ -238,10 +244,9 @@ class GetV2 extends Command
             $data['attribute_family_id'] = 1;
             $data['sku'] = $item['product_id'];
             $data['type'] = "configurable";
-            $super_attributes['color'] = $color;
-            $super_attributes['size'] = $size;
             $data['super_attributes'] = $super_attributes;
-            //$data['family'] = [];
+
+           // var_dump($data);
 
             //var_dump($data);exit;
             Event::dispatch('catalog.product.create.before');
@@ -278,22 +283,28 @@ class GetV2 extends Command
 
             $variants = $variantCollection = $product->variants()->get()->toArray();
 
+            //var_dump($variants,$product->variants()->get());
+
             //var_dump(count($shopifyVariants));
 
             $newShopifyVarants = [];
             foreach($shopifyVariants as $sv => $shopifyVariant) {
                 //var_dump($shopifyVariant);
                 $newkey = $shopifyVariant['product_id'];
-                $color = AttributeOption::where("attribute_id", 23)->where("admin_name", $shopifyVariant['option1'])->first();
-                $size = AttributeOption::where("attribute_id", 24)->where("admin_name", $shopifyVariant['option2'])->first();
+                if(!empty($color)) $color = AttributeOption::where("attribute_id", 23)->where("admin_name", $shopifyVariant['option1'])->first();
+                
+                if(!empty($size)) $size = AttributeOption::where("attribute_id", 24)->where("admin_name", $shopifyVariant['option2'])->first();
 
-                if(is_null($color) || is_null($size)) {
-                    $this->info("error");
-                    var_dump($color, $size, $shopifyVariant);
-                    exit;
-                }
+                
 
-                $newkey .="_".$color->id."_".$size->id;
+                // if(is_null($color) || is_null($size)) {
+                //     $this->info("error");
+                //     var_dump($color, $size, $shopifyVariant);
+                //     exit;
+                // }
+                
+                
+                //$newkey .="_".$color->id."_".$size->id;
 
                 $newShopifyVarant = [];
 
@@ -302,8 +313,15 @@ class GetV2 extends Command
                 $newShopifyVarant['title'] = $shopifyVariant['title'];
                 $newShopifyVarant['weight'] = $shopifyVariant['weight'];
                 $newShopifyVarant['sku'] = $shopifyVariant['sku'];
-                $newShopifyVarant['option1'] = $shopifyVariant['option1'];
-                $newShopifyVarant['option2'] = $shopifyVariant['option2'];
+                if(!is_null($color) && !empty($color)) {
+                    $newkey .="_".$color->id;
+                    $newShopifyVarant['option1'] = $shopifyVariant['option1'];
+                } 
+                if(!is_null($size) && !empty($size)) {
+                    $newkey .="_".$size->id;
+                    $newShopifyVarant['option2'] = $shopifyVariant['option2'];
+                } 
+                
                 $newShopifyVarants[$newkey] = $newShopifyVarant;
             }
 
@@ -324,9 +342,11 @@ class GetV2 extends Command
              */
             $newVariants = [];
             foreach($variants as $k => $variant) {
-                //Log::info(json_encode($variant));
-                //var_dump($variant);
-                $newkey = $item['product_id']."_".$variant['color']."_".$variant['size'];
+                
+                $newkey = $item['product_id'];
+                if(!empty($variant['color'])) $newkey.="_".$variant['color'];
+                if(!empty($variant['size'])) $newkey.="_".$variant['size'];
+                $this->error($newkey);
                 if($variant['size']=='1403') {
                     //var_dump($variant);exit;
                 }
@@ -351,6 +371,8 @@ class GetV2 extends Command
             //var_dump(count($newVariants));exit;
 
             $updateData['variants'] = $newVariants;
+
+            //var_dump($updateData);exit;
 
             // images
             /**

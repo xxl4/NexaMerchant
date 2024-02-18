@@ -2412,12 +2412,15 @@ function GotoNotRequest(url) {
             var attribute_item = $('.attribute-select .attribute-item');
             var sku_maps = getSKuMaps();
 
+            console.log("getSubmitProducts sku maps " + sku_maps);
+            console.log(sku_maps);
+
             // console.log("sku maps");
             // console.log(sku_maps);
 
-            // console.log("attribute_item");
-            // console.log(attribute_item);
-            // console.log("attribute_item");
+            console.log("attribute_item");
+            console.log(attribute_item);
+            console.log("attribute_item");
 
             for(var i=0; i< attribute_item.length; i++) {
                 var sku_key_arr = [];
@@ -2438,6 +2441,8 @@ function GotoNotRequest(url) {
                 skus.push(sku);
             }
 
+            //skus.push(sku_maps)
+
             console.log("product skus");
             console.log(skus);
 
@@ -2448,10 +2453,6 @@ function GotoNotRequest(url) {
                 if(product_sku_map[skus[m].sku_id]) {
                     products[product_sku_map[skus[m].sku_id] - 1].amount++;
                 } else {
-                    if(skus[m].sku_id==""||skus[m].sku_id==null||skus[m].sku_id==undefined) {
-                        alert("please select product color and size");
-                        return false;
-                    }
                     var sku = {
                         img         : skus[m].img,
                         price       : unit_price,
@@ -2481,11 +2482,15 @@ function GotoNotRequest(url) {
             var sku_maps = {};
             
             for(var i=0; i<skus.length; i++) {
+                console.log(skus);
+                console.log(skus[i]);
+                console.log(skus[i].key);
                 sku_maps[skus[i].key] = JSON.parse(JSON.stringify(skus[i]));
                 // console.log("sku map");
                 // console.log(JSON.parse(JSON.stringify(skus[i])));
             }
-
+            console.log("sku maps" + sku_maps);
+            console.log(sku_maps);
             window.sku_maps = sku_maps;
             return window.sku_maps;
         }
