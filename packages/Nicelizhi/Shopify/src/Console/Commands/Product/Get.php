@@ -26,20 +26,33 @@ class Get extends Command
      *
      * @var string
      */
-    protected $signature = 'shopify:product:get {--pro_id=}';
+    protected $signature = 'shopify:product:get {--prod_id=}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Get Products List';
+    protected $description = 'Get Products List {--prod_id=}';
 
     private $shopify_store_id = "";
 
     private $category_id = 0;
 
     private $lang = null;
+
+    private $locales = [
+        'us',
+        'en',
+        'fr',
+        'nl',
+        'tr',
+        'es',
+        'de',
+        'it',
+        'ru',
+        'uk'
+    ];
 
     /**
      * Create a new command instance.
@@ -67,9 +80,9 @@ class Get extends Command
     public function handle()
     {
         
-        $shopify_pro_id = $this->option('pro_id');
+        $shopify_pro_id = $this->option('prod_id');
         if(empty($shopify_pro_id)) {
-            $this->error("pro id is empty");
+            $this->error("prod id is empty");
             return false;
         }
 
@@ -138,17 +151,7 @@ class Get extends Command
         exec($execPath);
     }
 
-    private $locales = [
-        'en',
-        'fr',
-        'nl',
-        'tr',
-        'es',
-        'de',
-        'it',
-        'ru',
-        'uk'
-    ];
+   
 
     /**
      * 

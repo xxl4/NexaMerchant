@@ -26,20 +26,34 @@ class GetV2 extends Command
      *
      * @var string
      */
-    protected $signature = 'shopify:product:getv2';
+    protected $signature = 'shopify:product:getv2 {--prod_id=}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Get Products List V2';
+    protected $description = 'Get Products List V2 {--prod_id=}';
 
     private $shopify_store_id = "";
 
     private $category_id = 0;
 
     private $lang = null;
+
+    private $locales = [
+        'us',
+        'en',
+        'fr',
+        'nl',
+        'tr',
+        'es',
+        'de',
+        'it',
+        'ru',
+        'uk'
+    ];
+
 
     /**
      * Create a new command instance.
@@ -70,7 +84,11 @@ class GetV2 extends Command
         $this->error("lang ". $this->lang);
         $this->error("shopify_store_id ". $this->shopify_store_id);
         
-        $shopify_pro_id = "8444768977126";
+        $shopify_pro_id = $this->option('prod_id');
+        if(empty($shopify_pro_id)) {
+            $this->error("prod id is empty");
+            return false;
+        }
 
         $client = new Client();
 
@@ -139,18 +157,7 @@ class GetV2 extends Command
         exec($execPath);
     }
 
-    private $locales = [
-        'us',
-        'en',
-        'fr',
-        'nl',
-        'tr',
-        'es',
-        'de',
-        'it',
-        'ru',
-        'uk'
-    ];
+    
 
     /**
      * 
@@ -175,6 +182,7 @@ class GetV2 extends Command
                 if(strpos($option['name'], "尺码") !==false) $attr_id = 24;
                 if(strpos($option['name'], "Length") !==false) $attr_id = 24;
                 if(strpos($option['name'], "Color") !==false) $attr_id = 23;
+                if(strpos($option['name'], "Couleur") !==false) $attr_id = 23;
                 if(strpos($option['name'], "颜色") !==false) $attr_id = 23;
                 if(strpos($option['name'], "FARBE") !==false) $attr_id = 23;
                 //var_dump($option['name'], $attr_id); exit;
