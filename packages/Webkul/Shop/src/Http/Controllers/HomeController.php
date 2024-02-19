@@ -28,7 +28,7 @@ class HomeController extends Controller
     {
         visitor()->visit();
 
-        return abort(404);
+        return abort(200);
 
         $customizations = $this->themeCustomizationRepository->orderBy('sort_order')->findWhere([
             'status'     => self::STATUS,
