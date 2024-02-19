@@ -898,7 +898,7 @@ I agree with the <a href="/onebuy/page/refund-policy?locale={{ app()->getLocale(
         </form>
 	</div>
 
-    <div class="submit-block">
+    <div class="submit-block" style="padding-top:10px;">
         <div class="submit-content">
             
             <div class="zoom-fade submit-button" id="payment-button" style="text-align:center;">@lang('onebuy::app.product.payment.complete_secure_purchase')</div>
