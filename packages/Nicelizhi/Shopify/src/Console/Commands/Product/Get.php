@@ -26,7 +26,7 @@ class Get extends Command
      *
      * @var string
      */
-    protected $signature = 'shopify:product:get';
+    protected $signature = 'shopify:product:get {--pro_id=}';
 
     /**
      * The console command description.
@@ -67,7 +67,11 @@ class Get extends Command
     public function handle()
     {
         
-        $shopify_pro_id = "8924785377562";
+        $shopify_pro_id = $this->option('pro_id');
+        if(empty($shopify_pro_id)) {
+            $this->error("pro id is empty");
+            return false;
+        }
 
         $client = new Client();
 
@@ -177,6 +181,7 @@ class Get extends Command
                 if(strpos($option['name'], "尺码") !==false) $attr_id = 24;
                 if(strpos($option['name'], "Length") !==false) $attr_id = 24;
                 if(strpos($option['name'], "Color") !==false) $attr_id = 23;
+                if(strpos($option['name'], "Couleur") !==false) $attr_id = 23;
                 if(strpos($option['name'], "颜色") !==false) $attr_id = 23;
                 if(strpos($option['name'], "FARBE") !==false) $attr_id = 23;
                 //var_dump($option['name'], $attr_id); exit;
