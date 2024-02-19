@@ -738,72 +738,73 @@ I agree with the <a href="/onebuy/page/refund-policy?locale={{ app()->getLocale(
 	                <div class="col-md-offset-3 col-md-12">
 	                    <div class="panel-group" id="accordion">
 
-
+                        <?php if($payments['airwallex_klarna']==1) { ?>
                         <div class="panel panel-default">
-	                            <div class="panel-heading" role="tab" id="headingThree">
-	                                <h4 class="panel-title">
-                                        <div class="panel-title-header" id="headingThree2">
-                                            <div class="form-check form-check-inline" style="width: 100%;">
-                                                <input class="form-check-input" type="radio" value="airwallex-klarna" id="airwallex-klarna" checked name="payment_method">
-                                                <label class="form-check-label" for="airwallex-klarna">
-                                                <span>@lang('onebuy::app.product.payment.klarna.title')</span>
-                                                <div style="float: right;min-width: 200px;display: inline;text-align: right;"><img src="/checkout/v1/app/desktop/images/Klarna.png" style="max-height:24px" /></div>
-                                                </label>
-                                            </div>
+                            <div class="panel-heading" role="tab" id="headingThree">
+                                <h4 class="panel-title">
+                                    <div class="panel-title-header" id="headingThree2">
+                                        <div class="form-check form-check-inline" style="width: 100%;">
+                                            <input class="form-check-input" type="radio" value="airwallex-klarna" id="airwallex-klarna" <?php if($payments_default=='airwallex-klarna') echo 'checked'; ?> name="payment_method">
+                                            <label class="form-check-label" for="airwallex-klarna">
+                                            <span>@lang('onebuy::app.product.payment.klarna.title')</span>
+                                            <div style="float: right;min-width: 200px;display: inline;text-align: right;"><img src="/checkout/v1/app/desktop/images/Klarna.png" style="max-height:24px" /></div>
+                                            </label>
                                         </div>
+                                    </div>
 
-	                                    
-	                                </h4>
-	                            </div>
-	                            <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-	                                <div class="panel-body">
-	                                    <p>
-                                        <div>
-                                            @lang('onebuy::app.product.payment.klarna.description')
-                                        </div>
-                                        </p>
-	                                </div>
-	                            </div>
-	                        </div>
+                                    
+                                </h4>
+                            </div>
+                            <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                                <div class="panel-body">
+                                    <p>
+                                    <div>
+                                        @lang('onebuy::app.product.payment.klarna.description')
+                                    </div>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <?php } ?>
+                        <?php if($payments['payal_standard']==1) { ?>
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="headingTwo">
+                                <h4 class="panel-title">
+                                    <div class="panel-title-header" id="headingOne2">
+                                        <div class="form-check form-check-inline" style="width: 100%;">
+                                            <input class="form-check-input" type="radio" value="paypal_standard" id="payal_standard" <?php if($payments_default=='payal_standard') echo 'checked'; ?> name="payment_method">
+                                            <label class="form-check-label" for="payal_standard">
+                                            <span>@lang('onebuy::app.product.payment.paypal.title') </span>
+                                            <div style="float: right;min-width: 200px;display: inline;text-align: right;"><img src="/checkout/v1/app/desktop/images/paypal.png" style="max-height:24px" /></div>
+                                            </label>
 
-                            <div class="panel panel-default">
-	                            <div class="panel-heading" role="tab" id="headingTwo">
-	                                <h4 class="panel-title">
-                                        <div class="panel-title-header" id="headingOne2">
-                                            <div class="form-check form-check-inline" style="width: 100%;">
-                                                <input class="form-check-input" type="radio" value="paypal_standard" id="payal_standard" name="payment_method">
-                                                <label class="form-check-label" for="payal_standard">
-                                                <span>@lang('onebuy::app.product.payment.paypal.title') </span>
-                                                <div style="float: right;min-width: 200px;display: inline;text-align: right;"><img src="/checkout/v1/app/desktop/images/paypal.png" style="max-height:24px" /></div>
-                                                </label>
-
-                                                
-
-                                            </div>
                                             
+
                                         </div>
+                                        
+                                    </div>
 
-	                                    
-	                                </h4>
-	                            </div>
-	                            <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-	                                <div class="panel-body">
-	                                    <p>
-                                        <div>
-                                            @lang('onebuy::app.product.payment.paypal.description')
-                                        </div>
-                                        </p>
-	                                </div>
-	                            </div>
-	                        </div>
-
-
+                                    
+                                </h4>
+                            </div>
+                            <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                                <div class="panel-body">
+                                    <p>
+                                    <div>
+                                        @lang('onebuy::app.product.payment.paypal.description')
+                                    </div>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <?php } ?>
+                        <?php if($payments['airwallex_credit_card']==1) { ?>
 	                        <div class="panel panel-default">
 	                            <div class="panel-heading"  id="headingOne">
 	                                <h4 class="panel-title">
 	                                    <div class="panel-title-header" id="headingOne1">
                                             <div class="form-check form-check-inline" style="width: 100%;">
-                                                <input class="form-check-input" type="radio" name="payment_method" id="payment_method_airwallex" value="airwallex">
+                                                <input class="form-check-input" type="radio" name="payment_method" id="payment_method_airwallex" <?php if($payments_default=='payment_method_airwallex') echo 'checked'; ?> value="airwallex">
                                                 <label class="form-check-label" for="payment_method_airwallex">
                                                     <span>@lang('onebuy::app.product.payment.creditCard.title')</span>
 
@@ -879,7 +880,7 @@ I agree with the <a href="/onebuy/page/refund-policy?locale={{ app()->getLocale(
 	                                </div>
 	                            </div>
 	                        </div>
-
+                            <?php } ?>
 	                        
 
 
@@ -892,7 +893,7 @@ I agree with the <a href="/onebuy/page/refund-policy?locale={{ app()->getLocale(
         </form>
 	</div>
 
-    <div class="submit-block">
+    <div class="submit-block" style="padding-top:10px;">
         <div class="submit-content">
             
             <div class="zoom-fade submit-button" id="payment-button" style="text-align:center;">@lang('onebuy::app.product.payment.complete_secure_purchase')</div>
@@ -2776,11 +2777,21 @@ function GotoNotRequest(url) {
    <script>
     $(document).ready(function(){
 
-        //$("#collapseOne").show();
+        <?php if($payments_default=='airwallex-klarna') { ?>
+
         $("#collapseThree").show();
-        //$("#headingOne1").addClass("action");
         $("#headingThree2").addClass("action");
         $("#payment-button").addClass("airwallex-pay");
+
+        <?php } elseif($payments_default=='payal_standard') { ?>
+        $("#collapseTwo").show();
+        $("#headingOne2").addClass("action");
+
+        <?php } elseif($payments_default=='payment_method_airwallex') { ?>
+        $("#collapseOne").show();
+        $("#headingOne1").addClass("action");
+
+        <?php } ?>
 
         $("#payment_method_airwallex").on("click", function(){
             console.log("click headingOne ");

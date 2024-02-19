@@ -332,9 +332,11 @@ class ProductV2Controller extends Controller
 
         $airwallex_method = config('onebuy.airwallex.method');
 
-        //var_dump($default_country);exit;
+        $payments = config('onebuy.payments'); // config the payments status
+        $payments_default = config('onebuy.payments_default');
 
-        return view('onebuy::v2.product-detail', compact('app_env','product','package_products', 'product_attributes', 'skus','productBgAttribute','productBgAttribute_mobile','faqItems','comments','paypal_client_id','default_country','airwallex_method'));
+
+        return view('onebuy::v2.product-detail', compact('app_env','product','package_products', 'product_attributes', 'skus','productBgAttribute','productBgAttribute_mobile','faqItems','comments','paypal_client_id','default_country','airwallex_method','payments','payments_default'));
     }
 
     public function cms($slug, Request $request) {
