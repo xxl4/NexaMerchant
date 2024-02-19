@@ -419,6 +419,7 @@ class ProductController extends Controller
         Cart::collectTotals();
 
         if($payment_method=="airwallex_klarna") $payment_method = "airwallex";
+        if($payment_method=="airwallex_dropin") $payment_method = "airwallex";
 
         // 获取支付信息
         

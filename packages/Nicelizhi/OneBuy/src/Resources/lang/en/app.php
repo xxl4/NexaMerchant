@@ -16,6 +16,10 @@ return [
                 'title' => 'klarna',
                 'description' => 'After you click “Pay Now”, you will be redirected to Klarna to safely complete your purchase.'
             ],
+            'airwallex_dropin' => [
+                'title' => "Goolge Or Apple",
+                'description' => 'After you will use Goolge Or Apple Pay'
+            ],
         'complete_secure_purchase' => 'COMPLETELY SAFE PURCHASE',
         ],
         'step' => [
