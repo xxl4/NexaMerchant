@@ -316,7 +316,7 @@ class ProductV2Controller extends Controller
         $redis = Redis::connection('default');
         $faqItems = $redis->hgetall($this->faq_cache_key);
 
-        sort($faqItems);
+        ksort($faqItems);
 
         $comments = $redis->hgetall($this->cache_prefix_key."product_comments_".$product['id']);
 

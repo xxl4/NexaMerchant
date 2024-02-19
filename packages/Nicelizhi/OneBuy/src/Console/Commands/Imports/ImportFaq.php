@@ -6,6 +6,7 @@ use Illuminate\Console\Command;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redis;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ImportFaq extends Command
 {
@@ -41,5 +42,14 @@ class ImportFaq extends Command
     public function handle()
     {
         $redis = Redis::connection('default');
+
+        $faq_file = storage_path("imports/")."faq.xlsx";
+        if(!file_exists($faq_file)) {
+            $this->error("faq file not found");
+            return false;
+        }
+
+        Excel::import(new \Nicelizhi\OneBuy\Imports\FaqImport(), $faq_file);
+
     }
 }

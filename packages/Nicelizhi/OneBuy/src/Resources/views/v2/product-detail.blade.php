@@ -1026,7 +1026,7 @@ Hatmeo offers a 30 day guarantee on all unused purchases. Simply send the item(s
 
         <h2 class="accordion-header" id="compatability">
 
-            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq<?php echo $key;?>" <?php if($key==0) { ?> aria-expanded="true" <?php } ?> aria-controls="faq<?php echo $key;?>">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq<?php echo $key;?>" <?php if($key==1) { ?> aria-expanded="true" <?php } ?> aria-controls="faq<?php echo $key;?>">
 
                 <?php echo $item->q;?>
 
