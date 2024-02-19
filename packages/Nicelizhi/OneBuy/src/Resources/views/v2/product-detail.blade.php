@@ -818,10 +818,8 @@ I agree with the <a href="/onebuy/page/refund-policy?locale={{ app()->getLocale(
                                                         <img src="https://cdn.shopify.com/shopifycloud/checkout-web/assets/f11b90c2972f3811f2d5.svg" />
                                                         <img src="https://cdn.shopify.com/shopifycloud/checkout-web/assets/37fc65d0d7ac30da3b0c.svg" />
                                                     </div>
-
                                                 </label>
                                             </div>
-                                            
                                         </div>
 	                                </h4>
 	                            </div>
