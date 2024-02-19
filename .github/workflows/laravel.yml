@@ -71,4 +71,4 @@ jobs:
         key: ${{ secrets.DEPLOY_KEY_US }}
         port: ${{secrets.SSH_PORT_US }}
         script: |
-          cd ${{ secrets.WWW_DIR_US }} && sudo git pull
+          cd ${{ secrets.WWW_DIR_US }} && git pull
