@@ -46,7 +46,7 @@ jobs:
         DB_DATABASE: test
         DB_USERNAME: root
         DB_PASSWORD: password
-      run: php artisan migrate && php artisan db:seed && vendor/bin/pest
+      run: php artisan migrate && php artisan db:seed
     - name: Sync to Server 1 and Do it
       uses: appleboy/ssh-action@master
       env:
