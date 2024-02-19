@@ -2,15 +2,13 @@ name: Laravel
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "main","main_de","main_us" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "main","main_de","main_us" ]
 
 jobs:
   laravel-tests:
-
     runs-on: ubuntu-latest
-
     container:
       image: kirschbaumdevelopment/laravel-test-runner:8.1
     services:
@@ -49,3 +47,25 @@ jobs:
         DB_USERNAME: root
         DB_PASSWORD: password
       run: php artisan migrate && php artisan db:seed && vendor/bin/pest
+    - name: Sync to Server 1 and Do it
+      uses: appleboy/ssh-action@master
+      env:
+        GITHUB_SHA_X: ${GITHUB_SHA}
+      with:
+        host: ${{ secrets.SSH_HOST }}  
+        username: ${{ secrets.SSH_USERNAME }}
+        key: ${{ secrets.DEPLOY_KEY }}
+        port: ${{secrets.SSH_PORT }}
+        script: |
+          cd ${{ secrets.WWW_DIR }} && sudo git pull
+          php artisan migrate
+          composer update
+          cd ${{ secrets.WWW_DIR_2 }} && sudo git pull
+          php artisan migrate
+          composer update
+          cd ${{ secrets.WWW_DIR_3 }} && sudo git pull
+          php artisan migrate
+          composer update
+          cd ${{ secrets.WWW_DIR_4 }} && sudo git pull
+          php artisan migrate
+          composer update

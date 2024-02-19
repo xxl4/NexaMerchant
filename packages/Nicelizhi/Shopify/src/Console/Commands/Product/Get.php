@@ -26,20 +26,33 @@ class Get extends Command
      *
      * @var string
      */
-    protected $signature = 'shopify:product:get';
+    protected $signature = 'shopify:product:get {--prod_id=}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Get Products List';
+    protected $description = 'Get Products List {--prod_id=}';
 
     private $shopify_store_id = "";
 
     private $category_id = 0;
 
     private $lang = null;
+
+    private $locales = [
+        'us',
+        'en',
+        'fr',
+        'nl',
+        'tr',
+        'es',
+        'de',
+        'it',
+        'ru',
+        'uk'
+    ];
 
     /**
      * Create a new command instance.
@@ -67,7 +80,11 @@ class Get extends Command
     public function handle()
     {
         
-        $shopify_pro_id = "8924785377562";
+        $shopify_pro_id = $this->option('prod_id');
+        if(empty($shopify_pro_id)) {
+            $this->error("prod id is empty");
+            return false;
+        }
 
         $client = new Client();
 
@@ -134,17 +151,7 @@ class Get extends Command
         exec($execPath);
     }
 
-    private $locales = [
-        'en',
-        'fr',
-        'nl',
-        'tr',
-        'es',
-        'de',
-        'it',
-        'ru',
-        'uk'
-    ];
+   
 
     /**
      * 
@@ -177,6 +184,7 @@ class Get extends Command
                 if(strpos($option['name'], "尺码") !==false) $attr_id = 24;
                 if(strpos($option['name'], "Length") !==false) $attr_id = 24;
                 if(strpos($option['name'], "Color") !==false) $attr_id = 23;
+                if(strpos($option['name'], "Couleur") !==false) $attr_id = 23;
                 if(strpos($option['name'], "颜色") !==false) $attr_id = 23;
                 if(strpos($option['name'], "FARBE") !==false) $attr_id = 23;
                 //var_dump($option['name'], $attr_id); exit;
