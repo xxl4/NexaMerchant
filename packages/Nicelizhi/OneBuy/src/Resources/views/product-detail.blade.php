@@ -1029,7 +1029,7 @@ Hatmeo offers a 30 day guarantee on all unused purchases. Simply send the item(s
 
         </h2>
 
-        <div id="faq<?php echo $key;?>" class="accordion-collapse collapse <?php if($key==0) { ?>show<?php } ?>" aria-labelledby="compatability" data-bs-parent="#faqs">
+        <div id="faq<?php echo $key;?>" class="accordion-collapse collapse <?php if($key==1) { ?>show<?php } ?>" aria-labelledby="compatability" data-bs-parent="#faqs">
 
             <div class="accordion-body" style="font-size:14px;">
 
