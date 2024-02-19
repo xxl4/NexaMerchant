@@ -6,6 +6,7 @@ use Illuminate\Console\Command;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redis;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ImportProductComments extends Command
 {
@@ -45,6 +46,12 @@ class ImportProductComments extends Command
             $this->error("prod id is empty");
             return false;
         }
-        $redis = Redis::connection('default');
+        $prod_comment_file = storage_path("imports/")."comments_".$prod_id.".xlsx";
+        if(!file_exists($prod_comment_file)) {
+            $this->error("faq file not found, pls check the file".$prod_comment_file);
+            return false;
+        }
+
+        Excel::import(new \Nicelizhi\OneBuy\Imports\ProdCommentsImport($prod_id), $prod_comment_file);
     }
 }
