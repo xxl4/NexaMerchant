@@ -5,6 +5,7 @@ use Exception;
 use Illuminate\Console\Command;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Redis;
 
 class ImportProductComments extends Command
 {
@@ -44,5 +45,6 @@ class ImportProductComments extends Command
             $this->error("prod id is empty");
             return false;
         }
+        $redis = Redis::connection('default');
     }
 }

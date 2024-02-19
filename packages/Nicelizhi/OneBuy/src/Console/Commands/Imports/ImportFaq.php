@@ -5,6 +5,7 @@ use Exception;
 use Illuminate\Console\Command;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Redis;
 
 class ImportFaq extends Command
 {
@@ -39,6 +40,6 @@ class ImportFaq extends Command
      */
     public function handle()
     {
-
+        $redis = Redis::connection('default');
     }
 }
