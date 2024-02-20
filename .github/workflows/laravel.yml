@@ -3,6 +3,9 @@ name: Laravel
 on:
   push:
     branches: [ "main","main_de","main_us" ]
+    paths-ignore:
+      - .github/**
+      - docs/**
   pull_request:
     branches: [ "main","main_de","main_us" ]
 
