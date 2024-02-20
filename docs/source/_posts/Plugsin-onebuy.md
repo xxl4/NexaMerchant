@@ -1,5 +1,5 @@
 ---
-title: Onebuy Plugin
+title: Onebuy Plugin 多件购买结算页面
 tags:
   - Onebuy
   - Larave
