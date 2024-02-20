@@ -6,6 +6,8 @@ tags:
   - MySQL
   - Redis
   - Compose
+  - Php
+  - API
 categories:
   - Laravel
   - Plugins

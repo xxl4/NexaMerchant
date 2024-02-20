@@ -6,6 +6,10 @@ tags:
   - MySQL
   - Redis
   - Compose
+  - Php
+  - Bootstrap
+  - Paypal
+  - Airwallex
 categories:
   - Laravel
   - Plugins
