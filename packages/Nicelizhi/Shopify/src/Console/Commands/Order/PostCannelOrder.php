@@ -14,7 +14,7 @@ use Nicelizhi\Shopify\Models\ShopifyOrder;
 use Nicelizhi\Shopify\Models\ShopifyStore;
 use Webkul\Sales\Models\Order;
 
-class Post extends Command
+class PostCannelOrder extends Command
 {
     /**
      * The name and signature of the console command.
