@@ -204,7 +204,7 @@ language_switcher: true
 
 footer:
   # Specify the year when the site was setup. If not defined, current year will be used.
-  since: 1984
+  since: 2023
 
   # Icon between year and copyright info.
   icon:
