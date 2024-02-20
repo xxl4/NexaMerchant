@@ -61,12 +61,16 @@ jobs:
         port: ${{secrets.SSH_PORT }}
         script: |
           cd ${{ secrets.WWW_DIR }} && sudo git pull
+          composer dump-autoload
           vendor/bin/pest
           cd ${{ secrets.WWW_DIR_2 }} && sudo git pull
+          composer dump-autoload
           vendor/bin/pest
           cd ${{ secrets.WWW_DIR_3 }} && sudo git pull
+          composer dump-autoload
           vendor/bin/pest
           cd ${{ secrets.WWW_DIR_4 }} && sudo git pull
+          composer dump-autoload
           vendor/bin/pest
     - name: Sync to Server 2 and Do it
       uses: appleboy/ssh-action@master
@@ -79,4 +83,5 @@ jobs:
         port: ${{secrets.SSH_PORT_US }}
         script: |
           cd ${{ secrets.WWW_DIR_US }} && git pull
+          composer dump-autoload
           vendor/bin/pest
