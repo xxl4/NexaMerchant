@@ -18,6 +18,7 @@ uses(Webkul\Shop\Tests\ShopTestCase::class)->in('../packages/Webkul/Shop/tests')
 uses(Nicelizhi\Shopify\Tests\ShopifyTestCase::class)->in('../packages/Nicelizhi/Shopify/tests');
 uses(Nicelizhi\Checkout\Tests\CheckoutTestCase::class)->in('../packages/Nicelizhi/Checkout/tests');
 uses(Nicelizhi\Binom\Tests\BinomTestCase::class)->in('../packages/Nicelizhi/Binom/tests');
+ uses(Nicelizhi\OneBuy\Tests\OneBuyTestCase::class)->in('../packages/Nicelizhi/OneBuy/tests');
 
 /*
 |--------------------------------------------------------------------------
