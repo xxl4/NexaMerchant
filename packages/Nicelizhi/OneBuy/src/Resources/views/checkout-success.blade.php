@@ -198,7 +198,7 @@
             }
         }
 
-        //fbq('track', 'Purchase');
+        fbq('track', 'Purchase');
     </script>
 
 <link href="/css/timber.scss.css" rel="stylesheet" type="text/css" media="all">
@@ -474,7 +474,7 @@ All rights reserved
             console.log('cookie');
 
             console.log(order_params);
-            // sendPurchaseEvent(order_params);
+            sendPurchaseEvent(order_params);
         }
 
         var client_secret = getQueryString('client_secret');
