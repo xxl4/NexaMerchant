@@ -43,19 +43,6 @@
         function addVoluumImg(data) {
             console.log('addVoluumImg');
             return false;
-            var payout = data.info.payout || (data.info.total + data.info.currency); 
-            var bigImg = document.createElement("img");
-            bigImg.src = "https://tick.colapaco-op.com/conversion.gif?payout="+ payout +"&txid="+data.info._id.$oid;
-            bigImg.width="1";
-            bigImg.height="1";
-            document.body.appendChild(bigImg);
-
-            var bigImg1 = document.createElement("img");
-            bigImg1.src = "https://tick.ponira.com/conversion.gif?payout="+ payout +"&txid="+data.info._id.$oid;
-            bigImg1.width="1";
-            bigImg1.height="1";
-            document.body.appendChild(bigImg1);
-            console.log('addVoluumImg end');
         }
 
         function postVoluumConversion(data) {
@@ -180,6 +167,7 @@
     </script>
 <script>
         function purchase(value) {
+            fbq('track', 'Purchase', {currency: "USD", value: (value * 1).toFixed(2)});
             if(typeof gtag == 'function') {
                 if(window.localStorage) {
                     var ga_post_order_template_commom_ids_str = localStorage.getItem("ga_post_order_template_commom_ids");
@@ -202,6 +190,7 @@
                         'value': (value * 1).toFixed(2),
                         'currency': 'USD',
                     });
+                    
                 } else {
                     gtag('event', 'sur_purchase', {
                         'transaction_id': getQueryString('id'),
@@ -216,7 +205,7 @@
             }
         }
 
-        fbq('track', 'Purchase');
+        
     </script>
 
 <link href="/css/timber.scss.css" rel="stylesheet" type="text/css" media="all">
