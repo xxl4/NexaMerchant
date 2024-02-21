@@ -69,6 +69,11 @@ class Get extends Command
         $this->shopify_store_id = config('shopify.shopify_store_id');
         $this->lang = config('shopify.store_lang');
         $this->category_id = 9;
+
+        // locales
+        $this->locales = core()->getAllLocales()->pluck('code')->toArray();
+
+
         parent::__construct();
     }
 
