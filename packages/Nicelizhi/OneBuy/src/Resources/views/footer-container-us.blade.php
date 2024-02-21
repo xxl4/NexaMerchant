@@ -28,15 +28,15 @@
 <div class="phone-block">
      </div>
     <div class="terms-block">
-            <a class='ajax' href="/onebuy/page/shipping-policy?locale={{ app()->getLocale() }}" target="_blank">
+            <a class='ajax' href="/onebuy/page/shipping-policy?locale=<?php echo strtolower($default_country);?>" target="_blank">
          @lang('onebuy::app.product.footer.Shipping Delivery') </a>
-            <a class='ajax' href="/onebuy/page/refund-policy?locale={{ app()->getLocale() }}" target="_blank">
+            <a class='ajax' href="/onebuy/page/refund-policy?locale=<?php echo strtolower($default_country);?>" target="_blank">
          @lang('onebuy::app.product.footer.Refund policy')  </a>
-            <a class='ajax' href="/onebuy/page/about-us?locale={{ app()->getLocale() }}" target="_blank" >
+            <a class='ajax' href="/onebuy/page/about-us?locale=<?php echo strtolower($default_country);?>" target="_blank" >
          @lang('onebuy::app.product.footer.About US')</a>
-            <a class='ajax' href="/onebuy/page/privacy-policy?locale={{ app()->getLocale() }}" target="_blank" >
+            <a class='ajax' href="/onebuy/page/privacy-policy?locale=<?php echo strtolower($default_country);?>" target="_blank" >
          @lang('onebuy::app.product.footer.Privacy Policy') </a>
-            <a class='ajax' href="/onebuy/page/contact-us?locale={{ app()->getLocale() }}" target="_blank">
+            <a class='ajax' href="/onebuy/page/contact-us?locale=<?php echo strtolower($default_country);?>" target="_blank">
          @lang('onebuy::app.product.footer.Contact Us')  </a>
             
     </div>
