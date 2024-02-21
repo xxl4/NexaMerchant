@@ -278,7 +278,7 @@ class GetV2 extends Command
             Event::dispatch('catalog.product.create.after', $product);
 
             $updateData = [];
-            $updateData['product_number'] = 1000;
+            $updateData['product_number'] = "";
             $updateData['name'] = $item['title'];
             $updateData['url_key'] = $item['product_id'];
             $updateData['short_description'] = $item['title'];
@@ -372,7 +372,7 @@ class GetV2 extends Command
                 $newVariant['sku'] = $item['product_id'].'-'.$newShopifyVarants[$newkey]['id'];
                 $newVariant['name'] = $newShopifyVarants[$newkey]['title'];
                 $newVariant['price'] = $newShopifyVarants[$newkey]['price'];
-                $newVariant['weight'] = $newShopifyVarants[$newkey]['weight'];
+                $newVariant['weight'] = 1000;
                 $newVariant['status'] = 1;
                 $newVariant['color'] = $variant['color'];
                 $newVariant['size'] = $variant['size'];
