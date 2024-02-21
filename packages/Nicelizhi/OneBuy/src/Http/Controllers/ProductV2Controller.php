@@ -477,8 +477,8 @@ class ProductV2Controller extends Controller
             $this->validateOrder();
             $cart = Cart::getCart();
             $order = $this->orderRepository->create(Cart::prepareDataForOrder());
-            //Cart::deActivateCart();
-            //Cart::activateCartIfSessionHasDeactivatedCartId();
+            Cart::deActivateCart();
+            Cart::activateCartIfSessionHasDeactivatedCartId();
             // 跳转到支付
             $data['result'] = 200;
             $data['order'] = $order;
