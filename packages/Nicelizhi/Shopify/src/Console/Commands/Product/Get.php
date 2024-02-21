@@ -70,8 +70,7 @@ class Get extends Command
         $this->lang = config('shopify.store_lang');
         $this->category_id = 9;
 
-        // locales
-        $this->locales = core()->getAllLocales()->pluck('code')->toArray();
+        
 
 
         parent::__construct();
@@ -90,6 +89,9 @@ class Get extends Command
             $this->error("prod id is empty");
             return false;
         }
+
+        // locales
+        $this->locales = core()->getAllLocales()->pluck('code')->toArray();
 
         $client = new Client();
 
