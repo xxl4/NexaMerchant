@@ -181,12 +181,15 @@ class GetV2 extends Command
             $size = [];
             $error = 0;
             foreach($options as $kk => $option) {
+                $option['name'] = strtolower($option['name']);
                 $attr_id = 0;
                 if(strpos($option['name'], "Size")!==false) $attr_id = 24;
+                if(strpos($option['name'], "size")!==false) $attr_id = 24;
                 if(strpos($option['name'], "GRÖSSE")!==false) $attr_id = 24;
                 if(strpos($option['name'], "尺码") !==false) $attr_id = 24;
                 if(strpos($option['name'], "Length") !==false) $attr_id = 24;
                 if(strpos($option['name'], "Color") !==false) $attr_id = 23;
+                if(strpos($option['name'], "color") !==false) $attr_id = 23;
                 if(strpos($option['name'], "Couleur") !==false) $attr_id = 23;
                 if(strpos($option['name'], "颜色") !==false) $attr_id = 23;
                 if(strpos($option['name'], "FARBE") !==false) $attr_id = 23;
