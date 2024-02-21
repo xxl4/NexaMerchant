@@ -459,28 +459,6 @@ class PostCannelOrder extends Command
 
             $shopifyNewOrder->save();
 
-            
-
-            // order sync to other job
-
-            $cnv_id = explode('-',$orderPayment['method_title']);
-            $url = "https://track.heomai2021.com/click.php?cnv_id=".$cnv_id[1]."&payout=".$order->grand_total;
-            $res = $this->get_content($url);
-            Log::info("post to bm url ".$url." res ".json_encode($res));
-            $url = "https://binom.heomai.com/click.php?cnv_id=".$cnv_id[1]."&payout=".$order->grand_total;
-            $res = $this->get_content($url);
-            Log::info("post to bm url ".$url." res ".json_encode($res));
-
-            
-            $url = "http://45.79.79.208:8009/api/offers/callBack?refer=".$cnv_id[1]."&revenue=".$order->grand_total;
-            $res = $this->get_content($url);
-            Log::info("post to bm 2 url ".$url." res ".json_encode($res));
-
-            
-
-
-
-
 
         }
     }
