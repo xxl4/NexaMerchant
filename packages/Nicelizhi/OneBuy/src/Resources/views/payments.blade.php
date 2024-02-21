@@ -151,11 +151,7 @@
 	                            </div>
 	                        </div>
                             <?php } ?>
-
-
             <?php if($payments['airwallex_dropin']==1) { ?>
-
-
                 <div class="panel panel-default">
                     <div class="panel-heading" role="tab" id="airwallex_dropin_head_1">
                         <h4 class="panel-title">
