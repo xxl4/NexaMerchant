@@ -167,6 +167,7 @@
     </script>
 <script>
         function purchase(value) {
+            console.log("purchase "+ value);
             fbq('track', 'Purchase', {currency: "USD", value: (value * 1).toFixed(2)});
             if(typeof gtag == 'function') {
                 if(window.localStorage) {
