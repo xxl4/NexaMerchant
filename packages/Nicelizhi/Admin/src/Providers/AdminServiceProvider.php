@@ -19,7 +19,7 @@ class AdminServiceProvider extends ServiceProvider
     {
         Route::middleware('web')->group(__DIR__ . '/../Routes/web.php');
 
-        $this->loadTranslationsFrom(__DIR__ . '/../Resources/lang', 'admin');
+        //$this->loadTranslationsFrom(__DIR__ . '/../Resources/lang', 'admin');
 
         $this->loadViewsFrom(__DIR__ . '/../Resources/views', 'admin');
 
@@ -29,7 +29,7 @@ class AdminServiceProvider extends ServiceProvider
 
         $this->registerACL();
 
-        $this->app->register(EventServiceProvider::class);
+        // $this->app->register(EventServiceProvider::class);
     }
 
     /**

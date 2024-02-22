@@ -138,7 +138,7 @@
             }
         }
 
-        fbq('track', 'Purchase');
+        //fbq('track', 'Purchase');
     </script>
 
 <link href="https://shop.hatmeo.com/css/timber.scss.css" rel="stylesheet" type="text/css" media="all">
@@ -483,7 +483,8 @@ All rights reserved
             console.log(order_param);
 
             data = input.data;
-            purchase(data.info.grand_total);
+            console.log("pushare " + order_param.grand_total);
+            purchase(order_param.grand_total);
             console.log(data)
             if(!getCookie('voluum_payout') || getCookie('order_id') != getQueryString('id')) {
                 console.log('data');
