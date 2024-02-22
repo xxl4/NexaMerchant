@@ -1054,7 +1054,7 @@ just purchased:
         setComment(comment_setting)
         var commentInterval = setInterval(function() {
             setComment(comment_setting), /Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) && clearInterval(commentInterval)
-        }, 15000 + 5400)
+        }, 15000000 + 5400)
     </script>
 <script>
         function getSelectProduct() {
