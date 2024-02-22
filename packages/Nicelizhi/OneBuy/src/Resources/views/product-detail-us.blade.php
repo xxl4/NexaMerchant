@@ -300,6 +300,10 @@
 <body>
 <div class="smb-body">
 <div class="header-container">
+<div class="header-container-title">
+<div class="header-container-title-content tc select_quantity_block"></div>
+<div class="header-img header-en-img"></div>
+</div>
 <div class="header-container-bg"></div>
 <style>
     .header-container-bg {

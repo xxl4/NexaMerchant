@@ -60,10 +60,17 @@ class ProductController extends Controller
      * @return \Illuminate\View\View|\Exception
      */
     public function detail($slug, Request $request) {
-        \Debugbar::disable(); /* 开启后容易出现前端JS报错的情况 */
+        //\Debugbar::disable(); /* 开启后容易出现前端JS报错的情况 */
         
         $slugOrPath = $slug;
-        $product = $this->productRepository->findBySlug($slugOrPath);
+        $cache_key = "product_url_".$slugOrPath;
+        $product = Cache::get($cache_key);
+        if(empty($product)) {
+            
+            $product = $this->productRepository->findBySlug($slugOrPath);
+            Cache::put($cache_key, $product, 3600);
+        }
+        
 
         if (
             ! $product
@@ -74,7 +81,7 @@ class ProductController extends Controller
             abort(404);
         }
 
-        visitor()->visit($product);
+        //visitor()->visit($product);
 
         $refer = $request->input("refer");
 
@@ -217,11 +224,12 @@ class ProductController extends Controller
                         $new_id = $option['products'][0];
                         $new_product = $this->productRepository->find($new_id);
                         $NewproductBaseImage = product_image()->getProductBaseImage($new_product);
-                        $option['image'] = @$NewproductBaseImage['medium_image_url'];
+                        $option['image'] = @$NewproductBaseImage['large_image_url'];
+                        $option['big_image'] = @$NewproductBaseImage['large_image_url'];
                         
                     }else{
-                        $option['image'] = $productBaseImage['medium_image_url'];
-                        
+                        $option['image'] = $productBaseImage['large_image_url'];
+                        $option['large_image'] = @$productBaseImage['large_image_url'];
                     }
 
                     // 判断是否有对应的尺码内容
@@ -249,7 +257,8 @@ class ProductController extends Controller
                 unset($attribute['translations']); //去掉多余的数据内容
                 //var_dump($options);
                 $attribute['options'] = $options;
-                $attribute['image'] = $productBaseImage['medium_image_url'];
+                $attribute['image'] = $productBaseImage['large_image_url'];
+                $attribute['large_image'] = $productBaseImage['large_image_url'];
                 $product_attributes[] = $attribute;
             }
 
@@ -260,7 +269,6 @@ class ProductController extends Controller
         }
 
         rsort($product_attributes);
-
         //商品的背景图片获取
 
         $productBgAttribute = $this->productAttributeValueRepository->findOneWhere([
@@ -282,12 +290,8 @@ class ProductController extends Controller
         // 获取 faq 数据
         $redis = Redis::connection('default');
         $faqItems = $redis->hgetall($this->faq_cache_key);
-        
         ksort($faqItems);
-
         $comments = $redis->hgetall($this->cache_prefix_key."product_comments_".$product['id']);
-
-        
         //获取 paypal smart key
         $paypal_client_id = core()->getConfigData('sales.payment_methods.paypal_smart_button.client_id');
 
@@ -309,7 +313,7 @@ class ProductController extends Controller
     }
 
     public function cms($slug, Request $request) {
-        \Debugbar::disable(); /* 开启后容易出现前端JS报错的情况 */
+       // \Debugbar::disable(); /* 开启后容易出现前端JS报错的情况 */
 
         $page = $this->cmsRepository->findByUrlKeyOrFail($slug);
         

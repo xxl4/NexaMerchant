@@ -30,23 +30,10 @@
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jquery-colorbox@1.6.4/jquery.colorbox.min.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/jquery-colorbox@1.6.4/example1/colorbox.min.css" rel="stylesheet">
-<!-- Facebook Pixel Code -->
-<script>
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window, document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '410784348009950');
-    fbq('track', 'PageView');
-    fbq('track', 'ViewContent');
-  </script>
 
-<script src="https://lander.heomai.com/template-common/js/frames-init.js"></script>
-<script src="https://lander.heomai.com/template-common/js/paypal-init.js"></script>
+
+<!-- <script src="/template-common/js/frames-init.js"></script>
+<script src="/template-common/js/paypal-init.js"></script> -->
 
 <?php if($app_env=='demo') { ?>
 <script src="https://checkout-demo.airwallex.com/assets/elements.bundle.min.js"></script>
@@ -56,10 +43,10 @@
 
 
 
-<link rel="stylesheet" href="https://lander.heomai.com/template-common/checkout1/css/font-awesome.min.css">
+<!-- <link rel="stylesheet" href="/template-common/checkout1/css/font-awesome.min.css"> -->
 
-<link rel="stylesheet" href="https://lander.heomai.com/template-common/checkout6/css/order.css?v=12">
-<link rel="stylesheet" href="https://lander.heomai.com/template-common/checkout-common/css/order.css">
+<link rel="stylesheet" href="/template-common/checkout6/css/order.css?v=12">
+<link rel="stylesheet" href="/template-common/checkout-common/css/order.css">
 <style>
         body {
             font-family: "Poppins"
@@ -144,7 +131,7 @@
             margin: 0;
         }
     </style>
-<script>
+<!-- <script>
         function getQueryParameterTop(param) {
             let href = '';
             if (location.href.indexOf('?')) {
@@ -153,7 +140,7 @@
             const value = href.match(new RegExp('[\?\&]' + param + '=([^\&]*)(\&?)', 'i'));
             return value ? value[1] : null;
         }
-    </script>
+    </script> -->
 <style>
         .header-container-title {
             background-color: transparent;
@@ -247,7 +234,7 @@
 <div class="main-container-progress-state-content">
 <div class="main-container-progress-state-content-circle">
 <a class="main-container-progress-state-content-circle-a click_scroll" anchor=".select_quantity_block">
-<img src="https://lander.heomai.com/template-common/checkout1/images/stick-gr-dk.png" />
+<img src="/template-common/checkout1/images/stick-gr-dk.png" />
 </a>
 </div>
 <div class="main-container-progress-state-content-step-title black">
@@ -259,7 +246,7 @@
 <div class="main-container-progress-state-content">
 <div class="main-container-progress-state-content-circle">
 <a class="main-container-progress-state-content-circle-a click_scroll" anchor=".item-8">
-<img src="https://lander.heomai.com/template-common/checkout1/images/no-2.png" />
+<img src="/template-common/checkout1/images/no-2.png" />
 </a>
 </div>
 <div class="main-container-progress-state-content-step-title">
@@ -271,7 +258,7 @@
 <div class="main-container-progress-state-content">
 <div class="main-container-progress-state-content-circle">
 <a class="main-container-progress-state-content-circle-a click_scroll" anchor=".shipping_information_block">
-<img src="https://lander.heomai.com/template-common/checkout1/images/no-3.png" />
+<img src="/template-common/checkout1/images/no-3.png" />
 </a>
 </div>
 <div class="main-container-progress-state-content-step-title">
@@ -283,7 +270,7 @@
 <div class="main-container-progress-state-content">
 <div class="main-container-progress-state-content-circle">
 <a class="main-container-progress-state-content-circle-a click_scroll" anchor=".place_order_block">
-<img src="https://lander.heomai.com/template-common/checkout1/images/no-4.png" />
+<img src="/template-common/checkout1/images/no-4.png" />
 </a>
 </div>
 <div class="main-container-progress-state-content-step-title">
@@ -296,18 +283,18 @@
 <div class="product-content">
 <div class="checkout-security">
 <div class="checkout-security-title">
-<img class="checkout-security-title-img" src="https://lander.heomai.com/template-common/checkout1/images/secure-checkout.png" />
+<img class="checkout-security-title-img" src="/template-common/checkout1/images/secure-checkout.png" />
 <div class="checkout-security-title-font">
  @lang('onebuy::app.product.order.Secure Checkout') </div>
 </div>
-<img class="checkout-security-img" src="https://lander.heomai.com/template-common/checkout1/images/secure-icons.png?v=1111" />
+<img class="checkout-security-img" src="/template-common/checkout1/images/secure-icons.png?v=1111" />
 </div>
 <div class="product-list js-list">
     <?php foreach($package_products as $key=>$package_product) { ?>
     <div data-id="<?php echo $package_product['id'];?>" class="list-item js-list-item item-<?php echo $key+5;?><?php if($key==0) { ?> list-item--checked <?php } ?>" style="order: 0;">
         <?php if($key==0) { ?>
         <div class="recommend_deal" style="display:flex;">
-            <img class="recommend_deal_img" src="https://lander.heomai.com/template-common/checkout1/images/star.png">
+            <img class="recommend_deal_img" src="/template-common/checkout1/images/star.png">
             <div class="recommend_deal_font">
              @lang('onebuy::app.product.order.RECOMMENDED DEAL') </div>
         </div>
@@ -338,11 +325,11 @@
             }
         </style>
         <div class="tip_wrapper tip1_wrapper_0">
-            <img src="https://lander.heomai.com/template-common/checkout1/images/checkmark.png">
+            <img src="/template-common/checkout1/images/checkmark.png">
             <div class="tip1 js-tip1"><?php echo $package_product['tip1'];?></div>
         </div>
         <div class="tip_wrapper tip2_wrapper_0">
-            <img src="https://lander.heomai.com/template-common/checkout1/images/checkmark.png">
+            <img src="/template-common/checkout1/images/checkmark.png">
             <div class="tip1 js-tip1"><?php echo $package_product['tip2'];?></div>
         </div>
         </div>
@@ -391,7 +378,7 @@ $('#checkout-block-up').on('click', function() {
 <div class="checkout-title">
 <div class="checkout-title-font">
 @lang('onebuy::app.product.order.Credit Card Information'): </div>
-<img src="https://lander.heomai.com/template-common/checkout1/images/paypal_creditcard_images_jcb.png" />
+<img src="/template-common/checkout1/images/paypal_creditcard_images_jcb.png" />
 </div>
 <div id="cc-form" style="display:none">
 <div id="card-number-cc" class="pay_cc"></div>
@@ -433,13 +420,13 @@ $('#checkout-block-up').on('click', function() {
  @lang('onebuy::app.product.order.SAFE')</span>
  @lang('onebuy::app.product.order.CHECKOUT') </div>
 </div>
-<img class="payment-img" src="https://lander.heomai.com/template-common/checkout1/images/gsc-en.png?v=111" />
+<img class="payment-img" src="/template-common/checkout1/images/gsc-en.png?v=111" />
 </div>
 <div class="shipping-block" style="max-width:512px;">
 <div class="shipping-title">
 @lang('onebuy::app.product.order.Shipping')</div>
 <div class="shipping-tip">
-@lang('onebuy::app.product.order.Enter your contact information'):
+@lang('onebuy::app.product.order.Enter your contact information').
 </div>
 <div class="shipping-info-form">
 <form>
@@ -593,11 +580,11 @@ I agree with the <a href="/onebuy/page/refund-policy?locale={{ app()->getLocale(
  @lang('onebuy::app.product.order.Privacy Policy') </a>
 . </div>
 <div class="guarantee-block">
-<img class="guarantee-img" src="https://lander.heomai.com/template-common/checkout1/images/warranty-30days.png" />
+<img class="guarantee-img" src="/template-common/checkout1/images/warranty-30days.png" />
 <div class="guarantee-font">
 <div class="guarantee-tip">
 <strong>
-@lang('onebuy::app.product.order.30 DAY GUARANTEE'):
+ @lang('onebuy::app.product.order.30 DAY GUARANTEE'):
 </strong>
  @lang('onebuy::app.product.order.Hatmeo offers 30')</div>
 </div>
@@ -607,7 +594,7 @@ I agree with the <a href="/onebuy/page/refund-policy?locale={{ app()->getLocale(
 </div>
 </div>
 </div>
-
+<div id="big_img_url" big_url="" style="display:none;"></div>
 <style type="text/css">
         #accordion {
             border-bottom-color: rgb(0, 0, 0);
@@ -728,7 +715,7 @@ I agree with the <a href="/onebuy/page/refund-policy?locale={{ app()->getLocale(
     <div class="shipping-title" style="padding-top:10px;">
 @lang('onebuy::app.product.step.Payment')</div>
 <div class="shipping-tip">
-@lang('onebuy::app.product.order.All transactions are secure and encrypted'):
+@lang('onebuy::app.product.order.All transactions are secure and encrypted').
 </div>
 
 @include("onebuy::payments")
@@ -745,7 +732,7 @@ I agree with the <a href="/onebuy/page/refund-policy?locale={{ app()->getLocale(
 . </div>
 
 <div class="guarantee-block">
-<img class="guarantee-img" src="https://lander.heomai.com/template-common/checkout1/images/warranty-30days.png" />
+<img class="guarantee-img" src="/template-common/checkout1/images/warranty-30days.png" />
 <div class="guarantee-font">
 <div class="guarantee-tip">
 <strong>
@@ -758,7 +745,7 @@ Hatmeo offers a 30 day guarantee on all unused purchases. Simply send the item(s
 </div>
 </div>
 </div>
-<script type="text/javascript" src="https://lander.heomai.com/template-common/js/myFoldpanel.js"></script>
+<script type="text/javascript" src="/template-common/js/myFoldpanel.js"></script>
 
 
 <link rel="stylesheet" type="text/css" href="/checkout/v1/app/desktop/css/main.css?v=1704676786" />
@@ -791,7 +778,7 @@ Hatmeo offers a 30 day guarantee on all unused purchases. Simply send the item(s
 
                         <div class="step-title">
 
-                             @lang('onebuy::app.product.order.What customers are saying about') Hatmeo <?php echo $product['name']; ?>
+                             @lang('onebuy::app.product.order.What customers are saying about')
                         </div>
 
                         <hr class="mt-2">
@@ -890,19 +877,18 @@ Hatmeo offers a 30 day guarantee on all unused purchases. Simply send the item(s
 <div class="comment-img">
 <img alt="product image" src="{{ $productBaseImage['small_image_url'] }}">
 </div>
-<div class="comment-desc">
-<div class="comment-details">
-<span class="comment-firstName">firstName</span>
-<span class="comment-lastName">lastName</span>
-. from
-<span class="comment-location">location</span>
-<br/>
-just purchased:
-<strong class="comment-productName">product name</strong>
-</div>
-<div class="comment-time">
- @lang('onebuy::app.product.order.JUST NOW') </div>
-</div>
+    <div class="comment-desc">
+        <div class="comment-details">
+            <span class="comment-firstName">firstName</span>
+            <span class="comment-lastName">lastName</span>
+        . from
+            <span class="comment-location">location</span>
+        <br/>
+        just purchased:
+        <strong class="comment-productName">product name</strong>
+        </div>
+        <div class="comment-time">@lang('onebuy::app.product.order.JUST NOW') </div>
+    </div>
 </div>
 </div>
 <div class="loading-box" id="loading">
@@ -1050,11 +1036,20 @@ just purchased:
                 }, 5400)
             }
         }
+        window.mobileCheck = function() {
+            let check = false;
+            (function(a){if(/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino/i.test(a)||/1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(a.substr(0,4))) check = true;})(navigator.userAgent||navigator.vendor||window.opera);
+            return check;
+        };
 
-        setComment(comment_setting)
-        var commentInterval = setInterval(function() {
-            setComment(comment_setting), /Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) && clearInterval(commentInterval)
-        }, 15000000 + 5400)
+        if(window.mobileCheck==false) {
+            setComment(comment_setting)
+            var commentInterval = setInterval(function() {
+                setComment(comment_setting), /Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) && clearInterval(commentInterval)
+            }, 15000000 + 5400)
+        }
+
+        
     </script>
 <script>
         function getSelectProduct() {
@@ -1223,12 +1218,13 @@ just purchased:
     function setAttributeTemplate(select_language, select_language_after, has_img_attribute_id, is_more_attribute, template, attribute_err_language) {
         var product_attributes = JSON.parse(JSON.stringify(window.product_attributes));
         
-        //console.log(product_attributes);
+        console.log(product_attributes);
         var product_template = '<div class="attribute-item">';
         if(is_more_attribute) {
             product_template += '<div class="attribute-item-title">{article}</div>';
         }
         var show_image = '';
+        var show_large_image = '';
 
         for (var i = 0; i < product_attributes.length; i++) {
             var product_attribute = product_attributes[i];
@@ -1244,6 +1240,9 @@ just purchased:
             product_template += '<select class="attribute-value-item-select attribute_select" onchange="attributeChange(this, '+(product_attribute.id == has_img_attribute_id)+', '+"'"+template+"'"+')" '+(product_attribute.id==has_img_attribute_id? ' data-has-img="true"' : '' )+'>';
             if(product_attribute.id == has_img_attribute_id && !product_attribute.selected_option_id) {
                 show_image = product_attribute.options[0].image;
+                show_large_image = product_attribute.options[0].large_image;
+                console.log("img 0");
+                console.log(product_attribute.options[0]);
             }
                 
             for(var j=0; j<product_attribute.options.length; j++) {
@@ -1251,8 +1250,12 @@ just purchased:
                 product_template += '<option value="'+product_attribute_option.name+'" '+ (product_attribute_option.id==product_attribute.selected_option_id? 'selected' : '') +' url="'+product_attribute_option.image+'" '+ (product_attribute_option.is_sold_out ? ' data-is-sold-out="true" ' : '')+'>'+product_attribute_option.name+'</option>';
                 if(product_attribute_option.id==product_attribute.selected_option_id && product_attribute.id == has_img_attribute_id) {
                     show_image = product_attribute_option.image;
+                    show_large_image = product_attribute_option.large_image;
+                    console.log("img 2");
+                    console.log(product_attribute_option);
                 }
             }
+            console.log("large_image" + show_large_image)
                 
             product_template += '</select>';
             if(template == 'common15') {
@@ -1261,7 +1264,9 @@ just purchased:
             product_template += '</div>';
 
             if(product_attribute.id == has_img_attribute_id && show_image) {
-                product_template += '<div class="img-wrapper"><img src="'+ show_image +'" /></div>'
+                
+                
+                product_template += '<div class="img-wrapper" onclick="showImgProp(&quot;'+ show_image +'&quot;)"><img src="'+ show_image +'" /></div>'
             }
         }
         //console.log(product_template);
@@ -1313,8 +1318,9 @@ function attributeChange(target, is_img_attribute, template) {
     }
     if(is_img_attribute) {
         var attribute_img = $(target).find('option:selected').attr('url');
-    
+        $("#big_img_url").attr("big_url", attribute_img);
         $(target).parent().next().find('img').attr('src', attribute_img);
+        
     }
 }
 
@@ -2605,5 +2611,19 @@ function GotoNotRequest(url) {
             });
 
     </script>
+    <!-- Facebook Pixel Code -->
+<script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '410784348009950');
+    fbq('track', 'PageView');
+    fbq('track', 'ViewContent');
+  </script>
 </body>
 </html>
