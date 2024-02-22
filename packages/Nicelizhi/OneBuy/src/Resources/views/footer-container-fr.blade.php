@@ -22,7 +22,7 @@
 </style>
 <script>
 			$(document).ready(function(){
-				$(".ajax").colorbox();
+				$(".ajax").colorbox({width:"90%"});
 			});
 		</script>
 <div class="phone-block">
