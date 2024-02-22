@@ -41,7 +41,7 @@
             <a class='ajax' href="/onebuy/page/Impressum?locale=<?php echo strtolower($default_country);?>" target="_blank" >Impressum</a>
     </div>
     <div class="dmca_logo">
-      <a href="//www.dmca.com/Protection/Status.aspx?ID=12ec7509-f986-41d6-81e0-78ae55efbf30" title="DMCA.com Protection Status" class="dmca-badge" target="_blank"> <img src ="https://images.dmca.com/Badges/dmca_protected_sml_120n.png?ID=12ec7509-f986-41d6-81e0-78ae55efbf30"  alt="DMCA.com Protection Status" /></a>  <script src="https://images.dmca.com/Badges/DMCABadgeHelper.min.js"> </script>
+    <img src ="https://img.funnelish.com/3947/36340/1662477222-dmca.png"  alt="DMCA.com Protection Status" />
     </div>
 
     

@@ -227,6 +227,10 @@ class ProductV2Controller extends Controller
             $product_category_id = intval($product_category);
         }
 
+        // $productViewHelper = new \Webkul\Product\Helpers\ConfigurableOption();
+        // $attributes = $productViewHelper->getConfigurationConfig($product);
+        // var_dump($attributes);
+
         if(empty($product_attributes)) {
 
             $productViewHelper = new \Webkul\Product\Helpers\ConfigurableOption();

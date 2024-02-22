@@ -26,11 +26,9 @@
                             </div>
                             <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
                                 <div class="panel-body">
-                                    <p>
-                                    <div>
+                                    <div style="margin:10px;">
                                         @lang('onebuy::app.product.payment.klarna.description')
                                     </div>
-                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -59,11 +57,9 @@
                             </div>
                             <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
                                 <div class="panel-body">
-                                    <p>
-                                    <div>
+                                    <div style="margin:10px;">
                                         @lang('onebuy::app.product.payment.paypal.description')
                                     </div>
-                                    </p>
                                 </div>
                             </div>
                         </div>

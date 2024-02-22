@@ -19,10 +19,10 @@ return [
         'complete_secure_purchase' => 'Jetzt bezahlen',
         ],
         'step' => [
-            'Select Quantity' => 'Wählen Sie die Menge',
-            'Payment' => 'Zahlung',
-            'Shipping Information' => 'Versand',
-            'Place Order' => 'Bestellung aufgeben',
+            'Select Quantity' => 'Produkt',
+            'Payment' => 'Attribute',
+            'Shipping Information' => 'Lieferanschrift',
+            'Place Order' => 'Zahlung',
         ],
         "order" => [
             'Express Checkout' => 'Express-Kaufabwicklung',

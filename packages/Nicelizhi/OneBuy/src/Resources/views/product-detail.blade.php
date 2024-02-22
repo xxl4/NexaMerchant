@@ -186,6 +186,10 @@
 <body>
 <div class="smb-body">
 <div class="header-container">
+<div class="header-container-title">
+<div class="header-container-title-content tc select_quantity_block" style="display: none;"></div>
+
+</div>
 <div class="header-container-bg"></div>
 <style>
     .header-container-bg {
@@ -352,7 +356,7 @@
     </div>
 </div>
 </div>
-<div class="shipping-and-payment-wrapper">
+<div class="shipping-and-payment-wrapper shipping_information_block">
 <div class="shipping-and-payment">
     <br />
     <br />
@@ -414,7 +418,7 @@ $('#checkout-block-up').on('click', function() {
 </form>
 </div>
 </div>
-<div class="split-line-safe shipping_information_block">
+<div class="split-line-safe">
 <div class="split-line-safe-content">
  @lang('onebuy::app.product.order.GUARANTEED')<span style="color: #00d2be;">
  @lang('onebuy::app.product.order.SAFE')</span>
@@ -486,7 +490,7 @@ Apt / Suite / Other </label>
 <label class="shipping-info-label">
 @lang('onebuy::app.product.order.Country') </label>
 </div>
-<div class="shipping-info-flex place_order_block">
+<div class="shipping-info-flex">
 <div class="shipping-info-item shipping-info-flex-half">
 <select class="shipping-info-select" name="state" id="state-select"></select>
 <label id="state-error" class="shipping-info-error">
@@ -712,7 +716,7 @@ I agree with the <a href="/onebuy/page/refund-policy?locale={{ app()->getLocale(
 		<script src="http://libs.useso.com/js/html5shiv/3.7/html5shiv.min.js"></script>
 	<![endif]-->
 
-    <div class="shipping-title" style="padding-top:10px;">
+    <div class="shipping-title place_order_block" style="padding-top:10px;">
 @lang('onebuy::app.product.step.Payment')</div>
 <div class="shipping-tip">
 @lang('onebuy::app.product.order.All transactions are secure and encrypted').
@@ -738,7 +742,7 @@ I agree with the <a href="/onebuy/page/refund-policy?locale={{ app()->getLocale(
 <strong>
 @lang('onebuy::app.product.order.30 DAY GUARANTEE'):
 </strong>
-Hatmeo offers a 30 day guarantee on all unused purchases. Simply send the item(s) back to us in the original packaging for a full refund or replacement, less S&H. </div>
+@lang('onebuy::app.product.order.Hatmeo offers 30')</div>
 </div>
 </div>
 </div>
@@ -826,7 +830,7 @@ Hatmeo offers a 30 day guarantee on all unused purchases. Simply send the item(s
 
 <div class="h2 text-center mb-4" style="font-family: oswald;">
 
-     @lang('onebuy::app.product.order.What customers are saying about')
+     @lang('onebuy::app.product.order.Frequently Asked Questions')
 
 </div>
 
@@ -1103,7 +1107,7 @@ Hatmeo offers a 30 day guarantee on all unused purchases. Simply send the item(s
             })
 
             $(this).addClass('list-item--checked');
-            showAttributeSelecet('Itme');
+            showAttributeSelecet('@lang('onebuy::app.product.order.Item')');
             changeOrderSummary();
         })
 
@@ -1217,8 +1221,11 @@ Hatmeo offers a 30 day guarantee on all unused purchases. Simply send the item(s
 <script>
     function setAttributeTemplate(select_language, select_language_after, has_img_attribute_id, is_more_attribute, template, attribute_err_language) {
         var product_attributes = JSON.parse(JSON.stringify(window.product_attributes));
-        
-        console.log(product_attributes);
+        // console.log("product_attributes");
+        // console.log(product_attributes);
+        // console.log(select_language);
+        // //console.log(product_attribute.name);
+        // console.log(select_language_after);
         var product_template = '<div class="attribute-item">';
         if(is_more_attribute) {
             product_template += '<div class="attribute-item-title">{article}</div>';
@@ -1229,7 +1236,7 @@ Hatmeo offers a 30 day guarantee on all unused purchases. Simply send the item(s
         for (var i = 0; i < product_attributes.length; i++) {
             var product_attribute = product_attributes[i];
             product_template += '<div class="attribute_item_wrapper">';
-            product_template += '<div class="attribute-value-item-title">'+select_language+' ' + (product_attribute.name || '') + select_language_after;
+            product_template += '<div class="attribute-value-item-title">'+select_language+' ' + (product_attribute.label || '') + select_language_after;
             
             if(product_attribute.tip) {
                 product_template += ' <span style="text-decoration: underline;font-size: 14px;cursor:pointer;color:#0000ff;" onclick="showImgProp(&quot;'+"/storage/"+product_attribute.tip_img+'&quot;)">'+product_attribute.tip+'</span>'
@@ -1379,11 +1386,20 @@ function showImgProp(img) {
 }
 
 $(document).ready(function(){
-    $(".show_big_img").on("click",function(){
+    $(".show_big_img").click(function(){
+        console.log("click...");
         img = $(this).attr('src');
         console.log(img);
         showImgProp(img)
-    })
+    });
+
+    $(document).on("click",".show_big_img",function(){
+        console.log("click...");
+        img = $(this).attr('src');
+        console.log(img);
+        showImgProp(img)
+    });
+
 });
 
 
@@ -2469,6 +2485,9 @@ function GotoNotRequest(url) {
                 n = $(this).attr("target"),
                 o = $(this).attr("anchor");
             if (r && r.match(/({\[(\s|\S)*?\]})/g) && e.preventDefault(), !t.length) {
+                console.log("click scroll");
+                console.log(r)
+                console.log(o)
                 if (o && "#" === o[0] || "." === o[0]) {
                     var l = $(o);
                     if (l.length) {
