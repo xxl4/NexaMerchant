@@ -1266,7 +1266,7 @@ Hatmeo offers a 30 day guarantee on all unused purchases. Simply send the item(s
             if(product_attribute.id == has_img_attribute_id && show_image) {
                 
                 
-                product_template += '<div class="img-wrapper" onclick="showImgProp(&quot;'+ show_image +'&quot;)"><img src="'+ show_image +'" /></div>'
+                product_template += '<div class="img-wrapper"><img src="'+ show_image +'" class="show_big_img" /></div>'
             }
         }
         //console.log(product_template);
@@ -1374,6 +1374,21 @@ function GetRequest() {
 
 function showImgProp(img) {
     //console.log('showImgProp');
+    document.getElementById('prop-img').src = img;
+    document.getElementById('img-prop').style.display = 'block';
+}
+
+$(document).ready(function(){
+    $(".show_big_img").on("click",function(){
+        img = $(this).attr('src');
+        console.log(img);
+        showImgProp(img)
+    })
+});
+
+
+function showImgProp2(){
+    img = $(this).attr("img");
     document.getElementById('prop-img').src = img;
     document.getElementById('img-prop').style.display = 'block';
 }
