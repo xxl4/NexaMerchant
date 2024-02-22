@@ -287,7 +287,7 @@
 <div class="checkout-security-title-font">
  @lang('onebuy::app.product.order.Secure Checkout') </div>
 </div>
-<img class="checkout-security-img" src="/template-common/checkout1/images/secure-icons.png?v=1112" />
+<img class="checkout-security-img" src="/template-common/checkout1/images/secure-icons.png?v=1113" />
 </div>
 <div class="product-list js-list">
     <?php foreach($package_products as $key=>$package_product) { ?>
