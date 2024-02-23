@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Log;
 
 use Webkul\Sales\Repositories\OrderRepository;
 use Webkul\Sales\Repositories\OrderCommentRepository;
-use Webkul\Admin\DataGrids\Sales\OrderDataGrid;
+use Illuminate\Support\Facades\Cache;
 
 use Nicelizhi\Shopify\Models\ShopifyOrder;
 use Nicelizhi\Shopify\Models\ShopifyStore;
@@ -21,7 +21,7 @@ class PostCannelOrder extends Command
      *
      * @var string
      */
-    protected $signature = 'shopify:order:post:cannel';
+    protected $signature = 'shopify:order:post:pending';
 
     /**
      * The console command description.
@@ -45,8 +45,6 @@ class PostCannelOrder extends Command
         protected OrderCommentRepository $orderCommentRepository
     )
     {
-        $this->shopify_store_id = "hatmeo";
-        $this->shopify_store_id = "wmbracom";
         $this->shopify_store_id = config('shopify.shopify_store_id');
         $this->lang = config('shopify.store_lang');
         parent::__construct();
@@ -61,7 +59,12 @@ class PostCannelOrder extends Command
     {
 
 
-        $shopifyStore = $this->ShopifyStore->where('shopify_store_id', $this->shopify_store_id)->first();
+        $shopifyStore = Cache::get("shopify_store_".$this->shopify_store_id);
+
+        if(empty($shopifyStore)){
+            $shopifyStore = $this->ShopifyStore->where('shopify_store_id', $this->shopify_store_id)->first();
+            Cache::put("shopify_store_".$this->shopify_store_id, $shopifyStore, 3600);
+        }
 
         if(is_null($shopifyStore)) {
             $this->error("no store");
@@ -69,6 +72,7 @@ class PostCannelOrder extends Command
         }
 
         $lists = Order::where(['status'=>'pending'])->orderBy("updated_at", "desc")->limit(10)->get();
+        $lists = Order::where(['id'=>'2749'])->orderBy("updated_at", "desc")->limit(10)->get();
 
         foreach($lists as $key=>$list) {
             $this->info("start post order " . $list->id);
@@ -76,9 +80,6 @@ class PostCannelOrder extends Command
             $this->syncOrderPrice($list); // sync price to system
             //exit;
         }
-
-
-        
     }
 
     /**
@@ -244,14 +245,6 @@ class PostCannelOrder extends Command
         ];
         $postOrder['current_subtotal_price_set'] = $current_subtotal_price_set;
 
-
-
-        // $total_shipping_price_set = [];
-        // $shop_money = [];
-        // $shop_money['amount'] = $order->shipping_amount;
-        // $shop_money['currency_code'] = $order->order_currency_code;
-        // $total_shipping_price_set['shop_money'] = $shop_money;
-        // $total_shipping_price_set['presentment_money'] = $shop_money;
 
         $total_shipping_price_set = [
             "shop_money" => [
