@@ -842,7 +842,7 @@ Hatmeo offers a 30 day guarantee on all unused purchases. Simply send the item(s
 
 <div class="h2 text-center mb-4" style="font-family: oswald;">
 
-     @lang('onebuy::app.product.order.What customers are saying about')
+     @lang('onebuy::app.product.order.Frequently Asked Questions')
 
 </div>
 
