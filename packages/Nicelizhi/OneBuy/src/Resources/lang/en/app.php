@@ -64,7 +64,7 @@ return [
             'Subtotal' => 'Subtotal',
             '30 DAY GUARANTEE' => '30 DAY GUARANTEE',
             'What customers are saying about' => 'What customers are saying about',
-            'Frequently Asked Questions' => 'Frequently Asked Questions',
+            'Frequently Asked Questions' => 'Answers to Common Questions',
             'JUST NOW' => 'JUST NOW',
             'COMPLETE SECURE PURCHASE' => 'COMPLETE SECURE PURCHASE',
             'Item' => 'Item',
