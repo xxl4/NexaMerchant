@@ -18,7 +18,7 @@
         <meta http-equiv="content-language" content="{{ app()->getLocale() }}">
         <link 
                 type="image/x-icon"
-                href="/storage/configuration/kXMSPSveA3eaK1w2RbcdiiIAv6OPs5UJRiaqANId.png" 
+                href="/favicon.png" 
                 rel="shortcut icon"
                 sizes="16x16"
             >
