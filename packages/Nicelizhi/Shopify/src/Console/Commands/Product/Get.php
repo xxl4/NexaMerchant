@@ -66,10 +66,6 @@ class Get extends Command
         $this->shopify_store_id = config('shopify.shopify_store_id');
         $this->lang = config('shopify.store_lang');
         $this->category_id = 9;
-
-        
-
-
         parent::__construct();
     }
 
@@ -80,12 +76,13 @@ class Get extends Command
      */
     public function handle()
     {
-        
         $shopify_pro_id = $this->option('prod_id');
         if(empty($shopify_pro_id)) {
             $this->error("prod id is empty");
             return false;
         }
+        $this->info($this->lang);
+        //exit;
 
         // locales
         $this->locales = core()->getAllLocales()->pluck('code')->toArray();
@@ -194,16 +191,16 @@ class Get extends Command
                 if(strpos($option['name'], "GRÖSSE")!==false) $attr_id = 24;
                 if(strpos($option['name'], "尺码") !==false) $attr_id = 24;
                 if(strpos($option['name'], "Length") !==false) $attr_id = 24;
+                if(strpos($option['name'], "größe") !==false) $attr_id = 24;
                 if(strpos($option['name'], "Color") !==false) $attr_id = 23;
                 if(strpos($option['name'], "color") !==false) $attr_id = 23;
                 if(strpos($option['name'], "Couleur") !==false) $attr_id = 23;
                 if(strpos($option['name'], "颜色") !==false) $attr_id = 23;
                 if(strpos($option['name'], "FARBE") !==false) $attr_id = 23;
-                //var_dump($option['name'], $attr_id); exit;
-                //if($option['position']==2) $attr_id = 24;
+                if(strpos($option['name'], "farbe") !==false) $attr_id = 23;
+
                 if(empty($attr_id)) {
-                    $this->error(json_encode($item));
-                    Log::info(json_encode($item));
+                    $this->error($option['name']);
                     $error = 1;
                     continue;
                     //exit;
