@@ -189,6 +189,7 @@ class Get extends Command
                 if(strpos($option['name'], "Size")!==false) $attr_id = 24;
                 if(strpos($option['name'], "size")!==false) $attr_id = 24;
                 if(strpos($option['name'], "GRÖSSE")!==false) $attr_id = 24;
+                if(strpos($option['name'], "grÖsse")!==false) $attr_id = 24;
                 if(strpos($option['name'], "尺码") !==false) $attr_id = 24;
                 if(strpos($option['name'], "Length") !==false) $attr_id = 24;
                 if(strpos($option['name'], "größe") !==false) $attr_id = 24;
