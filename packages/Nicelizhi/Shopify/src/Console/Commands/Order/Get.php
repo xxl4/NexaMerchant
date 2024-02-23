@@ -11,6 +11,7 @@ use Webkul\Sales\Repositories\OrderCommentRepository;
 use Webkul\Admin\DataGrids\Sales\OrderDataGrid;
 use Webkul\Sales\Repositories\ShipmentRepository;
 use Webkul\Sales\Repositories\OrderItemRepository;
+use Illuminate\Support\Facades\Cache;
 
 
 use Nicelizhi\Shopify\Models\ShopifyOrder;
@@ -75,7 +76,14 @@ class Get extends Command
 
             $client = new Client();
 
-            $shopifyStore = $this->ShopifyStore->where('shopify_store_id', $this->shopify_store_id)->first();
+            $shopifyStore = Cache::get("shopify_store_".$this->shopify_store_id);
+
+            if(empty($shopifyStore)){
+                $shopifyStore = $this->ShopifyStore->where('shopify_store_id', $this->shopify_store_id)->first();
+                Cache::put("shopify_store_".$this->shopify_store_id, $shopifyStore, 3600);
+            }
+
+            
 
             if(is_null($shopifyStore)) {
                 $this->error("no store");

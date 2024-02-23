@@ -1,5 +1,4 @@
 <?php
-
 namespace Nicelizhi\Shopify\Console\Commands\Product;
 
 use Illuminate\Console\Command;
@@ -8,16 +7,13 @@ use Illuminate\Support\Facades\Log;
 use Webkul\Attribute\Repositories\AttributeFamilyRepository;
 use Webkul\Inventory\Repositories\InventorySourceRepository;
 use Webkul\Product\Repositories\ProductRepository;
-use Webkul\Product\Repositories\ProductAttributeValueRepository;
-use Webkul\Product\Repositories\ProductDownloadableLinkRepository;
-use Webkul\Product\Repositories\ProductDownloadableSampleRepository;
-use Webkul\Product\Repositories\ProductInventoryRepository;
 use Webkul\Attribute\Models\AttributeOption;
 use Webkul\Attribute\Models\AttributeOptionTranslation;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Storage;
 use Webkul\Product\Models\ProductImage;
 use Nicelizhi\Shopify\Models\ShopifyStore;
+use Illuminate\Support\Facades\Cache;
 
 class GetV2 extends Command
 {
@@ -97,7 +93,12 @@ class GetV2 extends Command
 
         $client = new Client();
 
-        $shopifyStore = $this->ShopifyStore->where('shopify_store_id', $this->shopify_store_id)->first();
+        $shopifyStore = Cache::get("shopify_store_".$this->shopify_store_id);
+
+        if(empty($shopifyStore)){
+            $shopifyStore = $this->ShopifyStore->where('shopify_store_id', $this->shopify_store_id)->first();
+            Cache::put("shopify_store_".$this->shopify_store_id, $shopifyStore, 3600);
+        }
 
         //var_dump($shopifyStore);exit;
 

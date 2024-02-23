@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Log;
 
 use Webkul\Sales\Repositories\OrderRepository;
 use Webkul\Sales\Repositories\OrderCommentRepository;
-use Webkul\Admin\DataGrids\Sales\OrderDataGrid;
+use Illuminate\Support\Facades\Cache;
 
 use Nicelizhi\Shopify\Models\ShopifyOrder;
 use Nicelizhi\Shopify\Models\ShopifyStore;
@@ -60,8 +60,13 @@ class Post extends Command
     public function handle()
     {
 
+        $shopifyStore = Cache::get("shopify_store_".$this->shopify_store_id);
 
-        $shopifyStore = $this->ShopifyStore->where('shopify_store_id', $this->shopify_store_id)->first();
+        if(empty($shopifyStore)){
+            $shopifyStore = $this->ShopifyStore->where('shopify_store_id', $this->shopify_store_id)->first();
+            Cache::put("shopify_store_".$this->shopify_store_id, $shopifyStore, 3600);
+        }
+
 
         if(is_null($shopifyStore)) {
             $this->error("no store");
