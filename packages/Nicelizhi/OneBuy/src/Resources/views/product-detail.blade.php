@@ -330,11 +330,11 @@
         </style>
         <div class="tip_wrapper tip1_wrapper_0">
             <img src="/template-common/checkout1/images/checkmark.png">
-            <div class="tip1 js-tip1"><?php echo $package_product['tip1'];?></div>
+            <div class="tip1 js-tip1"><?php echo $package_product['tip1'];?>@lang("onebuy::app.product.Savings")</div>
         </div>
         <div class="tip_wrapper tip2_wrapper_0">
             <img src="/template-common/checkout1/images/checkmark.png">
-            <div class="tip1 js-tip1"><?php echo $package_product['tip2'];?></div>
+            <div class="tip1 js-tip1"><?php echo $package_product['tip2'];?>@lang("onebuy::app.product.piece")</div>
         </div>
         </div>
     </div>
