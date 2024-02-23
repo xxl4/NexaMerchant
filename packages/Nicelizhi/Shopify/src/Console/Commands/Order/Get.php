@@ -99,7 +99,7 @@ class Get extends Command
             $processed_at_max = date("c");
             $this->info("processed at min ". $processed_at_min);
             // 5585627676902
-            $base_url = $shopify['shopify_app_host_name'].'/admin/api/2023-10/orders.json?status=any&processed_at_min='.$processed_at_min.'&processed_at_max='.$processed_at_max.'&limit=250';
+            $base_url = $shopify['shopify_app_host_name'].'/admin/api/2023-10/orders.json?status=any&updated_at_min='.$processed_at_min.'&updated_at_max='.$processed_at_max.'&limit=250';
             //$base_url = $shopify['shopify_app_host_name'].'/admin/api/2023-10/orders.json?fulfillment_status=unshipped&limit=250';
             //$base_url = $shopify['shopify_app_host_name'].'/admin/api/2023-10/orders.json?ids=5585627676902';
             $response = $client->get($base_url, [
@@ -219,20 +219,10 @@ class Get extends Command
                 $shopifyNewOrder->shipping_address = $item['shipping_address'];
                 $shopifyNewOrder->shipping_lines = $item['shipping_lines'];
 
-                //var_dump($shopifyNewOrder);exit;
-
-                //var_dump($shopifyNewOrder);
-
-
                 $shopifyNewOrder->save();
 
 
-                // sync to local software
                 if($item['fulfillment_status']=='fulfilled' && $shopifyNewOrder->order_id!=0) {
-
-
-                    //var_dump($item['fulfillments']);
-                    //var_dump($shopifyNewOrder->order_id);
 
                     $orderId = $shopifyNewOrder->order_id;
                     $this->info("shipping order id ". $orderId);
@@ -274,7 +264,7 @@ class Get extends Command
             
                         $skuInfo = explode('-', $sku['product_sku']);
                         if(!isset($skuInfo[1])) {
-                            $this->error("have error" . $id);
+                            $this->error("have error" . $item['id']);
                             return false;
                         }
             
@@ -314,17 +304,10 @@ class Get extends Command
                     $data = [];
                     //$data['shipment']
                     $data['shipment'] = $shipment;
-                    //var_dump($data, $orderId);
-
-                    //var_dump($data, $orderId, $item['fulfillments'][0]['line_items']); exit;
 
                     $response = $this->shipmentRepository->create(array_merge($data, [
                         'order_id' => $orderId,
                     ]));
-
-                    //var_dump($response);
-
-                    //exit;
 
 
 
@@ -339,80 +322,7 @@ class Get extends Command
                 }
 
                 $i++;
-            }
-
-
-
-
-
-            
+            }            
         }
-    }
-
-    /**
-     * Checks if requested quantity available or not.
-     *
-     * @param  array  $data
-     * @return bool
-     */
-    public function isInventoryValidate(&$data)
-    {
-        if (!isset($data['shipment']['items'])) {
-            return;
-        }
-
-        $valid = false;
-
-        $inventorySourceId = $data['shipment']['source'];
-
-        foreach ($data['shipment']['items'] as $itemId => $inventorySource) {
-            $qty = $inventorySource[$inventorySourceId];
-
-            if ((int) $qty) {
-                $orderItem = $this->orderItemRepository->find($itemId);
-
-                if ($orderItem->qty_to_ship < $qty) {
-                    return false;
-                }
-
-                if ($orderItem->getTypeInstance()->isComposite()) {
-                    foreach ($orderItem->children as $child) {
-                        if (!$child->qty_ordered) {
-                            continue;
-                        }
-
-                        $finalQty = ($child->qty_ordered / $orderItem->qty_ordered) * $qty;
-
-                        $availableQty = $child->product->inventories()
-                            ->where('inventory_source_id', $inventorySourceId)
-                            ->sum('qty');
-
-                        if (
-                            $child->qty_to_ship < $finalQty
-                            || $availableQty < $finalQty
-                        ) {
-                            return false;
-                        }
-                    }
-                } else {
-                    $availableQty = $orderItem->product->inventories()
-                        ->where('inventory_source_id', $inventorySourceId)
-                        ->sum('qty');
-
-                    if (
-                        $orderItem->qty_to_ship < $qty
-                        || $availableQty < $qty
-                    ) {
-                        return false;
-                    }
-                }
-
-                $valid = true;
-            } else {
-                unset($data['shipment']['items'][$itemId]);
-            }
-        }
-
-        return $valid;
     }
 }
