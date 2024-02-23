@@ -25,8 +25,6 @@ return new class extends Migration
             $table->index("shopify_store_id");
             $table->index("shopify_order_id");
             $table->index("order_id");
-            $table->index(['shopify_store_id','shopify_order_id']);
-            $table->index(['order_id']);
         });
     }
 
