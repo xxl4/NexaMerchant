@@ -45,8 +45,8 @@
   fbq('track', 'ViewContent');
 </script>
 
-<script src="https://lander.heomai.com/template-common/js/frames-init.js"></script>
-<script src="https://lander.heomai.com/template-common/js/paypal-init.js"></script>
+<script src="/template-common/js/frames-init.js"></script>
+<script src="/template-common/js/paypal-init.js"></script>
 
 <?php if($app_env=='demo') { ?>
 <script src="https://checkout-demo.airwallex.com/assets/elements.bundle.min.js"></script>
@@ -56,10 +56,10 @@
 
 
 
-<link rel="stylesheet" href="https://lander.heomai.com/template-common/checkout1/css/font-awesome.min.css">
+<link rel="stylesheet" href="/template-common/checkout1/css/font-awesome.min.css">
 
-<link rel="stylesheet" href="https://lander.heomai.com/template-common/checkout6/css/order.css?v=12">
-<link rel="stylesheet" href="https://lander.heomai.com/template-common/checkout-common/css/order.css">
+<link rel="stylesheet" href="/template-common/checkout6/css/order.css?v=12">
+<link rel="stylesheet" href="/template-common/checkout-common/css/order.css">
 <style>
         body {
             font-family: "Poppins"
@@ -247,7 +247,7 @@
 <div class="main-container-progress-state-content">
 <div class="main-container-progress-state-content-circle">
 <a class="main-container-progress-state-content-circle-a click_scroll" anchor=".select_quantity_block">
-<img src="https://lander.heomai.com/template-common/checkout1/images/stick-gr-dk.png" />
+<img src="/template-common/checkout1/images/stick-gr-dk.png" />
 </a>
 </div>
 <div class="main-container-progress-state-content-step-title black">
@@ -259,7 +259,7 @@
 <div class="main-container-progress-state-content">
 <div class="main-container-progress-state-content-circle">
 <a class="main-container-progress-state-content-circle-a click_scroll" anchor=".item-8">
-<img src="https://lander.heomai.com/template-common/checkout1/images/no-2.png" />
+<img src="/template-common/checkout1/images/no-2.png" />
 </a>
 </div>
 <div class="main-container-progress-state-content-step-title">
@@ -271,7 +271,7 @@
 <div class="main-container-progress-state-content">
 <div class="main-container-progress-state-content-circle">
 <a class="main-container-progress-state-content-circle-a click_scroll" anchor=".shipping_information_block">
-<img src="https://lander.heomai.com/template-common/checkout1/images/no-3.png" />
+<img src="/template-common/checkout1/images/no-3.png" />
 </a>
 </div>
 <div class="main-container-progress-state-content-step-title">
@@ -283,7 +283,7 @@
 <div class="main-container-progress-state-content">
 <div class="main-container-progress-state-content-circle">
 <a class="main-container-progress-state-content-circle-a click_scroll" anchor=".place_order_block">
-<img src="https://lander.heomai.com/template-common/checkout1/images/no-4.png" />
+<img src="/template-common/checkout1/images/no-4.png" />
 </a>
 </div>
 <div class="main-container-progress-state-content-step-title">
@@ -296,18 +296,18 @@
 <div class="product-content">
 <div class="checkout-security">
 <div class="checkout-security-title">
-<img class="checkout-security-title-img" src="https://lander.heomai.com/template-common/checkout1/images/secure-checkout.png" />
+<img class="checkout-security-title-img" src="/template-common/checkout1/images/secure-checkout.png" />
 <div class="checkout-security-title-font">
  @lang('onebuy::app.product.order.Secure Checkout') </div>
 </div>
-<img class="checkout-security-img" src="https://lander.heomai.com/template-common/checkout1/images/secure-icons.png?v=1111" />
+<img class="checkout-security-img" src="/template-common/checkout1/images/secure-icons.png?v=1113" />
 </div>
 <div class="product-list js-list">
     <?php foreach($package_products as $key=>$package_product) { ?>
     <div data-id="<?php echo $package_product['id'];?>" class="list-item js-list-item item-<?php echo $key+5;?><?php if($key==0) { ?> list-item--checked <?php } ?>" style="order: 0;">
         <?php if($key==0) { ?>
         <div class="recommend_deal" style="display:flex;">
-            <img class="recommend_deal_img" src="https://lander.heomai.com/template-common/checkout1/images/star.png">
+            <img class="recommend_deal_img" src="/template-common/checkout1/images/star.png">
             <div class="recommend_deal_font">
              @lang('onebuy::app.product.order.RECOMMENDED DEAL') </div>
         </div>
@@ -341,11 +341,11 @@
             }
         </style>
         <div class="tip_wrapper tip1_wrapper_0">
-            <img src="https://lander.heomai.com/template-common/checkout1/images/checkmark.png">
+            <img src="/template-common/checkout1/images/checkmark.png">
             <div class="tip1 js-tip1"><?php echo $package_product['tip1'];?></div>
         </div>
         <div class="tip_wrapper tip2_wrapper_0">
-            <img src="https://lander.heomai.com/template-common/checkout1/images/checkmark.png">
+            <img src="/template-common/checkout1/images/checkmark.png">
             <div class="tip1 js-tip1"><?php echo $package_product['tip2'];?></div>
         </div>
         </div>
@@ -394,7 +394,7 @@ $('#checkout-block-up').on('click', function() {
 <div class="checkout-title">
 <div class="checkout-title-font">
 @lang('onebuy::app.product.order.Credit Card Information'): </div>
-<img src="https://lander.heomai.com/template-common/checkout1/images/paypal_creditcard_images_jcb.png" />
+<img src="/template-common/checkout1/images/paypal_creditcard_images_jcb.png" />
 </div>
 <div id="cc-form" style="display:none">
 <div id="card-number-cc" class="pay_cc"></div>
@@ -436,7 +436,7 @@ $('#checkout-block-up').on('click', function() {
  @lang('onebuy::app.product.order.SAFE')</span>
  @lang('onebuy::app.product.order.CHECKOUT') </div>
 </div>
-<img class="payment-img" src="https://lander.heomai.com/template-common/checkout1/images/gsc-en.png?v=111" />
+<img class="payment-img" src="/template-common/checkout1/images/gsc-en.png?v=111" />
 </div>
 <div class="shipping-block" style="max-width:512px;">
 <div class="shipping-title">
@@ -596,13 +596,13 @@ I agree with the <a href="/onebuy/page/refund-policy?locale={{ app()->getLocale(
  @lang('onebuy::app.product.order.Privacy Policy') </a>
 . </div>
 <div class="guarantee-block">
-<img class="guarantee-img" src="https://lander.heomai.com/template-common/checkout1/images/warranty-30days.png" />
+<img class="guarantee-img" src="/template-common/checkout1/images/warranty-30days.png" />
 <div class="guarantee-font">
 <div class="guarantee-tip">
 <strong>
 @lang('onebuy::app.product.order.30 DAY GUARANTEE'):
 </strong>
- @lang('onebuy::app.product.order.Hatmeo offers 30')</div>
+ <?php echo $brand;?> @lang('onebuy::app.product.order.Hatmeo offers 30')</div>
 </div>
 </div>
 </div>
@@ -748,7 +748,7 @@ I agree with the <a href="/onebuy/page/refund-policy?locale={{ app()->getLocale(
 . </div>
 
 <div class="guarantee-block">
-<img class="guarantee-img" src="https://lander.heomai.com/template-common/checkout1/images/warranty-30days.png" />
+<img class="guarantee-img" src="/template-common/checkout1/images/warranty-30days.png" />
 <div class="guarantee-font">
 <div class="guarantee-tip">
 <strong>
@@ -761,7 +761,7 @@ Hatmeo offers a 30 day guarantee on all unused purchases. Simply send the item(s
 </div>
 </div>
 </div>
-<script type="text/javascript" src="https://lander.heomai.com/template-common/js/myFoldpanel.js"></script>
+<script type="text/javascript" src="/template-common/js/myFoldpanel.js"></script>
 
 
 <link rel="stylesheet" type="text/css" href="/checkout/v1/app/desktop/css/main.css?v=1704676786" />
