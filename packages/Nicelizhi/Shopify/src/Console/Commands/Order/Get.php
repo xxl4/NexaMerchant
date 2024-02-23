@@ -322,6 +322,8 @@ class Get extends Command
                     $this->error($orderId. " cancel ". $result);
                 }
 
+                sleep(2);
+
                 $i++;
             }            
         }
