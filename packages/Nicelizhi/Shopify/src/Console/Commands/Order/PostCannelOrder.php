@@ -203,7 +203,7 @@ class PostCannelOrder extends Command
             ]
         ];
 
-        $postOrder['transactions'] = $transactions;
+        // $postOrder['transactions'] = $transactions;
 
         /**
          * 
