@@ -578,9 +578,9 @@ Apt / Suite / Other </label>
 <div class="summary-footer">
 <div class="agree-block">
 <input type="checkbox" checked>
-I agree with the <a href="/onebuy/page/refund-policy?locale={{ app()->getLocale() }}" class="ajax">
+I agree with the <a href="/onebuy/page/refund-policy?locale=<?php echo strtolower($default_country);?>" class="ajax">
  @lang('onebuy::app.product.order.Refund policy')  </a>
-& <a href="/onebuy/page/privacy-policy?locale={{ app()->getLocale() }}" class="ajax" >
+& <a href="/onebuy/page/privacy-policy?locale=<?php echo strtolower($default_country);?>" class="ajax" >
  @lang('onebuy::app.product.order.Privacy Policy') </a>
 . </div>
 <div class="guarantee-block">
