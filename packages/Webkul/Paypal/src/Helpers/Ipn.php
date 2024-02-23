@@ -2,6 +2,7 @@
 
 namespace Webkul\Paypal\Helpers;
 
+use Illuminate\Support\Facades\Log;
 use Webkul\Paypal\Payment\Standard;
 use Webkul\Sales\Repositories\OrderRepository;
 use Webkul\Sales\Repositories\InvoiceRepository;
@@ -47,6 +48,8 @@ class Ipn
     {
         $this->post = $post;
 
+        Log::info("ipn post".json_encode($this->post));
+
         if (! $this->postBack()) {
             return;
         }
@@ -86,14 +89,16 @@ class Ipn
      */
     protected function processOrder()
     {
-        if ($this->post['payment_status'] == 'Completed') {
-            if ($this->post['mc_gross'] != $this->order->grand_total) {
-                return;
-            } else {
-                $this->orderRepository->update(['status' => 'processing'], $this->order->id);
-
-                if ($this->order->canInvoice()) {
-                    $invoice = $this->invoiceRepository->create($this->prepareInvoiceData());
+        if(isset($this->post['payment_status'])) {
+            if ($this->post['payment_status'] == 'Completed') {
+                if ($this->post['mc_gross'] != $this->order->grand_total) {
+                    return;
+                } else {
+                    $this->orderRepository->update(['status' => 'processing'], $this->order->id);
+    
+                    if ($this->order->canInvoice()) {
+                        $invoice = $this->invoiceRepository->create($this->prepareInvoiceData());
+                    }
                 }
             }
         }
