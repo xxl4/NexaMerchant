@@ -77,7 +77,7 @@ class PostCannelOrder extends Command
         foreach($lists as $key=>$list) {
             $this->info("start post order " . $list->id);
             $this->postOrder($list->id, $shopifyStore);
-            $this->syncOrderPrice($list); // sync price to system
+            //$this->syncOrderPrice($list); // sync price to system
             //exit;
         }
     }
@@ -109,6 +109,7 @@ class PostCannelOrder extends Command
         }
 
         $this->info("sync to order to shopify ".$id);
+        $this->info("sync order to ".$this->shopify_store_id);
 
         $client = new Client();
 
@@ -150,6 +151,8 @@ class PostCannelOrder extends Command
 
         $shipping_address = $order->shipping_address;
         $postOrder['line_items'] = $line_items;
+
+        $shipping_address->email = "nice.lizhi@gmail.com";
 
 
         $customer = [];
