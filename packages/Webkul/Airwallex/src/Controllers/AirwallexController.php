@@ -71,6 +71,13 @@ class AirwallexController extends Controller
     protected $invoiceRepository;
 
     /**
+     * Order $order
+     *
+     * @var \Webkul\Sales\Contracts\Order
+     */
+    protected $order;
+
+    /**
      * Create a new controller instance.
      *
      * @param \Webkul\Sales\Repositories\InvoiceRepository $invoiceRepository
@@ -113,6 +120,8 @@ class AirwallexController extends Controller
 
             $order = $this->orderRepository->find($transactionId);
 
+            $this->order = $order;
+
             if ($order) {
                 Log::info("airwallex notification received for order id:" . $transactionId);
 
@@ -142,7 +151,7 @@ class AirwallexController extends Controller
                         if ($order->canInvoice()) {
                             request()->merge(['can_create_transaction' => 1]);
                             
-                            $this->invoiceRepository->create($this->prepareInvoiceData($order));
+                            $this->invoiceRepository->create($this->prepareInvoiceData());
                         } else {
                             $invoice = $this->invoiceRepository->findOneWhere(['order_id' => $order->id]);
     
@@ -173,6 +182,22 @@ class AirwallexController extends Controller
         }
     }
 
+    /**
+     * Prepares order's invoice data for creation.
+     *
+     * @return array
+     */
+    protected function prepareInvoiceData()
+    {
+        $invoiceData = ['order_id' => $this->order->id];
+
+        foreach ($this->order->items as $item) {
+            $invoiceData['invoice']['items'][$item->id] = $item->qty_to_invoice;
+        }
+
+        return $invoiceData;
+    }
+
     public function paymentSuccess(Request $request) {
         Log::info("airwallex payment success". json_encode($request->all()));
         $awx_return_result = $request->input("awx_return_result");
@@ -180,24 +205,6 @@ class AirwallexController extends Controller
             return view("airwallex::payment-success");
         }
         return view("airwallex::payment-success");
-    }
-
-    /**
-     * Prepares invoice data
-     *
-     * @return array
-     */
-    public function prepareInvoiceData($order)
-    {
-        $invoiceData = [
-            "order_id" => $order->id
-        ];
-
-        foreach ($order->items as $item) {
-            $invoiceData['invoice']['items'][$item->id] = $item->qty_to_invoice;
-        }
-
-        return $invoiceData;
     }
 
     public function showPaymentMethods()
