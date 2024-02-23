@@ -71,13 +71,6 @@ class AirwallexController extends Controller
     protected $invoiceRepository;
 
     /**
-     * Order $order
-     *
-     * @var \Webkul\Sales\Contracts\Order
-     */
-    protected $order;
-
-    /**
      * Create a new controller instance.
      *
      * @param \Webkul\Sales\Repositories\InvoiceRepository $invoiceRepository
