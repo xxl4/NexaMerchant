@@ -2047,7 +2047,7 @@ function GotoNotRequest(url) {
                 payment_method      : pay_type,
                 products            : products,
                 logo_image          : '',
-                brand               : 'Hatmeo',
+                brand               : '@lang("onebuy::app.product.brand")',
                 description         : product_info.product_name,
                 shopify_store_name  : '',
                 produt_amount_base  : '1',
