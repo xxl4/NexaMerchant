@@ -13,7 +13,7 @@ return new class extends Migration
     {
         //
         Schema::table('shopify_stores', function (Blueprint $table) {
-            $table->index('shopify_store_id');
+            $table->unique('shopify_store_id');
         });
         Schema::table('shopify_products', function (Blueprint $table) {
             $table->index('shopify_store_id');
