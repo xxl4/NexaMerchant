@@ -124,6 +124,7 @@ class Get extends Command
                     'shopify_store_id' => $this->shopify_store_id,
                     'shopify_order_id' => $item['id']
                 ])->first();
+                
                 if(is_null($shopifyNewOrder)) {
                     $shopifyNewOrder = new \Nicelizhi\Shopify\Models\ShopifyOrder();
                     $shopifyNewOrder->order_id = 0;
