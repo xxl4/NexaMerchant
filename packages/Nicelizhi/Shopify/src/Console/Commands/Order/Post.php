@@ -331,7 +331,7 @@ class Post extends Command
         $pOrder['order'] = $postOrder;
         //var_dump($pOrder);exit;
 
-        Log::info("post to shopify order ". json_encode($pOrder));
+        //Log::info("post to shopify order ". json_encode($pOrder));
 
         $response = $client->post($shopify['shopify_app_host_name'].'/admin/api/2023-10/orders.json', [
             'headers' => [
@@ -343,8 +343,8 @@ class Post extends Command
         ]);
 
         $body = json_decode($response->getBody(), true);
-        Log::info("shopify post order body ". json_encode($pOrder));
-        Log::info("shopify post order".json_encode($body));
+        //Log::info("shopify post order body ". json_encode($pOrder));
+        //Log::info("shopify post order".json_encode($body));
 
         if(isset($body['order']['id'])) {
             $shopifyNewOrder = $this->ShopifyOrder->where([
@@ -464,12 +464,6 @@ class Post extends Command
             $url = "http://crm.heomai.com/api/offers/callBack?refer=".$cnv_id[1]."&revenue=".$order->grand_total."&currency_code=".$order->order_currency_code;
             $res = $this->get_content($url);
             Log::info("post to bm 2 url ".$url." res ".json_encode($res));
-
-            
-
-
-
-
 
         }
     }
