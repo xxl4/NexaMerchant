@@ -23,13 +23,13 @@ return [
         ],
         'step' => [
             'Select Quantity' => 'Choisissez la quantité',
-            'Payment' => 'paiement',
+            'Payment' => 'Paiement',
             'Shipping Information' => 'Expédition',
             'Place Order' => 'Commander',
         ],
         "order" => [
-            'Express Checkout' => 'Paiement express',
-            'Secure Checkout' => 'Paiement sécurisé',
+            'Express Checkout' => 'Paiement Express',
+            'Secure Checkout' => 'Paiement Sécurisé',
             'RECOMMENDED DEAL' => 'OFFRE RECOMMANDÉE',
             'Shipping' => 'Expédition',
             'Or Pay With Credit Card' => 'Ou payer par carte bancaire',
@@ -69,10 +69,10 @@ return [
             'Hatmeo offers 30' => "offre une garantie de 30 jours sur tous les achats non utilisés. Renvoyez-nous simplement le ou les articles dans leur emballage d'origine et recevez un remboursement complet ou un remplacement, moins les frais d'expédition.",
         ],
         'footer' => [
-            'Shipping Delivery' => 'expédition',
-            'Refund policy' => 'politique de remboursement',
-            'About US' => 'À propos de nous',
-            'Privacy Policy' => 'politique de confidentialité',
+            'Shipping Delivery' => 'Expédition',
+            'Refund policy' => 'Politique De Remboursement',
+            'About US' => 'À propos De Nous',
+            'Privacy Policy' => 'Politique De Confidentialité',
             'Contact Us' => 'Contactez-nous',
         ]
     ],
