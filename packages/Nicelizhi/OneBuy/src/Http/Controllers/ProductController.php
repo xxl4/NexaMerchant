@@ -306,10 +306,11 @@ class ProductController extends Controller
         $payments = config('onebuy.payments'); // config the payments status
 
         $payments_default = config('onebuy.payments_default');
+        $brand = config('onebuy.brand');
 
         //var_dump($default_country);exit;
 
-        return view('onebuy::product-detail', compact('app_env','product','package_products', 'product_attributes', 'skus','productBgAttribute','productBgAttribute_mobile','faqItems','comments','paypal_client_id','default_country','airwallex_method','payments','payments_default'));
+        return view('onebuy::product-detail', compact('app_env','product','package_products', 'product_attributes', 'skus','productBgAttribute','productBgAttribute_mobile','faqItems','comments','paypal_client_id','default_country','airwallex_method','payments','payments_default','brand'));
     }
 
     public function cms($slug, Request $request) {

@@ -590,7 +590,7 @@ I agree with the <a href="/onebuy/page/refund-policy?locale={{ app()->getLocale(
 <strong>
  @lang('onebuy::app.product.order.30 DAY GUARANTEE'):
 </strong>
-@lang('onebuy::app.product.brand') @lang('onebuy::app.product.order.Hatmeo offers 30')</div>
+<?php echo $brand;?> @lang('onebuy::app.product.order.Hatmeo offers 30')</div>
 </div>
 </div>
 </div>

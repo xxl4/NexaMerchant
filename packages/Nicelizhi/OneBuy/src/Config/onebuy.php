@@ -3,6 +3,7 @@ return [
     'countries' => env('ONEBUY_COUNTRIES'),
     'lang' => env('ONEBUY_DEFAULT_LANG'),
     'default_country' => env('ONEBUY_DEFAULT_COUNTRY'),
+    'brand' => env('ONEBUY_BRAND', 'Hatme'),
     'airwallex' => [
             'method' => [
                 'card',
