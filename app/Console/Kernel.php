@@ -26,7 +26,7 @@ class Kernel extends ConsoleKernel
     {
         # $schedule->command('invoice:cron')->dailyAt('3:00');
         # $schedule->command('product:index --type=price')->dailyAt('23:59');
-        $schedule->command('shopify:order:post')->everyFiveMinutes()->withoutOverlapping(); // 投递成功的订单到shopify ，每五分钟投递一次
+        $schedule->command('shopify:order:post')->everyThirtyMinutes()->withoutOverlapping(); // 投递成功的订单到shopify ，每三十分钟投递一次
         # $schedule->command('shopify:order:get --force=true')->hourly()->withoutOverlapping(); // shopify 订单同步 1个小时同步一次
     }
 
