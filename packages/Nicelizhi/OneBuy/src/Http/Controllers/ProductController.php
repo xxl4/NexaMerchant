@@ -971,8 +971,10 @@ class ProductController extends Controller
         //var_dump($product->id);exit;
         $cache_key = "product_ext_".$product->id."_".count($nums);
         $package_products = Cache::get($cache_key);
+
+        $shipping_price_key = "shipping_price";
         
-        if(true) {
+        if(empty($package_products)) {
         //if(empty($package_products)) {
         //if($package_products) {
             $package_products = [];
