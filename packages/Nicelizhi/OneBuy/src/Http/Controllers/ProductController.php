@@ -973,6 +973,12 @@ class ProductController extends Controller
         $package_products = Cache::get($cache_key);
 
         $shipping_price_key = "shipping_price";
+        $shipping_price = Cache::get($shipping_price_key);
+        if(empty($shipping_price)) {
+            //core()->getConfigData('sales.payment_methods.airwallex.apikey');
+            $shipping_price = core()->getConfigData('sales.carriers.flatrate.default_rate');
+            Cache::put($shipping_price_key, $shipping_price, 36000);
+        }
         
         if(empty($package_products)) {
         //if(empty($package_products)) {
@@ -1014,7 +1020,7 @@ class ProductController extends Controller
                 $package_product['tip1'] = $tip1_price."% ";
                 $tip2_price = round($package_product['new_price'] / $i, 2);
                 $package_product['tip2'] = core()->currency($tip2_price)."/";
-                $package_product['shipping_fee'] = 9.99;
+                $package_product['shipping_fee'] = $shipping_price; // shipping price
                 $popup_info['name'] = null;
                 $popup_info['old_price'] = null;
                 $popup_info['new_price'] = null;
