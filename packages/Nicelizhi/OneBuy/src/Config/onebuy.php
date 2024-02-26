@@ -4,6 +4,7 @@ return [
     'lang' => env('ONEBUY_DEFAULT_LANG'),
     'default_country' => env('ONEBUY_DEFAULT_COUNTRY'),
     'brand' => env('ONEBUY_BRAND', 'Hatme'),
+    'gtag' => env('ONEBUY_GTAG', "G-P6343Y2GKT"),
     'airwallex' => [
             'method' => [
                 'card',

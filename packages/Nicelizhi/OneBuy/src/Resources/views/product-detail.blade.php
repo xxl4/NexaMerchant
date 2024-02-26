@@ -1298,6 +1298,11 @@ function showAttributeSelecet(article_str) {
 }
 
 function attributeChange(target, is_img_attribute, template) {
+    console.log("attributeChange")
+    console.log(target);
+    console.log(is_img_attribute);
+    console.log(template);
+    console.log(target.find('option:selected'));
     if(template == 'common5') {
         changeHtmlShow();
     }
@@ -1436,13 +1441,13 @@ function GotoNotRequest(url) {
     </script>
 
 <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-P6343Y2GKT"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=<?php echo $gtag; ?>"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
-  gtag('config', 'G-P6343Y2GKT');
+  gtag('config', '<?php echo $gtag; ?>',{ 'debug_mode':true });
 </script>
 
 <script>
