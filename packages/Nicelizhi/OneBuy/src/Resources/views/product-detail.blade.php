@@ -1230,8 +1230,8 @@ I agree with the <a href="/onebuy/page/refund-policy?locale={{ app()->getLocale(
             if(product_attribute.id == has_img_attribute_id && !product_attribute.selected_option_id) {
                 show_image = product_attribute.options[0].image;
                 show_large_image = product_attribute.options[0].large_image;
-                console.log("img 0");
-                console.log(product_attribute.options[0]);
+                //console.log("img 0");
+                //console.log(product_attribute.options[0]);
             }
                 
             for(var j=0; j<product_attribute.options.length; j++) {
@@ -1240,11 +1240,11 @@ I agree with the <a href="/onebuy/page/refund-policy?locale={{ app()->getLocale(
                 if(product_attribute_option.id==product_attribute.selected_option_id && product_attribute.id == has_img_attribute_id) {
                     show_image = product_attribute_option.image;
                     show_large_image = product_attribute_option.large_image;
-                    console.log("img 2");
-                    console.log(product_attribute_option);
+                    //console.log("img 2");
+                    //console.log(product_attribute_option);
                 }
             }
-            console.log("large_image" + show_large_image)
+            //console.log("large_image" + show_large_image)
                 
             product_template += '</select>';
             if(template == 'common15') {
@@ -1369,16 +1369,16 @@ function showImgProp(img) {
 
 $(document).ready(function(){
     $(".show_big_img").click(function(){
-        console.log("click...");
+        //console.log("click...");
         img = $(this).attr('src');
-        console.log(img);
+        //console.log(img);
         showImgProp(img)
     });
 
     $(document).on("click",".show_big_img",function(){
-        console.log("click...");
+        //console.log("click...");
         img = $(this).attr('src');
-        console.log(img);
+        //console.log(img);
         showImgProp(img)
     });
 
@@ -1573,7 +1573,7 @@ function GotoNotRequest(url) {
                      * 
                      */
                     onApprove: function(data, actions) {
-                        console.log("on app rove");
+                        //console.log("on app rove");
                         if(!data.orderID) {
                             throw new Error('orderid is not exisit');
                         }
@@ -1704,18 +1704,18 @@ function GotoNotRequest(url) {
             })
             .then(function(res){return res.json()})
             .then(function(res) {
-                console.log(res);
+                //console.log(res);
             });
 
         }
 
 
         $(".email").on("focus", function(){
-            console.log("email focus");
+            //console.log("email focus");
         });
 
         $(".email").on("blur", function(){
-            console.log("email blur");
+            //console.log("email blur");
             var email = $(".email").val();
             if(email.length > 0) {
                 fbq('track', 'AddPaymentInfo');
@@ -1809,7 +1809,7 @@ function GotoNotRequest(url) {
             }
 
             params['pay_type'] = pay_type;
-            console.log(JSON.stringify(params));
+            //console.log(JSON.stringify(params));
             //return false;
 
             var url = '/onebuy/order/add/sync?_token={{ csrf_token() }}&time=' + new Date().getTime();
@@ -1829,16 +1829,16 @@ function GotoNotRequest(url) {
             .then(function(res){return res.json()})
             .then(function(res) {
                 var data = res;
-                console.log(data);
+                //console.log(data);
                 if(data.result === 200){
                     var order_info = data.order;
 
-                    console.log(order_info);
-                    console.log(window.is_airwallex_klarna);
+                    //console.log(order_info);
+                    //console.log(window.is_airwallex_klarna);
 
                     if(window.is_paypal_standard) {
                         var paypal_form = '<form action="'+data.pay_url+'" method="post" style="display:none" >';
-                        console.log(data.form);
+                        //console.log(data.form);
                         $.each(data.form, function(k, v) {
 
                             if(k=='cancel_return') v = window.location.href;
@@ -1848,7 +1848,7 @@ function GotoNotRequest(url) {
                         });
                             // 
                         paypal_form += '</form>';
-                        console.log(paypal_form);
+                        //console.log(paypal_form);
                         $(paypal_form).appendTo('body').submit();
                         return false;
                     }
@@ -1869,9 +1869,9 @@ function GotoNotRequest(url) {
                         }).then(function(res){return res.json()})
                         .then(function(res) {
 
-                            console.log(res);
+                            //console.log(res);
 
-                            console.log(res.payment.next_action.url);
+                            //console.log(res.payment.next_action.url);
 
                             Goto(res.payment.next_action.url);
 
@@ -1901,7 +1901,7 @@ function GotoNotRequest(url) {
                         })
                         //$('#airwallex-warpper').show();
 
-                        console.log(order_info);
+                        //console.log(order_info);
 
                         Airwallex.confirmPaymentIntent({
                             element: cardNumber,
@@ -1912,8 +1912,8 @@ function GotoNotRequest(url) {
                         /* handle confirm response in your business flow */
                         //window.alert(JSON.stringify(response));
                             $('#loading').hide();
-                            console.log('success');
-                            console.log(JSON.stringify(response))
+                            //console.log('success');
+                            //console.log(JSON.stringify(response))
                             //cb.errorHandler("Success");
                             //alert("Success"); 
 
