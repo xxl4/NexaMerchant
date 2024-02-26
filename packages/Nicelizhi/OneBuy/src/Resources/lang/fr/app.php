@@ -64,7 +64,7 @@ return [
             'JUST NOW' => 'JUSTE',
             'COMPLETE SECURE PURCHASE' => 'ACHAT ENTIÈREMENT SÉCURISÉ',
             'Item' => 'Article',
-            'SELECT YOUR' => 'CHOISISSEZ LE VÔTRE',
+            'SELECT YOUR' => '',
             'All transactions are secure and encrypted' => 'Toutes les transactions sont sécurisées et cryptées',
             'Hatmeo offers 30' => "offre une garantie de 30 jours sur tous les achats non utilisés. Renvoyez-nous simplement le ou les articles dans leur emballage d'origine et recevez un remboursement complet ou un remplacement, moins les frais d'expédition.",
         ],
