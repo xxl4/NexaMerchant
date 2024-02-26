@@ -449,7 +449,7 @@ class ProductController extends Controller
             if ($order) {
                 $orderId = $order->id;
                 $transactionManager = $this->airwallex->createPaymentOrder($cart, $order->id);
-
+                Log::info("airwallex-".$order->id."--".json_encode($transactionManager));
                 $data['client_secret'] = $transactionManager->client_secret;
                 $data['payment_intent_id'] = $transactionManager->id;
                 $data['currency'] = $transactionManager->currency;
@@ -527,10 +527,10 @@ class ProductController extends Controller
     public function order_addr_after(Request $request) {
         $input = $request->all();
 
-        Log::info("order addr after ".json_encode($input));
+        //Log::info("order addr after ".json_encode($input));
 
         $refer = $request->session()->get('refer');
-        Log::info("refer checkout v1 ".$refer);
+        //Log::info("refer checkout v1 ".$refer);
 
         $products = $request->input("products");
         // 添加到购物车
@@ -546,7 +546,7 @@ class ProductController extends Controller
             }
 
             $product['super_attribute'] = $super_attribute;
-            Log::info("add product into cart ". json_encode($product));
+            //Log::info("add product into cart ". json_encode($product));
             $cart = Cart::addProduct($product['product_id'], $product);
             if (
                 is_array($cart)
@@ -698,8 +698,8 @@ class ProductController extends Controller
             $payment_source = (array)$order['result']->payment_source;
             $payment_source_paypal = (array)$payment_source['paypal'];
 
-            Log::info("paypal source".json_encode($payment_source));
-            Log::info("paypal source paypal".json_encode($payment_source_paypal));
+            //Log::info("paypal source".json_encode($payment_source));
+            //Log::info("paypal source paypal".json_encode($payment_source_paypal));
 
             // 添加地址内容
             $addressData = [];
