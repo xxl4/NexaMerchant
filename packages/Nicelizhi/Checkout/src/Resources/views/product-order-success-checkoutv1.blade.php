@@ -100,8 +100,9 @@
     </script>
 <script>
         function purchase(value) {
-            console.log("purchase "+ value);
-            fbq('track', 'Purchase', {currency: "USD", value: (value * 1).toFixed(2)});
+            console.log("purchase "+ (value * 1).toFixed(2));
+            fbq('track', 'Purchase', {currency: "EUR", value: (value * 1).toFixed(2),test_event_code:"TEST393"});
+            console.log("purchase "+ (value * 1).toFixed(2));
             if(typeof gtag == 'function') {
                 if(window.localStorage) {
                     var ga_post_order_template_commom_ids_str = localStorage.getItem("ga_post_order_template_commom_ids");
@@ -133,7 +134,7 @@
                 }
             } else {
                 setTimeout(function(){
-                    purchase();
+                    //purchase();
                 },10)
             }
         }
@@ -484,7 +485,9 @@ All rights reserved
 
             data = input.data;
             console.log("pushare " + order_param.grand_total);
+            console.log("pushare " + order_param.grand_total);
             purchase(order_param.grand_total);
+            //purchase(null);
             console.log(data)
             if(!getCookie('voluum_payout') || getCookie('order_id') != getQueryString('id')) {
                 console.log('data');
