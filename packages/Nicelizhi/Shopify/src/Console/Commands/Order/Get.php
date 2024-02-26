@@ -65,10 +65,12 @@ class Get extends Command
      */
     public function handle()
     {
-
+        
         $shopify_store_id = $this->option('shopify_store_id');
         $force = $this->option('force');
         if(!empty($shopify_store_id)) $this->shopify_store_id = $shopify_store_id;
+
+        Log::info($this->shopify_store_id." start sync orders");
 
         if ($force) {
 
