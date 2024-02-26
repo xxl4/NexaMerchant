@@ -91,10 +91,6 @@ class ProductController extends Controller
             $refer = $request->session()->get('refer');
         }
 
-        
-
-        //var_dump($product);exit;
-
         // 四个商品的价格情况
         $package_products = [];
         $productBaseImage = product_image()->getProductBaseImage($product);
@@ -140,11 +136,13 @@ class ProductController extends Controller
                 $sku['sku_code'] = $sku_code;
                 $sku['sku_id'] = $sku_id;
     
+                // banner pic big url (pc)
                 $colorAttribute = $this->productAttributeValueRepository->findOneWhere([
                     'product_id'   => $sku_id,
                     'attribute_id' => 23,
                 ]);
     
+                // banner pic mobile url
                 $sizeAttribute = $this->productAttributeValueRepository->findOneWhere([
                     'product_id'   => $sku_id,
                     'attribute_id' => 24,
@@ -153,8 +151,6 @@ class ProductController extends Controller
                 $SizeattributeOptions = $attributeOptionRepository->findOneWhere(['id'=>$sizeAttribute['integer_value']]);
                 $ColorattributeOptions = $attributeOptionRepository->findOneWhere(['id'=>$colorAttribute['integer_value']]);
                 
-    
-               // $attribute_name = $ColorattributeOptions->admin_name.",".$SizeattributeOptions->admin_name;
                 $attribute_name = $SizeattributeOptions->admin_name.",".$ColorattributeOptions->admin_name;
     
                 $sku['attribute_name'] = $attribute_name;
@@ -192,8 +188,6 @@ class ProductController extends Controller
             
             Cache::put($cache_key_1, $product_category_id, 36000);
         }else{
-            //$product_category = json_decode($product_category);
-            //var_dump($product_category);exit;
             $product_category_id = intval($product_category);
         }
 
@@ -207,9 +201,6 @@ class ProductController extends Controller
                 'product_id'   => $product->id,
                 'attribute_id' => 32,
             ]);
-            
-
-            //var_dump($customAttributeValues);exit;
 
             //获取到他底部的商品内容
         // $attributes = $this->productRepository->getSuperAttributes($product);
@@ -307,8 +298,6 @@ class ProductController extends Controller
 
         $payments_default = config('onebuy.payments_default');
         $brand = config('onebuy.brand');
-
-        //var_dump($default_country);exit;
 
         return view('onebuy::product-detail', compact('app_env','product','package_products', 'product_attributes', 'skus','productBgAttribute','productBgAttribute_mobile','faqItems','comments','paypal_client_id','default_country','airwallex_method','payments','payments_default','brand'));
     }
@@ -642,21 +631,6 @@ class ProductController extends Controller
                 'redirect_url' => route('shop.checkout.cart.index'),
             ], Response::HTTP_FORBIDDEN);
         }
-
-
-        /*
-        Cart::collectTotals();
-
-        $this->validateOrder();
-
-        $cart = Cart::getCart();
-
-        $order = $this->orderRepository->create(Cart::prepareDataForOrder());
-
-        Cart::deActivateCart();
-
-        Cart::activateCartIfSessionHasDeactivatedCartId();
-        */
 
         try {
             $order = $this->smartButton->createOrder($this->buildRequestBody());
