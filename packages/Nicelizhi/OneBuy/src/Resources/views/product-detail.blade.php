@@ -1302,7 +1302,7 @@ function attributeChange(target, is_img_attribute, template) {
     console.log(target);
     console.log(is_img_attribute);
     console.log(template);
-    console.log(target.find('option:selected'));
+    // console.log(target.find('option:selected'));
     if(template == 'common5') {
         changeHtmlShow();
     }
