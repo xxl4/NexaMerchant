@@ -201,7 +201,7 @@
                 }
             } else {
                 setTimeout(function(){
-                    purchase();
+                    //purchase();
                 },10)
             }
         }
@@ -548,7 +548,9 @@ All rights reserved
             console.log(order_param);
 
             data = input.data;
-            purchase(data.info.grand_total);
+            //purchase(data.info.grand_total);
+            console.log();
+            purchase(order_param.total);
             console.log(data)
 
             //document.querySelector('.order-total').innerHTML = getFormatPrice(data.info.grand_total, order_param.price_template);
