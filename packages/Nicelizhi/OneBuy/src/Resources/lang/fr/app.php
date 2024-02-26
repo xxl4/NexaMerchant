@@ -22,10 +22,10 @@ return [
         'complete_secure_purchase' => 'ACHAT ENTIÈREMENT SÉCURISÉ',
         ],
         'step' => [
-            'Select Quantity' => 'Choisissez la quantité',
-            'Payment' => 'Paiement',
-            'Shipping Information' => 'Expédition',
-            'Place Order' => 'Commander',
+            'Select Quantity' => 'Produit',
+            'Payment' => 'Chariot',
+            'Shipping Information' => 'Livraison',
+            'Place Order' => 'Paiement',
         ],
         "order" => [
             'Express Checkout' => 'Paiement Express',
