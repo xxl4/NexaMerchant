@@ -26,10 +26,10 @@ return [
         'complete_secure_purchase' => 'COMPLETELY SAFE PURCHASE',
         ],
         'step' => [
-            'Select Quantity' => 'Select Quantity',
-            'Payment' => 'Payment',
-            'Shipping Information' => 'Shipping Information',
-            'Place Order' => 'Place Order',
+            'Select Quantity' => 'Product',
+            'Payment' => 'Cart',
+            'Shipping Information' => 'Delivery',
+            'Place Order' => 'Payment',
         ],
         "order" => [
             'Express Checkout' => 'Express Checkout',
@@ -68,7 +68,7 @@ return [
             'JUST NOW' => 'JUST NOW',
             'COMPLETE SECURE PURCHASE' => 'COMPLETE SECURE PURCHASE',
             'Item' => 'Item',
-            'SELECT YOUR' => 'SELECT YOUR',
+            'SELECT YOUR' => '',
             'All transactions are secure and encrypted' => 'All transactions are secure and encrypted',
             'Hatmeo offers 30' => 'offers a 30-day guarantee on all unused purchases. Simply return the item(s) to us in the original packaging and receive a full refund or replacement, less shipping costs.',
         ],
