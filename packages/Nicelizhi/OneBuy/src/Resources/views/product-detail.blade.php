@@ -704,7 +704,7 @@ I agree with the <a href="/onebuy/page/refund-policy?locale=<?php echo strtolowe
 @lang('onebuy::app.product.order.All transactions are secure and encrypted').
 </div>
 
-@include("onebuy::payments")
+@include("onebuy::payments-".strtolower($default_country))
 
 
 <div id="pay-after-warpper"></div>
