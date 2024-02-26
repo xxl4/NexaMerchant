@@ -7,33 +7,6 @@
 	                    <div class="panel-group" id="accordion">
 
 
-                        <?php if($payments['airwallex_klarna']==1) { ?>
-                        <div class="panel panel-default">
-                            <div class="panel-heading" role="tab" id="headingThree">
-                                <h4 class="panel-title">
-                                    <div class="panel-title-header" id="headingThree2">
-                                        <div class="form-check form-check-inline" style="width: 100%;">
-                                            <input class="form-check-input" type="radio" value="airwallex-klarna" id="airwallex-klarna" <?php if($payments_default=='airwallex-klarna') echo 'checked'; ?> name="payment_method">
-                                            <label class="form-check-label" for="airwallex-klarna" style="float: right;min-width: 95%;">
-                                            <span>@lang('onebuy::app.product.payment.klarna.title')</span>
-                                            <div style="float: right;min-width: 200px;display: inline;text-align: right;"><img src="/checkout/v1/app/desktop/images/Klarna.png" style="max-height:24px" /></div>
-                                            </label>
-                                        </div>
-                                    </div>
-
-                                    
-                                </h4>
-                            </div>
-                            <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-                                <div class="panel-body">
-                                    <div style="margin:10px;">
-                                        @lang('onebuy::app.product.payment.klarna.description')
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <?php } ?>
-
                         <?php if($payments['payal_standard']==1) { ?>
                         <div class="panel panel-default">
                             <div class="panel-heading" role="tab" id="headingTwo">
@@ -64,6 +37,8 @@
                             </div>
                         </div>
                         <?php } ?>
+
+
                         <?php if($payments['airwallex_credit_card']==1) { ?>
 	                        <div class="panel panel-default">
 	                            <div class="panel-heading"  id="headingOne">
@@ -147,6 +122,39 @@
 	                            </div>
 	                        </div>
                             <?php } ?>
+
+
+                        <?php if($payments['airwallex_klarna']==1) { ?>
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="headingThree">
+                                <h4 class="panel-title">
+                                    <div class="panel-title-header" id="headingThree2">
+                                        <div class="form-check form-check-inline" style="width: 100%;">
+                                            <input class="form-check-input" type="radio" value="airwallex-klarna" id="airwallex-klarna" <?php if($payments_default=='airwallex-klarna') echo 'checked'; ?> name="payment_method">
+                                            <label class="form-check-label" for="airwallex-klarna" style="float: right;min-width: 95%;">
+                                            <span>@lang('onebuy::app.product.payment.klarna.title')</span>
+                                            <div style="float: right;min-width: 200px;display: inline;text-align: right;"><img src="/checkout/v1/app/desktop/images/Klarna.png" style="max-height:24px" /></div>
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    
+                                </h4>
+                            </div>
+                            <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                                <div class="panel-body">
+                                    <div style="margin:10px;">
+                                        @lang('onebuy::app.product.payment.klarna.description')
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <?php } ?>
+
+                        
+                        
+
+
             <?php if($payments['airwallex_dropin']==1) { ?>
                 <div class="panel panel-default">
                     <div class="panel-heading" role="tab" id="airwallex_dropin_head_1">
