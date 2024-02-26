@@ -32,18 +32,12 @@
 <link href="https://cdn.jsdelivr.net/npm/jquery-colorbox@1.6.4/example1/colorbox.min.css" rel="stylesheet">
 
 
-<!-- <script src="/template-common/js/frames-init.js"></script>
-<script src="/template-common/js/paypal-init.js"></script> -->
-
 <?php if($app_env=='demo') { ?>
 <script src="https://checkout-demo.airwallex.com/assets/elements.bundle.min.js"></script>
 <?php }else{ ?>
 <script src="https://checkout.airwallex.com/assets/elements.bundle.min.js"></script>
 <?php } ?>
 
-
-
-<!-- <link rel="stylesheet" href="/template-common/checkout1/css/font-awesome.min.css"> -->
 
 <link rel="stylesheet" href="/template-common/checkout6/css/order.css?v=12">
 <link rel="stylesheet" href="/template-common/checkout-common/css/order.css">
@@ -121,8 +115,7 @@
                 padding: 15px 10px 15px 20px !important
             }
         }
-    </style>
-<style>
+
         .attribute-err {
             display:none;
             font-size: .8rem;
@@ -130,18 +123,7 @@
             color: #cc4b37;
             margin: 0;
         }
-    </style>
-<!-- <script>
-        function getQueryParameterTop(param) {
-            let href = '';
-            if (location.href.indexOf('?')) {
-                href = location.href.substr(location.href.indexOf('?'));
-            }
-            const value = href.match(new RegExp('[\?\&]' + param + '=([^\&]*)(\&?)', 'i'));
-            return value ? value[1] : null;
-        }
-    </script> -->
-<style>
+
         .header-container-title {
             background-color: transparent;
         }
