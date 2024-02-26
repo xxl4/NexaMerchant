@@ -101,7 +101,7 @@
 <script>
         function purchase(value) {
             console.log("purchase "+ (value * 1).toFixed(2));
-            fbq('track', 'Purchase', {currency: "EUR", value: (value * 1).toFixed(2),test_event_code:"TEST49108"});
+            fbq('track', 'Purchase', {currency: "EUR", value: (value * 1).toFixed(2)});
             console.log("purchase "+ (value * 1).toFixed(2));
             if(typeof gtag == 'function') {
                 if(window.localStorage) {
