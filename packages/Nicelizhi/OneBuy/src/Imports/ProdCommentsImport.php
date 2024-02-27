@@ -27,6 +27,7 @@ class ProdCommentsImport implements ToCollection
         foreach($rows as $key=>$row) {
             if($key==0) continue;
             $value = [];
+            if(empty($row[0])) continue;
             $value['name'] = trim($row[0]);
             $value['title'] = trim($row[1]);
             $value['content'] = trim($row[2]);

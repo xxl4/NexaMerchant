@@ -24,6 +24,7 @@ class FaqImport implements ToCollection
     {
         foreach($rows as $key=>$row) {
             if($key==0) continue;
+            if(empty($row[1])) continue;
             $value = [];
             $value['q'] = trim($row[1]);
             $value['a'] = trim($row[2]);
