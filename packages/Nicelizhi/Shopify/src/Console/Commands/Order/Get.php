@@ -25,7 +25,7 @@ class Get extends Command
      *
      * @var string
      */
-    protected $signature = 'shopify:order:get {--shopify_store_id=} {--force=}';
+    protected $signature = 'shopify:order:get {--shopify_store_id=} {--force=} {--ids=}';
 
     /**
      * The console command description.
@@ -72,6 +72,8 @@ class Get extends Command
 
         Log::info($this->shopify_store_id." start sync orders");
 
+        $ids = $this->option('ids');
+
         if ($force) {
 
             $this->error('Start sync order from Shopify Store '. $this->shopify_store_id);
@@ -98,7 +100,7 @@ class Get extends Command
              * 
              */
             $processed_at_min = date("c", strtotime("-2 week"));
-            $processed_at_min = date("c", strtotime("-1 days"));
+            $processed_at_min = date("c", strtotime("-2 days"));
             //$processed_at_max = date("c", strtotime("-2 days"));
             //$processed_at_max = date("c", strtotime("-1 days"));
             $processed_at_max = date("c");
@@ -109,8 +111,16 @@ class Get extends Command
 
             $this->info("processed at min ". $processed_at_min);
             $this->info("processed at max ". $processed_at_max);
+
+            $url = "";
+
+            if(!empty($ids)) {
+                $url.="&ids=".$ids;
+            }
+
             // 5585627676902
-            $base_url = $shopify['shopify_app_host_name'].'/admin/api/2023-10/orders.json?status=any&processed_at_min='.$processed_at_min.'&processed_at_max='.$processed_at_max.'&limit=250';
+            $base_url = $shopify['shopify_app_host_name'].'/admin/api/2023-10/orders.json?status=any&fulfillment_status=shipped&updated_at_min='.$processed_at_min.'&updated_at_max='.$processed_at_max.'&limit=250'.$url;
+            $this->error("base url ". $base_url);
             //$base_url = $shopify['shopify_app_host_name'].'/admin/api/2023-10/orders.json?fulfillment_status=unshipped&limit=250';
             //$base_url = $shopify['shopify_app_host_name'].'/admin/api/2023-10/orders.json?ids=5585627676902';
             $response = $client->get($base_url, [
@@ -130,6 +140,8 @@ class Get extends Command
             foreach($body['orders'] as $key=>$item) {
 
                 $this->info("sync...-".$i."-".$item['id']);
+
+                //var_dump($item);
                 
                 $shopifyNewOrder = $this->ShopifyOrder->where([
                     'shopify_store_id' => $this->shopify_store_id,
@@ -239,8 +251,16 @@ class Get extends Command
                     $orderId = $shopifyNewOrder->order_id;
                     $this->info("shipping order id ". $orderId);
                     $order = $this->orderRepository->findOrFail($orderId);
+                    //var_dump($order);
                     if (!$order->canShip()) {
                         $this->error($orderId.'---'.trans('admin::app.sales.shipments.create.order-error'));
+                        $shipments = $this->shipmentRepository->where('order_id', $order->id)->first();
+                        
+                        if (isset($shipments) && $order->status=="processing") {
+                            echo "completed \r\n";
+                            $this->orderRepository->updateOrderStatus($order, 'completed');
+                        } 
+
                         $i++;
                         continue;
                     }
@@ -320,6 +340,8 @@ class Get extends Command
                     $response = $this->shipmentRepository->create(array_merge($data, [
                         'order_id' => $orderId,
                     ]));
+
+                    
 
 
 
