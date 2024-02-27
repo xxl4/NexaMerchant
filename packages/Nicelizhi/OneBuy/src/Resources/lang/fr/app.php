@@ -31,7 +31,7 @@ return [
             'Express Checkout' => 'Paiement Express',
             'Secure Checkout' => 'Paiement Sécurisé',
             'RECOMMENDED DEAL' => 'OFFRE RECOMMANDÉE',
-            'Shipping' => 'Expédition',
+            'Shipping' => 'Frais',
             'Or Pay With Credit Card' => 'Ou payer par carte bancaire',
             'Credit Card Information' => 'Informations de carte de crédit',
             'Your Card Info is invaild' => 'Les informations de votre carte ne sont pas valides',
@@ -67,6 +67,7 @@ return [
             'SELECT YOUR' => '',
             'All transactions are secure and encrypted' => 'Toutes les transactions sont sécurisées et cryptées',
             'Hatmeo offers 30' => "offre une garantie de 30 jours sur tous les achats non utilisés. Renvoyez-nous simplement le ou les articles dans leur emballage d'origine et recevez un remboursement complet ou un remplacement, moins les frais d'expédition.",
+            'I agree with the' => "Je suis d'accord avec le",
         ],
         'footer' => [
             'Shipping Delivery' => 'Expédition',

@@ -67,6 +67,7 @@ return [
             'SELECT YOUR' => '',
             'All transactions are secure and encrypted' => 'Alle Transaktionen sind sicher und verschlüsselt',
             'Hatmeo offers 30' => 'bietet eine 30-tägige Garantie auf alle unbenutzten Einkäufe. Senden Sie den/die Artikel einfach in der Originalverpackung an uns zurück und erhalten Sie eine volle Rückerstattung oder einen Ersatz, abzüglich Versandkosten.',
+            'I agree with the' => "Ich stimme dem zu",
         ],
         'footer' => [
             'Shipping Delivery' => 'Versand & Lieferung',
