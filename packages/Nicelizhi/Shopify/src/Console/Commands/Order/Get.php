@@ -97,11 +97,20 @@ class Get extends Command
              * @link https://shopify.dev/docs/api/admin-rest/2023-10/resources/order#get-orders?status=any
              * 
              */
-            $processed_at_min = date("c", strtotime("-1 week"));
+            $processed_at_min = date("c", strtotime("-2 week"));
+            $processed_at_min = date("c", strtotime("-1 days"));
+            //$processed_at_max = date("c", strtotime("-2 days"));
+            //$processed_at_max = date("c", strtotime("-1 days"));
             $processed_at_max = date("c");
+            //$processed_at_max = date("c", strtotime("-1 week"));
+
+            //$processed_at_min = "2024-01-29T10:47:09+08:00";
+            //$processed_at_max = "2024-02-13T10:47:09+08:00";
+
             $this->info("processed at min ". $processed_at_min);
+            $this->info("processed at max ". $processed_at_max);
             // 5585627676902
-            $base_url = $shopify['shopify_app_host_name'].'/admin/api/2023-10/orders.json?status=any&updated_at_min='.$processed_at_min.'&updated_at_max='.$processed_at_max.'&limit=250';
+            $base_url = $shopify['shopify_app_host_name'].'/admin/api/2023-10/orders.json?status=any&processed_at_min='.$processed_at_min.'&processed_at_max='.$processed_at_max.'&limit=250';
             //$base_url = $shopify['shopify_app_host_name'].'/admin/api/2023-10/orders.json?fulfillment_status=unshipped&limit=250';
             //$base_url = $shopify['shopify_app_host_name'].'/admin/api/2023-10/orders.json?ids=5585627676902';
             $response = $client->get($base_url, [
@@ -146,7 +155,7 @@ class Get extends Command
                 $shopifyNewOrder->checkout_token = $item['checkout_token'];
                 $shopifyNewOrder->client_details = $item['client_details'];
                 $shopifyNewOrder->closed_at = $item['closed_at'];
-                $shopifyNewOrder->company = $item['company'];
+                $shopifyNewOrder->company = @$item['company'];
                 $shopifyNewOrder->confirmation_number = $item['confirmation_number'];
                 $shopifyNewOrder->confirmed = $item['confirmed'];
                 $shopifyNewOrder->contact_email = $item['contact_email'];

@@ -111,6 +111,7 @@ class Post extends Command
     }
 
     public function postOrder($id, $shopifyStore) {
+        //return false;
         // check the shopify have sync
 
         $shopifyOrder = $this->ShopifyOrder->where([
@@ -368,7 +369,7 @@ class Post extends Command
             $shopifyNewOrder->checkout_token = $item['checkout_token'];
             $shopifyNewOrder->client_details = $item['client_details'];
             $shopifyNewOrder->closed_at = $item['closed_at'];
-            $shopifyNewOrder->company = $item['company'];
+            $shopifyNewOrder->company = @$item['company'];
             $shopifyNewOrder->confirmation_number = $item['confirmation_number'];
             $shopifyNewOrder->confirmed = $item['confirmed'];
             $shopifyNewOrder->contact_email = $item['contact_email'];

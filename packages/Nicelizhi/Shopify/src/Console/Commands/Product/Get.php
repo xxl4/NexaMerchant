@@ -103,7 +103,11 @@ class Get extends Command
 
         $shopify = $shopifyStore->toArray();
 
-        
+        $shopifyProduct = \Nicelizhi\Shopify\Models\ShopifyProduct::where("product_id", $shopify_pro_id)->first();
+        if(!is_null($shopifyProduct)) {
+            $this->error($shopify_pro_id." have imported!");
+            return false;
+        }
 
         /**
          * 
@@ -122,7 +126,7 @@ class Get extends Command
         $body = json_decode($response->getBody(), true);
 
         $body = $response->getBody();
-        Log::info($body);
+        //Log::info($body);
         $body = json_decode($body, true);
         //var_dump($body);exit;
         foreach($body['products'] as $key=>$item) {
@@ -168,7 +172,6 @@ class Get extends Command
         $items = \Nicelizhi\Shopify\Models\ShopifyProduct::where("shopify_store_id", $this->shopify_store_id)->where("product_id", $shopify_pro_id)->get();
         foreach($items as $key=>$item) {
             // if($item['product_id']!='8126562107640') continue;
-
             $this->info($item['product_id']);
 
             //var_dump($item->options);exit;
