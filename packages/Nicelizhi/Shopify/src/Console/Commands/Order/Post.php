@@ -73,7 +73,7 @@ class Post extends Command
             return false;
         }
 
-        \Nicelizhi\Shopify\Helpers\Utils::send($this->shopify_store_id." start import orders ".date("Y-m-d H:i:s"));
+        //\Nicelizhi\Shopify\Helpers\Utils::send($this->shopify_store_id." start import orders ".date("Y-m-d H:i:s"));
 
         // $lists = $this->orderRepository->findWhere([
         //     'status' => 'processing'
