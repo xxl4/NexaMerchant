@@ -23,7 +23,7 @@ class Get extends Command
      *
      * @var string
      */
-    protected $signature = 'shopify:product:get {--prod_id=}';
+    protected $signature = 'shopify:product:get {--prod_id=} {--force=}';
 
     /**
      * The console command description.
@@ -81,6 +81,7 @@ class Get extends Command
             $this->error("prod id is empty");
             return false;
         }
+        $force = $this->option('force');
         $this->info($this->lang);
         //exit;
 
@@ -104,11 +105,16 @@ class Get extends Command
         $shopify = $shopifyStore->toArray();
 
         $shopifyProduct = \Nicelizhi\Shopify\Models\ShopifyProduct::where("product_id", $shopify_pro_id)->first();
-        if(!is_null($shopifyProduct)) {
-            $this->error($shopify_pro_id." have imported!");
-            return false;
-        }
+        if(!is_null($shopifyProduct) && $force) {
+            if($force==true) {
+                \Nicelizhi\Shopify\Models\ShopifyProduct::where("product_id", $shopify_pro_id)->delete();
+            }else{
+                $this->error($shopify_pro_id." have imported!");
+                return false;
+            }
 
+        }
+        //exit;
         /**
          * 
          * @link https://shopify.dev/docs/api/admin-rest/2023-10/resources/product#get-products?ids=632910392,921728736
