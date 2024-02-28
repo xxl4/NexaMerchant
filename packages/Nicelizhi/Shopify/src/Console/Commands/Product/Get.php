@@ -30,7 +30,7 @@ class Get extends Command
      *
      * @var string
      */
-    protected $description = 'Get Products List {--prod_id=}';
+    protected $description = 'Get Products List or a product shopify:product:get {--prod_id=} {--force=}';
 
     private $shopify_store_id = "";
 
