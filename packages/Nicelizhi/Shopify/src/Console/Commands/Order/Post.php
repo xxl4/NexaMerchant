@@ -73,6 +73,8 @@ class Post extends Command
             return false;
         }
 
+        \Nicelizhi\Shopify\Helpers\Utils::send($this->shopify_store_id." start import orders ".date("Y-m-d H:i:s"));
+
         // $lists = $this->orderRepository->findWhere([
         //     'status' => 'processing'
         // ]);
@@ -84,6 +86,7 @@ class Post extends Command
 
         foreach($lists as $key=>$list) {
             $this->info("start post order " . $list->id);
+            
             $this->postOrder($list->id, $shopifyStore);
             $this->syncOrderPrice($list); // sync price to system
             //exit;
@@ -342,6 +345,7 @@ class Post extends Command
             ]);
         }catch(Exception $e) {
             Log::error(json_encode($e->getMessage()));
+            \Nicelizhi\Shopify\Helper\Utils::send($e->getMessage());
         }
 
         

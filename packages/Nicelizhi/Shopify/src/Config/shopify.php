@@ -5,5 +5,6 @@ return [
     'shopify_client_id'  => env('SHOPIFY_CLIENT_ID'),
     'shopify_client_secret'  => env('SHOPIFY_CLIENT_SECRET'),
     'shopify_store_id' => env('SHOPIFY_APP_ID'),
-    'store_lang' => env('SHOPIFY_STORE_LANG')
+    'store_lang' => env('SHOPIFY_STORE_LANG'),
+    'wcom_noticle_url' => env('WCOME_NOTICLE_URL')
 ];
