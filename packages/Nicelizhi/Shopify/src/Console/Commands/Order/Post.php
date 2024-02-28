@@ -78,7 +78,7 @@ class Post extends Command
         // $lists = $this->orderRepository->findWhere([
         //     'status' => 'processing'
         // ]);
-        $lists = Order::where(['status'=>'processing'])->orderBy("updated_at", "desc")->limit(100)->get();
+        $lists = Order::where(['status'=>'processing'])->orderBy("updated_at", "desc")->limit(20)->get();
         //var_dump($lists);exit;
         //$lists = Order::where(['id'=>'1093'])->orderBy("updated_at", "desc")->limit(10)->get();
 
