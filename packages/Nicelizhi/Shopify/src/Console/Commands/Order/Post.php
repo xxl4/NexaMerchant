@@ -76,7 +76,7 @@ class Post extends Command
         // $lists = $this->orderRepository->findWhere([
         //     'status' => 'processing'
         // ]);
-        $lists = Order::where(['status'=>'processing'])->orderBy("updated_at", "desc")->limit(10)->get();
+        $lists = Order::where(['status'=>'processing'])->orderBy("updated_at", "desc")->limit(100)->get();
         //var_dump($lists);exit;
         //$lists = Order::where(['id'=>'1093'])->orderBy("updated_at", "desc")->limit(10)->get();
 
@@ -330,18 +330,21 @@ class Post extends Command
 
 
         $pOrder['order'] = $postOrder;
-        //var_dump($pOrder);exit;
 
-        //Log::info("post to shopify order ". json_encode($pOrder));
+        try {
+            $response = $client->post($shopify['shopify_app_host_name'].'/admin/api/2023-10/orders.json', [
+                'headers' => [
+                    'Content-Type' => 'application/json',
+                    'Accept' => 'application/json',
+                    'X-Shopify-Access-Token' => $shopify['shopify_admin_access_token'],
+                ],
+                'body' => json_encode($pOrder)
+            ]);
+        }catch(Exception $e) {
+            Log::error(json_encode($e->getMessage()));
+        }
 
-        $response = $client->post($shopify['shopify_app_host_name'].'/admin/api/2023-10/orders.json', [
-            'headers' => [
-                'Content-Type' => 'application/json',
-                'Accept' => 'application/json',
-                'X-Shopify-Access-Token' => $shopify['shopify_admin_access_token'],
-            ],
-            'body' => json_encode($pOrder)
-        ]);
+        
 
         $body = json_decode($response->getBody(), true);
         //Log::info("shopify post order body ". json_encode($pOrder));
