@@ -106,8 +106,8 @@ class Get extends Command
             $processed_at_max = date("c");
             //$processed_at_max = date("c", strtotime("-1 week"));
 
-            //$processed_at_min = "2024-01-29T10:47:09+08:00";
-            //$processed_at_max = "2024-02-13T10:47:09+08:00";
+            //$processed_at_min = "2024-01-15T10:47:09+08:00";
+            //$processed_at_max = "2024-02-18T10:47:09+08:00";
 
             $this->info("processed at min ". $processed_at_min);
             $this->info("processed at max ". $processed_at_max);
