@@ -23,6 +23,7 @@ use Webkul\Admin\Http\Requests\MassDestroyRequest;
 use Webkul\Core\Rules\Slug;
 use Webkul\Product\Helpers\ProductType;
 use Webkul\Product\Facades\ProductImage;
+use Illuminate\Support\Facades\Artisan;
 
 class ProductController extends Controller
 {
@@ -127,6 +128,8 @@ class ProductController extends Controller
 
         session()->flash('success', trans('admin::app.catalog.products.create-success'));
 
+        Artisan::call("cache:clear"); // clear cache
+
         return new JsonResponse([
             'data' => [
                 'redirect_url' => route('admin.catalog.products.edit', $product->id),
@@ -164,6 +167,8 @@ class ProductController extends Controller
         Event::dispatch('catalog.product.update.after', $product);
 
         session()->flash('success', trans('admin::app.catalog.products.update-success'));
+
+        Artisan::call("cache:clear"); // clear cache
 
         return redirect()->route('admin.catalog.products.index');
     }
