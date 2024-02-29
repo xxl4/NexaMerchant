@@ -2,7 +2,7 @@
 
 return [
     /**
-     * Dashboard.
+     * Shopify Dashboard.
      */
     [
         'key'        => 'shopify-index',
