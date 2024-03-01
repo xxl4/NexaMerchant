@@ -1,8 +1,8 @@
 <?php
 return [
     'product' => [
-        'Savings' => 'Savings',
-        'piece' => 'piece',
+        'Savings' => 'Ersparnis',
+        'piece' => 'Stück',
         'brand' => 'Hatme',
         'payment' => [
             'creditCard' => [
