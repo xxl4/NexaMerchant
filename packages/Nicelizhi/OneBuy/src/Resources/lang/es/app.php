@@ -4,6 +4,7 @@ return [
         'Savings' => 'Savings',
         'piece' => 'piece',
         'brand' => 'YooJe',
+        'Size Chart' => 'Size Chart',
         'payment' => [
             'creditCard' => [
                 'title' => 'Tarjeta de crédito',

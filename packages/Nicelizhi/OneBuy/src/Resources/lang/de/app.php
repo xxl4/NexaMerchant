@@ -4,6 +4,7 @@ return [
         'Savings' => 'Ersparnis',
         'piece' => 'Stück',
         'brand' => 'Hatme',
+        'Size Chart' => 'Größentabelle',
         'payment' => [
             'creditCard' => [
                 'title' => 'Kreditkarte',

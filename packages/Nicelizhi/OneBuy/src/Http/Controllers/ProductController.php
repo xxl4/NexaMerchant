@@ -176,6 +176,7 @@ class ProductController extends Controller
         $cache_key = "product_attributes_".$product->id;
         $product_attributes = Cache::get($cache_key);
 
+
         $product_attributes = [];
         if(empty($product_attributes)) {
         //if(true) {
@@ -238,7 +239,7 @@ class ProductController extends Controller
                 $tip = "";
                 $tip_img = "";
                 if($attribute['id']==24) {
-                    $tip = "Size Chart";
+                    $tip = trans('onebuy::app.product.Size Chart');
                     if(isset($productSizeImage->text_value)) $tip_img = $productSizeImage->text_value;
                     if(empty($tip_img)) $tip = "";
                 }
