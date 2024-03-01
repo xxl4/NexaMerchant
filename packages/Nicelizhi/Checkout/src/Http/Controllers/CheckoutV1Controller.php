@@ -220,7 +220,9 @@ class CheckoutV1Controller extends Controller{
 
         $order = $this->orderRepository->findOrFail($order_id);
 
-        return view('checkout::product-order-success-'.$this->view_prefix_key, compact('order'));
+        $fb_ids = config('onebuy.fb_ids');
+
+        return view('checkout::product-order-success-'.$this->view_prefix_key, compact('order',"fb_ids"));
     }
 
     /**
