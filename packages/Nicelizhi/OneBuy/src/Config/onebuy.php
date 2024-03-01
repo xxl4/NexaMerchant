@@ -5,6 +5,7 @@ return [
     'default_country' => env('ONEBUY_DEFAULT_COUNTRY'),
     'brand' => env('ONEBUY_BRAND', 'Hatme'),
     'gtag' => env('ONEBUY_GTAG', "G-P6343Y2GKT"),
+    'fb_ids' => env('FB_IDS'),
     'airwallex' => [
             'method' => [
                 'card',

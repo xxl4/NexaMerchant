@@ -28,15 +28,17 @@
     t.src=v;s=b.getElementsByTagName(e)[0];
     s.parentNode.insertBefore(t,s)}(window, document,'script',
     'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '410784348009950');
-    fbq('init', '946596946391407');
-    fbq('init', '1481572959432110');
-    fbq('init', '2776005162553562');
+    <?php 
+    $fb_ids_arr = explode(',', $fb_ids);
+    foreach ($fb_ids_arr as $key => $fb_id) {
+    ?>
+    fbq('init', '<?php echo $fb_id;?>');
+    <?php } ?>
   </script>
   <noscript>
-    <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=410784348009950&ev=PageView&noscript=1"/>
-    <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=946596946391407&ev=PageView&noscript=1"/>
-    <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=2776005162553562&ev=PageView&noscript=1"/>
+    <?php foreach ($fb_ids_arr as $key => $fb_id) { ?>
+    <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=<?php echo $fb_id;?>&ev=PageView&noscript=1"/>
+    <?php } ?>
   </noscript>
   <!-- End Facebook Pixel Code -->
     <!-- Facebook Pixel Code -->

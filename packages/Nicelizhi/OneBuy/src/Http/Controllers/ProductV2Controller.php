@@ -341,8 +341,10 @@ class ProductV2Controller extends Controller
 
         $brand = config('onebuy.brand');
 
+        $fb_ids = config('onebuy.fb_ids');
 
-        return view('onebuy::v2.product-detail', compact('app_env','product','package_products', 'product_attributes', 'skus','productBgAttribute','productBgAttribute_mobile','faqItems','comments','paypal_client_id','default_country','airwallex_method','payments','payments_default','brand'));
+
+        return view('onebuy::v2.product-detail', compact('app_env','product','package_products', 'product_attributes', 'skus','productBgAttribute','productBgAttribute_mobile','faqItems','comments','paypal_client_id','default_country','airwallex_method','payments','payments_default','brand','fb_ids'));
     }
 
     public function cms($slug, Request $request) {
@@ -1189,7 +1191,8 @@ class ProductV2Controller extends Controller
     public function checkout_success(Request $request) {
         \Debugbar::disable(); /* 开启后容易出现前端JS报错的情况 */
         $product = [];
-        return view('onebuy::checkout-success', compact('product'));
+        $fb_ids = config('onebuy.fb_ids');
+        return view('onebuy::checkout-success', compact('product','fb_ids'));
     }
 
     public function order_query(Request $request) {
