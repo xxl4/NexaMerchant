@@ -469,7 +469,7 @@ class Post extends Command
             Log::info("post to bm url ".$url." res ".json_encode($res));
 
             
-            $url = "http://crm.heomai.com/api/offers/callBack?refer=".$cnv_id[1]."&revenue=".$order->grand_total."&currency_code=".$order->order_currency_code;
+            $url = "https://crm.heomai.com/api/offers/callBack?refer=".$cnv_id[1]."&revenue=".$order->grand_total."&currency_code=".$order->order_currency_code;
             $res = $this->get_content($url);
             Log::info("post to bm 2 url ".$url." res ".json_encode($res));
 
