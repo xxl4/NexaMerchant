@@ -66,11 +66,9 @@ class ProductController extends Controller
         $cache_key = "product_url_".$slugOrPath;
         $product = Cache::get($cache_key);
         if(empty($product)) {
-            
             $product = $this->productRepository->findBySlug($slugOrPath);
             Cache::put($cache_key, $product, 3600);
         }
-        
 
         if (
             ! $product
@@ -96,6 +94,8 @@ class ProductController extends Controller
         $productBaseImage = product_image()->getProductBaseImage($product);
         $package_products = $this->makeProducts($product, [2,1,3,4]);
 
+        // 获取 faq 数据
+        $redis = Redis::connection('default');
 
         // skus 数据
         $skus = [];
@@ -176,22 +176,9 @@ class ProductController extends Controller
         $cache_key = "product_attributes_".$product->id;
         $product_attributes = Cache::get($cache_key);
 
-        $cache_key_1 = "product_category_".$product->id;
-        $product_category = Cache::get($cache_key_1);
-        if(empty($product_category)) {
-            $categories = $product->categories;
-            if(isset($categories[0])) {
-                $product_category_id = intval($categories[0]->id);
-            }else{
-                $product_category_id = 9;
-            }
-            
-            Cache::put($cache_key_1, $product_category_id, 36000);
-        }else{
-            $product_category_id = intval($product_category);
-        }
-
-        if(empty($product_attributes)) {
+        $product_attributes = [];
+        //if(empty($product_attributes)) {
+        if(true) {
 
             $productViewHelper = new \Webkul\Product\Helpers\ConfigurableOption();
             $attributes = $productViewHelper->getConfigurationConfig($product);
@@ -204,11 +191,16 @@ class ProductController extends Controller
 
             //获取到他底部的商品内容
         // $attributes = $this->productRepository->getSuperAttributes($product);
+            $product_attr_sort_cache_key = "product_attr_sort_23_".$product->id;
+            //echo $product_attr_sort_cache_key."\r\n";
+            $product_attr_sort = $redis->hgetall($product_attr_sort_cache_key); // get sku sort
+            //$product_attr_sort = [];
+
             foreach($attributes['attributes'] as $key=>$attribute) {
+                //var_dump($attribute);
                 $attribute['name'] = $attribute['code'];
                 $options = [];
                 foreach($attribute['options'] as $kk=>$option) {
-
                     // 获取商品图片内容
                     $is_sold_out = false;
                     if($attribute['id']==23) {
@@ -224,15 +216,26 @@ class ProductController extends Controller
                     }
 
                     // 判断是否有对应的尺码内容
-
-                    
                     
                     $option['is_sold_out'] = $is_sold_out;
                     $option['name'] = $option['label'];
                     unset($option['admin_name']);
-                    $options[] = $option;
-                    //var_dump($option);
+
+                    if($attribute['id']==23 && !empty($product_attr_sort)) {
+                        $sort = isset($product_attr_sort[$option['id']]) ? intval($product_attr_sort[$option['id']]) : 4 ;
+                        $option['sort'] = $sort;
+                        $options[$sort] = $option;
+                    }else{
+                        $options[] = $option;
+                    }
+                    //var_dump($options);
                 }
+
+                //var_dump($options);
+                //array_multisort($options,)
+                //var_dump($options);
+                ksort($options);
+                //var_dump($options);exit;
 
                 $tip = "";
                 $tip_img = "";
@@ -250,6 +253,7 @@ class ProductController extends Controller
                 $attribute['options'] = $options;
                 $attribute['image'] = $productBaseImage['large_image_url'];
                 $attribute['large_image'] = $productBaseImage['large_image_url'];
+                
                 $product_attributes[] = $attribute;
             }
 
@@ -278,8 +282,7 @@ class ProductController extends Controller
 
         //var_dump($productBgAttribute);
 
-        // 获取 faq 数据
-        $redis = Redis::connection('default');
+        
         $faqItems = $redis->hgetall($this->faq_cache_key);
         ksort($faqItems);
         $comments = $redis->hgetall($this->cache_prefix_key."product_comments_".$product['id']);

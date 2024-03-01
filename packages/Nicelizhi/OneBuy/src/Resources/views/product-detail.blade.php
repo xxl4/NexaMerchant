@@ -1233,16 +1233,18 @@ Apt / Suite / Other </label>
                 //console.log("img 0");
                 //console.log(product_attribute.options[0]);
             }
+            console.log("attr id " + product_attribute.id);
                 
             for(var j=0; j<product_attribute.options.length; j++) {
                 var product_attribute_option = product_attribute.options[j];
-                product_template += '<option value="'+product_attribute_option.name+'" '+ (product_attribute_option.id==product_attribute.selected_option_id? 'selected' : '') +' url="'+product_attribute_option.image+'" '+ (product_attribute_option.is_sold_out ? ' data-is-sold-out="true" ' : '')+'>'+product_attribute_option.name+'</option>';
+                product_template += '<option id="' + product_attribute_option.id +'" value="'+product_attribute_option.name+'" '+ (product_attribute_option.id==product_attribute.selected_option_id? 'selected' : '') +' url="'+product_attribute_option.image+'" '+ (product_attribute_option.is_sold_out ? ' data-is-sold-out="true" ' : '')+'>'+product_attribute_option.name+'</option>';
                 if(product_attribute_option.id==product_attribute.selected_option_id && product_attribute.id == has_img_attribute_id) {
                     show_image = product_attribute_option.image;
                     show_large_image = product_attribute_option.large_image;
                     //console.log("img 2");
                     //console.log(product_attribute_option);
                 }
+                console.log("attr options id " + product_attribute_option.id);
             }
             //console.log("large_image" + show_large_image)
                 
