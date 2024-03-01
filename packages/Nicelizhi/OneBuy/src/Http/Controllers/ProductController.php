@@ -177,8 +177,8 @@ class ProductController extends Controller
         $product_attributes = Cache::get($cache_key);
 
         $product_attributes = [];
-        //if(empty($product_attributes)) {
-        if(true) {
+        if(empty($product_attributes)) {
+        //if(true) {
 
             $productViewHelper = new \Webkul\Product\Helpers\ConfigurableOption();
             $attributes = $productViewHelper->getConfigurationConfig($product);
