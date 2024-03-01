@@ -1139,7 +1139,7 @@ class ProductController extends Controller
         \Debugbar::disable(); /* 开启后容易出现前端JS报错的情况 */
         $product = [];
         $fb_ids = config('onebuy.fb_ids');
-        return view('onebuy::checkout-success', compact('product'));
+        return view('onebuy::checkout-success', compact('product','fb_ids'));
     }
 
     public function order_query(Request $request) {
