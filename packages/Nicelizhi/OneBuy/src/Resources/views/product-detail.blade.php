@@ -1244,7 +1244,7 @@ Apt / Suite / Other </label>
                     //console.log("img 2");
                     //console.log(product_attribute_option);
                 }
-                console.log("attr options id " + product_attribute_option.id);
+                console.log("attr options id " + product_attribute_option.id + " value" + product_attribute_option.name);
             }
             //console.log("large_image" + show_large_image)
                 
