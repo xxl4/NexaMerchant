@@ -4,7 +4,7 @@ return [
         'Savings' => 'économies',
         'piece' => 'pièce',
         'brand' => 'Botma',
-        'Size Chart' => 'Size Chart',
+        'Size Chart' => 'Tableau des tailles',
         'payment' => [
             'creditCard' => [
                 'title' => 'Carte de crédit',
