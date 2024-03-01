@@ -192,9 +192,7 @@ class ProductController extends Controller
             //获取到他底部的商品内容
         // $attributes = $this->productRepository->getSuperAttributes($product);
             $product_attr_sort_cache_key = "product_attr_sort_23_".$product->id;
-            //echo $product_attr_sort_cache_key."\r\n";
             $product_attr_sort = $redis->hgetall($product_attr_sort_cache_key); // get sku sort
-            //$product_attr_sort = [];
 
             foreach($attributes['attributes'] as $key=>$attribute) {
                 //var_dump($attribute);
