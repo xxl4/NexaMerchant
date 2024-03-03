@@ -5,6 +5,7 @@ tags:
   - Compose
   - Php
   - Shopify
+  - OneBuy
 categories:
   - 产品
   - 使用手册
