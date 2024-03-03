@@ -60,6 +60,18 @@ https://www.example.com/onebuy/{$shopify_id}
 ```
 > 参数是否正常打开，如果可以打开，验证下对应的内容是否都有。验证内容事项  
 
+## 对于需要给 SKU 排序的操作为
+1) 在对应的 默认 Redis 中的 默认数据库，添加一条基于商品加 属性ID的标识，现在只支持 23（Color） 属性的排序, Redis Key 类型为 Hash
+
+```
+product_attr_sort_23_3410
+```
+2) 对应里面的内容为
+```
+Key 为属性ID 
+Value 为排序ID 比如 0,1,2,3
+```
+
 ## 验证 checkout 是否工作正常
 1）发起商品支付，是否有报错情况。  
 2）查看 Banner, img size, 评论， FAQ，SKU 图片是否正确，价格是否正常。  
