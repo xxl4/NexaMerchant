@@ -6,8 +6,8 @@ tags:
   - Php
   - Shopify
 categories:
-  - Shopify
-  - Plugins
+  - 产品
+  - 使用手册
 date: 2024-03-02 14:23:12
 description: 如何基于Shopify创建一个推广商品 （基本版本 需要有 color and size）
 lang: zh-CN
