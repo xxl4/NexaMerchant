@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Cache;
 use Nicelizhi\Shopify\Models\ShopifyOrder;
 use Nicelizhi\Shopify\Models\ShopifyStore;
 use Webkul\Sales\Models\Order;
+use Illuminate\Http\Client\RequestException;
+use GuzzleHttp\Exception\ClientException;
 
 class Post extends Command
 {
@@ -78,7 +80,7 @@ class Post extends Command
         // $lists = $this->orderRepository->findWhere([
         //     'status' => 'processing'
         // ]);
-        $lists = Order::where(['status'=>'processing'])->orderBy("updated_at", "desc")->limit(20)->get();
+        $lists = Order::where(['status'=>'processing'])->orderBy("updated_at", "desc")->limit(100)->get();
         //var_dump($lists);exit;
         //$lists = Order::where(['id'=>'1093'])->orderBy("updated_at", "desc")->limit(10)->get();
 
@@ -336,6 +338,7 @@ class Post extends Command
 
         try {
             $response = $client->post($shopify['shopify_app_host_name'].'/admin/api/2023-10/orders.json', [
+                'http_errors' => true,
                 'headers' => [
                     'Content-Type' => 'application/json',
                     'Accept' => 'application/json',
@@ -343,9 +346,13 @@ class Post extends Command
                 ],
                 'body' => json_encode($pOrder)
             ]);
-        }catch(Exception $e) {
+        }catch(ClientException $e) {
+            //var_dump($e);
+            var_dump($e->getMessage());
             Log::error(json_encode($e->getMessage()));
-            \Nicelizhi\Shopify\Helper\Utils::send($e->getMessage());
+            \Nicelizhi\Shopify\Helpers\Utils::send($e->getMessage().'--' .$id. " 需要手动解决 ");
+            //continue;
+            return false;
         }
 
         
