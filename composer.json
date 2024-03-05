@@ -42,6 +42,7 @@
         "predis/predis": "^2.2",
         "prettus/l5-repository": "^2.6",
         "pusher/pusher-php-server": "^7.0",
+        "rap2hpoutre/laravel-log-viewer": "^2.3",
         "shetabit/visitor": "^4.1",
         "shopify/shopify-api": "^5.2",
         "spatie/laravel-responsecache": "^7.4",
