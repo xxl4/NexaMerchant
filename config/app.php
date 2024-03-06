@@ -232,6 +232,7 @@ return [
         //Nicelizhi\Admin\Providers\AdminServiceProvider::class,
         Nicelizhi\Checkout\Providers\CheckoutServiceProvider::class,
         Nicelizhi\Lp\Providers\LpServiceProvider::class,
+        Nicelizhi\Api\Providers\ApiServiceProvider::class,
 
         // log reader
         Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class,
