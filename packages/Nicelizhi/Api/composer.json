@@ -1,0 +1,26 @@
+{
+    "name": "nicelizhi/nexamerchant-api",
+    "license": "MIT",
+    "description" : "nexamerchant package",
+    "authors": [
+        {
+            "name": "nicelizhi",
+            "email": "nice.lizhi@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Nicelizhi\\Api\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Nicelizhi\\Api\\Providers\\ApiServiceProvider"
+            ],
+            "aliases": {}
+        }
+    },
+    "minimum-stability": "dev"
+}
