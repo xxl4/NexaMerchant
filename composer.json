@@ -100,6 +100,7 @@
             "Nicelizhi\\Checkout\\": "packages/Nicelizhi/Checkout/src",
             "Nicelizhi\\Lp\\": "packages/Nicelizhi/Lp/src",
             "Nicelizhi\\Binom\\": "packages/Nicelizhi/Binom/src",
+            "Nicelizhi\\Api\\": "packages/Nicelizhi/Api/src",
             "Webkul\\User\\": "packages/Webkul/User/src"
         }
     },
@@ -113,6 +114,7 @@
             "Nicelizhi\\Binom\\Tests\\": "packages/Nicelizhi/Binom/tests",
             "Nicelizhi\\Shopify\\Tests\\": "packages/Nicelizhi/Shopify/tests",
             "Nicelizhi\\OneBuy\\Tests\\": "packages/Nicelizhi/OneBuy/tests",
+            "Nicelizhi\\Api\\Tests\\": "packages/Nicelizhi/Api/tests",
             "Nicelizhi\\ShopLine\\Tests\\": "packages/Nicelizhi/ShopLine/tests"
         }
     },
