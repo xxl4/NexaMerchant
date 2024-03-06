@@ -86,8 +86,12 @@ class Post extends Command
 
         //var_dump($lists);exit;
 
+        $this->checkLog();
+
         foreach($lists as $key=>$list) {
             $this->info("start post order " . $list->id);
+
+            
             
             $this->postOrder($list->id, $shopifyStore);
             $this->syncOrderPrice($list); // sync price to system
@@ -97,6 +101,40 @@ class Post extends Command
 
         
     }
+
+    /**
+     * 
+     * check the today log file
+     * 
+     */
+
+     public function checkLog() {
+
+        //return false;
+       // use grep command to gerneter new log file
+
+       $big_log_file = storage_path('logs/laravel-'.date("Y-m-d").'.log');
+       $error_log_file = storage_path('logs/error-'.date("Y-m-d").'.log');
+       echo $big_log_file."\r\n";
+       echo $error_log_file."\r\n";
+
+       exec("cat ".$big_log_file." | grep SQLSTATE >".$error_log_file);
+
+       $items = file_get_contents($error_log_file);
+
+       $handle = fopen($error_log_file, "r");
+       if ($handle) {
+            while (($line = fgets($handle)) !== false) {
+                //var_dump($line);
+            }
+
+        fclose($handle);
+       }
+       
+       //exit;
+
+
+     }
 
     /**
      * 
