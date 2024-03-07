@@ -51,7 +51,7 @@ class CartToOrder extends Command
      */
     public function handle()
     {
-        $cart_id = 639437;
+        $cart_id = 0;
 
         $this->cart = $this->cartRepository->findOneWhere([
             'id'   => $cart_id
@@ -63,7 +63,9 @@ class CartToOrder extends Command
 
         $order = $this->orderRepository->create(Cart::prepareDataForOrder());
 
-        var_dump($order);
+        Cart::deActivateCart();
+
+        //var_dump($order);
 
     }
 }
