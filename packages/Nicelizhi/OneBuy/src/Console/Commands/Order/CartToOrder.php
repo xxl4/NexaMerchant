@@ -59,7 +59,11 @@ class CartToOrder extends Command
 
         Cart::setCart($this->cart);
 
-        var_dump(Cart::prepareDataForOrder());
+        //var_dump(Cart::prepareDataForOrder());
+
+        $order = $this->orderRepository->create(Cart::prepareDataForOrder());
+
+        var_dump($order);
 
     }
 }
