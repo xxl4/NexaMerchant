@@ -18,7 +18,7 @@ class CartToOrder extends Command
      *
      * @var string
      */
-    protected $signature = 'onebuy:carttoorder ';
+    protected $signature = 'onebuy:carttoorder';
 
     /**
      * The console command description.
