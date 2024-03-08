@@ -6,6 +6,7 @@ return [
     'brand' => env('ONEBUY_BRAND', 'Hatme'),
     'gtag' => env('ONEBUY_GTAG', "G-P6343Y2GKT"),
     'fb_ids' => env('FB_IDS'),
+    'ob_adv_id' => env('OB_ADV_ID'),
     'airwallex' => [
             'method' => [
                 'card',

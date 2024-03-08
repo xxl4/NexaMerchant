@@ -304,8 +304,9 @@ class ProductController extends Controller
         $gtag = config('onebuy.gtag');
 
         $fb_ids = config('onebuy.fb_ids');
+        $ob_adv_id = config('onebuy.ob_adv_id');
 
-        return view('onebuy::product-detail', compact('gtag','app_env','product','package_products', 'product_attributes', 'skus','productBgAttribute','productBgAttribute_mobile','faqItems','comments','paypal_client_id','default_country','airwallex_method','payments','payments_default','brand','fb_ids'));
+        return view('onebuy::product-detail', compact('gtag','app_env','product','package_products', 'product_attributes', 'skus','productBgAttribute','productBgAttribute_mobile','faqItems','comments','paypal_client_id','default_country','airwallex_method','payments','payments_default','brand','fb_ids','ob_adv_id'));
     }
 
     public function cms($slug, Request $request) {
@@ -490,7 +491,8 @@ class ProductController extends Controller
 
             $cart = Cart::getCart();
 
-            $order = $this->orderRepository->create(Cart::prepareDataForOrder());
+            //$order = $this->orderRepository->create(Cart::prepareDataForOrder()); //todo
+
 
             if ($redirectUrl = Payment::getRedirectUrl($cart)) {
                 $paypalStandard = app('Webkul\Paypal\Payment\Standard');
@@ -502,21 +504,12 @@ class ProductController extends Controller
                 $data['pay_url'] =  $paypalStandard->getPaypalUrl();
                 $data['result'] = 200;
                 return response()->json($data);
+            }else{
+                $data = [];
+                $data['result'] = 400;
+                $data['message'] = $redirectUrl;
+                return response()->json($data);
             }
-
-            // $order = $this->orderRepository->create(Cart::prepareDataForOrder());
-
-            // Cart::deActivateCart();
-
-            // Cart::activateCartIfSessionHasDeactivatedCartId();
-
-            // session()->flash('order', $order);
-
-            // return new JsonResource([
-            //     'success'       => true,
-            //     'redirect'     => true,
-            //     'redirect_url' => route('shop.checkout.onepage.success'),
-            // ]);
         }
         
         // 商品更新到购物车中。http://45.79.79.208:8002/api/checkout/cart
@@ -1139,7 +1132,8 @@ class ProductController extends Controller
         \Debugbar::disable(); /* 开启后容易出现前端JS报错的情况 */
         $product = [];
         $fb_ids = config('onebuy.fb_ids');
-        return view('onebuy::checkout-success', compact('product','fb_ids'));
+        $ob_adv_id = config('onebuy.ob_adv_id');
+        return view('onebuy::checkout-success', compact('product','fb_ids','ob_adv_id'));
     }
 
     public function order_query(Request $request) {
