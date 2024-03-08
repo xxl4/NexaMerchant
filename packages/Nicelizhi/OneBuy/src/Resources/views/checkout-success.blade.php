@@ -19,6 +19,37 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <!-- Facebook Pixel Code -->
 <!-- Facebook Pixel Code -->
+<?php if(!empty($ob_adv_id)) { ?>
+
+<script data-obct type = "text/javascript">
+/** DO NOT MODIFY THIS CODE**/
+!function(_window, _document) {
+    var OB_ADV_ID = '<?php echo $ob_adv_id; ?>';
+    if (_window.obApi) {
+    var toArray = function(object) {
+        return Object.prototype.toString.call(object) === '[object Array]' ? object : [object];
+    };
+    _window.obApi.marketerId = toArray(_window.obApi.marketerId).concat(toArray(OB_ADV_ID));
+    return;
+    }
+    var api = _window.obApi = function() {
+    api.dispatch ? api.dispatch.apply(api, arguments) : api.queue.push(arguments);
+    };
+    api.version = '1.1';
+    api.loaded = true;
+    api.marketerId = OB_ADV_ID;
+    api.queue = [];
+    var tag = _document.createElement('script');
+    tag.async = true;
+    tag.src = '//amplify.outbrain.com/cp/obtp.js';
+    tag.type = 'text/javascript';
+    var script = _document.getElementsByTagName('script')[0];
+    script.parentNode.insertBefore(tag, script);
+}(window, document);
+
+obApi('track', 'PAGE_VIEW');
+</script>
+<?php } ?>
 <script>
     !function(f,b,e,v,n,t,s)
     {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -180,6 +211,9 @@
             console.log(" purchase ori " + value);
             console.log("purchase "+ (value * 1).toFixed(2));
             fbq('track', 'Purchase', {currency: "USD", value: (value * 1).toFixed(2)});
+            <?php if(!empty($ob_adv_id)) { ?>
+            obApi('track', 'Purchase');
+            <?php } ?>
             if(typeof gtag == 'function') {
                 if(window.localStorage) {
                     var ga_post_order_template_commom_ids_str = localStorage.getItem("ga_post_order_template_commom_ids");
