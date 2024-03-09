@@ -56,5 +56,4 @@
     "currencySign": "€",
     "region": "Europe",
     "postalCodeRegex": "\\d{2}[ ]?\\d{3}"
-}
-]
+}]
