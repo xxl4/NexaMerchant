@@ -105,7 +105,8 @@ class GetShipping extends Command
              $ids = "0";
              foreach($items as $key=>$item) {
                 $shopOrder = \Nicelizhi\Shopify\Models\ShopifyOrder::where("shopify_store_id", $this->shopify_store_id)->select(['shopify_order_id'])->where("order_id", $item->id)->first();
-                $ids.=",".$shopOrder->shopify_order_id;
+                if(!is_null($shopOrder)) $ids.=",".$shopOrder->shopify_order_id;
+                
                 //var_dump($shopOrder);
                 //exit;
              }

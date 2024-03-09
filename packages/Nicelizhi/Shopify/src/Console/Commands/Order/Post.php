@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Cache;
 use Nicelizhi\Shopify\Models\ShopifyOrder;
 use Nicelizhi\Shopify\Models\ShopifyStore;
 use Webkul\Sales\Models\Order;
+use Illuminate\Http\Client\RequestException;
+use GuzzleHttp\Exception\ClientException;
 
 class Post extends Command
 {
@@ -78,14 +80,18 @@ class Post extends Command
         // $lists = $this->orderRepository->findWhere([
         //     'status' => 'processing'
         // ]);
-        $lists = Order::where(['status'=>'processing'])->orderBy("updated_at", "desc")->limit(20)->get();
+        $lists = Order::where(['status'=>'processing'])->orderBy("updated_at", "desc")->limit(100)->get();
         //var_dump($lists);exit;
         //$lists = Order::where(['id'=>'1093'])->orderBy("updated_at", "desc")->limit(10)->get();
 
         //var_dump($lists);exit;
 
+        $this->checkLog();
+
         foreach($lists as $key=>$list) {
             $this->info("start post order " . $list->id);
+
+            
             
             $this->postOrder($list->id, $shopifyStore);
             $this->syncOrderPrice($list); // sync price to system
@@ -95,6 +101,40 @@ class Post extends Command
 
         
     }
+
+    /**
+     * 
+     * check the today log file
+     * 
+     */
+
+     public function checkLog() {
+
+        //return false;
+       // use grep command to gerneter new log file
+
+       $big_log_file = storage_path('logs/laravel-'.date("Y-m-d").'.log');
+       $error_log_file = storage_path('logs/error-'.date("Y-m-d").'.log');
+       echo $big_log_file."\r\n";
+       echo $error_log_file."\r\n";
+
+       exec("cat ".$big_log_file." | grep SQLSTATE >".$error_log_file);
+
+       $items = file_get_contents($error_log_file);
+
+       $handle = fopen($error_log_file, "r");
+       if ($handle) {
+            while (($line = fgets($handle)) !== false) {
+                //var_dump($line);
+            }
+
+        fclose($handle);
+       }
+       
+       //exit;
+
+
+     }
 
     /**
      * 
@@ -336,6 +376,7 @@ class Post extends Command
 
         try {
             $response = $client->post($shopify['shopify_app_host_name'].'/admin/api/2023-10/orders.json', [
+                'http_errors' => true,
                 'headers' => [
                     'Content-Type' => 'application/json',
                     'Accept' => 'application/json',
@@ -343,9 +384,13 @@ class Post extends Command
                 ],
                 'body' => json_encode($pOrder)
             ]);
-        }catch(Exception $e) {
+        }catch(ClientException $e) {
+            //var_dump($e);
+            var_dump($e->getMessage());
             Log::error(json_encode($e->getMessage()));
-            \Nicelizhi\Shopify\Helper\Utils::send($e->getMessage());
+            \Nicelizhi\Shopify\Helpers\Utils::send($e->getMessage().'--' .$id. " 需要手动解决 ");
+            //continue;
+            return false;
         }
 
         
