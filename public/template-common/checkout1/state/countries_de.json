@@ -1,6 +1,6 @@
 [
     {
-        "countryName": "Germany",
+        "countryName": "Deutschland",
         "countryNameLocalized": "Germany",
         "countryCode": "DE",
         "currencyCode": "EUR",
@@ -10,7 +10,7 @@
         "postalCodeRegex": "\\d{5}"
     },
 {
-    "countryName": "Switzerland",
+    "countryName": "Schweiz",
     "countryNameLocalized": "Switzerland",
     "countryCode": "CH",
     "currencyCode": "CHF",
@@ -20,7 +20,7 @@
     "postalCodeRegex": "\\d{4}"
 },
 {
-    "countryName": "Austria",
+    "countryName": "Österreich",
     "countryNameLocalized": "Austria",
     "countryCode": "AT",
     "currencyCode": "EUR",
@@ -30,7 +30,7 @@
     "postalCodeRegex": "\\d{4}"
 },
  {
-    "countryName": "Sweden",
+    "countryName": "Schweden",
     "countryNameLocalized": "Sweden",
     "countryCode": "SE",
     "currencyCode": "SEK",
@@ -39,7 +39,7 @@
     "region": "Europe",
     "postalCodeRegex": "\\d{3}[ ]?\\d{2}"
 }, {
-    "countryName": "Greece",
+    "countryName": "Griechenland",
     "countryNameLocalized": "Greece",
     "countryCode": "GR",
     "currencyCode": "EUR",
@@ -48,7 +48,7 @@
     "region": "Europe",
     "postalCodeRegex": "\\d{3}[ ]?\\d{2}"
 },{
-    "countryName": "France",
+    "countryName": "Frankreich",
     "countryNameLocalized": "France",
     "countryCode": "FR",
     "currencyCode": "EUR",
