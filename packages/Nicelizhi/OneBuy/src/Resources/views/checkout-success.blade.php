@@ -17,7 +17,66 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<!-- Facebook Pixel Code -->
+<!-- Facebook Pixel Code -->
+<?php if(!empty($ob_adv_id)) { ?>
 
+<script data-obct type = "text/javascript">
+/** DO NOT MODIFY THIS CODE**/
+!function(_window, _document) {
+    var OB_ADV_ID = '<?php echo $ob_adv_id; ?>';
+    if (_window.obApi) {
+    var toArray = function(object) {
+        return Object.prototype.toString.call(object) === '[object Array]' ? object : [object];
+    };
+    _window.obApi.marketerId = toArray(_window.obApi.marketerId).concat(toArray(OB_ADV_ID));
+    return;
+    }
+    var api = _window.obApi = function() {
+    api.dispatch ? api.dispatch.apply(api, arguments) : api.queue.push(arguments);
+    };
+    api.version = '1.1';
+    api.loaded = true;
+    api.marketerId = OB_ADV_ID;
+    api.queue = [];
+    var tag = _document.createElement('script');
+    tag.async = true;
+    tag.src = '//amplify.outbrain.com/cp/obtp.js';
+    tag.type = 'text/javascript';
+    var script = _document.getElementsByTagName('script')[0];
+    script.parentNode.insertBefore(tag, script);
+}(window, document);
+
+obApi('track', 'PAGE_VIEW');
+</script>
+<?php } ?>
+<script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    <?php 
+    $fb_ids_arr = explode(',', $fb_ids);
+    foreach ($fb_ids_arr as $key => $fb_id) {
+    ?>
+    fbq('init', '<?php echo $fb_id;?>');
+    <?php } ?>
+  </script>
+  <noscript>
+    <?php foreach ($fb_ids_arr as $key => $fb_id) { ?>
+    <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=<?php echo $fb_id;?>&ev=PageView&noscript=1"/>
+    <?php } ?>
+  </noscript>
+  <!-- End Facebook Pixel Code -->
+    <!-- Facebook Pixel Code -->
+<script>
+  fbq('track', 'PageView');
+  fbq('track', 'ViewContent');
+</script>
 <title>
         Thank you &ndash;
     </title>
@@ -25,19 +84,6 @@
         function addVoluumImg(data) {
             console.log('addVoluumImg');
             return false;
-            var payout = data.info.payout || (data.info.total + data.info.currency); 
-            var bigImg = document.createElement("img");
-            bigImg.src = "https://tick.colapaco-op.com/conversion.gif?payout="+ payout +"&txid="+data.info._id.$oid;
-            bigImg.width="1";
-            bigImg.height="1";
-            document.body.appendChild(bigImg);
-
-            var bigImg1 = document.createElement("img");
-            bigImg1.src = "https://tick.ponira.com/conversion.gif?payout="+ payout +"&txid="+data.info._id.$oid;
-            bigImg1.width="1";
-            bigImg1.height="1";
-            document.body.appendChild(bigImg1);
-            console.log('addVoluumImg end');
         }
 
         function postVoluumConversion(data) {
@@ -162,6 +208,12 @@
     </script>
 <script>
         function purchase(value) {
+            console.log(" purchase ori " + value);
+            console.log("purchase "+ (value * 1).toFixed(2));
+            fbq('track', 'Purchase', {currency: "USD", value: (value * 1).toFixed(2)});
+            <?php if(!empty($ob_adv_id)) { ?>
+            obApi('track', 'Purchase');
+            <?php } ?>
             if(typeof gtag == 'function') {
                 if(window.localStorage) {
                     var ga_post_order_template_commom_ids_str = localStorage.getItem("ga_post_order_template_commom_ids");
@@ -184,6 +236,7 @@
                         'value': (value * 1).toFixed(2),
                         'currency': 'USD',
                     });
+                    
                 } else {
                     gtag('event', 'sur_purchase', {
                         'transaction_id': getQueryString('id'),
@@ -193,12 +246,12 @@
                 }
             } else {
                 setTimeout(function(){
-                    purchase();
+                    //purchase();
                 },10)
             }
         }
 
-        //fbq('track', 'Purchase');
+        
     </script>
 
 <link href="/css/timber.scss.css" rel="stylesheet" type="text/css" media="all">
@@ -433,24 +486,7 @@ All rights reserved
 </footer>
 </div>
 
-<!-- Facebook Pixel Code -->
-<script>
-  !function(f,b,e,v,n,t,s)
-  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-  n.queue=[];t=b.createElement(e);t.async=!0;
-  t.src=v;s=b.getElementsByTagName(e)[0];
-  s.parentNode.insertBefore(t,s)}(window, document,'script',
-  'https://connect.facebook.net/en_US/fbevents.js');
-  fbq('init', '844340774106979');
-  fbq('track', 'PageView');
-</script>
-<noscript>
-  <img height="1" width="1" style="display:none" 
-       src="https://www.facebook.com/tr?id=844340774106979&ev=PageView&noscript=1"/>
-</noscript>
-<!-- End Facebook Pixel Code -->
+
 
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-P6343Y2GKT"></script>
@@ -474,7 +510,7 @@ All rights reserved
             console.log('cookie');
 
             console.log(order_params);
-            // sendPurchaseEvent(order_params);
+            sendPurchaseEvent(order_params);
         }
 
         var client_secret = getQueryString('client_secret');
@@ -557,12 +593,10 @@ All rights reserved
             console.log(order_param);
 
             data = input.data;
-            purchase(data.info.grand_total);
+            //purchase(data.info.grand_total);
+            //console.log();
+            purchase(order_param.total);
             console.log(data)
-            if(!getCookie('voluum_payout') || getCookie('order_id') != getQueryString('id')) {
-                console.log('data');
-                sendPurchaseEvent(data);
-            }
 
             //document.querySelector('.order-total').innerHTML = getFormatPrice(data.info.grand_total, order_param.price_template);
             document.querySelector('.customer_first_name').innerHTML = order_param.first_name;
@@ -574,32 +608,13 @@ All rights reserved
             document.querySelector('.customer_country').innerHTML = order_param.country;
             document.querySelector('.customer_state').innerHTML = order_param.province ? order_param.province : '-';
             document.querySelector('.customer_zip').innerHTML = order_param.code ? order_param.code : '-';
-            document.querySelector('.product-brand').innerHTML = "hatmeo";
+            //document.querySelector('.product-brand').innerHTML = "hatmeo";
 
             setProductHtml(order_param.products, order_param.produt_amount_base);
             showPaySuccess();
-            getRecommendedData(order_param.payment_cancel_url);
+            //getRecommendedData(order_param.payment_cancel_url);
 
-            try { 
-                function getCookie(name)
-                {
-                    var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
-                
-                    if(arr=document.cookie.match(reg))
-                
-                        return unescape(arr[2]);
-                    else
-                        return null;
-                }
-                var refercode = getCookie('refer');
-                var pricetrue= order_param.total;
-
-
-                function getUclick_c(){var e=document.cookie.match(new RegExp("(?:^|; )"+"uclick"+"=([^;]*)"));return e?decodeURIComponent(e[1]):void 0}
-
-                function cnv_pixel(value){var e="https://track.heomai2021.com/",n=document.createElement("img");n.src=e+"click.php?cnv_id="+value+"&payout="+pricetrue;}
-                cnv_pixel(refercode);
-                } catch(e){  }
+            
             
         }
 

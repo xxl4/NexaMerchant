@@ -8,16 +8,13 @@ use Illuminate\Support\Facades\Log;
 use Webkul\Attribute\Repositories\AttributeFamilyRepository;
 use Webkul\Inventory\Repositories\InventorySourceRepository;
 use Webkul\Product\Repositories\ProductRepository;
-use Webkul\Product\Repositories\ProductAttributeValueRepository;
-use Webkul\Product\Repositories\ProductDownloadableLinkRepository;
-use Webkul\Product\Repositories\ProductDownloadableSampleRepository;
-use Webkul\Product\Repositories\ProductInventoryRepository;
 use Webkul\Attribute\Models\AttributeOption;
 use Webkul\Attribute\Models\AttributeOptionTranslation;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Storage;
 use Webkul\Product\Models\ProductImage;
 use Nicelizhi\Shopify\Models\ShopifyStore;
+use Illuminate\Support\Facades\Cache;
 
 class Get extends Command
 {
@@ -26,18 +23,33 @@ class Get extends Command
      *
      * @var string
      */
-    protected $signature = 'shopify:product:get';
+    protected $signature = 'shopify:product:get {--prod_id=} {--force=}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Get Products List';
+    protected $description = 'Get Products List or a product shopify:product:get {--prod_id=} {--force=}';
 
     private $shopify_store_id = "";
 
     private $category_id = 0;
+
+    private $lang = null;
+
+    private $locales = [
+        'us',
+        'en',
+        'fr',
+        'nl',
+        'tr',
+        'es',
+        'de',
+        'it',
+        'ru',
+        'uk'
+    ];
 
     /**
      * Create a new command instance.
@@ -51,8 +63,8 @@ class Get extends Command
         protected ShopifyStore $ShopifyStore,
     )
     {
-        $this->shopify_store_id = "wmbracom";
-        $this->lang = "de";
+        $this->shopify_store_id = config('shopify.shopify_store_id');
+        $this->lang = config('shopify.store_lang');
         $this->category_id = 9;
         parent::__construct();
     }
@@ -64,12 +76,26 @@ class Get extends Command
      */
     public function handle()
     {
-        
-        $shopify_pro_id = "8924785377562";
+        $shopify_pro_id = $this->option('prod_id');
+        if(empty($shopify_pro_id)) {
+            $this->error("prod id is empty");
+            return false;
+        }
+        $force = $this->option('force');
+        $this->info($this->lang);
+        //exit;
+
+        // locales
+        $this->locales = core()->getAllLocales()->pluck('code')->toArray();
 
         $client = new Client();
 
-        $shopifyStore = $this->ShopifyStore->where('shopify_store_id', $this->shopify_store_id)->first();
+        $shopifyStore = Cache::get("shopify_store_".$this->shopify_store_id);
+
+        if(empty($shopifyStore)){
+            $shopifyStore = $this->ShopifyStore->where('shopify_store_id', $this->shopify_store_id)->first();
+            Cache::put("shopify_store_".$this->shopify_store_id, $shopifyStore, 3600);
+        }
 
         if(is_null($shopifyStore)) {
             $this->error("no store");
@@ -78,8 +104,17 @@ class Get extends Command
 
         $shopify = $shopifyStore->toArray();
 
-        
+        $shopifyProduct = \Nicelizhi\Shopify\Models\ShopifyProduct::where("product_id", $shopify_pro_id)->first();
+        if(!is_null($shopifyProduct) && $force) {
+            if($force==true) {
+                \Nicelizhi\Shopify\Models\ShopifyProduct::where("product_id", $shopify_pro_id)->delete();
+            }else{
+                $this->error($shopify_pro_id." have imported!");
+                return false;
+            }
 
+        }
+        //exit;
         /**
          * 
          * @link https://shopify.dev/docs/api/admin-rest/2023-10/resources/product#get-products?ids=632910392,921728736
@@ -97,7 +132,7 @@ class Get extends Command
         $body = json_decode($response->getBody(), true);
 
         $body = $response->getBody();
-        Log::info($body);
+        //Log::info($body);
         $body = json_decode($body, true);
         //var_dump($body);exit;
         foreach($body['products'] as $key=>$item) {
@@ -132,17 +167,7 @@ class Get extends Command
         exec($execPath);
     }
 
-    private $locales = [
-        'en',
-        'fr',
-        'nl',
-        'tr',
-        'es',
-        'de',
-        'it',
-        'ru',
-        'uk'
-    ];
+   
 
     /**
      * 
@@ -153,7 +178,6 @@ class Get extends Command
         $items = \Nicelizhi\Shopify\Models\ShopifyProduct::where("shopify_store_id", $this->shopify_store_id)->where("product_id", $shopify_pro_id)->get();
         foreach($items as $key=>$item) {
             // if($item['product_id']!='8126562107640') continue;
-
             $this->info($item['product_id']);
 
             //var_dump($item->options);exit;
@@ -169,19 +193,24 @@ class Get extends Command
             $size = [];
             $error = 0;
             foreach($options as $kk => $option) {
+                $option['name'] = strtolower($option['name']);
                 $attr_id = 0;
                 if(strpos($option['name'], "Size")!==false) $attr_id = 24;
+                if(strpos($option['name'], "size")!==false) $attr_id = 24;
                 if(strpos($option['name'], "GRÖSSE")!==false) $attr_id = 24;
+                if(strpos($option['name'], "grÖsse")!==false) $attr_id = 24;
                 if(strpos($option['name'], "尺码") !==false) $attr_id = 24;
                 if(strpos($option['name'], "Length") !==false) $attr_id = 24;
+                if(strpos($option['name'], "größe") !==false) $attr_id = 24;
                 if(strpos($option['name'], "Color") !==false) $attr_id = 23;
+                if(strpos($option['name'], "color") !==false) $attr_id = 23;
+                if(strpos($option['name'], "Couleur") !==false) $attr_id = 23;
                 if(strpos($option['name'], "颜色") !==false) $attr_id = 23;
                 if(strpos($option['name'], "FARBE") !==false) $attr_id = 23;
-                //var_dump($option['name'], $attr_id); exit;
-                //if($option['position']==2) $attr_id = 24;
+                if(strpos($option['name'], "farbe") !==false) $attr_id = 23;
+
                 if(empty($attr_id)) {
-                    $this->error(json_encode($item));
-                    Log::info(json_encode($item));
+                    $this->error($option['name']);
                     $error = 1;
                     continue;
                     //exit;
@@ -255,7 +284,7 @@ class Get extends Command
             Event::dispatch('catalog.product.create.after', $product);
 
             $updateData = [];
-            $updateData['product_number'] = 1000;
+            $updateData['product_number'] = "";
             $updateData['name'] = $item['title'];
             $updateData['url_key'] = $item['product_id'];
             $updateData['short_description'] = $item['title'];
@@ -334,7 +363,7 @@ class Get extends Command
                 $newVariant['sku'] = $item['product_id'].'-'.$newShopifyVarants[$newkey]['id'];
                 $newVariant['name'] = $newShopifyVarants[$newkey]['title'];
                 $newVariant['price'] = $newShopifyVarants[$newkey]['price'];
-                $newVariant['weight'] = $newShopifyVarants[$newkey]['weight'];
+                $newVariant['weight'] = "1000";
                 $newVariant['status'] = 1;
                 $newVariant['color'] = $variant['color'];
                 $newVariant['size'] = $variant['size'];

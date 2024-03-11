@@ -2,7 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use Nicelizhi\OneBuy\Http\Controllers\ProductController;
+use Nicelizhi\OneBuy\Http\Controllers\ProductV2Controller;
 
+// default
 Route::group(['middleware' => ['locale', 'theme', 'currency','web']], function () {
 
     Route::get('onebuy/{slug}', [ProductController::class, 'detail'])
@@ -18,8 +20,6 @@ Route::group(['middleware' => ['locale', 'theme', 'currency','web']], function (
     Route::any('onebuy/order/status', [ProductController::class, "order_status"])
         ->name("onebuy.order.status");
 
-    
-
 
     Route::get('onebuy/checkout/success', [ProductController::class, "checkout_success"])->name('onebuy.checkout.success');
 
@@ -31,10 +31,15 @@ Route::group(['middleware' => ['locale', 'theme', 'currency','web']], function (
 
     Route::get('onebuy/page/{slug}', [ProductController::class, "cms"])->name('onebuy.cms.page');
 
+});
 
+// v2
 
+Route::group(['middleware' => ['locale', 'theme', 'currency','web']], function () {
 
-
+    Route::get('onebuy/v2/{slug}', [ProductV2Controller::class, 'detail'])
+        ->name('onebuy.v2.product.page')
+        ->middleware('cacheResponse');
 
 
 });

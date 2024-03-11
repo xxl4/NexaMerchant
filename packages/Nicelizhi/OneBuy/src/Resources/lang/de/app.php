@@ -1,12 +1,16 @@
 <?php
 return [
     'product' => [
+        'Savings' => 'Ersparnis',
+        'piece' => 'Stück',
+        'brand' => 'Hatme',
+        'Size Chart' => 'Größentabelle',
         'payment' => [
             'creditCard' => [
                 'title' => 'Kreditkarte',
                 'card_number' => 'Kartennummer',
-                'Expiry' => 'Ablauf',
-                'cvc' => 'Lebenslauf',
+                'Expiry' => 'Gültig bis',
+                'cvc' => 'Sicherheitscode',
             ],
             'paypal' => [
                 'title' => 'PayPal',
@@ -16,13 +20,13 @@ return [
                 'title' => 'klarna',
                 'description' => 'Nachdem du “Jetzt bezahlen” geklickt hast, wirst du zu Klarna weitergeleitet, um deinen Einkauf sicher abzuschließen.'
             ],
-        'complete_secure_purchase' => 'VOLLSTÄNDIG SICHERER KAUF',
+        'complete_secure_purchase' => 'Jetzt bezahlen',
         ],
         'step' => [
-            'Select Quantity' => 'Wählen Sie die Menge',
-            'Payment' => 'Zahlung',
-            'Shipping Information' => 'Versand',
-            'Place Order' => 'Bestellung aufgeben',
+            'Select Quantity' => 'Produkt',
+            'Payment' => 'Attribute',
+            'Shipping Information' => 'Lieferanschrift',
+            'Place Order' => 'Zahlung',
         ],
         "order" => [
             'Express Checkout' => 'Express-Kaufabwicklung',
@@ -57,12 +61,14 @@ return [
             'Subtotal' => 'Zwischensumme',
             '30 DAY GUARANTEE' => '30 TAGE GARANTIE',
             'What customers are saying about' => 'Worüber Kunden sagen',
-            'Frequently Asked Questions' => 'Häufig gestellte Fragen',
+            'Frequently Asked Questions' => 'FAQ',
             'JUST NOW' => 'SOEBEN',
             'COMPLETE SECURE PURCHASE' => 'VOLLSTÄNDIG SICHERER KAUF',
-            'Item' => 'Artikel',
-            'SELECT YOUR' => 'WÄHLE DEINE',
+            'Item' => 'Produkt',
+            'SELECT YOUR' => '',
             'All transactions are secure and encrypted' => 'Alle Transaktionen sind sicher und verschlüsselt',
+            'Hatmeo offers 30' => 'bietet eine 30-tägige Garantie auf alle unbenutzten Einkäufe. Senden Sie den/die Artikel einfach in der Originalverpackung an uns zurück und erhalten Sie eine volle Rückerstattung oder einen Ersatz, abzüglich Versandkosten.',
+            'I agree with the' => "Ich stimme dem zu",
         ],
         'footer' => [
             'Shipping Delivery' => 'Versand & Lieferung',

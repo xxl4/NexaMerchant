@@ -16,25 +16,42 @@
         <meta name="base-url" content="{{ url()->to('/') }}">
         <meta name="currency-code" content="{{ core()->getCurrentCurrencyCode() }}">
         <meta http-equiv="content-language" content="{{ app()->getLocale() }}">
-        <link rel="alternate icon" class="js-site-favicon" type="image/png" href="/favicon.png">
-        <link rel="icon" class="js-site-favicon" type="image/svg+xml" href="/favicon.svg">
+        <link 
+                type="image/x-icon"
+                href="/storage/configuration/kXMSPSveA3eaK1w2RbcdiiIAv6OPs5UJRiaqANId.png" 
+                rel="shortcut icon"
+                sizes="16x16"
+            >
         
         <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet' />
 <script src="https://unpkg.com/jquery@3.3.1/dist/jquery.min.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery-colorbox@1.6.4/jquery.colorbox.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/jquery-colorbox@1.6.4/example1/colorbox.min.css" rel="stylesheet">
 <!-- Facebook Pixel Code -->
 <script>
-  !function(f,b,e,v,n,t,s)
-  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-  n.queue=[];t=b.createElement(e);t.async=!0;
-  t.src=v;s=b.getElementsByTagName(e)[0];
-  s.parentNode.insertBefore(t,s)}(window, document,'script',
-  'https://connect.facebook.net/en_US/fbevents.js');
-  fbq('init', '844340774106979');
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '410784348009950');
+    fbq('init', '946596946391407');
+    fbq('init', '1481572959432110');
+  </script>
+  <noscript>
+    <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=410784348009950&ev=PageView&noscript=1"/>
+    <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=946596946391407&ev=PageView&noscript=1"/>
+    <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1481572959432110&ev=PageView&noscript=1"/>
+  </noscript>
+  <!-- End Facebook Pixel Code -->
+    <!-- Facebook Pixel Code -->
+<script>
   fbq('track', 'PageView');
   fbq('track', 'ViewContent');
 </script>
@@ -188,13 +205,7 @@
         }
     </style>
 
-<script type="text/javascript">
-    (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "kdssdtdq6l");
-</script>
+<script type="text/javascript"> (function(c,l,a,r,i,t,y){ c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)}; t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i; y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y); })(window, document, "clarity", "script", "kruepex7cm"); </script>
 </head>
 <body>
 <div class="smb-body">
@@ -587,9 +598,9 @@ Apt / Suite / Other </label>
 <div class="summary-footer">
 <div class="agree-block">
 <input type="checkbox" checked>
-I agree with the <a href="#" data-toggle="modal" data-target="#RefundpolicyModalCenter">
+I agree with the <a href="/onebuy/page/refund-policy?locale={{ app()->getLocale() }}" target="_blank">
  @lang('onebuy::app.product.order.Refund policy')  </a>
-& <a href="#"  data-toggle="modal" data-target="#PrivacyPolicyModalCenter">
+& <a href="/onebuy/page/privacy-policy?locale={{ app()->getLocale() }}" target="_blank" >
  @lang('onebuy::app.product.order.Privacy Policy') </a>
 . </div>
 <div class="guarantee-block">
@@ -599,7 +610,7 @@ I agree with the <a href="#" data-toggle="modal" data-target="#RefundpolicyModal
 <strong>
 @lang('onebuy::app.product.order.30 DAY GUARANTEE'):
 </strong>
-Hatmeo offers a 30 day guarantee on all unused purchases. Simply send the item(s) back to us in the original packaging for a full refund or replacement, less S&H. </div>
+ @lang('onebuy::app.product.order.Hatmeo offers 30')</div>
 </div>
 </div>
 </div>
@@ -737,12 +748,73 @@ Hatmeo offers a 30 day guarantee on all unused purchases. Simply send the item(s
 	            <div class="row">
 	                <div class="col-md-offset-3 col-md-12">
 	                    <div class="panel-group" id="accordion">
+
+
+                        <div class="panel panel-default">
+	                            <div class="panel-heading" role="tab" id="headingThree">
+	                                <h4 class="panel-title">
+                                        <div class="panel-title-header" id="headingThree2">
+                                            <div class="form-check form-check-inline" style="width: 100%;">
+                                                <input class="form-check-input" type="radio" value="airwallex-klarna" id="airwallex-klarna" checked name="payment_method">
+                                                <label class="form-check-label" for="airwallex-klarna">
+                                                <span>@lang('onebuy::app.product.payment.klarna.title')</span>
+                                                <div style="float: right;min-width: 200px;display: inline;text-align: right;"><img src="/checkout/v1/app/desktop/images/Klarna.png" style="max-height:24px" /></div>
+                                                </label>
+                                            </div>
+                                        </div>
+
+	                                    
+	                                </h4>
+	                            </div>
+	                            <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+	                                <div class="panel-body">
+	                                    <p>
+                                        <div>
+                                            @lang('onebuy::app.product.payment.klarna.description')
+                                        </div>
+                                        </p>
+	                                </div>
+	                            </div>
+	                        </div>
+
+                            <div class="panel panel-default">
+	                            <div class="panel-heading" role="tab" id="headingTwo">
+	                                <h4 class="panel-title">
+                                        <div class="panel-title-header" id="headingOne2">
+                                            <div class="form-check form-check-inline" style="width: 100%;">
+                                                <input class="form-check-input" type="radio" value="paypal_standard" id="payal_standard" name="payment_method">
+                                                <label class="form-check-label" for="payal_standard">
+                                                <span>@lang('onebuy::app.product.payment.paypal.title') </span>
+                                                <div style="float: right;min-width: 200px;display: inline;text-align: right;"><img src="/checkout/v1/app/desktop/images/paypal.png" style="max-height:24px" /></div>
+                                                </label>
+
+                                                
+
+                                            </div>
+                                            
+                                        </div>
+
+	                                    
+	                                </h4>
+	                            </div>
+	                            <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+	                                <div class="panel-body">
+	                                    <p>
+                                        <div>
+                                            @lang('onebuy::app.product.payment.paypal.description')
+                                        </div>
+                                        </p>
+	                                </div>
+	                            </div>
+	                        </div>
+
+
 	                        <div class="panel panel-default">
 	                            <div class="panel-heading"  id="headingOne">
 	                                <h4 class="panel-title">
 	                                    <div class="panel-title-header" id="headingOne1">
                                             <div class="form-check form-check-inline" style="width: 100%;">
-                                                <input class="form-check-input" type="radio" name="payment_method" id="payment_method_airwallex" checked value="airwallex">
+                                                <input class="form-check-input" type="radio" name="payment_method" id="payment_method_airwallex" value="airwallex">
                                                 <label class="form-check-label" for="payment_method_airwallex">
                                                     <span>@lang('onebuy::app.product.payment.creditCard.title')</span>
 
@@ -818,63 +890,11 @@ Hatmeo offers a 30 day guarantee on all unused purchases. Simply send the item(s
 	                                </div>
 	                            </div>
 	                        </div>
-	                        <div class="panel panel-default">
-	                            <div class="panel-heading" role="tab" id="headingTwo">
-	                                <h4 class="panel-title">
-                                        <div class="panel-title-header" id="headingOne2">
-                                            <div class="form-check form-check-inline" style="width: 100%;">
-                                                <input class="form-check-input" type="radio" value="paypal_standard" id="payal_standard" name="payment_method">
-                                                <label class="form-check-label" for="payal_standard">
-                                                <span>@lang('onebuy::app.product.payment.paypal.title') </span>
-                                                <div style="float: right;min-width: 200px;display: inline;text-align: right;"><img src="/checkout/v1/app/desktop/images/paypal.png" style="max-height:24px" /></div>
-                                                </label>
 
-                                                
+	                        
 
-                                            </div>
-                                            
-                                        </div>
 
-	                                    
-	                                </h4>
-	                            </div>
-	                            <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-	                                <div class="panel-body">
-	                                    <p>
-                                        <div>
-                                            @lang('onebuy::app.product.payment.paypal.description')
-                                        </div>
-                                        </p>
-	                                </div>
-	                            </div>
-	                        </div>
-
-                            <div class="panel panel-default">
-	                            <div class="panel-heading" role="tab" id="headingThree">
-	                                <h4 class="panel-title">
-                                        <div class="panel-title-header" id="headingThree2">
-                                            <div class="form-check form-check-inline" style="width: 100%;">
-                                                <input class="form-check-input" type="radio" value="airwallex-klarna" id="airwallex-klarna" name="payment_method">
-                                                <label class="form-check-label" for="airwallex-klarna">
-                                                <span>@lang('onebuy::app.product.payment.klarna.title')</span>
-                                                <div style="float: right;min-width: 200px;display: inline;text-align: right;"><img src="/checkout/v1/app/desktop/images/Klarna.png" style="max-height:24px" /></div>
-                                                </label>
-                                            </div>
-                                        </div>
-
-	                                    
-	                                </h4>
-	                            </div>
-	                            <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-	                                <div class="panel-body">
-	                                    <p>
-                                        <div>
-                                            @lang('onebuy::app.product.payment.klarna.description')
-                                        </div>
-                                        </p>
-	                                </div>
-	                            </div>
-	                        </div>
+                            
 	                        
 	                    </div>
 	                </div>
@@ -885,35 +905,20 @@ Hatmeo offers a 30 day guarantee on all unused purchases. Simply send the item(s
 
     <div class="submit-block">
         <div class="submit-content">
-            <div id="checkout-error" style="color:#e51f28;display:none;"></div>
+            
             <div class="zoom-fade submit-button" id="payment-button" style="text-align:center;">@lang('onebuy::app.product.payment.complete_secure_purchase')</div>
+            <div id="checkout-error" style="color:#e51f28;display:none;"></div>
         </div>
     </div>
 
-<!-- <div class="submit-block" style="padding-bottom: 10px;">
-    <div class="submit-content">
-        <div id="checkout-error" style="color:#e51f28;display:none;"></div>
-        <div class="pay-width-paypal-standard zoom-fade">
-            <img src="/checkout/v1/app/desktop/images/paypal_standard_412.jpg?v=11" style="cursor: pointer;"  />
-        </div>
-    </div>
-</div>
-<div class="submit-block">
-    <div class="submit-content">
-        <div id="checkout-error" style="color:#e51f28;display:none;"></div>
-        <div class="airwallex-pay zoom-fade" >
-                <img src="/checkout/v1/app/desktop/images/pay-with-checkout-412.jpg"  style="cursor: pointer;"/>
-        </div>
-    </div>
-</div> -->
 
 <div id="pay-after-warpper"></div>
 <div class="summary-footer summary-footer-mb">
 <div class="agree-block">
 <input type="checkbox" checked>
-I agree with the <a href="#"  data-toggle="modal" data-target="#RefundpolicyModalCenter">
+I agree with the <a href="/onebuy/page/refund-policy?locale={{ app()->getLocale() }}" target="_blank">
 @lang('onebuy::app.product.order.Refund policy') </a>
-& <a href="#"  data-toggle="modal" data-target="#PrivacyPolicyModalCenter">
+& <a href="/onebuy/page/privacy-policy?locale={{ app()->getLocale() }}" target="_blank"  >
  @lang('onebuy::app.product.order.Privacy Policy') </a>
 . </div>
 
@@ -934,7 +939,7 @@ Hatmeo offers a 30 day guarantee on all unused purchases. Simply send the item(s
 <script type="text/javascript" src="https://lander.heomai.com/template-common/js/myFoldpanel.js"></script>
 
 
-<link rel="stylesheet" type="text/css" href="/checkout/v1/app/desktop/css/main.css?v=1704676786">
+<link rel="stylesheet" type="text/css" href="/checkout/v1/app/desktop/css/main.css?v=1704676786" />
 
 <style>
 @media (max-width: 767px) {
@@ -1409,7 +1414,7 @@ just purchased:
             product_template += '<div class="attribute-value-item-title">'+select_language+' ' + (product_attribute.name || '') + select_language_after;
             
             if(product_attribute.tip) {
-                product_template += ' <span style="text-decoration: underline;font-size: 14px;cursor:pointer;color:#0000ff;" onclick="showImgProp(&quot;'+product_attribute.tip_img+'&quot;)">'+product_attribute.tip+'</span>'
+                product_template += ' <span style="text-decoration: underline;font-size: 14px;cursor:pointer;color:#0000ff;" onclick="showImgProp(&quot;'+"/storage/"+product_attribute.tip_img+'&quot;)">'+product_attribute.tip+'</span>'
             }
             
             product_template += '</div>';
@@ -2333,12 +2338,12 @@ function GotoNotRequest(url) {
                 error_log.push('phone_full is empty');
             }
 
-            var phone_format = /^[0-9\+\-\(\)\s]+$/;
-            if(!phone_format.test(params.phone_full)){
-                has_error = true;
-                showError('phone_number-error',  "Please enter valid phoneNumber");
-                error_log.push('phone_full is Invaild');
-            }
+            // var phone_format = /^[0-9\+\-\(\)\s]+$/;
+            // if(!phone_format.test(params.phone_full)){
+            //     has_error = true;
+            //     showError('phone_number-error',  "Please enter valid phoneNumber");
+            //     error_log.push('phone_full is Invaild');
+            // }
 
             if(!params.country){
                 has_error = true;
@@ -2781,8 +2786,11 @@ function GotoNotRequest(url) {
    
    <script>
     $(document).ready(function(){
-        $("#collapseOne").show();
-        $("#headingOne1").addClass("action");
+
+        //$("#collapseOne").show();
+        $("#collapseThree").show();
+        //$("#headingOne1").addClass("action");
+        $("#headingThree2").addClass("action");
         $("#payment-button").addClass("airwallex-pay");
 
         $("#payment_method_airwallex").on("click", function(){

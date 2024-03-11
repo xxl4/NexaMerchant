@@ -1,0 +1,77 @@
+[
+	{  
+      "CountryCode":"CL",
+      "StateCode":"AI",
+      "StateName":"Aiséndel General Carlos Ibáñezdel Campo"
+   },
+   {  
+      "CountryCode":"CL",
+      "StateCode":"AN",
+      "StateName":"Antofagasta"
+   },
+   {  
+      "CountryCode":"CL",
+      "StateCode":"AP",
+      "StateName":"Aricay Parinacota"
+   },
+   {  
+      "CountryCode":"CL",
+      "StateCode":"AR",
+      "StateName":"Araucanía"
+   },
+   {  
+      "CountryCode":"CL",
+      "StateCode":"AT",
+      "StateName":"Atacama"
+   },
+   {  
+      "CountryCode":"CL",
+      "StateCode":"BI",
+      "StateName":"Bío-Bío"
+   },
+   {  
+      "CountryCode":"CL",
+      "StateCode":"CO",
+      "StateName":"Coquimbo"
+   },
+   {  
+      "CountryCode":"CL",
+      "StateCode":"LI",
+      "StateName":"Libertador General Bernardo O'Higgins"
+   },
+   {  
+      "CountryCode":"CL",
+      "StateCode":"LL",
+      "StateName":"Los Lagos"
+   },
+   {  
+      "CountryCode":"CL",
+      "StateCode":"LR",
+      "StateName":"Los Ríos"
+   },
+   {  
+      "CountryCode":"CL",
+      "StateCode":"MA",
+      "StateName":"Magallanes"
+   },
+   {  
+      "CountryCode":"CL",
+      "StateCode":"ML",
+      "StateName":"Maule"
+   },
+   {  
+      "CountryCode":"CL",
+      "StateCode":"RM",
+      "StateName":"Región Metropolitanade Santiago"
+   },
+   {  
+      "CountryCode":"CL",
+      "StateCode":"TA",
+      "StateName":"Tarapacá"
+   },
+   {  
+      "CountryCode":"CL",
+      "StateCode":"VS",
+      "StateName":"Valparaíso"
+   }
+]
