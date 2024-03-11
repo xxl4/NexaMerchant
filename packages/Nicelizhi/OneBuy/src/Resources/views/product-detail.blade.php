@@ -16,20 +16,14 @@
         <meta name="base-url" content="{{ url()->to('/') }}">
         <meta name="currency-code" content="{{ core()->getCurrentCurrencyCode() }}">
         <meta http-equiv="content-language" content="{{ app()->getLocale() }}">
-        <link 
-                type="image/x-icon"
-                href="/favicon.png" 
-                rel="shortcut icon"
-                sizes="16x16"
-            >
-        
+        <link type="image/x-icon" href="/favicon.png" rel="shortcut icon" sizes="16x16" />
         <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet' />
-<script src="https://unpkg.com/jquery@3.3.1/dist/jquery.min.js"></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/jquery-colorbox@1.6.4/jquery.colorbox.min.js"></script>
-<link href="https://cdn.jsdelivr.net/npm/jquery-colorbox@1.6.4/example1/colorbox.min.css" rel="stylesheet">
+        <script src="https://unpkg.com/jquery@3.3.1/dist/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/jquery-colorbox@1.6.4/jquery.colorbox.min.js"></script>
+        <link href="https://cdn.jsdelivr.net/npm/jquery-colorbox@1.6.4/example1/colorbox.min.css" rel="stylesheet">
 
 
 <?php if($app_env=='demo') { ?>
@@ -499,24 +493,27 @@ Apt / Suite / Other </label>
 <div class="summary-title">
 @lang('onebuy::app.product.order.Order Summary') </div>
 <div class="summary-content">
-<ul class="summary-list">
-<li class="summary-list-item">
-<div class="product-name_block">
-<span class="product-name js-product-name"></span>
-<div class="edit-block">
-<a class="click_scroll" anchor=".main-container">
- @lang('onebuy::app.product.order.EDIT')</a>
-</div>
-</div>
-<div class="qty-price">
-<div class="qty">
- @lang('onebuy::app.product.order.QTY'):
-<span class="js-product-qty"></span>
-</div>
-<span class="product-price js-product-price"></span>
-</div>
-</li>
-</ul>
+    <ul class="summary-list">
+        <li class="summary-list-item">
+            <div class="product-name_block">
+                <span class="product-name js-product-name"></span>
+                <div class="edit-block">
+                    <a class="click_scroll" anchor=".main-container">
+                    @lang('onebuy::app.product.order.EDIT')</a>
+                </div>
+            </div>
+            <div class="product-sku">
+                <span class="js-sku" style="color: red;"></span>
+            </div>
+            <div class="qty-price">
+                <div class="qty">
+                    @lang('onebuy::app.product.order.QTY'):
+                    <span class="js-product-qty"></span>
+                </div>
+                <span class="product-price js-product-price"></span>
+            </div>
+        </li>
+    </ul>
 <div class="summary-total">
 <div class="summary-total-content">
 <div class="summary-total-item">
@@ -1063,37 +1060,7 @@ Apt / Suite / Other </label>
             return price_prefix + price_template.replace('price', (price*1).toFixed(2));
         }
 
-        function changeOrderSummary() {
-            var product = getSelectProduct();
-            var produt_amount_base = '1';
-            if(!produt_amount_base) {
-                produt_amount_base = 1;
-            }
-
-            var shipping_fee = product.shipping_fee;
-            
-            var total = product.new_price*1 + shipping_fee*1;
-                        
-            $('.js-product-name').html($('.list-item--checked .js-name').text());
-            $('.js-product-qty').html(product.amount*produt_amount_base);
-            $('.js-product-price').html(getFormatPrice(product.new_price));
-            $('.js-old-price').html(getFormatPrice(product.old_price));
-            $('.js-discount-price').html(getFormatPrice(product.new_price - product.old_price));
-            $('.js-shipping-price').html(getFormatPrice(shipping_fee));
-            $('.js-total').html(getFormatPrice(total));
-                    }
-
-        $('.js-list-item').on('click', function() {
-            $('.js-list-item').each(function() {
-                $(this).removeClass('list-item--checked');
-            })
-
-            $(this).addClass('list-item--checked');
-            showAttributeSelecet('@lang('onebuy::app.product.order.Item')');
-            changeOrderSummary();
-        })
-
-        changeOrderSummary();
+        
     </script>
 <script>
         $('.shipping-info-item input, .shipping-info-item select').on('change', function() {
@@ -1182,7 +1149,7 @@ Apt / Suite / Other </label>
         }
 
         function getCountryStates(callback) {
-            var url = '/template-common/checkout1/state/' + $("#country-select").val().toLowerCase() + '.json';
+            var url = '/template-common/checkout1/state/' + $("#country-select").val().toLowerCase() + '_{{ app()->getLocale() }}' + '.json';
             fetch(url,{
                 method: 'GET',
             })
@@ -1318,6 +1285,10 @@ function attributeChange(target, is_img_attribute, template) {
         $(target).parent().next().find('img').attr('src', attribute_img);
         
     }
+
+    changeOrderSummary();
+
+
 }
 
 function isProductSoldOut() {
@@ -2006,6 +1977,8 @@ function GotoNotRequest(url) {
 
             
             var products = getSubmitProducts(product_info.product_price,product_info.amount);
+            console.log("product");
+            console.log(products);
 
             //console.log("order products");
             //console.log(products);
@@ -2319,6 +2292,7 @@ function GotoNotRequest(url) {
                         product_id  : '<?php echo $product->id;?>',
                         product_sku : skus[m].sku_code,
                         variant_id  : skus[m].sku_id,
+                        attribute_name  : skus[m].attribute_name,
                         attr_id     : skus[m].attr_id
                     };
                     products.push(sku);
@@ -2369,6 +2343,72 @@ function GotoNotRequest(url) {
 
             return product_img;
         }
+
+        function changeOrderSummary() {
+            var product = getSelectProduct();
+            var produt_amount_base = '1';
+            if(!produt_amount_base) {
+                produt_amount_base = 1;
+            }
+
+            var shipping_fee = product.shipping_fee;
+            
+            var total = product.new_price*1 + shipping_fee*1;
+                        
+            $('.js-product-name').html($('.list-item--checked .js-name').text());
+            $('.js-product-qty').html(product.amount*produt_amount_base);
+            $('.js-product-price').html(getFormatPrice(product.new_price));
+            $('.js-old-price').html(getFormatPrice(product.old_price));
+            $('.js-discount-price').html(getFormatPrice(product.new_price - product.old_price));
+            $('.js-shipping-price').html(getFormatPrice(shipping_fee));
+            $('.js-total').html(getFormatPrice(total));
+
+
+            var product = getSelectProduct();
+
+            var shipping_fee = product.shipping_fee;
+            
+            var product_info = {
+                product_name  : product.name,
+                product_price : product.new_price,
+                product_sku  : '',
+                product_id  : '<?php echo $product->id;?>',
+                sku_id  : '',
+                currency : '{{ core()->getCurrentCurrencyCode() }}',
+                shipping_fee : shipping_fee,
+                amount : product.amount,
+                product_image : '{{ $productBaseImage['small_image_url'] }}'
+            };
+
+            var total = product_info.product_price*1 + product_info.shipping_fee* 1;            
+            var products = getSubmitProducts(product_info.product_price,product_info.amount);
+            
+            var sku_html = "";
+            $('.js-sku').empty();
+            products.forEach(function(currentValue, index, arr){
+                console.log(currentValue);
+                console.log(index);
+                console.log(arr);
+                sku_html += products[index].attribute_name + " / " + products[index].amount + "<br />";
+            })
+            $('.js-sku').html(sku_html);
+
+
+
+
+        }
+
+        $('.js-list-item').on('click', function() {
+            $('.js-list-item').each(function() {
+                $(this).removeClass('list-item--checked');
+            })
+
+            $(this).addClass('list-item--checked');
+            showAttributeSelecet('@lang('onebuy::app.product.order.Item')');
+            changeOrderSummary();
+        })
+
+        changeOrderSummary();
 
         function turnByCreatA(link, order_id) {
             var a = document.createElement("a");

@@ -1,0 +1,167 @@
+[
+	{  
+      "CountryCode":"ID",
+      "StateCode":"AC",
+      "StateName":"Aceh"
+   },
+   {  
+      "CountryCode":"ID",
+      "StateCode":"BA",
+      "StateName":"Bali"
+   },
+   {  
+      "CountryCode":"ID",
+      "StateCode":"BB",
+      "StateName":"Bangka Belitung"
+   },
+   {  
+      "CountryCode":"ID",
+      "StateCode":"BE",
+      "StateName":"Bengkulu"
+   },
+   {  
+      "CountryCode":"ID",
+      "StateCode":"BT",
+      "StateName":"Banten"
+   },
+   {  
+      "CountryCode":"ID",
+      "StateCode":"GO",
+      "StateName":"Gorontalo"
+   },
+   {  
+      "CountryCode":"ID",
+      "StateCode":"JA",
+      "StateName":"Jambi"
+   },
+   {  
+      "CountryCode":"ID",
+      "StateCode":"JB",
+      "StateName":"Jawa Barat"
+   },
+   {  
+      "CountryCode":"ID",
+      "StateCode":"JI",
+      "StateName":"Jawa Timur"
+   },
+   {  
+      "CountryCode":"ID",
+      "StateCode":"JK",
+      "StateName":"Jakarta Raya"
+   },
+   {  
+      "CountryCode":"ID",
+      "StateCode":"JT",
+      "StateName":"Jawa Tengah"
+   },
+   {  
+      "CountryCode":"ID",
+      "StateCode":"KB",
+      "StateName":"Kalimantan Barat"
+   },
+   {  
+      "CountryCode":"ID",
+      "StateCode":"KI",
+      "StateName":"Kalimantan Timur"
+   },
+   {  
+      "CountryCode":"ID",
+      "StateCode":"KR",
+      "StateName":"Kepulauan Riau"
+   },
+   {  
+      "CountryCode":"ID",
+      "StateCode":"KS",
+      "StateName":"Kalimantan Selatan"
+   },
+   {  
+      "CountryCode":"ID",
+      "StateCode":"KT",
+      "StateName":"Kalimantan Tengah"
+   },
+   {  
+      "CountryCode":"ID",
+      "StateCode":"LA",
+      "StateName":"Lampung"
+   },
+   {  
+      "CountryCode":"ID",
+      "StateCode":"MA",
+      "StateName":"Maluku"
+   },
+   {  
+      "CountryCode":"ID",
+      "StateCode":"MU",
+      "StateName":"Maluku Utara"
+   },
+   {  
+      "CountryCode":"ID",
+      "StateCode":"NB",
+      "StateName":"Nusa Tenggara Barat"
+   },
+   {  
+      "CountryCode":"ID",
+      "StateCode":"NT",
+      "StateName":"Nusa Tenggara Timur"
+   },
+   {  
+      "CountryCode":"ID",
+      "StateCode":"PA",
+      "StateName":"Papua"
+   },
+   {  
+      "CountryCode":"ID",
+      "StateCode":"PB",
+      "StateName":"Papua Barat"
+   },
+   {  
+      "CountryCode":"ID",
+      "StateCode":"RI",
+      "StateName":"Riau"
+   },
+   {  
+      "CountryCode":"ID",
+      "StateCode":"SA",
+      "StateName":"Sulawesi Utara"
+   },
+   {  
+      "CountryCode":"ID",
+      "StateCode":"SB",
+      "StateName":"Sumatera Barat"
+   },
+   {  
+      "CountryCode":"ID",
+      "StateCode":"SG",
+      "StateName":"Sulawesi Tenggara"
+   },
+   {  
+      "CountryCode":"ID",
+      "StateCode":"SN",
+      "StateName":"Sulawesi Selatan"
+   },
+   {  
+      "CountryCode":"ID",
+      "StateCode":"SR",
+      "StateName":"Sulawesi Barat"
+   },
+   {  
+      "CountryCode":"ID",
+      "StateCode":"SS",
+      "StateName":"Sumatera Selatan"
+   },
+   {  
+      "CountryCode":"ID",
+      "StateCode":"ST",
+      "StateName":"Sulawesi Tengah"
+   },
+   {  
+      "CountryCode":"ID",
+      "StateCode":"SU",
+      "StateName":"Sumatera Utara"
+   },
+   {  
+      "CountryCode":"ID",
+      "StateCode":"YO",
+      "StateName":"Yogyakarta"
+   },
+]

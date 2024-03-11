@@ -1,0 +1,137 @@
+[
+	{  
+      "CountryCode":"UA",
+      "StateCode":"05",
+      "StateName":"Vinnyts'ka Oblast'"
+   },
+   {  
+      "CountryCode":"UA",
+      "StateCode":"07",
+      "StateName":"Volyns'ka Oblast'"
+   },
+   {  
+      "CountryCode":"UA",
+      "StateCode":"09",
+      "StateName":"Luhans'ka Oblast'"
+   },
+   {  
+      "CountryCode":"UA",
+      "StateCode":"12",
+      "StateName":"Dnipropetrovs'ka Oblast'"
+   },
+   {  
+      "CountryCode":"UA",
+      "StateCode":"14",
+      "StateName":"Donets'ka Oblast'"
+   },
+   {  
+      "CountryCode":"UA",
+      "StateCode":"18",
+      "StateName":"Zhytomyrs'ka Oblast'"
+   },
+   {  
+      "CountryCode":"UA",
+      "StateCode":"21",
+      "StateName":"Zakarpats'ka Oblast'"
+   },
+   {  
+      "CountryCode":"UA",
+      "StateCode":"23",
+      "StateName":"Zaporiz'ka Oblast'"
+   },
+   {  
+      "CountryCode":"UA",
+      "StateCode":"26",
+      "StateName":"Ivano-Frankivs'ka Oblast'"
+   },
+   {  
+      "CountryCode":"UA",
+      "StateCode":"30",
+      "StateName":"Kyïv"
+   },
+   {  
+      "CountryCode":"UA",
+      "StateCode":"32",
+      "StateName":"Kyïvs'ka Oblast'"
+   },
+   {  
+      "CountryCode":"UA",
+      "StateCode":"35",
+      "StateName":"Kirovohrads'ka Oblast'"
+   },
+   {  
+      "CountryCode":"UA",
+      "StateCode":"40",
+      "StateName":"Sevastopol'"
+   },
+   {  
+      "CountryCode":"UA",
+      "StateCode":"43",
+      "StateName":"RespublikaKrym"
+   },
+   {  
+      "CountryCode":"UA",
+      "StateCode":"46",
+      "StateName":"L'vivs'ka Oblast'"
+   },
+   {  
+      "CountryCode":"UA",
+      "StateCode":"48",
+      "StateName":"Mykolaïvs'ka Oblast'"
+   },
+   {  
+      "CountryCode":"UA",
+      "StateCode":"51",
+      "StateName":"Odes'ka Oblast'"
+   },
+   {  
+      "CountryCode":"UA",
+      "StateCode":"53",
+      "StateName":"Poltavs'ka Oblast'"
+   },
+   {  
+      "CountryCode":"UA",
+      "StateCode":"56",
+      "StateName":"Rivnens'ka blast'"
+   },
+   {  
+      "CountryCode":"UA",
+      "StateCode":"59",
+      "StateName":"Sums'ka Oblast'"
+   },
+   {  
+      "CountryCode":"UA",
+      "StateCode":"61",
+      "StateName":"Ternopil's'ka Oblast'"
+   },
+   {  
+      "CountryCode":"UA",
+      "StateCode":"63",
+      "StateName":"Kharkivs'ka Oblast'"
+   },
+   {  
+      "CountryCode":"UA",
+      "StateCode":"65",
+      "StateName":"Khersons'ka Oblast'"
+   },
+   {  
+      "CountryCode":"UA",
+      "StateCode":"68",
+      "StateName":"Khmel'nyts'ka Oblast'"
+   },
+   {  
+      "CountryCode":"UA",
+      "StateCode":"71",
+      "StateName":"Cherkas'ka Oblast'"
+   },
+   {  
+      "CountryCode":"UA",
+      "StateCode":"74",
+      "StateName":"Chernihivs'ka Oblast'"
+   },
+   {  
+      "CountryCode":"UA",
+      "StateCode":"77",
+      "StateName":"Chernivets'ka Oblast'"
+   }
+]

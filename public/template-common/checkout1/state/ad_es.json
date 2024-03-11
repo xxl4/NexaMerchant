@@ -1,0 +1,37 @@
+[
+	{  
+      "CountryCode":"AD",
+      "StateCode":"02",
+      "StateName":"Canillo"
+   },
+   {  
+      "CountryCode":"AD",
+      "StateCode":"03",
+      "StateName":"Encamp"
+   },
+   {  
+      "CountryCode":"AD",
+      "StateCode":"04",
+      "StateName":"La Massana"
+   },
+   {  
+      "CountryCode":"AD",
+      "StateCode":"05",
+      "StateName":"Ordino"
+   },
+   {  
+      "CountryCode":"AD",
+      "StateCode":"06",
+      "StateName":"Sant Julia de Loria"
+   },
+   {  
+      "CountryCode":"AD",
+      "StateCode":"07",
+      "StateName":"Andorrala Vella"
+   },
+   {  
+      "CountryCode":"AD",
+      "StateCode":"08",
+      "StateName":"Escaldes-Engordany"
+   }
+]
