@@ -1,0 +1,27 @@
+[
+	{  
+      "CountryCode":"TG",
+      "StateCode":"C",
+      "StateName":"Centre"
+   },
+   {  
+      "CountryCode":"TG",
+      "StateCode":"K",
+      "StateName":"Kara"
+   },
+   {  
+      "CountryCode":"TG",
+      "StateCode":"M",
+      "StateName":"Maritime(Région)"
+   },
+   {  
+      "CountryCode":"TG",
+      "StateCode":"P",
+      "StateName":"Plateaux"
+   },
+   {  
+      "CountryCode":"TG",
+      "StateCode":"S",
+      "StateName":"Savannes"
+   }
+]

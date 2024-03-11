@@ -1,0 +1,57 @@
+[
+	{  
+      "CountryCode":"MZ",
+      "StateCode":"A",
+      "StateName":"Niassa"
+   },
+   {  
+      "CountryCode":"MZ",
+      "StateCode":"B",
+      "StateName":"Manica"
+   },
+   {  
+      "CountryCode":"MZ",
+      "StateCode":"G",
+      "StateName":"Gaza"
+   },
+   {  
+      "CountryCode":"MZ",
+      "StateCode":"I",
+      "StateName":"Inhambane"
+   },
+   {  
+      "CountryCode":"MZ",
+      "StateCode":"L",
+      "StateName":"Maputo"
+   },
+   {  
+      "CountryCode":"MZ",
+      "StateCode":"MPM",
+      "StateName":"Maputo City"
+   },
+   {  
+      "CountryCode":"MZ",
+      "StateCode":"N",
+      "StateName":"Nampula"
+   },
+   {  
+      "CountryCode":"MZ",
+      "StateCode":"P",
+      "StateName":"Cabo Delgado"
+   },
+   {  
+      "CountryCode":"MZ",
+      "StateCode":"Q",
+      "StateName":"Zambézia"
+   },
+   {  
+      "CountryCode":"MZ",
+      "StateCode":"S",
+      "StateName":"Sofala"
+   },
+   {  
+      "CountryCode":"MZ",
+      "StateCode":"T",
+      "StateName":"Tete"
+   }
+]
