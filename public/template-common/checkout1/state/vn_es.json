@@ -1,0 +1,322 @@
+[
+	{  
+      "CountryCode":"VN",
+      "StateCode":"01",
+      "StateName":"Lai Châu"
+   },
+   {  
+      "CountryCode":"VN",
+      "StateCode":"02",
+      "StateName":"Lào Cai"
+   },
+   {  
+      "CountryCode":"VN",
+      "StateCode":"03",
+      "StateName":"Hà Giang"
+   },
+   {  
+      "CountryCode":"VN",
+      "StateCode":"04",
+      "StateName":"Cao Bằng"
+   },
+   {  
+      "CountryCode":"VN",
+      "StateCode":"05",
+      "StateName":"Sơn La"
+   },
+   {  
+      "CountryCode":"VN",
+      "StateCode":"06",
+      "StateName":"Yên Bái"
+   },
+   {  
+      "CountryCode":"VN",
+      "StateCode":"07",
+      "StateName":"Tuyên Quang"
+   },
+   {  
+      "CountryCode":"VN",
+      "StateCode":"09",
+      "StateName":"Lạng Sơn"
+   },
+   {  
+      "CountryCode":"VN",
+      "StateCode":"13",
+      "StateName":"Quảng Ninh"
+   },
+   {  
+      "CountryCode":"VN",
+      "StateCode":"14",
+      "StateName":"Hoà Bình"
+   },
+   {  
+      "CountryCode":"VN",
+      "StateCode":"15",
+      "StateName":"Hà Tây"
+   },
+   {  
+      "CountryCode":"VN",
+      "StateCode":"18",
+      "StateName":"Ninh Bình"
+   },
+   {  
+      "CountryCode":"VN",
+      "StateCode":"20",
+      "StateName":"Thái Bình"
+   },
+   {  
+      "CountryCode":"VN",
+      "StateCode":"21",
+      "StateName":"Thanh Hoá"
+   },
+   {  
+      "CountryCode":"VN",
+      "StateCode":"22",
+      "StateName":"Nghệ An"
+   },
+   {  
+      "CountryCode":"VN",
+      "StateCode":"23",
+      "StateName":"Hà Tĩnh"
+   },
+   {  
+      "CountryCode":"VN",
+      "StateCode":"24",
+      "StateName":"Quảng Bình"
+   },
+   {  
+      "CountryCode":"VN",
+      "StateCode":"25",
+      "StateName":"Quảng Trị"
+   },
+   {  
+      "CountryCode":"VN",
+      "StateCode":"26",
+      "StateName":"Thừa Thiên - Huế"
+   },
+   {  
+      "CountryCode":"VN",
+      "StateCode":"27",
+      "StateName":"Quảng Nam"
+   },
+   {  
+      "CountryCode":"VN",
+      "StateCode":"28",
+      "StateName":"Kon Tum"
+   },
+   {  
+      "CountryCode":"VN",
+      "StateCode":"29",
+      "StateName":"Quảng Ngãi"
+   },
+   {  
+      "CountryCode":"VN",
+      "StateCode":"30",
+      "StateName":"Gia Lai"
+   },
+   {  
+      "CountryCode":"VN",
+      "StateCode":"31",
+      "StateName":"Bình Định"
+   },
+   {  
+      "CountryCode":"VN",
+      "StateCode":"32",
+      "StateName":"Phú Yên"
+   },
+   {  
+      "CountryCode":"VN",
+      "StateCode":"33",
+      "StateName":"Đắk Lắk"
+   },
+   {  
+      "CountryCode":"VN",
+      "StateCode":"34",
+      "StateName":"Khánh Hoà"
+   },
+   {  
+      "CountryCode":"VN",
+      "StateCode":"35",
+      "StateName":"Lâm Đồng"
+   },
+   {  
+      "CountryCode":"VN",
+      "StateCode":"36",
+      "StateName":"Ninh Thuận"
+   },
+   {  
+      "CountryCode":"VN",
+      "StateCode":"37",
+      "StateName":"Tây Ninh"
+   },
+   {  
+      "CountryCode":"VN",
+      "StateCode":"39",
+      "StateName":"Đồng Nai"
+   },
+   {  
+      "CountryCode":"VN",
+      "StateCode":"40",
+      "StateName":"Bình Thuận"
+   },
+   {  
+      "CountryCode":"VN",
+      "StateCode":"41",
+      "StateName":"Long An"
+   },
+   {  
+      "CountryCode":"VN",
+      "StateCode":"43",
+      "StateName":"Bà Rịa - Vũng Tàu"
+   },
+   {  
+      "CountryCode":"VN",
+      "StateCode":"44",
+      "StateName":"An Giang"
+   },
+   {  
+      "CountryCode":"VN",
+      "StateCode":"45",
+      "StateName":"Đồng Tháp"
+   },
+   {  
+      "CountryCode":"VN",
+      "StateCode":"46",
+      "StateName":"Tiền Giang"
+   },
+   {  
+      "CountryCode":"VN",
+      "StateCode":"47",
+      "StateName":"Kiên Giang"
+   },
+   {  
+      "CountryCode":"VN",
+      "StateCode":"48",
+      "StateName":"Cần Thơ"
+   },
+   {  
+      "CountryCode":"VN",
+      "StateCode":"49",
+      "StateName":"Vĩnh Long"
+   },
+   {  
+      "CountryCode":"VN",
+      "StateCode":"50",
+      "StateName":"Bến Tre"
+   },
+   {  
+      "CountryCode":"VN",
+      "StateCode":"51",
+      "StateName":"Trà Vinh"
+   },
+   {  
+      "CountryCode":"VN",
+      "StateCode":"52",
+      "StateName":"Sóc Trăng"
+   },
+   {  
+      "CountryCode":"VN",
+      "StateCode":"53",
+      "StateName":"Bắc Cạn"
+   },
+   {  
+      "CountryCode":"VN",
+      "StateCode":"54",
+      "StateName":"Bắc Giang"
+   },
+   {  
+      "CountryCode":"VN",
+      "StateCode":"55",
+      "StateName":"Bạc Liêu"
+   },
+   {  
+      "CountryCode":"VN",
+      "StateCode":"56",
+      "StateName":"Bắc Ninh"
+   },
+   {  
+      "CountryCode":"VN",
+      "StateCode":"57",
+      "StateName":"Bình Dương"
+   },
+   {  
+      "CountryCode":"VN",
+      "StateCode":"58",
+      "StateName":"Bình Phước"
+   },
+   {  
+      "CountryCode":"VN",
+      "StateCode":"59",
+      "StateName":"Cà Mau"
+   },
+   {  
+      "CountryCode":"VN",
+      "StateCode":"60",
+      "StateName":"Đà Nẵng"
+   },
+   {  
+      "CountryCode":"VN",
+      "StateCode":"61",
+      "StateName":"Hải Dương"
+   },
+   {  
+      "CountryCode":"VN",
+      "StateCode":"62",
+      "StateName":"Hải Phòng"
+   },
+   {  
+      "CountryCode":"VN",
+      "StateCode":"63",
+      "StateName":"Hà Nam"
+   },
+   {  
+      "CountryCode":"VN",
+      "StateCode":"64",
+      "StateName":"Hà Nội"
+   },
+   {  
+      "CountryCode":"VN",
+      "StateCode":"65",
+      "StateName":"Hồ Chí Minh"
+   },
+   {  
+      "CountryCode":"VN",
+      "StateCode":"66",
+      "StateName":"Hưng Yên"
+   },
+   {  
+      "CountryCode":"VN",
+      "StateCode":"67",
+      "StateName":"Nam Định"
+   },
+   {  
+      "CountryCode":"VN",
+      "StateCode":"68",
+      "StateName":"Phú Thọ"
+   },
+   {  
+      "CountryCode":"VN",
+      "StateCode":"69",
+      "StateName":"Thái Nguyên"
+   },
+   {  
+      "CountryCode":"VN",
+      "StateCode":"70",
+      "StateName":"Vĩnh Phúc"
+   },
+   {  
+      "CountryCode":"VN",
+      "StateCode":"71",
+      "StateName":"Điện Biên"
+   },
+   {  
+      "CountryCode":"VN",
+      "StateCode":"72",
+      "StateName":"Đắk Nông"
+   },
+   {  
+      "CountryCode":"VN",
+      "StateCode":"73",
+      "StateName":"Hậu Giang"
+   }
+]

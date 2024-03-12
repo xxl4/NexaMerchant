@@ -1,0 +1,32 @@
+[
+	{  
+      "CountryCode":"MG",
+      "StateCode":"A",
+      "StateName":"Toamasina"
+   },
+   {  
+      "CountryCode":"MG",
+      "StateCode":"D",
+      "StateName":"Antsiranana"
+   },
+   {  
+      "CountryCode":"MG",
+      "StateCode":"F",
+      "StateName":"Fianarantsoa"
+   },
+   {  
+      "CountryCode":"MG",
+      "StateCode":"M",
+      "StateName":"Mahajanga"
+   },
+   {  
+      "CountryCode":"MG",
+      "StateCode":"T",
+      "StateName":"Antananarivo"
+   },
+   {  
+      "CountryCode":"MG",
+      "StateCode":"U",
+      "StateName":"Toliara"
+   }
+]
