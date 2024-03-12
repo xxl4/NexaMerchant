@@ -303,6 +303,28 @@
             .tip2_wrapper_0 .tip1 {
                 color: #00c1f1;
             }
+            @media (max-width:1023px) {
+                .summary-wrapper{
+                    box-shadow: 1px 2px 3px 0 rgb(0 0 0 / 31%);
+                background-color: #fff;
+                padding: 0;
+                position: relative;
+                overflow: hidden;
+                border-radius: 15px !important;
+                /* background-image: linear-gradient(white, white), linear-gradient(180deg, #bd8f2f 0, #f9f1b2 66%, #bd8f2f 100%) !important; */
+                background-origin: border-box !important;
+                background-clip: content-box, border-box !important;
+                border: double 3px transparent !important;
+                }
+
+                .summary-list-item {
+                    margin: 0px, 5px;
+                }
+                .summary-total {
+                    margin: 10px -3px 0;
+                    padding: 7px 15px;
+                }
+            }
         </style>
         <div class="tip_wrapper tip1_wrapper_0">
             <img src="/template-common/checkout1/images/checkmark.png">
@@ -502,9 +524,7 @@ Apt / Suite / Other </label>
                     @lang('onebuy::app.product.order.EDIT')</a>
                 </div>
             </div>
-            <div class="product-sku">
-                <span class="js-sku" style="color: red;"></span>
-            </div>
+            
             <div class="qty-price">
                 <div class="qty">
                     @lang('onebuy::app.product.order.QTY'):
@@ -512,6 +532,9 @@ Apt / Suite / Other </label>
                 </div>
                 <span class="product-price js-product-price"></span>
             </div>
+        </li>
+        <li class="summary-list-item">
+            <span class="js-sku" style="color: gray;"></span>
         </li>
     </ul>
 <div class="summary-total">
@@ -2389,7 +2412,7 @@ function GotoNotRequest(url) {
                 console.log(currentValue);
                 console.log(index);
                 console.log(arr);
-                sku_html += products[index].attribute_name + " / " + products[index].amount + "<br />";
+                sku_html += products[index].attribute_name + " / " + products[index].amount + "<br>";
             })
             $('.js-sku').html(sku_html);
 
