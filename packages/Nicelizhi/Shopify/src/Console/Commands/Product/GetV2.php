@@ -37,6 +37,8 @@ class GetV2 extends Command
 
     private $lang = null;
 
+    private $attr_id = 0;
+
     private $locales = [
         'us',
         'en',
@@ -204,6 +206,7 @@ class GetV2 extends Command
                     //exit;
                 }
                 $this->info("attr id ". $attr_id);
+                if(!empty($attr_id)) $this->attr_id = $attr_id;
 
                 $values = $option['values'];
                 foreach($values as $kky => $value) {
@@ -263,8 +266,6 @@ class GetV2 extends Command
             $data['type'] = "configurable";
             $data['super_attributes'] = $super_attributes;
 
-           // var_dump($data);
-
             //var_dump($data);exit;
             Event::dispatch('catalog.product.create.before');
 
@@ -306,24 +307,15 @@ class GetV2 extends Command
 
             //var_dump(count($shopifyVariants));
 
+            var_dump($shopifyVariants);
+
             $newShopifyVarants = [];
             foreach($shopifyVariants as $sv => $shopifyVariant) {
                 //var_dump($shopifyVariant);
                 $newkey = $shopifyVariant['product_id'];
-                if(!empty($color)) $color = AttributeOption::where("attribute_id", 23)->where("admin_name", $shopifyVariant['option1'])->first();
+                if(!empty($attr_id)) $attr = AttributeOption::where("attribute_id", $this->attr_id)->where("admin_name", $shopifyVariant['option1'])->first();
                 
-                if(!empty($size)) $size = AttributeOption::where("attribute_id", 24)->where("admin_name", $shopifyVariant['option2'])->first();
-
-                
-
-                // if(is_null($color) || is_null($size)) {
-                //     $this->info("error");
-                //     var_dump($color, $size, $shopifyVariant);
-                //     exit;
-                // }
-                
-                
-                //$newkey .="_".$color->id."_".$size->id;
+                //if(!empty($size)) $size = AttributeOption::where("attribute_id", 24)->where("admin_name", $shopifyVariant['option2'])->first();
 
                 $newShopifyVarant = [];
 
@@ -332,19 +324,16 @@ class GetV2 extends Command
                 $newShopifyVarant['title'] = $shopifyVariant['title'];
                 $newShopifyVarant['weight'] = $shopifyVariant['weight'];
                 $newShopifyVarant['sku'] = $shopifyVariant['sku'];
-                if(!is_null($color) && !empty($color)) {
-                    $newkey .="_".$color->id;
+                if(!empty($attr)) {
+                    $newkey .="_".$attr->id;
                     $newShopifyVarant['option1'] = $shopifyVariant['option1'];
                 } 
-                if(!is_null($size) && !empty($size)) {
-                    $newkey .="_".$size->id;
-                    $newShopifyVarant['option2'] = $shopifyVariant['option2'];
-                } 
                 
+                //var_dump($newkey);
                 $newShopifyVarants[$newkey] = $newShopifyVarant;
             }
 
-            //var_dump($newShopifyVarants);exit;
+            //var_dump($newShopifyVarants, $newShopifyVarant);exit;
 
             /**
              * 
@@ -360,6 +349,7 @@ class GetV2 extends Command
              * 
              */
             $newVariants = [];
+            //var_dump($variants);exit;
             foreach($variants as $k => $variant) {
                 
                 $newkey = $item['product_id'];
@@ -457,8 +447,11 @@ class GetV2 extends Command
                 }
                 $images[] = $image_path;
             }
-
+            $max_image_count = 3;
+            $i=0;
             foreach($images as $key=>$image) {
+                $i++;
+                if($max_image_count < $i) continue;
                 $checkImg = ProductImage::where("product_id", $id)->where("path", $image)->first();
                 if(is_null($checkImg)) {
                     $checkImg = new ProductImage();
@@ -515,8 +508,11 @@ class GetV2 extends Command
                     }
                     $images[] = $image_path;
                 }
-    
+                $max_image_count = 3;
+                $i=0;
                 foreach($images as $key=>$image) {
+                    $i++;
+                    if($max_image_count < $i) continue;
                     $checkImg = ProductImage::where("product_id", $sku->id)->where("path", $image)->first();
                     if(is_null($checkImg)) {
                         $checkImg = new ProductImage();
