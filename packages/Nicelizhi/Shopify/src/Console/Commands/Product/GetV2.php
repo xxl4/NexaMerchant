@@ -296,7 +296,9 @@ class GetV2 extends Command
 
             $updateData['description'] = $item['body_html'];
 
-            $updateData['compare_at_price'] = $item['compare_at_price'];
+            //$updateData['compare_at_price'] = $item['compare_at_price'];
+            $updateData['compare_at_price'] = $shopifyVariants[0]['compare_at_price'];
+            $updateData['price'] = $shopifyVariants[0]['price'];
 
             $variants = $variantCollection = $product->variants()->get()->toArray();
 
@@ -411,15 +413,9 @@ class GetV2 extends Command
             $images = [];
             foreach($shopifyImages as $key=>$shopifyImage) {
 
-                //var_dump($shopifyImage);
                 $info = pathinfo($shopifyImage['src']);
 
-                //var_dump($shopifyImage);
-
                 $this->info($info['filename']);
-
-               
-                //var_dump($info);exit;
                 $image_path = "product/".$id."/".$info['filename'].".webp";
                 $local_image_path = "storage/".$image_path;
                 $this->info(public_path($local_image_path));
@@ -431,8 +427,7 @@ class GetV2 extends Command
                     //var_dump($contents);
                     Storage::disk("images")->put($local_image_path, $contents);
                     sleep(1);
-                    //exit;
-                    //var_dump($local_image_path);exit;
+
                 }
                 $images[] = $image_path;
             }

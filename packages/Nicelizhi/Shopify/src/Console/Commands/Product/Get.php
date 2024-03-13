@@ -301,7 +301,9 @@ class Get extends Command
 
             $updateData['description'] = $item['body_html'];
 
-            $updateData['compare_at_price'] = $item['compare_at_price'];
+           // $updateData['compare_at_price'] = $item['compare_at_price'];
+            $updateData['compare_at_price'] = $shopifyVariants[0]['compare_at_price'];
+            $updateData['price'] = $shopifyVariants[0]['price'];
 
             $variants = $variantCollection = $product->variants()->get()->toArray();
 
@@ -401,22 +403,16 @@ class Get extends Command
             $images = [];
             foreach($shopifyImages as $key=>$shopifyImage) {
 
-                //var_dump($shopifyImage);
                 $info = pathinfo($shopifyImage['src']);
 
-                //var_dump($shopifyImage);
 
                 $this->info($info['filename']);
-
-               
-                //var_dump($info);exit;
                 $image_path = "product/".$id."/".$info['filename'].".webp";
                 $local_image_path = "storage/".$image_path;
                 $this->info(public_path($local_image_path));
                 if(!file_exists(public_path($local_image_path))) {
                     $this->error("copy [ ".$local_image_path);
                     $this->info($shopifyImage['src']);
-                    //var_dump($shopifyImage['src'],"hello");
                     $contents = file_get_contents($shopifyImage['src'], false, stream_context_create($arrContextOptions));
                     //var_dump($contents);
                     Storage::disk("images")->put($local_image_path, $contents);
@@ -433,10 +429,7 @@ class Get extends Command
 
             foreach($shopifyImages as $key=>$shopifyImage) {
 
-                //var_dump($shopifyImage);
                 $info = pathinfo($shopifyImage['src']);
-
-                //var_dump($shopifyImage);
 
                 $this->info($info['filename']);
 
@@ -452,8 +445,11 @@ class Get extends Command
                 }
                 $images[] = $image_path;
             }
-
+            $max_image_count = 3;
+            $i=0;
             foreach($images as $key=>$image) {
+                $i++;
+                if($max_image_count < $i) continue;
                 $checkImg = ProductImage::where("product_id", $id)->where("path", $image)->first();
                 if(is_null($checkImg)) {
                     $checkImg = new ProductImage();
@@ -510,8 +506,11 @@ class Get extends Command
                     }
                     $images[] = $image_path;
                 }
-    
+                $max_image_count = 3;
+                $i = 0;
                 foreach($images as $key=>$image) {
+                    $i++;
+                    if($max_image_count < $i) continue;
                     $checkImg = ProductImage::where("product_id", $sku->id)->where("path", $image)->first();
                     if(is_null($checkImg)) {
                         $checkImg = new ProductImage();
