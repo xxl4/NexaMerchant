@@ -181,6 +181,7 @@ class GetV3 extends Command
             $this->info($item['product_id']);
             $options = $item->options;
             $shopifyVariants = $item->variants;
+            
             $shopifyImages = $item->images;
             $color = [];
             $size = [];
@@ -191,92 +192,26 @@ class GetV3 extends Command
                 $shopifyImageMap[$shopifyImage['id']] = $shopifyImage['src'];
             }
 
-            //var_dump($shopifyImageMap);
-
-            // skus add first
-            foreach($options as $kk => $option) {
-                $option['name'] = strtolower($option['name']);
-                $attr_id = 0;
-                if(strpos($option['name'], "Size")!==false) $attr_id = 24;
-                if(strpos($option['name'], "size")!==false) $attr_id = 24;
-                if(strpos($option['name'], "GRÖSSE")!==false) $attr_id = 24;
-                if(strpos($option['name'], "grÖsse")!==false) $attr_id = 24;
-                if(strpos($option['name'], "尺码") !==false) $attr_id = 24;
-                if(strpos($option['name'], "Length") !==false) $attr_id = 24;
-                if(strpos($option['name'], "größe") !==false) $attr_id = 24;
-                if(strpos($option['name'], "Color") !==false) $attr_id = 23;
-                if(strpos($option['name'], "color") !==false) $attr_id = 23;
-                if(strpos($option['name'], "Couleur") !==false) $attr_id = 23;
-                if(strpos($option['name'], "颜色") !==false) $attr_id = 23;
-                if(strpos($option['name'], "FARBE") !==false) $attr_id = 23;
-                if(strpos($option['name'], "farbe") !==false) $attr_id = 23;
-
-                if(empty($attr_id)) {
-                    $this->error($option['name']);
-                    $error = 1;
-                    continue;
-                    //exit;
-                }
-                $this->info("attr id ". $attr_id);
-
-                $values = $option['values'];
-                foreach($values as $kky => $value) {
-                    $this->info($value);
-                    if($value==35 && $attr_id==23) {
-                        var_dump($item);exit;
-                    }
-                    //ba_attribute_options
-                    $attr_option = AttributeOption::where("attribute_id", $attr_id)->where("admin_name", $value)->first();
-                    if(is_null($attr_option)) {
-                        $attr_option = new AttributeOption();
-                        $attr_option->attribute_id = $attr_id;
-                        $attr_option->admin_name = $value;
-                        $attr_option->save();
-                        $attribute_option_id = $attr_option->id;
-                    }else{
-                        $attribute_option_id = $attr_option->id;
-                    }
-
-                    //var_dump($attr_opt_tran);exit;
-                    foreach($this->locales as $kl => $locale) {
-                        $attr_opt_tran = AttributeOptionTranslation::where("attribute_option_id", $attribute_option_id)->where("locale", $locale)->first();
-                        if(is_null($attr_opt_tran)) {
-                            $attr_opt_tran = new AttributeOptionTranslation();
-                            if($locale==$this->lang) {
-                                $attr_opt_tran->label = $value;
-                            } else{
-                                $attr_opt_tran->label = "";
-                            }
-                            $attr_opt_tran->locale = $locale;
-                            $attr_opt_tran->attribute_option_id = $attribute_option_id;
-                            $attr_opt_tran->save();
-                        }
-                    }
-                    if($attr_id==23) $color[$attribute_option_id] = $attribute_option_id; //array_push($color, $attribute_option_id); 
-                    if($attr_id==24) $size[$attribute_option_id] = $attribute_option_id;
-                }
+            if(count($options) > 1 || count($shopifyVariants) > 1) {
+                $this->error("please be sure your options values,pls don't have more than one");
+                exit;
             }
-
-            if($error==1) continue;
-
-
             
             // add product
 
+            $sku = $item['product_id'].'-'.$shopifyVariants[0]['id'];
+
             $data = [];
             $data['attribute_family_id'] = 1;
-            $data['sku'] = $item['product_id'];
-            $data['type'] = "configurable";
-            $super_attributes['color'] = $color;
-            $super_attributes['size'] = $size;
-            $data['super_attributes'] = $super_attributes;
-            //$data['family'] = [];
+            $data['sku'] = $sku;
+            $data['type'] = "simple";
+
 
             //var_dump($data);exit;
             Event::dispatch('catalog.product.create.before');
 
             // check product info
-            $product = $this->productRepository->where("sku", $item['product_id'])->first();
+            $product = $this->productRepository->where("sku", $sku)->first();
             if(is_null($product)) {
                 $product = $this->productRepository->create($data);
                 $id = $product->id;
@@ -303,100 +238,12 @@ class GetV3 extends Command
 
             $updateData['description'] = $item['body_html'];
 
-            $updateData['compare_at_price'] = $item['compare_at_price'];
+            $updateData['compare_at_price'] = $shopifyVariants[0]['compare_at_price'];
+            $updateData['price'] = $shopifyVariants[0]['price'];
+            $updateData['weight'] = !empty($shopifyVariants[0]['weight']) ? $shopifyVariants[0]['weight'] : 1000 ;
+            //var_dump($updateData, $item);exit;
 
             $variants = $variantCollection = $product->variants()->get()->toArray();
-
-            //var_dump(count($shopifyVariants));
-
-            $newShopifyVarants = [];
-            $compare_at_price = '0.00';
-            $skuMap = [];
-            foreach($shopifyVariants as $sv => $shopifyVariant) {
-                //var_dump($shopifyVariant);
-                $newkey = $shopifyVariant['product_id'];
-                $color = AttributeOption::where("attribute_id", 23)->where("admin_name", $shopifyVariant['option1'])->first();
-                $size = AttributeOption::where("attribute_id", 24)->where("admin_name", $shopifyVariant['option2'])->first();
-
-                if(is_null($color) || is_null($size)) {
-                    $this->info("error");
-                    var_dump($color, $size, $shopifyVariant);
-                    exit;
-                }
-
-                $newkey .="_".$color->id."_".$size->id;
-
-                $newShopifyVarant = [];
-
-                $newShopifyVarant['id'] = $shopifyVariant['id'];
-                $newShopifyVarant['price'] = $shopifyVariant['price'];
-                $newShopifyVarant['title'] = $shopifyVariant['title'];
-                $newShopifyVarant['weight'] = $shopifyVariant['weight'];
-                $newShopifyVarant['sku'] = $shopifyVariant['sku'];
-                $newShopifyVarant['option1'] = $shopifyVariant['option1'];
-                $newShopifyVarant['option2'] = $shopifyVariant['option2'];
-                $newShopifyVarants[$newkey] = $newShopifyVarant;
-                if(!empty($shopifyVariant['compare_at_price'])) $compare_at_price = $shopifyVariant['compare_at_price'];
-
-                //var_dump($shopifyImages);
-                $newShopifyVarant['image_src'] = $shopifyImageMap[$shopifyVariant['image_id']];
-                $newShopifyVarant['sku_image_id'] = $shopifyVariant['image_id'];
-
-                $skuMap[$shopifyVariant['id']] = $shopifyVariant['image_id'];
-                //var_dump($shopifyVariant,$newShopifyVarant);exit;
-            }
-
-            //var_dump($compare_at_price);
-
-            //var_dump($newShopifyVarants);exit;
-
-            /**
-             * 
-             * variants[440][sku]: 8007538966776-variant-1375-1376
-             * variants[440][name]: Variant 1375 1376
-             * variants[440][price]: 0.0000
-             * variants[440][weight]: 0
-             * variants[440][status]: 1
-             * variants[440][color]: 1375
-             * variants[440][size]: 1376
-             * variants[440][inventories][1]: 0
-             * 
-             * 
-             */
-            $newVariants = [];
-            $newVariantsImageMap = []; // image maps;
-            foreach($variants as $k => $variant) {
-                //Log::info(json_encode($variant));
-                //var_dump($variant);
-                $newkey = $item['product_id']."_".$variant['color']."_".$variant['size'];
-                if($variant['size']=='1403') {
-                    //var_dump($variant);exit;
-                }
-                $this->info($newkey);
-                if(!isset($newShopifyVarants[$newkey])) continue;
-                //var_dump($newkey);exit;
-                $newVariant['sku'] = $item['product_id'].'-'.$newShopifyVarants[$newkey]['id'];
-                $newVariant['name'] = $newShopifyVarants[$newkey]['title'];
-                $newVariant['price'] = $newShopifyVarants[$newkey]['price'];
-                $newVariant['weight'] = "1000";
-                $newVariant['status'] = 1;
-                $newVariant['color'] = $variant['color'];
-                $newVariant['size'] = $variant['size'];
-                $newVariant['inventories'][1] = 1000;
-                $categories[] = 5;
-                $newVariant['categories'] = $categories;
-                $newVariant['guest_checkout'] = 1;
-                $newVariant['compare_at_price'] = $compare_at_price;
-                $newVariants[$variant['id']] = $newVariant;
-
-                //$newVariantsImageMap[$variant]
-
-                //var_dump($newVariant); exit;
-            }
-
-            //var_dump(count($newVariants));exit;
-
-            $updateData['variants'] = $newVariants;
 
             // images
             /**
@@ -415,34 +262,7 @@ class GetV3 extends Command
                       "verify_peer_name"=>false,
                   ),
               ); 
-            // $images = [];
-            // foreach($shopifyImages as $key=>$shopifyImage) {
 
-            //     //var_dump($shopifyImage);
-            //     $info = pathinfo($shopifyImage['src']);
-
-            //     //var_dump($shopifyImage);
-
-            //     $this->info($info['filename']);
-
-               
-            //     //var_dump($info);exit;
-            //     $image_path = "product/".$id."/".$info['filename'].".webp";
-            //     $local_image_path = "storage/".$image_path;
-            //     $this->info(public_path($local_image_path));
-            //     if(!file_exists(public_path($local_image_path))) {
-            //         $this->error("copy [ ".$local_image_path);
-            //         $this->info($shopifyImage['src']);
-            //         //var_dump($shopifyImage['src'],"hello");
-            //         $contents = file_get_contents($shopifyImage['src'], false, stream_context_create($arrContextOptions));
-            //         //var_dump($contents);
-            //         Storage::disk("images")->put($local_image_path, $contents);
-            //         sleep(1);
-            //         //exit;
-            //         //var_dump($local_image_path);exit;
-            //     }
-            //     $images[] = $image_path;
-            // }
 
             $product = $this->productRepository->update($updateData, $id);
 
@@ -487,96 +307,7 @@ class GetV3 extends Command
                     $checkImg->save();
                 }
             }
-
-            //var_dump($skuMap);exit;
-
-            //$variants = $variantCollection = $product->variants()->get()->toArray();
-
-            //更新对应的分类
-            $sku_products = $this->productRepository->where("parent_id", $id)->get();
-            foreach($sku_products as $key=>$sku) {
-
-                $sku_code = explode('-',$sku->sku);
-
-                //var_dump($sku_code);exit;
-
-                $this->info("process ".$sku->id);
-
-                Event::dispatch('catalog.product.create.after', $sku);
-
-                $updateData = [];
-
-                $updateData['new'] = 1;
-                $updateData['featured'] = 1;
-                $updateData['visible_individually'] = 1;
-                $updateData['status'] = 1;
-                $updateData['guest_checkout'] = 1;
-                $updateData['channel'] = "default";
-                $updateData['locale'] = $this->lang;
-                $categories[] = $this->category_id;
-                $updateData['categories'] = $categories;
-
-                $this->productRepository->update($updateData, $sku->id);
-
-                Event::dispatch('catalog.product.update.after', $sku);
-
-                $images = [];
-                //var_dump($shopifyImages, $sku,$skuMap[$sku_code[1]], $shopifyImageMap[$skuMap[$sku_code[1]]]);exit;
-                $shopifyImages[] = [
-                    'src' => $shopifyImageMap[$skuMap[$sku_code[1]]]
-                ];
-                foreach($shopifyImages as $key=>$shopifyImage) {
-
-                    //var_dump($shopifyImage);
-                    $info = pathinfo($shopifyImage['src']);
-    
-                    //var_dump($shopifyImage);
-    
-                    $this->info($info['filename']);
-    
-                    $image_path = "product/".$sku->id."/".$info['filename'].".webp";
-                    $local_image_path = "storage/".$image_path;
-                    $this->info(public_path($local_image_path));
-                    if(!file_exists(public_path($local_image_path))) {
-                        $this->error("copy [ ".$local_image_path);
-                        $this->info($shopifyImage['src']);
-                        $contents = file_get_contents($shopifyImage['src'], false, stream_context_create($arrContextOptions));
-                        Storage::disk("images")->put($local_image_path, $contents);
-                        sleep(1);
-                    }
-                    $images[] = $image_path;
-                }
-    
-                foreach($images as $key=>$image) {
-                    $checkImg = ProductImage::where("product_id", $sku->id)->where("path", $image)->first();
-                    if(is_null($checkImg)) {
-                        $checkImg = new ProductImage();
-                        $checkImg->product_id = $sku->id;
-                        $checkImg->path = $image;
-                        $checkImg->type = "images";
-                        $checkImg->save();
-                    }
-                }
-            }
-
-
-            // exit;
-
-
             sleep(1);
-            //var_dump($product);exit;
-            
-
-            //var_dump($product);exit;
-
-            // add product_attr
-
-
-            // add product_images
-            // add product_sku
-
-
-
         }
     }
 }
