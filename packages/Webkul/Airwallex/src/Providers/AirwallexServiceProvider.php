@@ -66,6 +66,10 @@ class AirwallexServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(
             dirname(__DIR__) . '/Config/system.php', 'core'
         );
+
+        $this->mergeConfigFrom(
+            dirname(__DIR__).'/Config/airwallex.php', 'airwallex'
+        );
     }
 
     /**

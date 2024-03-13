@@ -3,9 +3,7 @@
 namespace Nicelizhi\Airwallex\Sdk;
 
 use GuzzleHttp\Client;
-use GuzzleHttp\Psr7\Request;
 use Illuminate\Support\Facades\Config;
-use GuzzleHttp\Promise;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
 
@@ -75,7 +73,6 @@ class Airwallex {
             ]);
     
             $body = $response->getBody();
-            Log::info("token".json_encode($body));
             $json = json_decode($body);
             Cache::put($cache_key, $json->token, 1800);
             return $json->token;
@@ -148,7 +145,6 @@ class Airwallex {
             'debug' => true
         ]);
         $body = $response->getBody();
-        var_dump($body, $data, $token);
     }
 
     public function CheckPaymentStatus() {
