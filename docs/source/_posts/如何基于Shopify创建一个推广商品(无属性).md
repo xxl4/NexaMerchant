@@ -29,7 +29,7 @@ php artisan shopify:product:get
 ```
 shopify:product:getv3 {--prod_id=}
 ```
-> 获取shopify 上莫个商品到本地数据库, 对于需要单属性的实现，可以参考 
+> 获取shopify 上莫个商品到本地数据库, 对于需要无属性的实现，可以参考 
 
 ### 获取指定商品ID的商品参数
 1) prod_id 表示 shopify 的商品ID，具体Shopify ID的获取，可以通过 **获取全部商品** 来查看，对应的数据会保存到 shopify_products 表。
