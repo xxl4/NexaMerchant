@@ -337,12 +337,15 @@ class ProductController extends Controller
             //var_dump($product);
             $product['quantity'] = $product['amount'];
             $product['selected_configurable_option'] = $product['variant_id'];
-            $attr_ids = explode(',', $product['attr_id']);
-            foreach($attr_ids as $key=>$attr_id) {
-                $attr = explode('_', $attr_id);
-                $super_attribute[$attr[0]] = $attr[1];
+            if(!empty($product['attr_id'])) {
+                $attr_ids = explode(',', $product['attr_id']);
+                foreach($attr_ids as $key=>$attr_id) {
+                    $attr = explode('_', $attr_id);
+                    $super_attribute[$attr[0]] = $attr[1];
+                }
+    
+                $product['super_attribute'] = $super_attribute;
             }
-            $product['super_attribute'] = $super_attribute;
             //Log::info("add product into cart ". json_encode($product));
             $cart = Cart::addProduct($product['product_id'], $product);
 
@@ -538,13 +541,16 @@ class ProductController extends Controller
             //var_dump($product);
             $product['quantity'] = $product['amount'];
             $product['selected_configurable_option'] = $product['variant_id'];
-            $attr_ids = explode(',', $product['attr_id']);
-            foreach($attr_ids as $key=>$attr_id) {
-                $attr = explode('_', $attr_id);
-                $super_attribute[$attr[0]] = $attr[1];
+            if(!empty($product['attr_id'])) {
+                $attr_ids = explode(',', $product['attr_id']);
+                foreach($attr_ids as $key=>$attr_id) {
+                    $attr = explode('_', $attr_id);
+                    $super_attribute[$attr[0]] = $attr[1];
+                }
+    
+                $product['super_attribute'] = $super_attribute;
             }
-
-            $product['super_attribute'] = $super_attribute;
+            
             //Log::info("add product into cart ". json_encode($product));
             $cart = Cart::addProduct($product['product_id'], $product);
             if (
