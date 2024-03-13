@@ -1,0 +1,387 @@
+[
+	{  
+      "CountryCode":"TH",
+      "StateCode":"10",
+      "StateName":"Krung T"
+   },
+   {  
+      "CountryCode":"TH",
+      "StateCode":"11",
+      "StateName":"Samut Prakan"
+   },
+   {  
+      "CountryCode":"TH",
+      "StateCode":"12",
+      "StateName":"Nonthaburi"
+   },
+   {  
+      "CountryCode":"TH",
+      "StateCode":"13",
+      "StateName":"Pathum Thani"
+   },
+   {  
+      "CountryCode":"TH",
+      "StateCode":"14",
+      "StateName":"Phra Nakhon Si Ayutthaya"
+   },
+   {  
+      "CountryCode":"TH",
+      "StateCode":"15",
+      "StateName":"Ang Thong"
+   },
+   {  
+      "CountryCode":"TH",
+      "StateCode":"16",
+      "StateName":"Lop Buri"
+   },
+   {  
+      "CountryCode":"TH",
+      "StateCode":"17",
+      "StateName":"Sing Buri"
+   },
+   {  
+      "CountryCode":"TH",
+      "StateCode":"18",
+      "StateName":"Chai Nat"
+   },
+   {  
+      "CountryCode":"TH",
+      "StateCode":"19",
+      "StateName":"Saraburi"
+   },
+   {  
+      "CountryCode":"TH",
+      "StateCode":"20",
+      "StateName":"Chon Buri"
+   },
+   {  
+      "CountryCode":"TH",
+      "StateCode":"21",
+      "StateName":"Rayong"
+   },
+   {  
+      "CountryCode":"TH",
+      "StateCode":"22",
+      "StateName":"Chanthaburi"
+   },
+   {  
+      "CountryCode":"TH",
+      "StateCode":"23",
+      "StateName":"Trat"
+   },
+   {  
+      "CountryCode":"TH",
+      "StateCode":"24",
+      "StateName":"Chachoengsao"
+   },
+   {  
+      "CountryCode":"TH",
+      "StateCode":"25",
+      "StateName":"Prachin Buri"
+   },
+   {  
+      "CountryCode":"TH",
+      "StateCode":"26",
+      "StateName":"Nakhon Nayok"
+   },
+   {  
+      "CountryCode":"TH",
+      "StateCode":"27",
+      "StateName":"Sa Kaeo"
+   },
+   {  
+      "CountryCode":"TH",
+      "StateCode":"30",
+      "StateName":"Nakhon Ratchasima"
+   },
+   {  
+      "CountryCode":"TH",
+      "StateCode":"31",
+      "StateName":"Buri Ram"
+   },
+   {  
+      "CountryCode":"TH",
+      "StateCode":"32",
+      "StateName":"Surin"
+   },
+   {  
+      "CountryCode":"TH",
+      "StateCode":"33",
+      "StateName":"Si SaKet"
+   },
+   {  
+      "CountryCode":"TH",
+      "StateCode":"34",
+      "StateName":"Ubon Ratchathani"
+   },
+   {  
+      "CountryCode":"TH",
+      "StateCode":"35",
+      "StateName":"Yasothon"
+   },
+   {  
+      "CountryCode":"TH",
+      "StateCode":"36",
+      "StateName":"Chaiyaphum"
+   },
+   {  
+      "CountryCode":"TH",
+      "StateCode":"37",
+      "StateName":"Amnat Charoen"
+   },
+   {  
+      "CountryCode":"TH",
+      "StateCode":"39",
+      "StateName":"Nong Bua Lam Phu"
+   },
+   {  
+      "CountryCode":"TH",
+      "StateCode":"40",
+      "StateName":"Khon Kaen"
+   },
+   {  
+      "CountryCode":"TH",
+      "StateCode":"41",
+      "StateName":"Udon Thani"
+   },
+   {  
+      "CountryCode":"TH",
+      "StateCode":"42",
+      "StateName":"Loei"
+   },
+   {  
+      "CountryCode":"TH",
+      "StateCode":"43",
+      "StateName":"Nong Khai"
+   },
+   {  
+      "CountryCode":"TH",
+      "StateCode":"44",
+      "StateName":"Maha Sarakham"
+   },
+   {  
+      "CountryCode":"TH",
+      "StateCode":"45",
+      "StateName":"Roi Et"
+   },
+   {  
+      "CountryCode":"TH",
+      "StateCode":"46",
+      "StateName":"Kalasin"
+   },
+   {  
+      "CountryCode":"TH",
+      "StateCode":"47",
+      "StateName":"Sakon Nakhon"
+   },
+   {  
+      "CountryCode":"TH",
+      "StateCode":"48",
+      "StateName":"Nakhon Phanom"
+   },
+   {  
+      "CountryCode":"TH",
+      "StateCode":"49",
+      "StateName":"Mukdahan"
+   },
+   {  
+      "CountryCode":"TH",
+      "StateCode":"50",
+      "StateName":"Chiang Mai"
+   },
+   {  
+      "CountryCode":"TH",
+      "StateCode":"51",
+      "StateName":"Lamphun"
+   },
+   {  
+      "CountryCode":"TH",
+      "StateCode":"52",
+      "StateName":"Lampang"
+   },
+   {  
+      "CountryCode":"TH",
+      "StateCode":"53",
+      "StateName":"Uttaradit"
+   },
+   {  
+      "CountryCode":"TH",
+      "StateCode":"54",
+      "StateName":"Phrae"
+   },
+   {  
+      "CountryCode":"TH",
+      "StateCode":"55",
+      "StateName":"Nan"
+   },
+   {  
+      "CountryCode":"TH",
+      "StateCode":"56",
+      "StateName":"Phayao"
+   },
+   {  
+      "CountryCode":"TH",
+      "StateCode":"57",
+      "StateName":"Chiang Rai"
+   },
+   {  
+      "CountryCode":"TH",
+      "StateCode":"58",
+      "StateName":"Mae Hong Son"
+   },
+   {  
+      "CountryCode":"TH",
+      "StateCode":"60",
+      "StateName":"Nakhon Sawan"
+   },
+   {  
+      "CountryCode":"TH",
+      "StateCode":"61",
+      "StateName":"Uthai Thani"
+   },
+   {  
+      "CountryCode":"TH",
+      "StateCode":"62",
+      "StateName":"Kamphaeng Phet"
+   },
+   {  
+      "CountryCode":"TH",
+      "StateCode":"63",
+      "StateName":"Tak"
+   },
+   {  
+      "CountryCode":"TH",
+      "StateCode":"64",
+      "StateName":"Sukhothai"
+   },
+   {  
+      "CountryCode":"TH",
+      "StateCode":"65",
+      "StateName":"Phitsanulok"
+   },
+   {  
+      "CountryCode":"TH",
+      "StateCode":"66",
+      "StateName":"Phichit"
+   },
+   {  
+      "CountryCode":"TH",
+      "StateCode":"67",
+      "StateName":"Phetchabun"
+   },
+   {  
+      "CountryCode":"TH",
+      "StateCode":"70",
+      "StateName":"Ratchaburi"
+   },
+   {  
+      "CountryCode":"TH",
+      "StateCode":"71",
+      "StateName":"Kanchanaburi"
+   },
+   {  
+      "CountryCode":"TH",
+      "StateCode":"72",
+      "StateName":"Suphan Buri"
+   },
+   {  
+      "CountryCode":"TH",
+      "StateCode":"73",
+      "StateName":"Nakhon Pathom"
+   },
+   {  
+      "CountryCode":"TH",
+      "StateCode":"74",
+      "StateName":"Samut Sakhon"
+   },
+   {  
+      "CountryCode":"TH",
+      "StateCode":"75",
+      "StateName":"Samut Songkhram"
+   },
+   {  
+      "CountryCode":"TH",
+      "StateCode":"76",
+      "StateName":"Phetchaburi"
+   },
+   {  
+      "CountryCode":"TH",
+      "StateCode":"77",
+      "StateName":"PrachuapKhiri Khan"
+   },
+   {  
+      "CountryCode":"TH",
+      "StateCode":"80",
+      "StateName":"Nakhon Si Thammarat"
+   },
+   {  
+      "CountryCode":"TH",
+      "StateCode":"81",
+      "StateName":"Krabi"
+   },
+   {  
+      "CountryCode":"TH",
+      "StateCode":"82",
+      "StateName":"Phangnga"
+   },
+   {  
+      "CountryCode":"TH",
+      "StateCode":"83",
+      "StateName":"Phuket"
+   },
+   {  
+      "CountryCode":"TH",
+      "StateCode":"84",
+      "StateName":"Surat Thani"
+   },
+   {  
+      "CountryCode":"TH",
+      "StateCode":"85",
+      "StateName":"Ranong"
+   },
+   {  
+      "CountryCode":"TH",
+      "StateCode":"86",
+      "StateName":"Chumphon"
+   },
+   {  
+      "CountryCode":"TH",
+      "StateCode":"90",
+      "StateName":"Songkhla"
+   },
+   {  
+      "CountryCode":"TH",
+      "StateCode":"91",
+      "StateName":"Satun"
+   },
+   {  
+      "CountryCode":"TH",
+      "StateCode":"92",
+      "StateName":"Trang"
+   },
+   {  
+      "CountryCode":"TH",
+      "StateCode":"93",
+      "StateName":"Phatthalung"
+   },
+   {  
+      "CountryCode":"TH",
+      "StateCode":"94",
+      "StateName":"Pattani"
+   },
+   {  
+      "CountryCode":"TH",
+      "StateCode":"95",
+      "StateName":"Yala"
+   },
+   {  
+      "CountryCode":"TH",
+      "StateCode":"96",
+      "StateName":"Narathiwat"
+   },
+   {  
+      "CountryCode":"TH",
+      "StateCode":"S",
+      "StateName":"Phatthaya"
+   }
+]

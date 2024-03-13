@@ -26,6 +26,8 @@ class OneBuyServiceProvider extends ServiceProvider
 
         $this->loadViewsFrom(__DIR__ . '/../Resources/views', 'onebuy');
 
+        $this->loadTranslationsFrom(__DIR__ . '/../Resources/lang', 'onebuy');
+
         /* aliases */
         $router->aliasMiddleware('currency', Currency::class);
         $router->aliasMiddleware('locale', Locale::class);
@@ -53,6 +55,7 @@ class OneBuyServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->registerCommands();
         $this->registerConfig();
     }
 
@@ -68,5 +71,26 @@ class OneBuyServiceProvider extends ServiceProvider
             dirname(__DIR__) . '/Config/paymentmethods.php', 'payment_methods'
         );
         */
+        $this->mergeConfigFrom(
+            dirname(__DIR__) . '/Config/onebuy.php', 'onebuy'
+        );
+    }
+
+     /**
+     * Register the console commands of this package.
+     *
+     * @return void
+     */
+    protected function registerCommands(): void
+    {
+        if ($this->app->runningInConsole()) {
+            $this->commands([
+                \Nicelizhi\OneBuy\Console\Commands\Countries\Get::class,
+                \Nicelizhi\OneBuy\Console\Commands\Countries\StateCopy::class,
+                \Nicelizhi\OneBuy\Console\Commands\Order\CartToOrder::class,
+                \Nicelizhi\OneBuy\Console\Commands\Imports\ImportFaq::class,
+                \Nicelizhi\OneBuy\Console\Commands\Imports\ImportProductComments::class,
+            ]);
+        }
     }
 }

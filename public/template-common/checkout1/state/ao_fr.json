@@ -1,0 +1,92 @@
+[
+	{  
+      "CountryCode":"AO",
+      "StateCode":"BGO",
+      "StateName":"Bengo"
+   },
+   {  
+      "CountryCode":"AO",
+      "StateCode":"BGU",
+      "StateName":"Benguela"
+   },
+   {  
+      "CountryCode":"AO",
+      "StateCode":"BIE",
+      "StateName":"Bi é"
+   },
+   {  
+      "CountryCode":"AO",
+      "StateCode":"CAB",
+      "StateName":"Cabinda"
+   },
+   {  
+      "CountryCode":"AO",
+      "StateCode":"CCU",
+      "StateName":"Cuando-Cubango"
+   },
+   {  
+      "CountryCode":"AO",
+      "StateCode":"CNN",
+      "StateName":"Cunene"
+   },
+   {  
+      "CountryCode":"AO",
+      "StateCode":"CNO",
+      "StateName":"Cuanza Norte"
+   },
+   {  
+      "CountryCode":"AO",
+      "StateCode":"CUS",
+      "StateName":"Cuanza Sul"
+   },
+   {  
+      "CountryCode":"AO",
+      "StateCode":"HUA",
+      "StateName":"Huambo"
+   },
+   {  
+      "CountryCode":"AO",
+      "StateCode":"HUI",
+      "StateName":"Hu íla"
+   },
+   {  
+      "CountryCode":"AO",
+      "StateCode":"LNO",
+      "StateName":"Lunda Norte"
+   },
+   {  
+      "CountryCode":"AO",
+      "StateCode":"LSU",
+      "StateName":"Lunda Sul"
+   },
+   {  
+      "CountryCode":"AO",
+      "StateCode":"LUA",
+      "StateName":"Luanda"
+   },
+   {  
+      "CountryCode":"AO",
+      "StateCode":"MAL",
+      "StateName":"Malange"
+   },
+   {  
+      "CountryCode":"AO",
+      "StateCode":"MOX",
+      "StateName":"Moxico"
+   },
+   {  
+      "CountryCode":"AO",
+      "StateCode":"NAM",
+      "StateName":"Namibe"
+   },
+   {  
+      "CountryCode":"AO",
+      "StateCode":"UIG",
+      "StateName":"U íge"
+   },
+   {  
+      "CountryCode":"AO",
+      "StateCode":"ZAI",
+      "StateName":"Zaire"
+   }
+]

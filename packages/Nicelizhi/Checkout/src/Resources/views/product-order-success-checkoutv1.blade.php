@@ -17,27 +17,70 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<?php if(!empty($ob_adv_id)) { ?>
 
+<script data-obct type = "text/javascript">
+/** DO NOT MODIFY THIS CODE**/
+!function(_window, _document) {
+    var OB_ADV_ID = '<?php echo $ob_adv_id; ?>';
+    if (_window.obApi) {
+    var toArray = function(object) {
+        return Object.prototype.toString.call(object) === '[object Array]' ? object : [object];
+    };
+    _window.obApi.marketerId = toArray(_window.obApi.marketerId).concat(toArray(OB_ADV_ID));
+    return;
+    }
+    var api = _window.obApi = function() {
+    api.dispatch ? api.dispatch.apply(api, arguments) : api.queue.push(arguments);
+    };
+    api.version = '1.1';
+    api.loaded = true;
+    api.marketerId = OB_ADV_ID;
+    api.queue = [];
+    var tag = _document.createElement('script');
+    tag.async = true;
+    tag.src = '//amplify.outbrain.com/cp/obtp.js';
+    tag.type = 'text/javascript';
+    var script = _document.getElementsByTagName('script')[0];
+    script.parentNode.insertBefore(tag, script);
+}(window, document);
+
+obApi('track', 'PAGE_VIEW');
+</script>
+<?php } ?>
+<!-- Facebook Pixel Code -->
+<script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    <?php 
+    $fb_ids_arr = explode(',', $fb_ids);
+    foreach ($fb_ids_arr as $key => $fb_id) {
+    ?>
+    fbq('init', '<?php echo $fb_id;?>');
+    <?php } ?>
+  </script>
+  <noscript>
+    <?php foreach ($fb_ids_arr as $key => $fb_id) { ?>
+        <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=<?php echo $fb_id;?>&ev=PageView&noscript=1"/>
+        <?php } ?>
+  </noscript>
+  <!-- End Facebook Pixel Code -->
+    <!-- Facebook Pixel Code -->
+<script>
+  fbq('track', 'PageView');
+  fbq('track', 'ViewContent');
+</script>
 <title>
         Thank you &ndash;
     </title>
 <script>
         function addVoluumImg(data) {
-            console.log('addVoluumImg');
-            return false;
-            var payout = data.info.payout || (data.info.total + data.info.currency); 
-            var bigImg = document.createElement("img");
-            bigImg.src = "https://tick.colapaco-op.com/conversion.gif?payout="+ payout +"&txid="+data.info._id.$oid;
-            bigImg.width="1";
-            bigImg.height="1";
-            document.body.appendChild(bigImg);
-
-            var bigImg1 = document.createElement("img");
-            bigImg1.src = "https://tick.ponira.com/conversion.gif?payout="+ payout +"&txid="+data.info._id.$oid;
-            bigImg1.width="1";
-            bigImg1.height="1";
-            document.body.appendChild(bigImg1);
-            console.log('addVoluumImg end');
         }
 
         function postVoluumConversion(data) {
@@ -98,6 +141,12 @@
     </script>
 <script>
         function purchase(value) {
+            console.log("purchase "+ (value * 1).toFixed(2));
+            fbq('track', 'Purchase', {currency: "EUR", value: (value * 1).toFixed(2)});
+            console.log("purchase "+ (value * 1).toFixed(2));
+            <?php if(!empty($ob_adv_id)) { ?>
+            obApi('track', 'Purchase');
+            <?php } ?>
             if(typeof gtag == 'function') {
                 if(window.localStorage) {
                     var ga_post_order_template_commom_ids_str = localStorage.getItem("ga_post_order_template_commom_ids");
@@ -129,7 +178,7 @@
                 }
             } else {
                 setTimeout(function(){
-                    purchase();
+                    //purchase();
                 },10)
             }
         }
@@ -479,7 +528,10 @@ All rights reserved
             console.log(order_param);
 
             data = input.data;
-            purchase(data.info.grand_total);
+            console.log("pushare " + order_param.grand_total);
+            console.log("pushare " + order_param.grand_total);
+            purchase(order_param.grand_total);
+            //purchase(null);
             console.log(data)
             if(!getCookie('voluum_payout') || getCookie('order_id') != getQueryString('id')) {
                 console.log('data');

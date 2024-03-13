@@ -1,0 +1,47 @@
+[
+	{  
+      "CountryCode":"GQ",
+      "StateCode":"AN",
+      "StateName":"Annobón"
+   },
+   {  
+      "CountryCode":"GQ",
+      "StateCode":"BN",
+      "StateName":"Bioko Norte"
+   },
+   {  
+      "CountryCode":"GQ",
+      "StateCode":"BS",
+      "StateName":"Bioko Sur"
+   },
+   {  
+      "CountryCode":"GQ",
+      "StateCode":"C",
+      "StateName":"Región Continental"
+   },
+   {  
+      "CountryCode":"GQ",
+      "StateCode":"CS",
+      "StateName":"Centro Sur"
+   },
+   {  
+      "CountryCode":"GQ",
+      "StateCode":"I",
+      "StateName":"Región Insular"
+   },
+   {  
+      "CountryCode":"GQ",
+      "StateCode":"KN",
+      "StateName":"Kie-Ntem"
+   },
+   {  
+      "CountryCode":"GQ",
+      "StateCode":"LI",
+      "StateName":"Litoral"
+   },
+   {  
+      "CountryCode":"GQ",
+      "StateCode":"WN",
+      "StateName":"Wele-Nzás"
+   }
+]

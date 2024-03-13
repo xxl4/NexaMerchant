@@ -1,0 +1,67 @@
+[
+    {
+        "CountryCode": "CA",
+        "StateCode": "AB",
+        "StateName": "Alberta"
+    },
+    {
+        "CountryCode": "CA",
+        "StateCode": "BC",
+        "StateName": "British Columbia"
+    },
+    {
+        "CountryCode": "CA",
+        "StateCode": "MB",
+        "StateName": "Manitoba"
+    },
+    {
+        "CountryCode": "CA",
+        "StateCode": "NB",
+        "StateName": "New Brunswick"
+    },
+    {
+        "CountryCode": "CA",
+        "StateCode": "NL",
+        "StateName": "Newfoundland and Labrador"
+    },
+    {
+        "CountryCode": "CA",
+        "StateCode": "NT",
+        "StateName": "Northwest Territories"
+    },
+    {
+        "CountryCode": "CA",
+        "StateCode": "NS",
+        "StateName": "Nova Scotia"
+    },
+    {
+        "CountryCode": "CA",
+        "StateCode": "NU",
+        "StateName": "Nunavut"
+    },
+    {
+        "CountryCode": "CA",
+        "StateCode": "ON",
+        "StateName": "Ontario"
+    },
+    {
+        "CountryCode": "CA",
+        "StateCode": "PE",
+        "StateName": "Prince Edward Island"
+    },
+    {
+        "CountryCode": "CA",
+        "StateCode": "QC",
+        "StateName": "Quebec"
+    },
+    {
+        "CountryCode": "CA",
+        "StateCode": "SK",
+        "StateName": "Saskatchewan"
+    },
+    {
+        "CountryCode": "CA",
+        "StateCode": "YT",
+        "StateName": "Yukon"
+    }
+]

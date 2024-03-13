@@ -1,0 +1,492 @@
+[
+	{  
+      "CountryCode":"PH",
+      "StateCode":"00",
+      "StateName":"National Capital Region"
+   },
+   {  
+      "CountryCode":"PH",
+      "StateCode":"01",
+      "StateName":"Ilocos(RegionI)"
+   },
+   {  
+      "CountryCode":"PH",
+      "StateCode":"02",
+      "StateName":"Cagayan Valley(RegionII)"
+   },
+   {  
+      "CountryCode":"PH",
+      "StateCode":"03",
+      "StateName":"Central Luzon(RegionIII)"
+   },
+   {  
+      "CountryCode":"PH",
+      "StateCode":"05",
+      "StateName":"Bicol(Region V)"
+   },
+   {  
+      "CountryCode":"PH",
+      "StateCode":"06",
+      "StateName":"Western Visayas(Region VI)"
+   },
+   {  
+      "CountryCode":"PH",
+      "StateCode":"07",
+      "StateName":"Central Visayas(Region VII)"
+   },
+   {  
+      "CountryCode":"PH",
+      "StateCode":"08",
+      "StateName":"Eastern Visayas(Region VIII)"
+   },
+   {  
+      "CountryCode":"PH",
+      "StateCode":"09",
+      "StateName":"Zamboanga Peninsula(Region IX)"
+   },
+   {  
+      "CountryCode":"PH",
+      "StateCode":"10",
+      "StateName":"Northern Mindanao(Region X)"
+   },
+   {  
+      "CountryCode":"PH",
+      "StateCode":"11",
+      "StateName":"Davao(Region XI)"
+   },
+   {  
+      "CountryCode":"PH",
+      "StateCode":"12",
+      "StateName":"Soccsksargen(Region XII)"
+   },
+   {  
+      "CountryCode":"PH",
+      "StateCode":"13",
+      "StateName":"Caraga(Region XIII)"
+   },
+   {  
+      "CountryCode":"PH",
+      "StateCode":"14",
+      "StateName":"Autonomous Regionin Muslim Mindanao(ARMM)"
+   },
+   {  
+      "CountryCode":"PH",
+      "StateCode":"15",
+      "StateName":"Cordillera Administrative Region(CAR)"
+   },
+   {  
+      "CountryCode":"PH",
+      "StateCode":"40",
+      "StateName":"CALABARZON(Region IV-A)"
+   },
+   {  
+      "CountryCode":"PH",
+      "StateCode":"41",
+      "StateName":"MIMAROPA(Region IV-B)"
+   },
+   {  
+      "CountryCode":"PH",
+      "StateCode":"ABR",
+      "StateName":"Abra"
+   },
+   {  
+      "CountryCode":"PH",
+      "StateCode":"AGN",
+      "StateName":"Agusandel Norte"
+   },
+   {  
+      "CountryCode":"PH",
+      "StateCode":"AGS",
+      "StateName":"Agusandel Sur"
+   },
+   {  
+      "CountryCode":"PH",
+      "StateCode":"AKL",
+      "StateName":"Aklan"
+   },
+   {  
+      "CountryCode":"PH",
+      "StateCode":"ALB",
+      "StateName":"Albay"
+   },
+   {  
+      "CountryCode":"PH",
+      "StateCode":"ANT",
+      "StateName":"Antique"
+   },
+   {  
+      "CountryCode":"PH",
+      "StateCode":"APA",
+      "StateName":"Apayao"
+   },
+   {  
+      "CountryCode":"PH",
+      "StateCode":"AUR",
+      "StateName":"Aurora"
+   },
+   {  
+      "CountryCode":"PH",
+      "StateCode":"BAN",
+      "StateName":"Bataan"
+   },
+   {  
+      "CountryCode":"PH",
+      "StateCode":"BAS",
+      "StateName":"Basilan"
+   },
+   {  
+      "CountryCode":"PH",
+      "StateCode":"BEN",
+      "StateName":"Benguet"
+   },
+   {  
+      "CountryCode":"PH",
+      "StateCode":"BIL",
+      "StateName":"Biliran"
+   },
+   {  
+      "CountryCode":"PH",
+      "StateCode":"BOH",
+      "StateName":"Bohol"
+   },
+   {  
+      "CountryCode":"PH",
+      "StateCode":"BTG",
+      "StateName":"Batangas"
+   },
+   {  
+      "CountryCode":"PH",
+      "StateCode":"BTN",
+      "StateName":"Batanes"
+   },
+   {  
+      "CountryCode":"PH",
+      "StateCode":"BUK",
+      "StateName":"Bukidnon"
+   },
+   {  
+      "CountryCode":"PH",
+      "StateCode":"BUL",
+      "StateName":"Bulacan"
+   },
+   {  
+      "CountryCode":"PH",
+      "StateCode":"CAG",
+      "StateName":"Cagayan"
+   },
+   {  
+      "CountryCode":"PH",
+      "StateCode":"CAM",
+      "StateName":"Camiguin"
+   },
+   {  
+      "CountryCode":"PH",
+      "StateCode":"CAN",
+      "StateName":"Camarines Norte"
+   },
+   {  
+      "CountryCode":"PH",
+      "StateCode":"CAP",
+      "StateName":"Capiz"
+   },
+   {  
+      "CountryCode":"PH",
+      "StateCode":"CAS",
+      "StateName":"Camarines Sur"
+   },
+   {  
+      "CountryCode":"PH",
+      "StateCode":"CAT",
+      "StateName":"Catanduanes"
+   },
+   {  
+      "CountryCode":"PH",
+      "StateCode":"CAV",
+      "StateName":"Cavite"
+   },
+   {  
+      "CountryCode":"PH",
+      "StateCode":"CEB",
+      "StateName":"Cebu"
+   },
+   {  
+      "CountryCode":"PH",
+      "StateCode":"COM",
+      "StateName":"Compostela Valley"
+   },
+   {  
+      "CountryCode":"PH",
+      "StateCode":"DAO",
+      "StateName":"Davao Oriental"
+   },
+   {  
+      "CountryCode":"PH",
+      "StateCode":"DAS",
+      "StateName":"Davaodel Sur"
+   },
+   {  
+      "CountryCode":"PH",
+      "StateCode":"DAV",
+      "StateName":"Davaodel Norte"
+   },
+   {  
+      "CountryCode":"PH",
+      "StateCode":"DIN",
+      "StateName":"Dinagat Islands"
+   },
+   {  
+      "CountryCode":"PH",
+      "StateCode":"EAS",
+      "StateName":"Eastern Samar"
+   },
+   {  
+      "CountryCode":"PH",
+      "StateCode":"GUI",
+      "StateName":"Guimaras"
+   },
+   {  
+      "CountryCode":"PH",
+      "StateCode":"IFU",
+      "StateName":"Ifugao"
+   },
+   {  
+      "CountryCode":"PH",
+      "StateCode":"ILI",
+      "StateName":"Iloilo"
+   },
+   {  
+      "CountryCode":"PH",
+      "StateCode":"ILN",
+      "StateName":"Ilocos Norte"
+   },
+   {  
+      "CountryCode":"PH",
+      "StateCode":"ILS",
+      "StateName":"Ilocos Sur"
+   },
+   {  
+      "CountryCode":"PH",
+      "StateCode":"ISA",
+      "StateName":"Isabela"
+   },
+   {  
+      "CountryCode":"PH",
+      "StateCode":"KAL",
+      "StateName":"Kalinga"
+   },
+   {  
+      "CountryCode":"PH",
+      "StateCode":"LAG",
+      "StateName":"Laguna"
+   },
+   {  
+      "CountryCode":"PH",
+      "StateCode":"LAN",
+      "StateName":"Lanaodel Norte"
+   },
+   {  
+      "CountryCode":"PH",
+      "StateCode":"LAS",
+      "StateName":"Lanaodel Sur"
+   },
+   {  
+      "CountryCode":"PH",
+      "StateCode":"LEY",
+      "StateName":"Leyte"
+   },
+   {  
+      "CountryCode":"PH",
+      "StateCode":"LUN",
+      "StateName":"La Union"
+   },
+   {  
+      "CountryCode":"PH",
+      "StateCode":"MAD",
+      "StateName":"Marinduque"
+   },
+   {  
+      "CountryCode":"PH",
+      "StateCode":"MAG",
+      "StateName":"Maguindanao"
+   },
+   {  
+      "CountryCode":"PH",
+      "StateCode":"MAS",
+      "StateName":"Masbate"
+   },
+   {  
+      "CountryCode":"PH",
+      "StateCode":"MDC",
+      "StateName":"Mindoro Occidental"
+   },
+   {  
+      "CountryCode":"PH",
+      "StateCode":"MDR",
+      "StateName":"Mindoro Oriental"
+   },
+   {  
+      "CountryCode":"PH",
+      "StateCode":"MOU",
+      "StateName":"Mountain Province"
+   },
+   {  
+      "CountryCode":"PH",
+      "StateCode":"MSC",
+      "StateName":"Misamis Occidental"
+   },
+   {  
+      "CountryCode":"PH",
+      "StateCode":"MSR",
+      "StateName":"Misamis Oriental"
+   },
+   {  
+      "CountryCode":"PH",
+      "StateCode":"NCO",
+      "StateName":"North Cotabato"
+   },
+   {  
+      "CountryCode":"PH",
+      "StateCode":"NEC",
+      "StateName":"Negros Occidental"
+   },
+   {  
+      "CountryCode":"PH",
+      "StateCode":"NER",
+      "StateName":"Negros Oriental"
+   },
+   {  
+      "CountryCode":"PH",
+      "StateCode":"NSA",
+      "StateName":"Northern Samar"
+   },
+   {  
+      "CountryCode":"PH",
+      "StateCode":"NUE",
+      "StateName":"Nueva Ecija"
+   },
+   {  
+      "CountryCode":"PH",
+      "StateCode":"NUV",
+      "StateName":"Nueva Vizcaya"
+   },
+   {  
+      "CountryCode":"PH",
+      "StateCode":"PAM",
+      "StateName":"Pampanga"
+   },
+   {  
+      "CountryCode":"PH",
+      "StateCode":"PAN",
+      "StateName":"Pangasinan"
+   },
+   {  
+      "CountryCode":"PH",
+      "StateCode":"PLW",
+      "StateName":"Palawan"
+   },
+   {  
+      "CountryCode":"PH",
+      "StateCode":"QUE",
+      "StateName":"Quezon"
+   },
+   {  
+      "CountryCode":"PH",
+      "StateCode":"QUI",
+      "StateName":"Quirino"
+   },
+   {  
+      "CountryCode":"PH",
+      "StateCode":"RIZ",
+      "StateName":"Rizal"
+   },
+   {  
+      "CountryCode":"PH",
+      "StateCode":"ROM",
+      "StateName":"Romblon"
+   },
+   {  
+      "CountryCode":"PH",
+      "StateCode":"SAR",
+      "StateName":"Sarangani"
+   },
+   {  
+      "CountryCode":"PH",
+      "StateCode":"SCO",
+      "StateName":"South Cotabato"
+   },
+   {  
+      "CountryCode":"PH",
+      "StateCode":"SIG",
+      "StateName":"Siquijor"
+   },
+   {  
+      "CountryCode":"PH",
+      "StateCode":"SLE",
+      "StateName":"Southern Leyte"
+   },
+   {  
+      "CountryCode":"PH",
+      "StateCode":"SLU",
+      "StateName":"Sulu"
+   },
+   {  
+      "CountryCode":"PH",
+      "StateCode":"SOR",
+      "StateName":"Sorsogon"
+   },
+   {  
+      "CountryCode":"PH",
+      "StateCode":"SUK",
+      "StateName":"Sultan Kudarat"
+   },
+   {  
+      "CountryCode":"PH",
+      "StateCode":"SUN",
+      "StateName":"Surigaodel Norte"
+   },
+   {  
+      "CountryCode":"PH",
+      "StateCode":"SUR",
+      "StateName":"Surigaodel Sur"
+   },
+   {  
+      "CountryCode":"PH",
+      "StateCode":"TAR",
+      "StateName":"Tarlac"
+   },
+   {  
+      "CountryCode":"PH",
+      "StateCode":"TAW",
+      "StateName":"Tawi-Tawi"
+   },
+   {  
+      "CountryCode":"PH",
+      "StateCode":"WSA",
+      "StateName":"Western Samar"
+   },
+   {  
+      "CountryCode":"PH",
+      "StateCode":"X2",
+      "StateName":"Shariff Kabunsuan"
+   },
+   {  
+      "CountryCode":"PH",
+      "StateCode":"ZAN",
+      "StateName":"Zamboangadel Norte"
+   },
+   {  
+      "CountryCode":"PH",
+      "StateCode":"ZAS",
+      "StateName":"Zamboangadel Sur"
+   },
+   {  
+      "CountryCode":"PH",
+      "StateCode":"ZMB",
+      "StateName":"Zambales"
+   },
+   {  
+      "CountryCode":"PH",
+      "StateCode":"ZSI",
+      "StateName":"Zamboanga Sibugue"
+   }
+]

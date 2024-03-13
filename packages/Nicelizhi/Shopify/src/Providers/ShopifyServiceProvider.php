@@ -86,13 +86,17 @@ class ShopifyServiceProvider extends ServiceProvider
         if ($this->app->runningInConsole()) {
             $this->commands([
                 \Nicelizhi\Shopify\Console\Commands\Product\Get::class,
+                \Nicelizhi\Shopify\Console\Commands\Product\GetV2::class,
+                \Nicelizhi\Shopify\Console\Commands\Product\GetV3::class,
                 \Nicelizhi\Shopify\Console\Commands\Product\Post::class,
                 \Nicelizhi\Shopify\Console\Commands\Product\Put::class,
                 \Nicelizhi\Shopify\Console\Commands\Product\Delete::class,
                 \Nicelizhi\Shopify\Console\Commands\Order\Get::class,
+                \Nicelizhi\Shopify\Console\Commands\Order\GetShipping::class,
                 \Nicelizhi\Shopify\Console\Commands\Order\Post::class,
                 \Nicelizhi\Shopify\Console\Commands\Order\Create::class,
                 \Nicelizhi\Shopify\Console\Commands\Order\Put::class,
+                \Nicelizhi\Shopify\Console\Commands\Order\PostCannelOrder::class,
                 \Nicelizhi\Shopify\Console\Commands\Collect\Get::class,
             ]);
         }
