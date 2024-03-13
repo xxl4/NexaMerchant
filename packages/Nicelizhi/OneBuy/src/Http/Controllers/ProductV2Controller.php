@@ -410,9 +410,11 @@ class ProductV2Controller extends Controller
                 $package_product['new_price'] = $this->getCartProductPrice($product,$product->id, $i) * $discount;
                 $package_product['new_price_format'] = core()->currency($package_product['new_price']) ;
                 $tip1_price = (1 - round(($package_product['new_price'] / $package_product['old_price']), 2)) * 100;
-                $package_product['tip1'] = $tip1_price."% Savings";
+                //$package_product['tip1'] = $tip1_price."% Savings";
+                $package_product['tip1'] = $tip1_price."% ";
                 $tip2_price = round($package_product['new_price'] / $i, 2);
-                $package_product['tip2'] = core()->currency($tip2_price)."/piece";
+                //$package_product['tip2'] = core()->currency($tip2_price)."/piece";
+                $package_product['tip2'] = core()->currency($tip2_price)."/";
                 $package_product['shipping_fee'] = $shipping_price;
                 $popup_info['name'] = null;
                 $popup_info['old_price'] = null;
