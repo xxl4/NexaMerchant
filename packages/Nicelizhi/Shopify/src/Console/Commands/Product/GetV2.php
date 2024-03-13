@@ -29,7 +29,7 @@ class GetV2 extends Command
      *
      * @var string
      */
-    protected $description = 'Get Products List V2 {--prod_id=}';
+    protected $description = 'Get Products List V2 shopify:product:getv2 {--prod_id=} 1个属性内容';
 
     private $shopify_store_id = "";
 

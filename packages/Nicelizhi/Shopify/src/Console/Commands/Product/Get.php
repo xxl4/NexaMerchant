@@ -30,7 +30,7 @@ class Get extends Command
      *
      * @var string
      */
-    protected $description = 'Get Products List or a product shopify:product:get {--prod_id=} {--force=}';
+    protected $description = 'Get Products List or a product shopify:product:get {--prod_id=} {--force=} color and size';
 
     private $shopify_store_id = "";
 
@@ -308,6 +308,7 @@ class Get extends Command
             //var_dump(count($shopifyVariants));
 
             $newShopifyVarants = [];
+            $compare_at_price = '0.00';
             foreach($shopifyVariants as $sv => $shopifyVariant) {
                 //var_dump($shopifyVariant);
                 $newkey = $shopifyVariant['product_id'];
@@ -332,6 +333,7 @@ class Get extends Command
                 $newShopifyVarant['option1'] = $shopifyVariant['option1'];
                 $newShopifyVarant['option2'] = $shopifyVariant['option2'];
                 $newShopifyVarants[$newkey] = $newShopifyVarant;
+                $compare_at_price = $shopifyVariant['compare_at_price'];
             }
 
             //var_dump($newShopifyVarants);exit;
@@ -371,7 +373,7 @@ class Get extends Command
                 $categories[] = 5;
                 $newVariant['categories'] = $categories;
                 $newVariant['guest_checkout'] = 1;
-                $newVariant['compare_at_price'] = $item['compare_at_price'];
+                $newVariant['compare_at_price'] = $compare_at_price;
                 $newVariants[$variant['id']] = $newVariant;
             }
 
