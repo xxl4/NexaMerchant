@@ -15,7 +15,7 @@ lang: zh-CN
 ---
 这篇文章主要是描述基于shopify的商品，实现与 shopify 与 店铺的对接实现生成 checkout 页面
 
-# 获取商品
+# 商品获取
 
 ## 获取全部商品
 
@@ -55,7 +55,7 @@ onebuy:import:faq {--force=}
 ```
 onebuy:import:products:comment {--prod_id=} {--force=}
 ```
-## 获取商品的 checkout 连接
+# 获取商品的 checkout 连接
 ```
 https://www.example.com/onebuy/v3/{$shopify_id}
 ```
@@ -63,7 +63,7 @@ https://www.example.com/onebuy/v3/{$shopify_id}
 
 
 
-## 验证 checkout页面 是否工作正常
+# 验证 checkout页面 是否工作正常
 1）发起商品支付，是否有报错情况。  
 2）FAQ，SKU 图片是否正确，价格是否正常。  
 3）快递费用的查看，没有平台的快递费用可能不一样的情况，这块数据需要到后台快递栏目中修改与查看  
