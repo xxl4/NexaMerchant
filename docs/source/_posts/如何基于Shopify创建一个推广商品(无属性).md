@@ -9,7 +9,7 @@ tags:
 categories:
   - 产品
   - 使用手册
-date: 2024-03-03 14:23:12
+date: 2024-03-13 13:23:12
 description: 如何基于Shopify创建一个推广商品 （无属性）
 lang: zh-CN
 ---
