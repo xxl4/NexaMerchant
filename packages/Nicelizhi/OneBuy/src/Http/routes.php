@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Nicelizhi\OneBuy\Http\Controllers\ProductController;
 use Nicelizhi\OneBuy\Http\Controllers\ProductV2Controller;
+use Nicelizhi\OneBuy\Http\Controllers\ProductV3Controller;
 
 // default
 Route::group(['middleware' => ['locale', 'theme', 'currency','web']], function () {
@@ -44,3 +45,13 @@ Route::group(['middleware' => ['locale', 'theme', 'currency','web']], function (
 
 });
 
+// v3
+
+Route::group(['middleware' => ['locale', 'theme', 'currency','web']], function () {
+
+    Route::get('onebuy/v3/{slug}', [ProductV3Controller::class, 'detail'])
+        ->name('onebuy.v3.product.page')
+        ->middleware('cacheResponse');
+
+
+});
