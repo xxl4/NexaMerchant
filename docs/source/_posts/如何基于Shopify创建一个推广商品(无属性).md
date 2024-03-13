@@ -1,5 +1,5 @@
 ---
-title: 如何基于Shopify创建一个推广商品 （单属性）
+title: 如何基于Shopify创建一个推广商品 （无属性）
 tags:
   - Larave
   - Compose
@@ -10,7 +10,7 @@ categories:
   - 产品
   - 使用手册
 date: 2024-03-03 14:23:12
-description: 如何基于Shopify创建一个推广商品 （单属性）
+description: 如何基于Shopify创建一个推广商品 （无属性）
 lang: zh-CN
 ---
 这篇文章主要是描述基于shopify的商品，实现与 shopify 与 店铺的对接实现生成 checkout 页面
@@ -27,7 +27,7 @@ php artisan shopify:product:get
 ## 获取指定商品ID的商品
 
 ```
-shopify:product:getv2 {--prod_id=}
+shopify:product:getv3 {--prod_id=}
 ```
 > 获取shopify 上莫个商品到本地数据库, 对于需要单属性的实现，可以参考 
 
@@ -57,25 +57,16 @@ onebuy:import:products:comment {--prod_id=} {--force=}
 ```
 ## 获取商品的 checkout 连接
 ```
-https://www.example.com/onebuy/v2/{$shopify_id}
+https://www.example.com/onebuy/v3/{$shopify_id}
 ```
 > 参数是否正常打开，如果可以打开，验证下对应的内容是否都有。验证内容事项  
 
-## 对于需要给 SKU 排序的操作为
-1) 在对应的 默认 Redis 中的 默认数据库，添加一条基于商品加 属性ID的标识，现在只支持 23（Color） 属性的排序, Redis Key 类型为 Hash
 
-```
-product_attr_sort_23_3410
-```
-2) 对应里面的内容为
-```
-Key 为属性ID 
-Value 为排序ID 比如 0,1,2,3
-```
 
 ## 验证 checkout页面 是否工作正常
 1）发起商品支付，是否有报错情况。  
-2）查看 Banner, img size, 评论， FAQ，SKU 图片是否正确，价格是否正常。  
+2）FAQ，SKU 图片是否正确，价格是否正常。  
 3）快递费用的查看，没有平台的快递费用可能不一样的情况，这块数据需要到后台快递栏目中修改与查看  
 4）查看对应的协议内容，文档是否正常，这块数据是基于每个本地数据库与对应的区域来获取识别的  
 5）因为此商品为单品，从而会需要添加上1件，2件，多件商品的商品图片，从而可以更好的展示效果
+
