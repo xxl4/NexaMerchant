@@ -145,6 +145,7 @@ class Airwallex {
             'debug' => true
         ]);
         $body = $response->getBody();
+        var_dump($body, $data, $token);
     }
 
     public function CheckPaymentStatus() {
