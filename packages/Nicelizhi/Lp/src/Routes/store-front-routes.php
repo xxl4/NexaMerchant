@@ -19,3 +19,12 @@ Route::group(['middleware' => ['locale', 'theme', 'currency'],'prefix'=>'lp'], f
 
 
 });
+
+Route::group(['middleware' => ['locale', 'theme', 'currency'],'prefix'=>'products'], function () {
+    
+
+    Route::get('{slug}', [LpController::class, 'index'])
+        ->name('lp.products.slug.page')
+        ->middleware('cacheResponse');
+
+});

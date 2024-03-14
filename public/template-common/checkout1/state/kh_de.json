@@ -1,0 +1,122 @@
+[
+	{  
+      "CountryCode":"KH",
+      "StateCode":"1",
+      "StateName":"Banteay Mean Chey"
+   },
+   {  
+      "CountryCode":"KH",
+      "StateCode":"10",
+      "StateName":"Kracheh"
+   },
+   {  
+      "CountryCode":"KH",
+      "StateCode":"11",
+      "StateName":"Mondol Kiri"
+   },
+   {  
+      "CountryCode":"KH",
+      "StateCode":"12",
+      "StateName":"Phnom Penh"
+   },
+   {  
+      "CountryCode":"KH",
+      "StateCode":"13",
+      "StateName":"Preah Vihear"
+   },
+   {  
+      "CountryCode":"KH",
+      "StateCode":"14",
+      "StateName":"Prey Veaen"
+   },
+   {  
+      "CountryCode":"KH",
+      "StateCode":"15",
+      "StateName":"Pousaat"
+   },
+   {  
+      "CountryCode":"KH",
+      "StateCode":"16",
+      "StateName":"Rotanak Kiri"
+   },
+   {  
+      "CountryCode":"KH",
+      "StateCode":"17",
+      "StateName":"Siem Reab"
+   },
+   {  
+      "CountryCode":"KH",
+      "StateCode":"18",
+      "StateName":"Krong Preah Sihanouk"
+   },
+   {  
+      "CountryCode":"KH",
+      "StateCode":"19",
+      "StateName":"Stueng Traeng"
+   },
+   {  
+      "CountryCode":"KH",
+      "StateCode":"2",
+      "StateName":"Baat Dambang"
+   },
+   {  
+      "CountryCode":"KH",
+      "StateCode":"20",
+      "StateName":"Svaay Rien"
+   },
+   {  
+      "CountryCode":"KH",
+      "StateCode":"21",
+      "StateName":"Taakae"
+   },
+   {  
+      "CountryCode":"KH",
+      "StateCode":"22",
+      "StateName":"Otdar Mean Chey"
+   },
+   {  
+      "CountryCode":"KH",
+      "StateCode":"23",
+      "StateName":"Krong Kaeb"
+   },
+   {  
+      "CountryCode":"KH",
+      "StateCode":"24",
+      "StateName":"Krong Pailin"
+   },
+   {  
+      "CountryCode":"KH",
+      "StateCode":"3",
+      "StateName":"Kampong Chaam"
+   },
+   {  
+      "CountryCode":"KH",
+      "StateCode":"4",
+      "StateName":"Kampong Chhnang"
+   },
+   {  
+      "CountryCode":"KH",
+      "StateCode":"5",
+      "StateName":"Kampong Spueu"
+   },
+   {  
+      "CountryCode":"KH",
+      "StateCode":"6",
+      "StateName":"Kampong Thum"
+   },
+   {  
+      "CountryCode":"KH",
+      "StateCode":"7",
+      "StateName":"Kampot"
+   },
+   {  
+      "CountryCode":"KH",
+      "StateCode":"8",
+      "StateName":"Kandaal"
+   },
+   {  
+      "CountryCode":"KH",
+      "StateCode":"9",
+      "StateName":"Kaoh Kong"
+   }
+]

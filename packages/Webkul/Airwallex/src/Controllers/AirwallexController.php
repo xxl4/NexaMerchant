@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Log;
 
+use Webkul\Checkout\Facades\Cart;
+
 use Webkul\Sales\Repositories\InvoiceRepository;
 use Webkul\Sales\Repositories\OrderRepository;
 use Webkul\Sales\Repositories\OrderTransactionRepository;
@@ -111,6 +113,8 @@ class AirwallexController extends Controller
 
             $order = $this->orderRepository->find($transactionId);
 
+            $this->order = $order;
+
             if ($order) {
                 Log::info("airwallex notification received for order id:" . $transactionId);
 
@@ -140,7 +144,7 @@ class AirwallexController extends Controller
                         if ($order->canInvoice()) {
                             request()->merge(['can_create_transaction' => 1]);
                             
-                            $this->invoiceRepository->create($this->prepareInvoiceData($order));
+                            $this->invoiceRepository->create($this->prepareInvoiceData());
                         } else {
                             $invoice = $this->invoiceRepository->findOneWhere(['order_id' => $order->id]);
     
@@ -172,21 +176,28 @@ class AirwallexController extends Controller
     }
 
     /**
-     * Prepares invoice data
+     * Prepares order's invoice data for creation.
      *
      * @return array
      */
-    public function prepareInvoiceData($order)
+    protected function prepareInvoiceData()
     {
-        $invoiceData = [
-            "order_id" => $order->id
-        ];
+        $invoiceData = ['order_id' => $this->order->id];
 
-        foreach ($order->items as $item) {
+        foreach ($this->order->items as $item) {
             $invoiceData['invoice']['items'][$item->id] = $item->qty_to_invoice;
         }
 
         return $invoiceData;
+    }
+
+    public function paymentSuccess(Request $request) {
+        Log::info("airwallex payment success". json_encode($request->all()));
+        $awx_return_result = $request->input("awx_return_result");
+        if($awx_return_result=='success') {
+            return view("airwallex::payment-success");
+        }
+        return view("airwallex::payment-success");
     }
 
     public function showPaymentMethods()

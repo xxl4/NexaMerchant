@@ -78,6 +78,7 @@ class AirwallexServiceProvider extends ServiceProvider
         if ($this->app->runningInConsole()) {
             $this->commands([
                 \Nicelizhi\Airwallex\Console\Commands\Webhook\CreateaWebhook::class,
+                \Nicelizhi\Airwallex\Console\Commands\Order\Refund::class,
             ]);
         }
     }

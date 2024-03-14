@@ -1,0 +1,32 @@
+[
+	{  
+      "CountryCode":"CY",
+      "StateCode":"01",
+      "StateName":"Lefkosia"
+   },
+   {  
+      "CountryCode":"CY",
+      "StateCode":"02",
+      "StateName":"Lemesos"
+   },
+   {  
+      "CountryCode":"CY",
+      "StateCode":"03",
+      "StateName":"Larnaka"
+   },
+   {  
+      "CountryCode":"CY",
+      "StateCode":"04",
+      "StateName":"Ammochostos"
+   },
+   {  
+      "CountryCode":"CY",
+      "StateCode":"05",
+      "StateName":"Pafos"
+   },
+   {  
+      "CountryCode":"CY",
+      "StateCode":"06",
+      "StateName":"Keryneia"
+   }
+]

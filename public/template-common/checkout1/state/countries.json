@@ -1,33 +1,1212 @@
-[{
-    "countryName": "United States",
-    "countryNameLocalized": "United States",
-    "countryCode": "US",
-    "currencyCode": "USD",
-    "currencyName": "United States Dollar",
-    "currencySign": "US$",
-    "region": "Americas",
-    "codeFormat": "^\\d{5}([ \\-]\\d{4})?$",
-    "phonePrefix": "+1"
-},
-{
-    "countryName": "Australia",
-    "countryNameLocalized": "Australia",
-    "countryCode": "AU",
-    "currencyCode": "AUD",
-    "currencyName": "Australian Dollar",
-    "currencySign": "AU$",
-    "region": "Oceania",
-    "codeFormat": "^\\d{4}$",
-    "phonePrefix": "+61"
-},
-{
-    "countryName": "Canada",
-    "countryCode": "CA",
-    "phonePrefix": "+1"
-},
-{
-    "countryName": "United Kingdom",
-    "countryCode": "GB",
-    "phonePrefix": "+44"
-}
+[
+    {
+        "countryName": "Andorra",
+        "countryNameLocalized": "Andorra",
+        "countryCode": "AD",
+        "currencyCode": "EUR",
+        "currencyName": "European Euro",
+        "currencySign": "€",
+        "region": "Europe",
+        "postalCodeRegex": "AD\\d{3}"
+    },
+    {
+        "countryName": "United Arab Emirates",
+        "countryNameLocalized": "United Arab Emirates",
+        "countryCode": "AE",
+        "currencyCode": "AED",
+        "currencyName": "United Arab Emirates Dirham",
+        "currencySign": "د.إ",
+        "region": "Asia",
+        "postalCodeRegex": null
+    },
+    {
+        "countryName": "Anguilla",
+        "countryNameLocalized": "Anguilla",
+        "countryCode": "AI",
+        "currencyCode": "XCD",
+        "currencyName": "East Caribbean Dollar",
+        "currencySign": "EC$",
+        "region": "Americas",
+        "postalCodeRegex": null
+    },
+    {
+        "countryName": "Albania",
+        "countryNameLocalized": "Albania",
+        "countryCode": "AL",
+        "currencyCode": "ALL",
+        "currencyName": "Albanian Lek",
+        "currencySign": "ALL",
+        "region": "Europe",
+        "postalCodeRegex": null
+    },
+    {
+        "countryName": "Armenia",
+        "countryNameLocalized": "Armenia",
+        "countryCode": "AM",
+        "currencyCode": "AMD",
+        "currencyName": "Armenian Dram",
+        "currencySign": "դր",
+        "region": "Asia",
+        "postalCodeRegex": "(37)?\\d{4}"
+    },
+    {
+        "countryName": "Angola",
+        "countryNameLocalized": "Angola",
+        "countryCode": "AO",
+        "currencyCode": "AOA",
+        "currencyName": "Angolan Kwanza",
+        "currencySign": "Kz",
+        "region": "Africa",
+        "postalCodeRegex": null
+    },
+    {
+        "countryName": "Argentina",
+        "countryNameLocalized": "Argentina",
+        "countryCode": "AR",
+        "currencyCode": "ARS",
+        "currencyName": "Argentine Peso",
+        "currencySign": "AR$",
+        "region": "Americas",
+        "postalCodeRegex": "([A-HJ-NP-Z])?\\d{4}([A-Z]{3})?"
+    },
+    {
+        "countryName": "Austria",
+        "countryNameLocalized": "Austria",
+        "countryCode": "AT",
+        "currencyCode": "EUR",
+        "currencyName": "European Euro",
+        "currencySign": "€",
+        "region": "Europe",
+        "postalCodeRegex": "\\d{4}"
+    },
+    {
+        "countryName": "Australia",
+        "countryNameLocalized": "Australia",
+        "countryCode": "AU",
+        "currencyCode": "AUD",
+        "currencyName": "Australian Dollar",
+        "currencySign": "AU$",
+        "region": "Oceania",
+        "postalCodeRegex": "\\d{4}"
+    },
+    {
+        "countryName": "Aruba",
+        "countryNameLocalized": "Aruba",
+        "countryCode": "AW",
+        "currencyCode": "AWG",
+        "currencyName": "Aruban Florin",
+        "currencySign": "ƒ",
+        "region": "Americas",
+        "postalCodeRegex": null
+    },
+    {
+        "countryName": "Bosnia and Herzegovina",
+        "countryNameLocalized": "Bosnia and Herzegovina",
+        "countryCode": "BA",
+        "currencyCode": "BAM",
+        "currencyName": "Bosnia-Herzegovina Convertible Mark",
+        "currencySign": "KM",
+        "region": "Europe",
+        "postalCodeRegex": "\\d{5}"
+    },
+    {
+        "countryName": "Belgium",
+        "countryNameLocalized": "Belgium",
+        "countryCode": "BE",
+        "currencyCode": "EUR",
+        "currencyName": "European Euro",
+        "currencySign": "€",
+        "region": "Europe",
+        "postalCodeRegex": "\\d{4}"
+    },
+    {
+        "countryName": "Bulgaria",
+        "countryNameLocalized": "Bulgaria",
+        "countryCode": "BG",
+        "currencyCode": "BGN",
+        "currencyName": "Bulgarian Lev",
+        "currencySign": "лв",
+        "region": "Europe",
+        "postalCodeRegex": "\\d{4}"
+    },
+    {
+        "countryName": "Bahrain",
+        "countryNameLocalized": "Bahrain",
+        "countryCode": "BH",
+        "currencyCode": "BHD",
+        "currencyName": "Bahraini Dinar",
+        "currencySign": "ب.د",
+        "region": "Asia",
+        "postalCodeRegex": "((1[0-2]|[2-9])\\d{2})?"
+    },
+    {
+        "countryName": "Burundi",
+        "countryNameLocalized": "Burundi",
+        "countryCode": "BI",
+        "currencyCode": "BIF",
+        "currencyName": "Burundian Franc",
+        "currencySign": "FBu",
+        "region": "Africa",
+        "postalCodeRegex": null
+    },
+    {
+        "countryName": "Brazil",
+        "countryNameLocalized": "Brazil",
+        "countryCode": "BR",
+        "currencyCode": "BRL",
+        "currencyName": "Brazilian Real",
+        "currencySign": "R$",
+        "region": "Americas",
+        "postalCodeRegex": "\\d{5}[\\-]?\\d{3}"
+    },
+    {
+        "countryName": "Canada",
+        "countryNameLocalized": "Canada",
+        "countryCode": "CA",
+        "currencyCode": "CAD",
+        "currencyName": "Canada Dollar",
+        "currencySign": "CA$",
+        "region": "Americas",
+        "postalCodeRegex": "[ABCEGHJKLMNPRSTVXY]\\d[ABCEGHJ-NPRSTV-Z][ ]?\\d[ABCEGHJ-NPRSTV-Z]\\d"
+    },
+    {
+        "countryName": "Central African Republic",
+        "countryNameLocalized": "Central African Republic",
+        "countryCode": "CF",
+        "currencyCode": "XAF",
+        "currencyName": "Central African CFA Franc ",
+        "currencySign": null,
+        "region": "Africa",
+        "postalCodeRegex": null
+    },
+    {
+        "countryName": "Switzerland",
+        "countryNameLocalized": "Switzerland",
+        "countryCode": "CH",
+        "currencyCode": "CHF",
+        "currencyName": "Swiss Franc",
+        "currencySign": "CHF",
+        "region": "Europe",
+        "postalCodeRegex": "\\d{4}"
+    },
+    {
+        "countryName": "Ivory Coast",
+        "countryNameLocalized": "Ivory Coast",
+        "countryCode": "CI",
+        "currencyCode": "XOF",
+        "currencyName": "CFA Franc",
+        "currencySign": null,
+        "region": "Africa",
+        "postalCodeRegex": null
+    },
+    {
+        "countryName": "Cook Islands",
+        "countryNameLocalized": "Cook Islands",
+        "countryCode": "CK",
+        "currencyCode": "NZD",
+        "currencyName": "New Zealand Dollar",
+        "currencySign": "NZ$",
+        "region": "Oceania",
+        "postalCodeRegex": "\\d{4}"
+    },
+    {
+        "countryName": "Chile",
+        "countryNameLocalized": "Chile",
+        "countryCode": "CL",
+        "currencyCode": "CLP",
+        "currencyName": "Chilean Peso",
+        "currencySign": "CL$",
+        "region": "Americas",
+        "postalCodeRegex": "\\d{7}"
+    },
+    {
+        "countryName": "Cameroon",
+        "countryNameLocalized": "Cameroon",
+        "countryCode": "CM",
+        "currencyCode": "XAF",
+        "currencyName": "Central African CFA Franc ",
+        "currencySign": null,
+        "region": "Africa",
+        "postalCodeRegex": null
+    },
+    {
+        "countryName": "Colombia",
+        "countryNameLocalized": "Colombia",
+        "countryCode": "CO",
+        "currencyCode": "COP",
+        "currencyName": "Colombian Peso",
+        "currencySign": "Col$",
+        "region": "Americas",
+        "postalCodeRegex": null
+    },
+    {
+        "countryName": "Curaçao",
+        "countryNameLocalized": "Curaçao",
+        "countryCode": "CW",
+        "currencyCode": "ANG",
+        "currencyName": "Netherlands Antillean Gulden",
+        "currencySign": "NAƒ",
+        "region": "Americas",
+        "postalCodeRegex": null
+    },
+    {
+        "countryName": "Cyprus",
+        "countryNameLocalized": "Cyprus",
+        "countryCode": "CY",
+        "currencyCode": "EUR",
+        "currencyName": "European Euro",
+        "currencySign": "€",
+        "region": "Europe",
+        "postalCodeRegex": "\\d{4}"
+    },
+    {
+        "countryName": "Czech Republic",
+        "countryNameLocalized": "Czech Republic",
+        "countryCode": "CZ",
+        "currencyCode": "CZK",
+        "currencyName": "Czech Koruna",
+        "currencySign": "Kč",
+        "region": "Europe",
+        "postalCodeRegex": "\\d{3}[ ]?\\d{2}"
+    },
+    {
+        "countryName": "Germany",
+        "countryNameLocalized": "Germany",
+        "countryCode": "DE",
+        "currencyCode": "EUR",
+        "currencyName": "European Euro",
+        "currencySign": "€",
+        "region": "Europe",
+        "postalCodeRegex": "\\d{5}"
+    },
+    {
+        "countryName": "Denmark",
+        "countryNameLocalized": "Denmark",
+        "countryCode": "DK",
+        "currencyCode": "DKK",
+        "currencyName": "Danish Krone",
+        "currencySign": "ø",
+        "region": "Europe",
+        "postalCodeRegex": "\\d{4}"
+    },
+    {
+        "countryName": "Estonia",
+        "countryNameLocalized": "Estonia",
+        "countryCode": "EE",
+        "currencyCode": "EUR",
+        "currencyName": "European Euro",
+        "currencySign": "€",
+        "region": "Europe",
+        "postalCodeRegex": "\\d{5}"
+    },
+    {
+        "countryName": "Spain",
+        "countryNameLocalized": "Spain",
+        "countryCode": "ES",
+        "currencyCode": "EUR",
+        "currencyName": "European Euro",
+        "currencySign": "€",
+        "region": "Europe",
+        "postalCodeRegex": "\\d{5}"
+    },
+    {
+        "countryName": "Ethiopia",
+        "countryNameLocalized": "Ethiopia",
+        "countryCode": "ET",
+        "currencyCode": "ETB",
+        "currencyName": "Ethiopian Birr",
+        "currencySign": "Br",
+        "region": "Africa",
+        "postalCodeRegex": "\\d{4}"
+    },
+    {
+        "countryName": "Finland",
+        "countryNameLocalized": "Finland",
+        "countryCode": "FI",
+        "currencyCode": "EUR",
+        "currencyName": "European Euro",
+        "currencySign": "€",
+        "region": "Europe",
+        "postalCodeRegex": "\\d{5}"
+    },
+    {
+        "countryName": "Faroe Islands",
+        "countryNameLocalized": "Faroe Islands",
+        "countryCode": "FO",
+        "currencyCode": "DKK",
+        "currencyName": "Danish Krone",
+        "currencySign": "ø",
+        "region": "Europe",
+        "postalCodeRegex": "\\d{3}"
+    },
+    {
+        "countryName": "France",
+        "countryNameLocalized": "France",
+        "countryCode": "FR",
+        "currencyCode": "EUR",
+        "currencyName": "European Euro",
+        "currencySign": "€",
+        "region": "Europe",
+        "postalCodeRegex": "\\d{2}[ ]?\\d{3}"
+    },
+    {
+        "countryName": "United Kingdom",
+        "countryNameLocalized": "United Kingdom",
+        "countryCode": "GB",
+        "currencyCode": "GBP",
+        "currencyName": "United Kingdom Pound Sterling",
+        "currencySign": "UK£",
+        "region": "Europe",
+        "postalCodeRegex": "GIR[ ]?0AA|((AB|AL|B|BA|BB|BD|BH|BL|BN|BR|BS|BT|CA|CB|CF|CH|CM|CO|CR|CT|CV|CW|DA|DD|DE|DG|DH|DL|DN|DT|DY|E|EC|EH|EN|EX|FK|FY|G|GL|GY|GU|HA|HD|HG|HP|HR|HS|HU|HX|IG|IM|IP|IV|JE|KA|KT|KW|KY|L|LA|LD|LE|LL|LN|LS|LU|M|ME|MK|ML|N|NE|NG|NN|NP|NR|NW|OL|OX|PA|PE|PH|PL|PO|PR|RG|RH|RM|S|SA|SE|SG|SK|SL|SM|SN|SO|SP|SR|SS|ST|SW|SY|TA|TD|TF|TN|TQ|TR|TS|TW|UB|W|WA|WC|WD|WF|WN|WR|WS|WV|YO|ZE)(\\d[\\dA-Z]?[ ]?\\d[ABD-HJLN-UW-Z]{2}))|BFPO[ ]?\\d{1,4}"
+    },
+    {
+        "countryName": "French Guiana",
+        "countryNameLocalized": "French Guiana",
+        "countryCode": "GF",
+        "currencyCode": "EUR",
+        "currencyName": "European Euro",
+        "currencySign": "€",
+        "region": "Americas",
+        "postalCodeRegex": "9[78]3\\d{2}"
+    },
+    {
+        "countryName": "Ghana",
+        "countryNameLocalized": "Ghana",
+        "countryCode": "GH",
+        "currencyCode": "GHS",
+        "currencyName": "Ghanaian Cedi",
+        "currencySign": "GH₵",
+        "region": "Africa",
+        "postalCodeRegex": null
+    },
+    {
+        "countryName": "Gibraltar",
+        "countryNameLocalized": "Gibraltar",
+        "countryCode": "GI",
+        "currencyCode": "GIP",
+        "currencyName": "Gibraltar Pound",
+        "currencySign": "GI£",
+        "region": "Europe",
+        "postalCodeRegex": null
+    },
+    {
+        "countryName": "Guinea",
+        "countryNameLocalized": "Guinea",
+        "countryCode": "GN",
+        "currencyCode": "GNF",
+        "currencyName": "Guinean Franc",
+        "currencySign": "FG",
+        "region": "Africa",
+        "postalCodeRegex": "\\d{3}"
+    },
+    {
+        "countryName": "Equatorial Guinea",
+        "countryNameLocalized": "Equatorial Guinea",
+        "countryCode": "GQ",
+        "currencyCode": "XAF",
+        "currencyName": "Central African CFA Franc ",
+        "currencySign": null,
+        "region": "Africa",
+        "postalCodeRegex": null
+    },
+    {
+        "countryName": "Greece",
+        "countryNameLocalized": "Greece",
+        "countryCode": "GR",
+        "currencyCode": "EUR",
+        "currencyName": "European Euro",
+        "currencySign": "€",
+        "region": "Europe",
+        "postalCodeRegex": "\\d{3}[ ]?\\d{2}"
+    },
+    {
+        "countryName": "South Georgia",
+        "countryNameLocalized": "South Georgia",
+        "countryCode": "GS",
+        "currencyCode": "GBP",
+        "currencyName": "United Kingdom Pound Sterling",
+        "currencySign": "UK£",
+        "region": "Americas",
+        "postalCodeRegex": "SIQQ 1ZZ"
+    },
+    {
+        "countryName": "Guam",
+        "countryNameLocalized": "Guam",
+        "countryCode": "GU",
+        "currencyCode": "USD",
+        "currencyName": "United States Dollar",
+        "currencySign": "US$",
+        "region": "Oceania",
+        "postalCodeRegex": "969[123]\\d([ \\-]\\d{4})?"
+    },
+    {
+        "countryName": "Croatia",
+        "countryNameLocalized": "Croatia",
+        "countryCode": "HR",
+        "currencyCode": "HRK",
+        "currencyName": "Croatian Kuna",
+        "currencySign": "HRK",
+        "region": "Europe",
+        "postalCodeRegex": "\\d{5}"
+    },
+    {
+        "countryName": "Hungary",
+        "countryNameLocalized": "Hungary",
+        "countryCode": "HU",
+        "currencyCode": "HUF",
+        "currencyName": "Hungarian Forint",
+        "currencySign": "Ft",
+        "region": "Europe",
+        "postalCodeRegex": "\\d{4}"
+    },
+    {
+        "countryName": "Indonesia",
+        "countryNameLocalized": "Indonesia",
+        "countryCode": "ID",
+        "currencyCode": "IDR",
+        "currencyName": "Indonesian Rupiah",
+        "currencySign": "Rp",
+        "region": "Asia",
+        "postalCodeRegex": "\\d{5}"
+    },
+    {
+        "countryName": "Republic of Ireland",
+        "countryNameLocalized": "Republic of Ireland",
+        "countryCode": "IE",
+        "currencyCode": "EUR",
+        "currencyName": "European Euro",
+        "currencySign": "€",
+        "region": "Europe",
+        "postalCodeRegex": null
+    },
+    {
+        "countryName": "Israel",
+        "countryNameLocalized": "Israel",
+        "countryCode": "IL",
+        "currencyCode": "ILS",
+        "currencyName": "Israeli New Sheqel",
+        "currencySign": "₪",
+        "region": "Asia",
+        "postalCodeRegex": "\\d{5}"
+    },
+    {
+        "countryName": "India",
+        "countryNameLocalized": "India",
+        "countryCode": "IN",
+        "currencyCode": "INR",
+        "currencyName": "Indian Rupee",
+        "currencySign": "IN₨",
+        "region": "Asia",
+        "postalCodeRegex": "\\d{6}"
+    },
+    {
+        "countryName": "British Indian Ocean Territory",
+        "countryNameLocalized": "British Indian Ocean Territory",
+        "countryCode": "IO",
+        "currencyCode": "USD",
+        "currencyName": "United States Dollar",
+        "currencySign": "US$",
+        "region": "Africa",
+        "postalCodeRegex": "BBND 1ZZ"
+    },
+    {
+        "countryName": "Iceland",
+        "countryNameLocalized": "Iceland",
+        "countryCode": "IS",
+        "currencyCode": "ISK",
+        "currencyName": "Icelandic Krona",
+        "currencySign": "ISK",
+        "region": "Europe",
+        "postalCodeRegex": "\\d{3}"
+    },
+    {
+        "countryName": "Italy",
+        "countryNameLocalized": "Italy",
+        "countryCode": "IT",
+        "currencyCode": "EUR",
+        "currencyName": "European Euro",
+        "currencySign": "€",
+        "region": "Europe",
+        "postalCodeRegex": "\\d{5}"
+    },
+    {
+        "countryName": "Jordan",
+        "countryNameLocalized": "Jordan",
+        "countryCode": "JO",
+        "currencyCode": "JOD",
+        "currencyName": "Jordanian Dinar",
+        "currencySign": "JD",
+        "region": "Asia",
+        "postalCodeRegex": "\\d{5}"
+    },
+    {
+        "countryName": "Japan",
+        "countryNameLocalized": "Japan",
+        "countryCode": "JP",
+        "currencyCode": "JPY",
+        "currencyName": "Japanese Yen",
+        "currencySign": "JP¥",
+        "region": "Asia",
+        "postalCodeRegex": "\\d{3}-\\d{4}"
+    },
+    {
+        "countryName": "Kenya",
+        "countryNameLocalized": "Kenya",
+        "countryCode": "KE",
+        "currencyCode": "KES",
+        "currencyName": "Kenyan Shilling",
+        "currencySign": "KSh",
+        "region": "Africa",
+        "postalCodeRegex": "\\d{5}"
+    },
+    {
+        "countryName": "Cambodia",
+        "countryNameLocalized": "Cambodia",
+        "countryCode": "KH",
+        "currencyCode": "KHR",
+        "currencyName": "Cambodian Riel",
+        "currencySign": "៛",
+        "region": "Asia",
+        "postalCodeRegex": "\\d{5}"
+    },
+    {
+        "countryName": "Comoros",
+        "countryNameLocalized": "Comoros",
+        "countryCode": "KM",
+        "currencyCode": "KMF",
+        "currencyName": "Comorian Franc",
+        "currencySign": "KMF",
+        "region": "Africa",
+        "postalCodeRegex": null
+    },
+    {
+        "countryName": "Kuwait",
+        "countryNameLocalized": "Kuwait",
+        "countryCode": "KW",
+        "currencyCode": "KWD",
+        "currencyName": "Kuwaiti Dinar",
+        "currencySign": "د.ك",
+        "region": "Asia",
+        "postalCodeRegex": "\\d{5}"
+    },
+    {
+        "countryName": "Lebanon",
+        "countryNameLocalized": "Lebanon",
+        "countryCode": "LB",
+        "currencyCode": "LBP",
+        "currencyName": "Lebanese Pound",
+        "currencySign": "ل.ل",
+        "region": "Asia",
+        "postalCodeRegex": "(\\d{4}([ ]?\\d{4})?)?"
+    },
+    {
+        "countryName": "Liechtenstein",
+        "countryNameLocalized": "Liechtenstein",
+        "countryCode": "LI",
+        "currencyCode": "CHF",
+        "currencyName": "Swiss Franc",
+        "currencySign": "CHF",
+        "region": "Europe",
+        "postalCodeRegex": "(948[5-9])|(949[0-7])"
+    },
+    {
+        "countryName": "Sri Lanka",
+        "countryNameLocalized": "Sri Lanka",
+        "countryCode": "LK",
+        "currencyCode": "LKR",
+        "currencyName": "Sri Lankan Rupee",
+        "currencySign": "LK₨",
+        "region": "Asia",
+        "postalCodeRegex": "\\d{5}"
+    },
+    {
+        "countryName": "Lithuania",
+        "countryNameLocalized": "Lithuania",
+        "countryCode": "LT",
+        "currencyCode": "EUR",
+        "currencyName": "European Euro",
+        "currencySign": "€",
+        "region": "Europe",
+        "postalCodeRegex": "\\d{5}"
+    },
+    {
+        "countryName": "Luxembourg",
+        "countryNameLocalized": "Luxembourg",
+        "countryCode": "LU",
+        "currencyCode": "EUR",
+        "currencyName": "European Euro",
+        "currencySign": "€",
+        "region": "Europe",
+        "postalCodeRegex": "\\d{4}"
+    },
+    {
+        "countryName": "Morocco",
+        "countryNameLocalized": "Morocco",
+        "countryCode": "MA",
+        "currencyCode": "MAD",
+        "currencyName": "Moroccan Dirham",
+        "currencySign": "د.م",
+        "region": "Africa",
+        "postalCodeRegex": "\\d{5}"
+    },
+    {
+        "countryName": "Monaco",
+        "countryNameLocalized": "Monaco",
+        "countryCode": "MC",
+        "currencyCode": "EUR",
+        "currencyName": "European Euro",
+        "currencySign": "€",
+        "region": "Europe",
+        "postalCodeRegex": "980\\d{2}"
+    },
+    {
+        "countryName": "Moldova",
+        "countryNameLocalized": "Moldova",
+        "countryCode": "MD",
+        "currencyCode": "MDL",
+        "currencyName": "Moldovan Leu",
+        "currencySign": "MDL",
+        "region": "Europe",
+        "postalCodeRegex": "\\d{4}"
+    },
+    {
+        "countryName": "Montenegro",
+        "countryNameLocalized": "Montenegro",
+        "countryCode": "ME",
+        "currencyCode": "EUR",
+        "currencyName": "European Euro",
+        "currencySign": "€",
+        "region": "Europe",
+        "postalCodeRegex": "8\\d{4}"
+    },
+    {
+        "countryName": "Madagascar",
+        "countryNameLocalized": "Madagascar",
+        "countryCode": "MG",
+        "currencyCode": "MGA",
+        "currencyName": "Malagasy Ariary",
+        "currencySign": "MGA",
+        "region": "Africa",
+        "postalCodeRegex": "\\d{3}"
+    },
+    {
+        "countryName": "Marshall Islands",
+        "countryNameLocalized": "Marshall Islands",
+        "countryCode": "MH",
+        "currencyCode": "USD",
+        "currencyName": "United States Dollar",
+        "currencySign": "US$",
+        "region": "Oceania",
+        "postalCodeRegex": "969[67]\\d([ \\-]\\d{4})?"
+    },
+    {
+        "countryName": "Northern Mariana Islands",
+        "countryNameLocalized": "Northern Mariana Islands",
+        "countryCode": "MP",
+        "currencyCode": "USD",
+        "currencyName": "United States Dollar",
+        "currencySign": "US$",
+        "region": "Oceania",
+        "postalCodeRegex": "9695[012]([ \\-]\\d{4})?"
+    },
+    {
+        "countryName": "Malta",
+        "countryNameLocalized": "Malta",
+        "countryCode": "MT",
+        "currencyCode": "EUR",
+        "currencyName": "European Euro",
+        "currencySign": "€",
+        "region": "Europe",
+        "postalCodeRegex": "[A-Z]{3}[ ]?\\d{2,4}"
+    },
+    {
+        "countryName": "Mauritius",
+        "countryNameLocalized": "Mauritius",
+        "countryCode": "MU",
+        "currencyCode": "MUR",
+        "currencyName": "Mauritian Rupee",
+        "currencySign": "MU₨",
+        "region": "Africa",
+        "postalCodeRegex": "(\\d{3}[A-Z]{2}\\d{3})?"
+    },
+    {
+        "countryName": "Maldives",
+        "countryNameLocalized": "Maldives",
+        "countryCode": "MV",
+        "currencyCode": "MVR",
+        "currencyName": "Maldives Rufiyaa",
+        "currencySign": "MRf",
+        "region": "Asia",
+        "postalCodeRegex": "\\d{5}"
+    },
+    {
+        "countryName": "Malawi",
+        "countryNameLocalized": "Malawi",
+        "countryCode": "MW",
+        "currencyCode": "MWK",
+        "currencyName": "Malawian Kwacha",
+        "currencySign": "MK",
+        "region": "Africa",
+        "postalCodeRegex": null
+    },
+    {
+        "countryName": "Mexico",
+        "countryNameLocalized": "Mexico",
+        "countryCode": "MX",
+        "currencyCode": "MXN",
+        "currencyName": "Mexican Peso",
+        "currencySign": "Mex$",
+        "region": "Americas",
+        "postalCodeRegex": "\\d{5}"
+    },
+    {
+        "countryName": "Malaysia",
+        "countryNameLocalized": "Malaysia",
+        "countryCode": "MY",
+        "currencyCode": "MYR",
+        "currencyName": "Malaysian Ringgit",
+        "currencySign": "RM",
+        "region": "Asia",
+        "postalCodeRegex": "\\d{5}"
+    },
+    {
+        "countryName": "Mozambique",
+        "countryNameLocalized": "Mozambique",
+        "countryCode": "MZ",
+        "currencyCode": "MZN",
+        "currencyName": "Mozambican Metical",
+        "currencySign": "MTn",
+        "region": "Africa",
+        "postalCodeRegex": null
+    },
+    {
+        "countryName": "Namibia",
+        "countryNameLocalized": "Namibia",
+        "countryCode": "NA",
+        "currencyCode": "NAD",
+        "currencyName": "Namibian Dollar",
+        "currencySign": "N$",
+        "region": "Africa",
+        "postalCodeRegex": null
+    },
+    {
+        "countryName": "Norfolk Island",
+        "countryNameLocalized": "Norfolk Island",
+        "countryCode": "NF",
+        "currencyCode": "AUD",
+        "currencyName": "Australian Dollar",
+        "currencySign": "AU$",
+        "region": "Oceania",
+        "postalCodeRegex": "2899"
+    },
+    {
+        "countryName": "Nigeria",
+        "countryNameLocalized": "Nigeria",
+        "countryCode": "NG",
+        "currencyCode": "NGN",
+        "currencyName": "Nigerian Naira",
+        "currencySign": "₦",
+        "region": "Africa",
+        "postalCodeRegex": "(\\d{6})?"
+    },
+    {
+        "countryName": "Netherlands",
+        "countryNameLocalized": "Netherlands",
+        "countryCode": "NL",
+        "currencyCode": "EUR",
+        "currencyName": "European Euro",
+        "currencySign": "€",
+        "region": "Europe",
+        "postalCodeRegex": "\\d{4}[ ]?[A-Z]{2}"
+    },
+    {
+        "countryName": "Norway",
+        "countryNameLocalized": "Norway",
+        "countryCode": "NO",
+        "currencyCode": "NOK",
+        "currencyName": "Norwegian Krone",
+        "currencySign": "øre",
+        "region": "Europe",
+        "postalCodeRegex": "\\d{4}"
+    },
+    {
+        "countryName": "New Zealand",
+        "countryNameLocalized": "New Zealand",
+        "countryCode": "NZ",
+        "currencyCode": "NZD",
+        "currencyName": "New Zealand Dollar",
+        "currencySign": "NZ$",
+        "region": "Oceania",
+        "postalCodeRegex": "\\d{4}"
+    },
+    {
+        "countryName": "Oman",
+        "countryNameLocalized": "Oman",
+        "countryCode": "OM",
+        "currencyCode": "OMR",
+        "currencyName": "Omani Rial",
+        "currencySign": "ر.ع",
+        "region": "Asia",
+        "postalCodeRegex": "(PC )?\\d{3}"
+    },
+    {
+        "countryName": "Philippines",
+        "countryNameLocalized": "Philippines",
+        "countryCode": "PH",
+        "currencyCode": "PHP",
+        "currencyName": "Philippine Peso",
+        "currencySign": "₱",
+        "region": "Asia",
+        "postalCodeRegex": "\\d{4}"
+    },
+    {
+        "countryName": "Poland",
+        "countryNameLocalized": "Poland",
+        "countryCode": "PL",
+        "currencyCode": "PLN",
+        "currencyName": "Polish Zloty",
+        "currencySign": "zł",
+        "region": "Europe",
+        "postalCodeRegex": "\\d{2}-\\d{3}"
+    },
+    {
+        "countryName": "Pitcairn Islands",
+        "countryNameLocalized": "Pitcairn Islands",
+        "countryCode": "PN",
+        "currencyCode": "NZD",
+        "currencyName": "New Zealand Dollar",
+        "currencySign": "NZ$",
+        "region": "Oceania",
+        "postalCodeRegex": "PCRN 1ZZ"
+    },
+    {
+        "countryName": "Puerto Rico",
+        "countryNameLocalized": "Puerto Rico",
+        "countryCode": "PR",
+        "currencyCode": "USD",
+        "currencyName": "United States Dollar",
+        "currencySign": "US$",
+        "region": "Americas",
+        "postalCodeRegex": "00[679]\\d{2}([ \\-]\\d{4})?"
+    },
+    {
+        "countryName": "Portugal",
+        "countryNameLocalized": "Portugal",
+        "countryCode": "PT",
+        "currencyCode": "EUR",
+        "currencyName": "European Euro",
+        "currencySign": "€",
+        "region": "Europe",
+        "postalCodeRegex": "\\d{4}([\\-]\\d{3})?"
+    },
+    {
+        "countryName": "Palau",
+        "countryNameLocalized": "Palau",
+        "countryCode": "PW",
+        "currencyCode": "USD",
+        "currencyName": "United States Dollar",
+        "currencySign": "US$",
+        "region": "Oceania",
+        "postalCodeRegex": "96940"
+    },
+    {
+        "countryName": "Paraguay",
+        "countryNameLocalized": "Paraguay",
+        "countryCode": "PY",
+        "currencyCode": "PYG",
+        "currencyName": "Paraguay Guarani",
+        "currencySign": "₲",
+        "region": "Americas",
+        "postalCodeRegex": "\\d{4}"
+    },
+    {
+        "countryName": "Qatar",
+        "countryNameLocalized": "Qatar",
+        "countryCode": "QA",
+        "currencyCode": "QAR",
+        "currencyName": "Qatari Riyal",
+        "currencySign": "ر.ق",
+        "region": "Asia",
+        "postalCodeRegex": null
+    },
+    {
+        "countryName": "Romania",
+        "countryNameLocalized": "Romania",
+        "countryCode": "RO",
+        "currencyCode": "RON",
+        "currencyName": "Romanian Leu",
+        "currencySign": "ROL",
+        "region": "Europe",
+        "postalCodeRegex": "\\d{6}"
+    },
+    {
+        "countryName": "Serbia",
+        "countryNameLocalized": "Serbia",
+        "countryCode": "RS",
+        "currencyCode": "RSD",
+        "currencyName": "Serbian Dinar",
+        "currencySign": "дин",
+        "region": "Europe",
+        "postalCodeRegex": "\\d{6}"
+    },
+    {
+        "countryName": "Rwanda",
+        "countryNameLocalized": "Rwanda",
+        "countryCode": "RW",
+        "currencyCode": "RWF",
+        "currencyName": "Rwandan Franc",
+        "currencySign": "RF",
+        "region": "Africa",
+        "postalCodeRegex": null
+    },
+    {
+        "countryName": "Saudi Arabia",
+        "countryNameLocalized": "Saudi Arabia",
+        "countryCode": "SA",
+        "currencyCode": "SAR",
+        "currencyName": "Saudi Arabian Riyal",
+        "currencySign": "ر.س",
+        "region": "Asia",
+        "postalCodeRegex": "\\d{5}"
+    },
+    {
+        "countryName": "Solomon Islands",
+        "countryNameLocalized": "Solomon Islands",
+        "countryCode": "SB",
+        "currencyCode": "SBD",
+        "currencyName": "Solomon Islands dollar",
+        "currencySign": "SI$",
+        "region": "Oceania",
+        "postalCodeRegex": "\\d{5}"
+    },
+    {
+        "countryName": "Sweden",
+        "countryNameLocalized": "Sweden",
+        "countryCode": "SE",
+        "currencyCode": "SEK",
+        "currencyName": "Swedish Krona",
+        "currencySign": "kr",
+        "region": "Europe",
+        "postalCodeRegex": "\\d{3}[ ]?\\d{2}"
+    },
+    {
+        "countryName": "Singapore",
+        "countryNameLocalized": "Singapore",
+        "countryCode": "SG",
+        "currencyCode": "SGD",
+        "currencyName": "Singapore Dollar",
+        "currencySign": "S$",
+        "region": "Asia",
+        "postalCodeRegex": "\\d{6}"
+    },
+    {
+        "countryName": "Saint Helena",
+        "countryNameLocalized": "Saint Helena",
+        "countryCode": "SH",
+        "currencyCode": "SHP",
+        "currencyName": "St Helena Pound",
+        "currencySign": "SH£",
+        "region": "Africa",
+        "postalCodeRegex": "(ASCN|STHL) 1ZZ"
+    },
+    {
+        "countryName": "Slovenia",
+        "countryNameLocalized": "Slovenia",
+        "countryCode": "SI",
+        "currencyCode": "EUR",
+        "currencyName": "European Euro",
+        "currencySign": "€",
+        "region": "Europe",
+        "postalCodeRegex": "\\d{4}"
+    },
+    {
+        "countryName": "Slovakia",
+        "countryNameLocalized": "Slovakia",
+        "countryCode": "SK",
+        "currencyCode": "EUR",
+        "currencyName": "European Euro",
+        "currencySign": "€",
+        "region": "Europe",
+        "postalCodeRegex": "\\d{3}[ ]?\\d{2}"
+    },
+    {
+        "countryName": "Turks and Caicos Islands",
+        "countryNameLocalized": "Turks and Caicos Islands",
+        "countryCode": "TC",
+        "currencyCode": "USD",
+        "currencyName": "United States Dollar",
+        "currencySign": "US$",
+        "region": "Americas",
+        "postalCodeRegex": "TKCA 1ZZ"
+    },
+    {
+        "countryName": "Togo",
+        "countryNameLocalized": "Togo",
+        "countryCode": "TG",
+        "currencyCode": "XOF",
+        "currencyName": "CFA Franc",
+        "currencySign": null,
+        "region": "Africa",
+        "postalCodeRegex": null
+    },
+    {
+        "countryName": "Thailand",
+        "countryNameLocalized": "Thailand",
+        "countryCode": "TH",
+        "currencyCode": "THB",
+        "currencyName": "Thai Baht",
+        "currencySign": "฿",
+        "region": "Asia",
+        "postalCodeRegex": "\\d{5}"
+    },
+    {
+        "countryName": "Tajikistan",
+        "countryNameLocalized": "Tajikistan",
+        "countryCode": "TJ",
+        "currencyCode": "TJS",
+        "currencyName": "Tajikistan Somoni",
+        "currencySign": "TJS",
+        "region": "Asia",
+        "postalCodeRegex": "\\d{6}"
+    },
+    {
+        "countryName": "East Timor",
+        "countryNameLocalized": "East Timor",
+        "countryCode": "TL",
+        "currencyCode": "USD",
+        "currencyName": "United States Dollar",
+        "currencySign": "US$",
+        "region": "Asia",
+        "postalCodeRegex": null
+    },
+    {
+        "countryName": "Turkey",
+        "countryNameLocalized": "Turkey",
+        "countryCode": "TR",
+        "currencyCode": "TRY",
+        "currencyName": "Turkish New Lira",
+        "currencySign": "YTL",
+        "region": "Asia",
+        "postalCodeRegex": "\\d{5}"
+    },
+    {
+        "countryName": "Tanzania",
+        "countryNameLocalized": "Tanzania",
+        "countryCode": "TZ",
+        "currencyCode": "TZS",
+        "currencyName": "Tanzanian Shilling",
+        "currencySign": "TSh",
+        "region": "Africa",
+        "postalCodeRegex": null
+    },
+    {
+        "countryName": "Ukraine",
+        "countryNameLocalized": "Ukraine",
+        "countryCode": "UA",
+        "currencyCode": "UAH",
+        "currencyName": "Ukrainian Hryvnia",
+        "currencySign": "₴",
+        "region": "Europe",
+        "postalCodeRegex": "\\d{5}"
+    },
+    {
+        "countryName": "Uganda",
+        "countryNameLocalized": "Uganda",
+        "countryCode": "UG",
+        "currencyCode": "UGX",
+        "currencyName": "Ugandan Shilling",
+        "currencySign": "USh",
+        "region": "Africa",
+        "postalCodeRegex": null
+    },
+    {
+        "countryName": "United States Minor Outlying Islands",
+        "countryNameLocalized": "United States Minor Outlying Islands",
+        "countryCode": "UM",
+        "currencyCode": "USD",
+        "currencyName": "United States Dollar",
+        "currencySign": "US$",
+        "region": "Americas",
+        "postalCodeRegex": null
+    },
+    {
+        "countryName": "United States",
+        "countryNameLocalized": "United States",
+        "countryCode": "US",
+        "currencyCode": "USD",
+        "currencyName": "United States Dollar",
+        "currencySign": "US$",
+        "region": "Americas",
+        "postalCodeRegex": "\\d{5}([ \\-]\\d{4})?"
+    },
+    {
+        "countryName": "Uruguay",
+        "countryNameLocalized": "Uruguay",
+        "countryCode": "UY",
+        "currencyCode": "UYU",
+        "currencyName": "Uruguayan peso",
+        "currencySign": "UR$",
+        "region": "Americas",
+        "postalCodeRegex": "\\d{5}"
+    },
+    {
+        "countryName": "Holy See",
+        "countryNameLocalized": "Holy See",
+        "countryCode": "VA",
+        "currencyCode": "EUR",
+        "currencyName": "European Euro",
+        "currencySign": "€",
+        "region": "Europe",
+        "postalCodeRegex": "\\d{5}"
+    },
+    {
+        "countryName": "British Virgin Islands",
+        "countryNameLocalized": "British Virgin Islands",
+        "countryCode": "VG",
+        "currencyCode": "USD",
+        "currencyName": "United States Dollar",
+        "currencySign": "US$",
+        "region": "Americas",
+        "postalCodeRegex": null
+    },
+    {
+        "countryName": "U.S. Virgin Islands",
+        "countryNameLocalized": "U.S. Virgin Islands",
+        "countryCode": "VI",
+        "currencyCode": "USD",
+        "currencyName": "United States Dollar",
+        "currencySign": "US$",
+        "region": "Americas",
+        "postalCodeRegex": null
+    },
+    {
+        "countryName": "Vietnam",
+        "countryNameLocalized": "Vietnam",
+        "countryCode": "VN",
+        "currencyCode": "VND",
+        "currencyName": "Viet Nam Dong",
+        "currencySign": "₫",
+        "region": "Asia",
+        "postalCodeRegex": null
+    },
+    {
+        "countryName": "Wallis and Futuna",
+        "countryNameLocalized": "Wallis and Futuna",
+        "countryCode": "WF",
+        "currencyCode": "XPF",
+        "currencyName": "French Pacific Franc",
+        "currencySign": "CFP",
+        "region": "Oceania",
+        "postalCodeRegex": "986\\d{2}"
+    },
+    {
+        "countryName": "South Africa",
+        "countryNameLocalized": "South Africa",
+        "countryCode": "ZA",
+        "currencyCode": "ZAR",
+        "currencyName": "South African Rand",
+        "currencySign": "SAR",
+        "region": "Africa",
+        "postalCodeRegex": "\\d{4}"
+    }
 ]
