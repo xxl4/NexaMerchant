@@ -644,7 +644,7 @@ return [
                 'info'          => 'admin::app.configuration.index.email.email-settings.admin-name-tip',
                 'validation'    => 'required|max:50',
                 'channel_based' => true,
-                'default_value' => config('mail.admin.name'),
+                'default_value' => config('mail.manage.name'),
             ], [
                 'name'          => 'admin_email',
                 'title'         => 'admin::app.configuration.index.email.email-settings.admin-email',
@@ -652,7 +652,7 @@ return [
                 'info'          => 'admin::app.configuration.index.email.email-settings.admin-email-tip',
                 'validation'    => 'required|email',
                 'channel_based' => true,
-                'default_value' => config('mail.admin.address'),
+                'default_value' => config('mail.manage.address'),
             ],
         ],
     ], [

@@ -73,9 +73,9 @@ class ManageServiceProvider extends ServiceProvider
     protected function composeView()
     {
         view()->composer([
-            'admin::components.layouts.header.index',
-            'admin::components.layouts.sidebar.index',
-            'admin::components.layouts.tabs',
+            'manage::components.layouts.header.index',
+            'manage::components.layouts.sidebar.index',
+            'manage::components.layouts.tabs',
         ], function ($view) {
             $tree = Tree::create();
 
@@ -123,8 +123,8 @@ class ManageServiceProvider extends ServiceProvider
         });
 
         view()->composer([
-            'admin::settings.roles.create',
-            'admin::settings.roles.edit'
+            'manage::settings.roles.create',
+            'manage::settings.roles.edit'
         ], function ($view) {
             $view->with('acl', $this->createACL());
         });

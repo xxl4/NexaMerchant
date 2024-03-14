@@ -12,7 +12,7 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        'admin.password.update.after' => [
+        'manage.password.update.after' => [
             'Nicelizhi\Admin\Listeners\Admin@afterPasswordUpdated',
         ],
 

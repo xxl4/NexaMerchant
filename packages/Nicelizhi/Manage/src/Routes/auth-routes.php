@@ -1,10 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Webkul\Admin\Http\Controllers\Controller;
-use Webkul\Admin\Http\Controllers\User\SessionController;
-use Webkul\Admin\Http\Controllers\User\ForgetPasswordController;
-use Webkul\Admin\Http\Controllers\User\ResetPasswordController;
+use Nicelizhi\Manage\Http\Controllers\Controller;
+use Nicelizhi\Manage\Http\Controllers\User\SessionController;
+use Nicelizhi\Manage\Http\Controllers\User\ForgetPasswordController;
+use Nicelizhi\Manage\Http\Controllers\User\ResetPasswordController;
 
 /**
  * Auth routes.
