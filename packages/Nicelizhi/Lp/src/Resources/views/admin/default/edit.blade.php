@@ -1,9 +1,3 @@
-@php
-    $currentLocale = core()->getRequestedLocale();
-
-    $selectedOptionIds = old('inventory_sources') ?? $page->channels->pluck('id')->toArray();
-@endphp
-
 <x-admin::layouts>
     <x-slot:title>
         @lang('lp::app.admin.edit.title')
@@ -31,17 +25,6 @@
                     @lang('lp::app.admin.edit.back-btn')
                 </a>
 
-                {{-- Preview Button --}}
-                @if ($page->translate($currentLocale->code))
-                    <a
-                        href="{{ route('shop.cms.page', $page->translate($currentLocale->code)['url_key']) }}"
-                        class="secondary-button"
-                        target="_blank"
-                    >
-                        @lang('lp::app.admin.edit.preview-btn')
-                    </a>
-                @endif
-
                 {{--Save Button --}}
                 <button
                     type="submit"
@@ -52,40 +35,7 @@
             </div>
         </div>
 
-        <div class="flex  gap-[16px] justify-between items-center mt-[28px] max-md:flex-wrap">
-            <div class="flex gap-x-[4px] items-center">
-                {{-- Locale Switcher --}}
-                <x-admin::dropdown>
-                    {{-- Dropdown Toggler --}}
-                    <x-slot:toggle>
-                        <button
-                            type="button"
-                            class="transparent-button px-[4px] py-[6px] hover:bg-gray-200 dark:hover:bg-gray-800 focus:bg-gray-200 dark:focus:bg-gray-800 dark:text-white"
-                        >
-                            <span class="icon-language text-[24px] "></span>
-
-                            {{ $currentLocale->name }}
-                            
-                            <input type="hidden" name="locale" value="{{ $currentLocale->code }}"/>
-
-                            <span class="icon-sort-down text-[24px]"></span>
-                        </button>
-                    </x-slot:toggle>
-
-                    {{-- Dropdown Content --}}
-                    <x-slot:content class="!p-[0px]">
-                        @foreach (core()->getAllLocales() as $locale)
-                            <a
-                                href="?{{ Arr::query(['locale' => $locale->code]) }}"
-                                class="flex gap-[10px] px-5 py-2 text-[16px] cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-950 dark:text-white {{ $locale->code == $currentLocale->code ? 'bg-gray-100 dark:bg-gray-950' : ''}}"
-                            >
-                                {{ $locale->name }}
-                            </a>
-                        @endforeach
-                    </x-slot:content>
-                </x-admin::dropdown>
-            </div>
-        </div>
+        
 
           {{-- body content --}}
           <div class="flex gap-[10px] mt-[14px] max-xl:flex-wrap">
@@ -275,33 +225,7 @@
                                 @lang('lp::app.admin.create.channels')
                             </p>
 
-                            @foreach(core()->getAllChannels() as $channel)
-                                <x-admin::form.control-group class="flex gap-[10px] !mb-0 p-[6px]">
-                                    <x-admin::form.control-group.control
-                                        type="checkbox"
-                                        name="channels[]"
-                                        :value="$channel->id"
-                                        :id="'channels_' . $channel->id"
-                                        :for="'channels_' . $channel->id"
-                                        rules="required"
-                                        :label="trans('lp::app.admin.create.channels')"
-                                        :checked="in_array($channel->id, $selectedOptionIds)"
-                                    >
-                                    </x-admin::form.control-group.control>
-
-                                    <x-admin::form.control-group.label
-                                        :for="'channels_' . $channel->id"
-                                        class="!text-[14px] !text-gray-600 dark:!text-gray-300 font-semibold cursor-pointer"
-                                    >
-                                        {{ core()->getChannelName($channel) }}
-                                    </x-admin::form.control-group.label>
-                                </x-admin::form.control-group>
-                            @endforeach
                             
-                            <x-admin::form.control-group.error
-                                control-name="channels[]"
-                            >
-                            </x-admin::form.control-group.error>
                         </div>
                     </x-slot:content>
                 </x-admin::accordion>

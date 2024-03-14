@@ -15,7 +15,8 @@ return [
             'seo'   => 'Url',
             'slug' => 'Url Slug',
             'general' => 'General',
-            'page-title' => 'Title'
+            'page-title' => 'Title',
+            'save-btn' => 'Save',
         ]
     ]
 ];
