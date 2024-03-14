@@ -36,12 +36,12 @@
             </x-admin::dropdown>
 
             <!-- Export Modal -->
-            <x-admin::datagrid.export src="{{ route('admin.cms.index') }}"></x-admin::datagrid.export>
+            <x-admin::datagrid.export src="{{ route('admin.lp.index') }}"></x-admin::datagrid.export>
 
             {{-- Create New Pages Button --}}
-            @if (bouncer()->hasPermission('cms.create'))
+            @if (bouncer()->hasPermission('lp.create'))
                 <a
-                    href="{{ route('admin.cms.create') }}"
+                    href="{{ route('admin.lp.create') }}"
                     class="primary-button"
                 >
                     @lang('lp::app.admin.index.create-btn')
@@ -50,10 +50,10 @@
         </div>
     </div>
 
-    {!! view_render_event('bagisto.admin.cms.pages.list.before') !!}
+    {!! view_render_event('bagisto.admin.lp.pages.list.before') !!}
 
     <x-admin::datagrid src="{{ route('admin.lp.index') }}"></x-admin::datagrid>
     
-    {!! view_render_event('bagisto.admin.cms.pages.list.after') !!}
+    {!! view_render_event('bagisto.admin.lp.pages.list.after') !!}
 
 </x-admin::layouts>
