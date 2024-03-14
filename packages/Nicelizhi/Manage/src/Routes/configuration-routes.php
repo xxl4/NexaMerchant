@@ -8,12 +8,12 @@ use Webkul\Admin\Http\Controllers\ConfigurationController;
  */
 Route::group(['middleware' => ['admin'], 'prefix' => config('app.manage_url')], function () {
     Route::controller(ConfigurationController::class)->prefix('configuration/{slug?}/{slug2?}')->group(function () {
-        Route::get('', 'index')->name('admin.configuration.index');
+        Route::get('', 'index')->name('manage.configuration.index');
 
-        Route::post('', 'store')->name('admin.configuration.store');
+        Route::post('', 'store')->name('manage.configuration.store');
 
         Route::get('{path}', 'download')->defaults('_config', [
-            'redirect' => 'admin.configuration.index',
-        ])->name('admin.configuration.download');
+            'redirect' => 'manage.configuration.index',
+        ])->name('manage.configuration.download');
     });
 });

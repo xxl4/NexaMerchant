@@ -14,26 +14,26 @@ Route::group(['middleware' => ['admin'], 'prefix' => config('app.manage_url')], 
     /**
      * Dashboard routes.
      */
-    Route::get('dashboard', [DashboardController::class, 'index'])->name('admin.dashboard.index');
+    Route::get('dashboard', [DashboardController::class, 'index'])->name('manage.dashboard.index');
 
     /**
      * Datagrid routes.
      */
-    Route::get('datagrid/look-up', [DataGridController::class, 'lookUp'])->name('admin.datagrid.look_up');
+    Route::get('datagrid/look-up', [DataGridController::class, 'lookUp'])->name('manage.datagrid.look_up');
 
     /**
      * Tinymce file upload handler.
      */
-    Route::post('tinymce/upload', [TinyMCEController::class, 'upload'])->name('admin.tinymce.upload');
+    Route::post('tinymce/upload', [TinyMCEController::class, 'upload'])->name('manage.tinymce.upload');
 
     /**
      * Admin profile routes.
      */
     Route::controller(AccountController::class)->prefix('account')->group(function () {
-        Route::get('', 'edit')->name('admin.account.edit');
+        Route::get('', 'edit')->name('manage.account.edit');
 
-        Route::put('', 'update')->name('admin.account.update');
+        Route::put('', 'update')->name('manage.account.update');
     });
 
-    Route::delete('logout', [SessionController::class, 'destroy'])->name('admin.session.destroy');
+    Route::delete('logout', [SessionController::class, 'destroy'])->name('manage.session.destroy');
 });

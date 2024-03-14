@@ -9,12 +9,12 @@ use Webkul\Admin\Http\Controllers\NotificationController;
 Route::group(['middleware' => ['admin'], 'prefix' => config('app.manage_url')], function () {
 
     Route::controller(NotificationController::class)->group(function () {
-        Route::get('notifications', 'index')->name('admin.notification.index');
+        Route::get('notifications', 'index')->name('manage.notification.index');
 
-        Route::get('get-notifications', 'getNotifications')->name('admin.notification.get_notification');
+        Route::get('get-notifications', 'getNotifications')->name('manage.notification.get_notification');
 
-        Route::get('viewed-notifications/{orderId}', 'viewedNotifications')->name('admin.notification.viewed_notification');
+        Route::get('viewed-notifications/{orderId}', 'viewedNotifications')->name('manage.notification.viewed_notification');
 
-        Route::post('read-all-notifications', 'readAllNotifications')->name('admin.notification.read_all');
+        Route::post('read-all-notifications', 'readAllNotifications')->name('manage.notification.read_all');
     });
 });

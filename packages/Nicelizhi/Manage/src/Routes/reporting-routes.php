@@ -14,45 +14,45 @@ Route::group(['middleware' => ['admin'], 'prefix' => config('app.manage_url')], 
          * CUstomer routes.
          */
         Route::controller(CustomerController::class)->prefix('customers')->group(function () {
-            Route::get('', 'index')->name('admin.reporting.customers.index');
+            Route::get('', 'index')->name('manage.reporting.customers.index');
 
-            Route::get('stats', 'stats')->name('admin.reporting.customers.stats');
+            Route::get('stats', 'stats')->name('manage.reporting.customers.stats');
             
-            Route::get('export', 'export')->name('admin.reporting.customers.export');
+            Route::get('export', 'export')->name('manage.reporting.customers.export');
 
-            Route::get('view', 'view')->name('admin.reporting.customers.view');
+            Route::get('view', 'view')->name('manage.reporting.customers.view');
 
-            Route::get('view/stats', 'viewStats')->name('admin.reporting.customers.view.stats');
+            Route::get('view/stats', 'viewStats')->name('manage.reporting.customers.view.stats');
         });
 
         /**
          * Product routes.
          */
         Route::controller(ProductController::class)->prefix('products')->group(function () {
-            Route::get('', 'index')->name('admin.reporting.products.index');
+            Route::get('', 'index')->name('manage.reporting.products.index');
 
-            Route::get('stats', 'stats')->name('admin.reporting.products.stats');
+            Route::get('stats', 'stats')->name('manage.reporting.products.stats');
             
-            Route::get('export', 'export')->name('admin.reporting.products.export');
+            Route::get('export', 'export')->name('manage.reporting.products.export');
 
-            Route::get('view', 'view')->name('admin.reporting.products.view');
+            Route::get('view', 'view')->name('manage.reporting.products.view');
 
-            Route::get('view/stats', 'viewStats')->name('admin.reporting.products.view.stats');
+            Route::get('view/stats', 'viewStats')->name('manage.reporting.products.view.stats');
         });
 
         /**
          * Sale routes.
          */
         Route::controller(SaleController::class)->prefix('sales')->group(function () {
-            Route::get('', 'index')->name('admin.reporting.sales.index');
+            Route::get('', 'index')->name('manage.reporting.sales.index');
 
-            Route::get('stats', 'stats')->name('admin.reporting.sales.stats');
+            Route::get('stats', 'stats')->name('manage.reporting.sales.stats');
             
-            Route::get('export', 'export')->name('admin.reporting.sales.export');
+            Route::get('export', 'export')->name('manage.reporting.sales.export');
 
-            Route::get('view', 'view')->name('admin.reporting.sales.view');
+            Route::get('view', 'view')->name('manage.reporting.sales.view');
 
-            Route::get('view/stats', 'viewStats')->name('admin.reporting.sales.view.stats');
+            Route::get('view/stats', 'viewStats')->name('manage.reporting.sales.view.stats');
         });
     });
 });
