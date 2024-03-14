@@ -1,11 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Webkul\Admin\Http\Controllers\Sales\InvoiceController;
-use Webkul\Admin\Http\Controllers\Sales\OrderController;
-use Webkul\Admin\Http\Controllers\Sales\RefundController;
-use Webkul\Admin\Http\Controllers\Sales\ShipmentController;
-use Webkul\Admin\Http\Controllers\Sales\TransactionController;
+use Nicelizhi\Manage\Http\Controllers\Sales\InvoiceController;
+use Nicelizhi\Manage\Http\Controllers\Sales\OrderController;
+use Nicelizhi\Manage\Http\Controllers\Sales\RefundController;
+use Nicelizhi\Manage\Http\Controllers\Sales\ShipmentController;
+use Nicelizhi\Manage\Http\Controllers\Sales\TransactionController;
 
 /**
  * Sales routes.

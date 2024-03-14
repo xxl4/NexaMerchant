@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Webkul\Admin\Http\Controllers\ConfigurationController;
+use Nicelizhi\Manage\Http\Controllers\ConfigurationController;
 
 /**
  * Configuration routes.

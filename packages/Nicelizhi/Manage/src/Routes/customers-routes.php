@@ -1,10 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Webkul\Admin\Http\Controllers\Customers\AddressController;
-use Webkul\Admin\Http\Controllers\Customers\CustomerController;
-use Webkul\Admin\Http\Controllers\Customers\CustomerGroupController;
-use Webkul\Admin\Http\Controllers\Customers\ReviewController;
+use Nicelizhi\Manage\Http\Controllers\Customers\AddressController;
+use Nicelizhi\Manage\Http\Controllers\Customers\CustomerController;
+use Nicelizhi\Manage\Http\Controllers\Customers\CustomerGroupController;
+use Nicelizhi\Manage\Http\Controllers\Customers\ReviewController;
 
 /**
  * Customers routes.

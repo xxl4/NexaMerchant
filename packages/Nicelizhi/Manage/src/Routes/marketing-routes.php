@@ -1,14 +1,14 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Webkul\Admin\Http\Controllers\Marketing\Promotions\CartRuleController;
-use Webkul\Admin\Http\Controllers\Marketing\Promotions\CartRuleCouponController;
-use Webkul\Admin\Http\Controllers\Marketing\Promotions\CatalogRuleController;
-use Webkul\Admin\Http\Controllers\Marketing\Communications\CampaignController;
-use Webkul\Admin\Http\Controllers\Marketing\Communications\EventController;
-use Webkul\Admin\Http\Controllers\Marketing\Communications\SubscriptionController;
-use Webkul\Admin\Http\Controllers\Marketing\Communications\TemplateController;
-use Webkul\Admin\Http\Controllers\Marketing\SitemapController;
+use Nicelizhi\Manage\Http\Controllers\Marketing\Promotions\CartRuleController;
+use Nicelizhi\Manage\Http\Controllers\Marketing\Promotions\CartRuleCouponController;
+use Nicelizhi\Manage\Http\Controllers\Marketing\Promotions\CatalogRuleController;
+use Nicelizhi\Manage\Http\Controllers\Marketing\Communications\CampaignController;
+use Nicelizhi\Manage\Http\Controllers\Marketing\Communications\EventController;
+use Nicelizhi\Manage\Http\Controllers\Marketing\Communications\SubscriptionController;
+use Nicelizhi\Manage\Http\Controllers\Marketing\Communications\TemplateController;
+use Nicelizhi\Manage\Http\Controllers\Marketing\SitemapController;
 
 /**
  * Marketing routes.

@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Webkul\Admin\Http\Controllers\CMS\PageController;
+use Nicelizhi\Manage\Http\Controllers\CMS\PageController;
 
 /**
  * CMS routes.

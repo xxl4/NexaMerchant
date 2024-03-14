@@ -1,16 +1,16 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Webkul\Admin\Http\Controllers\Settings\ChannelController;
-use Webkul\Admin\Http\Controllers\Settings\CurrencyController;
-use Webkul\Admin\Http\Controllers\Settings\ExchangeRateController;
-use Webkul\Admin\Http\Controllers\Settings\LocaleController;
-use Webkul\Admin\Http\Controllers\Settings\InventorySourceController;
-use Webkul\Admin\Http\Controllers\Settings\Tax\TaxCategoryController;
-use Webkul\Admin\Http\Controllers\Settings\Tax\TaxRateController;
-use Webkul\Admin\Http\Controllers\Settings\ThemeController;
-use Webkul\Admin\Http\Controllers\Settings\RoleController;
-use Webkul\Admin\Http\Controllers\Settings\UserController;
+use Nicelizhi\Manage\Http\Controllers\Settings\ChannelController;
+use Nicelizhi\Manage\Http\Controllers\Settings\CurrencyController;
+use Nicelizhi\Manage\Http\Controllers\Settings\ExchangeRateController;
+use Nicelizhi\Manage\Http\Controllers\Settings\LocaleController;
+use Nicelizhi\Manage\Http\Controllers\Settings\InventorySourceController;
+use Nicelizhi\Manage\Http\Controllers\Settings\Tax\TaxCategoryController;
+use Nicelizhi\Manage\Http\Controllers\Settings\Tax\TaxRateController;
+use Nicelizhi\Manage\Http\Controllers\Settings\ThemeController;
+use Nicelizhi\Manage\Http\Controllers\Settings\RoleController;
+use Nicelizhi\Manage\Http\Controllers\Settings\UserController;
 
 /**
  * Settings routes.

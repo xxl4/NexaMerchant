@@ -1,9 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Webkul\Admin\Http\Controllers\DashboardController;
-use Webkul\Admin\Http\Controllers\DataGridController;
-use Webkul\Admin\Http\Controllers\TinyMCEController;
+use Nicelizhi\Manage\Http\Controllers\DashboardController;
+use Nicelizhi\Manage\Http\Controllers\DataGridController;
+use Nicelizhi\Manage\Http\Controllers\TinyMCEController;
 use Nicelizhi\Manage\Http\Controllers\User\AccountController;
 use Nicelizhi\Manage\Http\Controllers\User\SessionController;
 

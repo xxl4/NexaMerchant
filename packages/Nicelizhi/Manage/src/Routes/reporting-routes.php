@@ -1,9 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Webkul\Admin\Http\Controllers\Reporting\CustomerController;
-use Webkul\Admin\Http\Controllers\Reporting\ProductController;
-use Webkul\Admin\Http\Controllers\Reporting\SaleController;
+use Nicelizhi\Manage\Http\Controllers\Reporting\CustomerController;
+use Nicelizhi\Manage\Http\Controllers\Reporting\ProductController;
+use Nicelizhi\Manage\Http\Controllers\Reporting\SaleController;
 
 /**
  * Reporting routes.
