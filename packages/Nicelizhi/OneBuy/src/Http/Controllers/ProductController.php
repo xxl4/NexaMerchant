@@ -192,10 +192,13 @@ class ProductController extends Controller
 
             //获取到他底部的商品内容
         // $attributes = $this->productRepository->getSuperAttributes($product);
-            $product_attr_sort_cache_key = "product_attr_sort_23_".$product->id;
-            $product_attr_sort = $redis->hgetall($product_attr_sort_cache_key); // get sku sort
+            
 
             foreach($attributes['attributes'] as $key=>$attribute) {
+
+                $product_attr_sort_cache_key = "product_attr_sort_".$attribute['id']."_".$product->id;
+                $product_attr_sort = $redis->hgetall($product_attr_sort_cache_key); // get sku sort
+
                 //var_dump($attribute);
                 $attribute['name'] = $attribute['code'];
                 $options = [];
@@ -220,7 +223,7 @@ class ProductController extends Controller
                     $option['name'] = $option['label'];
                     unset($option['admin_name']);
 
-                    if($attribute['id']==23 && !empty($product_attr_sort)) {
+                    if(!empty($product_attr_sort)) {
                         $sort = isset($product_attr_sort[$option['id']]) ? intval($product_attr_sort[$option['id']]) : 4 ;
                         $option['sort'] = $sort;
                         $options[$sort] = $option;
@@ -1054,17 +1057,7 @@ class ProductController extends Controller
 
         $AddcartProduct['selected_configurable_option'] = $product_variant_id;
         $AddcartProduct['super_attribute'] = $super_attribute;
-        //var_dump($super_attribute);exit;
 
-        //var_dump($AddcartProduct);exit;
-        // $attr_ids = explode(',', $product['attr_id']);
-        // foreach($attr_ids as $key=>$attr_id) {
-        //     $attr = explode('_', $attr_id);
-        //     $super_attribute[$attr[0]] = $attr[1];
-        // }
-
-        //$AddcartProduct['super_attribute'] = $super_attribute;
-        //var_dump($AddcartProduct);exit;
         
         $cart = Cart::addProduct($product['product_id'], $AddcartProduct);
 
