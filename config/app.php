@@ -68,6 +68,16 @@ return [
 
     'admin_url' => env('APP_ADMIN_URL', 'admin'),
 
+    /**
+     * -----------------------------------------------------------------------
+     * Application Manage URL
+     * -----------------------------------------------------------------------
+     * This URL suffix is used to define the manage url for example
+     * manage/
+     * 
+     */
+    'manage_url'=> env('APP_MANAGE_URL', 'manage'),
+
     /*
     |--------------------------------------------------------------------------
     | Application Timezone
@@ -229,7 +239,7 @@ return [
         Nicelizhi\Shopify\Providers\ShopifyServiceProvider::class,
         Nicelizhi\ShopLine\Providers\ShopLineServiceProvider::class,
 
-        //Nicelizhi\Admin\Providers\AdminServiceProvider::class,
+        Nicelizhi\Manage\Providers\ManageServiceProvider::class,
         Nicelizhi\Checkout\Providers\CheckoutServiceProvider::class,
         Nicelizhi\Lp\Providers\LpServiceProvider::class,
 
