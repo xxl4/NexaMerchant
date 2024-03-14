@@ -1,0 +1,26 @@
+{
+    "name": "nicelizhi/NexaMerchant-manage",
+    "license": "MIT",
+    "description" : "Manage package",
+    "authors": [
+        {
+            "name": "nicelizhi",
+            "email": "nice.lizhi@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Nicelizhi\\Manage\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Nicelizhi\\Manage\\Providers\\AdminServiceProvider"
+            ],
+            "aliases": {}
+        }
+    },
+    "minimum-stability": "dev"
+}
