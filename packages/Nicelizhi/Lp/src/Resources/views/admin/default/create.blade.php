@@ -24,7 +24,7 @@
                     href="{{ route('admin.lp.index') }}"
                     class="transparent-button hover:bg-gray-200 dark:hover:bg-gray-800 dark:text-white "
                 >
-                    @lang('lp::app.account.edit.back-btn')
+                    @lang('admin::app.account.edit.back-btn')
                 </a>
 
                 {{--Save Button --}}
@@ -88,90 +88,30 @@
                     <x-admin::seo/>
 
                     <div class="mb-[30px]">
-                        <x-admin::form.control-group class="mb-[10px]">
-                            <x-admin::form.control-group.label>
-                                @lang('lp::app.admin.create.meta-title')
-                            </x-admin::form.control-group.label>
-
-                            <x-admin::form.control-group.control
-                                type="text"
-                                name="meta_title"
-                                :value="old('meta_title')"
-                                id="meta_title"
-                                :label="trans('lp::app.admin.create.meta-title')"
-                                :placeholder="trans('lp::app.admin.create.meta-title')"
-                            >
-                            </x-admin::form.control-group.control>
-
-                            <x-admin::form.control-group.error
-                                control-name="meta_title"
-                            >
-                            </x-admin::form.control-group.error>
-                        </x-admin::form.control-group>
+                        
 
                         <x-admin::form.control-group class="mb-[10px]">
                             <x-admin::form.control-group.label class="required">
-                                @lang('lp::app.admin.create.url-key')
+                                @lang('lp::app.admin.create.slug')
                             </x-admin::form.control-group.label>
 
                             <x-admin::form.control-group.control
                                 type="text"
-                                name="url_key"
-                                :value="old('url_key')"
-                                id="url_key"
+                                name="slug"
+                                :value="old('slug')"
+                                id="slug"
                                 rules="required"
-                                :label="trans('lp::app.admin.create.url-key')"
-                                :placeholder="trans('lp::app.admin.create.url-key')"
+                                :label="trans('lp::app.admin.create.slug')"
+                                :placeholder="trans('lp::app.admin.create.slug')"
                             >
                             </x-admin::form.control-group.control>
 
                             <x-admin::form.control-group.error
-                                control-name="url_key"
+                                control-name="slug"
                             >
                             </x-admin::form.control-group.error>
                         </x-admin::form.control-group>
 
-                        <x-admin::form.control-group class="mb-[10px]">
-                            <x-admin::form.control-group.label>
-                                @lang('lp::app.admin.create.meta-keywords')
-                            </x-admin::form.control-group.label>
-
-                            <x-admin::form.control-group.control
-                                type="textarea"
-                                name="meta_keywords"
-                                :value="old('meta_keywords')"
-                                id="meta_keywords"
-                                :label="trans('lp::app.admin.create.meta-keywords')"
-                                :placeholder="trans('lp::app.admin.create.meta-keywords')"
-                            >
-                            </x-admin::form.control-group.control>
-
-                            <x-admin::form.control-group.error
-                                control-name="meta_keywords"
-                            >
-                            </x-admin::form.control-group.error>
-                        </x-admin::form.control-group>
-
-                        <x-admin::form.control-group>
-                            <x-admin::form.control-group.label>
-                                @lang('lp::app.admin.create.meta-description')
-                            </x-admin::form.control-group.label>
-
-                            <x-admin::form.control-group.control
-                                type="textarea"
-                                name="meta_description"
-                                :value="old('meta_description')"
-                                id="meta_description"
-                                :label="trans('lp::app.admin.create.meta-description')"
-                                :placeholder="trans('lp::app.admin.create.meta-description')"
-                            >
-                            </x-admin::form.control-group.control>
-
-                            <x-admin::form.control-group.error
-                                control-name="meta_description"
-                            >
-                            </x-admin::form.control-group.error>
-                        </x-admin::form.control-group>
                     </div>
                 </div>
 
@@ -217,37 +157,7 @@
                                 </x-admin::form.control-group.error>
                             </x-admin::form.control-group>
 
-                            {{-- Select Channels --}}
-                            <p class="required block leading-[24px] text-gray-800 dark:text-white font-medium">
-                                @lang('lp::app.admin.create.channels')
-                            </p>
-
-                            @foreach(core()->getAllChannels() as $channel)
-                                <x-admin::form.control-group class="flex gap-[10px] !mb-0 p-[6px]">
-                                    <x-admin::form.control-group.control
-                                        type="checkbox"
-                                        name="channels[]"
-                                        :value="$channel->id"
-                                        :id="'channels_' . $channel->id"
-                                        :for="'channels_' . $channel->id"
-                                        rules="required"
-                                        :label="trans('lp::app.admin.create.channels')"
-                                    >
-                                    </x-admin::form.control-group.control>
-
-                                    <x-admin::form.control-group.label
-                                        :for="'channels_' . $channel->id"
-                                        class="!text-[14px] !text-gray-600 dark:!text-gray-300 font-semibold cursor-pointer"
-                                    >
-                                        {{ core()->getChannelName($channel) }}
-                                    </x-admin::form.control-group.label>
-                                </x-admin::form.control-group>
-                            @endforeach
-
-                            <x-admin::form.control-group.error
-                                control-name="channels[]"
-                            >
-                            </x-admin::form.control-group.error>
+                            
                         </div>
                     </x-slot:content>
                 </x-admin::accordion>
