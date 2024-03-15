@@ -291,14 +291,14 @@ class Airwallex extends Payment
         $order = [];
         $order['products'] = [];
         $products = [];
-        $product['code'] = "11111";
-        $product['desc'] = "11111";
-        $product['name'] = "11111";
+        $product['code'] = "";
+        $product['desc'] = "";
+        $product['name'] = "";
         $product['quantity'] = 1;
-        $product['sku'] = "11111";
-        $product['type'] = "11111";
+        $product['sku'] = "";
+        $product['type'] = "";
         $product['unit_price'] = $data['amount'];
-        $product['url'] = "https://www.baidu.com/";
+        $product['url'] = "";
 
         $products[] = $product;
         $order['products'] = $products;
