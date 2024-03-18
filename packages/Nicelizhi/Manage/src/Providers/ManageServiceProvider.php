@@ -51,12 +51,12 @@ class ManageServiceProvider extends ServiceProvider
     {
         $this->mergeConfigFrom(
             dirname(__DIR__) . '/Config/menu.php',
-            'menu.admin'
+            'menu.manage'
         );
 
         $this->mergeConfigFrom(
             dirname(__DIR__) . '/Config/acl.php',
-            'acl'
+            'acl.manage'
         );
 
         $this->mergeConfigFrom(
@@ -77,22 +77,23 @@ class ManageServiceProvider extends ServiceProvider
             'manage::components.layouts.sidebar.index',
             'manage::components.layouts.tabs',
         ], function ($view) {
+            var_dump($view);exit;
             $tree = Tree::create();
 
             $permissionType = auth()->guard('manage')->user()->role->permission_type;
             
             $allowedPermissions = auth()->guard('manage')->user()->role->permissions;
 
-            foreach (config('menu.admin') as $index => $item) {
+            foreach (config('menu.manage') as $index => $item) {
                 if (! bouncer_manage()->hasPermission($item['key'])) {
                     continue;
                 }
 
                 if (
-                    $index + 1 < count(config('menu.admin'))
+                    $index + 1 < count(config('menu.manage'))
                     && $permissionType != 'all'
                 ) {
-                    $permission = config('menu.admin')[$index + 1];
+                    $permission = config('menu.manage')[$index + 1];
 
                     if (
                         substr_count($permission['key'], '.') == 2
@@ -105,7 +106,7 @@ class ManageServiceProvider extends ServiceProvider
 
                             $neededItem = $allowedPermissions[$key + 1];
 
-                            foreach (config('menu.admin') as $key1 => $menu) {
+                            foreach (config('menu.manage') as $key1 => $menu) {
                                 if ($menu['key'] == $neededItem) {
                                     $item['route'] = $menu['route'];
                                 }
@@ -117,10 +118,12 @@ class ManageServiceProvider extends ServiceProvider
                 $tree->add($item, 'menu');
             }
 
+
             $tree->items = core()->sortItems($tree->items);
 
             $view->with('menu', $tree);
         });
+
 
         view()->composer([
             'manage::settings.roles.create',
@@ -157,7 +160,8 @@ class ManageServiceProvider extends ServiceProvider
 
         $tree = Tree::create();
 
-        foreach (config('acl') as $item) {
+
+        foreach (config('acl.manage') as $item) {
             $tree->add($item, 'acl');
         }
 

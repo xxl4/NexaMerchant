@@ -4,18 +4,18 @@
 
 <x-admin::layouts>
     <x-slot:title>
-        @lang('admin::app.dashboard.index.title')
+        @lang('manage::app.dashboard.index.title')
     </x-slot:title>
 
     {{-- User Detailes Section --}}
     <div class="flex gap-[16px] justify-between items-center mb-[20px] max-sm:flex-wrap">
         <div class="grid gap-[6px]">
             <p class="pt-[6px] text-[20px] text-gray-800 dark:text-white font-bold leading-[24px]">
-                @lang('admin::app.dashboard.index.user-name', ['user_name' => $admin->name])
+                @lang('manage::app.dashboard.index.user-name', ['user_name' => $admin->name])
             </p>
 
             <p class="text-gray-600 dark:text-gray-300">
-                @lang('admin::app.dashboard.index.user-info')
+                @lang('manage::app.dashboard.index.user-info')
             </p>
         </div>
     </div>
@@ -27,7 +27,7 @@
             {{-- Overall Detailes --}}
             <div class="flex flex-col gap-[8px]   ">
                 <p class="text-[16px] text-gray-600 dark:text-gray-300 font-semibold">
-                    @lang('admin::app.dashboard.index.overall-details')
+                    @lang('manage::app.dashboard.index.overall-details')
                 </p>
 
                 <div class="p-[16px] rounded-[4px] bg-white dark:bg-gray-900 box-shadow">
@@ -37,7 +37,7 @@
                             <div class="w-full h-[60px] max-w-[60px] max-h-[60px] dark:invert dark:mix-blend-exclusion">
                                 <img
                                     src="{{ bagisto_asset('images/total-sales.svg')}}"
-                                    title="@lang('admin::app.dashboard.index.total-sales')"
+                                    title="@lang('manage::app.dashboard.index.total-sales')"
                                 >
                             </div>
 
@@ -48,7 +48,7 @@
                                 </p>
 
                                 <p class="text-[12px] text-gray-600 dark:text-gray-300 font-semibold">
-                                    @lang('admin::app.dashboard.index.total-sales')
+                                    @lang('manage::app.dashboard.index.total-sales')
                                 </p>
 
                                 {{-- Sales Percentage --}}
@@ -57,7 +57,7 @@
                                         <span class="icon-down-stat text-[16px] text-red-500"></span>
 
                                         <p class="text-[12px] text-red-500 font-semibold">
-                                            @lang('admin::app.dashboard.index.decreased', [
+                                            @lang('manage::app.dashboard.index.decreased', [
                                                 'progress' => -number_format($statistics['over_all']['total_sales']['progress'], 1),
                                             ])
                                         </p>
@@ -65,7 +65,7 @@
                                         <span class="icon-up-stat text-[16px] text-emerald-500"></span>
 
                                         <p class="text-[12px] text-emerald-500 font-semibold">
-                                            @lang('admin::app.dashboard.index.increased', [
+                                            @lang('manage::app.dashboard.index.increased', [
                                                 'progress' => number_format($statistics['over_all']['total_sales']['progress'], 1),
                                             ])
                                         </p>
@@ -79,7 +79,7 @@
                             <div class="w-full h-[60px] max-w-[60px] max-h-[60px] dark:invert dark:mix-blend-exclusion">
                                 <img
                                     src="{{ bagisto_asset('images/total-orders.svg')}}"
-                                    title="@lang('admin::app.dashboard.index.total-orders')"
+                                    title="@lang('manage::app.dashboard.index.total-orders')"
                                 >
                             </div>
 
@@ -90,7 +90,7 @@
                                 </p>
 
                                 <p class="text-[12px] text-gray-600 dark:text-gray-300 font-semibold">
-                                    @lang('admin::app.dashboard.index.total-orders')
+                                    @lang('manage::app.dashboard.index.total-orders')
                                 </p>
 
                                 {{-- Order Percentage --}}
@@ -99,7 +99,7 @@
                                         <span class="icon-down-stat text-[16px] text-red-500"></span>
 
                                         <p class="text-[12px] text-red-500 font-semibold">
-                                            @lang('admin::app.dashboard.index.decreased', [
+                                            @lang('manage::app.dashboard.index.decreased', [
                                                 'progress' => -number_format($statistics['over_all']['total_orders']['progress'], 1),
                                             ])
                                         </p>
@@ -107,7 +107,7 @@
                                         <span class="icon-up-stat text-[16px] text-emerald-500"></span>
 
                                         <p class="text-[12px] text-emerald-500 font-semibold">
-                                            @lang('admin::app.dashboard.index.increased', [
+                                            @lang('manage::app.dashboard.index.increased', [
                                                 'progress' => number_format($statistics['over_all']['total_orders']['progress'], 1),
                                             ])
                                         </p>
@@ -121,7 +121,7 @@
                             <div class="w-full h-[60px] max-w-[60px] max-h-[60px] dark:invert dark:mix-blend-exclusion">
                                 <img
                                     src="{{ bagisto_asset('images/customers.svg')}}"
-                                    title="@lang('admin::app.dashboard.index.total-customers')"
+                                    title="@lang('manage::app.dashboard.index.total-customers')"
                                 >
                             </div>
 
@@ -132,7 +132,7 @@
                                 </p>
 
                                 <p class="text-[12px] text-gray-600 dark:text-gray-300 font-semibold">
-                                    @lang('admin::app.dashboard.index.total-customers')
+                                    @lang('manage::app.dashboard.index.total-customers')
                                 </p>
 
                                 {{-- Customers Percentage --}}
@@ -141,7 +141,7 @@
                                         <span class="icon-down-stat text-[16px] text-red-500"></span>
 
                                         <p class="text-[12px] text-red-500 font-semibold">
-                                            @lang('admin::app.dashboard.index.decreased', [
+                                            @lang('manage::app.dashboard.index.decreased', [
                                                     'progress' => -number_format($statistics['over_all']['total_customers']['progress'], 1)
                                             ])
                                         </p>
@@ -149,7 +149,7 @@
                                         <span class="icon-up-stat text-[16px] text-emerald-500"></span>
 
                                         <p class="text-[12px] text-emerald-500 font-semibold">
-                                            @lang('admin::app.dashboard.index.increased', [
+                                            @lang('manage::app.dashboard.index.increased', [
                                                 'progress' => number_format($statistics['over_all']['total_customers']['progress'], 1)
                                             ])
                                         </p>
@@ -163,7 +163,7 @@
                             <div class="w-full h-[60px] max-w-[60px] max-h-[60px] dark:invert dark:mix-blend-exclusion">
                                 <img
                                     src="{{ bagisto_asset('images/average-orders.svg')}}"
-                                    title="@lang('admin::app.dashboard.index.average-sale')"
+                                    title="@lang('manage::app.dashboard.index.average-sale')"
                                 >
                             </div>
 
@@ -174,7 +174,7 @@
                                 </p>
 
                                 <p class="text-[12px] text-gray-600 dark:text-gray-300 font-semibold">
-                                    @lang('admin::app.dashboard.index.average-sale')
+                                    @lang('manage::app.dashboard.index.average-sale')
                                 </p>
 
                                 {{-- Sales Percentage --}}
@@ -183,14 +183,14 @@
                                         <span class="icon-down-stat text-[16px] text-red-500"></span>
 
                                         <p class="text-[12px] text-red-500 font-semibold">
-                                            @lang('admin::app.dashboard.index.decreased', [
+                                            @lang('manage::app.dashboard.index.decreased', [
                                                 'progress' => -number_format($statistics['over_all']['avg_sales']['progress'], 1),
                                             ])
                                         </p>
                                     @else
                                         <span class="icon-up-stat text-[16px] text-emerald-500"></span>
                                         <p class="text-[12px] text-emerald-500 font-semibold">
-                                            @lang('admin::app.dashboard.index.increased', [
+                                            @lang('manage::app.dashboard.index.increased', [
                                                 'progress' => number_format($statistics['over_all']['avg_sales']['progress'], 1),
                                             ])
                                         </p>
@@ -204,7 +204,7 @@
                             <div class="w-full h-[60px] max-w-[60px] max-h-[60px] dark:invert dark:mix-blend-exclusion">
                                 <img
                                     src="{{ bagisto_asset('images/unpaid-invoices.svg')}}"
-                                    title="@lang('admin::app.dashboard.index.total-unpaid-invoices')"
+                                    title="@lang('manage::app.dashboard.index.total-unpaid-invoices')"
                                 >
                             </div>
 
@@ -214,7 +214,7 @@
                                 </p>
 
                                 <p class="text-[12px] text-gray-600 dark:text-gray-300 font-semibold">
-                                    @lang('admin::app.dashboard.index.total-unpaid-invoices')
+                                    @lang('manage::app.dashboard.index.total-unpaid-invoices')
                                 </p>
                             </div>
                         </div>
@@ -225,7 +225,7 @@
             {{-- Todays Details --}}
             <div class="flex flex-col gap-[8px]  ">
                 <p class="text-[16px] text-gray-600 dark:text-gray-300 font-semibold">
-                    @lang('admin::app.dashboard.index.today-details')
+                    @lang('manage::app.dashboard.index.today-details')
                 </p>
 
                 <div class="rounded-[4px] box-shadow">
@@ -235,7 +235,7 @@
                             <img
                                 class="w-full h-[60px] max-w-[60px] max-h-[60px] dark:invert dark:mix-blend-exclusion"
                                 src="{{ bagisto_asset('images/total-sales.svg')}}"
-                                title="@lang('admin::app.dashboard.index.today-sales')"
+                                title="@lang('manage::app.dashboard.index.today-sales')"
                             >
 
                             {{-- Sales Stats --}}
@@ -245,7 +245,7 @@
                                 </p>
 
                                 <p class="text-[12px] text-gray-600 dark:text-gray-300 font-semibold">
-                                    @lang('admin::app.dashboard.index.today-sales')
+                                    @lang('manage::app.dashboard.index.today-sales')
                                 </p>
 
                                 {{-- Percentage Of Sales --}}
@@ -254,7 +254,7 @@
                                         <span class="icon-down-stat text-[16px] text-red-500"></span>
 
                                         <p class="text-[12px] text-red-500 font-semibold">
-                                            @lang('admin::app.dashboard.index.decreased', [
+                                            @lang('manage::app.dashboard.index.decreased', [
                                                 'progress' => -number_format($statistics['today']['total_sales']['progress'], 1),
                                             ])
                                         </p>
@@ -262,7 +262,7 @@
                                         <span class="icon-up-stat text-[16px] text-emerald-500"></span>
 
                                         <p class="text-[12px] text-emerald-500 font-semibold">
-                                            @lang('admin::app.dashboard.index.increased', [
+                                            @lang('manage::app.dashboard.index.increased', [
                                                 'progress' => number_format($statistics['today']['total_sales']['progress'], 1),
                                             ])
                                         </p>
@@ -276,7 +276,7 @@
                             <img
                                 class="w-full h-[60px] max-w-[60px] max-h-[60px] dark:invert dark:mix-blend-exclusion"
                                 src="{{ bagisto_asset('images/total-orders.svg')}}"
-                                title="@lang('admin::app.dashboard.index.today-orders')"
+                                title="@lang('manage::app.dashboard.index.today-orders')"
                             >
 
                             {{-- Orders Stats --}}
@@ -286,7 +286,7 @@
                                 </p>
 
                                 <p class="text-[12px] text-gray-600 dark:text-gray-300 font-semibold">
-                                    @lang('admin::app.dashboard.index.today-orders')
+                                    @lang('manage::app.dashboard.index.today-orders')
                                 </p>
 
                                 {{-- Orders Percentage --}}
@@ -295,7 +295,7 @@
                                         <span class="icon-down-stat text-[16px] text-red-500"></span>
 
                                         <p class="text-[12px] text-red-500 font-semibold">
-                                            @lang('admin::app.dashboard.index.decreased', [
+                                            @lang('manage::app.dashboard.index.decreased', [
                                                 'progress' => -number_format($statistics['today']['total_orders']['progress'], 1),
                                             ])
                                         </p>
@@ -303,7 +303,7 @@
                                         <span class="icon-up-stat text-[16px] text-emerald-500"></span>
 
                                         <p class="text-[12px] text-emerald-500 font-semibold">
-                                            @lang('admin::app.dashboard.index.increased', [
+                                            @lang('manage::app.dashboard.index.increased', [
                                                 'progress' => number_format($statistics['today']['total_orders']['progress'], 1),
                                             ])
                                         </p>
@@ -317,7 +317,7 @@
                             <img
                                 class="w-full h-[60px] max-w-[60px] max-h-[60px] dark:invert dark:mix-blend-exclusion"
                                 src="{{ bagisto_asset('images/customers.svg')}}"
-                                title="@lang('admin::app.dashboard.index.today-customers')"
+                                title="@lang('manage::app.dashboard.index.today-customers')"
                             >
 
                             {{-- Customers Stats --}}
@@ -327,7 +327,7 @@
                                 </p>
 
                                 <p class="text-[12px] text-gray-600 dark:text-gray-300 font-semibold">
-                                    @lang('admin::app.dashboard.index.today-customers')
+                                    @lang('manage::app.dashboard.index.today-customers')
                                 </p>
 
                                 {{-- Customers Percentage --}}
@@ -336,7 +336,7 @@
                                         <span class="icon-down-stat text-[16px] text-red-500"></span>
 
                                         <p class="text-[12px] text-red-500 font-semibold">
-                                            @lang('admin::app.dashboard.index.decreased', [
+                                            @lang('manage::app.dashboard.index.decreased', [
                                                 'progress' => -number_format($statistics['today']['total_customers']['progress'], 1),
                                             ])
                                         </p>
@@ -344,7 +344,7 @@
                                         <span class="icon-up-stat text-[16px] text-emerald-500"></span>
 
                                         <p class="text-[12px] text-emerald-500 font-semibold">
-                                            @lang('admin::app.dashboard.index.increased', [
+                                            @lang('manage::app.dashboard.index.increased', [
                                                 'progress' => number_format($statistics['today']['total_customers']['progress'], 1),
                                             ])
                                         </p>
@@ -362,7 +362,7 @@
                                 <div class="flex flex-col gap-[6px]">
                                     {{-- Order Id --}}
                                     <p class="text-[16px] text-gray-800 dark:text-white font-semibold">
-                                        @lang('admin::app.dashboard.index.order-id', ['id' => $item->id])
+                                        @lang('manage::app.dashboard.index.order-id', ['id' => $item->id])
                                     </p>
 
                                     <p class="text-gray-600 dark:text-gray-300">
@@ -414,7 +414,7 @@
 
                                 {{-- Payment Mode --}}
                                 <p class="text-gray-600 dark:text-gray-300">
-                                    @lang('admin::app.dashboard.index.pay-by', ['method' => core()->getConfigData('sales.payment_methods.' . $item->payment->method . '.title')])
+                                    @lang('manage::app.dashboard.index.pay-by', ['method' => core()->getConfigData('sales.payment_methods.' . $item->payment->method . '.title')])
                                 </p>
 
                                 {{-- Channel Name --}}
@@ -465,7 +465,7 @@
                                                         <img src="{{ bagisto_asset('images/product-placeholders/front.svg')}}">
 
                                                         <p class="w-full absolute bottom-[5px] text-[6px] text-gray-400 text-center font-semibold">
-                                                            @lang('admin::app.dashboard.index.product-image')
+                                                            @lang('manage::app.dashboard.index.product-image')
                                                         </p>
                                                     </div>
                                                 @endif
@@ -485,7 +485,7 @@
                                             <a href="{{ route('manage.sales.orders.view', $item->id) }}">
                                                 <div class="flex items-center w-[65px] h-[65px] bg-gray-50 dark:bg-gray-800 rounded-[4px]">
                                                     <p class="text-[12px] text-gray-600 dark:text-gray-300 text-center font-bold px-[6px] py-[6px]">
-                                                        @lang('admin::app.dashboard.index.more-products', ['product_count' => $item->items->count() - 3 ])
+                                                        @lang('manage::app.dashboard.index.more-products', ['product_count' => $item->items->count() - 3 ])
                                                     </p>
                                                 </div>
                                             </a>
@@ -506,7 +506,7 @@
             {{-- Stock Thereshold --}}
             <div class="flex flex-col gap-[8px]  ">
                 <p class="text-[16px] text-gray-600 dark:text-gray-300 font-semibold">
-                    @lang('admin::app.dashboard.index.stock-threshold')
+                    @lang('manage::app.dashboard.index.stock-threshold')
                 </p>
 
                 {{-- Products List --}}
@@ -529,7 +529,7 @@
                                                 <img src="{{ bagisto_asset('images/product-placeholders/front.svg')}}">
 
                                                 <p class="w-full absolute bottom-[5px] text-[6px] text-gray-400 text-center font-semibold">
-                                                    @lang('admin::app.dashboard.index.product-image')
+                                                    @lang('manage::app.dashboard.index.product-image')
                                                 </p>
                                             </div>
                                         @endif
@@ -544,7 +544,7 @@
 
                                             {{-- Product SKU --}}
                                             <p class="text-gray-600 dark:text-gray-300">
-                                                @lang('admin::app.dashboard.index.sku', ['sku' => $item->product->sku])
+                                                @lang('manage::app.dashboard.index.sku', ['sku' => $item->product->sku])
                                             </p>
 
                                             {{-- Product Number --}}
@@ -553,7 +553,7 @@
                                                     isset($item->product->product_number)
                                                     && ! empty($item->product->product_number)
                                                 )
-                                                    @lang('admin::app.dashboard.index.product-number', ['product_number' => $item->product->product_number])
+                                                    @lang('manage::app.dashboard.index.product-number', ['product_number' => $item->product->product_number])
                                                 @endif
                                             </p>
                                         </div>
@@ -570,7 +570,7 @@
 
                                             {{-- Total Product Stock --}}
                                             <p class="{{ $item->total_qty > 10 ? 'text-emerald-500' : 'text-red-500' }} ">
-                                                @lang('admin::app.dashboard.index.total-stock', ['total_stock' => $item->total_qty])
+                                                @lang('manage::app.dashboard.index.total-stock', ['total_stock' => $item->total_qty])
                                             </p>
                                         </div>
 
@@ -589,11 +589,11 @@
                             <img src="{{ bagisto_asset('images/icon-add-product.svg') }}" class="w-[80px] h-[80px] dark:invert dark:mix-blend-exclusion">
                             <div class="flex flex-col items-center">
                                 <p class="text-[16px] text-gray-400 font-semibold">
-                                    @lang('admin::app.dashboard.index.empty-threshold')
+                                    @lang('manage::app.dashboard.index.empty-threshold')
                                 </p>
             
                                 <p class="text-gray-400">
-                                    @lang('admin::app.dashboard.index.empty-threshold-description')
+                                    @lang('manage::app.dashboard.index.empty-threshold-description')
                                 </p>
                             </div>
                         </div>
@@ -606,7 +606,7 @@
         <div class="flex flex-col gap-[8px] w-[360px] max-w-full   max-sm:w-full">
             {{-- First Component --}}
             <p class="text-[16px] text-gray-600 dark:text-gray-300 font-semibold">
-                @lang('admin::app.dashboard.index.store-stats')
+                @lang('manage::app.dashboard.index.store-stats')
             </p>
 
             {{-- Store Stats --}}
@@ -637,14 +637,14 @@
                             <!-- Start Date Filter -->
                             <x-admin::form.control-group class="flex-1 mb-[10px]">
                                 <x-admin::form.control-group.label class="!text-gray-800 dark:!text-white font-medium">
-                                    @lang('admin::app.dashboard.index.start-date')
+                                    @lang('manage::app.dashboard.index.start-date')
                                 </x-admin::form.control-group.label>
     
                                 <x-admin::form.control-group.control
                                     type="date"
                                     name="startDate" 
                                     class="cursor-pointer"
-                                    :placeholder="trans('admin::app.dashboard.index.start-date')"
+                                    :placeholder="trans('manage::app.dashboard.index.start-date')"
                                     v-model="filters.start"
                                 >
                                 </x-admin::form.control-group.control>
@@ -653,14 +653,14 @@
                             <!-- End Date Filter -->
                             <x-admin::form.control-group class="flex-1 mb-[10px]">
                                 <x-admin::form.control-group.label class="!text-gray-800 dark:!text-white font-medium">
-                                    @lang('admin::app.dashboard.index.end-date')
+                                    @lang('manage::app.dashboard.index.end-date')
                                 </x-admin::form.control-group.label>
     
                                 <x-admin::form.control-group.control
                                     type="date"
                                     name="endDate" 
                                     class="cursor-pointer"
-                                    :placeholder="trans('admin::app.dashboard.index.end-date')"
+                                    :placeholder="trans('manage::app.dashboard.index.end-date')"
                                     v-model="filters.end"
                                 >
                                 </x-admin::form.control-group.control>
@@ -672,7 +672,7 @@
                             <div class="flex gap-[8px] justify-between">
                                 <div class="flex flex-col gap-[4px] justify-between">
                                     <p class="text-[12px] text-gray-600 dark:text-gray-300 font-semibold">
-                                        @lang('admin::app.dashboard.index.total-sales')
+                                        @lang('manage::app.dashboard.index.total-sales')
                                     </p>
     
                                     <!-- Total Order Revenue -->
@@ -684,12 +684,12 @@
                                 <div class="flex flex-col gap-[4px] justify-between">
                                     <!-- Orders Time Duration -->
                                     <p class="text-[12px] text-gray-400 font-semibold text-right dark:text-white">
-                                        @{{ "@lang('admin::app.dashboard.index.date-duration')".replace(':start', formatStart ?? 0).replace(':end', formatEnd ?? 0) }}
+                                        @{{ "@lang('manage::app.dashboard.index.date-duration')".replace(':start', formatStart ?? 0).replace(':end', formatEnd ?? 0) }}
                                     </p>
     
                                     <!-- Total Orders -->
                                     <p class="text-[12px] text-gray-400 font-semibold text-right dark:text-white">
-                                        @{{ "@lang('admin::app.dashboard.index.order')".replace(':total_orders', statistics.sales.total_orders?.current ?? 0) }}
+                                        @{{ "@lang('manage::app.dashboard.index.order')".replace(':total_orders', statistics.sales.total_orders?.current ?? 0) }}
                                     </p>
                                 </div>
                             </div>
@@ -707,7 +707,7 @@
                             <div class="flex gap-[8px] justify-between">
                                 <div class="flex flex-col gap-[4px] justify-between">
                                     <p class="text-[12px] text-gray-600 dark:text-gray-300 font-semibold">
-                                        @lang('admin::app.dashboard.index.visitors')
+                                        @lang('manage::app.dashboard.index.visitors')
                                     </p>
     
                                     <!-- Total Order Revenue -->
@@ -719,12 +719,12 @@
                                 <div class="flex flex-col gap-[4px] justify-between">
                                     <!-- Orders Time Duration -->
                                     <p class="text-[12px] text-gray-400 font-semibold text-right dark:text-white">
-                                        @{{ "@lang('admin::app.dashboard.index.date-duration')".replace(':start', formatStart ?? 0).replace(':end', formatEnd ?? 0) }}
+                                        @{{ "@lang('manage::app.dashboard.index.date-duration')".replace(':start', formatStart ?? 0).replace(':end', formatEnd ?? 0) }}
                                     </p>
     
                                     <!-- Total Orders -->
                                     <p class="text-[12px] text-gray-400 font-semibold text-right dark:text-white">
-                                        @{{ "@lang('admin::app.dashboard.index.unique-visitors')".replace(':count', statistics.visitors.unique?.current ?? 0) }}
+                                        @{{ "@lang('manage::app.dashboard.index.unique-visitors')".replace(':count', statistics.visitors.unique?.current ?? 0) }}
                                     </p>
                                 </div>
                             </div>
@@ -742,11 +742,11 @@
                     <div class="border-b dark:border-gray-800">
                         <div class="flex items-center justify-between p-[16px]">
                             <p class="text-gray-600 dark:text-gray-300 text-[16px] font-semibold">
-                                @lang('admin::app.dashboard.index.top-selling-products')
+                                @lang('manage::app.dashboard.index.top-selling-products')
                             </p>
 
                             <p class="text-[12px] text-gray-400 font-semibold">
-                                @{{ "@lang('admin::app.dashboard.index.date-duration')".replace(':start', formatStart ?? 0).replace(':end', formatEnd ?? 0) }}
+                                @{{ "@lang('manage::app.dashboard.index.date-duration')".replace(':start', formatStart ?? 0).replace(':end', formatEnd ?? 0) }}
                             </p>
                         </div>
 
@@ -780,7 +780,7 @@
                                         <img src="{{ bagisto_asset('images/product-placeholders/front.svg')}}">
                                         
                                         <p class="w-full absolute bottom-[5px] text-[6px] text-gray-400 text-center font-semibold">
-                                            @lang('admin::app.dashboard.index.product-image')
+                                            @lang('manage::app.dashboard.index.product-image')
                                         </p>
                                     </div>
 
@@ -824,11 +824,11 @@
                                     <!-- Add Variants Information -->
                                     <div class="flex flex-col items-center">
                                         <p class="text-[16px] text-gray-400 font-semibold">
-                                            @lang('admin::app.dashboard.index.add-product')
+                                            @lang('manage::app.dashboard.index.add-product')
                                         </p>
     
                                         <p class="text-gray-400">
-                                            @lang('admin::app.dashboard.index.product-info')
+                                            @lang('manage::app.dashboard.index.product-info')
                                         </p>
                                     </div>
                                 </div>
@@ -839,11 +839,11 @@
                     <!-- Top Customers -->
                     <div class="flex items-center justify-between p-[16px]">
                         <p class="text-gray-600 dark:text-gray-300 text-[16px] font-semibold">
-                            @lang('admin::app.dashboard.index.customer-with-most-sales')
+                            @lang('manage::app.dashboard.index.customer-with-most-sales')
                         </p>
 
                         <p class="text-[12px] text-gray-400 font-semibold">
-                            @{{ "@lang('admin::app.dashboard.index.date-duration')".replace(':start', formatStart ?? 0).replace(':end', formatEnd ?? 0) }}
+                            @{{ "@lang('manage::app.dashboard.index.date-duration')".replace(':start', formatStart ?? 0).replace(':end', formatEnd ?? 0) }}
                         </p>
                     </div>
 
@@ -883,7 +883,7 @@
                                         </p>
 
                                         <p class="text-gray-600 dark:text-gray-300" v-if="customer.orders">
-                                            @{{ "@lang('admin::app.dashboard.index.order-count')".replace(':count', customer.orders) }}
+                                            @{{ "@lang('manage::app.dashboard.index.order-count')".replace(':count', customer.orders) }}
                                         </p>
                                     </div>
                                 </div>
@@ -904,11 +904,11 @@
                                 <!-- Add Variants Information -->
                                 <div class="flex flex-col items-center">
                                     <p class="text-[16px] text-gray-400 font-semibold">
-                                        @lang('admin::app.dashboard.index.add-customer')
+                                        @lang('manage::app.dashboard.index.add-customer')
                                     </p>
 
                                     <p class="text-gray-400">
-                                        @lang('admin::app.dashboard.index.customer-info')
+                                        @lang('manage::app.dashboard.index.customer-info')
                                     </p>
                                 </div>
                             </div>
