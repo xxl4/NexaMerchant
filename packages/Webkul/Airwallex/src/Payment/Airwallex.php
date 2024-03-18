@@ -291,16 +291,26 @@ class Airwallex extends Payment
         $order = [];
         $order['products'] = [];
         $products = [];
-        $product['code'] = "";
-        $product['desc'] = "";
-        $product['name'] = "";
-        $product['quantity'] = 1;
-        $product['sku'] = "";
-        $product['type'] = "";
-        $product['unit_price'] = $data['amount'];
-        $product['url'] = "";
 
-        $products[] = $product;
+        $cartData = $cart->toArray();
+
+        foreach ($cartData['items'] as $item) {
+          //$finalData['items'][] = $this->prepareDataForOrderItem($item);
+
+          $product['code'] = $item['sku'];;
+          $product['desc'] = $item['name'];
+          $product['name'] = $item['name'];
+          $product['quantity'] = $item['quantity'];
+          $product['sku'] = $item['sku'];
+          $product['type'] = $item['type'];
+          $product['unit_price'] = $data['amount'];
+          $product['url'] = config("app.url");
+
+          $products[] = $product;
+
+      }
+
+        
         $order['products'] = $products;
         $shipping = [];
         $shipping['address'] = $address;
