@@ -82,7 +82,7 @@ class ChannelDataGrid extends DataGrid
                 'title'  => trans('admin::app.settings.channels.index.datagrid.edit'),
                 'method' => 'GET',
                 'url'    => function ($row) {
-                    return route('admin.settings.channels.edit', $row->id);
+                    return route('manage.settings.channels.edit', $row->id);
                 },
             ]);
         }
@@ -93,7 +93,7 @@ class ChannelDataGrid extends DataGrid
                 'title'  => trans('admin::app.settings.channels.index.datagrid.delete'),
                 'method' => 'DELETE',
                 'url'    => function ($row) {
-                    return route('admin.settings.channels.delete', $row->id);
+                    return route('manage.settings.channels.delete', $row->id);
                 },
             ]);
         }

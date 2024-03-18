@@ -86,7 +86,7 @@ class CartRuleCouponDataGrid extends DataGrid
             'title'  => trans('admin::app.marketing.promotions.catalog-rules.index.datagrid.delete'),
             'method' => 'DELETE',
             'url'    => function ($row) {
-                return route('admin.marketing.promotions.cart_rules.coupons.delete', $row->id);
+                return route('manage.marketing.promotions.cart_rules.coupons.delete', $row->id);
             },
         ]);
     }
@@ -101,7 +101,7 @@ class CartRuleCouponDataGrid extends DataGrid
         $this->addMassAction([
             'title'  => trans('admin::app.marketing.promotions.cart-rules-coupons.datagrid.delete'),
             'method' => 'POST',
-            'url'    => route('admin.marketing.promotions.cart_rules.coupons.mass_delete'),
+            'url'    => route('manage.marketing.promotions.cart_rules.coupons.mass_delete'),
         ]);
     }
 }

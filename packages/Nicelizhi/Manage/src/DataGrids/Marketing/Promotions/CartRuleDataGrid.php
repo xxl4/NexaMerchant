@@ -197,7 +197,7 @@ class CartRuleDataGrid extends DataGrid
                 'title'  => trans('admin::app.marketing.promotions.cart-rules.index.datagrid.edit'),
                 'method' => 'GET',
                 'url'    => function ($row) {
-                    return route('admin.marketing.promotions.cart_rules.edit', $row->id);
+                    return route('manage.marketing.promotions.cart_rules.edit', $row->id);
                 },
             ]);
         }
@@ -208,7 +208,7 @@ class CartRuleDataGrid extends DataGrid
                 'title'  => trans('admin::app.marketing.promotions.cart-rules.index.datagrid.copy'),
                 'method' => 'GET',
                 'url'    => function ($row) {
-                    return route('admin.marketing.promotions.cart_rules.copy', $row->id);
+                    return route('manage.marketing.promotions.cart_rules.copy', $row->id);
                 },
             ]);
         }
@@ -219,7 +219,7 @@ class CartRuleDataGrid extends DataGrid
                 'title'  => trans('admin::app.marketing.promotions.cart-rules.index.datagrid.delete'),
                 'method' => 'DELETE',
                 'url'    => function ($row) {
-                    return route('admin.marketing.promotions.cart_rules.delete', $row->id);
+                    return route('manage.marketing.promotions.cart_rules.delete', $row->id);
                 },
             ]);
         }

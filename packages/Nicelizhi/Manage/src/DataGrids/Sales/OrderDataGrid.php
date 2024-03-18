@@ -211,7 +211,7 @@ class OrderDataGrid extends DataGrid
                 'title'  => trans('admin::app.sales.orders.index.datagrid.view'),
                 'method' => 'GET',
                 'url'    => function ($row) {
-                    return route('admin.sales.orders.view', $row->id);
+                    return route('manage.sales.orders.view', $row->id);
                 },
             ]);
         }

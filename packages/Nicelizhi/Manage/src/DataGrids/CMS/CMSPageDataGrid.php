@@ -93,7 +93,7 @@ class CMSPageDataGrid extends DataGrid
                 'title'  => trans('admin::app.cms.index.datagrid.edit'),
                 'method' => 'GET',
                 'url'    => function ($row) {
-                    return route('admin.cms.edit', $row->id);
+                    return route('manage.cms.edit', $row->id);
                 },
             ]);
         }
@@ -104,7 +104,7 @@ class CMSPageDataGrid extends DataGrid
                 'title'  => trans('admin::app.cms.index.datagrid.delete'),
                 'method' => 'DELETE',
                 'url'    => function ($row) {
-                    return route('admin.cms.delete', $row->id);
+                    return route('manage.cms.delete', $row->id);
                 },
             ]);
         }
@@ -121,7 +121,7 @@ class CMSPageDataGrid extends DataGrid
             $this->addMassAction([
                 'title'  => trans('admin::app.cms.index.datagrid.delete'),
                 'method' => 'POST',
-                'url'    => route('admin.cms.mass_delete'),
+                'url'    => route('manage.cms.mass_delete'),
             ]);
         }
     }

@@ -170,7 +170,7 @@ class AddressDataGrid extends DataGrid
                 'title'  => trans('admin::app.customers.addresses.datagrid.edit'),
                 'method' => 'GET',
                 'url'    => function ($row) {
-                    return route('admin.customers.customers.addresses.edit', $row->address_id);
+                    return route('manage.customers.customers.addresses.edit', $row->address_id);
                 },
             ]);
         }
@@ -181,7 +181,7 @@ class AddressDataGrid extends DataGrid
                 'title'  => trans('admin::app.customers.addresses.datagrid.delete'),
                 'method' => 'POST',
                 'url'    => function ($row) {
-                    return route('admin.customers.customers.addresses.delete', $row->address_id);
+                    return route('manage.customers.customers.addresses.delete', $row->address_id);
                 },
             ]);
         }
@@ -196,7 +196,7 @@ class AddressDataGrid extends DataGrid
     {
         $this->addMassAction([
             'title'  => trans('admin::app.customers.addresses.delete'),
-            'url'    => route('admin.customers.customers.addresses.mass_delete', request('id')),
+            'url'    => route('manage.customers.customers.addresses.mass_delete', request('id')),
             'method' => 'POST',
         ]);
     }

@@ -80,9 +80,9 @@ class SitemapDataGrid extends DataGrid
                 'icon'   => 'icon-edit',
                 'title'  => trans('admin::app.marketing.sitemaps.index.datagrid.edit'),
                 'method' => 'GET',
-                'route'  => 'admin.marketing.promotions.sitemaps.update',
+                'route'  => 'manage.marketing.promotions.sitemaps.update',
                 'url'    => function ($row) {
-                    return route('admin.marketing.promotions.sitemaps.update', $row->id);
+                    return route('manage.marketing.promotions.sitemaps.update', $row->id);
                 },
             ]);
         }
@@ -93,7 +93,7 @@ class SitemapDataGrid extends DataGrid
                 'title'  => trans('admin::app.marketing.sitemaps.index.datagrid.delete'),
                 'method' => 'DELETE',
                 'url'    => function ($row) {
-                    return route('admin.marketing.promotions.sitemaps.delete', $row->id);
+                    return route('manage.marketing.promotions.sitemaps.delete', $row->id);
                 },
             ]);
         }

@@ -122,7 +122,7 @@ class AttributeDataGrid extends DataGrid
                 'title'  => trans('admin::app.catalog.attributes.index.datagrid.edit'),
                 'method' => 'GET',
                 'url'    => function ($row) {
-                    return route('admin.catalog.attributes.edit', $row->id);
+                    return route('manage.catalog.attributes.edit', $row->id);
                 },
             ]);
         }
@@ -133,7 +133,7 @@ class AttributeDataGrid extends DataGrid
                 'title'  => trans('admin::app.catalog.attributes.index.datagrid.delete'),
                 'method' => 'DELETE',
                 'url'    => function ($row) {
-                    return route('admin.catalog.attributes.delete', $row->id);
+                    return route('manage.catalog.attributes.delete', $row->id);
                 },
             ]);
         }
@@ -151,7 +151,7 @@ class AttributeDataGrid extends DataGrid
                 'icon'   => 'icon-delete',
                 'title'  => trans('admin::app.catalog.attributes.index.datagrid.delete'),
                 'method' => 'POST',
-                'url'    => route('admin.catalog.attributes.mass_delete'),
+                'url'    => route('manage.catalog.attributes.mass_delete'),
             ]);
         }
     }

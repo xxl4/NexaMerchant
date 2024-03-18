@@ -106,7 +106,7 @@ class OrderRefundDataGrid extends DataGrid
                 'title'  => trans('admin::app.sales.refunds.index.datagrid.view'),
                 'method' => 'GET',
                 'url'    => function ($row) {
-                    return route('admin.sales.refunds.view', $row->id);
+                    return route('manage.sales.refunds.view', $row->id);
                 },
             ]);
         }

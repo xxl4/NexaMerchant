@@ -78,7 +78,7 @@ class EmailTemplateDataGrid extends DataGrid
                 'title'  => trans('admin::app.marketing.communications.templates.index.datagrid.edit'),
                 'method' => 'GET',
                 'url'    => function ($row) {
-                    return route('admin.marketing.communications.email_templates.edit', $row->id);
+                    return route('manage.marketing.communications.email_templates.edit', $row->id);
                 },
             ]);
         }
@@ -89,7 +89,7 @@ class EmailTemplateDataGrid extends DataGrid
                 'title'  => trans('admin::app.marketing.communications.templates.index.datagrid.delete'),
                 'method' => 'DELETE',
                 'url'    => function ($row) {
-                    return route('admin.marketing.communications.email_templates.delete', $row->id);
+                    return route('manage.marketing.communications.email_templates.delete', $row->id);
                 },
             ]);
         }

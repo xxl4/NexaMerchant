@@ -117,7 +117,7 @@ class CatalogRuleDataGrid extends DataGrid
                 'title'  => trans('admin::app.marketing.promotions.catalog-rules.index.datagrid.edit'),
                 'method' => 'GET',
                 'url'    => function ($row) {
-                    return route('admin.marketing.promotions.catalog_rules.edit', $row->id);
+                    return route('manage.marketing.promotions.catalog_rules.edit', $row->id);
                 },
             ]);
         }
@@ -128,7 +128,7 @@ class CatalogRuleDataGrid extends DataGrid
                 'title'  => trans('admin::app.marketing.promotions.catalog-rules.index.datagrid.delete'),
                 'method' => 'DELETE',
                 'url'    => function ($row) {
-                    return route('admin.marketing.promotions.catalog_rules.delete', $row->id);
+                    return route('manage.marketing.promotions.catalog_rules.delete', $row->id);
                 },
             ]);
         }

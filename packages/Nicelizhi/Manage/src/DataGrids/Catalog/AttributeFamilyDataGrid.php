@@ -67,7 +67,7 @@ class AttributeFamilyDataGrid extends DataGrid
                 'title'  => trans('admin::app.catalog.families.index.datagrid.catalog.families.index.datagrid.edit'),
                 'method' => 'GET',
                 'url'    => function ($row) {
-                    return route('admin.catalog.families.edit', $row->id);
+                    return route('manage.catalog.families.edit', $row->id);
                 },
             ]);
         }
@@ -78,7 +78,7 @@ class AttributeFamilyDataGrid extends DataGrid
                 'title'  => trans('admin::app.catalog.families.index.datagrid.catalog.families.index.datagrid.delete'),
                 'method' => 'DELETE',
                 'url'    => function ($row) {
-                    return route('admin.catalog.families.delete', $row->id);
+                    return route('manage.catalog.families.delete', $row->id);
                 },
             ]);
         }

@@ -117,7 +117,7 @@ class ThemeDatagrid extends DataGrid
                 'title'  => trans('admin::app.settings.themes.index.datagrid.view'),
                 'method' => 'GET',
                 'url'    => function ($row) {
-                    return route('admin.settings.themes.edit', $row->id);
+                    return route('manage.settings.themes.edit', $row->id);
                 },
             ]);
         }
@@ -128,7 +128,7 @@ class ThemeDatagrid extends DataGrid
                 'title'  => trans('admin::app.settings.themes.index.datagrid.delete'),
                 'method' => 'DELETE',
                 'url'    => function ($row) {
-                    return route('admin.settings.themes.delete', $row->id);
+                    return route('manage.settings.themes.delete', $row->id);
                 },
             ]);
         }

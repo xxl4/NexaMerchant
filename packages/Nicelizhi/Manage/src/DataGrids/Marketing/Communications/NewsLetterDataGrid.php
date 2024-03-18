@@ -81,7 +81,7 @@ class NewsLetterDataGrid extends DataGrid
                 'title'  => trans('admin::app.marketing.communications.subscribers.index.datagrid.edit'),
                 'method' => 'GET',
                 'url'    => function ($row) {
-                    return route('admin.marketing.communications.subscribers.edit', $row->id);
+                    return route('manage.marketing.communications.subscribers.edit', $row->id);
                 },
             ]);
         }
@@ -92,7 +92,7 @@ class NewsLetterDataGrid extends DataGrid
                 'title'  => trans('admin::app.marketing.communications.subscribers.index.datagrid.delete'),
                 'method' => 'DELETE',
                 'url'    => function ($row) {
-                    return route('admin.marketing.communications.subscribers.delete', $row->id);
+                    return route('manage.marketing.communications.subscribers.delete', $row->id);
                 },
             ]);
         }

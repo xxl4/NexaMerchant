@@ -134,7 +134,7 @@ class OrderShipmentsDataGrid extends DataGrid
                 'title'  => trans('admin::app.sales.shipments.index.datagrid.view'),
                 'method' => 'GET',
                 'url'    => function ($row) {
-                    return route('admin.sales.shipments.view', $row->shipment_id);
+                    return route('manage.sales.shipments.view', $row->shipment_id);
                 },
             ]);
         }

@@ -57,7 +57,7 @@ class GroupDataGrid extends DataGrid
                 'title'  => trans('admin::app.customers.groups.index.datagrid.edit'),
                 'method' => 'PUT',
                 'url'    => function ($row) {
-                    // return route('admin.groups.edit', $row->id);
+                    // return route('manage.groups.edit', $row->id);
                 },
             ]);
         }
@@ -68,7 +68,7 @@ class GroupDataGrid extends DataGrid
                 'title'  => trans('admin::app.customers.groups.index.datagrid.delete'),
                 'method' => 'DELETE',
                 'url'    => function ($row) {
-                    return route('admin.customers.groups.delete', $row->id);
+                    return route('manage.customers.groups.delete', $row->id);
                 },
             ]);
         }

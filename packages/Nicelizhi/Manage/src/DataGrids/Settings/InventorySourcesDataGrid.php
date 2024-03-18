@@ -99,7 +99,7 @@ class InventorySourcesDataGrid extends DataGrid
                 'title'  => trans('admin::app.settings.inventory-sources.index.datagrid.edit'),
                 'method' => 'GET',
                 'url'    => function ($row) {
-                    return route('admin.settings.inventory_sources.edit', $row->id);
+                    return route('manage.settings.inventory_sources.edit', $row->id);
                 },
             ]);
         }
@@ -110,7 +110,7 @@ class InventorySourcesDataGrid extends DataGrid
                 'title'  => trans('admin::app.settings.inventory-sources.index.datagrid.delete'),
                 'method' => 'DELETE',
                 'url'    => function ($row) {
-                    return route('admin.settings.inventory_sources.delete', $row->id);
+                    return route('manage.settings.inventory_sources.delete', $row->id);
                 },
             ]);
         }

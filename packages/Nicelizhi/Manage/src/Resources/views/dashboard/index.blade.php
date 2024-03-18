@@ -482,7 +482,7 @@
                                             $item->items->count() - 3 
                                             && $item->items->count() > 4
                                         )
-                                            <a href="{{ route('admin.sales.orders.view', $item->id) }}">
+                                            <a href="{{ route('manage.sales.orders.view', $item->id) }}">
                                                 <div class="flex items-center w-[65px] h-[65px] bg-gray-50 dark:bg-gray-800 rounded-[4px]">
                                                     <p class="text-[12px] text-gray-600 dark:text-gray-300 text-center font-bold px-[6px] py-[6px]">
                                                         @lang('admin::app.dashboard.index.more-products', ['product_count' => $item->items->count() - 3 ])
@@ -493,7 +493,7 @@
                                     </div>
 
                                     {{-- View More Icon --}}
-                                    <a href="{{ route('admin.sales.orders.view', $item->id) }}">
+                                    <a href="{{ route('manage.sales.orders.view', $item->id) }}">
                                         <span class="icon-sort-right text-[24px] ltr:ml-[4px] rtl:mr-[4px] p-[6px] cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-800 hover:rounded-[6px]"></span>
                                     </a>
                                 </div>
@@ -575,7 +575,7 @@
                                         </div>
 
                                         {{-- View More Icon --}}
-                                        <a href="{{ route('admin.catalog.products.edit', $item->product_id) }}">
+                                        <a href="{{ route('manage.catalog.products.edit', $item->product_id) }}">
                                             <span class="icon-sort-right text-[24px] ltr:ml-[4px] rtl:mr-[4px] p-[6px] cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-800 hover:rounded-[6px]"></span>
                                         </a>
                                     </div>
@@ -620,7 +620,7 @@
         <script type="module" src="{{ bagisto_asset('js/chart.js') }}"></script>
 
         <script type="text/x-template" id="v-store-stats-template">
-            <x-admin::form :action="route('admin.catalog.categories.store')">
+            <x-admin::form :action="route('manage.catalog.categories.store')">
                 <div class="rounded-[4px] bg-white dark:bg-gray-900 box-shadow">
                     <!-- Total Sales Shimmer -->
                     <template v-if="isLoading">
@@ -762,7 +762,7 @@
                                 v-if="statistics?.products.length"
                             >
                                 <a
-                                    :href="`{{route('admin.catalog.products.edit', '')}}/${item.product_id}`"
+                                    :href="`{{route('manage.catalog.products.edit', '')}}/${item.product_id}`"
                                     class="flex gap-[10px] p-[16px] border-b-[1px] dark:border-gray-800 last:border-b-0 transition-all hover:bg-gray-50 dark:hover:bg-gray-950"
                                     v-for="item in statistics.products"
                                 >
@@ -859,7 +859,7 @@
                             v-if="statistics?.customers.length"
                             v-for="customer in statistics.customers"
                         >
-                            <a :href="customer.id ? `{{ route('admin.customers.customers.view', '') }}/${customer.id}` : '#'">
+                            <a :href="customer.id ? `{{ route('manage.customers.customers.view', '') }}/${customer.id}` : '#'">
                                 <div class="flex justify-between gap-[6px]">
                                     <div class="flex flex-col">
                                         <p
@@ -949,7 +949,7 @@
 
                 methods: {
                     get() {
-                        this.$axios.get("{{ route('admin.dashboard.index') }}", {
+                        this.$axios.get("{{ route('manage.dashboard.index') }}", {
                                 params: this.filters
                             })
                             .then((response) => {
