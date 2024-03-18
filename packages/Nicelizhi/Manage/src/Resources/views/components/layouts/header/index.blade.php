@@ -1,5 +1,5 @@
 @php
-    $admin = auth()->guard('admin')->user();
+    $admin = auth()->guard('manage')->user();
 @endphp
 
 <header class="flex justify-between items-center px-[16px] py-[10px] bg-white dark:bg-gray-900  border-b-[1px] dark:border-gray-800 sticky top-0 z-[10001]">

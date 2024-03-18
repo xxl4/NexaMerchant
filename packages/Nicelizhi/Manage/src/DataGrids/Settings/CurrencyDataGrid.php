@@ -66,7 +66,7 @@ class CurrencyDataGrid extends DataGrid
      */
     public function prepareActions()
     {
-        if (bouncer()->hasPermission('settings.currencies.edit')) {
+        if (bouncer_manage()->hasPermission('settings.currencies.edit')) {
             $this->addAction([
                 'icon'   => 'icon-edit',
                 'title'  => trans('admin::app.settings.currencies.index.datagrid.edit'),
@@ -77,7 +77,7 @@ class CurrencyDataGrid extends DataGrid
             ]);
         }
 
-        if (bouncer()->hasPermission('settings.currencies.delete')) {
+        if (bouncer_manage()->hasPermission('settings.currencies.delete')) {
             $this->addAction([
                 'icon'   => 'icon-delete',
                 'title'  => trans('admin::app.settings.currencies.index.datagrid.delete'),

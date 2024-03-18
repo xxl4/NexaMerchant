@@ -51,7 +51,7 @@ class GroupDataGrid extends DataGrid
 
     public function prepareActions()
     {
-        if (bouncer()->hasPermission('customers.groups.edit')) {
+        if (bouncer_manage()->hasPermission('customers.groups.edit')) {
             $this->addAction([
                 'icon'   => 'icon-edit',
                 'title'  => trans('admin::app.customers.groups.index.datagrid.edit'),
@@ -62,7 +62,7 @@ class GroupDataGrid extends DataGrid
             ]);
         }
 
-        if (bouncer()->hasPermission('customers.groups.delete')) {
+        if (bouncer_manage()->hasPermission('customers.groups.delete')) {
             $this->addAction([
                 'icon'   => 'icon-delete',
                 'title'  => trans('admin::app.customers.groups.index.datagrid.delete'),

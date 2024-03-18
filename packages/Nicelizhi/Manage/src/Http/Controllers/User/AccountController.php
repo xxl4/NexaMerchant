@@ -16,7 +16,7 @@ class AccountController extends Controller
      */
     public function edit()
     {
-        $user = auth()->guard('admin')->user();
+        $user = auth()->guard('manage')->user();
 
         return view('manage::account.edit', compact('user'));
     }
@@ -28,7 +28,7 @@ class AccountController extends Controller
      */
     public function update()
     {
-        $user = auth()->guard('admin')->user();
+        $user = auth()->guard('manage')->user();
 
         $this->validate(request(), [
             'name'             => 'required',

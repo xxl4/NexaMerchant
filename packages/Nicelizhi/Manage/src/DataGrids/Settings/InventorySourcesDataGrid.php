@@ -93,7 +93,7 @@ class InventorySourcesDataGrid extends DataGrid
      */
     public function prepareActions()
     {
-        if (bouncer()->hasPermission('settings.inventory_sources.edit')) {
+        if (bouncer_manage()->hasPermission('settings.inventory_sources.edit')) {
             $this->addAction([
                 'icon'   => 'icon-edit',
                 'title'  => trans('admin::app.settings.inventory-sources.index.datagrid.edit'),
@@ -104,7 +104,7 @@ class InventorySourcesDataGrid extends DataGrid
             ]);
         }
 
-        if (bouncer()->hasPermission('settings.inventory_sources.delete')) {
+        if (bouncer_manage()->hasPermission('settings.inventory_sources.delete')) {
             $this->addAction([
                 'icon'   => 'icon-delete',
                 'title'  => trans('admin::app.settings.inventory-sources.index.datagrid.delete'),

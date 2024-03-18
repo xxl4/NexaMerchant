@@ -79,7 +79,7 @@ class CampaignDataGrid extends DataGrid
      */
     public function prepareActions()
     {
-        if (bouncer()->hasPermission('marketing.communications.campaigns.edit')) {
+        if (bouncer_manage()->hasPermission('marketing.communications.campaigns.edit')) {
             $this->addAction([
                 'icon'   => 'icon-edit',
                 'title'  => trans('admin::app.marketing.communications.campaigns.index.datagrid.edit'),
@@ -90,7 +90,7 @@ class CampaignDataGrid extends DataGrid
             ]);
         }
 
-        if (bouncer()->hasPermission('marketing.communications.campaigns.delete')) {
+        if (bouncer_manage()->hasPermission('marketing.communications.campaigns.delete')) {
             $this->addAction([
                 'icon'         => 'icon-delete',
                 'title'        => trans('admin::app.marketing.communications.campaigns.index.datagrid.delete'),

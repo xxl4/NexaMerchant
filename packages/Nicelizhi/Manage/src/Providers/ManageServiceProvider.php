@@ -84,7 +84,7 @@ class ManageServiceProvider extends ServiceProvider
             $allowedPermissions = auth()->guard('manage')->user()->role->permissions;
 
             foreach (config('menu.admin') as $index => $item) {
-                if (! bouncer()->hasPermission($item['key'])) {
+                if (! bouncer_manage()->hasPermission($item['key'])) {
                     continue;
                 }
 

@@ -2,7 +2,7 @@
 
 namespace Nicelizhi\Manage\Http\Controllers;
 
-use Webkul\Admin\Http\Controllers\Controller;
+use Nicelizhi\Manage\Http\Controllers\Controller;
 use Webkul\Notification\Repositories\NotificationRepository;
 
 class NotificationController extends Controller

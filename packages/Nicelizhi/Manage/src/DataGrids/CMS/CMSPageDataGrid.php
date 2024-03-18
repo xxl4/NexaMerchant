@@ -87,7 +87,7 @@ class CMSPageDataGrid extends DataGrid
             },
         ]);
 
-        if (bouncer()->hasPermission('cms.edit')) {
+        if (bouncer_manage()->hasPermission('cms.edit')) {
             $this->addAction([
                 'icon'   => 'icon-edit',
                 'title'  => trans('admin::app.cms.index.datagrid.edit'),
@@ -98,7 +98,7 @@ class CMSPageDataGrid extends DataGrid
             ]);
         }
 
-        if (bouncer()->hasPermission('cms.delete')) {
+        if (bouncer_manage()->hasPermission('cms.delete')) {
             $this->addAction([
                 'icon'   => 'icon-delete',
                 'title'  => trans('admin::app.cms.index.datagrid.delete'),
@@ -117,7 +117,7 @@ class CMSPageDataGrid extends DataGrid
      */
     public function prepareMassActions()
     {
-        if (bouncer()->hasPermission('cms.mass-delete')) {
+        if (bouncer_manage()->hasPermission('cms.mass-delete')) {
             $this->addMassAction([
                 'title'  => trans('admin::app.cms.index.datagrid.delete'),
                 'method' => 'POST',

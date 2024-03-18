@@ -4,7 +4,7 @@ namespace Nicelizhi\Manage\Http\Controllers;
 
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Storage;
-use Webkul\Admin\Http\Requests\ConfigurationForm;
+use Nicelizhi\Manage\Http\Requests\ConfigurationForm;
 use Webkul\Core\Repositories\CoreConfigRepository;
 use Webkul\Core\Tree;
 

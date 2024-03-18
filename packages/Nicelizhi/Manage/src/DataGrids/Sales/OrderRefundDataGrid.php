@@ -100,7 +100,7 @@ class OrderRefundDataGrid extends DataGrid
      */
     public function prepareActions()
     {
-        if (bouncer()->hasPermission('sales.refunds.view')) {
+        if (bouncer_manage()->hasPermission('sales.refunds.view')) {
             $this->addAction([
                 'icon'   => 'icon-view',
                 'title'  => trans('admin::app.sales.refunds.index.datagrid.view'),

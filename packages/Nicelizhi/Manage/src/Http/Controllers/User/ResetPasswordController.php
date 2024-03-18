@@ -82,7 +82,7 @@ class ResetPasswordController extends Controller
 
         event(new PasswordReset($admin));
 
-        auth()->guard('admin')->login($admin);
+        auth()->guard('manage')->login($admin);
     }
 
     /**

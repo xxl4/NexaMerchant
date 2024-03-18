@@ -125,7 +125,7 @@ class CategoryDataGrid extends DataGrid
      */
     public function prepareActions()
     {
-        if (bouncer()->hasPermission('catalog.categories.edit')) {
+        if (bouncer_manage()->hasPermission('catalog.categories.edit')) {
             $this->addAction([
                 'icon'   => 'icon-edit',
                 'title'  => trans('admin::app.catalog.categories.index.datagrid.edit'),
@@ -136,7 +136,7 @@ class CategoryDataGrid extends DataGrid
             ]);
         }
 
-        if (bouncer()->hasPermission('catalog.categories.delete')) {
+        if (bouncer_manage()->hasPermission('catalog.categories.delete')) {
             $this->addAction([
                 'icon'   => 'icon-delete',
                 'title'  => trans('admin::app.catalog.categories.index.datagrid.delete'),
@@ -147,7 +147,7 @@ class CategoryDataGrid extends DataGrid
             ]);
         }
 
-        if (bouncer()->hasPermission('catalog.categories.mass-delete')) {
+        if (bouncer_manage()->hasPermission('catalog.categories.mass-delete')) {
             $this->addMassAction([
                 'title'  => trans('admin::app.catalog.categories.index.datagrid.delete'),
                 'method' => 'POST',
@@ -155,7 +155,7 @@ class CategoryDataGrid extends DataGrid
             ]);
         }
 
-        if (bouncer()->hasPermission('catalog.categories.mass-update')) {
+        if (bouncer_manage()->hasPermission('catalog.categories.mass-update')) {
             $this->addMassAction([
                 'title'   => trans('admin::app.catalog.categories.index.datagrid.update-status'),
                 'method'  => 'POST',

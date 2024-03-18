@@ -68,7 +68,7 @@ class ExchangeRatesDataGrid extends DataGrid
 
     public function prepareActions()
     {
-        if (bouncer()->hasPermission('settings.exchange_rates.edit')) {
+        if (bouncer_manage()->hasPermission('settings.exchange_rates.edit')) {
             $this->addAction([
                 'icon'   => 'icon-edit',
                 'title'  => trans('admin::app.settings.exchange-rates.index.datagrid.edit'),
@@ -79,7 +79,7 @@ class ExchangeRatesDataGrid extends DataGrid
             ]);
         }
 
-        if (bouncer()->hasPermission('settings.exchange_rates.delete')) {
+        if (bouncer_manage()->hasPermission('settings.exchange_rates.delete')) {
             $this->addAction([
                 'icon'   => 'icon-delete',
                 'title'  => trans('admin::app.settings.exchange-rates.index.datagrid.delete'),

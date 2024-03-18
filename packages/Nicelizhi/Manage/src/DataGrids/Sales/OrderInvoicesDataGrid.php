@@ -109,7 +109,7 @@ class OrderInvoicesDataGrid extends DataGrid
      */
     public function prepareActions()
     {
-        if (bouncer()->hasPermission('sales.invoices.view')) {
+        if (bouncer_manage()->hasPermission('sales.invoices.view')) {
             $this->addAction([
                 'icon'   => 'icon-view',
                 'title'  => trans('admin::app.sales.invoices.index.datagrid.view'),

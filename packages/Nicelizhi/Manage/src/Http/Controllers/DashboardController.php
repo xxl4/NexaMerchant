@@ -9,7 +9,7 @@ class DashboardController extends Controller
     /**
      * Create a controller instance.
      * 
-     * @param  \Webkul\Admin\Helpers\Dashboard  $dashboardHelper
+     * @param  \Nicelizhi\Manage\Helpers\Dashboard  $dashboardHelper
      * @return void
      */
     public function __construct(protected Dashboard $dashboardHelper)

@@ -27,7 +27,7 @@ Route::group(['middleware' => ['admin'], 'prefix' => config('app.manage_url')], 
     Route::post('tinymce/upload', [TinyMCEController::class, 'upload'])->name('manage.tinymce.upload');
 
     /**
-     * Admin profile routes.
+     * manage profile routes.
      */
     Route::controller(AccountController::class)->prefix('account')->group(function () {
         Route::get('', 'edit')->name('manage.account.edit');

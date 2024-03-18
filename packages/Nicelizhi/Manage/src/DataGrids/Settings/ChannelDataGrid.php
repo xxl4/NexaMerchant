@@ -76,7 +76,7 @@ class ChannelDataGrid extends DataGrid
 
     public function prepareActions()
     {
-        if (bouncer()->hasPermission('settings.channels.edit')) {
+        if (bouncer_manage()->hasPermission('settings.channels.edit')) {
             $this->addAction([
                 'icon'   => 'icon-edit',
                 'title'  => trans('admin::app.settings.channels.index.datagrid.edit'),
@@ -87,7 +87,7 @@ class ChannelDataGrid extends DataGrid
             ]);
         }
 
-        if (bouncer()->hasPermission('settings.channels.delete')) {
+        if (bouncer_manage()->hasPermission('settings.channels.delete')) {
             $this->addAction([
                 'icon'   => 'icon-delete',
                 'title'  => trans('admin::app.settings.channels.index.datagrid.delete'),

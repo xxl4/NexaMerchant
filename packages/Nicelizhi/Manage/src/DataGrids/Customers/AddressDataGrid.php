@@ -164,7 +164,7 @@ class AddressDataGrid extends DataGrid
      */
     public function prepareActions()
     {
-        if (bouncer()->hasPermission('customers.addresses.edit')) {
+        if (bouncer_manage()->hasPermission('customers.addresses.edit')) {
             $this->addAction([
                 'icon'   => 'icon-edit',
                 'title'  => trans('admin::app.customers.addresses.datagrid.edit'),
@@ -175,7 +175,7 @@ class AddressDataGrid extends DataGrid
             ]);
         }
 
-        if (bouncer()->hasPermission('customers.addresses.delete')) {
+        if (bouncer_manage()->hasPermission('customers.addresses.delete')) {
             $this->addAction([
                 'icon'   => 'icon-delete',
                 'title'  => trans('admin::app.customers.addresses.datagrid.delete'),

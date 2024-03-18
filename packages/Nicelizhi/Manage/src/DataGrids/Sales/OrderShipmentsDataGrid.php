@@ -128,7 +128,7 @@ class OrderShipmentsDataGrid extends DataGrid
      */
     public function prepareActions()
     {
-        if (bouncer()->hasPermission('sales.shipments.view')) {
+        if (bouncer_manage()->hasPermission('sales.shipments.view')) {
             $this->addAction([
                 'icon'   => 'icon-view',
                 'title'  => trans('admin::app.sales.shipments.index.datagrid.view'),

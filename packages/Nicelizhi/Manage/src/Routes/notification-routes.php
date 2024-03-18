@@ -6,7 +6,7 @@ use Nicelizhi\Manage\Http\Controllers\NotificationController;
 /**
  * Notification routes.
  */
-Route::group(['middleware' => ['admin'], 'prefix' => config('app.manage_url')], function () {
+Route::group(['middleware' => ['manage'], 'prefix' => config('app.manage_url')], function () {
 
     Route::controller(NotificationController::class)->group(function () {
         Route::get('notifications', 'index')->name('manage.notification.index');

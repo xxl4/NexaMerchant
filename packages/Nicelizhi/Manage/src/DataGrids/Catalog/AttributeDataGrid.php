@@ -116,7 +116,7 @@ class AttributeDataGrid extends DataGrid
      */
     public function prepareActions()
     {
-        if (bouncer()->hasPermission('catalog.attributes.edit')) {
+        if (bouncer_manage()->hasPermission('catalog.attributes.edit')) {
             $this->addAction([
                 'icon'   => 'icon-edit',
                 'title'  => trans('admin::app.catalog.attributes.index.datagrid.edit'),
@@ -127,7 +127,7 @@ class AttributeDataGrid extends DataGrid
             ]);
         }
 
-        if (bouncer()->hasPermission('catalog.attributes.delete')) {
+        if (bouncer_manage()->hasPermission('catalog.attributes.delete')) {
             $this->addAction([
                 'icon'   => 'icon-delete',
                 'title'  => trans('admin::app.catalog.attributes.index.datagrid.delete'),
@@ -146,7 +146,7 @@ class AttributeDataGrid extends DataGrid
      */
     public function prepareMassActions()
     {
-        if (bouncer()->hasPermission('catalog.attributes.mass-delete')) {
+        if (bouncer_manage()->hasPermission('catalog.attributes.mass-delete')) {
             $this->addMassAction([
                 'icon'   => 'icon-delete',
                 'title'  => trans('admin::app.catalog.attributes.index.datagrid.delete'),

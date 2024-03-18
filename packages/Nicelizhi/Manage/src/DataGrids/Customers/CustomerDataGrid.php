@@ -212,7 +212,7 @@ class CustomerDataGrid extends DataGrid
      */
     public function prepareMassActions()
     {
-        if (bouncer()->hasPermission('customers.customers.mass-delete')) {
+        if (bouncer_manage()->hasPermission('customers.customers.mass-delete')) {
             $this->addMassAction([
                 'title'  => trans('admin::app.customers.customers.index.datagrid.delete'),
                 'method' => 'POST',
@@ -220,7 +220,7 @@ class CustomerDataGrid extends DataGrid
             ]);
         }
 
-        if (bouncer()->hasPermission('customers.customers.mass-update')) {
+        if (bouncer_manage()->hasPermission('customers.customers.mass-update')) {
             $this->addMassAction([
                 'title'   => trans('admin::app.customers.customers.index.datagrid.update-status'),
                 'method'  => 'POST',
