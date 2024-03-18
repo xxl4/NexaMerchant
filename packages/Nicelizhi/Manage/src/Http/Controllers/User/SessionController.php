@@ -13,11 +13,11 @@ class SessionController extends Controller
      */
     public function create()
     {
-        if (auth()->guard('admin')->check()) {
+        if (auth()->guard('manage')->check()) {
             return redirect()->route('manage.dashboard.index');
         }
 
-        if (strpos(url()->previous(), 'admin') !== false) {
+        if (strpos(url()->previous(), 'manage') !== false) {
             $intendedUrl = url()->previous();
         } else {
             $intendedUrl = route('manage.dashboard.index');
@@ -42,16 +42,16 @@ class SessionController extends Controller
 
         $remember = request('remember');
 
-        if (! auth()->guard('admin')->attempt(request(['email', 'password']), $remember)) {
-            session()->flash('error', trans('admin::app.settings.users.login-error'));
+        if (! auth()->guard('manage')->attempt(request(['email', 'password']), $remember)) {
+            session()->flash('error', trans('manage::app.settings.users.login-error'));
 
             return redirect()->back();
         }
 
-        if (! auth()->guard('admin')->user()->status) {
-            session()->flash('warning', trans('admin::app.settings.users.activate-warning'));
+        if (! auth()->guard('manage')->user()->status) {
+            session()->flash('warning', trans('manage::app.settings.users.activate-warning'));
 
-            auth()->guard('admin')->logout();
+            auth()->guard('manage')->logout();
 
             return redirect()->route('manage.session.create');
         }
@@ -67,7 +67,7 @@ class SessionController extends Controller
      */
     public function destroy()
     {
-        auth()->guard('admin')->logout();
+        auth()->guard('manage')->logout();
 
         return redirect()->route('manage.session.create');
     }
