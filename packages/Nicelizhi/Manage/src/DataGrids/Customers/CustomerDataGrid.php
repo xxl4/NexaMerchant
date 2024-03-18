@@ -1,6 +1,6 @@
 <?php
 
-namespace Webkul\Admin\DataGrids\Customers;
+namespace Nicelizhi\Manage\DataGrids\Customers;
 
 use Illuminate\Support\Facades\DB;
 use Webkul\DataGrid\DataGrid;
