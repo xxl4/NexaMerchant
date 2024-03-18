@@ -1,5 +1,5 @@
 @php
-    $admin = auth()->guard('admin')->user();
+    $admin = auth()->guard('manage')->user();
 @endphp
 
 <x-admin::layouts>

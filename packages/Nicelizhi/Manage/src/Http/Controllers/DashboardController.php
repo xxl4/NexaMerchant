@@ -36,6 +36,7 @@ class DashboardController extends Controller
             ]);
         }
 
+
         return view('manage::dashboard.index')
             ->with([
                 'statistics' => [

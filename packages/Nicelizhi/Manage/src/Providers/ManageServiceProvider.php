@@ -79,9 +79,9 @@ class ManageServiceProvider extends ServiceProvider
         ], function ($view) {
             $tree = Tree::create();
 
-            $permissionType = auth()->guard('admin')->user()->role->permission_type;
+            $permissionType = auth()->guard('manage')->user()->role->permission_type;
             
-            $allowedPermissions = auth()->guard('admin')->user()->role->permissions;
+            $allowedPermissions = auth()->guard('manage')->user()->role->permissions;
 
             foreach (config('menu.admin') as $index => $item) {
                 if (! bouncer()->hasPermission($item['key'])) {
