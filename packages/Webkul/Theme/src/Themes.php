@@ -44,7 +44,7 @@ class Themes
      */
     public function __construct()
     {
-        if (! Str::contains(request()->url(), config('app.admin_url') . '/')) {
+        if (! Str::contains(request()->url(), config('app.admin_url') . '/') || ! Str::contains(request()->url(), config('app.manage_url') . '/')) {
             $this->defaultThemeCode = Config::get('themes.admin-default', null);
         } else {
             $this->defaultThemeCode = Config::get('themes.default', null);
@@ -119,7 +119,7 @@ class Themes
     {
         $parentThemes = [];
 
-        if (Str::contains(request()->url(), config('app.admin_url') . '/')) {
+        if (Str::contains(request()->url(), config('app.admin_url') . '/') || Str::contains(request()->url(), config('app.manage_url') . '/') ) {
             $themes = config('themes.admin-themes', []);
         } else {
             $themes = config('themes.themes', []);
@@ -192,7 +192,7 @@ class Themes
      */
     public function current()
     {
-        return $this->activeTheme ? $this->activeTheme : null;
+        return $this->activeTheme ? $this->activeTheme : $this->all()[0];
     }
 
     /**
