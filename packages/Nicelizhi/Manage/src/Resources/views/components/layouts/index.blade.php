@@ -13,17 +13,20 @@
 
         @stack('meta')
 
-        @bagistoVite(['src/Resources/assets/css/app.css', 'src/Resources/assets/js/app.js'])
-
+        <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/js/adminlte.min.js"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/css/adminlte.min.css">
         <link
             href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
             rel="stylesheet"
         />
 
-        <link
-            href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&display=swap"
-            rel="stylesheet"
-        />
+        <!-- Google Font: Source Sans Pro -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+        <!-- Font Awesome Icons -->
+        <link rel="stylesheet" href="/themes/manage/AdminLTE/plugins/fontawesome-free/css/all.min.css">
+        <!-- overlayScrollbars -->
+        <link rel="stylesheet" href="/themes/manage/AdminLTE/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+
 
         @if ($favicon = core()->getConfigData('general.design.admin_logo.favicon', core()->getCurrentChannelCode()))
             <link 
@@ -50,25 +53,23 @@
         {!! view_render_event('bagisto.shop.layout.head') !!}
     </head>
 
-    <body class="h-full dark:bg-gray-950">
+    <body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
         {!! view_render_event('bagisto.shop.layout.body.before') !!}
 
-        <div id="app" class="h-full">
-            {{-- Flash Message Blade Component --}}
-            <x-admin::flash-group />
+        <div id="app" class="wrapper">
 
-            {{-- Confirm Modal Blade Component --}}
-            <x-admin::modal.confirm />
+            <!-- Preloader -->
+            {{-- <div class="preloader flex-column justify-content-center align-items-center">
+                <img class="animation__wobble" src="{{ bagisto_asset('images/logo.svg') }}" alt="LOGO" height="160" width="160">
+            </div> --}}
+
 
             {!! view_render_event('bagisto.shop.layout.content.before') !!}
 
             {{-- Page Header Blade Component --}}
             <x-admin::layouts.header />
 
-            <div
-                class="flex gap-[16px] group/container {{ (request()->cookie('sidebar_collapsed') ?? 0) ? 'sidebar-collapsed' : '' }}"
-                ref="appLayout"
-            >
+            
                 {{-- Page Sidebar Blade Component --}}
                 <x-admin::layouts.sidebar />
 
@@ -82,7 +83,7 @@
                     {{-- Page Content Blade Component --}}
                     {{ $slot }}
                 </div>
-            </div>
+            
 
             {!! view_render_event('bagisto.shop.layout.content.after') !!}
         </div>
@@ -90,5 +91,30 @@
         {!! view_render_event('bagisto.shop.layout.body.after') !!}
 
         @stack('scripts')
+
+        <!-- REQUIRED SCRIPTS -->
+        <!-- jQuery -->
+        <script src="/themes/manage/AdminLTE/plugins/jquery/jquery.min.js"></script>
+        <!-- Bootstrap -->
+        <script src="/themes/manage/AdminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <!-- overlayScrollbars -->
+        <script src="/themes/manage/AdminLTE/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+        <!-- AdminLTE App -->
+        <script src="/themes/manage/AdminLTE/dist/js/adminlte.js"></script>
+
+        <!-- PAGE PLUGINS -->
+        <!-- jQuery Mapael -->
+        <script src="/themes/manage/AdminLTE/plugins/jquery-mousewheel/jquery.mousewheel.js"></script>
+        <script src="/themes/manage/AdminLTE/plugins/raphael/raphael.min.js"></script>
+        <script src="/themes/manage/AdminLTE/plugins/jquery-mapael/jquery.mapael.min.js"></script>
+        <script src="/themes/manage/AdminLTE/plugins/jquery-mapael/maps/usa_states.min.js"></script>
+        <!-- ChartJS -->
+        <script src="/themes/manage/AdminLTE/plugins/chart.js/Chart.min.js"></script>
+
+        <!-- AdminLTE for demo purposes -->
+        <script src="/themes/manage/AdminLTE/dist/js/demo.js"></script>
+        <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+        <script src="/themes/manage/AdminLTE/dist/js/pages/dashboard2.js"></script>
+
     </body>
 </html>
