@@ -37,7 +37,7 @@
           @foreach ($menu->items as $key=>$menuItem)
           <li class="nav-item  {{ $menu->getActive($menuItem) == 'active' ? 'menu-open' : '' }}">
             <a href="{{ $menuItem['url'] }}" class="nav-link  {{ $menu->getActive($menuItem) == 'active' ? 'active' : '' }}">
-              <i class="nav-icon fas fa-tachometer-alt {{ $menuItem['icon'] }}"></i>
+              <i class="nav-icon fas {{ $menuItem['icon'] }}"></i>
               <p>
                 @lang($menuItem['name'])
                 <i class="right fas fa-angle-left"></i>
