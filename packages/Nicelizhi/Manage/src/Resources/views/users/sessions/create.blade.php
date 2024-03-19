@@ -28,7 +28,7 @@
                 </div>
               </div>
               <div class="input-group mb-3">
-                <input type="password" class="form-control" placeholder="{{ trans('admin::app.users.sessions.password') }}" label="{{ trans('admin::app.users.sessions.password') }}">
+                <input type="password" class="form-control" name="password" id="password" placeholder="{{ trans('admin::app.users.sessions.password') }}" label="{{ trans('admin::app.users.sessions.password') }}">
                 <div class="input-group-append">
                   <div class="input-group-text">
                     <span class="fas fa-lock"></span>
