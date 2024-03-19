@@ -113,26 +113,15 @@ class Post extends Command
         //return false;
        // use grep command to gerneter new log file
 
-       $big_log_file = storage_path('logs/laravel-'.date("Y-m-d").'.log');
-       $error_log_file = storage_path('logs/error-'.date("Y-m-d").'.log');
+       $yesterday = date("Y-m-d", strtotime('-1 days'));
+
+       $big_log_file = storage_path('logs/laravel-'.$yesterday.'.log');
+       $error_log_file = storage_path('logs/error-'.$yesterday.'.log');
        echo $big_log_file."\r\n";
        echo $error_log_file."\r\n";
 
-       exec("cat ".$big_log_file." | grep SQLSTATE >".$error_log_file);
-
-       $items = file_get_contents($error_log_file);
-
-       $handle = fopen($error_log_file, "r");
-       if ($handle) {
-            while (($line = fgets($handle)) !== false) {
-                //var_dump($line);
-            }
-
-        fclose($handle);
-       }
+       if(!file_exists($error_log_file)) exec("cat ".$big_log_file." | grep SQLSTATE >".$error_log_file);
        
-       //exit;
-
 
      }
 
