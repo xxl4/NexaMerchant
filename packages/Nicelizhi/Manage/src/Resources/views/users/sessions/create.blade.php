@@ -19,6 +19,7 @@
             <p class="login-box-msg">Sign in to start your session</p>
       
             <form action="{{ route('admin.session.store') }}" method="post">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}" />
               <div class="input-group mb-3">
                 <input type="email" name="email" id="email" class="form-control" placeholder="{{trans('admin::app.users.sessions.email')}}" lang="{{trans('admin::app.users.sessions.email')}}">
                 <div class="input-group-append">
