@@ -59,9 +59,9 @@
         <div id="app" class="wrapper">
 
             <!-- Preloader -->
-            {{-- <div class="preloader flex-column justify-content-center align-items-center">
+            <div class="preloader flex-column justify-content-center align-items-center">
                 <img class="animation__wobble" src="{{ bagisto_asset('images/logo.svg') }}" alt="LOGO" height="160" width="160">
-            </div> --}}
+            </div>
 
 
             {!! view_render_event('bagisto.shop.layout.content.before') !!}
@@ -86,6 +86,9 @@
             
 
             {!! view_render_event('bagisto.shop.layout.content.after') !!}
+
+            <x-admin::layouts.footer />
+
         </div>
 
         {!! view_render_event('bagisto.shop.layout.body.after') !!}
@@ -110,8 +113,5 @@
         <script src="/themes/manage/AdminLTE/plugins/jquery-mapael/maps/usa_states.min.js"></script>
         <!-- ChartJS -->
         <script src="/themes/manage/AdminLTE/plugins/chart.js/Chart.min.js"></script>
-
-        
-
     </body>
 </html>
