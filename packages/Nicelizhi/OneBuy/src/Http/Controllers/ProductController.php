@@ -681,6 +681,7 @@ class ProductController extends Controller
     /**
      * 
      * 订单状态查询
+     * paypal 订单生成
      * 
      */
     public function order_status(Request $request) {
@@ -714,7 +715,7 @@ class ProductController extends Controller
             $addressData['billing'] = [];
             $address1 = [];
             array_push($address1, $input['address']->address_line_1);
-            $addressData['billing']['city'] = isset($input['address']->admin_area_1) ? $input['address']->admin_area_1 : "";
+            $addressData['billing']['city'] = isset($input['address']->admin_area_2) ? $input['address']->admin_area_2 : "";
             $addressData['billing']['country'] = $input['address']->country_code;
             $addressData['billing']['email'] = $payer['email_address'];
             $addressData['billing']['first_name'] = $payer['name']->given_name;
@@ -722,7 +723,7 @@ class ProductController extends Controller
             $national_number = isset($payment_source_paypal['phone_number']) ? $payment_source_paypal['phone_number']->national_number : "";
             $addressData['billing']['phone'] =  $national_number;
             $addressData['billing']['postcode'] = isset($input['address']->postal_code) ? $input['address']->postal_code : "";
-            $addressData['billing']['state'] = isset($input['address']->admin_area_2) ? $input['address']->admin_area_2 : "";
+            $addressData['billing']['state'] = isset($input['address']->admin_area_1) ? $input['address']->admin_area_1 : "";
             $addressData['billing']['use_for_shipping'] = true;
             $addressData['billing']['address1'] = $address1;
             $addressData['shipping'] = [];
