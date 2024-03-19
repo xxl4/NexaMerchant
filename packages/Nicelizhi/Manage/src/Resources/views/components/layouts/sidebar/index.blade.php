@@ -40,7 +40,9 @@
               <i class="nav-icon fas {{ $menuItem['icon'] }}"></i>
               <p>
                 @lang($menuItem['name'])
+                @if (count($menuItem['children']))
                 <i class="right fas fa-angle-left"></i>
+                @endif
               </p>
             </a>
             @if (count($menuItem['children']))
