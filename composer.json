@@ -63,7 +63,6 @@
             "App\\": "app/",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/",
-            "Webkul\\Admin\\": "packages/Webkul/Admin/src",
             "Webkul\\Attribute\\": "packages/Webkul/Attribute/src",
             "Webkul\\CartRule\\": "packages/Webkul/CartRule/src",
             "Webkul\\CatalogRule\\": "packages/Webkul/CatalogRule/src",
@@ -105,7 +104,6 @@
     "autoload-dev": {
         "psr-4": {
             "Tests\\": "tests/",
-            "Webkul\\Admin\\Tests\\": "packages/Webkul/Admin/tests",
             "Webkul\\DataGrid\\Tests\\": "packages/Webkul/DataGrid/tests",
             "Webkul\\Shop\\Tests\\": "packages/Webkul/Shop/tests",
             "Nicelizhi\\Checkout\\Tests\\": "packages/Nicelizhi/Checkout/tests",
