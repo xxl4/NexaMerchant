@@ -33,7 +33,7 @@ class TaxRateController extends Controller
             return app(TaxRateDataGrid::class)->toJson();
         }
 
-        return view('manage::settings.taxes.rates.index');
+        return view('admin::settings.taxes.rates.index');
     }
 
     /**
@@ -47,7 +47,7 @@ class TaxRateController extends Controller
             return app(TaxRateDataGrid::class)->toJson();
         }
 
-        return view('manage::settings.taxes.rates.create');
+        return view('admin::settings.taxes.rates.create');
     }
 
     /**
@@ -104,7 +104,7 @@ class TaxRateController extends Controller
     {
         $taxRate = $this->taxRateRepository->findOrFail($id);
 
-        return view('manage::settings.taxes.rates.edit')->with('taxRate', $taxRate);
+        return view('admin::settings.taxes.rates.edit')->with('taxRate', $taxRate);
     }
 
     /**

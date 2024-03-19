@@ -32,10 +32,10 @@
                         <span class="icon-image text-[24px]"></span>
 
                         <p class="grid text-[14px] text-gray-600 dark:text-gray-300 font-semibold text-center">
-                            @lang('manage::app.components.media.videos.add-video-btn')
+                            @lang('admin::app.components.media.videos.add-video-btn')
                             
                             <span class="text-[12px]">
-                                @lang('manage::app.components.media.videos.allowed-types')
+                                @lang('admin::app.components.media.videos.allowed-types')
                             </span>
                         </p>
 
@@ -185,7 +185,7 @@
                     if (! validFiles) {
                         this.$emitter.emit('add-flash', {
                             type: 'warning',
-                            message: "@lang('manage::app.components.media.videos.not-allowed-error')"
+                            message: "@lang('admin::app.components.media.videos.not-allowed-error')"
                         });
 
                         return;
@@ -240,7 +240,7 @@
                     if (! validFiles) {
                         this.$emitter.emit('add-flash', {
                             type: 'warning',
-                            message: "@lang('manage::app.components.media.videos.not-allowed-error')"
+                            message: "@lang('admin::app.components.media.videos.not-allowed-error')"
                         });
 
                         return;

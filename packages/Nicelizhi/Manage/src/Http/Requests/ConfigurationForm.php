@@ -1,6 +1,6 @@
 <?php
 
-namespace Webkul\Admin\Http\Requests;
+namespace Nicelizhi\Manage\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Webkul\Core\Rules\CommaSeparatedInteger;

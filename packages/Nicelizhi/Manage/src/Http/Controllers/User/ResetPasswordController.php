@@ -23,7 +23,7 @@ class ResetPasswordController extends Controller
      */
     public function create($token = null)
     {
-        return view('manage::users.reset-password.create')->with([
+        return view('admin::users.reset-password.create')->with([
             'token' => $token,
             'email' => request('email'),
         ]);
@@ -50,7 +50,7 @@ class ResetPasswordController extends Controller
             );
 
             if ($response == Password::PASSWORD_RESET) {
-                return redirect()->route('manage.dashboard.index');
+                return redirect()->route('admin.dashboard.index');
             }
 
             return back()
@@ -82,7 +82,7 @@ class ResetPasswordController extends Controller
 
         event(new PasswordReset($admin));
 
-        auth()->guard('manage')->login($admin);
+        auth()->guard('admin')->login($admin);
     }
 
     /**

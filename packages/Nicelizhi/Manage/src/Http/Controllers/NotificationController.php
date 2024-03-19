@@ -64,7 +64,7 @@ class NotificationController extends Controller
 
             $notification->save();
 
-            return redirect()->route('manage.sales.orders.view', $orderId);
+            return redirect()->route('admin.sales.orders.view', $orderId);
         }
 
         abort(404);

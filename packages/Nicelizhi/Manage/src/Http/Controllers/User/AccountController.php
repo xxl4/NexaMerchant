@@ -16,9 +16,9 @@ class AccountController extends Controller
      */
     public function edit()
     {
-        $user = auth()->guard('manage')->user();
+        $user = auth()->guard('admin')->user();
 
-        return view('manage::account.edit', compact('user'));
+        return view('admin::account.edit', compact('user'));
     }
 
     /**
@@ -28,7 +28,7 @@ class AccountController extends Controller
      */
     public function update()
     {
-        $user = auth()->guard('manage')->user();
+        $user = auth()->guard('admin')->user();
 
         $this->validate(request(), [
             'name'             => 'required',
@@ -80,7 +80,7 @@ class AccountController extends Controller
         $user->update($data);
 
         if ($isPasswordChanged) {
-            Event::dispatch('manage.password.update.after', $user);
+            Event::dispatch('admin.password.update.after', $user);
         }
 
         session()->flash('success', trans('admin::app.account.edit.update-success'));

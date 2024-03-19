@@ -1,6 +1,6 @@
 <?php
 
-namespace Webkul\Admin\Http\Resources;
+namespace Nicelizhi\Manage\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 

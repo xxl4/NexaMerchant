@@ -17,7 +17,7 @@
                         class="cursor-pointer text-[12px] font-medium leading-[24px] text-blue-600"
                         v-if="hasAnyAppliedColumnValues(column.index)"
                     >
-                        @lang('manage::app.components.datagrid.filters.custom-filters.clear-all')
+                        @lang('admin::app.components.datagrid.filters.custom-filters.clear-all')
                     </p>
                 </div>
             </div>
@@ -32,7 +32,7 @@
                         >
                             <span 
                                 class="text-[14px] text-gray-400 dark:text-gray-400" 
-                                v-text="'@lang('manage::app.components.datagrid.filters.select')'"
+                                v-text="'@lang('admin::app.components.datagrid.filters.select')'"
                             >
                             </span>
 
@@ -88,7 +88,7 @@
                             class="cursor-pointer text-[12px] font-medium leading-[24px] text-blue-600"
                             v-if="hasAnyAppliedColumnValues(column.index)"
                         >
-                            @lang('manage::app.components.datagrid.filters.custom-filters.clear-all')
+                            @lang('admin::app.components.datagrid.filters.custom-filters.clear-all')
                         </p>
                     </div>
                 </div>
@@ -103,7 +103,7 @@
                             >
                                 <span 
                                     class="text-[14px] text-gray-400 dark:text-gray-400" 
-                                    v-text="'@lang('manage::app.components.datagrid.filters.select')'"
+                                    v-text="'@lang('admin::app.components.datagrid.filters.select')'"
                                 >
                                 </span>
 
@@ -157,7 +157,7 @@
                             class="cursor-pointer text-[12px] font-medium leading-[24px] text-blue-600"
                             v-if="hasAnyAppliedColumnValues(column.index)"
                         >
-                            @lang('manage::app.components.datagrid.filters.custom-filters.clear-all')
+                            @lang('admin::app.components.datagrid.filters.custom-filters.clear-all')
                         </p>
                     </div>
                 </div>
@@ -205,7 +205,7 @@
                         class="cursor-pointer text-[12px] font-medium leading-[24px] text-blue-600"
                         v-if="hasAnyAppliedColumnValues(column.index)"
                     >
-                        @lang('manage::app.components.datagrid.filters.custom-filters.clear-all')
+                        @lang('admin::app.components.datagrid.filters.custom-filters.clear-all')
                     </p>
                 </div>
             </div>
@@ -289,7 +289,7 @@
                         class="cursor-pointer text-[12px] font-medium leading-[24px] text-blue-600"
                         v-if="hasAnyAppliedColumnValues(column.index)"
                     >
-                        @lang('manage::app.components.datagrid.filters.custom-filters.clear-all')
+                        @lang('admin::app.components.datagrid.filters.custom-filters.clear-all')
                     </p>
                 </div>
             </div>
@@ -373,7 +373,7 @@
                         class="cursor-pointer text-[12px] font-medium leading-[24px] text-blue-600"
                         v-if="hasAnyAppliedColumnValues(column.index)"
                     >
-                        @lang('manage::app.components.datagrid.filters.custom-filters.clear-all')
+                        @lang('admin::app.components.datagrid.filters.custom-filters.clear-all')
                     </p>
                 </div>
             </div>
@@ -417,7 +417,7 @@
                 >
                     <span
                         class="text-[14px] text-gray-400 dark:text-gray-400" 
-                        v-text="'@lang('manage::app.components.datagrid.filters.select')'"
+                        v-text="'@lang('admin::app.components.datagrid.filters.select')'"
                     >
                     </span>
 
@@ -441,7 +441,7 @@
                                 <li v-if="!isMinimumCharacters">
                                     <p
                                         class="block p-2 text-gray-600 dark:text-gray-300"
-                                        v-text="'@lang('manage::app.components.datagrid.filters.dropdown.searchable.atleast-two-chars')'"
+                                        v-text="'@lang('admin::app.components.datagrid.filters.dropdown.searchable.atleast-two-chars')'"
                                     >
                                     </p>
                                 </li>
@@ -449,7 +449,7 @@
                                 <li v-else-if="!searchedOptions.length">
                                     <p
                                         class="block p-2 text-gray-600 dark:text-gray-300"
-                                        v-text="'@lang('manage::app.components.datagrid.filters.dropdown.searchable.no-results')'"
+                                        v-text="'@lang('admin::app.components.datagrid.filters.dropdown.searchable.no-results')'"
                                     >
                                     </p>
                                 </li>
@@ -504,7 +504,7 @@
                     }
 
                     this.$axios
-                        .get('{{ route('manage.datagrid.look_up') }}', {
+                        .get('{{ route('admin.datagrid.look_up') }}', {
                             params
                         })
                         .then(({

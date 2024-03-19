@@ -29,7 +29,7 @@ class LocaleController extends Controller
             return app(LocalesDataGrid::class)->toJson();
         }
 
-        return view('manage::settings.locales.index');
+        return view('admin::settings.locales.index');
     }
 
     /**

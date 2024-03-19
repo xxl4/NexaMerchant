@@ -33,7 +33,7 @@
                                 menubar: false,
                                 remove_script_host: false,
                                 document_base_url: '{{ asset('/') }}',
-                                uploadRoute: '{{ route('manage.tinymce.upload') }}',
+                                uploadRoute: '{{ route('admin.tinymce.upload') }}',
                                 csrfToken: '{{ csrf_token() }}',
                                 ...extraConfiguration,
                             };
@@ -92,21 +92,21 @@
                                 let json;
 
                                 if (xhr.status === 403) {
-                                    failure("@lang('manage::app.error.tinymce.http-error')", {
+                                    failure("@lang('admin::app.error.tinymce.http-error')", {
                                         remove: true
                                     });
                                     return;
                                 }
 
                                 if (xhr.status < 200 || xhr.status >= 300) {
-                                    failure("@lang('manage::app.error.tinymce.http-error')");
+                                    failure("@lang('admin::app.error.tinymce.http-error')");
                                     return;
                                 }
 
                                 json = JSON.parse(xhr.responseText);
 
                                 if (!json || typeof json.location != 'string') {
-                                    failure("@lang('manage::app.error.tinymce.invalid-json')" + xhr.responseText);
+                                    failure("@lang('admin::app.error.tinymce.invalid-json')" + xhr.responseText);
                                     return;
                                 }
 
@@ -114,7 +114,7 @@
                             };
 
                             xhr.onerror = function() {
-                                failure("@lang('manage::app.error.tinymce.upload-failed')");
+                                failure("@lang('admin::app.error.tinymce.upload-failed')");
                             };
 
                             formData = new FormData();

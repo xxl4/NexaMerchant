@@ -93,24 +93,24 @@ class InventorySourcesDataGrid extends DataGrid
      */
     public function prepareActions()
     {
-        if (bouncer_manage()->hasPermission('settings.inventory_sources.edit')) {
+        if (bouncer()->hasPermission('settings.inventory_sources.edit')) {
             $this->addAction([
                 'icon'   => 'icon-edit',
                 'title'  => trans('admin::app.settings.inventory-sources.index.datagrid.edit'),
                 'method' => 'GET',
                 'url'    => function ($row) {
-                    return route('manage.settings.inventory_sources.edit', $row->id);
+                    return route('admin.settings.inventory_sources.edit', $row->id);
                 },
             ]);
         }
 
-        if (bouncer_manage()->hasPermission('settings.inventory_sources.delete')) {
+        if (bouncer()->hasPermission('settings.inventory_sources.delete')) {
             $this->addAction([
                 'icon'   => 'icon-delete',
                 'title'  => trans('admin::app.settings.inventory-sources.index.datagrid.delete'),
                 'method' => 'DELETE',
                 'url'    => function ($row) {
-                    return route('manage.settings.inventory_sources.delete', $row->id);
+                    return route('admin.settings.inventory_sources.delete', $row->id);
                 },
             ]);
         }

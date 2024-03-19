@@ -224,13 +224,13 @@ class ProductDataGrid extends DataGrid
      */
     public function prepareActions()
     {
-        if (bouncer_manage()->hasPermission('catalog.products.edit')) {
+        if (bouncer()->hasPermission('catalog.products.edit')) {
             $this->addAction([
                 'icon'   => 'icon-edit',
                 'title'  => trans('admin::app.catalog.products.index.datagrid.edit'),
                 'method' => 'GET',
                 'url'    => function ($row) {
-                    return route('manage.catalog.products.edit', $row->product_id);
+                    return route('admin.catalog.products.edit', $row->product_id);
                 },
 
                 'condition' => function () {
@@ -247,18 +247,18 @@ class ProductDataGrid extends DataGrid
      */
     public function prepareMassActions()
     {
-        if (bouncer_manage()->hasPermission('catalog.products.mass-delete')) {
+        if (bouncer()->hasPermission('catalog.products.mass-delete')) {
             $this->addMassAction([
                 'title'  => trans('admin::app.catalog.products.index.datagrid.delete'),
-                'url'    => route('manage.catalog.products.mass_delete'),
+                'url'    => route('admin.catalog.products.mass_delete'),
                 'method' => 'POST',
             ]);
         }
 
-        if (bouncer_manage()->hasPermission('catalog.products.mass-update')) {
+        if (bouncer()->hasPermission('catalog.products.mass-update')) {
             $this->addMassAction([
                 'title'   => trans('admin::app.catalog.products.index.datagrid.update-status'),
-                'url'     => route('manage.catalog.products.mass_update'),
+                'url'     => route('admin.catalog.products.mass_update'),
                 'method'  => 'POST',
                 'options' => [
                     [

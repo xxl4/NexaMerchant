@@ -6,20 +6,20 @@ use Nicelizhi\Manage\Http\Controllers\CMS\PageController;
 /**
  * CMS routes.
  */
-Route::group(['middleware' => ['admin'], 'prefix' => config('app.manage_url')], function () {
+Route::group(['middleware' => ['admin'], 'prefix' => config('app.admin_url')], function () {
     Route::controller(PageController::class)->prefix('cms')->group(function () {
-        Route::get('/', 'index')->name('manage.cms.index');
+        Route::get('/', 'index')->name('admin.cms.index');
 
-        Route::get('create', 'create')->name('manage.cms.create');
+        Route::get('create', 'create')->name('admin.cms.create');
 
-        Route::post('create', 'store')->name('manage.cms.store');
+        Route::post('create', 'store')->name('admin.cms.store');
 
-        Route::get('edit/{id}', 'edit')->name('manage.cms.edit');
+        Route::get('edit/{id}', 'edit')->name('admin.cms.edit');
 
-        Route::put('edit/{id}', 'update')->name('manage.cms.update');
+        Route::put('edit/{id}', 'update')->name('admin.cms.update');
 
-        Route::delete('edit/{id}', 'delete')->name('manage.cms.delete');
+        Route::delete('edit/{id}', 'delete')->name('admin.cms.delete');
 
-        Route::post('mass-delete', 'massDelete')->name('manage.cms.mass_delete');
+        Route::post('mass-delete', 'massDelete')->name('admin.cms.mass_delete');
     });
 });

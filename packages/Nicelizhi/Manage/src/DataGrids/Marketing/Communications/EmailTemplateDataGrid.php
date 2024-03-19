@@ -72,24 +72,24 @@ class EmailTemplateDataGrid extends DataGrid
      */
     public function prepareActions()
     {
-        if (bouncer_manage()->hasPermission('marketing.communications.email-templates.edit')) {
+        if (bouncer()->hasPermission('marketing.communications.email-templates.edit')) {
             $this->addAction([
                 'icon'   => 'icon-edit',
                 'title'  => trans('admin::app.marketing.communications.templates.index.datagrid.edit'),
                 'method' => 'GET',
                 'url'    => function ($row) {
-                    return route('manage.marketing.communications.email_templates.edit', $row->id);
+                    return route('admin.marketing.communications.email_templates.edit', $row->id);
                 },
             ]);
         }
 
-        if (bouncer_manage()->hasPermission('marketing.communications.email-templates.delete')) {
+        if (bouncer()->hasPermission('marketing.communications.email-templates.delete')) {
             $this->addAction([
                 'icon'   => 'icon-delete',
                 'title'  => trans('admin::app.marketing.communications.templates.index.datagrid.delete'),
                 'method' => 'DELETE',
                 'url'    => function ($row) {
-                    return route('manage.marketing.communications.email_templates.delete', $row->id);
+                    return route('admin.marketing.communications.email_templates.delete', $row->id);
                 },
             ]);
         }

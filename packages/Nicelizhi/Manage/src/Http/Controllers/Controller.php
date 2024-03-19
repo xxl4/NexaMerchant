@@ -18,6 +18,6 @@ class Controller extends BaseController
      */
     public function redirectToLogin()
     {
-        return redirect()->route('manage.session.create');
+        return redirect()->route('admin.session.create');
     }
 }

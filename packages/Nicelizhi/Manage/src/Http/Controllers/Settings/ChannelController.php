@@ -29,7 +29,7 @@ class ChannelController extends Controller
             return app(ChannelDataGrid::class)->toJson();
         }
 
-        return view('manage::settings.channels.index');
+        return view('admin::settings.channels.index');
     }
 
     /**
@@ -39,7 +39,7 @@ class ChannelController extends Controller
      */
     public function create()
     {
-        return view('manage::settings.channels.create');
+        return view('admin::settings.channels.create');
     }
 
     /**
@@ -103,7 +103,7 @@ class ChannelController extends Controller
     {
         $channel = $this->channelRepository->with(['locales', 'currencies'])->findOrFail($id);
 
-        return view('manage::settings.channels.edit', compact('channel'));
+        return view('admin::settings.channels.edit', compact('channel'));
     }
 
     /**

@@ -4,20 +4,20 @@ namespace Nicelizhi\Manage\Helpers;
 
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Carbon;
-use Webkul\Admin\Helpers\Reporting\Sale;
-use Webkul\Admin\Helpers\Reporting\Product;
-use Webkul\Admin\Helpers\Reporting\Customer;
-use Webkul\Admin\Helpers\Reporting\Visitor;
+use Nicelizhi\Manage\Helpers\Reporting\Sale;
+use Nicelizhi\Manage\Helpers\Reporting\Product;
+use Nicelizhi\Manage\Helpers\Reporting\Customer;
+use Nicelizhi\Manage\Helpers\Reporting\Visitor;
 
 class Dashboard
 {
     /**
      * Create a controller instance.
      * 
-     * @param  \Webkul\Admin\Helpers\Reporting\Sale  $saleReporting
-     * @param  \Webkul\Admin\Helpers\Reporting\Product  $productReporting
-     * @param  \Webkul\Admin\Helpers\Reporting\Customer  $customerReporting
-     * @param  \Webkul\Admin\Helpers\Reporting\Visitor  $visitorReporting
+     * @param  \Nicelizhi\Manage\Helpers\Reporting\Sale  $saleReporting
+     * @param  \Nicelizhi\Manage\Helpers\Reporting\Product  $productReporting
+     * @param  \Nicelizhi\Manage\Helpers\Reporting\Customer  $customerReporting
+     * @param  \Nicelizhi\Manage\Helpers\Reporting\Visitor  $visitorReporting
      * @return void
      */
     public function __construct(

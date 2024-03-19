@@ -125,41 +125,41 @@ class CategoryDataGrid extends DataGrid
      */
     public function prepareActions()
     {
-        if (bouncer_manage()->hasPermission('catalog.categories.edit')) {
+        if (bouncer()->hasPermission('catalog.categories.edit')) {
             $this->addAction([
                 'icon'   => 'icon-edit',
                 'title'  => trans('admin::app.catalog.categories.index.datagrid.edit'),
                 'method' => 'GET',
                 'url'    => function ($row) {
-                    return route('manage.catalog.categories.edit', $row->category_id);
+                    return route('admin.catalog.categories.edit', $row->category_id);
                 },
             ]);
         }
 
-        if (bouncer_manage()->hasPermission('catalog.categories.delete')) {
+        if (bouncer()->hasPermission('catalog.categories.delete')) {
             $this->addAction([
                 'icon'   => 'icon-delete',
                 'title'  => trans('admin::app.catalog.categories.index.datagrid.delete'),
                 'method' => 'DELETE',
                 'url'    => function ($row) {
-                    return route('manage.catalog.categories.delete', $row->category_id);
+                    return route('admin.catalog.categories.delete', $row->category_id);
                 },
             ]);
         }
 
-        if (bouncer_manage()->hasPermission('catalog.categories.mass-delete')) {
+        if (bouncer()->hasPermission('catalog.categories.mass-delete')) {
             $this->addMassAction([
                 'title'  => trans('admin::app.catalog.categories.index.datagrid.delete'),
                 'method' => 'POST',
-                'url'    => route('manage.catalog.categories.mass_delete'),
+                'url'    => route('admin.catalog.categories.mass_delete'),
             ]);
         }
 
-        if (bouncer_manage()->hasPermission('catalog.categories.mass-update')) {
+        if (bouncer()->hasPermission('catalog.categories.mass-update')) {
             $this->addMassAction([
                 'title'   => trans('admin::app.catalog.categories.index.datagrid.update-status'),
                 'method'  => 'POST',
-                'url'     => route('manage.catalog.categories.mass_update'),
+                'url'     => route('admin.catalog.categories.mass_update'),
                 'options' => [
                     [
                         'label' => trans('admin::app.catalog.categories.index.datagrid.active'),

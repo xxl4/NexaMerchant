@@ -1,5 +1,5 @@
 @php
-    $admin = auth()->guard('manage')->user();
+    $admin = auth()->guard('admin')->user();
 @endphp
 
 <header class="flex justify-between items-center px-[16px] py-[10px] bg-white dark:bg-gray-900  border-b-[1px] dark:border-gray-800 sticky top-0 z-[10001]">
@@ -13,7 +13,7 @@
 
         {{-- Logo --}}
         <a
-            href="{{ route('manage.dashboard.index') }}" 
+            href="{{ route('admin.dashboard.index') }}" 
             class="place-self-start -mt-[4px]"            
         >
             @if (core()->getConfigData('general.design.admin_logo.logo_image', core()->getCurrentChannelCode()))
@@ -35,7 +35,7 @@
                 <input 
                     type="text" 
                     class="bg-white dark:bg-gray-900 border dark:border-gray-800 rounded-lg block w-full px-[40px] py-[5px] leading-6 text-gray-600 dark:text-gray-300 transition-all hover:border-gray-400"
-                    placeholder="@lang('manage::app.components.layouts.header.mega-search.title')" 
+                    placeholder="@lang('admin::app.components.layouts.header.mega-search.title')" 
                 >
             </div>
         </v-mega-search>
@@ -58,7 +58,7 @@
         >
             <span 
                 class="icon-store p-[6px] rounded-[6px] text-[24px] cursor-pointer transition-all hover:bg-gray-100 dark:hover:bg-gray-950 "
-                title="@lang('manage::app.components.layouts.header.visit-shop')"
+                title="@lang('admin::app.components.layouts.header.visit-shop')"
             >
             </span>
         </a>
@@ -68,7 +68,7 @@
             <span class="flex relative">
                 <span 
                     class="icon-notification p-[6px] rounded-[6px] text-[24px] cursor-pointer transition-all hover:bg-gray-100 dark:hover:bg-gray-950" 
-                    title="@lang('manage::app.components.layouts.header.notifications')"
+                    title="@lang('admin::app.components.layouts.header.notifications')"
                 >
                 </span>
             </span>
@@ -96,32 +96,32 @@
                 <div class="grid gap-[10px] px-[20px] py-[10px] border border-b-gray-300 dark:border-gray-800">
                     {{-- Version --}}
                     <p class="text-gray-400">
-                        @lang('manage::app.components.layouts.header.app-version', ['version' => 'v' . core()->version()])
+                        @lang('admin::app.components.layouts.header.app-version', ['version' => 'v' . core()->version()])
                     </p>
                 </div>
 
                 <div class="grid gap-[4px] pb-[10px]">
                     <a
                         class="px-5 py-2 text-[16px] text-gray-800 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-950 cursor-pointer"
-                        href="{{ route('manage.account.edit') }}"
+                        href="{{ route('admin.account.edit') }}"
                     >
-                        @lang('manage::app.components.layouts.header.my-account')
+                        @lang('admin::app.components.layouts.header.my-account')
                     </a>
 
                     {{--Admin logout--}}
                     <x-admin::form
                         method="DELETE"
-                        action="{{ route('manage.session.destroy') }}"
+                        action="{{ route('admin.session.destroy') }}"
                         id="adminLogout"
                     >
                     </x-admin::form>
 
                     <a
                         class="px-5 py-2 text-[16px] text-gray-800 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-950 cursor-pointer"
-                        href="{{ route('manage.session.destroy') }}"
+                        href="{{ route('admin.session.destroy') }}"
                         onclick="event.preventDefault(); document.getElementById('adminLogout').submit();"
                     >
-                        @lang('manage::app.components.layouts.header.logout')
+                        @lang('admin::app.components.layouts.header.logout')
                     </a>
                 </div>
             </x-slot:content>
@@ -192,7 +192,7 @@
                 type="text"
                 class="bg-white dark:bg-gray-900 border dark:border-gray-800 rounded-lg block w-full px-[40px] py-[5px] leading-6 text-gray-600 dark:text-gray-300 transition-all hover:border-gray-400 dark:hover:border-gray-400 focus:border-gray-400 dark:focus:border-gray-400 peer"
                 :class="{'border-gray-400': isDropdownOpen}"
-                placeholder="@lang('manage::app.components.layouts.header.mega-search.title')"
+                placeholder="@lang('admin::app.components.layouts.header.mega-search.title')"
                 v-model.lazy="searchTerm"
                 @click="searchTerm.length >= 2 ? isDropdownOpen = true : {}"
                 v-debounce="500"
@@ -223,7 +223,7 @@
                     <template v-else>
                         <div class="grid max-h-[400px] overflow-y-auto">
                             <a
-                                :href="'{{ route('manage.catalog.products.edit', ':id') }}'.replace(':id', product.id)"
+                                :href="'{{ route('admin.catalog.products.edit', ':id') }}'.replace(':id', product.id)"
                                 class="flex gap-[10px] justify-between p-[16px] border-b-[1px] border-slate-300 dark:border-gray-800 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-950 last:border-b-0"
                                 v-for="product in searchedResults.products.data"
                             >
@@ -238,7 +238,7 @@
                                             <img src="{{ bagisto_asset('images/product-placeholders/front.svg') }}">
                                         
                                             <p class="w-full absolute bottom-[5px] text-[6px] text-gray-400 text-center font-semibold">
-                                                @lang('manage::app.catalog.products.edit.types.grouped.image-placeholder')
+                                                @lang('admin::app.catalog.products.edit.types.grouped.image-placeholder')
                                             </p>
                                         </template>
 
@@ -254,7 +254,7 @@
                                         </p>
 
                                         <p class="text-gray-500">
-                                            @{{ "@lang('manage::app.components.layouts.header.mega-search.sku')".replace(':sku', product.sku) }}
+                                            @{{ "@lang('admin::app.components.layouts.header.mega-search.sku')".replace(':sku', product.sku) }}
                                         </p>
                                     </div>
                                 </div>
@@ -270,19 +270,19 @@
 
                         <div class="flex p-[12px] border-t-[1px] dark:border-gray-800">
                             <a
-                                :href="'{{ route('manage.catalog.products.index') }}?search=:query'.replace(':query', searchTerm)"
+                                :href="'{{ route('admin.catalog.products.index') }}?search=:query'.replace(':query', searchTerm)"
                                 class="text-[12px] text-blue-600 font-semibold cursor-pointer transition-all hover:underline"
                                 v-if="searchedResults.products.data.length"
                             >
-                                @{{ "@lang('manage::app.components.layouts.header.mega-search.explore-all-matching-products')".replace(':query', searchTerm).replace(':count', searchedResults.products.total) }}
+                                @{{ "@lang('admin::app.components.layouts.header.mega-search.explore-all-matching-products')".replace(':query', searchTerm).replace(':count', searchedResults.products.total) }}
                             </a>
 
                             <a
-                                href="{{ route('manage.catalog.products.index') }}"
+                                href="{{ route('admin.catalog.products.index') }}"
                                 class="text-[12px] text-blue-600 font-semibold cursor-pointer transition-all hover:underline"
                                 v-else
                             >
-                                @lang('manage::app.components.layouts.header.mega-search.explore-all-products')
+                                @lang('admin::app.components.layouts.header.mega-search.explore-all-products')
                             </a>
                         </div>
                     </template>
@@ -296,7 +296,7 @@
                     <template v-else>
                         <div class="grid max-h-[400px] overflow-y-auto">
                             <a
-                                :href="'{{ route('manage.sales.orders.view', ':id') }}'.replace(':id', order.id)"
+                                :href="'{{ route('admin.sales.orders.view', ':id') }}'.replace(':id', order.id)"
                                 class="grid gap-[6px] place-content-start p-[16px] border-b-[1px] border-slate-300 dark:border-gray-800 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-950 last:border-b-0"
                                 v-for="order in searchedResults.orders.data"
                             >
@@ -312,19 +312,19 @@
 
                         <div class="flex p-[12px] border-t-[1px] dark:border-gray-800  ">
                             <a
-                                :href="'{{ route('manage.sales.orders.index') }}?search=:query'.replace(':query', searchTerm)"
+                                :href="'{{ route('admin.sales.orders.index') }}?search=:query'.replace(':query', searchTerm)"
                                 class=" text-[12px] text-blue-600 font-semibold cursor-pointer transition-all hover:underline"
                                 v-if="searchedResults.orders.data.length"
                             >
-                                @{{ "@lang('manage::app.components.layouts.header.mega-search.explore-all-matching-orders')".replace(':query', searchTerm).replace(':count', searchedResults.orders.total) }}
+                                @{{ "@lang('admin::app.components.layouts.header.mega-search.explore-all-matching-orders')".replace(':query', searchTerm).replace(':count', searchedResults.orders.total) }}
                             </a>
 
                             <a
-                                href="{{ route('manage.sales.orders.index') }}"
+                                href="{{ route('admin.sales.orders.index') }}"
                                 class=" text-[12px] text-blue-600 font-semibold cursor-pointer transition-all hover:underline"
                                 v-else
                             >
-                                @lang('manage::app.components.layouts.header.mega-search.explore-all-orders')
+                                @lang('admin::app.components.layouts.header.mega-search.explore-all-orders')
                             </a>
                         </div>
                     </template>
@@ -338,7 +338,7 @@
                     <template v-else>
                         <div class="grid max-h-[400px] overflow-y-auto">
                             <a
-                                :href="'{{ route('manage.catalog.categories.edit', ':id') }}'.replace(':id', category.id)"
+                                :href="'{{ route('admin.catalog.categories.edit', ':id') }}'.replace(':id', category.id)"
                                 class="p-[16px] border-b-[1px] dark:border-gray-800 text-[14px] text-gray-600 dark:text-gray-300 font-semibold cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-950 last:border-b-0"
                                 v-for="category in searchedResults.categories.data"
                             >
@@ -348,19 +348,19 @@
 
                         <div class="flex p-[12px] border-t-[1px] dark:border-gray-800">
                             <a
-                                :href="'{{ route('manage.catalog.categories.index') }}?search=:query'.replace(':query', searchTerm)"
+                                :href="'{{ route('admin.catalog.categories.index') }}?search=:query'.replace(':query', searchTerm)"
                                 class=" text-[12px] text-blue-600 font-semibold cursor-pointer transition-all hover:underline"
                                 v-if="searchedResults.categories.data.length"
                             >
-                                @{{ "@lang('manage::app.components.layouts.header.mega-search.explore-all-matching-categories')".replace(':query', searchTerm).replace(':count', searchedResults.categories.total) }}
+                                @{{ "@lang('admin::app.components.layouts.header.mega-search.explore-all-matching-categories')".replace(':query', searchTerm).replace(':count', searchedResults.categories.total) }}
                             </a>
 
                             <a
-                                href="{{ route('manage.catalog.categories.index') }}"
+                                href="{{ route('admin.catalog.categories.index') }}"
                                 class=" text-[12px] text-blue-600 font-semibold cursor-pointer transition-all hover:underline"
                                 v-else
                             >
-                                @lang('manage::app.components.layouts.header.mega-search.explore-all-categories')
+                                @lang('admin::app.components.layouts.header.mega-search.explore-all-categories')
                             </a>
                         </div>
                     </template>
@@ -374,7 +374,7 @@
                     <template v-else>
                         <div class="grid max-h-[400px] overflow-y-auto">
                             <a
-                                :href="'{{ route('manage.customers.customers.view', ':id') }}'.replace(':id', customer.id)"
+                                :href="'{{ route('admin.customers.customers.view', ':id') }}'.replace(':id', customer.id)"
                                 class="grid gap-[6px] place-content-start p-[16px] border-b-[1px] border-slate-300 dark:border-gray-800 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-950 last:border-b-0"
                                 v-for="customer in searchedResults.customers.data"
                             >
@@ -390,19 +390,19 @@
 
                         <div class="flex p-[12px] border-t-[1px] dark:border-gray-800">
                             <a
-                                :href="'{{ route('manage.customers.customers.index') }}?search=:query'.replace(':query', searchTerm)"
+                                :href="'{{ route('admin.customers.customers.index') }}?search=:query'.replace(':query', searchTerm)"
                                 class=" text-[12px] text-blue-600 font-semibold cursor-pointer transition-all hover:underline"
                                 v-if="searchedResults.customers.data.length"
                             >
-                                @{{ "@lang('manage::app.components.layouts.header.mega-search.explore-all-matching-customers')".replace(':query', searchTerm).replace(':count', searchedResults.customers.total) }}
+                                @{{ "@lang('admin::app.components.layouts.header.mega-search.explore-all-matching-customers')".replace(':query', searchTerm).replace(':count', searchedResults.customers.total) }}
                             </a>
 
                             <a
-                                href="{{ route('manage.customers.customers.index') }}"
+                                href="{{ route('admin.customers.customers.index') }}"
                                 class=" text-[12px] text-blue-600 font-semibold cursor-pointer transition-all hover:underline"
                                 v-else
                             >
-                                @lang('manage::app.components.layouts.header.mega-search.explore-all-customers')
+                                @lang('admin::app.components.layouts.header.mega-search.explore-all-customers')
                             </a>
                         </div>
                     </template>
@@ -424,27 +424,27 @@
                     tabs: {
                         products: {
                             key: 'products',
-                            title: "@lang('manage::app.components.layouts.header.mega-search.products')",
+                            title: "@lang('admin::app.components.layouts.header.mega-search.products')",
                             is_active: true,
-                            endpoint: "{{ route('manage.catalog.products.search') }}"
+                            endpoint: "{{ route('admin.catalog.products.search') }}"
                         },
                         
                         orders: {
                             key: 'orders',
-                            title: "@lang('manage::app.components.layouts.header.mega-search.orders')",
-                            endpoint: "{{ route('manage.sales.orders.search') }}"
+                            title: "@lang('admin::app.components.layouts.header.mega-search.orders')",
+                            endpoint: "{{ route('admin.sales.orders.search') }}"
                         },
                         
                         categories: {
                             key: 'categories',
-                            title: "@lang('manage::app.components.layouts.header.mega-search.categories')",
-                            endpoint: "{{ route('manage.catalog.categories.search') }}"
+                            title: "@lang('admin::app.components.layouts.header.mega-search.categories')",
+                            endpoint: "{{ route('admin.catalog.categories.search') }}"
                         },
                         
                         customers: {
                             key: 'customers',
-                            title: "@lang('manage::app.components.layouts.header.mega-search.customers')",
-                            endpoint: "{{ route('manage.customers.customers.search') }}"
+                            title: "@lang('admin::app.components.layouts.header.mega-search.customers')",
+                            endpoint: "{{ route('admin.customers.customers.search') }}"
                         }
                     },
 
@@ -522,7 +522,7 @@
                 <span class="flex relative">
                     <span
                         class="icon-notification p-[6px] rounded-[6px] text-[24px] text-red cursor-pointer transition-all hover:bg-gray-100 dark:hover:bg-gray-950" 
-                        title="@lang('manage::app.components.layouts.header.notifications')"
+                        title="@lang('admin::app.components.layouts.header.notifications')"
                     >
                     </span>
                 
@@ -539,7 +539,7 @@
             <x-slot:content class="!p-0 min-w-[250px] max-w-[250px]">
                 <!-- Header -->
                 <div class="text-[16px] p-[12px] text-gray-600 dark:text-gray-300 font-semibold border-b-[1px] dark:border-gray-800">
-                    @lang('manage::app.notifications.title', ['read' => 0])
+                    @lang('admin::app.notifications.title', ['read' => 0])
                 </div>
 
                 <!-- Content -->
@@ -547,7 +547,7 @@
                     <a
                         class="flex gap-[5px] items-start p-[12px] hover:bg-gray-50 dark:hover:bg-gray-950 border-b-[1px] dark:border-gray-800 last:border-b-0"
                         v-for="notification in notifications"
-                        :href="'{{ route('manage.notification.viewed_notification', ':orderId') }}'.replace(':orderId', notification.order_id)"
+                        :href="'{{ route('admin.notification.viewed_notification', ':orderId') }}'.replace(':orderId', notification.order_id)"
                     >
                         <!-- Notification Icon -->
                         <span
@@ -575,10 +575,10 @@
                 <!-- Footer -->
                 <div class="flex gap-[10px] justify-between p-[12px] border-t-[1px] dark:border-gray-800">
                     <a
-                        href="{{ route('manage.notification.index') }}"
+                        href="{{ route('admin.notification.index') }}"
                         class="text-[12px] text-blue-600 font-semibold cursor-pointer transition-all hover:underline"
                     >
-                        @lang('manage::app.notifications.view-all')
+                        @lang('admin::app.notifications.view-all')
                     </a>
 
                     <a
@@ -586,7 +586,7 @@
                         v-if="notifications?.length"
                         @click="readAll()"
                     >
-                        @lang('manage::app.notifications.read-all')
+                        @lang('admin::app.notifications.read-all')
                     </a>
                 </div>
             </x-slot:content>
@@ -636,12 +636,12 @@
                         totalUnRead: 0,
 
                         orderTypeMessages: {
-                            'pending': "@lang('manage::app.notifications.order-status-messages.pending')",
-                            'canceled': "@lang('manage::app.notifications.order-status-messages.canceled')",
-                            'closed': "@lang('manage::app.notifications.order-status-messages.closed')",
-                            'completed': "@lang('manage::app.notifications.order-status-messages.completed')",
-                            'processing': "@lang('manage::app.notifications.order-status-messages.processing')",
-                            'pending_payment': "@lang('manage::app.notifications.order-status-messages.pending-payment')",
+                            'pending': "@lang('admin::app.notifications.order-status-messages.pending')",
+                            'canceled': "@lang('admin::app.notifications.order-status-messages.canceled')",
+                            'closed': "@lang('admin::app.notifications.order-status-messages.closed')",
+                            'completed': "@lang('admin::app.notifications.order-status-messages.completed')",
+                            'processing': "@lang('admin::app.notifications.order-status-messages.processing')",
+                            'pending_payment': "@lang('admin::app.notifications.order-status-messages.pending-payment')",
                         }
                     }
                 },
@@ -664,7 +664,7 @@
 
                 methods: {
                     getNotification() {
-                        this.$axios.get('{{ route('manage.notification.get_notification') }}', {
+                        this.$axios.get('{{ route('admin.notification.get_notification') }}', {
                                 params: {
                                     limit: 5,
                                     read: 0
@@ -679,7 +679,7 @@
                     },
 
                     readAll() {
-                        this.$axios.post('{{ route('manage.notification.read_all') }}')
+                        this.$axios.post('{{ route('admin.notification.read_all') }}')
                             .then((response) => {
                                 this.notifications = response.data.search_results.data;
 

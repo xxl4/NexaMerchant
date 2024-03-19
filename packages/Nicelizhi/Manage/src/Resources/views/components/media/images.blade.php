@@ -35,10 +35,10 @@
                         <span class="icon-image text-[24px]"></span>
 
                         <p class="grid text-[14px] text-gray-600 dark:text-gray-300 font-semibold text-center">
-                            @lang('manage::app.components.media.images.add-image-btn')
+                            @lang('admin::app.components.media.images.add-image-btn')
                             
                             <span class="text-[12px]">
-                                @lang('manage::app.components.media.images.allowed-types')
+                                @lang('admin::app.components.media.images.allowed-types')
                             </span>
                         </p>
 
@@ -181,22 +181,22 @@
 
                     placeholders: [
                         {
-                            label: "@lang('manage::app.components.media.images.placeholders.front')",
+                            label: "@lang('admin::app.components.media.images.placeholders.front')",
                             image: "{{ bagisto_asset('images/product-placeholders/front.svg') }}"
                         }, {
-                            label: "@lang('manage::app.components.media.images.placeholders.next')",
+                            label: "@lang('admin::app.components.media.images.placeholders.next')",
                             image: "{{ bagisto_asset('images/product-placeholders/next-1.svg') }}"
                         }, {
-                            label: "@lang('manage::app.components.media.images.placeholders.next')",
+                            label: "@lang('admin::app.components.media.images.placeholders.next')",
                             image: "{{ bagisto_asset('images/product-placeholders/next-2.svg') }}"
                         }, {
-                            label: "@lang('manage::app.components.media.images.placeholders.zoom')",
+                            label: "@lang('admin::app.components.media.images.placeholders.zoom')",
                             image: "{{ bagisto_asset('images/product-placeholders/zoom.svg') }}"
                         }, {
-                            label: "@lang('manage::app.components.media.images.placeholders.use-cases')",
+                            label: "@lang('admin::app.components.media.images.placeholders.use-cases')",
                             image: "{{ bagisto_asset('images/product-placeholders/use-cases.svg') }}"
                         }, {
-                            label: "@lang('manage::app.components.media.images.placeholders.size')",
+                            label: "@lang('admin::app.components.media.images.placeholders.size')",
                             image: "{{ bagisto_asset('images/product-placeholders/size.svg') }}"
                         }
                     ]
@@ -220,7 +220,7 @@
                     if (! validFiles) {
                         this.$emitter.emit('add-flash', {
                             type: 'warning',
-                            message: "@lang('manage::app.components.media.images.not-allowed-error')"
+                            message: "@lang('admin::app.components.media.images.not-allowed-error')"
                         });
 
                         return;
@@ -269,7 +269,7 @@
                     if (! validFiles) {
                         this.$emitter.emit('add-flash', {
                             type: 'warning',
-                            message: "@lang('manage::app.components.media.images.not-allowed-error')"
+                            message: "@lang('admin::app.components.media.images.not-allowed-error')"
                         });
 
                         return;

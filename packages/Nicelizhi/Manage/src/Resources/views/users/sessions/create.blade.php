@@ -1,7 +1,7 @@
 <x-admin::layouts.anonymous>
     {{-- Page Title --}}
     <x-slot:title>
-        @lang('manage::app.users.sessions.title')
+        @lang('admin::app.users.sessions.title')
     </x-slot:title>
 
     <div class="flex justify-center items-center h-[100vh]">
@@ -15,10 +15,10 @@
 
             <div class="flex flex-col min-w-[300px] bg-white dark:bg-gray-900 rounded-[6px] box-shadow">
                 {{-- Login Form --}}
-                <x-admin::form :action="route('manage.session.store')">
+                <x-admin::form :action="route('admin.session.store')">
                     <div class="p-[16px]  ">
                         <p class="text-[20px] text-gray-800 dark:text-white font-bold">
-                            @lang('manage::app.users.sessions.title')
+                            @lang('admin::app.users.sessions.title')
                         </p>
                     </div>
 
@@ -27,7 +27,7 @@
                             {{-- Email --}}
                             <x-admin::form.control-group>
                                 <x-admin::form.control-group.label class="required">
-                                    @lang('manage::app.users.sessions.email')
+                                    @lang('admin::app.users.sessions.email')
                                 </x-admin::form.control-group.label>
 
                                 <x-admin::form.control-group.control 
@@ -36,8 +36,8 @@
                                     id="email"
                                     class="w-[254px] max-w-full" 
                                     rules="required|email" 
-                                    :label="trans('manage::app.users.sessions.email')"
-                                    :placeholder="trans('manage::app.users.sessions.email')"
+                                    :label="trans('admin::app.users.sessions.email')"
+                                    :placeholder="trans('admin::app.users.sessions.email')"
                                     >
                                 </x-admin::form.control-group.control>
 
@@ -52,7 +52,7 @@
                         <div class="relative w-full">
                             <x-admin::form.control-group>
                                 <x-admin::form.control-group.label class="required">
-                                    @lang('manage::app.users.sessions.password')
+                                    @lang('admin::app.users.sessions.password')
                                 </x-admin::form.control-group.label>
                         
                                 <x-admin::form.control-group.control 
@@ -61,8 +61,8 @@
                                     id="password"
                                     class="w-[254px] max-w-full ltr:pr-10 rtl:pl-10" 
                                     rules="required|min:6" 
-                                    :label="trans('manage::app.users.sessions.password')"
-                                    :placeholder="trans('manage::app.users.sessions.password')"
+                                    :label="trans('admin::app.users.sessions.password')"
+                                    :placeholder="trans('admin::app.users.sessions.password')"
                                 >
                                 </x-admin::form.control-group.control>
                         
@@ -84,13 +84,13 @@
                         {{-- Forgot Password Link --}}
                         <a 
                             class="text-[12px] text-blue-600 font-semibold leading-[24px] cursor-pointer"
-                            href="{{ route('manage.forget_password.create') }}"
+                            href="{{ route('admin.forget_password.create') }}"
                         >
-                            @lang('manage::app.users.sessions.forget-password-link')
+                            @lang('admin::app.users.sessions.forget-password-link')
                         </a>
                         <button
                             class="px-[14px] py-[6px] bg-blue-600 border border-blue-700 rounded-[6px] text-gray-50 font-semibold cursor-pointer">
-                            @lang('manage::app.users.sessions.submit-btn')
+                            @lang('admin::app.users.sessions.submit-btn')
                         </button>
                     </div>
                 </x-admin::form>

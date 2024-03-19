@@ -556,13 +556,13 @@
 
                 validateMassAction() {
                     if (! this.applied.massActions.indices.length) {
-                        this.$emitter.emit('add-flash', { type: 'warning', message: "@lang('manage::app.components.datagrid.index.no-records-selected')" });
+                        this.$emitter.emit('add-flash', { type: 'warning', message: "@lang('admin::app.components.datagrid.index.no-records-selected')" });
 
                         return false;
                     }
 
                     if (! this.applied.massActions.meta.action) {
-                        this.$emitter.emit('add-flash', { type: 'warning', message: "@lang('manage::app.components.datagrid.index.must-select-a-mass-action')" });
+                        this.$emitter.emit('add-flash', { type: 'warning', message: "@lang('admin::app.components.datagrid.index.must-select-a-mass-action')" });
 
                         return false;
                     }
@@ -571,7 +571,7 @@
                         this.applied.massActions.meta.action?.options?.length &&
                         this.applied.massActions.value === null
                     ) {
-                        this.$emitter.emit('add-flash', { type: 'warning', message: "@lang('manage::app.components.datagrid.index.must-select-a-mass-action-option')" });
+                        this.$emitter.emit('add-flash', { type: 'warning', message: "@lang('admin::app.components.datagrid.index.must-select-a-mass-action-option')" });
 
                         return false;
                     }

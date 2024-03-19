@@ -63,7 +63,7 @@
                                 class="col-start-[none]"
                                 v-if="$parent.available.actions.length"
                             >
-                                @lang('manage::app.components.datagrid.table.actions')
+                                @lang('admin::app.components.datagrid.table.actions')
                             </p>
                         </div>
                     </template>
@@ -134,7 +134,7 @@
                         <template v-else>
                             <div class="row grid px-[16px] py-[16px] border-b-[1px] dark:border-gray-800 text-gray-600 dark:text-gray-300 text-center">
                                 <p>
-                                    @lang('manage::app.components.datagrid.table.no-records-available')
+                                    @lang('admin::app.components.datagrid.table.no-records-available')
                                 </p>
                             </div>
                         </template>

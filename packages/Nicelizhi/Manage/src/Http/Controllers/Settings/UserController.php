@@ -40,7 +40,7 @@ class UserController extends Controller
 
         $roles = $this->roleRepository->all();
 
-        return view('manage::settings.users.index', compact('roles'));
+        return view('admin::settings.users.index', compact('roles'));
     }
 
     /**

@@ -68,24 +68,24 @@ class ExchangeRatesDataGrid extends DataGrid
 
     public function prepareActions()
     {
-        if (bouncer_manage()->hasPermission('settings.exchange_rates.edit')) {
+        if (bouncer()->hasPermission('settings.exchange_rates.edit')) {
             $this->addAction([
                 'icon'   => 'icon-edit',
                 'title'  => trans('admin::app.settings.exchange-rates.index.datagrid.edit'),
                 'method' => 'GET',
                 'url'    => function ($row) {
-                    return route('manage.settings.exchange_rates.edit', $row->currency_exchange_id);
+                    return route('admin.settings.exchange_rates.edit', $row->currency_exchange_id);
                 },
             ]);
         }
 
-        if (bouncer_manage()->hasPermission('settings.exchange_rates.delete')) {
+        if (bouncer()->hasPermission('settings.exchange_rates.delete')) {
             $this->addAction([
                 'icon'   => 'icon-delete',
                 'title'  => trans('admin::app.settings.exchange-rates.index.datagrid.delete'),
                 'method' => 'DELETE',
                 'url'    => function ($row) {
-                    return route('manage.settings.exchange_rates.delete', $row->currency_exchange_id);
+                    return route('admin.settings.exchange_rates.delete', $row->currency_exchange_id);
                 },
             ]);
         }

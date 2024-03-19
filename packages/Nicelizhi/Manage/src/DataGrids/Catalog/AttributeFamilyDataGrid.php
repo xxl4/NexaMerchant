@@ -61,24 +61,24 @@ class AttributeFamilyDataGrid extends DataGrid
      */
     public function prepareActions()
     {
-        if (bouncer_manage()->hasPermission('catalog.families.edit')) {
+        if (bouncer()->hasPermission('catalog.families.edit')) {
             $this->addAction([
                 'icon'   => 'icon-edit',
                 'title'  => trans('admin::app.catalog.families.index.datagrid.catalog.families.index.datagrid.edit'),
                 'method' => 'GET',
                 'url'    => function ($row) {
-                    return route('manage.catalog.families.edit', $row->id);
+                    return route('admin.catalog.families.edit', $row->id);
                 },
             ]);
         }
 
-        if (bouncer_manage()->hasPermission('catalog.families.edit')) {
+        if (bouncer()->hasPermission('catalog.families.edit')) {
             $this->addAction([
                 'icon'   => 'icon-delete',
                 'title'  => trans('admin::app.catalog.families.index.datagrid.catalog.families.index.datagrid.delete'),
                 'method' => 'DELETE',
                 'url'    => function ($row) {
-                    return route('manage.catalog.families.delete', $row->id);
+                    return route('admin.catalog.families.delete', $row->id);
                 },
             ]);
         }

@@ -31,7 +31,7 @@ class ThemeController extends Controller
             return app(ThemeDatagrid::class)->toJson();
         }
 
-        return view('manage::settings.themes.index');
+        return view('admin::settings.themes.index');
     }
 
     /**
@@ -80,7 +80,7 @@ class ThemeController extends Controller
     {
         $theme = $this->themeCustomizationRepository->find($id);
 
-        return view('manage::settings.themes.edit', compact('theme'));
+        return view('admin::settings.themes.edit', compact('theme'));
     }
 
     /**

@@ -36,8 +36,7 @@ class DashboardController extends Controller
             ]);
         }
 
-
-        return view('manage::dashboard.index')
+        return view('admin::dashboard.index')
             ->with([
                 'statistics' => [
                     'over_all'        => $this->dashboardHelper->getOverAllStats(),

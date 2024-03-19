@@ -1,10 +1,10 @@
 {
-    "name": "nicelizhi/NexaMerchant-manage",
+    "name": "nicelizhi/laravel-admin",
     "license": "MIT",
-    "description" : "Manage package",
+    "description" : "Admin package",
     "authors": [
         {
-            "name": "nicelizhi",
+            "name": "Steve",
             "email": "nice.lizhi@gmail.com"
         }
     ],
@@ -17,7 +17,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Nicelizhi\\Manage\\Providers\\AdminServiceProvider"
+                "Nicelizhi\\Manage\\Providers\\ManageServiceProvider"
             ],
             "aliases": {}
         }

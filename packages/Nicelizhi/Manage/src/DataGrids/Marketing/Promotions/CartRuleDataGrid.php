@@ -191,35 +191,35 @@ class CartRuleDataGrid extends DataGrid
      */
     public function prepareActions()
     {
-        if (bouncer_manage()->hasPermission('marketing.promotions.cart-rules.edit')) {
+        if (bouncer()->hasPermission('marketing.promotions.cart-rules.edit')) {
             $this->addAction([
                 'icon'   => 'icon-edit',
                 'title'  => trans('admin::app.marketing.promotions.cart-rules.index.datagrid.edit'),
                 'method' => 'GET',
                 'url'    => function ($row) {
-                    return route('manage.marketing.promotions.cart_rules.edit', $row->id);
+                    return route('admin.marketing.promotions.cart_rules.edit', $row->id);
                 },
             ]);
         }
 
-        if (bouncer_manage()->hasPermission('marketing.promotions.cart-rules.copy')) {
+        if (bouncer()->hasPermission('marketing.promotions.cart-rules.copy')) {
             $this->addAction([
                 'icon'   => 'icon-copy',
                 'title'  => trans('admin::app.marketing.promotions.cart-rules.index.datagrid.copy'),
                 'method' => 'GET',
                 'url'    => function ($row) {
-                    return route('manage.marketing.promotions.cart_rules.copy', $row->id);
+                    return route('admin.marketing.promotions.cart_rules.copy', $row->id);
                 },
             ]);
         }
 
-        if (bouncer_manage()->hasPermission('marketing.promotions.cart-rules.delete')) {
+        if (bouncer()->hasPermission('marketing.promotions.cart-rules.delete')) {
             $this->addAction([
                 'icon'   => 'icon-delete',
                 'title'  => trans('admin::app.marketing.promotions.cart-rules.index.datagrid.delete'),
                 'method' => 'DELETE',
                 'url'    => function ($row) {
-                    return route('manage.marketing.promotions.cart_rules.delete', $row->id);
+                    return route('admin.marketing.promotions.cart_rules.delete', $row->id);
                 },
             ]);
         }

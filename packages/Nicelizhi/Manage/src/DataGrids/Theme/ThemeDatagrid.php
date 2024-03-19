@@ -111,24 +111,24 @@ class ThemeDatagrid extends DataGrid
 
     public function prepareActions()
     {
-        if (bouncer_manage()->hasPermission('settings.themes.edit')) {
+        if (bouncer()->hasPermission('settings.themes.edit')) {
             $this->addAction([
                 'icon'   => 'icon-edit',
                 'title'  => trans('admin::app.settings.themes.index.datagrid.view'),
                 'method' => 'GET',
                 'url'    => function ($row) {
-                    return route('manage.settings.themes.edit', $row->id);
+                    return route('admin.settings.themes.edit', $row->id);
                 },
             ]);
         }
     
-        if (bouncer_manage()->hasPermission('settings.themes.delete')) {
+        if (bouncer()->hasPermission('settings.themes.delete')) {
             $this->addAction([
                 'icon'   => 'icon-delete',
                 'title'  => trans('admin::app.settings.themes.index.datagrid.delete'),
                 'method' => 'DELETE',
                 'url'    => function ($row) {
-                    return route('manage.settings.themes.delete', $row->id);
+                    return route('admin.settings.themes.delete', $row->id);
                 },
             ]);
         }

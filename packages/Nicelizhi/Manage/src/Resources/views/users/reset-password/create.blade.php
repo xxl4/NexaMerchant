@@ -1,7 +1,7 @@
 <x-admin::layouts.anonymous>
     {{-- Page Title --}}
     <x-slot:title>
-        @lang('manage::app.users.reset-password.title')
+        @lang('admin::app.users.reset-password.title')
     </x-slot:title>
 
     <div class="flex justify-center items-center h-[100vh]">
@@ -15,10 +15,10 @@
 
             <div class="flex flex-col min-w-[300px] bg-white dark:bg-gray-900 rounded-[6px] box-shadow">
                 {{-- Login Form --}}
-                <x-admin::form :action="route('manage.reset_password.store')">
+                <x-admin::form :action="route('admin.reset_password.store')">
                     <div class="p-[16px]  ">
                         <p class="text-[20px] text-gray-800 dark:text-white font-bold">
-                            @lang('manage::app.users.reset-password.title')
+                            @lang('admin::app.users.reset-password.title')
                         </p>
                     </div>
 
@@ -34,7 +34,7 @@
                             {{-- Register Email --}}
                             <x-admin::form.control-group>
                                 <x-admin::form.control-group.label class="required">
-                                    @lang('manage::app.users.reset-password.email')
+                                    @lang('admin::app.users.reset-password.email')
                                 </x-admin::form.control-group.label>
 
                                 <x-admin::form.control-group.control
@@ -43,8 +43,8 @@
                                     id="email"
                                     class="w-[254px] max-w-full" 
                                     rules="required|email" 
-                                    :label="trans('manage::app.users.reset-password.email')"
-                                    :placeholder="trans('manage::app.users.reset-password.email')"
+                                    :label="trans('admin::app.users.reset-password.email')"
+                                    :placeholder="trans('admin::app.users.reset-password.email')"
                                 >
                                 </x-admin::form.control-group.control>
 
@@ -59,7 +59,7 @@
                             {{-- Password --}}
                             <x-admin::form.control-group>
                                 <x-admin::form.control-group.label class="required">
-                                    @lang('manage::app.users.reset-password.password')
+                                    @lang('admin::app.users.reset-password.password')
                                 </x-admin::form.control-group.label>
 
                                 <x-admin::form.control-group.control
@@ -69,8 +69,8 @@
                                     class="w-[254px] max-w-full" 
                                     ref="password"
                                     rules="required|min:6" 
-                                    :label="trans('manage::app.users.reset-password.password')"
-                                    :placeholder="trans('manage::app.users.reset-password.password')"
+                                    :label="trans('admin::app.users.reset-password.password')"
+                                    :placeholder="trans('admin::app.users.reset-password.password')"
                                 >
                                 </x-admin::form.control-group.control>
 
@@ -85,7 +85,7 @@
                             {{-- Confirm Password --}}
                             <x-admin::form.control-group>
                                 <x-admin::form.control-group.label class="required">
-                                    @lang('manage::app.users.reset-password.confirm-password')
+                                    @lang('admin::app.users.reset-password.confirm-password')
                                 </x-admin::form.control-group.label>
 
                                 <x-admin::form.control-group.control
@@ -95,8 +95,8 @@
                                     class="w-[254px] max-w-full" 
                                     ref="password"
                                     rules="confirmed:@password" 
-                                    :label="trans('manage::app.users.reset-password.confirm-password')"
-                                    :placeholder="trans('manage::app.users.reset-password.confirm-password')"
+                                    :label="trans('admin::app.users.reset-password.confirm-password')"
+                                    :placeholder="trans('admin::app.users.reset-password.confirm-password')"
                                 >
                                 </x-admin::form.control-group.control>
 
@@ -112,15 +112,15 @@
                         {{-- Back to Sign In Page--}}
                         <a 
                             class="text-[12px] text-blue-600 font-semibold leading-[24px] cursor-pointer"
-                            href="{{ route('manage.session.create') }}"
+                            href="{{ route('admin.session.create') }}"
                         >
-                            @lang('manage::app.users.reset-password.back-link-title')
+                            @lang('admin::app.users.reset-password.back-link-title')
                         </a>
 
                         {{-- Form Submit Button --}}
                         <button 
                             class="px-[14px] py-[6px] bg-blue-600 border border-blue-700 rounded-[6px] text-gray-50 font-semibold cursor-pointer">
-                            @lang('manage::app.users.reset-password.submit-btn')
+                            @lang('admin::app.users.reset-password.submit-btn')
                         </button>
                     </div>
                 </x-admin::form>

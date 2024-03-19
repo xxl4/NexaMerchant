@@ -13,19 +13,19 @@ class SessionController extends Controller
      */
     public function create()
     {
-        if (auth()->guard('manage')->check()) {
-            return redirect()->route('manage.dashboard.index');
+        if (auth()->guard('admin')->check()) {
+            return redirect()->route('admin.dashboard.index');
         }
 
-        if (strpos(url()->previous(), 'manage') !== false) {
+        if (strpos(url()->previous(), 'admin') !== false) {
             $intendedUrl = url()->previous();
         } else {
-            $intendedUrl = route('manage.dashboard.index');
+            $intendedUrl = route('admin.dashboard.index');
         }
 
         session()->put('url.intended', $intendedUrl);
 
-        return view('manage::users.sessions.create');
+        return view('admin::users.sessions.create');
     }
 
     /**
@@ -42,21 +42,21 @@ class SessionController extends Controller
 
         $remember = request('remember');
 
-        if (! auth()->guard('manage')->attempt(request(['email', 'password']), $remember)) {
-            session()->flash('error', trans('manage::app.settings.users.login-error'));
+        if (! auth()->guard('admin')->attempt(request(['email', 'password']), $remember)) {
+            session()->flash('error', trans('admin::app.settings.users.login-error'));
 
             return redirect()->back();
         }
 
-        if (! auth()->guard('manage')->user()->status) {
-            session()->flash('warning', trans('manage::app.settings.users.activate-warning'));
+        if (! auth()->guard('admin')->user()->status) {
+            session()->flash('warning', trans('admin::app.settings.users.activate-warning'));
 
-            auth()->guard('manage')->logout();
+            auth()->guard('admin')->logout();
 
-            return redirect()->route('manage.session.create');
+            return redirect()->route('admin.session.create');
         }
 
-        return redirect()->intended(route('manage.dashboard.index'));
+        return redirect()->intended(route('admin.dashboard.index'));
     }
 
     /**
@@ -67,8 +67,8 @@ class SessionController extends Controller
      */
     public function destroy()
     {
-        auth()->guard('manage')->logout();
+        auth()->guard('admin')->logout();
 
-        return redirect()->route('manage.session.create');
+        return redirect()->route('admin.session.create');
     }
 }

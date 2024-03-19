@@ -20,7 +20,7 @@
                             class="inline-flex w-full max-w-max cursor-pointer appearance-none items-center justify-between gap-x-[8px] rounded-[6px] border dark:border-gray-800 bg-white dark:bg-gray-900 px-[10px] py-[6px] text-center leading-[24px] text-gray-600 dark:text-gray-300 transition-all marker:shadow hover:border-gray-400 dark:hover:border-gray-400 focus:border-gray-400 dark:focus:border-gray-400 focus:ring-black"
                         >
                             <span>
-                                @lang('manage::app.components.datagrid.toolbar.mass-actions.select-action')
+                                @lang('admin::app.components.datagrid.toolbar.mass-actions.select-action')
                             </span>
 
                             <span class="icon-sort-down text-[24px]"></span>
@@ -106,7 +106,7 @@
                             name="search"
                             :value="getAppliedColumnValues('all')"
                             class="block w-full rounded-lg border dark:border-gray-800 bg-white dark:bg-gray-900 py-[6px] ltr:pl-[12px] rtl:pr-[12px] ltr:pr-[40px] rtl:pl-[40px] leading-6 text-gray-600 dark:text-gray-300 transition-all hover:border-gray-400 dark:hover:border-gray-400 focus:border-gray-400  dark:focus:border-gray-400"
-                            placeholder="@lang('manage::app.components.datagrid.toolbar.search.title')"
+                            placeholder="@lang('admin::app.components.datagrid.toolbar.search.title')"
                             autocomplete="off"
                             @keyup.enter="filterPage"
                         >
@@ -139,7 +139,7 @@
                             <span class="icon-filter text-[22px]"></span>
 
                             <span>
-                                @lang('manage::app.components.datagrid.toolbar.filter.title')
+                                @lang('admin::app.components.datagrid.toolbar.filter.title')
                             </span>
 
                             <span
@@ -157,7 +157,7 @@
                 <x-slot:header>
                     <div class="flex justify-between items-center p-3">
                         <p class="text-[16px] text-gray-800 dark:text-white font-semibold">
-                            @lang('manage::app.components.datagrid.filters.title')
+                            @lang('admin::app.components.datagrid.filters.title')
                         </p>
                     </div>
                 </x-slot:header>

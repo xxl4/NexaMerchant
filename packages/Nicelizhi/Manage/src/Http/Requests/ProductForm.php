@@ -1,10 +1,10 @@
 <?php
 
-namespace Webkul\Admin\Http\Requests;
+namespace Nicelizhi\Manage\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Str;
-use Webkul\Admin\Validations\ProductCategoryUniqueSlug;
+use Nicelizhi\Manage\Validations\ProductCategoryUniqueSlug;
 use Webkul\Core\Rules\Decimal;
 use Webkul\Core\Rules\Slug;
 use Webkul\Product\Repositories\ProductAttributeValueRepository;

@@ -1,7 +1,7 @@
 <v-datagrid-export {{ $attributes }}>
     <div class="p-[6px] items-center cursor-pointer transition-all hover:bg-gray-200 dark:hover:bg-gray-800 hover:rounded-[6px]">
         <p class="text-gray-600 dark:text-gray-300 font-semibold leading-[24px]">
-            @lang('manage::app.export.export')
+            @lang('admin::app.export.export')
         </p>
     </div>
 </v-datagrid-export>
@@ -12,13 +12,13 @@
             <x-admin::modal ref="exportModal">
                 <x-slot:toggle>
                     <p class="text-gray-600 dark:text-gray-300 font-semibold leading-[24px]">
-                        @lang('manage::app.export.export')
+                        @lang('admin::app.export.export')
                     </p>
                 </x-slot:toggle>
 
                 <x-slot:header>
                     <p class="text-[18px] text-gray-800 dark:text-white font-bold">
-                        @lang('manage::app.export.download')
+                        @lang('admin::app.export.download')
                     </p>
                 </x-slot:header>
 
@@ -31,8 +31,8 @@
                                     name="format"
                                     v-model="format"
                                 >
-                                    <option value="xls">@lang('manage::app.export.xls')</option>
-                                    <option value="csv">@lang('manage::app.export.csv')</option>
+                                    <option value="xls">@lang('admin::app.export.xls')</option>
+                                    <option value="csv">@lang('admin::app.export.csv')</option>
                                 </x-admin::form.control-group.control>
                             </x-admin::form.control-group>
                         </x-admin::form>
@@ -45,7 +45,7 @@
                         class="primary-button"
                         @click="download"
                     >
-                        @lang('manage::app.export.export')
+                        @lang('admin::app.export.export')
                     </button>
                 </x-slot:footer>
             </x-admin::modal>
@@ -85,7 +85,7 @@
 
                 download() {
                     if (! this.available?.records?.length) {                        
-                        this.$emitter.emit('add-flash', { type: 'warning', message: '@lang('manage::app.export.no-records')' });
+                        this.$emitter.emit('add-flash', { type: 'warning', message: '@lang('admin::app.export.no-records')' });
 
                         this.$refs.exportModal.toggle();
                     } else {

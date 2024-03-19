@@ -75,24 +75,24 @@ class NewsLetterDataGrid extends DataGrid
      */
     public function prepareActions()
     {
-        if (bouncer_manage()->hasPermission('marketing.communications.subscribers.edit')) {
+        if (bouncer()->hasPermission('marketing.communications.subscribers.edit')) {
             $this->addAction([
                 'icon'   => 'icon-edit',
                 'title'  => trans('admin::app.marketing.communications.subscribers.index.datagrid.edit'),
                 'method' => 'GET',
                 'url'    => function ($row) {
-                    return route('manage.marketing.communications.subscribers.edit', $row->id);
+                    return route('admin.marketing.communications.subscribers.edit', $row->id);
                 },
             ]);
         }
 
-        if (bouncer_manage()->hasPermission('marketing.communications.subscribers.delete')) {
+        if (bouncer()->hasPermission('marketing.communications.subscribers.delete')) {
             $this->addAction([
                 'icon'   => 'icon-delete',
                 'title'  => trans('admin::app.marketing.communications.subscribers.index.datagrid.delete'),
                 'method' => 'DELETE',
                 'url'    => function ($row) {
-                    return route('manage.marketing.communications.subscribers.delete', $row->id);
+                    return route('admin.marketing.communications.subscribers.delete', $row->id);
                 },
             ]);
         }

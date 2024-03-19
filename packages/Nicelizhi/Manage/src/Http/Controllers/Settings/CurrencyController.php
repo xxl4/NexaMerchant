@@ -29,7 +29,7 @@ class CurrencyController extends Controller
             return app(CurrencyDataGrid::class)->toJson();
         }
 
-        return view('manage::settings.currencies.index');
+        return view('admin::settings.currencies.index');
     }
 
     /**

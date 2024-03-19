@@ -113,13 +113,13 @@ class OrderTransactionsDataGrid extends DataGrid
      */
     public function prepareActions()
     {
-        if (bouncer_manage()->hasPermission('sales.shipments.view')) {
+        if (bouncer()->hasPermission('sales.shipments.view')) {
             $this->addAction([
                 'icon'   => 'icon-view',
                 'title'  => trans('admin::app.sales.transactions.index.datagrid.view'),
                 'method' => 'GET',
                 'url'    => function ($row) {
-                    return route('manage.sales.transactions.view', $row->id);
+                    return route('admin.sales.transactions.view', $row->id);
                 },
             ]);
         }

@@ -1,9 +1,9 @@
 <?php
 
-namespace Webkul\Admin\Http\Requests;
+namespace Nicelizhi\Manage\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Webkul\Admin\Validations\ProductCategoryUniqueSlug;
+use Nicelizhi\Manage\Validations\ProductCategoryUniqueSlug;
 
 class CategoryRequest extends FormRequest
 {

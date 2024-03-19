@@ -19,11 +19,11 @@ class ManageServiceProvider extends ServiceProvider
     {
         Route::middleware('web')->group(__DIR__ . '/../Routes/web.php');
 
-        $this->loadTranslationsFrom(__DIR__ . '/../Resources/lang', 'manage');
+        $this->loadTranslationsFrom(__DIR__ . '/../Resources/lang', 'admin');
 
-        $this->loadViewsFrom(__DIR__ . '/../Resources/views', 'manage');
+        $this->loadViewsFrom(__DIR__ . '/../Resources/views', 'admin');
 
-        Blade::anonymousComponentPath(__DIR__ . '/../Resources/views/components', 'manage');
+        Blade::anonymousComponentPath(__DIR__ . '/../Resources/views/components', 'admin');
 
         $this->composeView();
 
@@ -51,12 +51,12 @@ class ManageServiceProvider extends ServiceProvider
     {
         $this->mergeConfigFrom(
             dirname(__DIR__) . '/Config/menu.php',
-            'menu.manage'
+            'menu.admin'
         );
 
         $this->mergeConfigFrom(
             dirname(__DIR__) . '/Config/acl.php',
-            'acl.manage'
+            'acl'
         );
 
         $this->mergeConfigFrom(
@@ -73,27 +73,26 @@ class ManageServiceProvider extends ServiceProvider
     protected function composeView()
     {
         view()->composer([
-            'manage::components.layouts.header.index',
-            'manage::components.layouts.sidebar.index',
-            'manage::components.layouts.tabs',
+            'admin::components.layouts.header.index',
+            'admin::components.layouts.sidebar.index',
+            'admin::components.layouts.tabs',
         ], function ($view) {
-            var_dump($view);exit;
             $tree = Tree::create();
 
-            $permissionType = auth()->guard('manage')->user()->role->permission_type;
+            $permissionType = auth()->guard('admin')->user()->role->permission_type;
             
-            $allowedPermissions = auth()->guard('manage')->user()->role->permissions;
+            $allowedPermissions = auth()->guard('admin')->user()->role->permissions;
 
-            foreach (config('menu.manage') as $index => $item) {
+            foreach (config('menu.admin') as $index => $item) {
                 if (! bouncer_manage()->hasPermission($item['key'])) {
                     continue;
                 }
 
                 if (
-                    $index + 1 < count(config('menu.manage'))
+                    $index + 1 < count(config('menu.admin'))
                     && $permissionType != 'all'
                 ) {
-                    $permission = config('menu.manage')[$index + 1];
+                    $permission = config('menu.admin')[$index + 1];
 
                     if (
                         substr_count($permission['key'], '.') == 2
@@ -106,7 +105,7 @@ class ManageServiceProvider extends ServiceProvider
 
                             $neededItem = $allowedPermissions[$key + 1];
 
-                            foreach (config('menu.manage') as $key1 => $menu) {
+                            foreach (config('menu.admin') as $key1 => $menu) {
                                 if ($menu['key'] == $neededItem) {
                                     $item['route'] = $menu['route'];
                                 }
@@ -126,8 +125,8 @@ class ManageServiceProvider extends ServiceProvider
 
 
         view()->composer([
-            'manage::settings.roles.create',
-            'manage::settings.roles.edit'
+            'admin::settings.roles.create',
+            'admin::settings.roles.edit'
         ], function ($view) {
             $view->with('acl', $this->createACL());
         });
@@ -161,7 +160,7 @@ class ManageServiceProvider extends ServiceProvider
         $tree = Tree::create();
 
 
-        foreach (config('acl.manage') as $item) {
+        foreach (config('acl') as $item) {
             $tree->add($item, 'acl');
         }
 

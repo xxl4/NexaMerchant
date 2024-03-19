@@ -34,26 +34,26 @@
 {{-- Type Select --}}
 <x-admin::form.control-group>
     <x-admin::form.control-group.label>
-        @lang('manage::app.catalog.families.create.column')
+        @lang('admin::app.catalog.families.create.column')
     </x-admin::form.control-group.label>
 
     <x-admin::form.control-group.control
         type="select"
         name="column"
         rules="required"
-        :label="trans('manage::app.catalog.families.create.column')"
+        :label="trans('admin::app.catalog.families.create.column')"
     >
         <!-- Default Option -->
         <option value="">
-            @lang('manage::app.catalog.families.create.select-group')
+            @lang('admin::app.catalog.families.create.select-group')
         </option>
 
         <option value="1">
-            @lang('manage::app.catalog.families.create.main-column')
+            @lang('admin::app.catalog.families.create.main-column')
         </option>
 
         <option value="2">
-            @lang('manage::app.catalog.families.create.right-column')
+            @lang('admin::app.catalog.families.create.right-column')
         </option>
     </x-admin::form.control-group.control>
 
@@ -77,7 +77,7 @@
     <x-admin::form.control-group.label
         for="is_unique"
     >
-        @lang('manage::app.catalog.attributes.edit.is-unique')
+        @lang('admin::app.catalog.attributes.edit.is-unique')
     </x-admin::form.control-group.label>
 </x-admin::form.control-group>
 
@@ -95,7 +95,7 @@
     <x-admin::form.control-group.label
         for="is_unique"
     >
-        @lang('manage::app.catalog.attributes.edit.is-unique')
+        @lang('admin::app.catalog.attributes.edit.is-unique')
     </x-admin::form.control-group.label>
 </x-admin::form.control-group>
 
@@ -248,7 +248,7 @@
 
 {{-- Datagrid Component --}}
 <x-admin::datagrid 
-    :src="route('manage.sales.orders.index')" 
+    :src="route('admin.sales.orders.index')" 
     :isMultiRow="true"
 >
 </x-admin::datagrid>

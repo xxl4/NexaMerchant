@@ -66,24 +66,24 @@ class CurrencyDataGrid extends DataGrid
      */
     public function prepareActions()
     {
-        if (bouncer_manage()->hasPermission('settings.currencies.edit')) {
+        if (bouncer()->hasPermission('settings.currencies.edit')) {
             $this->addAction([
                 'icon'   => 'icon-edit',
                 'title'  => trans('admin::app.settings.currencies.index.datagrid.edit'),
                 'method' => 'GET',
                 'url'    => function ($row) {
-                    return route('manage.settings.currencies.edit', $row->id);
+                    return route('admin.settings.currencies.edit', $row->id);
                 },
             ]);
         }
 
-        if (bouncer_manage()->hasPermission('settings.currencies.delete')) {
+        if (bouncer()->hasPermission('settings.currencies.delete')) {
             $this->addAction([
                 'icon'   => 'icon-delete',
                 'title'  => trans('admin::app.settings.currencies.index.datagrid.delete'),
                 'method' => 'DELETE',
                 'url'    => function ($row) {
-                    return route('manage.settings.currencies.delete', $row->id);
+                    return route('admin.settings.currencies.delete', $row->id);
                 },
             ]);
         }

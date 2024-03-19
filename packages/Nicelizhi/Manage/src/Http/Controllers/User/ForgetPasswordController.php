@@ -14,18 +14,18 @@ class ForgetPasswordController extends Controller
      */
     public function create()
     {
-        if (auth()->guard('manage')->check()) {
-            return redirect()->route('manage.dashboard.index');
+        if (auth()->guard('admin')->check()) {
+            return redirect()->route('admin.dashboard.index');
         } else {
-            if (strpos(url()->previous(), 'manage') !== false) {
+            if (strpos(url()->previous(), 'admin') !== false) {
                 $intendedUrl = url()->previous();
             } else {
-                $intendedUrl = route('manage.dashboard.index');
+                $intendedUrl = route('admin.dashboard.index');
             }
 
             session()->put('url.intended', $intendedUrl);
 
-            return view('manage::users.forget-password.create');
+            return view('admin::users.forget-password.create');
         }
     }
 

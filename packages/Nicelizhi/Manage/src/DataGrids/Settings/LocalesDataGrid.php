@@ -77,24 +77,24 @@ class LocalesDataGrid extends DataGrid
      */
     public function prepareActions()
     {
-        if (bouncer_manage()->hasPermission('settings.locales.edit')) {
+        if (bouncer()->hasPermission('settings.locales.edit')) {
             $this->addAction([
                 'icon'   => 'icon-edit',
                 'title'  => trans('admin::app.settings.locales.index.datagrid.edit'),
                 'method' => 'GET',
                 'url'    => function ($row) {
-                    return route('manage.settings.locales.edit', $row->id);
+                    return route('admin.settings.locales.edit', $row->id);
                 },
             ]);
         }
 
-        if (bouncer_manage()->hasPermission('settings.locales.delete')) {
+        if (bouncer()->hasPermission('settings.locales.delete')) {
             $this->addAction([
                 'icon'   => 'icon-delete',
                 'title'  => trans('admin::app.settings.locales.index.datagrid.delete'),
                 'method' => 'DELETE',
                 'url'    => function ($row) {
-                    return route('manage.settings.locales.delete', $row->id);
+                    return route('admin.settings.locales.delete', $row->id);
                 },
             ]);
         }

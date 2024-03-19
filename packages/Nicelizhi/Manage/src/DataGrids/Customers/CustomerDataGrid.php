@@ -190,7 +190,7 @@ class CustomerDataGrid extends DataGrid
             'title'  => trans('admin::app.customers.customers.index.datagrid.view'),
             'method' => 'GET',
             'url'    => function ($row) {
-                return route('manage.customers.customers.view', $row->customer_id);
+                return route('admin.customers.customers.view', $row->customer_id);
             },
         ]);
 
@@ -200,7 +200,7 @@ class CustomerDataGrid extends DataGrid
             'method' => 'GET',
             'target' => 'blank',
             'url'    => function ($row) {
-                return route('manage.customers.customers.login_as_customer', $row->customer_id);
+                return route('admin.customers.customers.login_as_customer', $row->customer_id);
             },
         ]);
     }
@@ -212,19 +212,19 @@ class CustomerDataGrid extends DataGrid
      */
     public function prepareMassActions()
     {
-        if (bouncer_manage()->hasPermission('customers.customers.mass-delete')) {
+        if (bouncer()->hasPermission('customers.customers.mass-delete')) {
             $this->addMassAction([
                 'title'  => trans('admin::app.customers.customers.index.datagrid.delete'),
                 'method' => 'POST',
-                'url'    => route('manage.customers.customers.mass_delete'),
+                'url'    => route('admin.customers.customers.mass_delete'),
             ]);
         }
 
-        if (bouncer_manage()->hasPermission('customers.customers.mass-update')) {
+        if (bouncer()->hasPermission('customers.customers.mass-update')) {
             $this->addMassAction([
                 'title'   => trans('admin::app.customers.customers.index.datagrid.update-status'),
                 'method'  => 'POST',
-                'url'     => route('manage.customers.customers.mass_update'),
+                'url'     => route('admin.customers.customers.mass_update'),
                 'options' => [
                     [
                         'label' => trans('admin::app.customers.customers.index.datagrid.active'),

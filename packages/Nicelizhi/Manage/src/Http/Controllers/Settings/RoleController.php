@@ -34,7 +34,7 @@ class RoleController extends Controller
             return app(RolesDataGrid::class)->toJson();
         }
 
-        return view('manage::settings.roles.index');
+        return view('admin::settings.roles.index');
     }
 
     /**
@@ -44,7 +44,7 @@ class RoleController extends Controller
      */
     public function create()
     {
-        return view('manage::settings.roles.create');
+        return view('admin::settings.roles.create');
     }
 
     /**
@@ -87,7 +87,7 @@ class RoleController extends Controller
     {
         $role = $this->roleRepository->findOrFail($id);
 
-        return view('manage::settings.roles.edit', compact('role'));
+        return view('admin::settings.roles.edit', compact('role'));
     }
 
     /**

@@ -79,25 +79,25 @@ class CampaignDataGrid extends DataGrid
      */
     public function prepareActions()
     {
-        if (bouncer_manage()->hasPermission('marketing.communications.campaigns.edit')) {
+        if (bouncer()->hasPermission('marketing.communications.campaigns.edit')) {
             $this->addAction([
                 'icon'   => 'icon-edit',
                 'title'  => trans('admin::app.marketing.communications.campaigns.index.datagrid.edit'),
                 'method' => 'GET',
                 'url'    => function ($row) {
-                    return route('manage.marketing.communications.campaigns.edit', $row->id);
+                    return route('admin.marketing.communications.campaigns.edit', $row->id);
                 },
             ]);
         }
 
-        if (bouncer_manage()->hasPermission('marketing.communications.campaigns.delete')) {
+        if (bouncer()->hasPermission('marketing.communications.campaigns.delete')) {
             $this->addAction([
                 'icon'         => 'icon-delete',
                 'title'        => trans('admin::app.marketing.communications.campaigns.index.datagrid.delete'),
                 'method'       => 'DELETE',
                 'confirm_text' => trans('ui::app.datagrid.mass-action.delete', ['resource' => 'Campaign']),
                 'url'          => function ($row) {
-                    return route('manage.marketing.communications.campaigns.delete', $row->id);
+                    return route('admin.marketing.communications.campaigns.delete', $row->id);
                 },
             ]);
         }

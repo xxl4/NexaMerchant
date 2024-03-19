@@ -142,24 +142,24 @@ class ReviewDataGrid extends DataGrid
      */
     public function prepareActions()
     {
-        if (bouncer_manage()->hasPermission('customers.reviews.edit')) {
+        if (bouncer()->hasPermission('customers.reviews.edit')) {
             $this->addAction([
                 'icon'   => 'icon-edit',
                 'title'  => trans('admin::app.customers.reviews.index.datagrid.edit'),
                 'method' => 'GET',
                 'url'    => function ($row) {
-                    return route('manage.customers.customers.review.edit', $row->product_review_id);
+                    return route('admin.customers.customers.review.edit', $row->product_review_id);
                 },
             ]);
         }
 
-        if (bouncer_manage()->hasPermission('customers.reviews.delete')) {
+        if (bouncer()->hasPermission('customers.reviews.delete')) {
             $this->addAction([
                 'icon'   => 'icon-delete',
                 'title'  => trans('admin::app.customers.reviews.index.datagrid.delete'),
                 'method' => 'DELETE',
                 'url'    => function ($row) {
-                    return route('manage.customers.customers.review.delete', $row->product_review_id);
+                    return route('admin.customers.customers.review.delete', $row->product_review_id);
                 },
             ]);
         }
@@ -172,19 +172,19 @@ class ReviewDataGrid extends DataGrid
      */
     public function prepareMassActions()
     {
-        if (bouncer_manage()->hasPermission('customers.reviews.mass-delete')) {
+        if (bouncer()->hasPermission('customers.reviews.mass-delete')) {
             $this->addMassAction([
                 'title'  => trans('admin::app.customers.reviews.index.datagrid.delete'),
-                'url'    => route('manage.customers.customers.review.mass_delete'),
+                'url'    => route('admin.customers.customers.review.mass_delete'),
                 'method' => 'POST',
             ]);
         }
 
-        if (bouncer_manage()->hasPermission('customers.reviews.mass-update')) {
+        if (bouncer()->hasPermission('customers.reviews.mass-update')) {
             $this->addMassAction([
                 'title'   => trans('admin::app.customers.reviews.index.datagrid.update-status'),
                 'method'  => 'POST',
-                'url'     => route('manage.customers.customers.review.mass_update'),
+                'url'     => route('admin.customers.customers.review.mass_update'),
                 'options' => [
                     [
                         'label' => trans('admin::app.customers.reviews.index.datagrid.pending'),

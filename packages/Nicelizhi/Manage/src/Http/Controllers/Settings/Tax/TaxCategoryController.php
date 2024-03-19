@@ -34,7 +34,7 @@ class TaxCategoryController extends Controller
             return app(TaxCategoryDataGrid::class)->toJson();
         }
 
-        return view('manage::settings.taxes.categories.index')->with('taxRates', $this->taxRateRepository->all());
+        return view('admin::settings.taxes.categories.index')->with('taxRates', $this->taxRateRepository->all());
     }
 
     /**

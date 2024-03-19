@@ -12,14 +12,14 @@
                 <div class="grid gap-[12px]">
                     <div class="flex justify-between items-center">
                         <p class="text-[20px] font-medium dark:text-white">
-                            @lang('manage::app.components.products.search.title')
+                            @lang('admin::app.components.products.search.title')
                         </p>
 
                         <div
                             class="mr-[45px] primary-button"
                             @click="addSelected"
                         >
-                            @lang('manage::app.components.products.search.add-btn')
+                            @lang('admin::app.components.products.search.add-btn')
                         </div>
                     </div>
 
@@ -88,7 +88,7 @@
                                 </p>
 
                                 <p class="text-gray-600 dark:text-gray-300">
-                                    @{{ "@lang('manage::app.components.products.search.sku')".replace(':sku', product.sku) }}
+                                    @{{ "@lang('admin::app.components.products.search.sku')".replace(':sku', product.sku) }}
                                 </p>
                             </div>
                         </div>
@@ -100,7 +100,7 @@
                             </p>
 
                             <p class="text-green-600">
-                                @{{ "@lang('manage::app.components.products.search.qty')".replace(':qty', totalQty(product)) }}
+                                @{{ "@lang('admin::app.components.products.search.qty')".replace(':qty', totalQty(product)) }}
                             </p>
                         </div>
                     </div>
@@ -120,11 +120,11 @@
                     <!-- Add Variants Information -->
                     <div class="flex flex-col items-center">
                         <p class="text-[16px] text-gray-400 font-semibold">
-                            @lang('manage::app.components.products.search.empty-title')
+                            @lang('admin::app.components.products.search.empty-title')
                         </p>
 
                         <p class="text-gray-400">
-                            @lang('manage::app.components.products.search.empty-info')
+                            @lang('admin::app.components.products.search.empty-info')
                         </p>
                     </div>
                 </div>
@@ -182,7 +182,7 @@
 
                     let self = this;
                     
-                    this.$axios.get("{{ route('manage.catalog.products.search') }}", {
+                    this.$axios.get("{{ route('admin.catalog.products.search') }}", {
                             params: {
                                 ...{query: this.searchTerm},
                                 ...this.queryParams

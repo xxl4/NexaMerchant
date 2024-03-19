@@ -164,24 +164,24 @@ class AddressDataGrid extends DataGrid
      */
     public function prepareActions()
     {
-        if (bouncer_manage()->hasPermission('customers.addresses.edit')) {
+        if (bouncer()->hasPermission('customers.addresses.edit')) {
             $this->addAction([
                 'icon'   => 'icon-edit',
                 'title'  => trans('admin::app.customers.addresses.datagrid.edit'),
                 'method' => 'GET',
                 'url'    => function ($row) {
-                    return route('manage.customers.customers.addresses.edit', $row->address_id);
+                    return route('admin.customers.customers.addresses.edit', $row->address_id);
                 },
             ]);
         }
 
-        if (bouncer_manage()->hasPermission('customers.addresses.delete')) {
+        if (bouncer()->hasPermission('customers.addresses.delete')) {
             $this->addAction([
                 'icon'   => 'icon-delete',
                 'title'  => trans('admin::app.customers.addresses.datagrid.delete'),
                 'method' => 'POST',
                 'url'    => function ($row) {
-                    return route('manage.customers.customers.addresses.delete', $row->address_id);
+                    return route('admin.customers.customers.addresses.delete', $row->address_id);
                 },
             ]);
         }
@@ -196,7 +196,7 @@ class AddressDataGrid extends DataGrid
     {
         $this->addMassAction([
             'title'  => trans('admin::app.customers.addresses.delete'),
-            'url'    => route('manage.customers.customers.addresses.mass_delete', request('id')),
+            'url'    => route('admin.customers.customers.addresses.mass_delete', request('id')),
             'method' => 'POST',
         ]);
     }
