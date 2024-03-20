@@ -5,7 +5,7 @@ namespace Nicelizhi\Lp\Http\Controllers;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Event;
 use Nicelizhi\Lp\Repositories\LpRepository;
-use Webkul\Admin\Http\Controllers\Controller;
+use Nicelizhi\Manage\Http\Controllers\Controller;
 use Nicelizhi\Lp\DataGrids\Lp\LpDataGrid;
 use Nicelizhi\Lp\Contracts\Lp;
 
