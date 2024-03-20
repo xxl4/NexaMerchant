@@ -24,9 +24,7 @@
                         <tr>
                           <th>Order ID</th>
                           <th>Status</th>
-                          <th>Client Email</th>
-                          <th>first name</th>
-                          <th>last name</th>
+                          <th>Client</th>
                           <th>base_grand_total</th>
                           <th>Transaction Id</th>
                           <th>Payment Method</th>
@@ -86,14 +84,12 @@
             data: 'status'
           },
           {
-            data: 'customer_email'
+            data: 'customer_email',
+            render: function(data, type, row, meta) {
+              return "<p>" + data + "</p>" + row['customer_first_name'] + ' ' +  row['customer_last_name'];
+            }
           },
           {
-            data: 'customer_first_name'
-          },
-          {
-            data: 'customer_last_name'
-          },{
             data: 'base_grand_total'
           },{
             data: 'transaction_id'
@@ -106,8 +102,8 @@
           }
         ],
         lengthMenu: [
-            [20, 50, 100, -1],
-            [20, 50, 100, 'All']
+            [20, 50, 100],
+            [20, 50, 100]
         ],
         order: [[0, 'desc']],
         processing: true,
