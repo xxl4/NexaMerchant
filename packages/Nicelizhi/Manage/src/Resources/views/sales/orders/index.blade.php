@@ -22,8 +22,12 @@
                       <table id="example1" class="table table-bordered table-striped">
                         <thead>
                         <tr>
-                          <th>ID</th>
+                          <th>Order ID</th>
                           <th>Status</th>
+                          <th>Client Email</th>
+                          <th>first name</th>
+                          <th>last name</th>
+                          <th>Transaction Id</th>
                         </tr>
                         </thead>
                         <tbody>

@@ -40,23 +40,15 @@ class OrderController extends Controller
             
             $columns = array(
                 //array( 'db' => 'id', 'dt' => 0 ),
-                array( 'db' => '`o`.`increment_id`',  'dt' => 0, 'field'=>'increment_id' ),
-                array( 'db' => '`o`.`status`',   'dt' => 1, 'field'=>'status' )
-                // array( 'db' => 'office',     'dt' => 3 ),
-                // array(
-                //     'db'        => 'start_date',
-                //     'dt'        => 4,
-                //     'formatter' => function( $d, $row ) {
-                //         return date( 'jS M y', strtotime($d));
-                //     }
-                // ),
-                // array(
-                //     'db'        => 'salary',
-                //     'dt'        => 5,
-                //     'formatter' => function( $d, $row ) {
-                //         return '$'.number_format($d);
-                //     }
-                // )
+                array( 'db' => '`o`.`increment_id`',  'dt' => 0, 'field'=>'increment_id','formatter' => function($d, $row){
+                    return '#'.$d;
+                } ),
+                array( 'db' => '`o`.`status`',   'dt' => 1, 'field'=>'status' ),
+                array( 'db' => '`o`.`customer_email`',   'dt' => 2, 'field'=>'customer_email' ),
+                array( 'db' => '`o`.`customer_first_name`',   'dt' => 3, 'field'=>'customer_first_name' ),
+                array( 'db' => '`o`.`customer_last_name`',   'dt' => 4, 'field'=>'customer_last_name' ),
+                array( 'db' => '`o`.`customer_email`',   'dt' => 5, 'field'=>'customer_email' ),
+                array( 'db' => '`t`.`transaction_id`',   'dt' => 6, 'field'=>'transaction_id' )
             );
             // SQL server connection information
             $sql_details = array(
@@ -68,7 +60,7 @@ class OrderController extends Controller
                 'charset' => config("database.connections.mysql.charset") // Depending on your PHP and MySQL config, you may need this
             );
 
-            $joinQuery = "FROM `{$table}` AS `o` LEFT JOIN `{$table_pre}addresses` AS `a` ON (`a`.`order_id` = `o`.`id`)";
+            $joinQuery = "FROM `{$table}` AS `o` LEFT JOIN `{$table_pre}addresses` AS `a` ON (`a`.`order_id` = `o`.`id`) LEFT JOIN `{$table_pre}order_transactions` as t ON (`t`.`order_id` = `o`.`id`)";
             $extraCondition = "";
 
             //var_dump(request()->input());exit;
