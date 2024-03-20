@@ -8,6 +8,7 @@ use Nicelizhi\Manage\Http\Controllers\Controller;
 use Webkul\Sales\Repositories\OrderRepository;
 use Webkul\Sales\Repositories\OrderCommentRepository;
 use Nicelizhi\Manage\DataGrids\Sales\OrderDataGrid;
+use Nicelizhi\Manage\Helpers\SSP;
 
 class OrderController extends Controller
 {
@@ -31,7 +32,43 @@ class OrderController extends Controller
     public function index()
     {
         if (request()->ajax()) {
-            return app(OrderDataGrid::class)->toJson();
+            $table = config("database.connections.mysql.prefix").'orders';
+            // Table's primary key
+            $primaryKey = 'id';
+            
+            $columns = array(
+                //array( 'db' => 'id', 'dt' => 0 ),
+                array( 'db' => 'increment_id',  'dt' => 0 ),
+                array( 'db' => 'status',   'dt' => 1 )
+                // array( 'db' => 'office',     'dt' => 3 ),
+                // array(
+                //     'db'        => 'start_date',
+                //     'dt'        => 4,
+                //     'formatter' => function( $d, $row ) {
+                //         return date( 'jS M y', strtotime($d));
+                //     }
+                // ),
+                // array(
+                //     'db'        => 'salary',
+                //     'dt'        => 5,
+                //     'formatter' => function( $d, $row ) {
+                //         return '$'.number_format($d);
+                //     }
+                // )
+            );
+            // SQL server connection information
+            $sql_details = array(
+                'user' => config("database.connections.mysql.username"),
+                'pass' => config("database.connections.mysql.password"),
+                'db'   => config("database.connections.mysql.database"),
+                'host' => config("database.connections.mysql.host"),
+                'timezone' => config("database.connections.mysql.timezone"),
+                'charset' => config("database.connections.mysql.charset") // Depending on your PHP and MySQL config, you may need this
+            );
+
+            //var_dump(request()->input());exit;
+
+            return json_encode(SSP::simple( request()->input(), $sql_details, $table, $primaryKey, $columns ));
         }
 
         return view('admin::sales.orders.index');
