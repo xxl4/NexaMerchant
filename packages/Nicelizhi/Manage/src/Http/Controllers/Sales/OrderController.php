@@ -32,14 +32,16 @@ class OrderController extends Controller
     public function index()
     {
         if (request()->ajax()) {
-            $table = config("database.connections.mysql.prefix").'orders';
+            $table_pre = config("database.connections.mysql.prefix");
+            $table = $table_pre.'orders';
+
             // Table's primary key
             $primaryKey = 'id';
             
             $columns = array(
                 //array( 'db' => 'id', 'dt' => 0 ),
-                array( 'db' => 'increment_id',  'dt' => 0 ),
-                array( 'db' => 'status',   'dt' => 1 )
+                array( 'db' => '`o`.`increment_id`',  'dt' => 0, 'field'=>'increment_id' ),
+                array( 'db' => '`o`.`status`',   'dt' => 1, 'field'=>'status' )
                 // array( 'db' => 'office',     'dt' => 3 ),
                 // array(
                 //     'db'        => 'start_date',
@@ -66,9 +68,12 @@ class OrderController extends Controller
                 'charset' => config("database.connections.mysql.charset") // Depending on your PHP and MySQL config, you may need this
             );
 
+            $joinQuery = "FROM `{$table}` AS `o` LEFT JOIN `{$table_pre}addresses` AS `a` ON (`a`.`order_id` = `o`.`id`)";
+            $extraCondition = "";
+
             //var_dump(request()->input());exit;
 
-            return json_encode(SSP::simple( request()->input(), $sql_details, $table, $primaryKey, $columns ));
+            return json_encode(SSP::simple( request()->input(), $sql_details, $table, $primaryKey, $columns, $joinQuery, $extraCondition ));
         }
 
         return view('admin::sales.orders.index');
