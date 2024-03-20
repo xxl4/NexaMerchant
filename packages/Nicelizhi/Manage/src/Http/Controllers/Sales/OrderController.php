@@ -53,7 +53,7 @@ class OrderController extends Controller
                 array( 'db' => '`t`.`transaction_id`',   'dt' => 'transaction_id', 'field'=>'transaction_id' ),
                 array( 'db' => '`p`.`method`',   'dt' => 'method', 'field'=>'method' ),
                 array( 'db' => '`o`.`created_at`',   'dt' => 'created_at', 'field'=>'created_at' ),
-                array( 'db' => '`o`.`id`',   'dt' => 0, 'field'=>'id' )
+                array( 'db' => '`o`.`id`',   'dt' => 'oid', 'field'=>'id' )
             );
             // SQL server connection information
             $sql_details = [];

@@ -98,7 +98,10 @@
           },{
             data: 'created_at'
           },{
-            data: 'created_at'
+            data: 'oid',
+            render: function(data, type, row, meta) {
+              return '<a href="./orders/view/'+data+'">View</a>';
+            }
           }
         ],
         lengthMenu: [
