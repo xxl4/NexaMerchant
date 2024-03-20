@@ -53,7 +53,7 @@
         {!! view_render_event('bagisto.shop.layout.head') !!}
     </head>
 
-    <body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+    <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
         {!! view_render_event('bagisto.shop.layout.body.before') !!}
 
         <div id="app" class="wrapper">
