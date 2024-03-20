@@ -55,14 +55,7 @@ class OrderController extends Controller
                 array( 'db' => '`o`.`created_at`',   'dt' => 8, 'field'=>'created_at' )
             );
             // SQL server connection information
-            $sql_details = array(
-                'user' => config("database.connections.mysql.username"),
-                'pass' => config("database.connections.mysql.password"),
-                'db'   => config("database.connections.mysql.database"),
-                'host' => config("database.connections.mysql.host"),
-                'timezone' => config("database.connections.mysql.timezone"),
-                'charset' => config("database.connections.mysql.charset") // Depending on your PHP and MySQL config, you may need this
-            );
+            $sql_details = [];
 
             $joinQuery = "FROM `{$table}` AS `o` LEFT JOIN `{$table_pre}addresses` AS `a` ON (`a`.`order_id` = `o`.`id`) LEFT JOIN `{$table_pre}order_transactions` AS t ON (`t`.`order_id` = `o`.`id`) LEFT JOIN `{$table_pre}order_payment` AS p ON (`p`.`order_id` = `o`.`id`)";
             $extraCondition = "";

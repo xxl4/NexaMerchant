@@ -301,6 +301,16 @@ class SSP {
      */
     static function sql_connect ( $sql_details )
     {
+        if(empty($sql_details)) {
+            $sql_details = array(
+                'user' => config("database.connections.mysql.username"),
+                'pass' => config("database.connections.mysql.password"),
+                'db'   => config("database.connections.mysql.database"),
+                'host' => config("database.connections.mysql.host"),
+                'timezone' => config("database.connections.mysql.timezone"),
+                'charset' => config("database.connections.mysql.charset") // Depending on your PHP and MySQL config, you may need this
+            );
+        }
         try {
             $db = @new \PDO(
                 "mysql:host={$sql_details['host']};dbname={$sql_details['db']}",
@@ -311,7 +321,7 @@ class SSP {
                     \PDO::MYSQL_ATTR_INIT_COMMAND => "SET time_zone='$sql_details[timezone]'"
                  )
             );
-            $db->query("SET NAMES 'utf8'");
+            $db->query("SET NAMES '".$sql_details['charset']."'");
         }
         catch (\PDOException $e) {
             SSP::fatal(
