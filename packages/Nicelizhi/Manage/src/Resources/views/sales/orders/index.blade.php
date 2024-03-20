@@ -31,6 +31,7 @@
                           <th>Transaction Id</th>
                           <th>Payment Method</th>
                           <th>created_at</th>
+                          <th>Options</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -77,6 +78,33 @@
           url: "{{ route('admin.sales.orders.index') }}",
           type: 'GET'
         },
+        columns: [
+          {
+            data: 'increment_id'
+          },
+          {
+            data: 'status'
+          },
+          {
+            data: 'customer_email'
+          },
+          {
+            data: 'customer_first_name'
+          },
+          {
+            data: 'customer_last_name'
+          },{
+            data: 'base_grand_total'
+          },{
+            data: 'transaction_id'
+          },{
+            data: 'method'
+          },{
+            data: 'created_at'
+          },{
+            data: 'created_at'
+          }
+        ],
         lengthMenu: [
             [20, 50, 100, -1],
             [20, 50, 100, 'All']

@@ -40,19 +40,19 @@ class OrderController extends Controller
             
             $columns = array(
                 //array( 'db' => 'id', 'dt' => 0 ),
-                array( 'db' => '`o`.`increment_id`',  'dt' => 0, 'field'=>'increment_id','formatter' => function($d, $row){
+                array( 'db' => '`o`.`increment_id`',  'dt' => 'increment_id', 'field'=>'increment_id','formatter' => function($d, $row){
                     return '#'.$d;
                 } ),
-                array( 'db' => '`o`.`status`',   'dt' => 1, 'field'=>'status' ),
-                array( 'db' => '`o`.`customer_email`',   'dt' => 2, 'field'=>'customer_email' ),
-                array( 'db' => '`o`.`customer_first_name`',   'dt' => 3, 'field'=>'customer_first_name' ),
-                array( 'db' => '`o`.`customer_last_name`',   'dt' => 4, 'field'=>'customer_last_name' ),
-                array( 'db' => '`o`.`base_grand_total`',  'dt' => 5, 'field'=>'base_grand_total', 'formatter' => function($d, $row) {
+                array( 'db' => '`o`.`status`',   'dt' => 'status', 'field'=>'status' ),
+                array( 'db' => '`o`.`customer_email`',   'dt' => 'customer_email', 'field'=>'customer_email' ),
+                array( 'db' => '`o`.`customer_first_name`',   'dt' => 'customer_first_name', 'field'=>'customer_first_name' ),
+                array( 'db' => '`o`.`customer_last_name`',   'dt' => 'customer_last_name', 'field'=>'customer_last_name' ),
+                array( 'db' => '`o`.`base_grand_total`',  'dt' => 'base_grand_total', 'field'=>'base_grand_total', 'formatter' => function($d, $row) {
                     return core()->currency($d);
                 }),
-                array( 'db' => '`t`.`transaction_id`',   'dt' => 6, 'field'=>'transaction_id' ),
-                array( 'db' => '`p`.`method`',   'dt' => 7, 'field'=>'method' ),
-                array( 'db' => '`o`.`created_at`',   'dt' => 8, 'field'=>'created_at' )
+                array( 'db' => '`t`.`transaction_id`',   'dt' => 'transaction_id', 'field'=>'transaction_id' ),
+                array( 'db' => '`p`.`method`',   'dt' => 'method', 'field'=>'method' ),
+                array( 'db' => '`o`.`created_at`',   'dt' => 'created_at', 'field'=>'created_at' )
             );
             // SQL server connection information
             $sql_details = [];
@@ -60,7 +60,6 @@ class OrderController extends Controller
             $joinQuery = "FROM `{$table}` AS `o` LEFT JOIN `{$table_pre}addresses` AS `a` ON (`a`.`order_id` = `o`.`id`) LEFT JOIN `{$table_pre}order_transactions` AS t ON (`t`.`order_id` = `o`.`id`) LEFT JOIN `{$table_pre}order_payment` AS p ON (`p`.`order_id` = `o`.`id`)";
             $extraCondition = "";
 
-            //var_dump(request()->input());exit;
 
             return json_encode(SSP::simple( request()->input(), $sql_details, $table, $primaryKey, $columns, $joinQuery, $extraCondition ));
         }
