@@ -27,7 +27,10 @@
                           <th>Client Email</th>
                           <th>first name</th>
                           <th>last name</th>
+                          <th>base_grand_total</th>
                           <th>Transaction Id</th>
+                          <th>Payment Method</th>
+                          <th>created_at</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -75,8 +78,8 @@
           type: 'GET'
         },
         lengthMenu: [
-            [10, 25, 50, -1],
-            [10, 25, 50, 'All']
+            [20, 50, 100, -1],
+            [20, 50, 100, 'All']
         ],
         order: [[0, 'desc']],
         processing: true,

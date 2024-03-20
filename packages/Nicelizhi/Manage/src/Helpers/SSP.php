@@ -306,11 +306,14 @@ class SSP {
                 "mysql:host={$sql_details['host']};dbname={$sql_details['db']}",
                 $sql_details['user'],
                 $sql_details['pass'],
-                array( \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION )
+                array( 
+                    \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION,
+                    \PDO::MYSQL_ATTR_INIT_COMMAND => "SET time_zone='$sql_details[timezone]'"
+                 )
             );
             $db->query("SET NAMES 'utf8'");
         }
-        catch (PDOException $e) {
+        catch (\PDOException $e) {
             SSP::fatal(
                 "An error occurred while connecting to the database. ".
                 "The error reported by the server was: ".$e->getMessage()
@@ -353,7 +356,7 @@ class SSP {
         try {
             $stmt->execute();
         }
-        catch (PDOException $e) {
+        catch (\PDOException $e) {
             SSP::fatal( "An SQL error occurred: ".$e->getMessage() );
         }
 
