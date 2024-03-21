@@ -101,6 +101,9 @@ class Get extends Command
         $created_at_min = date("c", strtotime("-".$start." days"));
         $created_at_max = date("c", strtotime("-".$end." days"));
 
+        $created_at_min = date("c", strtotime("-3 days"));
+        $created_at_max = date("c");
+
         $this->info("processed at min ". $created_at_min);
         $this->info("processed at max ". $created_at_max);
         //exit;

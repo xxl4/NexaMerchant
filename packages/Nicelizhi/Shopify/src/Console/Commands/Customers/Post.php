@@ -17,6 +17,7 @@ use Webkul\Sales\Models\Order;
 use Nicelizhi\Shopify\Models\ShopifyOrder;
 use Nicelizhi\Shopify\Models\ShopifyStore;
 use Nicelizhi\Shopify\Models\ShopifyCustomer;
+use Illuminate\Support\Facades\Artisan;
 
 
 class Post extends Command
@@ -77,12 +78,15 @@ class Post extends Command
         }
         $shopify = $shopifyStore->toArray();
 
-        $client = new Client();
+        
 
-        $lists = Order::where(['status'=>'pending'])->orderBy("updated_at", "desc")->select(['id','customer_email'])->limit(1)->get();
+        $lists = Order::where(['status'=>'pending'])->orderBy("updated_at", "desc")->select(['id','customer_email'])->limit(100)->get();
         foreach($lists as $key=>$item) {
             $this->postCustomer($item->id,$item->customer_email, $shopify);
         }
+
+        Artisan::call("shopify:customers:get", ["--force"=> true]);
+
 
     }
 
@@ -99,15 +103,20 @@ class Post extends Command
             'email' => $email
         ])->first();
         if(!is_null($ShopifyCustomer)) {
+            $this->error($email." is have");
             return false;
         }
         $order = $this->orderRepository->findOrFail($order_id);
 
+        $client = new Client();
+
         $shipping_address = $order->shipping_address;
+
+        $pOrder = [];
 
 
         $addresses = [];
-        $addresses = [
+        $addresses[] = [
             "first_name" => $shipping_address->first_name,
             "last_name" => $shipping_address->last_name,
             "address1" => $shipping_address->address1,            
@@ -118,18 +127,65 @@ class Post extends Command
             "zip" => $shipping_address->postcode
         ];
 
+        $email_marketing_consent = [];
+        $email_marketing_consent['state'] = "subscribed";
+        $email_marketing_consent['opt_in_level'] = "confirmed_opt_in";
+        $email_marketing_consent['consent_updated_at'] = date("c");
+
+        $note = "";
+
+        $products = $order->items;
+
+        foreach($products as $key=>$product){
+            $sku = $product['additional'];
+            if(!isset($sku['attribute_name'])) continue;
+            $note .= $sku['product_sku'].$sku['attribute_name']."\r\n";
+        }
+
+        //var_dump($note);exit;
+
+        //var_dump($products);exit;
+
         $customer = [];
         $customer = [
             "first_name" => $shipping_address->first_name,
             "last_name"  => $shipping_address->last_name,
             "email"     => $shipping_address->email,
             "phone"     => $shipping_address->phone,
-            "verified_email"     => true,
+            "verified_email"   => true,
             "addresses"  => $addresses,
+            'tags'      => 'pending',
+            'email_marketing_consent' => $email_marketing_consent,
+            'currency'  => config("app.currency"),
+            'note'      => $note,
         ];
-        $postOrder['customer'] = $customer;
+        $pOrder['customer'] = $customer;
 
-        var_dump($postOrder);exit;
+
+        try {
+            $response = $client->post($shopify['shopify_app_host_name'].'/admin/api/2023-10/customers.json', [
+                'http_errors' => true,
+                'headers' => [
+                    'Content-Type' => 'application/json',
+                    'Accept' => 'application/json',
+                    'X-Shopify-Access-Token' => $shopify['shopify_admin_access_token'],
+                ],
+                'body' => json_encode($pOrder)
+            ]);
+        }catch(ClientException $e) {
+            //var_dump($e);
+            var_dump($e->getMessage());
+            Log::error(json_encode($e->getMessage()));
+            \Nicelizhi\Shopify\Helpers\Utils::send($e->getMessage().'--' .$id. " 需要手动解决 ");
+            //continue;
+            //return false;
+        }catch(\GuzzleHttp\Exception\RequestException $e){
+            var_dump($e->getMessage());
+        }finally  {
+            
+        }
+
+        
 
 
     }
