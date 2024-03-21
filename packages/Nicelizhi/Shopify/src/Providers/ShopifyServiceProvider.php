@@ -101,6 +101,9 @@ class ShopifyServiceProvider extends ServiceProvider
 
                 \Nicelizhi\Shopify\Console\Commands\Customers\Get::class,
                 \Nicelizhi\Shopify\Console\Commands\Customers\Post::class,
+
+                \Nicelizhi\Shopify\Console\Commands\Webhooks\Get::class,
+                \Nicelizhi\Shopify\Console\Commands\Webhooks\Post::class,
             ]);
         }
     }

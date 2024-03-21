@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Nicelizhi\Shopify\Http\Controllers\ProductController;
+use Nicelizhi\Shopify\Http\Controllers\WebhooksController;
 
 
 /**
@@ -46,4 +47,12 @@ Route::group(['middleware' => ['admin'], 'prefix' => config('app.admin_url')], f
             // ])->name('admin.catalog.products.file.download');
         });
     });
+});
+
+Route::prefix('shopify')->group(function () {
+
+    Route::controller(WebhooksController::class)->prefix('webhooks')->group(function () {
+        Route::any('v1', 'v1')->name('shopify.webhook.v1');
+    });
+
 });

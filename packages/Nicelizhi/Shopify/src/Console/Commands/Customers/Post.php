@@ -17,6 +17,7 @@ use Nicelizhi\Shopify\Models\ShopifyOrder;
 use Nicelizhi\Shopify\Models\ShopifyStore;
 use Nicelizhi\Shopify\Models\ShopifyCustomer;
 use Illuminate\Support\Facades\Artisan;
+use GuzzleHttp\Exception\ClientException;
 
 
 class Post extends Command
@@ -77,7 +78,7 @@ class Post extends Command
         }
         $shopify = $shopifyStore->toArray();
 
-        
+    
 
         $lists = Order::where(['status'=>'pending'])->orderBy("updated_at", "desc")->select(['id','customer_email'])->limit(100)->get();
         foreach($lists as $key=>$item) {
@@ -175,7 +176,7 @@ class Post extends Command
             //var_dump($e);
             var_dump($e->getMessage());
             Log::error(json_encode($e->getMessage()));
-            \Nicelizhi\Shopify\Helpers\Utils::send($e->getMessage().'--' .$id. " 需要手动解决 ");
+            //\Nicelizhi\Shopify\Helpers\Utils::send($e->getMessage().'--' .$id. " 需要手动解决 ");
             //continue;
             //return false;
         }catch(\GuzzleHttp\Exception\RequestException $e){
