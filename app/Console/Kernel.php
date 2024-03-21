@@ -29,6 +29,7 @@ class Kernel extends ConsoleKernel
         $schedule->command('shopify:order:post')->everyFiveMinutes()->withoutOverlapping(); // post order to shopify
         $schedule->command('shopify:order:get --force=true')->hourly()->withoutOverlapping()->timezone('Asia/Shanghai')->between('9:00', '19:00'); // shopify order sync
         $schedule->command('shopify:order:get:shipped --force=true')->hourly()->withoutOverlapping()->timezone('Asia/Shanghai')->between('9:00', '19:00'); // shopify order sync
+        $schedule->command('shopify:customers:get')->everyFiveMinutes()->withoutOverlapping()->timezone('Asia/Shanghai')->between('9:00', '19:00'); // shopify customer sync
     }
 
     /**

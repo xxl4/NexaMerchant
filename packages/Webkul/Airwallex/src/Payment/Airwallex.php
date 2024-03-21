@@ -291,16 +291,26 @@ class Airwallex extends Payment
         $order = [];
         $order['products'] = [];
         $products = [];
-        $product['code'] = "11111";
-        $product['desc'] = "11111";
-        $product['name'] = "11111";
-        $product['quantity'] = 1;
-        $product['sku'] = "11111";
-        $product['type'] = "11111";
-        $product['unit_price'] = $data['amount'];
-        $product['url'] = "https://www.baidu.com/";
 
-        $products[] = $product;
+        $cartData = $cart->toArray();
+
+        foreach ($cartData['items'] as $item) {
+          //$finalData['items'][] = $this->prepareDataForOrderItem($item);
+
+          $product['code'] = $item['sku'];;
+          $product['desc'] = $item['name'];
+          $product['name'] = $item['name'];
+          $product['quantity'] = $item['quantity'];
+          $product['sku'] = $item['sku'];
+          $product['type'] = $item['type'];
+          $product['unit_price'] = $data['amount'];
+          $product['url'] = config("app.url");
+
+          $products[] = $product;
+
+      }
+
+        
         $order['products'] = $products;
         $shipping = [];
         $shipping['address'] = $address;

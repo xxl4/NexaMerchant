@@ -98,6 +98,9 @@ class ShopifyServiceProvider extends ServiceProvider
                 \Nicelizhi\Shopify\Console\Commands\Order\Put::class,
                 \Nicelizhi\Shopify\Console\Commands\Order\PostCannelOrder::class,
                 \Nicelizhi\Shopify\Console\Commands\Collect\Get::class,
+
+                \Nicelizhi\Shopify\Console\Commands\Customers\Get::class,
+                \Nicelizhi\Shopify\Console\Commands\Customers\Post::class,
             ]);
         }
     }

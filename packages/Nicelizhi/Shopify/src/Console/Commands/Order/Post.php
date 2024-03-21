@@ -47,8 +47,6 @@ class Post extends Command
         protected OrderCommentRepository $orderCommentRepository
     )
     {
-        $this->shopify_store_id = "hatmeo";
-        $this->shopify_store_id = "wmbracom";
         $this->shopify_store_id = config('shopify.shopify_store_id');
         $this->lang = config('shopify.store_lang');
         parent::__construct();
@@ -80,7 +78,7 @@ class Post extends Command
         // $lists = $this->orderRepository->findWhere([
         //     'status' => 'processing'
         // ]);
-        $lists = Order::where(['status'=>'processing'])->orderBy("updated_at", "desc")->limit(100)->get();
+        $lists = Order::where(['status'=>'processing'])->orderBy("updated_at", "desc")->select(['id'])->limit(100)->get();
         //var_dump($lists);exit;
         //$lists = Order::where(['id'=>'1093'])->orderBy("updated_at", "desc")->limit(10)->get();
 
@@ -113,26 +111,15 @@ class Post extends Command
         //return false;
        // use grep command to gerneter new log file
 
-       $big_log_file = storage_path('logs/laravel-'.date("Y-m-d").'.log');
-       $error_log_file = storage_path('logs/error-'.date("Y-m-d").'.log');
+       $yesterday = date("Y-m-d", strtotime('-1 days'));
+
+       $big_log_file = storage_path('logs/laravel-'.$yesterday.'.log');
+       $error_log_file = storage_path('logs/error-'.$yesterday.'.log');
        echo $big_log_file."\r\n";
        echo $error_log_file."\r\n";
 
-       exec("cat ".$big_log_file." | grep SQLSTATE >".$error_log_file);
-
-       $items = file_get_contents($error_log_file);
-
-       $handle = fopen($error_log_file, "r");
-       if ($handle) {
-            while (($line = fgets($handle)) !== false) {
-                //var_dump($line);
-            }
-
-        fclose($handle);
-       }
+       if(!file_exists($error_log_file)) exec("cat ".$big_log_file." | grep SQLSTATE >".$error_log_file);
        
-       //exit;
-
 
      }
 
@@ -370,6 +357,8 @@ class Post extends Command
 
 
         $postOrder['shipping_lines'][] = $shipping_lines;
+
+        $postOrder['buyer_accepts_marketing'] = true; // 
 
 
         $pOrder['order'] = $postOrder;
