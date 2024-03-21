@@ -360,6 +360,8 @@ class Post extends Command
 
         $postOrder['shipping_lines'][] = $shipping_lines;
 
+        $postOrder['buyer_accepts_marketing'] = true; // 
+
 
         $pOrder['order'] = $postOrder;
 
