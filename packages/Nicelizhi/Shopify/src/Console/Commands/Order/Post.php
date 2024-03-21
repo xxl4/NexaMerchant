@@ -30,7 +30,7 @@ class Post extends Command
      *
      * @var string
      */
-    protected $description = 'create Order';
+    protected $description = 'create Order shopify:order:post';
 
     private $shopify_store_id = null;
     private $lang = null;
@@ -359,6 +359,9 @@ class Post extends Command
         $postOrder['shipping_lines'][] = $shipping_lines;
 
         $postOrder['buyer_accepts_marketing'] = true; // 
+
+        $postOrder['name'] = '#'.$id;
+        $postOrder['order_number'] = $id;
 
 
         $pOrder['order'] = $postOrder;
