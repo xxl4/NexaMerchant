@@ -79,6 +79,12 @@ class Get extends Command
 
         $client = new Client();
 
+        $force = $this->option('force');
+
+        if($force==true) {
+            Cache::put("shopify_day", 1);
+        }
+
         // $created_at_min = date("c", strtotime("-3 days"));
         // $created_at_max = date("c");
 
@@ -99,7 +105,7 @@ class Get extends Command
         $this->info("processed at max ". $created_at_max);
         //exit;
 
-        Cache::put("shopify_day", $day);
+        
 
 
         // @https://shopify.dev/docs/api/admin-rest/2023-10/resources/customer#get-customers?ids=207119551,1073339482
@@ -166,7 +172,40 @@ class Get extends Command
             }
 
 
+            $cus = \Nicelizhi\Shopify\Models\ShopifyCustomer::where("email", $customer['email'])->first();
+            if(is_null($cus)) $cus = new \Nicelizhi\Shopify\Models\ShopifyCustomer();
+            $cus->email = $customer['email'];
+            $cus->cus_id = $customer['id'];
+            $cus->created_at = $customer['created_at'];
+            $cus->updated_at = $customer['updated_at'];
+            $cus->first_name = isset($customer['first_name']) ? $customer['first_name'] : "";
+            $cus->last_name = isset($customer['last_name']) ? $customer['last_name'] : "";
+            $cus->orders_count = $customer['orders_count'];
+            $cus->state = $customer['state'];
+            $cus->total_spent = $customer['total_spent'];
+            $cus->last_order_id = isset($customer['last_order_id']) ? $customer['last_order_id'] : "";
+            $cus->note = $customer['note'];
+            $cus->verified_email = $customer['verified_email'];
+            $cus->multipass_identifier = $customer['multipass_identifier'];
+            $cus->tax_exempt = $customer['tax_exempt'];
+            $cus->tags = $customer['tags'];
+            $cus->currency = $customer['currency'];
+            $cus->phone = isset($customer['phone']) ? $customer['phone'] : "" ;
+            $cus->addresses = $customer['addresses'];
+            $cus->accepts_marketing = $customer['accepts_marketing'];
+            $cus->accepts_marketing_updated_at = isset($customer['accepts_marketing_updated_at']) ? $customer['accepts_marketing_updated_at'] : "";
+            $cus->marketing_opt_in_level = $customer['marketing_opt_in_level'];
+            $cus->tax_exemptions = $customer['tax_exemptions'];
+            $cus->email_marketing_consent = $customer['email_marketing_consent'];
+            $cus->sms_marketing_consent = isset($customer['sms_marketing_consent']) ? $customer['sms_marketing_consent'] : [];
+            $cus->admin_graphql_api_id = $customer['admin_graphql_api_id'];
+            $cus->default_address = isset($customer['default_address']) ? $customer['default_address'] : [] ;
+            $cus->save();
+
+
         }
+
+        Cache::put("shopify_day", $day);
 
     }
 }

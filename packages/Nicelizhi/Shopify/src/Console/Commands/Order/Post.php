@@ -47,8 +47,6 @@ class Post extends Command
         protected OrderCommentRepository $orderCommentRepository
     )
     {
-        $this->shopify_store_id = "hatmeo";
-        $this->shopify_store_id = "wmbracom";
         $this->shopify_store_id = config('shopify.shopify_store_id');
         $this->lang = config('shopify.store_lang');
         parent::__construct();
@@ -80,7 +78,7 @@ class Post extends Command
         // $lists = $this->orderRepository->findWhere([
         //     'status' => 'processing'
         // ]);
-        $lists = Order::where(['status'=>'processing'])->orderBy("updated_at", "desc")->limit(100)->get();
+        $lists = Order::where(['status'=>'processing'])->orderBy("updated_at", "desc")->select(['id'])->limit(100)->get();
         //var_dump($lists);exit;
         //$lists = Order::where(['id'=>'1093'])->orderBy("updated_at", "desc")->limit(10)->get();
 
