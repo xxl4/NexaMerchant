@@ -360,7 +360,7 @@ class Post extends Command
 
         $postOrder['buyer_accepts_marketing'] = true; // 
 
-        $postOrder['name'] = '#'.$id;
+        //$postOrder['name'] = '#'.$id;
         $postOrder['order_number'] = $id;
 
 
