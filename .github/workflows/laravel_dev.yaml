@@ -2,12 +2,12 @@ name: Dev
 
 on:
   push:
-    branches: [ "develop" ]
+    branches: [ "develop","package_admin_dev" ]
     paths-ignore:
       - .github/**
       - docs/**
   pull_request:
-    branches: [ "develop" ]
+    branches: [ "develop","package_admin_dev" ]
 
 jobs:
   laravel-tests:
