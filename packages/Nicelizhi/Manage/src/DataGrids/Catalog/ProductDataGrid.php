@@ -90,16 +90,20 @@ class ProductDataGrid extends DataGrid
             'product_flat.channel'
         );
 
-        $queryBuilder->whereIn('product_flat.locale', $whereInLocales);
-        $queryBuilder->whereIn('product_flat.channel', $whereInChannels);
-
-        $this->addFilter('product_id', 'product_flat.product_id');
-        $this->addFilter('name', 'product_flat.name');
-        $this->addFilter('type', 'product_flat.type');
-        $this->addFilter('status', 'product_flat.status');
-        $this->addFilter('attribute_family', 'af.name');
-
         return $queryBuilder;
+//        print_r($queryBuilder);exit;
+//
+//
+//        $queryBuilder->whereIn('product_flat.locale', $whereInLocales);
+//        $queryBuilder->whereIn('product_flat.channel', $whereInChannels);
+//
+//        $this->addFilter('product_id', 'product_flat.product_id');
+//        $this->addFilter('name', 'product_flat.name');
+//        $this->addFilter('type', 'product_flat.type');
+//        $this->addFilter('status', 'product_flat.status');
+//        $this->addFilter('attribute_family', 'af.name');
+//
+//        return $queryBuilder;
     }
 
     /**

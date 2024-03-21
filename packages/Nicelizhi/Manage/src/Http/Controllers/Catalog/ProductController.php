@@ -3,9 +3,11 @@
 namespace Nicelizhi\Manage\Http\Controllers\Catalog;
 
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Arr;
+use Nicelizhi\Manage\Helpers\SSP;
 use Nicelizhi\Manage\Http\Controllers\Controller;
 use Nicelizhi\Manage\Http\Requests\InventoryRequest;
 use Nicelizhi\Manage\Http\Requests\ProductForm;
@@ -38,13 +40,13 @@ class ProductController extends Controller
      * @return void
      */
     public function __construct(
-        protected AttributeFamilyRepository $attributeFamilyRepository,
-        protected InventorySourceRepository $inventorySourceRepository,
-        protected ProductRepository $productRepository,
-        protected ProductAttributeValueRepository $productAttributeValueRepository,
-        protected ProductDownloadableLinkRepository $productDownloadableLinkRepository,
+        protected AttributeFamilyRepository           $attributeFamilyRepository,
+        protected InventorySourceRepository           $inventorySourceRepository,
+        protected ProductRepository                   $productRepository,
+        protected ProductAttributeValueRepository     $productAttributeValueRepository,
+        protected ProductDownloadableLinkRepository   $productDownloadableLinkRepository,
         protected ProductDownloadableSampleRepository $productDownloadableSampleRepository,
-        protected ProductInventoryRepository $productInventoryRepository
+        protected ProductInventoryRepository          $productInventoryRepository
     )
     {
     }
@@ -56,13 +58,124 @@ class ProductController extends Controller
      */
     public function index()
     {
-        if (request()->ajax()) {
-            return app(ProductDataGrid::class)->toJson();
+/*
+        $data = [];
+        if (core()->getRequestedLocaleCode() === 'all') {
+            $whereInLocales = Locale::query()->pluck('code')->toArray();
+        } else {
+            $whereInLocales = [core()->getRequestedLocaleCode()];
         }
 
-        $families = $this->attributeFamilyRepository->all();
+        $tablePrefix = DB::getTablePrefix();
 
-        return view('admin::catalog.products.index', compact('families'));
+        DB::connection()->enableQueryLog();
+
+        $queryBuilder = DB::table('product_flat')
+            ->leftJoin('attribute_families as af', 'product_flat.attribute_family_id', '=', 'af.id')
+            ->leftJoin('product_inventories', 'product_flat.product_id', '=', 'product_inventories.product_id')
+            ->leftJoin('product_images', 'product_flat.product_id', '=', 'product_images.product_id')
+            ->distinct()
+            ->leftJoin('product_categories as pc', 'product_flat.product_id', '=', 'pc.product_id')
+            ->leftJoin('category_translations as ct', function ($leftJoin) use ($whereInLocales) {
+                $leftJoin->on('pc.category_id', '=', 'ct.category_id')
+                    ->whereIn('ct.locale', $whereInLocales);
+            })
+            ->select(
+//                'product_flat.locale',
+//                'product_flat.channel',
+//                'product_images.path as base_image',
+//                'pc.category_id',
+//                'ct.name as category_name',
+//                'product_flat.product_id',
+//                'product_flat.sku',
+//                'product_flat.name',
+//                'product_flat.type',
+//                'product_flat.status',
+//                'product_flat.price',
+//                'product_flat.url_key',
+//                'product_flat.visible_individually',
+//                'af.name as attribute_family',
+//                DB::raw('SUM(DISTINCT ' . $tablePrefix . 'product_inventories.qty) as quantity')
+            );
+//            ->addSelect(DB::raw('COUNT(DISTINCT ' . $tablePrefix . 'product_images.id) as images_count'));
+
+        $queryBuilder->groupBy(
+            'product_flat.product_id',
+            'product_flat.locale',
+            'product_flat.channel'
+        )->get()->toArray();
+        $carNamedata = DB::getQueryLog();
+
+        print_r("<pre/>");
+        print_r($carNamedata);exit;
+
+
+        $queryBuilder =json_encode($queryBuilder->get()->toArray());
+        $queryBuilder = json_decode($queryBuilder, true);
+
+
+
+
+
+        $data = [];
+
+        */
+        if (request()->ajax()) {
+
+
+//           print_r($_REQUEST);exit;
+
+            $table_pre = config("database.connections.mysql.prefix");
+            $table = $table_pre.'product_flat';
+
+
+            // Table's primary key
+            $primaryKey = 'id';
+
+            $columns = array(
+                array( 'db' => 'ba_product_flat.id', 'dt' => 0 , 'field'=>'id'),
+//                array( 'db' => '`o`.`increment_id`',  'dt' => 0, 'field'=>'increment_id','formatter' => function($d, $row){
+//                    return '#'.$d;
+//                } ),
+                array( 'db' => '`ba_product_flat`.`status`',   'dt' => 1, 'field'=>'status' ),
+                array( 'db' => '`ba_product_flat`.`sku`',   'dt' => 2, 'field'=>'sku' ),
+                array( 'db' => '`ba_product_flat`.`type`',   'dt' => 3, 'field'=>'type' ),
+                array( 'db' => '`ba_product_flat`.`name`',   'dt' => 4, 'field'=>'name' ),
+                array( 'db' => '`ba_product_flat`.`price`',   'dt' => 5, 'field'=>'price' ),
+                array( 'db' => '`ba_product_flat`.`locale`',   'dt' => 6, 'field'=>'locale' )
+            );
+
+
+//            $data = ['data'=>$queryBuilder];
+//            return $data;
+
+            $sql_details = array(
+                'user' => config("database.connections.mysql.username"),
+                'pass' => config("database.connections.mysql.password"),
+                'db'   => config("database.connections.mysql.database"),
+                'host' => config("database.connections.mysql.host"),
+                'timezone' => config("database.connections.mysql.timezone"),
+                'charset' => config("database.connections.mysql.charset") // Depending on your PHP and MySQL config, you may need this
+            );
+
+
+            $joinQuery =   "from `ba_product_flat` left join `ba_attribute_families` as `ba_af` on `ba_product_flat`.`attribute_family_id` = `ba_af`.`id` left join `ba_product_inventories` on `ba_product_flat`.`product_id` = `ba_product_inventories`.`product_id` left join `ba_product_images` on `ba_product_flat`.`product_id` = `ba_product_images`.`product_id` left join `ba_product_categories` as `ba_pc` on `ba_product_flat`.`product_id` = `ba_pc`.`product_id` left join `ba_category_translations` as `ba_ct` on `ba_pc`.`category_id` = `ba_ct`.`category_id`";
+
+
+//            $joinQuery = "FROM `{$table}` AS `o` LEFT JOIN `{$table_pre}addresses` AS `a` ON (`a`.`order_id` = `o`.`id`) LEFT JOIN `{$table_pre}order_transactions` as t ON (`t`.`order_id` = `o`.`id`)";
+            $extraCondition = "";
+
+
+            return json_encode(SSP::simple( request()->input(), $sql_details, $table, $primaryKey, $columns, $joinQuery, $extraCondition ));
+
+
+        }
+
+        return view('admin::catalog.products.index');
+
+
+//        return view('admin::catalog.products.index', compact('data'));
+
     }
 
     /**
@@ -91,16 +204,16 @@ class ProductController extends Controller
     public function store()
     {
         $this->validate(request(), [
-            'type'                => 'required',
+            'type' => 'required',
             'attribute_family_id' => 'required',
-            'sku'                 => ['required', 'unique:products,sku', new Slug],
-            'super_attributes'    => 'array|min:1',
-            'super_attributes.*'  => 'array|min:1',
+            'sku' => ['required', 'unique:products,sku', new Slug],
+            'super_attributes' => 'array|min:1',
+            'super_attributes.*' => 'array|min:1',
         ]);
 
         if (
             ProductType::hasVariants(request()->input('type'))
-            && ! request()->has('super_attributes')
+            && !request()->has('super_attributes')
         ) {
             $configurableFamily = $this->attributeFamilyRepository
                 ->find(request()->input('attribute_family_id'));
@@ -140,7 +253,7 @@ class ProductController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\View\View
      */
     public function edit($id)
@@ -155,7 +268,7 @@ class ProductController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(ProductForm $request, $id)
@@ -176,7 +289,7 @@ class ProductController extends Controller
     /**
      * Update inventories.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function updateInventories(InventoryRequest $inventoryRequest, $id)
@@ -190,7 +303,7 @@ class ProductController extends Controller
         Event::dispatch('catalog.product.update.after', $product);
 
         return response()->json([
-            'message'      => __('admin::app.catalog.products.saved-inventory-message'),
+            'message' => __('admin::app.catalog.products.saved-inventory-message'),
             'updatedTotal' => $this->productInventoryRepository->where('product_id', $product->id)->sum('qty'),
         ]);
     }
@@ -198,7 +311,7 @@ class ProductController extends Controller
     /**
      * Uploads downloadable file.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function uploadLink($id)
@@ -231,7 +344,7 @@ class ProductController extends Controller
     /**
      * Uploads downloadable sample file.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function uploadSample($id)
@@ -283,12 +396,12 @@ class ProductController extends Controller
         try {
             foreach ($productIds as $productId) {
                 $product = $this->productRepository->find($productId);
-    
+
                 if (isset($product)) {
                     Event::dispatch('catalog.product.delete.before', $productId);
-    
+
                     $this->productRepository->delete($productId);
-    
+
                     Event::dispatch('catalog.product.delete.after', $productId);
                 }
             }
@@ -319,12 +432,12 @@ class ProductController extends Controller
             Event::dispatch('catalog.product.update.before', $productId);
 
             $product = $this->productRepository->update([
-                'status'  => $massUpdateRequest->input('value'),
+                'status' => $massUpdateRequest->input('value'),
             ], $productId);
 
             Event::dispatch('catalog.product.update.after', $product);
         }
-        
+
         return new JsonResponse([
             'message' => trans('admin::app.catalog.products.index.datagrid.mass-update-success')
         ], 200);
@@ -352,24 +465,24 @@ class ProductController extends Controller
         $results = [];
 
         request()->query->add([
-            'status'               => null,
+            'status' => null,
             'visible_individually' => null,
-            'name'                 => request('query'),
-            'sort'                 => 'created_at',
-            'order'                => 'desc',
+            'name' => request('query'),
+            'sort' => 'created_at',
+            'order' => 'desc',
         ]);
 
         $products = $this->productRepository->searchFromDatabase();
 
         foreach ($products as $product) {
             $results[] = [
-                'id'              => $product->id,
-                'sku'             => $product->sku,
-                'name'            => $product->name,
-                'price'           => $product->price,
+                'id' => $product->id,
+                'sku' => $product->sku,
+                'name' => $product->name,
+                'price' => $product->price,
                 'formatted_price' => core()->formatBasePrice($product->price),
-                'images'          => $product->images,
-                'inventories'     => $product->inventories,
+                'images' => $product->images,
+                'inventories' => $product->inventories,
             ];
         }
 
@@ -381,14 +494,14 @@ class ProductController extends Controller
     /**
      * Download image or file.
      *
-     * @param  int  $productId
-     * @param  int  $attributeId
+     * @param int $productId
+     * @param int $attributeId
      * @return \Illuminate\Http\Response
      */
     public function download($productId, $attributeId)
     {
         $productAttribute = $this->productAttributeValueRepository->findOneWhere([
-            'product_id'   => $productId,
+            'product_id' => $productId,
             'attribute_id' => $attributeId,
         ]);
 
