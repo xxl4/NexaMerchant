@@ -641,7 +641,7 @@ class ProductController extends Controller
         }
 
         try {
-            $order = $this->smartButton->createOrder($this->buildRequestBody());
+            $order = $this->smartButton->createOrder($this->buildRequestBody($input));
             $data = [];
             $data['order'] = $order;
             $data['code'] = 200;
@@ -812,7 +812,12 @@ class ProductController extends Controller
         return $invoiceData;
     }
 
-    protected function buildRequestBody()
+    /**
+     * 
+     * @link https://developer.paypal.com/docs/multiparty/checkout/save-payment-methods/during-purchase/js-sdk/paypal/
+     * 
+     */
+    protected function buildRequestBody($input)
     {
         $cart = Cart::getCart();
 
@@ -824,6 +829,7 @@ class ProductController extends Controller
                 //'shipping_preference' => 'NO_SHIPPING',
                 'shipping_preference' => 'GET_FROM_FILE', // 用户选择自己的地址内容
             ],
+            
 
             'purchase_units' => [
                 [
