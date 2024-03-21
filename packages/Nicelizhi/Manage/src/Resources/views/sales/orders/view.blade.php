@@ -22,11 +22,73 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
-                    <!-- <div class="callout callout-info">
-                        <h5><i class="fas fa-info"></i> Note:</h5>
-                        This page has been enhanced for printing. Click the print button at the bottom of the invoice to
-                        test.
-                    </div> -->
+                    <div class="callout callout-info">
+                        <a href="{{ route('admin.sales.orders.index') }}" class="btn btn-default btn-lg"> @lang('admin::app.account.edit.back-btn')</a>
+                        @switch($order->status)
+                        @case('processing')
+                            <span class="btn btn-primary btn-lg">
+                                @lang('admin::app.sales.orders.view.processing')    
+                            </span>
+                            @break
+
+                        @case('completed')
+                            <span class="label-closed btn btn-success btn-lg">
+                                @lang('admin::app.sales.orders.view.completed')    
+                            </span>
+                            @break
+
+                        @case('pending')
+                            <span class="btn btn-waring btn-lg">
+                                @lang('admin::app.sales.orders.view.pending')    
+                            </span>
+                            @break
+
+                        @case('closed')
+                            <span class="label-closed btn btn-danger btn-lg">
+                                @lang('admin::app.sales.orders.view.closed')    
+                            </span>
+                            @break
+
+                        @case('canceled')
+                            <span class="label-cancelled btn btn-info btn-lg">
+                                @lang('admin::app.sales.orders.view.canceled')    
+                            </span>
+                            @break
+
+                    @endswitch
+                    {!! view_render_event('sales.order.title.after', ['order' => $order]) !!}
+
+
+                    
+
+                    {!! view_render_event('sales.order.page_action.before', ['order' => $order]) !!}
+
+            @if (
+                $order->canCancel()
+                && bouncer()->hasPermission('sales.orders.cancel')
+            )
+              
+            @endif
+
+            @if (
+                $order->canInvoice()
+                && $order->payment->method !== 'paypal_standard'
+            )
+              
+               
+            @endif
+
+            @if ($order->canShip())
+                
+            @endif
+
+            @if ($order->canRefund())
+                
+            @endif
+
+            {!! view_render_event('sales.order.page_action.after', ['order' => $order]) !!}
+
+                    </div>
 
                     <div class="invoice p-3 mb-3">
 
