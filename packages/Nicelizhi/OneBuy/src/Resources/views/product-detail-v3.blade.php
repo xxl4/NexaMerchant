@@ -1908,6 +1908,7 @@ function GotoNotRequest(url) {
         }
 
         function getPhonePrefix() {
+            return '';
             var country  = $("#country-select").val();
             
             for(var i=0; i<window.countries.length; i++) {
