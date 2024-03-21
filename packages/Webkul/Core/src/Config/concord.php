@@ -13,7 +13,7 @@ return [
          *
          */
 
-        //\Webkul\Admin\Providers\ModuleServiceProvider::class,
+        \Nicelizhi\Manage\Providers\ModuleServiceProvider::class,
         \Webkul\Attribute\Providers\ModuleServiceProvider::class,
         \Webkul\CartRule\Providers\ModuleServiceProvider::class,
         \Webkul\CatalogRule\Providers\ModuleServiceProvider::class,

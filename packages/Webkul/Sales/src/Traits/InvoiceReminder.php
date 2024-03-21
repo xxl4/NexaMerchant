@@ -3,7 +3,7 @@
 namespace Webkul\Sales\Traits;
 
 use Illuminate\Support\Facades\Mail;
-use Webkul\Admin\Mail\InvoiceOverdueReminder;
+use Nicelizhi\Manage\Mail\InvoiceOverdueReminder;
 
 trait InvoiceReminder
 {
