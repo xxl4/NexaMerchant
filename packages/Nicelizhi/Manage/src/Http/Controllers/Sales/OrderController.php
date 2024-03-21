@@ -53,13 +53,15 @@ class OrderController extends Controller
                 array( 'db' => '`t`.`transaction_id`',   'dt' => 'transaction_id', 'field'=>'transaction_id' ),
                 array( 'db' => '`p`.`method`',   'dt' => 'method', 'field'=>'method' ),
                 array( 'db' => '`o`.`created_at`',   'dt' => 'created_at', 'field'=>'created_at' ),
+                array( 'db' => '`o`.`shipping_method`',   'dt' => 'shipping_method', 'field'=>'shipping_method' ),
                 array( 'db' => '`o`.`id`',   'dt' => 'oid', 'field'=>'id' )
             );
             // SQL server connection information
             $sql_details = [];
 
             $joinQuery = "FROM `{$table}` AS `o` LEFT JOIN `{$table_pre}addresses` AS `a` ON (`a`.`order_id` = `o`.`id`) LEFT JOIN `{$table_pre}order_transactions` AS t ON (`t`.`order_id` = `o`.`id`) LEFT JOIN `{$table_pre}order_payment` AS p ON (`p`.`order_id` = `o`.`id`)";
-            $extraCondition = "";
+            //$extraCondition = "";
+            $extraCondition = "`a`.`address_type`='cart_shipping'";
 
 
             return json_encode(SSP::simple( request()->input(), $sql_details, $table, $primaryKey, $columns, $joinQuery, $extraCondition ));

@@ -19,7 +19,7 @@
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
-                      <table id="example1" class="table table-bordered table-striped">
+                      <table id="tables" class="table table-bordered table-striped">
                         <thead>
                         <tr>
                           <th>Order ID</th>
@@ -28,6 +28,7 @@
                           <th>base_grand_total</th>
                           <th>Transaction Id</th>
                           <th>Payment Method</th>
+                          <th>shipping_method</th>
                           <th>created_at</th>
                           <th>Options</th>
                         </tr>
@@ -70,7 +71,8 @@
 
 <script>
     $(function () {
-      $("#example1").DataTable({
+      $("#tables").DataTable({
+        autoWidth: true,
         keys: true,
         ajax: {
           url: "{{ route('admin.sales.orders.index') }}",
@@ -96,6 +98,9 @@
           },{
             data: 'method'
           },{
+            data: 'shipping_method'
+          },
+          {
             data: 'created_at'
           },{
             data: 'oid',
