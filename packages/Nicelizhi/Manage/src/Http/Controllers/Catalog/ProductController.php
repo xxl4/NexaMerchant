@@ -134,15 +134,17 @@ class ProductController extends Controller
 
             $columns = array(
                 array( 'db' => 'ba_product_flat.id', 'dt' => 0 , 'field'=>'id'),
-//                array( 'db' => '`o`.`increment_id`',  'dt' => 0, 'field'=>'increment_id','formatter' => function($d, $row){
-//                    return '#'.$d;
-//                } ),
-                array( 'db' => '`ba_product_flat`.`status`',   'dt' => 1, 'field'=>'status' ),
-                array( 'db' => '`ba_product_flat`.`sku`',   'dt' => 2, 'field'=>'sku' ),
-                array( 'db' => '`ba_product_flat`.`type`',   'dt' => 3, 'field'=>'type' ),
-                array( 'db' => '`ba_product_flat`.`name`',   'dt' => 4, 'field'=>'name' ),
-                array( 'db' => '`ba_product_flat`.`price`',   'dt' => 5, 'field'=>'price' ),
-                array( 'db' => '`ba_product_flat`.`locale`',   'dt' => 6, 'field'=>'locale' )
+                array( 'db' => '`ba_product_images`.`path`',   'dt' => 1, 'field'=>'path' ),
+                array( 'db' => '`ba_product_flat`.`name`',   'dt' => 2, 'field'=>'name' ),
+                array( 'db' => '`ba_product_flat`.`status`',   'dt' => 3, 'field'=>'status' ),
+                array( 'db' => '`ba_product_inventories`.`qty`',   'dt' => 4, 'field'=>'qty' ),
+                array( 'db' => '`ba_product_flat`.`channel`',   'dt' => 5, 'field'=>'channel' ),
+                array( 'db' => '`ba_product_flat`.`type`',   'dt' => 6, 'field'=>'type' ),
+                array( 'db' => '`ba_product_flat`.`sku`',   'dt' => 7, 'field'=>'sku' ),
+
+//                array( 'db' => '`ba_product_flat`.`sku`',   'dt' => 7, 'field'=>'sku' ),
+
+
             );
 
 
@@ -165,8 +167,50 @@ class ProductController extends Controller
 //            $joinQuery = "FROM `{$table}` AS `o` LEFT JOIN `{$table_pre}addresses` AS `a` ON (`a`.`order_id` = `o`.`id`) LEFT JOIN `{$table_pre}order_transactions` as t ON (`t`.`order_id` = `o`.`id`)";
             $extraCondition = "";
 
+            $data = SSP::simple( request()->input(), $sql_details, $table, $primaryKey, $columns, $joinQuery, $extraCondition );
 
-            return json_encode(SSP::simple( request()->input(), $sql_details, $table, $primaryKey, $columns, $joinQuery, $extraCondition ));
+
+
+
+            if(!empty($data['data'])){
+                foreach ($data['data'] as $key=>$value){
+                    if($value[3]==1){
+                        $data['data'][$key][3] = '活跃';
+                    }elseif($value[3]==2){
+                        $data['data'][$key][3] = '已存档';
+                    }elseif($value[3]==3){
+                        $data['data'][$key][3] = '草稿';
+                    }else{
+                        $data['data'][$key][3] = '未定义';
+                    }
+                    $data['data'][$key]['id'] = $value[0];
+                    $data['data'][$key]['path'] = '/storage/'.$value[1];
+                    $data['data'][$key]['name'] = $value[2];
+                    $data['data'][$key]['status'] = $value[3];
+                    $data['data'][$key]['qty'] = $value[4];
+                    $data['data'][$key]['channel'] = $value[5];
+                    $data['data'][$key]['type'] = $value[6];
+                    $data['data'][$key]['sku'] = $value[7];
+
+                    unset($data['data'][$key][0]);
+                    unset($data['data'][$key][1]);
+                    unset($data['data'][$key][2]);
+                    unset($data['data'][$key][3]);
+                    unset($data['data'][$key][4]);
+                    unset($data['data'][$key][5]);
+                    unset($data['data'][$key][6]);
+                    unset($data['data'][$key][7]);
+
+
+
+                }
+            }
+
+
+//            print_r($data);exit;
+
+
+            return json_encode($data);
 
 
         }
@@ -256,13 +300,24 @@ class ProductController extends Controller
      * @param int $id
      * @return \Illuminate\View\View
      */
-    public function edit($id)
+    public function edit($id=10)
     {
-        $product = $this->productRepository->findOrFail($id);
+        echo 234;
 
+//
+//
+        $product = $this->productRepository->findOrFail($id);
+//
+//
+//
         $inventorySources = $this->inventorySourceRepository->findWhere(['status' => self::ACTIVE_STATUS]);
 
-        return view('admin::catalog.products.edit', compact('product', 'inventorySources'));
+//        print_r("<pre/>");
+//        print_r($inventorySources);exit;
+
+//        return view('admin::catalog.products.edit');
+
+        return view('admin::catalog.products.edit');
     }
 
     /**
