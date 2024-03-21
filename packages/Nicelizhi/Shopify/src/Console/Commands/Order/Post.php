@@ -360,7 +360,7 @@ class Post extends Command
 
         $postOrder['buyer_accepts_marketing'] = true; // 
 
-        //$postOrder['name'] = '#'.$id;
+        $postOrder['name'] = config('shopify.order_pre').'#'.$id;
         $postOrder['order_number'] = $id;
 
 
