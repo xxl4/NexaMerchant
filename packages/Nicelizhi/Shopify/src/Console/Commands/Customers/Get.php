@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Cache;
 
 use Nicelizhi\Shopify\Models\ShopifyOrder;
 use Nicelizhi\Shopify\Models\ShopifyStore;
-
+use GuzzleHttp\Exception\ClientException;
 
 class Get extends Command
 {

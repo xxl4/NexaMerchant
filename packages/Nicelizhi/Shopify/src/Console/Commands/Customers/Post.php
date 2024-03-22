@@ -151,7 +151,7 @@ class Post extends Command
             "first_name" => $shipping_address->first_name,
             "last_name"  => $shipping_address->last_name,
             "email"     => $shipping_address->email,
-            "phone"     => $shipping_address->phone,
+            //"phone"     => $shipping_address->phone,
             "verified_email"   => true,
             "addresses"  => $addresses,
             'tags'      => 'pending',
@@ -176,6 +176,7 @@ class Post extends Command
             //var_dump($e);
             var_dump($e->getMessage());
             Log::error(json_encode($e->getMessage()));
+            Log::error(json_encode($pOrder));
             //\Nicelizhi\Shopify\Helpers\Utils::send($e->getMessage().'--' .$id. " 需要手动解决 ");
             //continue;
             //return false;
