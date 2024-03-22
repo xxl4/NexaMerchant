@@ -2021,6 +2021,13 @@ function GotoNotRequest(url) {
             console.log("product");
             console.log(products);
 
+            if($("#shipping_address_other").is(':checked')) {
+                //$("#bill_address").show();
+                window.shipping_address = "other";
+                shipping_address = window.shipping_address;
+                console.log("shipping address" + shipping_address);
+            }
+
             //console.log("order products");
             //console.log(products);
 
@@ -2058,7 +2065,7 @@ function GotoNotRequest(url) {
                 price_template      : '{{ core()->currencySymbol(core()->getBaseCurrencyCode()) }}price',
                 omnisend            : '',
                 payment_account     : '',
-                shipping_address    : window.shipping_address,
+                shipping_address    : shipping_address,
                 bill_first_name          : $(".bill-first_name").val(),
                 bill_second_name         : $(".bill-last_name").val(),
                 bill_country             : $("#bill-country-select").val(),
@@ -2068,6 +2075,7 @@ function GotoNotRequest(url) {
                 bill_code                : $(".bill-zip_code").val(),
 
             }
+            console.log("params ");
             console.log(params);
 
             if(getQueryString('utm_campaign')) {

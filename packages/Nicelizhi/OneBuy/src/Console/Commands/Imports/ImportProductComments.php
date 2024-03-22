@@ -55,6 +55,7 @@ class ImportProductComments extends Command
         $force = $this->option("force");
 
         $this->cache_key = $this->cache_key.$prod_id;
+        $this->info($this->cache_key);
 
         //var_dump($this->cache_key);exit;
 
@@ -71,7 +72,7 @@ class ImportProductComments extends Command
 
         $prod_comment_file = storage_path("imports/")."comments_".$prod_id.".xlsx";
         if(!file_exists($prod_comment_file)) {
-            $this->error("faq file not found, pls check the file".$prod_comment_file);
+            $this->error("comment file not found, pls check the file".$prod_comment_file);
             return false;
         }
 

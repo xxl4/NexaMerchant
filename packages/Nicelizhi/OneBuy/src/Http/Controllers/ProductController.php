@@ -404,12 +404,12 @@ class ProductController extends Controller
         $addressData['shipping'] = $shipping;
         $addressData['shipping']['isSaved'] = false;
         $address1 = [];
-        array_push($address1, "");
+        array_push($address1, $input['address']);
         $addressData['shipping']['address1'] = $address1;
         $addressData['shipping']['address1'] = implode(PHP_EOL, $addressData['shipping']['address1']);
 
         // customer bill address info
-        if(@$input['shipping_address']=='other') {
+        if(@$input['shipping_address']=="other") {
             $address1 = [];
             array_push($address1, $input['bill_address']);
             $billing = [];
@@ -423,7 +423,7 @@ class ProductController extends Controller
             $billing['phone'] = $input['phone_full'];
             $billing['postcode'] = $input['bill_code'];
             $billing['state'] = $input['bill_province'];
-            $billing['use_for_shipping'] = true;
+            //$billing['use_for_shipping'] = true;
             $billing['address1'] = $address1;
             $billing['address1'] = implode(PHP_EOL, $billing['address1']);
 
@@ -433,6 +433,7 @@ class ProductController extends Controller
         }
 
 
+        Log::info("address" . json_encode($addressData));
 
         //var_dump($addressData);exit;
 

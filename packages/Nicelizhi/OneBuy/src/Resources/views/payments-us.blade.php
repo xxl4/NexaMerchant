@@ -311,7 +311,8 @@
             }else{
                 $("#bill_address").hide();
                 window.shipping_address = "default";
-            }                
+            }    
+            console.log( " shipping address "+window.shipping_address);            
             //copy the data info to bill address
 
             var $options = $("#country-select > option").clone();
@@ -406,6 +407,17 @@
         $("#payment-button").on("click", function(){
             var payment_method = $('input[name=payment_method]:checked', '#myForm').val(); //payment method
             var shipping_address = $('input[name=shipping_address]:checked', '#myForm').val(); //shipping address chose
+
+            if($("#shipping_address_other").is(':checked')) {
+                //$("#bill_address").show();
+                window.shipping_address = "other";
+                shipping_address = window.shipping_address;
+            }else{
+                //$("#bill_address").hide();
+                window.shipping_address = "default";
+                shipping_address = window.shipping_address;
+            }   
+
             window.shipping_address = shipping_address;
             console.log("payment method" + payment_method);
             console.log("shipping address" + shipping_address);
