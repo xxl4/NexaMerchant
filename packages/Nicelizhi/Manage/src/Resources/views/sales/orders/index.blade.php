@@ -29,6 +29,7 @@
                           <th>Transaction Id</th>
                           <th>Payment Method</th>
                           <th>shipping_method</th>
+                          <th>track_number</th>
                           <th>created_at</th>
                           <th>Options</th>
                         </tr>
@@ -99,6 +100,9 @@
             data: 'method'
           },{
             data: 'shipping_method'
+          },
+          {
+            data: 'track_number'
           },
           {
             data: 'created_at'
