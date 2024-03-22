@@ -22,6 +22,8 @@ class WebhooksController extends Controller
     public function v1(Request $request) {
         # The Shopify app's client secret, viewable from the Partner Dashboard. In a production environment, set the client secret as an environment variable to prevent exposing it in code.
         Log::info("webhook ".json_encode($request->all()));
+
+        
         
 
 

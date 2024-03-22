@@ -49,10 +49,4 @@ Route::group(['middleware' => ['admin'], 'prefix' => config('app.admin_url')], f
     });
 });
 
-Route::prefix('shopify')->group(function () {
 
-    Route::controller(WebhooksController::class)->prefix('webhooks')->group(function () {
-        Route::any('v1', 'v1')->name('shopify.webhook.v1');
-    });
-
-});
