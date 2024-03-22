@@ -83,6 +83,8 @@ class Post extends Command
         $client = new Client();
         $post = [];
 
+        //@link https://shopify.dev/docs/api/admin-rest/2023-10/resources/webhook#event-topics
+
         $webhook = [];
         $webhook['address'] = config('app.url')."/shopify/webhooks/v1";
         $topic = "orders/updated";

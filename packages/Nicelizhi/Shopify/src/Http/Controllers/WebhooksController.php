@@ -23,26 +23,78 @@ class WebhooksController extends Controller
         # The Shopify app's client secret, viewable from the Partner Dashboard. In a production environment, set the client secret as an environment variable to prevent exposing it in code.
         Log::info("webhook ".json_encode($request->all()));
 
-        
-        
+    }
 
+    /**
+     * 
+     * @link https://shopify.dev/docs/api/admin-rest/2023-10/resources/webhook#event-topics
+     * 
+     */
+    public function orders_updated(Request $request) {
 
-        $hmac_header = @$_SERVER['HTTP_X_SHOPIFY_HMAC_SHA256'];
-        $data = file_get_contents('php://input');
+    }
 
-        Log::info("webhook ".json_encode($data));
+    /**
+     * 
+     * @link https://shopify.dev/docs/api/admin-rest/2023-10/resources/webhook#event-topics
+     * 
+     */
+    public function orders_create(Request $request) {
 
-        // $verified = $this->verify_webhook($data, $hmac_header);
-        // //error_log('Webhook verified: '.var_export($verified, true)); // Check error.log to see the result
-        // Log::error('Webhook verified: '.var_export($verified, true));
-        // if ($verified) {
-        // # Process webhook payload
-        // # ...
-        // } else {
-        //     //http_response_code(401);
-        //     abort(401);
-        // }
-        
+    }
+
+    /**
+     * 
+     * @link https://shopify.dev/docs/api/admin-rest/2023-10/resources/webhook#event-topics
+     * 
+     */
+    public function orders_fulfilled(Request $request) {
+
+    }
+
+     /**
+     * 
+     * @link https://shopify.dev/docs/api/admin-rest/2023-10/resources/webhook#event-topics
+     * 
+     */
+    public function orders_edited(Request $request) {
+
+    }
+
+     /**
+     * 
+     * @link https://shopify.dev/docs/api/admin-rest/2023-10/resources/webhook#event-topics
+     * 
+     */
+    public function orders_paid(Request $request) {
+
+    }
+
+     /**
+     * 
+     * @link https://shopify.dev/docs/api/admin-rest/2023-10/resources/webhook#event-topics
+     * 
+     */
+    public function order_transactions_create(Request $request) {
+
+    }
+
+     /**
+     * 
+     * @link https://shopify.dev/docs/api/admin-rest/2023-10/resources/webhook#event-topics
+     * 
+     */
+    public function customers_create(Request $request) {
+
+    }
+
+    /**
+     * 
+     * @link https://shopify.dev/docs/api/admin-rest/2023-10/resources/webhook#event-topics
+     * 
+     */
+    public function customers_update(Request $request) {
+
     }
 
     function verify_webhook($data, $hmac_header)
