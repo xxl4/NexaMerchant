@@ -3,6 +3,7 @@
 namespace Nicelizhi\Manage\Http\Controllers\Catalog;
 
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Storage;
@@ -26,6 +27,8 @@ use Webkul\Core\Rules\Slug;
 use Webkul\Product\Helpers\ProductType;
 use Webkul\Product\Facades\ProductImage;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Http\Request;
+
 
 class ProductController extends Controller
 {
@@ -58,89 +61,89 @@ class ProductController extends Controller
      */
     public function index()
     {
-/*
-        $data = [];
-        if (core()->getRequestedLocaleCode() === 'all') {
-            $whereInLocales = Locale::query()->pluck('code')->toArray();
-        } else {
-            $whereInLocales = [core()->getRequestedLocaleCode()];
-        }
+        /*
+                $data = [];
+                if (core()->getRequestedLocaleCode() === 'all') {
+                    $whereInLocales = Locale::query()->pluck('code')->toArray();
+                } else {
+                    $whereInLocales = [core()->getRequestedLocaleCode()];
+                }
 
-        $tablePrefix = DB::getTablePrefix();
+                $tablePrefix = DB::getTablePrefix();
 
-        DB::connection()->enableQueryLog();
+                DB::connection()->enableQueryLog();
 
-        $queryBuilder = DB::table('product_flat')
-            ->leftJoin('attribute_families as af', 'product_flat.attribute_family_id', '=', 'af.id')
-            ->leftJoin('product_inventories', 'product_flat.product_id', '=', 'product_inventories.product_id')
-            ->leftJoin('product_images', 'product_flat.product_id', '=', 'product_images.product_id')
-            ->distinct()
-            ->leftJoin('product_categories as pc', 'product_flat.product_id', '=', 'pc.product_id')
-            ->leftJoin('category_translations as ct', function ($leftJoin) use ($whereInLocales) {
-                $leftJoin->on('pc.category_id', '=', 'ct.category_id')
-                    ->whereIn('ct.locale', $whereInLocales);
-            })
-            ->select(
-//                'product_flat.locale',
-//                'product_flat.channel',
-//                'product_images.path as base_image',
-//                'pc.category_id',
-//                'ct.name as category_name',
-//                'product_flat.product_id',
-//                'product_flat.sku',
-//                'product_flat.name',
-//                'product_flat.type',
-//                'product_flat.status',
-//                'product_flat.price',
-//                'product_flat.url_key',
-//                'product_flat.visible_individually',
-//                'af.name as attribute_family',
-//                DB::raw('SUM(DISTINCT ' . $tablePrefix . 'product_inventories.qty) as quantity')
-            );
-//            ->addSelect(DB::raw('COUNT(DISTINCT ' . $tablePrefix . 'product_images.id) as images_count'));
+                $queryBuilder = DB::table('product_flat')
+                    ->leftJoin('attribute_families as af', 'product_flat.attribute_family_id', '=', 'af.id')
+                    ->leftJoin('product_inventories', 'product_flat.product_id', '=', 'product_inventories.product_id')
+                    ->leftJoin('product_images', 'product_flat.product_id', '=', 'product_images.product_id')
+                    ->distinct()
+                    ->leftJoin('product_categories as pc', 'product_flat.product_id', '=', 'pc.product_id')
+                    ->leftJoin('category_translations as ct', function ($leftJoin) use ($whereInLocales) {
+                        $leftJoin->on('pc.category_id', '=', 'ct.category_id')
+                            ->whereIn('ct.locale', $whereInLocales);
+                    })
+                    ->select(
+        //                'product_flat.locale',
+        //                'product_flat.channel',
+        //                'product_images.path as base_image',
+        //                'pc.category_id',
+        //                'ct.name as category_name',
+        //                'product_flat.product_id',
+        //                'product_flat.sku',
+        //                'product_flat.name',
+        //                'product_flat.type',
+        //                'product_flat.status',
+        //                'product_flat.price',
+        //                'product_flat.url_key',
+        //                'product_flat.visible_individually',
+        //                'af.name as attribute_family',
+        //                DB::raw('SUM(DISTINCT ' . $tablePrefix . 'product_inventories.qty) as quantity')
+                    );
+        //            ->addSelect(DB::raw('COUNT(DISTINCT ' . $tablePrefix . 'product_images.id) as images_count'));
 
-        $queryBuilder->groupBy(
-            'product_flat.product_id',
-            'product_flat.locale',
-            'product_flat.channel'
-        )->get()->toArray();
-        $carNamedata = DB::getQueryLog();
+                $queryBuilder->groupBy(
+                    'product_flat.product_id',
+                    'product_flat.locale',
+                    'product_flat.channel'
+                )->get()->toArray();
+                $carNamedata = DB::getQueryLog();
 
-        print_r("<pre/>");
-        print_r($carNamedata);exit;
-
-
-        $queryBuilder =json_encode($queryBuilder->get()->toArray());
-        $queryBuilder = json_decode($queryBuilder, true);
+                print_r("<pre/>");
+                print_r($carNamedata);exit;
 
 
+                $queryBuilder =json_encode($queryBuilder->get()->toArray());
+                $queryBuilder = json_decode($queryBuilder, true);
 
 
 
-        $data = [];
 
-        */
+
+                $data = [];
+
+                */
         if (request()->ajax()) {
 
 
 //           print_r($_REQUEST);exit;
 
             $table_pre = config("database.connections.mysql.prefix");
-            $table = $table_pre.'product_flat';
+            $table = $table_pre . 'product_flat';
 
 
             // Table's primary key
             $primaryKey = 'id';
 
             $columns = array(
-                array( 'db' => 'ba_product_flat.id', 'dt' => 0 , 'field'=>'id'),
-                array( 'db' => '`ba_product_images`.`path`',   'dt' => 1, 'field'=>'path' ),
-                array( 'db' => '`ba_product_flat`.`name`',   'dt' => 2, 'field'=>'name' ),
-                array( 'db' => '`ba_product_flat`.`status`',   'dt' => 3, 'field'=>'status' ),
-                array( 'db' => '`ba_product_inventories`.`qty`',   'dt' => 4, 'field'=>'qty' ),
-                array( 'db' => '`ba_product_flat`.`channel`',   'dt' => 5, 'field'=>'channel' ),
-                array( 'db' => '`ba_product_flat`.`type`',   'dt' => 6, 'field'=>'type' ),
-                array( 'db' => '`ba_product_flat`.`sku`',   'dt' => 7, 'field'=>'sku' ),
+                array('db' => 'ba_product_flat.id', 'dt' => 0, 'field' => 'id'),
+                array('db' => '`ba_product_images`.`path`', 'dt' => 1, 'field' => 'path'),
+                array('db' => '`ba_product_flat`.`name`', 'dt' => 2, 'field' => 'name'),
+                array('db' => '`ba_product_flat`.`status`', 'dt' => 3, 'field' => 'status'),
+                array('db' => '`ba_product_inventories`.`qty`', 'dt' => 4, 'field' => 'qty'),
+                array('db' => '`ba_product_flat`.`channel`', 'dt' => 5, 'field' => 'channel'),
+                array('db' => '`ba_product_flat`.`type`', 'dt' => 6, 'field' => 'type'),
+                array('db' => '`ba_product_flat`.`sku`', 'dt' => 7, 'field' => 'sku'),
 
 //                array( 'db' => '`ba_product_flat`.`sku`',   'dt' => 7, 'field'=>'sku' ),
 
@@ -154,37 +157,35 @@ class ProductController extends Controller
             $sql_details = array(
                 'user' => config("database.connections.mysql.username"),
                 'pass' => config("database.connections.mysql.password"),
-                'db'   => config("database.connections.mysql.database"),
+                'db' => config("database.connections.mysql.database"),
                 'host' => config("database.connections.mysql.host"),
                 'timezone' => config("database.connections.mysql.timezone"),
                 'charset' => config("database.connections.mysql.charset") // Depending on your PHP and MySQL config, you may need this
             );
 
 
-            $joinQuery =   "from `ba_product_flat` left join `ba_attribute_families` as `ba_af` on `ba_product_flat`.`attribute_family_id` = `ba_af`.`id` left join `ba_product_inventories` on `ba_product_flat`.`product_id` = `ba_product_inventories`.`product_id` left join `ba_product_images` on `ba_product_flat`.`product_id` = `ba_product_images`.`product_id` left join `ba_product_categories` as `ba_pc` on `ba_product_flat`.`product_id` = `ba_pc`.`product_id` left join `ba_category_translations` as `ba_ct` on `ba_pc`.`category_id` = `ba_ct`.`category_id`";
+            $joinQuery = "from `ba_product_flat` left join `ba_attribute_families` as `ba_af` on `ba_product_flat`.`attribute_family_id` = `ba_af`.`id` left join `ba_product_inventories` on `ba_product_flat`.`product_id` = `ba_product_inventories`.`product_id` left join `ba_product_images` on `ba_product_flat`.`product_id` = `ba_product_images`.`product_id` left join `ba_product_categories` as `ba_pc` on `ba_product_flat`.`product_id` = `ba_pc`.`product_id` left join `ba_category_translations` as `ba_ct` on `ba_pc`.`category_id` = `ba_ct`.`category_id`";
 
 
 //            $joinQuery = "FROM `{$table}` AS `o` LEFT JOIN `{$table_pre}addresses` AS `a` ON (`a`.`order_id` = `o`.`id`) LEFT JOIN `{$table_pre}order_transactions` as t ON (`t`.`order_id` = `o`.`id`)";
             $extraCondition = "";
 
-            $data = SSP::simple( request()->input(), $sql_details, $table, $primaryKey, $columns, $joinQuery, $extraCondition );
+            $data = SSP::simple(request()->input(), $sql_details, $table, $primaryKey, $columns, $joinQuery, $extraCondition);
 
 
-
-
-            if(!empty($data['data'])){
-                foreach ($data['data'] as $key=>$value){
-                    if($value[3]==1){
+            if (!empty($data['data'])) {
+                foreach ($data['data'] as $key => $value) {
+                    if ($value[3] == 1) {
                         $data['data'][$key][3] = '活跃';
-                    }elseif($value[3]==2){
+                    } elseif ($value[3] == 2) {
                         $data['data'][$key][3] = '已存档';
-                    }elseif($value[3]==3){
+                    } elseif ($value[3] == 3) {
                         $data['data'][$key][3] = '草稿';
-                    }else{
+                    } else {
                         $data['data'][$key][3] = '未定义';
                     }
                     $data['data'][$key]['id'] = $value[0];
-                    $data['data'][$key]['path'] = '/storage/'.$value[1];
+                    $data['data'][$key]['path'] = '/storage/' . $value[1];
                     $data['data'][$key]['name'] = $value[2];
                     $data['data'][$key]['status'] = $value[3];
                     $data['data'][$key]['qty'] = $value[4];
@@ -200,7 +201,6 @@ class ProductController extends Controller
                     unset($data['data'][$key][5]);
                     unset($data['data'][$key][6]);
                     unset($data['data'][$key][7]);
-
 
 
                 }
@@ -300,15 +300,13 @@ class ProductController extends Controller
      * @param int $id
      * @return \Illuminate\View\View
      */
-    public function edit($id=10)
+    public function edit($id = 10)
     {
-        echo 234;
 
-//
-//
+
+//        echo 234;
         $product = $this->productRepository->findOrFail($id);
-//
-//
+
 //
         $inventorySources = $this->inventorySourceRepository->findWhere(['status' => self::ACTIVE_STATUS]);
 
@@ -562,4 +560,32 @@ class ProductController extends Controller
 
         return Storage::download($productAttribute['text_value']);
     }
+
+
+    public function uploadImg(Request $request)
+    {
+
+        if ($request->hasFile('file')) {
+            $file = $request->file('file');
+            // 检查文件是否上传成功
+            if ($file->isValid()) {
+                // 获取文件名并移动到指定目录
+                $fileName = $file->getClientOriginalName();
+                $file->move(public_path('storage/product/sku'), $fileName);
+                $path = '/storage/product/sku/' . $fileName;
+                // 返回上传成功信息
+                return response()->json(
+                    [
+                        'code' => 200,
+                        'msg' => '上传成功',
+                        "data" => ["url" => $path],
+                    ]
+                );
+            }
+        }
+        // 返回上传失败信息
+        return response()->json(['success' => false, 'message' => '上传失败']);
+
+    }
+
 }

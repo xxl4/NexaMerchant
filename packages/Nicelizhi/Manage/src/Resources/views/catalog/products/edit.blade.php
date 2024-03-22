@@ -8,6 +8,9 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/2.0.2/css/dataTables.dataTables.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/3.0.1/css/buttons.dataTables.css">
 
+    <link rel="stylesheet" type="text/css" href="/style/layui/css/layui.css"/>
+
+
 
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.2/moment.min.js"></script>
@@ -28,8 +31,10 @@
     <script src="https://www.jq22.com/jquery/jquery-1.10.2.js"></script>
     <script src="/style/Convert_Pinyin.js" type="text/javascript" charset="utf-8"></script>
     <script src="/style/layer.js" type="text/javascript" charset="utf-8"></script>
-    <link rel="stylesheet" type="text/css" href="/style/layer.css"/>
-    <link rel="stylesheet" type="text/css" href="/style/layui.css"/>
+{{--    <link rel="stylesheet" type="text/css" href="/style/layer.css"/>--}}
+{{--    <link rel="stylesheet" type="text/css" href="/style/layui.css"/>--}}
+    <script src="/style/layui/layui.js"></script>
+
 
     <style>
         #sku-wrap, #sku-value-wrap{
@@ -175,71 +180,44 @@
                                     <!-- Image Preview -->
                                     <div id="imagePreview"></div>
                                 </div>
-
-
-
-
                             </div>
 
 
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <div class="layui-container">
+                                        <form action="" class="layui-form fairy-form">
+                                            <!-- sku参数表 -->
+                                            <div class="layui-form-item">
+                                                <label class="layui-form-label">规格：</label>
+                                                <div class="layui-input-block">
+                                                    <div id="fairy-spec-table"></div>
+                                                </div>
+                                            </div>
 
+                                            <!-- 动态sku表 -->
+                                            <div class="layui-form-item">
+                                                <label class="layui-form-label">SKU表：</label>
+                                                <div class="layui-input-block">
+                                                    <div id="fairy-sku-table"></div>
+                                                </div>
+                                            </div>
 
-
-
-
-                            <div class="card-footer">
-                                <button type="submit" class="btn btn-primary">Submit</button>
-                            </div>
-
-
-
-                        </form>
-
-                        <div class="card-body">
-
-                            <div class="form-group">
-                                <div id="from" class="layui-form"  style="padding: 0px;">
-                                    <div class="layui-form-item" style="display: flex;">
-                                        <label class="layui-form-label" style="min-width: 80px;">规格</label>
-                                        <div id="sku-wrap"></div>
-                                        <div class="layui-input-inline" id="skuModel" style="display: none;border: 1px solid #E6E6E6;padding: 20px;margin-right: 0;min-width: 190px;">
-                                            <input type="text" name="skuName" id="skuName"  class="layui-input" placeholder="请输入规格名" style="margin-bottom: 20px;" autocomplete="off">
-                                            <button class="layui-btn layui-btn-normal" id="skuConfirm">确认</button>
-                                            <button class="layui-btn layui-btn-danger" id="skuCancel">取消</button>
-                                        </div>
-                                        <div class="layui-input-inline" style="width: 64px;">
-                                            <button class="layui-btn" id="skuAdd">添加</button>
-                                        </div>
-                                    </div>
-                                    <div class="layui-form-item" style="clear: none;float: left">
-                                        <label class="layui-form-label">规格值</label>
-                                        <div id="sku-value-wrap"></div>
-                                        <div class="layui-input-inline" id="skuValueModel" style="display: none;border: 1px solid #E6E6E6;padding: 20px;margin-right: 0;min-width: 190px;">
-                                            <input type="text" name="skuValueName" id="skuValueName"  class="layui-input" placeholder="请输入规格值" style="margin-bottom: 20px;" autocomplete="off">
-                                            <button class="layui-btn layui-btn-normal" id="skuValueConfirm">确认</button>
-                                            <button class="layui-btn layui-btn-danger" id="skuValueCancel">取消</button>
-                                        </div>
-                                        <div class="layui-input-inline" style="width: 64px;">
-                                            <button class="layui-btn" id="skuValueAdd">添加</button>
-                                        </div>
-                                    </div>
-                                    <div class="layui-form-item" style="clear: none;float: left">
-                                        <div class="layui-card-body" id="my-table">
-                                            <table class="layui-table">
-                                                <thead>
-                                                <tr id="th">
-                                                </tr>
-                                                </thead>
-                                                <tbody id="tbody">
-                                                </tbody>
-                                            </table>
-                                        </div>
+                                            <div class="layui-form-item">
+                                                <div class="layui-input-block">
+                                                    <button class="layui-btn" lay-submit lay-filter="submit">立即提交</button>
+                                                    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                                                </div>
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
 
-                        </div>
-
+                            <div class="card-footer">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        </form>
                     </div>
 
 
@@ -451,11 +429,7 @@
 
 
                 <div class="col-md-6">
-
-
-
-
-                    <div class="card card-warning">
+                    <div class="card card-primary">
                         <div class="card-header">
                             <h3 class="card-title">状态管理</h3>
                         </div>
@@ -480,14 +454,14 @@
                     </div>
 
 
-                    <div class="card card-warning">
+                    <div class="card card-primary">
                         <div class="card-header">
                             <h3 class="card-title">渠道管理</h3>
                         </div>
                         <div class="card-body">
                             <form>
                                 <div class="row">
-                                    <div class="col-sm-8">
+                                    <div class="col-sm-6">
                                         <div class="form-group">
                                             <label>渠道</label>
                                             <select id="exampleSelect" class="form-control">
@@ -502,7 +476,7 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-sm-8">
+                                    <div class="col-sm-6">
                                         <div class="form-group">
                                             <label>市场</label>
                                             <select id="exampleSelect" class="form-control">
@@ -523,14 +497,14 @@
 
 
 
-                    <div class="card card-warning">
+                    <div class="card card-primary">
                         <div class="card-header">
                             <h3 class="card-title">产品整理</h3>
                         </div>
                         <div class="card-body">
                             <form>
                                 <div class="row">
-                                    <div class="col-sm-8">
+                                    <div class="col-sm-6">
                                         <div class="form-group">
                                             <label>产品类型</label>
                                             <select id="exampleSelect" class="form-control">
@@ -542,10 +516,8 @@
                                             </select>
                                         </div>
                                     </div>
-                                </div>
 
-                                <div class="row">
-                                    <div class="col-sm-8">
+                                    <div class="col-sm-6">
                                         <div class="form-group">
                                             <label>厂商</label>
                                             <select id="exampleSelect" class="form-control">
@@ -557,10 +529,21 @@
                                             </select>
                                         </div>
                                     </div>
-                                </div>
 
-                                <div class="row">
-                                    <div class="col-sm-8">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>厂商</label>
+                                            <select id="exampleSelect" class="form-control">
+                                                <option>option 1</option>
+                                                <option>option 2</option>
+                                                <option>option 3</option>
+                                                <option>option 4</option>
+                                                <option>option 5</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
                                         <div class="form-group">
                                             <label>产品系列</label>
                                             <select id="exampleSelect" class="form-control">
@@ -572,10 +555,8 @@
                                             </select>
                                         </div>
                                     </div>
-                                </div>
 
-                                <div class="row">
-                                    <div class="col-sm-8">
+                                    <div class="col-sm-6">
                                         <div class="form-group">
                                             <label>标签</label>
                                             <select id="exampleSelect" class="form-control">
@@ -587,11 +568,8 @@
                                             </select>
                                         </div>
                                     </div>
-                                </div>
 
-
-                                <div class="row">
-                                    <div class="col-sm-8">
+                                    <div class="col-sm-6">
                                         <div class="form-group">
                                             <label>模版样式</label>
                                             <select id="exampleSelect" class="form-control">
@@ -604,32 +582,72 @@
                                         </div>
                                     </div>
                                 </div>
-
                             </form>
                         </div>
                     </div>
 
 
 
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title">产品规格</h3>
+                        </div>
+                        <div class="card-body">
+                            <form>
+                                <div class="row">
+
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>长</label>
+                                            <input type="text" class="form-control" placeholder="Enter ...">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>宽</label>
+                                            <input type="text" class="form-control" placeholder="Enter ...">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>高</label>
+                                            <input type="text" class="form-control" placeholder="Enter ...">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>重量</label>
+                                            <input type="text" class="form-control" placeholder="Enter ...">
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+
+
+
+                            </form>
+                        </div>
+
+
+                    </div>
+
+
+
+
+
                 </div>
-
-
-
-
             </div>
-
-
-
         </div>
-
-
-
-
     </section>
 
 
 
-
+<!--
     <script type="text/javascript">
         $(document).ready(function(){
             $('#sku-wrap').on('click', '.delete-icon', function (e) {
@@ -828,7 +846,7 @@
                 // $('#th').append('<th>'+sku+'</th>');
                 tablehtml += '<th>'+skuObjs[i].value+'</th>';
             }
-            tablehtml += '<th>价格</th><th>库存</th>';
+            tablehtml += '<th>价格</th><th>库存</th><th>图片</th>';
             $('#th').html(tablehtml);
             // $('#th').append('<th>价格</th><th>库存</th>');
 
@@ -863,7 +881,7 @@
                     for (var j=0;j<arr.length;j++){
                         html += '<td>'+arr[j]+'</td>'
                     }
-                    html += '<td><input/></td><td><input/></td></tr>';
+                    html += '<td><input/></td><td><input/></td><td><input/></td></tr>';
                     $('#my-table').show();
                     $("#tbody").append(html);
                 }
@@ -874,6 +892,146 @@
 
         // generateGroup([["红色","蓝色"],["X","XL"],["10m","20m"],["8g","16g"]]);
 
+    </script>
+-->
+
+    <script>
+        layui.config({
+            base: '/style/lay-module/', // 设定扩展的 layui 模块的所在目录，一般用于外部模块扩展
+        }).use(['form', 'skuTable'], function () {
+            var form = layui.form, skuTable = layui.skuTable;
+
+            //注意！！！ 注意！！！ 注意！！！
+            //如果配置了相关接口请求的参数，请置本示例于服务器中预览，不然会有浏览器跨域问题
+            //示例中的json文件仅做格式返回参考，若多次执行添加规格后再为新增后的规格添加规格值，会发现所有新增的规格都增加了该规格值。注意！此处并非是bug，原因是因为示例中返回的新增规格值id是重复的，而在正常接口请求每次返回的新增规则id是不一样的
+            var obj = skuTable.render({
+                //规格表容器id
+                specTableElemId: 'fairy-spec-table',
+                //sku表容器id
+                skuTableElemId: 'fairy-sku-table',
+                //sku表相同属性值是否合并行
+                rowspan: true,
+                //上传接口地址
+                //接口要求返回格式为 {"code": 200, "data": {"url": "xxx"}, "msg": ""}
+                // uploadUrl: '/style/json/upload.json',
+                uploadUrl: '{{ route('admin.catalog.products.uploadImg') }}',
+
+
+                //添加规格接口地址，如果为空则表示不允许增加规格
+                //接口要求返回格式为 {"code": 200, "data": {"id": "xxx"}, "msg": ""}
+                specCreateUrl: '/style/json/specCreate.json',
+                //添加规格时的额外参数
+                specCreateParams: {},
+                //删除规格接口地址，如果为空则表示仅前端删除
+                specDeleteUrl: '/style/json/specDelete.json',
+                //添加规格值接口地址，如果为空则表示不允许增加规格值
+                //接口要求返回格式为 {"code": 200, "data": {"id": "xxx"}, "msg": ""}
+                specValueCreateUrl: '/style/json/specValueCreate.json',
+                //删除规格值接口地址，如果为空则表示仅前端删除
+                specValueDeleteUrl: '/style/json/specValueDelete.json',
+                //sku表格配置参数
+                skuTableConfig: {
+                    thead: [
+                        {title: '图片', icon: ''},
+                        {title: '销售价(元)', icon: 'layui-icon-cols'},
+                        {title: '市场价(元)', icon: 'layui-icon-cols'},
+                        {title: '成本价(元)', icon: 'layui-icon-cols'},
+                        {title: '库存', icon: 'layui-icon-cols'},
+                        {title: '条码', icon: 'layui-icon-cols'},
+                        {title: '状态', icon: ''},
+                    ],
+                    tbody: [
+                        {type: 'image', field: 'picture', value: '', verify: '', reqtext: ''},
+                        {type: 'input', field: 'price', value: '0', verify: 'required|number', reqtext: '销售价不能为空'},
+                        {type: 'input', field: 'market_price', value: '0', verify: 'required|number', reqtext: '市场价不能为空'},
+                        {type: 'input', field: 'cost_price', value: '0', verify: 'required|number', reqtext: '成本价不能为空'},
+                        {type: 'input', field: 'stock', value: '0', verify: 'required|number', reqtext: '库存不能为空'},
+                        {type: 'input', field: 'bar_code', value: '0', verify: 'required|number', reqtext: '条码不能为空'},
+
+                        {type: 'select', field: 'status', option: [{key: '启用', value: '1'}, {key: '禁用', value: '0'}], verify: 'required', reqtext: '状态不能为空'},
+                    ]
+                },
+                //规格数据, 一般从后台获取
+                specData: [
+                    {
+                        id: "1",
+                        title: "颜色",
+                        child: [
+                            {id: "1", title: "红", checked: true},
+                            {id: "2", title: "黄", checked: false},
+                            {id: "3", title: "蓝", checked: false}
+                        ]
+                    }, {
+                        id: "2",
+                        title: "尺码",
+                        child: [
+                            {id: "4", title: "S", checked: true},
+                            {id: "5", title: "M", checked: true},
+                            {id: "6", title: "L", checked: false},
+                            {id: "7", title: "XL", checked: false}
+                        ]
+                    }, {
+                        id: "3",
+                        title: "款式",
+                        child: [
+                            {id: "8", title: "男款", checked: true},
+                            {id: "9", title: "女款", checked: true}
+                        ]
+                    }
+                ],
+                //获取规格数据接口地址，如果为空或者不配置则使用 specData 参数配置
+                //接口要求返回格式参考 specData.json
+                // specDataUrl: './json/specData.json',
+                //sku数据
+                //新增的时候为空对象
+                //编辑的时候可以从后台接收，会自动填充sku表，可以去掉注释看效果
+                // skuData: {
+                //     "skus[1-4-8][picture]": "https://www.baidu.com/img/flexible/logo/pc/result.png",
+                //     "skus[1-4-8][price]": "100",
+                //     "skus[1-4-8][market_price]": "200",
+                //     "skus[1-4-8][cost_price]": "50",
+                //     "skus[1-4-8][stock]": "18",
+                //     "skus[1-4-8][status]": "0",
+                //     "skus[1-4-9][picture]": "",
+                //     "skus[1-4-9][price]": "0",
+                //     "skus[1-4-9][market_price]": "0",
+                //     "skus[1-4-9][cost_price]": "0",
+                //     "skus[1-4-9][stock]": "0",
+                //     "skus[1-4-9][status]": "1",
+                //     "skus[1-5-8][picture]": "",
+                //     "skus[1-5-8][price]": "0",
+                //     "skus[1-5-8][market_price]": "0",
+                //     "skus[1-5-8][cost_price]": "0",
+                //     "skus[1-5-8][stock]": "0",
+                //     "skus[1-5-8][status]": "1",
+                //     "skus[1-5-9][picture]": "",
+                //     "skus[1-5-9][price]": "0",
+                //     "skus[1-5-9][market_price]": "0",
+                //     "skus[1-5-9][cost_price]": "0",
+                //     "skus[1-5-9][stock]": "0",
+                //     "skus[1-5-9][status]": "1"
+                // },
+                //获取SKU数据接口地址，如果为空或者不配置则使用skuData配置
+                //接口要求返回格式参考 skuData.json
+                skuDataUrl: '/style/json/skuData.json',
+            });
+
+            form.on('submit(submit)', function (data) {
+
+
+                //获取规格数据
+                console.log(obj.getSpecData());
+                //获取表单数据
+                console.log(data.field);
+
+                var state = Object.keys(data.field).some(function (item, index, array) {
+                    return item.startsWith('skus');
+                });
+
+                state ? layer.alert(JSON.stringify(data.field), {title: '提交的数据'}) : layer.msg('sku表数据不能为空', {icon: 5, anim: 6});
+                return false;
+            });
+        });
     </script>
 
 
