@@ -2021,6 +2021,8 @@ function GotoNotRequest(url) {
             console.log("product");
             console.log(products);
 
+            var shipping_address = "";
+
             if($("#shipping_address_other").is(':checked')) {
                 //$("#bill_address").show();
                 window.shipping_address = "other";
