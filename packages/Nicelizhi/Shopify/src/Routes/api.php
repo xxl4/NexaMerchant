@@ -7,6 +7,14 @@ use Nicelizhi\Shopify\Http\Controllers\WebhooksController;
 
 Route::group(['middleware' => ['api'], 'prefix' => 'shopify'], function () {
 
+    Route::prefix('webhooks')->group(function () {
+        Route::controller(WebhooksController::class)->group(function () {
+            Route::post('v1', 'v1')->name('shopify.webhook.v1.other');
+        });
+        //Route::post('.', 'WebhooksController@v1')->name('shopify.webhook.v1.other');
+    });
+
+
     Route::prefix('v1')->group(function () {
 
         Route::controller(WebhooksController::class)->prefix('webhooks')->group(function () {
