@@ -1,0 +1,47 @@
+[
+	{  
+      "CountryCode":"ZA",
+      "StateCode":"EC",
+      "StateName":"Eastern Cape"
+   },
+   {  
+      "CountryCode":"ZA",
+      "StateCode":"FS",
+      "StateName":"Free State"
+   },
+   {  
+      "CountryCode":"ZA",
+      "StateCode":"GT",
+      "StateName":"Gauteng"
+   },
+   {  
+      "CountryCode":"ZA",
+      "StateCode":"LP",
+      "StateName":"Limpopo"
+   },
+   {  
+      "CountryCode":"ZA",
+      "StateCode":"MP",
+      "StateName":"Mpumalanga"
+   },
+   {  
+      "CountryCode":"ZA",
+      "StateCode":"NC",
+      "StateName":"Northern Cape"
+   },
+   {  
+      "CountryCode":"ZA",
+      "StateCode":"NL",
+      "StateName":"Kwazulu-Natal"
+   },
+   {  
+      "CountryCode":"ZA",
+      "StateCode":"NW",
+      "StateName":"North-West"
+   },
+   {  
+      "CountryCode":"ZA",
+      "StateCode":"WC",
+      "StateName":"Western Cape"
+   }
+]

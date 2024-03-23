@@ -21,6 +21,7 @@ class ShopifyServiceProvider extends ServiceProvider
     public function boot(Router $router)
     {
         Route::middleware('web')->group(__DIR__ . '/../Routes/web.php');
+        Route::middleware('api')->group(__DIR__ . '/../Routes/api.php');
 
         $this->loadTranslationsFrom(__DIR__ . '/../Resources/lang', 'shopify');
 
@@ -64,6 +65,11 @@ class ShopifyServiceProvider extends ServiceProvider
             dirname(__DIR__) . '/Config/menu.php', 'menu.admin'
         );
 
+        $this->mergeConfigFrom(
+            dirname(__DIR__) . '/Config/acl.php',
+            'acl'
+        );
+
         
         $this->mergeConfigFrom(
             dirname(__DIR__) . '/Config/shopify.php', 'shopify'
@@ -81,12 +87,24 @@ class ShopifyServiceProvider extends ServiceProvider
         if ($this->app->runningInConsole()) {
             $this->commands([
                 \Nicelizhi\Shopify\Console\Commands\Product\Get::class,
+                \Nicelizhi\Shopify\Console\Commands\Product\GetV2::class,
+                \Nicelizhi\Shopify\Console\Commands\Product\GetV3::class,
                 \Nicelizhi\Shopify\Console\Commands\Product\Post::class,
                 \Nicelizhi\Shopify\Console\Commands\Product\Put::class,
                 \Nicelizhi\Shopify\Console\Commands\Product\Delete::class,
                 \Nicelizhi\Shopify\Console\Commands\Order\Get::class,
+                \Nicelizhi\Shopify\Console\Commands\Order\GetShipping::class,
                 \Nicelizhi\Shopify\Console\Commands\Order\Post::class,
+                \Nicelizhi\Shopify\Console\Commands\Order\Create::class,
+                \Nicelizhi\Shopify\Console\Commands\Order\Put::class,
+                \Nicelizhi\Shopify\Console\Commands\Order\PostCannelOrder::class,
                 \Nicelizhi\Shopify\Console\Commands\Collect\Get::class,
+
+                \Nicelizhi\Shopify\Console\Commands\Customers\Get::class,
+                \Nicelizhi\Shopify\Console\Commands\Customers\Post::class,
+
+                \Nicelizhi\Shopify\Console\Commands\Webhooks\Get::class,
+                \Nicelizhi\Shopify\Console\Commands\Webhooks\Post::class,
             ]);
         }
     }

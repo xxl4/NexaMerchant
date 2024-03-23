@@ -1,0 +1,132 @@
+[
+    {
+        "CountryCode": "IE",
+        "StateCode": "CW",
+        "StateName": "Carlow"
+    },
+    {
+        "CountryCode": "IE",
+        "StateCode": "CN",
+        "StateName": "Cavan"
+    },
+    {
+        "CountryCode": "IE",
+        "StateCode": "CE",
+        "StateName": "Clare"
+    },
+    {
+        "CountryCode": "IE",
+        "StateCode": "CO",
+        "StateName": "Cork"
+    },
+    {
+        "CountryCode": "IE",
+        "StateCode": "DL",
+        "StateName": "Donegal"
+    },
+    {
+        "CountryCode": "IE",
+        "StateCode": "D",
+        "StateName": "Dublin"
+    },
+    {
+        "CountryCode": "IE",
+        "StateCode": "G",
+        "StateName": "Galway"
+    },
+    {
+        "CountryCode": "IE",
+        "StateCode": "KY",
+        "StateName": "Kerry"
+    },
+    {
+        "CountryCode": "IE",
+        "StateCode": "KE",
+        "StateName": "Kildare"
+    },
+    {
+        "CountryCode": "IE",
+        "StateCode": "KK",
+        "StateName": "Kilkenny"
+    },
+    {
+        "CountryCode": "IE",
+        "StateCode": "LS",
+        "StateName": "Laois"
+    },
+    {
+        "CountryCode": "IE",
+        "StateCode": "LM",
+        "StateName": "Leitrim"
+    },
+    {
+        "CountryCode": "IE",
+        "StateCode": "LK",
+        "StateName": "Limerick"
+    },
+    {
+        "CountryCode": "IE",
+        "StateCode": "LD",
+        "StateName": "Longford"
+    },
+    {
+        "CountryCode": "IE",
+        "StateCode": "LH",
+        "StateName": "Louth"
+    },
+    {
+        "CountryCode": "IE",
+        "StateCode": "MO",
+        "StateName": "Mayo"
+    },
+    {
+        "CountryCode": "IE",
+        "StateCode": "MH",
+        "StateName": "Meath"
+    },
+    {
+        "CountryCode": "IE",
+        "StateCode": "MN",
+        "StateName": "Monaghan"
+    },
+    {
+        "CountryCode": "IE",
+        "StateCode": "OY",
+        "StateName": "Offaly"
+    },
+    {
+        "CountryCode": "IE",
+        "StateCode": "RN",
+        "StateName": "Roscommon"
+    },
+    {
+        "CountryCode": "IE",
+        "StateCode": "SO",
+        "StateName": "Sligo"
+    },
+    {
+        "CountryCode": "IE",
+        "StateCode": "TA",
+        "StateName": "Tipperary"
+    },
+    {
+        "CountryCode": "IE",
+        "StateCode": "WD",
+        "StateName": "Waterford"
+    },
+    {
+        "CountryCode": "IE",
+        "StateCode": "WH",
+        "StateName": "Westmeath"
+    },
+    {
+        "CountryCode": "IE",
+        "StateCode": "WX",
+        "StateName": "Wexford"
+    },
+    {
+        "CountryCode": "IE",
+        "StateCode": "WW",
+        "StateName": "Wicklow"
+    }
+]

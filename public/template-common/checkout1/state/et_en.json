@@ -1,0 +1,57 @@
+[
+	{  
+      "CountryCode":"ET",
+      "StateCode":"AA",
+      "StateName":"Adis Abeba"
+   },
+   {  
+      "CountryCode":"ET",
+      "StateCode":"AF",
+      "StateName":"Afar"
+   },
+   {  
+      "CountryCode":"ET",
+      "StateCode":"AM",
+      "StateName":"Amara"
+   },
+   {  
+      "CountryCode":"ET",
+      "StateCode":"BE",
+      "StateName":"Binshangul Gumuz"
+   },
+   {  
+      "CountryCode":"ET",
+      "StateCode":"DD",
+      "StateName":"Dire Dawa"
+   },
+   {  
+      "CountryCode":"ET",
+      "StateCode":"GA",
+      "StateName":"Gambela Hizboch"
+   },
+   {  
+      "CountryCode":"ET",
+      "StateCode":"HA",
+      "StateName":"Hareri Hizb"
+   },
+   {  
+      "CountryCode":"ET",
+      "StateCode":"OR",
+      "StateName":"Oromiya"
+   },
+   {  
+      "CountryCode":"ET",
+      "StateCode":"SN",
+      "StateName":"Yeebub Biheroch Biheresebochna Hizboch"
+   },
+   {  
+      "CountryCode":"ET",
+      "StateCode":"SO",
+      "StateName":"Sumale"
+   },
+   {  
+      "CountryCode":"ET",
+      "StateCode":"TI",
+      "StateName":"Tigray"
+   }
+]
