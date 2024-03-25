@@ -5,11 +5,9 @@ namespace Nicelizhi\Shopify\Console\Commands\Order;
 use Illuminate\Console\Command;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Log;
-
 use Webkul\Sales\Repositories\OrderRepository;
 use Webkul\Sales\Repositories\OrderCommentRepository;
 use Illuminate\Support\Facades\Cache;
-
 use Nicelizhi\Shopify\Models\ShopifyOrder;
 use Nicelizhi\Shopify\Models\ShopifyStore;
 use Webkul\Sales\Models\Order;
@@ -73,24 +71,12 @@ class Post extends Command
             return false;
         }
 
-        //\Nicelizhi\Shopify\Helpers\Utils::send($this->shopify_store_id." start import orders ".date("Y-m-d H:i:s"));
-
-        // $lists = $this->orderRepository->findWhere([
-        //     'status' => 'processing'
-        // ]);
         $lists = Order::where(['status'=>'processing'])->orderBy("updated_at", "desc")->select(['id'])->limit(100)->get();
-        //var_dump($lists);exit;
-        //$lists = Order::where(['id'=>'1093'])->orderBy("updated_at", "desc")->limit(10)->get();
-
-        //var_dump($lists);exit;
 
         $this->checkLog();
 
         foreach($lists as $key=>$list) {
             $this->info("start post order " . $list->id);
-
-            
-            
             $this->postOrder($list->id, $shopifyStore);
             $this->syncOrderPrice($list); // sync price to system
             //exit;
@@ -192,6 +178,7 @@ class Post extends Command
         }
 
         $shipping_address = $order->shipping_address;
+        $billing_address = $order->billing_address;
         $postOrder['line_items'] = $line_items;
 
 
@@ -207,16 +194,16 @@ class Post extends Command
         $shipping_address->city = empty($shipping_address->city) ? $shipping_address->state : $shipping_address->city;
 
         $billing_address = [
-            "first_name" => $shipping_address->first_name,
-            "last_name" => $shipping_address->last_name,
-            "address1" => $shipping_address->address1,
+            "first_name" => $billing_address->first_name,
+            "last_name" => $billing_address->last_name,
+            "address1" => $billing_address->address1,
             //$input['phone_full'] = str_replace('undefined+','', $input['phone_full']);
             
             "phone" => $shipping_address->phone,
-            "city" => $shipping_address->city,
-            "province" => $shipping_address->state,
-            "country" => $shipping_address->country,
-            "zip" => $shipping_address->postcode
+            "city" => $billing_address->city,
+            "province" => $billing_address->state,
+            "country" => $billing_address->country,
+            "zip" => $billing_address->postcode
         ];
         $postOrder['billing_address'] = $billing_address;
         
