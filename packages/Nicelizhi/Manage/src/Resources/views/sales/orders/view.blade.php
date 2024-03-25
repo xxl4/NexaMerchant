@@ -174,16 +174,6 @@
 
                                 {!! view_render_event('sales.order.payment-method.after', ['order' => $order]) !!}
                                 
-                                <b>
-                                    <?php 
-                                    
-                                    //$transactions = $order->transactions;
-
-                                    //var_dump($transactions);
-                                    
-                                    ?>
-                                    
-                                </b>
                                 @if ($order->transactions)
                                 @forelse ($order->transactions as $transactions)
                                 <b>{{ $transactions->transaction_id }}</b>
