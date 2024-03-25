@@ -2666,6 +2666,11 @@ function GotoNotRequest(url) {
     </script>
     <?php if(!empty($ob_adv_id)) { ?>
 
+        <?php 
+    $ob_adv_ids = explode(',', $ob_adv_id); 
+    foreach($ob_adv_ids as $key=>$ob_adv_id) {
+?>
+
         <script data-obct type = "text/javascript">
         /** DO NOT MODIFY THIS CODE**/
         !function(_window, _document) {
@@ -2694,7 +2699,7 @@ function GotoNotRequest(url) {
 
         obApi('track', 'PAGE_VIEW');
         </script>
-    <?php } ?>
+    <?php } } ?>
 <!-- Facebook Pixel Code -->
 <script>
     !function(f,b,e,v,n,t,s)

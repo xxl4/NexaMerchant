@@ -21,6 +21,11 @@
 <!-- Facebook Pixel Code -->
 <?php if(!empty($ob_adv_id)) { ?>
 
+    <?php 
+    $ob_adv_ids = explode(',', $ob_adv_id); 
+    foreach($ob_adv_ids as $key=>$ob_adv_id) {
+?>
+
 <script data-obct type = "text/javascript">
 /** DO NOT MODIFY THIS CODE**/
 !function(_window, _document) {
@@ -49,7 +54,7 @@
 
 obApi('track', 'PAGE_VIEW');
 </script>
-<?php } ?>
+<?php } } ?>
 <script>
     !function(f,b,e,v,n,t,s)
     {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
