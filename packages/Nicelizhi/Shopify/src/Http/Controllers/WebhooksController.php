@@ -117,13 +117,4 @@ class WebhooksController extends Controller
         Log::info("products_update ".json_encode($request->all()));
     }
 
-
-
-    function verify_webhook($data, $hmac_header)
-    {
-        define('CLIENT_SECRET', 'ace668f696aa6437e4c93d772c2284f1');
-        $calculated_hmac = base64_encode(hash_hmac('sha256', $data, CLIENT_SECRET, true));
-        return hash_equals($calculated_hmac, $hmac_header);
-    }
-
 }
