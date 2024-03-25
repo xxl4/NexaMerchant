@@ -12,6 +12,11 @@ echo $html->html;
 </script>
 <?php if(!empty($ob_adv_id)) { ?>
 
+  <?php 
+    $ob_adv_ids = explode(',', $ob_adv_id); 
+    foreach($ob_adv_ids as $key=>$ob_adv_id) {
+?>
+
 <script data-obct type = "text/javascript">
 /** DO NOT MODIFY THIS CODE**/
 !function(_window, _document) {
@@ -40,4 +45,4 @@ echo $html->html;
 
 obApi('track', 'PAGE_VIEW');
 </script>
-<?php } ?>
+<?php } } ?>
