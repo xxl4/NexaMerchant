@@ -104,39 +104,94 @@
 
                         <div class="row invoice-info">
                             @if ($order->billing_address)
-                            <div class="col-sm-4 invoice-col">
+                            <div class="col-sm-2 invoice-col">
                                 @lang('admin::app.sales.orders.view.billing-address')
                                 @include ('admin::sales.address', ['address' => $order->billing_address])
                                 {!! view_render_event('sales.order.billing_address.after', ['order' => $order]) !!}
                             </div>
                             @endif
                             @if ($order->shipping_address)
-                            <div class="col-sm-4 invoice-col">
+                            <div class="col-sm-3 invoice-col">
                                 @lang('admin::app.sales.orders.view.shipping-address')
                                 @include ('admin::sales.address', ['address' => $order->shipping_address])
                                 {!! view_render_event('sales.order.shipping_address.after', ['order' => $order]) !!}
                             </div>
                             @endif
                             
-                            <div class="col-sm-4 invoice-col">
+                            <div class="col-sm-3 invoice-col">
                                 <b>@lang('admin::app.sales.orders.view.invoices') ({{ count($order->invoices) }})</b><br />
                                 @forelse ($order->invoices as $index => $invoice)
                                 <b>Invoice @lang('admin::app.sales.orders.view.invoice-id', ['invoice' => $invoice->increment_id ?? $invoice->id])</b><br>
-                                <b>{{ core()->formatDate($invoice->created_at, 'd M, Y H:i:s a') }}<br>
+                                <b>{{ core()->formatDate($invoice->created_at, 'd M, Y H:i:s a') }} </b><br>
                                 <b><a
                                     href="{{ route('admin.sales.invoices.view', $invoice->id) }}"
                                     class="text-[14px] text-blue-600 transition-all hover:underline"
                                 >
                                     @lang('admin::app.sales.orders.view.view')
-                                </a>
+                                </a></b>
                                 <b><a
                                     href="{{ route('admin.sales.invoices.print', $invoice->id) }}"
                                     class="text-[14px] text-blue-600 transition-all hover:underline"
                                 >
                                     @lang('admin::app.sales.orders.view.download-pdf')
-                                </a>
+                                </a></b>
                                 @empty 
                                 @lang('admin::app.sales.orders.view.no-invoice-found')
+                                @endforelse
+                            </div>
+                            <div class="col-sm-2 invoice-col">
+                                <b>@lang('admin::app.sales.orders.view.shipments') ({{ count($order->shipments) }})</b><br />
+                                @forelse ($order->shipments as $shipment)
+                                <b>
+                                    @lang('admin::app.sales.orders.view.shipment', ['shipment' => $shipment->id])
+                                </b><br />
+                                <?php //var_dump($shipment);?>
+                                <b>{{$shipment->carrier_title;}}</b> <br />
+                                <b>{{$shipment->track_number;}}</b> <br />
+                                
+                                <b>
+                                    {{ core()->formatDate($shipment->created_at, 'd M, Y H:i:s a') }}
+                                </b>
+                                @empty 
+                                @lang('admin::app.sales.orders.view.no-shipment-found')
+                                @endforelse
+                            </div>
+
+                            <div class="col-sm-2 invoice-col">
+                                <b>@lang('admin::app.sales.orders.view.payment-and-shipping')</b><br />
+                                <b>{{ core()->getConfigData('sales.payment_methods.' . $order->payment->method . '.title') }}</b><br />
+                                @forelse ($order->shipments as $shipment)
+                                <b>
+                                    @lang('admin::app.sales.orders.view.shipment', ['shipment' => $shipment->id])
+                                </b><br />
+                                <?php //var_dump($shipment);?>
+                                <b>{{ $order->order_currency_code }}</b> <br />
+                                @php $additionalDetails = \Webkul\Payment\Payment::getAdditionalDetails($order->payment->method);  @endphp
+                                @if (! empty($additionalDetails))
+                                <b>{{ $additionalDetails['title'] }}</b> <br />
+                                <b>{{ $additionalDetails['value'] }}</b> <br />
+                                @endif
+
+                                {!! view_render_event('sales.order.payment-method.after', ['order' => $order]) !!}
+                                
+                                <b>
+                                    <?php 
+                                    
+                                    //$transactions = $order->transactions;
+
+                                    //var_dump($transactions);
+                                    
+                                    ?>
+                                    
+                                </b>
+                                @if ($order->transactions)
+                                @forelse ($order->transactions as $transactions)
+                                <b>{{ $transactions->transaction_id }}</b>
+                                @endforeach
+                                @endif
+                                
+                                @empty 
+                                @lang('admin::app.sales.orders.view.no-shipment-found')
                                 @endforelse
                             </div>
 
