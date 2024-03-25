@@ -85,28 +85,53 @@ class Post extends Command
 
         //@link https://shopify.dev/docs/api/admin-rest/2023-10/resources/webhook#event-topics
 
+        $topic = [];
+        // orders
+        $topic[] = "orders/create";
+        $topic[] = "orders/edited";
+        $topic[] = "orders/paid";
+        $topic[] = "orders/fulfilled";
+        $topic[] = "orders/updated";
+
+        // orders transaction
+        $topic[] = "order_transactions/create";
+
+        // products
+        $topic[] = "products/create";
+        $topic[] = "products/delete";
+        $topic[] = "products/update";
+
+        // refunds
+        $topic[] = "refunds/create";
+
+        // fulfillments
+        $topic[] = "fulfillments/create";
+        $topic[] = "fulfillments/update";
+
+        foreach($topic as $key=>$tp) {
+            $this->addHook($tp, $shopify);
+            sleep(1);
+
+        }
+    }
+
+    public function addHook($topic, $shopify) {
+        $this->info("topic " . $topic. " adding ");
+        $client = new Client();
+        $post = [];
+
+        //@link https://shopify.dev/docs/api/admin-rest/2023-10/resources/webhook#event-topics
+
         $webhook = [];
-        $webhook['address'] = config('app.url')."/shopify/webhooks/v1";
-        $topic = "orders/updated";
-        $topic = "orders/create";
-        $topic = "orders/fulfilled";
-        $topic = "orders/edited";
-        $topic = "orders/paid";
-        $topic = "order_transactions/create";
-        $topic = "customers/create";
-        $topic = "customers/update";
-        // $topic[] = "orders/create";
-        // $topic[] = "orders/edited";
-        // $topic[] = "orders/paid";
-        // $topic[] = "orders/fulfilled";
-        // $topic[] = "orders/updated";
+        $webhook['address'] = config('app.url')."/shopify/v1/webhooks/".$topic;
         $webhook['topic'] = $topic;
         $webhook['format'] = "json";
         //$webhook['api_version'] = "2024-01"; // This version need check your app chose 
 
-        //var_dump($webhook);exit;
 
         $post['webhook'] = $webhook;
+
+        //var_dump($post);exit;
         
 
         try {
@@ -120,7 +145,9 @@ class Post extends Command
                 'body' => json_encode($post)
             ]);
 
-            var_dump($response->getBody());
+            var_dump(json_decode($response->getBody())); 
+            //exit;
+            //sleep(1);
 
         }catch(ClientException $e) {
             //var_dump($e);
@@ -134,10 +161,6 @@ class Post extends Command
         }finally  {
             
         }
-        
-        
-
-
     }
 
 }

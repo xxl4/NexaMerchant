@@ -31,7 +31,7 @@ class WebhooksController extends Controller
      * 
      */
     public function orders_updated(Request $request) {
-
+        Log::info("orders_updated ".json_encode($request->all()));
     }
 
     /**
@@ -40,7 +40,7 @@ class WebhooksController extends Controller
      * 
      */
     public function orders_create(Request $request) {
-
+        Log::info("orders_create ".json_encode($request->all()));
     }
 
     /**
@@ -49,7 +49,7 @@ class WebhooksController extends Controller
      * 
      */
     public function orders_fulfilled(Request $request) {
-
+        Log::info("orders_fulfilled ".json_encode($request->all()));
     }
 
      /**
@@ -58,7 +58,7 @@ class WebhooksController extends Controller
      * 
      */
     public function orders_edited(Request $request) {
-
+        Log::info("orders_edited ".json_encode($request->all()));
     }
 
      /**
@@ -67,7 +67,7 @@ class WebhooksController extends Controller
      * 
      */
     public function orders_paid(Request $request) {
-
+        Log::info("orders_paid ".json_encode($request->all()));
     }
 
      /**
@@ -76,7 +76,7 @@ class WebhooksController extends Controller
      * 
      */
     public function order_transactions_create(Request $request) {
-
+        Log::info("order_transactions_create ".json_encode($request->all()));
     }
 
      /**
@@ -85,7 +85,7 @@ class WebhooksController extends Controller
      * 
      */
     public function customers_create(Request $request) {
-
+        Log::info("customers_create ".json_encode($request->all()));
     }
 
     /**
@@ -94,8 +94,30 @@ class WebhooksController extends Controller
      * 
      */
     public function customers_update(Request $request) {
-
+        Log::info("customers_update ".json_encode($request->all()));
     }
+
+    public function fulfillments_create(Request $request) {
+        Log::info("fulfillments_create ".json_encode($request->all()));
+    }
+
+    public function fulfillments_update(Request $request) {
+        Log::info("fulfillments_update ".json_encode($request->all()));
+    }
+
+    public function products_create(Request $request) {
+        Log::info("products_create ".json_encode($request->all()));
+    }
+
+    public function products_delete(Request $request) {
+        Log::info("products_delete ".json_encode($request->all()));
+    }
+
+    public function products_update(Request $request) {
+        Log::info("products_update ".json_encode($request->all()));
+    }
+
+
 
     function verify_webhook($data, $hmac_header)
     {

@@ -81,8 +81,8 @@ class Get extends Command
         $force = $this->option('force');
 
         //delete
-        // $webhook_id = "1494529671450";
-        // $this->deletewebhook($webhook_id, $shopify);
+        //  $webhook_id = "1494830285082";
+        //  $this->deletewebhook($webhook_id, $shopify);
 
 
         // @https://shopify.dev/docs/api/admin-rest/2023-10/resources/webhook#get-webhooks

@@ -27,7 +27,13 @@ Route::group(['middleware' => ['api'], 'prefix' => 'shopify'], function () {
             Route::post('orders/paid', 'orders_paid')->name('shopify.webhook.v1.orders.paid');
             Route::post('order_transactions/create', 'order_transactions_create')->name('shopify.webhook.v1.order_transactions.create');
             //products
-            
+            Route::post('products/create', 'products_create')->name('shopify.webhook.v1.products.create');
+            Route::post('products/delete', 'products_delete')->name('shopify.webhook.v1.products.delete');
+            Route::post('products/update', 'products_update')->name('shopify.webhook.v1.products.update');
+
+            //fulfillments
+            Route::post('fulfillments/create', 'fulfillments_create')->name('shopify.webhook.v1.fulfillments.create');
+            Route::post('fulfillments/update', 'fulfillments_update')->name('shopify.webhook.v1.fulfillments.update');
 
             // cuustomers
             Route::post('customers/create', 'customers_create')->name('shopify.webhook.v1.customers.create');
