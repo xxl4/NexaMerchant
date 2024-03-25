@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Log;
 
 use Webkul\Sales\Repositories\OrderRepository;
 use Webkul\Sales\Repositories\OrderCommentRepository;
-use Webkul\Admin\DataGrids\Sales\OrderDataGrid;
 use Webkul\Sales\Repositories\ShipmentRepository;
 use Webkul\Sales\Repositories\OrderItemRepository;
 use Illuminate\Support\Facades\Cache;
@@ -52,8 +51,7 @@ class GetShipping extends Command
         protected OrderCommentRepository $orderCommentRepository
     )
     {
-        $this->shopify_store_id = "wmshoe";
-        $this->shopify_store_id = "hatmeo";
+
         $this->shopify_store_id = config('shopify.shopify_store_id');
         $this->lang = config('shopify.store_lang');
         parent::__construct();

@@ -2004,6 +2004,15 @@ function GotoNotRequest(url) {
             console.log("product");
             console.log(products);
 
+            var shipping_address = "";
+
+            if($("#shipping_address_other").is(':checked')) {
+                //$("#bill_address").show();
+                window.shipping_address = "other";
+                shipping_address = window.shipping_address;
+                console.log("shipping address" + shipping_address);
+            }
+
             //console.log("order products");
             //console.log(products);
 
@@ -2040,7 +2049,15 @@ function GotoNotRequest(url) {
                 domain_name         : document.domain || window.location.host,
                 price_template      : '{{ core()->currencySymbol(core()->getBaseCurrencyCode()) }}price',
                 omnisend            : '',
-                payment_account     : 'viusd',
+                payment_account     : '',
+                shipping_address    : shipping_address,
+                bill_first_name          : $(".bill-first_name").val(),
+                bill_second_name         : $(".bill-last_name").val(),
+                bill_country             : $("#bill-country-select").val(),
+                bill_city                : $(".bill-city").val(),
+                bill_province            : $("#bill-state-select").val(),
+                bill_address             : $(".bill-address").val() ? $(".address").val() : '',
+                bill_code                : $(".bill-zip_code").val(),
             }
             console.log(params);
 
@@ -2216,6 +2233,49 @@ function GotoNotRequest(url) {
                 has_error = true;
                 showError('zip_code-error',  "This field is required.");
                 error_log.push('code is empty');
+            }
+
+            
+
+             // do the bill address info
+             if(params.shipping_address=="other") {
+                if(!params.bill_first_name){
+                    has_error = true;
+                    showError('first_name-error', "This field is required.");
+                    error_log.push('Bill first_name is empty');
+                }
+                if(!params.bill_second_name){
+                    has_error = true;
+                    showError('last_name-error', "This field is required.");
+                    error_log.push('Bill second_name is empty');
+                }
+                if(!params.bill_country){
+                    has_error = true;
+                    showError('bill-country-error',  "This field is required.");
+                    error_log.push('Bill country is empty');
+                }
+                if(!params.bill_city){
+                    has_error = true;
+                    showError('bill-city-error',  "This field is required.");
+                    error_log.push('Bill city is empty');
+                }
+                if(window.bill_states) {
+                    if(!params.province){
+                        has_error = true;
+                        showError('bill-state-error',  "This field is required.");
+                        error_log.push('Bill province is empty');
+                    }
+                }
+                if(!params.bill_address){
+                    has_error = true;
+                    showError('bill-address-error',  "This field is required.");
+                    error_log.push('Bill address is empty');
+                }
+                if(!params.bill_code){
+                    has_error = true;
+                    showError('bill-zip_code-error',  "This field is required.");
+                    error_log.push('Bill code is empty');
+                }
             }
 
             var code_format = new RegExp(getCountriesField('codeFormat'));

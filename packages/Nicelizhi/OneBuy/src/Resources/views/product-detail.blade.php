@@ -489,20 +489,17 @@ Apt / Suite / Other </label>
 @lang('onebuy::app.product.order.Country') </label>
 </div>
 <div class="shipping-info-flex">
-<div class="shipping-info-item shipping-info-flex-half">
-<select class="shipping-info-select" name="state" id="state-select"></select>
-<label id="state-error" class="shipping-info-error">
-</label>
-<label class="shipping-info-label">
-@lang('onebuy::app.product.order.State/Province') </label>
-</div>
-<div class="shipping-info-item shipping-info-flex-half">
-<input name="zip_code" class="shipping-info-input zip_code" />
-<label id="zip_code-error" class="shipping-info-error">
-</label>
-<label class="shipping-info-label">
- @lang('onebuy::app.product.order.Zip/Postal Code')</label>
-</div>
+    <div class="shipping-info-item shipping-info-flex-half">
+        <select class="shipping-info-select" name="state" id="state-select"></select>
+        <label id="state-error" class="shipping-info-error"></label>
+        <label class="shipping-info-label">@lang('onebuy::app.product.order.State/Province') </label>
+    </div>
+    <div class="shipping-info-item shipping-info-flex-half">
+        <input name="zip_code" class="shipping-info-input zip_code" />
+        <label id="zip_code-error" class="shipping-info-error">
+    </label>
+    <label class="shipping-info-label">@lang('onebuy::app.product.order.Zip/Postal Code')</label>
+    </div>
 </div>
 <input type="hidden" id="id_card" name="id_card" /> 
 <input type="hidden" id="id_expiry" name="id_expiry" /> 
@@ -1801,6 +1798,7 @@ function GotoNotRequest(url) {
             //addToCart(pay_type);
 
             var params = getOrderParams(pay_type);
+            //return false;
             if(token){
                 params[token_field] = token;
             }
@@ -1908,6 +1906,25 @@ function GotoNotRequest(url) {
                             element: cardNumber,
                             id: data.payment_intent_id,
                             client_secret: data.client_secret,
+                            <?php if(strtolower($default_country)=='us') { ?>
+                            payment_method:{
+                                billing:{
+                                    email:data.billing.email,
+                                    first_name: data.billing.first_name,
+                                    last_name: data.billing.last_name,
+                                    // date_of_birth: '1990-01-01',
+                                    // phone_number: '13999999999',
+                                    address:{
+                                        city: data.billing.city,
+                                        country_code: data.billing.country,
+                                        postcode: data.billing.postcode,
+                                        state: data.billing.state,
+                                        street: data.billing.address1
+                                    }
+                                }
+                            }
+                            <?php } ?>
+
                         }).then((response) => {
                         // STEP #6b: Listen to the request response
                         /* handle confirm response in your business flow */
@@ -2004,6 +2021,15 @@ function GotoNotRequest(url) {
             console.log("product");
             console.log(products);
 
+            var shipping_address = "";
+
+            if($("#shipping_address_other").is(':checked')) {
+                //$("#bill_address").show();
+                window.shipping_address = "other";
+                shipping_address = window.shipping_address;
+                console.log("shipping address" + shipping_address);
+            }
+
             //console.log("order products");
             //console.log(products);
 
@@ -2040,8 +2066,18 @@ function GotoNotRequest(url) {
                 domain_name         : document.domain || window.location.host,
                 price_template      : '{{ core()->currencySymbol(core()->getBaseCurrencyCode()) }}price',
                 omnisend            : '',
-                payment_account     : 'viusd',
+                payment_account     : '',
+                shipping_address    : shipping_address,
+                bill_first_name          : $(".bill-first_name").val(),
+                bill_second_name         : $(".bill-last_name").val(),
+                bill_country             : $("#bill-country-select").val(),
+                bill_city                : $(".bill-city").val(),
+                bill_province            : $("#bill-state-select").val(),
+                bill_address             : $(".bill-address").val() ? $(".address").val() : '',
+                bill_code                : $(".bill-zip_code").val(),
+
             }
+            console.log("params ");
             console.log(params);
 
             if(getQueryString('utm_campaign')) {
@@ -2223,6 +2259,47 @@ function GotoNotRequest(url) {
                 has_error = true;
                 showError('zip_code-error',  "Please enter valid zip/postcode ");
                 error_log.push('code is invaild');
+            }
+
+            // do the bill address info
+            if(params.shipping_address=="other") {
+                if(!params.bill_first_name){
+                    has_error = true;
+                    showError('first_name-error', "This field is required.");
+                    error_log.push('Bill first_name is empty');
+                }
+                if(!params.bill_second_name){
+                    has_error = true;
+                    showError('last_name-error', "This field is required.");
+                    error_log.push('Bill second_name is empty');
+                }
+                if(!params.bill_country){
+                    has_error = true;
+                    showError('bill-country-error',  "This field is required.");
+                    error_log.push('Bill country is empty');
+                }
+                if(!params.bill_city){
+                    has_error = true;
+                    showError('bill-city-error',  "This field is required.");
+                    error_log.push('Bill city is empty');
+                }
+                if(window.bill_states) {
+                    if(!params.province){
+                        has_error = true;
+                        showError('bill-state-error',  "This field is required.");
+                        error_log.push('Bill province is empty');
+                    }
+                }
+                if(!params.bill_address){
+                    has_error = true;
+                    showError('bill-address-error',  "This field is required.");
+                    error_log.push('Bill address is empty');
+                }
+                if(!params.bill_code){
+                    has_error = true;
+                    showError('bill-zip_code-error',  "This field is required.");
+                    error_log.push('Bill code is empty');
+                }
             }
 
             if(has_error) {

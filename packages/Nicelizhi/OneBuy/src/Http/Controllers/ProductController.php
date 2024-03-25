@@ -364,6 +364,8 @@ class ProductController extends Controller
         }
         // 添加地址内容
         $addressData = [];
+
+
         $addressData['billing'] = [];
         $address1 = [];
         array_push($address1, $input['address']);
@@ -372,22 +374,68 @@ class ProductController extends Controller
         $addressData['billing']['email'] = $input['email'];
         $addressData['billing']['first_name'] = $input['first_name'];
         $addressData['billing']['last_name'] = $input['second_name'];
-        //undefined+
         $input['phone_full'] = str_replace('undefined+','', $input['phone_full']);
         $addressData['billing']['phone'] = $input['phone_full'];
         $addressData['billing']['postcode'] = $input['code'];
         $addressData['billing']['state'] = $input['province'];
         $addressData['billing']['use_for_shipping'] = true;
         $addressData['billing']['address1'] = $address1;
-        $addressData['shipping'] = [];
-        $addressData['shipping']['isSaved'] = false;
-        $address1 = [];
-        array_push($address1, "");
-        $addressData['shipping']['address1'] = $address1;
 
         $addressData['billing']['address1'] = implode(PHP_EOL, $addressData['billing']['address1']);
 
+        $shipping = [];
+        $address1 = [];
+        array_push($address1, $input['address']);
+        $shipping['city'] = $input['city'];
+        $shipping['country'] = $input['country'];
+        $shipping['email'] = $input['email'];
+        $shipping['first_name'] = $input['first_name'];
+        $shipping['last_name'] = $input['second_name'];
+        //undefined+
+        $input['phone_full'] = str_replace('undefined+','', $input['phone_full']);
+        $shipping['phone'] = $input['phone_full'];
+        $shipping['postcode'] = $input['code'];
+        $shipping['state'] = $input['province'];
+        $shipping['use_for_shipping'] = true;
+        $shipping['address1'] = $address1;
+        $shipping['address1'] = implode(PHP_EOL, $shipping['address1']);
+        
+        
+        $addressData['shipping'] = $shipping;
+        $addressData['shipping']['isSaved'] = false;
+        $address1 = [];
+        array_push($address1, $input['address']);
+        $addressData['shipping']['address1'] = $address1;
         $addressData['shipping']['address1'] = implode(PHP_EOL, $addressData['shipping']['address1']);
+
+        // customer bill address info
+        if(@$input['shipping_address']=="other") {
+            $address1 = [];
+            array_push($address1, $input['bill_address']);
+            $billing = [];
+            $billing['city'] = $input['bill_city'];
+            $billing['country'] = $input['bill_country'];
+            $billing['email'] = $input['email'];
+            $billing['first_name'] = $input['bill_first_name'];
+            $billing['last_name'] = $input['bill_second_name'];
+            //undefined+
+            $input['phone_full'] = str_replace('undefined+','', $input['phone_full']);
+            $billing['phone'] = $input['phone_full'];
+            $billing['postcode'] = $input['bill_code'];
+            $billing['state'] = $input['bill_province'];
+            //$billing['use_for_shipping'] = true;
+            $billing['address1'] = $address1;
+            $billing['address1'] = implode(PHP_EOL, $billing['address1']);
+
+           // $billing['address1'] = implode(PHP_EOL, $billing['address1']);
+
+            $addressData['billing'] = $billing;
+        }
+
+
+        Log::info("address" . json_encode($addressData));
+
+        //var_dump($addressData);exit;
 
 
         //return response()->json($addressData);
@@ -467,6 +515,7 @@ class ProductController extends Controller
                 $data['payment_intent_id'] = $transactionManager->id;
                 $data['currency'] = $transactionManager->currency;
                 $data['country'] = $input['country'];
+                $data['billing'] = $addressData['billing'];
             }
 
             return response()->json($data);
@@ -641,7 +690,7 @@ class ProductController extends Controller
         }
 
         try {
-            $order = $this->smartButton->createOrder($this->buildRequestBody());
+            $order = $this->smartButton->createOrder($this->buildRequestBody($input));
             $data = [];
             $data['order'] = $order;
             $data['code'] = 200;
@@ -812,7 +861,12 @@ class ProductController extends Controller
         return $invoiceData;
     }
 
-    protected function buildRequestBody()
+    /**
+     * 
+     * @link https://developer.paypal.com/docs/multiparty/checkout/save-payment-methods/during-purchase/js-sdk/paypal/
+     * 
+     */
+    protected function buildRequestBody($input)
     {
         $cart = Cart::getCart();
 
@@ -824,6 +878,7 @@ class ProductController extends Controller
                 //'shipping_preference' => 'NO_SHIPPING',
                 'shipping_preference' => 'GET_FROM_FILE', // 用户选择自己的地址内容
             ],
+            
 
             'purchase_units' => [
                 [
