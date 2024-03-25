@@ -51,8 +51,7 @@ class Get extends Command
         protected OrderCommentRepository $orderCommentRepository
     )
     {
-        $this->shopify_store_id = "wmshoe";
-        $this->shopify_store_id = "hatmeo";
+
         $this->shopify_store_id = config('shopify.shopify_store_id');
         $this->lang = config('shopify.store_lang');
         parent::__construct();

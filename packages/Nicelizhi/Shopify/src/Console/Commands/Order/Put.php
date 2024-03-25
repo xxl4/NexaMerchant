@@ -30,6 +30,8 @@ class Put extends Command
      */
     protected $description = 'Put Order info';
 
+    private $shopify_store_id = null;
+
     /**
      * Create a new command instance.
      *
@@ -42,7 +44,7 @@ class Put extends Command
         protected OrderCommentRepository $orderCommentRepository
     )
     {
-        $this->shopify_store_id = "hatmeo";
+        $this->shopify_store_id = config('shopify.shopify_store_id');
         parent::__construct();
     }
 
