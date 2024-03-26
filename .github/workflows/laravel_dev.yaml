@@ -2,13 +2,13 @@ name: Dev
 
 on:
   push:
-    branches: [ "develop" ]
+    branches: [ "develop","package_admin_dev" ]
     paths-ignore:
       - 'README.md'
       - .github/**
       - docs/**
   pull_request:
-    branches: [ "develop" ]
+    branches: [ "develop","package_admin_dev" ]
 
 jobs:
   laravel-tests:
@@ -63,5 +63,5 @@ jobs:
         script: |
           cd ${{ secrets.WWW_DEV_DIR }} && sudo git pull
           composer update
-          php artisan migrate && php artisan db:seed
+          php artisan migrate
           vendor/bin/pest

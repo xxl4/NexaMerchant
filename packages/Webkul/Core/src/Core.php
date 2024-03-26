@@ -24,7 +24,7 @@ class Core
      *
      * @var string
      */
-    const BAGISTO_VERSION = '2.0.0';
+    const VERSION = '2.0.0';
 
     /**
      * Current Channel.
@@ -132,7 +132,7 @@ class Core
      */
     public function version()
     {
-        return static::BAGISTO_VERSION;
+        return static::VERSION;
     }
 
     /**

@@ -63,7 +63,6 @@
             "App\\": "app/",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/",
-            "Webkul\\Admin\\": "packages/Webkul/Admin/src",
             "Webkul\\Attribute\\": "packages/Webkul/Attribute/src",
             "Webkul\\CartRule\\": "packages/Webkul/CartRule/src",
             "Webkul\\CatalogRule\\": "packages/Webkul/CatalogRule/src",
@@ -95,7 +94,7 @@
             "Nicelizhi\\Airwallex\\": "packages/Webkul/Airwallex/src",
             "Nicelizhi\\Shopify\\": "packages/Nicelizhi/Shopify/src",
             "Nicelizhi\\ShopLine\\": "packages/Nicelizhi/ShopLine/src",
-            "Nicelizhi\\Admin\\": "packages/Nicelizhi/Admin/src",
+            "Nicelizhi\\Manage\\": "packages/Nicelizhi/Manage/src",
             "Nicelizhi\\Checkout\\": "packages/Nicelizhi/Checkout/src",
             "Nicelizhi\\Lp\\": "packages/Nicelizhi/Lp/src",
             "Nicelizhi\\Binom\\": "packages/Nicelizhi/Binom/src",
@@ -105,12 +104,12 @@
     "autoload-dev": {
         "psr-4": {
             "Tests\\": "tests/",
-            "Webkul\\Admin\\Tests\\": "packages/Webkul/Admin/tests",
             "Webkul\\DataGrid\\Tests\\": "packages/Webkul/DataGrid/tests",
             "Webkul\\Shop\\Tests\\": "packages/Webkul/Shop/tests",
             "Nicelizhi\\Checkout\\Tests\\": "packages/Nicelizhi/Checkout/tests",
             "Nicelizhi\\Binom\\Tests\\": "packages/Nicelizhi/Binom/tests",
             "Nicelizhi\\Shopify\\Tests\\": "packages/Nicelizhi/Shopify/tests",
+            "Nicelizhi\\Maange\\Tests\\": "packages/Nicelizhi/Mange/tests",
             "Nicelizhi\\OneBuy\\Tests\\": "packages/Nicelizhi/OneBuy/tests",
             "Nicelizhi\\ShopLine\\Tests\\": "packages/Nicelizhi/ShopLine/tests"
         }
