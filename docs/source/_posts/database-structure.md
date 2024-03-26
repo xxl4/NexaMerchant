@@ -216,7 +216,32 @@ lang: en
 | created_at |  timestamp   | create time |
 | updated_at |  timestamp   | update time |
 
+# Address
+
+## addresses
+| Field              | Type | Desc |
+| :---------------- | :------: | ----: |
+| id        |   int(10)   | id |
+| created_at |  timestamp   | create time |
+| updated_at |  timestamp   | update time |
+
+# Attributes
+
+## attributes
+## attribute_families
+## attribute_groups
+## attribute_groups_mappings
+## attribute_options
+## attribute_option_translations
+## attribute_translations
+
 # Cart
+
+## cart
+## cart_items
+## cart_item_inventories
+## cart_payment
+## cart_shipping_rates
 
 # Invoices
 
@@ -225,5 +250,23 @@ lang: en
 # Report
 
 # Rule
+
+## Cart Rule
+
+### cart_rules
+### cart_rule_channels
+### cart_rule_coupons
+### cart_rule_coupon_usage
+### cart_rule_customers
+### cart_rule_customer_groups
+### cart_rule_translations
+
+## Catelog Rule
+
+### catalog_rules
+### catalog_rule_channels
+### catalog_rule_customer_groups
+### catalog_rule_products
+### catalog_rule_product_prices
 
 # Shopify
