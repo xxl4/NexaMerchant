@@ -249,6 +249,16 @@ lang: en
 
 # Report
 
+# Channel
+
+# CMS
+
+# Category
+
+# Customer
+
+# Countries
+
 # Rule
 
 ## Cart Rule
@@ -268,5 +278,27 @@ lang: en
 ### catalog_rule_customer_groups
 ### catalog_rule_products
 ### catalog_rule_product_prices
+
+# Tax
+## tax_categories
+## tax_categories_tax_rates
+## tax_rates
+
+# Theme
+## theme_customizations
+## theme_customization_translations
+
+# Refund
+## refunds
+## refund_items
+
+# Wishlist
+## wishlist
+## wishlist_items
+
+# Visits
+## visits
+
+# Roles
 
 # Shopify
