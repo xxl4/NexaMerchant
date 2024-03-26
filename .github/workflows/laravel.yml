@@ -4,6 +4,7 @@ on:
   push:
     branches: [ "main","main_de","main_us" ]
     paths-ignore:
+      - 'README.md'
       - .github/**
       - docs/**
   pull_request:
