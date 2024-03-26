@@ -174,11 +174,7 @@
 
                                 {!! view_render_event('sales.order.payment-method.after', ['order' => $order]) !!}
                                 
-                                @if ($order->transactions)
-                                @forelse ($order->transactions as $transactions)
-                                <b>{{ $transactions->transaction_id }}</b>
-                                @endforeach
-                                @endif
+                                
                                 
                                 @empty 
                                 @lang('admin::app.sales.orders.view.no-shipment-found')
