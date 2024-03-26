@@ -100,11 +100,7 @@ class AirwallexController extends Controller
     public function webhook(Request $request)
     {
         Log::info(json_encode($request->all())); // log body
-        //Log::info("Log Header ");
-        //Log::info(json_encode($request->headers->all())); // log header
-        //var_dump($request->all());
         $input = $request->all();
-        //var_dump($input['data']['object']['merchant_order_id']);exit;
         if (isset($input['data']['object']['merchant_order_id'])) {
             $orderId = $input['data']['object']['merchant_order_id'];
 
@@ -118,7 +114,6 @@ class AirwallexController extends Controller
             if ($order) {
                 Log::info("airwallex notification received for order id:" . $transactionId);
 
-                //$transactionData = $this->airwallex->getPaymentStatusForOrder($orderId);
                                 
                 $status = $input['data']['object']['status'];
                 
@@ -127,7 +122,6 @@ class AirwallexController extends Controller
                     $amount = $input['data']['object']['amount'] * 100;
                     $orderAmount = round($order->base_grand_total * 100);
 
-                    //var_dump($amount, $orderAmount);exit;
 
                     if ($amount === $orderAmount) { // 核对价格是否一样的情况。
                         if ($order->status === 'pending') {
