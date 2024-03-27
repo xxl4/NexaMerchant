@@ -303,20 +303,37 @@ class ProductController extends Controller
     public function edit($id = 10)
     {
 
-
-//        echo 234;
         $product = $this->productRepository->findOrFail($id);
-
-//
         $inventorySources = $this->inventorySourceRepository->findWhere(['status' => self::ACTIVE_STATUS]);
 
-//        print_r("<pre/>");
-//        print_r($inventorySources);exit;
 
-//        return view('admin::catalog.products.edit');
+        $data = [];
+//        $data['family_list'] = DB::table('attribute_families')->get()->toArray();
+//        $data['attribute_group'] = DB::table('attribute_groups')->where('attribute_family_id',1)->get()->toArray();
+
 
         return view('admin::catalog.products.edit');
     }
+
+
+
+    public function family(Request$request)
+    {
+
+//        echo 123;exit;
+        $family_list = DB::table('attribute_families')->get()->toArray();
+
+
+        $family_list= (json_encode($family_list));
+
+//        print_r($family_list);exit;
+
+
+        return $family_list;
+
+
+    }
+
 
     /**
      * Update the specified resource in storage.
