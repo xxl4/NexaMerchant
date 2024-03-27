@@ -1612,7 +1612,8 @@ function GotoNotRequest(url) {
                                     //var info = res.info;
                                     //if(info.pay_status) {
                                         //Goto('/template-common/en/thankyou1/?id='+localStorage.getItem('order_id')+'&client_secret='+data.orderID);
-                                        Goto('/onebuy/checkout/success?id='+localStorage.getItem('order_id'));
+                                        //Goto('/onebuy/checkout/success?id='+localStorage.getItem('order_id'));
+                                        Goto('/checkout/v1/success/'+localStorage.getItem('order_id'));
                                     //}
                                 }
                                 if(res.error == 'INSTRUMENT_DECLINED') {
@@ -2777,6 +2778,11 @@ function GotoNotRequest(url) {
     </script>
     <?php if(!empty($ob_adv_id)) { ?>
 
+        <?php 
+    $ob_adv_ids = explode(',', $ob_adv_id); 
+    foreach($ob_adv_ids as $key=>$ob_adv_id) {
+?>
+
         <script data-obct type = "text/javascript">
         /** DO NOT MODIFY THIS CODE**/
         !function(_window, _document) {
@@ -2805,7 +2811,7 @@ function GotoNotRequest(url) {
 
         obApi('track', 'PAGE_VIEW');
         </script>
-    <?php } ?>
+    <?php } } ?>
 <!-- Facebook Pixel Code -->
 <script>
     !function(f,b,e,v,n,t,s)

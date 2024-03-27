@@ -19,6 +19,11 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <?php if(!empty($ob_adv_id)) { ?>
 
+<?php 
+    $ob_adv_ids = explode(',', $ob_adv_id); 
+    foreach($ob_adv_ids as $key=>$ob_adv_id) {
+?>
+
 <script data-obct type = "text/javascript">
 /** DO NOT MODIFY THIS CODE**/
 !function(_window, _document) {
@@ -47,7 +52,7 @@
 
 obApi('track', 'PAGE_VIEW');
 </script>
-<?php } ?>
+<?php } } ?>
 <!-- Facebook Pixel Code -->
 <script>
     !function(f,b,e,v,n,t,s)

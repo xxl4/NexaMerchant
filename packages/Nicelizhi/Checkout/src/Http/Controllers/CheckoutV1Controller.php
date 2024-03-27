@@ -22,6 +22,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Cache;
 use Webkul\CMS\Repositories\CmsRepository;
 use Illuminate\Support\Facades\Redis;
+use Webkul\Sales\Repositories\OrderTransactionRepository;
 
 
 class CheckoutV1Controller extends Controller{
@@ -49,6 +50,7 @@ class CheckoutV1Controller extends Controller{
         protected InvoiceRepository $invoiceRepository,
         protected Airwallex $airwallex,
         protected CmsRepository $cmsRepository,
+        protected OrderTransactionRepository $orderTransactionRepository,
         protected ThemeCustomizationRepository $themeCustomizationRepository
     )
     {
@@ -218,7 +220,15 @@ class CheckoutV1Controller extends Controller{
     public function success($order_id, Request $request) {
         $order = [];
 
-        $order = $this->orderRepository->findOrFail($order_id);
+        // check the payment info
+
+        $orderTrans = $this->orderTransactionRepository->where('transaction_id', $order_id)->select(['order_id'])->first();
+        if(!is_null($orderTrans)) {
+            $order = $this->orderRepository->findOrFail($orderTrans->order_id);
+        }else{
+            $order = $this->orderRepository->findOrFail($order_id);
+        }
+        
 
         $fb_ids = config('onebuy.fb_ids');
         $ob_adv_id = config('onebuy.ob_adv_id');
