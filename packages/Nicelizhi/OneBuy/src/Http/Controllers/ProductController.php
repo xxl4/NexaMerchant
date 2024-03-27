@@ -67,7 +67,7 @@ class ProductController extends Controller
         $product = Cache::get($cache_key);
         if(empty($product)) {
             $product = $this->productRepository->findBySlug($slugOrPath);
-            Cache::put($cache_key, $product, 3600);
+            Cache::put($cache_key, $product);
         }
 
         if (
@@ -164,9 +164,9 @@ class ProductController extends Controller
                 
                 $skus[] = $sku;
             }
-            Cache::put($cache_key, json_encode($skus), 36000);
-            Cache::put($size_cache_key, json_encode($qty_items_size), 36000);
-            Cache::put($color_cache_key, json_encode($qty_items_color), 36000);
+            Cache::put($cache_key, json_encode($skus));
+            Cache::put($size_cache_key, json_encode($qty_items_size));
+            Cache::put($color_cache_key, json_encode($qty_items_color));
         }else {
             $skus = json_decode($skus, JSON_OBJECT_AS_ARRAY);
         }
@@ -177,7 +177,7 @@ class ProductController extends Controller
         $product_attributes = Cache::get($cache_key);
 
 
-        $product_attributes = [];
+        //$product_attributes = [];
         if(empty($product_attributes)) {
         //if(true) {
 
@@ -259,7 +259,7 @@ class ProductController extends Controller
                 $product_attributes[] = $attribute;
             }
 
-            Cache::put($cache_key, json_encode($product_attributes), 36000);
+            Cache::put($cache_key, json_encode($product_attributes));
 
         }else{
             $product_attributes = json_decode($product_attributes, JSON_OBJECT_AS_ARRAY);
@@ -1015,7 +1015,7 @@ class ProductController extends Controller
         if(empty($shipping_price)) {
             //core()->getConfigData('sales.payment_methods.airwallex.apikey');
             $shipping_price = core()->getConfigData('sales.carriers.flatrate.default_rate');
-            Cache::put($shipping_price_key, $shipping_price, 36000);
+            Cache::put($shipping_price_key, $shipping_price);
         }
         
         if(empty($package_products)) {
@@ -1067,7 +1067,7 @@ class ProductController extends Controller
                 $package_products[] = $package_product;
             }
 
-            Cache::put($cache_key, json_encode($package_products), 36000);
+            Cache::put($cache_key, json_encode($package_products));
             //var_dump("hello");
             return $package_products;
         }
