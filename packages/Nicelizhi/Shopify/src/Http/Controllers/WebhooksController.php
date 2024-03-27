@@ -105,6 +105,10 @@ class WebhooksController extends Controller
         Log::info("fulfillments_update ".json_encode($request->all()));
     }
 
+    public function refunds_create(Request $request) {
+        Log::info("refunds_create ".json_encode($request->all()));
+    }
+
     public function products_create(Request $request) {
         Log::info("products_create ".json_encode($request->all()));
     }
