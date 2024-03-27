@@ -49,7 +49,7 @@ class Get extends Command
         protected ShopifyStore $ShopifyStore,
     )
     {
-        $this->shopify_store_id = "hatmeo";
+        $this->shopify_store_id = config('shopify.shopify_store_id');
         parent::__construct();
     }
 

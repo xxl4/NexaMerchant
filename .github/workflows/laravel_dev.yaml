@@ -62,5 +62,5 @@ jobs:
         script: |
           cd ${{ secrets.WWW_DEV_DIR }} && sudo git pull
           composer update
-          php artisan migrate && php artisan db:seed
+          php artisan migrate
           vendor/bin/pest

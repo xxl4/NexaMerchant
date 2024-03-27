@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Log;
 
 use Webkul\Sales\Repositories\OrderRepository;
 use Webkul\Sales\Repositories\OrderCommentRepository;
-use Webkul\Admin\DataGrids\Sales\OrderDataGrid;
 use Webkul\Sales\Repositories\ShipmentRepository;
 use Webkul\Sales\Repositories\OrderItemRepository;
 use Illuminate\Support\Facades\Cache;
@@ -18,6 +17,7 @@ use Nicelizhi\Shopify\Models\ShopifyOrder;
 use Nicelizhi\Shopify\Models\ShopifyStore;
 use Nicelizhi\Shopify\Models\ShopifyCustomer;
 use Illuminate\Support\Facades\Artisan;
+use GuzzleHttp\Exception\ClientException;
 
 
 class Post extends Command
@@ -78,7 +78,7 @@ class Post extends Command
         }
         $shopify = $shopifyStore->toArray();
 
-        
+    
 
         $lists = Order::where(['status'=>'pending'])->orderBy("updated_at", "desc")->select(['id','customer_email'])->limit(100)->get();
         foreach($lists as $key=>$item) {
@@ -151,7 +151,7 @@ class Post extends Command
             "first_name" => $shipping_address->first_name,
             "last_name"  => $shipping_address->last_name,
             "email"     => $shipping_address->email,
-            "phone"     => $shipping_address->phone,
+            //"phone"     => $shipping_address->phone,
             "verified_email"   => true,
             "addresses"  => $addresses,
             'tags'      => 'pending',
@@ -176,7 +176,8 @@ class Post extends Command
             //var_dump($e);
             var_dump($e->getMessage());
             Log::error(json_encode($e->getMessage()));
-            \Nicelizhi\Shopify\Helpers\Utils::send($e->getMessage().'--' .$id. " 需要手动解决 ");
+            Log::error(json_encode($pOrder));
+            //\Nicelizhi\Shopify\Helpers\Utils::send($e->getMessage().'--' .$id. " 需要手动解决 ");
             //continue;
             //return false;
         }catch(\GuzzleHttp\Exception\RequestException $e){

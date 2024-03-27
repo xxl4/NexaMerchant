@@ -96,7 +96,7 @@
                             <div class="col-12">
                                 <h4>
                                     <i class="fas fa-globe"></i> #{{$order['id']}}
-                                    <small class="float-right">Date: {{$order['create_at']}}</small>
+                                    <small class="float-right">Date: {{core()->formatDate($order->created_at) }}</small>
                                 </h4>
                             </div>
 
@@ -104,26 +104,85 @@
 
                         <div class="row invoice-info">
                             @if ($order->billing_address)
-                            <div class="col-sm-4 invoice-col">
+                            <div class="col-sm-2 invoice-col">
                                 @lang('admin::app.sales.orders.view.billing-address')
                                 @include ('admin::sales.address', ['address' => $order->billing_address])
                                 {!! view_render_event('sales.order.billing_address.after', ['order' => $order]) !!}
                             </div>
                             @endif
                             @if ($order->shipping_address)
-                            <div class="col-sm-4 invoice-col">
+                            <div class="col-sm-3 invoice-col">
                                 @lang('admin::app.sales.orders.view.shipping-address')
                                 @include ('admin::sales.address', ['address' => $order->shipping_address])
                                 {!! view_render_event('sales.order.shipping_address.after', ['order' => $order]) !!}
                             </div>
                             @endif
+                            
+                            <div class="col-sm-3 invoice-col">
+                                <b>@lang('admin::app.sales.orders.view.invoices') ({{ count($order->invoices) }})</b><br />
+                                @forelse ($order->invoices as $index => $invoice)
+                                <b>Invoice @lang('admin::app.sales.orders.view.invoice-id', ['invoice' => $invoice->increment_id ?? $invoice->id])</b><br>
+                                <b>{{ core()->formatDate($invoice->created_at, 'd M, Y H:i:s a') }} </b><br>
+                                <b><a
+                                    href="{{ route('admin.sales.invoices.view', $invoice->id) }}"
+                                    class="text-[14px] text-blue-600 transition-all hover:underline"
+                                >
+                                    @lang('admin::app.sales.orders.view.view')
+                                </a></b>
+                                <b><a
+                                    href="{{ route('admin.sales.invoices.print', $invoice->id) }}"
+                                    class="text-[14px] text-blue-600 transition-all hover:underline"
+                                >
+                                    @lang('admin::app.sales.orders.view.download-pdf')
+                                </a></b>
+                                @empty 
+                                @lang('admin::app.sales.orders.view.no-invoice-found')
+                                @endforelse
+                            </div>
+                            <div class="col-sm-2 invoice-col">
+                                <b>@lang('admin::app.sales.orders.view.shipments') ({{ count($order->shipments) }})</b><br />
+                                @forelse ($order->shipments as $shipment)
+                                <b>
+                                    @lang('admin::app.sales.orders.view.shipment', ['shipment' => $shipment->id])
+                                </b><br />
+                                <?php //var_dump($shipment);?>
+                                <b>{{$shipment->carrier_title;}}</b> <br />
+                                <b>{{$shipment->track_number;}}</b> <br />
+                                
+                                <b>
+                                    {{ core()->formatDate($shipment->created_at, 'd M, Y H:i:s a') }}
+                                </b>
+                                @empty 
+                                @lang('admin::app.sales.orders.view.no-shipment-found')
+                                @endforelse
+                            </div>
 
-                            <div class="col-sm-4 invoice-col">
-                                <b>Invoice #007612</b><br>
-                                <br>
-                                <b>Order ID:</b> 4F3S8J<br>
-                                <b>Payment Due:</b> 2/22/2014<br>
-                                <b>Account:</b> 968-34567
+                            <div class="col-sm-2 invoice-col">
+                                <b>@lang('admin::app.sales.orders.view.payment-and-shipping')</b><br />
+                                <b>{{ core()->getConfigData('sales.payment_methods.' . $order->payment->method . '.title') }}</b><br />
+                                @forelse ($order->shipments as $shipment)
+                                <b>
+                                    @lang('admin::app.sales.orders.view.shipment', ['shipment' => $shipment->id])
+                                </b><br />
+                                <?php //var_dump($shipment);?>
+                                <b>{{ $order->order_currency_code }}</b> <br />
+                                @php $additionalDetails = \Webkul\Payment\Payment::getAdditionalDetails($order->payment->method);  @endphp
+                                @if (! empty($additionalDetails))
+                                <b>{{ $additionalDetails['title'] }}</b> <br />
+                                <b>{{ $additionalDetails['value'] }}</b> <br />
+                                @endif
+
+                                {!! view_render_event('sales.order.payment-method.after', ['order' => $order]) !!}
+                                
+                                @if ($order->transactions)
+                                @forelse ($order->transactions as $transactions)
+                                <b>{{ $transactions->transaction_id }}</b>
+                                @endforeach
+                                @endif
+                                
+                                @empty 
+                                @lang('admin::app.sales.orders.view.no-shipment-found')
+                                @endforelse
                             </div>
 
                         </div>
@@ -148,7 +207,7 @@
 
                                                 @if($item->product?->base_image_url)
                                                 <img
-                                            class="w-full h-[60px] max-w-[60px] max-h-[60px] relative rounded-[4px]"
+                                            class="" height="200px"
                                             src="{{ $item->product?->base_image_url }}"
                                                 @else
                                                 <img src="{{ bagisto_asset('images/product-placeholders/front.svg') }}">
@@ -182,15 +241,6 @@
 
                             <div class="col-6">
                                 <p class="lead">Payment Methods:</p>
-                                <!-- <img src="../../dist/img/credit/visa.png" alt="Visa">
-                                <img src="../../dist/img/credit/mastercard.png" alt="Mastercard">
-                                <img src="../../dist/img/credit/american-express.png" alt="American Express">
-                                <img src="../../dist/img/credit/paypal2.png" alt="Paypal">
-                                <p class="text-muted well well-sm shadow-none" style="margin-top: 10px;"> -->
-                                    Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles, weebly ning heekya
-                                    handango imeem
-                                    plugg
-                                    dopplr jibjab, movity jajah plickers sifteo edmodo ifttt zimbra.
                                 </p>
                             </div>
 
@@ -199,20 +249,41 @@
                                 <div class="table-responsive">
                                     <table class="table">
                                         <tr>
-                                            <th style="width:50%">Subtotal:</th>
-                                            <td>$250.30</td>
+                                            <th style="width:50%">@lang('admin::app.sales.orders.view.summary-sub-total')</th>
+                                            <td> {{ core()->formatBasePrice($order->base_sub_total) }}</td>
                                         </tr>
                                         <tr>
-                                            <th>Tax (9.3%)</th>
-                                            <td>$10.34</td>
+                                            <th>@lang('admin::app.sales.orders.view.summary-tax')</th>
+                                            <td>{{ core()->formatBasePrice($order->base_tax_amount) }}</td>
+                                        </tr>
+                                        @if ($haveStockableItems = $order->haveStockableItems())
+                                        <tr>
+                                            <th>@lang('admin::app.sales.orders.view.shipping-and-handling')</th>
+                                            <td>{{ core()->formatBasePrice($order->base_shipping_amount) }}</td>
+                                        </tr>
+                                        @endif
+                                        <tr>
+                                            <th>@lang('admin::app.sales.orders.view.summary-grand-total')</th>
+                                            <td>{{ core()->formatBasePrice($order->base_grand_total) }}</td>
                                         </tr>
                                         <tr>
-                                            <th>Shipping:</th>
-                                            <td>$5.80</td>
+                                            <th>@lang('admin::app.sales.orders.view.total-paid')</th>
+                                            <td>{{ core()->formatBasePrice($order->base_grand_total_invoiced) }}</td>
                                         </tr>
                                         <tr>
-                                            <th>Total:</th>
-                                            <td>$265.24</td>
+                                            <th>@lang('admin::app.sales.orders.view.total-refund')</th>
+                                            <td>{{ core()->formatBasePrice($order->base_grand_total_refunded) }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>@lang('admin::app.sales.orders.view.total-due')</th>
+                                            <td>
+                                                @if($order->status !== 'canceled')
+                                                    {{ core()->formatBasePrice($order->base_total_due) }}
+                                                @else
+                                                        {{ core()->formatBasePrice(0.00) }}
+                                                @endif
+
+                                            </td>
                                         </tr>
                                     </table>
                                 </div>
