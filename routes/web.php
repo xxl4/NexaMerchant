@@ -10,3 +10,5 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+$date = date("Y-m-d");
+Route::get('logs-'.$date, [\Rap2hpoutre\LaravelLogViewer\LogViewerController::class, 'index']);

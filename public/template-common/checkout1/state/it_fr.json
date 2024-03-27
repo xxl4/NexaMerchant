@@ -1,0 +1,552 @@
+[
+    {
+        "CountryCode": "IT",
+        "StateCode": "AG",
+        "StateName": "Agrigento"
+    },
+    {
+        "CountryCode": "IT",
+        "StateCode": "AL",
+        "StateName": "Alessandria"
+    },
+    {
+        "CountryCode": "IT",
+        "StateCode": "AN",
+        "StateName": "Ancona"
+    },
+    {
+        "CountryCode": "IT",
+        "StateCode": "AO",
+        "StateName": "Aosta"
+    },
+    {
+        "CountryCode": "IT",
+        "StateCode": "AR",
+        "StateName": "Arezzo"
+    },
+    {
+        "CountryCode": "IT",
+        "StateCode": "AP",
+        "StateName": "Ascoli Piceno"
+    },
+    {
+        "CountryCode": "IT",
+        "StateCode": "AT",
+        "StateName": "Asti"
+    },
+    {
+        "CountryCode": "IT",
+        "StateCode": "AV",
+        "StateName": "Avellino"
+    },
+    {
+        "CountryCode": "IT",
+        "StateCode": "BA",
+        "StateName": "Bari"
+    },
+    {
+        "CountryCode": "IT",
+        "StateCode": "BT",
+        "StateName": "Barletta-Andria-Trani"
+    },
+    {
+        "CountryCode": "IT",
+        "StateCode": "BL",
+        "StateName": "Belluno"
+    },
+    {
+        "CountryCode": "IT",
+        "StateCode": "BN",
+        "StateName": "Benevento"
+    },
+    {
+        "CountryCode": "IT",
+        "StateCode": "BG",
+        "StateName": "Bergamo"
+    },
+    {
+        "CountryCode": "IT",
+        "StateCode": "BI",
+        "StateName": "Biella"
+    },
+    {
+        "CountryCode": "IT",
+        "StateCode": "BO",
+        "StateName": "Bologna"
+    },
+    {
+        "CountryCode": "IT",
+        "StateCode": "BS",
+        "StateName": "Brescia"
+    },
+    {
+        "CountryCode": "IT",
+        "StateCode": "BR",
+        "StateName": "Brindisi"
+    },
+    {
+        "CountryCode": "IT",
+        "StateCode": "CA",
+        "StateName": "Cagliari"
+    },
+    {
+        "CountryCode": "IT",
+        "StateCode": "CL",
+        "StateName": "Caltanissetta"
+    },
+    {
+        "CountryCode": "IT",
+        "StateCode": "CB",
+        "StateName": "Campobasso"
+    },
+    {
+        "CountryCode": "IT",
+        "StateCode": "CI",
+        "StateName": "Carbonia-Iglesias"
+    },
+    {
+        "CountryCode": "IT",
+        "StateCode": "CE",
+        "StateName": "Caserta"
+    },
+    {
+        "CountryCode": "IT",
+        "StateCode": "CT",
+        "StateName": "Catania"
+    },
+    {
+        "CountryCode": "IT",
+        "StateCode": "CZ",
+        "StateName": "Catanzaro"
+    },
+    {
+        "CountryCode": "IT",
+        "StateCode": "CH",
+        "StateName": "Chieti"
+    },
+    {
+        "CountryCode": "IT",
+        "StateCode": "CO",
+        "StateName": "Como"
+    },
+    {
+        "CountryCode": "IT",
+        "StateCode": "CS",
+        "StateName": "Cosenza"
+    },
+    {
+        "CountryCode": "IT",
+        "StateCode": "CR",
+        "StateName": "Cremona"
+    },
+    {
+        "CountryCode": "IT",
+        "StateCode": "KR",
+        "StateName": "Crotone"
+    },
+    {
+        "CountryCode": "IT",
+        "StateCode": "CN",
+        "StateName": "Cuneo"
+    },
+    {
+        "CountryCode": "IT",
+        "StateCode": "EN",
+        "StateName": "Enna"
+    },
+    {
+        "CountryCode": "IT",
+        "StateCode": "FM",
+        "StateName": "Fermo"
+    },
+    {
+        "CountryCode": "IT",
+        "StateCode": "FE",
+        "StateName": "Ferrara"
+    },
+    {
+        "CountryCode": "IT",
+        "StateCode": "FI",
+        "StateName": "Firenze"
+    },
+    {
+        "CountryCode": "IT",
+        "StateCode": "FG",
+        "StateName": "Foggia"
+    },
+    {
+        "CountryCode": "IT",
+        "StateCode": "FC",
+        "StateName": "Forlì-Cesena"
+    },
+    {
+        "CountryCode": "IT",
+        "StateCode": "FR",
+        "StateName": "Frosinone"
+    },
+    {
+        "CountryCode": "IT",
+        "StateCode": "GE",
+        "StateName": "Genova"
+    },
+    {
+        "CountryCode": "IT",
+        "StateCode": "GO",
+        "StateName": "Gorizia"
+    },
+    {
+        "CountryCode": "IT",
+        "StateCode": "GR",
+        "StateName": "Grosseto"
+    },
+    {
+        "CountryCode": "IT",
+        "StateCode": "IM",
+        "StateName": "Imperia"
+    },
+    {
+        "CountryCode": "IT",
+        "StateCode": "IS",
+        "StateName": "Isernia"
+    },
+    {
+        "CountryCode": "IT",
+        "StateCode": "SP",
+        "StateName": "La Spezia"
+    },
+    {
+        "CountryCode": "IT",
+        "StateCode": "LT",
+        "StateName": "Latina"
+    },
+    {
+        "CountryCode": "IT",
+        "StateCode": "LE",
+        "StateName": "Lecce"
+    },
+    {
+        "CountryCode": "IT",
+        "StateCode": "LC",
+        "StateName": "Lecco"
+    },
+    {
+        "CountryCode": "IT",
+        "StateCode": "LI",
+        "StateName": "Livorno"
+    },
+    {
+        "CountryCode": "IT",
+        "StateCode": "LO",
+        "StateName": "Lodi"
+    },
+    {
+        "CountryCode": "IT",
+        "StateCode": "LU",
+        "StateName": "Lucca"
+    },
+    {
+        "CountryCode": "IT",
+        "StateCode": "AQ",
+        "StateName": "L'Aquila"
+    },
+    {
+        "CountryCode": "IT",
+        "StateCode": "MC",
+        "StateName": "Macerata"
+    },
+    {
+        "CountryCode": "IT",
+        "StateCode": "MN",
+        "StateName": "Mantova"
+    },
+    {
+        "CountryCode": "IT",
+        "StateCode": "MS",
+        "StateName": "Massa-Carrara"
+    },
+    {
+        "CountryCode": "IT",
+        "StateCode": "MT",
+        "StateName": "Matera"
+    },
+    {
+        "CountryCode": "IT",
+        "StateCode": "VS",
+        "StateName": "Medio Campidano"
+    },
+    {
+        "CountryCode": "IT",
+        "StateCode": "ME",
+        "StateName": "Messina"
+    },
+    {
+        "CountryCode": "IT",
+        "StateCode": "MI",
+        "StateName": "Milano"
+    },
+    {
+        "CountryCode": "IT",
+        "StateCode": "MO",
+        "StateName": "Modena"
+    },
+    {
+        "CountryCode": "IT",
+        "StateCode": "MB",
+        "StateName": "Monza e Brianza"
+    },
+    {
+        "CountryCode": "IT",
+        "StateCode": "NA",
+        "StateName": "Napoli"
+    },
+    {
+        "CountryCode": "IT",
+        "StateCode": "NO",
+        "StateName": "Novara"
+    },
+    {
+        "CountryCode": "IT",
+        "StateCode": "NU",
+        "StateName": "Nuoro"
+    },
+    {
+        "CountryCode": "IT",
+        "StateCode": "OG",
+        "StateName": "Ogliastra"
+    },
+    {
+        "CountryCode": "IT",
+        "StateCode": "OT",
+        "StateName": "Olbia-Tempio"
+    },
+    {
+        "CountryCode": "IT",
+        "StateCode": "OR",
+        "StateName": "Oristano"
+    },
+    {
+        "CountryCode": "IT",
+        "StateCode": "PD",
+        "StateName": "Padova"
+    },
+    {
+        "CountryCode": "IT",
+        "StateCode": "PA",
+        "StateName": "Palermo"
+    },
+    {
+        "CountryCode": "IT",
+        "StateCode": "PR",
+        "StateName": "Parma"
+    },
+    {
+        "CountryCode": "IT",
+        "StateCode": "PV",
+        "StateName": "Pavia"
+    },
+    {
+        "CountryCode": "IT",
+        "StateCode": "PG",
+        "StateName": "Perugia"
+    },
+    {
+        "CountryCode": "IT",
+        "StateCode": "PU",
+        "StateName": "Pesaro e Urbino"
+    },
+    {
+        "CountryCode": "IT",
+        "StateCode": "PE",
+        "StateName": "Pescara"
+    },
+    {
+        "CountryCode": "IT",
+        "StateCode": "PC",
+        "StateName": "Piacenza"
+    },
+    {
+        "CountryCode": "IT",
+        "StateCode": "PI",
+        "StateName": "Pisa"
+    },
+    {
+        "CountryCode": "IT",
+        "StateCode": "PT",
+        "StateName": "Pistoia"
+    },
+    {
+        "CountryCode": "IT",
+        "StateCode": "PN",
+        "StateName": "Pordenone"
+    },
+    {
+        "CountryCode": "IT",
+        "StateCode": "PZ",
+        "StateName": "Potenza"
+    },
+    {
+        "CountryCode": "IT",
+        "StateCode": "PO",
+        "StateName": "Prato"
+    },
+    {
+        "CountryCode": "IT",
+        "StateCode": "RG",
+        "StateName": "Ragusa"
+    },
+    {
+        "CountryCode": "IT",
+        "StateCode": "RA",
+        "StateName": "Ravenna"
+    },
+    {
+        "CountryCode": "IT",
+        "StateCode": "RC",
+        "StateName": "Reggio Calabria"
+    },
+    {
+        "CountryCode": "IT",
+        "StateCode": "RE",
+        "StateName": "Reggio Emilia"
+    },
+    {
+        "CountryCode": "IT",
+        "StateCode": "RI",
+        "StateName": "Rieti"
+    },
+    {
+        "CountryCode": "IT",
+        "StateCode": "RN",
+        "StateName": "Rimini"
+    },
+    {
+        "CountryCode": "IT",
+        "StateCode": "RM",
+        "StateName": "Roma"
+    },
+    {
+        "CountryCode": "IT",
+        "StateCode": "RO",
+        "StateName": "Rovigo"
+    },
+    {
+        "CountryCode": "IT",
+        "StateCode": "SA",
+        "StateName": "Salerno"
+    },
+    {
+        "CountryCode": "IT",
+        "StateCode": "SS",
+        "StateName": "Sassari"
+    },
+    {
+        "CountryCode": "IT",
+        "StateCode": "SV",
+        "StateName": "Savona"
+    },
+    {
+        "CountryCode": "IT",
+        "StateCode": "SI",
+        "StateName": "Siena"
+    },
+    {
+        "CountryCode": "IT",
+        "StateCode": "SO",
+        "StateName": "Sondrio"
+    },
+    {
+        "CountryCode": "IT",
+        "StateCode": "BZ",
+        "StateName": "Bolzano"
+    },
+    {
+        "CountryCode": "IT",
+        "StateCode": "SR",
+        "StateName": "Siracusa"
+    },
+    {
+        "CountryCode": "IT",
+        "StateCode": "TA",
+        "StateName": "Taranto"
+    },
+    {
+        "CountryCode": "IT",
+        "StateCode": "TE",
+        "StateName": "Teramo"
+    },
+    {
+        "CountryCode": "IT",
+        "StateCode": "TR",
+        "StateName": "Terni"
+    },
+    {
+        "CountryCode": "IT",
+        "StateCode": "TP",
+        "StateName": "Trapani"
+    },
+    {
+        "CountryCode": "IT",
+        "StateCode": "TN",
+        "StateName": "Trento"
+    },
+    {
+        "CountryCode": "IT",
+        "StateCode": "TV",
+        "StateName": "Treviso"
+    },
+    {
+        "CountryCode": "IT",
+        "StateCode": "TS",
+        "StateName": "Trieste"
+    },
+    {
+        "CountryCode": "IT",
+        "StateCode": "TO",
+        "StateName": "Torino"
+    },
+    {
+        "CountryCode": "IT",
+        "StateCode": "UD",
+        "StateName": "Udine"
+    },
+    {
+        "CountryCode": "IT",
+        "StateCode": "VA",
+        "StateName": "Varese"
+    },
+    {
+        "CountryCode": "IT",
+        "StateCode": "VE",
+        "StateName": "Venezia"
+    },
+    {
+        "CountryCode": "IT",
+        "StateCode": "VB",
+        "StateName": "Verbano-Cusio-Ossola"
+    },
+    {
+        "CountryCode": "IT",
+        "StateCode": "VC",
+        "StateName": "Vercelli"
+    },
+    {
+        "CountryCode": "IT",
+        "StateCode": "VR",
+        "StateName": "Verona"
+    },
+    {
+        "CountryCode": "IT",
+        "StateCode": "VV",
+        "StateName": "Vibo Valentia"
+    },
+    {
+        "CountryCode": "IT",
+        "StateCode": "VI",
+        "StateName": "Vicenza"
+    },
+    {
+        "CountryCode": "IT",
+        "StateCode": "VT",
+        "StateName": "Viterbo"
+    }
+]

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Nicelizhi\Shopify\Http\Controllers\ProductController;
+use Nicelizhi\Shopify\Http\Controllers\WebhooksController;
 
 
 /**
@@ -47,3 +48,5 @@ Route::group(['middleware' => ['admin'], 'prefix' => config('app.admin_url')], f
         });
     });
 });
+
+

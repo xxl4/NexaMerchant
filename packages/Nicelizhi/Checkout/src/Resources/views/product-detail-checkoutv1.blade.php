@@ -63,9 +63,10 @@ p.cmpny-name {
    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet' />
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="/checkout/v1/app/desktop/css/main.css?v=1704676785">
+    <link rel="stylesheet" type="text/css" href="/checkout/v1/app/desktop/css/main.css?v=1704676786">
     <!-- <link rel="stylesheet" type="text/css" href="/checkout/v1/app/desktop/css/spreedly.css"> -->
     <style>
         .offer .offer-content {
@@ -317,7 +318,7 @@ p.cmpny-name {
 
                 </div>
 
-                <div class="col-md-9 d-flex justify-content-center justify-content-md-end align-items-center">
+                <div class="col-md-9 d-flex justify-content-center justify-content-md-end align-items-center" style="font-family: oswald;">
 
                     <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
 
@@ -389,7 +390,7 @@ p.cmpny-name {
 
                 <div class="col 50-per-coupon-div">
 
-                    <div class="alert alert-success alert-dismissible fade show fs-5 text-center d-flex align-items-center justify-content-center" role="alert">
+                    <div class="alert alert-success alert-dismissible fade show fs-5 text-center d-flex align-items-center justify-content-center" role="alert" style="font-family: oswald;">
 
                         <i class="far fa-check-circle fa-2x me-3 text-success"></i> <span>Your <span class="text-danger pack-percent"><strong>55%</strong></span> Discount Has Been Applied!</span>
 
@@ -652,19 +653,19 @@ p.cmpny-name {
                                     </div>
 
                                     <div class="order-summary-item justify-content-between pt-2 pb-1 d-flex">
-                                        <div class="os_main_product_name">2x Hatmeo Heated Vest</div>
-                                        <div class="os_main_product_each_price" style="color:red;font-weight:bold;">$ 59.99 <span class="fs-8">/ea</span></div>
+                                        <div class="os_main_product_name">2x Hatmeo <?php echo $product['name'];?></div>
+                                        <div class="os_main_product_each_price" style="font-weight:bold;">$ 59.99 <span class="fs-8">/ea</span></div>
 
                                     </div>
 
-                                    <div class="order-summary-item justify-content-between pt-2 pb-1 d-flex os_extended_warranty_div" style="display: none !important;">
+                                    <div class="order-summary-item justify-content-between pt-2 pb-1 d-flex os_extended_warranty_div">
                                         <div class="os_extended_warranty_product_name">2x Extended Warranty</div>
-                                        <div class="os_extended_warranty_product_each_price" style="color:red;font-weight:bold;">$ 9.99 <span class="fs-8">/ea</span>
+                                        <div class="os_extended_warranty_product_each_price" style="font-weight:bold;">$ 9.99 <span class="fs-8">/ea</span>
                                         </div> 
                                     </div>
 
                                     <!---- Add-ons start------>
-                                  <div class="order-summary-item justify-content-between pt-2 pb-1 d-flex os_add-ons_div" style="display: none !important;">
+                                  <div class="order-summary-item justify-content-between pt-2 pb-1 d-flex os_add-ons_div">
                                         <div class="os_add-ons_product_name"></div>
                                         <div class="os_add-ons_product_each_price" style="color:red;font-weight:bold;">$ 19.99 
                                         <!--<span class="fs-8">/ea</span>-->
@@ -672,8 +673,18 @@ p.cmpny-name {
                                     </div>
 
                                     <div class="order-summary-item justify-content-between pt-2 pb-1 d-flex">
+                                        <div>Subtotal:</div>
+                                        <div class="os_subtotal_price" style="font-weight:bold;">$0.00</div>
+                                    </div>
+
+                                    <div class="order-summary-item justify-content-between pt-2 pb-1 d-flex">
+                                        <div>Discount:</div>
+                                        <div class="os_discount_price" style="color:red;font-weight:bold;">$0.00</div>
+                                    </div>
+
+                                    <div class="order-summary-item justify-content-between pt-2 pb-1 d-flex">
                                         <div>Shipping:</div>
-                                        <div class="os_shipping_price" style="color:red;font-weight:bold;">$0.00</div>
+                                        <div class="os_shipping_price">$0.00</div>
                                     </div>
 
                                     <div class="order-summary-item justify-content-between pt-2 pb-1 d-flex">
@@ -699,7 +710,7 @@ p.cmpny-name {
 
                 <div id="block--payment_opt1" class="col-12 col-lg-5">
 
-                    <form method="post" action="" name="downsell_form1" accept-charset="utf-8" enctype="application/x-www-form-urlencoded;charset=utf-8">
+                    <form method="post" action="" class="needs-validation" novalidate name="downsell_form1" accept-charset="utf-8" enctype="application/x-www-form-urlencoded;charset=utf-8">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}" />
                         <div id="main_campaign_div"></div>
                         <div id="extra-add-ons"></div>
@@ -805,7 +816,7 @@ p.cmpny-name {
 
                                             <span class="input-group-text bg-white"><i class="fas fa-phone text-light"></i></span>
 
-                                            <input type="tel" name="phone" placeholder="Phone number" class="required form-control " maxlength="10" onkeypress="return event.charCode >= 48 &amp;&amp; event.charCode <= 57" data-validate="phone" aria-required="true" data-error-message="Please enter a valid phone number!" id="id_phone_number">
+                                            <input type="tel" name="phone" placeholder="Phone number" class="required form-control " maxlength="20" onkeypress="return event.charCode >= 48 &amp;&amp; event.charCode <= 57" data-validate="phone" aria-required="true" data-error-message="Please enter a valid phone number!" id="id_phone_number">
 
                                             <label for="id_phone_number">Phone</label>
 
@@ -1289,9 +1300,9 @@ p.cmpny-name {
 
                                         <div class="mb-2">
 
-                                            <div class="fs-4 mb-1">Our Guarantee</div>
+                                            <div class="fs-4 mb-1 seal-title">Our Guarantee</div>
 
-                                            <div class="guarantee-item"><i class="fas fa-check-square text-success"></i> 30-Days Moneyback Guarantee</div>
+                                            <div class="guarantee-item seal-title"><i class="fas fa-check-square text-success"></i> 30-Days Moneyback Guarantee</div>
 
                                         </div>
 
@@ -1397,7 +1408,7 @@ p.cmpny-name {
 
                         <div class="step-title">
 
-                            What customers are saying about Hatmeo Heated Vest
+                            What customers are saying about Hatmeo <?php echo $product['name']; ?>
                         </div>
 
                         <hr class="mt-2">
@@ -1420,7 +1431,7 @@ p.cmpny-name {
                                         <div class="t-prod-dv">
                                             <img src="/checkout/v1/app/desktop/images/t-prod1.jpg" alt="">
                                         </div>
-                                        <p class="test-prod-txt">Reviewing<br><span>Hatmeo Heated Vest</span></p>
+                                        <p class="test-prod-txt">Reviewing<br><span>Hatmeo <?php echo $product['name']; ?></span></p>
                                     </div>
                                 </div>
                                 
@@ -1445,7 +1456,7 @@ p.cmpny-name {
 
                 <div id="block--faq" class="faqs col mt-4 bg-white border p-3">
 
-                    <div class="h2 text-center mb-4">
+                    <div class="h2 text-center mb-4" style="font-family: oswald;">
 
                         Frequently Asked Questions
 
@@ -1471,7 +1482,7 @@ p.cmpny-name {
 
                             <div id="faq<?php echo $key;?>" class="accordion-collapse collapse <?php if($key==0) { ?>show<?php } ?>" aria-labelledby="compatability" data-bs-parent="#faqs">
 
-                                <div class="accordion-body">
+                                <div class="accordion-body" style="font-size:14px;">
 
                                     <?php echo $item->a;?>
 
@@ -1503,7 +1514,7 @@ p.cmpny-name {
 
                     <div class="d-none d-sm-block footer-inf footer-column-header">INFORMATION</div>
 
-                    <a class="btn-action btn" data-url="/checkout/v1/cms/contact-us" >About Us</a><br>
+                    <a class="btn-action btn" data-url="/checkout/v1/cms/about-us" >About Us</a><br>
                     <a class="btn-action btn" data-url="/checkout/v1/cms/contact-us" >Contact Us</a><br>
                     <a class="btn-action btn" data-url="/checkout/v1/cms/shipping-policy" >Shipping Policy</a><br>
                     <a class="btn-action btn" data-url="/checkout/v1/cms/privacy-policy">Privacy Policy</a><br>
@@ -1545,7 +1556,7 @@ p.cmpny-name {
 
                 <div class="col-12 mt-3 pt-2 text-center footer-copyright">
 
-                    Copyright ©2024                    <span class="text-dark">Hatmeo</span>.
+                    Copyright ©2016                    <span class="text-dark">Hatmeo</span>.
 
                     All Rights Reserved.
 
@@ -1719,7 +1730,7 @@ p.cmpny-name {
     
         <script type="text/javascript">
         AJAX_PATH="checkout/v1/"; 
-        app_config={"valid_class":"no-error","error_class":"has-error","loading_class":"loading","exit_popup_enabled":false,"exit_popup_element_id":"","exit_popup_page":"","offer_path":"/","current_step":1,"cbtoken":"","dev_mode":"N","show_validation_errors":"modal","allowed_tc":"8\"m0l0d0J050k050O0lv8sm\"l\"d4J454k454O4l480mvlsd\"J\"50k151O1l181m1l7dvJs5\"k\"50O1l089m0l3d4J45vks5\"O[r0j0V0H0q0h0k0R0X|Niraj,V1H4q4h4k4R4X4N4r|jiVaH,q6h1k1R1X1N1r1j1V|Hiqah,k6R1X0N0r9j1V9H2q|hikaR]","allowed_country_codes":["US","GB","CA","AU"],"countries":{"US":{"name":"United States","states":{"AL":{"name":"Alabama"},"AS":{"name":"American Samoa"},"AZ":{"name":"Arizona"},"AR":{"name":"Arkansas"},"CA":{"name":"California"},"CO":{"name":"Colorado"},"CT":{"name":"Connecticut"},"DE":{"name":"Delaware"},"DC":{"name":"District of Columbia"},"FM":{"name":"Federated States of Micronesia"},"FL":{"name":"Florida"},"GA":{"name":"Georgia"},"GU":{"name":"Guam"},"ID":{"name":"Idaho"},"IL":{"name":"Illinois"},"IN":{"name":"Indiana"},"IA":{"name":"Iowa"},"KS":{"name":"Kansas"},"KY":{"name":"Kentucky"},"LA":{"name":"Louisiana"},"ME":{"name":"Maine"},"MD":{"name":"Maryland"},"MA":{"name":"Massachusetts"},"MI":{"name":"Michigan"},"MN":{"name":"Minnesota"},"MS":{"name":"Mississippi"},"MO":{"name":"Missouri"},"MT":{"name":"Montana"},"NE":{"name":"Nebraska"},"NV":{"name":"Nevada"},"NH":{"name":"New Hampshire"},"NJ":{"name":"New Jersey"},"NM":{"name":"New Mexico"},"NY":{"name":"New York"},"NC":{"name":"North Carolina"},"ND":{"name":"North Dakota"},"MP":{"name":"Northern Mariana Islands"},"OH":{"name":"Ohio"},"OK":{"name":"Oklahoma"},"OR":{"name":"Oregon"},"PA":{"name":"Pennsylvania"},"PR":{"name":"Puerto Rico"},"MH":{"name":"Republic of Marshall Islands"},"RI":{"name":"Rhode Island"},"SC":{"name":"South Carolina"},"SD":{"name":"South Dakota"},"TN":{"name":"Tennessee"},"TX":{"name":"Texas"},"UT":{"name":"Utah"},"VT":{"name":"Vermont"},"VI":{"name":"Virgin Islands of the U.S."},"VA":{"name":"Virginia"},"WA":{"name":"Washington"},"WV":{"name":"West Virginia"},"WI":{"name":"Wisconsin"},"WY":{"name":"Wyoming"}}},"GB":{"name":"United Kingdom","states":{}},"CA":{"name":"Canada","states":{"AB":{"name":"Alberta"},"BC":{"name":"British Columbia"},"MB":{"name":"Manitoba"},"NB":{"name":"New Brunswick"},"NL":{"name":"Newfoundland and Labrador"},"NT":{"name":"Northwest Territories"},"NS":{"name":"Nova Scotia"},"NU":{"name":"Nunavut"},"ON":{"name":"Ontario"},"PE":{"name":"Prince Edward Island"},"QC":{"name":"Quebec"},"SK":{"name":"Saskatchewan"},"YT":{"name":"Yukon"}}},"AU":{"name":"Australia","states":{"ACT":{"name":"Australian Capital Territory"},"NSW":{"name":"New South Wales"},"NT":{"name":"Northern Territory"},"QLD":{"name":"Queensland"},"SA":{"name":"South Australia"},"TAS":{"name":"Tasmania"},"VIC":{"name":"Victoria"},"WA":{"name":"Western Australia"}}}},"country_lang_mapping":{"US":{"state":"State:","zip":"Zip Code:"},"GB":{"state":"County:","zip":"Postal Code:"},"CA":{"state":"Province:","zip":"Pin Code:"},"IN":{"state":"State:","zip":"Pin:"}},"device_is_mobile":false,"pageType":"leadPage","enable_browser_back_button":false,"disable_trialoffer_cardexp":false,"enable_csrf_token":false,"token":"{{ csrf_token() }}"}
+        app_config={"valid_class":"no-error","error_class":"has-error","loading_class":"loading","exit_popup_enabled":false,"exit_popup_element_id":"","exit_popup_page":"","offer_path":"/","current_step":1,"cbtoken":"","dev_mode":"Y","show_validation_errors":"modal","allowed_tc":"8\"m0l0d0J050k050O0lv8sm\"l\"d4J454k454O4l480mvlsd\"J\"50k151O1l181m1l7dvJs5\"k\"50O1l089m0l3d4J45vks5\"O[r0j0V0H0q0h0k0R0X|Niraj,V1H4q4h4k4R4X4N4r|jiVaH,q6h1k1R1X1N1r1j1V|Hiqah,k6R1X0N0r9j1V9H2q|hikaR]","allowed_country_codes":["US","GB","CA","AU"],"countries":{"US":{"name":"United States","states":{"AL":{"name":"Alabama"},"AS":{"name":"American Samoa"},"AZ":{"name":"Arizona"},"AR":{"name":"Arkansas"},"CA":{"name":"California"},"CO":{"name":"Colorado"},"CT":{"name":"Connecticut"},"DE":{"name":"Delaware"},"DC":{"name":"District of Columbia"},"FM":{"name":"Federated States of Micronesia"},"FL":{"name":"Florida"},"GA":{"name":"Georgia"},"GU":{"name":"Guam"},"ID":{"name":"Idaho"},"IL":{"name":"Illinois"},"IN":{"name":"Indiana"},"IA":{"name":"Iowa"},"KS":{"name":"Kansas"},"KY":{"name":"Kentucky"},"LA":{"name":"Louisiana"},"ME":{"name":"Maine"},"MD":{"name":"Maryland"},"MA":{"name":"Massachusetts"},"MI":{"name":"Michigan"},"MN":{"name":"Minnesota"},"MS":{"name":"Mississippi"},"MO":{"name":"Missouri"},"MT":{"name":"Montana"},"NE":{"name":"Nebraska"},"NV":{"name":"Nevada"},"NH":{"name":"New Hampshire"},"NJ":{"name":"New Jersey"},"NM":{"name":"New Mexico"},"NY":{"name":"New York"},"NC":{"name":"North Carolina"},"ND":{"name":"North Dakota"},"MP":{"name":"Northern Mariana Islands"},"OH":{"name":"Ohio"},"OK":{"name":"Oklahoma"},"OR":{"name":"Oregon"},"PA":{"name":"Pennsylvania"},"PR":{"name":"Puerto Rico"},"MH":{"name":"Republic of Marshall Islands"},"RI":{"name":"Rhode Island"},"SC":{"name":"South Carolina"},"SD":{"name":"South Dakota"},"TN":{"name":"Tennessee"},"TX":{"name":"Texas"},"UT":{"name":"Utah"},"VT":{"name":"Vermont"},"VI":{"name":"Virgin Islands of the U.S."},"VA":{"name":"Virginia"},"WA":{"name":"Washington"},"WV":{"name":"West Virginia"},"WI":{"name":"Wisconsin"},"WY":{"name":"Wyoming"}}},"GB":{"name":"United Kingdom","states":{}},"CA":{"name":"Canada","states":{"AB":{"name":"Alberta"},"BC":{"name":"British Columbia"},"MB":{"name":"Manitoba"},"NB":{"name":"New Brunswick"},"NL":{"name":"Newfoundland and Labrador"},"NT":{"name":"Northwest Territories"},"NS":{"name":"Nova Scotia"},"NU":{"name":"Nunavut"},"ON":{"name":"Ontario"},"PE":{"name":"Prince Edward Island"},"QC":{"name":"Quebec"},"SK":{"name":"Saskatchewan"},"YT":{"name":"Yukon"}}},"AU":{"name":"Australia","states":{"ACT":{"name":"Australian Capital Territory"},"NSW":{"name":"New South Wales"},"NT":{"name":"Northern Territory"},"QLD":{"name":"Queensland"},"SA":{"name":"South Australia"},"TAS":{"name":"Tasmania"},"VIC":{"name":"Victoria"},"WA":{"name":"Western Australia"}}}},"country_lang_mapping":{"US":{"state":"State:","zip":"Zip Code:"},"GB":{"state":"County:","zip":"Postal Code:"},"CA":{"state":"Province:","zip":"Pin Code:"},"IN":{"state":"State:","zip":"Pin:"}},"device_is_mobile":false,"pageType":"leadPage","enable_browser_back_button":false,"disable_trialoffer_cardexp":false,"enable_csrf_token":false,"token":"{{ csrf_token() }}"}
         </script>
         <script type="text/javascript">
         app_lang={"error_messages":{"zip_invalid":"Please enter a valid zip code!","email_invalid":"Please enter a valid email id!","cc_invalid":"Please enter a valid credit card number!","cvv_invalid":"Please enter a valid CVV code!","card_expired":"Card seems to have expired already!","card_expire_soon":"Your credit card is about to expire, please update your card information.","common_error":"Oops! Something went wrong! Can you please retry?","not_checked":"Please check the agreement box in order to proceed.","ca_zip_invalid":"Invalid Canada state code","xv_invalid_shipping":"Your shipping address could not be verified","xv_email":"Your email address could not be verified","xv_phone":"Your phone number could not be verified"},"exceptions":{"config_error":"General config error","config_file_missing":"General config error","invalid_array":"Argument is not a valid array","empty_prospect_id":"Prospect ID is empty or invalid","curl_error":"Something went wrong with the request, Please try again.","generic_error":"Something went wrong with the request, Please try again."}};
@@ -1872,7 +1883,7 @@ p.cmpny-name {
                     items: [
                         {
                             item_id: 'HEATEDVEST-L-01-Hatmeo',
-                            item_name: "Hatmeo Heated Vest",
+                            item_name: "Hatmeo <?php echo $product['name']; ?>",
                             affiliation: "",
                             // discount: 60,
                             item_brand: 'Hatmeo',
@@ -1972,13 +1983,18 @@ p.cmpny-name {
                 window.dataLayer.push({'event': 'pay_with_paypal_standard_cta'});
                 e.preventDefault();
                 var is_check = checkSizeValidation();
+
                 if(is_check.error_count >0){
                     cb.errorHandler(is_check.error);
                 }else{
                     $('#payment-gateway-input-div').html('');
                     $('select[name=creditCardType]').val('paypal-standard').trigger('change');
 
+                    console.log('form submit ');
+
                     $('form[name=downsell_form1]').submit();
+
+                    console.log('form submit 2');
                 }
             });
 
@@ -2072,7 +2088,7 @@ p.cmpny-name {
                         items: [
                             {
                                 item_id: 'HEATEDVEST-L-01-Hatmeo',
-                                item_name:  "Hatmeo Heated Vest",
+                                item_name:  "Hatmeo <?php echo $product['name']; ?>",
                                 affiliation: "",
                                 quantity: pid,
                                 coupon: '',
@@ -2202,7 +2218,7 @@ p.cmpny-name {
                     items: [
                         {
                             item_id: 'HEATEDVEST-L-01-Hatmeo',
-                            item_name:  "Hatmeo Heated Vest",
+                            item_name:  "Hatmeo <?php echo $product['name']; ?>",
                             affiliation: "",
                             quantity: pid,
                             coupon: '',
@@ -2243,8 +2259,8 @@ p.cmpny-name {
         // attributeChange
         function attributeChange(target, size, size_id) {
 
-            console.log(target);
-            console.log();
+            //console.log(target);
+            //console.log();
 
             var select_option_html = "";
             $("#size_"+size_id).empty();
@@ -2258,8 +2274,8 @@ p.cmpny-name {
                 $("#size_"+size_id).append(select_option_html);
                 <?php foreach($attribute['options'] as $kk=>$option) { ?>
                     select_option_html='<option value="<?php echo $option['label'] ?>" data-camp="<?php echo $option['id'] ?>" data-bundle="'+size+'"><?php echo $option['label'] ?></option>';
-                    console.log(select_option_html);
-                    console.log(size_id);
+                    //console.log(select_option_html);
+                    //console.log(size_id);
                     $("#size_"+size_id).append(select_option_html);
                 <?php } ?>
             <?php } ?>
@@ -2449,6 +2465,11 @@ p.cmpny-name {
                 error_count = 0;
                 for(var i=1; i<=bundle; i++){
                     var size = $("#size_"+bundle+"_"+i).val();
+                    console.log("check size val" + size);
+                    if(size=='Size') {
+                        error_count++;
+                        error=["Please select size from chosen Package"];
+                    }
                     if(size===''){
                         error_count++;
                         error=["Please select size from chosen Package"];
@@ -2474,9 +2495,14 @@ p.cmpny-name {
             $("#shipping_price").val(productDetails(pid).shipping_price.toFixed(2))
 
             $('.os_main_product_name').text(productDetails(pid).product_name);
-            $('.os_main_product_each_price').html('$ '+productDetails(pid).per_product_price.toFixed(2)+' <span class="fs-8">/ea</span>');
+            //$('.os_main_product_each_price').html('$ '+productDetails(pid).per_product_price.toFixed(2)+' <span class="fs-8">/ea</span>');
+            $('.os_main_product_each_price').html('$ '+productDetails(pid).product_total.toFixed(2));
             $('.os_shipping_price').text('$ '+productDetails(pid).shipping_price.toFixed(2));
-            // $('.extended_protection_price').text('$'+productDetails(pid).extended_protection_total_price.toFixed(2));
+
+            $('.os_subtotal_price').text('$ '+productDetails(pid).product_price_original.toFixed(2));
+            
+
+            //$('.extended_protection_price').text('$'+productDetails(pid).extended_protection_total_price.toFixed(2));
             $('.extended_protection_price').text(productDetails(pid).extended_protection_text);
             $('.pack-percent').html('<strong>' + productDetails(pid).offer_discount_percentage + '%</strong>');
 
@@ -2499,6 +2525,9 @@ p.cmpny-name {
                 var total_price = productDetails(pid).product_total + productDetails(pid).shipping_price;
                 $('.os_total_price').text('$ '+total_price.toFixed(2));
             }
+
+            var discount_price = productDetails(pid).product_price_original - total_price;
+            $('.os_discount_price').text('$ '+discount_price.toFixed(2));
 
             
             /********************* add-ons start *********/
@@ -2708,8 +2737,9 @@ p.cmpny-name {
         // });
 
        cb.beforeFormSubmitEvents.push(function(e) {
-            
+            console.log("before submit events 1 " + is_check);
             var is_check = checkSizeValidation();
+            console.log("before submit events" + is_check);
             if(is_check.error_count >0){
                 cb.errorHandler(is_check.error);
             }else{
@@ -2848,7 +2878,7 @@ p.cmpny-name {
                     /*items: [
                         {
                             item_id: 'HEATEDVEST-L-01-Hatmeo',
-                            item_name:  "Hatmeo Heated Vest",
+                            item_name:  "Hatmeo <?php echo $product['name']; ?>",
                             affiliation: "",
                             quantity: pid,
                             coupon: '',

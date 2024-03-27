@@ -68,6 +68,16 @@ return [
 
     'admin_url' => env('APP_ADMIN_URL', 'admin'),
 
+    /**
+     * -----------------------------------------------------------------------
+     * Application Manage URL
+     * -----------------------------------------------------------------------
+     * This URL suffix is used to define the manage url for example
+     * manage/
+     * 
+     */
+    'manage_url'=> env('APP_MANAGE_URL', 'manage'),
+
     /*
     |--------------------------------------------------------------------------
     | Application Timezone
@@ -193,7 +203,7 @@ return [
         /**
          * Webkul package service providers.
          */
-        Webkul\Admin\Providers\AdminServiceProvider::class,
+        //Webkul\Admin\Providers\AdminServiceProvider::class,
         Webkul\Attribute\Providers\AttributeServiceProvider::class,
         Webkul\CartRule\Providers\CartRuleServiceProvider::class,
         Webkul\CatalogRule\Providers\CatalogRuleServiceProvider::class,
@@ -227,9 +237,14 @@ return [
         Nicelizhi\OneBuy\Providers\OneBuyServiceProvider::class,
         Nicelizhi\Airwallex\Providers\AirwallexServiceProvider::class,
         Nicelizhi\Shopify\Providers\ShopifyServiceProvider::class,
+        Nicelizhi\ShopLine\Providers\ShopLineServiceProvider::class,
 
-        //Nicelizhi\Admin\Providers\AdminServiceProvider::class,
+        Nicelizhi\Manage\Providers\ManageServiceProvider::class,
         Nicelizhi\Checkout\Providers\CheckoutServiceProvider::class,
+        Nicelizhi\Lp\Providers\LpServiceProvider::class,
+
+        // log reader
+        Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class,
 
     ])->toArray(),
 

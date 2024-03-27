@@ -1,0 +1,32 @@
+[
+	{  
+      "CountryCode":"FI",
+      "StateCode":"AL",
+      "StateName":"Ahvenanmaanlääni"
+   },
+   {  
+      "CountryCode":"FI",
+      "StateCode":"ES",
+      "StateName":"Etelä-Suomenlääni"
+   },
+   {  
+      "CountryCode":"FI",
+      "StateCode":"IS",
+      "StateName":"Itä-Suomenlääni"
+   },
+   {  
+      "CountryCode":"FI",
+      "StateCode":"LL",
+      "StateName":"Lapinlääni"
+   },
+   {  
+      "CountryCode":"FI",
+      "StateCode":"LS",
+      "StateName":"Länsi-Suomenlääni"
+   },
+   {  
+      "CountryCode":"FI",
+      "StateCode":"OL",
+      "StateName":"Oulunlääni"
+   }
+]

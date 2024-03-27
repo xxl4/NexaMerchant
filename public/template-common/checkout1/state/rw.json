@@ -1,0 +1,27 @@
+[
+	{  
+      "CountryCode":"RW",
+      "StateCode":"01",
+      "StateName":"Villede Kigali"
+   },
+   {  
+      "CountryCode":"RW",
+      "StateCode":"02",
+      "StateName":"Est"
+   },
+   {  
+      "CountryCode":"RW",
+      "StateCode":"03",
+      "StateName":"Nord"
+   },
+   {  
+      "CountryCode":"RW",
+      "StateCode":"04",
+      "StateName":"Ouest"
+   },
+   {  
+      "CountryCode":"RW",
+      "StateCode":"05",
+      "StateName":"Sud"
+   }
+]
