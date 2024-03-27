@@ -4,6 +4,7 @@ namespace Nicelizhi\Airwallex\Listeners;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 use Nicelizhi\Airwallex\Sdk\Airwallex as AirwallexSdk;
+use Webkul\Sales\Repositories\OrderTransactionRepository;
 
 
 class AirwallexListener
