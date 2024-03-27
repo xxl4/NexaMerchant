@@ -53,6 +53,8 @@ class AirwallexListener
     {
         $data = request()->all();
 
+        Log::info("airwallex saveTransaction ". json_encode($data));
+
         if ($invoice->order->payment->method == 'airwallex') {
             if (isset($data['orderData']['orderID'])) {
                 $transactionDetails = $this->smartButton->getOrder($data['orderData']['orderID']);
