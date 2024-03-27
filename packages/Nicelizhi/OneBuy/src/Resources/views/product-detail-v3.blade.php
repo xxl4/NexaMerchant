@@ -1560,7 +1560,8 @@ function GotoNotRequest(url) {
                                     //var info = res.info;
                                     //if(info.pay_status) {
                                         //Goto('/template-common/en/thankyou1/?id='+localStorage.getItem('order_id')+'&client_secret='+data.orderID);
-                                        Goto('/onebuy/checkout/success?id='+localStorage.getItem('order_id'));
+                                        //Goto('/onebuy/checkout/success?id='+localStorage.getItem('order_id'));
+                                        Goto('/checkout/v1/success/'+localStorage.getItem('order_id'));
                                     //}
                                 }
                                 if(res.error == 'INSTRUMENT_DECLINED') {
