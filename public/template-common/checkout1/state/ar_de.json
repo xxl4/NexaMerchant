@@ -1,0 +1,122 @@
+[
+	{  
+      "CountryCode":"AR",
+      "StateCode":"A",
+      "StateName":"Salta"
+   },
+   {  
+      "CountryCode":"AR",
+      "StateCode":"B",
+      "StateName":"Buenos Aires"
+   },
+   {  
+      "CountryCode":"AR",
+      "StateCode":"C",
+      "StateName":"Ciudad Autónomade Buenos Aires"
+   },
+   {  
+      "CountryCode":"AR",
+      "StateCode":"D",
+      "StateName":"San Luis"
+   },
+   {  
+      "CountryCode":"AR",
+      "StateCode":"E",
+      "StateName":"Entre Ríos"
+   },
+   {  
+      "CountryCode":"AR",
+      "StateCode":"F",
+      "StateName":"La Rioja"
+   },
+   {  
+      "CountryCode":"AR",
+      "StateCode":"G",
+      "StateName":"Santiagodel Estero"
+   },
+   {  
+      "CountryCode":"AR",
+      "StateCode":"H",
+      "StateName":"Chaco"
+   },
+   {  
+      "CountryCode":"AR",
+      "StateCode":"J",
+      "StateName":"San Juan"
+   },
+   {  
+      "CountryCode":"AR",
+      "StateCode":"K",
+      "StateName":"Catamarca"
+   },
+   {  
+      "CountryCode":"AR",
+      "StateCode":"L",
+      "StateName":"La Pampa"
+   },
+   {  
+      "CountryCode":"AR",
+      "StateCode":"M",
+      "StateName":"Mendoza"
+   },
+   {  
+      "CountryCode":"AR",
+      "StateCode":"N",
+      "StateName":"Misiones"
+   },
+   {  
+      "CountryCode":"AR",
+      "StateCode":"P",
+      "StateName":"Formosa"
+   },
+   {  
+      "CountryCode":"AR",
+      "StateCode":"Q",
+      "StateName":"Neuquén"
+   },
+   {  
+      "CountryCode":"AR",
+      "StateCode":"R",
+      "StateName":"Río Negro"
+   },
+   {  
+      "CountryCode":"AR",
+      "StateCode":"S",
+      "StateName":"Santa Fe"
+   },
+   {  
+      "CountryCode":"AR",
+      "StateCode":"T",
+      "StateName":"Tucumán"
+   },
+   {  
+      "CountryCode":"AR",
+      "StateCode":"U",
+      "StateName":"Chubut"
+   },
+   {  
+      "CountryCode":"AR",
+      "StateCode":"V",
+      "StateName":"Tierradel Fuego"
+   },
+   {  
+      "CountryCode":"AR",
+      "StateCode":"W",
+      "StateName":"Corrientes"
+   },
+   {  
+      "CountryCode":"AR",
+      "StateCode":"X",
+      "StateName":"Córdoba"
+   },
+   {  
+      "CountryCode":"AR",
+      "StateCode":"Y",
+      "StateName":"Jujuy"
+   },
+   {  
+      "CountryCode":"AR",
+      "StateCode":"Z",
+      "StateName":"Santa Cruz"
+   }
+]

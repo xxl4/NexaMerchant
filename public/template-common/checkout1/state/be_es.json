@@ -1,0 +1,57 @@
+[
+	{  
+      "CountryCode":"BE",
+      "StateCode":"BRU",
+      "StateName":"Brussels"
+   },
+   {  
+      "CountryCode":"BE",
+      "StateCode":"VAN",
+      "StateName":"Antwerpen"
+   },
+   {  
+      "CountryCode":"BE",
+      "StateCode":"VBR",
+      "StateName":"Vlaams Brabant"
+   },
+   {  
+      "CountryCode":"BE",
+      "StateCode":"VLI",
+      "StateName":"Limburg"
+   },
+   {  
+      "CountryCode":"BE",
+      "StateCode":"VOV",
+      "StateName":"Oost-Vlaanderen"
+   },
+   {  
+      "CountryCode":"BE",
+      "StateCode":"VWV",
+      "StateName":"West-Vlaanderen"
+   },
+   {  
+      "CountryCode":"BE",
+      "StateCode":"WBR",
+      "StateName":"Brabant Wallon"
+   },
+   {  
+      "CountryCode":"BE",
+      "StateCode":"WHT",
+      "StateName":"Hainaut"
+   },
+   {  
+      "CountryCode":"BE",
+      "StateCode":"WLG",
+      "StateName":"Liège"
+   },
+   {  
+      "CountryCode":"BE",
+      "StateCode":"WLX",
+      "StateName":"Luxembourg"
+   },
+   {  
+      "CountryCode":"BE",
+      "StateCode":"WNA",
+      "StateName":"Namur"
+   }
+]

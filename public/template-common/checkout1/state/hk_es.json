@@ -1,0 +1,17 @@
+[
+    {
+        "CountryCode": "HK",
+        "StateCode": "HK",
+        "StateName": "Hong Kong Island"
+    },
+    {
+        "CountryCode": "HK",
+        "StateCode": "KL",
+        "StateName": "Kowloon"
+    },
+    {
+        "CountryCode": "HK",
+        "StateCode": "NT",
+        "StateName": "New Territories"
+    }
+]

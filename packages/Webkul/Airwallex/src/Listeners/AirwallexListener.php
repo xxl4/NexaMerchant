@@ -1,11 +1,10 @@
 <?php
-
 namespace Nicelizhi\Airwallex\Listeners;
 
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
-
 use Nicelizhi\Airwallex\Sdk\Airwallex as AirwallexSdk;
+use Webkul\Sales\Repositories\OrderTransactionRepository;
 
 
 class AirwallexListener
@@ -39,7 +38,58 @@ class AirwallexListener
      */
     protected $apiKey;
 
-    public function __construct() {
+    public function __construct(
+        protected OrderTransactionRepository $orderTransactionRepository
+    ) {
+    }
+
+        /**
+     * Save the transaction data for online payment.
+     *
+     * @param  \Webkul\Sales\Models\Invoice  $invoice
+     * @return void
+     */
+    public function saveTransaction($invoice)
+    {
+        $data = request()->all();
+
+        Log::info("airwallex saveTransaction ". json_encode($data));
+
+        if ($invoice->order->payment->method == 'airwallex') {
+            if (isset($data['orderData']['orderID'])) {
+                $transactionDetails = $this->smartButton->getOrder($data['orderData']['orderID']);
+
+                $transactionDetails = json_decode(json_encode($transactionDetails), true);
+
+                if ($transactionDetails['statusCode'] == 200) {
+                    $this->orderTransactionRepository->create([
+                        'transaction_id' => $transactionDetails['result']['id'],
+                        'status'         => $transactionDetails['result']['status'],
+                        'type'           => $transactionDetails['result']['intent'],
+                        'amount'         => $transactionDetails['result']['purchase_units'][0]['amount']['value'],
+                        'payment_method' => $invoice->order->payment->method,
+                        'order_id'       => $invoice->order->id,
+                        'invoice_id'     => $invoice->id,
+                        'data'           => json_encode(
+                            array_merge(
+                                $transactionDetails['result']['purchase_units'],
+                                $transactionDetails['result']['payer']
+                            )
+                        ),
+                    ]);
+                }
+            }
+        } elseif ($invoice->order->payment->method == 'paypal_standard') {
+            $this->orderTransactionRepository->create([
+                'transaction_id' => $data['txn_id'],
+                'status'         => $data['payment_status'],
+                'type'           => $data['payment_type'],
+                'payment_method' => $invoice->order->payment->method,
+                'order_id'       => $invoice->order->id,
+                'invoice_id'     => $invoice->id,
+                'data'           => json_encode($data),
+            ]);
+        }
     }
 
     /**

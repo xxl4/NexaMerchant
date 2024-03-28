@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redis;
+use Illuminate\Support\Facades\Log;
 
 class LpController extends Controller
 {
@@ -40,14 +41,11 @@ class LpController extends Controller
         if(!empty($refer)) { 
             $request->session()->put('refer', $refer);
         }
+
+        Log::info("refer start ".$refer);
+
+        $ob_adv_id = config('onebuy.ob_adv_id');
         
-
-        $session_id = session()->getId();
-
-        $redis->hset($this->cache_prefix_key."_access_".date("Ymd"), $refer.'-'.$session_id, date("Y-m-d H:i:s"));
-
-        $redis->hset($this->cache_prefix_key."_access_".date("Ymd")."_".$session_id, $refer, date("Y-m-d H:i:s"));
-
-        return view('lp::Lp.index', compact('html'));
+        return view('lp::Lp.index', compact('html', 'ob_adv_id'));
     }
 }

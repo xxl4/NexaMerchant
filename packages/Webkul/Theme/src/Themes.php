@@ -45,10 +45,18 @@ class Themes
     public function __construct()
     {
         if (! Str::contains(request()->url(), config('app.admin_url') . '/')) {
+            
             $this->defaultThemeCode = Config::get('themes.admin-default', null);
         } else {
             $this->defaultThemeCode = Config::get('themes.default', null);
         }
+
+        if (!Str::contains(request()->url(), config('app.manage_url') . '/')) {
+            //var_dump("hello");
+            $this->defaultThemeCode = Config::get('themes.manage-default', null);
+        }
+
+        //var_dump($this->defaultThemeCode);
 
         $this->laravelViewsPath = Config::get('view.paths');
 
@@ -124,6 +132,11 @@ class Themes
         } else {
             $themes = config('themes.themes', []);
         }
+        if (Str::contains(request()->url(), config('app.manage_url') . '/')) {
+            $themes = config('themes.manage-themes', []);
+        }
+
+        //var_dump($themes);
 
         foreach ($themes as $code => $data) {
             $this->themes[] = new Theme(
@@ -138,6 +151,8 @@ class Themes
                 $parentThemes[$code] = $data['parent'];
             }
         }
+
+        //var_dump($themes, $parentThemes, $this->themes);exit;
 
         foreach ($parentThemes as $childCode => $parentCode) {
             $child = $this->find($childCode);
@@ -192,7 +207,8 @@ class Themes
      */
     public function current()
     {
-        return $this->activeTheme ? $this->activeTheme : null;
+        //var_dump($this->activeTheme, $this->all());exit;
+        return $this->activeTheme ? $this->activeTheme : $this->all()[0];
     }
 
     /**

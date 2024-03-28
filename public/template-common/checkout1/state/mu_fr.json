@@ -1,0 +1,87 @@
+[
+	{  
+      "CountryCode":"MU",
+      "StateCode":"AG",
+      "StateName":"Agalega Islands"
+   },
+   {  
+      "CountryCode":"MU",
+      "StateCode":"BL",
+      "StateName":"Black River"
+   },
+   {  
+      "CountryCode":"MU",
+      "StateCode":"BR",
+      "StateName":"Beau Bassin-Rose Hill"
+   },
+   {  
+      "CountryCode":"MU",
+      "StateCode":"CC",
+      "StateName":"Cargados Carajos Shoals"
+   },
+   {  
+      "CountryCode":"MU",
+      "StateCode":"CU",
+      "StateName":"Curepipe"
+   },
+   {  
+      "CountryCode":"MU",
+      "StateCode":"FL",
+      "StateName":"Flacq"
+   },
+   {  
+      "CountryCode":"MU",
+      "StateCode":"GP",
+      "StateName":"Grand Port"
+   },
+   {  
+      "CountryCode":"MU",
+      "StateCode":"MO",
+      "StateName":"Moka"
+   },
+   {  
+      "CountryCode":"MU",
+      "StateCode":"PA",
+      "StateName":"Pamplemousses"
+   },
+   {  
+      "CountryCode":"MU",
+      "StateCode":"PL",
+      "StateName":"Port Louis City"
+   },
+   {  
+      "CountryCode":"MU",
+      "StateCode":"PU",
+      "StateName":"Port Louis District"
+   },
+   {  
+      "CountryCode":"MU",
+      "StateCode":"PW",
+      "StateName":"Plaines Wilhems"
+   },
+   {  
+      "CountryCode":"MU",
+      "StateCode":"QB",
+      "StateName":"Quatre Bornes"
+   },
+   {  
+      "CountryCode":"MU",
+      "StateCode":"RO",
+      "StateName":"Rodrigues Island"
+   },
+   {  
+      "CountryCode":"MU",
+      "StateCode":"RR",
+      "StateName":"Rivièredu Rempart"
+   },
+   {  
+      "CountryCode":"MU",
+      "StateCode":"SA",
+      "StateName":"Savanne"
+   },
+   {  
+      "CountryCode":"MU",
+      "StateCode":"VP",
+      "StateName":"Vacoas-Phoenix"
+   }
+]

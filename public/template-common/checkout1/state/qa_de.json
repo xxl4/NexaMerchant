@@ -1,0 +1,52 @@
+[
+	{  
+      "CountryCode":"QA",
+      "StateCode":"DA",
+      "StateName":"Ad Dawhah"
+   },
+   {  
+      "CountryCode":"QA",
+      "StateCode":"GH",
+      "StateName":"Al Ghuwayriyah"
+   },
+   {  
+      "CountryCode":"QA",
+      "StateCode":"JB",
+      "StateName":"Jariyanal Batnah"
+   },
+   {  
+      "CountryCode":"QA",
+      "StateCode":"JU",
+      "StateName":"Al Jumayliyah"
+   },
+   {  
+      "CountryCode":"QA",
+      "StateCode":"KH",
+      "StateName":"Al Khawr"
+   },
+   {  
+      "CountryCode":"QA",
+      "StateCode":"MS",
+      "StateName":"Madinatash Shamal"
+   },
+   {  
+      "CountryCode":"QA",
+      "StateCode":"RA",
+      "StateName":"Ar Rayyan"
+   },
+   {  
+      "CountryCode":"QA",
+      "StateCode":"US",
+      "StateName":"Umm Salal"
+   },
+   {  
+      "CountryCode":"QA",
+      "StateCode":"WA",
+      "StateName":"Al Wakrah"
+   },
+   {  
+      "CountryCode":"QA",
+      "StateCode":"X1",
+      "StateName":"Umm Sa'id"
+   }
+]

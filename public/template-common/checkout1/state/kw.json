@@ -1,0 +1,32 @@
+[
+	{  
+      "CountryCode":"KW",
+      "StateCode":"AH",
+      "StateName":"Al Ahmadi"
+   },
+   {  
+      "CountryCode":"KW",
+      "StateCode":"FA",
+      "StateName":"Al Farwaniyah"
+   },
+   {  
+      "CountryCode":"KW",
+      "StateCode":"HA",
+      "StateName":"Hawalli"
+   },
+   {  
+      "CountryCode":"KW",
+      "StateCode":"JA",
+      "StateName":"Al Jahrah"
+   },
+   {  
+      "CountryCode":"KW",
+      "StateCode":"KU",
+      "StateName":"Al Kuwayt"
+   },
+   {  
+      "CountryCode":"KW",
+      "StateCode":"MU",
+      "StateName":"Mubarakal-Kabir"
+   }
+]

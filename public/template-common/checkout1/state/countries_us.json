@@ -1,0 +1,34 @@
+[
+    {
+        "countryName": "United States",
+        "countryNameLocalized": "United States",
+        "countryCode": "US",
+        "currencyCode": "USD",
+        "currencyName": "United States Dollar",
+        "currencySign": "US$",
+        "region": "Americas",
+        "codeFormat": "^\\d{5}([ \\-]\\d{4})?$",
+        "phonePrefix": "+1"
+    },
+    {
+        "countryName": "Australia",
+        "countryNameLocalized": "Australia",
+        "countryCode": "AU",
+        "currencyCode": "AUD",
+        "currencyName": "Australian Dollar",
+        "currencySign": "AU$",
+        "region": "Oceania",
+        "codeFormat": "^\\d{4}$",
+        "phonePrefix": "+61"
+    },
+    {
+        "countryName": "Canada",
+        "countryCode": "CA",
+        "phonePrefix": "+1"
+    },
+    {
+        "countryName": "United Kingdom",
+        "countryCode": "GB",
+        "phonePrefix": "+44"
+    }
+]

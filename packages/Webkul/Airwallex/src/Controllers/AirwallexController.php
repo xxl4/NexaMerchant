@@ -39,34 +39,6 @@ class AirwallexController extends Controller
     protected $order;
 
 
-    /**
-     * airwallex object
-     *
-     * @var object
-     */
-    protected $airwallex;
-
-
-    /**
-     * Order repository instance.
-     *
-     * @var \Webkul\Sales\Repositories\OrderRepository
-     */
-    protected $orderRepository;
-
-    /**
-     * Order transaction repository instance.
-     *
-     * @var \Webkul\Sales\Repositories\OrderTransactionRepository
-     */
-    protected $orderTransactionRepository;
-
-    /**
-     * InvoiceRepository object
-     *
-     * @var \Webkul\Sales\Repositories\InvoiceRepository
-     */
-    protected $invoiceRepository;
 
     /**
      * Create a new controller instance.
@@ -76,16 +48,11 @@ class AirwallexController extends Controller
      * @param \Webkul\Sales\Repositories\OrderTransactionRepository $orderTransactionRepository
      */
     public function __construct(
-        InvoiceRepository $invoiceRepository,
-        OrderRepository $orderRepository,
-        Airwallex $airwallex
+        protected InvoiceRepository $invoiceRepository,
+        protected OrderRepository $orderRepository,
+        protected OrderTransactionRepository $orderTransactionRepository,
+        protected Airwallex $airwallex
     ) {
-        $this->invoiceRepository = $invoiceRepository;
-        $this->orderRepository = $orderRepository;
-        $this->airwallex = $airwallex;
-
-        $this->apiKey  = core()->getConfigData('sales.payment_methods.airwallex.apikey');
-        $this->productionMode = core()->getConfigData('sales.payment_methods.airwallex.production');
     }
 
     /**
@@ -98,23 +65,19 @@ class AirwallexController extends Controller
     public function webhook(Request $request)
     {
         Log::info(json_encode($request->all())); // log body
-        //Log::info("Log Header ");
-        //Log::info(json_encode($request->headers->all())); // log header
-        //var_dump($request->all());
         $input = $request->all();
-        //var_dump($input['data']['object']['merchant_order_id']);exit;
         if (isset($input['data']['object']['merchant_order_id'])) {
             $orderId = $input['data']['object']['merchant_order_id'];
-
 
             $transactionId = str_replace("orderid_", "", $orderId);
 
             $order = $this->orderRepository->find($transactionId);
 
+            $this->order = $order;
+
             if ($order) {
                 Log::info("airwallex notification received for order id:" . $transactionId);
 
-                //$transactionData = $this->airwallex->getPaymentStatusForOrder($orderId);
                                 
                 $status = $input['data']['object']['status'];
                 
@@ -123,7 +86,6 @@ class AirwallexController extends Controller
                     $amount = $input['data']['object']['amount'] * 100;
                     $orderAmount = round($order->base_grand_total * 100);
 
-                    //var_dump($amount, $orderAmount);exit;
 
                     if ($amount === $orderAmount) { // 核对价格是否一样的情况。
                         if ($order->status === 'pending') {
@@ -140,7 +102,7 @@ class AirwallexController extends Controller
                         if ($order->canInvoice()) {
                             request()->merge(['can_create_transaction' => 1]);
                             
-                            $this->invoiceRepository->create($this->prepareInvoiceData($order));
+                            $this->invoiceRepository->create($this->prepareInvoiceData());
                         } else {
                             $invoice = $this->invoiceRepository->findOneWhere(['order_id' => $order->id]);
     
@@ -149,6 +111,35 @@ class AirwallexController extends Controller
                                 $invoice->save();
                             }
                         }
+
+                        $invoice = $this->invoiceRepository->findOneWhere(['order_id' => $order->id]);
+                        //insert into order payment traces
+
+                        Log::info("orderTransactionRepository ".json_encode([
+                            'transaction_id' => $input['data']['object']['id'],
+                            'status'         => $input['data']['object']['status'],
+                            'type'           => $input['name'],
+                            'amount'         => $orderAmount,
+                            'payment_method' => $invoice->order->payment->method,
+                            'order_id'       => $order->id,
+                            'invoice_id'     => $invoice->id,
+                            'data'           => json_encode(
+                                $input
+                            ),
+                        ]));
+
+                        $this->orderTransactionRepository->create([
+                            'transaction_id' => $input['data']['object']['id'],
+                            'status'         => $input['data']['object']['status'],
+                            'type'           => $input['name'],
+                            'amount'         => $orderAmount,
+                            'payment_method' => $invoice->order->payment->method,
+                            'order_id'       => $order->id,
+                            'invoice_id'     => $invoice->id,
+                            'data'           => json_encode(
+                                $input
+                            ),
+                        ]);
 
                     }
                 } else {
@@ -172,21 +163,28 @@ class AirwallexController extends Controller
     }
 
     /**
-     * Prepares invoice data
+     * Prepares order's invoice data for creation.
      *
      * @return array
      */
-    public function prepareInvoiceData($order)
+    protected function prepareInvoiceData()
     {
-        $invoiceData = [
-            "order_id" => $order->id
-        ];
+        $invoiceData = ['order_id' => $this->order->id];
 
-        foreach ($order->items as $item) {
+        foreach ($this->order->items as $item) {
             $invoiceData['invoice']['items'][$item->id] = $item->qty_to_invoice;
         }
 
         return $invoiceData;
+    }
+
+    public function paymentSuccess(Request $request) {
+        Log::info("airwallex payment success". json_encode($request->all()));
+        $awx_return_result = $request->input("awx_return_result");
+        if($awx_return_result=='success') {
+            return view("airwallex::payment-success");
+        }
+        return view("airwallex::payment-success");
     }
 
     public function showPaymentMethods()

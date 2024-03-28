@@ -1,0 +1,52 @@
+[
+	{  
+      "CountryCode":"GH",
+      "StateCode":"AA",
+      "StateName":"Greater Accra"
+   },
+   {  
+      "CountryCode":"GH",
+      "StateCode":"AH",
+      "StateName":"Ashanti"
+   },
+   {  
+      "CountryCode":"GH",
+      "StateCode":"BA",
+      "StateName":"Brong-Ahafo"
+   },
+   {  
+      "CountryCode":"GH",
+      "StateCode":"CP",
+      "StateName":"Central"
+   },
+   {  
+      "CountryCode":"GH",
+      "StateCode":"EP",
+      "StateName":"Eastern"
+   },
+   {  
+      "CountryCode":"GH",
+      "StateCode":"NP",
+      "StateName":"Northern"
+   },
+   {  
+      "CountryCode":"GH",
+      "StateCode":"TV",
+      "StateName":"Volta"
+   },
+   {  
+      "CountryCode":"GH",
+      "StateCode":"UE",
+      "StateName":"Upper East"
+   },
+   {  
+      "CountryCode":"GH",
+      "StateCode":"UW",
+      "StateName":"Upper West"
+   },
+   {  
+      "CountryCode":"GH",
+      "StateCode":"WP",
+      "StateName":"Western"
+   }
+]

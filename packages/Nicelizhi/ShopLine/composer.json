@@ -1,0 +1,26 @@
+{
+    "name": "Nicelizhi/ShopLine",
+    "license": "MIT",
+    "description" : "ShopLine package for ShopLine platform",
+    "authors": [
+        {
+            "name": "Steven",
+            "email": "nice.lizhi@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Nicelizhi\\ShopLine\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Nicelizhi\\ShopLine\\Providers\\ShopLineServiceProvider"
+            ],
+            "aliases": {}
+        }
+    },
+    "minimum-stability": "dev"
+}

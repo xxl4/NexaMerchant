@@ -9,7 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Storage;
 use Webkul\User\Contracts\Admin as AdminContract;
 use Webkul\User\Database\Factories\AdminFactory;
-use Webkul\Admin\Mail\Admin\ResetPasswordNotification;
+use Nicelizhi\Manage\Mail\Admin\ResetPasswordNotification;
 
 class Admin extends Authenticatable implements AdminContract
 {

@@ -1,0 +1,262 @@
+[
+    {
+        "CountryCode": "ES",
+        "StateCode": "C",
+        "StateName": "A Coruña"
+    },
+    {
+        "CountryCode": "ES",
+        "StateCode": "VI",
+        "StateName": "Álava"
+    },
+    {
+        "CountryCode": "ES",
+        "StateCode": "AB",
+        "StateName": "Albacete"
+    },
+    {
+        "CountryCode": "ES",
+        "StateCode": "A",
+        "StateName": "Alicante"
+    },
+    {
+        "CountryCode": "ES",
+        "StateCode": "AL",
+        "StateName": "Almería"
+    },
+    {
+        "CountryCode": "ES",
+        "StateCode": "O",
+        "StateName": "Asturias"
+    },
+    {
+        "CountryCode": "ES",
+        "StateCode": "AV",
+        "StateName": "Ávila"
+    },
+    {
+        "CountryCode": "ES",
+        "StateCode": "BA",
+        "StateName": "Badajoz"
+    },
+    {
+        "CountryCode": "ES",
+        "StateCode": "PM",
+        "StateName": "Balears"
+    },
+    {
+        "CountryCode": "ES",
+        "StateCode": "B",
+        "StateName": "Barcelona"
+    },
+    {
+        "CountryCode": "ES",
+        "StateCode": "BI",
+        "StateName": "Vizcaya"
+    },
+    {
+        "CountryCode": "ES",
+        "StateCode": "BU",
+        "StateName": "Burgos"
+    },
+    {
+        "CountryCode": "ES",
+        "StateCode": "CC",
+        "StateName": "Cáceres"
+    },
+    {
+        "CountryCode": "ES",
+        "StateCode": "CA",
+        "StateName": "Cádiz"
+    },
+    {
+        "CountryCode": "ES",
+        "StateCode": "S",
+        "StateName": "Cantabria"
+    },
+    {
+        "CountryCode": "ES",
+        "StateCode": "CS",
+        "StateName": "Castellón"
+    },
+    {
+        "CountryCode": "ES",
+        "StateCode": "CE",
+        "StateName": "Ceuta"
+    },
+    {
+        "CountryCode": "ES",
+        "StateCode": "CR",
+        "StateName": "Ciudad Real"
+    },
+    {
+        "CountryCode": "ES",
+        "StateCode": "CO",
+        "StateName": "Córdoba"
+    },
+    {
+        "CountryCode": "ES",
+        "StateCode": "CU",
+        "StateName": "Cuenca"
+    },
+    {
+        "CountryCode": "ES",
+        "StateCode": "SS",
+        "StateName": "Guipúzcoa"
+    },
+    {
+        "CountryCode": "ES",
+        "StateCode": "GI",
+        "StateName": "Girona"
+    },
+    {
+        "CountryCode": "ES",
+        "StateCode": "GR",
+        "StateName": "Granada"
+    },
+    {
+        "CountryCode": "ES",
+        "StateCode": "GU",
+        "StateName": "Guadalajara"
+    },
+    {
+        "CountryCode": "ES",
+        "StateCode": "H",
+        "StateName": "Huelva"
+    },
+    {
+        "CountryCode": "ES",
+        "StateCode": "HU",
+        "StateName": "Huesca"
+    },
+    {
+        "CountryCode": "ES",
+        "StateCode": "J",
+        "StateName": "Jaén"
+    },
+    {
+        "CountryCode": "ES",
+        "StateCode": "LO",
+        "StateName": "La Rioja"
+    },
+    {
+        "CountryCode": "ES",
+        "StateCode": "GC",
+        "StateName": "Las Palmas"
+    },
+    {
+        "CountryCode": "ES",
+        "StateCode": "LE",
+        "StateName": "León"
+    },
+    {
+        "CountryCode": "ES",
+        "StateCode": "L",
+        "StateName": "Lleida"
+    },
+    {
+        "CountryCode": "ES",
+        "StateCode": "LU",
+        "StateName": "Lugo"
+    },
+    {
+        "CountryCode": "ES",
+        "StateCode": "M",
+        "StateName": "Madrid"
+    },
+    {
+        "CountryCode": "ES",
+        "StateCode": "MA",
+        "StateName": "Málaga"
+    },
+    {
+        "CountryCode": "ES",
+        "StateCode": "ML",
+        "StateName": "Melilla"
+    },
+    {
+        "CountryCode": "ES",
+        "StateCode": "MU",
+        "StateName": "Murcia"
+    },
+    {
+        "CountryCode": "ES",
+        "StateCode": "NA",
+        "StateName": "Navarra"
+    },
+    {
+        "CountryCode": "ES",
+        "StateCode": "OR",
+        "StateName": "Ourense"
+    },
+    {
+        "CountryCode": "ES",
+        "StateCode": "P",
+        "StateName": "Palencia"
+    },
+    {
+        "CountryCode": "ES",
+        "StateCode": "PO",
+        "StateName": "Pontevedra"
+    },
+    {
+        "CountryCode": "ES",
+        "StateCode": "SA",
+        "StateName": "Salamanca"
+    },
+    {
+        "CountryCode": "ES",
+        "StateCode": "TF",
+        "StateName": "Santa Cruz de Tenerife"
+    },
+    {
+        "CountryCode": "ES",
+        "StateCode": "SG",
+        "StateName": "Segovia"
+    },
+    {
+        "CountryCode": "ES",
+        "StateCode": "SE",
+        "StateName": "Sevilla"
+    },
+    {
+        "CountryCode": "ES",
+        "StateCode": "SO",
+        "StateName": "Soria"
+    },
+    {
+        "CountryCode": "ES",
+        "StateCode": "T",
+        "StateName": "Tarragona"
+    },
+    {
+        "CountryCode": "ES",
+        "StateCode": "TE",
+        "StateName": "Teruel"
+    },
+    {
+        "CountryCode": "ES",
+        "StateCode": "TO",
+        "StateName": "Toledo"
+    },
+    {
+        "CountryCode": "ES",
+        "StateCode": "V",
+        "StateName": "Valencia"
+    },
+    {
+        "CountryCode": "ES",
+        "StateCode": "VA",
+        "StateName": "Valladolid"
+    },
+    {
+        "CountryCode": "ES",
+        "StateCode": "ZA",
+        "StateName": "Zamora"
+    },
+    {
+        "CountryCode": "ES",
+        "StateCode": "Z",
+        "StateName": "Zaragoza"
+    }
+]

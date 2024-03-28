@@ -21,6 +21,7 @@ package-lock.json
 /public/hot
 /public/storage
 /public/vendor
+/public/*
 /lang/vendor
 /storage/*.key
 /storage/dcc-data/

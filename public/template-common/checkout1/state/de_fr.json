@@ -1,0 +1,82 @@
+[
+    {
+        "CountryCode": "DE",
+        "StateCode": "BB",
+        "StateName": "Brandenburg"
+    },
+    {
+        "CountryCode": "DE",
+        "StateCode": "BE",
+        "StateName": "Berlin"
+    },
+    {
+        "CountryCode": "DE",
+        "StateCode": "BW",
+        "StateName": "Baden-Württemberg"
+    },
+    {
+        "CountryCode": "DE",
+        "StateCode": "BY",
+        "StateName": "Bayern"
+    },
+    {
+        "CountryCode": "DE",
+        "StateCode": "HB",
+        "StateName": "Bremen"
+    },
+    {
+        "CountryCode": "DE",
+        "StateCode": "HE",
+        "StateName": "Hessen"
+    },
+    {
+        "CountryCode": "DE",
+        "StateCode": "HH",
+        "StateName": "Hamburg"
+    },
+    {
+        "CountryCode": "DE",
+        "StateCode": "MV",
+        "StateName": "Mecklenburg-Vorpommern"
+    },
+    {
+        "CountryCode": "DE",
+        "StateCode": "NI",
+        "StateName": "Niedersachsen"
+    },
+    {
+        "CountryCode": "DE",
+        "StateCode": "NW",
+        "StateName": "Nordrhein-Westfalen"
+    },
+    {
+        "CountryCode": "DE",
+        "StateCode": "RP",
+        "StateName": "Rheinland-Pfalz"
+    },
+    {
+        "CountryCode": "DE",
+        "StateCode": "SH",
+        "StateName": "Schleswig-Holstein"
+    },
+    {
+        "CountryCode": "DE",
+        "StateCode": "SL",
+        "StateName": "Saarland"
+    },
+    {
+        "CountryCode": "DE",
+        "StateCode": "SN",
+        "StateName": "Sachsen"
+    },
+    {
+        "CountryCode": "DE",
+        "StateCode": "ST",
+        "StateName": "Sachsen-Anhalt"
+    },
+    {
+        "CountryCode": "DE",
+        "StateCode": "TH",
+        "StateName": "Thüringen"
+    }
+]

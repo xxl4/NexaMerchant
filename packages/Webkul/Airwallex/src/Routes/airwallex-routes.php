@@ -13,5 +13,7 @@ use Nicelizhi\Airwallex\Controllers\OnePageController;
  Route::group(['middleware' => ['web','locale', 'theme', 'currency']], function () {
     Route::prefix('airwallex')->group(function () {
         Route::get('payment-methods', [AirwallexController::class, 'showPaymentMethods'])->name('airwallex.payment_methods');
+
+        
     });
 });

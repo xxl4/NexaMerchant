@@ -1,0 +1,82 @@
+[
+	{  
+      "CountryCode":"MY",
+      "StateCode":"01",
+      "StateName":"Johor"
+   },
+   {  
+      "CountryCode":"MY",
+      "StateCode":"02",
+      "StateName":"Kedah"
+   },
+   {  
+      "CountryCode":"MY",
+      "StateCode":"03",
+      "StateName":"Kelantan"
+   },
+   {  
+      "CountryCode":"MY",
+      "StateCode":"04",
+      "StateName":"Melaka"
+   },
+   {  
+      "CountryCode":"MY",
+      "StateCode":"05",
+      "StateName":"Negeri Sembilan"
+   },
+   {  
+      "CountryCode":"MY",
+      "StateCode":"06",
+      "StateName":"Pahang"
+   },
+   {  
+      "CountryCode":"MY",
+      "StateCode":"07",
+      "StateName":"Pulau Pinang"
+   },
+   {  
+      "CountryCode":"MY",
+      "StateCode":"08",
+      "StateName":"Perak"
+   },
+   {  
+      "CountryCode":"MY",
+      "StateCode":"09",
+      "StateName":"Perlis"
+   },
+   {  
+      "CountryCode":"MY",
+      "StateCode":"10",
+      "StateName":"Selangor"
+   },
+   {  
+      "CountryCode":"MY",
+      "StateCode":"11",
+      "StateName":"Terengganu"
+   },
+   {  
+      "CountryCode":"MY",
+      "StateCode":"12",
+      "StateName":"Sabah"
+   },
+   {  
+      "CountryCode":"MY",
+      "StateCode":"13",
+      "StateName":"Sarawak"
+   },
+   {  
+      "CountryCode":"MY",
+      "StateCode":"14",
+      "StateName":"Wilayah Persekutuan Kuala Lumpur"
+   },
+   {  
+      "CountryCode":"MY",
+      "StateCode":"15",
+      "StateName":"Wilayah Persekutuan Labuan"
+   },
+   {  
+      "CountryCode":"MY",
+      "StateCode":"16",
+      "StateName":"Wilayah Persekutuan Putrajaya"
+   }
+]

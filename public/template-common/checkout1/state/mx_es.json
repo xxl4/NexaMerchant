@@ -1,0 +1,162 @@
+[
+    {
+      "CountryCode": "MX",
+      "StateCode": "AGS",
+      "StateName": "Aguascalientes"
+    },
+    {
+      "CountryCode": "MX",
+      "StateCode": "BC",
+      "StateName": "Baja California"
+    },
+    {
+      "CountryCode": "MX",
+      "StateCode": "BCS",
+      "StateName": "Baja California Sur"
+    },
+    {
+      "CountryCode": "MX",
+      "StateCode": "CAMP",
+      "StateName": "Campeche"
+    },
+    {
+      "CountryCode": "MX",
+      "StateCode": "CHIS",
+      "StateName": "Chiapas"
+    },
+    {
+      "CountryCode": "MX",
+      "StateCode": "CHIH",
+      "StateName": "Chihuahua"
+    },
+    {
+      "CountryCode": "MX",
+      "StateCode": "DF",
+      "StateName": "Ciudad de Mexico"
+    },
+    {
+      "CountryCode": "MX",
+      "StateCode": "COAH",
+      "StateName": "Coahuila"
+    },
+    {
+      "CountryCode": "MX",
+      "StateCode": "COL",
+      "StateName": "Colima"
+    },
+    {
+      "CountryCode": "MX",
+      "StateCode": "DGO",
+      "StateName": "Durango"
+    },
+    {
+      "CountryCode": "MX",
+      "StateCode": "GTO",
+      "StateName": "Guanajuato"
+    },
+    {
+      "CountryCode": "MX",
+      "StateCode": "GRO",
+      "StateName": "Guerrero"
+    },
+    {
+      "CountryCode": "MX",
+      "StateCode": "HGO",
+      "StateName": "Hidalgo"
+    },
+    {
+      "CountryCode": "MX",
+      "StateCode": "JAL",
+      "StateName": "Jalisco"
+    },
+    {
+      "CountryCode": "MX",
+      "StateCode": "MEX",
+      "StateName": "Mexico State"
+    },
+    {
+      "CountryCode": "MX",
+      "StateCode": "MICH",
+      "StateName": "Michoacán"
+    },
+    {
+      "CountryCode": "MX",
+      "StateCode": "MOR",
+      "StateName": "Morelos"
+    },
+    {
+      "CountryCode": "MX",
+      "StateCode": "NAY",
+      "StateName": "Nayarit"
+    },
+    {
+      "CountryCode": "MX",
+      "StateCode": "NL",
+      "StateName": "Nuevo León"
+    },
+    {
+      "CountryCode": "MX",
+      "StateCode": "OAX",
+      "StateName": "Oaxaca"
+    },
+    {
+      "CountryCode": "MX",
+      "StateCode": "PUE",
+      "StateName": "Puebla"
+    },
+    {
+      "CountryCode": "MX",
+      "StateCode": "QRO",
+      "StateName": "Querétaro"
+    },
+    {
+      "CountryCode": "MX",
+      "StateCode": "Q ROO",
+      "StateName": "Quintana Roo"
+    },
+    {
+      "CountryCode": "MX",
+      "StateCode": "SLP",
+      "StateName": "San Luis Potosí"
+    },
+    {
+      "CountryCode": "MX",
+      "StateCode": "SIN",
+      "StateName": "Sinaloa"
+    },
+    {
+      "CountryCode": "MX",
+      "StateCode": "SON",
+      "StateName": "Sonora"
+    },
+    {
+      "CountryCode": "MX",
+      "StateCode": "TAB",
+      "StateName": "Tabasco"
+    },
+    {
+      "CountryCode": "MX",
+      "StateCode": "TAMPS",
+      "StateName": "Tamaulipas"
+    },
+    {
+      "CountryCode": "MX",
+      "StateCode": "TLAX",
+      "StateName": "Tlaxcala"
+    },
+    {
+      "CountryCode": "MX",
+      "StateCode": "VER",
+      "StateName": "Veracruz"
+    },
+    {
+      "CountryCode": "MX",
+      "StateCode": "YUC",
+      "StateName": "Yucatán"
+    },
+    {
+      "CountryCode": "MX",
+      "StateCode": "ZAC",
+      "StateName": "Zacatecas"
+    }
+  ]

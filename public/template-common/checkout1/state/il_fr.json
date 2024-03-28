@@ -1,0 +1,32 @@
+[
+	{  
+      "CountryCode":"IL",
+      "StateCode":"D",
+      "StateName":"Ha Darom"
+   },
+   {  
+      "CountryCode":"IL",
+      "StateCode":"HA",
+      "StateName":"Haifa"
+   },
+   {  
+      "CountryCode":"IL",
+      "StateCode":"JM",
+      "StateName":"Yerushalayim"
+   },
+   {  
+      "CountryCode":"IL",
+      "StateCode":"M",
+      "StateName":"Ha Merkaz"
+   },
+   {  
+      "CountryCode":"IL",
+      "StateCode":"TA",
+      "StateName":"Tel-Aviv"
+   },
+   {  
+      "CountryCode":"IL",
+      "StateCode":"Z",
+      "StateName":"Ha Zafon"
+   }
+]

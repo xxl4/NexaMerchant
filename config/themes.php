@@ -50,4 +50,19 @@ return [
             ],
         ],
     ],
+
+    'manage-default' => 'default',
+    'manage-themes' => [
+        'default' => [
+            'name'        => 'Default',
+            'assets_path' => 'public/themes/manage/default',
+            'views_path'  => 'resources/manage-themes/default/views',
+
+            'vite'        => [
+                'hot_file'                 => 'manage-default-vite.hot',
+                'build_directory'          => 'themes/manage/default/build',
+                'package_assets_directory' => 'src/Resources/assets',
+            ],
+        ],
+    ],
 ];

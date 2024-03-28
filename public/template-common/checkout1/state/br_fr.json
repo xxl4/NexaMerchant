@@ -1,0 +1,137 @@
+[
+    {
+        "CountryCode": "BR",
+        "StateCode": "AC",
+        "StateName": "Acre"
+    },
+    {
+        "CountryCode": "BR",
+        "StateCode": "AL",
+        "StateName": "Alagoas"
+    },
+    {
+        "CountryCode": "BR",
+        "StateCode": "AP",
+        "StateName": "Amapá"
+    },
+    {
+        "CountryCode": "BR",
+        "StateCode": "AM",
+        "StateName": "Amazonas"
+    },
+    {
+        "CountryCode": "BR",
+        "StateCode": "BA",
+        "StateName": "Bahia"
+    },
+    {
+        "CountryCode": "BR",
+        "StateCode": "CE",
+        "StateName": "Ceará"
+    },
+    {
+        "CountryCode": "BR",
+        "StateCode": "ES",
+        "StateName": "Espírito Santo"
+    },
+    {
+        "CountryCode": "BR",
+        "StateCode": "DF",
+        "StateName": "Distrito Federal"
+    },
+    {
+        "CountryCode": "BR",
+        "StateCode": "GO",
+        "StateName": "Goiás"
+    },
+    {
+        "CountryCode": "BR",
+        "StateCode": "MA",
+        "StateName": "Maranhão"
+    },
+    {
+        "CountryCode": "BR",
+        "StateCode": "MT",
+        "StateName": "Mato Grosso"
+    },
+    {
+        "CountryCode": "BR",
+        "StateCode": "MS",
+        "StateName": "Mato Grosso do Sul"
+    },
+    {
+        "CountryCode": "BR",
+        "StateCode": "MG",
+        "StateName": "Minas Gerais"
+    },
+    {
+        "CountryCode": "BR",
+        "StateCode": "PA",
+        "StateName": "Pará"
+    },
+    {
+        "CountryCode": "BR",
+        "StateCode": "PB",
+        "StateName": "Paraíba"
+    },
+    {
+        "CountryCode": "BR",
+        "StateCode": "PR",
+        "StateName": "Paraná"
+    },
+    {
+        "CountryCode": "BR",
+        "StateCode": "PE",
+        "StateName": "Pernambuco"
+    },
+    {
+        "CountryCode": "BR",
+        "StateCode": "PI",
+        "StateName": "Piauí"
+    },
+    {
+        "CountryCode": "BR",
+        "StateCode": "RN",
+        "StateName": "Rio Grande do Norte"
+    },
+    {
+        "CountryCode": "BR",
+        "StateCode": "RS",
+        "StateName": "Rio Grande do Sul"
+    },
+    {
+        "CountryCode": "BR",
+        "StateCode": "RJ",
+        "StateName": "Rio de Janeiro"
+    },
+    {
+        "CountryCode": "BR",
+        "StateCode": "RO",
+        "StateName": "Rondônia"
+    },
+    {
+        "CountryCode": "BR",
+        "StateCode": "RR",
+        "StateName": "Roraima"
+    },
+    {
+        "CountryCode": "BR",
+        "StateCode": "SC",
+        "StateName": "Santa Catarina"
+    },
+    {
+        "CountryCode": "BR",
+        "StateCode": "SP",
+        "StateName": "São Paulo"
+    },
+    {
+        "CountryCode": "BR",
+        "StateCode": "SE",
+        "StateName": "Sergipe"
+    },
+    {
+        "CountryCode": "BR",
+        "StateCode": "TO",
+        "StateName": "Tocantins"
+    }
+]

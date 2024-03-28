@@ -1,0 +1,47 @@
+[
+	{  
+      "CountryCode":"IS",
+      "StateCode":"0",
+      "StateName":"Reykjavík"
+   },
+   {  
+      "CountryCode":"IS",
+      "StateCode":"1",
+      "StateName":"Höfuðborgarsvæðiutan Reykjavíkur"
+   },
+   {  
+      "CountryCode":"IS",
+      "StateCode":"2",
+      "StateName":"Suðurnes"
+   },
+   {  
+      "CountryCode":"IS",
+      "StateCode":"3",
+      "StateName":"Vesturland"
+   },
+   {  
+      "CountryCode":"IS",
+      "StateCode":"4",
+      "StateName":"Vestfirðir"
+   },
+   {  
+      "CountryCode":"IS",
+      "StateCode":"5",
+      "StateName":"Norðurlandvestra"
+   },
+   {  
+      "CountryCode":"IS",
+      "StateCode":"6",
+      "StateName":"Norðurlandeystra"
+   },
+   {  
+      "CountryCode":"IS",
+      "StateCode":"7",
+      "StateName":"Austurland"
+   },
+   {  
+      "CountryCode":"IS",
+      "StateCode":"8",
+      "StateName":"Suðurland"
+   }
+]

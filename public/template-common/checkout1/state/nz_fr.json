@@ -1,0 +1,87 @@
+[
+    {
+        "CountryCode": "NZ",
+        "StateCode": "AUK",
+        "StateName": "Auckland"
+    },
+    {
+        "CountryCode": "NZ",
+        "StateCode": "BOP",
+        "StateName": "Bay of Plenty"
+    },
+    {
+        "CountryCode": "NZ",
+        "StateCode": "CAN",
+        "StateName": "Canterbury"
+    },
+    {
+        "CountryCode": "NZ",
+        "StateCode": "CIT",
+        "StateName": "Chatham Islands"
+    },
+    {
+        "CountryCode": "NZ",
+        "StateCode": "GIS",
+        "StateName": "Gisborne"
+    },
+    {
+        "CountryCode": "NZ",
+        "StateCode": "HKB",
+        "StateName": "Hawke's Bay"
+    },
+    {
+        "CountryCode": "NZ",
+        "StateCode": "MWT",
+        "StateName": "Manawatu-Wanganui"
+    },
+    {
+        "CountryCode": "NZ",
+        "StateCode": "MBH",
+        "StateName": "Marlborough"
+    },
+    {
+        "CountryCode": "NZ",
+        "StateCode": "NSN",
+        "StateName": "Nelson"
+    },
+    {
+        "CountryCode": "NZ",
+        "StateCode": "NTL",
+        "StateName": "Northland"
+    },
+    {
+        "CountryCode": "NZ",
+        "StateCode": "OTA",
+        "StateName": "Otago"
+    },
+    {
+        "CountryCode": "NZ",
+        "StateCode": "STL",
+        "StateName": "Southland"
+    },
+    {
+        "CountryCode": "NZ",
+        "StateCode": "TKI",
+        "StateName": "Taranaki"
+    },
+    {
+        "CountryCode": "NZ",
+        "StateCode": "TAS",
+        "StateName": "Tasman"
+    },
+    {
+        "CountryCode": "NZ",
+        "StateCode": "WKO",
+        "StateName": "Waikato"
+    },
+    {
+        "CountryCode": "NZ",
+        "StateCode": "WGN",
+        "StateName": "Wellington"
+    },
+    {
+        "CountryCode": "NZ",
+        "StateCode": "WTC",
+        "StateName": "West Coast"
+    }
+]

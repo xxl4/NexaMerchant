@@ -1,0 +1,237 @@
+[
+    {
+        "CountryCode": "JP",
+        "StateCode": "Hokkaidô",
+        "StateName": "北海道"
+    },
+    {
+        "CountryCode": "JP",
+        "StateCode": "Aomori",
+        "StateName": "青森県"
+    },
+    {
+        "CountryCode": "JP",
+        "StateCode": "Iwate",
+        "StateName": "岩手県"
+    },
+    {
+        "CountryCode": "JP",
+        "StateCode": "Miyagi",
+        "StateName": "宮城県"
+    },
+    {
+        "CountryCode": "JP",
+        "StateCode": "Akita",
+        "StateName": "秋田県"
+    },
+    {
+        "CountryCode": "JP",
+        "StateCode": "Yamagata",
+        "StateName": "山形県"
+    },
+    {
+        "CountryCode": "JP",
+        "StateCode": "Hukusima",
+        "StateName": "福島県"
+    },
+    {
+        "CountryCode": "JP",
+        "StateCode": "Ibaraki",
+        "StateName": "茨城県"
+    },
+    {
+        "CountryCode": "JP",
+        "StateCode": "Totigi",
+        "StateName": "栃木県"
+    },
+    {
+        "CountryCode": "JP",
+        "StateCode": "Gunma",
+        "StateName": "群馬県"
+    },
+    {
+        "CountryCode": "JP",
+        "StateCode": "Saitama",
+        "StateName": "埼玉県"
+    },
+    {
+        "CountryCode": "JP",
+        "StateCode": "Tiba",
+        "StateName": "千葉県"
+    },
+    {
+        "CountryCode": "JP",
+        "StateCode": "Tôkyô",
+        "StateName": "東京都"
+    },
+    {
+        "CountryCode": "JP",
+        "StateCode": "Kanagawa",
+        "StateName": "神奈川県"
+    },
+    {
+        "CountryCode": "JP",
+        "StateCode": "Niigata",
+        "StateName": "新潟県"
+    },
+    {
+        "CountryCode": "JP",
+        "StateCode": "Toyama",
+        "StateName": "富山県"
+    },
+    {
+        "CountryCode": "JP",
+        "StateCode": "Isikawa",
+        "StateName": "石川県"
+    },
+    {
+        "CountryCode": "JP",
+        "StateCode": "Hukui",
+        "StateName": "福井県"
+    },
+    {
+        "CountryCode": "JP",
+        "StateCode": "Yamanasi",
+        "StateName": "山梨県"
+    },
+    {
+        "CountryCode": "JP",
+        "StateCode": "Nagano",
+        "StateName": "長野県"
+    },
+    {
+        "CountryCode": "JP",
+        "StateCode": "Gihu",
+        "StateName": "岐阜県"
+    },
+    {
+        "CountryCode": "JP",
+        "StateCode": "Sizuoka",
+        "StateName": "静岡県"
+    },
+    {
+        "CountryCode": "JP",
+        "StateCode": "Aiti",
+        "StateName": "愛知県"
+    },
+    {
+        "CountryCode": "JP",
+        "StateCode": "Mie",
+        "StateName": "三重県"
+    },
+    {
+        "CountryCode": "JP",
+        "StateCode": "Siga",
+        "StateName": "滋賀県"
+    },
+    {
+        "CountryCode": "JP",
+        "StateCode": "Kyôto",
+        "StateName": "京都府"
+    },
+    {
+        "CountryCode": "JP",
+        "StateCode": "Ôsaka",
+        "StateName": "大阪府"
+    },
+    {
+        "CountryCode": "JP",
+        "StateCode": "Hyôgo",
+        "StateName": "兵庫県"
+    },
+    {
+        "CountryCode": "JP",
+        "StateCode": "Nara",
+        "StateName": "奈良県"
+    },
+    {
+        "CountryCode": "JP",
+        "StateCode": "Wakayama",
+        "StateName": "和歌山県"
+    },
+    {
+        "CountryCode": "JP",
+        "StateCode": "Tottori",
+        "StateName": "鳥取県"
+    },
+    {
+        "CountryCode": "JP",
+        "StateCode": "Simane",
+        "StateName": "島根県"
+    },
+    {
+        "CountryCode": "JP",
+        "StateCode": "Okayama",
+        "StateName": "岡山県"
+    },
+    {
+        "CountryCode": "JP",
+        "StateCode": "Hirosima",
+        "StateName": "広島県"
+    },
+    {
+        "CountryCode": "JP",
+        "StateCode": "Yamaguti",
+        "StateName": "山口県"
+    },
+    {
+        "CountryCode": "JP",
+        "StateCode": "Tokusima",
+        "StateName": "徳島県"
+    },
+    {
+        "CountryCode": "JP",
+        "StateCode": "Kagawa",
+        "StateName": "香川県"
+    },
+    {
+        "CountryCode": "JP",
+        "StateCode": "Ehime",
+        "StateName": "愛媛県"
+    },
+    {
+        "CountryCode": "JP",
+        "StateCode": "Kôti",
+        "StateName": "江東区"
+    },
+    {
+        "CountryCode": "JP",
+        "StateCode": "Hukuoka",
+        "StateName": "福岡県"
+    },
+    {
+        "CountryCode": "JP",
+        "StateCode": "Saga",
+        "StateName": "佐賀県"
+    },
+    {
+        "CountryCode": "JP",
+        "StateCode": "Nagasaki",
+        "StateName": "長崎県"
+    },
+    {
+        "CountryCode": "JP",
+        "StateCode": "Kumamoto",
+        "StateName": "熊本県"
+    },
+    {
+        "CountryCode": "JP",
+        "StateCode": "Ôita",
+        "StateName": "大分県"
+    },
+    {
+        "CountryCode": "JP",
+        "StateCode": "Miyazaki",
+        "StateName": "宮崎県"
+    },
+    {
+        "CountryCode": "JP",
+        "StateCode": "Kagosima",
+        "StateName": "鹿児島県"
+    },
+    {
+        "CountryCode": "JP",
+        "StateCode": "Okinawa",
+        "StateName": "沖縄県"
+    }
+]

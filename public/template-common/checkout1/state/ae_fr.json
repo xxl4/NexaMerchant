@@ -1,0 +1,37 @@
+[
+	{  
+      "CountryCode":"AE",
+      "StateCode":"AJ",
+      "StateName":"Ajman"
+   },
+   {  
+      "CountryCode":"AE",
+      "StateCode":"AZ",
+      "StateName":"Abu Z¸aby"
+   },
+   {  
+      "CountryCode":"AE",
+      "StateCode":"DU",
+      "StateName":"Dubai"
+   },
+   {  
+      "CountryCode":"AE",
+      "StateCode":"FU",
+      "StateName":"Al Fujayrah"
+   },
+   {  
+      "CountryCode":"AE",
+      "StateCode":"RK",
+      "StateName":"Ra'sal Khaymah"
+   },
+   {  
+      "CountryCode":"AE",
+      "StateCode":"SH",
+      "StateName":"Ash Sha"
+   },
+   {  
+      "CountryCode":"AE",
+      "StateCode":"UQ",
+      "StateName":"Ummal Qaywayn"
+   }
+]
