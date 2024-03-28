@@ -524,10 +524,9 @@ class ProductController extends Controller
         if($payment_method=='paypal_standard') {
             //处理支付方式
             $payment = [];
-
             $payment['description'] = "PayPal-".$refer;
-            $payment['method'] = "paypal_smart_button";
-            $payment['method_title'] = "PayPal Smart Button-".$refer;
+            $payment['method'] = "paypal_standard";
+            $payment['method_title'] = "PayPal standard Button-".$refer;
             $payment['sort'] = "1";
             // Cart::savePaymentMethod($payment);
 
@@ -550,15 +549,21 @@ class ProductController extends Controller
             //$order = $this->orderRepository->create(Cart::prepareDataForOrder()); //todo
 
 
-            try {
-                $order = $this->smartButton->createOrder($this->buildRequestBody($input));
+            if ($redirectUrl = Payment::getRedirectUrl($cart)) {
+                $paypalStandard = app('Webkul\Paypal\Payment\Standard');
                 $data = [];
-                $data['order'] = $order;
-                $data['code'] = 200;
+                $data['success'] = true;
+                $data['redirect'] = $redirectUrl;
+                $data['redirect_url'] = $redirectUrl;
+                $data['form'] =  $paypalStandard->getFormFields();
+                $data['pay_url'] =  $paypalStandard->getPaypalUrl();
                 $data['result'] = 200;
-                return response()->json($order);
-            } catch (\Exception $e) {
-                return response()->json(json_decode($e->getMessage()), 400);
+                return response()->json($data);
+            }else{
+                $data = [];
+                $data['result'] = 400;
+                $data['message'] = $redirectUrl;
+                return response()->json($data);
             }
         }
         
