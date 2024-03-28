@@ -4,6 +4,8 @@ namespace Nicelizhi\Manage\Listeners;
 
 use Webkul\Paypal\Payment\SmartButton;
 use Nicelizhi\Manage\Mail\Order\RefundedNotification;
+use Illuminate\Support\Facades\Log;
+use Nicelizhi\Airwallex\Sdk\Airwallex as AirwallexSdk;
 
 class Refund extends Base
 {
@@ -59,11 +61,31 @@ class Refund extends Base
         // airwallex
         if($order->payment->method=='airwallex') {
 
-        }
+            Log::info("order refund Log info" . json_encode($order));
 
-        // paypal_standard
-        if($order->payment->method =='paypal_standard') {
+            $apiKey = core()->getConfigData('sales.payment_methods.airwallex.apikey');
+            $clientId = core()->getConfigData('sales.payment_methods.airwallex.clientId');
+            $productionMode = core()->getConfigData('sales.payment_methods.airwallex.production');
+
+            Log::info("order refund Log info tr ".json_encode($order->transactions));
+
+            $payment_intent_id = $order->transactions[0]->transaction_id;
+
             
+
+
+            $paymentConfig = [
+                'clientId' => $clientId,
+                'apiKey' => $apiKey
+            ];
+    
+    
+            $sdk = new AirwallexSdk($paymentConfig, $productionMode);
+    
+            $sdk->createReRefund($payment_intent_id, $order->id, round($order->grand_total, 2));
+
+
+
         }
     }
 }
