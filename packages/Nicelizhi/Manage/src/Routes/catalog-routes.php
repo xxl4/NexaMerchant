@@ -117,9 +117,6 @@ Route::group(['middleware' => ['admin'], 'prefix' => config('app.admin_url')], f
 
             Route::any('uploadImg', 'uploadImg')->name('admin.catalog.products.uploadImg');
 
-            Route::any('family', 'family')->name('admin.catalog.products.family');
-
-
 
             Route::get('{id}/{attribute_id}', 'download')->defaults('_config', [
                 'view' => 'admin.catalog.products.edit',

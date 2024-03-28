@@ -182,42 +182,6 @@
                                 </div>
                             </div>
 
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-4">
-                                        <label for="exampleInputFile">Family</label>
-
-                                        <select id="exampleSelect_family" class="form-control">
-{{--                                            @foreach($data['family_list'] as $key=>$value)--}}
-{{--                                            <option>{{$value->name}}</option>--}}
-{{--                                            @endforeach--}}
-                                        </select>
-
-
-
-                                    </div>
-
-                                    <div class="col-4">
-                                        <label for="exampleInputFile">Attribute Group</label>
-                                        <select id="exampleSelect_family" class="form-control">
-{{--                                            @foreach($data['attribute_group'] as $key=>$value)--}}
-{{--                                                <option>{{$value->name}}</option>--}}
-{{--                                            @endforeach--}}
-                                        </select>
-
-
-                                    </div>
-
-{{--                                    <div class="col-4">--}}
-{{--                                        <label for="exampleInputFile">Mapping</label>--}}
-{{--                                        <input type="text" class="form-control" placeholder=".col-4">--}}
-{{--                                    </div>--}}
-                                </div>
-                            </div>
-
-
-
-
 
                             <div class="card-body">
                                 <div class="form-group">
@@ -255,6 +219,210 @@
                             </div>
                         </form>
                     </div>
+
+
+
+
+
+                    <!--
+
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title">Different Styles</h3>
+                        </div>
+
+                        <div class="card-body">
+                            <h4>Input</h4>
+                            <div class="form-group">
+                                <label for="exampleInputBorder">Bottom Border only <code>.form-control-border</code></label>
+                                <input type="text" class="form-control form-control-border" id="exampleInputBorder" placeholder=".form-control-border">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputBorderWidth2">Bottom Border only 2px Border <code>.form-control-border.border-width-2</code></label>
+                                <input type="text" class="form-control form-control-border border-width-2" id="exampleInputBorderWidth2" placeholder=".form-control-border.border-width-2">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputRounded0">Flat <code>.rounded-0</code></label>
+                                <input type="text" class="form-control rounded-0" id="exampleInputRounded0" placeholder=".rounded-0">
+                            </div>
+                            <h4>Custom Select</h4>
+                            <div class="form-group">
+                                <label for="exampleSelectBorder">Bottom Border only <code>.form-control-border</code></label>
+                                <select class="custom-select form-control-border" id="exampleSelectBorder">
+                                    <option>Value 1</option>
+                                    <option>Value 2</option>
+                                    <option>Value 3</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleSelectBorderWidth2">Bottom Border only <code>.form-control-border.border-width-2</code></label>
+                                <select class="custom-select form-control-border border-width-2" id="exampleSelectBorderWidth2">
+                                    <option>Value 1</option>
+                                    <option>Value 2</option>
+                                    <option>Value 3</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleSelectRounded0">Flat <code>.rounded-0</code></label>
+                                <select class="custom-select rounded-0" id="exampleSelectRounded0">
+                                    <option>Value 1</option>
+                                    <option>Value 2</option>
+                                    <option>Value 3</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="card card-info">
+                        <div class="card-header">
+                            <h3 class="card-title">Input Addon</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">@</span>
+                                </div>
+                                <input type="text" class="form-control" placeholder="Username">
+                            </div>
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control">
+                                <div class="input-group-append">
+                                    <span class="input-group-text">.00</span>
+                                </div>
+                            </div>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">$</span>
+                                </div>
+                                <input type="text" class="form-control">
+                                <div class="input-group-append">
+                                    <span class="input-group-text">.00</span>
+                                </div>
+                            </div>
+                            <h4>With icons</h4>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                                </div>
+                                <input type="email" class="form-control" placeholder="Email">
+                            </div>
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control">
+                                <div class="input-group-append">
+                                    <span class="input-group-text"><i class="fas fa-check"></i></span>
+                                </div>
+                            </div>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+<span class="input-group-text">
+<i class="fas fa-dollar-sign"></i>
+</span>
+                                </div>
+                                <input type="text" class="form-control">
+                                <div class="input-group-append">
+                                    <div class="input-group-text"><i class="fas fa-ambulance"></i></div>
+                                </div>
+                            </div>
+                            <h5 class="mt-4 mb-2">With checkbox and radio inputs</h5>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+<span class="input-group-text">
+<input type="checkbox">
+</span>
+                                        </div>
+                                        <input type="text" class="form-control">
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><input type="radio"></span>
+                                        </div>
+                                        <input type="text" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <h5 class="mt-4 mb-2">With buttons</h5>
+                            <p>Large: <code>.input-group.input-group-lg</code></p>
+                            <div class="input-group input-group-lg mb-3">
+                                <div class="input-group-prepend">
+                                    <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown">
+                                        Action
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li class="dropdown-item"><a href="#">Action</a></li>
+                                        <li class="dropdown-item"><a href="#">Another action</a></li>
+                                        <li class="dropdown-item"><a href="#">Something else here</a></li>
+                                        <li class="dropdown-divider"></li>
+                                        <li class="dropdown-item"><a href="#">Separated link</a></li>
+                                    </ul>
+                                </div>
+                                <input type="text" class="form-control">
+                            </div>
+
+                            <p>Normal</p>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <button type="button" class="btn btn-danger">Action</button>
+                                </div>
+
+                                <input type="text" class="form-control">
+                            </div>
+
+                            <p>Small <code>.input-group.input-group-sm</code></p>
+                            <div class="input-group input-group-sm">
+                                <input type="text" class="form-control">
+                                <span class="input-group-append">
+<button type="button" class="btn btn-info btn-flat">Go!</button>
+</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card card-info">
+                        <div class="card-header">
+                            <h3 class="card-title">Horizontal Form</h3>
+                        </div>
+
+
+                        <form class="form-horizontal">
+                            <div class="card-body">
+                                <div class="form-group row">
+                                    <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
+                                    <div class="col-sm-10">
+                                        <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
+                                    <div class="col-sm-10">
+                                        <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="offset-sm-2 col-sm-10">
+                                        <div class="form-check">
+                                            <input type="checkbox" class="form-check-input" id="exampleCheck2">
+                                            <label class="form-check-label" for="exampleCheck2">Remember me</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card-footer">
+                                <button type="submit" class="btn btn-info">Sign in</button>
+                                <button type="submit" class="btn btn-default float-right">Cancel</button>
+                            </div>
+                        </form>
+                    </div>
+
+
+                    -->
 
                 </div>
 
@@ -458,9 +626,19 @@
 
                                 </div>
 
+
+
+
+
                             </form>
                         </div>
+
+
                     </div>
+
+
+
+
 
                 </div>
             </div>
@@ -718,7 +896,6 @@
 -->
 
     <script>
-
         layui.config({
             base: '/style/lay-module/', // 设定扩展的 layui 模块的所在目录，一般用于外部模块扩展
         }).use(['form', 'skuTable'], function () {
@@ -776,31 +953,31 @@
                 },
                 //规格数据, 一般从后台获取
                 specData: [
-                    // {
-                    //     id: "1",
-                    //     title: "颜色",
-                    //     child: [
-                    //         {id: "1", title: "红", checked: true},
-                    //         {id: "2", title: "黄", checked: false},
-                    //         {id: "3", title: "蓝", checked: false}
-                    //     ]
-                    // }, {
-                    //     id: "2",
-                    //     title: "尺码",
-                    //     child: [
-                    //         {id: "4", title: "S", checked: true},
-                    //         {id: "5", title: "M", checked: true},
-                    //         {id: "6", title: "L", checked: false},
-                    //         {id: "7", title: "XL", checked: false}
-                    //     ]
-                    // }, {
-                    //     id: "3",
-                    //     title: "款式",
-                    //     child: [
-                    //         {id: "8", title: "男款", checked: true},
-                    //         {id: "9", title: "女款", checked: true}
-                    //     ]
-                    // }
+                    {
+                        id: "1",
+                        title: "颜色",
+                        child: [
+                            {id: "1", title: "红", checked: true},
+                            {id: "2", title: "黄", checked: false},
+                            {id: "3", title: "蓝", checked: false}
+                        ]
+                    }, {
+                        id: "2",
+                        title: "尺码",
+                        child: [
+                            {id: "4", title: "S", checked: true},
+                            {id: "5", title: "M", checked: true},
+                            {id: "6", title: "L", checked: false},
+                            {id: "7", title: "XL", checked: false}
+                        ]
+                    }, {
+                        id: "3",
+                        title: "款式",
+                        child: [
+                            {id: "8", title: "男款", checked: true},
+                            {id: "9", title: "女款", checked: true}
+                        ]
+                    }
                 ],
                 //获取规格数据接口地址，如果为空或者不配置则使用 specData 参数配置
                 //接口要求返回格式参考 specData.json
@@ -861,7 +1038,6 @@
 
     <script>
         $(document).ready(function() {
-
             // Image upload preview
             $('#imageUpload').change(function() {
                 readURL(this);
@@ -875,75 +1051,11 @@
                         $('#imagePreview').html('<img src="' + e.target.result + '" class="img-fluid" />').show();
                         $('.custom-file-label').text(input.files[0].name); // Update file label
                     }
+
                     reader.readAsDataURL(input.files[0]); // Convert to base64 string
                 }
             }
-            loadFirstLevelOptions();
         });
-
-
-        // 加载第一级选项
-        function loadFirstLevelOptions() {
-            $.ajax({
-                url: '{{ route('admin.catalog.products.family') }}', // 你的第一级选项接口地址
-                type: 'Post',
-                headers: {
-                    'X-CSRF-TOKEN': "{{csrf_token()}}"
-                },
-                success: function(response) {
-                    $('#exampleSelect_family').empty(); // 清空第一级选项
-
-                    console.log('返回值',response)
-
-                    // 填充第一级选项
-                    $.each(response.data, function(index, item) {
-                        $('#exampleSelect_family').append($('<option>', {
-                            value: item.id,
-                            text: item.name
-                        }));
-                    });
-
-                    // 加载第二级选项
-                    loadSecondLevelOptions();
-                },
-                error: function(xhr, status, error) {
-                    console.error(error); // 输出错误信息到控制台
-                }
-            });
-        }
-
-
-        // 加载第二级选项
-        function loadSecondLevelOptions() {
-            $('#first-level').change(function() {
-                var selectedFirstLevel = $(this).val();
-
-                $.ajax({
-                    url: '/api/second-level/' + selectedFirstLevel, // 你的第二级选项接口地址，传递第一级选项的值作为参数
-                    type: 'GET',
-                    success: function(response) {
-                        $('#second-level').empty(); // 清空第二级选项
-
-                        // 填充第二级选项
-                        $.each(response.data, function(index, item) {
-                            $('#second-level').append($('<option>', {
-                                value: item.value,
-                                text: item.text
-                            }));
-                        });
-
-                        // 加载第三级选项
-                        loadThirdLevelOptions();
-                    },
-                    error: function(xhr, status, error) {
-                        console.error(error); // 输出错误信息到控制台
-                    }
-                });
-            });
-        }
-
-
-
     </script>
 
 
