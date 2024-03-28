@@ -725,6 +725,88 @@ Apt / Suite / Other </label>
 
 <script>
     $(document).ready(function(){
+
+        function showBillProvince() {
+            $('#bill-state-select').parent().show();
+            $('#bill-state-select').parent().next().addClass('shipping-info-flex-half');
+        }
+
+        function hideBillProvince() {
+            $('#bill-state-select').parent().hide();
+            $('#bill-state-select').parent().next().removeClass('shipping-info-flex-half');
+        }
+
+        function updateBillStateSelect(states) {
+            if(states && states.length) {
+                if(!window.states) {
+                    showBillProvince();
+                }
+                window.states = states;
+                var t = '<option value="">----</option>';
+                states.forEach(function(e) {
+                    t += "<option value=".concat(e.StateCode, ">").concat(e.StateName, "</option>")
+                });
+
+                $('#bill-state-select').html(t);
+                if(window.state_select) {
+                    $('#bill-state-select').val(window.state_select);
+                    $('#bill-state-select').change();
+                    window.state_select = '';
+                }
+            } else {
+                window.states = false;
+                hideBillProvince();
+            }
+        }
+
+        function getBillStateSelect() {
+            if($("#bill-country-select").val()) {
+                getBillCountryStates(updateBillStateSelect);
+                
+            }
+        }
+
+        function getBillCountryStates(callback) {
+            var url = '/template-common/checkout1/state/' + $("#bill-country-select").val().toLowerCase() + '_{{ app()->getLocale() }}' + '.json';
+            fetch(url,{
+                method: 'GET',
+            })
+            .then(function(data){return data.json()}).then(function(data) {callback(data)}).catch(function(err){callback()})
+        }
+
+
+
+        $("#shipping_address_other").on("click", function(){
+
+            if($("#shipping_address_other").is(':checked')) {
+                $("#bill_address").show();
+                window.shipping_address = "other";
+            }else{
+                $("#bill_address").hide();
+                window.shipping_address = "default";
+            }    
+            console.log( " shipping address "+window.shipping_address);            
+            //copy the data info to bill address
+
+            var $options = $("#country-select > option").clone();
+
+            $('#bill-country-select').append($options);
+
+            $('#bill-country-select').on('change', function() {
+                getBillStateSelect();
+            })
+
+            getBillStateSelect(); // 
+
+            window.shipping_address = "other";
+
+        })
+
+        $("#shipping_address_default").on("click", function(){
+            $("#bill_address").hide();
+            window.shipping_address = "default";
+        })
+
         <?php if($payments_default=='airwallex-klarna') { ?>
 
             $("#collapseThree").show();
@@ -1017,7 +1099,22 @@ Apt / Suite / Other </label>
 
         $("#payment-button").on("click", function(){
             var payment_method = $('input[name=payment_method]:checked', '#myForm').val();
+            var shipping_address = $('input[name=shipping_address]:checked', '#myForm').val(); //shipping address chose
+
+            if($("#shipping_address_other").is(':checked')) {
+                //$("#bill_address").show();
+                window.shipping_address = "other";
+                shipping_address = window.shipping_address;
+            }else{
+                //$("#bill_address").hide();
+                window.shipping_address = "default";
+                shipping_address = window.shipping_address;
+            }  
+
+            window.shipping_address = shipping_address;
             console.log("payment method" + payment_method);
+            console.log("shipping address" + shipping_address);
+            
             if(payment_method=="airwallex") {
                 var id_card = $("#id_card").val();
                 var id_expiry = $("#id_expiry").val();
