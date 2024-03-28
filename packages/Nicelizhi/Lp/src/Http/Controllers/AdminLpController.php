@@ -9,7 +9,7 @@ use Nicelizhi\Manage\Http\Controllers\Controller;
 use Nicelizhi\Lp\DataGrids\Lp\LpDataGrid;
 use Nicelizhi\Lp\Contracts\Lp;
 
-use Webkul\Admin\Http\Requests\MassDestroyRequest;
+use Nicelizhi\Manage\Http\Requests\MassDestroyRequest;
 
 
 class AdminLpController extends Controller
