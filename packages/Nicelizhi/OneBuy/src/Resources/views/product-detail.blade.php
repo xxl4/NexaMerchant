@@ -871,6 +871,13 @@ Apt / Suite / Other </label>
                         }
                     });
 
+                    $("#state-select").on('change', function(){
+                        var params = getOrderParams('paypal_stand');
+                        if(!params.error) {
+                            actions.enable();
+                        }
+                    })
+
 
 
                     if(params.error) {
@@ -888,7 +895,7 @@ Apt / Suite / Other </label>
                 onClick(){
                     var params = getOrderParams('paypal_stand');
                     console.log("on click " + JSON.stringify(params));
-                    if(params.error && can_paypal==0) {
+                    if(params.error) {
                         $('#checkout-error').html(params.error.join('<br />'));
                         $('#checkout-error').show();
                         //actions.disable();
