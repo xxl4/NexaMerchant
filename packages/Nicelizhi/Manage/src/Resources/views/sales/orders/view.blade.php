@@ -54,8 +54,16 @@
                                 @lang('admin::app.sales.orders.view.canceled')    
                             </span>
                             @break
+                            
 
                     @endswitch
+
+
+                            @if ($order->canRefund())
+                                
+                                @include('admin::sales.refunds.create')
+                            @endif
+
                     {!! view_render_event('sales.order.title.after', ['order' => $order]) !!}
 
 
