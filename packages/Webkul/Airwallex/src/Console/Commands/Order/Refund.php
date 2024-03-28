@@ -14,7 +14,7 @@ class Refund extends Command
      *
      * @var string
      */
-    protected $signature = 'airwallex:refund {order_id}';
+    protected $signature = 'airwallex:refund {--order_id=}';
 
     /**
      * The console command description.
@@ -71,14 +71,13 @@ class Refund extends Command
     {
         $client = new Client();
 
+        $order_id = $this->option("order_id");
+
+        
+
         $this->apiKey = core()->getConfigData('sales.payment_methods.airwallex.apikey');
 
         $this->clientId = core()->getConfigData('sales.payment_methods.airwallex.clientId');
-        //$this->clientEmail = core()->getConfigData('sales.payment_methods.airwallex.clientEmail');
-        //$this->clientPassword = core()->getConfigData('sales.payment_methods.airwallex.clientPassword');
-        //$this->accountId = core()->getConfigData('sales.payment_methods.airwallex.accountId');
-        //$this->paDC = core()->getConfigData('sales.payment_methods.airwallex.paDC');
-        //$this->accountDC = core()->getConfigData('sales.payment_methods.airwallex.accountDC');
         $this->productionMode = core()->getConfigData('sales.payment_methods.airwallex.production');
 
 
@@ -89,13 +88,11 @@ class Refund extends Command
 
         $sdk = new AirwallexSdk($this->paymentConfig, $this->productionMode);
 
+        var_dump($sdk);
+
         //@link https://www.airwallex.com/docs/api#/Payment_Acceptance/Customers/_api_v1_pa_customers__id__generate_client_secret/get
 
         
-
-        
-
-
        
     }
 }
