@@ -14,6 +14,7 @@ class Airwallex {
     protected $clientId;
     protected $apiKey;
 
+    //protected $host = "https://api-demo.airwallex.com";
     protected $host = "https://api.airwallex.com";
 
     protected $client;
@@ -36,7 +37,7 @@ class Airwallex {
 
         $this->productionMode = $productionMode;
 
-        if($productionMode=='on') $this->host = "https://api.airwallex.com"; 
+        if($productionMode=='0') $this->host = "https://api-demo.airwallex.com"; 
 
         $this->client = new Client([
             // Base URI is used with relative requests
@@ -62,7 +63,6 @@ class Airwallex {
         $cache_key = "airwallex_token_".$this->productionMode;
 
         $token = Cache::get($cache_key);
-
         if(!Cache::has($cache_key)) {
         //if(true) {
             $response = $this->client->request('POST', "/api/v1/authentication/login", [ 
@@ -102,6 +102,36 @@ class Airwallex {
         $result = $this->http_curl($url, 'xml', $data, 6, FALSE, '',$header);
 
         if($result['code']=='201') return json_decode($result['body']);
+
+        return $result;
+
+    }
+
+    /***
+     * 
+     * @ create refund order
+     * @link https://www.airwallex.com/docs/api#/Payment_Acceptance/Refunds/
+     * 
+     */
+    public function createReRefund($payment_intent_id, $order_id, $amount ) {
+
+
+        $data = [];
+        $data['payment_intent_id'] = $payment_intent_id;
+        $data['request_id'] = $order_id."_".time();
+        $data['amount'] = $amount;
+        $data['metadata']['id'] = $order_id;
+
+        $data = json_encode($data, JSON_OBJECT_AS_ARRAY | JSON_UNESCAPED_UNICODE);
+
+        $header= array(
+                'Content-Type: application/json; charset=utf-8',
+                'Content-Length: ' . strlen($data),
+                'Authorization: ' ."Bearer ".$this->token
+        );
+
+        $url = $this->host."/api/v1/pa/refunds/create";
+        $result = $this->http_curl($url, 'xml', $data, 6, FALSE, '',$header);
 
         return $result;
 
