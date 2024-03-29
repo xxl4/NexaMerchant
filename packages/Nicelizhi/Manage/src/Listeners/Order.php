@@ -6,6 +6,7 @@ use Nicelizhi\Manage\Mail\Order\CreatedNotification;
 use Nicelizhi\Manage\Mail\Order\CanceledNotification;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Log;
+use Nicelizhi\Shopify\Console\Commands\Order\Post;
 
 class Order extends Base
 {
@@ -27,7 +28,8 @@ class Order extends Base
 
             // send order to shopify
             Log::info("send order to shopify ".json_encode($order));
-            Artisan::call("shopify:order:post", ["--order_id"=> $order->id ]);
+            //Artisan::call('shopify:order:post', ['--order_id'=> $order->id]);
+            //Artisan::call((new Post())->getName(), ['--order_id'=> $order->id]);
 
 
         } catch (\Exception $e) {
