@@ -29,7 +29,7 @@ class Order extends Base
             // send order to shopify
             Log::info("send order to shopify ".json_encode($order));
             //Artisan::call('shopify:order:post', ['--order_id'=> $order->id]);
-            Artisan::call((new Post())->getName(), ['--order_id'=> $order->id]);
+            //Artisan::call((new Post())->getName(), ['--order_id'=> $order->id]);
 
 
         } catch (\Exception $e) {
