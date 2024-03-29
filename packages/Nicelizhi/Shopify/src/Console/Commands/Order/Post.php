@@ -21,7 +21,7 @@ class Post extends Command
      *
      * @var string
      */
-    protected $signature = 'shopify:order:post';
+    protected $signature = 'shopify:order:post {--order_id=}';
 
     /**
      * The console command description.
@@ -71,7 +71,14 @@ class Post extends Command
             return false;
         }
 
-        $lists = Order::where(['status'=>'processing'])->orderBy("updated_at", "desc")->select(['id'])->limit(100)->get();
+        $order_id = $this->option("order_id");
+
+        if(!empty($order_id)) {
+            $lists = Order::where(['status'=>'processing'])->where("id", $order_id)->select(['id'])->limit(100)->get();
+        }else{
+            $lists = Order::where(['status'=>'processing'])->orderBy("updated_at", "desc")->select(['id'])->limit(100)->get();
+        }
+        
 
         $this->checkLog();
 
