@@ -93,7 +93,7 @@
             [20, 50, 100],
             [20, 50, 100]
         ],
-        order: [[1, 'desc']],
+        order: [[3, 'desc']],
         processing: true,
         serverSide: true,
         
