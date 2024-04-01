@@ -148,6 +148,7 @@ class Post extends Command
         }
 
         $this->info("sync to order to shopify ".$id);
+        echo $id." start post \r\n";
 
         $client = new Client();
 
