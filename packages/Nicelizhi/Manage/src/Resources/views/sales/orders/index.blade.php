@@ -23,6 +23,7 @@
                         <thead>
                         <tr>
                           <th>Order ID</th>
+                          <th>Increment ID</th>
                           <th>Status</th>
                           <th>Client</th>
                           <th>base_grand_total</th>
@@ -80,6 +81,9 @@
           type: 'GET'
         },
         columns: [
+          {
+            data: 'id'
+          },
           {
             data: 'increment_id'
           },

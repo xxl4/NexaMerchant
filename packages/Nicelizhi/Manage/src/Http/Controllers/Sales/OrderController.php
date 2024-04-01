@@ -40,9 +40,10 @@ class OrderController extends Controller
             
             $columns = array(
                 //array( 'db' => 'id', 'dt' => 0 ),
-                array( 'db' => '`o`.`increment_id`',  'dt' => 'increment_id', 'field'=>'increment_id','formatter' => function($d, $row){
+                array( 'db' => '`o`.`id`',  'dt' => 'id', 'field'=>'id','formatter' => function($d, $row){
                     return '#'.$d;
                 } ),
+                array( 'db' => '`o`.`increment_id`',  'dt' => 'increment_id', 'field'=>'increment_id'),
                 array( 'db' => '`o`.`status`',   'dt' => 'status', 'field'=>'status' ),
                 array( 'db' => '`o`.`customer_email`',   'dt' => 'customer_email', 'field'=>'customer_email' ),
                 array( 'db' => '`o`.`customer_first_name`',   'dt' => 'customer_first_name', 'field'=>'customer_first_name' ),
