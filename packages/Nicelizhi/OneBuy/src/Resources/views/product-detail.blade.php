@@ -2064,6 +2064,8 @@ function GotoNotRequest(url) {
                             .then(function(res) {return res.json()})
                             .then(function(res) {
 
+                                $('#loading').hide();
+
                                 var errorDetail = Array.isArray(res.details) && res.details[0];
 
                                 if (errorDetail && errorDetail.issue === 'INSTRUMENT_DECLINED') {
@@ -2079,7 +2081,7 @@ function GotoNotRequest(url) {
                                 }
 
                                 //console.log(res);
-                                $('#loading').hide();
+                                
                                 if(res.success == true) {
                                     window.location.href='/checkout/v1/success/'+localStorage.getItem('order_id');
                                 }
