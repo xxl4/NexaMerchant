@@ -14,7 +14,9 @@ Route::group(['middleware' => ['admin'], 'prefix' => config('app.admin_url')], f
          * Products routes.
          */
         Route::controller(ProductController::class)->prefix('products')->group(function () {
-            Route::get('', 'index')->name('shopify.products.index');
+            Route::get('', 'index')->name('admin.shopify.products.index');
+
+
 
             // Route::get('create', 'create')->name('admin.catalog.products.create');
 
