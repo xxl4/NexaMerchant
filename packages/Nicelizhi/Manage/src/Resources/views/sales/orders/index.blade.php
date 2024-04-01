@@ -121,7 +121,7 @@
             [20, 50, 100],
             [20, 50, 100]
         ],
-        order: [[8, 'desc']],
+        order: [[0, 'desc']],
         processing: true,
         serverSide: true,
         
