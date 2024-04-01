@@ -19,13 +19,24 @@ class WebhooksController extends Controller
 
     private $shopify_store_id = null;
 
+    private $lang = null;
+
+    private $category_id = null;
+
+    private $locales = null;
+
+    
+
     public function __construct(
         protected OrderRepository $orderRepository,
         protected ShopifyOrder $ShopifyOrder,
+        protected ShopifyProduct $shopifyProduct,
         protected ShipmentRepository $shipmentRepository,
     )
     {
         $this->shopify_store_id = config('shopify.shopify_store_id');
+        $this->lang = config('shopify.store_lang');
+        $this->category_id = 9;
     }
 
     public function v1(Request $request) {
@@ -221,7 +232,44 @@ class WebhooksController extends Controller
     }
 
     public function products_update(Request $request) {
-        Log::info("products_update ".json_encode($request->all()));
+        $req = $request->all();
+        
+        $product_id = $req['id'];
+
+        // check the product id is have
+        $product = $this->shopifyProduct->where("product_id", $product_id)->first();
+
+        if(is_null($product)) $product = new ShopifyProduct();
+
+
+
+        // locales
+        $this->locales = core()->getAllLocales()->pluck('code')->toArray();
+
+        $product->shopify_store_id = $this->shopify_store_id;
+        $product->product_id = $product_id;
+        $product->title = $req['title'];
+        $product->product_type = $req['product_type'];
+        $product->body_html = $req['body_html'];
+        $product->vendor = $req['vendor'];
+        $product->handle = $req['handle'];
+        $product->published_at = $req['published_at'];
+        $product->template_suffix = $req['template_suffix'];
+        $product->published_scope = $req['published_scope'];
+        $product->tags = $req['tags'];
+        $product->status = $req['status'];
+        $product->admin_graphql_api_id = $req['admin_graphql_api_id'];
+        $product->variants = $req['variants'];
+        $product->options = $req['options'];
+        $product->images = $req['images'];
+
+        $product->save();
+
+        //update the local data
+
+
+
+
     }
 
 }
