@@ -32,10 +32,8 @@
                             <thead>
                             <tr>
                                 <th>id</th>
-                                <th>产品图片</th>
                                 <th>产品</th>
                                 <th>状态</th>
-                                <th>库存</th>
                                 <th>渠道</th>
                                 <th>类别</th>
                                 <th>厂商</th>
@@ -71,31 +69,29 @@
                 serverSide: true,
 
                 "columns": [
-                    { "data": "id" },
-                    { "data": "path" },
+                    { "data": "product_id" },
                     { "data": "name" },
                     { "data": "status" },
-                    { "data": "qty" },
                     { "data": "channel" },
                     { "data": "type" },
                     { "data": "sku" },
                     {
                         "data": null,
                         "render": function (data, type, row) {
-                            return '<a href="products/edit/' + row.id + '" class="btn btn-primary">Edit</a>';
+                            return '<a href="products/edit/' + row.product_id + '" class="btn btn-primary">Edit</a>';
                         }
                     }
                 ],
 
 
-                "columnDefs": [
-                    {
-                        "targets": 1, // 图片列的索引
-                        "render": function(data, type, row, meta) {
-                            return '<img src="' + data + '" alt="Image" width="50" height="50">';
-                        }
-                    }
-                ],
+                // "columnDefs": [
+                //     {
+                //         "targets": 1, // 图片列的索引
+                //         "render": function(data, type, row, meta) {
+                //             return '<img src="' + data + '" alt="Image" width="50" height="50">';
+                //         }
+                //     }
+                // ],
 
 
                 // "dom": 'Bfrtip',

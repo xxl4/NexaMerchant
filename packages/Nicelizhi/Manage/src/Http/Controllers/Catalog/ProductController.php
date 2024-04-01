@@ -136,14 +136,14 @@ class ProductController extends Controller
             $primaryKey = 'id';
 
             $columns = array(
-                array('db' => 'ba_product_flat.id', 'dt' => 0, 'field' => 'id'),
-                array('db' => '`ba_product_images`.`path`', 'dt' => 1, 'field' => 'path'),
-                array('db' => '`ba_product_flat`.`name`', 'dt' => 2, 'field' => 'name'),
-                array('db' => '`ba_product_flat`.`status`', 'dt' => 3, 'field' => 'status'),
-                array('db' => '`ba_product_inventories`.`qty`', 'dt' => 4, 'field' => 'qty'),
-                array('db' => '`ba_product_flat`.`channel`', 'dt' => 5, 'field' => 'channel'),
-                array('db' => '`ba_product_flat`.`type`', 'dt' => 6, 'field' => 'type'),
-                array('db' => '`ba_product_flat`.`sku`', 'dt' => 7, 'field' => 'sku'),
+                array('db' => 'flat.product_id', 'dt' => 'product_id', 'field' => 'product_id'),
+               // array('db' => '`ba_product_images`.`path`', 'dt' => 1, 'field' => 'path'),
+                array('db' => '`flat`.`name`', 'dt' => 'name', 'field' => 'name'),
+                array('db' => '`flat`.`status`', 'dt' => 'status', 'field' => 'status'),
+                //array('db' => '`ba_product_inventories`.`qty`', 'dt' => 4, 'field' => 'qty'),
+                array('db' => '`flat`.`channel`', 'dt' => 'channel', 'field' => 'channel'),
+                array('db' => '`flat`.`type`', 'dt' => 'type', 'field' => 'type'),
+                array('db' => '`flat`.`sku`', 'dt' => 'sku', 'field' => 'sku'),
 
 //                array( 'db' => '`ba_product_flat`.`sku`',   'dt' => 7, 'field'=>'sku' ),
 
@@ -165,7 +165,7 @@ class ProductController extends Controller
 
 
             $joinQuery = "from `ba_product_flat` left join `ba_attribute_families` as `ba_af` on `ba_product_flat`.`attribute_family_id` = `ba_af`.`id` left join `ba_product_inventories` on `ba_product_flat`.`product_id` = `ba_product_inventories`.`product_id` left join `ba_product_images` on `ba_product_flat`.`product_id` = `ba_product_images`.`product_id` left join `ba_product_categories` as `ba_pc` on `ba_product_flat`.`product_id` = `ba_pc`.`product_id` left join `ba_category_translations` as `ba_ct` on `ba_pc`.`category_id` = `ba_ct`.`category_id`";
-
+            $joinQuery = "from `{$table_pre}product_flat` AS flat ";
 
 //            $joinQuery = "FROM `{$table}` AS `o` LEFT JOIN `{$table_pre}addresses` AS `a` ON (`a`.`order_id` = `o`.`id`) LEFT JOIN `{$table_pre}order_transactions` as t ON (`t`.`order_id` = `o`.`id`)";
             $extraCondition = "";
@@ -173,38 +173,38 @@ class ProductController extends Controller
             $data = SSP::simple(request()->input(), $sql_details, $table, $primaryKey, $columns, $joinQuery, $extraCondition);
 
 
-            if (!empty($data['data'])) {
-                foreach ($data['data'] as $key => $value) {
-                    if ($value[3] == 1) {
-                        $data['data'][$key][3] = '活跃';
-                    } elseif ($value[3] == 2) {
-                        $data['data'][$key][3] = '已存档';
-                    } elseif ($value[3] == 3) {
-                        $data['data'][$key][3] = '草稿';
-                    } else {
-                        $data['data'][$key][3] = '未定义';
-                    }
-                    $data['data'][$key]['id'] = $value[0];
-                    $data['data'][$key]['path'] = '/storage/' . $value[1];
-                    $data['data'][$key]['name'] = $value[2];
-                    $data['data'][$key]['status'] = $value[3];
-                    $data['data'][$key]['qty'] = $value[4];
-                    $data['data'][$key]['channel'] = $value[5];
-                    $data['data'][$key]['type'] = $value[6];
-                    $data['data'][$key]['sku'] = $value[7];
+            // if (!empty($data['data'])) {
+            //     foreach ($data['data'] as $key => $value) {
+            //         if ($value[3] == 1) {
+            //             $data['data'][$key][3] = '活跃';
+            //         } elseif ($value[3] == 2) {
+            //             $data['data'][$key][3] = '已存档';
+            //         } elseif ($value[3] == 3) {
+            //             $data['data'][$key][3] = '草稿';
+            //         } else {
+            //             $data['data'][$key][3] = '未定义';
+            //         }
+            //         $data['data'][$key]['id'] = $value[0];
+            //         $data['data'][$key]['path'] = '/storage/' . $value[1];
+            //         $data['data'][$key]['name'] = $value[2];
+            //         $data['data'][$key]['status'] = $value[3];
+            //         $data['data'][$key]['qty'] = $value[4];
+            //         $data['data'][$key]['channel'] = $value[5];
+            //         $data['data'][$key]['type'] = $value[6];
+            //         $data['data'][$key]['sku'] = $value[7];
 
-                    unset($data['data'][$key][0]);
-                    unset($data['data'][$key][1]);
-                    unset($data['data'][$key][2]);
-                    unset($data['data'][$key][3]);
-                    unset($data['data'][$key][4]);
-                    unset($data['data'][$key][5]);
-                    unset($data['data'][$key][6]);
-                    unset($data['data'][$key][7]);
+            //         unset($data['data'][$key][0]);
+            //         unset($data['data'][$key][1]);
+            //         unset($data['data'][$key][2]);
+            //         unset($data['data'][$key][3]);
+            //         unset($data['data'][$key][4]);
+            //         unset($data['data'][$key][5]);
+            //         unset($data['data'][$key][6]);
+            //         unset($data['data'][$key][7]);
 
 
-                }
-            }
+            //     }
+            // }
 
 
 //            print_r($data);exit;
