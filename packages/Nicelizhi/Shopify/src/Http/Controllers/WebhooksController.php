@@ -6,13 +6,18 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Arr;
+use Webkul\Attribute\Repositories\AttributeFamilyRepository;
+use Webkul\Attribute\Models\AttributeOption;
+use Webkul\Attribute\Models\AttributeOptionTranslation;
 use Nicelizhi\Shopify\Models\ShopifyProduct;
 use Nicelizhi\Shopify\Models\ShopifyOrder;
 //use Nicelizhi\Shopify\Repositories\ProductRepository;
+use Webkul\Product\Repositories\ProductRepository;
 use Webkul\Sales\Repositories\OrderRepository;
 use Webkul\Sales\Repositories\ShipmentRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Artisan;
 
 class WebhooksController extends Controller
 {
@@ -31,6 +36,7 @@ class WebhooksController extends Controller
         protected OrderRepository $orderRepository,
         protected ShopifyOrder $ShopifyOrder,
         protected ShopifyProduct $shopifyProduct,
+        protected ProductRepository $productRepository,
         protected ShipmentRepository $shipmentRepository,
     )
     {
@@ -225,13 +231,7 @@ class WebhooksController extends Controller
 
     public function products_create(Request $request) {
         Log::info("products_create ".json_encode($request->all()));
-    }
 
-    public function products_delete(Request $request) {
-        Log::info("products_delete ".json_encode($request->all()));
-    }
-
-    public function products_update(Request $request) {
         $req = $request->all();
         
         $product_id = $req['id'];
@@ -240,8 +240,6 @@ class WebhooksController extends Controller
         $product = $this->shopifyProduct->where("product_id", $product_id)->first();
 
         if(is_null($product)) $product = new ShopifyProduct();
-
-
 
         // locales
         $this->locales = core()->getAllLocales()->pluck('code')->toArray();
@@ -254,7 +252,7 @@ class WebhooksController extends Controller
         $product->vendor = $req['vendor'];
         $product->handle = $req['handle'];
         $product->published_at = $req['published_at'];
-        $product->template_suffix = $req['template_suffix'];
+        $product->template_suffix = (string)$req['template_suffix'];
         $product->published_scope = $req['published_scope'];
         $product->tags = $req['tags'];
         $product->status = $req['status'];
@@ -265,10 +263,234 @@ class WebhooksController extends Controller
 
         $product->save();
 
-        //update the local data
+        // check local product
+
+        $product = $this->productRepository->where("sku", $product_id)->first();
+        if(!is_null($product)) {
+            return false;
+        }
 
 
+        $item = \Nicelizhi\Shopify\Models\ShopifyProduct::where("shopify_store_id", $this->shopify_store_id)->where("product_id", $product_id)->first();
 
+        if(is_null($item)) {
+            return false;
+        }
+
+        $options = $item->options;
+        //var_dump($options);
+        $color = [];
+        $size = [];
+        foreach($options as $kk => $option) {
+            $option['name'] = strtolower($option['name']);
+            echo $option['name']."\r\n";
+            $attr_id = 0;
+            if(strpos($option['name'], "Size")!==false) $attr_id = 24;
+            if(strpos($option['name'], "size")!==false) $attr_id = 24;
+            if(strpos($option['name'], "GRÖSSE")!==false) $attr_id = 24;
+            if(strpos($option['name'], "grÖsse")!==false) $attr_id = 24;
+            if(strpos($option['name'], "尺码") !==false) $attr_id = 24;
+            if(strpos($option['name'], "Length") !==false) $attr_id = 24;
+            if(strpos($option['name'], "größe") !==false) $attr_id = 24;
+            if(strpos($option['name'], "größe") !==false) $attr_id = 24;
+            if(strpos($option['name'], "Color") !==false) $attr_id = 23;
+            if(strpos($option['name'], "color") !==false) $attr_id = 23;
+            if(strpos($option['name'], "Couleur") !==false) $attr_id = 23;
+            if(strpos($option['name'], "颜色") !==false) $attr_id = 23;
+            if(strpos($option['name'], "FARBE") !==false) $attr_id = 23;
+            if(strpos($option['name'], "farbe") !==false) $attr_id = 23;
+
+            echo $attr_id."\r\n";
+
+            if(empty($attr_id)) {
+                $error = 1;
+                continue;
+                //exit;
+            }
+
+            $values = $option['values'];
+            foreach($values as $kky => $value) {
+                $attr_option = AttributeOption::where("attribute_id", $attr_id)->where("admin_name", $value)->first();
+                if(is_null($attr_option)) {
+                    $attr_option = new AttributeOption();
+                    $attr_option->attribute_id = $attr_id;
+                    $attr_option->admin_name = $value;
+                    $attr_option->save();
+                    $attribute_option_id = $attr_option->id;
+                }else{
+                    $attribute_option_id = $attr_option->id;
+                }
+
+                //var_dump($attr_opt_tran);exit;
+                foreach($this->locales as $kl => $locale) {
+                    $attr_opt_tran = AttributeOptionTranslation::where("attribute_option_id", $attribute_option_id)->where("locale", $locale)->first();
+                    if(is_null($attr_opt_tran)) {
+                        $attr_opt_tran = new AttributeOptionTranslation();
+                        if($locale==$this->lang) {
+                            $attr_opt_tran->label = $value;
+                        } else{
+                            $attr_opt_tran->label = "";
+                        }
+                        $attr_opt_tran->locale = $locale;
+                        $attr_opt_tran->attribute_option_id = $attribute_option_id;
+                        $attr_opt_tran->save();
+                    }
+                }
+                if($attr_id==23) $color[$attribute_option_id] = $attribute_option_id; //array_push($color, $attribute_option_id); 
+                if($attr_id==24) $size[$attribute_option_id] = $attribute_option_id;
+            }
+
+            // two attr
+            if(!empty($color) && !empty($size)) {
+                Artisan::call("shopify:product:get", ["--prod_id"=> $product_id]);
+            }
+
+            // one attr
+            if(!empty($color) || !empty($size)) {
+                Artisan::call("shopify:product:getv2", ["--prod_id"=> $product_id]);
+            }
+
+            // zero attr
+            if(empty($color) && empty($size)) {
+                Artisan::call("shopify:product:getv3", ["--prod_id"=> $product_id]);
+            }
+
+        }
+
+    }
+
+    public function products_delete(Request $request) {
+        Log::info("products_delete ".json_encode($request->all()));
+    }
+
+    public function products_update(Request $request) {
+
+        Log::info("products_update ".json_encode($request->all()));
+
+        $req = $request->all();
+        
+        $product_id = $req['id'];
+
+        // check the product id is have
+        $product = $this->shopifyProduct->where("product_id", $product_id)->first();
+
+        if(is_null($product)) $product = new ShopifyProduct();
+
+        // locales
+        $this->locales = core()->getAllLocales()->pluck('code')->toArray();
+
+        $product->shopify_store_id = $this->shopify_store_id;
+        $product->product_id = $product_id;
+        $product->title = $req['title'];
+        $product->product_type = $req['product_type'];
+        $product->body_html = $req['body_html'];
+        $product->vendor = $req['vendor'];
+        $product->handle = $req['handle'];
+        $product->published_at = $req['published_at'];
+        $product->template_suffix = (string)$req['template_suffix'];
+        $product->published_scope = $req['published_scope'];
+        $product->tags = $req['tags'];
+        $product->status = $req['status'];
+        $product->admin_graphql_api_id = $req['admin_graphql_api_id'];
+        $product->variants = $req['variants'];
+        $product->options = $req['options'];
+        $product->images = $req['images'];
+
+        $product->save();
+
+        // check local product
+
+        $product = $this->productRepository->where("sku", $product_id)->first();
+        if(!is_null($product)) {
+            return false;
+        }
+
+
+        $item = \Nicelizhi\Shopify\Models\ShopifyProduct::where("shopify_store_id", $this->shopify_store_id)->where("product_id", $product_id)->first();
+
+        if(is_null($item)) {
+            return false;
+        }
+
+        $options = $item->options;
+        //var_dump($options);
+        $color = [];
+        $size = [];
+        foreach($options as $kk => $option) {
+            $option['name'] = strtolower($option['name']);
+            echo $option['name']."\r\n";
+            $attr_id = 0;
+            if(strpos($option['name'], "Size")!==false) $attr_id = 24;
+            if(strpos($option['name'], "size")!==false) $attr_id = 24;
+            if(strpos($option['name'], "GRÖSSE")!==false) $attr_id = 24;
+            if(strpos($option['name'], "grÖsse")!==false) $attr_id = 24;
+            if(strpos($option['name'], "尺码") !==false) $attr_id = 24;
+            if(strpos($option['name'], "Length") !==false) $attr_id = 24;
+            if(strpos($option['name'], "größe") !==false) $attr_id = 24;
+            if(strpos($option['name'], "größe") !==false) $attr_id = 24;
+            if(strpos($option['name'], "Color") !==false) $attr_id = 23;
+            if(strpos($option['name'], "color") !==false) $attr_id = 23;
+            if(strpos($option['name'], "Couleur") !==false) $attr_id = 23;
+            if(strpos($option['name'], "颜色") !==false) $attr_id = 23;
+            if(strpos($option['name'], "FARBE") !==false) $attr_id = 23;
+            if(strpos($option['name'], "farbe") !==false) $attr_id = 23;
+
+            echo $attr_id."\r\n";
+
+            if(empty($attr_id)) {
+                $error = 1;
+                continue;
+                //exit;
+            }
+
+            $values = $option['values'];
+            foreach($values as $kky => $value) {
+                $attr_option = AttributeOption::where("attribute_id", $attr_id)->where("admin_name", $value)->first();
+                if(is_null($attr_option)) {
+                    $attr_option = new AttributeOption();
+                    $attr_option->attribute_id = $attr_id;
+                    $attr_option->admin_name = $value;
+                    $attr_option->save();
+                    $attribute_option_id = $attr_option->id;
+                }else{
+                    $attribute_option_id = $attr_option->id;
+                }
+
+                //var_dump($attr_opt_tran);exit;
+                foreach($this->locales as $kl => $locale) {
+                    $attr_opt_tran = AttributeOptionTranslation::where("attribute_option_id", $attribute_option_id)->where("locale", $locale)->first();
+                    if(is_null($attr_opt_tran)) {
+                        $attr_opt_tran = new AttributeOptionTranslation();
+                        if($locale==$this->lang) {
+                            $attr_opt_tran->label = $value;
+                        } else{
+                            $attr_opt_tran->label = "";
+                        }
+                        $attr_opt_tran->locale = $locale;
+                        $attr_opt_tran->attribute_option_id = $attribute_option_id;
+                        $attr_opt_tran->save();
+                    }
+                }
+                if($attr_id==23) $color[$attribute_option_id] = $attribute_option_id; //array_push($color, $attribute_option_id); 
+                if($attr_id==24) $size[$attribute_option_id] = $attribute_option_id;
+            }
+
+            // two attr
+            if(!empty($color) && !empty($size)) {
+                Artisan::call("shopify:product:get", ["--prod_id"=> $product_id]);
+            }
+
+            // one attr
+            if(!empty($color) || !empty($size)) {
+                Artisan::call("shopify:product:getv2", ["--prod_id"=> $product_id]);
+            }
+
+            // zero attr
+            if(empty($color) && empty($size)) {
+                Artisan::call("shopify:product:getv3", ["--prod_id"=> $product_id]);
+            }
+
+        }
 
     }
 
