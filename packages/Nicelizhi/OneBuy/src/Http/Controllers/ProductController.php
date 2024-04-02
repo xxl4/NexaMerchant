@@ -581,10 +581,9 @@ class ProductController extends Controller
     public function order_addr_after(Request $request) {
         $input = $request->all();
 
-        //Log::info("order addr after ".json_encode($input));
+        $last_order_id = $request->session()->get('last_order_id'); // check the laster order id
 
         $refer = $request->session()->get('refer');
-        //Log::info("refer checkout v1 ".$refer);
 
         $products = $request->input("products");
         // 添加到购物车
@@ -785,7 +784,7 @@ class ProductController extends Controller
 
             $addressData['shipping']['address1'] = implode(PHP_EOL, $addressData['shipping']['address1']);
 
-            Log::info("address data-".$refer.'--'.json_encode($addressData));
+            //Log::info("address data-".$refer.'--'.json_encode($addressData));
 
             if (
                 Cart::hasError()
@@ -798,8 +797,12 @@ class ProductController extends Controller
             }
 
             $this->smartButton->captureOrder(request()->input('orderData.orderID'));
+
+            $request->session()->put('last_order_id', request()->input('orderData.orderID'));
+
             return $this->saveOrder();
         } catch (\Exception $e) {
+            Log::info("paypal pay exception". json_encode($e->getMessage()));
             return response()->json($e->getMessage());
             return response()->json(json_decode($e->getMessage()), 400);
         }
