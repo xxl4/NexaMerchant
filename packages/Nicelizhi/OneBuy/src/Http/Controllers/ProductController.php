@@ -583,6 +583,8 @@ class ProductController extends Controller
 
         $last_order_id = $request->session()->get('last_order_id'); // check the laster order id
 
+        Log::info("last order id" . $last_order_id);
+
         $refer = $request->session()->get('refer');
 
         $products = $request->input("products");
