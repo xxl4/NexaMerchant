@@ -38,18 +38,7 @@ class Get extends Command
 
     private $lang = null;
 
-    private $locales = [
-        'us',
-        'en',
-        'fr',
-        'nl',
-        'tr',
-        'es',
-        'de',
-        'it',
-        'ru',
-        'uk'
-    ];
+    private $locales = [];
 
     /**
      * Create a new command instance.
@@ -114,7 +103,13 @@ class Get extends Command
             }
 
         }
-        //exit;
+        if($shopifyProduct && !$force) {
+            $this->syncProductToLocal($shopify_pro_id);
+
+            // 处理目录权限
+            $this->Permissions();
+            return false;
+        }
         /**
          * 
          * @link https://shopify.dev/docs/api/admin-rest/2023-10/resources/product#get-products?ids=632910392,921728736
@@ -136,8 +131,6 @@ class Get extends Command
         $body = json_decode($body, true);
         //var_dump($body);exit;
         foreach($body['products'] as $key=>$item) {
-            //var_dump($item['collection_id']);exit;
-
             $shopifyProduct = \Nicelizhi\Shopify\Models\ShopifyProduct::where("product_id", $item['id'])->first();
             if(is_null($shopifyProduct)) {
                 $shopifyProduct = new \Nicelizhi\Shopify\Models\ShopifyProduct();
@@ -186,9 +179,28 @@ class Get extends Command
             // 24 size
             // ba_attribute_options
             // ba_attribute_option_translations
+
+            $images_map = [];
+
             $options = $item->options;
             $shopifyVariants = $item->variants;
             $shopifyImages = $item->images;
+            
+            foreach($shopifyImages as $key=>$shopifyImage) {
+                //var_dump($shopifyImage);
+                
+                $images_map[$shopifyImage['id']] = $shopifyImage['src'];
+                foreach($shopifyImage['variant_ids'] as $kk=>$variant_ids) {
+                    //var_dump($variant_ids);
+                    $images_map[$variant_ids] = $shopifyImage['src'];
+                }
+            }
+
+            //var_dump($images_map);exit;
+
+            //var_dump($shopifyVariants);exit;
+
+
             $color = [];
             $size = [];
             $error = 0;
@@ -334,6 +346,7 @@ class Get extends Command
                 $newShopifyVarant['sku'] = $shopifyVariant['sku'];
                 $newShopifyVarant['option1'] = $shopifyVariant['option1'];
                 $newShopifyVarant['option2'] = $shopifyVariant['option2'];
+                $newShopifyVarant['image_src'] = $images_map[$shopifyVariant['image_id']];
                 $newShopifyVarants[$newkey] = $newShopifyVarant;
                 $compare_at_price = $shopifyVariant['compare_at_price'];
             }
@@ -427,42 +440,15 @@ class Get extends Command
 
             Event::dispatch('catalog.product.update.after', $product);
 
-            foreach($shopifyImages as $key=>$shopifyImage) {
-
-                $info = pathinfo($shopifyImage['src']);
-
-                $this->info($info['filename']);
-
-                $image_path = "product/".$id."/".$info['filename'].".webp";
-                $local_image_path = "storage/".$image_path;
-                $this->info(public_path($local_image_path));
-                if(!file_exists(public_path($local_image_path))) {
-                    $this->error("copy [ ".$local_image_path);
-                    $this->info($shopifyImage['src']);
-                    $contents = file_get_contents($shopifyImage['src'], false, stream_context_create($arrContextOptions));
-                    Storage::disk("images")->put($local_image_path, $contents);
-                    sleep(1);
-                }
-                $images[] = $image_path;
-            }
-            $max_image_count = 3;
-            $i=0;
-            foreach($images as $key=>$image) {
-                $i++;
-                if($max_image_count < $i) continue;
-                $checkImg = ProductImage::where("product_id", $id)->where("path", $image)->first();
-                if(is_null($checkImg)) {
-                    $checkImg = new ProductImage();
-                    $checkImg->product_id = $id;
-                    $checkImg->path = $image;
-                    $checkImg->type = "images";
-                    $checkImg->save();
-                }
-            }
-
             //更新对应的分类
             $sku_products = $this->productRepository->where("parent_id", $id)->get();
             foreach($sku_products as $key=>$sku) {
+
+                $sku_image = explode("-", $sku->sku);
+
+
+
+                //var_dump($images_map, $sku_image, $images_map[$sku_image[1]]);exit;
 
                 $this->info("process ".$sku->id);
 
@@ -485,6 +471,7 @@ class Get extends Command
                 Event::dispatch('catalog.product.update.after', $sku);
 
                 $images = [];
+                $shopifyImages[] = ['src'=> $images_map[$sku_image[1]] ];
                 foreach($shopifyImages as $key=>$shopifyImage) {
 
                     //var_dump($shopifyImage);
