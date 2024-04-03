@@ -50,6 +50,9 @@ class Order extends Base
             }
 
             $this->prepareMail($order, new CanceledNotification($order));
+
+            
+
         } catch (\Exception $e) {
             report($e);
         }
