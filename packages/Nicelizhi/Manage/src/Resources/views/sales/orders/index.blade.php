@@ -73,7 +73,9 @@
 
 <script>
     $(function () {
+      
       $("#tables").DataTable({
+      
         autoWidth: true,
         keys: true,
         ajax: {
@@ -133,6 +135,10 @@
 
 
       });
+
+      $('.dataTables_filter input[type="search"]').css(
+        {'width':'450px','display':'inline-block'}
+      );
     
     });
   </script>
