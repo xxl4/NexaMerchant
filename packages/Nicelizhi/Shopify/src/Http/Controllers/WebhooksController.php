@@ -346,19 +346,19 @@ class WebhooksController extends Controller
             // two attr
             if(!empty($color) && !empty($size)) {
                 //Artisan::call("shopify:product:get", ["--prod_id"=> $product_id]);
-                //Artisan::queue("shopify:product:get", ["--prod_id"=> $product_id])->onConnection('redis')->onQueue('commands');
+                Artisan::queue("shopify:product:get", ["--prod_id"=> $product_id])->onConnection('redis')->onQueue('shopify-products');
             }
 
             // one attr
             if(!empty($color) || !empty($size)) {
                 //Artisan::call("shopify:product:getv2", ["--prod_id"=> $product_id]);
-                //Artisan::queue("shopify:product:getv2", ["--prod_id"=> $product_id])->onConnection('redis')->onQueue('commands');
+                Artisan::queue("shopify:product:getv2", ["--prod_id"=> $product_id])->onConnection('redis')->onQueue('shopify-products');
             }
 
             // zero attr
             if(empty($color) && empty($size)) {
                 //Artisan::call("shopify:product:getv3", ["--prod_id"=> $product_id]);
-                //Artisan::queue("shopify:product:getv3", ["--prod_id"=> $product_id])->onConnection('redis')->onQueue('commands');
+                Artisan::queue("shopify:product:getv3", ["--prod_id"=> $product_id])->onConnection('redis')->onQueue('shopify-products');
             }
 
         }
@@ -484,19 +484,19 @@ class WebhooksController extends Controller
             // two attr
             if(!empty($color) && !empty($size)) {
                 //Artisan::call("shopify:product:get", ["--prod_id"=> $product_id]);
-                //Artisan::queue("shopify:product:get", ["--prod_id"=> $product_id])->onConnection('redis')->onQueue('commands');
+                Artisan::queue("shopify:product:get", ["--prod_id"=> $product_id])->onConnection('redis')->onQueue('shopify-products');
             }
 
             // one attr
             if(!empty($color) || !empty($size)) {
                 //Artisan::call("shopify:product:getv2", ["--prod_id"=> $product_id]);
-                //Artisan::queue("shopify:product:getv2", ["--prod_id"=> $product_id])->onConnection('redis')->onQueue('commands');
+                Artisan::queue("shopify:product:getv2", ["--prod_id"=> $product_id])->onConnection('redis')->onQueue('shopify-products');
             }
 
             // zero attr
             if(empty($color) && empty($size)) {
                 //Artisan::call("shopify:product:getv3", ["--prod_id"=> $product_id]);
-                //Artisan::queue("shopify:product:getv3", ["--prod_id"=> $product_id])->onConnection('redis')->onQueue('commands');
+                Artisan::queue("shopify:product:getv3", ["--prod_id"=> $product_id])->onConnection('redis')->onQueue('shopify-products');
             }
 
         }
