@@ -51,7 +51,13 @@ return [
         'route'      => 'admin.sales.transactions.index',
         'sort'       => 5,
         'icon'       => '',
-    ],
+    ],[
+        'key'       => 'sales.checkes',
+        'name'      => 'admin::app.components.layouts.siddebar.checkes',
+        'route'     => 'admin.sales.checkes.index',
+        'sort'      => 6,
+        'icon'      => '',
+    ]
     
     /**
      * Catalog.

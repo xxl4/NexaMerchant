@@ -100,7 +100,12 @@ return [
         'name'  => 'admin::app.acl.view',
         'route' => 'admin.sales.transactions.view',
         'sort'  => 1,
-    ],
+    ],[
+        'key'   => 'sales.checkes.view',
+        'name'  => 'admin::app.checkes.view',
+        'route'  => 'admin::app.checkes.view',
+        'sort'  => 1,
+    ]
 
     /*
     |--------------------------------------------------------------------------
