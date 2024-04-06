@@ -23,6 +23,7 @@
                         <thead>
                         <tr>
                           <th>Order ID</th>
+                          <th>Increment ID</th>
                           <th>Status</th>
                           <th>Client</th>
                           <th>base_grand_total</th>
@@ -72,7 +73,9 @@
 
 <script>
     $(function () {
+      
       $("#tables").DataTable({
+      
         autoWidth: true,
         keys: true,
         ajax: {
@@ -80,6 +83,9 @@
           type: 'GET'
         },
         columns: [
+          {
+            data: 'id'
+          },
           {
             data: 'increment_id'
           },
@@ -117,7 +123,7 @@
             [20, 50, 100],
             [20, 50, 100]
         ],
-        order: [[8, 'desc']],
+        order: [[0, 'desc']],
         processing: true,
         serverSide: true,
         
@@ -129,6 +135,10 @@
 
 
       });
+
+      $('.dataTables_filter input[type="search"]').css(
+        {'width':'450px','display':'inline-block'}
+      );
     
     });
   </script>

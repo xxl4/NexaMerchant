@@ -4,6 +4,9 @@ namespace Nicelizhi\Manage\Listeners;
 
 use Nicelizhi\Manage\Mail\Order\CreatedNotification;
 use Nicelizhi\Manage\Mail\Order\CanceledNotification;
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Log;
+use Nicelizhi\Shopify\Console\Commands\Order\Post;
 
 class Order extends Base
 {
@@ -21,6 +24,13 @@ class Order extends Base
             }
 
             $this->prepareMail($order, new CreatedNotification($order));
+
+
+            // send order to shopify
+            Artisan::queue((new Post())->getName(), ['--order_id'=> $order->id])->onConnection('redis')->onQueue('commands');
+            
+
+
         } catch (\Exception $e) {
             report($e);
         }
@@ -40,6 +50,9 @@ class Order extends Base
             }
 
             $this->prepareMail($order, new CanceledNotification($order));
+
+            
+
         } catch (\Exception $e) {
             report($e);
         }

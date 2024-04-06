@@ -6,7 +6,6 @@ use Illuminate\Console\Command;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Log;
 use Webkul\Sales\Repositories\OrderRepository;
-use Webkul\Sales\Repositories\OrderCommentRepository;
 use Illuminate\Support\Facades\Cache;
 use Nicelizhi\Shopify\Models\ShopifyOrder;
 use Nicelizhi\Shopify\Models\ShopifyStore;
@@ -21,7 +20,7 @@ class Post extends Command
      *
      * @var string
      */
-    protected $signature = 'shopify:order:post';
+    protected $signature = 'shopify:order:post {--order_id=}';
 
     /**
      * The console command description.
@@ -33,18 +32,22 @@ class Post extends Command
     private $shopify_store_id = null;
     private $lang = null;
 
+    //protected ShopifyOrder $ShopifyOrder,
+    //protected ShopifyStore $ShopifyStore,
+
     /**
      * Create a new command instance.
      *
      * @return void
      */
     public function __construct(
-        protected OrderRepository $orderRepository,
-        protected ShopifyOrder $ShopifyOrder,
-        protected ShopifyStore $ShopifyStore,
-        protected OrderCommentRepository $orderCommentRepository
+        
     )
     {
+        $this->ShopifyOrder = new ShopifyOrder();
+        $this->ShopifyStore = new ShopifyStore();
+        $this->Order = new Order();
+
         $this->shopify_store_id = config('shopify.shopify_store_id');
         $this->lang = config('shopify.store_lang');
         parent::__construct();
@@ -71,7 +74,14 @@ class Post extends Command
             return false;
         }
 
-        $lists = Order::where(['status'=>'processing'])->orderBy("updated_at", "desc")->select(['id'])->limit(100)->get();
+        $order_id = $this->option("order_id");
+
+        if(!empty($order_id)) {
+            $lists = Order::where(['status'=>'processing'])->where("id", $order_id)->select(['id'])->limit(1)->get();
+        }else{
+            $lists = Order::where(['status'=>'processing'])->orderBy("updated_at", "desc")->select(['id'])->limit(100)->get();
+        }
+        
 
         $this->checkLog();
 
@@ -138,6 +148,7 @@ class Post extends Command
         }
 
         $this->info("sync to order to shopify ".$id);
+        echo $id." start post \r\n";
 
         $client = new Client();
 
@@ -149,9 +160,11 @@ class Post extends Command
          * 
          */
         // $id = 147;
-        $order = $this->orderRepository->findOrFail($id);
+        $order = $this->Order->findOrFail($id);
 
         $orderPayment = $order->payment;  
+
+        
 
         //var_dump($order);exit;
 

@@ -2051,8 +2051,6 @@ function GotoNotRequest(url) {
                         //console.log(request);
 
     
-                        var url = '/onebuy/order/status?' + request + "&_token={{ csrf_token() }}";
-                        var url = "/paypal/smart-button/capture-order?_token={{ csrf_token() }}";
                         var url = "/onebuy/order/status?_token={{ csrf_token() }}";
     
                         $('#loading').show();
@@ -2065,16 +2063,27 @@ function GotoNotRequest(url) {
                             })
                             .then(function(res) {return res.json()})
                             .then(function(res) {
-                                //console.log(res);
+
                                 $('#loading').hide();
+
+                                var errorDetail = Array.isArray(res.details) && res.details[0];
+
+                                if (errorDetail && errorDetail.issue === 'INSTRUMENT_DECLINED') {
+                                    return actions.restart(); // Recoverable state, per:
+                                    // https://developer.paypal.com/docs/checkout/integration-features/funding-failure/
+                                }
+
+                                if (errorDetail) {
+                                    var msg = 'Sorry, your transaction could not be processed.';
+                                    if (errorDetail.description) msg += '\n\n' + errorDetail.description;
+                                    if (res.debug_id) msg += ' (' + res.debug_id + ')';
+                                    return alert(msg); // Show a failure message (try to avoid alerts in production environments)
+                                }
+
+                                //console.log(res);
+                                
                                 if(res.success == true) {
-                                    //var info = res.info;
-                                    //if(info.pay_status) {
-                                        //Goto('/template-common/en/thankyou1/?id='+localStorage.getItem('order_id')+'&client_secret='+data.orderID);
-                                        //Goto('/onebuy/checkout/success?id='+localStorage.getItem('order_id'));
-                                        //Goto('/checkout/v1/success/'+localStorage.getItem('order_id'));
-                                        window.location.href='/checkout/v1/success/'+localStorage.getItem('order_id');
-                                    //}
+                                    window.location.href='/checkout/v1/success/'+localStorage.getItem('order_id');
                                 }
                                 if(res.error == 'INSTRUMENT_DECLINED') {
                                     $('#'+ (error_id || 'paypal-error')).html("The instrument presented  was either declined by the processor or bank, or it can't be used for this payment.<br><br> Please confirm your account or bank card has sufficient balance, and try again.");
