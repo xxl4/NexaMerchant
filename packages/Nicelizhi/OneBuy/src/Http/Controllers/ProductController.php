@@ -309,7 +309,9 @@ class ProductController extends Controller
         $fb_ids = config('onebuy.fb_ids');
         $ob_adv_id = config('onebuy.ob_adv_id');
 
-        return view('onebuy::product-detail', compact('gtag','app_env','product','package_products', 'product_attributes', 'skus','productBgAttribute','productBgAttribute_mobile','faqItems','comments','paypal_client_id','default_country','airwallex_method','payments','payments_default','brand','fb_ids','ob_adv_id'));
+        $crm_channel = config('onebuy.crm_channel');
+
+        return view('onebuy::product-detail', compact('gtag','app_env','product','package_products', 'product_attributes', 'skus','productBgAttribute','productBgAttribute_mobile','faqItems','comments','paypal_client_id','default_country','airwallex_method','payments','payments_default','brand','fb_ids','ob_adv_id','crm_channel','refer'));
     }
 
     public function cms($slug, Request $request) {
