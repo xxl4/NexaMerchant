@@ -116,7 +116,7 @@
           ,{
             data: 'oid',
             render: function(data, type, row, meta) {
-              return '<a href="./view/'+data+'">View</a>';
+              return '<a href="./view/'+data+'" class="btn btn-primary">View</a> <br /> <a href="./re-push/'+data+'" class="btn btn-danger" title="Confirm Payment">Push</a>';
             }
           }
         ],

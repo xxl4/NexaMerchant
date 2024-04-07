@@ -223,6 +223,16 @@ class OrderController extends Controller
 
     }
 
+    public function repush($id) {
+        $order = $this->orderRepository->findOrFail($id);
+        
+        if($order->status!='processing') exit(1);
+
+        Artisan::queue("shopify:order:post", ['--order_id'=> $order->id])->onConnection('redis')->onQueue('commands');
+
+        return redirect()->route('admin.sales.orders.unpost');
+    }
+
     /**
      * Show the view for the specified resource.
      *
