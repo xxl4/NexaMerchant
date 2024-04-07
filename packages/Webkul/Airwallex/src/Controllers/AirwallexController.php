@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Log;
 use Webkul\Sales\Repositories\InvoiceRepository;
 use Webkul\Sales\Repositories\OrderRepository;
 use Webkul\Sales\Repositories\OrderTransactionRepository;
+use Illuminate\Support\Facades\Artisan;
+use Nicelizhi\Shopify\Console\Commands\Order\Post;
 
 
 class AirwallexController extends Controller
@@ -87,11 +89,15 @@ class AirwallexController extends Controller
                     $orderAmount = round($order->base_grand_total * 100);
 
 
+
                     if ($amount === $orderAmount) { // 核对价格是否一样的情况。
                         if ($order->status === 'pending') {
                             $order->status = 'processing';
                             $order->save();
                         }
+
+                        // send order to shopify
+                        Artisan::queue((new Post())->getName(), ['--order_id'=> $order->id])->onConnection('redis')->onQueue('commands');
 
                         Log::info(json_encode("order can invoice". json_encode($order)));
 
