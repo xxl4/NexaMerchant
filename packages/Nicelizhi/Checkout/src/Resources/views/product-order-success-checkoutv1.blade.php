@@ -152,6 +152,22 @@ obApi('track', 'PAGE_VIEW');
             <?php if(!empty($ob_adv_id)) { ?>
             obApi('track', 'Purchase');
             <?php } ?>
+
+            params = {
+                "channel_id": "<?php echo $crm_channel;?>",
+                "token": "<?php echo $refer; ?>",
+                "type": 3,
+                "amount": (value * 1).toFixed(2)
+            };
+            fetch('https://crm.heomai.com/api/user/action',{
+                    body: JSON.stringify(params),
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+            })
+
+
             if(typeof gtag == 'function') {
                 if(window.localStorage) {
                     var ga_post_order_template_commom_ids_str = localStorage.getItem("ga_post_order_template_commom_ids");
