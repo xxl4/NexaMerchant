@@ -451,8 +451,11 @@ All rights reserved
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
-  gtag('config', '<?php echo $gtag; ?>');
+<?php if(empty($refer)) { ?>
+    gtag('config', '<?php echo $gtag; ?>');
+<?php }else { ?>
+  gtag('config', '<?php echo $gtag; ?>', {"user_id": "<?php echo $refer;?>"});
+<?php } ?>
 </script>
 <script>
         if(getCookie('voluum_payout') && getCookie('order_id') == getQueryString('id')) {
