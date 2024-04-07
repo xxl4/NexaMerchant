@@ -590,6 +590,7 @@ class ProductController extends Controller
         $refer = $request->session()->get('refer');
 
         $products = $request->input("products");
+        Log::info("products". json_encode($products));
         // 添加到购物车
         Cart::deActivateCart();
         foreach($products as $key=>$product) {
