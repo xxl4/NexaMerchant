@@ -119,7 +119,7 @@
           ,{
             data: 'oid',
             render: function(data, type, row, meta) {
-              return '<a href="./view/'+data+'">View</a>';
+              return '<a href="./view/'+data+'" class="btn-sm btn btn-primary">View</a>';
             }
           }
         ],
