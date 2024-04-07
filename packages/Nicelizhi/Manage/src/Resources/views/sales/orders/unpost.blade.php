@@ -32,7 +32,6 @@
                           <th>shipping_method</th>
                           <th>track_number</th>
                           <th>created_at</th>
-                          <th>Count</th>
                           <th>Options</th>
                         </tr>
                         </thead>
@@ -113,8 +112,6 @@
           },
           {
             data: 'created_at'
-          },{
-            data: 'count'
           }
           ,{
             data: 'oid',

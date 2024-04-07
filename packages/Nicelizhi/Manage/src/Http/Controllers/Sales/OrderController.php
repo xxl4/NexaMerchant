@@ -9,6 +9,7 @@ use Webkul\Sales\Repositories\OrderRepository;
 use Webkul\Sales\Repositories\OrderCommentRepository;
 use Nicelizhi\Manage\DataGrids\Sales\OrderDataGrid;
 use Nicelizhi\Manage\Helpers\SSP;
+use Illuminate\Support\Facades\Artisan;
 
 class OrderController extends Controller
 {
@@ -196,6 +197,30 @@ class OrderController extends Controller
             return json_encode(SSP::simple( request()->input(), $sql_details, $table, $primaryKey, $columns, $joinQuery, $extraCondition ));
         }
         return view('admin::sales.orders.abnormal');
+    }
+
+    /**
+     * 
+     * confirm payment
+     * @param int $id
+     * 
+     */
+    public function confirmpayment($id){
+        $order = $this->orderRepository->findOrFail($id);
+        
+        if($order->status!='pending') exit(1);
+
+        //edit the order to processing
+
+        $this->orderRepository->updateOrderStatus($order);
+
+        //add data to post to shopify
+
+        // send order to shopify
+        Artisan::queue("shopify:order:post", ['--order_id'=> $order->id])->onConnection('redis')->onQueue('commands');
+
+        return redirect()->route('admin.sales.orders.abnormal');
+
     }
 
     /**

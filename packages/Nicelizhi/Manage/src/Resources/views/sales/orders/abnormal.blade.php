@@ -119,7 +119,7 @@
           ,{
             data: 'oid',
             render: function(data, type, row, meta) {
-              return '<a href="./view/'+data+'">View</a>';
+              return '<a href="./view/'+data+'" class="btn btn-primary">View</a><br /><a href="./confirm-payment/'+data+'" class="btn btn-danger" title="Confirm Payment">Confim</a> ';
             }
           }
         ],
