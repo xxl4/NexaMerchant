@@ -153,6 +153,13 @@ obApi('track', 'PAGE_VIEW');
             obApi('track', 'Purchase');
             <?php } ?>
 
+            gtag('event', 'purchase', {
+                transaction_id: '<?php echo $order->id;?>',
+                value: (value * 1).toFixed(2),
+                currency: "'<?php echo $order->channel_currency_code;?>'",
+                //...
+            });
+
             params = {
                 "channel_id": "<?php echo $crm_channel;?>",
                 "token": "<?php echo $refer; ?>",
@@ -445,7 +452,7 @@ All rights reserved
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
-  gtag('config', '<?php echo $gtag; ?>',{ 'user_id', '<?php echo $refer; ?>' });
+  gtag('config', '<?php echo $gtag; ?>');
 </script>
 <script>
         if(getCookie('voluum_payout') && getCookie('order_id') == getQueryString('id')) {
