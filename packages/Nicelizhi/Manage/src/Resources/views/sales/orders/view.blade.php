@@ -24,7 +24,7 @@
                 <div class="col-12">
                     <div class="callout callout-info">
                         <a href="{{ route('admin.sales.orders.index') }}" class="btn btn-default btn-lg"> @lang('admin::app.account.edit.back-btn')</a>
-                        @switch($order->status)
+                    @switch($order->status)
                         @case('processing')
                             <span class="btn btn-primary btn-lg">
                                 @lang('admin::app.sales.orders.view.processing')    
@@ -57,6 +57,18 @@
                             
 
                     @endswitch
+
+                            @if (
+                                $order->canInvoice()
+                                && $order->payment->method !== 'paypal_standard'
+                            )
+                            
+                                @include('admin::sales.invoices.create')
+                            @endif
+
+                            @if ($order->canShip())
+                                @include('admin::sales.shipments.create')
+                            @endif
 
 
                             @if ($order->canRefund())

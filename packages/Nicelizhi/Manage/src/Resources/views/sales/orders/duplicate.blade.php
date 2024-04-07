@@ -32,6 +32,7 @@
                           <th>shipping_method</th>
                           <th>track_number</th>
                           <th>created_at</th>
+                          <th>Count</th>
                           <th>Options</th>
                         </tr>
                         </thead>
@@ -75,11 +76,11 @@
     $(function () {
       
       $("#tables").DataTable({
-      
+        searching: false,
         autoWidth: true,
         keys: true,
         ajax: {
-          url: "{{ route('admin.sales.orders.index') }}",
+          url: "{{ route('admin.sales.orders.duplicate') }}",
           type: 'GET'
         },
         columns: [
@@ -113,9 +114,12 @@
           {
             data: 'created_at'
           },{
+            data: 'count'
+          }
+          ,{
             data: 'oid',
             render: function(data, type, row, meta) {
-              return '<a href="./orders/view/'+data+'">View</a>';
+              return '<a href="./view/'+data+'" class="btn-sm btn btn-primary">View</a>';
             }
           }
         ],

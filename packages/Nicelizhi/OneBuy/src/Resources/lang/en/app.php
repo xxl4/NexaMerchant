@@ -44,7 +44,7 @@ return [
             'SAFE' => 'SAFE',
             'CHECKOUT' => 'CHECKOUT',
             'Enter your contact information' => 'Enter your contact information',
-            'Street Address' => 'Street Address',
+            'Street Address' => 'Street Address And Housenumber',
             'Phone Number' => 'Phone Number',
             'Last Name' => 'Last Name',
             'First Name' => 'First Name',

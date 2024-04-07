@@ -40,7 +40,7 @@ return [
             'SAFE' => 'SICHER',
             'CHECKOUT' => 'KASSE',
             'Enter your contact information' => 'Geben Sie Ihre Kontaktinformationen ein',
-            'Street Address' => 'Straßenadresse',
+            'Street Address' => 'Straßenadresse Hausnummer',
             'Phone Number' => 'Telefonnummer',
             'Last Name' => 'Familienname, Nachname',
             'First Name' => 'Vorname',

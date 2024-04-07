@@ -900,6 +900,21 @@ Apt / Suite / Other </label>
                         //actions.disable();
                         //throw new Error('Verification failed');
                     }
+
+                    console.log("post crm system");
+
+                    params = {
+                        "channel_id": "<?php echo $crm_channel;?>",
+                        "token": "<?php echo $refer; ?>",
+                        "type": 2
+                    };
+                    fetch('https://crm.heomai.com/api/user/action',{
+                            body: JSON.stringify(params),
+                            method: 'POST',
+                            headers: {
+                                'content-type': 'application/json'
+                            },
+                    })
                 },
 
                 // Call your server to set up the transaction
@@ -1078,6 +1093,21 @@ Apt / Suite / Other </label>
                 window.pay_tpe = "airwallex_dropin";
                 window.is_airwallex_klarna = true;
             }
+
+            console.log("post crm system");
+
+            params = {
+                "channel_id": "<?php echo $crm_channel;?>",
+                "token": "<?php echo $refer; ?>",
+                "type": 2
+            };
+            fetch('https://crm.heomai.com/api/user/action',{
+                    body: JSON.stringify(params),
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+            })
 
             checkout();
         })
@@ -1867,6 +1897,22 @@ function GotoNotRequest(url) {
                                     }
                                 })
                     },
+
+                    onClick(){
+                        console.log("post crm system");
+                        params = {
+                            "channel_id": "<?php echo $crm_channel;?>",
+                            "token": "<?php echo $refer; ?>",
+                            "type": 2
+                        };
+                        fetch('https://crm.heomai.com/api/user/action',{
+                                body: JSON.stringify(params),
+                                method: 'POST',
+                                headers: {
+                                    'content-type': 'application/json'
+                                },
+                        })
+                    },
     
                     // Call your server to finalize the transaction
                     /**
@@ -2017,10 +2063,23 @@ function GotoNotRequest(url) {
         });
 
         $(".email").on("blur", function(){
-            //console.log("email blur");
+            console.log("email blur");
             var email = $(".email").val();
             if(email.length > 0) {
                 fbq('track', 'AddPaymentInfo');
+
+                params = {
+                            "channel_id": "<?php echo $crm_channel;?>",
+                            "token": "<?php echo $refer; ?>",
+                            "type": 1
+                        };
+                fetch('https://crm.heomai.com/api/user/action',{
+                        body: JSON.stringify(params),
+                        method: 'POST',
+                        headers: {
+                            'content-type': 'application/json'
+                        },
+                })
             }
         });
 

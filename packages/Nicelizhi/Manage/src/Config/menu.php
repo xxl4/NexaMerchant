@@ -52,6 +52,27 @@ return [
         'sort'       => 5,
         'icon'       => '',
     ],
+    [
+        'key'        => 'sales.orders.duplicate',
+        'name'       => 'admin::app.components.layouts.sidebar.duplicate',
+        'route'      => 'admin.sales.orders.duplicate',
+        'sort'       => 6,
+        'icon'       => '',
+    ],
+    [
+        'key'        => 'sales.orders.unpost',
+        'name'       => 'admin::app.components.layouts.sidebar.unpost',
+        'route'      => 'admin.sales.orders.unpost',
+        'sort'       => 7,
+        'icon'       => '',
+    ],
+    [
+        'key'        => 'sales.orders.abnormal',
+        'name'       => 'admin::app.components.layouts.sidebar.abnormal',
+        'route'      => 'admin.sales.orders.abnormal',
+        'sort'       => 8,
+        'icon'       => '',
+    ],
     
     /**
      * Catalog.

@@ -9,6 +9,7 @@ use Webkul\Sales\Repositories\OrderRepository;
 use Webkul\Sales\Repositories\OrderCommentRepository;
 use Nicelizhi\Manage\DataGrids\Sales\OrderDataGrid;
 use Nicelizhi\Manage\Helpers\SSP;
+use Illuminate\Support\Facades\Artisan;
 
 class OrderController extends Controller
 {
@@ -70,6 +71,166 @@ class OrderController extends Controller
         }
 
         return view('admin::sales.orders.index');
+    }
+
+    // dup orders
+    public function duplicate() {
+        if (request()->ajax()) {
+            $table_pre = config("database.connections.mysql.prefix");
+            $table = $table_pre.'orders';
+
+            // Table's primary key
+            $primaryKey = 'id';
+            
+            $columns = array(
+                //array( 'db' => 'id', 'dt' => 0 ),
+                array( 'db' => '`o`.`id`',  'dt' => 'id', 'field'=>'id','formatter' => function($d, $row){
+                    return '#'.$d;
+                } ),
+                array( 'db' => '`o`.`increment_id`',  'dt' => 'increment_id', 'field'=>'increment_id'),
+                array( 'db' => '`o`.`status`',   'dt' => 'status', 'field'=>'status' ),
+                array( 'db' => '`o`.`customer_email`',   'dt' => 'customer_email', 'field'=>'customer_email' ),
+                array( 'db' => '`o`.`customer_first_name`',   'dt' => 'customer_first_name', 'field'=>'customer_first_name' ),
+                array( 'db' => '`o`.`customer_last_name`',   'dt' => 'customer_last_name', 'field'=>'customer_last_name' ),
+                array( 'db' => '`o`.`base_grand_total`',  'dt' => 'base_grand_total', 'field'=>'base_grand_total', 'formatter' => function($d, $row) {
+                    return core()->currency($d);
+                }),
+                array( 'db' => '`t`.`transaction_id`',   'dt' => 'transaction_id', 'field'=>'transaction_id' ),
+                array( 'db' => '`p`.`method`',   'dt' => 'method', 'field'=>'method' ),
+                array( 'db' => '`o`.`created_at`',   'dt' => 'created_at', 'field'=>'created_at' ),
+                array( 'db' => '`o`.`shipping_method`',   'dt' => 'shipping_method', 'field'=>'shipping_method' ),
+                array( 'db' => '`s`.`track_number`',   'dt' => 'track_number', 'field'=>'track_number' ),
+                array( 'db' => '`o`.`id`',   'dt' => 'oid', 'field'=>'id' ),
+                array( 'db' => 'count(`o`.`id`) as count',   'dt' => 'count', 'field'=>'count' )
+            );
+            // SQL server connection information
+            $sql_details = [];
+
+            $joinQuery = " FROM `{$table}` AS `o` LEFT JOIN `{$table_pre}addresses` AS `a` ON (`a`.`order_id` = `o`.`id` AND `a`.`address_type`='cart_shipping') LEFT JOIN `{$table_pre}order_transactions` AS t ON (`t`.`order_id` = `o`.`id`) LEFT JOIN `{$table_pre}order_payment` AS p ON (`p`.`order_id` = `o`.`id`) LEFT JOIN `{$table_pre}shipments` AS s on (`s`.`order_id` = `o`.`id`) where `o`.status='processing' group by `o`.customer_email having count>1 ";
+            $extraCondition = "";
+            //$extraCondition = "`a`.`address_type`='cart_shipping'";
+
+
+            return json_encode(SSP::simple( request()->input(), $sql_details, $table, $primaryKey, $columns, $joinQuery, $extraCondition ));
+        }
+        return view('admin::sales.orders.duplicate');
+    }
+
+    public function unpost() {
+        if (request()->ajax()) {
+            $table_pre = config("database.connections.mysql.prefix");
+            $table = $table_pre.'orders';
+
+            // Table's primary key
+            $primaryKey = 'id';
+            
+            $columns = array(
+                //array( 'db' => 'id', 'dt' => 0 ),
+                array( 'db' => '`o`.`id`',  'dt' => 'id', 'field'=>'id','formatter' => function($d, $row){
+                    return '#'.$d;
+                } ),
+                array( 'db' => '`o`.`increment_id`',  'dt' => 'increment_id', 'field'=>'increment_id'),
+                array( 'db' => '`o`.`status`',   'dt' => 'status', 'field'=>'status' ),
+                array( 'db' => '`o`.`customer_email`',   'dt' => 'customer_email', 'field'=>'customer_email' ),
+                array( 'db' => '`o`.`customer_first_name`',   'dt' => 'customer_first_name', 'field'=>'customer_first_name' ),
+                array( 'db' => '`o`.`customer_last_name`',   'dt' => 'customer_last_name', 'field'=>'customer_last_name' ),
+                array( 'db' => '`o`.`base_grand_total`',  'dt' => 'base_grand_total', 'field'=>'base_grand_total', 'formatter' => function($d, $row) {
+                    return core()->currency($d);
+                }),
+                array( 'db' => '`t`.`transaction_id`',   'dt' => 'transaction_id', 'field'=>'transaction_id' ),
+                array( 'db' => '`p`.`method`',   'dt' => 'method', 'field'=>'method' ),
+                array( 'db' => '`o`.`created_at`',   'dt' => 'created_at', 'field'=>'created_at' ),
+                array( 'db' => '`o`.`shipping_method`',   'dt' => 'shipping_method', 'field'=>'shipping_method' ),
+                array( 'db' => '`s`.`track_number`',   'dt' => 'track_number', 'field'=>'track_number' ),
+                array( 'db' => '`o`.`id`',   'dt' => 'oid', 'field'=>'id' )
+            );
+            // SQL server connection information
+            $sql_details = [];
+
+            $joinQuery = " FROM `{$table}` AS `o` LEFT JOIN `{$table_pre}addresses` AS `a` ON (`a`.`order_id` = `o`.`id` AND `a`.`address_type`='cart_shipping') LEFT JOIN `{$table_pre}order_transactions` AS t ON (`t`.`order_id` = `o`.`id`) LEFT JOIN `{$table_pre}order_payment` AS p ON (`p`.`order_id` = `o`.`id`) LEFT JOIN `{$table_pre}shipments` AS s on (`s`.`order_id` = `o`.`id`) LEFT join ba_shopify_orders as so on o.id=so.order_id WHERE o.status='processing' and so.order_id is null  ";
+            $extraCondition = "";
+            //$extraCondition = "`a`.`address_type`='cart_shipping'";
+
+
+            return json_encode(SSP::simple( request()->input(), $sql_details, $table, $primaryKey, $columns, $joinQuery, $extraCondition ));
+        }
+        return view('admin::sales.orders.unpost');
+    }
+
+    public function abnormal() {
+        if (request()->ajax()) {
+            $table_pre = config("database.connections.mysql.prefix");
+            $table = $table_pre.'orders';
+
+            // Table's primary key
+            $primaryKey = 'id';
+            
+            $columns = array(
+                //array( 'db' => 'id', 'dt' => 0 ),
+                array( 'db' => '`o`.`id`',  'dt' => 'id', 'field'=>'id','formatter' => function($d, $row){
+                    return '#'.$d;
+                } ),
+                array( 'db' => '`o`.`increment_id`',  'dt' => 'increment_id', 'field'=>'increment_id'),
+                array( 'db' => '`o`.`status`',   'dt' => 'status', 'field'=>'status' ),
+                array( 'db' => '`o`.`customer_email`',   'dt' => 'customer_email', 'field'=>'customer_email' ),
+                array( 'db' => '`o`.`customer_first_name`',   'dt' => 'customer_first_name', 'field'=>'customer_first_name' ),
+                array( 'db' => '`o`.`customer_last_name`',   'dt' => 'customer_last_name', 'field'=>'customer_last_name' ),
+                array( 'db' => '`o`.`base_grand_total`',  'dt' => 'base_grand_total', 'field'=>'base_grand_total', 'formatter' => function($d, $row) {
+                    return core()->currency($d);
+                }),
+                array( 'db' => '`t`.`transaction_id`',   'dt' => 'transaction_id', 'field'=>'transaction_id' ),
+                array( 'db' => '`p`.`method`',   'dt' => 'method', 'field'=>'method' ),
+                array( 'db' => '`o`.`created_at`',   'dt' => 'created_at', 'field'=>'created_at' ),
+                array( 'db' => '`o`.`shipping_method`',   'dt' => 'shipping_method', 'field'=>'shipping_method' ),
+                array( 'db' => '`s`.`track_number`',   'dt' => 'track_number', 'field'=>'track_number' ),
+                array( 'db' => '`o`.`id`',   'dt' => 'oid', 'field'=>'id' ),
+                array( 'db' => '`p`.`additional`',   'dt' => 'additional', 'field'=>'additional' )
+            );
+            // SQL server connection information
+            $sql_details = [];
+
+            $joinQuery = " FROM `{$table}` AS `o` LEFT JOIN `{$table_pre}addresses` AS `a` ON (`a`.`order_id` = `o`.`id` AND `a`.`address_type`='cart_shipping') LEFT JOIN `{$table_pre}order_transactions` AS t ON (`t`.`order_id` = `o`.`id`) LEFT JOIN `{$table_pre}order_payment` AS p ON (`p`.`order_id` = `o`.`id`) LEFT JOIN `{$table_pre}shipments` AS s on (`s`.`order_id` = `o`.`id`) WHERE o.status='pending' and o.id !=o.increment_id and p.method='paypal_smart_button'  ";
+            $extraCondition = "";
+            //$extraCondition = "`a`.`address_type`='cart_shipping'";
+
+
+            return json_encode(SSP::simple( request()->input(), $sql_details, $table, $primaryKey, $columns, $joinQuery, $extraCondition ));
+        }
+        return view('admin::sales.orders.abnormal');
+    }
+
+    /**
+     * 
+     * confirm payment
+     * @param int $id
+     * 
+     */
+    public function confirmpayment($id){
+        $order = $this->orderRepository->findOrFail($id);
+        
+        if($order->status!='pending') exit(1);
+
+        //edit the order to processing
+
+        $this->orderRepository->updateOrderStatus($order);
+
+        //add data to post to shopify
+
+        // send order to shopify
+        Artisan::queue("shopify:order:post", ['--order_id'=> $order->id])->onConnection('redis')->onQueue('commands');
+
+        return redirect()->route('admin.sales.orders.abnormal');
+
+    }
+
+    public function repush($id) {
+        $order = $this->orderRepository->findOrFail($id);
+        
+        if($order->status!='processing') exit(1);
+
+        Artisan::queue("shopify:order:post", ['--order_id'=> $order->id])->onConnection('redis')->onQueue('commands');
+
+        return redirect()->route('admin.sales.orders.unpost');
     }
 
     /**

@@ -75,11 +75,11 @@
     $(function () {
       
       $("#tables").DataTable({
-      
+        searching: false,
         autoWidth: true,
         keys: true,
         ajax: {
-          url: "{{ route('admin.sales.orders.index') }}",
+          url: "{{ route('admin.sales.orders.unpost') }}",
           type: 'GET'
         },
         columns: [
@@ -112,10 +112,11 @@
           },
           {
             data: 'created_at'
-          },{
+          }
+          ,{
             data: 'oid',
             render: function(data, type, row, meta) {
-              return '<a href="./orders/view/'+data+'">View</a>';
+              return '<a href="./view/'+data+'" class="btn btn-primary btn-sm">View</a> <a href="./re-push/'+data+'" class="btn btn-danger btn-sm" title="Confirm Payment">Push</a>';
             }
           }
         ],
