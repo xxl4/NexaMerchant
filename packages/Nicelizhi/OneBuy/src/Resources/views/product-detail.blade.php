@@ -1931,7 +1931,11 @@ function GotoNotRequest(url) {
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
-  gtag('config', '<?php echo $gtag; ?>');
+  <?php if(empty($refer)) { ?>
+    gtag('config', '<?php echo $gtag; ?>');
+<?php }else { ?>
+  gtag('config', '<?php echo $gtag; ?>', {"user_id": "<?php echo $refer;?>"});
+<?php } ?>
 </script>
 
 <script>
