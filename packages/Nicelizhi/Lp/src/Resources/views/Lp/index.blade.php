@@ -8,7 +8,7 @@ echo $html->html;
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
-  gtag('config', 'G-P6343Y2GKT');
+  gtag('config', '<?php echo $gtag; ?>',{ 'user_id', '<?php echo $refer; ?>' });
 </script>
 <?php if(!empty($ob_adv_id)) { ?>
 

@@ -45,7 +45,8 @@ class LpController extends Controller
         Log::info("refer start ".$refer);
 
         $ob_adv_id = config('onebuy.ob_adv_id');
+        $gtag = config('onebuy.gtag');
         
-        return view('lp::Lp.index', compact('html', 'ob_adv_id'));
+        return view('lp::Lp.index', compact('html', 'ob_adv_id','refer','gtag'));
     }
 }
