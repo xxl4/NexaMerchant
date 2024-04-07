@@ -2026,7 +2026,7 @@ function GotoNotRequest(url) {
     
                     // Call your server to finalize the transaction
                     /**
-                     *
+                     * @link https://developer.paypal.com/demo/checkout/#/pattern/server
                      * 
                      */
                     onApprove: function(data, actions) {
