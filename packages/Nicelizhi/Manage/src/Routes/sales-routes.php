@@ -44,6 +44,8 @@ Route::group(['middleware' => ['admin'], 'prefix' => config('app.admin_url')], f
             Route::post('create/{order_id}', 'comment')->name('admin.sales.orders.comment');
 
             Route::get('search', 'search')->name('admin.sales.orders.search');
+
+            Route::get('duplicate', 'duplicate')->name("admn.sales.orders.duplicate");
         });
 
         /**
