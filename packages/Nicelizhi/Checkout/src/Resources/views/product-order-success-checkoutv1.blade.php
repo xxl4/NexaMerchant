@@ -445,7 +445,7 @@ All rights reserved
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
-  gtag('config', 'G-P6343Y2GKT');
+  gtag('config', '<?php echo $gtag; ?>',{ 'user_id', '<?php echo $refer; ?>' });
 </script>
 <script>
         if(getCookie('voluum_payout') && getCookie('order_id') == getQueryString('id')) {
