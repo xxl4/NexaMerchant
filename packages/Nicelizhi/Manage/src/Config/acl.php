@@ -101,6 +101,24 @@ return [
         'route' => 'admin.sales.transactions.view',
         'sort'  => 1,
     ],
+    [
+        'key'   => 'sales.orders.duplicate',
+        'name'  => 'admin::app.orders.duplicate.view',
+        'route' => 'admin.sales.orders.duplicate',
+        'sort'  => 2,
+    ],
+    [
+        'key'   => 'sales.unpost.view',
+        'name'  => 'admin::app.orders.unpost.view',
+        'route' => 'admin.sales.orders.unpost',
+        'sort'  => 2,
+    ],
+    [
+        'key'   => 'sales.abnormal.view',
+        'name'  => 'admin::app.orders.abnormal.view',
+        'route' => 'admin.sales.orders.abnormal',
+        'sort'  => 2,
+    ],
 
     /*
     |--------------------------------------------------------------------------

@@ -45,9 +45,9 @@ Route::group(['middleware' => ['admin'], 'prefix' => config('app.admin_url')], f
 
             Route::get('search', 'search')->name('admin.sales.orders.search');
 
-            Route::get('duplicate', 'duplicate')->name("admn.sales.orders.duplicate"); // duplicate orders
-            Route::get('un-post', 'unpost')->name("admn.sales.orders.unpost"); // un send to shopify orders
-            Route::get('abnormal', 'abnormal')->name("admn.sales.orders.abnormal"); // abnormal orders
+            Route::get('duplicate', 'duplicate')->name("admin.sales.orders.duplicate"); // duplicate orders
+            Route::get('un-post', 'unpost')->name("admin.sales.orders.unpost"); // un send to shopify orders
+            Route::get('abnormal', 'abnormal')->name("admin.sales.orders.abnormal"); // abnormal orders
         });
 
         /**

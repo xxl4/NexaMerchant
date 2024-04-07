@@ -80,7 +80,7 @@
         autoWidth: true,
         keys: true,
         ajax: {
-          url: "{{ route('admn.sales.orders.abnormal') }}",
+          url: "{{ route('admin.sales.orders.abnormal') }}",
           type: 'GET'
         },
         columns: [
@@ -119,7 +119,7 @@
           ,{
             data: 'oid',
             render: function(data, type, row, meta) {
-              return '<a href="./orders/view/'+data+'">View</a>';
+              return '<a href="./view/'+data+'">View</a>';
             }
           }
         ],
