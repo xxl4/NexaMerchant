@@ -1773,7 +1773,7 @@ function GotoNotRequest(url) {
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
-  gtag('config', '<?php echo $gtag; ?>',{ 'debug_mode':true });
+  gtag('config', '<?php echo $gtag; ?>',{ 'user_id', '<?php echo $refer; ?>' });
 </script>
 
 <script>
