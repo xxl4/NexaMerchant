@@ -144,6 +144,28 @@ obApi('track', 'PAGE_VIEW');
             return null;
         }
     </script>
+
+    <?php $products = $order->items;
+    $line_items = [];
+    foreach($products as $key=>$product) {
+        $sku = $product['additional'];
+
+        $skuInfo = explode('-', $sku['product_sku']);
+
+
+        $line_item = [];
+        $line_item['item_id'] = $skuInfo[1];
+        $line_item['item_name'] = $product['name'];
+        $line_item['price'] = $product['price'];
+        $line_item ['quantity'] = $product['qty_ordered'];
+        $line_item ['item_variant'] = $sku['attribute_name'];
+
+        //var_dump($product);
+
+        array_push($line_items, $line_item);
+    }
+
+    ?>
 <script>
         function purchase(value) {
             console.log("purchase "+ (value * 1).toFixed(2));
@@ -153,11 +175,13 @@ obApi('track', 'PAGE_VIEW');
             obApi('track', 'Purchase');
             <?php } ?>
 
+
+
             gtag('event', 'purchase', {
                 transaction_id: '<?php echo $order->id;?>',
                 value: (value * 1).toFixed(2),
                 currency: "<?php echo $order->channel_currency_code;?>",
-                //...
+                items: <?php echo json_encode($line_items);?>
             });
 
             params = {
