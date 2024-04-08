@@ -1,6 +1,6 @@
 
 <!doctype html>
-<html class="no-js" lang="en">
+<html class="no-js" lang="{{ app()->getLocale() }}" dir="{{ core()->getCurrentLocale()->direction }}">
 <head>
 
 <meta charset="utf-8">
@@ -82,7 +82,7 @@ obApi('track', 'PAGE_VIEW');
   fbq('track', 'ViewContent');
 </script>
 <title>
-        Thank you &ndash;
+@lang('checkout::app.v1.success.Thank you')
     </title>
 <script>
         function addVoluumImg(data) {
@@ -366,17 +366,17 @@ obApi('track', 'PAGE_VIEW');
 <div class="success_block">
 <div class="content-box">
 <div class="content-box__row text-container">
-<h2 class="heading-2 os-step__title">Your order is confirmed</h2>
+<h2 class="heading-2 os-step__title">@lang('checkout::app.v1.success.Your order is confirmed')</h2>
 <p class="os-step__description">
-We’ve accepted your order, and we’re getting it ready. Come back to this page for updates on your shipment status.
+@lang('checkout::app.v1.success.We ve accepted your order and we re getting it ready Come back to this page for updates on your shipment status')
 </p>
 </div>
 </div>
 <div class="content-box">
 <div class="content-box__row text-container">
-<h2 class="heading-2 os-step__title">Order information</h2>
+<h2 class="heading-2 os-step__title">@lang('checkout::app.v1.success.Order information')</h2>
 <p>
-Order Data: <?php echo $order->created_at;?>
+@lang('checkout::app.v1.success.Order Data'): <?php echo $order->created_at;?>
 <div class="product-content"></div>
 </p>
 <!--
@@ -389,33 +389,33 @@ Order Total:
 </div>
 <div class="content-box">
 <div class="content-box__row text-container">
-<h2 class="heading-2 os-step__title">Customer information</h2>
+<h2 class="heading-2 os-step__title">@lang('checkout::app.v1.success.Customer information')</h2>
 <p>
-<span class="left-info">First Name: </span> <strong style="font-size:20px;padding-left:10px;" class="customer_first_name right-info"></strong>
+<span class="left-info">@lang('checkout::app.v1.success.First Name'): </span> <strong style="font-size:20px;padding-left:10px;" class="customer_first_name right-info"></strong>
 </p>
 <p>
-<span class="left-info">Last Name: </span> <strong style="font-size:20px;padding-left:10px;" class="customer_last_name right-info"></strong>
+<span class="left-info">@lang('checkout::app.v1.success.Last Name'): </span> <strong style="font-size:20px;padding-left:10px;" class="customer_last_name right-info"></strong>
 </p>
 <p>
-<span class="left-info">Email: </span> <strong style="font-size:20px;padding-left:10px;" class="customer_email right-info"></strong>
+<span class="left-info">@lang('checkout::app.v1.success.Email'): </span> <strong style="font-size:20px;padding-left:10px;" class="customer_email right-info"></strong>
 </p>
 <p>
-<span class="left-info">Phone: </span> <strong style="font-size:20px;padding-left:10px;" class="customer_phone right-info"></strong>
+<span class="left-info">@lang('checkout::app.v1.success.Phone Number'): </span> <strong style="font-size:20px;padding-left:10px;" class="customer_phone right-info"></strong>
 </p>
 <p>
-<span class="left-info">Address: </span> <strong style="font-size:20px;padding-left:10px;" class="customer_address_1 right-info"></strong>
+<span class="left-info">@lang('checkout::app.v1.success.Address'): </span> <strong style="font-size:20px;padding-left:10px;" class="customer_address_1 right-info"></strong>
 </p>
 <p>
-<span class="left-info">City: </span> <strong style="font-size:20px;padding-left:10px;" class="customer_city right-info"></strong>
+<span class="left-info">@lang('checkout::app.v1.success.City'): </span> <strong style="font-size:20px;padding-left:10px;" class="customer_city right-info"></strong>
 </p>
 <p>
-<span class="left-info">Country: </span> <strong style="font-size:20px;padding-left:10px;" class="customer_country right-info"></strong>
+<span class="left-info">@lang('checkout::app.v1.success.Country'): </span> <strong style="font-size:20px;padding-left:10px;" class="customer_country right-info"></strong>
 </p>
 <p>
-<span class="left-info">State/Province: </span> <strong style="font-size:20px;padding-left:10px;" class="customer_state right-info"></strong>
+<span class="left-info">@lang('checkout::app.v1.success.State/Province'): </span> <strong style="font-size:20px;padding-left:10px;" class="customer_state right-info"></strong>
 </p>
 <p>
-<span class="left-info">Zip/Postcode: </span> <strong style="font-size:20px;padding-left:10px;" class="customer_zip right-info"></strong>
+<span class="left-info">@lang('checkout::app.v1.success.Zip/Postal Code'): </span> <strong style="font-size:20px;padding-left:10px;" class="customer_zip right-info"></strong>
 </p>
         </div>
 </div>
