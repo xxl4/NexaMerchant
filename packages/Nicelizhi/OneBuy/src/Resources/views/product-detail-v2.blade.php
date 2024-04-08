@@ -928,7 +928,7 @@ Apt / Suite / Other </label>
                     }).then(function(res) {
                         return res.json();
                     }).then(function(res) {
-                        $('#loading').hide();
+                       // $('#loading').hide();
                         var data = res;
                         if(data.statusCode === 201){
                             var order_info = data.result;
@@ -1829,9 +1829,9 @@ function GotoNotRequest(url) {
   gtag('js', new Date());
 
   <?php if(empty($refer)) { ?>
-    gtag('config', '<?php echo $gtag; ?>');
+    gtag('config', '<?php echo $gtag; ?>',{"debug_mode": true});
 <?php }else { ?>
-  gtag('config', '<?php echo $gtag; ?>', {"user_id": "<?php echo $refer;?>"});
+  gtag('config', '<?php echo $gtag; ?>', {"user_id": "<?php echo $refer;?>","debug_mode": true});
 <?php } ?>
 </script>
 
@@ -1926,7 +1926,7 @@ function GotoNotRequest(url) {
                                 })
                                 .then(function(res){return res.json()})
                                 .then(function(res) {
-                                    $('#loading').hide();
+                                    //$('#loading').hide();
                                     var data = res;
                                     //console.log(data)
                                     if(data.statusCode === 201){
