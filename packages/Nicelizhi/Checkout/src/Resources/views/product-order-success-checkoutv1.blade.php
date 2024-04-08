@@ -156,7 +156,7 @@ obApi('track', 'PAGE_VIEW');
             gtag('event', 'purchase', {
                 transaction_id: '<?php echo $order->id;?>',
                 value: (value * 1).toFixed(2),
-                currency: "'<?php echo $order->channel_currency_code;?>'",
+                currency: "<?php echo $order->channel_currency_code;?>",
                 //...
             });
 
@@ -164,6 +164,7 @@ obApi('track', 'PAGE_VIEW');
                 "channel_id": "<?php echo $crm_channel;?>",
                 "token": "<?php echo $refer; ?>",
                 "type": 3,
+                "order_id": '<?php echo $order->id;?>',
                 "amount": (value * 1).toFixed(2)
             };
             fetch('https://crm.heomai.com/api/user/action',{
@@ -452,9 +453,9 @@ All rights reserved
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 <?php if(empty($refer)) { ?>
-    gtag('config', '<?php echo $gtag; ?>');
+    gtag('config', '<?php echo $gtag; ?>',{"debug_mode": true});
 <?php }else { ?>
-  gtag('config', '<?php echo $gtag; ?>', {"user_id": "<?php echo $refer;?>"});
+  gtag('config', '<?php echo $gtag; ?>', {"user_id": "<?php echo $refer;?>","debug_mode": true});
 <?php } ?>
 </script>
 <script>
