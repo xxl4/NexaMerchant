@@ -974,14 +974,15 @@ Apt / Suite / Other </label>
                 onError(err) {
                     console.log("paypal " + JSON.stringify(err));
                 },
+                onCancel: function(data) {
+                    $('#loading').hide();
+                },
                 onClick(){
                     var params = getOrderParams('paypal_stand');
                     console.log("on click " + JSON.stringify(params));
                     if(params.error) {
                         $('#checkout-error').html(params.error.join('<br />'));
                         $('#checkout-error').show();
-                        //actions.disable();
-                        //throw new Error('Verification failed');
                     }
 
                     
@@ -1075,6 +1076,7 @@ Apt / Suite / Other </label>
                         if(res.success == true) {
                             //Goto('/checkout/v1/success/'+localStorage.getItem('order_id'));
                             window.location.href='/checkout/v1/success/'+localStorage.getItem('order_id');
+                            //actions.redirect('/checkout/v1/success/'+localStorage.getItem('order_id'));
                         }
                         if(res.error == 'INSTRUMENT_DECLINED') {
 
@@ -2120,6 +2122,7 @@ function GotoNotRequest(url) {
                                 
                                 if(res.success == true) {
                                     window.location.href='/checkout/v1/success/'+localStorage.getItem('order_id');
+                                    //actions.redirect('/checkout/v1/success/'+localStorage.getItem('order_id'));
                                 }
                                 if(res.error == 'INSTRUMENT_DECLINED') {
                                     $('#'+ (error_id || 'paypal-error')).html("The instrument presented  was either declined by the processor or bank, or it can't be used for this payment.<br><br> Please confirm your account or bank card has sufficient balance, and try again.");
@@ -2147,6 +2150,9 @@ function GotoNotRequest(url) {
     
                     onError: function(err) {
                         console.log('error from the onError callback', err);
+                    },
+                    onCancel: function(data) {
+                        $('#loading').hide();
                     }
     
                 }).render('#' + (render_id || 'paypal-card-submit'));
@@ -2256,6 +2262,9 @@ function GotoNotRequest(url) {
 
             }
         });
+
+        
+
 
         
 
@@ -2533,8 +2542,6 @@ function GotoNotRequest(url) {
 
             
             var products = getSubmitProducts(product_info.product_price,product_info.amount);
-            console.log("product");
-            console.log(products);
 
             var shipping_address = "";
 
@@ -2542,16 +2549,11 @@ function GotoNotRequest(url) {
                 //$("#bill_address").show();
                 window.shipping_address = "other";
                 shipping_address = window.shipping_address;
-                console.log("shipping address" + shipping_address);
+                //console.log("shipping address" + shipping_address);
             }
 
-            //console.log("order products");
-            //console.log(products);
 
             var product_price = product_info.product_price;
-
-            console.log("order product_price");
-            console.log(product_price);
             
             var params = {
                 first_name          : $(".first_name").val(),
@@ -2592,8 +2594,6 @@ function GotoNotRequest(url) {
                 bill_code                : $(".bill-zip_code").val(),
 
             }
-            console.log("params ");
-            console.log(params);
 
             if(getQueryString('utm_campaign')) {
                 params['utm_campaign'] = getQueryString('utm_campaign');
