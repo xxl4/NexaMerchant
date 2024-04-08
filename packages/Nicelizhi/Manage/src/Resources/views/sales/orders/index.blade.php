@@ -115,7 +115,7 @@
           },{
             data: 'oid',
             render: function(data, type, row, meta) {
-              return '<a href="./orders/view/'+data+'">View</a>';
+              return '<a href="./orders/view/'+data+'" class="btn btn-primary btn-sm">View</a><a href="./orders/confirm-payment/'+data+'" class="btn btn-danger btn-sm" title="Confirm Payment">Confim</a> ';
             }
           }
         ],

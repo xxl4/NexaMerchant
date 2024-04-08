@@ -207,12 +207,14 @@ class OrderController extends Controller
      */
     public function confirmpayment($id){
         $order = $this->orderRepository->findOrFail($id);
+
+        $status = ['closed', 'pending'];
         
-        if($order->status!='pending') exit(1);
+        if(!in_array($order->status, $status)) exit(1);
 
         //edit the order to processing
 
-        $this->orderRepository->updateOrderStatus($order);
+        $this->orderRepository->updateOrderStatus($order, "processing");
 
         //add data to post to shopify
 
