@@ -47,7 +47,7 @@ class WebhooksController extends Controller
 
     public function v1(Request $request) {
         # The Shopify app's client secret, viewable from the Partner Dashboard. In a production environment, set the client secret as an environment variable to prevent exposing it in code.
-        Log::info("webhook ".json_encode($request->all()));
+        //Log::info("webhook ".json_encode($request->all()));
 
     }
 
@@ -57,7 +57,7 @@ class WebhooksController extends Controller
      * 
      */
     public function orders_updated(Request $request) {
-        Log::info("orders_updated ".json_encode($request->all()));
+        //Log::info("orders_updated ".json_encode($request->all()));
     }
 
     /**
@@ -66,7 +66,7 @@ class WebhooksController extends Controller
      * 
      */
     public function orders_create(Request $request) {
-        Log::info("orders_create ".json_encode($request->all()));
+        //Log::info("orders_create ".json_encode($request->all()));
 
         
 
@@ -78,7 +78,7 @@ class WebhooksController extends Controller
      * 
      */
     public function orders_fulfilled(Request $request) {
-        Log::info("orders_fulfilled ".json_encode($request->all()));
+        //Log::info("orders_fulfilled ".json_encode($request->all()));
     }
 
      /**
@@ -87,7 +87,7 @@ class WebhooksController extends Controller
      * 
      */
     public function orders_edited(Request $request) {
-        Log::info("orders_edited ".json_encode($request->all()));
+        //Log::info("orders_edited ".json_encode($request->all()));
     }
 
      /**
@@ -96,7 +96,7 @@ class WebhooksController extends Controller
      * 
      */
     public function orders_paid(Request $request) {
-        Log::info("orders_paid ".json_encode($request->all()));
+        //Log::info("orders_paid ".json_encode($request->all()));
     }
 
      /**
@@ -105,7 +105,7 @@ class WebhooksController extends Controller
      * 
      */
     public function order_transactions_create(Request $request) {
-        Log::info("order_transactions_create ".json_encode($request->all()));
+       // Log::info("order_transactions_create ".json_encode($request->all()));
     }
 
      /**
@@ -114,7 +114,7 @@ class WebhooksController extends Controller
      * 
      */
     public function customers_create(Request $request) {
-        Log::info("customers_create ".json_encode($request->all()));
+        //Log::info("customers_create ".json_encode($request->all()));
     }
 
     /**
@@ -123,11 +123,11 @@ class WebhooksController extends Controller
      * 
      */
     public function customers_update(Request $request) {
-        Log::info("customers_update ".json_encode($request->all()));
+        //Log::info("customers_update ".json_encode($request->all()));
     }
 
     public function fulfillments_create(Request $request) {
-        Log::info("fulfillments_create ".json_encode($request->all()));
+        //Log::info("fulfillments_create ".json_encode($request->all()));
         $req = $request->all();
 
         $shopify_order_id = $req['order_id'];
@@ -225,15 +225,15 @@ class WebhooksController extends Controller
     }
 
     public function fulfillments_update(Request $request) {
-        Log::info("fulfillments_update ".json_encode($request->all()));
+        //Log::info("fulfillments_update ".json_encode($request->all()));
     }
 
     public function refunds_create(Request $request) {
-        Log::info("refunds_create ".json_encode($request->all()));
+        //Log::info("refunds_create ".json_encode($request->all()));
     }
 
     public function products_create(Request $request) {
-        Log::info("products_create ".json_encode($request->all()));
+        //Log::info("products_create ".json_encode($request->all()));
 
         $req = $request->all();
         
@@ -366,12 +366,12 @@ class WebhooksController extends Controller
     }
 
     public function products_delete(Request $request) {
-        Log::info("products_delete ".json_encode($request->all()));
+        //Log::info("products_delete ".json_encode($request->all()));
     }
 
     public function products_update(Request $request) {
 
-        Log::info("products_update ".json_encode($request->all()));
+        //Log::info("products_update ".json_encode($request->all()));
 
         $req = $request->all();
         
