@@ -2802,6 +2802,19 @@ function GotoNotRequest(url) {
             })
             //$('.js-sku').html(sku_html);
 
+            gtag("event", "view_item", {
+                value: product.amount,
+                currency: "{{ core()->getCurrentCurrencyCode() }}",
+                items: [
+                    {
+                    item_id: "<?php echo $product->sku;?>",
+                    item_name: product.name,
+                    price: product.new_price,
+                    quantity: product.amount*produt_amount_base
+                    }
+                ]
+            });
+
 
 
 
