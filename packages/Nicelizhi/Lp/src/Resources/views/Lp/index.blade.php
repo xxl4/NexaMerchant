@@ -2,17 +2,20 @@
 echo $html->html;
 ?>
 <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-P6343Y2GKT"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=<?php echo $gtag; ?>"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
   <?php if(empty($refer)) { ?>
-    gtag('config', '<?php echo $gtag; ?>');
+    gtag('config', '<?php echo $gtag; ?>',{"debug_mode": true});
 <?php }else { ?>
-  gtag('config', '<?php echo $gtag; ?>', {"user_id": "<?php echo $refer;?>"});
+  gtag('config', '<?php echo $gtag; ?>', {"user_id": "<?php echo $refer;?>","debug_mode": true});
 <?php } ?>
+
+gtag('event','product_page_view');
+
 </script>
 <?php if(!empty($ob_adv_id)) { ?>
 
