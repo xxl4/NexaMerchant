@@ -23,8 +23,9 @@
                       <table id="tables" class="table table-bordered table-striped">
                         <thead>
                         <tr>
-                          <th>Product ID</th>
+                          <th>ID</th>
                           <th>Title</th>
+                          <th>Slug</th>
                           <th>Status</th>
                           <th>updated at</th>
                         </tr>
@@ -76,10 +77,13 @@
         },
         columns: [
           {
-            data: 'product_id'
+            data: 'id'
           },
           {
-            data: 'title'
+            data: 'name'
+          },
+          {
+            data: 'slug'
           },
           {
             data: 'status'

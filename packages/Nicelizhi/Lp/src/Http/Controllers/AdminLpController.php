@@ -8,6 +8,7 @@ use Nicelizhi\Lp\Repositories\LpRepository;
 use Nicelizhi\Manage\Http\Controllers\Controller;
 use Nicelizhi\Lp\DataGrids\Lp\LpDataGrid;
 use Nicelizhi\Lp\Contracts\Lp;
+use Nicelizhi\Manage\Helpers\SSP;
 
 use Webkul\Admin\Http\Requests\MassDestroyRequest;
 
@@ -31,7 +32,39 @@ class AdminLpController extends Controller
     public function index()
     {
         if (request()->ajax()) {
-            return app(LpDataGrid::class)->toJson();
+            $table_pre = config("database.connections.mysql.prefix");
+            $table = $table_pre.'lps';
+
+            // Table's primary key
+            $primaryKey = 'id';
+            
+            $columns = array(
+                //array( 'db' => 'id', 'dt' => 0 ),
+                array( 'db' => '`p`.`id`',  'dt' => 'id', 'field'=>'id','formatter' => function($d, $row){
+                    return '#'.$d;
+                } ),
+                array( 'db' => '`p`.`name`',   'dt' => 'name', 'field'=>'name' ),
+                array( 'db' => '`p`.`slug`',   'dt' => 'slug', 'field'=>'slug','formatter' => function($d, $row) {
+                    return config('app.url')."/products/".$d;
+                } ),
+                array( 'db' => '`p`.`status`',   'dt' => 'status', 'field'=>'status' ),
+                array( 'db' => '`p`.`updated_at`',   'dt' => 'updated_at', 'field'=>'updated_at' )
+            );
+            // SQL server connection information
+            $sql_details = [];
+
+            $joinQuery = "FROM `{$table}` AS `p` ";
+            $extraCondition = "";
+            //$extraCondition = "`a`.`address_type`='cart_shipping'";
+
+
+            return json_encode(SSP::simple( request()->input(), $sql_details, $table, $primaryKey, $columns, $joinQuery, $extraCondition ));
+
+
+
+
+
+
         }
 
         return view('lp::admin.index');
