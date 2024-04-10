@@ -23,11 +23,11 @@
                       <table id="tables" class="table table-bordered table-striped">
                         <thead>
                         <tr>
-                          <th>ID</th>
                           <th>Title</th>
                           <th>Slug</th>
                           <th>Status</th>
                           <th>updated at</th>
+                          <th>Action</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -77,9 +77,6 @@
         },
         columns: [
           {
-            data: 'id'
-          },
-          {
             data: 'name'
           },
           {
@@ -90,13 +87,19 @@
           },
           {
             data: 'updated_at'
+          },
+          {
+            data: "id",
+            render: function(data, type, row, meta) {
+              return '<a href="./lp/edit/'+data+'" class="btn btn-primary btn-sm">View</a>';
+            }
           }
         ],
         lengthMenu: [
             [20, 50, 100],
             [20, 50, 100]
         ],
-        order: [[3, 'desc']],
+        order: [[0, 'desc']],
         processing: true,
         serverSide: true,
         

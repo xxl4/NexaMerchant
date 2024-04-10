@@ -41,7 +41,7 @@ class AdminLpController extends Controller
             $columns = array(
                 //array( 'db' => 'id', 'dt' => 0 ),
                 array( 'db' => '`p`.`id`',  'dt' => 'id', 'field'=>'id','formatter' => function($d, $row){
-                    return '#'.$d;
+                    return $d;
                 } ),
                 array( 'db' => '`p`.`name`',   'dt' => 'name', 'field'=>'name' ),
                 array( 'db' => '`p`.`slug`',   'dt' => 'slug', 'field'=>'slug','formatter' => function($d, $row) {
@@ -124,6 +124,7 @@ class AdminLpController extends Controller
     {
         $page = \Nicelizhi\Lp\Models\Lp::where('id', $id)->first();
 
+
         return view('lp::admin.edit', compact('page'));
     }
 
@@ -135,34 +136,24 @@ class AdminLpController extends Controller
      */
     public function update($id)
     {
-        $locale = core()->getRequestedLocaleCode();
+        $html = request()->input('html');
+        $name = request()->input("name");
+        $slug = request()->input("slug");
 
-        $this->validate(request(), [
-            $locale . '.url_key'      => ['required', new \Webkul\Core\Rules\Slug, function ($attribute, $value, $fail) use ($id) {
-                if (! $this->cmsRepository->isUrlKeyUnique($id, $value)) {
-                    $fail(trans('admin::app.cms.index.already-taken', ['name' => 'Page']));
-                }
-            }],
-            $locale . '.page_title'   => 'required',
-            $locale . '.html_content' => 'required',
-            'channels'                => 'required',
-        ]);
+        $update = [];
+        $update['html'] = $html;
+        $update['name'] = $name;
+        $update['slug'] = $slug;
 
-        Event::dispatch('cms.pages.update.before', $id);
+        \Nicelizhi\Lp\Models\Lp::where('id', $id)->update($update);
 
-        $data = [
-            $locale    => request()->input($locale),
-            'channels' => request()->input('channels'),
-            'locale'   => $locale,
-        ];
+        // $page = $this->cmsRepository->update($data, $id);
 
-        $page = $this->cmsRepository->update($data, $id);
-
-        Event::dispatch('cms.pages.update.after', $page);
+        // Event::dispatch('cms.pages.update.after', $page);
 
         session()->flash('success', trans('admin::app.cms.update-success'));
 
-        return redirect()->route('lp.cms.index');
+        return redirect()->route('admin.lp.index');
     }
 
     /**
