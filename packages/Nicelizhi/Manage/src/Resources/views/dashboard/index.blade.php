@@ -124,7 +124,74 @@
           </div>
           <!-- /.col -->
         </div>
+        <div class="row">
+          <div class="col-12 col-sm-6 col-md-3">
+            <div class="info-box">
+              <span class="info-box-icon bg-info elevation-1">
+                <img
+                                    src="{{ bagisto_asset('images/total-sales.svg')}}"
+                                    title="@lang('admin::app.dashboard.index.today-sales')"
+                                >
+              </span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">@lang('admin::app.dashboard.index.today-sales')</span>
+                <span class="info-box-number">
+                  {{ core()->formatBasePrice($statistics['today']['total_sales']['current']) }}
+                </span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+          </div>
+
+          <div class="col-12 col-sm-6 col-md-3">
+            <div class="info-box">
+              <span class="info-box-icon bg-info elevation-1">
+                <img
+                                    src="{{ bagisto_asset('images/customers.svg')}}"
+                                    title="@lang('admin::app.dashboard.index.today-orders')"
+                                >
+              </span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">@lang('admin::app.dashboard.index.today-orders')</span>
+                <span class="info-box-number">
+                  {{ $statistics['today']['total_orders']['current'] }}
+                </span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+          </div>
+
+          <div class="col-12 col-sm-6 col-md-3">
+            <div class="info-box">
+              <span class="info-box-icon bg-info elevation-1">
+                <img
+                                    src="{{ bagisto_asset('images/customers.svg')}}"
+                                    title="@lang('admin::app.dashboard.index.today-customers')"
+                                >
+              </span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">@lang('admin::app.dashboard.index.today-customers')</span>
+                <span class="info-box-number">
+                  {{ $statistics['today']['total_customers']['current'] }}
+                </span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+          </div>
+
+
+
+
+        </div>
         <!-- /.row -->
+
+
 
       </div>
     </section>
