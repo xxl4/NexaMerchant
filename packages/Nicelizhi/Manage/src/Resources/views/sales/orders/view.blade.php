@@ -180,13 +180,30 @@
                             <div class="col-sm-2 invoice-col">
                                 <b>@lang('admin::app.sales.orders.view.payment-and-shipping')</b><br />
                                 <b>{{ core()->getConfigData('sales.payment_methods.' . $order->payment->method . '.title') }}</b><br />
+                                <?php
+                                
+                                //$additionalDetails = \Webkul\Payment\Payment::getAdditionalDetails($order->payment->method);
+                                // var_dump($order->transactions[0]->data);
+                                if($order->payment->method=="paypal_smart_button") {
+                                    $data = json_decode($order->transactions[0]->data, true);
+                                    $tran_id = $data[0]['payments']['captures']['0']['id'];
+                                }else{
+                                    $tran_id = "";
+                                }
+                                
+
+                                
+
+
+                                ?>
+                                <b><?php echo $tran_id; ?></b><br />
                                 @forelse ($order->shipments as $shipment)
                                 <b>
                                     @lang('admin::app.sales.orders.view.shipment', ['shipment' => $shipment->id])
                                 </b><br />
                                 <?php //var_dump($shipment);?>
                                 <b>{{ $order->order_currency_code }}</b> <br />
-                                @php $additionalDetails = \Webkul\Payment\Payment::getAdditionalDetails($order->payment->method);  @endphp
+                                @php $additionalDetails = \Webkul\Payment\Payment::getAdditionalDetails($order->payment->method); @endphp
                                 @if (! empty($additionalDetails))
                                 <b>{{ $additionalDetails['title'] }}</b> <br />
                                 <b>{{ $additionalDetails['value'] }}</b> <br />
