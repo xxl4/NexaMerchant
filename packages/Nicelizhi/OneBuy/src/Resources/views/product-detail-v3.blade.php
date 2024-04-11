@@ -889,7 +889,11 @@ Apt / Suite / Other </label>
                     }
                 },
                 onError(err) {
+                    $('#loading').hide();
                     console.log("paypal " + JSON.stringify(err));
+                },
+                onCancel: function(data) {
+                    $('#loading').hide();
                 },
                 onClick(){
                     var params = getOrderParams('paypal_stand');
@@ -921,7 +925,7 @@ Apt / Suite / Other </label>
                 createOrder: function(data, actions) {
                     $('#loading').show();
                     var params = getOrderParams('paypal_stand');
-                    url = '/onebuy/order/addr/after?_token={{ csrf_token() }}&time=' + new Date().getTime();
+                    var url = '/onebuy/order/addr/after?_token={{ csrf_token() }}&time=' + new Date().getTime()+"&force="+localStorage.getItem("force");
                     return fetch(url, {
                         body: JSON.stringify(params),
                         method: 'POST',
@@ -944,6 +948,8 @@ Apt / Suite / Other </label>
 
                             return order_info.id;
                         } else {
+                            alert(data.error);
+                            localStorage.setItem("force", 1);
                             var pay_error = JSON.parse(data.error);
                             var pay_error_message = pay_error.details;
 
@@ -1858,7 +1864,7 @@ function GotoNotRequest(url) {
                             $('#'+ (error_id || 'paypal-error')).show();
                             throw new Error('Verification failed');
                         }
-                        var url = '/onebuy/order/addr/after?_token={{ csrf_token() }}&time=' + new Date().getTime();
+                        var url = '/onebuy/order/addr/after?_token={{ csrf_token() }}&time=' + new Date().getTime()+"&force="+localStorage.getItem("force");
                         $('#loading').show(); 
                         $('#'+ (error_id || 'paypal-error')).hide();
 
@@ -1885,6 +1891,8 @@ function GotoNotRequest(url) {
 
                                         return order_info.id;
                                     } else {
+                                        alert(data.error);
+                                        localStorage.setItem("force", 1);
                                         var pay_error = JSON.parse(data.error);
                                         var pay_error_message = pay_error.details;
 
@@ -1976,8 +1984,12 @@ function GotoNotRequest(url) {
                             })
                     },
     
-                    onError: function(err) {
-                        console.log('error from the onError callback', err);
+                    onError(err) {
+                        $('#loading').hide();
+                        console.log("paypal " + JSON.stringify(err));
+                    },
+                    onCancel: function(data) {
+                        $('#loading').hide();
                     }
     
                 }).render('#' + (render_id || 'paypal-card-submit'));

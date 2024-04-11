@@ -585,7 +585,13 @@ class ProductController extends Controller
 
         $last_order_id = $request->session()->get('last_order_id'); // check the laster order id
 
+        $force = $request->input("force");
+
         Log::info("last order id " . $last_order_id);
+
+        if(!empty($last_order_id) && $force !="1") {
+            return response()->json(['error' => 'You Have already placed order, if you want to place another order please confirm your order'], 400);
+        }
 
         $refer = $request->session()->get('refer');
 
