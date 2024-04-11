@@ -1026,11 +1026,12 @@ class ProductController extends Controller
         $cache_key = "product_ext_".$product->id."_".count($nums)."_".$currency;
         $package_products = Cache::get($cache_key);
 
-        $shipping_price_key = "shipping_price";
+        $shipping_price_key = "shipping_price"."_".$currency;
         $shipping_price = Cache::get($shipping_price_key);
         if(empty($shipping_price)) {
             //core()->getConfigData('sales.payment_methods.airwallex.apikey');
             $shipping_price = core()->getConfigData('sales.carriers.flatrate.default_rate');
+            //$shipping_price = core()->currency($shipping_price);
             Cache::put($shipping_price_key, $shipping_price);
         }
         
