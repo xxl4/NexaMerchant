@@ -307,7 +307,7 @@ class GetV2 extends Command
 
             //var_dump(count($shopifyVariants));
 
-            var_dump($shopifyVariants);
+            //var_dump($shopifyVariants);
 
             $newShopifyVarants = [];
             foreach($shopifyVariants as $sv => $shopifyVariant) {
@@ -523,6 +523,8 @@ class GetV2 extends Command
                     }
                 }
             }
+
+            echo "done \r\n";
 
 
             // exit;

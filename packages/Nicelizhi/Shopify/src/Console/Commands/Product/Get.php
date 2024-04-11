@@ -283,17 +283,20 @@ class Get extends Command
             //$data['family'] = [];
 
             //var_dump($data);exit;
-            Event::dispatch('catalog.product.create.before');
+            
 
             // check product info
             $product = $this->productRepository->where("sku", $item['product_id'])->first();
             if(is_null($product)) {
+                Event::dispatch('catalog.product.create.before');
                 $product = $this->productRepository->create($data);
                 $id = $product->id;
+                Event::dispatch('catalog.product.create.after', $product);
             }else{
                 $id = $product->id;
             }
-            Event::dispatch('catalog.product.create.after', $product);
+            
+            //var_dump($product);exit;
 
             $updateData = [];
             $updateData['product_number'] = "";
@@ -319,7 +322,7 @@ class Get extends Command
 
             $variants = $variantCollection = $product->variants()->get()->toArray();
 
-            //var_dump(count($shopifyVariants));
+            var_dump(count($shopifyVariants));
 
             $newShopifyVarants = [];
             $compare_at_price = '0.00';

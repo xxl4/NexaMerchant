@@ -17,7 +17,7 @@
               
                 <div class="card">
                     <div class="card-header">
-                      <h3 class="card-title">DataTable with default features</h3>
+                      <h3 class="card-title">@lang('admin::app.settings.channels.index.title')</h3>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
@@ -28,6 +28,7 @@
                           <th>Title</th>
                           <th>Status</th>
                           <th>updated at</th>
+                          <th>Action</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -87,6 +88,12 @@
           },
           {
             data: 'updated_at'
+          },
+          {
+            data: "product_id",
+            render: function(data, type, row, meta) {
+              return '<a href="./products/sync/'+data+'" class="btn btn-primary btn-sm">Sync</a>';
+            }
           }
         ],
         lengthMenu: [
