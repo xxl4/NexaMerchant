@@ -252,7 +252,9 @@ class ProductV3Controller extends Controller
     private function makeProducts($product, $nums = array()) {
 
         //var_dump($product->id);exit;
-        $cache_key = "product_ext_".$product->id."_".count($nums);
+        $currency = core()->getCurrentCurrencyCode();
+        //var_dump($product->id);exit;
+        $cache_key = "product_ext_".$product->id."_".count($nums)."_".$currency;
         $package_products = Cache::get($cache_key);
 
         $shipping_price_key = "shipping_price";
