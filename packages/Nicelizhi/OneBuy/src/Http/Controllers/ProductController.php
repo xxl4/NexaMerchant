@@ -1056,6 +1056,7 @@ class ProductController extends Controller
             ]);
             $source_price = 0;
             if(!is_null($productBgAttribute_price)) $source_price = $productBgAttribute_price->float_value;
+            $source_price = core()->convertPrice($source_price);
             if(empty($source_price)) {
                 return abort(404);
             }
