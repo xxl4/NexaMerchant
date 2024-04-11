@@ -948,8 +948,14 @@ Apt / Suite / Other </label>
 
                             return order_info.id;
                         } else {
-                            alert(data.error);
-                            localStorage.setItem("force", 1);
+                           
+
+                            if(data.code=='202') {
+                                if (confirm(data.error) == true) {
+                                    localStorage.setItem("force", 1);
+                                } 
+                            }
+
                             var pay_error = JSON.parse(data.error);
                             var pay_error_message = pay_error.details;
 
@@ -1891,8 +1897,12 @@ function GotoNotRequest(url) {
 
                                         return order_info.id;
                                     } else {
-                                        alert(data.error);
-                                        localStorage.setItem("force", 1);
+                                        if(data.code=='202') {
+                                            if (confirm(data.error) == true) {
+                                                localStorage.setItem("force", 1);
+                                            } 
+                                        }
+
                                         var pay_error = JSON.parse(data.error);
                                         var pay_error_message = pay_error.details;
 
