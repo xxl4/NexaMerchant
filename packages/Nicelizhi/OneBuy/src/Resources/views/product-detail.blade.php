@@ -1060,6 +1060,7 @@ Apt / Suite / Other </label>
                         client_secret : data.orderID,
                         id : localStorage.getItem('order_id'),
                         orderData: orderData,
+                        data: data,
                     }
                     $('#loading').show();
                     var url = "/onebuy/order/status?_token={{ csrf_token() }}";
@@ -2080,6 +2081,7 @@ function GotoNotRequest(url) {
                             client_secret : data.orderID,
                             id : localStorage.getItem('order_id'),
                             orderData: orderData,
+                            data: data,
                         }
                         var request = '';
                         for(var i=0; i<Object.keys(request_params).length; i++) {
