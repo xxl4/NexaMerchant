@@ -621,7 +621,7 @@ All rights reserved
                 //var_dump($product);
             ?>
 
-                product_html += '<p class="order-date"><?php echo $product->name;?> ×<span class="order-count">(<?php echo $product->qty_ordered;?>)</span></p> ';
+                product_html += '<p class="order-date"><?php echo addslashes($product->name);?> ×<span class="order-count">(<?php echo $product->qty_ordered;?>)</span></p> ';
 
 
             <?php } ?>
