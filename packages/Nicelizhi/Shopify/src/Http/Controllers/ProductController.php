@@ -167,18 +167,14 @@ class ProductController extends Controller
 
         // two attr
         if($version=='v1') {
-            //Artisan::call("shopify:product:get", ["--prod_id"=> $product_id]);
             echo config("app.url")."/onebuy/".$product_id."\r\n";
             Artisan::queue("shopify:product:get", ["--prod_id"=> $product_id])->onConnection('redis')->onQueue('shopify-products');
-            //Artisan::call("shopify:product:get", ["--prod_id"=> $product_id]);
         }
 
         // one attr
         if($version=='v2') {
-            //Artisan::call("shopify:product:getv2", ["--prod_id"=> $product_id]);
             echo config("app.url")."/onebuy/v2/".$product_id."\r\n";
             Artisan::queue("shopify:product:getv2", ["--prod_id"=> $product_id])->onConnection('redis')->onQueue('shopify-products');
-            //Artisan::call("shopify:product:getv2", ["--prod_id"=> $product_id]);
         }
 
         // zero attr
@@ -306,5 +302,14 @@ class ProductController extends Controller
             return redirect(config("app.url")."/onebuy/v3/".$product_id."?time=".time());
 
         }
+    }
+
+    public function comments($product_id) {
+
+    }
+
+    // 上传需要的图片内容
+    public function images($product_id) {
+
     }
 }
