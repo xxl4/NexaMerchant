@@ -22,5 +22,6 @@ class Refund extends Product
             }
             
         }
+        ResponseCache::clear();
     }
 }
