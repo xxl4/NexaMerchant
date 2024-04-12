@@ -26,7 +26,9 @@ jobs:
         options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
 
     steps:
-    - uses: shivammathur/setup-php@15c43e89cdef867065b0213be354c2841860869e
+    - uses: shivammathur/setup-php@v2
+      env:
+        runner: self-hosted
       with:
         php-version: '8.1'
     - uses: actions/checkout@v3
