@@ -236,7 +236,9 @@ class CheckoutV1Controller extends Controller{
         $refer = $request->session()->get('refer');
         $gtag = config('onebuy.gtag');
 
-        return view('checkout::product-order-success-'.$this->view_prefix_key, compact('order',"fb_ids","ob_adv_id","crm_channel","refer","gtag"));
+        $quora_adv_id = config('onebuy.quora_adv_id');
+
+        return view('checkout::product-order-success-'.$this->view_prefix_key, compact('order',"fb_ids","ob_adv_id","crm_channel","refer","gtag","quora_adv_id"));
     }
 
     /**
