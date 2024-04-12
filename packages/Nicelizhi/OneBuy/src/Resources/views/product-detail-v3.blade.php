@@ -3183,5 +3183,24 @@ function GotoNotRequest(url) {
   fbq('track', 'ViewContent');
 </script>
 
+<?php if(!empty($quora_adv_id)) { ?>
+
+<script>
+!function(q,e,v,n,t,s){if(q.qp) return; n=q.qp=function(){n.qp?n.qp.apply(n,arguments):n.queue.push(arguments);}; n.queue=[];t=document.createElement(e);t.async=!0;t.src=v; s=document.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t,s);}(window, 'script', 'https://a.quora.com/qevents.js');
+<?php 
+    $quora_adv_arr = explode(',', $quora_adv_id);
+    foreach ($quora_adv_arr as $key => $quora_id) {
+    ?>
+qp('init', '<?php echo $quora_id;?>');
+<?php } ?>
+
+qp('track', 'ViewContent');
+</script>
+<?php foreach ($quora_adv_arr as $key => $quora_id) {?>
+<noscript><img height="1" width="1" style="display:none" src="https://q.quora.com/_/ad/<?php echo $quora_id;?>/pixel?tag=ViewContent&noscript=1"/></noscript>
+<?php } ?>
+<!-- End of Quora Pixel Code -->
+<?php } ?>
+
 </body>
 </html>

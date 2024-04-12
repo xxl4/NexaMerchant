@@ -7,6 +7,7 @@ return [
     'gtag' => env('ONEBUY_GTAG', "G-P6343Y2GKT"),
     'fb_ids' => env('FB_IDS'),
     'ob_adv_id' => env('OB_ADV_ID'),
+    'quora_adv_id' => env('QUORA_ID'),
     'crm_channel' => env('CRM_CHANNEL'),
     'airwallex' => [
             'method' => [

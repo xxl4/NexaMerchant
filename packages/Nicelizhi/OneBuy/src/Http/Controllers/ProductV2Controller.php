@@ -349,8 +349,10 @@ class ProductV2Controller extends Controller
 
         $crm_channel = config('onebuy.crm_channel');
 
+        $quora_adv_id = config('onebuy.quora_adv_id');
 
-        return view('onebuy::product-detail-v2', compact('gtag','app_env','product','package_products', 'product_attributes', 'skus','productBgAttribute','productBgAttribute_mobile','faqItems','comments','paypal_client_id','default_country','airwallex_method','payments','payments_default','brand','fb_ids','ob_adv_id','crm_channel','refer'));
+
+        return view('onebuy::product-detail-v2', compact('gtag','app_env','product','package_products', 'product_attributes', 'skus','productBgAttribute','productBgAttribute_mobile','faqItems','comments','paypal_client_id','default_country','airwallex_method','payments','payments_default','brand','fb_ids','ob_adv_id','crm_channel','refer',"quora_adv_id"));
     }
 
     /**
