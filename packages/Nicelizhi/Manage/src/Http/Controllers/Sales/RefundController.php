@@ -7,6 +7,7 @@ use Webkul\Sales\Repositories\OrderRepository;
 use Webkul\Sales\Repositories\OrderItemRepository;
 use Webkul\Sales\Repositories\RefundRepository;
 use Nicelizhi\Manage\DataGrids\Sales\OrderRefundDataGrid;
+use Nicelizhi\Manage\Helpers\SSP;
 
 class RefundController extends Controller
 {
@@ -31,7 +32,34 @@ class RefundController extends Controller
     public function index()
     {
         if (request()->ajax()) {
-            return app(OrderRefundDataGrid::class)->toJson();
+            //return app(OrderRefundDataGrid::class)->toJson();
+            $table_pre = config("database.connections.mysql.prefix");
+            $table = $table_pre.'refunds';
+
+            // Table's primary key
+            $primaryKey = 'id';
+            
+            $columns = array(
+                //array( 'db' => 'id', 'dt' => 0 ),
+                array( 'db' => '`r`.`id`',  'dt' => 'id', 'field'=>'id','formatter' => function($d, $row){
+                    return '#'.$d;
+                } ),
+                array( 'db' => '`r`.`order_id`',  'dt' => 'order_id', 'field'=>'order_id'),
+                array( 'db' => '`r`.`state`',   'dt' => 'state', 'field'=>'state' ),
+                array( 'db' => '`r`.`grand_total`',   'dt' => 'grand_total', 'field'=>'grand_total' ),
+                array( 'db' => '`r`.`created_at`',   'dt' => 'created_at', 'field'=>'created_at' ),
+            );
+            // SQL server connection information
+            $sql_details = [];
+
+            $joinQuery = "FROM `{$table}` AS `r` ";
+            $extraCondition = "";
+            //$extraCondition = "`a`.`address_type`='cart_shipping'";
+
+
+            return json_encode(SSP::simple( request()->input(), $sql_details, $table, $primaryKey, $columns, $joinQuery, $extraCondition ));
+
+
         }
 
         return view('admin::sales.refunds.index');
