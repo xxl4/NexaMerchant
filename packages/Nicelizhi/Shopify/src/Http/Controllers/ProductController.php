@@ -304,11 +304,28 @@ class ProductController extends Controller
         }
     }
 
+    /**
+     * 
+     * 
+     * product comments
+     * @param int $product_id
+     * @return \Illuminate\View\View
+     * 
+     * 
+     */
     public function comments($product_id) {
 
     }
 
-    // 上传需要的图片内容
+    /**
+     * 
+     * 
+     * product images
+     * @param int $product_id
+     * @return \Illuminate\View\View
+     * 
+     * 
+     */
     public function images($product_id) {
 
     }
