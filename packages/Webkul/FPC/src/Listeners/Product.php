@@ -6,7 +6,6 @@ use Spatie\ResponseCache\Facades\ResponseCache;
 use Webkul\Product\Repositories\ProductRepository;
 use Webkul\Product\Repositories\ProductBundleOptionProductRepository;
 use Webkul\Product\Repositories\ProductGroupedProductRepository;
-use Illuminate\Support\Facades\Log;
 
 class Product
 {
@@ -64,11 +63,7 @@ class Product
     {
         $urls = [];
 
-        Log::info("product " . json_encode($product));
-
         $products = $this->getAllRelatedProducts($product);
-
-        
 
         foreach ($products as $product) {
             $urls[] = '/' . $product->url_key;
