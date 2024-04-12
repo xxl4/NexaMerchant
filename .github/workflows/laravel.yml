@@ -33,7 +33,7 @@ jobs:
     - name: Copy .env
       run: php -r "file_exists('.env') || copy('.env.example', '.env');"
     - name: composer install
-      run: composer install
+      run: composer install -vvv
     - name: Directory Permissions
       run: chmod -R 777 storage bootstrap/cache
     - name: Generate key
