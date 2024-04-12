@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Storage;
 use Webkul\Product\Models\ProductImage;
 use Nicelizhi\Shopify\Models\ShopifyStore;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Redis;
 
 class Get extends Command
 {
@@ -151,6 +152,23 @@ class Get extends Command
 
     }
 
+    /**
+     * 
+     * 
+     * Clear the cache for this product
+     * 
+     * @param int $pid
+     * 
+     * 
+     */
+    protected function clearCache($pid) {
+        Cache::pull("product_color_size_".$pid);
+        Cache::pull("product_attributes_".$pid);
+        Cache::pull("product_sku_size_".$pid);
+        Cache::pull("product_sku_".$pid);
+        Cache::pull("product_sku_".$pid);
+    }
+
     protected function Permissions() {
         $local_image_path = "storage/product/";
         $path = public_path($local_image_path);
@@ -158,9 +176,7 @@ class Get extends Command
         $this->error($execPath);
         //exit;     
         exec($execPath);
-    }
-
-   
+    }   
 
     /**
      * 
@@ -179,6 +195,8 @@ class Get extends Command
             // 24 size
             // ba_attribute_options
             // ba_attribute_option_translations
+
+            $redis = Redis::connection('default');
 
             $images_map = [];
 
@@ -204,6 +222,7 @@ class Get extends Command
             $color = [];
             $size = [];
             $error = 0;
+            $LocalOptions = [];
             foreach($options as $kk => $option) {
                 $option['name'] = strtolower($option['name']);
                 $attr_id = 0;
@@ -264,10 +283,15 @@ class Get extends Command
                     }
                     if($attr_id==23) $color[$attribute_option_id] = $attribute_option_id; //array_push($color, $attribute_option_id); 
                     if($attr_id==24) $size[$attribute_option_id] = $attribute_option_id;
+
+                    $LocalOptions[$attr_id][] = $attribute_option_id;
                 }
+                
             }
 
             if($error==1) continue;
+
+            var_dump($LocalOptions);
 
 
             
@@ -295,6 +319,20 @@ class Get extends Command
             }else{
                 $id = $product->id;
             }
+
+            $this->clearCache($id);
+
+            // update the sku sort
+            foreach($LocalOptions as $key=>$LocalOption) {
+                $cache_key = "product_attr_sort_".$key."_".$id;
+                echo $cache_key."\r\n";
+                foreach($LocalOption as $k => $localOpt) {
+                    $redis->hSet($cache_key, $localOpt,  $k);
+                }
+                //$redis->hSet($this->cache_key.$this->prod_id, $key, json_encode($value));
+            }
+
+            //exit;
             
             //var_dump($product);exit;
 

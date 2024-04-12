@@ -16,6 +16,7 @@ Route::group(['middleware' => ['admin'], 'prefix' => config('app.admin_url')], f
         Route::controller(ProductController::class)->prefix('products')->group(function () {
             Route::get('', 'index')->name('admin.shopify.products.index');
             Route::get('sync/{product_id}', 'sync')->name('admin.shopify.products.sync');
+            Route::get('checkout-url-get/{product_id}', 'checkoutUrlGet')->name('admin.shopify.products.checkout-url-get');
 
 
 

@@ -26,7 +26,9 @@
                         <tr>
                           <th>Product ID</th>
                           <th>Title</th>
+                          <th>handle</th>
                           <th>Status</th>
+                          <th>Checkout</th>
                           <th>updated at</th>
                           <th>Action</th>
                         </tr>
@@ -82,10 +84,22 @@
           },
           {
             data: 'title'
-          },
+          },{
+            data: 'handle',
+            render: function(data, type, row, meta) {
+              return '<a href="<?php echo $shopifyStore->shopify_app_host_name?>'+data+'" target="_blank">'+data+'</a>';
+            }
+          }
+          ,
           {
             data: 'status'
-          },
+          },{
+            data: 'product_id',
+            render: function(data, type, row, meta) {
+              return '<a href="./products/checkout-url-get/'+data+'" target="_blank" class="btn btn-primary btn-sm">Checkout URl</a>';
+            }
+          }
+          ,
           {
             data: 'updated_at'
           },
