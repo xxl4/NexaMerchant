@@ -177,6 +177,13 @@ lang: en
 | Field              | Type | Desc |
 | :---------------- | :------: | ----: |
 | id        |   int(10)   | id |
+| increment_id        |   int(10)   | increment id |
+| status        |   varchar(191)   | status ['pending','processing','closed','completed','canceled'] |
+| channel_name        |   varchar(191)   | id |
+| is_guest        |   tinyint(1)   | id |
+| customer_email        |   int(10)   | id |
+| customer_last_name        |   int(10)   | id |
+| customer_first_name        |   int(10)   | id |
 | created_at |  timestamp   | create time |
 | updated_at |  timestamp   | update time |
 
