@@ -238,10 +238,17 @@
                                         <tr>
                                             <td>
 
-                                                @if($item->product?->base_image_url)
+
+                                            <?php 
+                                            
+                                            //var_dump($item);exit;
+                                            
+                                            ?>
+
+                                                @if(!empty($item->product))
                                                 <img
                                             class="" height="200px"
-                                            src="{{ $item->product?->base_image_url }}"
+                                            src="{{ $item->product->base_image_url }}"
                                                 @else
                                                 <img src="{{ bagisto_asset('images/product-placeholders/front.svg') }}">
                                                 @endif

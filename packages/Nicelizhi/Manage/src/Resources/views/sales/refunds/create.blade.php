@@ -40,7 +40,7 @@
                 @foreach ($order->items as $item)
                     <tr>
                         <td>
-                        @if ($item->product->base_image_url)
+                        @if (!empty($item->product))
                             <img
                                 width="100"
                                 src="{{ $item->product->base_image_url }}"
