@@ -26,6 +26,8 @@
                           <th>Increment ID</th>
                           <th>Status</th>
                           <th>Client</th>
+                          <th>order_currency_code</th>
+                          <th>grand_total</th>
                           <th>base_grand_total</th>
                           <th>Transaction Id</th>
                           <th>Payment Method</th>
@@ -97,6 +99,11 @@
             render: function(data, type, row, meta) {
               return "<p>" + data + "</p>" + row['customer_first_name'] + ' ' +  row['customer_last_name'];
             }
+          },{
+            data: 'order_currency_code'
+          }
+          ,{
+            data: 'grand_total'
           },
           {
             data: 'base_grand_total'

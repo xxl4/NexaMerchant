@@ -49,6 +49,8 @@ class OrderController extends Controller
                 array( 'db' => '`o`.`customer_email`',   'dt' => 'customer_email', 'field'=>'customer_email' ),
                 array( 'db' => '`o`.`customer_first_name`',   'dt' => 'customer_first_name', 'field'=>'customer_first_name' ),
                 array( 'db' => '`o`.`customer_last_name`',   'dt' => 'customer_last_name', 'field'=>'customer_last_name' ),
+                array( 'db' => '`o`.`order_currency_code`',   'dt' => 'order_currency_code', 'field'=>'order_currency_code' ),
+                array( 'db' => '`o`.`grand_total`',   'dt' => 'grand_total', 'field'=>'grand_total' ),
                 array( 'db' => '`o`.`base_grand_total`',  'dt' => 'base_grand_total', 'field'=>'base_grand_total', 'formatter' => function($d, $row) {
                     return core()->currency($d);
                 }),
