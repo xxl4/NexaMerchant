@@ -67,7 +67,7 @@ return [
             'Item' => 'Produkt',
             'SELECT YOUR' => '',
             'All transactions are secure and encrypted' => 'Alle Transaktionen sind sicher und verschlüsselt',
-            'Hatmeo offers 30' => 'bietet eine 30-tägige Garantie auf alle unbenutzten Einkäufe. Senden Sie den/die Artikel einfach in der Originalverpackung an uns zurück und erhalten Sie eine volle Rückerstattung oder einen Ersatz, abzüglich Versandkosten.',
+            'Hatmeo offers 30' => '30-tägige Rückgabegarantie: Hatme bietet allen Kunden eine 30-tägige Rückgabegarantie an. Sollten Sie innerhalb von 30 Tagen nach Erhalt der Ware unzufrieden sein, kontaktieren Sie uns bitte unter customer@hatme.de.',
             'I agree with the' => "Ich stimme dem zu",
         ],
         'footer' => [
