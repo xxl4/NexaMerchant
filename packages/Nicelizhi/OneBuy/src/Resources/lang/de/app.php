@@ -59,7 +59,7 @@ return [
             'Shipping Insurance' => 'Transportversicherung',
             'Discount' => 'Rabatt',
             'Subtotal' => 'Zwischensumme',
-            '30 DAY GUARANTEE' => '30 TAGE GARANTIE',
+            '30 DAY GUARANTEE' => '30-tägige Rückgabegarantie',
             'What customers are saying about' => 'Worüber Kunden sagen',
             'Frequently Asked Questions' => 'FAQ',
             'JUST NOW' => 'SOEBEN',
@@ -67,7 +67,7 @@ return [
             'Item' => 'Produkt',
             'SELECT YOUR' => '',
             'All transactions are secure and encrypted' => 'Alle Transaktionen sind sicher und verschlüsselt',
-            'Hatmeo offers 30' => '30-tägige Rückgabegarantie: Hatme bietet allen Kunden eine 30-tägige Rückgabegarantie an. Sollten Sie innerhalb von 30 Tagen nach Erhalt der Ware unzufrieden sein, kontaktieren Sie uns bitte unter customer@hatme.de.',
+            'Hatmeo offers 30' => 'Hatme bietet allen Kunden eine 30-tägige Rückgabegarantie an. Sollten Sie innerhalb von 30 Tagen nach Erhalt der Ware unzufrieden sein, kontaktieren Sie uns bitte unter customer@hatme.de.',
             'I agree with the' => "Ich stimme dem zu",
         ],
         'footer' => [
