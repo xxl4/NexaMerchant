@@ -60,8 +60,6 @@
                 </thead>
                 <tbody>
                     <?php
-                        //$comments = json_decode($comments);
-                        //var_dump($comments);exit;
                         foreach($comments as $key => $comment) {
                             $comment = json_decode($comment);
                             echo "<tr>";
