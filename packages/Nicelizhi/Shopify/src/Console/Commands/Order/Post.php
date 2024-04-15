@@ -77,9 +77,9 @@ class Post extends Command
         $order_id = $this->option("order_id");
 
         if(!empty($order_id)) {
-            $lists = Order::where(['status'=>'processing'])->where("id", $order_id)->select(['id'])->limit(1)->get();
+            $lists = Order::where(['status'=>'processing'])->where("shopify_store_id", $this->shopify_store_id)->where("id", $order_id)->select(['id'])->limit(1)->get();
         }else{
-            $lists = Order::where(['status'=>'processing'])->orderBy("updated_at", "desc")->select(['id'])->limit(100)->get();
+            $lists = Order::where(['status'=>'processing'])->where("shopify_store_id", $this->shopify_store_id)->orderBy("updated_at", "desc")->select(['id'])->limit(100)->get();
         }
         
 
