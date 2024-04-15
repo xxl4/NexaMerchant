@@ -19,14 +19,14 @@ class OrderGet extends Command
      *
      * @var string
      */
-    protected $signature = 'onebuy:paypal:order:get';
+    protected $signature = 'onebuy:paypal:order:get {--order_id=}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'paypal order';
+    protected $description = 'paypal order onebuy:paypal:order:get {--order_id=}';
 
     /**
      * Create a new command instance.
@@ -53,11 +53,17 @@ class OrderGet extends Command
      */
     public function handle()
     {
-        $orderID = "5JK60257HG619343A";
-        
-        $order = $this->smartButton->getOrder($orderID);
+        $orderID = "299893062V619310L";
 
-        var_dump($order);
+        $order_id = $this->option('order_id');
+
+        if($order_id) {
+            $order = $this->smartButton->getOrder($orderID);
+
+            var_dump($order);
+        }
+        
+
 
     }
 }
