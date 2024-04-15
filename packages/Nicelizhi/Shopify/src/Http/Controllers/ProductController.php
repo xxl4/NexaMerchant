@@ -7,6 +7,7 @@ use Nicelizhi\Manage\Helpers\SSP;
 use Webkul\Attribute\Models\AttributeOptionTranslation;
 use Webkul\Attribute\Models\AttributeOption;
 use Webkul\Product\Repositories\ProductRepository;
+use Webkul\Product\Repositories\ProductAttributeValueRepository;
 use Illuminate\Support\Facades\Artisan;
 use Nicelizhi\Shopify\Models\ShopifyStore;
 use Illuminate\Support\Facades\Cache;
@@ -16,7 +17,8 @@ class ProductController extends Controller
 
 
     public function __construct(
-        //protected ProductRepository $productRepository,
+        protected ProductRepository $productRepository,
+        protected ProductAttributeValueRepository $productAttributeValueRepository,
         protected ShopifyStore $ShopifyStore,
         protected ShopifyProduct $ShopifyProduct
 
@@ -160,10 +162,9 @@ class ProductController extends Controller
             if(empty($color) && empty($size)) {
                 if(empty($version)) $version = "v3";
             }
-
-            
-
         }
+
+        if($version==null) $version = "v3";
 
         // two attr
         if($version=='v1') {
@@ -259,6 +260,8 @@ class ProductController extends Controller
                 if($attr_id==24) $size[$attribute_option_id] = $attribute_option_id;
             }
 
+            //var_dump($version);exit;
+
             // two attr
             if(!empty($color) && !empty($size)) {
                 $version = "v1";
@@ -275,9 +278,11 @@ class ProductController extends Controller
                 if(empty($version)) $version = "v3";
             }
 
-            
-
         }
+
+        if($version==null) $version = "v3";
+
+        Cache::put("onebuy_".$product_id, $version);
 
         // two attr
         if($version=='v1') {
@@ -313,8 +318,12 @@ class ProductController extends Controller
      * 
      * 
      */
-    public function comments($product_id) {
+    public function comments($product_id, $act_type) {
+        $act_prod_type = Cache::get($act_type."_".$product_id);
 
+        var_dump($act_type, $product_id);
+
+        var_dump($act_prod_type);
     }
 
     /**
@@ -326,7 +335,36 @@ class ProductController extends Controller
      * 
      * 
      */
-    public function images($product_id) {
+    public function images($product_id, $act_type) {
+        $act_prod_type = Cache::get($act_type."_".$product_id);
 
+        $product = $this->productRepository->findBySlug($product_id);
+        //var_dump($product);
+
+        $productBgAttribute = $this->productAttributeValueRepository->findOneWhere([
+            'product_id'   => $product->id,
+            'attribute_id' => 29,
+        ]);
+
+
+        $productBgAttribute_mobile = $this->productAttributeValueRepository->findOneWhere([
+            'product_id'   => $product->id,
+            'attribute_id' => 30,
+        ]);
+
+        $productSizeImage = $this->productAttributeValueRepository->findOneWhere([
+            'product_id'   => $product->id,
+            'attribute_id' => 32,
+        ]);
+
+        //onebuy
+        //pc banner
+        //mobile banner
+        //size image
+
+        if($act_prod_type=='v1') return view("shopify::products.".$act_type.".images.v1", compact("product", "productBgAttribute", "productBgAttribute_mobile", "productSizeImage", "act_prod_type"));
+        if($act_prod_type=='v2') return view("shopify::products.".$act_type.".images.v2", compact("product", "productBgAttribute", "productBgAttribute_mobile", "productSizeImage", "act_prod_type"));
+        if($act_prod_type=='v3') return view("shopify::products.".$act_type.".images.v3", compact("product", "productBgAttribute", "productBgAttribute_mobile", "productSizeImage", "act_prod_type"));
+        
     }
 }

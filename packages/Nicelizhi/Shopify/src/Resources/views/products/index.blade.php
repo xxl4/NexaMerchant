@@ -96,7 +96,7 @@
           },{
             data: 'product_id',
             render: function(data, type, row, meta) {
-              return '<a href="./products/checkout-url-get/'+data+'" target="_blank" class="btn btn-primary btn-sm">Checkout URl</a>';
+              return '<a href="./products/checkout-url-get/'+data+'/onebuy" target="_blank" class="btn btn-primary btn-sm">Checkout URl</a>';
             }
           }
           ,
@@ -106,7 +106,7 @@
           {
             data: "product_id",
             render: function(data, type, row, meta) {
-              return '<a href="./products/sync/'+data+'" class="btn btn-primary btn-sm">Sync</a> <a href="./products/images/'+data+'" class="btn btn-primary btn-sm">Images</a> <a href="./products/comments/'+data+'" class="btn btn-primary btn-sm">Comments</a> ';
+              return '<a href="./products/sync/'+data+'" class="btn btn-primary btn-sm">Sync</a> <a href="./products/images/'+data+'/onebuy" class="btn btn-primary btn-sm">Images</a> <a href="./products/comments/'+data+'/onebuy" class="btn btn-primary btn-sm">Comments</a> ';
             }
           }
         ],

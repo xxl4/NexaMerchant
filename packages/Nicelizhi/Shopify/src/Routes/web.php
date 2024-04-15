@@ -16,9 +16,9 @@ Route::group(['middleware' => ['admin'], 'prefix' => config('app.admin_url')], f
         Route::controller(ProductController::class)->prefix('products')->group(function () {
             Route::get('', 'index')->name('admin.shopify.products.index');
             Route::get('sync/{product_id}', 'sync')->name('admin.shopify.products.sync');
-            Route::get('checkout-url-get/{product_id}', 'checkoutUrlGet')->name('admin.shopify.products.checkout-url-get');
-            Route::get('images/{product_id}', 'images')->name('admin.shopify.products.images');
-            Route::get('comments/{product_id}', 'comments')->name('admin.shopify.products.comments');
+            Route::get('checkout-url-get/{product_id}/{act_type}', 'checkoutUrlGet')->name('admin.shopify.products.checkout-url-get');
+            Route::get('images/{product_id}/{act_type}', 'images')->name('admin.shopify.products.images');
+            Route::get('comments/{product_id}/{act_type}', 'comments')->name('admin.shopify.products.comments');
 
 
 
