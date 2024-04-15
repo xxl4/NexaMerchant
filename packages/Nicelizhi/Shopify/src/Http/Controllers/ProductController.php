@@ -20,6 +20,7 @@ use Maatwebsite\Excel\Facades\Excel;
 class ProductController extends Controller
 {
 
+    private $lang = null;
 
     public function __construct(
         protected ProductRepository $productRepository,
@@ -28,7 +29,7 @@ class ProductController extends Controller
         protected ShopifyProduct $ShopifyProduct
 
     ){
-
+        $this->lang = config('shopify.store_lang');
     }
 
     /**
