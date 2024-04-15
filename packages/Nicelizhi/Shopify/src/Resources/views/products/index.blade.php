@@ -106,7 +106,7 @@
           {
             data: "product_id",
             render: function(data, type, row, meta) {
-              return '<a href="./products/sync/'+data+'" class="btn btn-primary btn-sm">Sync</a>';
+              return '<a href="./products/sync/'+data+'" class="btn btn-primary btn-sm">Sync</a> <a href="./products/images/'+data+'" class="btn btn-primary btn-sm">Images</a> <a href="./products/comments/'+data+'" class="btn btn-primary btn-sm">Comments</a> ';
             }
           }
         ],
