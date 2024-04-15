@@ -372,7 +372,6 @@ class ProductController extends Controller
      */
     public function images($product_id, $act_type, Request $request) {
         $act_prod_type = Cache::get($act_type."_".$product_id);
-        $act_prod_type = "v3";
 
         $product = $this->productRepository->findBySlug($product_id);
 
@@ -437,7 +436,6 @@ class ProductController extends Controller
 
         }
         
-        //var_dump($product);
 
         $productBgAttribute = $this->productAttributeValueRepository->findOneWhere([
             'product_id'   => $product->id,
