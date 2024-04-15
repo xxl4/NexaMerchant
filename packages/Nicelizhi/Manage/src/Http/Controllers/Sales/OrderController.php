@@ -210,7 +210,7 @@ class OrderController extends Controller
     public function confirmpayment($id){
         $order = $this->orderRepository->findOrFail($id);
 
-        $status = ['closed', 'pending'];
+        $status = ['closed', 'pending','completed'];
         
         if(!in_array($order->status, $status)) exit(1);
 
