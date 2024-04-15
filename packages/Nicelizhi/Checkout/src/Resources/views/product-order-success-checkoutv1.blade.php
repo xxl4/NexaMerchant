@@ -174,7 +174,7 @@ obApi('track', 'PAGE_VIEW');
 
 
         $line_item = [];
-        $line_item['item_id'] = $sku['product_sku'];
+        $line_item['item_id'] = $skuInfo[0];
         $line_item['item_name'] = $product['name'];
         $line_item['price'] = $product['price'];
         $line_item ['quantity'] = $product['qty_ordered'];
