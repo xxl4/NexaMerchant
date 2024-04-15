@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
 use Webkul\Product\Models\ProductAttributeValue;
+use Illuminate\Support\Facades\Redis;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ProductController extends Controller
 {
@@ -321,12 +323,42 @@ class ProductController extends Controller
      * 
      * 
      */
-    public function comments($product_id, $act_type) {
+    public function comments($product_id, $act_type, Request $request) {
         $act_prod_type = Cache::get($act_type."_".$product_id);
+        $product = $this->productRepository->findBySlug($product_id);
+        $redis = Redis::connection('default');
 
-        var_dump($act_type, $product_id);
+        $comment_list_key = "checkout_v1_product_comments_".$product['id'];
+        if ($request->isMethod('POST'))
+        {
 
-        var_dump($act_prod_type);
+
+
+            $request->validate([
+                'comments_list_file' => 'required|max:2048',
+            ]);
+    
+            $file = $request->file('comments_list_file');
+            $fileName = $file->getClientOriginalName();
+            $filePath = $file->store('imports/'.$product->id, "local");
+
+            $force = $request->input("force");
+
+            if($force=="1") {
+                $redis->del($comment_list_key);
+            }
+
+            $prod_id = $product->id;
+
+            $prod_comment_file = storage_path("app/").$filePath;
+            Excel::import(new \Nicelizhi\OneBuy\Imports\ProdCommentsImport($prod_id), $prod_comment_file);
+
+        }
+
+        $comments = $redis->hgetall($comment_list_key);
+
+        return view("shopify::products.".$act_type.".comments",compact("comments","product","product_id", "act_type", "act_prod_type"));
+
     }
 
     /**
@@ -340,13 +372,16 @@ class ProductController extends Controller
      */
     public function images($product_id, $act_type, Request $request) {
         $act_prod_type = Cache::get($act_type."_".$product_id);
+        $act_prod_type = "v3";
 
         $product = $this->productRepository->findBySlug($product_id);
 
-        var_dump($request->Method());
 
         if ($request->isMethod('POST'))
         {
+
+            $version = $request->input("version");
+           
 
             $request->validate([
                 'pc_banner' => 'mimes:jpg,png,webp|max:2048',
@@ -382,19 +417,22 @@ class ProductController extends Controller
 
             }
 
-            $file = $request->file('product_size');
-            $fileName = $file->getClientOriginalName();
-            $filePath = $file->store('product/'.$product->id, "public");
-            
-            if($filePath) {
-                $productBgAttribute = ProductAttributeValue::where("product_id", $product->id)->where("attribute_id", 32)->first();
-                if(is_null($productBgAttribute)) $productBgAttribute = new ProductAttributeValue();
-                $productBgAttribute->product_id = $product->id;
-                $productBgAttribute->attribute_id = 32;
-                $productBgAttribute->text_value = $filePath;
-                $productBgAttribute->save();
-
+            if($version == "v1") {
+                $file = $request->file('product_size');
+                $fileName = $file->getClientOriginalName();
+                $filePath = $file->store('product/'.$product->id, "public");
+                
+                if($filePath) {
+                    $productBgAttribute = ProductAttributeValue::where("product_id", $product->id)->where("attribute_id", 32)->first();
+                    if(is_null($productBgAttribute)) $productBgAttribute = new ProductAttributeValue();
+                    $productBgAttribute->product_id = $product->id;
+                    $productBgAttribute->attribute_id = 32;
+                    $productBgAttribute->text_value = $filePath;
+                    $productBgAttribute->save();
+                }
             }
+
+            
 
 
         }
@@ -417,14 +455,19 @@ class ProductController extends Controller
             'attribute_id' => 32,
         ]);
 
+        // products display image
+        $product_image_lists = Cache::get("product_image_lists_".$product->id);
+
+        //var_dump($product_image_lists);
+
         //onebuy
         //pc banner
         //mobile banner
         //size image
 
-        if($act_prod_type=='v1') return view("shopify::products.".$act_type.".images.v1", compact("product", "productBgAttribute", "productBgAttribute_mobile", "productSizeImage", "act_prod_type","product_id", "act_type"));
-        if($act_prod_type=='v2') return view("shopify::products.".$act_type.".images.v2", compact("product", "productBgAttribute", "productBgAttribute_mobile", "productSizeImage", "act_prod_type","product_id", "act_type"));
-        if($act_prod_type=='v3') return view("shopify::products.".$act_type.".images.v3", compact("product", "productBgAttribute", "productBgAttribute_mobile", "productSizeImage", "act_prod_type","product_id", "act_type"));
+        if($act_prod_type=='v1') return view("shopify::products.".$act_type.".images.v1", compact("product", "productBgAttribute", "productBgAttribute_mobile", "productSizeImage", "act_prod_type","product_id", "act_type","product_image_lists"));
+        if($act_prod_type=='v2') return view("shopify::products.".$act_type.".images.v2", compact("product", "productBgAttribute", "productBgAttribute_mobile", "productSizeImage", "act_prod_type","product_id", "act_type", "product_image_lists"));
+        if($act_prod_type=='v3') return view("shopify::products.".$act_type.".images.v3", compact("product", "productBgAttribute", "productBgAttribute_mobile", "productSizeImage", "act_prod_type","product_id", "act_type", "product_image_lists"));
         
     }
 }

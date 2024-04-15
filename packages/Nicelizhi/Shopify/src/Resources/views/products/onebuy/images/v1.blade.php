@@ -28,11 +28,11 @@
                             <div class="col-lg-6">
                                 
                                     <div class="form-group">
-                                        <label for="exampleInputFile">Pc Banner</label>
+                                        <label for="pc_banner">Pc Banner</label>
                                         <div class="input-group">
                                             <div class="custom-file">
                                                 <input type="file" class="custom-file-input" name="pc_banner" id="pc_banner" accept="image/*">
-                                                <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                                                <label class="custom-file-label" for="pc_banner">Choose file</label>
                                             </div>
                                         </div>
                                         <div class="images">
@@ -47,11 +47,11 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="exampleInputFile">Mobile Banner</label>
+                                        <label for="mobile_bg">Mobile Banner</label>
                                         <div class="input-group">
                                             <div class="custom-file">
                                                 <input type="file" class="custom-file-input" name="mobile_bg" id="mobile_bg" accept="image/*">
-                                                <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                                                <label class="custom-file-label" for="mobile_bg">Choose file</label>
                                             </div>
                                         </div>
                                         <div class="images">
@@ -66,11 +66,11 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="exampleInputFile">Size Banner</label>
+                                        <label for="product_size">Size Banner</label>
                                         <div class="input-group">
                                             <div class="custom-file">
                                                 <input type="file" class="custom-file-input" name="product_size" id="product_size" accept="image/*">
-                                                <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                                                <label class="custom-file-label" for="product_size">Choose file</label>
                                             </div>
                                         </div>
                                         <div class="images">
