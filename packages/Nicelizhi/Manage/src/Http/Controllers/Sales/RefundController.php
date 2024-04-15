@@ -8,6 +8,7 @@ use Webkul\Sales\Repositories\OrderItemRepository;
 use Webkul\Sales\Repositories\RefundRepository;
 use Nicelizhi\Manage\DataGrids\Sales\OrderRefundDataGrid;
 use Nicelizhi\Manage\Helpers\SSP;
+Illuminate\Support\Facades\Log;
 
 class RefundController extends Controller
 {
@@ -115,6 +116,8 @@ class RefundController extends Controller
         $maxRefundAmount = $totals['grand_total']['price'] - $order->refunds()->sum('base_adjustment_refund');
 
         $refundAmount = $totals['grand_total']['price'] - $totals['shipping']['price'] + $data['refund']['shipping'] + $data['refund']['adjustment_refund'] - $data['refund']['adjustment_fee'];
+
+        Log::info($orderId."--". $refundAmount);
 
         if (! $refundAmount) {
             session()->flash('error', trans('admin::app.sales.refunds.create.invalid-refund-amount-error'));
