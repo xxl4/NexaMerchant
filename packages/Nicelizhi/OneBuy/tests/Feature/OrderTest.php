@@ -84,8 +84,12 @@ it('can create a paypal order', function () {
     ];
 
     // 201 http created
-    $this->post('/onebuy/order/addr/after',$data)->assertStatus(200);
+    $response = $this->post('/onebuy/order/addr/after',$data);
+    var_dump($response);
+    $response->assertStatus(200);
+
 });
+
 it('can create a airwallex order', function () {
 
 });
