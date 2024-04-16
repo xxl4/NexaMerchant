@@ -505,8 +505,10 @@ class Post extends Command
             $res = $this->get_content($url);
             Log::info("post to bm url ".$url." res ".json_encode($res));
 
+            $crm_channel = config('onebuy.crm_channel');
+
             
-            $url = "https://crm.heomai.com/api/offers/callBack?refer=".$cnv_id[1]."&revenue=".$order->grand_total."&currency_code=".$order->order_currency_code;
+            $url = "https://crm.heomai.com/api/offers/callBack?refer=".$cnv_id[1]."&revenue=".$order->grand_total."&currency_code=".$order->order_currency_code."&channel_id=".$crm_channel;
             $res = $this->get_content($url);
             Log::info("post to bm 2 url ".$url." res ".json_encode($res));
 
