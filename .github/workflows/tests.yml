@@ -44,15 +44,6 @@ jobs:
         run: |
           mkdir -p database
           touch database/database.sqlite
-      - name: Execute tests (Unit and Feature tests) via pest
-        env:
-          DB_CONNECTION: mysql
-          DB_HOST: mysql
-          DB_PORT: 3306
-          DB_DATABASE: test
-          DB_USERNAME: root
-          DB_PASSWORD: password
-        run: php artisan migrate && php artisan db:seed 
       - name: Download init db
         run: sudo apt-get install wget && sudo apt-get install unzip && wget -c ${{secrets.INIT_DB_URL }} -O db.zip
       - name: list file
