@@ -82,10 +82,7 @@ class Refund extends Base
     
             $sdk = new AirwallexSdk($paymentConfig, $productionMode);
     
-            $sdk->createReRefund($payment_intent_id, $order->id, round($order->grand_total, 2));
-
-
-
+            $sdk->createReRefund($payment_intent_id, $order->id, round($refund->grand_total, 2));
         }
     }
 }

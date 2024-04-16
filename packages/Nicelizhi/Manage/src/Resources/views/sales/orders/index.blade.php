@@ -30,6 +30,7 @@
                           <th>grand_total</th>
                           <th>base_grand_total</th>
                           <th>Transaction Id</th>
+                          <th>method_title</th>
                           <th>Payment Method</th>
                           <th>shipping_method</th>
                           <th>track_number</th>
@@ -110,6 +111,10 @@
           },{
             data: 'transaction_id'
           },{
+            data: 'method_title'
+          }
+          ,
+          {
             data: 'method'
           },{
             data: 'shipping_method'
