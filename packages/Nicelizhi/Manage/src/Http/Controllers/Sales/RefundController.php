@@ -115,8 +115,10 @@ class RefundController extends Controller
 
         $maxRefundAmount = $totals['grand_total']['price'] - $order->refunds()->sum('base_adjustment_refund');
 
+        
         $refundAmount = $totals['grand_total']['price'] - $totals['shipping']['price'] + $data['refund']['shipping'] + $data['refund']['adjustment_refund'] - $data['refund']['adjustment_fee'];
-
+        
+        
         Log::info($orderId."--". $refundAmount.'--'.$maxRefundAmount.'-'.json_encode($data).'--'.json_encode($totals));
         //return false;
 
