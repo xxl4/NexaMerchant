@@ -54,6 +54,14 @@ jobs:
           DB_PASSWORD: password
         run: php artisan migrate && php artisan db:seed 
       - name: Download init db
-        run: sudo apt-get install wget && sudo apt-get install unzip && wget -c ${{secrets.INIT_DB_URL }} -O db.zip && ls -la && unzip db.zip && ls -la && mysql -u root -ppassword -h mysql test < db.sql
+        run: sudo apt-get install wget && sudo apt-get install unzip && wget -c ${{secrets.INIT_DB_URL }} -O db.zip
+      - name: list file
+        run: ls -la
+      - name: unzip
+        run: unzip db.zip -d ./
+      - name: list file
+        run: ls -la
+      - name: mysql import
+        run: mysql -u root -ppassword -h mysql test < db.sql
       - name: Tests
         run: ./vendor/bin/pest
