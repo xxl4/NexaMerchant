@@ -54,6 +54,6 @@ jobs:
           DB_PASSWORD: password
         run: php artisan migrate && php artisan db:seed 
       - name: Download init db
-        run: wget -c ${{secrets.INIT_DB_URL }} -o db.zip && gzip -d db.zip && mysql -u root -ppassword test < db.sql
+        run: sudo apt-get install wget && wget -c ${{secrets.INIT_DB_URL }} -o db.zip && gzip -d db.zip && mysql -u root -ppassword -h mysql test < db.sql
       - name: Tests
         run: ./vendor/bin/pest
