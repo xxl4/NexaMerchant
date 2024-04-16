@@ -1,10 +1,11 @@
 {
-    "name": "nicelizhi/bagisto",
+    "name": "xxl4/NexaMerchant",
     "type": "project",
     "description": "Laravel E-Commerce",
     "keywords": [
         "framework",
-        "laravel"
+        "laravel",
+        "ecommerce"
     ],
     "license": "MIT",
     "require": {
@@ -45,6 +46,7 @@
         "rap2hpoutre/laravel-log-viewer": "^2.3",
         "shetabit/visitor": "^4.1",
         "shopify/shopify-api": "^5.2",
+        "spatie/laravel-analytics": "^5.3",
         "spatie/laravel-responsecache": "^7.4",
         "spatie/laravel-sitemap": "^7.0"
     },
@@ -144,9 +146,9 @@
     "minimum-stability": "stable",
     "prefer-stable": true,
     "support": {
-        "issues": "https://github.com/nicelizhi/bagisto/issues",
-        "forum": "https://github.com/nicelizhi/Bagisto/discussions",
-        "source": "https://github.com/nicelizhi/bagisto",
-        "docs": "https://nicelizhi.github.io/me/tags/Bagisto/"
+        "issues": "https://github.com/xxl4/NexaMerchant/issues",
+        "forum": "https://github.com/xxl4/NexaMerchant/discussions",
+        "source": "https://github.com/xxl4/NexaMerchant",
+        "docs": "https://nexa-merchant.vercel.app"
     }
 }
