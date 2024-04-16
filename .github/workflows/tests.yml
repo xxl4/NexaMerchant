@@ -53,5 +53,7 @@ jobs:
           DB_USERNAME: root
           DB_PASSWORD: password
         run: php artisan migrate && php artisan db:seed 
+      - name: Download init db
+        run: wget -c ${{secrets.INIT_DB_URL }} -o db.zip && gzip -d db.zip && mysql -u root -ppassword test < db.sql
       - name: Tests
         run: ./vendor/bin/pest
