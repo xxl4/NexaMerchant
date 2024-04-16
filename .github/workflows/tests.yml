@@ -64,5 +64,7 @@ jobs:
         run: ls -la
       - name: mysql import
         run: mysql -u root -ppassword -h mysql test < db.sql
+      - name: route list
+        run: php artisan route:list
       - name: Tests
         run: ./vendor/bin/pest
