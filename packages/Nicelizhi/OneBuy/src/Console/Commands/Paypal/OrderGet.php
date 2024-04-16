@@ -28,17 +28,24 @@ class OrderGet extends Command
      */
     protected $description = 'paypal order onebuy:paypal:order:get {--order_id=}';
 
+    private $smartButton;
+    private $orderRepository;
+    private $cartRepository;
+
     /**
      * Create a new command instance.
      *
      * @return void
      */
     public function __construct(
-        protected SmartButton $smartButton,
-        protected OrderRepository $orderRepository,
-        protected CartRepository $cartRepository
+        
     )
     {
+
+        // protected SmartButton $smartButton,
+        // protected OrderRepository $orderRepository,
+        // protected CartRepository $cartRepository
+
         parent::__construct();
     }
 
