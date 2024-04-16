@@ -1,5 +1,13 @@
 <?php
 use Webkul\Product\Models\Product;
+
+it('can view the onebuy page', function() {
+    $response = $this->get('/onebuy/8395243356390');
+    $response->assertStatus(200);
+});
+
+
+
 it('can create a paypal order', function () {
 
     $slugOrPath = "8395243356390";
