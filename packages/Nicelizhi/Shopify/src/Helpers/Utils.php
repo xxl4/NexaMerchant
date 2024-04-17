@@ -35,13 +35,14 @@ final class Utils {
 
     // base on shopify data create options data
     public static function createOptions($options) {
-        var_dump($options);
         $data = [];
         $LocalOptions = [];
         $color = [];
         $size = [];
         $color_mapp = [];
         $size_mapp = [];
+
+        $version = null;
 
         foreach($options as $kk => $option) {
             $option['name'] = strtolower($option['name']);
@@ -61,7 +62,7 @@ final class Utils {
             if(strpos($option['name'], "farbe") !==false) $attr_id = 23;
 
             if(empty($attr_id)) {
-                var_dump($option['name']);
+                //var_dump($option['name']);
                 $error = 1;
                 continue;
                 //exit;
@@ -70,7 +71,7 @@ final class Utils {
 
             $values = $option['values'];
             foreach($values as $kky => $value) {
-                var_dump($value);
+                //var_dump($value);
                 if($value==35 && $attr_id==23) {
                     //var_dump($item);exit;
                 }
@@ -113,8 +114,26 @@ final class Utils {
 
                 $LocalOptions[$attr_id][] = $attribute_option_id;
             }
+
+            if(!empty($color) && !empty($size)) {
+                $version = "v1";
+            }
+
+            // one attr
+            if(!empty($color) || !empty($size)) {
+                if(empty($version)) $version = "v2";
+                
+            }
+
+            // zero attr
+            if(empty($color) && empty($size)) {
+                if(empty($version)) $version = "v3";
+            }
             
         }
+
+        if($version==null) $version = "v3";
+
 
         //var_dump($LocalOptions);
 
@@ -122,6 +141,7 @@ final class Utils {
         $data['color_mapp'] = $color_mapp;
         $data['size'] = $size;
         $data['size_mapp'] = $size_mapp;
+        $data['version'] = $version;
         $data['LocalOptions'] = $LocalOptions;
 
         //var_dump($LocalOptions);exit;

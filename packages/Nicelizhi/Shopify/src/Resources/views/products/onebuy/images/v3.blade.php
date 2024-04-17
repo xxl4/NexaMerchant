@@ -137,7 +137,7 @@
                     </div>
 
                     <div class="card-footer">
-                        <input type="hidden" name="version" value="<?php echo $act_prod_type; ?>">
+                        <input type="hidden" name="version" value="<?php echo $version; ?>">
                         <button type="submit" class="btn btn-primary">submit</button>
                     </div>
                 </form>

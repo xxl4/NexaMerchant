@@ -88,89 +88,11 @@ class ProductController extends Controller
         }
 
         $options = $item->options;
-        //var_dump($options);
-        $color = [];
-        $size = [];
-        foreach($options as $kk => $option) {
-            $option['name'] = strtolower($option['name']);
-            echo $option['name']."\r\n";
-            $attr_id = 0;
-            if(strpos($option['name'], "Size")!==false) $attr_id = 24;
-            if(strpos($option['name'], "size")!==false) $attr_id = 24;
-            if(strpos($option['name'], "GRÖSSE")!==false) $attr_id = 24;
-            if(strpos($option['name'], "grÖsse")!==false) $attr_id = 24;
-            if(strpos($option['name'], "尺码") !==false) $attr_id = 24;
-            if(strpos($option['name'], "Length") !==false) $attr_id = 24;
-            if(strpos($option['name'], "größe") !==false) $attr_id = 24;
-            if(strpos($option['name'], "größe") !==false) $attr_id = 24;
-            if(strpos($option['name'], "Color") !==false) $attr_id = 23;
-            if(strpos($option['name'], "color") !==false) $attr_id = 23;
-            if(strpos($option['name'], "Couleur") !==false) $attr_id = 23;
-            if(strpos($option['name'], "颜色") !==false) $attr_id = 23;
-            if(strpos($option['name'], "FARBE") !==false) $attr_id = 23;
-            if(strpos($option['name'], "farbe") !==false) $attr_id = 23;
+        $LocalOptions = \Nicelizhi\Shopify\Helpers\Utils::createOptions($options);
 
-            echo $attr_id."\r\n";
+        $version = $LocalOptions['version'];
 
-            if(empty($attr_id)) {
-                $error = 1;
-                continue;
-                //exit;
-            }
-
-            $values = $option['values'];
-            $version = null;
-            foreach($values as $kky => $value) {
-                $attr_option = AttributeOption::where("attribute_id", $attr_id)->where("admin_name", $value)->first();
-                if(is_null($attr_option)) {
-                    $attr_option = new AttributeOption();
-                    $attr_option->attribute_id = $attr_id;
-                    $attr_option->admin_name = $value;
-                    $attr_option->save();
-                    $attribute_option_id = $attr_option->id;
-                }else{
-                    $attribute_option_id = $attr_option->id;
-                }
-
-                $locales = core()->getAllLocales()->pluck('code')->toArray();
-
-                //var_dump($attr_opt_tran);exit;
-                foreach($locales as $kl => $locale) {
-                    $attr_opt_tran = AttributeOptionTranslation::where("attribute_option_id", $attribute_option_id)->where("locale", $locale)->first();
-                    if(is_null($attr_opt_tran)) {
-                        $attr_opt_tran = new AttributeOptionTranslation();
-                        if($locale==$this->lang) {
-                            $attr_opt_tran->label = $value;
-                        } else{
-                            $attr_opt_tran->label = "";
-                        }
-                        $attr_opt_tran->locale = $locale;
-                        $attr_opt_tran->attribute_option_id = $attribute_option_id;
-                        $attr_opt_tran->save();
-                    }
-                }
-                if($attr_id==23) $color[$attribute_option_id] = $attribute_option_id; //array_push($color, $attribute_option_id); 
-                if($attr_id==24) $size[$attribute_option_id] = $attribute_option_id;
-            }
-
-            // two attr
-            if(!empty($color) && !empty($size)) {
-                $version = "v1";
-            }
-
-            // one attr
-            if(!empty($color) || !empty($size)) {
-                if(empty($version)) $version = "v2";
-                
-            }
-
-            // zero attr
-            if(empty($color) && empty($size)) {
-                if(empty($version)) $version = "v3";
-            }
-        }
-
-        if($version==null) $version = "v3";
+        Cache::put("onebuy_".$product_id, $version);
 
         // two attr
         if($version=='v1') {
@@ -194,102 +116,19 @@ class ProductController extends Controller
     }
 
     public function checkoutUrlGet($product_id) {
-        $item = \Nicelizhi\Shopify\Models\ShopifyProduct::where("product_id", $product_id)->first();
 
-        if(is_null($item)) {
-            return false;
+        $version = Cache::get("onebuy_".$product_id);
+        if(empty($version)) {
+            $item = \Nicelizhi\Shopify\Models\ShopifyProduct::where("product_id", $product_id)->first();
+
+            if(is_null($item)) {
+                return false;
+            }
+            $options = $item->options;
+            $LocalOptions = \Nicelizhi\Shopify\Helpers\Utils::createOptions($options);
+            $version = $LocalOptions['version'];
+            Cache::put("onebuy_".$product_id, $version);
         }
-
-        $options = $item->options;
-        //var_dump($options);
-        $color = [];
-        $size = [];
-        foreach($options as $kk => $option) {
-            $option['name'] = strtolower($option['name']);
-            echo $option['name']."\r\n";
-            $attr_id = 0;
-            if(strpos($option['name'], "Size")!==false) $attr_id = 24;
-            if(strpos($option['name'], "size")!==false) $attr_id = 24;
-            if(strpos($option['name'], "GRÖSSE")!==false) $attr_id = 24;
-            if(strpos($option['name'], "grÖsse")!==false) $attr_id = 24;
-            if(strpos($option['name'], "尺码") !==false) $attr_id = 24;
-            if(strpos($option['name'], "Length") !==false) $attr_id = 24;
-            if(strpos($option['name'], "größe") !==false) $attr_id = 24;
-            if(strpos($option['name'], "größe") !==false) $attr_id = 24;
-            if(strpos($option['name'], "Color") !==false) $attr_id = 23;
-            if(strpos($option['name'], "color") !==false) $attr_id = 23;
-            if(strpos($option['name'], "Couleur") !==false) $attr_id = 23;
-            if(strpos($option['name'], "颜色") !==false) $attr_id = 23;
-            if(strpos($option['name'], "FARBE") !==false) $attr_id = 23;
-            if(strpos($option['name'], "farbe") !==false) $attr_id = 23;
-
-            echo $attr_id."\r\n";
-
-            if(empty($attr_id)) {
-                $error = 1;
-                continue;
-                //exit;
-            }
-
-            $values = $option['values'];
-            $version = null;
-            foreach($values as $kky => $value) {
-                $attr_option = AttributeOption::where("attribute_id", $attr_id)->where("admin_name", $value)->first();
-                if(is_null($attr_option)) {
-                    $attr_option = new AttributeOption();
-                    $attr_option->attribute_id = $attr_id;
-                    $attr_option->admin_name = $value;
-                    $attr_option->save();
-                    $attribute_option_id = $attr_option->id;
-                }else{
-                    $attribute_option_id = $attr_option->id;
-                }
-
-                $locales = core()->getAllLocales()->pluck('code')->toArray();
-
-                //var_dump($attr_opt_tran);exit;
-                foreach($locales as $kl => $locale) {
-                    $attr_opt_tran = AttributeOptionTranslation::where("attribute_option_id", $attribute_option_id)->where("locale", $locale)->first();
-                    if(is_null($attr_opt_tran)) {
-                        $attr_opt_tran = new AttributeOptionTranslation();
-                        if($locale==$this->lang) {
-                            $attr_opt_tran->label = $value;
-                        } else{
-                            $attr_opt_tran->label = "";
-                        }
-                        $attr_opt_tran->locale = $locale;
-                        $attr_opt_tran->attribute_option_id = $attribute_option_id;
-                        $attr_opt_tran->save();
-                    }
-                }
-                if($attr_id==23) $color[$attribute_option_id] = $attribute_option_id; //array_push($color, $attribute_option_id); 
-                if($attr_id==24) $size[$attribute_option_id] = $attribute_option_id;
-            }
-
-            //var_dump($version);exit;
-
-            // two attr
-            if(!empty($color) && !empty($size)) {
-                $version = "v1";
-            }
-
-            // one attr
-            if(!empty($color) || !empty($size)) {
-                if(empty($version)) $version = "v2";
-                
-            }
-
-            // zero attr
-            if(empty($color) && empty($size)) {
-                if(empty($version)) $version = "v3";
-            }
-
-        }
-
-        if($version==null) $version = "v3";
-
-        Cache::put("onebuy_".$product_id, $version);
-
         // two attr
         if($version=='v1') {
             //Artisan::call("shopify:product:get", ["--prod_id"=> $product_id]);
@@ -332,9 +171,6 @@ class ProductController extends Controller
         $comment_list_key = "checkout_v1_product_comments_".$product['id'];
         if ($request->isMethod('POST'))
         {
-
-
-
             $request->validate([
                 'comments_list_file' => 'required|max:2048',
             ]);
@@ -372,7 +208,20 @@ class ProductController extends Controller
      * 
      */
     public function images($product_id, $act_type, Request $request) {
-        $act_prod_type = Cache::get($act_type."_".$product_id);
+        //$act_prod_type = Cache::get($act_type."_".$product_id);
+
+        $version = Cache::get($act_type."_".$product_id);
+        if(empty($version)) {
+            $item = \Nicelizhi\Shopify\Models\ShopifyProduct::where("product_id", $product_id)->first();
+
+            if(is_null($item)) {
+                return false;
+            }
+            $options = $item->options;
+            $LocalOptions = \Nicelizhi\Shopify\Helpers\Utils::createOptions($options);
+            $version = $LocalOptions['version'];
+            Cache::put("onebuy_".$product_id, $version);
+        }
 
         $product = $this->productRepository->findBySlug($product_id);
 
@@ -469,9 +318,9 @@ class ProductController extends Controller
         //mobile banner
         //size image
 
-        if($act_prod_type=='v1') return view("shopify::products.".$act_type.".images.v1", compact("product", "productBgAttribute", "productBgAttribute_mobile", "productSizeImage", "act_prod_type","product_id", "act_type","product_image_lists"));
-        if($act_prod_type=='v2') return view("shopify::products.".$act_type.".images.v2", compact("product", "productBgAttribute", "productBgAttribute_mobile", "productSizeImage", "act_prod_type","product_id", "act_type", "product_image_lists"));
-        if($act_prod_type=='v3') return view("shopify::products.".$act_type.".images.v3", compact("product", "productBgAttribute", "productBgAttribute_mobile", "productSizeImage", "act_prod_type","product_id", "act_type", "product_image_lists"));
+        if($version=='v1') return view("shopify::products.".$act_type.".images.v1", compact("product", "productBgAttribute", "productBgAttribute_mobile", "productSizeImage", "version","product_id", "act_type","product_image_lists"));
+        if($version=='v2') return view("shopify::products.".$act_type.".images.v2", compact("product", "productBgAttribute", "productBgAttribute_mobile", "productSizeImage", "version","product_id", "act_type", "product_image_lists"));
+        if($version=='v3') return view("shopify::products.".$act_type.".images.v3", compact("product", "productBgAttribute", "productBgAttribute_mobile", "productSizeImage", "version","product_id", "act_type", "product_image_lists"));
         
     }
 }
