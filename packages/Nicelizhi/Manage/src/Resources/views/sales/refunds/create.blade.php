@@ -136,7 +136,7 @@
                         <th>{{ trans('admin::app.sales.refunds.create.refund-shipping') }}</th>
                         <th>{{ trans('admin::app.sales.refunds.create.adjustment-refund') }}</th>
                         <th>{{ trans('admin::app.sales.refunds.create.adjustment-fee') }}</th>
-                        <th>Order Summary</th>
+                        <th>固定退款金额</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -164,6 +164,14 @@
                                 <input type="text"
                                             name="refund[adjustment_fee]"
                                             id="refund[adjustment_fee]" 
+                                            value="0"
+                                            rules="required|min_value:0"
+                                        >
+                            </td>
+                            <td>
+                                <input type="text"
+                                            name="refund[custom_refund_amount]"
+                                            id="refund[custom_refund_amount]" 
                                             value="0"
                                             rules="required|min_value:0"
                                         >
