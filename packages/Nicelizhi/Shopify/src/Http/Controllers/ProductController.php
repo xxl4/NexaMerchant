@@ -390,51 +390,56 @@ class ProductController extends Controller
             ]);
 
             $file = $request->file('pc_banner');
-            $fileName = $file->getClientOriginalName();
-            $filePath = $file->store('product/'.$product->id, "public");
-            
-            if($filePath) {
-                $productBgAttribute = ProductAttributeValue::where("product_id", $product->id)->where("attribute_id", 29)->first();
-                if(is_null($productBgAttribute)) $productBgAttribute = new ProductAttributeValue();
-                $productBgAttribute->product_id = $product->id;
-                $productBgAttribute->attribute_id = 29;
-                $productBgAttribute->text_value = $filePath;
-                $productBgAttribute->save();
-
-            }
-
-            $file = $request->file('mobile_bg');
-            $fileName = $file->getClientOriginalName();
-            $filePath = $file->store('product/'.$product->id, "public");
-            
-            if($filePath) {
-                $productBgAttribute = ProductAttributeValue::where("product_id", $product->id)->where("attribute_id", 30)->first();
-                if(is_null($productBgAttribute)) $productBgAttribute = new ProductAttributeValue();
-                $productBgAttribute->product_id = $product->id;
-                $productBgAttribute->attribute_id = 30;
-                $productBgAttribute->text_value = $filePath;
-                $productBgAttribute->save();
-
-            }
-
-            if($version == "v1") {
-                $file = $request->file('product_size');
+            if(!empty($file)) {
                 $fileName = $file->getClientOriginalName();
                 $filePath = $file->store('product/'.$product->id, "public");
                 
                 if($filePath) {
-                    $productBgAttribute = ProductAttributeValue::where("product_id", $product->id)->where("attribute_id", 32)->first();
+                    $productBgAttribute = ProductAttributeValue::where("product_id", $product->id)->where("attribute_id", 29)->first();
                     if(is_null($productBgAttribute)) $productBgAttribute = new ProductAttributeValue();
                     $productBgAttribute->product_id = $product->id;
-                    $productBgAttribute->attribute_id = 32;
+                    $productBgAttribute->attribute_id = 29;
                     $productBgAttribute->text_value = $filePath;
                     $productBgAttribute->save();
+    
                 }
             }
 
-            
+
+            $file2 = $request->file('mobile_bg');
+            if(!empty($file2)) {
+                $fileName = $file2->getClientOriginalName();
+                $filePath = $file2->store('product/'.$product->id, "public");
+                
+                if($filePath) {
+                    $productBgAttribute = ProductAttributeValue::where("product_id", $product->id)->where("attribute_id", 30)->first();
+                    if(is_null($productBgAttribute)) $productBgAttribute = new ProductAttributeValue();
+                    $productBgAttribute->product_id = $product->id;
+                    $productBgAttribute->attribute_id = 30;
+                    $productBgAttribute->text_value = $filePath;
+                    $productBgAttribute->save();
+    
+                }
+            }
 
 
+            if($version == "v1") {
+                $file3 = $request->file('product_size');
+                if(!empty($file3)) {
+                    $fileName = $file3->getClientOriginalName();
+                    $filePath = $file3->store('product/'.$product->id, "public");
+                    
+                    if($filePath) {
+                        $productBgAttribute = ProductAttributeValue::where("product_id", $product->id)->where("attribute_id", 32)->first();
+                        if(is_null($productBgAttribute)) $productBgAttribute = new ProductAttributeValue();
+                        $productBgAttribute->product_id = $product->id;
+                        $productBgAttribute->attribute_id = 32;
+                        $productBgAttribute->text_value = $filePath;
+                        $productBgAttribute->save();
+                    }
+                }
+
+            }
         }
         
 
