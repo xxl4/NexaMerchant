@@ -289,6 +289,7 @@ class ProductController extends Controller
                 }
 
             }
+            \Nicelizhi\Shopify\Helpers\Utils::clearCache($product->id, $product_id);
         }
         
 

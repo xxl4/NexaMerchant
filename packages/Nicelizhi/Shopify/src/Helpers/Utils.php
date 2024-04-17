@@ -149,4 +149,18 @@ final class Utils {
         return $data;
     }
 
+    // clear cache
+    public static function clearCache($pid, $shopify_id=0){
+        if($pid!=0) {
+            Cache::pull("product_color_size_".$pid);
+            Cache::pull("product_attributes_".$pid);
+            Cache::pull("product_sku_size_".$pid);
+            Cache::pull("product_sku_".$pid);
+            Cache::pull("product_sku_".$pid);
+        }
+        if($shopify_id!=0) {
+            Cache::pull("product_url_".$shopify_id);
+        }
+    }
+
 }
