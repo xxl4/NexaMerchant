@@ -115,16 +115,19 @@ class RefundController extends Controller
 
         $maxRefundAmount = $totals['grand_total']['price'] - $order->refunds()->sum('base_adjustment_refund');
 
+        $refundAmount2 = 0;
+
         if(!empty($data['refund']['custom_refund_amount'])) {
             $refundAmount = $totals['grand_total']['price'] - $totals['shipping']['price'] + $data['refund']['shipping'] + $data['refund']['adjustment_refund'] - $data['refund']['adjustment_fee'];
             $data['refund']['adjustment_fee'] = abs($data['refund']['custom_refund_amount'] - $refundAmount);
-            $refundAmount = $data['refund']['custom_refund_amount'];
-        }else{
-            $refundAmount = $totals['grand_total']['price'] - $totals['shipping']['price'] + $data['refund']['shipping'] + $data['refund']['adjustment_refund'] - $data['refund']['adjustment_fee'];
+            //$refundAmount = $data['refund']['custom_refund_amount'];
+            //$refundAmount2 = $totals['grand_total']['price'] - $totals['shipping']['price'] + $data['refund']['shipping'] + $data['refund']['adjustment_refund'] - $data['refund']['adjustment_fee'];
         }
+
+        $refundAmount = $totals['grand_total']['price'] - $totals['shipping']['price'] + $data['refund']['shipping'] + $data['refund']['adjustment_refund'] - $data['refund']['adjustment_fee'];
         
-        Log::info($orderId."--". $refundAmount.'--'.$maxRefundAmount.'-'.json_encode($data).'--'.json_encode($totals));
-        return false;
+        Log::info($orderId."--". $refundAmount.'---'.$refundAmount2.'--'.$maxRefundAmount.'-'.json_encode($data).'--'.json_encode($totals));
+        //return false;
 
         if (! $refundAmount) {
             session()->flash('error', trans('admin::app.sales.refunds.create.invalid-refund-amount-error'));
