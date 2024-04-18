@@ -17,7 +17,7 @@
     </div>
     <div class="card-body">
     <div class="chart">
-        <canvas id="areaChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+        <canvas id="areaChart" style="min-height: 350px; height: 350px; max-height: 350px; max-width: 100%;"></canvas>
     </div>
 </div>
 </div>
@@ -46,24 +46,31 @@
       
   
       var areaChartOptions = {
-        maintainAspectRatio : false,
-        responsive : true,
+      maintainAspectRatio : false,
+      aspectRatio: 3.17,
+      responsive : true,
+      plugins: {
         legend: {
-          display: false
+            display: false
+        }
+    },
+      scales: {
+        x: {
+            beginAtZero: true,
+
+            border: {
+                dash: [8, 4],
+            }
         },
-        scales: {
-          xAxes: [{
-            gridLines : {
-              display : false,
+
+        y: {
+            beginAtZero: true,
+            border: {
+                dash: [8, 4],
             }
-          }],
-          yAxes: [{
-            gridLines : {
-              display : false,
-            }
-          }]
         }
       }
+    }
 
      // {{ route('admin.reporting.sales.stats') }}
      var filtets = Object.assign({}, filtets);
@@ -105,7 +112,8 @@
                 borderColor: '#0E9CFF',
                 backgroundColor: 'rgba(14, 156, 255, 0.3)',
                 fill: true,
-                data                : current
+                data: current,
+                label: data.date_range.current
             },{
                 lineTension: 0.2,
                 pointStyle: false,
@@ -113,7 +121,8 @@
                 borderColor: '#34D399',
                 backgroundColor: 'rgba(52, 211, 153, 0.3)',
                 fill: true,
-            data                : previous
+                data: previous,
+                label: data.date_range.previous
             },
             ]
         }
