@@ -10,6 +10,7 @@ use Nicelizhi\Manage\DataGrids\Sales\OrderInvoicesDataGrid;
 use Nicelizhi\Manage\DataGrids\Sales\InvoicesTransactionsDatagrid;
 use Nicelizhi\Manage\Listeners\Invoice as InvoiceListener;
 use Webkul\Core\Traits\PDFHandler;
+use Nicelizhi\Manage\Helpers\SSP;
 
 class InvoiceController extends Controller
 {
@@ -36,7 +37,36 @@ class InvoiceController extends Controller
     public function index()
     {
         if (request()->ajax()) {
-            return app(OrderInvoicesDataGrid::class)->toJson();
+
+            $table_pre = config("database.connections.mysql.prefix");
+            $table = $table_pre.'invoices';
+
+            // Table's primary key
+            $primaryKey = 'id';
+            
+            $columns = array(
+                //array( 'db' => 'id', 'dt' => 0 ),
+                array( 'db' => '`t`.`id`',  'dt' => 'id', 'field'=>'id','formatter' => function($d, $row){
+                    return '#'.$d;
+                } ),
+                array( 'db' => '`t`.`order_id`',  'dt' => 'order_id', 'field'=>'order_id'),
+                array( 'db' => '`t`.`state`',   'dt' => 'state', 'field'=>'state' ),
+                array( 'db' => '`t`.`grand_total`',   'dt' => 'grand_total', 'field'=>'grand_total' ),
+                array( 'db' => '`t`.`increment_id`',   'dt' => 'increment_id', 'field'=>'increment_id' ),
+                array( 'db' => '`t`.`transaction_id`',   'dt' => 'transaction_id', 'field'=>'transaction_id' ),
+                array( 'db' => '`t`.`created_at`',   'dt' => 'created_at', 'field'=>'created_at' ),
+            );
+            // SQL server connection information
+            $sql_details = [];
+
+            $joinQuery = "FROM `{$table}` AS `t` ";
+            $extraCondition = "";
+            //$extraCondition = "`a`.`address_type`='cart_shipping'";
+
+
+            return json_encode(SSP::simple( request()->input(), $sql_details, $table, $primaryKey, $columns, $joinQuery, $extraCondition ));
+
+            //return app(OrderInvoicesDataGrid::class)->toJson();
         }
 
         return view('admin::sales.invoices.index');
