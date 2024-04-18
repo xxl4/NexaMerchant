@@ -7,6 +7,7 @@ use Webkul\Sales\Repositories\OrderRepository;
 use Webkul\Sales\Repositories\OrderItemRepository;
 use Webkul\Sales\Repositories\ShipmentRepository;
 use Nicelizhi\Manage\DataGrids\Sales\OrderShipmentsDataGrid;
+use Nicelizhi\Manage\Helpers\SSP;
 
 class ShipmentController extends Controller
 {
@@ -31,7 +32,36 @@ class ShipmentController extends Controller
     public function index()
     {
         if (request()->ajax()) {
-            return app(OrderShipmentsDataGrid::class)->toJson();
+            //return app(OrderShipmentsDataGrid::class)->toJson();
+
+            $table_pre = config("database.connections.mysql.prefix");
+            $table = $table_pre.'shipments';
+
+            // Table's primary key
+            $primaryKey = 'id';
+            
+            $columns = array(
+                //array( 'db' => 'id', 'dt' => 0 ),
+                array( 'db' => '`t`.`id`',  'dt' => 'id', 'field'=>'id','formatter' => function($d, $row){
+                    return '#'.$d;
+                } ),
+                array( 'db' => '`t`.`order_id`',  'dt' => 'order_id', 'field'=>'order_id'),
+                array( 'db' => '`t`.`total_qty`',  'dt' => 'total_qty', 'field'=>'total_qty'),
+                array( 'db' => '`t`.`status`',   'dt' => 'status', 'field'=>'status' ),
+                array( 'db' => '`t`.`carrier_code`',   'dt' => 'carrier_code', 'field'=>'carrier_code' ),
+                array( 'db' => '`t`.`carrier_title`',   'dt' => 'carrier_title', 'field'=>'carrier_title' ),
+                array( 'db' => '`t`.`track_number`',   'dt' => 'track_number', 'field'=>'track_number' ),
+                array( 'db' => '`t`.`created_at`',   'dt' => 'created_at', 'field'=>'created_at' ),
+            );
+            // SQL server connection information
+            $sql_details = [];
+
+            $joinQuery = "FROM `{$table}` AS `t` ";
+            $extraCondition = "";
+            //$extraCondition = "`a`.`address_type`='cart_shipping'";
+
+
+            return json_encode(SSP::simple( request()->input(), $sql_details, $table, $primaryKey, $columns, $joinQuery, $extraCondition ));
         }
 
         return view('admin::sales.shipments.index');
