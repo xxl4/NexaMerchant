@@ -3,149 +3,138 @@
     <!-- Shimmer -->
     <x-admin::shimmer.reporting.sales.total-sales/>
 </v-reporting-sales-total-sales>
+<div class="card card-primary">
+    <div class="card-header">
+    <h3 class="card-title">@lang('admin::app.reporting.sales.index.total-sales')</h3>
+    <div class="card-tools">
+    <button type="button" class="btn btn-tool" data-card-widget="collapse">
+    <i class="fas fa-minus"></i>
+    </button>
+    <button type="button" class="btn btn-tool" data-card-widget="remove">
+    <i class="fas fa-times"></i>
+    </button>
+    </div>
+    </div>
+    <div class="card-body">
+    <div class="chart">
+        <canvas id="areaChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+    </div>
+</div>
+</div>
+<!-- jQuery -->
+<script src="/themes/manage/AdminLTE/plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="/themes/manage/AdminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/themes/manage/AdminLTE/plugins/chart.js/Chart.min.js"></script>
+<script src="/themes/manage/AdminLTE/dist/js/adminlte.min.js?v=3.2.0"></script>
+<script>
+    $(function () {
+      /* ChartJS
+       * -------
+       * Here we will create a few charts using ChartJS
+       */
+  
+      //--------------
+      //- AREA CHART -
+      //--------------
+  
+      // Get context with jQuery - using jQuery's .get() method.
+      var areaChartCanvas = $('#areaChart').get(0).getContext('2d')
 
-@pushOnce('scripts')
-    <script type="text/x-template" id="v-reporting-sales-total-sales-template">
-        <!-- Shimmer -->
-        <template v-if="isLoading">
-            <x-admin::shimmer.reporting.sales.total-sales/>
-        </template>
-
-        <!-- Total Sales Section -->
-        <template v-else>
-            <div class="relative p-[16px] bg-white dark:bg-gray-900 rounded-[4px] box-shadow">
-                <!-- Header -->
-                <div class="flex items-center justify-between mb-[16px]">
-                    <p class="text-[16px] text-gray-600 dark:text-white font-semibold">
-                        @lang('admin::app.reporting.sales.index.total-sales')
-                    </p>
-
-                    <a
-                        href="{{ route('admin.reporting.sales.view', ['type' => 'total-sales']) }}"
-                        class="text-[14px] text-blue-600 cursor-pointer transition-all hover:underline"
-                    >
-                        @lang('admin::app.reporting.sales.index.view-details')
-                    </a>
-                </div>
-                
-                <!-- Content -->
-                <div class="grid gap-[16px]">
-                    <div class="flex gap-[16px] place-content-start">
-                        <p class="text-[30px] text-gray-600 dark:text-gray-300 font-bold leading-9">
-                            @{{ report.statistics.sales.formatted_total }}
-                        </p>
-                        
-                        <div class="flex gap-[2px] items-center">
-                            <p
-                                class="text-[16px] text-emerald-500"
-                                :class="[report.statistics.sales.progress < 0 ?  'text-red-500' : 'text-emerald-500']"
-                            >
-                                @{{ report.statistics.sales.progress.toFixed(2) }}%
-                            </p>
-
-                            <span
-                                class="text-[16px] text-emerald-500"
-                                :class="[report.statistics.sales.progress < 0 ? 'icon-down-stat text-red-500 dark:!text-red-500' : 'icon-up-stat text-emerald-500 dark:!text-emerald-500']"
-                            ></span>
-                        </div>
-                    </div>
-
-                    <p class="text-[16px] text-gray-600 dark:text-gray-300 font-semibold">
-                        @lang('admin::app.reporting.sales.index.sales-over-time')
-                    </p>
-
-                    <!-- Line Chart -->
-                    <x-admin::charts.line
-                        ::labels="chartLabels"
-                        ::datasets="chartDatasets"
-                    />
-
-                    <!-- Date Range Section -->
-                    <div class="flex gap-[20px] justify-center">
-                        <div class="flex gap-[4px] items-center">
-                            <span class="w-[14px] h-[14px] rounded-[3px] bg-emerald-400"></span>
-
-                            <p class="text-[12px] dark:text-gray-300">
-                                @{{ report.date_range.previous }}
-                            </p>
-                        </div>
-
-                        <div class="flex gap-[4px] items-center">
-                            <span class="w-[14px] h-[14px] rounded-[3px] bg-sky-400"></span>
-
-                            <p class="text-[12px] dark:text-gray-300">
-                                @{{ report.date_range.current }}
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </template>
-    </script>
-
-    <script type="module">
-        app.component('v-reporting-sales-total-sales', {
-            template: '#v-reporting-sales-total-sales-template',
-
-            data() {
-                return {
-                    report: [],
-
-                    isLoading: true,
-                }
-            },
-
-            computed: {
-                chartLabels() {
-                    return this.report.statistics.over_time.current.map(({ label }) => label);
-                },
-
-                chartDatasets() {
-                    return [{
-                        data: this.report.statistics.over_time.current.map(({ total }) => total),
-                        lineTension: 0.2,
-                        pointStyle: false,
-                        borderWidth: 2,
-                        borderColor: '#0E9CFF',
-                        backgroundColor: 'rgba(14, 156, 255, 0.3)',
-                        fill: true,
-                    }, {
-                        data: this.report.statistics.over_time.previous.map(({ total }) => total),
-                        lineTension: 0.2,
-                        pointStyle: false,
-                        borderWidth: 2,
-                        borderColor: '#34D399',
-                        backgroundColor: 'rgba(52, 211, 153, 0.3)',
-                        fill: true,
-                    }];
-                }
-            },
-
-            mounted() {
-                this.getStats({});
-
-                this.$emitter.on('reporting-filter-updated', this.getStats);
-            },
-
-            methods: {
-                getStats(filtets) {
-                    this.isLoading = true;
-
-                    var filtets = Object.assign({}, filtets);
-
-                    filtets.type = 'total-sales';
-
-                    this.$axios.get("{{ route('admin.reporting.sales.stats') }}", {
-                            params: filtets
-                        })
-                        .then(response => {
-                            this.report = response.data;
-
-                            this.isLoading = false;
-                        })
-                        .catch(error => {});
-                }
+      var areaChartData = {}
+  
+      
+  
+      var areaChartOptions = {
+        maintainAspectRatio : false,
+        responsive : true,
+        legend: {
+          display: false
+        },
+        scales: {
+          xAxes: [{
+            gridLines : {
+              display : false,
             }
+          }],
+          yAxes: [{
+            gridLines : {
+              display : false,
+            }
+          }]
+        }
+      }
+
+     // {{ route('admin.reporting.sales.stats') }}
+     var filtets = Object.assign({}, filtets);
+     filtets.type = 'total-sales'
+
+     $.ajax({
+        url: "{{ route('admin.reporting.sales.stats') }}",
+        data: filtets,
+        async: true,
+        dataType: 'json',
+        type: "get",
+    }).done(function (data) {
+
+        //console.log(data);
+        
+        labels = [];
+        current = [];
+        previous = [];
+
+        data.statistics.over_time.current.map((label) => {
+            //console.log(label);
+            labels.push(label.label);
+            current.push(label.total);
         });
-    </script>
-@endPushOnce
+
+        data.statistics.over_time.previous.map((label) => {
+            //console.log(label);
+            //labels.push(label.label);
+            previous.push(label.total);
+        });
+
+        areaChartData = {
+            labels  : labels,
+            datasets: [
+            {
+                label               : 'Digital Goods',
+                backgroundColor     : 'rgba(60,141,188,0.9)',
+                borderColor         : 'rgba(60,141,188,0.8)',
+                pointRadius          : false,
+                pointColor          : '#3b8bba',
+                pointStrokeColor    : 'rgba(60,141,188,1)',
+                pointHighlightFill  : '#fff',
+                pointHighlightStroke: 'rgba(60,141,188,1)',
+                data                : current
+            },{
+            label               : 'Electronics',
+            backgroundColor     : 'rgba(210, 214, 222, 1)',
+            borderColor         : 'rgba(210, 214, 222, 1)',
+            pointRadius         : false,
+            pointColor          : 'rgba(210, 214, 222, 1)',
+            pointStrokeColor    : '#c1c7d1',
+            pointHighlightFill  : '#fff',
+            pointHighlightStroke: 'rgba(220,220,220,1)',
+            data                : previous
+            },
+            ]
+        }
+
+        new Chart(areaChartCanvas, {
+            type: 'line',
+            data: areaChartData,
+            options: areaChartOptions
+        })
+
+    });
+
+    console.log(areaChartData);
+  
+      // This will get the first returned node in the jQuery collection.
+      
+  
+      
+    })
+  </script>
