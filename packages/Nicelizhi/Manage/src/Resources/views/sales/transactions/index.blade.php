@@ -3,17 +3,137 @@
         @lang('admin::app.sales.transactions.index.title')
     </x-slot:title>
 
-    <div class="flex  gap-[16px] justify-between items-center max-sm:flex-wrap">
-        <p class="text-[20px] text-gray-800 dark:text-white font-bold">
-            @lang('admin::app.sales.transactions.index.title')
-        </p>
+     <!-- DataTables -->
+  <link rel="stylesheet" href="/themes/manage/AdminLTE/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="/themes/manage/AdminLTE/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+  <link rel="stylesheet" href="/themes/manage/AdminLTE/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
 
-        <div class="flex gap-x-[10px] items-center">
-            <!-- Export Modal -->
-            <x-admin::datagrid.export src="{{ route('admin.sales.transactions.index') }}"></x-admin::datagrid.export>
+    <section class="content">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-12">
+              
+                <div class="card">
+                    <div class="card-header">
+                      <h3 class="card-title">@lang('admin::app.sales.transactions.index.title')</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                      <table id="tables" class="table table-bordered table-striped">
+                        <thead>
+                        <tr>
+                          <th>ID</th>
+                          <th>Order ID</th>
+                          <th>type</th>
+                          <th>amount</th>
+                          <th>payment_method</th>
+                          <th>invoice_id</th>
+                          <th>transaction_id</th>
+                          <th>created_at</th>
+                          <th>Options</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+
+                      </table>
+                    </div>
+                    <!-- /.card-body -->
+                  </div>
+                  <!-- /.card -->
+                
+            </div>
+            <!-- /.col -->
+          </div>
+          <!-- /.row -->
         </div>
-    </div>
+        <!-- /.container-fluid -->
+      </section>
 
-    <x-admin::datagrid src="{{ route('admin.sales.transactions.index') }}"></x-admin::datagrid>
+      <!-- jQuery -->
+<script src="/themes/manage/AdminLTE/plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="/themes/manage/AdminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- DataTables  & Plugins -->
+<script src="/themes/manage/AdminLTE/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="/themes/manage/AdminLTE/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="/themes/manage/AdminLTE/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="/themes/manage/AdminLTE/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<script src="/themes/manage/AdminLTE/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+<script src="/themes/manage/AdminLTE/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+<script src="/themes/manage/AdminLTE/plugins/jszip/jszip.min.js"></script>
+<script src="/themes/manage/AdminLTE/plugins/pdfmake/pdfmake.min.js"></script>
+<script src="/themes/manage/AdminLTE/plugins/pdfmake/vfs_fonts.js"></script>
+<script src="/themes/manage/AdminLTE/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+<script src="/themes/manage/AdminLTE/plugins/datatables-buttons/js/buttons.print.min.js"></script>
+<script src="/themes/manage/AdminLTE/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+
+<script>
+    $(function () {
+      
+      $("#tables").DataTable({
+      
+        autoWidth: true,
+        keys: true,
+        ajax: {
+          url: "{{ route('admin.sales.transactions.index') }}",
+          type: 'GET'
+        },
+        columns: [
+          {
+            data: 'id'
+          },
+          {
+            data: 'order_id'
+          },
+          {
+            data: 'type'
+          }
+          ,{
+            data: 'amount'
+          }
+          ,{
+            data: 'payment_method'
+          }
+          ,{
+            data: 'invoice_id'
+          }
+          ,{
+            data: 'transaction_id'
+          },
+          {
+            data: 'created_at'
+          },{
+            data: 'id',
+            render: function(data, type, row, meta) {
+              return "";
+              //return '<a href="./orders/view/'+data+'" class="btn btn-primary btn-sm">View</a><a href="./orders/confirm-payment/'+data+'" class="btn btn-danger btn-sm" title="Confirm Payment">Confim</a> ';
+            }
+          }
+        ],
+        lengthMenu: [
+            [20, 50, 100],
+            [20, 50, 100]
+        ],
+        order: [[0, 'desc']],
+        processing: true,
+        serverSide: true,
+        
+        
+
+
+
+
+
+
+      });
+
+      $('.dataTables_filter input[type="search"]').css(
+        {'width':'450px','display':'inline-block'}
+      );
+    
+    });
+  </script>
 
 </x-admin::layouts>
