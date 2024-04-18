@@ -232,6 +232,25 @@ lang: en
 | created_at |  timestamp   | create time |
 | updated_at |  timestamp   | update time |
 
+# Refund
+
+## Refund
+| Field              | Type | Desc |
+| :---------------- | :------: | ----: |
+| id        |   int(10)   | id |
+| increment_id        |   varchar(191)   | increment ID |
+| state        |   varchar(191)   | state |
+| email_sent        |   tinyint(1)   | email sent |
+| created_at |  timestamp   | create time |
+| updated_at |  timestamp   | update time |
+
+## RefundItem
+| Field              | Type | Desc |
+| :---------------- | :------: | ----: |
+| id        |   int(10)   | id |
+| created_at |  timestamp   | create time |
+| updated_at |  timestamp   | update time |
+
 # Attributes
 
 ## attributes
