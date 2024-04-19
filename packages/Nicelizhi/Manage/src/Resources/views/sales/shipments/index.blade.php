@@ -68,12 +68,21 @@
 <script src="/themes/manage/AdminLTE/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
 <script src="/themes/manage/AdminLTE/plugins/datatables-buttons/js/buttons.print.min.js"></script>
 <script src="/themes/manage/AdminLTE/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+<script src="//cdn.datatables.net/plug-ins/2.0.4/features/deepLink/dataTables.deepLink.min.js"></script>
 
 <script>
     $(function () {
+
+        var deep = $.fn.dataTable.ext.deepLink( [
+            'search.search', 'order', 'displayStart'
+        ] );    
+        
       
-      $("#tables").DataTable({
-      
+      $("#tables").DataTable(
+      {
+        search: {
+            search: location.search.replace(/^\?/, '')
+        },
         autoWidth: true,
         keys: true,
         ajax: {

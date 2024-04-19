@@ -9,7 +9,33 @@
             @include('admin::reporting.sales.total-sales')
         </div>
         <div class="col-md-12">
+            @include('admin::reporting.sales.purchase-funnel')
         </div>
+        <div class="col-md-6">
+            @include('admin::reporting.sales.total-orders')
+        </div>
+
+        <div class="col-md-6">
+            @include('admin::reporting.sales.average-order-value')
+        </div>
+
+        <div class="col-md-6">
+            @include('admin::reporting.sales.tax-collected')
+        </div>
+
+        <div class="col-md-6">
+            @include('admin::reporting.sales.shipping-collected')
+        </div>
+
+        <div class="col-md-6">
+            @include('admin::reporting.sales.total-refunds')
+        </div>
+
+        <div class="col-md-6">
+            @include('admin::reporting.sales.top-payment-methods')
+        </div>
+
+
         </div>
         </div>
     </section>

@@ -4,7 +4,9 @@
     <x-admin::shimmer.reporting.sales.purchase-funnel/>
 </v-reporting-sales-purchase-funnel>
 
-@pushOnce('scripts')
+
+
+{{-- @pushOnce('scripts')
     <script type="text/x-template" id="v-reporting-sales-purchase-funnel-template">
         <!-- Shimmer -->
         <template v-if="isLoading">
@@ -174,4 +176,4 @@
             }
         });
     </script>
-@endPushOnce
+@endPushOnce --}}

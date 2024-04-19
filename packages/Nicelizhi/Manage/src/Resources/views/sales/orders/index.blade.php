@@ -76,6 +76,7 @@
 
 <script>
     $(function () {
+
       
       $("#tables").DataTable({
       
@@ -127,7 +128,7 @@
           },{
             data: 'oid',
             render: function(data, type, row, meta) {
-              return '<a href="./orders/view/'+data+'" class="btn btn-primary btn-sm">View</a><a href="./orders/confirm-payment/'+data+'" class="btn btn-danger btn-sm" title="Confirm Payment">Confim</a> ';
+              return '<a href="./orders/view/'+data+'" class="btn btn-primary btn-sm confirmation">View</a><a href="./orders/confirm-payment/'+data+'" class="btn btn-danger btn-sm" title="Confirm Payment">Confim</a> ';
             }
           }
         ],
@@ -151,6 +152,11 @@
       $('.dataTables_filter input[type="search"]').css(
         {'width':'450px','display':'inline-block'}
       );
+
+      $('.confirmation').on('click', function () {
+        return confirm('Are you sure?');
+     });
+      
     
     });
   </script>
