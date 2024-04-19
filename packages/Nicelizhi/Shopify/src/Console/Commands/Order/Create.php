@@ -5,14 +5,13 @@ namespace Nicelizhi\Shopify\Console\Commands\Order;
 use Illuminate\Console\Command;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Log;
-
 use Webkul\Sales\Repositories\OrderRepository;
-use Webkul\Sales\Repositories\OrderCommentRepository;
-
-
+use Illuminate\Support\Facades\Cache;
 use Nicelizhi\Shopify\Models\ShopifyOrder;
 use Nicelizhi\Shopify\Models\ShopifyStore;
 use Webkul\Sales\Models\Order;
+use Illuminate\Http\Client\RequestException;
+use GuzzleHttp\Exception\ClientException;
 
 class Create extends Command
 {
@@ -21,16 +20,20 @@ class Create extends Command
      *
      * @var string
      */
-    protected $signature = 'shopify:order:create';
+    protected $signature = 'shopify:order:create {--order_id=}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'create Order';
+    protected $description = 'create Order shopify:order:create';
 
-    private $shopify_store_id = "";
+    private $shopify_store_id = null;
+    private $lang = null;
+
+    //protected ShopifyOrder $ShopifyOrder,
+    //protected ShopifyStore $ShopifyStore,
 
     /**
      * Create a new command instance.
@@ -38,13 +41,15 @@ class Create extends Command
      * @return void
      */
     public function __construct(
-        protected OrderRepository $orderRepository,
-        protected ShopifyOrder $ShopifyOrder,
-        protected ShopifyStore $ShopifyStore,
-        protected OrderCommentRepository $orderCommentRepository
+        
     )
     {
+        $this->ShopifyOrder = new ShopifyOrder();
+        $this->ShopifyStore = new ShopifyStore();
+        $this->Order = new Order();
+
         $this->shopify_store_id = config('shopify.shopify_store_id');
+        $this->lang = config('shopify.store_lang');
         parent::__construct();
     }
 
@@ -56,41 +61,95 @@ class Create extends Command
     public function handle()
     {
 
+        $shopifyStore = Cache::get("shopify_store_".$this->shopify_store_id);
 
-        $shopifyStore = $this->ShopifyStore->where('shopify_store_id', $this->shopify_store_id)->first();
+        if(empty($shopifyStore)){
+            $shopifyStore = $this->ShopifyStore->where('shopify_store_id', $this->shopify_store_id)->first();
+            Cache::put("shopify_store_".$this->shopify_store_id, $shopifyStore, 3600);
+        }
+
 
         if(is_null($shopifyStore)) {
             $this->error("no store");
             return false;
         }
 
-        // $lists = $this->orderRepository->findWhere([
-        //     'status' => 'processing'
-        // ]);
-        //$lists = Order::where(['status'=>'processing'])->orderBy("updated_at", "desc")->limit(10)->get();
-        $lists = Order::where(['id'=>'1037'])->orderBy("updated_at", "desc")->limit(10)->get();
-       // $lists = Order::where(['id'=>'305'])->orderBy("updated_at", "desc")->limit(10)->get();
+        $order_id = $this->option("order_id");
 
-        //var_dump($lists);exit;
+        if(!empty($order_id)) {
+            $lists = Order::where(['status'=>'processing'])->where("id", $order_id)->select(['id'])->limit(1)->get();
+        }else{
+            $lists = [];
+            //$lists = Order::where(['status'=>'processing'])->orderBy("updated_at", "desc")->select(['id'])->limit(100)->get();
+        }
+        
+
+        $this->checkLog();
 
         foreach($lists as $key=>$list) {
             $this->info("start post order " . $list->id);
             $this->postOrder($list->id, $shopifyStore);
+            $this->syncOrderPrice($list); // sync price to system
+            //exit;
         }
 
 
         
     }
 
+    /**
+     * 
+     * check the today log file
+     * 
+     */
+
+     public function checkLog() {
+
+        //return false;
+       // use grep command to gerneter new log file
+
+       $yesterday = date("Y-m-d", strtotime('-1 days'));
+
+       $big_log_file = storage_path('logs/laravel-'.$yesterday.'.log');
+       $error_log_file = storage_path('logs/error-'.$yesterday.'.log');
+       echo $big_log_file."\r\n";
+       echo $error_log_file."\r\n";
+
+       if(!file_exists($error_log_file)) exec("cat ".$big_log_file." | grep SQLSTATE >".$error_log_file);
+       
+
+     }
+
+    /**
+     * 
+     * 
+     * @param object orderitem
+     * 
+     */
+    public function syncOrderPrice($orderItem) {
+        if($orderItem->grand_total_invoiced=='0.0000') {
+            
+            $base_grand_total_invoiced = $orderItem->base_grand_total;
+            $grand_total_invoiced = $orderItem->grand_total;
+            Order::where(['id'=>$orderItem->id])->update(['grand_total_invoiced'=>$grand_total_invoiced, 'base_grand_total_invoiced'=>$base_grand_total_invoiced]);
+
+        }
+        
+    }
+
     public function postOrder($id, $shopifyStore) {
+        //return false;
         // check the shopify have sync
 
         $shopifyOrder = $this->ShopifyOrder->where([
             'order_id' => $id
         ])->first();
         if(!is_null($shopifyOrder)) {
-            return false;
+            //return false;
         }
+
+        $this->info("sync to order to shopify ".$id);
+        echo $id." start post \r\n";
 
         $client = new Client();
 
@@ -102,17 +161,11 @@ class Create extends Command
          * 
          */
         // $id = 147;
-        $order = $this->orderRepository->findOrFail($id);
+        $order = $this->Order->findOrFail($id);
 
-        $orderPayment = $order->payment;   
+        $orderPayment = $order->payment;  
+
         
-        $cnv_id = explode('-',$orderPayment['method_title']);
-
-        var_dump($cnv_id);exit;
-        
-        //$orderPayment = $orderPayment->toArray();
-
-        //var_dump($orderPayment['method_title']);exit;
 
         //var_dump($order);exit;
 
@@ -122,6 +175,9 @@ class Create extends Command
 
         $products = $order->items;
         foreach($products as $key=>$product) {
+
+            var_dump($product);exit;
+
             $sku = $product['additional'];
 
             $skuInfo = explode('-', $sku['product_sku']);
@@ -134,12 +190,39 @@ class Create extends Command
             $line_item['variant_id'] = $skuInfo[1];
             $line_item ['quantity'] = $product['qty_ordered'];
             $line_item ['requires_shipping'] = true;
+            $line_item['price'] = "";
+            $price_set = [];
+
+            $price_set = [
+                'shop_money' => [
+                    "amount" => $order->sub_total,
+                    "currency_code" => $order->order_currency_code,
+                ],
+                'presentment_money' => [
+                    "amount" => $order->sub_total,
+                    "currency_code" => $order->order_currency_code,
+                ]
+            ];
+            
+
+            $line_item['price_set'] = $price_set;
+
+    
 
             array_push($line_items, $line_item);
         }
 
+        exit;
+
         $shipping_address = $order->shipping_address;
+        $billing_address = $order->billing_address;
         $postOrder['line_items'] = $line_items;
+
+        $shipping_address->email = "nice.lizhi@gmail.com";
+        $shipping_address->first_name = "测试订单";
+        $billing_address->first_name = "测试订单";
+        $shipping_address->last_name = "不用发货";
+        $billing_address->last_name = "不用发货";
 
 
         $customer = [];
@@ -150,24 +233,26 @@ class Create extends Command
         ];
         $postOrder['customer'] = $customer;
 
-        
+        $shipping_address->phone = str_replace('undefined', '', $shipping_address->phone);
+        $shipping_address->city = empty($shipping_address->city) ? $shipping_address->state : $shipping_address->city;
 
         $billing_address = [
-            "first_name" => $shipping_address->first_name,
-            "last_name" => $shipping_address->last_name,
-            "address1" => $shipping_address->address1,
+            "first_name" => $billing_address->first_name,
+            "last_name" => $billing_address->last_name,
+            "address1" => $billing_address->address1,
+            //$input['phone_full'] = str_replace('undefined+','', $input['phone_full']);
+            
             "phone" => $shipping_address->phone,
-            "city" => $shipping_address->city,
-            "province" => $shipping_address->state,
-            "country" => $shipping_address->country,
-            "zip" => $shipping_address->postcode
+            "city" => $billing_address->city,
+            "province" => $billing_address->state,
+            "country" => $billing_address->country,
+            "zip" => $billing_address->postcode
         ];
         $postOrder['billing_address'] = $billing_address;
         
 
         $shipping_address = [
             "first_name" => $shipping_address->first_name,
-            "first_name" => "测试订单",
             "last_name" => $shipping_address->last_name,
             "address1" => $shipping_address->address1,
             "phone" => $shipping_address->phone,
@@ -179,7 +264,7 @@ class Create extends Command
 
         $postOrder['shipping_address'] = $shipping_address;
 
-        $postOrder['email'] = "";
+        //$postOrder['email'] = "";
         
         $transactions = [];
 
@@ -218,6 +303,7 @@ class Create extends Command
         // $total_shipping_price_set['shop_money'] = $shop_money;
         // $total_shipping_price_set['presentment_money'] = $shop_money;
 
+
         $total_shipping_price_set = [
             "shop_money" => [
                 "amount" => $order->shipping_amount,
@@ -244,7 +330,7 @@ class Create extends Command
          * 
          */
 
-        $postOrder['send_receipt'] = true; 
+        
 
         // $postOrder['discount_codes'] = $discount_codes;
 
@@ -302,23 +388,48 @@ class Create extends Command
 
         $postOrder['shipping_lines'][] = $shipping_lines;
 
-        $pOrder['test'] = true;
+        $postOrder['buyer_accepts_marketing'] = true; // 
+
+        $postOrder['name'] = config('shopify.order_pre').'#测试'.$id;
+        $postOrder['order_number'] = $id;
+
+        //$postOrder['send_receipt'] = false; 
+        $postOrder['send_receipt'] = true; 
+
+        $postOrder['currency'] = $order->order_currency_code;
+        $postOrder['presentment_currency'] = $order->order_currency_code;
+
 
         $pOrder['order'] = $postOrder;
+
         //var_dump($pOrder);exit;
 
-        $response = $client->post($shopify['shopify_app_host_name'].'/admin/api/2023-10/orders.json', [
-            'headers' => [
-                'Content-Type' => 'application/json',
-                'Accept' => 'application/json',
-                'X-Shopify-Access-Token' => $shopify['shopify_admin_access_token'],
-            ],
-            'body' => json_encode($pOrder)
-        ]);
+        try {
+            $response = $client->post($shopify['shopify_app_host_name'].'/admin/api/2023-10/orders.json', [
+                'http_errors' => true,
+                'headers' => [
+                    'Content-Type' => 'application/json',
+                    'Accept' => 'application/json',
+                    'X-Shopify-Access-Token' => $shopify['shopify_admin_access_token'],
+                ],
+                'body' => json_encode($pOrder)
+            ]);
+        }catch(ClientException $e) {
+            //var_dump($e);
+            var_dump($e->getMessage());
+            Log::error(json_encode($e->getMessage()));
+            \Nicelizhi\Shopify\Helpers\Utils::send($e->getMessage().'--' .$id. " 需要手动解决 ");
+            //continue;
+            return false;
+        }
+
+        exit;
+
+        
 
         $body = json_decode($response->getBody(), true);
-        Log::info("shopify post order body ". json_encode($pOrder));
-        Log::info("shopify post order".json_encode($body));
+        //Log::info("shopify post order body ". json_encode($pOrder));
+        //Log::info("shopify post order".json_encode($body));
 
         if(isset($body['order']['id'])) {
             $shopifyNewOrder = $this->ShopifyOrder->where([
@@ -342,7 +453,7 @@ class Create extends Command
             $shopifyNewOrder->checkout_token = $item['checkout_token'];
             $shopifyNewOrder->client_details = $item['client_details'];
             $shopifyNewOrder->closed_at = $item['closed_at'];
-            $shopifyNewOrder->company = $item['company'];
+            $shopifyNewOrder->company = @$item['company'];
             $shopifyNewOrder->confirmation_number = $item['confirmation_number'];
             $shopifyNewOrder->confirmed = $item['confirmed'];
             $shopifyNewOrder->contact_email = $item['contact_email'];
@@ -421,9 +532,23 @@ class Create extends Command
 
 
             $shopifyNewOrder->save();
-            // $shopifyNewOrder->save();
-        }
 
-        exit;
+            
+
+            // order sync to other job
+
+        
+
+        }
     }
+
+    private function get_content($URL){
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_URL, $URL);
+        $data = curl_exec($ch);
+        curl_close($ch);
+        return $data;
+    }
+    
 }

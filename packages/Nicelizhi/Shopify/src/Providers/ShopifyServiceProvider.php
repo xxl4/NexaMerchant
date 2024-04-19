@@ -106,6 +106,8 @@ class ShopifyServiceProvider extends ServiceProvider
 
                 \Nicelizhi\Shopify\Console\Commands\Webhooks\Get::class,
                 \Nicelizhi\Shopify\Console\Commands\Webhooks\Post::class,
+
+                \Nicelizhi\Shopify\Console\Commands\Refund\Post::class
             ]);
         }
     }
