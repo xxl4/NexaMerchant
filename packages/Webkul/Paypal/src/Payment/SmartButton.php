@@ -101,8 +101,16 @@ class SmartButton extends Paypal
      * @return HttpResponse
      */
     public function getOrder($orderId)
-    {
-        return $this->client()->execute(new OrdersGetRequest($orderId));
+    {   
+        try {
+            $result = $this->client()->execute(new OrdersGetRequest($orderId));
+        }catch (Exception $e) {
+            var_dump($e->getMessage());
+            //exit;
+        }finally {
+            //echo "Error";exit;
+        }
+        return $result;
     }
 
     /**
