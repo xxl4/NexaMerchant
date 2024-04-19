@@ -79,7 +79,8 @@ class Post extends Command
         if(!empty($order_id)) {
             $lists = Order::where(['status'=>'processing'])->where("id", $order_id)->select(['id'])->limit(1)->get();
         }else{
-            $lists = Order::where(['status'=>'processing'])->orderBy("updated_at", "desc")->select(['id'])->limit(100)->get();
+            $lists = [];
+            //$lists = Order::where(['status'=>'processing'])->orderBy("updated_at", "desc")->select(['id'])->limit(100)->get();
         }
         
 
@@ -273,6 +274,13 @@ class Post extends Command
         // $total_shipping_price_set['shop_money'] = $shop_money;
         // $total_shipping_price_set['presentment_money'] = $shop_money;
 
+        if($order->shipping_amount=='14.9850') {
+            $str = "aud order";
+            \Nicelizhi\Shopify\Helpers\Utils::send($str.'--' .$id. " 需要留意查看 ");
+            //continue;
+            return false;
+        }
+
         $total_shipping_price_set = [
             "shop_money" => [
                 "amount" => $order->shipping_amount,
@@ -362,6 +370,7 @@ class Post extends Command
 
         $postOrder['name'] = config('shopify.order_pre').'#'.$id;
         $postOrder['order_number'] = $id;
+        $postOrder['currency'] = $order->order_currency_code;
 
 
         $pOrder['order'] = $postOrder;
