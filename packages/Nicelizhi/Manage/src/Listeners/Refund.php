@@ -95,7 +95,7 @@ class Refund extends Base
             $sdk->createReRefund($payment_intent_id, $order->id, round($refund->grand_total, 2));
         }
 
-        Artisan::queue("shopify:refund:post", ['--refund_id'=> $refund->id])->onConnection('redis')->onQueue('shopify-refund'); // add shopify refund queue
+        Artisan::queue("shopify:refund:post", ['--order_id'=>$order->id,'--refund_id'=> $refund->id])->onConnection('redis')->onQueue('shopify-refund'); // add shopify refund queue
 
 
     }
