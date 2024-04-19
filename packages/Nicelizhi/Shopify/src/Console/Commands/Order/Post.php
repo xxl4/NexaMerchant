@@ -174,6 +174,7 @@ class Post extends Command
         $line_items = [];
 
         $products = $order->items;
+        $q_ty = 0;
         foreach($products as $key=>$product) {
             $sku = $product['additional'];
 
@@ -186,6 +187,7 @@ class Post extends Command
             $line_item = [];
             $line_item['variant_id'] = $skuInfo[1];
             $line_item ['quantity'] = $product['qty_ordered'];
+            $q_ty += $product['qty_ordered'];
             $line_item ['requires_shipping'] = true;
 
             array_push($line_items, $line_item);
@@ -517,7 +519,7 @@ class Post extends Command
             $crm_channel = config('onebuy.crm_channel');
 
             
-            $url = "https://crm.heomai.com/api/offers/callBack?refer=".$cnv_id[1]."&revenue=".$order->grand_total."&currency_code=".$order->order_currency_code."&channel_id=".$crm_channel;
+            $url = "https://crm.heomai.com/api/offers/callBack?refer=".$cnv_id[1]."&revenue=".$order->grand_total."&currency_code=".$order->order_currency_code."&channel_id=".$crm_channel."&q_ty=".$q_ty;
             $res = $this->get_content($url);
             Log::info("post to bm 2 url ".$url." res ".json_encode($res));
 
