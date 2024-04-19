@@ -6,6 +6,7 @@ use Webkul\Paypal\Payment\SmartButton;
 use Nicelizhi\Manage\Mail\Order\RefundedNotification;
 use Illuminate\Support\Facades\Log;
 use Nicelizhi\Airwallex\Sdk\Airwallex as AirwallexSdk;
+use Illuminate\Support\Facades\Artisan;
 
 class Refund extends Base
 {
@@ -51,12 +52,21 @@ class Refund extends Base
             $captureID = $smartButton->getCaptureId($paypalOrderID);
 
             /* now refunding order on the basis of capture id and refund data */
-            $smartButton->refundOrder($captureID, [
-                'amount' => [
-                    'value'         => round($refund->grand_total, 2),
-                    'currency_code' => $refund->order_currency_code,
-                ],
-            ]);
+            try {
+                $smartButton->refundOrder($captureID, [
+                    'amount' => [
+                        'value'         => round($refund->grand_total, 2),
+                        'currency_code' => $refund->order_currency_code,
+                    ],
+                ]);
+            }catch (Exception $e) {
+                var_dump($e->getMessage());
+                //exit;
+            } finally  {
+                //echo " Error plese check the log ";exit;
+            }
+            return false;
+
         }
         // airwallex
         if($order->payment->method=='airwallex') {
@@ -84,5 +94,9 @@ class Refund extends Base
     
             $sdk->createReRefund($payment_intent_id, $order->id, round($refund->grand_total, 2));
         }
+
+        Artisan::queue("shopify:refund:post", ['--refund_id'=> $refund->id])->onConnection('redis')->onQueue('shopify-refund'); // add shopify refund queue
+
+
     }
 }
