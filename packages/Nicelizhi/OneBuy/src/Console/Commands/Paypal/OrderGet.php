@@ -62,10 +62,14 @@ class OrderGet extends Command
     {
         $orderID = "299893062V619310L";
 
-        $order_id = $this->option('order_id');
+        $orderID = $this->option('order_id');
 
-        if($order_id) {
-            $order = $this->smartButton->getOrder($orderID);
+        var_dump($orderID);
+
+        if($orderID) {
+
+            $smartButton = new SmartButton();
+            $order = $smartButton->getOrder($orderID);
 
             var_dump($order);
         }
