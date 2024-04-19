@@ -65,7 +65,7 @@ class Refund extends Base
             } finally  {
                 //echo " Error plese check the log ";exit;
             }
-            return false;
+            //return false;
 
         }
         // airwallex
