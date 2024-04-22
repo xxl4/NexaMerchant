@@ -4,6 +4,94 @@
     <x-admin::shimmer.reporting.sales.purchase-funnel/>
 </v-reporting-sales-purchase-funnel>
 
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">@lang('admin::app.reporting.sales.index.purchase-funnel')</h3>
+    </div>
+    
+    <div class="card-body">
+
+        <p><code>@lang('admin::app.reporting.sales.index.total-visits')</code></p>
+        <div class="progress">
+            <div class="progress-bar bg-primary progress-bar-striped total-visits" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                <span class="sr-only">40% Complete (success)</span>
+            </div>
+        </div>
+
+        <p><code>@lang('admin::app.reporting.sales.index.product-views')</code></p>
+        <div class="progress">
+            <div class="progress-bar bg-primary progress-bar-striped product-views" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                <span class="sr-only">40% Complete (success)</span>
+            </div>
+        </div>
+
+        <p><code>@lang('admin::app.reporting.sales.index.added-to-cart')</code></p>
+        <div class="progress">
+            <div class="progress-bar bg-primary progress-bar-striped added-to-cart" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                <span class="sr-only">40% Complete (success)</span>
+            </div>
+        </div>
+
+        <p><code>@lang('admin::app.reporting.sales.index.purchased')</code></p>
+        <div class="progress">
+            <div class="progress-bar bg-primary progress-bar-striped purchased" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                <span class="sr-only">40% Complete (success)</span>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+<!-- jQuery -->
+<script src="/themes/manage/AdminLTE/plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="/themes/manage/AdminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/themes/manage/AdminLTE/plugins/chart.js/Chart.min.js"></script>
+<script src="/themes/manage/AdminLTE/dist/js/adminlte.min.js?v=3.2.0"></script>
+<script>
+    $(function () {
+        
+
+
+        var filtets = Object.assign({}, filtets);
+        filtets.type = 'purchase-funnel'
+
+        $.ajax({
+            url: "{{ route('admin.reporting.sales.stats') }}",
+            data: filtets,
+            async: true,
+            dataType: 'json',
+            type: "get",
+        }).done(function (data) {
+
+            $(".total-visits").attr("style", "width:" + data.statistics.visitors.total + "%");
+            $(".total-visits").attr("aria-valuenow", data.statistics.visitors.total);
+            $(".total-visits").attr("aria-valuemax", data.statistics.visitors.progress);
+
+            $(".added-to-cart").attr("style", "width:" + data.statistics.carts.total + "%");
+            $(".added-to-cart").attr("aria-valuenow", data.statistics.carts.total);
+            $(".added-to-cart").attr("aria-valuemax", data.statistics.carts.progress);
+
+            $(".product-views").attr("style", "width:" + data.statistics.product_visitors.total + "%");
+            $(".product-views").attr("aria-valuenow", data.statistics.product_visitors.total);
+            $(".product-views").attr("aria-valuemax", data.statistics.product_visitors.progress);
+
+            $(".purchased").attr("style", "width:" + data.statistics.orders.total + "%");
+            $(".purchased").attr("aria-valuenow", data.statistics.orders.total);
+            $(".purchased").attr("aria-valuemax", data.statistics.orders.progress);
+            
+            
+
+
+
+        })
+
+
+
+
+    });
+</script>
+
 
 
 {{-- @pushOnce('scripts')

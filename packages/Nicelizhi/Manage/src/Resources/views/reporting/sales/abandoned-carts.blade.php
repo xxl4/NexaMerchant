@@ -4,7 +4,74 @@
     <x-admin::shimmer.reporting.sales.abandoned-carts/>
 </v-reporting-sales-abandoned-carts>
 
-@pushOnce('scripts')
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">@lang('admin::app.reporting.sales.index.abandoned-carts')</h3>
+    </div>
+    
+    <div class="card-body">
+        <div class="abandoned-carts">
+
+        </div>
+    </div>
+</div>
+
+<!-- jQuery -->
+<script src="/themes/manage/AdminLTE/plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="/themes/manage/AdminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/themes/manage/AdminLTE/plugins/chart.js/Chart.min.js"></script>
+<script src="/themes/manage/AdminLTE/dist/js/adminlte.min.js?v=3.2.0"></script>
+<script>
+    $(function () {
+        
+
+
+        var filtets = Object.assign({}, filtets);
+        filtets.type = 'abandoned-carts'
+
+        $.ajax({
+            url: "{{ route('admin.reporting.sales.stats') }}",
+            data: filtets,
+            async: true,
+            dataType: 'json',
+            type: "get",
+        }).done(function (data) {
+
+            $(".abandoned-carts").html();
+
+            var products = data.statistics.products;
+
+            var html = "";
+
+            products.forEach(function(currentValue, index, arr){
+                console.log(currentValue, index, arr);
+
+                progress = currentValue.progress;
+
+                if(progress > 100) progress = 100;
+
+                html += '<p><code>'+ currentValue.name +'</code></p><div class="progress"><div class="progress-bar bg-primary progress-bar-striped purchased" role="progressbar" aria-valuenow="'+ currentValue.count +'" aria-valuemin="0" aria-valuemax="100" style="width: '+ progress +'%"><span class="sr-only">'+ progress +'% Complete (success)</span></div></div>';
+
+
+
+            });
+
+            $(".abandoned-carts").html(html);
+            
+            
+
+
+
+        })
+
+
+
+
+    });
+</script>
+
+{{-- @pushOnce('scripts')
     <script type="text/x-template" id="v-reporting-sales-abandoned-carts-template">
         <!-- Shimmer -->
         <template v-if="isLoading">
@@ -206,4 +273,4 @@
             }
         });
     </script>
-@endPushOnce
+@endPushOnce --}}

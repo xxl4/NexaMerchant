@@ -5,11 +5,41 @@
     <section class="content">
         <div class="container-fluid">
         <div class="row">
+            <div class="col-md-10">
+            </div>
+            <div class="col-md-1">
+                <div class="card-body">
+                    <div class="form-group">
+                        <div class="input-group date" id="reservationdate" data-target-input="nearest">
+                            <input type="text" class="form-control datetimepicker-input" data-target="#reservationdate" placeholder="Start Date" />
+                            <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
+                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-1">
+                <div class="card-body">
+                    <div class="form-group">
+                        <div class="input-group date" id="reservationdate" data-target-input="nearest">
+                            <input type="text" class="form-control datetimepicker-input" data-target="#reservationdate" placeholder="Start Date" />
+                            <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
+                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         <div class="col-md-12">
             @include('admin::reporting.sales.total-sales')
         </div>
-        <div class="col-md-12">
+        <div class="col-md-6">
             @include('admin::reporting.sales.purchase-funnel')
+        </div>
+        <div class="col-md-6">
+            @include('admin::reporting.sales.abandoned-carts')
         </div>
         <div class="col-md-6">
             @include('admin::reporting.sales.total-orders')
