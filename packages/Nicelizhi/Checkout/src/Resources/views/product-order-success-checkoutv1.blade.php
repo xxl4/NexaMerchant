@@ -211,7 +211,7 @@ obApi('track', 'PAGE_VIEW');
             params = {
                 "channel_id": "<?php echo $crm_channel;?>",
                 "token": "<?php echo $refer; ?>",
-                "type": 3,
+                "type": "purchase",
                 "order_id": '<?php echo $order->id;?>',
                 "amount": (value * 1).toFixed(2)
             };
