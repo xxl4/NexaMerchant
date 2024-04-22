@@ -554,6 +554,9 @@ class GetV4 extends Command
             // exit;
             Cache::pull("sync_".$item['product_id']);
 
+            //send message to wecome
+            \Nicelizhi\Shopify\Helpers\Utils::send($item['product_id']. " sync done, please check it ");
+
 
             sleep(1);
             //var_dump($product);exit;

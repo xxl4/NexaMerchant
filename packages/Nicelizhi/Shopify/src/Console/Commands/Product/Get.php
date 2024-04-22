@@ -553,6 +553,9 @@ class Get extends Command
 
             Cache::pull("sync_".$item['product_id']);
 
+            //send message to wecome
+            \Nicelizhi\Shopify\Helpers\Utils::send($item['product_id']. " sync done, please check it ");
+
             // exit;
 
 
