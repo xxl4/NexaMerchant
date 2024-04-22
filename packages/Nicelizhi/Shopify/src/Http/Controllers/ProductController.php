@@ -298,6 +298,47 @@ class ProductController extends Controller
                 }
 
             }
+
+            if($version=='v3') {
+                $product_image_list = [];
+                $product_1 = $request->file("product_1");
+                if(!empty($product_1)) {
+                    $fileName = $product_1->getClientOriginalName();
+                    $filePath = $product_1->store('product/'.$product->id, "public");
+                    if($filePath) {
+                        array_push($product_image_list, ['key'=> 1, 'value'=> $filePath]);
+                    }
+                }
+                $product_2 = $request->file("product_2");
+                if(!empty($product_2)) {
+                    $fileName = $product_2->getClientOriginalName();
+                    $filePath = $product_2->store('product/'.$product->id, "public");
+                    if($filePath) {
+                        array_push($product_image_list, ['key'=> 2, 'value'=> $filePath]);
+                    }
+                }
+                $product_3 = $request->file("product_3");
+                if(!empty($product_3)) {
+                    $fileName = $product_3->getClientOriginalName();
+                    $filePath = $product_3->store('product/'.$product->id, "public");
+                    if($filePath) {
+                        array_push($product_image_list, ['key'=> 3, 'value'=> $filePath]);
+                    }
+                }
+                $product_4 = $request->file("product_4");
+                if(!empty($product_4)) {
+                    $fileName = $product_4->getClientOriginalName();
+                    $filePath = $product_4->store('product/'.$product->id, "public");
+                    if($filePath) {
+                        array_push($product_image_list, ['key'=> 4, 'value'=> $filePath]);
+                    }
+                }
+
+                //insert the cache
+                Cache::put("product_image_lists_".$product->id, $product_image_list);
+
+            }
+
             \Nicelizhi\Shopify\Helpers\Utils::clearCache($product->id, $product_id);
         }
         
@@ -320,6 +361,8 @@ class ProductController extends Controller
 
         // products display image
         $product_image_lists = Cache::get("product_image_lists_".$product->id);
+
+
 
         //var_dump($product_image_lists);
 
