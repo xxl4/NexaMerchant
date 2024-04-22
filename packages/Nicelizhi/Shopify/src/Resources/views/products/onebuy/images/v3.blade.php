@@ -75,10 +75,12 @@
                                         </div>
                                         <div class="images">
                                             <?php 
-                                                
-                                                    
+                                            //var_dump($product_image_lists);    
+                                            if(isset($product_image_lists[0]['key'])) {
+                                                echo "<img src='".asset("storage/".$product_image_lists[0]['value'])."' width='100' height='100' />";
+                                            } 
 
-                                                ?>
+                                            ?>
                                         </div>
                                     </div> 
 
@@ -93,7 +95,9 @@
                                         <div class="images">
                                             <?php 
                                                 
-                                                    
+                                                if(isset($product_image_lists[1]['key'])) {
+                                                echo "<img src='".asset("storage/".$product_image_lists[1]['value'])."' width='100' height='100' />";
+                                            } 
 
                                             ?>
                                         </div>
@@ -110,7 +114,9 @@
                                         <div class="images">
                                             <?php 
                                                 
-                                                    
+                                                if(isset($product_image_lists[2]['key'])) {
+                                                echo "<img src='".asset("storage/".$product_image_lists[2]['value'])."' width='100' height='100' />";
+                                            } 
 
                                             ?>
                                         </div>
@@ -126,7 +132,9 @@
                                         </div>
                                         <div class="images">
                                             <?php 
-                                                
+                                                if(isset($product_image_lists[3]['key'])) {
+                                                echo "<img src='".asset("storage/".$product_image_lists[3]['value'])."' width='100' height='100' />";
+                                            } 
                                                     
 
                                             ?>
