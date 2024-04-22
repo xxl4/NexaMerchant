@@ -2097,7 +2097,7 @@ function GotoNotRequest(url) {
                 params = {
                             "channel_id": "<?php echo $crm_channel;?>",
                             "token": "<?php echo $refer; ?>",
-                            "type": "add_cart"
+                            "type": "add_user_info"
                         };
                 fetch('https://crm.heomai.com/api/user/action',{
                         body: JSON.stringify(params),
@@ -2836,6 +2836,19 @@ function GotoNotRequest(url) {
                     }
                 ]
             });
+
+            params = {
+                            "channel_id": "<?php echo $crm_channel;?>",
+                            "token": "<?php echo $refer; ?>",
+                            "type": "add_cart"
+                        };
+            fetch('https://crm.heomai.com/api/user/action',{
+                    body: JSON.stringify(params),
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+            })
 
 
 
