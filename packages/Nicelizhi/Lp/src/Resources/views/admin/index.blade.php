@@ -16,7 +16,7 @@
               
                 <div class="card">
                     <div class="card-header">
-                      <h3 class="card-title">DataTable with default features</h3>
+                      <h3 class="card-title">@lang('lp::app.admin.index.title')</h3>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
@@ -91,7 +91,7 @@
           {
             data: "id",
             render: function(data, type, row, meta) {
-              return '<a href="./lp/edit/'+data+'" class="btn btn-primary btn-sm">View</a>';
+              return '<a href="./lp/edit/'+data+'" class="btn btn-primary btn-sm">View</a> <a href="./lp/copy/'+data+'" class="btn btn-primary btn-sm">Copy</a>';
             }
           }
         ],

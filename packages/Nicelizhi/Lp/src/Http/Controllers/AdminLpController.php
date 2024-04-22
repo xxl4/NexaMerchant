@@ -128,6 +128,27 @@ class AdminLpController extends Controller
         return view('lp::admin.edit', compact('page'));
     }
 
+     /**
+     * To edit a previously created CMS page.
+     *
+     * @param  int  $id
+     * @return \Illuminate\View\View
+     */
+
+    public function copy($id)
+    {
+
+        $model = \Nicelizhi\Lp\Models\Lp::where('id', $id)->first();
+
+        $newModel = $model->replicate();
+        $newModel->slug = $model->slug.'-copy';
+        $newModel->save();
+        
+        session()->flash('success', trans('admin::app.cms.update-success'));
+
+        return redirect()->route('admin.lp.index');
+    }
+
     /**
      * To update the previously created CMS page in storage.
      *

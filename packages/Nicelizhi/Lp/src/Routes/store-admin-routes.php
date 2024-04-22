@@ -16,6 +16,11 @@ Route::group(['middleware' => ['admin'], 'prefix' => config('app.admin_url')], f
 
         Route::get('edit/{id}', 'edit')->name('admin.lp.edit');
 
+        
+        Route::get('copy/{id}', 'copy')->name('admin.lp.copy');
+
+
+
         Route::put('edit/{id}', 'update')->name('admin.lp.update');
 
         Route::delete('edit/{id}', 'delete')->name('admin.lp.delete');
