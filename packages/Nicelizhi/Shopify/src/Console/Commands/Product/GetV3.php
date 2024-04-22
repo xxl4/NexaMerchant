@@ -114,6 +114,15 @@ class GetV3 extends Command
             }
 
         }
+
+        if($shopifyProduct && !$force) {
+            $this->syncProductToLocal($shopify_pro_id);
+
+            // 处理目录权限
+            $this->Permissions();
+            return false;
+        }
+
         //exit;
         /**
          * 
@@ -126,7 +135,13 @@ class GetV3 extends Command
                 'Content-Type' => 'application/json',
                 'Accept' => 'application/json',
                 'X-Shopify-Access-Token' => $shopify['shopify_admin_access_token'],
-            ]
+            ],
+            'verify' => false,
+            'curl' => [
+                //CURLOPT_SSLVERSION => 3
+                //CURLOPT_SSLVERSION => CURL_SSLVERSION_DEFAULT,
+                CURLOPT_SSL_VERIFYPEER => false
+            ],
         ]);
 
         $body = json_decode($response->getBody(), true);
@@ -309,6 +324,9 @@ class GetV3 extends Command
             }
 
             Cache::pull("sync_".$item['product_id']);
+
+            \Nicelizhi\Shopify\Helpers\Utils::clearCache($id, $item['product_id']); // clear cache
+
             //send message to wecome
             \Nicelizhi\Shopify\Helpers\Utils::send($item['product_id']. " sync done, please check it ");
 

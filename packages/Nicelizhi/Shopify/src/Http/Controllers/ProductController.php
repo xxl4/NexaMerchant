@@ -106,7 +106,7 @@ class ProductController extends Controller
         // two attr
         if($version=='v1') {
             echo config("app.url")."/onebuy/".$product_id."\r\n";
-            Artisan::queue("shopify:product:get", ["--prod_id"=> $product_id])->onConnection('redis')->onQueue('shopify-products');
+            Artisan::queue("shopify:product:getv4", ["--prod_id"=> $product_id])->onConnection('redis')->onQueue('shopify-products');
         }
 
         // one attr
