@@ -10,6 +10,7 @@ use Maatwebsite\Excel\Facades\Excel;
 use Webkul\Sales\Repositories\OrderRepository;
 use Webkul\Checkout\Repositories\CartRepository;
 use Webkul\Checkout\Facades\Cart;
+use Illuminate\Support\Facades\DB;
 
 class CartToOrder extends Command
 {
@@ -51,21 +52,31 @@ class CartToOrder extends Command
      */
     public function handle()
     {
-        $cart_id = 0;
+        // $cart_id = 0;
 
-        $this->cart = $this->cartRepository->findOneWhere([
-            'id'   => $cart_id
-        ]);
+        // $this->cart = $this->cartRepository->findOneWhere([
+        //     'id'   => $cart_id
+        // ]);
 
-        Cart::setCart($this->cart);
+        // Cart::setCart($this->cart);
 
-        //var_dump(Cart::prepareDataForOrder());
+        // //var_dump(Cart::prepareDataForOrder());
 
-        $order = $this->orderRepository->create(Cart::prepareDataForOrder());
+        // $order = $this->orderRepository->create(Cart::prepareDataForOrder());
 
-        Cart::deActivateCart();
+        // Cart::deActivateCart();
 
-        //var_dump($order);
+        $sql="SELECT o.id,o.status,t.order_id,o.created_at,p.method,p.additional from ba_orders as o left join ba_order_transactions as t on o.id=t.order_id LEFT join ba_order_payment as p on o.id=p.order_id where t.order_id is null and o.status = 'processing' and p.method='paypal_smart_button'";
+        $orders = DB::select($sql);   
 
+        foreach ($orders as $key => $order) {
+            
+
+
+
+        }
+        
     }
+
+    
 }
