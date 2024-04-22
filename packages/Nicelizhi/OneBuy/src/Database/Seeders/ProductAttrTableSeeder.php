@@ -91,5 +91,26 @@ class ProductAttrTableSeeder extends Seeder {
                 'is_comparable'       => 0,
             ]
         ]);
+
+        // // add base products
+        // DB::table('products')->insert([
+        //     [
+        //     'id'    => 1,
+        //     'sku'   => '8395243356390',
+        //     'type'  => 'configurable',
+        //     'attribute_family_id' => 1,
+        //     'created_at'  => $now,
+        //     'updated_at'  => $now,
+        // ],[
+        //     'id'    => 2,
+        //     'sku'   => '8395243356390-2',
+        //     'type'  => 'simple',
+        //     'attribute_family_id' => 1,
+        //     'parent_id' => 1,
+        //     'created_at'  => $now,
+        //     'updated_at'  => $now,
+        // ]
+        // ]);
+
     }
 }
