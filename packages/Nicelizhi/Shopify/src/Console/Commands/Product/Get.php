@@ -551,6 +551,8 @@ class Get extends Command
             }
 
 
+            Cache::pull("sync_".$item['product_id']);
+
             // exit;
 
 

@@ -552,6 +552,7 @@ class GetV4 extends Command
 
 
             // exit;
+            Cache::pull("sync_".$item['product_id']);
 
 
             sleep(1);

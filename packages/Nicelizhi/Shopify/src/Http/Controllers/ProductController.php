@@ -87,6 +87,15 @@ class ProductController extends Controller
             return false;
         }
 
+        // check the product have syncing log
+        $syncing = Cache::get("sync_".$product_id);
+        if(!empty($syncing)) {
+            echo "product is syncing, please wait a moment\r\n";
+            return false;
+        };
+
+        Cache::put("sync_".$product_id, 1, 3600);
+
         $options = $item->options;
         $LocalOptions = \Nicelizhi\Shopify\Helpers\Utils::createOptions($options);
 

@@ -529,6 +529,8 @@ class GetV2 extends Command
 
             // exit;
 
+            Cache::pull("sync_".$item['product_id']);
+
 
             sleep(1);
             //var_dump($product);exit;

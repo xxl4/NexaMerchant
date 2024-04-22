@@ -307,6 +307,9 @@ class GetV3 extends Command
                     $checkImg->save();
                 }
             }
+
+            Cache::pull("sync_".$item['product_id']);
+
             sleep(1);
         }
     }
