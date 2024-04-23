@@ -1008,7 +1008,7 @@ Apt / Suite / Other </label>
                 createOrder: function(data, actions) {
                     $('#loading').show();
                     var params = getOrderParams('paypal_stand');
-                    var url = '/onebuy/order/addr/after?_token={{ csrf_token() }}&time=' + new Date().getTime()+"&force="+localStorage.getItem("force");
+                    var url = '/onebuy/order/addr/after?currenty={{ core()->getCurrentCurrencyCode() }}&_token={{ csrf_token() }}&time=' + new Date().getTime()+"&force="+localStorage.getItem("force");
                     return fetch(url, {
                         body: JSON.stringify(params),
                         method: 'POST',
@@ -2026,7 +2026,7 @@ function GotoNotRequest(url) {
                             $('#'+ (error_id || 'paypal-error')).show();
                             throw new Error('Verification failed');
                         }
-                        var url = '/onebuy/order/addr/after?_token={{ csrf_token() }}&time=' + new Date().getTime()+"&force="+localStorage.getItem("force");
+                        var url = '/onebuy/order/addr/after?currency={{ core()->getCurrentCurrencyCode() }}&_token={{ csrf_token() }}&time=' + new Date().getTime()+"&force="+localStorage.getItem("force");
                         $('#loading').show(); 
                         $('#'+ (error_id || 'paypal-error')).hide();
 
@@ -2106,7 +2106,7 @@ function GotoNotRequest(url) {
                         //console.log(request);
 
     
-                        var url = "/onebuy/order/status?_token={{ csrf_token() }}";
+                        var url = "/onebuy/order/status?_token={{ csrf_token() }}&currency={{ core()->getCurrentCurrencyCode() }}";
     
                         $('#loading').show();
                         return fetch(url,{
@@ -2376,7 +2376,7 @@ function GotoNotRequest(url) {
             //console.log(JSON.stringify(params));
             //return false;
 
-            var url = '/onebuy/order/add/sync?_token={{ csrf_token() }}&time=' + new Date().getTime();
+            var url = '/onebuy/order/add/sync?currency={{ core()->getCurrentCurrencyCode() }}&_token={{ csrf_token() }}&time=' + new Date().getTime();
 
             if(pay_type=="payoneer" || pay_type == 'pacypay') {
                 url = '/order/add/async?time=' + new Date().getTime();
@@ -2424,7 +2424,7 @@ function GotoNotRequest(url) {
                         localStorage.setItem("order_id", order_info.id);
                         localStorage.setItem("order_params", JSON.stringify(params));
 
-                        url = "/onebuy/order/confirm?_token={{ csrf_token() }}&payment_intent_id="+data.payment_intent_id+"&order_id="+data.order.id;
+                        url = "/onebuy/order/confirm?currency={{ core()->getCurrentCurrencyCode() }}&_token={{ csrf_token() }}&payment_intent_id="+data.payment_intent_id+"&order_id="+data.order.id;
                         fetch(url, {
                             method: 'GET',
                             headers: {
