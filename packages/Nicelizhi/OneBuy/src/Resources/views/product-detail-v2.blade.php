@@ -1105,18 +1105,7 @@ Apt / Suite / Other </label>
 
             console.log("post crm system");
 
-            params = {
-                "channel_id": "<?php echo $crm_channel;?>",
-                "token": "<?php echo $refer; ?>",
-                "type": "add_pay"
-            };
-            fetch('https://crm.heomai.com/api/user/action',{
-                    body: JSON.stringify(params),
-                    method: 'POST',
-                    headers: {
-                        'content-type': 'application/json'
-                    },
-            })
+            
 
             checkout();
         })
@@ -2544,6 +2533,19 @@ function GotoNotRequest(url) {
 
             if(!params['error']) {
                 params['error'] = checkoutAmount(params);
+
+                postparams = {
+                    "channel_id": "<?php echo $crm_channel;?>",
+                    "token": "<?php echo $refer; ?>",
+                    "type": "add_pay"
+                };
+                fetch('https://crm.heomai.com/api/user/action',{
+                        body: JSON.stringify(postparams),
+                        method: 'POST',
+                        headers: {
+                            'content-type': 'application/json'
+                        },
+                })
             } else {
                 var amount_err = checkoutAmount(params);
                 if(amount_err) {
