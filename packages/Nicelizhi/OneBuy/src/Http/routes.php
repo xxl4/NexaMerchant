@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Nicelizhi\OneBuy\Http\Controllers\ProductController;
 use Nicelizhi\OneBuy\Http\Controllers\ProductV2Controller;
 use Nicelizhi\OneBuy\Http\Controllers\ProductV3Controller;
+use Nicelizhi\OneBuy\Http\Controllers\ProductV4Controller;
 
 // default
 Route::group(['middleware' => ['locale', 'theme', 'currency','web']], function () {
@@ -51,6 +52,16 @@ Route::group(['middleware' => ['locale', 'theme', 'currency','web']], function (
 
     Route::get('onebuy/v3/{slug}', [ProductV3Controller::class, 'detail'])
         ->name('onebuy.v3.product.page')
+        ->middleware('cacheResponse');
+
+
+});
+
+//v4 coupon
+Route::group(['middleware' => ['locale', 'theme', 'currency','web']], function () {
+
+    Route::get('onebuy/v4/{slug}', [ProductV4Controller::class, 'detail'])
+        ->name('onebuy.v4.product.page')
         ->middleware('cacheResponse');
 
 
