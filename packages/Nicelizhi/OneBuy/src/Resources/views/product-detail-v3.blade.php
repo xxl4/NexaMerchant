@@ -1651,7 +1651,7 @@ function attributeChange(target, is_img_attribute, template) {
         
     }
 
-    changeOrderSummary();
+    changeOrderSummary("position");
 
 
 }
@@ -2775,7 +2775,7 @@ function GotoNotRequest(url) {
             return product_img;
         }
 
-        function changeOrderSummary() {
+        function changeOrderSummary(position) {
             var product = getSelectProduct();
             var produt_amount_base = '1';
             if(!produt_amount_base) {
@@ -2837,18 +2837,26 @@ function GotoNotRequest(url) {
                 ]
             });
 
-            params = {
-                            "channel_id": "<?php echo $crm_channel;?>",
-                            "token": "<?php echo $refer; ?>",
-                            "type": "add_cart"
-                        };
-            fetch('https://crm.heomai.com/api/user/action',{
-                    body: JSON.stringify(params),
-                    method: 'POST',
-                    headers: {
-                        'content-type': 'application/json'
-                    },
-            })
+            var add_to_cart_crm = localStorage.getItem("add_to_cart_<?php echo $product->id;?>");
+
+            if(position=='sku_select') {
+                if(add_to_cart_crm !="1") {
+                    params = {
+                                "channel_id": "<?php echo $crm_channel;?>",
+                                "token": "<?php echo $refer; ?>",
+                                "type": "add_cart"
+                            };
+                    fetch('https://crm.heomai.com/api/user/action',{
+                            body: JSON.stringify(params),
+                            method: 'POST',
+                            headers: {
+                                'content-type': 'application/json'
+                            },
+                    })
+
+                    localStorage.setItem("add_to_cart_<?php echo $product->id;?>", "1");
+                }
+            }
 
 
 

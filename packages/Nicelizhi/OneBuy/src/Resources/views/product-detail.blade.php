@@ -3020,18 +3020,21 @@ function GotoNotRequest(url) {
             var total = product_info.product_price*1 + product_info.shipping_fee* 1;            
             var products = getSubmitProducts(product_info.product_price,product_info.amount);
 
-            console.log("select product ");
-            console.log(products);
-            console.log("select product ");
+            // console.log("select product ");
+            // console.log(products);
+            // console.log("select product ");
             
             var sku_html = "";
             $('.js-sku').empty();
+
             products.forEach(function(currentValue, index, arr){
+                gitem = [];
                 console.log(currentValue);
                 console.log(index);
                 console.log(arr);
                 sku_html += products[index].attribute_name + " / " + products[index].amount + "<br>";
             })
+
             $('.js-sku').html(sku_html);
 
             gtag("event", "view_item", {
