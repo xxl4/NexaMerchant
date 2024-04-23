@@ -4,6 +4,7 @@ use GuzzleHttp\Client;
 use Webkul\Attribute\Models\AttributeOption;
 use Webkul\Attribute\Models\AttributeOptionTranslation;
 use Webkul\Product\Repositories\ProductAttributeValueRepository;
+use Webkul\Product\Models\ProductAttributeValue;
 use Illuminate\Support\Facades\Cache;
 use Webkul\Checkout\Facades\Cart;
 
@@ -35,13 +36,13 @@ final class Utils {
             $productBaseImage = product_image()->getProductBaseImage($product);
     
             //source price
-            $productAttributeValueRepository = new ProductAttributeValueRepository();
+            $productAttributeValueRepository = new ProductAttributeValue();
     
             // original price
-            $productBgAttribute_price = $productAttributeValueRepository->findOneWhere([
+            $productBgAttribute_price = $productAttributeValueRepository->where([
                 'product_id'   => $product->id,
                 'attribute_id' => 31,
-            ]);
+            ])->first();
             $source_price = 0;
             if(!is_null($productBgAttribute_price)) $source_price = $productBgAttribute_price->float_value;
             $source_price = core()->convertPrice($source_price);
