@@ -165,6 +165,8 @@ class ProductV4Controller extends Controller
             $skus = json_decode($skus, JSON_OBJECT_AS_ARRAY);
         }
 
+        $skus = (array) $skus;
+
         $product_attributes = [];
 
         $cache_key = "product_attributes_".$product->id;
@@ -260,7 +262,7 @@ class ProductV4Controller extends Controller
             $product_attributes = json_decode($product_attributes, JSON_OBJECT_AS_ARRAY);
         }
 
-        rsort($product_attributes);
+        if (!is_null($product_attributes)) rsort($product_attributes);
         //商品的背景图片获取
 
         $productBgAttribute = $this->productAttributeValueRepository->findOneWhere([
@@ -304,6 +306,16 @@ class ProductV4Controller extends Controller
 
         $quora_adv_id = config('onebuy.quora_adv_id');
 
+        // get product reviews
+        
+        // products display image
+        $product_image_lists = Cache::get("product_image_lists_".$product['id']);
+
+        $version = Cache::get("onebuy_".$product['sku']);
+
+        //var_dump($version);
+        //var_dump($product_image_lists);
+
 
 
         return view('onebuy::product-detail-v4', compact('gtag',
@@ -326,6 +338,8 @@ class ProductV4Controller extends Controller
         'ob_adv_id',
         'crm_channel',
         'refer',
+        'version',
+        'product_image_lists',
         'quora_adv_id'
         ));
 

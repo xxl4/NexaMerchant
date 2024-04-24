@@ -273,6 +273,13 @@
                         <?php echo $package_product['name'];?> <br/>
                         </span>
                     </div>
+                    <?php
+                    if(isset($product_image_lists[$key])) {
+                    ?>
+                    <div class="list-item-image">
+                        <img src="/storage/<?php echo $product_image_lists[$key]['value'];?>" />
+                    </div>
+                    <?php } ?>
                     <div class="list-item-footer">
                         <div class="list-item-prices">
                             <div class="old-price">
@@ -1912,9 +1919,13 @@ function GotoNotRequest(url) {
 <script>
         window.product_attributes = <?php echo json_encode($product_attributes);?>;
 
+        console.log(window.product_attributes);
+
         var is_more_attribute = 1;
+        <?php if(!empty($product_attributes)) { ?>
         setAttributeTemplate('@lang('onebuy::app.product.order.SELECT YOUR')', '', '23', is_more_attribute ? true : false, 'common15', 'Sold out, please select another Attributes');
         showAttributeSelecet('@lang('onebuy::app.product.order.Item')');
+        <?php } ?>
     </script>
 
 <!-- Google tag (gtag.js) -->
@@ -2863,12 +2874,30 @@ function GotoNotRequest(url) {
             var attribute_item = $('.attribute-select .attribute-item');
             var sku_maps = getSKuMaps();
 
-            // console.log("sku maps");
-            // console.log(sku_maps);
+            var arr = Object.keys(sku_maps);
 
-            // console.log("attribute_item");
-            // console.log(attribute_item);
-            // console.log("attribute_item");
+            if(arr== 0) {
+                var selectProduct = getSelectProduct();
+
+                var products = [], product_sku_map = {};
+
+                var m = 0;
+                var sku = {
+                            price       : unit_price,
+                            amount      : selectProduct.amount,
+                            description : '<?php echo $product->name;?>',
+                            product_id  : '<?php echo $product->id;?>',
+                            product_sku : "<?php echo $product->sku;?>",
+                            variant_id  : "",
+                            attribute_name  : "",
+                            attr_id     : ""
+                        };
+                products.push(sku);
+                return products;
+
+
+            }
+            
 
             for(var i=0; i< attribute_item.length; i++) {
                 var sku_key_arr = [];
