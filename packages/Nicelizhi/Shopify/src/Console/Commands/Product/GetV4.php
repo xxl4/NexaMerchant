@@ -152,23 +152,6 @@ class GetV4 extends Command
 
     }
 
-    /**
-     * 
-     * 
-     * Clear the cache for this product
-     * 
-     * @param int $pid
-     * 
-     * 
-     */
-    protected function clearCache($pid) {
-        Cache::pull("product_color_size_".$pid);
-        Cache::pull("product_attributes_".$pid);
-        Cache::pull("product_sku_size_".$pid);
-        Cache::pull("product_sku_".$pid);
-        Cache::pull("product_sku_".$pid);
-    }
-
     protected function Permissions() {
         $local_image_path = "storage/product/";
         $path = public_path($local_image_path);
