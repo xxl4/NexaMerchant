@@ -32,6 +32,7 @@ final class Utils {
             Cache::put($shipping_price_key, $shipping_price);
         }
         if(empty($package_products)) {
+        //if(true) {
             $package_products = [];
             $productBaseImage = product_image()->getProductBaseImage($product);
     
@@ -66,7 +67,7 @@ final class Utils {
                 if ($i==3) $discount = 0.7;
                 if ($i==4) $discount = 0.6;
                 if ($i==1) $discount = 1;
-                $package_product['new_price'] = self::getCartProductPrice($product,$product->id, $i) * $discount;
+                $package_product['new_price'] = $price * $discount;
                 $package_product['new_price_format'] = core()->currencySymbol($currency).round($package_product['new_price'], 2);
                 $tip1_price = (1 - round(($package_product['new_price'] / $package_product['old_price']), 2)) * 100;
                 $package_product['tip1'] = $tip1_price."% ";
@@ -120,6 +121,9 @@ final class Utils {
         }
 
         if($productType=='configurable') {
+            $product_variant_id = 0;
+            $super_attribute = [];
+            //var_dump($attributes);exit;
             foreach($attributes['attributes'] as $key=>$attribute) {
                 $super_attribute[$attribute['id']] = $attribute['options'][0]['id'];
                 $product_variant_id = $attribute['options'][0]['products'][0];
@@ -128,11 +132,8 @@ final class Utils {
             $AddcartProduct['selected_configurable_option'] = $product_variant_id;
             $AddcartProduct['super_attribute'] = $super_attribute;
         }
-
-        //$product_variant = $this->productRepository->where("parent_id", $product->id)->get();
-
-
         //var_dump($attributes);exit;
+        //var_dump($product['product_id']);exit;
         $cart = Cart::addProduct($product['product_id'], $AddcartProduct);
         $cart = Cart::getCart();
         //清空购车动作
