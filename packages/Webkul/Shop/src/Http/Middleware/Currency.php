@@ -4,7 +4,6 @@ namespace Webkul\Shop\Http\Middleware;
 
 use Closure;
 use Webkul\Core\Repositories\CurrencyRepository;
-use Illuminate\Support\Facades\Log;
 
 class Currency
 {
@@ -32,15 +31,15 @@ class Currency
                 core()->setCurrentCurrency($currencyCode);
 
                 session()->put('currency', $currencyCode);
-                Log::info("GET currency ". $currencyCode);
+                //Log::info("GET currency ". $currencyCode);
             }
         } else {
             if ($currencyCode = session()->get('currency')) {
                 core()->setCurrentCurrency($currencyCode);
-                Log::info("SESSION currency ". $currencyCode);
+                //Log::info("SESSION currency ". $currencyCode);
             } else {
                 core()->setCurrentCurrency(core()->getChannelBaseCurrencyCode());
-                Log::info("DEFAULT currency ". core()->getChannelBaseCurrencyCode());
+                //Log::info("DEFAULT currency ". core()->getChannelBaseCurrencyCode());
             }
         }
 
