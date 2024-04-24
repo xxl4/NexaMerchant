@@ -4,6 +4,7 @@ namespace App\Exceptions;
 
 use Throwable;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Support\Facades\Log;
 
 class Handler extends ExceptionHandler
 {
@@ -48,7 +49,9 @@ class Handler extends ExceptionHandler
 
        //var_dump($exception->getCode());
 
-        \Nicelizhi\Shopify\Helpers\Utils::send(json_encode($exception->getMessage()). " please check the log file for more details");
+       //Log::info(json_encode($exception));
+
+       
 
         parent::report($exception);
     }
@@ -62,6 +65,10 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Throwable $exception)
     {
+        if ($exception instanceof \Exception) {
+            if(!empty($exception->getMessage())) \Nicelizhi\Shopify\Helpers\Utils::send(json_encode($exception->getMessage()). " please check the log file for more details");
+        }
+        
         return parent::render($request, $exception);
     }
 }
