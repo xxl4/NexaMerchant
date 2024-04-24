@@ -190,6 +190,7 @@ class GetV2 extends Command
 
         foreach($items as $key=>$item) {
             $this->info($item['product_id']);
+            echo $item['product_id']."\n";
             $options = $item->options;
             $shopifyVariants = $item->variants;
             $shopifyImages = $item->images;
@@ -217,6 +218,9 @@ class GetV2 extends Command
             $LocalOptions = [];
             $LocalOptions = \Nicelizhi\Shopify\Helpers\Utils::createOptions($options);
 
+            $color = $LocalOptions['color'];
+            $size = $LocalOptions['size'];
+
             //exit;
 
             if($error==1) continue;
@@ -229,11 +233,13 @@ class GetV2 extends Command
             $data['attribute_family_id'] = 1;
             $data['sku'] = $item['product_id'];
             $data['type'] = "configurable";
-            $data['super_attributes'] = $LocalOptions['LocalOptions'];
+
+            if(!empty($color)) $super_attributes['color'] = $color;
+            if(!empty($size)) $super_attributes['size'] = $size;
+            
+            $data['super_attributes'] = $super_attributes;
 
             //var_dump($data);exit;
-            
-
             $method = "create";
 
             // check product info
@@ -416,12 +422,12 @@ class GetV2 extends Command
                         $var_product['color'] = $this->getAttr($LocalOptions['color_mapp'], $shopifyVariant['option1'], $shopifyVariant['option2'], $shopifyVariant['option3']);
                         $var_product['size'] = $this->getAttr($LocalOptions['size_mapp'], $shopifyVariant['option1'], $shopifyVariant['option2'], $shopifyVariant['option3']);
 
+                        var_dump($var_product);
+
                         Event::dispatch('catalog.product.update.before', $variant->id);
                         $var_product = $this->productRepository->update($var_product, $variant->id);
 
                         Event::dispatch('catalog.product.update.after', $var_product);
-
-
 
                         $this->error($shopifyVariant['title'].'--'.$newVariant['color'].'--'.$newVariant['size'].'--'.$variant->id);
                         $newVariants[$variant->id] = $newVariant;
