@@ -18,6 +18,30 @@
 
                 </div>
 
+                <div class="col-md-6">
+
+                    @include('admin::reporting.products.top-selling-by-revenue')
+
+                </div>
+
+                <div class="col-md-6">
+
+                    @include('admin::reporting.products.top-selling-by-quantity')
+
+                </div>
+
+                <div class="col-md-6">
+
+                    @include('admin::reporting.products.most-reviews')
+
+                </div>
+
+                <div class="col-md-6">
+
+                    @include('admin::reporting.products.most-visits')
+
+                </div>
+
             </div>
         </div>
     </section>
