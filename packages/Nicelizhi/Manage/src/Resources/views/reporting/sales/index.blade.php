@@ -7,35 +7,29 @@
         <div class="row">
             <div class="col-md-7">
             </div>
-            <div class="col-md-2">
+            <div class="col-md-5">
                 <div class="card-body">
+                    <form action="{{ route('admin.reporting.sales.index') }}" class="form-inline" method="GET">
                     <div class="form-group">
                         <div class="input-group date" id="start_date" data-target-input="nearest">
-                            <input type="text" class="form-control datetimepicker-input" name="start_date" data-target="#start_date" placeholder="Start Date" />
+                            <input type="date" class="form-control datetimepicker-input" name="start_date" data-target="#start_date" placeholder="Start Date" />
                             <div class="input-group-append" data-target="#start_date" data-toggle="datetimepicker">
                                 <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="col-md-2">
-                <div class="card-body">
                     <div class="form-group">
                         <div class="input-group date" id="end_date" data-target-input="nearest">
-                            <input type="text" class="form-control datetimepicker-input" name="end_date" data-target="#end_date" placeholder="End Date" />
+                            <input type="date" class="form-control datetimepicker-input" name="end_date" data-target="#end_date" placeholder="End Date" />
                             <div class="input-group-append" data-target="#end_date" data-toggle="datetimepicker">
                                 <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="col-md-1">
-                <div class="card-body">
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary">Search</button>
                     </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -146,16 +140,34 @@
 
 <script>
     $(function () {
+
+        url = window.location.search;
+        const searchParams = new URLSearchParams(url);
+        var filtets = Object.assign({}, filtets);
+        filtets.start = searchParams.get('start_date');
+        filtets.end = searchParams.get('end_date');
+
+        if(filtets.end==null) {
+            filtets.end = "{{ $endDate }}";
+        }
+
+        if(filtets.start==null) {
+            filtets.start = "{{ $startDate }}";
+        }
+
+
+        
+
         //Date picker
         $('#start_date').datetimepicker({
-            format: 'L',
-            defaultDate: '{{ $startDate }}',
+            format: 'YYYY-MM-DD',
+            defaultDate: filtets.start,
            // value: '{{ $startDate }}'
         });
         //$('#start_date').datetimepicker("setDate", "{{ $startDate }}");
         $('#end_date').datetimepicker({
-            format: 'L',
-            defaultDate: '{{ $endDate }}',
+            format: 'YYYY-MM-DD',
+            defaultDate: filtets.end,
             //value: '{{ $endDate }}'
         });
     });

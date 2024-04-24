@@ -28,6 +28,11 @@
 
 
         var filtets = Object.assign({}, filtets);
+        url = window.location.search;
+        const searchParams = new URLSearchParams(url);
+        var filtets = Object.assign({}, filtets);
+        filtets.start = searchParams.get('start_date');
+        filtets.end = searchParams.get('end_date');
         filtets.type = 'top-payment-methods'
 
         $.ajax({

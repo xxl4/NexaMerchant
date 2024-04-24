@@ -30,6 +30,12 @@
 <script src="/themes/manage/AdminLTE/dist/js/adminlte.min.js?v=3.2.0"></script>
 <script>
     $(function () {
+        // // Iterating the search parameters
+        // for (const p of searchParams) {
+        // console.log(p);
+        // }
+
+
       /* ChartJS
        * -------
        * Here we will create a few charts using ChartJS
@@ -74,7 +80,11 @@
     }
 
      // {{ route('admin.reporting.sales.stats') }}
+     url = window.location.search;
+     const searchParams = new URLSearchParams(url);
      var filtets = Object.assign({}, filtets);
+     filtets.start = searchParams.get('start_date');
+     filtets.end = searchParams.get('end_date');
      filtets.type = 'total-orders'
 
      $.ajax({

@@ -1,5 +1,4 @@
 <?php
-
 namespace Nicelizhi\Manage\Http\Controllers\Reporting;
 
 use Nicelizhi\Manage\Helpers\Reporting;
