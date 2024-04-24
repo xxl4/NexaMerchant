@@ -34,6 +34,22 @@ class Handler extends ExceptionHandler
      */
     public function report(Throwable $exception)
     {
+
+        // if ($exception instanceof \Exception) {
+        //     // emails.exception is the template of your email
+        //     // it will have access to the $error that we are passing below
+        //     // Mail::send('emails.exception', ['error' => $e->getMessage()], function ($m) {
+        //     //     $m->to('your email', 'your name')->subject('your email subject');
+        //     // });
+
+            
+
+        // }
+
+       //var_dump($exception->getCode());
+
+        \Nicelizhi\Shopify\Helpers\Utils::send(json_encode($exception->getMessage()). " please check the log file for more details");
+
         parent::report($exception);
     }
 
