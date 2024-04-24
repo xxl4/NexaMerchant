@@ -105,37 +105,36 @@ final class Utils {
         Cart::deActivateCart();
         //添加对应的商品到购物车中
 
-        $variant = $product->getTypeInstance()->getDefaultVariant();
+        $productType = $product->type;
 
-        //$product_variant = $this->productRepository->where("parent_id", $product->id)->get();
+        $AddcartProduct = [];
+        
+        $AddcartProduct['quantity'] = $qty;
 
         $productViewHelper = new \Webkul\Product\Helpers\ConfigurableOption();
 
         $attributes = $productViewHelper->getConfigurationConfig($product);
 
-        //var_dump($attributes);exit;
+        if($productType=="simple") {
 
-
-        $AddcartProduct = [];
-        
-        $AddcartProduct['quantity'] = $qty;
-        
-        foreach($attributes['attributes'] as $key=>$attribute) {
-            $super_attribute[$attribute['id']] = $attribute['options'][0]['id'];
-            $product_variant_id = $attribute['options'][0]['products'][0];
         }
 
-        $AddcartProduct['selected_configurable_option'] = $product_variant_id;
-        $AddcartProduct['super_attribute'] = $super_attribute;
+        if($productType=='configurable') {
+            foreach($attributes['attributes'] as $key=>$attribute) {
+                $super_attribute[$attribute['id']] = $attribute['options'][0]['id'];
+                $product_variant_id = $attribute['options'][0]['products'][0];
+            }
+    
+            $AddcartProduct['selected_configurable_option'] = $product_variant_id;
+            $AddcartProduct['super_attribute'] = $super_attribute;
+        }
 
-        
+        //$product_variant = $this->productRepository->where("parent_id", $product->id)->get();
+
+
+        //var_dump($attributes);exit;
         $cart = Cart::addProduct($product['product_id'], $AddcartProduct);
-
-        //获取购车中商品价格返回
         $cart = Cart::getCart();
-
-        //var_dump($cart); exit;
-
         //清空购车动作
         Cart::deActivateCart();
 
