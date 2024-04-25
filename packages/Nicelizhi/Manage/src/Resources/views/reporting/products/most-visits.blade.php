@@ -11,7 +11,7 @@
     
     <div class="card-body">
 
-        <div class="products-with-most-reviews">
+        <div class="products-with-most-visits">
 
         </div>
 
@@ -37,7 +37,7 @@
         var filtets = Object.assign({}, filtets);
         filtets.start = searchParams.get('start_date');
         filtets.end = searchParams.get('end_date');
-        filtets.type = 'products-with-most-reviews'
+        filtets.type = 'products-with-most-visits'
 
         $.ajax({
             url: "{{ route('admin.reporting.products.stats') }}",
@@ -47,7 +47,7 @@
             type: "get",
         }).done(function (data) {
 
-            $(".products-with-most-reviews").html();
+            $(".products-with-most-visits").html();
 
             var statistics = data.statistics;
 
@@ -60,11 +60,11 @@
 
                 if(progress > 100) progress = 100;
 
-                html += '<p><code>'+ currentValue.name + "(" +  currentValue.total_qty_ordered +' ) </code></p><div class="progress"><div class="progress-bar bg-primary progress-bar-striped purchased" role="progressbar" aria-valuenow="'+ currentValue.count +'" aria-valuemin="0" aria-valuemax="100" style="width: '+ progress +'%"><span class="sr-only">'+ progress +'% Complete (success)</span></div></div>';
+                html += '<p><code>'+ currentValue.name + "(" +  currentValue.visitable.sku +' ) </code></p><div class="progress"><div class="progress-bar bg-primary progress-bar-striped purchased" role="progressbar" aria-valuenow="'+ currentValue.count +'" aria-valuemin="0" aria-valuemax="100" style="width: '+ progress +'%"><span class="sr-only">'+ progress +'% Complete (success)</span></div></div>';
 
             });
 
-            $(".products-with-most-reviews").html(html);
+            $(".products-with-most-visits").html(html);
             
             
 
