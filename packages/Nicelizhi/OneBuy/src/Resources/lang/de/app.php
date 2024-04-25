@@ -69,6 +69,7 @@ return [
             'All transactions are secure and encrypted' => 'Alle Transaktionen sind sicher und verschlüsselt',
             'Hatmeo offers 30' => 'Hatme bietet allen Kunden eine 30-tägige Rückgabegarantie an. Sollten Sie innerhalb von 30 Tagen nach Erhalt der Ware unzufrieden sein, kontaktieren Sie uns bitte unter customer@hatme.de.',
             'I agree with the' => "Ich stimme dem zu",
+            'Coupon Code' => "Gutscheincode"
         ],
         'footer' => [
             'Shipping Delivery' => 'Versand & Lieferung',
@@ -76,8 +77,8 @@ return [
             'About US' => 'Über uns',
             'Privacy Policy' => 'Datenschutzrichtlinie',
             'Contact Us' => 'Kontaktiere uns',
-        ],
-        'Coupon Code' => "Gutscheincode"
+        ]
+        
     ],
     'order-success' => [
         
