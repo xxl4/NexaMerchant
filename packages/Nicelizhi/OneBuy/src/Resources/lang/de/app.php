@@ -76,7 +76,8 @@ return [
             'About US' => 'Über uns',
             'Privacy Policy' => 'Datenschutzrichtlinie',
             'Contact Us' => 'Kontaktiere uns',
-        ]
+        ],
+        'Coupon Code' => "Gutscheincode"
     ],
     'order-success' => [
         

@@ -76,7 +76,8 @@ return [
             'About US' => 'À propos De Nous',
             'Privacy Policy' => 'Politique De Confidentialité',
             'Contact Us' => 'Contactez-nous',
-        ]
+        ],
+        'Coupon Code' => "Code promo"
     ],
     'order-success' => [
         

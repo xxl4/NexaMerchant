@@ -84,6 +84,7 @@ return [
                 'State/Province' => 'Billing State/Province',
                 'Zip/Postal Code' => 'Billing Zip/Postal Code',
             ],
+            'Coupon Code' => "Coupon Code"
         ],
         'footer' => [
             'Shipping Delivery' => 'Shipping Delivery',
