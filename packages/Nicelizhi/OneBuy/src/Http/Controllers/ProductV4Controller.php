@@ -22,6 +22,7 @@ use Illuminate\Support\Facades\Cache;
 use Webkul\Payment\Facades\Payment;
 use Illuminate\Support\Facades\Redis;
 use Webkul\CMS\Repositories\CmsRepository;
+use Illuminate\Http\Response;
 
 
 class ProductV4Controller extends Controller
@@ -142,19 +143,60 @@ class ProductV4Controller extends Controller
                     'attribute_id' => 24,
                 ]);
     
-                $SizeattributeOptions = $attributeOptionRepository->findOneWhere(['id'=>$sizeAttribute['integer_value']]);
-                $ColorattributeOptions = $attributeOptionRepository->findOneWhere(['id'=>$colorAttribute['integer_value']]);
+                $attr_id = "";
+                $ColorattributeOptions = null;
+                if(!is_null($colorAttribute)) {
+                    $ColorattributeOptions = $attributeOptionRepository->findOneWhere(['id'=>$colorAttribute['integer_value']]);
+                    $attr_id = "24_".$colorAttribute['integer_value'];
+                } 
+                $SizeattributeOptions = null;
+                if(!is_null($sizeAttribute)) {
+                    $SizeattributeOptions = $attributeOptionRepository->findOneWhere(['id'=>$sizeAttribute['integer_value']]);
+                    if(empty($attr_id)) {
+                        $attr_id = "23_".$sizeAttribute['integer_value'];
+                    }else{
+                        $attr_id .= ",23_".$sizeAttribute['integer_value'];
+                    }
+                    
+                } 
+
+                $attribute_name = "";
+                $sku_key = "";
+               
+
+                if(!is_null($SizeattributeOptions)) {
+                    $attribute_name .= $SizeattributeOptions->admin_name;
+                    $sku_key = $SizeattributeOptions->admin_name;
+
+                    //$qty_items_size[$SizeattributeOptions->admin_name][] = $ColorattributeOptions->admin_name;
+                }
+                if(!is_null($ColorattributeOptions)) {
+                    if(!empty($attribute_name)) {
+                        $attribute_name.=",".$ColorattributeOptions->admin_name;
+                        $sku_key.= "_".$ColorattributeOptions->admin_name;
+                    }else{
+                        $attribute_name = $ColorattributeOptions->admin_name;
+                        $sku_key = $ColorattributeOptions->admin_name;
+                    }
+                    //$qty_items_color[$ColorattributeOptions->admin_name][] = $SizeattributeOptions->admin_name;
+                }
                 
-                $attribute_name = $SizeattributeOptions->admin_name.",".$ColorattributeOptions->admin_name;
+                
+                
+                // $attribute_name = $SizeattributeOptions->admin_name.",".$ColorattributeOptions->admin_name;
     
+                // $sku['attribute_name'] = $attribute_name;
+                // $sku['attr_id'] = "24_".$colorAttribute['integer_value'].",23_".$sizeAttribute['integer_value'];
+
                 $sku['attribute_name'] = $attribute_name;
-                $sku['attr_id'] = "24_".$colorAttribute['integer_value'].",23_".$sizeAttribute['integer_value'];
+                $sku['attr_id'] = $attr_id;
     
                 //$sku['key'] = $ColorattributeOptions->admin_name."_".$SizeattributeOptions->admin_name; // 这个数据需要留意他的位置，JS判断会需要使用
-                $sku['key'] = $SizeattributeOptions->admin_name."_".$ColorattributeOptions->admin_name; // 这个数据需要留意他的位置，JS判断会需要使用
+                //$sku['key'] = $SizeattributeOptions->admin_name."_".$ColorattributeOptions->admin_name; // 这个数据需要留意他的位置，JS判断会需要使用
+                $sku['key'] = $sku_key; // 这个数据需要留意他的位置，JS判断会需要使用
 
-                $qty_items_color[$ColorattributeOptions->admin_name][] = $SizeattributeOptions->admin_name;
-                $qty_items_size[$SizeattributeOptions->admin_name][] = $ColorattributeOptions->admin_name;
+                
+                
                 
                 $skus[] = $sku;
             }

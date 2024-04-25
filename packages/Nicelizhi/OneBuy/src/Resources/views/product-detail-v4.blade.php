@@ -261,12 +261,12 @@
         <div class="product-list js-list">
         <?php foreach($package_products as $key=>$package_product) { ?>
             <div data-id="<?php echo $package_product['id'];?>" class="list-item js-list-item item-<?php echo $key+5;?><?php if($key==0) { ?> list-item--checked <?php } ?>" style="order: 0;">
-        <?php if($key==0) { ?>
+            <?php if($key==0) { ?>
                 <div class="recommend_deal" style="display:flex;">
                     <img class="recommend_deal_img" src="/template-common/checkout1/images/star.png">
                         <div class="recommend_deal_font">@lang('onebuy::app.product.order.RECOMMENDED DEAL') </div>
                 </div>
-        <?php } ?>
+            <?php } ?>
                 <div class="list-item-content">
                     <div class="list-item-title">
                         <span class="list-item-title-name js-name" style="font-weight:bold;">
@@ -331,86 +331,68 @@
                 </div>
             </div>
         </div>
-    <?php } ?>
+        <?php } ?>
+        </div>
+        <div class="attribute-select"></div>
+        <div class="split-line shipping_information_paypal_block" style="padding-top:20px;">
+            <div style="left: 0 \9;top: 8px \9;width: 100% \9; font-size:20px;font-weight:bold;">@lang('onebuy::app.product.order.Express Checkout') </div>
+        </div>
+        <div class="paypal-wrapper" style="display:block;text-align:-webkit-center;padding: 0;margin-top: 20px;margin: 0;margin-top: 20px;">
+            <div id="paypal-error" style="color:#e51f28;display:none"></div>
+            <div class="paypal-card-submit" id="paypal-card-submit"></div>
+        </div>
     </div>
-    <div class="attribute-select"></div>
-    <div class="split-line shipping_information_paypal_block" style="padding-top:20px;">
-        <div style="left: 0 \9;top: 8px \9;width: 100% \9; font-size:20px;font-weight:bold;">
-         @lang('onebuy::app.product.order.Express Checkout') </div>
-    </div>
-    <div class="paypal-wrapper" style="display:block;text-align:-webkit-center;padding: 0;margin-top: 20px;margin: 0;margin-top: 20px;">
-        <div id="paypal-error" style="color:#e51f28;display:none"></div>
-        <div class="paypal-card-submit" id="paypal-card-submit"></div>
-    </div>
-</div>
 </div>
 <div class="shipping-and-payment-wrapper shipping_information_block">
-<div class="shipping-and-payment">
-    <br />
-    <br />
-<div class="payment-block" style="display:none;">
-<div class="payment-title">
- @lang('onebuy::app.product.order.Or Pay With Credit Card') </div>
-
-
-<div class="checkout-block" id="checkout-block-up">
-<!-- <button class="checkout-button">
-<span>
-CHECKOUT </span>
-</button> -->
-<script>
-$('#checkout-block-up').on('click', function() {
-    document.querySelector(".shipping_information_block").scrollIntoView({
-        behavior: "smooth"
+    <div class="shipping-and-payment">
+        <br />
+        <br />
+    <div class="payment-block" style="display:none;">
+    <div class="payment-title">@lang('onebuy::app.product.order.Or Pay With Credit Card') </div>
+    <div class="checkout-block" id="checkout-block-up">
+    <script>
+    $('#checkout-block-up').on('click', function() {
+        document.querySelector(".shipping_information_block").scrollIntoView({
+            behavior: "smooth"
+        })
     })
-})
-</script>
-<div class="checkout-content">
-<form>
-<div class="checkout-title">
-<div class="checkout-title-font">
-@lang('onebuy::app.product.order.Credit Card Information'): </div>
-<img src="/template-common/checkout1/images/paypal_creditcard_images_jcb.png" />
-</div>
-<div id="cc-form" style="display:none">
-<div id="card-number-cc" class="pay_cc"></div>
-<div class="pay_cc_wrapper">
-<div class="pay_cc pay_cc_half" id="card-expiry-cc">
-</div>
-<div class="pay_cc pay_cc_half" id="card-cvc-cc">
-</div>
-</div>
-</div>
-<div class="checkout-pay" style="display:none">
-<div class="pay_checkout card-number-frame" id="card-number-frame">
-</div>
-<div class="pay_checkout_wrapper">
-<div class="pay_checkout pay_checkout_half expiry-date-frame" id="expiry-date-frame">
-</div>
-<div class="pay_checkout pay_checkout_half cvv-frame" id="cvv-frame">
-</div>
-</div>
-</div>
-<div class="stripe-pay" style="display:none">
-<div class="pay_stripe" id="card-number-stripe">
-</div>
-<div class="pay_stripe_wrapper">
-<div class="pay_stripe pay_stripe_half" id="card-expiry-stripe">
-</div>
-<div class="pay_stripe pay_stripe_half" id="card-cvc-stripe">
-</div>
-</div>
-</div>
-<div id="checkout-card-error">
- @lang('onebuy::app.product.order.Your Card Info is invaild') </div>
-</form>
-</div>
+    </script>
+    <div class="checkout-content">
+        <form>
+            <div class="checkout-title">
+                <div class="checkout-title-font">@lang('onebuy::app.product.order.Credit Card Information'): </div>
+                    <img src="/template-common/checkout1/images/paypal_creditcard_images_jcb.png" />
+                </div>
+                <div id="cc-form" style="display:none">
+                    <div id="card-number-cc" class="pay_cc"></div>
+                    <div class="pay_cc_wrapper">
+                        <div class="pay_cc pay_cc_half" id="card-expiry-cc"></div>
+                        <div class="pay_cc pay_cc_half" id="card-cvc-cc"></div>
+                    </div>
+                </div>
+            <div class="checkout-pay" style="display:none">
+                <div class="pay_checkout card-number-frame" id="card-number-frame"></div>
+                <div class="pay_checkout_wrapper">
+                    <div class="pay_checkout pay_checkout_half expiry-date-frame" id="expiry-date-frame"></div>
+                    <div class="pay_checkout pay_checkout_half cvv-frame" id="cvv-frame"></div>
+                </div>
+            </div>
+            <div class="stripe-pay" style="display:none">
+                <div class="pay_stripe" id="card-number-stripe"></div>
+                <div class="pay_stripe_wrapper">
+                    <div class="pay_stripe pay_stripe_half" id="card-expiry-stripe"></div>
+                    <div class="pay_stripe pay_stripe_half" id="card-cvc-stripe"></div>
+                </div>
+            </div>
+            <div id="checkout-card-error">@lang('onebuy::app.product.order.Your Card Info is invaild') </div>
+        </form>
+    </div>
 </div>
 <div class="split-line-safe">
-<div class="split-line-safe-content">
- @lang('onebuy::app.product.order.GUARANTEED')<span style="color: #00d2be;">
- @lang('onebuy::app.product.order.SAFE')</span>
- @lang('onebuy::app.product.order.CHECKOUT') </div>
+    <div class="split-line-safe-content">
+    @lang('onebuy::app.product.order.GUARANTEED')<span style="color: #00d2be;">
+    @lang('onebuy::app.product.order.SAFE')</span>
+    @lang('onebuy::app.product.order.CHECKOUT') </div>
 </div>
 <img class="payment-img" src="/template-common/checkout1/images/gsc-en.png?v=111" />
 </div>
@@ -523,46 +505,37 @@ Apt / Suite / Other </label>
         <li class="summary-list-item">
             <span class="js-sku" style="color: gray;"></span>
         </li>
+        <div class="summary-list-item">
+            <input type="text" name="coupon_code" id="coupon_code" /> <input type="button" value="Apply" class="btn btn-default applay_coupon" />
+        </div>
     </ul>
 <div class="summary-total">
-<div class="summary-total-content">
-<div class="summary-total-item">
-<span class="summary-total-item-name">
-@lang('onebuy::app.product.order.Subtotal'):
-</span>
-<span class="summary-total-item-price js-old-price product-price"></span>
-</div>
-<div class="summary-total-item">
-<span class="summary-total-item-name">
-@lang('onebuy::app.product.order.Discount'):
-</span>
-<span class="summary-total-item-price js-discount-price red product-price"></span>
-</div>
-<div class="summary-total-item">
-<span class="summary-total-item-name">
-@lang('onebuy::app.product.order.Shipping'):
-</span>
-<span class="summary-total-item-price js-shipping-price red"></span>
-</div>
-<div class="summary-total-item summary-total-item-shipping-insurance" style="display:none">
-<span class="summary-total-item-name">
-@lang('onebuy::app.product.order.Shipping Insurance'):
-</span>
-<span class="summary-total-item-price js-shipping-insurance-fee"></span>
-</div>
-<div class="summary-total-item coupon-price-item" style="display:none">
-<span class="summary-total-item-name">
-@lang('onebuy::app.product.order.Coupon'):
-</span>
-<span class="summary-total-item-price js-coupon-price red"></span>
-</div>
-<div class="summary-total-item">
-<span class="summary-total-item-name">
-@lang('onebuy::app.product.order.Total'):
-</span>
-<span class="summary-total-item-price js-total red product-price"></span>
-</div>
-</div>
+    <div class="summary-total-content">
+        <div class="summary-total-item">
+            <span class="summary-total-item-name">@lang('onebuy::app.product.order.Subtotal'):</span>
+            <span class="summary-total-item-price js-old-price product-price"></span>
+        </div>
+        <div class="summary-total-item">
+            <span class="summary-total-item-name">@lang('onebuy::app.product.order.Discount'):</span>
+            <span class="summary-total-item-price js-discount-price red product-price"></span>
+        </div>
+        <div class="summary-total-item">
+            <span class="summary-total-item-name">@lang('onebuy::app.product.order.Shipping'):</span>
+            <span class="summary-total-item-price js-shipping-price red"></span>
+        </div>
+        <div class="summary-total-item summary-total-item-shipping-insurance" style="display:none">
+            <span class="summary-total-item-name">@lang('onebuy::app.product.order.Shipping Insurance'):</span>
+            <span class="summary-total-item-price js-shipping-insurance-fee"></span>
+        </div>
+        <div class="summary-total-item coupon-price-item" style="display:none">
+            <span class="summary-total-item-name">@lang('onebuy::app.product.order.Coupon'):</span>
+            <span class="summary-total-item-price js-coupon-price red"></span>
+        </div>
+        <div class="summary-total-item">
+            <span class="summary-total-item-name">@lang('onebuy::app.product.order.Total'):</span>
+            <span class="summary-total-item-price js-total red product-price"></span>
+        </div>
+    </div>
 </div>
 <div class="summary-footer">
 <div class="agree-block">
@@ -715,6 +688,49 @@ Apt / Suite / Other </label>
 
 <script>
     $(document).ready(function(){
+
+        $(".applay_coupon").on("click", function(){
+            console.log("apply coupon code");
+
+            var coupon_code = $("#coupon_code").val();
+
+            if(coupon_code) {
+                $.ajax({
+                    url: "/api/onebuy/check/coupon?_token={{ csrf_token() }}",
+                    type: "POST",
+                    data: {
+                        code: coupon_code
+                    },
+                    success: function(response) {
+
+                        $(".coupon-price-item").show();
+                        $(".js-coupon-price").html(getFormatPrice(response.data.couponConfig.discount_amount));
+                        window.coupon_price = response.data.couponConfig.discount_amount;
+
+                        //localStorage.setItem("coupon_code", coupon_code);
+
+                        window.coupon_code = coupon_code;
+
+                        changeOrderSummary();
+                        //$('.js-shipping-price').html();
+                    }
+                });
+            }
+
+
+        })
+
+        /**
+         * Apply coupon
+         */
+        function applyCoupon() {
+            
+            
+
+
+
+
+        }
 
         function showBillProvince() {
             $('#bill-state-select').parent().show();
@@ -998,7 +1014,7 @@ Apt / Suite / Other </label>
                 createOrder: function(data, actions) {
                     $('#loading').show();
                     var params = getOrderParams('paypal_stand');
-                    var url = '/onebuy/order/addr/after?currenty={{ core()->getCurrentCurrencyCode() }}&_token={{ csrf_token() }}&time=' + new Date().getTime()+"&force="+localStorage.getItem("force");
+                    var url = '/api/onebuy/order/addr/after?currenty={{ core()->getCurrentCurrencyCode() }}&_token={{ csrf_token() }}&time=' + new Date().getTime()+"&force="+localStorage.getItem("force");
                     return fetch(url, {
                         body: JSON.stringify(params),
                         method: 'POST',
@@ -1060,7 +1076,7 @@ Apt / Suite / Other </label>
                         data: data,
                     }
                     $('#loading').show();
-                    var url = "/onebuy/order/status?_token={{ csrf_token() }}";
+                    var url = "/api/onebuy/order/status?_token={{ csrf_token() }}";
                     return fetch(url, {
                         method: 'post',
                         body: JSON.stringify(request_params),
@@ -2020,7 +2036,7 @@ function GotoNotRequest(url) {
                             $('#'+ (error_id || 'paypal-error')).show();
                             throw new Error('Verification failed');
                         }
-                        var url = '/onebuy/order/addr/after?currency={{ core()->getCurrentCurrencyCode() }}&_token={{ csrf_token() }}&time=' + new Date().getTime()+"&force="+localStorage.getItem("force");
+                        var url = '/api/onebuy/order/addr/after?currency={{ core()->getCurrentCurrencyCode() }}&_token={{ csrf_token() }}&time=' + new Date().getTime()+"&force="+localStorage.getItem("force");
                         $('#loading').show(); 
                         $('#'+ (error_id || 'paypal-error')).hide();
 
@@ -2100,7 +2116,7 @@ function GotoNotRequest(url) {
                         //console.log(request);
 
     
-                        var url = "/onebuy/order/status?_token={{ csrf_token() }}&currency={{ core()->getCurrentCurrencyCode() }}";
+                        var url = "/api/onebuy/order/status?_token={{ csrf_token() }}&currency={{ core()->getCurrentCurrencyCode() }}";
     
                         $('#loading').show();
                         return fetch(url,{
@@ -2367,10 +2383,11 @@ function GotoNotRequest(url) {
             }
 
             params['pay_type'] = pay_type;
+
             //console.log(JSON.stringify(params));
             //return false;
 
-            var url = '/onebuy/order/add/sync?currency={{ core()->getCurrentCurrencyCode() }}&_token={{ csrf_token() }}&time=' + new Date().getTime();
+            var url = '/api/onebuy/order/add/sync?currency={{ core()->getCurrentCurrencyCode() }}&_token={{ csrf_token() }}&time=' + new Date().getTime();
 
             if(pay_type=="payoneer" || pay_type == 'pacypay') {
                 url = '/order/add/async?time=' + new Date().getTime();
@@ -2418,7 +2435,7 @@ function GotoNotRequest(url) {
                         localStorage.setItem("order_id", order_info.id);
                         localStorage.setItem("order_params", JSON.stringify(params));
 
-                        url = "/onebuy/order/confirm?currency={{ core()->getCurrentCurrencyCode() }}&_token={{ csrf_token() }}&payment_intent_id="+data.payment_intent_id+"&order_id="+data.order.id;
+                        url = "/api/onebuy/order/confirm?currency={{ core()->getCurrentCurrencyCode() }}&_token={{ csrf_token() }}&payment_intent_id="+data.payment_intent_id+"&order_id="+data.order.id;
                         fetch(url, {
                             method: 'GET',
                             headers: {
@@ -2529,6 +2546,8 @@ function GotoNotRequest(url) {
             return '';
         }
 
+        window.coupon_code = "";
+
         function getOrderParams(pay_type, is_chain_payment, cancel_check_scroll = false) {
             
             var product = getSelectProduct();
@@ -2605,6 +2624,7 @@ function GotoNotRequest(url) {
                 bill_province            : $("#bill-state-select").val(),
                 bill_address             : $(".bill-address").val() ? $(".address").val() : '',
                 bill_code                : $(".bill-zip_code").val(),
+                coupon_code              : window.coupon_code,
 
             }
 
@@ -2992,6 +3012,7 @@ function GotoNotRequest(url) {
             return product_img;
         }
 
+        window.coupon_price = 0;
         //
         function changeOrderSummary(position="") {
             var product = getSelectProduct();
@@ -3001,8 +3022,10 @@ function GotoNotRequest(url) {
             }
 
             var shipping_fee = product.shipping_fee;
+
+            coupon_price = window.coupon_price;
             
-            var total = product.new_price*1 + shipping_fee*1;
+            var total = product.new_price*1 + shipping_fee*1 - coupon_price;
                         
             $('.js-product-name').html($('.list-item--checked .js-name').text());
             $('.js-product-qty').html(product.amount*produt_amount_base);
