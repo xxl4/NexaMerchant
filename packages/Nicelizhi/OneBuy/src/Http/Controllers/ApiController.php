@@ -67,8 +67,9 @@ class ApiController extends Controller
 
         $input = $request->all();
 
-        $refer = $request->session()->get('refer');
-        Log::info("refer checkout v1 ".$refer);
+        //$refer = $request->session()->get('refer');
+        //Log::info("refer checkout v1 ".$refer);
+        $refer = isset($input['refer']) ? trim($input['refer']) : "";
 
         $products = $request->input("products");
         // 添加到购物车
@@ -203,6 +204,45 @@ class ApiController extends Controller
         if($payment_method=="airwallex_klarna") $payment_method = "airwallex";
         if($payment_method=="airwallex_dropin") $payment_method = "airwallex";
 
+        $couponCode = $input['coupon_code'];
+        try {
+            if (strlen($couponCode)) {
+                $coupon = $this->cartRuleCouponRepository->findOneByField('code', $couponCode);
+
+                if (! $coupon) {
+                    return (new JsonResource([
+                        'data'     => new CartResource(Cart::getCart()),
+                        'message'  => trans('Coupon not found.'),
+                    ]))->response()->setStatusCode(Response::HTTP_UNPROCESSABLE_ENTITY);
+                }
+
+                if ($coupon->cart_rule->status) {
+                    if (Cart::getCart()->coupon_code == $couponCode) {
+                        return (new JsonResource([
+                            'data'     => new CartResource(Cart::getCart()),
+                            'message'  => trans('shop::app.checkout.cart.coupon-already-applied'),
+                        ]))->response()->setStatusCode(Response::HTTP_UNPROCESSABLE_ENTITY);
+                    }
+
+                    Cart::setCouponCode($couponCode);
+                    //$this->validateOrder();
+                    Cart::collectTotals();
+
+                    // if (Cart::getCart()->coupon_code != $couponCode) {
+                    //     return new JsonResource([
+                    //         'data'     => new CartResource(Cart::getCart()),
+                    //         'message'  => trans('shop::app.checkout.cart.coupon.success-apply'),
+                    //     ]);
+                    // }
+                }
+            }
+        } catch (\Exception $e) {
+            return (new JsonResource([
+                'data'    => new CartResource(Cart::getCart()),
+                'message' => trans('shop::app.checkout.cart.coupon.error'),
+            ]))->response()->setStatusCode(Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+
         // 获取支付信息
 
         if($payment_method=='airwallex') {
@@ -311,7 +351,7 @@ class ApiController extends Controller
 
         //$refer = $request->session()->get('refer');
 
-        $refer = "";
+        $refer = isset($input['refer']) ? trim($input['refer']) : "";
 
         $products = $request->input("products");
         Log::info("products". json_encode($products));
@@ -520,8 +560,6 @@ class ApiController extends Controller
     }
 
     public function OrderStatus(Request $request) {
-        $refer = $request->session()->get('refer');
-        Log::info("refer checkout v1 ".$refer);
 
         try {
             $order = $this->smartButton->getOrder(request()->input('orderData.orderID'));

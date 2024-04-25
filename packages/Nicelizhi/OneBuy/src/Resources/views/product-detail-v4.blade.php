@@ -1014,6 +1014,15 @@ Apt / Suite / Other </label>
                         $('#checkout-error').show();
                     }
 
+                    re_order_id = localStorage.getItem("re_order_id");
+                    if(re_order_id) {
+                        if (confirm("You Have already placed order, if you want to place another order please confirm your order") == true) {
+                            localStorage.removeItem("re_order_id");
+                        }else{
+                            $('#loading').hide();
+                        }
+                    }
+
                     
                     console.log("post crm system");
 
@@ -1037,6 +1046,16 @@ Apt / Suite / Other </label>
                     $('#loading').show();
                     var params = getOrderParams('paypal_stand');
                     var url = '/api/onebuy/order/addr/after?currenty={{ core()->getCurrentCurrencyCode() }}&_token={{ csrf_token() }}&time=' + new Date().getTime()+"&force="+localStorage.getItem("force");
+
+                    re_order_id = localStorage.getItem("re_order_id");
+                    if(re_order_id) {
+                        if (confirm("You Have already placed order, if you want to place another order please confirm your order") == true) {
+                            localStorage.removeItem("re_order_id");
+                        }else{
+                            $('#loading').hide();
+                        }
+                    }
+
                     return fetch(url, {
                         body: JSON.stringify(params),
                         method: 'POST',
@@ -1111,6 +1130,7 @@ Apt / Suite / Other </label>
                         $('#loading').hide();
                         if(res.success == true) {
                             //Goto('/checkout/v1/success/'+localStorage.getItem('order_id'));
+                            localStorage.setItem("re_order_id", 1);
                             window.location.href='/checkout/v1/success/'+localStorage.getItem('order_id');
                             //actions.redirect('/checkout/v1/success/'+localStorage.getItem('order_id'));
                         }
@@ -2170,6 +2190,7 @@ function GotoNotRequest(url) {
                                 //console.log(res);
                                 
                                 if(res.success == true) {
+                                    localStorage.setItem("re_order_id", 1);
                                     window.location.href='/checkout/v1/success/'+localStorage.getItem('order_id');
                                     //actions.redirect('/checkout/v1/success/'+localStorage.getItem('order_id'));
                                 }
@@ -2181,7 +2202,18 @@ function GotoNotRequest(url) {
                     },
 
                     onClick(){
+
                         console.log("post crm system");
+
+                        re_order_id = localStorage.getItem("re_order_id");
+                        if(re_order_id) {
+                            if (confirm("You Have already placed order, if you want to place another order please confirm your order") == true) {
+                                localStorage.removeItem("re_order_id");
+                            }else{
+                                $('#loading').hide();
+                            }
+                        }
+
 
                         params = {
                             "channel_id": "<?php echo $crm_channel;?>",
@@ -2394,6 +2426,15 @@ function GotoNotRequest(url) {
             //商品加入到购车中
             //addToCart(pay_type);
 
+            re_order_id = localStorage.getItem("re_order_id");
+            if(re_order_id) {
+                if (confirm("You Have already placed order, if you want to place another order please confirm your order") == true) {
+                    localStorage.removeItem("re_order_id");
+                }else{
+                    $('#loading').hide();
+                }
+            }
+
             var params = getOrderParams(pay_type);
             //return false;
             if(token){
@@ -2521,7 +2562,7 @@ function GotoNotRequest(url) {
                                 'event_label': "Initiate cc success"+data.order.id,
                                 'event_category': 'ecommerce'
                             });
-
+                            localStorage.setItem("re_order_id", 1);
                             window.location.href="/checkout/v1/success/"+data.order.id;
 
                         }).catch((response) => {
@@ -2647,6 +2688,7 @@ function GotoNotRequest(url) {
                 bill_address             : $(".bill-address").val() ? $(".address").val() : '',
                 bill_code                : $(".bill-zip_code").val(),
                 coupon_code              : window.coupon_code,
+                refer                    : "<?php echo $refer; ?>"
 
             }
 
