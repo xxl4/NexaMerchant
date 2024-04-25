@@ -13,7 +13,7 @@ final class Utils {
         //var_dump($url);
         if(empty($url)) return false;
 
-        echo $url."\r\n";
+        //echo $url."\r\n";
 
         $argc = [];
         $argc['msgtype'] = $msgtype;
@@ -24,7 +24,7 @@ final class Utils {
          $header = [];
          $header[] = "Content-Type:application/json";
 
-         var_dump($argc);
+         //var_dump($argc);
 
         $client = new Client();
         $response = $client->post($url,[
