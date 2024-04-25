@@ -505,9 +505,10 @@ Apt / Suite / Other </label>
         <li class="summary-list-item">
             <span class="js-sku" style="color: gray;"></span>
         </li>
-        <div class="summary-list-item">
+        <li class="summary-list-item">
             <input type="text" name="coupon_code" id="coupon_code" placeholder="@lang('onebuy::app.product.order.Coupon Code')" /> <input type="button" value="Apply" class="btn btn-primary applay_coupon" />
-        </div>
+        </li>
+        <li class="coupon-message summary-list-item" style="display: none;color:red;"></li>
     </ul>
 <div class="summary-total">
     <div class="summary-total-content">
@@ -693,7 +694,7 @@ Apt / Suite / Other </label>
             console.log("apply coupon code");
 
             var coupon_code = $("#coupon_code").val();
-
+            $('#loading').show();
             if(coupon_code) {
                 $.ajax({
                     url: "/api/onebuy/check/coupon?_token={{ csrf_token() }}",
@@ -701,8 +702,28 @@ Apt / Suite / Other </label>
                     data: {
                         code: coupon_code
                     },
+                    statusCode: {
+                        422: function(response){
+                            console.log("message....");
+                            console.log(response);
+                            //$(".coupon_error").html(response.responseJSON.message);
+                            $(".coupon-message").show();
+                            $(".coupon-message").html(response.responseJSON.message);
+                           
+                            $(".coupon-price-item").hide();
+                            $(".js-coupon-price").html(getFormatPrice(0));
+                            $(".js-coupon-price").hide();
+                            window.coupon_code = "";
+                            window.coupon_price = 0 ;
+                            changeOrderSummary();
+
+                            $('#loading').hide();
+                        }
+                    },
                     success: function(response) {
 
+                        // coupon_error
+                        $(".coupon-message").hide();
                         $(".coupon-price-item").show();
                         $(".js-coupon-price").html(getFormatPrice(response.data.couponConfig.discount_amount));
                         window.coupon_price = response.data.couponConfig.discount_amount;
@@ -712,6 +733,7 @@ Apt / Suite / Other </label>
                         window.coupon_code = coupon_code;
 
                         changeOrderSummary();
+                        $('#loading').hide();
                         //$('.js-shipping-price').html();
                     }
                 });
