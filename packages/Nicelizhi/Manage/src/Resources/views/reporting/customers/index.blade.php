@@ -3,98 +3,121 @@
         @lang('admin::app.reporting.customers.index.title')
     </x-slot:title>
 
-    {{-- Page Header --}}
-    <div class="flex gap-[16px] justify-between items-center mb-[20px] max-sm:flex-wrap">
-        <div class="grid gap-[6px]">
-            <p class="pt-[6px] text-[20px] text-gray-800 dark:text-white font-bold leading-[24px]">
-                @lang('admin::app.reporting.customers.index.title')
-            </p>
-        </div>
-
-        <!-- Actions -->
-        <v-reporting-filters>
-            {{-- Shimmer --}}
-            <div class="flex gap-[6px]">
-                <div class="shimmer w-[140px] h-[39px] rounded-[6px]"></div>
-                <div class="shimmer w-[140px] h-[39px] rounded-[6px]"></div>
+    <section class="content">
+        <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-7">
             </div>
-        </v-reporting-filters>
-    </div>
+            <div class="col-md-5">
+                <div class="card-body">
+                    <form action="{{ route('admin.reporting.sales.index') }}" class="form-inline" method="GET">
+                    <div class="form-group">
+                        <div class="input-group date" id="start_date" data-target-input="nearest">
+                            <input type="date" class="form-control datetimepicker-input" name="start_date" data-target="#start_date" placeholder="Start Date" />
+                            <div class="input-group-append" data-target="#start_date" data-toggle="datetimepicker">
+                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group date" id="end_date" data-target-input="nearest">
+                            <input type="date" class="form-control datetimepicker-input" name="end_date" data-target="#end_date" placeholder="End Date" />
+                            <div class="input-group-append" data-target="#end_date" data-toggle="datetimepicker">
+                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Search</button>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="row">
 
-    {{-- Customers Stats Vue Component --}}
-    <div class="flex flex-col gap-[15px] flex-1 max-xl:flex-auto">
-        <!-- Customers Section -->
-        @include('admin::reporting.customers.total-customers')
+        <div class="col-md-12">
 
-        <!-- Customers With Most Sales and Customers With Most Orders Sections Container -->
-        <div class="flex justify-between gap-[15px] flex-1 [&>*]:flex-1 max-xl:flex-auto">
-            <!-- Customers With Most Sales Section -->
+            @include('admin::reporting.customers.total-customers')
+        </div>
+        <div class="col-md-6">
             @include('admin::reporting.customers.most-sales')
-
-            <!-- Customers With Most Orders Section -->
+        </div>
+        <div class="col-md-6">
             @include('admin::reporting.customers.most-orders')
         </div>
-
-        <!-- Customers Traffic Section -->
-        @include('admin::reporting.customers.total-traffic')
-
-        <!-- Top Customer Groups Sections Container -->
-        <div class="flex justify-between gap-[15px] flex-1 [&>*]:flex-1 max-xl:flex-auto">
-            <!-- Top Customer Groups Section -->
-            @include('admin::reporting.customers.top-customer-groups')
-
-            <!-- Customer with Most Reviews Section -->
-            @include('admin::reporting.customers.most-reviews')
+        <div class="col-md-12">
+            @include('admin::reporting.customers.total-traffic')
         </div>
-    </div>
 
-    @pushOnce('scripts')
-        <script type="module" src="{{ bagisto_asset('js/chart.js') }}"></script>
+        {{-- <div class="col-md-6">
+            @include('admin::reporting.customers.top-customer-groups')
+        </div>
+        <div class="col-md-6">
+            @include('admin::reporting.customers.most-reviews')
+        </div> --}}
+        
 
-        <script type="text/x-template" id="v-reporting-filters-template">
-            <div class="flex gap-[6px]">
-                <x-admin::flat-picker.date class="!w-[140px]" ::allow-input="false">
-                    <input
-                        class="flex min-h-[39px] w-full rounded-[6px] border px-3 py-2 text-[14px] text-gray-600 transition-all hover:border-gray-400 dark:border-gray-800 dark:bg-gray-900 dark:text-gray-300"
-                        v-model="filters.start"
-                        placeholder="@lang('admin::app.reporting.customers.index.start-date')"
-                    />
-                </x-admin::flat-picker.date>
 
-                <x-admin::flat-picker.date class="!w-[140px]" ::allow-input="false">
-                    <input
-                        class="flex min-h-[39px] w-full rounded-[6px] border px-3 py-2 text-[14px] text-gray-600 transition-all hover:border-gray-400 dark:border-gray-800 dark:bg-gray-900 dark:text-gray-300"
-                        v-model="filters.end"
-                        placeholder="@lang('admin::app.reporting.customers.index.end-date')"
-                    />
-                </x-admin::flat-picker.date>
-            </div>
-        </script>
+        </div>
+        </div>
+    </section>
 
-        <script type="module">
-            app.component('v-reporting-filters', {
-                template: '#v-reporting-filters-template',
 
-                data() {
-                    return {
-                        filters: {
-                            start: "{{ $startDate->format('Y-m-d') }}",
-                            
-                            end: "{{ $endDate->format('Y-m-d') }}",
-                        }
-                    }
-                },
+          <!-- jQuery -->
+<script src="/themes/manage/AdminLTE/plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="/themes/manage/AdminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/themes/manage/AdminLTE/plugins/daterangepicker/daterangepicker.js"></script>
 
-                watch: {
-                    filters: {
-                        handler() {
-                            this.$emitter.emit('reporting-filter-updated', this.filters);
-                        },
+<!-- Select2 -->
+<script src="/themes/manage/AdminLTE/plugins/select2/js/select2.full.min.js"></script>
+<!-- Bootstrap4 Duallistbox -->
+<script src="/themes/manage/AdminLTE/plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>
+<!-- InputMask -->
+<script src="/themes/manage/AdminLTE/plugins/moment/moment.min.js"></script>
+<!-- date-range-picker -->
+<script src="/themes/manage/AdminLTE/plugins/daterangepicker/daterangepicker.js"></script>
+<!-- bootstrap color picker -->
+<script src="/themes/manage/AdminLTE/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js"></script>
+<!-- Tempusdominus Bootstrap 4 -->
+<script src="/themes/manage/AdminLTE/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+<!-- Bootstrap Switch -->
+<script src="/themes/manage/AdminLTE/plugins/bootstrap-switch/js/bootstrap-switch.min.js"></script>
 
-                        deep: true
-                    }
-                },
-            });
-        </script>
-    @endPushOnce
+<script>
+    $(function () {
+
+        url = window.location.search;
+        const searchParams = new URLSearchParams(url);
+        var filtets = Object.assign({}, filtets);
+        filtets.start = searchParams.get('start_date');
+        filtets.end = searchParams.get('end_date');
+
+        if(filtets.end==null) {
+            filtets.end = "{{ $endDate }}";
+        }
+
+        if(filtets.start==null) {
+            filtets.start = "{{ $startDate }}";
+        }
+
+
+        
+
+        //Date picker
+        $('#start_date').datetimepicker({
+            format: 'YYYY-MM-DD',
+            defaultDate: filtets.start,
+           // value: '{{ $startDate }}'
+        });
+        //$('#start_date').datetimepicker("setDate", "{{ $startDate }}");
+        $('#end_date').datetimepicker({
+            format: 'YYYY-MM-DD',
+            defaultDate: filtets.end,
+            //value: '{{ $endDate }}'
+        });
+    });
+</script>
+
 </x-admin::layouts>

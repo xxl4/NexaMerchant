@@ -3,7 +3,81 @@
     <x-admin::shimmer.reporting.customers.most-sales/>
 </v-reporting-customers-with-most-sales>
 
-@pushOnce('scripts')
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">@lang('admin::app.reporting.customers.index.customers-with-most-sales')</h3>
+    </div>
+    
+    <div class="card-body">
+
+        <div class="customers-with-most-sales">
+
+        </div>
+
+
+    </div>
+</div>
+
+<!-- jQuery -->
+<script src="/themes/manage/AdminLTE/plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="/themes/manage/AdminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/themes/manage/AdminLTE/plugins/chart.js/Chart.min.js"></script>
+<script src="/themes/manage/AdminLTE/dist/js/adminlte.min.js?v=3.2.0"></script>
+
+<script>
+    $(function () {
+        
+
+
+        var filtets = Object.assign({}, filtets);
+        url = window.location.search;
+        const searchParams = new URLSearchParams(url);
+        var filtets = Object.assign({}, filtets);
+        filtets.start = searchParams.get('start_date');
+        filtets.end = searchParams.get('end_date');
+        filtets.type = 'customers-with-most-sales'
+
+        $.ajax({
+            url: "{{ route('admin.reporting.customers.stats') }}",
+            data: filtets,
+            async: true,
+            dataType: 'json',
+            type: "get",
+        }).done(function (data) {
+
+            $(".customers-with-most-sales").html();
+
+            var statistics = data.statistics;
+
+            var html = "";
+
+            statistics.forEach(function(currentValue, index, arr){
+                console.log(currentValue, index, arr);
+
+                progress = currentValue.progress;
+
+                if(progress > 100) progress = 100;
+
+                html += '<p><code>'+ currentValue.full_name + "(" +  currentValue.formatted_total +' ) </code></p><div class="progress"><div class="progress-bar bg-primary progress-bar-striped purchased" role="progressbar" aria-valuenow="'+ currentValue.count +'" aria-valuemin="0" aria-valuemax="100" style="width: '+ progress +'%"><span class="sr-only">'+ progress +'% Complete (success)</span></div></div>';
+
+            });
+
+            $(".customers-with-most-sales").html(html);
+            
+            
+
+
+
+        })
+
+
+
+
+    });
+</script>
+
+{{-- @pushOnce('scripts')
     <script type="text/x-template" id="v-reporting-customers-with-most-sales-template">
         <!-- Shimmer -->
         <template v-if="isLoading">
@@ -114,4 +188,4 @@
             }
         });
     </script>
-@endPushOnce
+@endPushOnce --}}
