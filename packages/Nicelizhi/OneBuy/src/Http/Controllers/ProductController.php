@@ -22,6 +22,7 @@ use Illuminate\Support\Facades\Cache;
 use Webkul\Payment\Facades\Payment;
 use Illuminate\Support\Facades\Redis;
 use Webkul\CMS\Repositories\CmsRepository;
+use Webkul\CartRule\Repositories\CartRuleCouponRepository;
 
 
 class ProductController extends Controller
@@ -47,6 +48,7 @@ class ProductController extends Controller
         protected InvoiceRepository $invoiceRepository,
         protected Airwallex $airwallex,
         protected CmsRepository $cmsRepository,
+        protected CartRuleCouponRepository $cartRuleCouponRepository,
         protected ThemeCustomizationRepository $themeCustomizationRepository
     )
     {
@@ -599,6 +601,9 @@ class ProductController extends Controller
 
         $products = $request->input("products");
         Log::info("products". json_encode($products));
+        if(empty($products)) {
+            return response()->json(['error' => 'No product found in cart','code'=>'202'], 400);
+        }
         // 添加到购物车
         Cart::deActivateCart();
         foreach($products as $key=>$product) {
@@ -626,6 +631,47 @@ class ProductController extends Controller
                 ]);
             }
         }
+
+        $couponCode = request()->input('code');
+        //$couponCode = "hao123";
+        //$couponCode = "";
+
+        try {
+            if (strlen($couponCode)) {
+                $coupon = $this->cartRuleCouponRepository->findOneByField('code', $couponCode);
+
+                if (! $coupon) {
+                    return (new JsonResource([
+                        'data'     => new CartResource(Cart::getCart()),
+                        'message'  => trans('Coupon not found.'),
+                    ]))->response()->setStatusCode(Response::HTTP_UNPROCESSABLE_ENTITY);
+                }
+
+                if ($coupon->cart_rule->status) {
+                    if (Cart::getCart()->coupon_code == $couponCode) {
+                        return (new JsonResource([
+                            'data'     => new CartResource(Cart::getCart()),
+                            'message'  => trans('shop::app.checkout.cart.coupon-already-applied'),
+                        ]))->response()->setStatusCode(Response::HTTP_UNPROCESSABLE_ENTITY);
+                    }
+
+                    Cart::setCouponCode($couponCode)->collectTotals();
+
+                    if (Cart::getCart()->coupon_code == $couponCode) {
+                        // return new JsonResource([
+                        //     'data'     => new CartResource(Cart::getCart()),
+                        //     'message'  => trans('shop::app.checkout.cart.coupon.success-apply'),
+                        // ]);
+                    }
+                }
+            }
+        } catch (\Exception $e) {
+            return (new JsonResource([
+                'data'    => new CartResource(Cart::getCart()),
+                'message' => trans('shop::app.checkout.cart.coupon.error'),
+            ]))->response()->setStatusCode(Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+
         // 添加地址内容
         $addressData = [];
         $addressData['billing'] = [];
