@@ -83,10 +83,6 @@ class ImportProductCommentFromJudge extends Command
             $this->GetFromComments($i);
             //exit;
         }
-
-        
-
-        
     }
 
     protected function GetFromComments($page) {
@@ -126,10 +122,17 @@ class ImportProductCommentFromJudge extends Command
                 if(!is_null($product)) {
                     $this->error($this->cache_key.$product->id);
                     $len = $redis->hlen($this->cache_key.$product->id);
+
+                    //var_dump($item);exit;
                 
                     $this->info($len);
                     if($len < 6) {
-                        $redis->hSet($this->cache_key.$product->id, $item['id'], json_encode($item));
+                        $value = [];
+                        $value['name'] = trim($item['reviewer']['name']);
+                        $value['title'] = trim($item['title']);
+                        $value['content'] = trim($item['body']);
+                        //var_dump($value);exit;
+                        $redis->hSet($this->cache_key.$product->id, $item['id'], json_encode($value));
                     }
                 }
             } 
