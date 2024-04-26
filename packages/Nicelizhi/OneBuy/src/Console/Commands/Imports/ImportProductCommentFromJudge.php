@@ -73,7 +73,7 @@ class ImportProductCommentFromJudge extends Command
 
         $body = json_decode($response->getBody(), true);
 
-        //var_dump($body['count']);
+        //var_dump($body['count']);exit;
 
         $count = $body['count'];
         $pages = ceil($count / $this->num);
@@ -117,7 +117,14 @@ class ImportProductCommentFromJudge extends Command
             if(!empty($item['title'])) {
                 $this->error($this->cache_key.$item['product_external_id']);
                 //$product = $this->productRepository->findBySlug($item['product_external_id']);
+                
                 $product = $this->productRepository->where("sku", $item['product_external_id'])->first();
+
+                if($item['product_external_id']=='8530610094310') {
+                    //var_dump($item);
+                    //exit;
+                    //var_dump($product);exit;
+                }
 
                 if(!is_null($product)) {
                     $this->error($this->cache_key.$product->id);
@@ -133,7 +140,25 @@ class ImportProductCommentFromJudge extends Command
                         $value['content'] = trim($item['body']);
                         //var_dump($value);exit;
                         $redis->hSet($this->cache_key.$product->id, $item['id'], json_encode($value));
+                        $redis->hSet("onebuy_v2_product_comments_".$product->id, $item['id'], json_encode($value));
                     }
+
+                    $this->error("onebuy_v2_product_comments_".$product->id);
+                    $len = $redis->hlen("onebuy_v2_product_comments_".$product->id);
+                    //var_dump($item);exit;
+                
+                    $this->info($len);
+                    if($len < 6) {
+                        $value = [];
+                        $value['name'] = trim($item['reviewer']['name']);
+                        $value['title'] = trim($item['title']);
+                        $value['content'] = trim($item['body']);
+                        //var_dump($value);exit;
+                        //$redis->hSet($this->cache_key.$product->id, $item['id'], json_encode($value));
+                        $redis->hSet("onebuy_v2_product_comments_".$product->id, $item['id'], json_encode($value));
+                    }
+
+
                 }
             } 
         }
