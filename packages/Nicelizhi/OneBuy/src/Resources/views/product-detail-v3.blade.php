@@ -286,7 +286,13 @@
                 </span>
             </div>
             <div class="list-item-image">
+            <?php
+                    if(isset($product_image_lists[$key])) {
+            ?>
+            <img src="/storage/<?php echo $product_image_lists[$key]['value'];?>" />
+            <?php }else { ?>
                 <img src="/onebuy/v3/products/<?php echo $product->id."_".$package_product['id'];?>.png" />
+            <?php } ?>
             </div>
             <div class="list-item-footer">
                 <div class="list-item-prices">

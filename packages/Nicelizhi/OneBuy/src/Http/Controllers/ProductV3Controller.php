@@ -241,7 +241,10 @@ class ProductV3Controller extends Controller
 
         $quora_adv_id = config('onebuy.quora_adv_id');
 
-        return view('onebuy::product-detail-v3', compact('gtag','app_env','product','package_products', 'product_attributes', 'skus','productBgAttribute','productBgAttribute_mobile','faqItems','comments','paypal_client_id','default_country','airwallex_method','payments','payments_default','brand','fb_ids','ob_adv_id','crm_channel','refer',"quora_adv_id"));
+        // products display image
+        $product_image_lists = Cache::get("product_image_lists_".$product['id']);
+
+        return view('onebuy::product-detail-v3', compact('gtag','app_env','product','package_products', 'product_attributes', 'skus','productBgAttribute','productBgAttribute_mobile','faqItems','comments','paypal_client_id','default_country','airwallex_method','payments','payments_default','brand','fb_ids','ob_adv_id','crm_channel','refer',"quora_adv_id","product_image_lists"));
     }
 
 }
