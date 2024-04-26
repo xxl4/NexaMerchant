@@ -278,9 +278,12 @@ class Post extends Command
 
         if($order->shipping_amount=='14.9850') {
             $str = "aud order";
-            \Nicelizhi\Shopify\Helpers\Utils::send($str.'--' .$id. " 需要留意查看 ");
+            //\Nicelizhi\Shopify\Helpers\Utils::send($str.'--' .$id. " 需要留意查看 ");
             //continue;
-            return false;
+            //return false;
+            $postOrder['send_receipt'] = false; 
+        }else{
+            $postOrder['send_receipt'] = true; 
         }
 
         $total_shipping_price_set = [
@@ -310,7 +313,7 @@ class Post extends Command
          */
 
         //$postOrder['send_receipt'] = false; 
-        $postOrder['send_receipt'] = true; 
+        //$postOrder['send_receipt'] = true; 
 
         // $postOrder['discount_codes'] = $discount_codes;
 
@@ -373,6 +376,7 @@ class Post extends Command
         $postOrder['name'] = config('shopify.order_pre').'#'.$id;
         $postOrder['order_number'] = $id;
         $postOrder['currency'] = $order->order_currency_code;
+        $postOrder['presentment_currency'] = $order->order_currency_code;
 
 
         $pOrder['order'] = $postOrder;
