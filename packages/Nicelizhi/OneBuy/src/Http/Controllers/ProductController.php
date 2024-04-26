@@ -736,6 +736,12 @@ class ProductController extends Controller
 
         $order = $this->orderRepository->find($order_id);
         
+        if(is_null($order)) {
+            return response()->json([
+                "message" => "Order not found"
+            ], 404);
+        }
+        
         $transactionManager = $this->airwallex->confirmPayment($payment_intent_id, $order);
 
         $data = [];
