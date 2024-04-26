@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Storage;
 use Webkul\Product\Models\ProductImage;
 use Nicelizhi\Shopify\Models\ShopifyStore;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Artisan;
 
 class GetV3 extends Command
 {
@@ -332,5 +333,7 @@ class GetV3 extends Command
 
             sleep(1);
         }
+
+        Artisan::queue("onebuy:import:products:comment:from:judge")->onConnection('redis')->onQueue('shopify-products'); // import the shopify comments
     }
 }

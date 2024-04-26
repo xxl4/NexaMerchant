@@ -16,6 +16,7 @@ use Webkul\Product\Models\ProductImage;
 use Nicelizhi\Shopify\Models\ShopifyStore;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Redis;
+use Illuminate\Support\Facades\Artisan;
 
 class GetV4 extends Command
 {
@@ -560,6 +561,8 @@ class GetV4 extends Command
 
 
         }
+
+        Artisan::queue("onebuy:import:products:comment:from:judge")->onConnection('redis')->onQueue('shopify-products'); // import the shopify comments
     }
 
     private function getAttr($options, $val, $val2="", $val3="") {
