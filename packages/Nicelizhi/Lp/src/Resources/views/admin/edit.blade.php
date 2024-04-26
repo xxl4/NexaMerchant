@@ -4,7 +4,6 @@
     </x-slot:title>
 
 
-
     <div class="card-body">
         <form class="form" method="POST" action="{{route('admin.lp.update', $page->id)}}">
             <input type="hidden" name="_method" value="PUT">
@@ -19,7 +18,7 @@
         </div>
         <div class="form-group">
             <label for="html">Html</label>
-            <textarea id="html" name="html" >
+            <textarea id="html" name="html" class="form-control" rows="30" >
                 <?php echo $page->html;?>
             </textarea>
         </div>
@@ -57,8 +56,9 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+  
 
-<script>
+ <!-- <script>
     $(function () {
       // Summernote
       $('#html').summernote({
@@ -67,5 +67,5 @@
   
       
     })
-  </script>
+  </script> -->
 </x-admin::layouts>
