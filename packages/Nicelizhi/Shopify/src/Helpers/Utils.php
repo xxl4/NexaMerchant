@@ -60,6 +60,7 @@ final class Utils {
             if(strpos($option['name'], "颜色") !==false) $attr_id = 23;
             if(strpos($option['name'], "FARBE") !==false) $attr_id = 23;
             if(strpos($option['name'], "farbe") !==false) $attr_id = 23;
+            if(strpos($option['name'], "stil") !==false) $attr_id = 23;
 
             if(empty($attr_id)) {
                 //var_dump($option['name']);
@@ -122,7 +123,6 @@ final class Utils {
             // one attr
             if(!empty($color) || !empty($size)) {
                 if(empty($version)) $version = "v2";
-                
             }
 
             // zero attr

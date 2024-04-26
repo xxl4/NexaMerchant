@@ -546,7 +546,9 @@ class GetV2 extends Command
                 Event::dispatch('catalog.product.update.after', $sku);
 
                 $images = [];
-                $shopifyImages[] = ['src'=> $images_map[$sku_image[1]] ];
+                $shopifyImages = [];
+                if(isset($images_map[$sku_image[1]])) $shopifyImages[] = ['src'=> $images_map[$sku_image[1]] ];
+
                 foreach($shopifyImages as $key=>$shopifyImage) {
 
                     //var_dump($shopifyImage);
