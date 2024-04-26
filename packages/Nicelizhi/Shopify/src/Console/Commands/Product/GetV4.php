@@ -226,7 +226,9 @@ class GetV4 extends Command
 
             //var_dump($id);exit;
 
-            $this->clearCache($id);
+            //$this->clearCache($id);
+
+            \Nicelizhi\Shopify\Helpers\Utils::clearCache($id, $item['product_id']); // clear cache
 
             // update the sku sort
             foreach($LocalOptions['LocalOptions'] as $key=>$LocalOption) {

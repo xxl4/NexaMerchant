@@ -547,7 +547,8 @@ class GetV2 extends Command
 
                 $images = [];
                 $shopifyImages = [];
-                if(isset($images_map[$sku_image[1]])) $shopifyImages[] = ['src'=> $images_map[$sku_image[1]] ];
+                
+                $shopifyImages[] = ['src'=> $images_map[$sku_image[1]] ];
 
                 foreach($shopifyImages as $key=>$shopifyImage) {
 
