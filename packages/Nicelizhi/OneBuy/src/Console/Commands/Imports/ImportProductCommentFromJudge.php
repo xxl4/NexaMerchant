@@ -93,7 +93,7 @@ class ImportProductCommentFromJudge extends Command
 
         $client = new Client();
 
-        $url = "https://judge.me/api/v1/reviews?shop_domain=".$shop_domain."&api_token=".$api_token."&rating=5&per_page=".$this->num;
+        $url = "https://judge.me/api/v1/reviews?shop_domain=".$shop_domain."&api_token=".$api_token."&rating=5&page=".$page."&per_page=".$this->num;
 
         $this->info($url);
 
@@ -113,6 +113,9 @@ class ImportProductCommentFromJudge extends Command
         $body = json_decode($response->getBody(), true);
 
         foreach($body['reviews'] as $key=>$item) {
+
+            
+
             //var_dump($item);exit;
             if(!empty($item['title'])) {
                 $this->error($this->cache_key.$item['product_external_id']);
@@ -120,7 +123,7 @@ class ImportProductCommentFromJudge extends Command
                 
                 $product = $this->productRepository->where("sku", $item['product_external_id'])->first();
 
-                if($item['product_external_id']=='8530610094310') {
+                if($item['product_external_id']=='8532415938790') {
                     //var_dump($item);
                     //exit;
                     //var_dump($product);exit;
