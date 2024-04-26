@@ -3,7 +3,7 @@ return [
     'product' => [
         'Savings' => 'Savings',
         'piece' => 'piece',
-        'brand' => '',
+        'brand' => 'Hatmeo',
         'Size Chart' => 'Size Chart',
         'payment' => [
             'creditCard' => [
