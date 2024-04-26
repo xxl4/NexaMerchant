@@ -80,4 +80,4 @@ jobs:
         port: ${{secrets.SSH_PORT_US }}
         script: |
           cd ${{ secrets.WWW_DIR_US }} && git pull
-          vendor/bin/pest
+          sudo -u www vendor/bin/pest
