@@ -7,6 +7,7 @@ use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redis;
 use Maatwebsite\Excel\Facades\Excel;
+use Webkul\Product\Repositories\ProductRepository;
 
 class ImportProductCommentFromJudge extends Command
 {
@@ -31,9 +32,9 @@ class ImportProductCommentFromJudge extends Command
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(protected ProductRepository $productRepository)
     {
-        $this->num = 10;
+        $this->num = 100;
         parent::__construct();
     }
 
@@ -72,7 +73,7 @@ class ImportProductCommentFromJudge extends Command
 
         $body = json_decode($response->getBody(), true);
 
-        var_dump($body['count']);
+        //var_dump($body['count']);
 
         $count = $body['count'];
         $pages = ceil($count / $this->num);
@@ -80,7 +81,7 @@ class ImportProductCommentFromJudge extends Command
         for($i=1; $i<=$pages; $i++) {
             $this->info($i." page start ");
             $this->GetFromComments($i);
-            exit;
+            //exit;
         }
 
         
@@ -96,7 +97,7 @@ class ImportProductCommentFromJudge extends Command
 
         $client = new Client();
 
-        $url = "https://judge.me/api/v1/reviews?shop_domain=".$shop_domain."&api_token=".$api_token."&per_page=".$this->num;
+        $url = "https://judge.me/api/v1/reviews?shop_domain=".$shop_domain."&api_token=".$api_token."&rating=5&per_page=".$this->num;
 
         $this->info($url);
 
@@ -117,7 +118,21 @@ class ImportProductCommentFromJudge extends Command
 
         foreach($body['reviews'] as $key=>$item) {
             //var_dump($item);exit;
-            $redis->hSet($this->cache_key.$item['product_external_id'], $item['id'], json_encode($item));
+            if(!empty($item['title'])) {
+                $this->error($this->cache_key.$item['product_external_id']);
+                //$product = $this->productRepository->findBySlug($item['product_external_id']);
+                $product = $this->productRepository->where("sku", $item['product_external_id'])->first();
+
+                if(!is_null($product)) {
+                    $this->error($this->cache_key.$product->id);
+                    $len = $redis->hlen($this->cache_key.$product->id);
+                
+                    $this->info($len);
+                    if($len < 6) {
+                        $redis->hSet($this->cache_key.$product->id, $item['id'], json_encode($item));
+                    }
+                }
+            } 
         }
 
     }
