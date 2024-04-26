@@ -78,6 +78,7 @@ class Refund extends Base
             $productionMode = core()->getConfigData('sales.payment_methods.airwallex.production');
 
             Log::info("order refund Log info tr ".json_encode($order->transactions));
+            Log::info("order refund Log info tr ".json_encode($order->id));
 
             $payment_intent_id = $order->transactions[0]->transaction_id;
 
@@ -88,8 +89,7 @@ class Refund extends Base
                 'clientId' => $clientId,
                 'apiKey' => $apiKey
             ];
-    
-    
+
             $sdk = new AirwallexSdk($paymentConfig, $productionMode);
     
             $sdk->createReRefund($payment_intent_id, $order->id, round($refund->grand_total, 2));
