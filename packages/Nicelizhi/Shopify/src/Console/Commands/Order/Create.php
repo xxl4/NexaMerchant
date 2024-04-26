@@ -75,6 +75,7 @@ class Create extends Command
         }
 
         $order_id = $this->option("order_id");
+        $order_id = "10804";
 
         if(!empty($order_id)) {
             $lists = Order::where(['status'=>'processing'])->where("id", $order_id)->select(['id'])->limit(1)->get();
@@ -176,7 +177,7 @@ class Create extends Command
         $products = $order->items;
         foreach($products as $key=>$product) {
 
-            var_dump($product);exit;
+            //var_dump($product);exit;
 
             $sku = $product['additional'];
 
@@ -190,20 +191,21 @@ class Create extends Command
             $line_item['variant_id'] = $skuInfo[1];
             $line_item ['quantity'] = $product['qty_ordered'];
             $line_item ['requires_shipping'] = true;
-            $line_item['price'] = "";
+            $line_item['price'] = $product->price;
             $price_set = [];
 
             $price_set = [
-                'shop_money' => [
-                    "amount" => $order->sub_total,
-                    "currency_code" => $order->order_currency_code,
-                ],
                 'presentment_money' => [
-                    "amount" => $order->sub_total,
+                    "amount" => $product->price,
+                    //"amount" => $product->price,
                     "currency_code" => $order->order_currency_code,
+                    //"currency_code" => $order->order_currency_code,
+                ],
+                'shop_money' => [
+                    "amount" => $product->base_price,
+                    "currency_code" => $order->base_currency_code,
                 ]
             ];
-            
 
             $line_item['price_set'] = $price_set;
 
@@ -212,7 +214,7 @@ class Create extends Command
             array_push($line_items, $line_item);
         }
 
-        exit;
+        //exit;
 
         $shipping_address = $order->shipping_address;
         $billing_address = $order->billing_address;
@@ -294,6 +296,9 @@ class Create extends Command
         ];
         $postOrder['current_subtotal_price_set'] = $current_subtotal_price_set;
 
+        $postOrder['subtotal_price'] = $order->sub_total;
+        $postOrder['subtotal_price_set'] = $current_subtotal_price_set;
+
 
 
         // $total_shipping_price_set = [];
@@ -305,11 +310,11 @@ class Create extends Command
 
 
         $total_shipping_price_set = [
-            "shop_money" => [
+            "presentment_money" => [
                 "amount" => $order->shipping_amount,
                 "currency_code" => $order->order_currency_code,
             ],
-            "presentment_money" => [
+            "shop_money" => [
                 "amount" => $order->shipping_amount,
                 "currency_code" => $order->order_currency_code,
             ]
@@ -373,11 +378,11 @@ class Create extends Command
             "carrier_identifier" => "third_party_carrier_identifier",
             "requested_fulfillment_service_id" => "third_party_fulfillment_service_id",
             "price_set" => [
-                'shop_money' => [
+                'presentment_money' => [
                     'amount' => $order->shipping_amount,
                     'currency_code' => $order->order_currency_code
                 ],
-                'presentment_money' => [
+                'shop_money' => [
                     'amount' => $order->shipping_amount,
                     'currency_code' => $order->order_currency_code
                 ]
@@ -399,10 +404,12 @@ class Create extends Command
         $postOrder['currency'] = $order->order_currency_code;
         $postOrder['presentment_currency'] = $order->order_currency_code;
 
+        $postOrder['test'] = 1;
+
 
         $pOrder['order'] = $postOrder;
 
-        //var_dump($pOrder);exit;
+        var_dump($pOrder);
 
         try {
             $response = $client->post($shopify['shopify_app_host_name'].'/admin/api/2023-10/orders.json', [
@@ -418,7 +425,7 @@ class Create extends Command
             //var_dump($e);
             var_dump($e->getMessage());
             Log::error(json_encode($e->getMessage()));
-            \Nicelizhi\Shopify\Helpers\Utils::send($e->getMessage().'--' .$id. " 需要手动解决 ");
+            //\Nicelizhi\Shopify\Helpers\Utils::send($e->getMessage().'--' .$id. " 需要手动解决 ");
             //continue;
             return false;
         }
