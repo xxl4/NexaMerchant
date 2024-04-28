@@ -80,7 +80,10 @@
             data: 'name'
           },
           {
-            data: 'slug'
+            data: 'slug',
+            render: function (data, type, row) {
+              return `<a href="` + data + `" target="_blank">` + data + `</a>`;
+            }
           },
           {
             data: 'status'
