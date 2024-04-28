@@ -1083,12 +1083,13 @@ class ProductController extends Controller
      * 
      */
 
-    public function checkout_success($order_id, Request $request) {
+    public function checkout_success(Request $request) {
         
 
         $order = [];
 
         // check the payment info
+        $order_id = $request->input('id');
 
         $orderTrans = $this->orderTransactionRepository->where('transaction_id', $order_id)->select(['order_id'])->first();
         if(!is_null($orderTrans)) {

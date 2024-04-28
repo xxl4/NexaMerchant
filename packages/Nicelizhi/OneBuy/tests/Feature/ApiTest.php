@@ -108,7 +108,7 @@ it('can create a airwallex order use api', function () {
     $data = [
         'first_name' => 'Anna',
         'second_name' => 'Freitag',
-        'email' => '"customer@email.de',
+        'email' => 'customer@email.de',
         'phone_full' => '01761428434',
         'country' => 'DE',
         'city' => 'Hickory',

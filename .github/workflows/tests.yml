@@ -55,13 +55,9 @@ jobs:
           mkdir -p database
           touch database/database.sqlite
       - name: Download init db
-        run: sudo apt-get install wget && sudo apt-get install unzip && wget -c ${{secrets.INIT_DB_URL }} -O db.zip
-      - name: list file
-        run: ls -la
+        run: sudo apt-get install wget && sudo apt-get install unzip && wget -c ${{secrets.INIT_DB_URL }}?v=${{ github.sha }} -O db.zip
       - name: unzip
         run: unzip db.zip -d ./
-      - name: list file
-        run: ls -la
       - name: mysql import
         run: mysql -u root -ppassword -h mysql test < db.sql
       - name: route list

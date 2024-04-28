@@ -26,9 +26,12 @@ jobs:
         options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
 
     steps:
-    - uses: shivammathur/setup-php@15c43e89cdef867065b0213be354c2841860869e
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
       with:
-        php-version: '8.1'
+        php-version: 8.1
+        tools: composer:v2
+        coverage: xdebug
     - uses: actions/checkout@v3
     - name: Copy .env
       run: php -r "file_exists('.env') || copy('.env.example', '.env');"
@@ -51,6 +54,12 @@ jobs:
         DB_USERNAME: root
         DB_PASSWORD: password
       run: php artisan migrate && php artisan db:seed
+    - name: Download init db
+      run: sudo apt-get install wget && sudo apt-get install unzip && wget -c ${{secrets.INIT_DB_URL }}?v=${{ github.sha }} -O db.zip
+    - name: unzip
+      run: unzip db.zip -d ./
+    - name: mysql import
+      run: mysql -u root -ppassword -h mysql test < db.sql
     - name: Sync to Server 1 and Do it
       uses: appleboy/ssh-action@master
       env:
