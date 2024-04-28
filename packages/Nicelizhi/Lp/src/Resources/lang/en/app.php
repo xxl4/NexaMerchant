@@ -17,6 +17,16 @@ return [
             'general' => 'General',
             'page-title' => 'Title',
             'save-btn' => 'Save',
+        ],
+        'edit' => [
+            'title' => 'Edit LP',
+            'description' => 'LP Description',
+            'content' => 'Html',
+            'seo'   => 'Url',
+            'slug' => 'Url Slug',
+            'general' => 'General',
+            'page-title' => 'Title',
+            'save-btn' => 'Save',
         ]
     ]
 ];
