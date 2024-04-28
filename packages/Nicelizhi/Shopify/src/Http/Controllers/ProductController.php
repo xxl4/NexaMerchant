@@ -107,12 +107,14 @@ class ProductController extends Controller
         if($version=='v1') {
             echo config("app.url")."/onebuy/".$product_id."\r\n";
             Artisan::queue("shopify:product:getv4", ["--prod_id"=> $product_id])->onConnection('redis')->onQueue('shopify-products');
+            return true;
         }
 
         // one attr
         if($version=='v2') {
             echo config("app.url")."/onebuy/v2/".$product_id."\r\n";
             Artisan::queue("shopify:product:getv2", ["--prod_id"=> $product_id])->onConnection('redis')->onQueue('shopify-products');
+            return true;
         }
 
         // zero attr
@@ -120,6 +122,7 @@ class ProductController extends Controller
             //Artisan::call("shopify:product:getv3", ["--prod_id"=> $product_id]);
             echo config("app.url")."/onebuy/v3/".$product_id."\r\n";
             Artisan::queue("shopify:product:getv3", ["--prod_id"=> $product_id])->onConnection('redis')->onQueue('shopify-products');
+            return true;
             //Artisan::call("shopify:product:getv3", ["--prod_id"=> $product_id]);
         }
     }
