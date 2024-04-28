@@ -2181,7 +2181,7 @@ function GotoNotRequest(url) {
                         $.each(data.form, function(k, v) {
 
                             if(k=='cancel_return') v = window.location.href;
-                            //if(k=='return') v = "<?php echo route('onebuy.checkout.success')?>";
+                            
                             /// do stuff
                             paypal_form +='<input type="hidden" name="'+k+'" value="'+v+'">';
                         });
