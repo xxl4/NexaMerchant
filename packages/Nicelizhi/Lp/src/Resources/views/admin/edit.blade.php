@@ -58,7 +58,7 @@
   <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
   
 
- <!-- <script>
+ <script>
     $(function () {
       // Summernote
       $('#html').summernote({
@@ -67,5 +67,5 @@
   
       
     })
-  </script> -->
+  </script>
 </x-admin::layouts>
