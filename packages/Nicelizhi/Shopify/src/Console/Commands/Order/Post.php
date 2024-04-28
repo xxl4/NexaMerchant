@@ -5,11 +5,8 @@ namespace Nicelizhi\Shopify\Console\Commands\Order;
 use Illuminate\Console\Command;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Log;
-
 use Webkul\Sales\Repositories\OrderRepository;
-use Webkul\Sales\Repositories\OrderCommentRepository;
 use Illuminate\Support\Facades\Cache;
-
 use Nicelizhi\Shopify\Models\ShopifyOrder;
 use Nicelizhi\Shopify\Models\ShopifyStore;
 use Webkul\Sales\Models\Order;
@@ -23,17 +20,20 @@ class Post extends Command
      *
      * @var string
      */
-    protected $signature = 'shopify:order:post';
+    protected $signature = 'shopify:order:post {--order_id=}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'create Order';
+    protected $description = 'create Order shopify:order:post';
 
     private $shopify_store_id = null;
     private $lang = null;
+
+    //protected ShopifyOrder $ShopifyOrder,
+    //protected ShopifyStore $ShopifyStore,
 
     /**
      * Create a new command instance.
@@ -41,14 +41,13 @@ class Post extends Command
      * @return void
      */
     public function __construct(
-        protected OrderRepository $orderRepository,
-        protected ShopifyOrder $ShopifyOrder,
-        protected ShopifyStore $ShopifyStore,
-        protected OrderCommentRepository $orderCommentRepository
+        
     )
     {
-        $this->shopify_store_id = "hatmeo";
-        $this->shopify_store_id = "wmbracom";
+        $this->ShopifyOrder = new ShopifyOrder();
+        $this->ShopifyStore = new ShopifyStore();
+        $this->Order = new Order();
+
         $this->shopify_store_id = config('shopify.shopify_store_id');
         $this->lang = config('shopify.store_lang');
         parent::__construct();
@@ -75,24 +74,20 @@ class Post extends Command
             return false;
         }
 
-        //\Nicelizhi\Shopify\Helpers\Utils::send($this->shopify_store_id." start import orders ".date("Y-m-d H:i:s"));
+        $order_id = $this->option("order_id");
 
-        // $lists = $this->orderRepository->findWhere([
-        //     'status' => 'processing'
-        // ]);
-        $lists = Order::where(['status'=>'processing'])->orderBy("updated_at", "desc")->limit(100)->get();
-        //var_dump($lists);exit;
-        //$lists = Order::where(['id'=>'1093'])->orderBy("updated_at", "desc")->limit(10)->get();
-
-        //var_dump($lists);exit;
+        if(!empty($order_id)) {
+            $lists = Order::where(['status'=>'processing'])->where("id", $order_id)->select(['id'])->limit(1)->get();
+        }else{
+            $lists = [];
+            //$lists = Order::where(['status'=>'processing'])->orderBy("updated_at", "desc")->select(['id'])->limit(100)->get();
+        }
+        
 
         $this->checkLog();
 
         foreach($lists as $key=>$list) {
             $this->info("start post order " . $list->id);
-
-            
-            
             $this->postOrder($list->id, $shopifyStore);
             $this->syncOrderPrice($list); // sync price to system
             //exit;
@@ -113,26 +108,15 @@ class Post extends Command
         //return false;
        // use grep command to gerneter new log file
 
-       $big_log_file = storage_path('logs/laravel-'.date("Y-m-d").'.log');
-       $error_log_file = storage_path('logs/error-'.date("Y-m-d").'.log');
+       $yesterday = date("Y-m-d", strtotime('-1 days'));
+
+       $big_log_file = storage_path('logs/laravel-'.$yesterday.'.log');
+       $error_log_file = storage_path('logs/error-'.$yesterday.'.log');
        echo $big_log_file."\r\n";
        echo $error_log_file."\r\n";
 
-       exec("cat ".$big_log_file." | grep SQLSTATE >".$error_log_file);
-
-       $items = file_get_contents($error_log_file);
-
-       $handle = fopen($error_log_file, "r");
-       if ($handle) {
-            while (($line = fgets($handle)) !== false) {
-                //var_dump($line);
-            }
-
-        fclose($handle);
-       }
+       if(!file_exists($error_log_file)) exec("cat ".$big_log_file." | grep SQLSTATE >".$error_log_file);
        
-       //exit;
-
 
      }
 
@@ -165,6 +149,7 @@ class Post extends Command
         }
 
         $this->info("sync to order to shopify ".$id);
+        echo $id." start post \r\n";
 
         $client = new Client();
 
@@ -176,9 +161,11 @@ class Post extends Command
          * 
          */
         // $id = 147;
-        $order = $this->orderRepository->findOrFail($id);
+        $order = $this->Order->findOrFail($id);
 
         $orderPayment = $order->payment;  
+
+        
 
         //var_dump($order);exit;
 
@@ -187,6 +174,7 @@ class Post extends Command
         $line_items = [];
 
         $products = $order->items;
+        $q_ty = 0;
         foreach($products as $key=>$product) {
             $sku = $product['additional'];
 
@@ -199,12 +187,14 @@ class Post extends Command
             $line_item = [];
             $line_item['variant_id'] = $skuInfo[1];
             $line_item ['quantity'] = $product['qty_ordered'];
+            $q_ty += $product['qty_ordered'];
             $line_item ['requires_shipping'] = true;
 
             array_push($line_items, $line_item);
         }
 
         $shipping_address = $order->shipping_address;
+        $billing_address = $order->billing_address;
         $postOrder['line_items'] = $line_items;
 
 
@@ -220,16 +210,16 @@ class Post extends Command
         $shipping_address->city = empty($shipping_address->city) ? $shipping_address->state : $shipping_address->city;
 
         $billing_address = [
-            "first_name" => $shipping_address->first_name,
-            "last_name" => $shipping_address->last_name,
-            "address1" => $shipping_address->address1,
+            "first_name" => $billing_address->first_name,
+            "last_name" => $billing_address->last_name,
+            "address1" => $billing_address->address1,
             //$input['phone_full'] = str_replace('undefined+','', $input['phone_full']);
             
             "phone" => $shipping_address->phone,
-            "city" => $shipping_address->city,
-            "province" => $shipping_address->state,
-            "country" => $shipping_address->country,
-            "zip" => $shipping_address->postcode
+            "city" => $billing_address->city,
+            "province" => $billing_address->state,
+            "country" => $billing_address->country,
+            "zip" => $billing_address->postcode
         ];
         $postOrder['billing_address'] = $billing_address;
         
@@ -286,6 +276,16 @@ class Post extends Command
         // $total_shipping_price_set['shop_money'] = $shop_money;
         // $total_shipping_price_set['presentment_money'] = $shop_money;
 
+        if($order->shipping_amount=='14.9850') {
+            $str = "aud order";
+            //\Nicelizhi\Shopify\Helpers\Utils::send($str.'--' .$id. " 需要留意查看 ");
+            //continue;
+            //return false;
+            $postOrder['send_receipt'] = false; 
+        }else{
+            $postOrder['send_receipt'] = true; 
+        }
+
         $total_shipping_price_set = [
             "shop_money" => [
                 "amount" => $order->shipping_amount,
@@ -313,7 +313,7 @@ class Post extends Command
          */
 
         //$postOrder['send_receipt'] = false; 
-        $postOrder['send_receipt'] = true; 
+        //$postOrder['send_receipt'] = true; 
 
         // $postOrder['discount_codes'] = $discount_codes;
 
@@ -370,6 +370,13 @@ class Post extends Command
 
 
         $postOrder['shipping_lines'][] = $shipping_lines;
+
+        $postOrder['buyer_accepts_marketing'] = true; // 
+
+        $postOrder['name'] = config('shopify.order_pre').'#'.$id;
+        $postOrder['order_number'] = $id;
+        $postOrder['currency'] = $order->order_currency_code;
+        $postOrder['presentment_currency'] = $order->order_currency_code;
 
 
         $pOrder['order'] = $postOrder;
@@ -513,8 +520,10 @@ class Post extends Command
             $res = $this->get_content($url);
             Log::info("post to bm url ".$url." res ".json_encode($res));
 
+            $crm_channel = config('onebuy.crm_channel');
+
             
-            $url = "https://crm.heomai.com/api/offers/callBack?refer=".$cnv_id[1]."&revenue=".$order->grand_total."&currency_code=".$order->order_currency_code;
+            $url = "https://crm.heomai.com/api/offers/callBack?refer=".$cnv_id[1]."&revenue=".$order->grand_total."&currency_code=".$order->order_currency_code."&channel_id=".$crm_channel."&q_ty=".$q_ty;
             $res = $this->get_content($url);
             Log::info("post to bm 2 url ".$url." res ".json_encode($res));
 

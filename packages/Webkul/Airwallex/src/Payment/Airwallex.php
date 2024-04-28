@@ -207,7 +207,7 @@ class Airwallex extends Payment
       $payment_method = [];
       $payment_method['type'] = "klarna";
 
-      $shipping_address = $order->shipping_address;
+      $shipping_address = $order->billing_address;
       //var_dump($shipping_address);
 
       $klarna = [];
@@ -291,16 +291,26 @@ class Airwallex extends Payment
         $order = [];
         $order['products'] = [];
         $products = [];
-        $product['code'] = "11111";
-        $product['desc'] = "11111";
-        $product['name'] = "11111";
-        $product['quantity'] = 1;
-        $product['sku'] = "11111";
-        $product['type'] = "11111";
-        $product['unit_price'] = $data['amount'];
-        $product['url'] = "https://www.baidu.com/";
 
-        $products[] = $product;
+        $cartData = $cart->toArray();
+
+        foreach ($cartData['items'] as $item) {
+          //$finalData['items'][] = $this->prepareDataForOrderItem($item);
+
+          $product['code'] = $item['sku'];;
+          $product['desc'] = $item['name'];
+          $product['name'] = $item['name'];
+          $product['quantity'] = $item['quantity'];
+          $product['sku'] = $item['sku'];
+          $product['type'] = $item['type'];
+          $product['unit_price'] = $data['amount'];
+          $product['url'] = config("app.url");
+
+          $products[] = $product;
+
+      }
+
+        
         $order['products'] = $products;
         $shipping = [];
         $shipping['address'] = $address;
@@ -314,126 +324,7 @@ class Airwallex extends Payment
         $data['return_url'] = route('airwallex.payment.success');
         return $data;
 
-        $data = '"amount": '.',
-        "currency": "'.$cart->shipping_address->country.'",
-        "customer": {
-          "additional_info": {
-            "first_successful_order_date": "2019-09-18",
-            "last_modified_at": "2019-09-18T12:30:00Z",
-            "registered_via_social_media": false,
-            "registration_date": "2019-09-18"
-          },
-          "address": {
-            "city": "'.$cart->billing_address->city.'",
-            "country_code": "'.$cart->billing_address->country.'",
-            "postcode": "'.$cart->billing_address->postcode.'",
-            "state": "'.$cart->billing_address->state.'",
-            "street": "'.$cart->billing_address->address1.'"
-          },
-          "business_name": "'.$cart->billing_address->first_name.'",
-          "email": "'.$cart->billing_address->email.'",
-          "first_name": "'.$cart->billing_address->first_name.'",
-          "last_name": "'.$cart->billing_address->last_name.'",
-          "merchant_customer_id": "string",
-          "phone_number": "'.$cart->billing_address->phone.'"
-        },
-        "customer_id": "cus_ps8e0ZgQzd2QnCxVpzJrHD6KOVu",
-        "descriptor": "Airwallex - T-shirt",
-        "merchant_order_id": "cc9bfc13-ba30-483b-a62c-ee925fc9bfea",
-        "metadata": {
-          "id": 1
-        },
-        "order": {
-          "products": [
-            {
-              "code": "3414314111",
-              "desc": "IPHONE 7",
-              "effective_end_at": "2020-12-31T23:59:59Z",
-              "effective_start_at": "2020-01-01T00:00:00Z",
-              "name": "IPHONE7",
-              "quantity": 5,
-              "seller": {
-                "identifier": "string",
-                "name": "string"
-              },
-              "sku": "100004",
-              "type": "physical",
-              "unit_price": 100.01,
-              "url": "http://airwallex/product/23213"
-            }
-          ],
-          "sellers": [
-            {
-              "additional_info": {
-                "address_updated_at": "2023-01-01T00:00:00",
-                "email_updated_at": "2023-01-01T00:00:00Z",
-                "password_updated_at": "2023-01-01T00:00:00Z",
-                "products_updated_at": "2023-01-01T00:00:00Z",
-                "sales_summary": {
-                  "currency": "string",
-                  "period": "string",
-                  "sales_amount": 0,
-                  "sales_count": 0
-                }
-              },
-              "business_info": {
-                "email": "john.doe@airwallex.com",
-                "phone_number": "13800000000",
-                "postcode": "10000",
-                "rating": 4.5,
-                "registration_date": "2019-09-18"
-              },
-              "identifier": "string",
-              "name": "string"
-            }
-          ],
-          "shipping": {
-            "address": {
-              "city": "Shanghai",
-              "country_code": "CN",
-              "postcode": "100000",
-              "state": "Shanghai",
-              "street": "Pudong District"
-            },
-            "first_name": "John",
-            "last_name": "Doe",
-            "phone_number": "13800000000",
-            "shipping_method": "sameday"
-          },
-          "supplier": {
-            "address": {
-              "city": "Shanghai",
-              "country_code": "CN",
-              "postcode": "100000",
-              "state": "Shanghai",
-              "street": "Pudong District"
-            },
-            "business_name": "Abc Trading Limited",
-            "email": "john.doe@airwallex.com",
-            "first_name": "John",
-            "last_name": "Doe",
-            "phone_number": "13800000000"
-          },
-          "type": "physical_goods"
-        },
-        "payment_method_options": {
-          "card": {
-            "risk_control": {
-              "skip_risk_processing": false,
-              "three_domain_secure_action": "FORCE_3DS",
-              "three_ds_action": "FORCE_3DS"
-            },
-            "three_ds_action": "FORCE_3DS"
-          }
-        },
-        "request_id": "ee939540-3203-4a2c-9172-89a566485dd9",
-        "return_url": "https://shop.hatmeo.com",
-        "risk_control_options": {
-          "skip_risk_processing": false,
-          "tra_applicable": false
-        }';
-
-        return $data;
+       
     }
 
 

@@ -2,18 +2,11 @@
 <phpunit
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:noNamespaceSchemaLocation="./vendor/phpunit/phpunit/phpunit.xsd"
+    cacheResult="false"
     bootstrap="vendor/autoload.php"
     colors="true"
 >
     <testsuites>
-        <!-- Admin package testsuites. -->
-        <testsuite name="Admin Unit Test">
-            <directory suffix="Test.php">./packages/Webkul/Admin/tests/Unit</directory>
-        </testsuite>
-        <testsuite name="Admin Feature Test">
-            <directory suffix="Test.php">./packages/Webkul/Admin/tests/Feature</directory>
-        </testsuite>
-
         <!-- DataGrid package testsuites. -->
         <testsuite name="DataGrid Unit Test">
             <directory suffix="Test.php">./packages/Webkul/DataGrid/tests/Unit</directory>

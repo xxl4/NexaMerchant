@@ -7,6 +7,8 @@ return [
     'gtag' => env('ONEBUY_GTAG', "G-P6343Y2GKT"),
     'fb_ids' => env('FB_IDS'),
     'ob_adv_id' => env('OB_ADV_ID'),
+    'quora_adv_id' => env('QUORA_ID'),
+    'crm_channel' => env('CRM_CHANNEL'),
     'airwallex' => [
             'method' => [
                 'card',
@@ -15,6 +17,10 @@ return [
             ]
     ],
     'payments_default' => env('ONEBUY_PAYMENT_DEFAULT','payment_method_airwallex'),
+    'judge' => [
+        'shop_domain' => env('JUDGE_SHOP_DOMAIN'),
+        'api_token' => env('JUDGE_API_TOKEN'),
+    ],
     'payments' => [
         'airwallex_klarna' => env('ONEBUY_PAYMENT_AIRWALLEX_KLARNA', 0),
         'payal_standard' => env('ONEBUY_PAYMNET_PAYAL_STANDARD', 0),

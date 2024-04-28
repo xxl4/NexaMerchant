@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\Storage;
 use Webkul\Product\Models\ProductImage;
 use Nicelizhi\Shopify\Models\ShopifyStore;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Redis;
+use Illuminate\Support\Facades\Artisan;
 
 class Get extends Command
 {
@@ -30,7 +32,7 @@ class Get extends Command
      *
      * @var string
      */
-    protected $description = 'Get Products List or a product shopify:product:get {--prod_id=} {--force=}';
+    protected $description = 'Get Products List or a product shopify:product:get {--prod_id=} {--force=} color and size';
 
     private $shopify_store_id = "";
 
@@ -38,18 +40,7 @@ class Get extends Command
 
     private $lang = null;
 
-    private $locales = [
-        'us',
-        'en',
-        'fr',
-        'nl',
-        'tr',
-        'es',
-        'de',
-        'it',
-        'ru',
-        'uk'
-    ];
+    private $locales = [];
 
     /**
      * Create a new command instance.
@@ -114,7 +105,13 @@ class Get extends Command
             }
 
         }
-        //exit;
+        if($shopifyProduct && !$force) {
+            $this->syncProductToLocal($shopify_pro_id);
+
+            // 处理目录权限
+            $this->Permissions();
+            return false;
+        }
         /**
          * 
          * @link https://shopify.dev/docs/api/admin-rest/2023-10/resources/product#get-products?ids=632910392,921728736
@@ -136,8 +133,6 @@ class Get extends Command
         $body = json_decode($body, true);
         //var_dump($body);exit;
         foreach($body['products'] as $key=>$item) {
-            //var_dump($item['collection_id']);exit;
-
             $shopifyProduct = \Nicelizhi\Shopify\Models\ShopifyProduct::where("product_id", $item['id'])->first();
             if(is_null($shopifyProduct)) {
                 $shopifyProduct = new \Nicelizhi\Shopify\Models\ShopifyProduct();
@@ -158,6 +153,23 @@ class Get extends Command
 
     }
 
+    /**
+     * 
+     * 
+     * Clear the cache for this product
+     * 
+     * @param int $pid
+     * 
+     * 
+     */
+    protected function clearCache($pid) {
+        Cache::pull("product_color_size_".$pid);
+        Cache::pull("product_attributes_".$pid);
+        Cache::pull("product_sku_size_".$pid);
+        Cache::pull("product_sku_".$pid);
+        Cache::pull("product_sku_".$pid);
+    }
+
     protected function Permissions() {
         $local_image_path = "storage/product/";
         $path = public_path($local_image_path);
@@ -165,9 +177,7 @@ class Get extends Command
         $this->error($execPath);
         //exit;     
         exec($execPath);
-    }
-
-   
+    }   
 
     /**
      * 
@@ -186,12 +196,34 @@ class Get extends Command
             // 24 size
             // ba_attribute_options
             // ba_attribute_option_translations
+
+            $redis = Redis::connection('default');
+
+            $images_map = [];
+
             $options = $item->options;
             $shopifyVariants = $item->variants;
             $shopifyImages = $item->images;
+            
+            foreach($shopifyImages as $key=>$shopifyImage) {
+                //var_dump($shopifyImage);
+                
+                $images_map[$shopifyImage['id']] = $shopifyImage['src'];
+                foreach($shopifyImage['variant_ids'] as $kk=>$variant_ids) {
+                    //var_dump($variant_ids);
+                    $images_map[$variant_ids] = $shopifyImage['src'];
+                }
+            }
+
+            //var_dump($images_map);exit;
+
+            //var_dump($shopifyVariants);exit;
+
+
             $color = [];
             $size = [];
             $error = 0;
+            $LocalOptions = [];
             foreach($options as $kk => $option) {
                 $option['name'] = strtolower($option['name']);
                 $attr_id = 0;
@@ -252,10 +284,15 @@ class Get extends Command
                     }
                     if($attr_id==23) $color[$attribute_option_id] = $attribute_option_id; //array_push($color, $attribute_option_id); 
                     if($attr_id==24) $size[$attribute_option_id] = $attribute_option_id;
+
+                    $LocalOptions[$attr_id][] = $attribute_option_id;
                 }
+                
             }
 
             if($error==1) continue;
+
+            var_dump($LocalOptions);
 
 
             
@@ -271,17 +308,34 @@ class Get extends Command
             //$data['family'] = [];
 
             //var_dump($data);exit;
-            Event::dispatch('catalog.product.create.before');
+            
 
             // check product info
             $product = $this->productRepository->where("sku", $item['product_id'])->first();
             if(is_null($product)) {
+                Event::dispatch('catalog.product.create.before');
                 $product = $this->productRepository->create($data);
                 $id = $product->id;
+                Event::dispatch('catalog.product.create.after', $product);
             }else{
                 $id = $product->id;
             }
-            Event::dispatch('catalog.product.create.after', $product);
+
+            $this->clearCache($id);
+
+            // update the sku sort
+            foreach($LocalOptions as $key=>$LocalOption) {
+                $cache_key = "product_attr_sort_".$key."_".$id;
+                echo $cache_key."\r\n";
+                foreach($LocalOption as $k => $localOpt) {
+                    $redis->hSet($cache_key, $localOpt,  $k);
+                }
+                //$redis->hSet($this->cache_key.$this->prod_id, $key, json_encode($value));
+            }
+
+            //exit;
+            
+            //var_dump($product);exit;
 
             $updateData = [];
             $updateData['product_number'] = "";
@@ -301,13 +355,16 @@ class Get extends Command
 
             $updateData['description'] = $item['body_html'];
 
-            $updateData['compare_at_price'] = $item['compare_at_price'];
+           // $updateData['compare_at_price'] = $item['compare_at_price'];
+            $updateData['compare_at_price'] = $shopifyVariants[0]['compare_at_price'];
+            $updateData['price'] = $shopifyVariants[0]['price'];
 
             $variants = $variantCollection = $product->variants()->get()->toArray();
 
-            //var_dump(count($shopifyVariants));
+            var_dump(count($shopifyVariants));
 
             $newShopifyVarants = [];
+            $compare_at_price = '0.00';
             foreach($shopifyVariants as $sv => $shopifyVariant) {
                 //var_dump($shopifyVariant);
                 $newkey = $shopifyVariant['product_id'];
@@ -331,7 +388,9 @@ class Get extends Command
                 $newShopifyVarant['sku'] = $shopifyVariant['sku'];
                 $newShopifyVarant['option1'] = $shopifyVariant['option1'];
                 $newShopifyVarant['option2'] = $shopifyVariant['option2'];
+                $newShopifyVarant['image_src'] = $images_map[$shopifyVariant['image_id']];
                 $newShopifyVarants[$newkey] = $newShopifyVarant;
+                $compare_at_price = $shopifyVariant['compare_at_price'];
             }
 
             //var_dump($newShopifyVarants);exit;
@@ -371,7 +430,7 @@ class Get extends Command
                 $categories[] = 5;
                 $newVariant['categories'] = $categories;
                 $newVariant['guest_checkout'] = 1;
-                $newVariant['compare_at_price'] = $item['compare_at_price'];
+                $newVariant['compare_at_price'] = $compare_at_price;
                 $newVariants[$variant['id']] = $newVariant;
             }
 
@@ -399,22 +458,16 @@ class Get extends Command
             $images = [];
             foreach($shopifyImages as $key=>$shopifyImage) {
 
-                //var_dump($shopifyImage);
                 $info = pathinfo($shopifyImage['src']);
 
-                //var_dump($shopifyImage);
 
                 $this->info($info['filename']);
-
-               
-                //var_dump($info);exit;
                 $image_path = "product/".$id."/".$info['filename'].".webp";
                 $local_image_path = "storage/".$image_path;
                 $this->info(public_path($local_image_path));
                 if(!file_exists(public_path($local_image_path))) {
                     $this->error("copy [ ".$local_image_path);
                     $this->info($shopifyImage['src']);
-                    //var_dump($shopifyImage['src'],"hello");
                     $contents = file_get_contents($shopifyImage['src'], false, stream_context_create($arrContextOptions));
                     //var_dump($contents);
                     Storage::disk("images")->put($local_image_path, $contents);
@@ -429,42 +482,15 @@ class Get extends Command
 
             Event::dispatch('catalog.product.update.after', $product);
 
-            foreach($shopifyImages as $key=>$shopifyImage) {
-
-                //var_dump($shopifyImage);
-                $info = pathinfo($shopifyImage['src']);
-
-                //var_dump($shopifyImage);
-
-                $this->info($info['filename']);
-
-                $image_path = "product/".$id."/".$info['filename'].".webp";
-                $local_image_path = "storage/".$image_path;
-                $this->info(public_path($local_image_path));
-                if(!file_exists(public_path($local_image_path))) {
-                    $this->error("copy [ ".$local_image_path);
-                    $this->info($shopifyImage['src']);
-                    $contents = file_get_contents($shopifyImage['src'], false, stream_context_create($arrContextOptions));
-                    Storage::disk("images")->put($local_image_path, $contents);
-                    sleep(1);
-                }
-                $images[] = $image_path;
-            }
-
-            foreach($images as $key=>$image) {
-                $checkImg = ProductImage::where("product_id", $id)->where("path", $image)->first();
-                if(is_null($checkImg)) {
-                    $checkImg = new ProductImage();
-                    $checkImg->product_id = $id;
-                    $checkImg->path = $image;
-                    $checkImg->type = "images";
-                    $checkImg->save();
-                }
-            }
-
             //更新对应的分类
             $sku_products = $this->productRepository->where("parent_id", $id)->get();
             foreach($sku_products as $key=>$sku) {
+
+                $sku_image = explode("-", $sku->sku);
+
+
+
+                //var_dump($images_map, $sku_image, $images_map[$sku_image[1]]);exit;
 
                 $this->info("process ".$sku->id);
 
@@ -487,6 +513,7 @@ class Get extends Command
                 Event::dispatch('catalog.product.update.after', $sku);
 
                 $images = [];
+                $shopifyImages[] = ['src'=> $images_map[$sku_image[1]] ];
                 foreach($shopifyImages as $key=>$shopifyImage) {
 
                     //var_dump($shopifyImage);
@@ -508,8 +535,11 @@ class Get extends Command
                     }
                     $images[] = $image_path;
                 }
-    
+                $max_image_count = 3;
+                $i = 0;
                 foreach($images as $key=>$image) {
+                    $i++;
+                    if($max_image_count < $i) continue;
                     $checkImg = ProductImage::where("product_id", $sku->id)->where("path", $image)->first();
                     if(is_null($checkImg)) {
                         $checkImg = new ProductImage();
@@ -521,6 +551,13 @@ class Get extends Command
                 }
             }
 
+
+            Cache::pull("sync_".$item['product_id']);
+
+            \Nicelizhi\Shopify\Helpers\Utils::clearCache($id, $item['product_id']); // clear cache
+
+            //send message to wecome
+            \Nicelizhi\Shopify\Helpers\Utils::send($item['product_id']. " sync done, please check it ");
 
             // exit;
 
@@ -540,5 +577,7 @@ class Get extends Command
 
 
         }
+
+        Artisan::queue("onebuy:import:products:comment:from:judge")->onConnection('redis')->onQueue('shopify-products'); // import the shopify comments
     }
 }

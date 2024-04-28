@@ -1,6 +1,6 @@
 <div class="footer-container">
 <div class="copyright-block">
-©2016- @lang("onebuy::app.product.brand")
+©2016-<?php echo date("Y");?> @lang("onebuy::app.product.brand")
 </div>
 <style>
     .phone-block {

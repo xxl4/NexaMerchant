@@ -489,20 +489,17 @@ Apt / Suite / Other </label>
 @lang('onebuy::app.product.order.Country') </label>
 </div>
 <div class="shipping-info-flex">
-<div class="shipping-info-item shipping-info-flex-half">
-<select class="shipping-info-select" name="state" id="state-select"></select>
-<label id="state-error" class="shipping-info-error">
-</label>
-<label class="shipping-info-label">
-@lang('onebuy::app.product.order.State/Province') </label>
-</div>
-<div class="shipping-info-item shipping-info-flex-half">
-<input name="zip_code" class="shipping-info-input zip_code" />
-<label id="zip_code-error" class="shipping-info-error">
-</label>
-<label class="shipping-info-label">
- @lang('onebuy::app.product.order.Zip/Postal Code')</label>
-</div>
+    <div class="shipping-info-item shipping-info-flex-half">
+        <select class="shipping-info-select" name="state" id="state-select"></select>
+        <label id="state-error" class="shipping-info-error"></label>
+        <label class="shipping-info-label">@lang('onebuy::app.product.order.State/Province') </label>
+    </div>
+    <div class="shipping-info-item shipping-info-flex-half">
+        <input name="zip_code" class="shipping-info-input zip_code" />
+        <label id="zip_code-error" class="shipping-info-error">
+    </label>
+    <label class="shipping-info-label">@lang('onebuy::app.product.order.Zip/Postal Code')</label>
+    </div>
 </div>
 <input type="hidden" id="id_card" name="id_card" /> 
 <input type="hidden" id="id_expiry" name="id_expiry" /> 
@@ -725,6 +722,494 @@ Apt / Suite / Other </label>
 </div>
 
 @include("onebuy::payments-".strtolower($default_country))
+
+<script>
+    $(document).ready(function(){
+
+        function showBillProvince() {
+            $('#bill-state-select').parent().show();
+            $('#bill-state-select').parent().next().addClass('shipping-info-flex-half');
+        }
+
+        function hideBillProvince() {
+            $('#bill-state-select').parent().hide();
+            $('#bill-state-select').parent().next().removeClass('shipping-info-flex-half');
+        }
+
+        function updateBillStateSelect(states) {
+            if(states && states.length) {
+                if(!window.states) {
+                    showBillProvince();
+                }
+                window.states = states;
+                var t = '<option value="">----</option>';
+                states.forEach(function(e) {
+                    t += "<option value=".concat(e.StateCode, ">").concat(e.StateName, "</option>")
+                });
+
+                $('#bill-state-select').html(t);
+                if(window.state_select) {
+                    $('#bill-state-select').val(window.state_select);
+                    $('#bill-state-select').change();
+                    window.state_select = '';
+                }
+            } else {
+                window.states = false;
+                hideBillProvince();
+            }
+        }
+
+        function getBillStateSelect() {
+            if($("#bill-country-select").val()) {
+                getBillCountryStates(updateBillStateSelect);
+                
+            }
+        }
+
+        function getBillCountryStates(callback) {
+            var url = '/template-common/checkout1/state/' + $("#bill-country-select").val().toLowerCase() + '_{{ app()->getLocale() }}' + '.json';
+            fetch(url,{
+                method: 'GET',
+            })
+            .then(function(data){return data.json()}).then(function(data) {callback(data)}).catch(function(err){callback()})
+        }
+
+
+
+        $("#shipping_address_other").on("click", function(){
+
+            if($("#shipping_address_other").is(':checked')) {
+                $("#bill_address").show();
+                window.shipping_address = "other";
+            }else{
+                $("#bill_address").hide();
+                window.shipping_address = "default";
+            }    
+            console.log( " shipping address "+window.shipping_address);            
+            //copy the data info to bill address
+
+            var $options = $("#country-select > option").clone();
+
+            $('#bill-country-select').append($options);
+
+            $('#bill-country-select').on('change', function() {
+                getBillStateSelect();
+            })
+
+            getBillStateSelect(); // 
+
+            window.shipping_address = "other";
+
+        })
+
+        $("#shipping_address_default").on("click", function(){
+            $("#bill_address").hide();
+            window.shipping_address = "default";
+        })
+
+        <?php if($payments_default=='airwallex-klarna') { ?>
+
+            $("#collapseThree").show();
+            $("#headingThree2").addClass("action");
+            $("#payment-button").addClass("airwallex-pay");
+
+        <?php } elseif($payments_default=='payal_standard') { ?>
+            $("#collapseTwo").show();
+            $("#headingOne2").addClass("action");
+
+        <?php } elseif($payments_default=='payment_method_airwallex') { ?>
+            $("#collapseOne").show();
+            $("#headingOne1").addClass("action");
+
+        <?php } ?>
+
+        $("#payment_method_airwallex").on("click", function(){
+            console.log("click headingOne ");
+            $("#collapseOne").show();
+            $("#collapseTwo").hide();
+            $("#collapseThree").hide();
+            $("#airwallex_dropin_collapse").hide();
+
+            $("#headingOne1").addClass("action");
+            $("#headingThree2").removeClass("action");
+            $("#headingOne2").removeClass("action");
+            $("#airwallex_dropin_2").removeClass("action");
+
+            $("#payment-button").html("@lang('onebuy::app.product.payment.complete_secure_purchase')");
+
+        });
+
+        $("#payal_standard").on("click", function(){
+            $("#collapseOne").hide();
+            $("#collapseTwo").show();
+            $("#collapseThree").hide();
+            $("#airwallex_dropin_collapse").hide();
+
+            $("#headingOne2").addClass("action");
+            $("#headingOne1").removeClass("action");
+            $("#headingThree2").removeClass("action");
+            $("#airwallex_dropin_2").removeClass("action");
+
+            //payment-button
+            $("#payment-button").empty();
+
+
+            paypal.Buttons({
+                style: {
+                    layout: 'horizontal',
+                    tagline: false,
+                },
+
+                onInit(data, actions)  {
+
+                // Disable the buttons
+                    actions.disable();
+
+                // Listen for changes to the checkbox
+                // document.querySelector('#check').addEventListener('change', function(event) {
+                //     // Enable or disable the button when it is checked or unchecked
+                //     if (event.target.checked)  {
+                //     actions.enable();
+                //     } else  {
+                //     actions.disable();
+                //     }
+                // });
+                    var params = getOrderParams('paypal_stand');
+
+                    var can_paypal = 0;
+                    var email_can = 0;
+                    var first_name_can = 0;
+                    var last_name_can = 0;
+                    var phone_number_can = 0;
+                    var address_can = 0;
+                    var city_can = 0;
+                    var zip_code_can = 0;
+
+                
+
+                    $(".email").on('change', function() {
+                        var value = $(".email").val();
+                        if(value.length > 0) email_can = 1;
+                        console.log(value);
+                        var params = getOrderParams('paypal_stand');
+                        if(!params.error) {
+                            actions.enable();
+                        }
+                    });
+
+                    $(".first_name").on('change', function(){
+                        var value = $(".first_name").val();
+                        if(value.length > 0) first_name_can = 1;
+                        console.log(value);
+                        var params = getOrderParams('paypal_stand');
+                        if(!params.error) {
+                            actions.enable();
+                        }
+                    });
+
+                    $(".last_name").on('change', function(){
+                        var value = $(".last_name").val();
+                        if(value.length > 0) last_name_can = 1;
+                        console.log(value);
+                        var params = getOrderParams('paypal_stand');
+                        if(!params.error) {
+                            actions.enable();
+                        }
+                    });
+                    $(".phone_number").on('change', function(){
+                        var value = $(".phone_number").val();
+                        if(value.length > 0) phone_number_can = 1;
+                        console.log(value);
+                        var params = getOrderParams('paypal_stand');
+                        if(!params.error) {
+                            actions.enable();
+                        }
+                    });
+                    $(".address").on('change', function(){
+                        var value = $(".address").val();
+                        if(value.length > 0) address_can = 1;
+                        console.log(value);
+                        var params = getOrderParams('paypal_stand');
+                        if(!params.error) {
+                            actions.enable();
+                        }
+                    });
+                    $(".city").on('change', function(){
+                        var value = $(".city").val();
+                        if(value.length > 0) city_can = 1;
+                        console.log(value);
+                        var params = getOrderParams('paypal_stand');
+                        if(!params.error) {
+                            actions.enable();
+                        }
+                    });
+                    $(".zip_code").on('change', function(){
+                        var value = $(".zip_code").val();
+                        if(value.length > 0) zip_code_can = 1;
+                        console.log(value);
+                        var params = getOrderParams('paypal_stand');
+                        if(!params.error) {
+                            actions.enable();
+                        }
+                    });
+
+                    $("#state-select").on('change', function(){
+                        var params = getOrderParams('paypal_stand');
+                        if(!params.error) {
+                            actions.enable();
+                        }
+                    })
+
+
+
+                    if(params.error) {
+                        //$('#checkout-error').html(params.error.join('<br />'));
+                        //$('#checkout-error').show();
+                        actions.disable();
+                        //throw new Error('Verification failed');
+                    }else{
+                        actions.enable();
+                    }
+                },
+                onError(err) {
+                    $('#loading').hide();
+                    console.log("paypal " + JSON.stringify(err));
+                },
+                onCancel: function(data) {
+                    $('#loading').hide();
+                },
+                onClick(){
+                    var params = getOrderParams('paypal_stand');
+                    console.log("on click " + JSON.stringify(params));
+                    if(params.error) {
+                        $('#checkout-error').html(params.error.join('<br />'));
+                        $('#checkout-error').show();
+                    }
+
+                    
+                    console.log("post crm system");
+
+                    // params = {
+                    //     "channel_id": "<?php echo $crm_channel;?>",
+                    //     "token": "<?php echo $refer; ?>",
+                    //     "type": 2
+                    // };
+                    // fetch('https://crm.heomai.com/api/user/action',{
+                    //         body: JSON.stringify(params),
+                    //         method: 'POST',
+                    //         headers: {
+                    //             'content-type': 'application/json'
+                    //         },
+                    // })
+
+                },
+
+                // Call your server to set up the transaction
+                createOrder: function(data, actions) {
+                    $('#loading').show();
+                    var params = getOrderParams('paypal_stand');
+                    var url = '/onebuy/order/addr/after?currenty={{ core()->getCurrentCurrencyCode() }}&_token={{ csrf_token() }}&time=' + new Date().getTime()+"&force="+localStorage.getItem("force");
+                    return fetch(url, {
+                        body: JSON.stringify(params),
+                        method: 'POST',
+                        headers: {
+                            'content-type': 'application/json'
+                        }
+                    }).then(function(res) {
+                        return res.json();
+                    }).then(function(res) {
+                        //$('#loading').hide();
+                        var data = res;
+                        if(data.statusCode === 201){
+                            var order_info = data.result;
+                            //console.log(order_info);
+                            //console.log(order_info.purchase_units[0].amount);
+                            document.cookie="voluum_payout="+ order_info.purchase_units[0].amount.value + order_info.purchase_units[0].amount.currency_code + "; path=/";
+                            document.cookie="order_id="+ order_info.id + "; path=/";
+                            localStorage.setItem("order_id", order_info.id);
+                            localStorage.setItem("order_params", JSON.stringify(params));
+
+                            return order_info.id;
+                        } else {
+                            if(data.code=='202') {
+                                if (confirm(data.error) == true) {
+                                    localStorage.setItem("force", 1);
+                                } 
+                            }
+
+                            var pay_error = JSON.parse(data.error);
+                            var pay_error_message = pay_error.details;
+
+                            if(pay_error_message && pay_error_message.length) {
+                                var show_pay_error_message_arr = [];
+
+                                for(var pay_error_message_i = 0; pay_error_message_i < pay_error_message.length; pay_error_message_i++) {
+                                    show_pay_error_message_arr.push("Field:"+pay_error_message[pay_error_message_i].field + "<br /> Value" + pay_error_message[pay_error_message_i].value + '. <br />' + pay_error_message[pay_error_message_i].description + '<br /><br />')
+                                }
+
+                                $('#checkout-error').html(show_pay_error_message_arr.join(''));
+                                $('#checkout-error').show();
+                            }
+                        }
+                        
+
+                    });
+                },
+
+                // Call your server to finalize the transaction
+                onApprove: function(data, actions) {
+
+                    var orderData = {
+                        paymentID: data.orderID,
+                        orderID: data.orderID,
+                    };
+                    var request_params = {
+                        client_secret : data.orderID,
+                        id : localStorage.getItem('order_id'),
+                        orderData: orderData,
+                        data: data,
+                    }
+                    $('#loading').show();
+                    var url = "/onebuy/order/status?_token={{ csrf_token() }}";
+                    return fetch(url, {
+                        method: 'post',
+                        body: JSON.stringify(request_params),
+                        headers: {
+                            'content-type': 'application/json'
+                        },
+                    }).then(function(res) {
+                        return res.json();
+                    }).then(function(res) {
+                        $('#loading').hide();
+                        if(res.success == true) {
+                            //Goto('/checkout/v1/success/'+localStorage.getItem('order_id'));
+                            window.location.href='/checkout/v1/success/'+localStorage.getItem('order_id');
+                            //actions.redirect('/checkout/v1/success/'+localStorage.getItem('order_id'));
+                        }
+                        if(res.error == 'INSTRUMENT_DECLINED') {
+
+                            $('#checkout-error').html("The instrument presented  was either declined by the processor or bank, or it can't be used for this payment.<br><br> Please confirm your account or bank card has sufficient balance, and try again.");
+                            $('#checkout-error').show();
+                        }
+                    });
+                }
+            }).render('#payment-button');
+
+        });
+
+        $("#airwallex-klarna").on("click", function(){
+            $("#collapseOne").hide();
+            $("#collapseTwo").hide();
+            $("#collapseThree").show();
+            $("#airwallex_dropin_collapse").hide();
+
+            $("#headingThree2").addClass("action");
+            $("#headingOne1").removeClass("action");
+            $("#headingOne2").removeClass("action");
+            $("#airwallex_dropin_2").removeClass("action");
+
+            $("#payment-button").html("@lang('onebuy::app.product.payment.complete_secure_purchase')");
+
+        })
+
+        $('#airwallex_dropin').on("click", function(){
+            $("#collapseOne").hide();
+            $("#collapseTwo").hide();
+            $("#collapseThree").hide();
+            $("#airwallex_dropin_collapse").show();
+
+            $("#airwallex_dropin_2").addClass("action");
+            $("#headingThree2").removeClass("action");
+            $("#headingOne1").removeClass("action");
+            $("#headingOne2").removeClass("action");
+        })
+
+        $("#payment-button").on("click", function(){
+            var payment_method = $('input[name=payment_method]:checked', '#myForm').val();
+            var shipping_address = $('input[name=shipping_address]:checked', '#myForm').val(); //shipping address chose
+
+            if($("#shipping_address_other").is(':checked')) {
+                //$("#bill_address").show();
+                window.shipping_address = "other";
+                shipping_address = window.shipping_address;
+            }else{
+                //$("#bill_address").hide();
+                window.shipping_address = "default";
+                shipping_address = window.shipping_address;
+            }  
+
+            window.shipping_address = shipping_address;
+            console.log("payment method" + payment_method);
+            console.log("shipping address" + shipping_address);
+            
+            if(payment_method=="airwallex") {
+                var id_card = $("#id_card").val();
+                var id_expiry = $("#id_expiry").val();
+                var id_cvc = $("#id_cvc").val();
+                console.log(id_card);
+                console.log(id_expiry);
+                console.log(id_cvc);
+                if(id_card!="true" && id_expiry!="true" && id_cvc!="true") {
+                    
+                    if(id_card!="true") $("#cardExpiry").addClass("shipping-info-input-error");
+                    if(id_expiry!="true") $("#cardNumber").addClass("shipping-info-input-error");
+                    if(id_cvc!="true") $("#cardCvc").addClass("shipping-info-input-error");
+                    return false;
+                }
+                console.log("airwallex-pay");
+                gtag('event', 'initiate_airwallex_checkout', {
+                    'event_label': 'Initiate airwallex Checkout',
+                    'event_category': 'ecommerce'
+                });
+            }
+            if(payment_method=="paypal_standard") {
+                gtag('event', 'initiate_paypal_standard_checkout', {
+                    'event_label': 'Initiate paypal_standard Checkout',
+                    'event_category': 'ecommerce'
+                });
+                //fbq('track', 'InitiateCheckout');
+
+                window.pay_type = "paypal_standard";
+                window.is_paypal_standard = true;
+                console.log("paypal standard payment "+window.pay_type);
+                console.log("paypal standard payment "+window.is_paypal_standard);
+            }
+            if(payment_method=='airwallex_dropin') {
+                gtag('event', 'initiate_airwallex_dropin_checkout', {
+                    'event_label': 'Initiate airwallex_dropin Checkout',
+                    'event_category': 'ecommerce'
+                });
+                //fbq('track', 'InitiateCheckout');
+
+                window.pay_type = "airwallex_dropin";
+                window.is_airwallex_dropin = true;
+                console.log("airwallex_dropin payment "+window.airwallex_dropin);
+                console.log("airwallex_dropin payment "+window.is_airwallex_dropin);
+            }
+            if(payment_method=='airwallex-klarna') {
+                gtag('event', 'initiate_airwallex_klarna_checkout', {
+                    'event_label': 'Initiate airwallex_klarna Checkout',
+                    'event_category': 'ecommerce'
+                });
+                window.pay_tpe = "airwallex_klarna";
+                window.is_airwallex_klarna = true;
+
+            }
+            if(payment_method=='airwallex_dropin') {
+                gtag('event', 'initiate_airwallex_dropin_checkout', {
+                    'event_label': 'Initiate airwallex_dropin Checkout',
+                    'event_category': 'ecommerce'
+                });
+                window.pay_tpe = "airwallex_dropin";
+                window.is_airwallex_klarna = true;
+            }
+
+            
+
+            checkout();
+        })
+    });
+</script>
 
 
 <div id="pay-after-warpper"></div>
@@ -1309,7 +1794,7 @@ function attributeChange(target, is_img_attribute, template) {
         
     }
 
-    changeOrderSummary();
+    changeOrderSummary("sku_select");
 
 
 }
@@ -1443,7 +1928,11 @@ function GotoNotRequest(url) {
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
-  gtag('config', '<?php echo $gtag; ?>',{ 'debug_mode':true });
+  <?php if(empty($refer)) { ?>
+    gtag('config', '<?php echo $gtag; ?>',{"debug_mode": true});
+<?php }else { ?>
+  gtag('config', '<?php echo $gtag; ?>', {"user_id": "<?php echo $refer;?>","debug_mode": true});
+<?php } ?>
 </script>
 
 <script>
@@ -1524,7 +2013,7 @@ function GotoNotRequest(url) {
                             $('#'+ (error_id || 'paypal-error')).show();
                             throw new Error('Verification failed');
                         }
-                        var url = '/onebuy/order/addr/after?_token={{ csrf_token() }}&time=' + new Date().getTime();
+                        var url = '/onebuy/order/addr/after?currency={{ core()->getCurrentCurrencyCode() }}&_token={{ csrf_token() }}&time=' + new Date().getTime()+"&force="+localStorage.getItem("force");
                         $('#loading').show(); 
                         $('#'+ (error_id || 'paypal-error')).hide();
 
@@ -1537,7 +2026,7 @@ function GotoNotRequest(url) {
                                 })
                                 .then(function(res){return res.json()})
                                 .then(function(res) {
-                                    $('#loading').hide();
+                                    //$('#loading').hide();
                                     var data = res;
                                     //console.log(data)
                                     if(data.statusCode === 201){
@@ -1551,6 +2040,14 @@ function GotoNotRequest(url) {
 
                                         return order_info.id;
                                     } else {
+                                        
+                                        if(data.code=='202') {
+                                            if (confirm(data.error) == true) {
+                                                localStorage.setItem("force", 1);
+                                            } 
+                                        }
+
+
                                         var pay_error = JSON.parse(data.error);
                                         var pay_error_message = pay_error.details;
 
@@ -1570,7 +2067,7 @@ function GotoNotRequest(url) {
     
                     // Call your server to finalize the transaction
                     /**
-                     *
+                     * @link https://developer.paypal.com/demo/checkout/#/pattern/server
                      * 
                      */
                     onApprove: function(data, actions) {
@@ -1586,6 +2083,7 @@ function GotoNotRequest(url) {
                             client_secret : data.orderID,
                             id : localStorage.getItem('order_id'),
                             orderData: orderData,
+                            data: data,
                         }
                         var request = '';
                         for(var i=0; i<Object.keys(request_params).length; i++) {
@@ -1595,9 +2093,7 @@ function GotoNotRequest(url) {
                         //console.log(request);
 
     
-                        var url = '/onebuy/order/status?' + request + "&_token={{ csrf_token() }}";
-                        var url = "/paypal/smart-button/capture-order?_token={{ csrf_token() }}";
-                        var url = "/onebuy/order/status?_token={{ csrf_token() }}";
+                        var url = "/onebuy/order/status?_token={{ csrf_token() }}&currency={{ core()->getCurrentCurrencyCode() }}";
     
                         $('#loading').show();
                         return fetch(url,{
@@ -1609,14 +2105,28 @@ function GotoNotRequest(url) {
                             })
                             .then(function(res) {return res.json()})
                             .then(function(res) {
-                                //console.log(res);
+
                                 $('#loading').hide();
+
+                                var errorDetail = Array.isArray(res.details) && res.details[0];
+
+                                if (errorDetail && errorDetail.issue === 'INSTRUMENT_DECLINED') {
+                                    return actions.restart(); // Recoverable state, per:
+                                    // https://developer.paypal.com/docs/checkout/integration-features/funding-failure/
+                                }
+
+                                if (errorDetail) {
+                                    var msg = 'Sorry, your transaction could not be processed.';
+                                    if (errorDetail.description) msg += '\n\n' + errorDetail.description;
+                                    if (res.debug_id) msg += ' (' + res.debug_id + ')';
+                                    return alert(msg); // Show a failure message (try to avoid alerts in production environments)
+                                }
+
+                                //console.log(res);
+                                
                                 if(res.success == true) {
-                                    //var info = res.info;
-                                    //if(info.pay_status) {
-                                        //Goto('/template-common/en/thankyou1/?id='+localStorage.getItem('order_id')+'&client_secret='+data.orderID);
-                                        Goto('/onebuy/checkout/success?id='+localStorage.getItem('order_id'));
-                                    //}
+                                    window.location.href='/checkout/v1/success/'+localStorage.getItem('order_id');
+                                    //actions.redirect('/checkout/v1/success/'+localStorage.getItem('order_id'));
                                 }
                                 if(res.error == 'INSTRUMENT_DECLINED') {
                                     $('#'+ (error_id || 'paypal-error')).html("The instrument presented  was either declined by the processor or bank, or it can't be used for this payment.<br><br> Please confirm your account or bank card has sufficient balance, and try again.");
@@ -1624,9 +2134,18 @@ function GotoNotRequest(url) {
                                 }
                             })
                     },
+
+                    onClick(){
+                        
+                    },
     
                     onError: function(err) {
                         console.log('error from the onError callback', err);
+
+                        $('#loading').hide();
+                    },
+                    onCancel: function(data) {
+                        $('#loading').hide();
                     }
     
                 }).render('#' + (render_id || 'paypal-card-submit'));
@@ -1716,12 +2235,29 @@ function GotoNotRequest(url) {
         });
 
         $(".email").on("blur", function(){
-            //console.log("email blur");
+            console.log("email blur");
             var email = $(".email").val();
             if(email.length > 0) {
                 fbq('track', 'AddPaymentInfo');
+
+                params = {
+                            "channel_id": "<?php echo $crm_channel;?>",
+                            "token": "<?php echo $refer; ?>",
+                            "type": "add_user_info"
+                        };
+                fetch('https://crm.heomai.com/api/user/action',{
+                        body: JSON.stringify(params),
+                        method: 'POST',
+                        headers: {
+                            'content-type': 'application/json'
+                        },
+                })
+
             }
         });
+
+        
+
 
         
 
@@ -1801,6 +2337,7 @@ function GotoNotRequest(url) {
             //addToCart(pay_type);
 
             var params = getOrderParams(pay_type);
+            //return false;
             if(token){
                 params[token_field] = token;
             }
@@ -1813,7 +2350,7 @@ function GotoNotRequest(url) {
             //console.log(JSON.stringify(params));
             //return false;
 
-            var url = '/onebuy/order/add/sync?_token={{ csrf_token() }}&time=' + new Date().getTime();
+            var url = '/onebuy/order/add/sync?currency={{ core()->getCurrentCurrencyCode() }}&_token={{ csrf_token() }}&time=' + new Date().getTime();
 
             if(pay_type=="payoneer" || pay_type == 'pacypay') {
                 url = '/order/add/async?time=' + new Date().getTime();
@@ -1861,7 +2398,7 @@ function GotoNotRequest(url) {
                         localStorage.setItem("order_id", order_info.id);
                         localStorage.setItem("order_params", JSON.stringify(params));
 
-                        url = "/onebuy/order/confirm?_token={{ csrf_token() }}&payment_intent_id="+data.payment_intent_id+"&order_id="+data.order.id;
+                        url = "/onebuy/order/confirm?currency={{ core()->getCurrentCurrencyCode() }}&_token={{ csrf_token() }}&payment_intent_id="+data.payment_intent_id+"&order_id="+data.order.id;
                         fetch(url, {
                             method: 'GET',
                             headers: {
@@ -1878,11 +2415,6 @@ function GotoNotRequest(url) {
 
                         });
 
-                        
-
-
-
-
                         return false;
 
 
@@ -1893,31 +2425,39 @@ function GotoNotRequest(url) {
                     localStorage.setItem("order_id", order_info.id);
                     localStorage.setItem("order_params", JSON.stringify(params));
 
-                    
 
                     if (window.is_airwallex){
                         
                         document.querySelector(".submit-button").scrollIntoView({
                             behavior: "smooth"
                         })
-                        //$('#airwallex-warpper').show();
-
-                        //console.log(order_info);
 
                         Airwallex.confirmPaymentIntent({
                             element: cardNumber,
                             id: data.payment_intent_id,
                             client_secret: data.client_secret,
-                        }).then((response) => {
-                        // STEP #6b: Listen to the request response
-                        /* handle confirm response in your business flow */
-                        //window.alert(JSON.stringify(response));
-                            $('#loading').hide();
-                            //console.log('success');
-                            //console.log(JSON.stringify(response))
-                            //cb.errorHandler("Success");
-                            //alert("Success"); 
+                            <?php if(strtolower($default_country)=='us') { ?>
+                            payment_method:{
+                                billing:{
+                                    email:data.billing.email,
+                                    first_name: data.billing.first_name,
+                                    last_name: data.billing.last_name,
+                                    // date_of_birth: '1990-01-01',
+                                    // phone_number: '13999999999',
+                                    address:{
+                                        city: data.billing.city,
+                                        country_code: data.billing.country,
+                                        postcode: data.billing.postcode,
+                                        state: data.billing.state,
+                                        street: data.billing.address1
+                                    }
+                                }
+                            }
+                            <?php } ?>
 
+                        }).then((response) => {
+
+                            $('#loading').hide();
                             gtag('event', 'initiate_pay_success', {
                                 'event_label': "Initiate cc success"+data.order.id,
                                 'event_category': 'ecommerce'
@@ -1930,16 +2470,10 @@ function GotoNotRequest(url) {
                             console.log("catch");
                             console.log(JSON.stringify(response))
 
-                            //cb.errorHandler(response.message);
-                            //alert(response.message);
-
-                            //$("#checkout-error").val(response.message);
 
                             $('#checkout-error').html(response.message+'<br /><br />');
                             $('#checkout-error').show();
-                            // var cbErrors = new Array();
-                            // cbErrors.push(response.message);
-                            // cb.errorHandler(cbErrors);
+
 
                             gtag('event', 'initiate_pay_error', {
                                 'event_label': response.message,
@@ -1963,6 +2497,7 @@ function GotoNotRequest(url) {
         }
 
         function getPhonePrefix() {
+            return '';
             var country  = $("#country-select").val();
             
             for(var i=0; i<window.countries.length; i++) {
@@ -2000,16 +2535,18 @@ function GotoNotRequest(url) {
 
             
             var products = getSubmitProducts(product_info.product_price,product_info.amount);
-            console.log("product");
-            console.log(products);
 
-            //console.log("order products");
-            //console.log(products);
+            var shipping_address = "";
+
+            if($("#shipping_address_other").is(':checked')) {
+                //$("#bill_address").show();
+                window.shipping_address = "other";
+                shipping_address = window.shipping_address;
+                //console.log("shipping address" + shipping_address);
+            }
+
 
             var product_price = product_info.product_price;
-
-            console.log("order product_price");
-            console.log(product_price);
             
             var params = {
                 first_name          : $(".first_name").val(),
@@ -2039,9 +2576,17 @@ function GotoNotRequest(url) {
                 domain_name         : document.domain || window.location.host,
                 price_template      : '{{ core()->currencySymbol(core()->getBaseCurrencyCode()) }}price',
                 omnisend            : '',
-                payment_account     : 'viusd',
+                payment_account     : '',
+                shipping_address    : shipping_address,
+                bill_first_name          : $(".bill-first_name").val(),
+                bill_second_name         : $(".bill-last_name").val(),
+                bill_country             : $("#bill-country-select").val(),
+                bill_city                : $(".bill-city").val(),
+                bill_province            : $("#bill-state-select").val(),
+                bill_address             : $(".bill-address").val() ? $(".address").val() : '',
+                bill_code                : $(".bill-zip_code").val(),
+
             }
-            console.log(params);
 
             if(getQueryString('utm_campaign')) {
                 params['utm_campaign'] = getQueryString('utm_campaign');
@@ -2071,6 +2616,7 @@ function GotoNotRequest(url) {
                 paypal_card : checkOrderParams,
                 wintopay : checkOrderParams,
                 pacypay: checkOrderParams,
+                paypal_stand: checkOrderParams,
             }
             if(!params['error']) {
                 params['error'] = checkout_function[pay_type] ? checkout_function[pay_type](params, is_chain_payment, cancel_check_scroll) : checkOrderParams(params, is_chain_payment, cancel_check_scroll);
@@ -2081,13 +2627,31 @@ function GotoNotRequest(url) {
                 }
             }
 
+
             if(!params['error']) {
                 params['error'] = checkoutAmount(params);
+
+                postparams = {
+                    "channel_id": "<?php echo $crm_channel;?>",
+                    "token": "<?php echo $refer; ?>",
+                    "type": "add_pay"
+                };
+                fetch('https://crm.heomai.com/api/user/action',{
+                        body: JSON.stringify(postparams),
+                        method: 'POST',
+                        headers: {
+                            'content-type': 'application/json'
+                        },
+                })
+
             } else {
                 var amount_err = checkoutAmount(params);
                 if(amount_err) {
                     params['error'] = params['error'].concat(amount_err);
                 }
+
+                
+
             }
 
             return params;
@@ -2222,6 +2786,47 @@ function GotoNotRequest(url) {
                 has_error = true;
                 showError('zip_code-error',  "Please enter valid zip/postcode ");
                 error_log.push('code is invaild');
+            }
+
+            // do the bill address info
+            if(params.shipping_address=="other") {
+                if(!params.bill_first_name){
+                    has_error = true;
+                    showError('first_name-error', "This field is required.");
+                    error_log.push('Bill first_name is empty');
+                }
+                if(!params.bill_second_name){
+                    has_error = true;
+                    showError('last_name-error', "This field is required.");
+                    error_log.push('Bill second_name is empty');
+                }
+                if(!params.bill_country){
+                    has_error = true;
+                    showError('bill-country-error',  "This field is required.");
+                    error_log.push('Bill country is empty');
+                }
+                if(!params.bill_city){
+                    has_error = true;
+                    showError('bill-city-error',  "This field is required.");
+                    error_log.push('Bill city is empty');
+                }
+                if(window.bill_states) {
+                    if(!params.province){
+                        has_error = true;
+                        showError('bill-state-error',  "This field is required.");
+                        error_log.push('Bill province is empty');
+                    }
+                }
+                if(!params.bill_address){
+                    has_error = true;
+                    showError('bill-address-error',  "This field is required.");
+                    error_log.push('Bill address is empty');
+                }
+                if(!params.bill_code){
+                    has_error = true;
+                    showError('bill-zip_code-error',  "This field is required.");
+                    error_log.push('Bill code is empty');
+                }
             }
 
             if(has_error) {
@@ -2367,7 +2972,8 @@ function GotoNotRequest(url) {
             return product_img;
         }
 
-        function changeOrderSummary() {
+        //
+        function changeOrderSummary(position="") {
             var product = getSelectProduct();
             var produt_amount_base = '1';
             if(!produt_amount_base) {
@@ -2405,16 +3011,59 @@ function GotoNotRequest(url) {
 
             var total = product_info.product_price*1 + product_info.shipping_fee* 1;            
             var products = getSubmitProducts(product_info.product_price,product_info.amount);
+
+            // console.log("select product ");
+            // console.log(products);
+            // console.log("select product ");
             
             var sku_html = "";
             $('.js-sku').empty();
+
             products.forEach(function(currentValue, index, arr){
+                gitem = [];
                 console.log(currentValue);
                 console.log(index);
                 console.log(arr);
                 sku_html += products[index].attribute_name + " / " + products[index].amount + "<br>";
             })
+
             $('.js-sku').html(sku_html);
+
+            gtag("event", "view_item", {
+                value: product.amount,
+                currency: "{{ core()->getCurrentCurrencyCode() }}",
+                items: [
+                    {
+                    item_id: "<?php echo $product->sku;?>",
+                    item_name: product.name,
+                    price: product.new_price,
+                    quantity: product.amount*produt_amount_base
+                    }
+                ]
+            });
+
+            var add_to_cart_crm = localStorage.getItem("add_to_cart_<?php echo $product->id;?>");
+
+            if(position=='sku_select') {
+                if(add_to_cart_crm !="1") {
+                    params = {
+                                "channel_id": "<?php echo $crm_channel;?>",
+                                "token": "<?php echo $refer; ?>",
+                                "type": "add_cart"
+                            };
+                    fetch('https://crm.heomai.com/api/user/action',{
+                            body: JSON.stringify(params),
+                            method: 'POST',
+                            headers: {
+                                'content-type': 'application/json'
+                            },
+                    })
+
+                    localStorage.setItem("add_to_cart_<?php echo $product->id;?>", "1");
+                }
+            }
+
+
 
 
 
@@ -2699,6 +3348,11 @@ function GotoNotRequest(url) {
     </script>
     <?php if(!empty($ob_adv_id)) { ?>
 
+        <?php 
+    $ob_adv_ids = explode(',', $ob_adv_id); 
+    foreach($ob_adv_ids as $key=>$ob_adv_id) {
+?>
+
         <script data-obct type = "text/javascript">
         /** DO NOT MODIFY THIS CODE**/
         !function(_window, _document) {
@@ -2727,7 +3381,7 @@ function GotoNotRequest(url) {
 
         obApi('track', 'PAGE_VIEW');
         </script>
-    <?php } ?>
+    <?php } } ?>
 <!-- Facebook Pixel Code -->
 <script>
     !function(f,b,e,v,n,t,s)
@@ -2756,6 +3410,25 @@ function GotoNotRequest(url) {
   fbq('track', 'PageView');
   fbq('track', 'ViewContent');
 </script>
+
+<?php if(!empty($quora_adv_id)) { ?>
+
+<script>
+!function(q,e,v,n,t,s){if(q.qp) return; n=q.qp=function(){n.qp?n.qp.apply(n,arguments):n.queue.push(arguments);}; n.queue=[];t=document.createElement(e);t.async=!0;t.src=v; s=document.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t,s);}(window, 'script', 'https://a.quora.com/qevents.js');
+<?php 
+    $quora_adv_arr = explode(',', $quora_adv_id);
+    foreach ($quora_adv_arr as $key => $quora_id) {
+    ?>
+qp('init', '<?php echo $quora_id;?>');
+<?php } ?>
+
+qp('track', 'ViewContent');
+</script>
+<?php foreach ($quora_adv_arr as $key => $quora_id) {?>
+<noscript><img height="1" width="1" style="display:none" src="https://q.quora.com/_/ad/<?php echo $quora_id;?>/pixel?tag=ViewContent&noscript=1"/></noscript>
+<?php } ?>
+<!-- End of Quora Pixel Code -->
+<?php } ?>
 
 </body>
 </html>

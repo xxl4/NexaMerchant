@@ -523,7 +523,7 @@ class Cart
         $cart->grand_total = round($cart->grand_total, 2);
         $cart->base_grand_total = round($cart->base_grand_total, 2);
 
-        $cart->cart_currency_code = core()->getCurrentCurrencyCode();
+        //$cart->cart_currency_code = core()->getCurrentCurrencyCode(); // todo check it
 
         $cart->save();
 

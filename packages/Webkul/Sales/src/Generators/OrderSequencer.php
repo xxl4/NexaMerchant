@@ -42,7 +42,12 @@ class OrderSequencer extends Sequencer
      */
     public function getLastId()
     {
+        
+        return time().rand(100,999);
+        
         $lastOrder = Order::query()->orderBy('id', 'desc')->limit(1)->first();
+
+
 
         return $lastOrder ? $lastOrder->id : 0;
     }

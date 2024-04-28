@@ -8,11 +8,11 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Log;
 
-use Webkul\Checkout\Facades\Cart;
-
 use Webkul\Sales\Repositories\InvoiceRepository;
 use Webkul\Sales\Repositories\OrderRepository;
 use Webkul\Sales\Repositories\OrderTransactionRepository;
+use Illuminate\Support\Facades\Artisan;
+use Nicelizhi\Shopify\Console\Commands\Order\Post;
 
 
 class AirwallexController extends Controller
@@ -41,34 +41,6 @@ class AirwallexController extends Controller
     protected $order;
 
 
-    /**
-     * airwallex object
-     *
-     * @var object
-     */
-    protected $airwallex;
-
-
-    /**
-     * Order repository instance.
-     *
-     * @var \Webkul\Sales\Repositories\OrderRepository
-     */
-    protected $orderRepository;
-
-    /**
-     * Order transaction repository instance.
-     *
-     * @var \Webkul\Sales\Repositories\OrderTransactionRepository
-     */
-    protected $orderTransactionRepository;
-
-    /**
-     * InvoiceRepository object
-     *
-     * @var \Webkul\Sales\Repositories\InvoiceRepository
-     */
-    protected $invoiceRepository;
 
     /**
      * Create a new controller instance.
@@ -78,16 +50,11 @@ class AirwallexController extends Controller
      * @param \Webkul\Sales\Repositories\OrderTransactionRepository $orderTransactionRepository
      */
     public function __construct(
-        InvoiceRepository $invoiceRepository,
-        OrderRepository $orderRepository,
-        Airwallex $airwallex
+        protected InvoiceRepository $invoiceRepository,
+        protected OrderRepository $orderRepository,
+        protected OrderTransactionRepository $orderTransactionRepository,
+        protected Airwallex $airwallex
     ) {
-        $this->invoiceRepository = $invoiceRepository;
-        $this->orderRepository = $orderRepository;
-        $this->airwallex = $airwallex;
-
-        $this->apiKey  = core()->getConfigData('sales.payment_methods.airwallex.apikey');
-        $this->productionMode = core()->getConfigData('sales.payment_methods.airwallex.production');
     }
 
     /**
@@ -100,14 +67,9 @@ class AirwallexController extends Controller
     public function webhook(Request $request)
     {
         Log::info(json_encode($request->all())); // log body
-        //Log::info("Log Header ");
-        //Log::info(json_encode($request->headers->all())); // log header
-        //var_dump($request->all());
         $input = $request->all();
-        //var_dump($input['data']['object']['merchant_order_id']);exit;
         if (isset($input['data']['object']['merchant_order_id'])) {
             $orderId = $input['data']['object']['merchant_order_id'];
-
 
             $transactionId = str_replace("orderid_", "", $orderId);
 
@@ -118,7 +80,6 @@ class AirwallexController extends Controller
             if ($order) {
                 Log::info("airwallex notification received for order id:" . $transactionId);
 
-                //$transactionData = $this->airwallex->getPaymentStatusForOrder($orderId);
                                 
                 $status = $input['data']['object']['status'];
                 
@@ -127,13 +88,16 @@ class AirwallexController extends Controller
                     $amount = $input['data']['object']['amount'] * 100;
                     $orderAmount = round($order->base_grand_total * 100);
 
-                    //var_dump($amount, $orderAmount);exit;
+
 
                     if ($amount === $orderAmount) { // 核对价格是否一样的情况。
                         if ($order->status === 'pending') {
                             $order->status = 'processing';
                             $order->save();
                         }
+
+                        // send order to shopify
+                        Artisan::queue((new Post())->getName(), ['--order_id'=> $order->id])->onConnection('redis')->onQueue('commands');
 
                         Log::info(json_encode("order can invoice". json_encode($order)));
 
@@ -153,6 +117,35 @@ class AirwallexController extends Controller
                                 $invoice->save();
                             }
                         }
+
+                        $invoice = $this->invoiceRepository->findOneWhere(['order_id' => $order->id]);
+                        //insert into order payment traces
+
+                        Log::info("orderTransactionRepository ".json_encode([
+                            'transaction_id' => $input['data']['object']['id'],
+                            'status'         => $input['data']['object']['status'],
+                            'type'           => $input['name'],
+                            'amount'         => $input['data']['object']['amount'],
+                            'payment_method' => $invoice->order->payment->method,
+                            'order_id'       => $order->id,
+                            'invoice_id'     => $invoice->id,
+                            'data'           => json_encode(
+                                $input
+                            ),
+                        ]));
+
+                        $this->orderTransactionRepository->create([
+                            'transaction_id' => $input['data']['object']['id'],
+                            'status'         => $input['data']['object']['status'],
+                            'type'           => $input['name'],
+                            'amount'         => $input['data']['object']['amount'],
+                            'payment_method' => $invoice->order->payment->method,
+                            'order_id'       => $order->id,
+                            'invoice_id'     => $invoice->id,
+                            'data'           => json_encode(
+                                $input
+                            ),
+                        ]);
 
                     }
                 } else {

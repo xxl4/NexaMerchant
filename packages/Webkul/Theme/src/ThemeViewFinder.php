@@ -34,6 +34,28 @@ class ThemeViewFinder extends FileViewFinder
 
                 return $this->findInPaths($view, $paths);
             }
+        }else if(Str::contains(request()->url(), config('app.manage_url') . '/'))  {
+
+            $themes = app('themes');
+
+            $themes->set(config('themes.manage-default'));
+
+            $paths = $this->addThemeNamespacePaths($namespace);
+
+            try {
+                return $this->findInPaths($view, $paths);
+            } catch(\Exception $e) {
+                if ($namespace != 'manage') {
+                    if (strpos($view, 'manage.') !== false) {
+                        $view = str_replace('manage.', 'manage.' . Themes::current()->code . '.', $view);
+                    }
+                }
+
+                return $this->findInPaths($view, $paths);
+            }
+
+
+
         } else {
             $themes = app('themes');
 

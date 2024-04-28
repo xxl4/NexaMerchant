@@ -25,6 +25,7 @@ class ProdCommentsImport implements ToCollection
     public function collection(Collection $rows)
     {
         foreach($rows as $key=>$row) {
+            var_dump($row);
             if($key==0) continue;
             $value = [];
             if(empty($row[0])) continue;
@@ -32,6 +33,27 @@ class ProdCommentsImport implements ToCollection
             $value['title'] = trim($row[1]);
             $value['content'] = trim($row[2]);
             $this->redis->hSet($this->cache_key.$this->prod_id, $key, json_encode($value));
+
+            //insert into the product review
+            $product_review = \Webkul\Product\Models\ProductReview::where("product_id", $this->prod_id)->where("title", $value['title'])->where("name", $value['name'])->first();
+            if(is_null($product_review)) $product_review = Webkul\Product\Models\ProductReview();
+            $data = [];
+            $data['title'] = trim($row[1]);
+            $data['comment'] = trim($row[2]);
+            $data['rating'] = 5;
+            $data['name'] = trim($row[0]);
+
+            $product_review->title = $value['title'];
+            $product_review->name = $value['name'];
+            $product_review->comment = $value['content'];
+            $product_review->rating = 1;
+            $product_review->product_id = $this->prod_id;
+            
+            $product_review->save();
+
+            
+            
+            //$review = $this->productReviewRepository->create($data);
         }
     }
 }

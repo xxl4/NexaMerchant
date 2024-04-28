@@ -57,7 +57,7 @@ onebuy:import:products:comment {--prod_id=} {--force=}
 ```
 ## 获取商品的 checkout 连接
 ```
-https://www.example.com/onebuy/v1/{$shopify_id}
+https://www.example.com/onebuy/v2/{$shopify_id}
 ```
 > 参数是否正常打开，如果可以打开，验证下对应的内容是否都有。验证内容事项  
 
@@ -78,4 +78,4 @@ Value 为排序ID 比如 0,1,2,3
 2）查看 Banner, img size, 评论， FAQ，SKU 图片是否正确，价格是否正常。  
 3）快递费用的查看，没有平台的快递费用可能不一样的情况，这块数据需要到后台快递栏目中修改与查看  
 4）查看对应的协议内容，文档是否正常，这块数据是基于每个本地数据库与对应的区域来获取识别的  
-
+5）因为此商品为单品，从而会需要添加上1件，2件，多件商品的商品图片，从而可以更好的展示效果

@@ -22,6 +22,9 @@ use Illuminate\Support\Facades\Cache;
 use Webkul\Payment\Facades\Payment;
 use Illuminate\Support\Facades\Redis;
 use Webkul\CMS\Repositories\CmsRepository;
+use Webkul\CartRule\Repositories\CartRuleCouponRepository;
+use Illuminate\Http\Response;
+use Webkul\Sales\Repositories\OrderTransactionRepository;
 
 
 class ProductController extends Controller
@@ -47,6 +50,8 @@ class ProductController extends Controller
         protected InvoiceRepository $invoiceRepository,
         protected Airwallex $airwallex,
         protected CmsRepository $cmsRepository,
+        protected CartRuleCouponRepository $cartRuleCouponRepository,
+        protected OrderTransactionRepository $orderTransactionRepository,
         protected ThemeCustomizationRepository $themeCustomizationRepository
     )
     {
@@ -67,7 +72,7 @@ class ProductController extends Controller
         $product = Cache::get($cache_key);
         if(empty($product)) {
             $product = $this->productRepository->findBySlug($slugOrPath);
-            Cache::put($cache_key, $product, 3600);
+            Cache::put($cache_key, $product);
         }
 
         if (
@@ -92,7 +97,7 @@ class ProductController extends Controller
         // 四个商品的价格情况
         $package_products = [];
         $productBaseImage = product_image()->getProductBaseImage($product);
-        $package_products = $this->makeProducts($product, [2,1,3,4]);
+        $package_products = \Nicelizhi\OneBuy\Helpers\Utils::makeProducts($product, [2,1,3,4]);
 
         // 获取 faq 数据
         $redis = Redis::connection('default');
@@ -164,9 +169,9 @@ class ProductController extends Controller
                 
                 $skus[] = $sku;
             }
-            Cache::put($cache_key, json_encode($skus), 36000);
-            Cache::put($size_cache_key, json_encode($qty_items_size), 36000);
-            Cache::put($color_cache_key, json_encode($qty_items_color), 36000);
+            Cache::put($cache_key, json_encode($skus));
+            Cache::put($size_cache_key, json_encode($qty_items_size));
+            Cache::put($color_cache_key, json_encode($qty_items_color));
         }else {
             $skus = json_decode($skus, JSON_OBJECT_AS_ARRAY);
         }
@@ -177,7 +182,7 @@ class ProductController extends Controller
         $product_attributes = Cache::get($cache_key);
 
 
-        $product_attributes = [];
+        //$product_attributes = [];
         if(empty($product_attributes)) {
         //if(true) {
 
@@ -192,10 +197,13 @@ class ProductController extends Controller
 
             //获取到他底部的商品内容
         // $attributes = $this->productRepository->getSuperAttributes($product);
-            $product_attr_sort_cache_key = "product_attr_sort_23_".$product->id;
-            $product_attr_sort = $redis->hgetall($product_attr_sort_cache_key); // get sku sort
+            
 
             foreach($attributes['attributes'] as $key=>$attribute) {
+
+                $product_attr_sort_cache_key = "product_attr_sort_".$attribute['id']."_".$product->id;
+                $product_attr_sort = $redis->hgetall($product_attr_sort_cache_key); // get sku sort
+
                 //var_dump($attribute);
                 $attribute['name'] = $attribute['code'];
                 $options = [];
@@ -220,7 +228,7 @@ class ProductController extends Controller
                     $option['name'] = $option['label'];
                     unset($option['admin_name']);
 
-                    if($attribute['id']==23 && !empty($product_attr_sort)) {
+                    if(!empty($product_attr_sort)) {
                         $sort = isset($product_attr_sort[$option['id']]) ? intval($product_attr_sort[$option['id']]) : 4 ;
                         $option['sort'] = $sort;
                         $options[$sort] = $option;
@@ -256,7 +264,7 @@ class ProductController extends Controller
                 $product_attributes[] = $attribute;
             }
 
-            Cache::put($cache_key, json_encode($product_attributes), 36000);
+            Cache::put($cache_key, json_encode($product_attributes));
 
         }else{
             $product_attributes = json_decode($product_attributes, JSON_OBJECT_AS_ARRAY);
@@ -306,7 +314,11 @@ class ProductController extends Controller
         $fb_ids = config('onebuy.fb_ids');
         $ob_adv_id = config('onebuy.ob_adv_id');
 
-        return view('onebuy::product-detail', compact('gtag','app_env','product','package_products', 'product_attributes', 'skus','productBgAttribute','productBgAttribute_mobile','faqItems','comments','paypal_client_id','default_country','airwallex_method','payments','payments_default','brand','fb_ids','ob_adv_id'));
+        $crm_channel = config('onebuy.crm_channel');
+
+        $quora_adv_id = config('onebuy.quora_adv_id');
+
+        return view('onebuy::product-detail', compact('gtag','app_env','product','package_products', 'product_attributes', 'skus','productBgAttribute','productBgAttribute_mobile','faqItems','comments','paypal_client_id','default_country','airwallex_method','payments','payments_default','brand','fb_ids','ob_adv_id','crm_channel','refer','quora_adv_id'));
     }
 
     public function cms($slug, Request $request) {
@@ -331,18 +343,24 @@ class ProductController extends Controller
 
         
         $products = $request->input("products");
+        if(empty($products)) {
+            return response()->json(['error' => 'No product found in cart','code'=>'202'], 400);
+        }
         // 添加到购物车
         Cart::deActivateCart();
         foreach($products as $key=>$product) {
             //var_dump($product);
             $product['quantity'] = $product['amount'];
             $product['selected_configurable_option'] = $product['variant_id'];
-            $attr_ids = explode(',', $product['attr_id']);
-            foreach($attr_ids as $key=>$attr_id) {
-                $attr = explode('_', $attr_id);
-                $super_attribute[$attr[0]] = $attr[1];
+            if(!empty($product['attr_id'])) {
+                $attr_ids = explode(',', $product['attr_id']);
+                foreach($attr_ids as $key=>$attr_id) {
+                    $attr = explode('_', $attr_id);
+                    $super_attribute[$attr[0]] = $attr[1];
+                }
+    
+                $product['super_attribute'] = $super_attribute;
             }
-            $product['super_attribute'] = $super_attribute;
             //Log::info("add product into cart ". json_encode($product));
             $cart = Cart::addProduct($product['product_id'], $product);
 
@@ -358,6 +376,8 @@ class ProductController extends Controller
         }
         // 添加地址内容
         $addressData = [];
+
+
         $addressData['billing'] = [];
         $address1 = [];
         array_push($address1, $input['address']);
@@ -366,22 +386,68 @@ class ProductController extends Controller
         $addressData['billing']['email'] = $input['email'];
         $addressData['billing']['first_name'] = $input['first_name'];
         $addressData['billing']['last_name'] = $input['second_name'];
-        //undefined+
         $input['phone_full'] = str_replace('undefined+','', $input['phone_full']);
         $addressData['billing']['phone'] = $input['phone_full'];
         $addressData['billing']['postcode'] = $input['code'];
         $addressData['billing']['state'] = $input['province'];
         $addressData['billing']['use_for_shipping'] = true;
         $addressData['billing']['address1'] = $address1;
-        $addressData['shipping'] = [];
-        $addressData['shipping']['isSaved'] = false;
-        $address1 = [];
-        array_push($address1, "");
-        $addressData['shipping']['address1'] = $address1;
 
         $addressData['billing']['address1'] = implode(PHP_EOL, $addressData['billing']['address1']);
 
+        $shipping = [];
+        $address1 = [];
+        array_push($address1, $input['address']);
+        $shipping['city'] = $input['city'];
+        $shipping['country'] = $input['country'];
+        $shipping['email'] = $input['email'];
+        $shipping['first_name'] = $input['first_name'];
+        $shipping['last_name'] = $input['second_name'];
+        //undefined+
+        $input['phone_full'] = str_replace('undefined+','', $input['phone_full']);
+        $shipping['phone'] = $input['phone_full'];
+        $shipping['postcode'] = $input['code'];
+        $shipping['state'] = $input['province'];
+        $shipping['use_for_shipping'] = true;
+        $shipping['address1'] = $address1;
+        $shipping['address1'] = implode(PHP_EOL, $shipping['address1']);
+        
+        
+        $addressData['shipping'] = $shipping;
+        $addressData['shipping']['isSaved'] = false;
+        $address1 = [];
+        array_push($address1, $input['address']);
+        $addressData['shipping']['address1'] = $address1;
         $addressData['shipping']['address1'] = implode(PHP_EOL, $addressData['shipping']['address1']);
+
+        // customer bill address info
+        if(@$input['shipping_address']=="other") {
+            $address1 = [];
+            array_push($address1, $input['bill_address']);
+            $billing = [];
+            $billing['city'] = $input['bill_city'];
+            $billing['country'] = $input['bill_country'];
+            $billing['email'] = $input['email'];
+            $billing['first_name'] = $input['bill_first_name'];
+            $billing['last_name'] = $input['bill_second_name'];
+            //undefined+
+            $input['phone_full'] = str_replace('undefined+','', $input['phone_full']);
+            $billing['phone'] = $input['phone_full'];
+            $billing['postcode'] = $input['bill_code'];
+            $billing['state'] = $input['bill_province'];
+            //$billing['use_for_shipping'] = true;
+            $billing['address1'] = $address1;
+            $billing['address1'] = implode(PHP_EOL, $billing['address1']);
+
+           // $billing['address1'] = implode(PHP_EOL, $billing['address1']);
+
+            $addressData['billing'] = $billing;
+        }
+
+
+        Log::info("address" . json_encode($addressData));
+
+        //var_dump($addressData);exit;
 
 
         //return response()->json($addressData);
@@ -461,6 +527,7 @@ class ProductController extends Controller
                 $data['payment_intent_id'] = $transactionManager->id;
                 $data['currency'] = $transactionManager->currency;
                 $data['country'] = $input['country'];
+                $data['billing'] = $addressData['billing'];
             }
 
             return response()->json($data);
@@ -526,25 +593,39 @@ class ProductController extends Controller
     public function order_addr_after(Request $request) {
         $input = $request->all();
 
-        //Log::info("order addr after ".json_encode($input));
+        $last_order_id = $request->session()->get('last_order_id'); // check the laster order id
+        //$last_order_id = "ddddd";
+        $force = $request->input("force");
+
+        Log::info("last order id " . $last_order_id);
+
+        if(!empty($last_order_id) && $force !="1") {
+            return response()->json(['error' => 'You Have already placed order, if you want to place another order please confirm your order','code'=>'202'], 400);
+        }
 
         $refer = $request->session()->get('refer');
-        //Log::info("refer checkout v1 ".$refer);
 
         $products = $request->input("products");
+        Log::info("products". json_encode($products));
+        if(empty($products)) {
+            return response()->json(['error' => 'No product found in cart','code'=>'202'], 400);
+        }
         // 添加到购物车
         Cart::deActivateCart();
         foreach($products as $key=>$product) {
             //var_dump($product);
             $product['quantity'] = $product['amount'];
             $product['selected_configurable_option'] = $product['variant_id'];
-            $attr_ids = explode(',', $product['attr_id']);
-            foreach($attr_ids as $key=>$attr_id) {
-                $attr = explode('_', $attr_id);
-                $super_attribute[$attr[0]] = $attr[1];
+            if(!empty($product['attr_id'])) {
+                $attr_ids = explode(',', $product['attr_id']);
+                foreach($attr_ids as $key=>$attr_id) {
+                    $attr = explode('_', $attr_id);
+                    $super_attribute[$attr[0]] = $attr[1];
+                }
+    
+                $product['super_attribute'] = $super_attribute;
             }
-
-            $product['super_attribute'] = $super_attribute;
+            
             //Log::info("add product into cart ". json_encode($product));
             $cart = Cart::addProduct($product['product_id'], $product);
             if (
@@ -632,7 +713,7 @@ class ProductController extends Controller
         }
 
         try {
-            $order = $this->smartButton->createOrder($this->buildRequestBody());
+            $order = $this->smartButton->createOrder($this->buildRequestBody($input));
             $data = [];
             $data['order'] = $order;
             $data['code'] = 200;
@@ -657,6 +738,12 @@ class ProductController extends Controller
 
         $order = $this->orderRepository->find($order_id);
         
+        if(is_null($order)) {
+            return response()->json([
+                "message" => "Order not found"
+            ], 404);
+        }
+        
         $transactionManager = $this->airwallex->confirmPayment($payment_intent_id, $order);
 
         $data = [];
@@ -672,6 +759,7 @@ class ProductController extends Controller
     /**
      * 
      * 订单状态查询
+     * paypal 订单生成
      * 
      */
     public function order_status(Request $request) {
@@ -705,7 +793,7 @@ class ProductController extends Controller
             $addressData['billing'] = [];
             $address1 = [];
             array_push($address1, $input['address']->address_line_1);
-            $addressData['billing']['city'] = isset($input['address']->admin_area_1) ? $input['address']->admin_area_1 : "";
+            $addressData['billing']['city'] = isset($input['address']->admin_area_2) ? $input['address']->admin_area_2 : "";
             $addressData['billing']['country'] = $input['address']->country_code;
             $addressData['billing']['email'] = $payer['email_address'];
             $addressData['billing']['first_name'] = $payer['name']->given_name;
@@ -713,7 +801,7 @@ class ProductController extends Controller
             $national_number = isset($payment_source_paypal['phone_number']) ? $payment_source_paypal['phone_number']->national_number : "";
             $addressData['billing']['phone'] =  $national_number;
             $addressData['billing']['postcode'] = isset($input['address']->postal_code) ? $input['address']->postal_code : "";
-            $addressData['billing']['state'] = isset($input['address']->admin_area_2) ? $input['address']->admin_area_2 : "";
+            $addressData['billing']['state'] = isset($input['address']->admin_area_1) ? $input['address']->admin_area_1 : "";
             $addressData['billing']['use_for_shipping'] = true;
             $addressData['billing']['address1'] = $address1;
             $addressData['shipping'] = [];
@@ -726,7 +814,7 @@ class ProductController extends Controller
 
             $addressData['shipping']['address1'] = implode(PHP_EOL, $addressData['shipping']['address1']);
 
-            Log::info("address data-".$refer.'--'.json_encode($addressData));
+            //Log::info("address data-".$refer.'--'.json_encode($addressData));
 
             if (
                 Cart::hasError()
@@ -739,8 +827,12 @@ class ProductController extends Controller
             }
 
             $this->smartButton->captureOrder(request()->input('orderData.orderID'));
+
+            $request->session()->put('last_order_id', request()->input('orderData.orderID'));
+
             return $this->saveOrder();
         } catch (\Exception $e) {
+            Log::info("paypal pay exception". json_encode($e->getMessage()));
             return response()->json($e->getMessage());
             return response()->json(json_decode($e->getMessage()), 400);
         }
@@ -802,7 +894,12 @@ class ProductController extends Controller
         return $invoiceData;
     }
 
-    protected function buildRequestBody()
+    /**
+     * 
+     * @link https://developer.paypal.com/docs/multiparty/checkout/save-payment-methods/during-purchase/js-sdk/paypal/
+     * 
+     */
+    protected function buildRequestBody($input)
     {
         $cart = Cart::getCart();
 
@@ -814,6 +911,7 @@ class ProductController extends Controller
                 //'shipping_preference' => 'NO_SHIPPING',
                 'shipping_preference' => 'GET_FROM_FILE', // 用户选择自己的地址内容
             ],
+            
 
             'purchase_units' => [
                 [
@@ -932,149 +1030,6 @@ class ProductController extends Controller
     }
 
     /**
-     * 
-     * generation products for page
-     * @param product
-     * @param array nums
-     * 
-     */
-
-    private function makeProducts($product, $nums = array()) {
-
-        //var_dump($product->id);exit;
-        $cache_key = "product_ext_".$product->id."_".count($nums);
-        $package_products = Cache::get($cache_key);
-
-        $shipping_price_key = "shipping_price";
-        $shipping_price = Cache::get($shipping_price_key);
-        if(empty($shipping_price)) {
-            //core()->getConfigData('sales.payment_methods.airwallex.apikey');
-            $shipping_price = core()->getConfigData('sales.carriers.flatrate.default_rate');
-            Cache::put($shipping_price_key, $shipping_price, 36000);
-        }
-        
-        if(empty($package_products)) {
-        //if(empty($package_products)) {
-        //if($package_products) {
-            $package_products = [];
-            $productBaseImage = product_image()->getProductBaseImage($product);
-    
-            //source price
-    
-            $productBgAttribute_price = $this->productAttributeValueRepository->findOneWhere([
-                'product_id'   => $product->id,
-                'attribute_id' => 31,
-            ]);
-            $source_price = 0;
-            if(!is_null($productBgAttribute_price)) $source_price = $productBgAttribute_price->float_value;
-            if(empty($source_price)) {
-                return abort(404);
-            }
-    
-            foreach($nums as $key=>$i) {
-                
-                $package_product = [];
-                $package_product['id'] = $i;
-                $package_product['name'] = $i."x " . $product->name;
-                $package_product['image'] = $productBaseImage['medium_image_url'];
-                $package_product['amount'] = $i;
-                //$package_product['old_price'] = $productPrice['regular']['price'] * $i;
-                $price = $this->getCartProductPrice($product,$product->id, $i);
-                $package_product['old_price'] = round($source_price * $i, 2); 
-                $package_product['old_price_format'] = core()->currency($package_product['old_price']); 
-                //$package_product['new_price'] = "3.23" * $i;
-                if ($i==2) $discount = 0.8;
-                if ($i==3) $discount = 0.7;
-                if ($i==4) $discount = 0.6;
-                if ($i==1) $discount = 1;
-                $package_product['new_price'] = $this->getCartProductPrice($product,$product->id, $i) * $discount;
-                $package_product['new_price_format'] = core()->currency($package_product['new_price']) ;
-                $tip1_price = (1 - round(($package_product['new_price'] / $package_product['old_price']), 2)) * 100;
-                $package_product['tip1'] = $tip1_price."% ";
-                $tip2_price = round($package_product['new_price'] / $i, 2);
-                $package_product['tip2'] = core()->currency($tip2_price)."/";
-                $package_product['shipping_fee'] = $shipping_price; // shipping price
-                $popup_info['name'] = null;
-                $popup_info['old_price'] = null;
-                $popup_info['new_price'] = null;
-                $popup_info['img'] = null;
-                $package_product['popup_info'] = $popup_info;
-                $package_products[] = $package_product;
-            }
-
-            Cache::put($cache_key, json_encode($package_products), 36000);
-            //var_dump("hello");
-            return $package_products;
-        }
-        
-        return json_decode($package_products, JSON_OBJECT_AS_ARRAY);
-    }
-
-    /**
-     * 
-     * 
-     * 计算商品在具体的数量的时候的价格，主要是考虑到会有购物车折扣的情况下
-     * 
-     * @param int $product_id
-     * @param int $qty
-     * 
-     * @return float price
-     * 
-     */
-    private function getCartProductPrice($product, $product_id, $qty) {
-        //清空购车动作
-        Cart::deActivateCart();
-        //添加对应的商品到购物车中
-
-        $variant = $product->getTypeInstance()->getDefaultVariant();
-
-        //$product_variant = $this->productRepository->where("parent_id", $product->id)->get();
-
-        $productViewHelper = new \Webkul\Product\Helpers\ConfigurableOption();
-
-        $attributes = $productViewHelper->getConfigurationConfig($product);
-
-        //var_dump($attributes);exit;
-
-
-        $AddcartProduct = [];
-        
-        $AddcartProduct['quantity'] = $qty;
-        
-        foreach($attributes['attributes'] as $key=>$attribute) {
-            $super_attribute[$attribute['id']] = $attribute['options'][0]['id'];
-            $product_variant_id = $attribute['options'][0]['products'][0];
-        }
-
-        $AddcartProduct['selected_configurable_option'] = $product_variant_id;
-        $AddcartProduct['super_attribute'] = $super_attribute;
-        //var_dump($super_attribute);exit;
-
-        //var_dump($AddcartProduct);exit;
-        // $attr_ids = explode(',', $product['attr_id']);
-        // foreach($attr_ids as $key=>$attr_id) {
-        //     $attr = explode('_', $attr_id);
-        //     $super_attribute[$attr[0]] = $attr[1];
-        // }
-
-        //$AddcartProduct['super_attribute'] = $super_attribute;
-        //var_dump($AddcartProduct);exit;
-        
-        $cart = Cart::addProduct($product['product_id'], $AddcartProduct);
-
-        //获取购车中商品价格返回
-        $cart = Cart::getCart();
-
-        //var_dump($cart); exit;
-
-        //清空购车动作
-        Cart::deActivateCart();
-
-        return $cart->grand_total;
-
-    }
-
-    /**
      * Validate order before creation.
      *
      * @return void|\Exception
@@ -1128,11 +1083,45 @@ class ProductController extends Controller
      * 
      */
 
-    public function checkout_success(Request $request) {
-        \Debugbar::disable(); /* 开启后容易出现前端JS报错的情况 */
-        $product = [];
+    public function checkout_success($order_id, Request $request) {
+        
+
+        $order = [];
+
+        // check the payment info
+
+        $orderTrans = $this->orderTransactionRepository->where('transaction_id', $order_id)->select(['order_id'])->first();
+        if(!is_null($orderTrans)) {
+            $order = $this->orderRepository->findOrFail($orderTrans->order_id);
+        }else{
+            $order = $this->orderRepository->findOrFail($order_id);
+        }
+        
+
         $fb_ids = config('onebuy.fb_ids');
         $ob_adv_id = config('onebuy.ob_adv_id');
+        $crm_channel = config('onebuy.crm_channel');
+        $refer = $request->session()->get('refer');
+        $gtag = config('onebuy.gtag');
+
+        $quora_adv_id = config('onebuy.quora_adv_id');
+
+        $countries = config("countries");
+
+        $default_country = config('onebuy.default_country');
+
+        return view('onebuy::checkout-success', compact('order',
+            "fb_ids",
+            "ob_adv_id",
+            "crm_channel",
+            "refer",
+            "gtag",
+            "quora_adv_id",
+            "countries",
+            "default_country"
+        ));
+
+
         return view('onebuy::checkout-success', compact('product','fb_ids','ob_adv_id'));
     }
 

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Nicelizhi\Shopify\Http\Controllers\ProductController;
+use Nicelizhi\Shopify\Http\Controllers\WebhooksController;
 
 
 /**
@@ -13,7 +14,13 @@ Route::group(['middleware' => ['admin'], 'prefix' => config('app.admin_url')], f
          * Products routes.
          */
         Route::controller(ProductController::class)->prefix('products')->group(function () {
-            Route::get('', 'index')->name('shopify.products.index');
+            Route::get('', 'index')->name('admin.shopify.products.index');
+            Route::get('sync/{product_id}', 'sync')->name('admin.shopify.products.sync');
+            Route::get('checkout-url-get/{product_id}/{act_type}', 'checkoutUrlGet')->name('admin.shopify.products.checkout-url-get');
+            Route::any('images/{product_id}/{act_type}', 'images')->name('admin.shopify.products.images');
+            Route::any('comments/{product_id}/{act_type}', 'comments')->name('admin.shopify.products.comments');
+
+
 
             // Route::get('create', 'create')->name('admin.catalog.products.create');
 
@@ -47,3 +54,5 @@ Route::group(['middleware' => ['admin'], 'prefix' => config('app.admin_url')], f
         });
     });
 });
+
+

@@ -4,6 +4,7 @@ namespace App\Exceptions;
 
 use Throwable;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Support\Facades\Log;
 
 class Handler extends ExceptionHandler
 {
@@ -34,6 +35,24 @@ class Handler extends ExceptionHandler
      */
     public function report(Throwable $exception)
     {
+
+        // if ($exception instanceof \Exception) {
+        //     // emails.exception is the template of your email
+        //     // it will have access to the $error that we are passing below
+        //     // Mail::send('emails.exception', ['error' => $e->getMessage()], function ($m) {
+        //     //     $m->to('your email', 'your name')->subject('your email subject');
+        //     // });
+
+            
+
+        // }
+
+       //var_dump($exception->getCode());
+
+       //Log::info(json_encode($exception));
+
+       
+
         parent::report($exception);
     }
 
@@ -46,6 +65,10 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Throwable $exception)
     {
+        if ($exception instanceof \Exception) {
+            if(!empty($exception->getMessage())) \Nicelizhi\Shopify\Helpers\Utils::send(json_encode($exception->getMessage()). " please check the log file for more details");
+        }
+        
         return parent::render($request, $exception);
     }
 }

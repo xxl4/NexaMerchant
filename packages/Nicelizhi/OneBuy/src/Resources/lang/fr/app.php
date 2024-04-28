@@ -69,6 +69,7 @@ return [
             'All transactions are secure and encrypted' => 'Toutes les transactions sont sécurisées et cryptées',
             'Hatmeo offers 30' => "offre une garantie de 30 jours sur tous les achats non utilisés. Renvoyez-nous simplement le ou les articles dans leur emballage d'origine et recevez un remboursement complet ou un remplacement, moins les frais d'expédition.",
             'I agree with the' => "Je suis d'accord avec le",
+            'Coupon Code' => "Code promo",
         ],
         'footer' => [
             'Shipping Delivery' => 'Expédition',
@@ -77,6 +78,7 @@ return [
             'Privacy Policy' => 'Politique De Confidentialité',
             'Contact Us' => 'Contactez-nous',
         ]
+       
     ],
     'order-success' => [
         

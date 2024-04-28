@@ -9,6 +9,7 @@ use PayPalCheckoutSdk\Core\ProductionEnvironment;
 use PayPalCheckoutSdk\Orders\OrdersCreateRequest;
 use PayPalCheckoutSdk\Orders\OrdersCaptureRequest;
 use PayPalCheckoutSdk\Payments\CapturesRefundRequest;
+use Illuminate\Support\Facades\Log;
 
 class SmartButton extends Paypal
 {
@@ -38,7 +39,7 @@ class SmartButton extends Paypal
      *
      * @var string
      */
-    protected $paypalPartnerAttributionId = 'Bagisto_Cart';
+    protected $paypalPartnerAttributionId = 'NexaMerchant_Cart';
 
     /**
      * Constructor.
@@ -100,8 +101,16 @@ class SmartButton extends Paypal
      * @return HttpResponse
      */
     public function getOrder($orderId)
-    {
-        return $this->client()->execute(new OrdersGetRequest($orderId));
+    {   
+        try {
+            $result = $this->client()->execute(new OrdersGetRequest($orderId));
+        }catch (Exception $e) {
+            var_dump($e->getMessage());
+            //exit;
+        }finally {
+            //echo "Error";exit;
+        }
+        return $result;
     }
 
     /**
@@ -128,6 +137,8 @@ class SmartButton extends Paypal
 
         $request->headers['PayPal-Partner-Attribution-Id'] = $this->paypalPartnerAttributionId;
         $request->body = $body;
+
+        Log::info("payment refund" . json_encode($request));
         
         return $this->client()->execute($request);
     }

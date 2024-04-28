@@ -2,15 +2,27 @@
 echo $html->html;
 ?>
 <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-P6343Y2GKT"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=<?php echo $gtag; ?>"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
-  gtag('config', 'G-P6343Y2GKT');
+  <?php if(empty($refer)) { ?>
+    gtag('config', '<?php echo $gtag; ?>',{"debug_mode": true});
+<?php }else { ?>
+  gtag('config', '<?php echo $gtag; ?>', {"user_id": "<?php echo $refer;?>","debug_mode": true});
+<?php } ?>
+
+gtag('event','product_page_view');
+
 </script>
 <?php if(!empty($ob_adv_id)) { ?>
+
+  <?php 
+    $ob_adv_ids = explode(',', $ob_adv_id); 
+    foreach($ob_adv_ids as $key=>$ob_adv_id) {
+?>
 
 <script data-obct type = "text/javascript">
 /** DO NOT MODIFY THIS CODE**/
@@ -40,4 +52,4 @@ echo $html->html;
 
 obApi('track', 'PAGE_VIEW');
 </script>
-<?php } ?>
+<?php } } ?>

@@ -1,0 +1,70 @@
+name: Tests
+ 
+on: ['push', 'pull_request']
+ 
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    container:
+      image: kirschbaumdevelopment/laravel-test-runner:8.1
+    services:
+      mysql:
+        image: mysql:5.7
+        env:
+          MYSQL_ROOT_PASSWORD: password
+          MYSQL_DATABASE: test
+        ports:
+          - 33306:3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+      # Label used to access the service container
+      redis:
+        # Docker Hub image
+        image: redis
+        # Set health checks to wait until redis has started
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+ 
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+ 
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.1
+          tools: composer:v2
+          coverage: xdebug
+ 
+      - name: Install Dependencies
+        run: composer install --no-interaction --prefer-dist --optimize-autoloader --no-scripts
+
+      - uses: actions/checkout@v3
+      - name: Copy .env
+        run: php -r "file_exists('.env') || copy('.env.example', '.env');"
+      - name: composer install 
+        run: composer install -vvv --no-scripts
+      - name: Directory Permissions
+        run: chmod -R 777 storage bootstrap/cache
+      - name: Generate key
+        run: php artisan key:generate
+      - name: Create Database
+        run: |
+          mkdir -p database
+          touch database/database.sqlite
+      - name: Download init db
+        run: sudo apt-get install wget && sudo apt-get install unzip && wget -c ${{secrets.INIT_DB_URL }} -O db.zip
+      - name: list file
+        run: ls -la
+      - name: unzip
+        run: unzip db.zip -d ./
+      - name: list file
+        run: ls -la
+      - name: mysql import
+        run: mysql -u root -ppassword -h mysql test < db.sql
+      - name: route list
+        run: php artisan route:list
+      - name: Tests
+        run: ./vendor/bin/pest
