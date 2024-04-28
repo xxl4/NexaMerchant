@@ -255,7 +255,7 @@ class ProductController extends Controller
                 $fileName = $file->getClientOriginalName();
                 $filePath = $file->store('product/'.$product->id, "public");
                 
-                if($filePath) {
+                if(!empty($filePath)) {
                     $productBgAttribute = ProductAttributeValue::where("product_id", $product->id)->where("attribute_id", 29)->first();
                     if(is_null($productBgAttribute)) $productBgAttribute = new ProductAttributeValue();
                     $productBgAttribute->product_id = $product->id;
@@ -272,7 +272,7 @@ class ProductController extends Controller
                 $fileName = $file2->getClientOriginalName();
                 $filePath = $file2->store('product/'.$product->id, "public");
                 
-                if($filePath) {
+                if(!empty($filePath)) {
                     $productBgAttribute = ProductAttributeValue::where("product_id", $product->id)->where("attribute_id", 30)->first();
                     if(is_null($productBgAttribute)) $productBgAttribute = new ProductAttributeValue();
                     $productBgAttribute->product_id = $product->id;
@@ -290,7 +290,7 @@ class ProductController extends Controller
                     $fileName = $file3->getClientOriginalName();
                     $filePath = $file3->store('product/'.$product->id, "public");
                     
-                    if($filePath) {
+                    if(!empty($filePath)) {
                         $productBgAttribute = ProductAttributeValue::where("product_id", $product->id)->where("attribute_id", 32)->first();
                         if(is_null($productBgAttribute)) $productBgAttribute = new ProductAttributeValue();
                         $productBgAttribute->product_id = $product->id;
