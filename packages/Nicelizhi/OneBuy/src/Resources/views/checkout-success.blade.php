@@ -1,27 +1,47 @@
 
 <!doctype html>
-<html class="no-js" lang="en">
+<html class="no-js" lang="{{ app()->getLocale() }}" dir="{{ core()->getCurrentLocale()->direction }}">
 <head>
 
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
-<link rel="stylesheet" href="/css/recommended.css">
+<link rel="stylesheet" href="https://shop.hatmeo.com/css/recommended.css">
 <link
   rel="stylesheet"
   href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
 />
-<script src="/js/recommended.js?v=<?php echo time();?>"></script>
+<script src="https://shop.hatmeo.com/js/recommended.js?v=<?php echo time();?>"></script>
 <script src="https://unpkg.com/jquery@3.3.1/dist/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-<!-- Facebook Pixel Code -->
-<!-- Facebook Pixel Code -->
+<script src="https://cdn.jsdelivr.net/npm/jquery-colorbox@1.6.4/jquery.colorbox.min.js"></script>
+        <link href="https://cdn.jsdelivr.net/npm/jquery-colorbox@1.6.4/example1/colorbox.min.css" rel="stylesheet">
+
+<?php if(!empty($quora_adv_id)) { ?>
+
+<script>
+!function(q,e,v,n,t,s){if(q.qp) return; n=q.qp=function(){n.qp?n.qp.apply(n,arguments):n.queue.push(arguments);}; n.queue=[];t=document.createElement(e);t.async=!0;t.src=v; s=document.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t,s);}(window, 'script', 'https://a.quora.com/qevents.js');
+<?php 
+    $quora_adv_arr = explode(',', $quora_adv_id);
+    foreach ($quora_adv_arr as $key => $quora_id) {
+    ?>
+qp('init', '<?php echo $quora_id;?>');
+<?php } ?>
+
+qp('track', 'ViewContent');
+</script>
+<?php foreach ($quora_adv_arr as $key => $quora_id) {?>
+<noscript><img height="1" width="1" style="display:none" src="https://q.quora.com/_/ad/<?php echo $quora_id;?>/pixel?tag=ViewContent&noscript=1"/></noscript>
+<?php } ?>
+<!-- End of Quora Pixel Code -->
+<?php } ?>
+
 <?php if(!empty($ob_adv_id)) { ?>
 
-    <?php 
+<?php 
     $ob_adv_ids = explode(',', $ob_adv_id); 
     foreach($ob_adv_ids as $key=>$ob_adv_id) {
 ?>
@@ -55,6 +75,7 @@
 obApi('track', 'PAGE_VIEW');
 </script>
 <?php } } ?>
+<!-- Facebook Pixel Code -->
 <script>
     !function(f,b,e,v,n,t,s)
     {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -73,8 +94,8 @@ obApi('track', 'PAGE_VIEW');
   </script>
   <noscript>
     <?php foreach ($fb_ids_arr as $key => $fb_id) { ?>
-    <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=<?php echo $fb_id;?>&ev=PageView&noscript=1"/>
-    <?php } ?>
+        <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=<?php echo $fb_id;?>&ev=PageView&noscript=1"/>
+        <?php } ?>
   </noscript>
   <!-- End Facebook Pixel Code -->
     <!-- Facebook Pixel Code -->
@@ -83,12 +104,10 @@ obApi('track', 'PAGE_VIEW');
   fbq('track', 'ViewContent');
 </script>
 <title>
-        Thank you &ndash;
+@lang('checkout::app.v1.success.Thank you')
     </title>
 <script>
         function addVoluumImg(data) {
-            console.log('addVoluumImg');
-            return false;
         }
 
         function postVoluumConversion(data) {
@@ -111,74 +130,10 @@ obApi('track', 'PAGE_VIEW');
             }
         }
 
-        function fbPurchase(order_params) {
-            return false;
-            var params = {
-                _fbc:getCookie('_fbc'),
-                fbclid: getQueryString('fbclid'),
-                _fbp:getCookie('_fbp'),
-                event_name : 'Purchase',
-                pixel_ids: ['793435258214539','469388707483229','504538250963543'],
-                source_url: window.location.href, 
-                currency : order_params.currency,
-                email : order_params.email,
-                telephone : order_params.phone_full,
-                firstname : order_params.first_name,
-                lastname : order_params.second_name,
-                zipcode : order_params.code,
-                total : order_params.total,
-            }
-            
-            fetchFbEvent(params);
-        }
 
-
-
-        // stream 订单发送， 邀请评论
-        function streamPurchase(order_params) {
-            var need_send_store_arr = ['colatech2.myshopify.com'];
-            if(need_send_store_arr.indexOf(order_params.shopify_store_name) > -1) {
-                window.Stream = window.Stream || []
-                window.STREAM_SUBSCRIBE = {
-                    config: {
-                    shop: order_params.shopify_store_name,
-                    pages: {
-                    home: '/', 
-                    collection: '', 
-                    detail: '', 
-                    cart: '', 
-                    checkout: '', 
-                    other: ''
-                    },
-                    bar: {
-                        show: true, 
-                        preventStyle: false 
-                    },
-                    spa: false 
-                    },
-                    onStreamSubscribed: function (e) {} 
-                }
-                var sciprt = document.createElement('script')
-                sciprt.src = 'https://wzstatic1.streamoptim.com/stream-subscribe.js'
-                sciprt.setAttribute('defer', 'defer')
-                var s = document.getElementsByTagName('script')[0]
-                s.parentNode.insertBefore(sciprt, s)
-    
-                const opt = {
-                    currency: order_params.currency,//需要补充
-                    paymentAmount: order_params.total,//需要补充
-                    orderId: order_params._id.$oid,//需要补充
-                    contactEmail: order_params.email,//需要补充
-                    code: ''//需要补充
-                }
-                window.Stream.push(['postOrder', opt])
-            }
-        }
+      
 
         function sendPurchaseEvent(data) {
-            postVoluumConversion(data);
-            fbPurchase(data.info);
-            streamPurchase(data.info);
         }
 
         function getCookie(name) {
@@ -211,14 +166,66 @@ obApi('track', 'PAGE_VIEW');
             return null;
         }
     </script>
+
+    <?php $products = $order->items;
+    $line_items = [];
+    foreach($products as $key=>$product) {
+        $sku = $product['additional'];
+
+        $skuInfo = explode('-', $sku['product_sku']);
+
+
+        $line_item = [];
+        $line_item['item_id'] = $skuInfo[0];
+        $line_item['item_name'] = $product['name'];
+        $line_item['price'] = $product['price'];
+        $line_item ['quantity'] = $product['qty_ordered'];
+        $line_item ['item_variant'] = @$sku['attribute_name'];
+
+        //var_dump($product);
+
+        array_push($line_items, $line_item);
+    }
+
+    ?>
 <script>
         function purchase(value) {
-            console.log(" purchase ori " + value);
             console.log("purchase "+ (value * 1).toFixed(2));
-            fbq('track', 'Purchase', {currency: "USD", value: (value * 1).toFixed(2)});
+            fbq('track', 'Purchase', {currency: "EUR", value: (value * 1).toFixed(2)});
+            console.log("purchase "+ (value * 1).toFixed(2));
             <?php if(!empty($ob_adv_id)) { ?>
             obApi('track', 'Purchase');
             <?php } ?>
+
+            <?php if(!empty($quora_adv_id)) { ?>
+            qp('track', 'Purchase',{value: (value * 1).toFixed(2)});
+            <?php } ?>
+
+
+
+            gtag('event', 'purchase', {
+                transaction_id: '<?php echo $order->id;?>',
+                value: (value * 1).toFixed(2),
+                currency: "<?php echo $order->channel_currency_code;?>",
+                items: <?php echo json_encode($line_items);?>
+            });
+
+            // params = {
+            //     "channel_id": "<?php echo $crm_channel;?>",
+            //     "token": "<?php echo $refer; ?>",
+            //     "type": "purchase",
+            //     "order_id": '<?php echo $order->id;?>',
+            //     "amount": (value * 1).toFixed(2)
+            // };
+            // fetch('https://crm.heomai.com/api/user/action',{
+            //         body: JSON.stringify(params),
+            //         method: 'POST',
+            //         headers: {
+            //             'content-type': 'application/json'
+            //         },
+            // })
+
+
             if(typeof gtag == 'function') {
                 if(window.localStorage) {
                     var ga_post_order_template_commom_ids_str = localStorage.getItem("ga_post_order_template_commom_ids");
@@ -241,7 +248,6 @@ obApi('track', 'PAGE_VIEW');
                         'value': (value * 1).toFixed(2),
                         'currency': 'USD',
                     });
-                    
                 } else {
                     gtag('event', 'sur_purchase', {
                         'transaction_id': getQueryString('id'),
@@ -256,11 +262,11 @@ obApi('track', 'PAGE_VIEW');
             }
         }
 
-        
+        //fbq('track', 'Purchase');
     </script>
 
-<link href="/css/timber.scss.css" rel="stylesheet" type="text/css" media="all">
-<link href="/css/theme.scss.css" rel="stylesheet" type="text/css" media="all">
+<link href="https://shop.hatmeo.com/css/timber.scss.css" rel="stylesheet" type="text/css" media="all">
+<link href="https://shop.hatmeo.com/css/theme.scss.css" rel="stylesheet" type="text/css" media="all">
 <link rel="stylesheet" href="https://lander.heomai.com/template-common/checkout1/css/font-awesome.min.css">
 <style id="shopify-dynamic-checkout-cart">
         @media screen and (min-width: 750px) {
@@ -386,17 +392,17 @@ obApi('track', 'PAGE_VIEW');
 <div class="success_block">
 <div class="content-box">
 <div class="content-box__row text-container">
-<h2 class="heading-2 os-step__title">Your order is confirmed</h2>
+<h2 class="heading-2 os-step__title">@lang('checkout::app.v1.success.Your order is confirmed')</h2>
 <p class="os-step__description">
-We’ve accepted your order, and we’re getting it ready. Come back to this page for updates on your shipment status.
+@lang('checkout::app.v1.success.We ve accepted your order and we re getting it ready Come back to this page for updates on your shipment status')
 </p>
 </div>
 </div>
 <div class="content-box">
 <div class="content-box__row text-container">
-<h2 class="heading-2 os-step__title">Order information</h2>
+<h2 class="heading-2 os-step__title">@lang('checkout::app.v1.success.Order information')</h2>
 <p>
-Order Data:
+@lang('checkout::app.v1.success.Order Data'): <?php echo $order->created_at;?>
 <div class="product-content"></div>
 </p>
 <!--
@@ -409,33 +415,33 @@ Order Total:
 </div>
 <div class="content-box">
 <div class="content-box__row text-container">
-<h2 class="heading-2 os-step__title">Customer information</h2>
+<h2 class="heading-2 os-step__title">@lang('checkout::app.v1.success.Customer information')</h2>
 <p>
-<span class="left-info">First Name: </span> <strong style="font-size:20px;padding-left:10px;" class="customer_first_name right-info"></strong>
+<span class="left-info">@lang('checkout::app.v1.success.First Name'): </span> <strong style="font-size:20px;padding-left:10px;" class="customer_first_name right-info"></strong>
 </p>
 <p>
-<span class="left-info">Last Name: </span> <strong style="font-size:20px;padding-left:10px;" class="customer_last_name right-info"></strong>
+<span class="left-info">@lang('checkout::app.v1.success.Last Name'): </span> <strong style="font-size:20px;padding-left:10px;" class="customer_last_name right-info"></strong>
 </p>
 <p>
-<span class="left-info">Email: </span> <strong style="font-size:20px;padding-left:10px;" class="customer_email right-info"></strong>
+<span class="left-info">@lang('checkout::app.v1.success.Email'): </span> <strong style="font-size:20px;padding-left:10px;" class="customer_email right-info"></strong>
 </p>
 <p>
-<span class="left-info">Phone: </span> <strong style="font-size:20px;padding-left:10px;" class="customer_phone right-info"></strong>
+<span class="left-info">@lang('checkout::app.v1.success.Phone Number'): </span> <strong style="font-size:20px;padding-left:10px;" class="customer_phone right-info"></strong>
 </p>
 <p>
-<span class="left-info">Address: </span> <strong style="font-size:20px;padding-left:10px;" class="customer_address_1 right-info"></strong>
+<span class="left-info">@lang('checkout::app.v1.success.Street Address'): </span> <strong style="font-size:20px;padding-left:10px;" class="customer_address_1 right-info"></strong>
 </p>
 <p>
-<span class="left-info">City: </span> <strong style="font-size:20px;padding-left:10px;" class="customer_city right-info"></strong>
+<span class="left-info">@lang('checkout::app.v1.success.City'): </span> <strong style="font-size:20px;padding-left:10px;" class="customer_city right-info"></strong>
 </p>
 <p>
-<span class="left-info">Country: </span> <strong style="font-size:20px;padding-left:10px;" class="customer_country right-info"></strong>
+<span class="left-info">@lang('checkout::app.v1.success.Country'): </span> <strong style="font-size:20px;padding-left:10px;" class="customer_country right-info"></strong>
 </p>
 <p>
-<span class="left-info">State/Province: </span> <strong style="font-size:20px;padding-left:10px;" class="customer_state right-info"></strong>
+<span class="left-info">@lang('checkout::app.v1.success.State/Province'): </span> <strong style="font-size:20px;padding-left:10px;" class="customer_state right-info"></strong>
 </p>
 <p>
-<span class="left-info">Zip/Postcode: </span> <strong style="font-size:20px;padding-left:10px;" class="customer_zip right-info"></strong>
+<span class="left-info">@lang('checkout::app.v1.success.Zip/Postal Code'): </span> <strong style="font-size:20px;padding-left:10px;" class="customer_zip right-info"></strong>
 </p>
         </div>
 </div>
@@ -480,29 +486,23 @@ Please try again!
                 margin-top: 15px;
             }
         </style>
-<footer class="main__footer" role="contentinfo">
-<p class="product-brand"></p>
-<p class="text-1">Thank you for choosing our products! We hope you are satisfied with your purchase.</p>
-<p class="text-1">If you have any questions or concerns regarding your purchase, we're always here to assist you via our dedicated home pages on Facebook. Follow us there for our latest products, promotions, and news.</p>
-<p class="text-1">Thank you again for choosing our products, and we look forward to assisting you with any further needs you may have.</p>
-<p class="copyright-text ">
-All rights reserved
-</p>
-</footer>
+    <footer class="main__footer" role="contentinfo">
+        @include('onebuy::footer-container-'.strtolower($default_country))
+    </footer>
+    
 </div>
-
-
-
 <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-P6343Y2GKT"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=<?php echo $gtag; ?>"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
-  gtag('config', 'G-P6343Y2GKT');
+<?php if(empty($refer)) { ?>
+    gtag('config', '<?php echo $gtag; ?>',{"debug_mode": true});
+<?php }else { ?>
+  gtag('config', '<?php echo $gtag; ?>', {"user_id": "<?php echo $refer;?>","debug_mode": true});
+<?php } ?>
 </script>
-
 <script>
         if(getCookie('voluum_payout') && getCookie('order_id') == getQueryString('id')) {
             var order_params = {};
@@ -515,7 +515,7 @@ All rights reserved
             console.log('cookie');
 
             console.log(order_params);
-            sendPurchaseEvent(order_params);
+            // sendPurchaseEvent(order_params);
         }
 
         var client_secret = getQueryString('client_secret');
@@ -568,6 +568,7 @@ All rights reserved
         }
 
         function getOrderData() {
+            
             var params = {
                 id : getQueryString('id'),
             }
@@ -595,37 +596,63 @@ All rights reserved
 
             order_param = JSON.parse(localStorage.getItem('order_params'));
 
+            order_param = <?php echo json_encode($order);?>
+
+            <?php
+            $shipping_address = $order->shipping_address;
+            //var_dump($shipping_address);
+            ?>
+
             console.log(order_param);
 
             data = input.data;
-            //purchase(data.info.grand_total);
-            //console.log();
-            purchase(order_param.total);
+            console.log("pushare " + order_param.grand_total);
+            console.log("pushare " + order_param.grand_total);
+            purchase(order_param.grand_total);
+            //purchase(null);
             console.log(data)
+            if(!getCookie('voluum_payout') || getCookie('order_id') != getQueryString('id')) {
+                console.log('data');
+                //sendPurchaseEvent(data);
+            }
 
             //document.querySelector('.order-total').innerHTML = getFormatPrice(data.info.grand_total, order_param.price_template);
-            document.querySelector('.customer_first_name').innerHTML = order_param.first_name;
-            document.querySelector('.customer_last_name').innerHTML = order_param.second_name;
-            document.querySelector('.customer_email').innerHTML = order_param.email;
-            document.querySelector('.customer_phone').innerHTML = order_param.phone_full;
-            document.querySelector('.customer_address_1').innerHTML = order_param.address;
-            document.querySelector('.customer_city').innerHTML = order_param.city;
-            document.querySelector('.customer_country').innerHTML = order_param.country;
-            document.querySelector('.customer_state').innerHTML = order_param.province ? order_param.province : '-';
-            document.querySelector('.customer_zip').innerHTML = order_param.code ? order_param.code : '-';
-            //document.querySelector('.product-brand').innerHTML = "hatmeo";
+            document.querySelector('.customer_first_name').innerHTML = order_param.customer_first_name;
+            document.querySelector('.customer_last_name').innerHTML = order_param.customer_last_name;
+            document.querySelector('.customer_email').innerHTML = order_param.customer_email;
+            document.querySelector('.customer_phone').innerHTML = "<?php echo $shipping_address->phone;?>";
+            document.querySelector('.customer_address_1').innerHTML = "<?php echo $shipping_address->address1;?>";
+            document.querySelector('.customer_city').innerHTML = "<?php echo $shipping_address->city;?>";
+            document.querySelector('.customer_country').innerHTML = "<?php echo $shipping_address->country;?>";
+            document.querySelector('.customer_state').innerHTML = "<?php echo $shipping_address->state;?>";
+            document.querySelector('.customer_zip').innerHTML = "<?php echo $shipping_address->postcode;?>";
 
-            setProductHtml(order_param.products, order_param.produt_amount_base);
+
+            // setProductHtml(order_param.products, order_param.produt_amount_base);
+            setProductHtml();
             showPaySuccess();
             //getRecommendedData(order_param.payment_cancel_url);
-
-            
             
         }
 
-        
+        function setProductHtml() {
+            var product_html = "";
+            <?php
+            $products = $order->items;
+            foreach($products as $key=>$product) {
+                //var_dump($product);
+            ?>
 
-        function setProductHtml(products, produt_amount_base =1) {
+                product_html += '<p class="order-date"><?php echo addslashes($product->name);?> ×<span class="order-count">(<?php echo $product->qty_ordered;?>)</span></p> ';
+
+
+            <?php } ?>
+
+            document.querySelector('.product-content').innerHTML = product_html;
+
+        }
+
+        function setProductHtmlNew(products, produt_amount_base =1) {
             var product_html = ''
 
             for (var i = 0; i < products.length; i++) {
@@ -680,9 +707,6 @@ All rights reserved
             return null;
         }
     </script>
-
-
-
 <style type="text/css">
         .ba-vol-wrapper {
             margin-top: 20px;
@@ -2462,4 +2486,4 @@ All rights reserved
         }
     </style>
 </body>
-</html>
+</html> 

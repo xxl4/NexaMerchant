@@ -24,6 +24,7 @@ use Illuminate\Support\Facades\Redis;
 use Webkul\CMS\Repositories\CmsRepository;
 use Webkul\CartRule\Repositories\CartRuleCouponRepository;
 use Illuminate\Http\Response;
+use Webkul\Sales\Repositories\OrderTransactionRepository;
 
 
 class ProductController extends Controller
@@ -50,6 +51,7 @@ class ProductController extends Controller
         protected Airwallex $airwallex,
         protected CmsRepository $cmsRepository,
         protected CartRuleCouponRepository $cartRuleCouponRepository,
+        protected OrderTransactionRepository $orderTransactionRepository,
         protected ThemeCustomizationRepository $themeCustomizationRepository
     )
     {
@@ -1081,11 +1083,45 @@ class ProductController extends Controller
      * 
      */
 
-    public function checkout_success(Request $request) {
-        \Debugbar::disable(); /* 开启后容易出现前端JS报错的情况 */
-        $product = [];
+    public function checkout_success($order_id, Request $request) {
+        
+
+        $order = [];
+
+        // check the payment info
+
+        $orderTrans = $this->orderTransactionRepository->where('transaction_id', $order_id)->select(['order_id'])->first();
+        if(!is_null($orderTrans)) {
+            $order = $this->orderRepository->findOrFail($orderTrans->order_id);
+        }else{
+            $order = $this->orderRepository->findOrFail($order_id);
+        }
+        
+
         $fb_ids = config('onebuy.fb_ids');
         $ob_adv_id = config('onebuy.ob_adv_id');
+        $crm_channel = config('onebuy.crm_channel');
+        $refer = $request->session()->get('refer');
+        $gtag = config('onebuy.gtag');
+
+        $quora_adv_id = config('onebuy.quora_adv_id');
+
+        $countries = config("countries");
+
+        $default_country = config('onebuy.default_country');
+
+        return view('onebuy::checkout-success', compact('order',
+            "fb_ids",
+            "ob_adv_id",
+            "crm_channel",
+            "refer",
+            "gtag",
+            "quora_adv_id",
+            "countries",
+            "default_country"
+        ));
+
+
         return view('onebuy::checkout-success', compact('product','fb_ids','ob_adv_id'));
     }
 
