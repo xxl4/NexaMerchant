@@ -78,10 +78,12 @@ class GetV3 extends Command
     public function handle()
     {
         $shopify_pro_id = $this->option('prod_id');
+        
         if(empty($shopify_pro_id)) {
             $this->error("prod id is empty");
             return false;
         }
+        echo $shopify_pro_id."\r\n";
         $force = $this->option('force');
         $this->info($this->lang);
         //exit;

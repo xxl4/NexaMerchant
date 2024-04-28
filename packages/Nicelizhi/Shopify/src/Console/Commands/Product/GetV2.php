@@ -91,6 +91,7 @@ class GetV2 extends Command
             $this->error("prod id is empty");
             return false;
         }
+        echo $shopify_pro_id."\r\n";
 
         $force = $this->option('force');
 
