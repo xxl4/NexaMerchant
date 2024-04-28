@@ -66,7 +66,7 @@
                                     </div>     
                                     
                                     <div class="form-group">
-                                        <label for="product_1">Product 1</label>
+                                        <label for="product_1">Product 2</label>
                                         <div class="input-group">
                                             <div class="custom-file">
                                                 <input type="file" class="custom-file-input" name="product_1" id="product_1" accept="image/*">
@@ -85,7 +85,7 @@
                                     </div> 
 
                                     <div class="form-group">
-                                        <label for="product_2">Product 2</label>
+                                        <label for="product_2">Product 1</label>
                                         <div class="input-group">
                                             <div class="custom-file">
                                                 <input type="file" class="custom-file-input" name="product_2" id="product_2" accept="image/*">
