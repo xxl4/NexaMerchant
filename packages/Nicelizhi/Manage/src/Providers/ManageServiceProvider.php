@@ -39,6 +39,7 @@ class ManageServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->registerCommands();
         $this->registerConfig();
     }
 
@@ -168,4 +169,12 @@ class ManageServiceProvider extends ServiceProvider
 
         return $tree;
     }
+
+    protected function registerCommands() {
+        if ($this->app->runningInConsole()) {
+            $this->commands([
+            ]);
+        }
+    }
+
 }
