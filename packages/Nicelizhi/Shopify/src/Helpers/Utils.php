@@ -160,6 +160,7 @@ final class Utils {
             Cache::pull("product_sku_".$pid);
             Cache::pull("product_ext_".$pid."_4_EUR");
             Cache::pull("product_ext_".$pid."_4_USD");
+            Cache::pull("product_ext_".$pid."_4_AUD");
         }
         if($shopify_id!=0) {
             Cache::pull("product_url_".$shopify_id);
