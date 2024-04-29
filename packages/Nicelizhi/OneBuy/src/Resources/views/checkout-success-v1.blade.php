@@ -268,7 +268,7 @@ obApi('track', 'PAGE_VIEW');
 <link href="https://shop.hatmeo.com/css/timber.scss.css" rel="stylesheet" type="text/css" media="all">
 <link href="https://shop.hatmeo.com/css/theme.scss.css" rel="stylesheet" type="text/css" media="all">
 <link rel="stylesheet" href="https://lander.heomai.com/template-common/checkout1/css/font-awesome.min.css">
-<style id="shopify-dynamic-checkout-cart">
+<style>
         @media screen and (min-width: 750px) {
             #dynamic-checkout-cart {
                 min-height: 50px;
@@ -280,188 +280,136 @@ obApi('track', 'PAGE_VIEW');
                 min-height: 60px;
             }
         }
-    </style>
-<style>
-    .content-box{
-        font-size:14px;
-        border: 1px solid #666;
-    }
-        .loox-reviews-default {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
 
-        .loox-rating .loox-icon {
-            color: #fbcd0a;
+        
+        @media (max-width:3840px) {
+            .header-banner {
+                background-image : url('/checkout/onebuy/success/{{ $default_country }}_pc.jpg');
+                height: 100px;
+            }
         }
-    </style>
-<style>
-        .success_block {
-            display: none;
+     
+
+        @media (max-width:750px) {
+            .header-banner {
+                background-image : url('/checkout/onebuy/success/{{ $default_country }}_mobile.jpg');
+            }
         }
-        .failed_block {
-            display: none;
-        }
+            .content-box{
+                font-size:14px;
+                border: 1px solid #666;
+            }
+            .loox-reviews-default {
+                max-width: 1200px;
+                margin: 0 auto;
+            }
+
+            .loox-rating .loox-icon {
+                color: #fbcd0a;
+            }
+
+            .success_block {
+                display: none;
+            }
+            .failed_block {
+                display: none;
+            }
     </style>
 </head>
 <body id="terms-of-service" class="template-page">
-<div id="shopify-section-header" class="shopify-section">
-<style data-shopify>
-            .header-wrapper .site-nav__link,
-            .header-wrapper .site-header__logo a,
-            .header-wrapper .site-nav__dropdown-link,
-            .header-wrapper .site-nav--has-dropdown>
-            a.nav-focus,
-            .header-wrapper .site-nav--has-dropdown.nav-hover>
-            a,
-            .header-wrapper .site-nav--has-dropdown:hover>
-
-            a {
-                color: #000000;
-            }
-
-            .header-wrapper .site-header__logo a:hover,
-            .header-wrapper .site-header__logo a:focus,
-            .header-wrapper .site-nav__link:hover,
-            .header-wrapper .site-nav__link:focus,
-            .header-wrapper .site-nav--has-dropdown a:hover,
-            .header-wrapper .site-nav--has-dropdown>
-            a.nav-focus:hover,
-            .header-wrapper .site-nav--has-dropdown>
-            a.nav-focus:focus,
-            .header-wrapper .site-nav--has-dropdown .site-nav__link:hover,
-            .header-wrapper .site-nav--has-dropdown .site-nav__link:focus,
-            .header-wrapper .site-nav--has-dropdown.nav-hover>
-
-            a:hover,
-            .header-wrapper .site-nav__dropdown a:focus {
-                color: rgba(0, 0, 0, 0.75);
-            }
-
-            .header-wrapper .burger-icon,
-            .header-wrapper .site-nav--has-dropdown:hover>
-            a:before,
-            .header-wrapper .site-nav--has-dropdown>
-            a.nav-focus:before,
-            .header-wrapper .site-nav--has-dropdown.nav-hover>
-
-            a:before {
-                background: #000000;
-            }
-
-            .header-wrapper .site-nav__link:hover .burger-icon {
-                background: rgba(0, 0, 0, 0.75);
-            }
-
-            .site-header__logo img {
-                max-width: 180px;
-            }
-
-            @media screen and (max-width: 768px) {
-                .site-header__logo img {
-                    max-width: 100%;
-                }
-            }
-        </style>
-<div data-section-id="header" data-section-type="header-section" data-template="page">
-<div class="header-container drawer__header-container">
-<div class="header-wrapper" data-header-wrapper>
-<header class="site-header" role="banner" data-transparent-header="true">
-<div class="wrapper">
-<div class="grid--full grid--table">
-<div class="grid__item large--one-third medium-down--one-half">
-<div class="h1 site-header__logo large--left" itemscope itemtype="http://schema.org/Organization">
-<a href="#" itemprop="url" class="site-header__logo-link" id="logo-image">
-<img class="site-header__logo-image" src height="70px" itemprop="logo">
-</a>
-</div>
-</div>
-</div>
-</div>
-</header>
-</div>
-</div>
-</div>
+<div id="shopify-section-header" class="header-container-bg">
+    <div data-section-id="header" data-section-type="header-section" data-template="page">
+        <div class="header-container drawer__header-container">
+            <div class="header-wrapper" data-header-wrapper>
+                <header class="site-header" role="banner" data-transparent-header="true">
+                    <div class="wrapper">
+                        <div class="grid--full grid--table header-banner">
+                            <div class="grid__item large--one-third medium-down--one-half">
+                                <div class="h1 site-header__logo large--left" itemscope itemtype="http://schema.org/Organization">
+                                    <a href="#" itemprop="url" class="site-header__logo-link" id="logo-image">
+                                        <img class="site-header__logo-image" src height="70px" itemprop="logo">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </header>
+            </div>
+        </div>
+    </div>
 </div>
 <div id="PageContainer" class="page-container">
-<main class="main-content" role="main">
-<div class="wrapper">
+    <main class="main-content" role="main">
+        <div class="wrapper">
 
-<div class="grid">
-<div class="grid__item large--five-sixths push--large--one-twelfth">
-<div class="success_block">
-<div class="content-box">
-<div class="content-box__row text-container">
-<h2 class="heading-2 os-step__title">@lang('checkout::app.v1.success.Your order is confirmed')</h2>
-<p class="os-step__description">
-@lang('checkout::app.v1.success.We ve accepted your order and we re getting it ready Come back to this page for updates on your shipment status')
-</p>
-</div>
-</div>
-<div class="content-box">
-<div class="content-box__row text-container">
-<h2 class="heading-2 os-step__title">@lang('checkout::app.v1.success.Order information')</h2>
-<p>
-@lang('checkout::app.v1.success.Order Data'): <?php echo $order->created_at;?>
-<div class="product-content"></div>
-</p>
-<!--
-<p>
-Order Total:
-<span class="order-total" data-value="orderTotalValue" data-currency="currencyCode">orderTotal</span>
-</p>
--->
-</div>
-</div>
-<div class="content-box">
-<div class="content-box__row text-container">
-<h2 class="heading-2 os-step__title">@lang('checkout::app.v1.success.Customer information')</h2>
-<p>
-<span class="left-info">@lang('checkout::app.v1.success.First Name'): </span> <strong style="font-size:20px;padding-left:10px;" class="customer_first_name right-info"></strong>
-</p>
-<p>
-<span class="left-info">@lang('checkout::app.v1.success.Last Name'): </span> <strong style="font-size:20px;padding-left:10px;" class="customer_last_name right-info"></strong>
-</p>
-<p>
-<span class="left-info">@lang('checkout::app.v1.success.Email'): </span> <strong style="font-size:20px;padding-left:10px;" class="customer_email right-info"></strong>
-</p>
-<p>
-<span class="left-info">@lang('checkout::app.v1.success.Phone Number'): </span> <strong style="font-size:20px;padding-left:10px;" class="customer_phone right-info"></strong>
-</p>
-<p>
-<span class="left-info">@lang('checkout::app.v1.success.Street Address'): </span> <strong style="font-size:20px;padding-left:10px;" class="customer_address_1 right-info"></strong>
-</p>
-<p>
-<span class="left-info">@lang('checkout::app.v1.success.City'): </span> <strong style="font-size:20px;padding-left:10px;" class="customer_city right-info"></strong>
-</p>
-<p>
-<span class="left-info">@lang('checkout::app.v1.success.Country'): </span> <strong style="font-size:20px;padding-left:10px;" class="customer_country right-info"></strong>
-</p>
-<p>
-<span class="left-info">@lang('checkout::app.v1.success.State/Province'): </span> <strong style="font-size:20px;padding-left:10px;" class="customer_state right-info"></strong>
-</p>
-<p>
-<span class="left-info">@lang('checkout::app.v1.success.Zip/Postal Code'): </span> <strong style="font-size:20px;padding-left:10px;" class="customer_zip right-info"></strong>
-</p>
-        </div>
-</div>
-</div>
-<div class="failed_block">
-<div class="content-box" style="text-align: center;">
-<img src="./images/failed.png" style="height: 114px;margin: 10px auto;">
-<h2>Your order payment failed!</h2>
-<p class="failed_reason">
-</p>
-<p class="os-step__description">
-Please try again!
-</p>
-</div>
-</div>
-<div class="loading_block">
-<div class="content-box" style="text-align: center;padding: 10px">
-<h2>Please wait...</h2>
-</div>
-</div>
+            <div class="grid">
+                <div class="grid__item large--five-sixths push--large--one-twelfth">
+                    <div class="success_block">
+                        <div class="content-box">
+                            <div class="content-box__row text-container">
+                                <h2 class="heading-2 os-step__title">@lang('checkout::app.v1.success.Your order is confirmed')</h2>
+                                <p class="os-step__description">@lang('checkout::app.v1.success.We ve accepted your order and we re getting it ready Come back to this page for updates on your shipment status')</p>
+                            </div>
+                        </div>
+                        <div class="content-box">
+                            <div class="content-box__row text-container">
+                                <h2 class="heading-2 os-step__title">@lang('checkout::app.v1.success.Order information')</h2>
+                                <p>@lang('checkout::app.v1.success.Order Data'): <?php echo $order->created_at;?>
+                                    <div class="product-content"></div>
+                                </p>
+                                <p>
+                                Order Total:
+                                <span class="order-total" data-value="orderTotalValue" data-currency="currencyCode">orderTotal</span>
+                                </p>
+
+                            </div>
+                        </div>
+                        <div class="content-box">
+                            <div class="content-box__row text-container">
+                                <h2 class="heading-2 os-step__title">@lang('checkout::app.v1.success.Customer information')</h2>
+                                <p>
+                                    <span class="left-info">@lang('checkout::app.v1.success.First Name'): </span> <strong style="font-size:20px;padding-left:10px;" class="customer_first_name right-info"></strong>
+                                </p>
+                                <p>
+                                    <span class="left-info">@lang('checkout::app.v1.success.Last Name'): </span> <strong style="font-size:20px;padding-left:10px;" class="customer_last_name right-info"></strong>
+                                </p>
+                                <p>
+                                    <span class="left-info">@lang('checkout::app.v1.success.Email'): </span> <strong style="font-size:20px;padding-left:10px;" class="customer_email right-info"></strong>
+                                </p>
+                                <p>
+                                    <span class="left-info">@lang('checkout::app.v1.success.Phone Number'): </span> <strong style="font-size:20px;padding-left:10px;" class="customer_phone right-info"></strong>
+                                </p>
+                                <p>
+                                    <span class="left-info">@lang('checkout::app.v1.success.Street Address'): </span> <strong style="font-size:20px;padding-left:10px;" class="customer_address_1 right-info"></strong>
+                                </p>
+                                <p>
+                                    <span class="left-info">@lang('checkout::app.v1.success.City'): </span> <strong style="font-size:20px;padding-left:10px;" class="customer_city right-info"></strong>
+                                </p>
+                                <p>
+                                    <span class="left-info">@lang('checkout::app.v1.success.Country'): </span> <strong style="font-size:20px;padding-left:10px;" class="customer_country right-info"></strong>
+                                </p>
+                                <p>
+                                    <span class="left-info">@lang('checkout::app.v1.success.State/Province'): </span> <strong style="font-size:20px;padding-left:10px;" class="customer_state right-info"></strong>
+                                </p>
+                                <p>
+                                    <span class="left-info">@lang('checkout::app.v1.success.Zip/Postal Code'): </span> <strong style="font-size:20px;padding-left:10px;" class="customer_zip right-info"></strong>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="failed_block">
+                        <div class="content-box" style="text-align: center;">
+                            <img src="./images/failed.png" style="height: 114px;margin: 10px auto;">
+                            <h2>Your order payment failed!</h2>
+                            <p class="failed_reason"></p>
+                            <p class="os-step__description">Please try again!</p>
+                        </div>
+                    </div>
+                    <div class="loading_block">
+                        <div class="content-box" style="text-align: center;padding: 10px">
+                        <h2>Please wait...</h2>
+                    </div>
+            </div>
 </div>
 </div>
 </div>
@@ -642,10 +590,7 @@ Please try again!
             foreach($products as $key=>$product) {
                 //var_dump($product);
             ?>
-
                 product_html += '<p class="order-date"><?php echo addslashes($product->name);?> ×<span class="order-count">(<?php echo $product->qty_ordered;?>)</span></p> ';
-
-
             <?php } ?>
 
             document.querySelector('.product-content').innerHTML = product_html;

@@ -1149,6 +1149,8 @@ class ProductController extends Controller
 
         $default_country = config('onebuy.default_country');
 
+        $recommend_products = [];
+
         return view('onebuy::checkout-success-v1', compact('order',
             "fb_ids",
             "ob_adv_id",
@@ -1157,7 +1159,8 @@ class ProductController extends Controller
             "gtag",
             "quora_adv_id",
             "countries",
-            "default_country"
+            "default_country",
+            "recommend_products"
         ));
     }
 
