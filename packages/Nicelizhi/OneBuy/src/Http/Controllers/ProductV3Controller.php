@@ -67,7 +67,7 @@ class ProductV3Controller extends Controller
         $product = Cache::get($cache_key);
         if(empty($product)) {
             $product = $this->productRepository->findBySlug($slugOrPath);
-            Cache::put($cache_key, $product, 3600);
+            Cache::put($cache_key, $product);
         }
 
         if (
@@ -187,7 +187,7 @@ class ProductV3Controller extends Controller
                 $product_attributes[] = $attribute;
             }
 
-            Cache::put($cache_key, json_encode($product_attributes), 36000);
+            Cache::put($cache_key, json_encode($product_attributes));
 
         }else{
             $product_attributes = json_decode($product_attributes, JSON_OBJECT_AS_ARRAY);
