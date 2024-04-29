@@ -18,6 +18,15 @@ class CmsRepository extends Repository
         return 'Webkul\CMS\Contracts\CmsPage';
     }
 
+    public function getCmsDetail($id, $locale) {
+        $page = CmsPageTranslationProxy::modelClass()::where('cms_page_id', $id)
+            ->where('locale', $locale)
+            ->first();
+        if($page) return $page;
+        $page = $this->findOrFail($id);
+        return $page;
+    }
+
     /**
      * @param  array  $data
      * @return \Webkul\CMS\Contracts\CmsPage
