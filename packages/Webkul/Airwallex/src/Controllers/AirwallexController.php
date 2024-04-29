@@ -66,7 +66,7 @@ class AirwallexController extends Controller
      */
     public function webhook(Request $request)
     {
-        Log::info(json_encode($request->all())); // log body
+        // Log::info(json_encode($request->all())); // log body
         $input = $request->all();
         if (isset($input['data']['object']['merchant_order_id'])) {
             $orderId = $input['data']['object']['merchant_order_id'];
@@ -99,9 +99,9 @@ class AirwallexController extends Controller
                         // send order to shopify
                         Artisan::queue((new Post())->getName(), ['--order_id'=> $order->id])->onConnection('redis')->onQueue('commands');
 
-                        Log::info(json_encode("order can invoice". json_encode($order)));
+                        // Log::info(json_encode("order can invoice". json_encode($order)));
 
-                        Log::info("order invoice can". json_encode($order->canInvoice()));
+                        // Log::info("order invoice can". json_encode($order->canInvoice()));
 
                         //var_dump($order->canInvoice()); exit;
 
@@ -121,18 +121,18 @@ class AirwallexController extends Controller
                         $invoice = $this->invoiceRepository->findOneWhere(['order_id' => $order->id]);
                         //insert into order payment traces
 
-                        Log::info("orderTransactionRepository ".json_encode([
-                            'transaction_id' => $input['data']['object']['id'],
-                            'status'         => $input['data']['object']['status'],
-                            'type'           => $input['name'],
-                            'amount'         => $input['data']['object']['amount'],
-                            'payment_method' => $invoice->order->payment->method,
-                            'order_id'       => $order->id,
-                            'invoice_id'     => $invoice->id,
-                            'data'           => json_encode(
-                                $input
-                            ),
-                        ]));
+                        // Log::info("orderTransactionRepository ".json_encode([
+                        //     'transaction_id' => $input['data']['object']['id'],
+                        //     'status'         => $input['data']['object']['status'],
+                        //     'type'           => $input['name'],
+                        //     'amount'         => $input['data']['object']['amount'],
+                        //     'payment_method' => $invoice->order->payment->method,
+                        //     'order_id'       => $order->id,
+                        //     'invoice_id'     => $invoice->id,
+                        //     'data'           => json_encode(
+                        //         $input
+                        //     ),
+                        // ]));
 
                         $this->orderTransactionRepository->create([
                             'transaction_id' => $input['data']['object']['id'],
