@@ -467,7 +467,7 @@ Apt / Suite / Other </label>
         <label class="shipping-info-label">@lang('onebuy::app.product.order.State/Province') </label>
     </div>
     <div class="shipping-info-item shipping-info-flex-half">
-        <input name="zip_code" class="shipping-info-input zip_code" />
+        <input name="zip_code" pattern="[0-9]{5}" type="number" class="shipping-info-input zip_code" />
         <label id="zip_code-error" class="shipping-info-error">
     </label>
     <label class="shipping-info-label">@lang('onebuy::app.product.order.Zip/Postal Code')</label>
@@ -506,7 +506,7 @@ Apt / Suite / Other </label>
             <span class="js-sku" style="color: gray;"></span>
         </li>
         <li class="summary-list-item">
-            <input type="text" name="coupon_code" id="coupon_code" placeholder="@lang('onebuy::app.product.order.Coupon Code')" /> <input type="button" value="Apply" class="btn btn-primary applay_coupon" />
+            <input type="text" name="coupon_code" id="coupon_code" style="line-height: 30px;" placeholder="@lang('onebuy::app.product.order.Coupon Code')" /> <input type="button" value="Apply" class="btn btn-primary applay_coupon" />
         </li>
         <li class="coupon-message summary-list-item" style="display: none;color:red;"></li>
     </ul>
