@@ -1083,7 +1083,8 @@ Apt / Suite / Other </label>
                         $('#loading').hide();
                         if(res.success == true) {
                             //Goto('/checkout/v1/success/'+localStorage.getItem('order_id'));
-                            window.location.href='/checkout/v1/success/'+localStorage.getItem('order_id');
+                            window.location.href='/onebuy/checkout/v1/success/'+localStorage.getItem('order_id');
+                            return true;
                             //actions.redirect('/checkout/v1/success/'+localStorage.getItem('order_id'));
                         }
                         if(res.error == 'INSTRUMENT_DECLINED') {
@@ -2125,7 +2126,8 @@ function GotoNotRequest(url) {
                                 //console.log(res);
                                 
                                 if(res.success == true) {
-                                    window.location.href='/checkout/v1/success/'+localStorage.getItem('order_id');
+                                    window.location.href='/onebuy/checkout/v1/success/'+localStorage.getItem('order_id');
+                                    return true;
                                     //actions.redirect('/checkout/v1/success/'+localStorage.getItem('order_id'));
                                 }
                                 if(res.error == 'INSTRUMENT_DECLINED') {
@@ -2463,7 +2465,8 @@ function GotoNotRequest(url) {
                                 'event_category': 'ecommerce'
                             });
 
-                            window.location.href="/checkout/v1/success/"+data.order.id;
+                            window.location.href="/onebuy/checkout/v1/success/"+data.order.id;
+                            return false;
 
                         }).catch((response) => {
                             $('#loading').hide();

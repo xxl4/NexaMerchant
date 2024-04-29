@@ -66,7 +66,9 @@ class Handler extends ExceptionHandler
     public function render($request, Throwable $exception)
     {
         if ($exception instanceof \Exception) {
-            if(!empty($exception->getMessage())) \Nicelizhi\Shopify\Helpers\Utils::send(json_encode($exception->getMessage()). " please check the log file for more details");
+            if(!empty($exception->getMessage())) {
+                //\Nicelizhi\Shopify\Helpers\Utils::send(json_encode($exception->getMessage()). " please check the log file for more details");
+            } 
         }
         
         return parent::render($request, $exception);

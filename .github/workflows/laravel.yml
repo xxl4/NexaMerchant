@@ -24,6 +24,16 @@ jobs:
         ports:
           - 33306:3306
         options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+      # Label used to access the service container
+      redis:
+        # Docker Hub image
+        image: redis
+        # Set health checks to wait until redis has started
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
 
     steps:
     - name: Setup PHP
@@ -60,6 +70,8 @@ jobs:
       run: unzip db.zip -d ./
     - name: mysql import
       run: mysql -u root -ppassword -h mysql test < db.sql
+    - name: Tests
+      run: ./vendor/bin/pest
     - name: Sync to Server 1 and Do it
       uses: appleboy/ssh-action@master
       env:
