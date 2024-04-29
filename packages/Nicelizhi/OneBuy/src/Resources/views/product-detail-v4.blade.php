@@ -506,7 +506,7 @@ Apt / Suite / Other </label>
             <span class="js-sku" style="color: gray;"></span>
         </li>
         <li class="summary-list-item">
-            <input type="text" name="coupon_code" id="coupon_code" placeholder="@lang('onebuy::app.product.order.Coupon Code')" /> <input type="button" value="Apply" class="btn btn-primary applay_coupon" />
+            <input type="text" name="coupon_code" id="coupon_code" style="line-height: 30px;" placeholder="@lang('onebuy::app.product.order.Coupon Code')" /> <input type="button" value="Apply" class="btn btn-primary applay_coupon" />
         </li>
         <li class="coupon-message summary-list-item" style="display: none;color:red;"></li>
     </ul>
