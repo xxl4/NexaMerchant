@@ -46,12 +46,13 @@ class PageController extends Controller
                 array( 'db' => '`p`.`url_key`',   'dt' => 'url_key', 'field'=>'url_key' ),
                 array( 'db' => '`p`.`meta_title`',   'dt' => 'meta_title', 'field'=>'meta_title' ),
                 array( 'db' => '`p`.`cms_page_id`',   'dt' => 'cms_page_id', 'field'=>'cms_page_id' ),
+                array( 'db' => '`c`.`updated_at`',   'dt' => 'updated_at', 'field'=>'updated_at' ),
                 array( 'db' => '`p`.`locale`',   'dt' => 'locale', 'field'=>'locale' )
             );
             // SQL server connection information
             $sql_details = [];
 
-            $joinQuery = "FROM `{$table}` AS `p` ";
+            $joinQuery = "FROM `{$table}` AS `p` left join `{$table_pre}cms_pages` AS `c` ON `p`.`cms_page_id` = `c`.`id` ";
             $extraCondition = "";
             //$extraCondition = "`a`.`address_type`='cart_shipping'";
 
