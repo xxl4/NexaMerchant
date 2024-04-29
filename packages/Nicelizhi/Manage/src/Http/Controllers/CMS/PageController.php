@@ -8,6 +8,7 @@ use Webkul\CMS\Repositories\CmsRepository;
 use Nicelizhi\Manage\Http\Controllers\Controller;
 use Nicelizhi\Manage\DataGrids\CMS\CMSPageDataGrid;
 use Nicelizhi\Manage\Http\Requests\MassDestroyRequest;
+use Nicelizhi\Manage\Helpers\SSP;
 
 
 class PageController extends Controller
@@ -29,7 +30,34 @@ class PageController extends Controller
     public function index()
     {
         if (request()->ajax()) {
-            return app(CMSPageDataGrid::class)->toJson();
+
+            $table_pre = config("database.connections.mysql.prefix");
+            $table = $table_pre.'cms_page_translations';
+
+            // Table's primary key
+            $primaryKey = 'id';
+            
+            $columns = array(
+                //array( 'db' => 'id', 'dt' => 0 ),
+                array( 'db' => '`p`.`id`',  'dt' => 'id', 'field'=>'id','formatter' => function($d, $row){
+                    return $d;
+                } ),
+                array( 'db' => '`p`.`page_title`',   'dt' => 'page_title', 'field'=>'page_title' ),
+                array( 'db' => '`p`.`url_key`',   'dt' => 'url_key', 'field'=>'url_key' ),
+                array( 'db' => '`p`.`meta_title`',   'dt' => 'meta_title', 'field'=>'meta_title' ),
+                array( 'db' => '`p`.`locale`',   'dt' => 'locale', 'field'=>'locale' )
+            );
+            // SQL server connection information
+            $sql_details = [];
+
+            $joinQuery = "FROM `{$table}` AS `p` ";
+            $extraCondition = "";
+            //$extraCondition = "`a`.`address_type`='cart_shipping'";
+
+
+            return json_encode(SSP::simple( request()->input(), $sql_details, $table, $primaryKey, $columns, $joinQuery, $extraCondition ));
+
+            //return app(CMSPageDataGrid::class)->toJson();
         }
 
         return view('admin::cms.index');
@@ -121,6 +149,7 @@ class PageController extends Controller
             'channels' => request()->input('channels'),
             'locale'   => $locale,
         ];
+
 
         $page = $this->cmsRepository->update($data, $id);
 

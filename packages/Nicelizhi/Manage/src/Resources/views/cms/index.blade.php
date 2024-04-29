@@ -4,56 +4,115 @@
         @lang('admin::app.cms.index.title')
     </x-slot:title>
 
-    <div class="flex justify-between items-center">
-        <p class="text-[20px] text-gray-800 dark:text-white font-bold">
-            @lang('admin::app.cms.index.title')
-        </p>
+      <!-- DataTables -->
+  <link rel="stylesheet" href="/themes/manage/AdminLTE/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="/themes/manage/AdminLTE/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+  <link rel="stylesheet" href="/themes/manage/AdminLTE/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
 
-        <div class="flex gap-x-[10px] items-center">
-            <!-- Dropdown -->
-            <x-admin::dropdown position="bottom-right">
-                <x-slot:toggle>
-                    <span class="flex icon-setting p-[6px] rounded-[6px] text-[24px] cursor-pointer transition-all hover:bg-gray-200 dark:hover:bg-gray-800 "></span>
-                </x-slot:toggle>
-
-                <x-slot:content class="w-[174px] max-w-full !p-[8PX] border dark:border-gray-800 rounded-[4px] z-10 bg-white dark:bg-gray-900 shadow-[0px_8px_10px_0px_rgba(0,_0,_0,_0.2)]">
-                    <div class="grid gap-[2px]">
-                        <!-- Current Channel -->
-                        <div class="p-[6px] items-center cursor-pointer transition-all hover:bg-gray-100 dark:hover:bg-gray-950 hover:rounded-[6px]">
-                            <p class="text-gray-600 dark:text-gray-300  font-semibold leading-[24px]">
-                                Channel - {{ core()->getCurrentChannel()->name }}
-                            </p>
-                        </div>
-
-                        <!-- Current Locale -->
-                        <div class="p-[6px] items-center cursor-pointer transition-all hover:bg-gray-100 dark:hover:bg-gray-950 hover:rounded-[6px]">
-                            <p class="text-gray-600 dark:text-gray-300 font-semibold leading-[24px]">
-                                Language - {{ core()->getCurrentLocale()->name }}
-                            </p>
-                        </div>
+    <section class="content">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-12">
+              
+                <div class="card">
+                    <div class="card-header">
+                      <h3 class="card-title">@lang('lp::app.admin.index.title')</h3>
                     </div>
-                </x-slot:content>
-            </x-admin::dropdown>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                      <table id="tables" class="table table-bordered table-striped">
+                        <thead>
+                        <tr>
+                          <th>page_title</th>
+                          <th>locale</th>
+                          <th>url_key</th>
+                          <th>meta_title</th>
+                          <th>Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
 
-            <!-- Export Modal -->
-            <x-admin::datagrid.export src="{{ route('admin.cms.index') }}"></x-admin::datagrid.export>
-
-            {{-- Create New Pages Button --}}
-            @if (bouncer()->hasPermission('cms.create'))
-                <a
-                    href="{{ route('admin.cms.create') }}"
-                    class="primary-button"
-                >
-                    @lang('admin::app.cms.index.create-btn')
-                </a>
-            @endif
+                      </table>
+                    </div>
+                    <!-- /.card-body -->
+                  </div>
+                  <!-- /.card -->
+                
+            </div>
+            <!-- /.col -->
+          </div>
+          <!-- /.row -->
         </div>
-    </div>
+        <!-- /.container-fluid -->
+      </section>
 
-    {!! view_render_event('bagisto.admin.cms.pages.list.before') !!}
+      <!-- jQuery -->
+<script src="/themes/manage/AdminLTE/plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="/themes/manage/AdminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <x-admin::datagrid src="{{ route('admin.cms.index') }}"></x-admin::datagrid>
+<!-- DataTables  & Plugins -->
+<script src="/themes/manage/AdminLTE/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="/themes/manage/AdminLTE/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="/themes/manage/AdminLTE/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="/themes/manage/AdminLTE/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<script src="/themes/manage/AdminLTE/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+<script src="/themes/manage/AdminLTE/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+<script src="/themes/manage/AdminLTE/plugins/jszip/jszip.min.js"></script>
+<script src="/themes/manage/AdminLTE/plugins/pdfmake/pdfmake.min.js"></script>
+<script src="/themes/manage/AdminLTE/plugins/pdfmake/vfs_fonts.js"></script>
+<script src="/themes/manage/AdminLTE/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+<script src="/themes/manage/AdminLTE/plugins/datatables-buttons/js/buttons.print.min.js"></script>
+<script src="/themes/manage/AdminLTE/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+
+<script>
+    $(function () {
+      $("#tables").DataTable({
+        autoWidth: true,
+        keys: true,
+        ajax: {
+          url: "{{ route('admin.cms.index') }}",
+          type: 'GET'
+        },
+        columns: [
+          {
+            data: 'page_title'
+          },
+          {
+            data: 'locale'
+          },
+          {
+            data: 'url_key'
+          },
+          {
+            data: 'meta_title'
+          },
+          {
+            data: "id",
+            render: function(data, type, row, meta) {
+              return '<a href="./cms/edit/'+data+'" class="btn btn-primary btn-sm">View</a>';
+            }
+          }
+        ],
+        lengthMenu: [
+            [20, 50, 100],
+            [20, 50, 100]
+        ],
+        order: [[3, 'desc']],
+        processing: true,
+        serverSide: true,
+        
+        
+
+
+
+
+
+
+      });
     
-    {!! view_render_event('bagisto.admin.cms.pages.list.after') !!}
+    });
+  </script>
 
 </x-admin::layouts>
