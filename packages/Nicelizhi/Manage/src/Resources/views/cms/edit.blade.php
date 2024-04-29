@@ -21,7 +21,7 @@
             </a>
         @endforeach
 
-        <form class="form" method="POST" action="{{route('admin.cms.update', $page->id)}}">
+        <form class="form" method="POST" action="{{route('admin.cms.update', $page->cms_page_id)}}">
             <input type="hidden" name="_method" value="PUT">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
         <div class="form-group">

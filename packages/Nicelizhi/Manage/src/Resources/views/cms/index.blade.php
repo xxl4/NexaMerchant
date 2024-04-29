@@ -27,6 +27,7 @@
                           <th>locale</th>
                           <th>url_key</th>
                           <th>meta_title</th>
+                          <th>updated_at</th>
                           <th>Action</th>
                         </tr>
                         </thead>
@@ -89,6 +90,9 @@
             data: 'meta_title'
           },
           {
+            data: 'updated_at'
+          },
+          {
             data: "cms_page_id",
             render: function(data, type, row, meta) {
               //console.log(row);
@@ -100,7 +104,7 @@
             [20, 50, 100],
             [20, 50, 100]
         ],
-        order: [[3, 'desc']],
+        order: [[4, 'desc']],
         processing: true,
         serverSide: true,
         
