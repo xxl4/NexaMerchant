@@ -117,7 +117,9 @@ class PageController extends Controller
      */
     public function edit($id)
     {
-        $page = $this->cmsRepository->findOrFail($id);
+        $local = request()->input("locale");
+        //$page = $this->cmsRepository->findOrFail($id);
+        $page = $this->cmsRepository->getCmsDetail($id, $local);
 
         return view('admin::cms.edit', compact('page'));
     }

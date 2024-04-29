@@ -1,7 +1,7 @@
 @php
     $currentLocale = core()->getRequestedLocale();
 
-    $selectedOptionIds = old('inventory_sources') ?? $page->channels->pluck('id')->toArray();
+    $selectedOptionIds = [];
 @endphp
 
 <x-admin::layouts>
