@@ -45,6 +45,7 @@ class PageController extends Controller
                 array( 'db' => '`p`.`page_title`',   'dt' => 'page_title', 'field'=>'page_title' ),
                 array( 'db' => '`p`.`url_key`',   'dt' => 'url_key', 'field'=>'url_key' ),
                 array( 'db' => '`p`.`meta_title`',   'dt' => 'meta_title', 'field'=>'meta_title' ),
+                array( 'db' => '`p`.`cms_page_id`',   'dt' => 'cms_page_id', 'field'=>'cms_page_id' ),
                 array( 'db' => '`p`.`locale`',   'dt' => 'locale', 'field'=>'locale' )
             );
             // SQL server connection information
