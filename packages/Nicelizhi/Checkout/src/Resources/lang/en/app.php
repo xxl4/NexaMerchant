@@ -3,7 +3,7 @@ return [
     'v1' => [
         'success' => [
             'Thank you' => 'Thank you',
-            'Your order is confirmed' => 'Ihre Bestellung ist bestätigt!',
+            'Your order is confirmed' => 'Your order is confirmed!',
             'We ve accepted your order and we re getting it ready Come back to this page for updates on your shipment status' => 'We’ve accepted your order, and we’re getting it ready. Come back to this page for updates on your shipment status.',
             'Order Data' => 'Order Data',
             'Order information' => 'Order information',
