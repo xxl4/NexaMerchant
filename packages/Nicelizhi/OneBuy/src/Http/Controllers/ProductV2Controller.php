@@ -222,7 +222,7 @@ class ProductV2Controller extends Controller
                 $product_category_id = 9;
             }
             
-            Cache::put($cache_key_1, $product_category_id, 36000);
+            Cache::put($cache_key_1, $product_category_id);
         }else{
             //$product_category = json_decode($product_category);
             //var_dump($product_category);exit;
@@ -292,7 +292,7 @@ class ProductV2Controller extends Controller
                 $product_attributes[] = $attribute;
             }
 
-            Cache::put($cache_key, json_encode($product_attributes), 36000);
+            Cache::put($cache_key, json_encode($product_attributes));
 
         }else{
             $product_attributes = json_decode($product_attributes, JSON_OBJECT_AS_ARRAY);
