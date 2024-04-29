@@ -8,6 +8,9 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redis;
 use Maatwebsite\Excel\Facades\Excel;
 use Webkul\Product\Repositories\ProductRepository;
+use Webkul\Product\Repositories\ProductReviewRepository;
+use Webkul\Product\Repositories\ProductReviewAttachmentRepository;
+use Illuminate\Support\Facades\Storage;
 
 class ImportProductCommentFromJudge extends Command
 {
@@ -32,7 +35,11 @@ class ImportProductCommentFromJudge extends Command
      *
      * @return void
      */
-    public function __construct(protected ProductRepository $productRepository)
+    public function __construct(
+        protected ProductRepository $productRepository,
+        protected ProductReviewRepository $productReviewRepository,
+        protected ProductReviewAttachmentRepository $productReviewAttachmentRepository
+    )
     {
         $this->num = 100;
         parent::__construct();
@@ -53,7 +60,7 @@ class ImportProductCommentFromJudge extends Command
 
         $client = new Client();
 
-        $url = "https://judge.me/api/v1/reviews/count?shop_domain=".$shop_domain."&api_token=".$api_token."&rating=5";
+        $url = "https://judge.me/api/v1/reviews/count?shop_domain=".$shop_domain."&api_token=".$api_token;
 
 
         $this->info($url);
@@ -93,7 +100,7 @@ class ImportProductCommentFromJudge extends Command
 
         $client = new Client();
 
-        $url = "https://judge.me/api/v1/reviews?shop_domain=".$shop_domain."&api_token=".$api_token."&rating=5&page=".$page."&per_page=".$this->num;
+        $url = "https://judge.me/api/v1/reviews?shop_domain=".$shop_domain."&api_token=".$api_token."&page=".$page."&per_page=".$this->num;
 
         $this->info($url);
 
@@ -111,6 +118,14 @@ class ImportProductCommentFromJudge extends Command
         }
 
         $body = json_decode($response->getBody(), true);
+
+        $arrContextOptions=array(
+            "ssl"=>array(
+                  "verify_peer"=>false,
+                  "verify_peer_name"=>false,
+            ),
+        );
+
 
         foreach($body['reviews'] as $key=>$item) {
 
@@ -133,10 +148,68 @@ class ImportProductCommentFromJudge extends Command
                     $this->error($this->cache_key.$product->id);
                     $len = $redis->hlen($this->cache_key.$product->id);
 
-                    //var_dump($item);exit;
+                     //insert into db 
+                    $review = $this->productReviewRepository->findWhere(['title'=>$item['title']])->first();
+                    
+                    //var_dump($review);
+                    if(empty($review)) {
+                        $data = [];
+                        $data['name'] = trim($item['reviewer']['name']);
+                        $data['title'] = trim($item['title']);
+                        $data['comment'] = trim($item['body']);
+                        $data['rating'] = $item['rating'];
+                        $data['status'] = "pending";
+                        $data['product_id'] = $product->id;
+                        $data['attachments'] = [];
+                        $data['customer_id'] = null;
+    
+                        if($item['published']==true) $data['status'] = "approved";
+                
+                        $review = $this->productReviewRepository->create($data);
+                        
+                        if(!empty($item['pictures'])) {
+
+                            $attachments = [];
+    
+                            foreach($item['pictures'] as $key=>$picture) {
+                                //var_dump($picture['urls']['original']);
+    
+                                $info = pathinfo($picture['urls']['original']);
+    
+                                //var_dump($info);exit;
+    
+                                $this->info($info['filename']);
+                                $image_path = "product/".$product->id."/".$info['filename'].".jpg";
+                                $local_image_path = "storage/".$image_path;
+                                
+                                $attachments = $this->productReviewAttachmentRepository->findWhere(['path'=>$local_image_path])->first();
+                                if(!empty($attachments)) continue;
+
+    
+                                $contents = file_get_contents($picture['urls']['original'], false, stream_context_create($arrContextOptions));
+                                Storage::disk("images")->put($local_image_path, $contents);
+    
+                                $mimeType = Storage::disk("images")->mimeType($local_image_path);
+
+                                $fileType = explode('/', $mimeType);
+    
+                                $attachments = [];
+                                $attachments['type'] = $fileType[0];
+                                $attachments['mime_type'] = $fileType[1];
+                                $attachments['path'] = $local_image_path;
+                                $attachments['review_id'] = $review->id;
+                                //var_dump($attachments);
+    
+                                $this->productReviewAttachmentRepository->create($attachments);
+    
+    
+                            }
+                            
+                        }
+                    }
                 
                     $this->info($len);
-                    if($len < 6) {
+                    if($len < 6 && $item['published']==true) {
                         $value = [];
                         $value['name'] = trim($item['reviewer']['name']);
                         $value['title'] = trim($item['title']);
@@ -151,7 +224,7 @@ class ImportProductCommentFromJudge extends Command
                     //var_dump($item);exit;
                 
                     $this->info($len);
-                    if($len < 6) {
+                    if($len < 6 && $item['published']==true) {
                         $value = [];
                         $value['name'] = trim($item['reviewer']['name']);
                         $value['title'] = trim($item['title']);
@@ -160,8 +233,6 @@ class ImportProductCommentFromJudge extends Command
                         //$redis->hSet($this->cache_key.$product->id, $item['id'], json_encode($value));
                         $redis->hSet("onebuy_v2_product_comments_".$product->id, $item['id'], json_encode($value));
                     }
-
-
                 }
             } 
         }

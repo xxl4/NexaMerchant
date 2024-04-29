@@ -16,6 +16,7 @@ class ProductReview extends Model implements ProductReviewContract
     use HasFactory;
 
     protected $fillable = [
+        'id',
         'comment',
         'title',
         'rating',
