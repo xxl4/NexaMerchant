@@ -57,7 +57,7 @@ class WebhooksController extends Controller
      * 
      */
     public function orders_updated(Request $request) {
-        Log::info("orders_updated ".json_encode($request->all()));
+        //Log::info("orders_updated ".json_encode($request->all()));
 
         $req = $request->all();
 
