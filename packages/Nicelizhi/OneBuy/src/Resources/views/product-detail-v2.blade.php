@@ -497,7 +497,7 @@ Apt / Suite / Other </label>
 @lang('onebuy::app.product.order.State/Province') </label>
 </div>
 <div class="shipping-info-item shipping-info-flex-half">
-<input name="zip_code" class="shipping-info-input zip_code" />
+<input name="zip_code" pattern="[0-9]{5}" type="number" class="shipping-info-input zip_code" />
 <label id="zip_code-error" class="shipping-info-error">
 </label>
 <label class="shipping-info-label">
