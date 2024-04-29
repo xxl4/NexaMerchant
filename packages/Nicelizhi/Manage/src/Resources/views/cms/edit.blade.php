@@ -11,6 +11,16 @@
 
     {{ $currentLocale->name }}
     <div class="card-body">
+
+        @foreach (core()->getAllLocales() as $locale)
+            <a
+                href="?{{ Arr::query(['locale' => $locale->code]) }}"
+                class="btn  {{ $locale->code == $currentLocale->code ? 'btn-primary' : ''}}"
+            >
+                {{ $locale->name }}
+            </a>
+        @endforeach
+
         <form class="form" method="POST" action="{{route('admin.cms.update', $page->id)}}">
             <input type="hidden" name="_method" value="PUT">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">

@@ -89,9 +89,10 @@
             data: 'meta_title'
           },
           {
-            data: "id",
+            data: "cms_page_id",
             render: function(data, type, row, meta) {
-              return '<a href="./cms/edit/'+data+'" class="btn btn-primary btn-sm">View</a>';
+              //console.log(row);
+              return '<a href="./cms/edit/'+data+'?locale='+ row.locale +'" class="btn btn-primary btn-sm">View</a>';
             }
           }
         ],
