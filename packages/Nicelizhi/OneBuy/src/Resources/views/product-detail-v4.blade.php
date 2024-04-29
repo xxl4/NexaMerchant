@@ -1131,7 +1131,8 @@ Apt / Suite / Other </label>
                         if(res.success == true) {
                             //Goto('/checkout/v1/success/'+localStorage.getItem('order_id'));
                             localStorage.setItem("re_order_id", 1);
-                            window.location.href='/checkout/v1/success/'+localStorage.getItem('order_id');
+                            window.location.href='/onebuy/checkout/v1/success/'+localStorage.getItem('order_id');
+                            return true;
                             //actions.redirect('/checkout/v1/success/'+localStorage.getItem('order_id'));
                         }
                         if(res.error == 'INSTRUMENT_DECLINED') {
@@ -2191,7 +2192,8 @@ function GotoNotRequest(url) {
                                 
                                 if(res.success == true) {
                                     localStorage.setItem("re_order_id", 1);
-                                    window.location.href='/checkout/v1/success/'+localStorage.getItem('order_id');
+                                    window.location.href='/onebuy/checkout/v1/success/'+localStorage.getItem('order_id');
+                                    return true;
                                     //actions.redirect('/checkout/v1/success/'+localStorage.getItem('order_id'));
                                 }
                                 if(res.error == 'INSTRUMENT_DECLINED') {
@@ -2563,7 +2565,8 @@ function GotoNotRequest(url) {
                                 'event_category': 'ecommerce'
                             });
                             localStorage.setItem("re_order_id", 1);
-                            window.location.href="/checkout/v1/success/"+data.order.id;
+                            window.location.href="/onebuy/checkout/v1/success/"+data.order.id;
+                            return true;
 
                         }).catch((response) => {
                             $('#loading').hide();
