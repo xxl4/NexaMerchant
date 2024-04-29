@@ -368,31 +368,31 @@ obApi('track', 'PAGE_VIEW');
                             <div class="content-box__row text-container">
                                 <h2 class="heading-2 os-step__title">@lang('checkout::app.v1.success.Customer information')</h2>
                                 <p>
-                                    <span class="left-info">@lang('checkout::app.v1.success.First Name'): </span> <strong style="font-size:20px;padding-left:10px;" class="customer_first_name right-info"></strong>
+                                    <strong class="left-info" style="font-size:20px;">@lang('checkout::app.v1.success.First Name'): </strong> <span style="padding-left:10px;" class="customer_first_name right-info"></span>
                                 </p>
                                 <p>
-                                    <span class="left-info">@lang('checkout::app.v1.success.Last Name'): </span> <strong style="font-size:20px;padding-left:10px;" class="customer_last_name right-info"></strong>
+                                    <strong class="left-info" style="font-size:20px;">@lang('checkout::app.v1.success.Last Name'): </strong> <span style="padding-left:10px;" class="customer_last_name right-info"></span>
                                 </p>
                                 <p>
-                                    <span class="left-info">@lang('checkout::app.v1.success.Email'): </span> <strong style="font-size:20px;padding-left:10px;" class="customer_email right-info"></strong>
+                                    <strong class="left-info" style="font-size:20px;">@lang('checkout::app.v1.success.Email'): </strong> <span style="padding-left:10px;" class="customer_email right-info"></span>
                                 </p>
                                 <p>
-                                    <span class="left-info">@lang('checkout::app.v1.success.Phone Number'): </span> <strong style="font-size:20px;padding-left:10px;" class="customer_phone right-info"></strong>
+                                    <strong class="left-info" style="font-size:20px;">@lang('checkout::app.v1.success.Phone Number'): </strong> <span style="padding-left:10px;" class="customer_phone right-info"></span>
                                 </p>
                                 <p>
-                                    <span class="left-info">@lang('checkout::app.v1.success.Street Address'): </span> <strong style="font-size:20px;padding-left:10px;" class="customer_address_1 right-info"></strong>
+                                    <strong class="left-info" style="font-size:20px;">@lang('checkout::app.v1.success.Street Address'): </strong> <span style="padding-left:10px;" class="customer_address_1 right-info"></span>
                                 </p>
                                 <p>
-                                    <span class="left-info">@lang('checkout::app.v1.success.City'): </span> <strong style="font-size:20px;padding-left:10px;" class="customer_city right-info"></strong>
+                                    <strong class="left-info" style="font-size:20px;">@lang('checkout::app.v1.success.City'): </strong> <span style="padding-left:10px;" class="customer_city right-info"></span>
                                 </p>
                                 <p>
-                                    <span class="left-info">@lang('checkout::app.v1.success.Country'): </span> <strong style="font-size:20px;padding-left:10px;" class="customer_country right-info"></strong>
+                                    <strong class="left-info" style="font-size:20px;">@lang('checkout::app.v1.success.Country'): </strong> <span style="padding-left:10px;" class="customer_country right-info"></span>
                                 </p>
                                 <p>
-                                    <span class="left-info">@lang('checkout::app.v1.success.State/Province'): </span> <strong style="font-size:20px;padding-left:10px;" class="customer_state right-info"></strong>
+                                    <strong class="left-info" style="font-size:20px;">@lang('checkout::app.v1.success.State/Province'): </strong> <span style="padding-left:10px;" class="customer_state right-info"></span>
                                 </p>
                                 <p>
-                                    <span class="left-info">@lang('checkout::app.v1.success.Zip/Postal Code'): </span> <strong style="font-size:20px;padding-left:10px;" class="customer_zip right-info"></strong>
+                                    <strong class="left-info" style="font-size:20px;">@lang('checkout::app.v1.success.Zip/Postal Code'): </strong> <span style="padding-left:10px;" class="customer_zip right-info"></span>
                                 </p>
                             </div>
                         </div>
@@ -585,12 +585,19 @@ obApi('track', 'PAGE_VIEW');
 
         function setProductHtml() {
             var product_html = "";
+            var product_attributes_html = "";
             <?php
             $products = $order->items;
-            foreach($products as $key=>$product) {
-                //var_dump($product);
+            foreach($products as $key=>$product) { ?>
+            product_attributes_html += "<p>";
+            <?php 
+                //var_dump($product->additional['attributes']);exit;
+                foreach($product->additional['attributes'] as $attribute) {
             ?>
-                product_html += '<p class="order-date"><?php echo addslashes($product->name);?> ×<span class="order-count">(<?php echo $product->qty_ordered;?>)</span></p> ';
+                product_attributes_html += "<span><?php echo $attribute['attribute_name']; ?>: <?php echo $attribute['option_label']; ?></span>";
+            <?php } ?>
+                product_attributes_html += "</p>";
+                product_html += '<p class="order-date"><strong><?php echo addslashes($product->name);?> </strong> ×<span class="order-count">(<?php echo $product->qty_ordered;?>)</span> ' + product_attributes_html +'</p> ';
             <?php } ?>
 
             document.querySelector('.product-content').innerHTML = product_html;
