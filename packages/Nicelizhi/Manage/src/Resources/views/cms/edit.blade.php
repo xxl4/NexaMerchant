@@ -1,7 +1,7 @@
 @php
     $currentLocale = core()->getRequestedLocale();
 
-    $selectedOptionIds = [];
+    $selectedOptionIds = [1];
 @endphp
 
 <x-admin::layouts>
@@ -31,6 +31,21 @@
         <div class="form-group">
             <label for="slug">Url Key</label>
             <input type="text" class="form-control" id="url_key" placeholder="Url Key" name="<?php echo $currentLocale->code."[url_key]";?>" value="<?php echo $page->url_key;?>">
+        </div>
+
+        <div class="form-group">
+            <label for="slug">meta title</label>
+            <input type="text" class="form-control" id="meta_title" placeholder="meta title" name="<?php echo $currentLocale->code."[meta_title]";?>" value="<?php echo $page->meta_title;?>">
+        </div>
+
+        <div class="form-group">
+            <label for="slug">meta description</label>
+            <input type="text" class="form-control" id="meta_description" placeholder="meta description" name="<?php echo $currentLocale->code."[meta_description]";?>" value="<?php echo $page->meta_description;?>">
+        </div>
+
+        <div class="form-group">
+            <label for="slug">meta keywords</label>
+            <input type="text" class="form-control" id="meta_keywords" placeholder="meta keywords" name="<?php echo $currentLocale->code."[meta_keywords]";?>" value="<?php echo $page->meta_keywords;?>">
         </div>
         
         <div class="form-group">
