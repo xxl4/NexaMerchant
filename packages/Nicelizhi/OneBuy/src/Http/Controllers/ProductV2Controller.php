@@ -198,9 +198,10 @@ class ProductV2Controller extends Controller
                 
                 $skus[] = $sku;
             }
-            Cache::put($cache_key, json_encode($skus), 36000);
-            Cache::put($size_cache_key, json_encode($qty_items_size), 36000);
-            Cache::put($color_cache_key, json_encode($qty_items_color), 36000);
+            Cache::put($cache_key, json_encode($skus));
+            //Log::info(json_encode($qty_items_size));
+            //Cache::put($size_cache_key, json_encode($qty_items_size));
+            //Cache::put($color_cache_key, json_encode($qty_items_color));
         }else {
             $skus = json_decode($skus, JSON_OBJECT_AS_ARRAY);
         }
