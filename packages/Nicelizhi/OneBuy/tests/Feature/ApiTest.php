@@ -74,10 +74,11 @@ it('can create a paypal order use api', function () {
         'bill_address' => "",
         'bill_code' => "",
         'error' => false,
+        'coupon_code' => ''
     ];
 
     // 201 http created
-    $response = $this->post('/onebuy/order/addr/after',$data);
+    $response = $this->post('/api/onebuy/order/addr/after',$data);
     //var_dump($response);
     $response->assertStatus(200);
 
@@ -155,10 +156,11 @@ it('can create a airwallex order use api', function () {
         'bill_address' => "",
         'bill_code' => "",
         'error' => false,
+        'coupon_code' => ''
     ];
 
     // 201 http created
-    $response = $this->post('/onebuy/order/add/sync',$data);
+    $response = $this->post('/api/onebuy/order/add/sync',$data);
     //var_dump($response);
     $response->assertStatus(200);
 });
