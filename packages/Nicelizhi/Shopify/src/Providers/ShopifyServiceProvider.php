@@ -109,7 +109,8 @@ class ShopifyServiceProvider extends ServiceProvider
 
                 \Nicelizhi\Shopify\Console\Commands\Refund\Post::class,
 
-                \Nicelizhi\Shopify\Console\Commands\CustomCollection\Get::class
+                \Nicelizhi\Shopify\Console\Commands\CustomCollection\Get::class,
+                \Nicelizhi\Shopify\Console\Commands\CustomCollection\Products::class
             ]);
         }
     }
