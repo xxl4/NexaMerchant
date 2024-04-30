@@ -11,7 +11,7 @@
   rel="stylesheet"
   href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
 />
-<script src="https://shop.hatmeo.com/js/recommended.js?v=<?php echo time();?>"></script>
+<script src="/template-common/js/recommended.js?v=<?php echo time();?>"></script>
 <script src="https://unpkg.com/jquery@3.3.1/dist/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -579,7 +579,9 @@ obApi('track', 'PAGE_VIEW');
             // setProductHtml(order_param.products, order_param.produt_amount_base);
             setProductHtml();
             showPaySuccess();
-            //getRecommendedData(order_param.payment_cancel_url);
+            console.log("getRecommendedData");
+            console.log(order_param.items[0].sku);
+            getRecommendedData("/onebuy/v4/"+order_param.items[0].sku);
             
         }
 
