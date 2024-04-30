@@ -415,6 +415,21 @@ obApi('track', 'PAGE_VIEW');
 </div>
 </main>
 <style>
+    .terms-block {
+    min-height: auto;
+    margin: 5px 0;
+    text-align: center;
+    padding: 5px 0;
+}
+    .terms-block a {
+    margin: 0 10px 0 0;
+    display: inline-block;
+    text-decoration: none;
+    color: #5c5c5c;
+    font-size: 12px;
+    font-family: Helvetica Regular;
+    opacity: 1;
+}
             .main__footer {
                 background-color: #000;
                 color: #fff;
