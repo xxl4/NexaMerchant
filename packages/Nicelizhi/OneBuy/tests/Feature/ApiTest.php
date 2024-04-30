@@ -35,7 +35,7 @@ it('can create a paypal order use api', function () {
         'address' => '',
         'code' => '',
         'product_delivery' => $shippment_price,
-        'currency' => 'USD',
+        'currency' => core()->getCurrentCurrencyCode(),
         'product_price' => $price * $total,
         'total' => $price * $total + $shippment_price,
         'total' => $total,
@@ -79,7 +79,7 @@ it('can create a paypal order use api', function () {
 
     // 201 http created
     $response = $this->post('/api/onebuy/order/addr/after',$data);
-    //var_dump($response);
+    var_dump($response);
     $response->assertStatus(200);
 
 });
@@ -117,7 +117,7 @@ it('can create a airwallex order use api', function () {
         'address' => '2025 McVaney Road',
         'code' => '37197',
         'product_delivery' => $shippment_price,
-        'currency' => 'USD',
+        'currency' => core()->getCurrentCurrencyCode(),
         'product_price' => $price * $total,
         'total' => $price * $total + $shippment_price,
         'total' => $total,
@@ -146,7 +146,7 @@ it('can create a airwallex order use api', function () {
         'domain_name' => config("app.url"),
         'price_template' => "",
         'omnisend' => "",
-        'payment_account' => "paypal",
+        'payment_account' => "airwallex",
         'shipping_address' => "",
         'bill_first_name' => "",
         'bill_second_name' => "",
