@@ -84,7 +84,7 @@ class Post extends Command
         }
         
 
-        $this->checkLog();
+        //$this->checkLog();
 
         foreach($lists as $key=>$list) {
             $this->info("start post order " . $list->id);
