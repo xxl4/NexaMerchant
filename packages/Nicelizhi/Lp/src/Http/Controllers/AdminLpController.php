@@ -190,15 +190,15 @@ class AdminLpController extends Controller
 
         //git push
 
-        if (!is_dir(public_path()."/resource/".$default_country."/".$slug)) {
+        if (!is_dir(public_path()."/resources/".$default_country."/".$slug)) {
             // dir doesn't exist, make it
-            mkdir(public_path()."/resource/".$default_country."/".$slug, 0775, true);
+            mkdir(public_path()."/resources/".$default_country."/".$slug, 0775, true);
         }
 
-        $path = public_path()."/resource/".$default_country."/".$slug."/index.html";
+        $path = public_path()."/resources/".$default_country."/".$slug."/index.html";
         file_put_contents($path, $html);
 
-        $path = public_path()."/resource/";
+        $path = public_path()."/resources/";
         $command = "cd ".$path." && git add . && git commit -m 'auto ".$slug."--".date("Y-m-d H:i:s")."' . ";
         //echo $command."\r\n";
         exec($command, $res);
