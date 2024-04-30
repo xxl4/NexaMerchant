@@ -4,6 +4,7 @@ namespace App\Exceptions;
 
 use Throwable;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 use Illuminate\Support\Facades\Log;
 
 class Handler extends ExceptionHandler
@@ -36,20 +37,17 @@ class Handler extends ExceptionHandler
     public function report(Throwable $exception)
     {
 
-        // if ($exception instanceof \Exception) {
-        //     // emails.exception is the template of your email
-        //     // it will have access to the $error that we are passing below
-        //     // Mail::send('emails.exception', ['error' => $e->getMessage()], function ($m) {
-        //     //     $m->to('your email', 'your name')->subject('your email subject');
-        //     // });
+        if ($exception instanceof \HttpException) {
+            $message = $exception->getMessage();
+            if(!empty($message)) {
+                $pos = strpos($message, "bagisto");
 
-            
-
-        // }
-
-       //var_dump($exception->getCode());
-
-       //Log::info(json_encode($exception));
+                if ($pos !== false) {
+                    \Nicelizhi\Shopify\Helpers\Utils::send($message. " code is " .$exception->getCode(). " please check the log file for more details");
+                } 
+                
+            } 
+        }
 
        
 
@@ -65,18 +63,18 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Throwable $exception)
     {
-        if ($exception instanceof \Exception) {
-            $message = $exception->getMessage();
-            if(!empty($message)) {
-                $pos = strpos($message, "bagisto");
-
-                if ($pos !== false) {
-                    \Nicelizhi\Shopify\Helpers\Utils::send($message. " code is " .$exception->getCode(). " please check the log file for more details");
-                } 
-                
-            } 
-        }
         
         return parent::render($request, $exception);
     }
+
+    /**
+     * Register the exception handling callbacks for the application.
+     */
+    public function register(): void
+    {
+        //$this->stopIgnoring(HttpException::class);
+    
+        // ...
+    }
+
 }
