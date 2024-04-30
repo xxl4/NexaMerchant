@@ -141,8 +141,8 @@ class AdminLpController extends Controller
         $model = \Nicelizhi\Lp\Models\Lp::where('id', $id)->first();
 
         $newModel = $model->replicate();
-        $newModel->name = $model->name.'-copy';
-        $newModel->slug = $model->slug.'-copy';
+        $newModel->name = $model->name.'-'.time().'-copy';
+        $newModel->slug = $model->slug.'-'.time().'-copy';
         $newModel->save();
         
         session()->flash('success', trans('admin::app.cms.update-success'));
