@@ -199,7 +199,7 @@ class AdminLpController extends Controller
         file_put_contents($path, $html);
 
         $path = public_path()."/resources/";
-        $command = "cd ".$path." && git add . && git commit -m 'auto ".$slug."--".date("Y-m-d H:i:s")."' . && git push";
+        $command = "cd ".$path." && git pull && git add . && git commit -m 'auto ".$slug."--".date("Y-m-d H:i:s")."' . && git push";
         //echo $command."\r\n";
         exec($command, $res);
         //exit;
