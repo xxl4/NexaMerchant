@@ -15,7 +15,7 @@ class Refund
      */
     public function afterCreate($refund)
     {
-        Log::info("refund listeners " . json_encode($refund));
+        //Log::info("refund listeners " . json_encode($refund));
         $productIds = $refund->items
             ->pluck('product_id')
             ->toArray();
