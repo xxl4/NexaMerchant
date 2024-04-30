@@ -1210,7 +1210,7 @@ class ProductController extends Controller
                 "discount_price" => $variants[0]['price'],
                 "origin_price" => $variants[0]['compare_at_price'],
                 "image_url" => $images[0]['src'],
-                "url" => $shopifyStore->shopify_app_host_name . "/" . $product->handle
+                "url" => $shopifyStore->shopify_app_host_name . "/products/" . $product->handle
             ];
         }
  
