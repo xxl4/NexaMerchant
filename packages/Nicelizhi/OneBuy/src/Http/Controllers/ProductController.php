@@ -1184,10 +1184,43 @@ class ProductController extends Controller
     public function recommended_query(Request $request) {
 
         $checkout_path = $request->input("checkout_path");
+
+        //select four recommended products
+
+        $shopify_store_id = config('shopify.shopify_store_id');
+
+        $products = \Nicelizhi\Shopify\Models\ShopifyProduct::where("shopify_store_id",$shopify_store_id)->where("status", "active")->select(['title','handle',"variants","images"])->limit(5)->get();
+
         $recommended_info = [];
+
+        $shopifyStore = Cache::get("shopify_store_".$shopify_store_id);
+
+        if(empty($shopifyStore)){
+            $shopifyStore = \Nicelizhi\Shopify\Models\ShopifyStore::where('shopify_store_id', $shopify_store_id)->first();
+            Cache::put("shopify_store_".$shopify_store_id, $shopifyStore, 3600);
+        }
+
+        foreach($products as $key=> $product) {
+            $images = $product->images;
+            $variants = $product->variants;
+
+            $recommended_info[$key] = [
+                "title" => $product->title,
+                "handle" => $product->handle,
+                "discount_price" => $variants[0]['price'],
+                "origin_price" => $variants[0]['compare_at_price'],
+                "image_url" => $images[0]['src'],
+                "url" => $shopifyStore->shopify_app_host_name . "/" . $product->handle
+            ];
+        }
+ 
+
+
+        
         return new JsonResource([
             'checkout_path' => $checkout_path,
             'recommended_info' => $recommended_info,
+            'currency_symbol' => core()->getCurrentCurrencyCode(),
             'recommended_info_title' => 'recommended_info_title'
         ]);
 

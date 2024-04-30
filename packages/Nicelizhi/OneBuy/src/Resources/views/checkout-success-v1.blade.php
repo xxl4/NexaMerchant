@@ -11,7 +11,7 @@
   rel="stylesheet"
   href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
 />
-<script src="https://shop.hatmeo.com/js/recommended.js?v=<?php echo time();?>"></script>
+<script src="/template-common/js/recommended.js?v=<?php echo time();?>"></script>
 <script src="https://unpkg.com/jquery@3.3.1/dist/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -579,7 +579,9 @@ obApi('track', 'PAGE_VIEW');
             // setProductHtml(order_param.products, order_param.produt_amount_base);
             setProductHtml();
             showPaySuccess();
-            //getRecommendedData(order_param.payment_cancel_url);
+            console.log("getRecommendedData");
+            console.log(order_param.items[0].sku);
+            getRecommendedData("/onebuy/v4/"+order_param.items[0].sku);
             
         }
 
@@ -592,10 +594,11 @@ obApi('track', 'PAGE_VIEW');
             product_attributes_html += "<p>";
             <?php 
                 //var_dump($product->additional['attributes']);exit;
+                if(isset($product->additional['attributes'])) {
                 foreach($product->additional['attributes'] as $attribute) {
             ?>
                 product_attributes_html += "<span><?php echo $attribute['attribute_name']; ?>: <?php echo $attribute['option_label']; ?></span>";
-            <?php } ?>
+            <?php } } ?>
                 product_attributes_html += "</p>";
                 product_html += '<p class="order-date"><strong><?php echo addslashes($product->name);?> </strong> ×<span class="order-count">(<?php echo $product->qty_ordered;?>)</span> ' + product_attributes_html +'</p> ';
             <?php } ?>

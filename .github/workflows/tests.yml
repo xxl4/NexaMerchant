@@ -62,5 +62,11 @@ jobs:
         run: mysql -u root -ppassword -h mysql test < db.sql
       - name: route list
         run: php artisan route:list
-      - name: Tests
-        run: ./vendor/bin/pest
+      - name: Execute tests (Unit and Feature tests) via PestPHP
+        run: vendor/bin/pest --coverage-clover clover.xml
+      - name: Generate test coverage badge
+        uses: timkrase/phpunit-coverage-badge@v1.2.0
+        with:
+          coverage_badge_path: 'badge-coverage.svg'
+          push_badge: true
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
