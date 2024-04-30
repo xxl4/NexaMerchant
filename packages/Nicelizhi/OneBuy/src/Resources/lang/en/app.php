@@ -97,4 +97,5 @@ return [
     'order-success' => [
         
     ],
+    'You may also like' => 'You may also like',
 ];

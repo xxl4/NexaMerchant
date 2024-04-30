@@ -83,4 +83,5 @@ return [
     'order-success' => [
         
     ],
+    'You may also like' => 'Tu pourrais aussi aimer',
 ];

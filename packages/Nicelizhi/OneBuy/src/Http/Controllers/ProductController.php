@@ -1221,7 +1221,7 @@ class ProductController extends Controller
             'checkout_path' => $checkout_path,
             'recommended_info' => $recommended_info,
             'currency_symbol' => core()->getCurrentCurrencyCode(),
-            'recommended_info_title' => 'recommended_info_title'
+            'recommended_info_title' => __('onebuy::app.You may also like')
         ]);
 
     }
