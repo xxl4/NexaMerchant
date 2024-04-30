@@ -66,14 +66,13 @@ class Handler extends ExceptionHandler
     public function render($request, Throwable $exception)
     {
         if ($exception instanceof \Exception) {
-            if(!empty($exception->getMessage())) {
-                $pos      = strripos($exception->getMessage(), "bagisto");
+            $message = $exception->getMessage();
+            if(!empty($message)) {
+                $pos = strpos($message, "bagisto");
 
-                if ($pos === false) {
-                    
-                } else {
-                    \Nicelizhi\Shopify\Helpers\Utils::send(json_encode($exception->getMessage()). " code is " .$exception->getCode(). " please check the log file for more details");
-                }
+                if ($pos !== false) {
+                    \Nicelizhi\Shopify\Helpers\Utils::send($message. " code is " .$exception->getCode(). " please check the log file for more details");
+                } 
                 
             } 
         }

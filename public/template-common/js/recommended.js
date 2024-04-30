@@ -32,7 +32,7 @@ function setRecommended(data) {
         recommendedProduct.setAttribute('id', 'recommended');
         var grid = document.querySelector('.large--five-sixths');
         var footer = document.querySelector('.large--five-sixths .main__footer');
-        var html = '<div class="content-box"><h2 class="heading-2 os-step__title">' + data.recommended_info_title + '</h2>';
+        var html = '<div class="content-box"><h2 class="heading-2 os-step__title">' + data.data.recommended_info_title + '</h2>';
         html += '<div id="my-swiper" class="swiper-container">';
         html += '<div class="swiper-wrapper">';
         for (var i = 0; i < products.length; i++) {
