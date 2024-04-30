@@ -67,7 +67,14 @@ class Handler extends ExceptionHandler
     {
         if ($exception instanceof \Exception) {
             if(!empty($exception->getMessage())) {
-                \Nicelizhi\Shopify\Helpers\Utils::send(json_encode($exception->getMessage()). " code is " .$exception->getCode(). " please check the log file for more details");
+                $pos      = strripos($exception->getMessage(), "bagisto");
+
+                if ($pos === false) {
+                    
+                } else {
+                    \Nicelizhi\Shopify\Helpers\Utils::send(json_encode($exception->getMessage()). " code is " .$exception->getCode(). " please check the log file for more details");
+                }
+                
             } 
         }
         
