@@ -592,10 +592,11 @@ obApi('track', 'PAGE_VIEW');
             product_attributes_html += "<p>";
             <?php 
                 //var_dump($product->additional['attributes']);exit;
+                if(isset($product->additional['attributes'])) {
                 foreach($product->additional['attributes'] as $attribute) {
             ?>
                 product_attributes_html += "<span><?php echo $attribute['attribute_name']; ?>: <?php echo $attribute['option_label']; ?></span>";
-            <?php } ?>
+            <?php } } ?>
                 product_attributes_html += "</p>";
                 product_html += '<p class="order-date"><strong><?php echo addslashes($product->name);?> </strong> ×<span class="order-count">(<?php echo $product->qty_ordered;?>)</span> ' + product_attributes_html +'</p> ';
             <?php } ?>
