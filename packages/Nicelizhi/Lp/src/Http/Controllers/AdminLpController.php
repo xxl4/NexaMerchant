@@ -9,6 +9,7 @@ use Nicelizhi\Manage\Http\Controllers\Controller;
 use Nicelizhi\Lp\DataGrids\Lp\LpDataGrid;
 use Nicelizhi\Lp\Contracts\Lp;
 use Nicelizhi\Manage\Helpers\SSP;
+use Illuminate\Support\Facades\Storage;
 
 use Webkul\Admin\Http\Requests\MassDestroyRequest;
 
@@ -174,6 +175,35 @@ class AdminLpController extends Controller
         // Event::dispatch('cms.pages.update.after', $page);
 
         session()->flash('success', trans('admin::app.cms.update-success'));
+        $default_country = config('onebuy.default_country');
+
+        //save this file to specific folder
+        // $default_country = config('onebuy.default_country');
+        // if(file_exists(public_path()."/resources/".$default_country."/".$slug)) {
+        //     mkdir(public_path()."/resources/".$default_country."/".$slug);
+        // }
+        // $local_image_path = "/resources/".$default_country."/".$slug."/index.html";
+        // //echo $local_image_path."\r\n";
+        // //echo public_path()."/resources/".$default_country."/".$slug."\r\n";
+        // //exit;
+        // Storage::disk("public")->put($local_image_path, $html);
+
+        //git push
+
+        if (!is_dir(public_path()."/resource/".$default_country."/".$slug)) {
+            // dir doesn't exist, make it
+            mkdir(public_path()."/resource/".$default_country."/".$slug, 0775, true);
+        }
+
+        $path = public_path()."/resource/".$default_country."/".$slug."/index.html";
+        file_put_contents($path, $html);
+
+        $path = public_path()."/resource/";
+        $command = "cd ".$path." && git add . && git commit -m 'auto ".$slug."--".date("Y-m-d H:i:s")."' . ";
+        //echo $command."\r\n";
+        exec($command, $res);
+        //exit;
+
 
         return redirect()->route('admin.lp.index');
     }
