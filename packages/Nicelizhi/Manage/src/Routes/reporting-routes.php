@@ -8,7 +8,7 @@ use Nicelizhi\Manage\Http\Controllers\Reporting\SaleController;
 /**
  * Reporting routes.
  */
-Route::group(['middleware' => ['admin'], 'prefix' => config('app.admin_url')], function () {
+Route::group(['middleware' => ['admin','admin_option_log'], 'prefix' => config('app.admin_url')], function () {
     Route::prefix('reporting')->group(function () {
         /**
          * CUstomer routes.

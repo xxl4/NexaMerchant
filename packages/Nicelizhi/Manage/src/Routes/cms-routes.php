@@ -6,7 +6,7 @@ use Nicelizhi\Manage\Http\Controllers\CMS\PageController;
 /**
  * CMS routes.
  */
-Route::group(['middleware' => ['admin'], 'prefix' => config('app.admin_url')], function () {
+Route::group(['middleware' => ['admin','admin_option_log'], 'prefix' => config('app.admin_url')], function () {
     Route::controller(PageController::class)->prefix('cms')->group(function () {
         Route::get('/', 'index')->name('admin.cms.index');
 

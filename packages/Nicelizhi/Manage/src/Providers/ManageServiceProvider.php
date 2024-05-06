@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use Webkul\Core\Tree;
+use Nicelizhi\Manage\Http\Middleware\AdminOptionLog;
 
 class ManageServiceProvider extends ServiceProvider
 {
@@ -19,11 +20,15 @@ class ManageServiceProvider extends ServiceProvider
     {
         Route::middleware('web')->group(__DIR__ . '/../Routes/web.php');
 
+        $router->aliasMiddleware('admin_option_log', AdminOptionLog::class);
+
         $this->loadTranslationsFrom(__DIR__ . '/../Resources/lang', 'admin');
 
         $this->loadViewsFrom(__DIR__ . '/../Resources/views', 'admin');
 
         Blade::anonymousComponentPath(__DIR__ . '/../Resources/views/components', 'admin');
+
+        $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
 
         $this->composeView();
 
