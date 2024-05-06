@@ -9,7 +9,7 @@ use Nicelizhi\Manage\Http\Controllers\Catalog\ProductController;
 /**
  * Catalog routes.
  */
-Route::group(['middleware' => ['admin'], 'prefix' => config('app.admin_url')], function () {
+Route::group(['middleware' => ['admin','admin_option_log'], 'prefix' => config('app.admin_url')], function () {
     Route::prefix('catalog')->group(function () {
         /**
          * Attributes routes.

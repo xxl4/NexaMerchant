@@ -200,7 +200,7 @@ class ProductController extends Controller
             $prod_id = $product->id;
 
             $prod_comment_file = storage_path("app/").$filePath;
-            Excel::import(new \Nicelizhi\OneBuy\Imports\ProdCommentsImport($prod_id), $prod_comment_file);
+            Excel::import(new \Nicelizhi\OneBuy\Imports\ProdCommentsImport($prod_id, $force), $prod_comment_file);
 
         }
 

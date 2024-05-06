@@ -13,7 +13,7 @@ use Nicelizhi\Manage\Http\Controllers\Marketing\SitemapController;
 /**
  * Marketing routes.
  */
-Route::group(['middleware' => ['admin'], 'prefix' => config('app.admin_url')], function () {
+Route::group(['middleware' => ['admin','admin_option_log'], 'prefix' => config('app.admin_url')], function () {
     Route::prefix('marketing')->group(function () {
         /**
          * Promotions routes.
