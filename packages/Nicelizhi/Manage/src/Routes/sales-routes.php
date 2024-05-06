@@ -10,7 +10,7 @@ use Nicelizhi\Manage\Http\Controllers\Sales\TransactionController;
 /**
  * Sales routes.
  */
-Route::group(['middleware' => ['admin'], 'prefix' => config('app.admin_url')], function () {
+Route::group(['middleware' => ['admin','admin_option_log'], 'prefix' => config('app.admin_url')], function () {
     Route::prefix('sales')->group(function () {
         /**
          * Invoices routes.

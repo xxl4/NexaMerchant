@@ -6,7 +6,7 @@ use Nicelizhi\Manage\Http\Controllers\ConfigurationController;
 /**
  * Configuration routes.
  */
-Route::group(['middleware' => ['admin'], 'prefix' => config('app.admin_url')], function () {
+Route::group(['middleware' => ['admin','admin_option_log'], 'prefix' => config('app.admin_url')], function () {
     Route::controller(ConfigurationController::class)->prefix('configuration/{slug?}/{slug2?}')->group(function () {
         Route::get('', 'index')->name('admin.configuration.index');
 

@@ -15,7 +15,7 @@ use Nicelizhi\Manage\Http\Controllers\Settings\UserController;
 /**
  * Settings routes.
  */
-Route::group(['middleware' => ['admin'], 'prefix' => config('app.admin_url')], function () {
+Route::group(['middleware' => ['admin','admin_option_log'], 'prefix' => config('app.admin_url')], function () {
     Route::prefix('settings')->group(function () {
         /**
          * Channels routes.
