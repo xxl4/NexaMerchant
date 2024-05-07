@@ -19,6 +19,7 @@ Route::group(['middleware' => ['admin'], 'prefix' => config('app.admin_url')], f
             Route::get('checkout-url-get/{product_id}/{act_type}', 'checkoutUrlGet')->name('admin.shopify.products.checkout-url-get');
             Route::any('images/{product_id}/{act_type}', 'images')->name('admin.shopify.products.images');
             Route::any('comments/{product_id}/{act_type}', 'comments')->name('admin.shopify.products.comments');
+            Route::any('info/{product_id}/{act_type}', 'info')->name('admin.shopify.products.info');
 
 
 

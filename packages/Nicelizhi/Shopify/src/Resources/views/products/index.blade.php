@@ -106,7 +106,7 @@
           {
             data: "product_id",
             render: function(data, type, row, meta) {
-              return '<a href="./products/sync/'+data+'" class="btn btn-primary btn-sm">Sync</a> <a href="./products/images/'+data+'/onebuy" class="btn btn-primary btn-sm">Images</a> <a href="./products/comments/'+data+'/onebuy" class="btn btn-primary btn-sm">Comments</a> ';
+              return '<a href="./products/sync/'+data+'" title="product sync"><i class="fas fa-sync"></i></a> <a href="./products/images/'+data+'/onebuy" title="product images"><i class="fas fa-images"></i></a> <a href="./products/comments/'+data+'/onebuy" title="product comments"><i class="fas fa-comments"></i></a> <a href="./products/info/'+data+'/onebuy" title="product info"><i class="fas fa-info-circle"></i> </a> ';
             }
           }
         ],
