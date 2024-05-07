@@ -25,16 +25,7 @@
         <x-slot:toggle>
             {{-- Dropdown Toggler --}}
             <div class="flex items-center gap-[10px] cursor-pointer">
-                <img 
-                    src="{{ ! empty(core()->getCurrentLocale()->logo_url) 
-                            ? core()->getCurrentLocale()->logo_url 
-                            : bagisto_asset('images/default-language.svg') 
-                        }}"
-                    class="h-full"
-                    alt="Default locale"
-                    width="24"
-                    height="16"
-                />
+                
                 
                 <span>
                     {{ core()->getCurrentChannel()->locales()->orderBy('name')->where('code', app()->getLocale())->value('name') }}
@@ -73,11 +64,7 @@
                 :class="{'bg-gray-100': locale.code == '{{ app()->getLocale() }}'}"
                 @click="change(locale)"                  
             >
-                <img
-                    :src="locale.logo_url || '{{ bagisto_asset('images/default-language.svg') }}'"
-                    width="24"
-                    height="16"
-                />
+                
 
                 @{{ locale.name }}
             </span>
