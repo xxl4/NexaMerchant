@@ -14,8 +14,10 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
 use Webkul\Product\Models\ProductAttributeValue;
+use Webkul\Product\Models\ProductFlat;
 use Illuminate\Support\Facades\Redis;
 use Maatwebsite\Excel\Facades\Excel;
+use Webkul\CatalogRule\Listeners\Product;
 
 class ProductController extends Controller
 {
@@ -378,5 +380,74 @@ class ProductController extends Controller
         if($version=='v2') return view("shopify::products.".$act_type.".images.v2", compact("product", "productBgAttribute", "productBgAttribute_mobile", "productSizeImage", "version","product_id", "act_type", "product_image_lists"));
         if($version=='v3') return view("shopify::products.".$act_type.".images.v3", compact("product", "productBgAttribute", "productBgAttribute_mobile", "productSizeImage", "version","product_id", "act_type", "product_image_lists"));
         
+    }
+
+    public function info($product_id, $act_type, Request $request) {
+        $version = Cache::get($act_type."_".$product_id);
+        if(empty($version)) {
+            $item = \Nicelizhi\Shopify\Models\ShopifyProduct::where("product_id", $product_id)->first();
+
+            if(is_null($item)) {
+                return false;
+            }
+            $options = $item->options;
+            $LocalOptions = \Nicelizhi\Shopify\Helpers\Utils::createOptions($options);
+            $version = $LocalOptions['version'];
+            Cache::put("onebuy_".$product_id, $version);
+        }
+
+        $locale_get = $request->input('locale');
+
+        $product = $this->productRepository->findBySlug($product_id);
+        if ($request->isMethod('POST'))
+        {
+            //$product = $this->productRepository->update($request->all(), $product_id);
+            $name = $request->input('name'); // product name
+            
+
+            $currentLocale = core()->getRequestedLocale();
+
+            $productAttribute = ProductAttributeValue::where("product_id", $product->id)->where("attribute_id", 2)->where("locale", $locale_get)->first();
+            if(is_null($productAttribute)) $productAttribute = new ProductAttributeValue();
+            $productAttribute->product_id = $product->id;
+            $productAttribute->attribute_id = 2;
+            $productAttribute->text_value = $name;
+            $productAttribute->locale = $locale_get;
+            $productAttribute->save();
+
+            $productFlat = ProductFlat::where('product_id', $product->id)->where('locale', $locale_get)->first();
+            if(is_null($productFlat)) $productFlat = new ProductFlat();
+            $productFlat->name = $name;
+            $productFlat->locale = $locale_get;
+            $productFlat->save();
+
+
+            
+            //var_dump($locale_get, $name, $currentLocale->code);exit;
+
+            //save to attribute
+
+            // $product = $this->productRepository->update([
+            //     'name' => $name,
+            //     'locale' => $locale_get,
+            //     'channel' => 'default',
+            // ], $product->id);
+
+
+
+
+            // save to product flat
+
+           
+
+
+            \Nicelizhi\Shopify\Helpers\Utils::clearCache($product->id, $product_id);
+
+        }
+
+        //var_dump($product->name);
+        
+
+        return view("shopify::products.info", compact("product", "product_id", "act_type","locale_get"));
     }
 }
