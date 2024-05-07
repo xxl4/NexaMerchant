@@ -46,7 +46,7 @@
           <!-- /.row -->
         </div>
         <!-- /.container-fluid -->
-      </section>
+  </section>
 
       <!-- jQuery -->
 <script src="/themes/manage/AdminLTE/plugins/jquery/jquery.min.js"></script>
