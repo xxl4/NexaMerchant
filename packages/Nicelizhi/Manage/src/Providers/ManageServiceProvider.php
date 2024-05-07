@@ -178,6 +178,7 @@ class ManageServiceProvider extends ServiceProvider
     protected function registerCommands() {
         if ($this->app->runningInConsole()) {
             $this->commands([
+                \Nicelizhi\Manage\Console\Commands\Customers\ImportOrderCustomer::class,
             ]);
         }
     }
