@@ -53,6 +53,8 @@ class Ipn
  
         Log::info("ipn post".json_encode($this->post));
 
+        if(empty($this->post)) return; //
+
         if (! $this->postBack()) {
             return;
         }
