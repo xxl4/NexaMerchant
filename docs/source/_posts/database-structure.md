@@ -276,6 +276,41 @@ lang: en
 
 # Marketing
 
+## Marketing Compaigns
+| Field              | Type | Desc |
+| :---------------- | :------: | ----: |
+| id        |   int(10)   | id |
+|name        |   varchar(191)   | name |
+|subject        |   varchar(191)   | subject |
+|status        |   varchar(191)   | status |
+|type        |   varchar(191)   | type |
+|mail_to        |   varchar(191)   | mail_to |
+|spooling        |   tinyint(1)   | spooling |
+|channel_id        |   int(10)   | channel_id |
+|customer_group_id        |   int(10)   | customer_group_id |
+|marketing_template_id        |   int(10)   | marketing_template_id |
+|marketing_event_id        |   int(10)   | marketing_event_id |
+| created_at |  timestamp   | create time |
+| updated_at |  timestamp   | update time |
+
+## Marketing Events
+| Field              | Type | Desc |
+| :---------------- | :------: | ----: |
+| id        |   int(10)   | id |
+|name        |   varchar(191)   | name |
+|description        |   varchar(191)   | description |
+|date        |   varchar(191)   | date |
+| created_at |  timestamp   | create time |
+| updated_at |  timestamp   | update time |
+## Marketing Templates
+| Field              | Type | Desc |
+| :---------------- | :------: | ----: |
+| id        |   int(10)   | id |
+|name        |   varchar(191)   | name |
+|status        |   varchar(191)   | status |
+|content        |   varchar(191)   | content |
+| created_at |  timestamp   | create time |
+| updated_at |  timestamp   | update time |
 # Report
 
 # Channel
