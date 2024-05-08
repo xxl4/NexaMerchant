@@ -94,6 +94,9 @@ lang: en
 | Field              | Type | Desc |
 | :---------------- | :------: | ----: |
 | id        |   int(10)   | id |
+| sku           |   varchar(191)   | sku |
+| type    |  varchar(191)   | prduct type |
+| Field              | Type | Desc |
 | created_at |  timestamp   | create time |
 | updated_at |  timestamp   | update time |
 ## product_grouped_products
@@ -282,6 +285,39 @@ lang: en
 # Category
 
 # Customer
+
+## Customers
+| Field              | Type | Desc |
+| :---------------- | :------: | ----: |
+| id        |   int(10)   | id |
+| created_at |  timestamp   | create time |
+| updated_at |  timestamp   | update time |
+
+## Customer Groups
+| Field              | Type | Desc |
+| :---------------- | :------: | ----: |
+| id        |   int(10)   | id |
+| created_at |  timestamp   | create time |
+| updated_at |  timestamp   | update time |
+## Customer notes
+| Field              | Type | Desc |
+| :---------------- | :------: | ----: |
+| id        |   int(10)   | id |
+| created_at |  timestamp   | create time |
+| updated_at |  timestamp   | update time |
+## Customer password resets
+| Field              | Type | Desc |
+| :---------------- | :------: | ----: |
+| id        |   int(10)   | id |
+| created_at |  timestamp   | create time |
+| updated_at |  timestamp   | update time |
+## Customer social accounts
+| Field              | Type | Desc |
+| :---------------- | :------: | ----: |
+| id        |   int(10)   | id |
+| created_at |  timestamp   | create time |
+| updated_at |  timestamp   | update time |
+
 
 # Countries
 
