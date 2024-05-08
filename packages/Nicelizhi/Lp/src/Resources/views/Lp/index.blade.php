@@ -3,6 +3,14 @@ echo $html->html;
 ?>
 
 <script type="text/javascript">
+  function goto() {
+    var url = "<?php echo isset($html->goto_url) ? $html->goto_url : ''; ?>";
+    window.location.href = url;
+  }
+</script>
+
+
+<script type="text/javascript">
   (function(c,l,a,r,i,t,y){
       c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
       t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
