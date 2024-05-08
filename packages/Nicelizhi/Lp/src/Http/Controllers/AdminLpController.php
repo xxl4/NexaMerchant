@@ -48,6 +48,7 @@ class AdminLpController extends Controller
                 array( 'db' => '`p`.`slug`',   'dt' => 'slug', 'field'=>'slug','formatter' => function($d, $row) {
                     return config('app.url')."/products/".$d;
                 } ),
+                array( 'db' => '`p`.`goto_url`',   'dt' => 'goto_url', 'field'=>'goto_url' ),
                 array( 'db' => '`p`.`status`',   'dt' => 'status', 'field'=>'status' ),
                 array( 'db' => '`p`.`updated_at`',   'dt' => 'updated_at', 'field'=>'updated_at' )
             );
