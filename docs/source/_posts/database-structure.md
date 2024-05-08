@@ -315,6 +315,52 @@ lang: en
 
 # Channel
 
+## Channels
+| Field              | Type | Desc |
+| :---------------- | :------: | ----: |
+| id        |   int(10)   | id |
+|code        |   varchar(191)   | code |
+|timezone        |   varchar(191)   | timezone |
+|theme        |   varchar(191)   | theme |
+|hostname        |   varchar(191)   | hostname |
+|logo        |   varchar(191)   | logo |
+|favicon        |   varchar(191)   | favicon |
+|home_seo       |   varchar(191)   | home_seo |
+|is_maintenance_on  
+|allowed_ips     |   varchar(191)   | allowed_ips |
+|root_category_id     |   varchar(191)   | root_category_id |
+|default_locale_id     |   varchar(191)   | default_locale_id |
+|base_currency_id     |   varchar(191)   | base_currency_id |
+| created_at |  timestamp   | create time |
+| updated_at |  timestamp   | update time |
+## Channel_currencies
+| Field              | Type | Desc |
+| :---------------- | :------: | ----: |
+|channel_id        |   int(10)   | channel_id |
+|currency_id        |   int(10)   | currency_id |
+## Channel inventory sources
+| Field              | Type | Desc |
+| :---------------- | :------: | ----: |
+|channel_id        |   int(10)   | channel_id |
+|locale_id        |   int(10)   | locale_id |
+## Channel Locales
+| Field              | Type | Desc |
+| :---------------- | :------: | ----: |
+| id        |   int(10)   | id |
+|channel_id        |   int(10)   | channel_id |
+|locale        |   varchar(191)   | locale |
+|name        |   varchar(191)   | name |
+|description        |   varchar(191)   | description |
+|maintenance_mode_text        |   varchar(191)   | maintenance_mode_text |
+|home_seo        |   varchar(191)   | home_seo |
+| created_at |  timestamp   | create time |
+| updated_at |  timestamp   | update time |
+## Channel translations
+| Field              | Type | Desc |
+| :---------------- | :------: | ----: |
+| :---------------- | :------: | ----: |
+|channel_id        |   int(10)   | channel_id |
+|inventory_source_id        |   int(10)   | inventory_source_id |
 # CMS
 
 # Category
