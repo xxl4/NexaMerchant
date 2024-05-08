@@ -755,3 +755,15 @@ lang: en
 | email        |   varchar(191)   | email |
 |token        |   varchar(191)   | token |
 | created_at |  timestamp   | create time |
+
+
+# Core Config
+| Field              | Type | Desc |
+| :---------------- | :------: | ----: |
+| id        |   int(10)   | id |
+|code        |   varchar(191)   | code |
+|value        |   varchar(191)   | value |
+|channel_code        |   varchar(191)   | channel_code |
+|locale_code        |   varchar(191)   | locale_code |
+| created_at |  timestamp   | create time |
+| updated_at |  timestamp   | update time |
