@@ -163,11 +163,13 @@ class AdminLpController extends Controller
         $html = request()->input('html');
         $name = request()->input("name");
         $slug = request()->input("slug");
+        $goto_url = request()->input("goto_url");
 
         $update = [];
         $update['html'] = $html;
         $update['name'] = $name;
         $update['slug'] = $slug;
+        $update['goto_url'] = $goto_url;
 
         \Nicelizhi\Lp\Models\Lp::where('id', $id)->update($update);
 
