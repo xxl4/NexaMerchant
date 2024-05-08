@@ -446,8 +446,23 @@ lang: en
 
 # Tax
 ## tax_categories
+| Field              | Type | Desc |
+| :---------------- | :------: | ----: |
+| id        |   int(10)   | id |
+| created_at |  timestamp   | create time |
+| updated_at |  timestamp   | update time |
 ## tax_categories_tax_rates
+| Field              | Type | Desc |
+| :---------------- | :------: | ----: |
+| id        |   int(10)   | id |
+| created_at |  timestamp   | create time |
+| updated_at |  timestamp   | update time |
 ## tax_rates
+| Field              | Type | Desc |
+| :---------------- | :------: | ----: |
+| id        |   int(10)   | id |
+| created_at |  timestamp   | create time |
+| updated_at |  timestamp   | update time |
 
 # Theme
 ## theme_customizations
@@ -463,8 +478,37 @@ lang: en
 
 # Visits
 ## visits
+| Field              | Type | Desc |
+| :---------------- | :------: | ----: |
+| id        |   int(10)   | id |
+|method        |   varchar(191)   | method |
+|request_url        |   varchar(191)   | request_url |
+|url        |   varchar(191)   | url |
+|referer        |   varchar(191)   | referer |
+|lanagues        |   varchar(191)   | lanagues |
+|useragent        |   varchar(191)   | useragent |
+|headers        |   varchar(191)   | headers |
+|device        |   varchar(191)   | device |
+|platform        |   varchar(191)   | platform |
+|browser        |   varchar(191)   | browser |
+|ip        |   varchar(191)   | ip |
+|visitable_type        |   varchar(191)   | visitable_type |
+|visitable_id        |   int(10)   | visitable_id |
+|visitor_type        |   varchar(191)   | visitor_type |
+|visitor_id        |   int(10)   | visitor_id |
+| created_at |  timestamp   | create time |
+| updated_at |  timestamp   | update time |
 
 # Roles
+| Field              | Type | Desc |
+| :---------------- | :------: | ----: |
+| id        |   int(10)   | id |
+|name        |   varchar(191)   | name |
+|description        |   varchar(191)   | description |
+|permissions        |   varchar(191)   | permissions |
+|permissions_type        |   varchar(191)   | permissions_type |
+| created_at |  timestamp   | create time |
+| updated_at |  timestamp   | update time |
 
 # Shopify
 
