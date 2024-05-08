@@ -4,8 +4,6 @@ namespace App\Exceptions;
 
 use Throwable;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
-use Symfony\Component\HttpKernel\Exception\HttpException;
-use Illuminate\Support\Facades\Log;
 
 class Handler extends ExceptionHandler
 {
@@ -37,7 +35,7 @@ class Handler extends ExceptionHandler
     public function report(Throwable $exception)
     {
 
-        if ($exception instanceof \HttpException) {
+        if ($exception instanceof \Exception) {
             $message = $exception->getMessage();
             if(!empty($message)) {
                 $pos = strpos($message, "bagisto");

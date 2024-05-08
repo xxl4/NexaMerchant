@@ -90,16 +90,7 @@
                             <x-slot:toggle>
                                 {{-- Dropdown Toggler --}}
                                 <div class="w-full flex gap-[10px] justify-between items-center cursor-pointer">
-                                    <img
-                                        src="{{ ! empty(core()->getCurrentLocale()->logo_url)
-                                                ? core()->getCurrentLocale()->logo_url
-                                                : bagisto_asset('images/default-language.svg')
-                                            }}"
-                                        class="h-full"
-                                        alt="Default locale"
-                                        width="24"
-                                        height="16"
-                                    />
+                                    
 
                                     <span>
                                         {{ core()->getCurrentChannel()->locales()->orderBy('name')->where('code', app()->getLocale())->value('name') }}
