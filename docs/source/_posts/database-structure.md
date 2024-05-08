@@ -290,6 +290,23 @@ lang: en
 | Field              | Type | Desc |
 | :---------------- | :------: | ----: |
 | id        |   int(10)   | id |
+| first_name        |   varchar(191)   | first_name |
+| last_name        |   varchar(191)   | last_name |
+| email        |   varchar(191)   | email |
+| gender        |   varchar(191)   | gender |
+| date_of_birth        |   varchar(191)   | date_of_birth |
+| phone        |   varchar(191)   | phone |
+| image        |   varchar(191)   | image |
+| status        |   int   | status |
+| password        |   varchar(191)   | password |
+|api_token       | varchar(191) |  | api_token  |
+|customer_group_id       | int   |  | customer_group_id  |
+|subscribed_to_news_letter       | tinyint   |  | subscribed_to_news_letter  |
+|is_verified       | tinyint   |  | is_verified  |
+|is_suspended       | tinyint   |  | is_suspended  |
+|token         | varchar(191)   |  | token  |
+|remember_token       | varchar(191)   |  | remember_token  |
+ |  timestamp   | create time |
 | created_at |  timestamp   | create time |
 | updated_at |  timestamp   | update time |
 
@@ -297,6 +314,9 @@ lang: en
 | Field              | Type | Desc |
 | :---------------- | :------: | ----: |
 | id        |   int(10)   | id |
+|code        |   varchar(191)   | code |
+|name        |   varchar(191)   | name |
+|is_user_defined        |   tinyint(1)   | is_user_defined |
 | created_at |  timestamp   | create time |
 | updated_at |  timestamp   | update time |
 ## Customer notes
@@ -317,7 +337,6 @@ lang: en
 | id        |   int(10)   | id |
 | created_at |  timestamp   | create time |
 | updated_at |  timestamp   | update time |
-
 
 # Countries
 
