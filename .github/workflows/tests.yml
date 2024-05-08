@@ -1,6 +1,16 @@
 name: Tests
  
-on: ['push', 'pull_request']
+on:
+  push:
+    paths-ignore:
+      - 'README.md'
+      - .github/**
+      - docs/**
+  pull_request:
+    paths-ignore:
+      - 'README.md'
+      - .github/**
+      - docs/**
  
 jobs:
   ci:
