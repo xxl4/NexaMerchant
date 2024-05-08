@@ -594,3 +594,39 @@ lang: en
 |logo_path        |   varchar(191)   | logo_path |
 | created_at |  timestamp   | create time |
 | updated_at |  timestamp   | update time |
+
+# Admin
+
+## Admins
+| Field              | Type | Desc |
+| :---------------- | :------: | ----: |
+| id        |   int(10)   | id |
+| name        |   varchar(191)   | name |
+|email        |   varchar(191)   | email |
+|password        |   varchar(191)   | password |
+|api_token        |   varchar(191)   | api_token |
+|status        |   varchar(191)   | status |
+|role_id        |   varchar(191)   | role_id |
+|image        |   varchar(191)   | image |
+|remember_token        |   varchar(191)   | remember_token |
+| created_at |  timestamp   | create time |
+| updated_at |  timestamp   | update time |
+
+## Admin Operation Log
+| Field              | Type | Desc |
+| :---------------- | :------: | ----: |
+| id        |   int(10)   | id |
+|user_id        |   varchar(191)   | user_id |
+|path        |   varchar(191)   | path |
+|method        |   varchar(191)   | method |
+|ip        |   varchar(191)   | ip |
+|input        |   varchar(191)   | input |
+| created_at |  timestamp   | create time |
+| updated_at |  timestamp   | update time |
+
+## Admin Password Resets
+| Field              | Type | Desc |
+| :---------------- | :------: | ----: |
+| email        |   varchar(191)   | email |
+|token        |   varchar(191)   | token |
+| created_at |  timestamp   | create time |
