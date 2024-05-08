@@ -232,6 +232,25 @@ lang: en
 | Field              | Type | Desc |
 | :---------------- | :------: | ----: |
 | id        |   int(10)   | id |
+|address_type        |   varchar(191)   | address type |
+|customer_id        |   int(10)   | customer id |
+|cart_id        |   int(10)   | cart id |
+|order_id        |   int(10)   | order id |
+|first_name        |   varchar(191)   | first name |
+|last_name        |   varchar(191)   | last name |
+|gender        |   varchar(191)   | gender |
+|company_name        |   varchar(191)   | company name |
+|address1        |   varchar(191)   | address1 |
+|address2        |   varchar(191)   | address2 |
+|city        |   varchar(191)   | city |
+|state        |   varchar(191)   | state |
+|postcode        |   varchar(191)   | postcode |
+|country        |   varchar(191)   | country |
+|email        |   varchar(191)   | email |
+|phone        |   varchar(191)   | phone |
+|vat_id        |   varchar(191)   | vat id |
+|default_address        |   tinyint(1)   | default address |
+|additional        |   json   | additional |
 | created_at |  timestamp   | create time |
 | updated_at |  timestamp   | update time |
 
