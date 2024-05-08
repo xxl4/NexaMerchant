@@ -1,4 +1,16 @@
+---
+title: How to Init DB
+tags:
+  - MySQL
+  - SQL
+categories:
+  - MySQL
+date: 2024-05-01 09:43:12
+description: How to Init DB
+lang: en
+---
 
+> When you should create a new website for new business, you should copy old data to new website, but you should init the database.
 
 
 
