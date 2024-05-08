@@ -17,11 +17,16 @@
             <input type="text" class="form-control" id="slug" placeholder="Lp Slug" name="slug" value="<?php echo $page->slug;?>">
         </div>
         <div class="form-group">
+            <label for="slug">Goto url</label>
+            <input type="text" class="form-control" id="goto_url" placeholder="Lp Goto url" name="goto_url" value="<?php echo $page->goto_url;?>">
+        </div>
+        <div class="form-group">
             <label for="html">Html</label>
             <textarea id="html" name="html" class="form-control" rows="30" >
                 <?php echo $page->html;?>
             </textarea>
         </div>
+
         
         <div class="card-footer">
             <button type="submit" class="btn btn-primary">Submit</button>

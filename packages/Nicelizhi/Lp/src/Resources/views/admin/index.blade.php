@@ -26,6 +26,7 @@
                           <th>Title</th>
                           <th>Slug</th>
                           <th>Status</th>
+                          <th>goto_url</th>
                           <th>updated at</th>
                           <th>Action</th>
                         </tr>
@@ -87,6 +88,9 @@
           },
           {
             data: 'status'
+          },
+          {
+            data: 'goto_url'
           },
           {
             data: 'updated_at'
