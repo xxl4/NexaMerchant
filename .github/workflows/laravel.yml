@@ -9,7 +9,10 @@ on:
       - docs/**
   pull_request:
     branches: [ "main","main_de","main_us" ]
-
+    paths-ignore:
+      - 'README.md'
+      - .github/**
+      - docs/**
 jobs:
   laravel-tests:
     runs-on: ubuntu-latest
