@@ -232,6 +232,25 @@ lang: en
 | Field              | Type | Desc |
 | :---------------- | :------: | ----: |
 | id        |   int(10)   | id |
+|address_type        |   varchar(191)   | address type |
+|customer_id        |   int(10)   | customer id |
+|cart_id        |   int(10)   | cart id |
+|order_id        |   int(10)   | order id |
+|first_name        |   varchar(191)   | first name |
+|last_name        |   varchar(191)   | last name |
+|gender        |   varchar(191)   | gender |
+|company_name        |   varchar(191)   | company name |
+|address1        |   varchar(191)   | address1 |
+|address2        |   varchar(191)   | address2 |
+|city        |   varchar(191)   | city |
+|state        |   varchar(191)   | state |
+|postcode        |   varchar(191)   | postcode |
+|country        |   varchar(191)   | country |
+|email        |   varchar(191)   | email |
+|phone        |   varchar(191)   | phone |
+|vat_id        |   varchar(191)   | vat id |
+|default_address        |   tinyint(1)   | default address |
+|additional        |   json   | additional |
 | created_at |  timestamp   | create time |
 | updated_at |  timestamp   | update time |
 
@@ -257,12 +276,76 @@ lang: en
 # Attributes
 
 ## attributes
+| Field              | Type | Desc |
+| :---------------- | :------: | ----: |
+| id        |   int(10)   | id |
+|code        |   varchar(191)   | code |
+|admin_name        |   varchar(191)   | admin name |
+|type        |   varchar(191)   | type |
+|swatch_type        |   varchar(191)   | swatch type |
+|validation        |   varchar(191)   | validation |
+|regex        |   varchar(191)   | regex |
+|position        |   int(10)   | position |
+|is_required        |   tinyint(1)   | is required |
+|is_unique        |   tinyint(1)   | is unique |
+|is_filterable        |   tinyint(1)   | is filterable |
+|is_comparable        |   tinyint(1)   | is comparable |
+|is_configurable        |   tinyint(1)   | is configurable |
+|is_user_defined        |   tinyint(1)   | is user defined |
+|is_visible_on_front        |   tinyint(1)   | is visible on front |
+|value_per_locale       |   tinyint(1)   | value per locale |
+|value_per_channel       |   tinyint(1)   | value per channel |
+|default_value        |   varchar(191)   | default value |
+|enable_wysiwyg        |   tinyint(1)   | enable wysiwyg |
+| created_at |  timestamp   | create time |
+| updated_at |  timestamp   | update time |
 ## attribute_families
+| Field              | Type | Desc |
+| :---------------- | :------: | ----: |
+| id        |   int(10)   | id |
+| code        |   varchar(191)   | code |
+| name        |   varchar(191)   | name |
+| is_user_defined        |   tinyint(1)   | is user defined |
+|status        |   tinyint(1)   | status |
+| created_at |  timestamp   | create time |
+| updated_at |  timestamp   | update time |
 ## attribute_groups
+| Field              | Type | Desc |
+| :---------------- | :------: | ----: |
+| id        |   int(10)   | id |
+| attribute_family_id        |   int(10)   | attribute family id |
+|name        |   varchar(191)   | name |
+|column        |   tinyint(1)   | column |
+|position        |   int(10)   | position |
+|is_user_defined        |   tinyint(1)   | is user defined |
 ## attribute_groups_mappings
+| Field              | Type | Desc |
+| :---------------- | :------: | ----: |
+| attribute_id        |   int(10)   | attribute_id |
+| attribute_group_id        |   int(10)   | attribute group id |
+|position        |   int(10)   | position |
 ## attribute_options
+| Field              | Type | Desc |
+| :---------------- | :------: | ----: |
+| id        |   int(10)   | id |
+|attribute_id        |   int(10)   | attribute id |
+|admin_name        |   varchar(191)   | admin name |
+|sort_order        |   int(10)   | sort order |
+|swatch_value        |   varchar(191)   | swatch value |
 ## attribute_option_translations
+| Field              | Type | Desc |
+| :---------------- | :------: | ----: |
+| id        |   int(10)   | id |
+|attribute_option_id        |   int(10)   | attribute id |
+|locale        |   varchar(191)   | locale |
+|name        |   varchar(191)   | name |
 ## attribute_translations
+| Field              | Type | Desc |
+| :---------------- | :------: | ----: |
+| id        |   int(10)   | id |
+|attribute_id        |   int(10)   | attribute id |
+|locale        |   varchar(191)   | locale |
+|name        |   varchar(191)   | name |
 
 # Cart
 
@@ -755,3 +838,15 @@ lang: en
 | email        |   varchar(191)   | email |
 |token        |   varchar(191)   | token |
 | created_at |  timestamp   | create time |
+
+
+# Core Config
+| Field              | Type | Desc |
+| :---------------- | :------: | ----: |
+| id        |   int(10)   | id |
+|code        |   varchar(191)   | code |
+|value        |   varchar(191)   | value |
+|channel_code        |   varchar(191)   | channel_code |
+|locale_code        |   varchar(191)   | locale_code |
+| created_at |  timestamp   | create time |
+| updated_at |  timestamp   | update time |

@@ -9,6 +9,10 @@ on:
       - docs/**
   pull_request:
     branches: [ "develop","package_admin_dev" ]
+    paths-ignore:
+      - 'README.md'
+      - .github/**
+      - docs/**
 
 jobs:
   laravel-tests:
