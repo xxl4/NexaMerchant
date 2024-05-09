@@ -3258,6 +3258,9 @@ return [
                 'tax-rates'                => 'Tax Rates',
                 'transactions'             => 'Transactions',
                 'users'                    => 'Users',
+                'duplicate'                => 'Duplicate',
+                'unpost'                   => 'UnPost',
+                'abnormal'                 => 'Abnormal',
             ],
         ],
 

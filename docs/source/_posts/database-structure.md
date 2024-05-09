@@ -445,11 +445,69 @@ lang: en
 |channel_id        |   int(10)   | channel_id |
 |inventory_source_id        |   int(10)   | inventory_source_id |
 # CMS
-
+## cms_pages
+| Field              | Type | Desc |
+| :---------------- | :------: | ----: |
+| id        |   int(10)   | id |
+|layout        |   varchar(191)   | layout |
+| created_at |  timestamp   | create time |
+| updated_at |  timestamp   | update time |
+## cms_page_translations
+| Field              | Type | Desc |
+| :---------------- | :------: | ----: |
+| id        |   int(10)   | id |
+|page_title        |   varchar(191)   | page_title |
+|url_key        |   varchar(191)   | url_key |
+|html_content        |   text   | html_content |
+|meta_title        |   varchar(191)   | meta_title |
+|meta_description        |   varchar(191)   | meta_description |
+|meta_keywords        |   varchar(191)   | meta_keywords |
+|locale        |   varchar(191)   | locale |
+|cms_page_id        |   int(10)   | cms_page_id |
+| created_at |  timestamp   | create time |
+| updated_at |  timestamp   | update time |
+## cms_page_channels
+| Field              | Type | Desc |
+| :---------------- | :------: | ----: |
+| cms_page_id        |   int(10)   | cms_page_id |
+|channel_id        |   int(10)   | channel_id |
 # Category
+## categories
+| Field              | Type | Desc |
+| :---------------- | :------: | ----: |
+| id        |   int(10)   | id |
+|position        |   int(10)   | position |
+|logo_path        |   varchar(191)   | logo_path |
+|status        |   tinyint(1)   | status |
+|display_mode        |   varchar(191)   | display_mode |
+|_lft        |   int(10)   | _lft |
+|_rgt        |   int(10)   | _rgt |
+|parent_id        |   int(10)   | parent_id |
+|additional        |   varchar(191)   | additional |
+|banner_path        |   varchar(191)   | banner_path |
+| created_at |  timestamp   | create time |
+| updated_at |  timestamp   | update time |
+## category_filterable_attributes
+| Field              | Type | Desc |
+| :---------------- | :------: | ----: |
+| category_id        |   int(10)   | category_id |
+|attribute_id        |   int(10)   | attribute_id |
+## category_translations
+| Field              | Type | Desc |
+| :---------------- | :------: | ----: |
+| id        |   int(10)   | id |
+|category_id        |   int(10)   | category_id |
+|name        |   varchar(191)   | name |
+|slug        |   varchar(191)   | slug |
+|url_path        |   varchar(191)   | url_path |
+|description        |   varchar(191)   | description |
+|meta_title        |   varchar(191)   | meta_title |
+|meta_description        |   varchar(191)   | meta_description |
+|meta_keywords        |   varchar(191)   | meta_keywords |
+|locale_id       |   int(10)   | locale_id |
+|locale        |   varchar(191)   | locale |
 
 # Customer
-
 ## Customers
 | Field              | Type | Desc |
 | :---------------- | :------: | ----: |
