@@ -175,59 +175,149 @@ lang: en
 
 
 # Order
-
 ## orders
 | Field              | Type | Desc |
 | :---------------- | :------: | ----: |
 | id        |   int(10)   | id |
 | increment_id        |   int(10)   | increment id |
 | status        |   varchar(191)   | status ['pending','processing','closed','completed','canceled'] |
-| channel_name        |   varchar(191)   | id |
-| is_guest        |   tinyint(1)   | id |
-| customer_email        |   int(10)   | id |
-| customer_last_name        |   int(10)   | id |
-| customer_first_name        |   int(10)   | id |
+| channel_name        |   varchar(191)   | channel_name |
+| is_guest        |   tinyint(1)   | is_guest |
+|customer_email        |   varchar(191)   | customer_email |
+|customer_first_name        |   varchar(191)   | customer_first_name |
+|customer_last_name        |   varchar(191)   | customer_last_name |
+|shipping_method        |   varchar(191)   | shipping_method |
+|shipping_title        |   varchar(191)   | shipping_title |
+|shipping_description        |   varchar(191)   | shipping_description |
+|coupon_code        |   varchar(191)   | coupon_code |
+|is_gift        |   tinyint(1)   | is_gift |
+|total_item_count        |   int(10)   | total_item_count |
+|total_qty_ordered        |   int(10)   | total_qty_ordered |
+|base_currency_code        |   varchar(191)   | base_currency_code |
+|channel_currency_code        |   varchar(191)   | channel_currency_code |
+|order_currency_code        |   varchar(191)   | order_currency_code |
+|grand_total        |   decimal(12,4)   | grand_total |
+|base_grand_total        |   decimal(12,4)   | base_grand_total |
+|grand_total_invoiced        |   decimal(12,4)   | grand_total_invoiced |
+|base_grand_total_invoiced        |   decimal(12,4)   | base_grand_total_invoiced |
+|grand_total_refunded        |   decimal(12,4)   | grand_total_refunded |
+|base_grand_total_refunded        |   decimal(12,4)   | base_grand_total_refunded |
+|sub_total        |   decimal(12,4)   | sub_total |
+|base_sub_total        |   decimal(12,4)   | base_sub_total |
+|sub_total_invoiced        |   decimal(12,4)   | sub_total_invoiced |
+|base_sub_total_invoiced        |   decimal(12,4)   | base_sub_total_invoiced |
+|sub_total_refunded        |   decimal(12,4)   | sub_total_refunded |
+|base_sub_total_refunded        |   decimal(12,4)   | base_sub_total_refunded |
+|discount_percent        |   decimal(12,4)   | discount_percent |
+|discount_amount        |   decimal(12,4)   | discount_amount |
+|base_discount_amount        |   decimal(12,4)   | base_discount_amount |
+|discount_invoiced        |   decimal(12,4)   | discount_invoiced |
+|base_discount_invoiced        |   decimal(12,4)   | base_discount_invoiced |
+|discount_refunded        |   decimal(12,4)   | discount_refunded |
+|base_discount_refunded        |   decimal(12,4)   | base_discount_refunded |
+|tax_amount        |   decimal(12,4)   | tax_amount |
+|base_tax_amount        |   decimal(12,4)   | base_tax_amount |
+|tax_amount_invoiced        |   decimal(12,4)   | tax_amount_invoiced |
+|base_tax_amount_invoiced        |   decimal(12,4)   | base_tax_amount_invoiced |
+|tax_amount_refunded        |   decimal(12,4)   | tax_amount_refunded |
+|base_tax_amount_refunded        |   decimal(12,4)   | base_tax_amount_refunded |
+|shipping_amount        |   decimal(12,4)   | shipping_amount |
+|base_shipping_amount        |   decimal(12,4)   | base_shipping_amount |
+|shipping_invoiced        |   decimal(12,4)   | shipping_invoiced |
+|base_shipping_invoiced        |   decimal(12,4)   | base_shipping_invoiced |
+|shipping_refunded        |   decimal(12,4)   | shipping_refunded |
+|base_shipping_refunded        |   decimal(12,4)   | base_shipping_refunded |
+|shipping_discount_amount        |   decimal(12,4)   | shipping_discount_amount |
+|base_shipping_discount_amount        |   decimal(12,4)   | base_shipping_discount_amount |
+|customer_id        |   int(10)   | customer_id |
+|customer_type        |   varchar(191)   | customer_type |
+|channel_id        |   int(10)   | channel_id |
+|channel_type        |   varchar(191)   | channel_type |
+|cart_id        |   int(10)   | cart_id |
+|applied_cart_rule_ids        |   varchar(191)    | applied_cart_rule_ids |
 | created_at |  timestamp   | create time |
 | updated_at |  timestamp   | update time |
-
 ## order_comments
 | Field              | Type | Desc |
 | :---------------- | :------: | ----: |
 | id        |   int(10)   | id |
+|order_id        |   int(10)   | id |
+|comment        |   varchar(191)   | comment |
+|customer_notified       |   tinyint(1)   | customer_notified |
 | created_at |  timestamp   | create time |
 | updated_at |  timestamp   | update time |
-
 ## order_items
 | Field              | Type | Desc |
 | :---------------- | :------: | ----: |
 | id        |   int(10)   | id |
+|order_id        |   int(10)   | id |
+|sku        |   varchar(191)   | sku |
+|type        |   varchar(191)   | type |
+|name        |   varchar(191)   | name |
+|coupon_code        |   varchar(191)   | coupon_code |
+|weight        |   decimal(12,4)   | weight |
+|total_weight        |   decimal(12,4)   | weight |
+|qty_ordered        |   int(10)   | qty_ordered |
+|qty_shipped        |   int(10)   | qty_shipped |
+|qty_invoiced        |   int(10)   | qty_invoiced |
+|qty_canceled        |   int(10)   | qty_canceled |
+|qty_refunded        |   int(10)   | qty_refunded |
+|price        |   decimal(12,4)   | price |
+|base_price        |   decimal(12,4)   | base_price |
+|total        |   decimal(12,4)   | total |
+|base_total        |   decimal(12,4)   | base_total |
+|total_invoiced        |   decimal(12,4)   | total_invoiced |
+|base_total_invoiced        |   decimal(12,4)   | base_total_invoiced |
+|amount_refunded        |   decimal(12,4)   | amount_refunded |
+|base_amount_refunded        |   decimal(12,4)   | base_amount_refunded |
+|discount_percent        |   decimal(12,4)   | discount_percent |
+|discount_amount        |   decimal(12,4)   | discount_amount |
+|base_discount_amount        |   decimal(12,4)   | base_discount_amount |
+|discount_invoiced        |   decimal(12,4)   | discount_invoiced |
+|base_discount_invoiced        |   decimal(12,4)   | base_discount_invoiced |
+|discount_refunded        |   decimal(12,4)   | discount_refunded |
+|base_discount_refunded        |   decimal(12,4)   | base_discount_refunded |
+|tax_percent        |   decimal(12,4)   | tax_percent |
+|tax_amount        |   decimal(12,4)   | tax_amount |
+|base_tax_amount        |   decimal(12,4)   | base_tax_amount |
+|tax_amount_invoiced        |   decimal(12,4)   | tax_amount_invoiced |
+|base_tax_amount_invoiced        |   decimal(12,4)   | base_tax_amount_invoiced |
+|tax_amount_refunded        |   decimal(12,4)   | tax_amount_refunded |
+|base_tax_amount_refunded        |   decimal(12,4)   | base_tax_amount_refunded |
+|product_id        |   int(10)   | product_id |
+|product_type        |   varchar(191)   | product_type |
+|order_id        |   int(10)   | order_id |
+|tax_category_id        |   int(10)   | tax_category_id |
+|parent_id        |   int(10)   | parent_id |
+|additional       |   json   | additional |
 | created_at |  timestamp   | create time |
 | updated_at |  timestamp   | update time |
-
 ## order_payment
 | Field              | Type | Desc |
 | :---------------- | :------: | ----: |
 | id        |   int(10)   | id |
+|order_id        |   int(10)   | order_id |
+|method        |   varchar(191)   | method |
+|method_title        |   varchar(191)   | method_title |
+|additional       |   json   | additional |
 | created_at |  timestamp   | create time |
 | updated_at |  timestamp   | update time |
-
 ## order_transactions
 | Field              | Type | Desc |
 | :---------------- | :------: | ----: |
 | id        |   int(10)   | id |
 | transaction_id        |   varchar   | transaction id |
-| status        |   varchar   |  |
-| type        |   varchar   |  |
+| status        |   varchar   | status  |
+| type        |   varchar   | amount |
 | amount        |   decimal(12,4)   |  |
-| payment_method        |  varchar   |  |
-| data        |  json   |  |
-| invoice_id        |  int   |  |
-| order_id        |  int   |  |
+| payment_method        |  varchar   | payment_method  |
+| data        |  json   | data |
+| invoice_id        |  int   | invoice_id |
+| order_id        |  int   | order_id |
 | created_at |  timestamp   | create time |
 | updated_at |  timestamp   | update time |
 
 # Address
-
 ## addresses
 | Field              | Type | Desc |
 | :---------------- | :------: | ----: |
@@ -255,7 +345,6 @@ lang: en
 | updated_at |  timestamp   | update time |
 
 # Refund
-
 ## Refund
 | Field              | Type | Desc |
 | :---------------- | :------: | ----: |
@@ -265,7 +354,6 @@ lang: en
 | email_sent        |   tinyint(1)   | email sent |
 | created_at |  timestamp   | create time |
 | updated_at |  timestamp   | update time |
-
 ## RefundItem
 | Field              | Type | Desc |
 | :---------------- | :------: | ----: |
@@ -274,7 +362,6 @@ lang: en
 | updated_at |  timestamp   | update time |
 
 # Attributes
-
 ## attributes
 | Field              | Type | Desc |
 | :---------------- | :------: | ----: |
