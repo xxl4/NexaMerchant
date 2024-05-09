@@ -23,9 +23,11 @@
         </div>
     </section>
 
-       <!-- jQuery -->
-       <script src="/themes/manage/AdminLTE/plugins/jquery/jquery.min.js"></script>
-       <!-- Bootstrap 4 -->
-       <script src="/themes/manage/AdminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+
+    <!-- jQuery -->
+    <script src="/themes/manage/AdminLTE/plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="/themes/manage/AdminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 </x-admin::layouts>
