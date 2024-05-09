@@ -356,9 +356,81 @@ lang: en
 ## cart_shipping_rates
 
 # Invoices
-
+## invoices
+| Field              | Type | Desc |
+| :---------------- | :------: | ----: |
+| id        |   int(10)   | id |
+| increment_id        |   varchar(191)   | increment ID |
+| state        |   varchar(191)   | state |
+| email_sent        |   tinyint(1)   | email sent |
+| total_qty        |   int(10)   | total qty |
+|base_currency_code       |   varchar(191)   | base currency code |
+|channel_currency_code       |   varchar(191)   | channel currency code |
+|order_currency_code       |   varchar(191)   | order currency code |
+|sub_total        |   decimal(12,4)   | sub total |
+|base_sub_total        |   decimal(12,4)   | base sub total |
+|grand_total        |   decimal(12,4)   | grand total |
+|base_grand_total        |   decimal(12,4)   | base grand total |
+|shipping_amount        |   decimal(12,4)   | shipping amount |
+|base_shipping_amount        |   decimal(12,4)   | base shipping amount |
+|tax_amount        |   decimal(12,4)   | tax amount |
+|base_tax_amount        |   decimal(12,4)   | base tax amount |
+|discount_amount        |   decimal(12,4)   | discount amount |
+|base_discount_amount        |   decimal(12,4)   | base discount amount |
+|order_id        |   int(10)   | order id |
+|transaction_id        |   varchar(191)   | transaction id |
+|reminders        |   tinyint(1)   | reminders |
+|next_reminder_at        |   timestamp   | next reminder at |
+| created_at |  timestamp   | create time |
+| updated_at |  timestamp   | update time |
+## invoice_items
+| Field              | Type | Desc |
+| :---------------- | :------: | ----: |
+| id        |   int(10)   | id |
+| parent_id        |   int(10)   | parent id |
+| name        |   varchar(191)   | name |
+|description        |   varchar(191)   | description |
+|sku        |   varchar(191)   | sku |
+|qty        |   int(10)   | qty |
+|price        |   decimal(12,4)   | price |
+|base_price        |   decimal(12,4)   | base price |
+|total        |   decimal(12,4)   | total |
+|base_total        |   decimal(12,4)   | base total |
+|tax_amount        |   decimal(12,4)   | tax amount |
+|base_tax_amount        |   decimal(12,4)   | base tax amount |
+|discount_amount        |   decimal(12,4)   | discount amount |
+|discount_percent        |   decimal(12,4)   | discount percent |
+|base_discount_amount        |   decimal(12,4)   | base discount amount |
+|product_id        |   int(10)   | product id |
+|product_type        |   varchar(191)   | product type |
+|order_item_id        |   int(10)   | order item id |
+|invoice_id        |   int(10)   | invoice id |
+|additional        |   varchar(191)   | additional |
+| created_at |  timestamp   | create time |
+| updated_at |  timestamp   | update time |
+## inventory_sources
+| Field              | Type | Desc |
+| :---------------- | :------: | ----: |
+| id        |   int(10)   | id |
+|code        |   varchar(191)   | code |
+|name        |   varchar(191)   | name |
+|description        |   varchar(191)   | description |
+|contact_name        |   varchar(191)   | contact_name |
+|contact_email        |   varchar(191)   | contact_email |
+|contact_number        |   varchar(191)   | contact_number |
+|contact_fax        |   varchar(191)   | contact_fax |
+|country        |   varchar(191)   | country |
+|state        |   varchar(191)   | state |
+|city        |   varchar(191)   | city |
+|street        |   varchar(191)   | street |
+|postcode        |   varchar(191)   | postcode |
+|priority        |   int(10)   | priority |
+|latitude        |   varchar(191)   | latitude |
+|longitude        |   varchar(191)   | longitude |
+|status        |   tinyint(1)   | status |
+| created_at |  timestamp   | create time |
+| updated_at |  timestamp   | update time |
 # Marketing
-
 ## Marketing Compaigns
 | Field              | Type | Desc |
 | :---------------- | :------: | ----: |
@@ -394,10 +466,7 @@ lang: en
 |content        |   varchar(191)   | content |
 | created_at |  timestamp   | create time |
 | updated_at |  timestamp   | update time |
-# Report
-
 # Channel
-
 ## Channels
 | Field              | Type | Desc |
 | :---------------- | :------: | ----: |
@@ -440,7 +509,6 @@ lang: en
 | updated_at |  timestamp   | update time |
 ## Channel translations
 | Field              | Type | Desc |
-| :---------------- | :------: | ----: |
 | :---------------- | :------: | ----: |
 |channel_id        |   int(10)   | channel_id |
 |inventory_source_id        |   int(10)   | inventory_source_id |
