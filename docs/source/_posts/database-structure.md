@@ -435,12 +435,105 @@ lang: en
 |name        |   varchar(191)   | name |
 
 # Cart
-
 ## cart
+| Field              | Type | Desc |
+| :---------------- | :------: | ----: |
+| id        |   int(10)   | id |
+|customer_email        |   varchar(191)   | customer email |
+|customer_first_name        |   varchar(191)   | customer first name |
+|customer_last_name        |   varchar(191)   | customer last name |
+|shipping_method        |   varchar(191)   | shipping method |
+|coupon_code        |   varchar(191)   | coupon code |
+|is_gift        |   tinyint(1)   | is gift |
+|items_count        |   int(10)   | items count |
+|items_qty        |   decimal(12,4)   | items qty |
+|exchange_rate        |   decimal(12,4)   | exchange rate |
+|global_currency_code        |   varchar(191)   | global currency code |
+|base_currency_code        |   varchar(191)   | base currency code |
+|channel_currency_code        |   varchar(191)   | channel currency code |
+|cart_currency_code        |   varchar(191)   | cart currency code |
+|grand_total        |   decimal(12,4)   | grand total |
+|base_grand_total        |   decimal(12,4)   | base grand total |
+|sub_total        |   decimal(12,4)   | sub total |
+|base_sub_total        |   decimal(12,4)   | base sub total |
+|tax_total        |   decimal(12,4)   | tax total |
+|base_tax_total        |   decimal(12,4)   | base tax total |
+|discount_amount        |   decimal(12,4)   | discount amount |
+|base_discount_amount        |   decimal(12,4)   | base discount amount |
+|checkout_method        |   varchar(191)   | checkout method |
+|is_guest        |   tinyint(1)   | is guest |
+|is_active        |   tinyint(1)   | is active |
+|applied_cart_rule_ids        |   varchar(191)   | applied cart rule ids |
+|customer_id        |   int(10)   | customer id |
+|channel_id        |   int(10)   | channel id |
+| created_at |  timestamp   | create time |
+| updated_at |  timestamp   | update time |
 ## cart_items
+| Field              | Type | Desc |
+| :---------------- | :------: | ----: |
+| id        |   int(10)   | id |
+|quantity        |   int(10)   | quantity |
+|sku        |   varchar(191)   | sku |
+|type        |   varchar(191)   | type |
+|name        |   varchar(191)   | name |
+|coupon_code        |   varchar(191)   | coupon code |
+|weight        |   decimal(12,4)   | weight |
+|total_weight        |   decimal(12,4)   | total weight |
+|base_total_weight        |   decimal(12,4)   | base total weight |
+|price        |   decimal(12,4)   | price |
+|base_price        |   decimal(12,4)   | base price |
+|custom_price        |   decimal(12,4)   | custom price |
+|total        |   decimal(12,4)   | total |
+|base_total        |   decimal(12,4)   | base total |
+|tax_percent        |   decimal(12,4)   | tax percent |
+|tax_amount        |   decimal(12,4)   | tax amount |
+|base_tax_amount        |   decimal(12,4)   | base tax amount |
+|discount_percent        |   decimal(12,4)   | discount percent |
+|discount_amount        |   decimal(12,4)   | discount amount |
+|base_discount_amount        |   decimal(12,4)   | base discount amount |
+|parent_id        |   int(10)   | parent id |
+|product_id        |   int(10)   | product id |
+|cart_id        |   int(10)   | cart id |
+|tax_category_id        |   int(10)   | tax category id |
+|applied_cart_rule_ids        |   varchar(191)   | applied cart rule ids |
+|additional        |   json   | additional |
+| created_at |  timestamp   | create time |
+| updated_at |  timestamp   | update time |
 ## cart_item_inventories
+| Field              | Type | Desc |
+| :---------------- | :------: | ----: |
+| id        |   int(10)   | id |
+|qty        |   int(10)   | qty |
+|inventory_source_id        |   int(10)   | inventory source id |
+|cart_item_id        |   int(10)   | cart item id |
+| created_at |  timestamp   | create time |
+| updated_at |  timestamp   | update time |
 ## cart_payment
+| Field              | Type | Desc |
+| :---------------- | :------: | ----: |
+| id        |   int(10)   | id |
+|method        |   varchar(191)   | method |
+|method_title        |   varchar(191)   | method title |
+|cart_id        |   int(10)   | cart id |
+| created_at |  timestamp   | create time |
+| updated_at |  timestamp   | update time |
 ## cart_shipping_rates
+| Field              | Type | Desc |
+| :---------------- | :------: | ----: |
+| id        |   int(10)   | id |
+|carrier        |   varchar(191)   | carrier |
+|carrier_title        |   varchar(191)   | carrier title |
+|method        |   varchar(191)   | method |
+|method_title        |   varchar(191)   | method title |
+|method_description        |   varchar(191)   | method description |
+|price        |   decimal(12,4)   | price |
+|base_price        |   decimal(12,4)   | base price |
+|discount        |   decimal(12,4)   | discount |
+|base_discount        |   decimal(12,4)   | base discount |
+|is_calculate_tax        |   tinyint(1)   | is calculate tax |
+|cart_address_id        |   int(10)   | cart address id |
+| created_at |  timestamp   | create time |
+| updated_at |  timestamp   | update time |
 
 # Invoices
 ## invoices
