@@ -814,19 +814,81 @@ lang: en
 # Countries
 
 # Rule
-
 ## Cart Rule
-
 ### cart_rules
+| Field              | Type | Desc |
+| :---------------- | :------: | ----: |
+| id        |   int(10)   | id |
+|name        |   varchar(191)   | name |
+|description        |   varchar(191)   | description |
+|startstarts_from        |   date   | starts_from |
+|ends_till        |   date   | ends_till |
+|status        |   tinyint(1)   | status |
+|coupon_type        |   varchar(191)   | coupon_type |
+|use_auto_generation        |   tinyint(1)   | use_auto_generation |
+|usage_per_customer        |   int(10)   | usage_per_customer |
+|uses_per_coupon        |   int(10)   | uses_per_coupon |
+|times_used        |   int(10)   | times_used |
+|condition_type        |   varchar(191)   | condition_type |
+|conditions        |   json   | conditions |
+|end_other_rules        |   tinyint(1)   | end_other_rules |
+|uses_attribute_conditions       |   tinyint(1)    | uses_attribute_conditions |
+|action_type        |   varchar(191)   | action_type |
+|discount_amount        |   decimal(12,4)   | discount_amount |
+|discount_quantity        |   int(10)   | discount_quantity |
+|discount_step        |   int(10)   | discount_step |
+|apply_to_shipping_amount        |   tinyint(1)   | apply_to_shipping_amount |
+|free_shipping        |   tinyint(1)   | free_shipping |
+|sort_order        |   int(10)   | sort_order |
+| created_at |  timestamp   | create time |
+| updated_at |  timestamp   | update time |
 ### cart_rule_channels
+| Field              | Type | Desc |
+| :---------------- | :------: | ----: |
+| cart_rule_id        |   int(10)   | cart_rule_id |
+| channel_id        |   int(10)   | channel_id |
 ### cart_rule_coupons
+| Field              | Type | Desc |
+| :---------------- | :------: | ----: |
+| id        |   int(10)   | id |
+| code        |   varchar(191)   | code |
+| usage_limit        |   int(10)   | usage_limit |
+| usage_per_customer       |   int(10)   | usage_per_customer |
+|times_used        |   int(10)   | times_used |
+|type        |   int(10)    | type |
+|is_primary        |   tinyint(1)   | is_primary |
+|expired_at        |   date   | expired_at |
+|cart_rule_id        |   int(10)   | cart_rule_id |
+| created_at |  timestamp   | create time |
+| updated_at |  timestamp   | update time |
 ### cart_rule_coupon_usage
+| Field              | Type | Desc |
+| :---------------- | :------: | ----: |
+| id        |   int(10)   | id |
+|times_used        |   int(10)   | times_used |
+|cart_rule_coupon_id        |   int(10)   | cart_rule_coupon_id |
+|customer_id        |   int(10)   | customer_id |
 ### cart_rule_customers
+| Field              | Type | Desc |
+| :---------------- | :------: | ----: |
+| id        |   int(10)   | id |
+|times_used        |   int(10)   | times_used |
+|customer_id        |   int(10)   | customer_id |
+|cart_rule_id        |   int(10)   | cart_rule_id |
 ### cart_rule_customer_groups
+| Field              | Type | Desc |
+| :---------------- | :------: | ----: |
+| cart_rule_id        |   int(10)   | cart_rule_id |
+| customer_group_id        |   int(10)   | customer_group_id |
 ### cart_rule_translations
+| Field              | Type | Desc |
+| :---------------- | :------: | ----: |
+| id        |   int(10)   | id |
+|locale        |   varchar(191)   | locale |
+|label        |   varchar(191)   | label |
+||cart_rule_id        |   int(10)   | cart_rule_id |
 
 ## Catelog Rule
-
 ### catalog_rules
 ### catalog_rule_channels
 ### catalog_rule_customer_groups
