@@ -445,11 +445,39 @@ lang: en
 |channel_id        |   int(10)   | channel_id |
 |inventory_source_id        |   int(10)   | inventory_source_id |
 # CMS
+## cms_pages
+| Field              | Type | Desc |
+| :---------------- | :------: | ----: |
+| id        |   int(10)   | id |
+|layout        |   varchar(191)   | layout |
+| created_at |  timestamp   | create time |
+| updated_at |  timestamp   | update time |
+## cms_page_translations
+| Field              | Type | Desc |
+| :---------------- | :------: | ----: |
+| id        |   int(10)   | id |
+|page_title        |   varchar(191)   | page_title |
+|url_key        |   varchar(191)   | url_key |
+|html_content        |   text   | html_content |
+|meta_title        |   varchar(191)   | meta_title |
+|meta_description        |   varchar(191)   | meta_description |
+|meta_keywords        |   varchar(191)   | meta_keywords |
+|locale        |   varchar(191)   | locale |
+|cms_page_id        |   int(10)   | cms_page_id |
+| created_at |  timestamp   | create time |
+| updated_at |  timestamp   | update time |
+## cms_page_channels
+| Field              | Type | Desc |
+| :---------------- | :------: | ----: |
+| cms_page_id        |   int(10)   | cms_page_id |
+|channel_id        |   int(10)   | channel_id |
+
 
 # Category
 
-# Customer
 
+
+# Customer
 ## Customers
 | Field              | Type | Desc |
 | :---------------- | :------: | ----: |
