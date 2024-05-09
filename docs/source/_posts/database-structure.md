@@ -850,3 +850,15 @@ lang: en
 |locale_code        |   varchar(191)   | locale_code |
 | created_at |  timestamp   | create time |
 | updated_at |  timestamp   | update time |
+
+# Lps
+| Field              | Type | Desc |
+| :---------------- | :------: | ----: |
+| id        |   int(10)   | id |
+|name        |   varchar(191)   | name |
+|slug        |   varchar(191)   | slug |
+|status        |   varchar(191)   | status |
+|html        |   varchar(191)   | html |
+|goto_url        |   varchar(191)   | goto_url |
+| created_at |  timestamp   | create time |
+| updated_at |  timestamp   | update time |
