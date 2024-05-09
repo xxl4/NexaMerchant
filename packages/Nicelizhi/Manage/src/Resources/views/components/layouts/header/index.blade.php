@@ -125,6 +125,31 @@
           <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
         </div>
       </li>
+
+      <li class="nav-item dropdown">
+        <a class="nav-link" data-toggle="dropdown" href="#">
+          <i class="flag-icon flag-icon-gb"></i>
+        </a>
+        <div class="dropdown-menu dropdown-menu-right p-0">
+          <a href="#" class="dropdown-item active">
+            <i class="flag-icon flag-icon-gb mr-2"></i> United Kingdom
+          </a>
+          <a href="#" class="dropdown-item">
+            <i class="flag-icon flag-icon-de mr-2"></i> German
+          </a>
+          <a href="#" class="dropdown-item">
+            <i class="flag-icon flag-icon-fr mr-2"></i> French
+          </a>
+          <a href="#" class="dropdown-item">
+            <i class="flag-icon flag-icon-es mr-2"></i> Spanish
+          </a>
+
+          <a href="#" class="dropdown-item">
+            <i class="flag-icon flag-icon-us mr-2"></i> United States
+          </a>
+        </div>
+      </li>
+
       <li class="nav-item">
         <a class="nav-link" data-widget="fullscreen" href="#" role="button">
           <i class="fas fa-expand-arrows-alt"></i>
