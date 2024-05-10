@@ -886,7 +886,7 @@ lang: en
 | id        |   int(10)   | id |
 |locale        |   varchar(191)   | locale |
 |label        |   varchar(191)   | label |
-||cart_rule_id        |   int(10)   | cart_rule_id |
+|cart_rule_id        |   int(10)   | cart_rule_id |
 
 ## Catelog Rule
 ### catalog_rules
