@@ -890,38 +890,95 @@ lang: en
 
 ## Catelog Rule
 ### catalog_rules
+| Field              | Type | Desc |
+| :---------------- | :------: | ----: |
+| id        |   int(10)   | id |
+|name        |   varchar(191)   | name |
+|description        |   varchar(191)   | description |
+|starts_from        |   date   | starts_from |
+|ends_till        |   date   | ends_till |
+|status        |   tinyint(1)   | status |
+|condition_type        |   varchar(191)   | condition_type |
+|conditions        |   json   | conditions |
+|end_other_rules        |   tinyint(1)   | end_other_rules |
+|action_type        |   varchar(191)   | action_type |
+|discount_amount        |   decimal(12,4)   | discount_amount |
+|sort_order        |   int(10)   | sort_order |
+| created_at |  timestamp   | create time |
+| updated_at |  timestamp   | update time |
 ### catalog_rule_channels
+| Field              | Type | Desc |
+| :---------------- | :------: | ----: |
+| catalog_rule_id        |   int(10)   | catalog_rule_id |
+| channel_id        |   int(10)   | channel_id |
 ### catalog_rule_customer_groups
+| Field              | Type | Desc |
+| :---------------- | :------: | ----: |
+| catalog_rule_id        |   int(10)   | catalog_rule_id |
+| customer_group_id        |   int(10)   | customer_group_id |
 ### catalog_rule_products
+| Field              | Type | Desc |
+| :---------------- | :------: | ----: |
+| id        |   int(10)   | id |
+|starts_from        |   date   | starts_from |
+|ends_till        |   date   | ends_till |
+|end_other_rules        |   tinyint(1)   | end_other_rules |
+|action_type        |   varchar(191)   | action_type |
+|discount_amount        |   decimal(12,4)   | discount_amount |
+|sort_order        |   int(10)   | sort_order |
+|product_id        |   int(10)   | product_id |
+|customer_group_id        |   int(10)   | customer_group_id |
+|catalog_rule_id        |   int(10)   | catalog_rule_id |
+|channel_id        |   int(10)   | channel_id |
 ### catalog_rule_product_prices
+| Field              | Type | Desc |
+| :---------------- | :------: | ----: |
+| id        |   int(10)   | id |
+|price        |   decimal(12,4)   | price |
+|rule_date        |   date   | rule_date |
+|starts_from        |   date   | starts_from |
+|ends_till        |   date   | ends_till |
+|product_id        |   int(10)   | product_id |
+|customer_group_id        |   int(10)   | customer_group_id |
+|catalog_rule_id        |   int(10)   | catalog_rule_id |
+|channel_id        |   int(10)   | channel_id |
 
 # Tax
 ## tax_categories
 | Field              | Type | Desc |
 | :---------------- | :------: | ----: |
 | id        |   int(10)   | id |
+|code        |   varchar(191)   | code |
+|name        |   varchar(191)   | name |
+|description        |   varchar(191)   | description |
 | created_at |  timestamp   | create time |
 | updated_at |  timestamp   | update time |
 ## tax_categories_tax_rates
 | Field              | Type | Desc |
 | :---------------- | :------: | ----: |
 | id        |   int(10)   | id |
+|tax_category_id        |   int(10)   | tax_category_id |
+|tax_rate_id        |   int(10)   | tax_rate_id |
 | created_at |  timestamp   | create time |
 | updated_at |  timestamp   | update time |
 ## tax_rates
 | Field              | Type | Desc |
 | :---------------- | :------: | ----: |
 | id        |   int(10)   | id |
+|identifier        |   varchar(191)   | identifier |
+|is_zip        |   tinyint(1)   | is_zip |
+|zip_code        |   varchar(191)   | zip_code |
+|zip_from        |   varchar(191)   | zip_from |
+|zip_to        |   varchar(191)   | zip_to |
+|state        |   varchar(191)   | state |
+|country        |   varchar(191)   | country |
+|tax_rate        |   decimal(12,4)   | tax_rate |
 | created_at |  timestamp   | create time |
 | updated_at |  timestamp   | update time |
 
 # Theme
 ## theme_customizations
 ## theme_customization_translations
-
-# Refund
-## refunds
-## refund_items
 
 # Wishlist
 ## wishlist
