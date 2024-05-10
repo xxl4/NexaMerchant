@@ -948,18 +948,31 @@ lang: en
 | Field              | Type | Desc |
 | :---------------- | :------: | ----: |
 | id        |   int(10)   | id |
+|code        |   varchar(191)   | code |
+|name        |   varchar(191)   | name |
+|description        |   varchar(191)   | description |
 | created_at |  timestamp   | create time |
 | updated_at |  timestamp   | update time |
 ## tax_categories_tax_rates
 | Field              | Type | Desc |
 | :---------------- | :------: | ----: |
 | id        |   int(10)   | id |
+|tax_category_id        |   int(10)   | tax_category_id |
+|tax_rate_id        |   int(10)   | tax_rate_id |
 | created_at |  timestamp   | create time |
 | updated_at |  timestamp   | update time |
 ## tax_rates
 | Field              | Type | Desc |
 | :---------------- | :------: | ----: |
 | id        |   int(10)   | id |
+|identifier        |   varchar(191)   | identifier |
+|is_zip        |   tinyint(1)   | is_zip |
+|zip_code        |   varchar(191)   | zip_code |
+|zip_from        |   varchar(191)   | zip_from |
+|zip_to        |   varchar(191)   | zip_to |
+|state        |   varchar(191)   | state |
+|country        |   varchar(191)   | country |
+|tax_rate        |   decimal(12,4)   | tax_rate |
 | created_at |  timestamp   | create time |
 | updated_at |  timestamp   | update time |
 
