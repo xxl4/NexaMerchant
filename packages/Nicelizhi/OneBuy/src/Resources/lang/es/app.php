@@ -41,6 +41,7 @@ return [
             'CHECKOUT' => 'VERIFICAR',
             'Enter your contact information' => 'Ingrese su información de contacto',
             'Street Address' => 'Dirección',
+            'Street Address tips' => 'Agregue un número de casa si tiene uno',
             'Phone Number' => 'Número de teléfono',
             'Last Name' => 'Apellido',
             'First Name' => 'Nombre de pila',

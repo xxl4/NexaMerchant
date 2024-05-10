@@ -404,41 +404,42 @@
 </div>
 <div class="shipping-info-form">
 <form>
-<div class="shipping-info-item">
-<input name="email" type="email" class="shipping-info-input email" />
-<label id="email-error" class="shipping-info-error">
-</label>
-<label class="shipping-info-label">
-@lang('onebuy::app.product.order.Email') </label>
-</div>
-<div class="shipping-info-item">
-<input name="first_name" class="shipping-info-input first_name" oninput="checkoutName(this)" />
-<label id="first_name-error" class="shipping-info-error">
-</label>
-<label class="shipping-info-label">
-@lang('onebuy::app.product.order.First Name') </label>
-</div>
-<div class="shipping-info-item">
-<input name="last_name" class="shipping-info-input last_name" oninput="checkoutName(this)" />
-<label id="last_name-error" class="shipping-info-error">
-</label>
-<label class="shipping-info-label">
-@lang('onebuy::app.product.order.Last Name') </label>
-</div>
-<div class="shipping-info-item">
-<input name="phone_number" type="tel" class="shipping-info-input phone_number" />
-<label id="phone_number-error" class="shipping-info-error">
-</label>
-<label class="shipping-info-label">
-@lang('onebuy::app.product.order.Phone Number') </label>
-</div>
-<div class="shipping-info-item">
-<input name="address" class="shipping-info-input address" placeholder />
-<label id="address-error" class="shipping-info-error">
-</label>
-<label class="shipping-info-label">
-@lang('onebuy::app.product.order.Street Address') </label>
-</div>
+    <div class="shipping-info-item">
+        <input name="email" type="email" class="shipping-info-input email" />
+        <label id="email-error" class="shipping-info-error">
+        </label>
+        <label class="shipping-info-label">
+        @lang('onebuy::app.product.order.Email') </label>
+    </div>
+    <div class="shipping-info-item">
+        <input name="first_name" class="shipping-info-input first_name" oninput="checkoutName(this)" />
+        <label id="first_name-error" class="shipping-info-error">
+        </label>
+        <label class="shipping-info-label">
+        @lang('onebuy::app.product.order.First Name') </label>
+    </div>
+    <div class="shipping-info-item">
+        <input name="last_name" class="shipping-info-input last_name" oninput="checkoutName(this)" />
+        <label id="last_name-error" class="shipping-info-error">
+        </label>
+        <label class="shipping-info-label">
+        @lang('onebuy::app.product.order.Last Name') </label>
+    </div>
+    <div class="shipping-info-item">
+        <input name="phone_number" type="tel" class="shipping-info-input phone_number" />
+        <label id="phone_number-error" class="shipping-info-error">
+        </label>
+        <label class="shipping-info-label">
+        @lang('onebuy::app.product.order.Phone Number') </label>
+    </div>
+    <div class="tips" style="color: red">@lang('onebuy::app.product.order.Street Address tips')</div>
+    <div class="shipping-info-item">
+        <input name="address" class="shipping-info-input address" placeholder />
+        <label id="address-error" class="shipping-info-error">
+        </label>
+        <label class="shipping-info-label">
+        @lang('onebuy::app.product.order.Street Address') </label>
+    </div>
 <!-- <div class="shipping-info-item">
 <input name="apt_other" class="shipping-info-input apt_other" />
 <label id="apt_other-error" class="shipping-info-error">
