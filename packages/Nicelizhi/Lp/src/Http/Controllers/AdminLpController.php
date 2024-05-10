@@ -4,12 +4,10 @@ namespace Nicelizhi\Lp\Http\Controllers;
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Event;
-use Nicelizhi\Lp\Repositories\LpRepository;
 use Nicelizhi\Manage\Http\Controllers\Controller;
-use Nicelizhi\Lp\DataGrids\Lp\LpDataGrid;
-use Nicelizhi\Lp\Contracts\Lp;
 use Nicelizhi\Manage\Helpers\SSP;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Cache;
+
 
 use Webkul\Admin\Http\Requests\MassDestroyRequest;
 
@@ -207,6 +205,8 @@ class AdminLpController extends Controller
         exec($command, $res);
         //exit;
 
+
+        Cache::pull("lp_".$slug);
 
         return redirect()->route('admin.lp.index');
     }
