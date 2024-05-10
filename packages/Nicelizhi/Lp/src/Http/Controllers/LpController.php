@@ -2,13 +2,10 @@
 
 namespace Nicelizhi\Lp\Http\Controllers;
 
-use Illuminate\Http\JsonResponse;
-use Illuminate\Support\Facades\Event;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Cache;
 
 class LpController extends Controller
 {
@@ -22,8 +19,11 @@ class LpController extends Controller
     public function index($slug, Request $request)
     {
 
-        $html = \Nicelizhi\Lp\Models\Lp::where('slug', $slug)->first();
+        $html = Cache::remember("lp_".$slug, 360000, function () use ($slug) {
+            return \Nicelizhi\Lp\Models\Lp::where('slug', $slug)->first();
+        });
 
+        //$html = \Nicelizhi\Lp\Models\Lp::where('slug', $slug)->first();
         if (
             ! $html
             || ! $html->slug
@@ -31,6 +31,7 @@ class LpController extends Controller
         ) {
             abort(404);
         }
+
 
         //visitor()->visit($html);
 
