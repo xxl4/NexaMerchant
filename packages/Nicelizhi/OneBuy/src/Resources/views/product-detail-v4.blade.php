@@ -864,6 +864,8 @@ Apt / Suite / Other </label>
             $("#headingOne2").removeClass("action");
             $("#airwallex_dropin_2").removeClass("action");
 
+            $("#payment-button").addClass("submit-button");
+
             $("#payment-button").html("@lang('onebuy::app.product.payment.complete_secure_purchase')");
 
         });
@@ -878,6 +880,10 @@ Apt / Suite / Other </label>
             $("#headingOne1").removeClass("action");
             $("#headingThree2").removeClass("action");
             $("#airwallex_dropin_2").removeClass("action");
+
+            $("#payment-button").removeClass("submit-button");
+
+            $("#payment-button").css("width", "500px");
 
             //payment-button
             $("#payment-button").empty();
@@ -1157,6 +1163,8 @@ Apt / Suite / Other </label>
             $("#headingOne1").removeClass("action");
             $("#headingOne2").removeClass("action");
             $("#airwallex_dropin_2").removeClass("action");
+
+            $("#payment-button").addClass("submit-button");
 
             $("#payment-button").html("@lang('onebuy::app.product.payment.complete_secure_purchase')");
 
