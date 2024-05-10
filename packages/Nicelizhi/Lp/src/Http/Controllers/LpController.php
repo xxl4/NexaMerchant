@@ -32,7 +32,7 @@ class LpController extends Controller
             abort(404);
         }
 
-        visitor()->visit($html);
+        //visitor()->visit($html);
 
         $redis = Redis::connection('default');
 
