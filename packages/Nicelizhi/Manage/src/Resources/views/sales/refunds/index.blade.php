@@ -26,6 +26,7 @@
                           <th>Order  ID</th>
                           <th>state</th>
                           <th>grand_total</th>
+                          <th>comment</th>
                           <th>created_at</th>
                           <th>Options</th>
                         </tr>
@@ -89,6 +90,9 @@
           }
           ,{
             data: 'grand_total'
+          },
+          {
+            data: 'comment'
           },
           {
             data: 'created_at'

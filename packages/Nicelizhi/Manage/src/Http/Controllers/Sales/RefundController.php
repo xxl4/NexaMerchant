@@ -48,6 +48,7 @@ class RefundController extends Controller
                 array( 'db' => '`r`.`order_id`',  'dt' => 'order_id', 'field'=>'order_id'),
                 array( 'db' => '`r`.`state`',   'dt' => 'state', 'field'=>'state' ),
                 array( 'db' => '`r`.`grand_total`',   'dt' => 'grand_total', 'field'=>'grand_total' ),
+                array( 'db' => '`r`.`comment`',   'dt' => 'comment', 'field'=>'comment' ),
                 array( 'db' => '`r`.`created_at`',   'dt' => 'created_at', 'field'=>'created_at' ),
             );
             // SQL server connection information
