@@ -141,16 +141,13 @@
                 </thead>
                 <tbody>
                     <tr>
-
                             <td>
-
                             <input  type="text"
                                             name="refund[shipping]" 
                                             id="refund[shipping]"
                                             :rules="'required|min_value:0|max_value:' . $order->base_shipping_invoiced - $order->base_shipping_refunded"
                                             value="{{ $order->base_shipping_invoiced - $order->base_shipping_refunded }}"
                                             />
-
                             </td>
                             <td>
                                 <input type="text"
@@ -176,6 +173,13 @@
                                             rules="required|min_value:0"
                                         >
                             </td>
+                    </tr>
+                    <tr>
+                        <td colspan="4">
+                            <div class="form-group">
+                                <input type="text" class="form-control form-control-lg" style="width: 100%; float:right;" name="refund[comment]" id="refund[comment]" placeholder=" refund comment" rules="required">
+                            </div>
+                        </td>
                     </tr>
                     
                 </tbody>
