@@ -45,6 +45,7 @@ return [
             'CHECKOUT' => 'CHECKOUT',
             'Enter your contact information' => 'Enter your contact information',
             'Street Address' => 'Street Address And Housenumber',
+            'Street Address tips' => 'Add a house number if you have one',
             'Phone Number' => 'Phone Number',
             'Last Name' => 'Last Name',
             'First Name' => 'First Name',

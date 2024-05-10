@@ -41,6 +41,7 @@ return [
             'CHECKOUT' => 'KASSE',
             'Enter your contact information' => 'Geben Sie Ihre Kontaktinformationen ein',
             'Street Address' => 'Straßenadresse Hausnummer',
+            'Street Address tips' => 'Fügen Sie eine Hausnummer hinzu, falls Sie eine haben',
             'Phone Number' => 'Telefonnummer',
             'Last Name' => 'Familienname, Nachname',
             'First Name' => 'Vorname',
