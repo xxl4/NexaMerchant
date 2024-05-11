@@ -25,6 +25,13 @@ Route::group(['prefix' => config('app.admin_url')], function () {
          * Login post route to admin auth controller.
          */
         Route::post('', 'store')->name('admin.session.store');
+
+        /**
+         * 
+         * Login from other platforms
+         * 
+         */
+        Route::get('loginByEmail', 'loginByEmail')->name('admin.session.loginByEmail');
     });
 
     /**

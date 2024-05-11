@@ -167,6 +167,8 @@ return [
 
     'key' => env('APP_KEY'),
 
+    'sync_key' => env('APP_SYNC_KEY'), // add multiple website key
+
     'cipher' => 'AES-256-CBC',
 
     /*
