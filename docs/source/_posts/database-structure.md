@@ -28,151 +28,234 @@ lang: en
 | Field              | Type | Desc |
 | :---------------- | :------: | ----: |
 | id        |   int(10)   | id |
+|locale       |   varchar(191)   | locale |
+|channel     |   varchar(191)   | channel |
+|text_value     |   varchar(191)   | text_value |
+|boolean_value     |   tinyint(1)   | boolean_value |
+|integer_value     |   int(10)   | integer_value |
+|float_value     |   float   | float_value |
+|datetime_value     |   datetime   | datetime_value |
+|date_value     |   date   | date_value |
+|json_value     |   json   | json_value |
+|product_id     |   int(10)   | product_id |
+|attribute_id     |   int(10)   | attribute_id |
 | created_at |  timestamp   | create time |
 | updated_at |  timestamp   | update time |
 ## product_bundle_options
 | Field              | Type | Desc |
 | :---------------- | :------: | ----: |
 | id        |   int(10)   | id |
-| created_at |  timestamp   | create time |
-| updated_at |  timestamp   | update time |
+|product_id        |   int(10)   | product_id |
+|type        |   varchar(191)   | type |
+|is_required        |   tinyint(1)   | is_required |
+|sort_order        |   int(10)   | sort_order |
 ## product_bundle_option_products
 | Field              | Type | Desc |
 | :---------------- | :------: | ----: |
 | id        |   int(10)   | id |
-| created_at |  timestamp   | create time |
-| updated_at |  timestamp   | update time |
+|product_id        |   int(10)   | product_id |
+|product_bundle_option_id        |   int(10)   | product_bundle_option_id |
+|qty       |   int(10)   | qty |
+|is_user_defined        |   tinyint(1)   | is_user_defined |
+|is_default        |   tinyint(1)   | is_default |
+|sort_order        |   int(10)   | sort_order |
 ## product_bundle_option_translations
 | Field              | Type | Desc |
 | :---------------- | :------: | ----: |
 | id        |   int(10)   | id |
-| created_at |  timestamp   | create time |
-| updated_at |  timestamp   | update time |
+|locale        |   varchar(191)   | locale |
+|label        |   varchar(191)   | label |
+|product_bundle_option_id        |   int(10)   | product_bundle_option_id |
 ## product_categories
 | Field              | Type | Desc |
 | :---------------- | :------: | ----: |
-| id        |   int(10)   | id |
-| created_at |  timestamp   | create time |
-| updated_at |  timestamp   | update time |
+| product_id        |   int(10)   | product_id |
+|category_id        |   int(10)   | category_id |
 ## product_cross_sells
 | Field              | Type | Desc |
 | :---------------- | :------: | ----: |
-| id        |   int(10)   | id |
-| created_at |  timestamp   | create time |
-| updated_at |  timestamp   | update time |
+| parent_id        |   int(10)   | parent_id |
+| child_id        |   int(10)   | child_id |
 ## product_customer_group_prices
 | Field              | Type | Desc |
 | :---------------- | :------: | ----: |
 | id        |   int(10)   | id |
+|qty         |   int(10)   | qty |
+|value_type         |   varchar(191)   | value_type |
+|value         |   decimal(12,4)   | value |
+|product_id         |   int(10)   | product_id |
+|customer_group_id         |   int(10)   | customer_group_id |
 | created_at |  timestamp   | create time |
 | updated_at |  timestamp   | update time |
 ## product_downloadable_links
 | Field              | Type | Desc |
 | :---------------- | :------: | ----: |
 | id        |   int(10)   | id |
+|product_id       |   int(10)   | product_id |
+|url       |   varchar(191)   | url |
+|file       |   varchar(191)   | file |
+|file_name       |   varchar(191)   | file_name |
+|type       |   varchar(191)   | type |
+|price      |   decimal(12,4)   | price |
+|sample_url       |   varchar(191)   | sample_url |
+|sample_file_name       |   varchar(191)   | sample_file_name |
+|sample_type       |   varchar(191)   | sample_type |
+|downloads       |   int(10)   | downloads |
+|sort_order       |   int(10)   | sort_order |
 | created_at |  timestamp   | create time |
 | updated_at |  timestamp   | update time |
 ## product_downloadable_link_translations
 | Field              | Type | Desc |
 | :---------------- | :------: | ----: |
 | id        |   int(10)   | id |
-| created_at |  timestamp   | create time |
-| updated_at |  timestamp   | update time |
+|product_downloadable_link_id       |   int(10)   | product_downloadable_link_id |
+|locale       |   varchar(191)   | locale |
+|title       |   varchar(191)   | title |
 ## product_downloadable_samples
 | Field              | Type | Desc |
 | :---------------- | :------: | ----: |
 | id        |   int(10)   | id |
+|product_id       |   int(10)   | product_id |
+| url       |   varchar(191)   | url |
+|file       |   varchar(191)   | file |
+|file_name       |   varchar(191)   | file_name |
+|type       |   varchar(191)   | type |
+|sort_order       |   int(10)   | sort_order |
 | created_at |  timestamp   | create time |
 | updated_at |  timestamp   | update time |
 ## product_downloadable_samples_translations
 | Field              | Type | Desc |
 | :---------------- | :------: | ----: |
 | id        |   int(10)   | id |
-| created_at |  timestamp   | create time |
-| updated_at |  timestamp   | update time |
+|product_downloadable_sample_id       |   int(10)   | product_downloadable_sample_id |
+|locale       |   varchar(191)   | locale |
+|title       |   varchar(191)   | title |
 ## product_flat
 | Field              | Type | Desc |
 | :---------------- | :------: | ----: |
 | id        |   int(10)   | id |
 | sku           |   varchar(191)   | sku |
 | type    |  varchar(191)   | prduct type |
-| Field              | Type | Desc |
+| product_number       |   int(10)   | product_number |
+|name       |   varchar(191)   | name |
+|short_description       |   varchar(191)   | short_description |
+|description       |   varchar(191)   | description |
+|url_key       |   varchar(191)   | url_key |
+|new       |   tinyint(1)   | new |
+|featured       |   tinyint(1)   | featured |
+|status       |   tinyint(1)   | status |
+|meta_title       |   varchar(191)   | meta_title |
+|meta_keywords       |   varchar(191)   | meta_keywords |
+|meta_description       |   varchar(191)   | meta_description |
+|price       |   decimal(12,4)   | price |
+|special_price       |   decimal(12,4)   | special_price |
+|special_price_from       |   datetime   | special_price_from |
+|special_price_to       |   datetime   | special_price_to |
+|weight       |   decimal(12,4)   | weight |
+|locale      |   varchar(191)   | locale |
+|channel       |   varchar(191)   | channel |
+|attribute_family_id       |   int(10)   | attribute_family_id |
+|product_id       |   int(10)   | product_id |
+|parent_id       |   int(10)   | parent_id |
+|visible_individually       |   tinyint(1)   | visible_individually |
 | created_at |  timestamp   | create time |
 | updated_at |  timestamp   | update time |
 ## product_grouped_products
 | Field              | Type | Desc |
 | :---------------- | :------: | ----: |
 | id        |   int(10)   | id |
-| created_at |  timestamp   | create time |
-| updated_at |  timestamp   | update time |
+|product_id        |   int(10)   | product_id |
+|associated_product_id        |   int(10)   | associated_product_id |
+|qty        |   int(10)   | qty |
+|sort_order       |   int(10)   | sort_order |
 ## product_images
 | Field              | Type | Desc |
 | :---------------- | :------: | ----: |
 | id        |   int(10)   | id |
-| created_at |  timestamp   | create time |
-| updated_at |  timestamp   | update time |
+|type       |   varchar(191)   | type |
+|path       |   varchar(191)   | path |
+|product_id        |   int(10)   | product_id |
+|position       |   int(10)   | position |
 ## product_inventories
 | Field              | Type | Desc |
 | :---------------- | :------: | ----: |
 | id        |   int(10)   | id |
-| created_at |  timestamp   | create time |
-| updated_at |  timestamp   | update time |
+|qty         |   int(10)   | qty |
+|product_id        |   int(10)   | product_id |
+|vendor_id        |   int(10)   | vendor_id |
+|inventory_source_id        |   int(10)   | inventory_source_id |
 ## product_inventory_indices
 | Field              | Type | Desc |
 | :---------------- | :------: | ----: |
 | id        |   int(10)   | id |
+|qty         |   int(10)   | qty |
+|product_id        |   int(10)   | product_id |
+|channel_id        |   int(10)   | channel_id |
 | created_at |  timestamp   | create time |
 | updated_at |  timestamp   | update time |
 ## product_ordered_inventories
 | Field              | Type | Desc |
 | :---------------- | :------: | ----: |
 | id        |   int(10)   | id |
-| created_at |  timestamp   | create time |
-| updated_at |  timestamp   | update time |
+|qty         |   int(10)   | qty |
+|product_id        |   int(10)   | product_id |
+|channel_id        |   int(10)   | channel_id |
 ## product_price_indices
 | Field              | Type | Desc |
 | :---------------- | :------: | ----: |
 | id        |   int(10)   | id |
+|product_id        |   int(10)   | product_id |
+|customer_group_id        |   int(10)   | customer_group_id |
+|min_price        |   decimal(12,4)   | min_price |
+|regular_min_price        |   decimal(12,4)   | regular_price |
+|max_price        |   decimal(12,4)   | max_price |
+|regular_max_price        |   decimal(12,4)   | regular_max_price |
 | created_at |  timestamp   | create time |
 | updated_at |  timestamp   | update time |
 ## product_relations
 | Field              | Type | Desc |
 | :---------------- | :------: | ----: |
-| id        |   int(10)   | id |
-| created_at |  timestamp   | create time |
-| updated_at |  timestamp   | update time |
+| parent_id        |   int(10)   | parent_id |
+| child_id        |   int(10)   | child_id |
 ## product_reviews
 | Field              | Type | Desc |
 | :---------------- | :------: | ----: |
 | id        |   int(10)   | id |
+|name        |   varchar(191)   | name |
+|title        |   varchar(191)   | title |
+|rating        |   int(10)   | rating |
+|comment        |   varchar(191)   | comment |
+|status        |   varchar(191)   | status |
+|product_id        |   int(10)   | product_id |
+|customer_id        |   int(10)   | customer_id |
 | created_at |  timestamp   | create time |
 | updated_at |  timestamp   | update time |
 ## product_review_attachments
 | Field              | Type | Desc |
 | :---------------- | :------: | ----: |
 | id        |   int(10)   | id |
-| created_at |  timestamp   | create time |
-| updated_at |  timestamp   | update time |
+|review_id        |   int(10)   | review_id |
+|type        |   varchar(191)   | type |
+|mime_type        |   varchar(191)   | mime_type |
+|path        |   varchar(191)   | path |
 ## product_super_attributes
 | Field              | Type | Desc |
 | :---------------- | :------: | ----: |
-| id        |   int(10)   | id |
-| created_at |  timestamp   | create time |
-| updated_at |  timestamp   | update time |
+| product_id        |   int(10)   | product_id |
+|attribute_id        |   int(10)   | attribute_id |
 ## product_up_sells
 | Field              | Type | Desc |
 | :---------------- | :------: | ----: |
-| id        |   int(10)   | id |
-| created_at |  timestamp   | create time |
-| updated_at |  timestamp   | update time |
+| parent_id        |   int(10)   | parent_id |
+|child_id        |   int(10)   | child_id |
 ## product_videos
 | Field              | Type | Desc |
 | :---------------- | :------: | ----: |
 | id        |   int(10)   | id |
-| created_at |  timestamp   | create time |
-| updated_at |  timestamp   | update time |
-
-
+|product_id        |   int(10)   | product_id |
+|type        |   varchar(191)   | type |
+|path        |   varchar(191)   | path |
+|position        |   int(10)   | position |
 
 # Order
 ## orders
@@ -886,7 +969,7 @@ lang: en
 | id        |   int(10)   | id |
 |locale        |   varchar(191)   | locale |
 |label        |   varchar(191)   | label |
-||cart_rule_id        |   int(10)   | cart_rule_id |
+|cart_rule_id        |   int(10)   | cart_rule_id |
 
 ## Catelog Rule
 ### catalog_rules
@@ -1279,11 +1362,11 @@ lang: en
 # Lps
 | Field              | Type | Desc |
 | :---------------- | :------: | ----: |
-| id        |   int(10)   | id |
+| id        |   bigint(20)   | id |
 |name        |   varchar(191)   | name |
 |slug        |   varchar(191)   | slug |
-|status        |   varchar(191)   | status |
-|html        |   varchar(191)   | html |
+|status        |   tinyint(4)   | status |
+|html        |   longtext   | html |
 |goto_url        |   varchar(191)   | goto_url |
 | created_at |  timestamp   | create time |
 | updated_at |  timestamp   | update time |
