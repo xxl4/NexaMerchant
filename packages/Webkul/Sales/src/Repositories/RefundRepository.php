@@ -69,6 +69,7 @@ class RefundRepository extends Repository
                 'base_adjustment_fee'    => $data['refund']['adjustment_fee'],
                 'shipping_amount'        => core()->convertPrice($data['refund']['shipping'], $order->order_currency_code),
                 'base_shipping_amount'   => $data['refund']['shipping'],
+                'comment'                => $data['refund']['comment'], // add refund comments
             ]);
 
             foreach ($data['refund']['items'] as $itemId => $qty) {
