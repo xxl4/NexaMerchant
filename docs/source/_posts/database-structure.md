@@ -1362,11 +1362,11 @@ lang: en
 # Lps
 | Field              | Type | Desc |
 | :---------------- | :------: | ----: |
-| id        |   int(10)   | id |
+| id        |   bigint(20)   | id |
 |name        |   varchar(191)   | name |
 |slug        |   varchar(191)   | slug |
-|status        |   varchar(191)   | status |
-|html        |   varchar(191)   | html |
+|status        |   tinyint(4)   | status |
+|html        |   longtext   | html |
 |goto_url        |   varchar(191)   | goto_url |
 | created_at |  timestamp   | create time |
 | updated_at |  timestamp   | update time |
