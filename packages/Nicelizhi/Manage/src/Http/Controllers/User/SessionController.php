@@ -87,10 +87,10 @@ class SessionController extends Controller
         $token = request('token');
         if(!$token) throw new \Exception("token is required");
         $newEncrypter = new \Illuminate\Encryption\Encrypter(config('app.sync_key'), config('app.cipher'));
-
+        
         $decrypted = $newEncrypter->decrypt( $token );
 
-        $user = \Webkul\User\Models\Admin::where('email', $decrypted)->first();
+        $user = \Webkul\User\Models\Admin::where('email', $decrypted)->where('status', 1)->first();
         if($user) {
             auth()->guard('admin')->login($user);
             return redirect()->route('admin.dashboard.index');
