@@ -895,6 +895,34 @@ lang: en
 | updated_at |  timestamp   | update time |
 
 # Countries
+## Countries
+| Field              | Type | Desc |
+| :---------------- | :------: | ----: |
+| id        |   int(10)   | id |
+|code        |   varchar(191)   | code |
+|name        |   varchar(191)   | name |
+## country_states
+| Field              | Type | Desc |
+| :---------------- | :------: | ----: |
+| id        |   int(10)   | id |
+|country_id        |   int(10)   | country_id |
+|country_code        |   varchar(191)   | country_code |
+|code        |   varchar(191)   | code |
+|default_name        |   varchar(191)   | default_name |
+## country_states_translations
+| Field              | Type | Desc |
+| :---------------- | :------: | ----: |
+| id        |   int(10)   | id |
+|country_state_id        |   int(10)   | country_state_id |
+|locale        |   varchar(191)   | locale |
+|default_name        |   varchar(191)   | default_name |
+## country_translations
+| Field              | Type | Desc |
+| :---------------- | :------: | ----: |
+| id        |   int(10)   | id |
+|country_id        |   int(10)   | country_id |
+|locale        |   varchar(191)   | locale |
+|name        |   varchar(191)   | name |
 
 # Rule
 ## Cart Rule
@@ -1065,8 +1093,31 @@ lang: en
 
 # Wishlist
 ## wishlist
+| Field              | Type | Desc |
+| :---------------- | :------: | ----: |
+| id        |   int(10)   | id |
+|channel_id        |   int(10)   | channel_id |
+|product_id        |   int(10)   | product_id |
+|customer_id        |   int(10)   | customer_id |
+|item_options        |   json   | item_options |
+|moved_to_cart        |   tinyint(1)   | moved_to_cart |
+|shared        |   tinyint(1)   | shared |
+|time_of_moving |  timestamp   | time_of_moving |
+|additional        |   json   | additional |
+| created_at |  timestamp   | create time |
+| updated_at |  timestamp   | update time |
 ## wishlist_items
-
+| Field              | Type | Desc |
+| :---------------- | :------: | ----: |
+| id        |   int(10)   | id |
+|channel_id        |   int(10)   | channel_id |
+|product_id        |   int(10)   | product_id |
+|customer_id        |   int(10)   | customer_id |
+|additional        |   json   | additional |
+|moved_to_cart        |   tinyint(1)   | moved_to_cart |
+|shared        |   tinyint(1)   | shared |
+| created_at |  timestamp   | create time |
+| updated_at |  timestamp   | update time |
 # Visits
 ## visits
 | Field              | Type | Desc |
@@ -1368,5 +1419,103 @@ lang: en
 |status        |   tinyint(4)   | status |
 |html        |   longtext   | html |
 |goto_url        |   varchar(191)   | goto_url |
+| created_at |  timestamp   | create time |
+| updated_at |  timestamp   | update time |
+
+# compare_items
+| Field              | Type | Desc |
+| :---------------- | :------: | ----: |
+| id        |   int(10)   | id |
+|product_id        |   int(10)   | product_id |
+|customer_id        |   int(10)   | customer_id |
+| created_at |  timestamp   | create time |
+| updated_at |  timestamp   | update time |
+
+# currency
+## currencies
+| Field              | Type | Desc |
+| :---------------- | :------: | ----: |
+| id        |   int(10)   | id |
+|code        |   varchar(191)   | code |
+|name        |   varchar(191)   | name |
+|symbol        |   varchar(191)   | symbol |
+|decimal        |   tinyint(1)   | decimal |
+| created_at |  timestamp   | create time |
+| updated_at |  timestamp   | update time |
+## currency_exchange_rates
+| Field              | Type | Desc |
+| :---------------- | :------: | ----: |
+| id        |   int(10)   | id |
+|rate        |   double   | rate |
+|target_currency        |   varchar(191)   | target_currency |
+| created_at |  timestamp   | create time |
+| updated_at |  timestamp   | update time |
+
+# downloadable_link_purchased
+| Field              | Type | Desc |
+| :---------------- | :------: | ----: |
+| id        |   int(10)   | id |
+|product_name        |   varchar(191)   | product_name |
+|name        |   varchar(191)   | name |
+|url        |   varchar(191)   | url |
+|file        |   varchar(191)   | file |
+|file_name        |   varchar(191)   | file_name |
+|type        |   varchar(191)   | type |
+|download_bought        |   int(10)   | download_bought |
+|download_used        |   int(10)   | download_used |
+|status        |   tinyint(1)   | status |
+|customer_id        |   int(10)   | customer_id |
+|order_id        |   int(10)   | order_id |
+|order_item_id        |   int(10)   | order_item_id |
+|download_canceled        |   int(10)   | download_canceled |
+| created_at |  timestamp   | create time |
+| updated_at |  timestamp   | update time |
+
+# notifications
+| Field              | Type | Desc |
+| :---------------- | :------: | ----: |
+| id        |   int(10)   | id |
+|type        |   varchar(191)   | type |
+|read        |   tinyint(1)   | read |
+|order_id        |   int(10)   | order_id |
+| created_at |  timestamp   | create time |
+| updated_at |  timestamp   | update time |
+
+# shipment 
+## Shipments
+| Field              | Type | Desc |
+| :---------------- | :------: | ----: |
+| id        |   int(10)   | id |
+|status        |   tinyint(4)   | status |
+|total_qty        |   int(10)   | total_qty |
+|total_weight        |   double   | total_weight |
+|carrier_code        |   varchar(191)   | carrier_code |
+|carrier_title        |   varchar(191)   | carrier_title |
+|track_number        |   varchar(191)   | track_number |
+|email_sent        |   tinyint(1)   | email_sent |
+|customer_id        |   int(10)   | customer_id |
+|customer_type        |   varchar(191)   | customer_type |
+|order_id        |   int(10)   | order_id |
+|order_address_id        |   int(10)   | order_address_id |
+|inventory_source_id        |   int(10)   | inventory_source_id |
+|inventory_source_name        |   varchar(191)   | inventory_source_name |
+| created_at |  timestamp   | create time |
+| updated_at |  timestamp   | update time |
+## Shipment Items
+| Field              | Type | Desc |
+| :---------------- | :------: | ----: |
+| id        |   int(10)   | id |
+|name        |   varchar(191)   | name |
+|description        |   varchar(191)   | description |
+|sku        |   varchar(191)   | sku |
+|qty        |   int(10)   | qty |
+|weight        |   double   | weight |
+|price        |   double   | price |
+|base_price        |   double   | base_price |
+|product_id        |   int(10)   | product_id |
+|product_type |   varchar(191)   | product_type |
+|order_item_id        |   int(10)   | order_item_id |
+|shipment_id        |   int(10)   | shipment_id |
+|additional        |   text   | additional |
 | created_at |  timestamp   | create time |
 | updated_at |  timestamp   | update time |
