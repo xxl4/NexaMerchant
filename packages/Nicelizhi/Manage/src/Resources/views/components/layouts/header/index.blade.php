@@ -128,7 +128,7 @@
 
       <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
-          <i class="flag-icon flag-icon-gb"></i>
+          <i class="flag-icon flag-icon-<?php echo strtolower(config('onebuy.default_country'));?>"></i>
         </a>
         <div class="dropdown-menu dropdown-menu-right p-0">
           <?php
