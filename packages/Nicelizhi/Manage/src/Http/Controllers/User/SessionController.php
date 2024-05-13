@@ -3,6 +3,9 @@
 namespace Nicelizhi\Manage\Http\Controllers\User;
 
 use Nicelizhi\Manage\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Crypt;
+use Illuminate\Encryption\Encrypter;
 
 class SessionController extends Controller
 {
@@ -70,5 +73,30 @@ class SessionController extends Controller
         auth()->guard('admin')->logout();
 
         return redirect()->route('admin.session.create');
+    }
+
+    /**
+     * 
+     * Login from other platforms
+     * @param string $platform
+     * @param string $token
+     * @param string $email
+     * @return void
+     */
+    public function loginByEmail() {
+        $token = request('token');
+        if(!$token) throw new \Exception("token is required");
+        $newEncrypter = new \Illuminate\Encryption\Encrypter(config('app.sync_key'), config('app.cipher'));
+        //$plainTextToEncrypt = "nice.lizhi@gmail.com";
+        //$encrypted = $newEncrypter->encrypt( $plainTextToEncrypt );
+        $decrypted = $newEncrypter->decrypt( $token );
+
+
+        $user = \Webkul\User\Models\Admin::where('email', $decrypted)->where('status', 1)->first();
+        if($user) {
+            auth()->guard('admin')->login($user);
+            return redirect()->route('admin.dashboard.index');
+        }
+        
     }
 }
