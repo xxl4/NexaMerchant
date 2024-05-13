@@ -106,7 +106,7 @@
             [20, 50, 100],
             [20, 50, 100]
         ],
-        order: [[3, 'desc']],
+        order: [[4, 'desc']],
         processing: true,
         serverSide: true,
         
