@@ -12,7 +12,7 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>@lang('admin::app.sales.orders.index.title')</h1>
+                <h1>@lang('admin::app.settings.locales.index.title')</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
