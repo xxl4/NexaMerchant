@@ -6,7 +6,7 @@ use Nicelizhi\Lp\Http\Controllers\AdminLpController;
 /**
  * Lp routes.
  */
-Route::group(['middleware' => ['admin'], 'prefix' => config('app.admin_url')], function () {
+Route::group(['middleware' => ['admin','admin_option_log'], 'prefix' => config('app.admin_url')], function () {
     Route::controller(AdminLpController::class)->prefix('lp')->group(function () {
         Route::get('/', 'index')->name('admin.lp.index');
 
