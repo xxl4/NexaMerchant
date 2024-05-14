@@ -452,7 +452,15 @@ class ProductController extends Controller
         return view("shopify::products.info", compact("product", "product_id", "act_type","locale_get"));
     }
 
-    public function commentsManual($product_id) {
+    public function commentsManual($product_id, Request $request) {
+
+        $force = $request->input("force");
+
+        if($force==1) {
+            $redis = Redis::connection('default');
+            $comment_list_key = "checkout_v1_product_comments_".$product_id;
+            $redis->del($comment_list_key);
+        }
         
         Artisan::queue("onebuy:import:products:comment:from:judge")->onConnection('redis')->onQueue('shopify-products'); // import the shopify comments
 

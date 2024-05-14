@@ -36,7 +36,7 @@
                         <label for="comments_list_file">Replace</label>
                         <div class="input-group">
                             <div class="custom-file">
-                                <input type="checkbox" class="input" name="force" value="1"> Force
+                                <input type="checkbox" class="input" name="force" id="force" value="1"> Force
                             </div>
                         </div>
                     </div>
@@ -86,9 +86,13 @@
 <script>
     $(document).ready(function() {
         $('.manual-sync-comment').click(function() {
+            var force = 0;
+            if($("#force").is(':checked'))
+                force = 1;
+
             console.log("manual-sync-comment");
             $.ajax({
-                url: "{{ route('admin.shopify.products.comments.manual', ['product_id' => $product_id, 'act_type' => 'manual_sync']) }}",
+                url: "{{ route('admin.shopify.products.comments.manual', ['product_id' => $product_id, 'act_type' => 'manual_sync']) }}&force="+force,
                 type: 'GET',
                 success: function(data) {
                     alert('Sync Comment From Shopify, will cost a few minutes, please wait for');
