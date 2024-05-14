@@ -458,7 +458,10 @@ class ProductController extends Controller
 
         if($force==1) {
             $redis = Redis::connection('default');
-            $comment_list_key = "checkout_v1_product_comments_".$product_id;
+            $product = $this->productRepository->findBySlug($product_id);
+
+            $comment_list_key = "checkout_v1_product_comments_".$product['id'];
+            //$comment_list_key = "checkout_v1_product_comments_".$product_id;
             $redis->del($comment_list_key);
         }
         
