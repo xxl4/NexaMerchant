@@ -34,21 +34,6 @@ class Handler extends ExceptionHandler
      */
     public function report(Throwable $exception)
     {
-
-        if ($exception instanceof \Exception) {
-            $message = $exception->getMessage();
-            if(!empty($message)) {
-                $pos = strpos($message, "bagisto");
-
-                if ($pos !== false) {
-                    \Nicelizhi\Shopify\Helpers\Utils::send($message. " code is " .$exception->getCode(). " please check the log file for more details");
-                } 
-                
-            } 
-        }
-
-       
-
         parent::report($exception);
     }
 
