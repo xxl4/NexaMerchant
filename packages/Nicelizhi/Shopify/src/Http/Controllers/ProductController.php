@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Redis;
 use Maatwebsite\Excel\Facades\Excel;
 use Webkul\CatalogRule\Listeners\Product;
 
+
 class ProductController extends Controller
 {
 
@@ -449,5 +450,14 @@ class ProductController extends Controller
         
 
         return view("shopify::products.info", compact("product", "product_id", "act_type","locale_get"));
+    }
+
+    public function commentsManual($product_id) {
+        
+        Artisan::queue("onebuy:import:products:comment:from:judge")->onConnection('redis')->onQueue('shopify-products'); // import the shopify comments
+
+        return response()->json([
+            'message' => "success"
+        ]);
     }
 }

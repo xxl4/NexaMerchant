@@ -44,6 +44,7 @@
                 <div class="card-footer">
                     <input type="hidden" name="version" value="<?php echo $act_prod_type; ?>">
                     <button type="submit" class="btn btn-primary">submit</button>
+                    <button type="button" class="btn btn-secondary manual-sync-comment">Manual Sync Comment</button>
                 </div>
             </form>
             </div>
@@ -81,5 +82,20 @@
 <script src="/themes/manage/AdminLTE/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
 <script src="/themes/manage/AdminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        $('.manual-sync-comment').click(function() {
+            console.log("manual-sync-comment");
+            $.ajax({
+                url: "{{ route('admin.shopify.products.comments.manual', ['product_id' => $product_id, 'act_type' => 'manual_sync']) }}",
+                type: 'GET',
+                success: function(data) {
+                    alert('Sync Comment From Shopify, will cost a few minutes, please wait for');
+                }
+            });
+        });
+    });
+</script>
 
 </x-admin::layouts>
