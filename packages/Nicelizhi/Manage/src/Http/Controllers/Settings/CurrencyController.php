@@ -6,6 +6,7 @@ use Illuminate\Http\JsonResponse;
 use Nicelizhi\Manage\Http\Controllers\Controller;
 use Webkul\Core\Repositories\CurrencyRepository;
 use Nicelizhi\Manage\DataGrids\Settings\CurrencyDataGrid;
+use Nicelizhi\Manage\Helpers\SSP;
 
 class CurrencyController extends Controller
 {
@@ -26,7 +27,34 @@ class CurrencyController extends Controller
     public function index()
     {
         if (request()->ajax()) {
-            return app(CurrencyDataGrid::class)->toJson();
+
+            $table_pre = config("database.connections.mysql.prefix");
+            $table = $table_pre.'currencies';
+
+            $primaryKey = 'id';
+            
+            $columns = array(
+                //array( 'db' => 'id', 'dt' => 0 ),
+                array( 'db' => '`p`.`id`',  'dt' => 'id', 'field'=>'id','formatter' => function($d, $row){
+                    return $d;
+                } ),
+                array( 'db' => '`p`.`code`',   'dt' => 'code', 'field'=>'code' ),
+                array( 'db' => '`p`.`name`',   'dt' => 'name', 'field'=>'name' ),
+                array( 'db' => '`p`.`symbol`',   'dt' => 'symbol', 'field'=>'symbol' ),
+                array( 'db' => '`p`.`decimal`',   'dt' => 'decimal', 'field'=>'decimal' ),
+                array( 'db' => '`p`.`updated_at`',   'dt' => 'updated_at', 'field'=>'updated_at' )
+            );
+            // SQL server connection information
+            $sql_details = [];
+
+            $joinQuery = "FROM `{$table}` AS `p` ";
+            $extraCondition = "";
+            //$extraCondition = "`a`.`address_type`='cart_shipping'";
+
+
+            return json_encode(SSP::simple( request()->input(), $sql_details, $table, $primaryKey, $columns, $joinQuery, $extraCondition ));
+
+            //return app(CurrencyDataGrid::class)->toJson();
         }
 
         return view('admin::settings.currencies.index');
