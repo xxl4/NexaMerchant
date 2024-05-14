@@ -128,7 +128,7 @@ class ProductController extends Controller
 
         session()->flash('success', trans('admin::app.catalog.products.create-success'));
 
-        Artisan::call("cache:clear"); // clear cache
+        //Artisan::call("cache:clear"); // clear cache
 
         return new JsonResponse([
             'data' => [
@@ -168,7 +168,7 @@ class ProductController extends Controller
 
         session()->flash('success', trans('admin::app.catalog.products.update-success'));
 
-        Artisan::call("cache:clear"); // clear cache
+        //Artisan::call("cache:clear"); // clear cache
 
         return redirect()->route('admin.catalog.products.index');
     }
