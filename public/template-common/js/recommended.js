@@ -26,7 +26,7 @@ function setRecommended(data) {
     console.log(all_data);
     if (all_data) {
         var products = all_data.recommended_info;
-        var recommend_source_page = "from=" + window.location.href;
+        var recommend_source_page = "utm_source=checkout-recommendations" ;
         var utm = "";
         var recommendedProduct = document.createElement('div');
         recommendedProduct.setAttribute('id', 'recommended');
