@@ -8,6 +8,22 @@
   <link rel="stylesheet" href="/themes/manage/AdminLTE/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
   <link rel="stylesheet" href="/themes/manage/AdminLTE/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
 
+  <section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>@lang('admin::app.sales.orders.index.title')</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">@lang('admin::app.settings.locales.index.title')</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>
+
   <section class="content">
     <div class="container-fluid">
       <div class="row">
@@ -15,7 +31,7 @@
           
             <div class="card">
                 <div class="card-header">
-                  <h3 class="card-title">@lang('lp::app.admin.index.title')</h3>
+                  <h3 class="card-title">@lang('admin::app.settings.locales.index.title')</h3>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
@@ -92,11 +108,7 @@
             data: 'updated_at'
           },
           {
-            data: "id",
-            render: function(data, type, row, meta) {
-              //console.log(row);
-              return '<a href="./cms/edit/'+data+'?locale='+ row.locale +'" class="btn btn-primary btn-sm">View</a>';
-            }
+            data: "id"
           }
         ],
         lengthMenu: [
