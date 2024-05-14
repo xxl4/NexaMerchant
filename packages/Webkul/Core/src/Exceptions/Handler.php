@@ -76,6 +76,10 @@ class Handler extends BaseHandler
                 ? $exception->getStatusCode()
                 : 500;
 
+            if($statusCode == 500) {
+                \Nicelizhi\Shopify\Helpers\Utils::send(json_encode($exception->getMessage()). " code is " .$statusCode. " please check the log file for more details");
+            }
+
             return $this->response($path, $statusCode);
         } elseif ($exception instanceof ModelNotFoundException) {
             return $this->response($path, 404);
@@ -103,10 +107,6 @@ class Handler extends BaseHandler
             return response()->json([
                 'error' => trans("{$path}::app.errors.{$errorCode}.description"),
             ], $errorCode);
-        }
-
-        if($errorCode == 500) {
-            \Nicelizhi\Shopify\Helpers\Utils::send(json_encode($path). " code is " .$errorCode. " please check the log file for more details");
         }
 
         return response()->view("{$path}::errors.index", compact('errorCode'));
