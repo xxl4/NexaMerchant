@@ -80,6 +80,10 @@ class Handler extends BaseHandler
         } elseif ($exception instanceof ModelNotFoundException) {
             return $this->response($path, 404);
         } elseif ($exception instanceof PDOException) {
+
+            
+
+
             return $this->response($path, 500);
         } else {
             return parent::render($request, $exception);
@@ -99,6 +103,10 @@ class Handler extends BaseHandler
             return response()->json([
                 'error' => trans("{$path}::app.errors.{$errorCode}.description"),
             ], $errorCode);
+        }
+
+        if($errorCode == 500) {
+            \Nicelizhi\Shopify\Helpers\Utils::send(json_encode($path). " code is " .$errorCode. " please check the log file for more details");
         }
 
         return response()->view("{$path}::errors.index", compact('errorCode'));
