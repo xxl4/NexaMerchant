@@ -9,7 +9,9 @@ date: 2024-05-15 18:43:12
 description: Comments API
 lang: en
 ---
+```
 GET /reviews
+```
 | Field              | Type | required | Desc |
 | :---------------- | :------: | :------:| ----: |
 | per_page        |   number  | false | per_page default(10) |
