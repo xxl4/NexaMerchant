@@ -86,9 +86,13 @@ jobs:
         port: ${{secrets.SSH_PORT }}
         script: |
           cd ${{ secrets.WWW_DIR }} && sudo git pull
+          sudo -u www composer dump-autoload
           cd ${{ secrets.WWW_DIR_2 }} && sudo git pull
+          sudo -u www composer dump-autoload
           cd ${{ secrets.WWW_DIR_3 }} && sudo git pull
+          sudo -u www composer dump-autoload
           cd ${{ secrets.WWW_DIR_4 }} && sudo git pull
+          sudo -u www composer dump-autoload
     - name: Sync to Server 2 and Do it
       uses: appleboy/ssh-action@master
       env:
@@ -100,3 +104,4 @@ jobs:
         port: ${{secrets.SSH_PORT_US }}
         script: |
           cd ${{ secrets.WWW_DIR_US }} && git pull
+          sudo -u www composer dump-autoload
