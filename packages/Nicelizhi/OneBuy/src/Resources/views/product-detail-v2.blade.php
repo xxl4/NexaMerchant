@@ -167,9 +167,10 @@
 
 </div>
 <div class="header-container-bg"></div>
+
 <style>
     .header-container-bg {
-        background-image : url(<?php echo isset($productBgAttribute_mobile->text_value) ? "/storage/".$productBgAttribute_mobile->text_value : "/checkout/onebuy/banners/".$default_country."_pc.jpg" ;?>)
+        background-image : url(<?php echo isset($productBgAttribute->text_value) ? "/storage/".$productBgAttribute->text_value : "/checkout/onebuy/banners/".$default_country."_pc.jpg" ;?>)
     }
     .modal-dialog {
         text-align: left;
@@ -195,7 +196,7 @@
 
     @media (max-width:767px) {
         .header-container-bg {
-            background-image : url(/storage/<?php echo isset($productBgAttribute_mobile->text_value) ? $productBgAttribute_mobile->text_value : "" ;?>)
+            background-image : url(<?php echo isset($productBgAttribute_mobile->text_value) ? "/storage/".$productBgAttribute_mobile->text_value : "/checkout/onebuy/banners/".$default_country."_mobile.jpg" ;?>)
         }
         .modal-dialog {
             max-width: 600px; /* New width for default modal */
