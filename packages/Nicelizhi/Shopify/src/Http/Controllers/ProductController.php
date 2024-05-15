@@ -184,6 +184,7 @@ class ProductController extends Controller
         $redis = Redis::connection('default');
 
         $comment_list_key = "checkout_v1_product_comments_".$product['id'];
+        $comment_list_key2 = "onebuy_v2_product_comments_".$product['id'];
         if ($request->isMethod('POST'))
         {
             $request->validate([
@@ -198,6 +199,7 @@ class ProductController extends Controller
 
             if($force=="1") {
                 $redis->del($comment_list_key);
+                $redis->del($comment_list_key2);
             }
 
             $prod_id = $product->id;
