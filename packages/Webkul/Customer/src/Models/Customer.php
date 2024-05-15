@@ -66,6 +66,8 @@ class Customer extends Authenticatable implements CustomerContract
      * @var array
      */
     protected $hidden = [
+        'email',
+        'phone',
         'password',
         'api_token',
         'remember_token',
