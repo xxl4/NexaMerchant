@@ -325,6 +325,7 @@ class ProductV2Controller extends Controller
         ksort($faqItems);
 
         $comments = $redis->hgetall($this->cache_prefix_key."product_comments_".$product['id']);
+        if(empty($comments)) $comments = $redis->hgetall("checkout_v1_product_comments_".$product['id']);
 
         
         //获取 paypal smart key
