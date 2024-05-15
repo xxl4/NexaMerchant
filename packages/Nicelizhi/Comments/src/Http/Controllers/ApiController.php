@@ -33,5 +33,30 @@ class ApiController extends Controller {
             'ratingValue' => $reviewHelper->getAverageRating($product),
             'reviewCount' => $reviewHelper->getTotalReviews($product),
         ];
+
+
+        $data = [];
+
+        $data['comments'] = $product->approvedReviews()->paginate(10);
+        $data['ratingValue'] = $reviewHelper->getAverageRating($product);
+        $data['reviewCount'] = $reviewHelper->getTotalReviews($product);
+
+        return response()->json([
+            'data' => $data,
+            'code' => 200,
+            'message' => 'success'
+        ], 200);
+    }
+
+    public function index() {
+        return response()->json([
+            'message' => 'success'
+        ], 200);
+    }
+
+    public function commentsListID($id) {
+        return response()->json([
+            'message' => 'success'
+        ], 200);
     }
 }
