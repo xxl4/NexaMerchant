@@ -244,6 +244,7 @@ return [
         Nicelizhi\Manage\Providers\ManageServiceProvider::class,
         Nicelizhi\Checkout\Providers\CheckoutServiceProvider::class,
         Nicelizhi\Lp\Providers\LpServiceProvider::class,
+        Nicelizhi\Comments\Providers\CommentsServiceProvider::class,
 
         // log reader
         Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class,

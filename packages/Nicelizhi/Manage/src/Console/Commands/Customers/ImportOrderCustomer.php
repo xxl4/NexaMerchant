@@ -127,8 +127,6 @@ class ImportOrderCustomer extends Command {
             'is_verified' => 1,
         ]);
 
-        //var_dump($data);exit;
-
         $this->customerRepository->create($data);
     }
 }
