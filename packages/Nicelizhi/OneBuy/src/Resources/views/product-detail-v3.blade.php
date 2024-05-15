@@ -169,7 +169,7 @@
 <div class="header-container-bg"></div>
 <style>
     .header-container-bg {
-        background-image : url(/storage/<?php echo isset($productBgAttribute->text_value) ? $productBgAttribute->text_value : "" ;?>)
+        background-image : url(<?php echo isset($productBgAttribute->text_value) ? "/storage/".$productBgAttribute->text_value : "/checkout/onebuy/banners/".$default_country."_pc.jpg" ;?>)
     }
     .modal-dialog {
         text-align: left;
@@ -183,7 +183,7 @@
 
     @media (max-width:1023px) {
         .header-container-bg {
-            background-image : url(<?php echo isset($productBgAttribute_mobile->text_value) ? "/storage/".$productBgAttribute_mobile->text_value : "/checkout/onebuy/banners/".$default_country."_pc.jpg" ;?>)
+            background-image : url(<?php echo isset($productBgAttribute_mobile->text_value) ? "/storage/".$productBgAttribute_mobile->text_value : "/checkout/onebuy/banners/".$default_country."_mobile.jpg" ;?>)
         }
         .modal-dialog {
             max-width: 800px; /* New width for default modal */
@@ -1179,103 +1179,10 @@ Apt / Suite / Other </label>
 </style>
 
 <section class="main">
-<div class="row">
-
-<div class="col-md-6 col-lg-6">
-
-                    <div id="block--reviews" class="reviews">
-
-                        <div class="step-title">
-
-                             @lang('onebuy::app.product.order.What customers are saying about')
-                        </div>
-
-                        <hr class="mt-2">
-                        <!-- NEW TESTIMONIAL SECTION STARTS HERE -->
-                        <div class="testi-sec" style="">
-                        <?php foreach($comments as $key=>$comment) { 
-                            $comment = json_decode($comment);    
-                            //var_dump($comment);exit;
-                        ?>
-                            <div class="testi-row" style="justify-content:left;">
-                                <div class="testi-row-lft" style="width:180px;">
-                                    <div class="testi-lft-abt">
-                                        <p class="testi-pics"><?php echo substr($comment->name, 0, 1);?></p>
-                                        <p class="t-name"><?php echo $comment->name;?></p>
-                                        <p class="t-vryfd">
-                                            <img src="/checkout/v1/app/desktop/images/vrfy-seal-c.png" alt=""> Verified Buyer
-                                        </p>
-                                    </div>
-                                    <div class="test-prod" style="">
-                                        <div class="t-prod-dv">
-                                            <img src="/checkout/v1/app/desktop/images/t-prod1.jpg" alt="">
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <div class="testi-row-rght">
-                                    <span><?php echo $comment->title;?></span>
-                                    <img src="/checkout/v1/app/desktop/images/star.png" class="t-star">
-                                    <p class="testi-paragraph" style="font-size:14px;line-height:18px;"><?php echo $comment->content;?></p>
-                                   
-                                </div>
-                            </div>
-
-                        <?php } ?>
-                            
-                        </div>
-                        <!-- NEW TESTIMONIAL SECTION STARTS HERE -->
-
-                    </div>
-
-                </div>
-
-
-<div id="block--faq" class="faqs col-md-5 bg-white border p-3">
-
-<div class="h2 text-center mb-4" style="font-family: oswald;">
-
-     @lang('onebuy::app.product.order.Frequently Asked Questions')
-
-</div>
-
-<div class="accordion accordion-flush" id="faqs">
-
-    <?php foreach($faqItems as $key=>$item) {
-        $item = json_decode($item);    
-    ?>
-
-    <div class="accordion-item">
-
-        <h2 class="accordion-header" id="compatability">
-
-            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq<?php echo $key;?>" <?php if($key==1) { ?> aria-expanded="true" <?php } ?> aria-controls="faq<?php echo $key;?>">
-
-                <?php echo $item->q;?>
-
-            </button>
-
-        </h2>
-
-        <div id="faq<?php echo $key;?>" class="accordion-collapse collapse <?php if($key==1) { ?>show<?php } ?>" aria-labelledby="compatability" data-bs-parent="#faqs">
-
-            <div class="accordion-body" style="font-size:14px;">
-
-                <?php echo $item->a;?>
-
-            </div>
-
-        </div>
-
+    <div class="row">
+        @include('onebuy::comments/v2')
+        @include('onebuy::faqs/v1')
     </div>
-<?php } ?>
-
-
-</div>
-
-</div>
-    </div>
-
 </section>
 
 </div>
