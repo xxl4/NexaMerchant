@@ -1333,8 +1333,8 @@ Apt / Suite / Other </label>
 
 <section class="main">
     <div class="row">
-        @include('onebuy::comments/v1');
-        @include('onebuy::faqs/v1');
+        @include('onebuy::comments/v2')
+        @include('onebuy::faqs/v1')
     </div>
 </section>
 
