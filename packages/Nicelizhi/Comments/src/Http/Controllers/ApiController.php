@@ -68,7 +68,7 @@ class ApiController extends Controller {
 
         $reviews = $reviews->map(function($review) {
             $review->customer = $review->customer;
-            $review->pictures = $review->images;
+            $review->images;
             return $review;
         });
 
