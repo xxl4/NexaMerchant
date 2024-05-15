@@ -86,6 +86,8 @@ class Handler extends BaseHandler
         } elseif ($exception instanceof PDOException) {
 
             
+            
+            \Nicelizhi\Shopify\Helpers\Utils::send(json_encode($exception->getMessage()). " code is 500 please check the log file for more details");
 
 
             return $this->response($path, 500);
