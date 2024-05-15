@@ -53,6 +53,7 @@ class ApiController extends Controller {
         $per_page = request()->get('per_page', 10);
         $page = request()->get('page', 0);
         $product_id = request()->get('product_id', null);
+        $product_id = request()->get('product_id', null);
 
         $product = $this->productRepository->findBySlug($product_id);
         
@@ -79,6 +80,10 @@ class ApiController extends Controller {
         $data['reviewCount'] = $reviewHelper->getTotalReviews($product);
         $data['getReviewsWithRatings'] = $reviewHelper->getReviewsWithRatings($product);
         $data['getPercentageRating'] = $reviewHelper->getPercentageRating($product);
+        $data['getTotalRating'] = $reviewHelper->getTotalRating($product);
+        $data['per_page'] = $per_page;
+        $data['page'] = $page;
+        $data['total'] = $reviewHelper->getTotalReviews($product);
 
         return response()->json([
             'data' => $data,
