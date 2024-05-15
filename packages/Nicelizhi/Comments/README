@@ -1,0 +1,173 @@
+# Comments Plugins
+
+## Product Plugins
+
+## Aritcle Plugins
+
+## API 
+
+GET /reviews
+| Field              | Type | Desc |
+| :---------------- | :------: | ----: |
+| per_page        |   number   | per_page |
+| page        |   number   | page |
+| reviewer_id        |   number   | reviewer_id |
+| product_id           |   number   | product_id |
+| rating           |   number   | rating |
+
+```
+{
+  "current_page": 1,
+  "per_page": 10,
+  "reviews": [
+    {
+      "id": 111,
+      "title": "Raw review title. This is not sanitized yet so do not print it out as-is in frontend.",
+      "body": "Raw review body. This is not sanitized yet so do not print it out as-is in frontend.",
+      "rating": 5,
+      "product_external_id": 999999,
+      "product_title": "Example product",
+      "product_handle": "example-product",
+      "reviewer": {
+        "id": 111,
+        "email": "john@example.com",
+        "name": "John Smith",
+        "phone": "+123456789",
+        "tags": [
+          "tag1",
+          "tag2",
+          "tag3"
+        ],
+        "accepts_marketing": true,
+        "unsubscribed_at": "2020-02-20T20:20:20+00:00",
+        "external_id": 999999
+      },
+      "source": "email",
+      "curated": "ok",
+      "hidden": false,
+      "verified": "buyer",
+      "created_at": "2019-08-24T14:15:22Z",
+      "updated_at": "2019-08-24T14:15:22Z",
+      "ip_address": "string",
+      "has_published_pictures": false,
+      "has_published_videos": false,
+      "pictures": [
+        {
+          "hidden": true,
+          "urls": {
+            "small": "string",
+            "compact": "string",
+            "huge": "string",
+            "original": "string"
+          }
+        }
+      ]
+    }
+  ]
+}
+```
+POST /reviews
+
+```
+```
+PUT /reviews
+
+```
+```
+
+GET /reviews/{id}
+```
+{
+  "review": {
+    "id": 111,
+    "title": "Raw review title. This is not sanitized yet so do not print it out as-is in frontend.",
+    "body": "Raw review body. This is not sanitized yet so do not print it out as-is in frontend.",
+    "rating": 5,
+    "product_external_id": 999999,
+    "product_title": "Example product",
+    "product_handle": "example-product",
+    "reviewer": {
+      "id": 111,
+      "email": "john@example.com",
+      "name": "John Smith",
+      "phone": "+123456789",
+      "tags": [
+        "tag1",
+        "tag2",
+        "tag3"
+      ],
+      "accepts_marketing": true,
+      "unsubscribed_at": "2020-02-20T20:20:20+00:00",
+      "external_id": 999999
+    },
+    "source": "email",
+    "curated": "ok",
+    "hidden": false,
+    "verified": "buyer",
+    "created_at": "2019-08-24T14:15:22Z",
+    "updated_at": "2019-08-24T14:15:22Z",
+    "ip_address": "string",
+    "has_published_pictures": false,
+    "has_published_videos": false,
+    "pictures": [
+      {
+        "hidden": true,
+        "urls": {
+          "small": "string",
+          "compact": "string",
+          "huge": "string",
+          "original": "string"
+        }
+      }
+    ]
+  }
+}
+```
+GET /reviews/{slug}
+```
+{
+  "review": {
+    "id": 111,
+    "title": "Raw review title. This is not sanitized yet so do not print it out as-is in frontend.",
+    "body": "Raw review body. This is not sanitized yet so do not print it out as-is in frontend.",
+    "rating": 5,
+    "product_external_id": 999999,
+    "product_title": "Example product",
+    "product_handle": "example-product",
+    "reviewer": {
+      "id": 111,
+      "email": "john@example.com",
+      "name": "John Smith",
+      "phone": "+123456789",
+      "tags": [
+        "tag1",
+        "tag2",
+        "tag3"
+      ],
+      "accepts_marketing": true,
+      "unsubscribed_at": "2020-02-20T20:20:20+00:00",
+      "external_id": 999999
+    },
+    "source": "email",
+    "curated": "ok",
+    "hidden": false,
+    "verified": "buyer",
+    "created_at": "2019-08-24T14:15:22Z",
+    "updated_at": "2019-08-24T14:15:22Z",
+    "ip_address": "string",
+    "has_published_pictures": false,
+    "has_published_videos": false,
+    "pictures": [
+      {
+        "hidden": true,
+        "urls": {
+          "small": "string",
+          "compact": "string",
+          "huge": "string",
+          "original": "string"
+        }
+      }
+    ]
+  }
+}
+```
