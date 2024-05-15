@@ -10,7 +10,9 @@ use Maatwebsite\Excel\Facades\Excel;
 use Webkul\Product\Repositories\ProductRepository;
 use Webkul\Product\Repositories\ProductReviewRepository;
 use Webkul\Product\Repositories\ProductReviewAttachmentRepository;
+use Webkul\Customer\Repositories\CustomerRepository;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Event;
 
 class ImportProductCommentFromJudge extends Command
 {
@@ -38,6 +40,7 @@ class ImportProductCommentFromJudge extends Command
     public function __construct(
         protected ProductRepository $productRepository,
         protected ProductReviewRepository $productReviewRepository,
+        protected CustomerRepository $customerRepository,
         protected ProductReviewAttachmentRepository $productReviewAttachmentRepository
     )
     {
@@ -153,6 +156,36 @@ class ImportProductCommentFromJudge extends Command
                     
                     //var_dump($review);
                     if(empty($review)) {
+
+                        //var_dump($item);exit;
+
+                        //check the email exist
+                        $customer = $this->customerRepository->findOneByField('email', $item['reviewer']['email']);
+                        if(!$customer) {
+                            $data = [];
+                            $data['email'] = $item['reviewer']['email'];
+                            $data['customer_group_id'] = 2;
+                            $name = explode("-", $item['reviewer']['name']);
+
+                            var_dump($name, $item['reviewer']['name']);
+
+                            $data['first_name'] = $name[0];
+                            $data['last_name'] = isset($name[1]) ? $name[1] : "";
+                            $data['gender'] = null;
+                            $data['phone'] = $item['reviewer']['phone'];
+
+                            $password = rand(100000, 10000000);
+                            Event::dispatch('customer.registration.before');
+                            $data = array_merge($data, [
+                                'password'    => bcrypt($password),
+                                'is_verified' => 1,
+                            ]);
+                            $this->customerRepository->create($data);
+                            $customer = $this->customerRepository->findOneByField('email', $item['reviewer']['email']);
+                        }
+
+
+
                         $data = [];
                         $data['name'] = trim($item['reviewer']['name']);
                         $data['title'] = trim($item['title']);
@@ -161,7 +194,7 @@ class ImportProductCommentFromJudge extends Command
                         $data['status'] = "pending";
                         $data['product_id'] = $product->id;
                         $data['attachments'] = [];
-                        $data['customer_id'] = null;
+                        $data['customer_id'] = $customer->id;
     
                         if($item['published']==true) $data['status'] = "approved";
                 
