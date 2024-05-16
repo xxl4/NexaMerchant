@@ -141,7 +141,7 @@ class ImportProductCommentFromJudge extends Command
                 
                 $product = $this->productRepository->where("sku", $item['product_external_id'])->first();
 
-                if($item['product_external_id']=='8532415938790') {
+                if($item['product_external_id']=='8640539295974') {
                     //var_dump($item);
                     //exit;
                     //var_dump($product);exit;
@@ -158,6 +158,7 @@ class ImportProductCommentFromJudge extends Command
                     if(empty($review)) {
 
                         //var_dump($item);exit;
+                        if($item['reviewer']['name']=='Anonymous') continue;
 
                         //check the email exist
                         $customer = $this->customerRepository->findOneByField('email', $item['reviewer']['email']);
