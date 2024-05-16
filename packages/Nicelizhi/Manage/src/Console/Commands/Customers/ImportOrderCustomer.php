@@ -65,6 +65,12 @@ class ImportOrderCustomer extends Command {
                     continue;
                 }
 
+                //check the phone exist
+                $customer = $this->customerRepository->findOneByField('phone', $shipping_address->phone);
+
+                if($customer) {
+                    continue;
+                }
 
                 $data = [];
                 $data['email'] = $shipping_address->email;
