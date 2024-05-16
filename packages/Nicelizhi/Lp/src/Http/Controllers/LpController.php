@@ -38,7 +38,9 @@ class LpController extends Controller
 
         $ob_adv_id = config('onebuy.ob_adv_id');
         $gtag = config('onebuy.gtag');
+
+        $default_country = config('onebuy.default_country');
         
-        return view('lp::Lp.index', compact('html', 'ob_adv_id','refer','gtag'));
+        return view('lp::Lp.index', compact('html', 'ob_adv_id','refer','gtag','default_country'));
     }
 }

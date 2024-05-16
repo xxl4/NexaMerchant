@@ -3,6 +3,8 @@ echo $html->html;
 ?>
 
 <script type="text/javascript">
+  window.goto_url = "<?php echo isset($html->goto_url) ? $html->goto_url : ''; ?>";
+  window.country = "<?php echo $default_country; ?>";
   function goto() {
     var url = "<?php echo isset($html->goto_url) ? $html->goto_url : ''; ?>";
     window.location.href = url;
