@@ -674,7 +674,7 @@
       //var_dump($comment);exit;
     ?>
 
-    <div class="comment-card">
+    <div class="comment-card" style="background-color: #f6f6f6">
       <div style="display: flex;">
         <div class="mr4"> <?php echo $comment->name;?> <i class="flag-icon flag-icon-<?php echo strtolower($default_country);?> mr-2"></i>
         </div>
