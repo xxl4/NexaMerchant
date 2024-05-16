@@ -1,9 +1,4 @@
-<script src="
-https://cdn.jsdelivr.net/npm/flag-icon-css@4.1.7/svgo.config.min.js
-"></script>
-<link href="
-https://cdn.jsdelivr.net/npm/flag-icon-css@4.1.7/css/flag-icons.min.css
-" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/flag-icon-css@4.1.7/css/flag-icons.min.css" rel="stylesheet">
 <style>
     .section {
         padding-top: 0px;
@@ -670,88 +665,45 @@ https://cdn.jsdelivr.net/npm/flag-icon-css@4.1.7/css/flag-icons.min.css
 </style>
 <div id="iduzu" class="section">
     <h3 class="container_title">Customer reviews</h3>
-    <div class="grade">
-      <h4 class="grade-top">
-        <span class="grade-text">Reviews</span>
-        <svg viewBox="0 0 16 16" fill="#ffce00" class="icon_icon__ECGRl" xmlns="http://www.w3.org/2000/svg" width="22px" height="22px"><path fill-rule="evenodd" clip-rule="evenodd" d="M9.88 6.225H16l-4.929 3.504-3.047 2.149-4.953 3.504L4.952 9.73 0 6.225h6.119L8 .572l1.881 5.653Zm1.596 4.812L8 11.9l4.929 3.527-1.453-4.392Z"></path></svg>
-        <span class="grade-text2">4.5</span>
-      </h4>
-    </div>
-    <div class="speak">
-      <!-- <div class="speak_l">
-        <span class="r--title-average">Durchschnittlich</span
-        ><span class="r--stars_average">4.8</span
-        ><span class="average-star-image"
-          ><img
-            src="./img/1656152467_4.8.webp"
-            alt
-            id="iznnl"
-        /></span>
-      </div> -->
-      <div class="speak_l">
-        <div class="stars_n">
-          <div class="border_b" id="bor1"></div>
-          <div class="left_text">5-star</div>
-        </div>
-        <div class="stars_l">
-          <div class="border_b" id="bor2"></div>
-          <div class="left_text">4-star</div>
-        </div>
-        <div class="stars_l">
-          <div class="border_b" id="bor3"></div>
-          <div class="left_text">3-star</div>
-        </div>
-        <div class="stars_l">
-          <div class="border_b" id="bor4"></div>
-          <div class="left_text">2-star</div>
-        </div>
-        <div class="stars_l">
-          <div class="border_b" id="bor5"></div>
-          <div class="left_text">1-star</div>
-        </div>
-        
-      </div>
-      <div class="speak_r">
-        <div class="itnysh_global itnysh">
-          <div id="ina4n" class="iakor7_global iakor7">
-            <div class="ig637l"></div>
-          </div>
-          <div class="i55eho_global i55eho"><div class="icdfoq"></div></div>
-          <div class="islybo_global islybo"></div>
-          <div class="i20q32"></div>
-          <div class="i9r4tj"></div>
-        </div>
-        <div class="i10l46_global i10l46">
-          <span class="count-percent">79.2%</span><span class="count-percent">20.8%</span><span class="count-percent">0%</span><span class="count-percent">0%</span><span class="count-percent">0%</span>
-        </div>
-      </div>
-    </div>
-  </div>
+</div>
   <!-- review -->
   <div class="section">
 
+    <?php foreach($comments as $key=>$comment) { 
+      $comment = json_decode($comment);    
+      //var_dump($comment);exit;
+    ?>
+
     <div class="comment-card">
       <div style="display: flex;">
-        <div class="mr4"> Matthew Turner <i class="flag-icon flag-icon-us mr-2"></i>
+        <div class="mr4"> <?php echo $comment->name;?> <i class="flag-icon flag-icon-<?php echo strtolower($default_country);?> mr-2"></i>
         </div>
         <div>
-          <img class="mb1 mr2" width="14px" src="./img/icon_gou.svg">
+          <img class="mb1 mr2" width="14px" src="/checkout/onebuy/images/icon_gou.svg">
           <strong style="width: 100%;">Verified</strong>
         </div>
       </div>
       <div>
         <div style="text-align: start;width: 100%;;margin-top: 15px;">
-          <img width="110px" src="./img/stars-5.svg" alt="">
+          <img width="110px" src="/checkout/onebuy/images/stars-5.svg" alt="">
         </div>
         <div class="cardtext">
-          Fairly easy to set up and operate. Quality materials and construction. Smart design.
+          <?php echo $comment->content;?>
         </div>
+        <?php if (isset($comment->images)) { ?>
+
+          <?php foreach($comment->images as $key=>$image) { ?>
+
+          <a href="javascript:;" onclick="showImgProp('<?php echo $image;?>')">
+            <img style="width: 30%;aspect-ratio: 1/1;" src="<?php echo $image;?>" alt="">
+          </a>
+
+
+        <?php } } ?>
         
       </div>
-      <a href="javascript:;" onclick="showPreviewImg('./img/product-1.webp')">
-        <img style="width: 30%;aspect-ratio: 1/1;" src="./img/product-1.webp" alt="">
-      </a>
     </div>
+    <?php } ?>
 
     
 
