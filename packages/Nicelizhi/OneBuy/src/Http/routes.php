@@ -23,8 +23,6 @@ Route::group(['middleware' => ['locale', 'theme', 'currency'], 'prefix' => 'api'
 
         Route::get("faq", "faq")->name("api.onebuy.faq");
 
-
-
     });
 });
 

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 use Nicelizhi\Shopify\Http\Controllers\WebhooksController;
+use Nicelizhi\Shopify\Http\Controllers\ApiController;
 
 
 Route::group(['middleware' => ['api'], 'prefix' => 'shopify'], function () {
@@ -41,6 +42,11 @@ Route::group(['middleware' => ['api'], 'prefix' => 'shopify'], function () {
             // cuustomers
             Route::post('customers/create', 'customers_create')->name('shopify.webhook.v1.customers.create');
             Route::post('customers/update', 'customers_update')->name('shopify.webhook.v1.customers_update');
+        });
+
+        Route::controller(ApiController::class)->prefix('api')->group(function () {
+            Route::get('images/{product_id}', 'shopifyImages')->name('shopify.api.v1.shopify.images');
+            
         });
 
     });

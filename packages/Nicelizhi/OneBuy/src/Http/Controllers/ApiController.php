@@ -916,6 +916,13 @@ class ApiController extends Controller
     }
 
 
+    /**
+     * 
+     * 
+     * faq interface
+     * 
+     * 
+     */
 
     public function faq() {
 
@@ -930,6 +937,5 @@ class ApiController extends Controller
         ], 200);
         
     }
-
 
 }
