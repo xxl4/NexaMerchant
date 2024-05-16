@@ -112,7 +112,7 @@
   </style>
 
 <div class="faq-content">
-    <div id="seeFaqBtn">Have a Question? <span class="faq_view">See Our FAQs</span></div>
+    <div id="seeFaqBtn">@lang('onebuy::app.product.order.Frequently Asked Questions') <span class="faq_view">@lang('onebuy::app.product.order.See Our FAQs')</span></div>
      <div id="faq-text">
   
       <div id="collapseContent">

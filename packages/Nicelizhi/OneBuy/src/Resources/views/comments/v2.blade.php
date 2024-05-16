@@ -664,7 +664,7 @@
       }
 </style>
 <div id="iduzu" class="section">
-    <h3 class="container_title">Customer reviews</h3>
+    <h3 class="container_title">@lang('onebuy::app.product.order.What customers are saying about')</h3>
 </div>
   <!-- review -->
   <div class="section">
