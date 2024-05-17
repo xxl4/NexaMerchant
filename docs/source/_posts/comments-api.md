@@ -4,6 +4,7 @@ tags:
   - Comments
   - Api
 categories:
+  - Document
   - Api
 date: 2024-05-15 18:43:12
 description: Comments API
@@ -374,7 +375,18 @@ GET /reviews
   "message": "success"
 }
 ```
+
+```
+POST /reviews
+```
+
+```
+PUT /reviews/{id}
+```
+
+```
 GET /reviews/{id}
+```
 
 ```
 {
