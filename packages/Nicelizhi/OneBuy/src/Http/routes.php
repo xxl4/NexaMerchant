@@ -21,7 +21,7 @@ Route::group(['middleware' => ['locale', 'theme', 'currency'], 'prefix' => 'api'
         Route::post("check/coupon", "CheckCoupon")->name("api.onebuy.check.coupon");
         
         Route::get("faq", "faq")->name("api.onebuy.faq");
-        Route::post("product/detail/{slug}", "productDetail")->name("api.onebuy.product.detail");
+        Route::get("product/detail/{slug}", "productDetail")->name("api.onebuy.product.detail");
     });
 });
 

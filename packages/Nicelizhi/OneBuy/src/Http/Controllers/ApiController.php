@@ -57,6 +57,78 @@ class ApiController extends Controller
         
     }
 
+    public function productDetail($slug) {
+        $product = $this->productRepository->findBySlug($slug);
+        
+
+        $data = [];
+
+        
+
+        $productViewHelper = new \Webkul\Product\Helpers\ConfigurableOption();
+        $attributes = $productViewHelper->getConfigurationConfig($product);
+
+        $redis = Redis::connection('default');
+
+        foreach($attributes['attributes'] as $key=>$attribute) {
+            $product_attr_sort_cache_key = "product_attr_sort_".$attribute['id']."_".$product->id;
+            $product_attr_sort = $redis->hgetall($product_attr_sort_cache_key); // get sku sort
+            $attributes['attributes'][$key]['attr_sort'] = $product_attr_sort;
+        }
+
+        $package_products = [];
+        $package_products = \Nicelizhi\OneBuy\Helpers\Utils::makeProducts($product, [2,1,3,4]);
+
+        
+
+        $product = new ProductResource($product);
+        $data['product'] = $product;
+        $data['package_products'] = $package_products;
+        $data['sku'] = $product->sku;
+        $data['attr'] = $attributes;
+
+        $countries = config("countries");
+
+        $default_country = config('onebuy.default_country');
+
+        $airwallex_method = config('onebuy.airwallex.method');
+
+        $payments = config('onebuy.payments'); // config the payments status
+
+        $payments_default = config('onebuy.payments_default');
+        $brand = config('onebuy.brand');
+
+        $gtag = config('onebuy.gtag');
+
+        $fb_ids = config('onebuy.fb_ids');
+        $ob_adv_id = config('onebuy.ob_adv_id');
+
+        $crm_channel = config('onebuy.crm_channel');
+
+        $quora_adv_id = config('onebuy.quora_adv_id');
+
+        $paypal_client_id = core()->getConfigData('sales.payment_methods.paypal_smart_button.client_id');
+
+        $data['countries'] = $countries;
+        $data['default_country'] = $default_country;
+        $data['airwallex_method'] = $airwallex_method;
+        $data['payments'] = $payments;
+        $data['payments_default'] = $payments_default;
+        $data['brand'] = $brand;
+        $data['gtag'] = $gtag;
+        $data['fb_ids'] = $fb_ids;
+        $data['ob_adv_id'] = $ob_adv_id;
+        $data['crm_channel'] = $crm_channel;
+        $data['quora_adv_id'] = $quora_adv_id;
+        $data['paypal_client_id'] = $paypal_client_id;
+
+        
+
+
+
+        return response()->json($data);
+    }
+
     /**
      * Create a order from cart
      *
