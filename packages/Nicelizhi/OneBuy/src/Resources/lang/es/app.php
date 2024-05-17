@@ -64,6 +64,7 @@ return [
             'What customers are saying about' => 'Lo que dicen los clientes sobre',
             'Frequently Asked Questions' => '¿Tengo una pregunta?',
             'See Our FAQs' => 'Vea nuestras preguntas frecuentes',
+            'Verified' => 'Verificado',
             'JUST NOW' => 'EN ESTE MOMENTO',
             'COMPLETE SECURE PURCHASE' => 'COMPRA SEGURA COMPLETA',
             'Item' => 'Artículo',
