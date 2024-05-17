@@ -30,6 +30,8 @@ use Webkul\CartRule\Repositories\CartRuleRepository;
 class ApiController extends Controller
 {
 
+    private $faq_cache_key = "faq";
+
     /**
      * Create a new controller instance.
      *
@@ -913,5 +915,27 @@ class ApiController extends Controller
         }
     }
 
+
+    /**
+     * 
+     * 
+     * faq interface
+     * 
+     * 
+     */
+
+    public function faq() {
+
+        $redis = Redis::connection('default');
+        $faqItems = $redis->hgetall($this->faq_cache_key);
+        ksort($faqItems);
+
+        return response()->json([
+            'data' => (array)$faqItems,
+            'code' => 200,
+            'message' => 'success'
+        ], 200);
+        
+    }
 
 }

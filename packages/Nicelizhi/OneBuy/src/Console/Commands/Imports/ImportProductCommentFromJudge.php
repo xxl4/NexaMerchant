@@ -154,11 +154,14 @@ class ImportProductCommentFromJudge extends Command
                      //insert into db 
                     $review = $this->productReviewRepository->findWhere(['title'=>$item['title']])->first();
                     
+                    $images = [];
                     //var_dump($review);
                     if(empty($review)) {
 
                         //var_dump($item);exit;
                         if($item['reviewer']['name']=='Anonymous') continue;
+
+                        
 
                         //check the email exist
                         $customer = $this->customerRepository->findOneByField('email', $item['reviewer']['email']);
@@ -167,8 +170,6 @@ class ImportProductCommentFromJudge extends Command
                             $data['email'] = $item['reviewer']['email'];
                             $data['customer_group_id'] = 2;
                             $name = explode("-", $item['reviewer']['name']);
-
-                            var_dump($name, $item['reviewer']['name']);
 
                             $data['first_name'] = $name[0];
                             $data['last_name'] = isset($name[1]) ? $name[1] : "";
@@ -209,6 +210,8 @@ class ImportProductCommentFromJudge extends Command
                                 //var_dump($picture['urls']['original']);
     
                                 $info = pathinfo($picture['urls']['original']);
+
+                                array_push($images, $picture['urls']['original']);
     
                                 //var_dump($info);exit;
     
@@ -248,6 +251,8 @@ class ImportProductCommentFromJudge extends Command
                         $value['name'] = trim($item['reviewer']['name']);
                         $value['title'] = trim($item['title']);
                         $value['content'] = trim($item['body']);
+                        $value['rating'] = $item['rating'];
+                        $value['images'] = $images;
                         //var_dump($value);exit;
                         $redis->hSet($this->cache_key.$product->id, $item['id'], json_encode($value));
                         $redis->hSet("onebuy_v2_product_comments_".$product->id, $item['id'], json_encode($value));
@@ -263,6 +268,8 @@ class ImportProductCommentFromJudge extends Command
                         $value['name'] = trim($item['reviewer']['name']);
                         $value['title'] = trim($item['title']);
                         $value['content'] = trim($item['body']);
+                        $value['rating'] = $item['rating'];
+                        $value['images'] = $images;
                         //var_dump($value);exit;
                         //$redis->hSet($this->cache_key.$product->id, $item['id'], json_encode($value));
                         $redis->hSet("onebuy_v2_product_comments_".$product->id, $item['id'], json_encode($value));
