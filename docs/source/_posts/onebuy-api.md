@@ -12,11 +12,13 @@ lang: en
 ---
 > Onebuy Api including product detail, create order etc function
 
+# Product Detail
 ```
-GET api/onebuy/product/detail/{slug}
+GET api/onebuy/product/detail/{slug}?currency=EUR
 ```
 > Get Products Info, return will have product,product images,product sku, product attr etc
 
+## Out Params
 ```
 {
   "product": {
@@ -1234,12 +1236,10 @@ GET api/onebuy/product/detail/{slug}
   "quora_adv_id": "1",
   "paypal_client_id": "1111"
 }
-> Get Products Info
-```
 ```
 
 ```
-POST api/onebuy/check/coupon 
+POST api/onebuy/check/coupon?currency=EUR
 ```
 > add coupon code info  
 
@@ -1250,25 +1250,263 @@ POST api/onebuy/check/coupon
 ```
 ```
 
+# Create an Order Use Other Payment
 ```
-POST api/onebuy/order/add/sync 
+POST api/onebuy/order/add/sync?currency=EUR
 ```
 > order create
+## Input Params
+```
+{
+  "first_name": "Anna",
+  "second_name": "Freitag",
+  "email": "customer@email.de",
+  "phone_full": "01761428434",
+  "country": "US",
+  "city": "Hickory",
+  "province": "E",
+  "address": "2025 McVaney Road",
+  "code": "37197",
+  "product_delivery": "9.99",
+  "currency": "USD",
+  "product_price": 59.184000000000005,
+  "total": "69.17",
+  "amount": 2,
+  "payment_return_url": "/template-common/en/thankyou1/?",
+  "payment_cancel_url": "/onebuy/8472767791334",
+  "phone_prefix": "",
+  "payment_method": "paypal_stand",
+  "products": [
+    {
+      "img": "/cache/large/product/3171/NQMLFQhd1wBr5L6MHQ3mUI6HKhF5ce0r1DbWmbXV.webp",
+      "price": "29.5920",
+      "amount": 2,
+      "description": "Variant 4 1443",
+      "product_id": "3167",
+      "product_sku": "8472767791334-44387808018662",
+      "variant_id": 3171,
+      "attribute_name": "US 5,Black",
+      "attr_id": "24_4,23_1443"
+    }
+  ],
+  "logo_image": "",
+  "brand": "Hatmeo",
+  "description": "2x Hatmeo Women's Breathable Orthotic Shoes",
+  "shopify_store_name": "",
+  "produt_amount_base": "1",
+  "domain_name": "shop.hatmeo.com",
+  "price_template": "$price",
+  "omnisend": "",
+  "payment_account": "",
+  "shipping_address": "",
+  "bill_first_name": "",
+  "bill_second_name": "",
+  "bill_country": null,
+  "bill_city": "",
+  "bill_province": null,
+  "bill_address": "",
+  "bill_code": "",
+  "error": false
+}
+```
+
+## Output Params
+```
 
 ```
-```
 
 ```
-POST api/onebuy/order/confirm
+POST api/onebuy/order/confirm?currency=EUR
 ```
 > paypal order confirm
 
 ```
-```
 
 ```
-POST api/onebuy/order/addr/after
+
+# Paypal Order Status
+> When Paypal done payment,will post data to check the payment status
+
+```
+POST api/onebuy/order/status?currency=EUR
 ```
 > order create by airwallex and not paypal other
 
+## Input Params
+```
+{
+  "client_secret": "7T7370604S9341820",
+  "id": "7T7370604S9341820",
+  "orderData": {
+    "paymentID": "7T7370604S9341820",
+    "orderID": "7T7370604S9341820"
+  },
+  "data": {
+    "orderID": "7T7370604S9341820",
+    "payerID": "JX393NB7E96WW",
+    "paymentID": "7T7370604S9341820",
+    "billingToken": null,
+    "facilitatorAccessToken": "A21AALb65icg25L9JFq-ghlO8ikRrP0DBh4TnMM09OUaEOI3JiObWTWBchXgcDC0bpD3kLzvf21315Y-5kIfE84B9ovqgd3QQ",
+    "paymentSource": "paypal"
+  }
+}
+```
+## Output Params
+```
+{
+  success: true
+}
+```
 
+# Create an Order use Paypal Payment (Quick payment)
+```
+POST api/onebuy/order/addr/after?currency=EUR
+```
+> order create by paypal(only)
+## Input Params
+```
+{
+  "first_name": "Anna",
+  "second_name": "Freitag",
+  "email": "customer@email.de",
+  "phone_full": "01761428434",
+  "country": "US",
+  "city": "Hickory",
+  "province": "E",
+  "address": "2025 McVaney Road",
+  "code": "37197",
+  "product_delivery": "9.99",
+  "currency": "USD",
+  "product_price": 59.184000000000005,
+  "total": "69.17",
+  "amount": 2,
+  "payment_return_url": "/template-common/en/thankyou1/?",
+  "payment_cancel_url": "/onebuy/8472767791334",
+  "phone_prefix": "",
+  "payment_method": "paypal_stand",
+  "products": [
+    {
+      "img": "/cache/large/product/3171/NQMLFQhd1wBr5L6MHQ3mUI6HKhF5ce0r1DbWmbXV.webp",
+      "price": "29.5920",
+      "amount": 2,
+      "description": "Variant 4 1443",
+      "product_id": "3167",
+      "product_sku": "8472767791334-44387808018662",
+      "variant_id": 3171,
+      "attribute_name": "US 5,Black",
+      "attr_id": "24_4,23_1443"
+    }
+  ],
+  "logo_image": "",
+  "brand": "Hatmeo",
+  "description": "2x Hatmeo Women's Breathable Orthotic Shoes",
+  "shopify_store_name": "",
+  "produt_amount_base": "1",
+  "domain_name": "shop.hatmeo.com",
+  "price_template": "$price",
+  "omnisend": "",
+  "payment_account": "",
+  "shipping_address": "",
+  "bill_first_name": "",
+  "bill_second_name": "",
+  "bill_country": null,
+  "bill_city": "",
+  "bill_province": null,
+  "bill_address": "",
+  "bill_code": "",
+  "error": false
+}
+```
+## Out Params
+```
+{
+    "statusCode": 201,
+    "result": {
+        "id": "3D692807623889146",
+        "intent": "CAPTURE",
+        "status": "CREATED",
+        "purchase_units": [
+            {
+                "reference_id": "default",
+                "amount": {
+                    "currency_code": "EUR",
+                    "value": "89.35",
+                    "breakdown": {
+                        "item_total": {
+                            "currency_code": "EUR",
+                            "value": "99.20"
+                        },
+                        "shipping": {
+                            "currency_code": "EUR",
+                            "value": "9.99"
+                        },
+                        "tax_total": {
+                            "currency_code": "EUR",
+                            "value": "0.00"
+                        },
+                        "discount": {
+                            "currency_code": "EUR",
+                            "value": "19.84"
+                        }
+                    }
+                },
+                "payee": {
+                    "email_address": "xxxxx",
+                    "merchant_id": "xxxxx"
+                },
+                "items": [
+                    {
+                        "name": "Brand Orthop\u00e4dische Wanderschuhe",
+                        "unit_amount": {
+                            "currency_code": "EUR",
+                            "value": "49.60"
+                        },
+                        "quantity": "2",
+                        "sku": "8976974938394",
+                        "category": "PHYSICAL_GOODS"
+                    }
+                ]
+            }
+        ],
+        "create_time": "2024-05-17T06:02:24Z",
+        "links": [
+            {
+                "href": "https:\/\/api.paypal.com\/v2\/checkout\/orders\/3D692807623889146",
+                "rel": "self",
+                "method": "GET"
+            },
+            {
+                "href": "https:\/\/www.paypal.com\/checkoutnow?token=3D692807623889146",
+                "rel": "approve",
+                "method": "GET"
+            },
+            {
+                "href": "https:\/\/api.paypal.com\/v2\/checkout\/orders\/3D692807623889146",
+                "rel": "update",
+                "method": "PATCH"
+            },
+            {
+                "href": "https:\/\/api.paypal.com\/v2\/checkout\/orders\/3D692807623889146\/capture",
+                "rel": "capture",
+                "method": "POST"
+            }
+        ]
+    },
+    "headers": {
+        "": "",
+        "content-type": "application\/json",
+        "content-length": "1092",
+        "date": "Fri, 17 May 2024 06",
+        "access-control-expose-headers": "Server-Timing",
+        "application_id": "APP-8SG22180H3042913C",
+        "cache-control": "max-age=0, no-cache, no-store, must-revalidate",
+        "caller_acct_num": "EFPTK2PBPE2PY",
+        "paypal-debug-id": "e77e9a4eeb8bc",
+        "server-timing": "traceparent;desc=\"00-0000000000000000000e77e9a4eeb8bc-a92ea7c6eb5cbe9a-01\"",
+        "set-cookie": "l7_az=ccg14.slc; Path=\/; Domain=paypal.com; Expires=Fri, 17 May 2024 06",
+        "traceparent": "00-0000000000000000000e77e9a4eeb8bc-57536a1d5dc8ce0f-01",
+        "vary": "Accept-Encoding",
+        "strict-transport-security": "max-age=31536000; includeSubDomains"
+    }
+}
+```
