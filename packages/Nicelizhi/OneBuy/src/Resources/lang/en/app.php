@@ -68,6 +68,7 @@ return [
             'What customers are saying about' => 'What customers are saying about',
             'Frequently Asked Questions' => 'Have a Question?',
             'See Our FAQs' => 'See Our FAQs',
+            'Verified' => 'Verified',
             'JUST NOW' => 'JUST NOW',
             'COMPLETE SECURE PURCHASE' => 'COMPLETE SECURE PURCHASE',
             'Item' => 'Item',

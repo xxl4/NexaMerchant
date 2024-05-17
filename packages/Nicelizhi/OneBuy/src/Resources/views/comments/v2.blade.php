@@ -680,7 +680,7 @@
         </div>
         <div>
           <img class="mb1 mr2" width="14px" src="/checkout/onebuy/images/icon_gou.svg">
-          <strong style="width: 100%;">Verified</strong>
+          <strong style="width: 100%;">@lang('onebuy::app.product.order.Verified')</strong>
         </div>
       </div>
       <div>
