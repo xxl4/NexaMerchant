@@ -1330,6 +1330,7 @@ POST api/onebuy/order/confirm?currency=EUR
 ```
 POST api/onebuy/order/status?currency=EUR
 ```
+> order create by airwallex and not paypal other
 
 ## Input Params
 ```
