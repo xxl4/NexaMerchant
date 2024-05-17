@@ -15,7 +15,6 @@ lang: en
 ```
 GET api/onebuy/product/detail/{slug}
 ```
-<<<<<<< HEAD
 > Get Products Info, return will have product,product images,product sku, product attr etc
 
 ```
@@ -1235,21 +1234,12 @@ GET api/onebuy/product/detail/{slug}
   "quora_adv_id": "1",
   "paypal_client_id": "1111"
 }
-=======
-> Get Products Info
-```
-
->>>>>>> d543f874140dc83b1a1ec668356498321bde4bb5
 ```
 
 ```
 POST api/onebuy/check/coupon 
 ```
-<<<<<<< HEAD
 > add coupon code info  
-=======
-> add coupon code info
->>>>>>> d543f874140dc83b1a1ec668356498321bde4bb5
 
 | Field              | Type | required | Desc |
 | :---------------- | :------: | :------:| ----: |
@@ -1277,9 +1267,6 @@ POST api/onebuy/order/confirm
 ```
 POST api/onebuy/order/addr/after
 ```
-<<<<<<< HEAD
 > order create by airwallex and not paypal other
-=======
->>>>>>> d543f874140dc83b1a1ec668356498321bde4bb5
 
 
