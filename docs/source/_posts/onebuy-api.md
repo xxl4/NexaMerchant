@@ -1234,6 +1234,8 @@ GET api/onebuy/product/detail/{slug}
   "quora_adv_id": "1",
   "paypal_client_id": "1111"
 }
+> Get Products Info
+```
 ```
 
 ```
