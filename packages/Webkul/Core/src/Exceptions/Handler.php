@@ -76,9 +76,6 @@ class Handler extends BaseHandler
                 ? $exception->getStatusCode()
                 : 500;
 
-            if($statusCode == 500) {
-                \Nicelizhi\Shopify\Helpers\Utils::send(json_encode($exception->getMessage()). " code is " .$statusCode. " please check the log file for more details");
-            }
 
             return $this->response($path, $statusCode);
         } elseif ($exception instanceof ModelNotFoundException) {
