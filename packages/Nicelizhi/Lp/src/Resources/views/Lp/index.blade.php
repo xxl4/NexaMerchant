@@ -1,8 +1,5 @@
-<?php 
-echo $html->html;
-?>
-
 <script type="text/javascript">
+  window.base_api_url = "<?php echo config("app.url");?>";
   window.goto_url = "<?php echo isset($html->goto_url) ? $html->goto_url : ''; ?>";
   window.country = "<?php echo $default_country; ?>";
   function goto() {
@@ -10,6 +7,9 @@ echo $html->html;
     window.location.href = url;
   }
 </script>
+<?php 
+echo $html->html;
+?>
 
 
 <script type="text/javascript">
