@@ -139,10 +139,11 @@ class ImportProductCommentFromJudge extends Command
                 $this->error($this->cache_key.$item['product_external_id']);
                 //$product = $this->productRepository->findBySlug($item['product_external_id']);
                 
-                $product = $this->productRepository->where("sku", $item['product_external_id'])->first();
+               // $product = $this->productRepository->where("sku", $item['product_external_id'])->first();
+                $product = $this->productRepository->findBySlug($item['product_external_id']);
 
-                if($item['product_external_id']=='8640539295974') {
-                    //var_dump($item);
+                if($item['product_external_id']=='8639588139238') {
+                    //var_dump($item, $product);
                     //exit;
                     //var_dump($product);exit;
                 }
