@@ -27,6 +27,7 @@
                           <th>Slug</th>
                           <th>Status</th>
                           <th>goto_url</th>
+                          <th>Type</th>
                           <th>updated at</th>
                           <th>Action</th>
                         </tr>
@@ -91,6 +92,9 @@
           },
           {
             data: 'goto_url'
+          },
+          {
+            data: 'type'
           },
           {
             data: 'updated_at'

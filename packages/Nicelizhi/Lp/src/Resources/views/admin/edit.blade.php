@@ -66,9 +66,11 @@
  <script>
     $(function () {
       // Summernote
-      $('#html').summernote({
-        "height": 500
-      })
+      <?php if($page->type=='customize') { ?>
+        $('#html').summernote({
+            "height": 500
+        })
+      <?php } ?>
   
       
     })
