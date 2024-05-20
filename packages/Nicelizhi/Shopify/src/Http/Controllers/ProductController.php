@@ -97,7 +97,7 @@ class ProductController extends Controller
             return false;
         };
 
-        Cache::put("sync_".$product_id, 1, 3600);
+        Cache::put("sync_".$product_id, 1, 600);
 
         $options = $item->options;
         $LocalOptions = \Nicelizhi\Shopify\Helpers\Utils::createOptions($options);
@@ -181,6 +181,10 @@ class ProductController extends Controller
     public function comments($product_id, $act_type, Request $request) {
         $act_prod_type = Cache::get($act_type."_".$product_id);
         $product = $this->productRepository->findBySlug($product_id);
+        if(is_null($product)) {
+            echo "not found it";
+            return ;
+        }
         $redis = Redis::connection('default');
 
         $comment_list_key = "checkout_v1_product_comments_".$product['id'];
