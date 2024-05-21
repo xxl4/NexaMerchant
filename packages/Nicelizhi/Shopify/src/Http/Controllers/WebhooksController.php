@@ -363,7 +363,7 @@ class WebhooksController extends Controller
         $product->body_html = $req['body_html'];
         $product->vendor = $req['vendor'];
         $product->handle = $req['handle'];
-        $product->published_at = $req['published_at'];
+        if(isset($req[published_at])) $product->published_at = $req['published_at'];
         $product->template_suffix = (string)$req['template_suffix'];
         $product->published_scope = $req['published_scope'];
         $product->tags = $req['tags'];
@@ -408,7 +408,7 @@ class WebhooksController extends Controller
         $product->body_html = $req['body_html'];
         $product->vendor = $req['vendor'];
         $product->handle = $req['handle'];
-        $product->published_at = $req['published_at'];
+        if(isset($req[published_at])) $product->published_at = $req['published_at'];
         $product->template_suffix = (string)$req['template_suffix'];
         $product->published_scope = $req['published_scope'];
         $product->tags = $req['tags'];
