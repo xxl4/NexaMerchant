@@ -32,6 +32,8 @@ class ImportProductCommentFromJudge extends Command
 
     protected $num = 0;
 
+    protected $prod_id = 0;
+
     /**
      * Create a new command instance.
      *
@@ -60,6 +62,8 @@ class ImportProductCommentFromJudge extends Command
 
         $shop_domain = config("onebuy.judge.shop_domain");
         $api_token = config("onebuy.judge.api_token");
+
+        $this->prod_id = $this->option("prod_id");
 
         $client = new Client();
 
@@ -142,10 +146,11 @@ class ImportProductCommentFromJudge extends Command
                // $product = $this->productRepository->where("sku", $item['product_external_id'])->first();
                 $product = $this->productRepository->findBySlug($item['product_external_id']);
 
-                if($item['product_external_id']=='9306516750618') {
+                if($item['product_external_id']== $this->prod_id ) {
                     $this->info("Test ". json_encode($item));
+                    var_dump($item);
                     //exit;
-                    //sleep(10);
+                    sleep(10);
                     //continue;
                     //exit;
                     //var_dump($product);exit;
