@@ -142,8 +142,11 @@ class ImportProductCommentFromJudge extends Command
                // $product = $this->productRepository->where("sku", $item['product_external_id'])->first();
                 $product = $this->productRepository->findBySlug($item['product_external_id']);
 
-                if($item['product_external_id']=='8639588139238') {
-                    //var_dump($item, $product);
+                if($item['product_external_id']=='9306516750618') {
+                    $this->info("Test ". json_encode($item));
+                    //exit;
+                    //sleep(10);
+                    //continue;
                     //exit;
                     //var_dump($product);exit;
                 }
@@ -153,7 +156,7 @@ class ImportProductCommentFromJudge extends Command
                     $len = $redis->hlen($this->cache_key.$product->id);
 
                      //insert into db 
-                    $review = $this->productReviewRepository->findWhere(['title'=>$item['title']])->first();
+                    $review = $this->productReviewRepository->findWhere(['title'=>$item['title'],'name'=>$item['reviewer']['name']])->first();
                     
                     $images = [];
                     //var_dump($review);
