@@ -218,7 +218,7 @@ class ImportProductCommentFromJudge extends Command
     
                                 $this->info($info['filename']);
                                 $image_path = "product/".$product->id."/".$info['filename'].".jpg";
-                                $local_image_path = "storage/".$image_path;
+                                $local_image_path = $image_path;
                                 
                                 $attachments = $this->productReviewAttachmentRepository->findWhere(['path'=>$local_image_path])->first();
                                 if(!empty($attachments)) continue;
