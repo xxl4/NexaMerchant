@@ -149,7 +149,7 @@ class ImportProductCommentFromJudge extends Command
                 if(!empty($this->prod_id)) {
                     if($item['product_external_id']== $this->prod_id ) {
                         $this->info("Test ". json_encode($item));
-                        var_dump($item);
+                        var_dump($item, $product);
                         //exit;
                         sleep(10);
                         //continue;
@@ -165,6 +165,12 @@ class ImportProductCommentFromJudge extends Command
 
                      //insert into db 
                     $review = $this->productReviewRepository->findWhere(['title'=>$item['title'],'name'=>$item['reviewer']['name']])->first();
+                    
+                    if(!empty($this->prod_id)) {
+                        if($item['product_external_id']== $this->prod_id ) {
+                            //var_dump($review);
+                        }
+                    }
                     
                     $images = [];
                     //var_dump($review);
@@ -206,11 +212,19 @@ class ImportProductCommentFromJudge extends Command
                         $data['comment'] = trim($item['body']);
                         $data['rating'] = $item['rating'];
                         $data['status'] = "pending";
-                        $data['product_id'] = $product->id;
+                        $data['product_id'] = empty($product->parent_id) ? $product->id : $product->parent_id; // why the product sku id is not the same it?
                         $data['attachments'] = [];
                         $data['customer_id'] = $customer->id;
     
                         if($item['published']==true) $data['status'] = "approved";
+
+                        if(!empty($this->prod_id)) {
+                            if($item['product_external_id']== $this->prod_id ) {
+                                var_dump($data, $product);
+                            }
+                        }
+
+
                 
                         $review = $this->productReviewRepository->create($data);
                         
