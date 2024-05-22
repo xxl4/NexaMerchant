@@ -32,6 +32,8 @@ class ImportProductCommentFromJudge extends Command
 
     protected $num = 0;
 
+    protected $prod_id = 0;
+
     /**
      * Create a new command instance.
      *
@@ -60,6 +62,8 @@ class ImportProductCommentFromJudge extends Command
 
         $shop_domain = config("onebuy.judge.shop_domain");
         $api_token = config("onebuy.judge.api_token");
+
+        $this->prod_id = $this->option("prod_id");
 
         $client = new Client();
 
@@ -139,20 +143,28 @@ class ImportProductCommentFromJudge extends Command
                 $this->error($this->cache_key.$item['product_external_id']);
                 //$product = $this->productRepository->findBySlug($item['product_external_id']);
                 
-                $product = $this->productRepository->where("sku", $item['product_external_id'])->first();
+               // $product = $this->productRepository->where("sku", $item['product_external_id'])->first();
+                $product = $this->productRepository->findBySlug($item['product_external_id']);
 
-                if($item['product_external_id']=='8640539295974') {
-                    //var_dump($item);
-                    //exit;
-                    //var_dump($product);exit;
+                if(!empty($this->prod_id)) {
+                    if($item['product_external_id']== $this->prod_id ) {
+                        $this->info("Test ". json_encode($item));
+                        var_dump($item);
+                        //exit;
+                        sleep(10);
+                        //continue;
+                        //exit;
+                        //var_dump($product);exit;
+                    }
                 }
+
 
                 if(!is_null($product)) {
                     $this->error($this->cache_key.$product->id);
                     $len = $redis->hlen($this->cache_key.$product->id);
 
                      //insert into db 
-                    $review = $this->productReviewRepository->findWhere(['title'=>$item['title']])->first();
+                    $review = $this->productReviewRepository->findWhere(['title'=>$item['title'],'name'=>$item['reviewer']['name']])->first();
                     
                     $images = [];
                     //var_dump($review);
@@ -217,7 +229,9 @@ class ImportProductCommentFromJudge extends Command
     
                                 $this->info($info['filename']);
                                 $image_path = "product/".$product->id."/".$info['filename'].".jpg";
-                                $local_image_path = "storage/".$image_path;
+                                $local_image_path = $image_path;
+
+                                
                                 
                                 $attachments = $this->productReviewAttachmentRepository->findWhere(['path'=>$local_image_path])->first();
                                 if(!empty($attachments)) continue;
@@ -235,7 +249,7 @@ class ImportProductCommentFromJudge extends Command
                                 $attachments['mime_type'] = $fileType[1];
                                 $attachments['path'] = $local_image_path;
                                 $attachments['review_id'] = $review->id;
-                                //var_dump($attachments);
+                                var_dump($attachments);
     
                                 $this->productReviewAttachmentRepository->create($attachments);
     

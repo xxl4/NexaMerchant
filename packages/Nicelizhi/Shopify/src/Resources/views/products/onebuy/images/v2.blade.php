@@ -63,7 +63,27 @@
 
                                                 ?>
                                         </div>
-                                    </div>                                
+                                    </div>   
+                                    
+                                    <div class="form-group">
+                                        <label for="product_size">Size Banner</label>
+                                        <div class="input-group">
+                                            <div class="custom-file">
+                                                <input type="file" class="custom-file-input" name="product_size" id="product_size" accept="image/*">
+                                                <label class="custom-file-label" for="product_size">Choose file</label>
+                                            </div>
+                                        </div>
+                                        <div class="images">
+                                            <?php 
+                                                
+                                                    if(!is_null($productSizeImage)) {
+                                                        echo "<img src='".asset("storage/".$productSizeImage->text_value)."' width='100' height='100' />";
+                                                    }
+
+                                                ?>
+                                        </div>
+                                    </div>
+                                    
                             </div>
                         </div>
                     </div>
