@@ -1358,12 +1358,12 @@ POST api/onebuy/order/add/sync?currency=EUR
   "error": false
 }
 ```
-
 ## Output Params
 ```
 
 ```
 
+## Order confirm
 ```
 POST api/onebuy/order/confirm?currency=EUR
 ```
