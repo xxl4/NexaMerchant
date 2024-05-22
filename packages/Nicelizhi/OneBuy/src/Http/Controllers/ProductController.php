@@ -208,7 +208,7 @@ class ProductController extends Controller
                 $attribute['name'] = $attribute['code'];
                 $options = [];
                 foreach($attribute['options'] as $kk=>$option) {
-                    // 获取商品图片内容
+                    // 
                     $is_sold_out = false;
                     if($attribute['id']==23) {
                         $new_id = $option['products'][0];
