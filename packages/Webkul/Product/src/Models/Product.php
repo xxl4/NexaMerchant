@@ -184,7 +184,7 @@ class Product extends Model implements ProductContract
      */
     public function reviews(): HasMany
     {
-        return $this->hasMany(ProductReviewProxy::modelClass());
+        return $this->hasMany(ProductReviewProxy::modelClass())->orderBy("id", 'desc');
     }
 
     /**
