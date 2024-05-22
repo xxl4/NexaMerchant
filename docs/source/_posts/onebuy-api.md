@@ -1238,6 +1238,8 @@ GET api/onebuy/product/detail/{slug}?currency=EUR
 }
 ```
 
+# Coupon
+
 ```
 POST api/onebuy/check/coupon?currency=EUR
 ```
@@ -1247,7 +1249,53 @@ POST api/onebuy/check/coupon?currency=EUR
 | :---------------- | :------: | :------:| ----: |
 | code        |   string  | true | coupon code |
 
+
+## Out Params
 ```
+{
+    "data": {
+        "coupon": {
+            "id": 1,
+            "code": "hao123",
+            "usage_limit": 0,
+            "usage_per_customer": 0,
+            "times_used": 1,
+            "type": 0,
+            "is_primary": 1,
+            "expired_at": null,
+            "cart_rule_id": 16,
+            "created_at": "2024-04-24T10:32:13.000000Z",
+            "updated_at": "2024-04-25T04:19:17.000000Z"
+        },
+        "couponConfig": {
+            "id": 16,
+            "name": "coupon",
+            "description": "coupon",
+            "starts_from": null,
+            "ends_till": null,
+            "status": 1,
+            "coupon_type": 1,
+            "use_auto_generation": 0,
+            "usage_per_customer": 0,
+            "uses_per_coupon": 0,
+            "times_used": 1,
+            "condition_type": 1,
+            "conditions": [],
+            "end_other_rules": 1,
+            "uses_attribute_conditions": 0,
+            "action_type": "cart_fixed",
+            "discount_amount": "5.0000",
+            "discount_quantity": 0,
+            "discount_step": "0",
+            "apply_to_shipping": 0,
+            "free_shipping": 0,
+            "sort_order": 5,
+            "created_at": "2024-04-24T10:32:13.000000Z",
+            "updated_at": "2024-04-25T04:19:17.000000Z"
+        }
+    },
+    "message": "Coupon applied successfully."
+}
 ```
 
 # Create an Order Use Other Payment
