@@ -1,0 +1,17 @@
+name: 'GitHub Actions Mirror'
+
+on: [push, delete]
+
+jobs:
+  mirror_to_coding:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Checkout'
+        uses: actions/checkout@v1
+      - name: 'Mirror to coding'
+        uses: yesolutions/mirror-action@master
+        with:
+            REMOTE: ${{ secrets.SYNC_GIT_HOST }}
+            GIT_USERNAME: Steve
+            GIT_PASSWORD: ${{ secrets.GITLAB_KEY }}
+            
