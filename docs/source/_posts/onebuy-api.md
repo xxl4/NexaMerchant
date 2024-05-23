@@ -1297,6 +1297,391 @@ POST api/onebuy/check/coupon?currency=EUR
     "message": "Coupon applied successfully."
 }
 ```
+# Countries
+
+## Countries List
+```
+GET /template-common/checkout1/state/countries_{country}.json  
+GET /template-common/checkout1/state/countries_us.json (Example)
+```
+> country list
+| Field              | Type | required | Desc |
+| :---------------- | :------: | :------:| ----: |
+| country        |   string  | true | country code like us,de,gb,fr,es |
+###  Out
+```
+[
+    {
+        "countryName": "United States",
+        "countryNameLocalized": "United States",
+        "countryCode": "US",
+        "currencyCode": "USD",
+        "currencyName": "United States Dollar",
+        "currencySign": "US$",
+        "region": "Americas",
+        "codeFormat": "^\\d{5}([ \\-]\\d{4})?$",
+        "phonePrefix": "+1"
+    },
+    {
+        "countryName": "Australia",
+        "countryNameLocalized": "Australia",
+        "countryCode": "AU",
+        "currencyCode": "AUD",
+        "currencyName": "Australian Dollar",
+        "currencySign": "AU$",
+        "region": "Oceania",
+        "codeFormat": "^\\d{4}$",
+        "phonePrefix": "+61"
+    },
+    {
+        "countryName": "Canada",
+        "countryCode": "CA",
+        "phonePrefix": "+1"
+    },
+    {
+        "countryName": "United Kingdom",
+        "countryCode": "GB",
+        "phonePrefix": "+44"
+    }
+]
+```
+
+## Country
+> a country zone
+
+```
+GET /template-common/checkout1/state/{country}_{locale}.json  
+GET /template-common/checkout1/state/us_en.json (Example)
+```
+| Field              | Type | required | Desc |
+| :---------------- | :------: | :------:| ----: |
+| country        |   string  | true | country code like us,de,gb,fr,es |
+| locale        |   string  | true | locale code like us,de,gb,fr,es |
+
+```
+[
+	{  
+      "CountryCode":"US",
+      "StateCode":"A",
+      "StateName":"Armed Forces Africa"
+   },
+   {  
+      "CountryCode":"US",
+      "StateCode":"AA",
+      "StateName":"Armed Forces Americas"
+   },
+   {  
+      "CountryCode":"US",
+      "StateCode":"AK",
+      "StateName":"Alaska"
+   },
+   {  
+      "CountryCode":"US",
+      "StateCode":"AL",
+      "StateName":"Alabama"
+   },
+   {  
+      "CountryCode":"US",
+      "StateCode":"AP",
+      "StateName":"Armed Forces Pacific"
+   },
+   {  
+      "CountryCode":"US",
+      "StateCode":"AR",
+      "StateName":"Arkansas"
+   },
+   {  
+      "CountryCode":"US",
+      "StateCode":"AS",
+      "StateName":"American Samoa"
+   },
+   {  
+      "CountryCode":"US",
+      "StateCode":"AZ",
+      "StateName":"Arizona"
+   },
+   {  
+      "CountryCode":"US",
+      "StateCode":"C",
+      "StateName":"Armed Forces Canada"
+   },
+   {  
+      "CountryCode":"US",
+      "StateCode":"CA",
+      "StateName":"California"
+   },
+   {  
+      "CountryCode":"US",
+      "StateCode":"CO",
+      "StateName":"Colorado"
+   },
+   {  
+      "CountryCode":"US",
+      "StateCode":"CT",
+      "StateName":"Connecticut"
+   },
+   {  
+      "CountryCode":"US",
+      "StateCode":"DC",
+      "StateName":"Districtof Columbia"
+   },
+   {  
+      "CountryCode":"US",
+      "StateCode":"DE",
+      "StateName":"Delaware"
+   },
+   {  
+      "CountryCode":"US",
+      "StateCode":"E",
+      "StateName":"Armed Forces Europe"
+   },
+   {  
+      "CountryCode":"US",
+      "StateCode":"FL",
+      "StateName":"Florida"
+   },
+   {  
+      "CountryCode":"US",
+      "StateCode":"FM",
+      "StateName":"Federated Statesof Micronesia"
+   },
+   {  
+      "CountryCode":"US",
+      "StateCode":"GA",
+      "StateName":"Georgia"
+   },
+   {  
+      "CountryCode":"US",
+      "StateCode":"GU",
+      "StateName":"Guam"
+   },
+   {  
+      "CountryCode":"US",
+      "StateCode":"HI",
+      "StateName":"Hawaii"
+   },
+   {  
+      "CountryCode":"US",
+      "StateCode":"IA",
+      "StateName":"Iowa"
+   },
+   {  
+      "CountryCode":"US",
+      "StateCode":"ID",
+      "StateName":"Idaho"
+   },
+   {  
+      "CountryCode":"US",
+      "StateCode":"IL",
+      "StateName":"Illinois"
+   },
+   {  
+      "CountryCode":"US",
+      "StateCode":"IN",
+      "StateName":"Indiana"
+   },
+   {  
+      "CountryCode":"US",
+      "StateCode":"KS",
+      "StateName":"Kansas"
+   },
+   {  
+      "CountryCode":"US",
+      "StateCode":"KY",
+      "StateName":"Kentucky"
+   },
+   {  
+      "CountryCode":"US",
+      "StateCode":"LA",
+      "StateName":"Louisiana"
+   },
+   {  
+      "CountryCode":"US",
+      "StateCode":"M",
+      "StateName":"Armed Forces Middle East"
+   },
+   {  
+      "CountryCode":"US",
+      "StateCode":"MA",
+      "StateName":"Massachusetts"
+   },
+   {  
+      "CountryCode":"US",
+      "StateCode":"MD",
+      "StateName":"Maryland"
+   },
+   {  
+      "CountryCode":"US",
+      "StateCode":"ME",
+      "StateName":"Maine"
+   },
+   {  
+      "CountryCode":"US",
+      "StateCode":"MH",
+      "StateName":"Republicof Marshall Islands"
+   },
+   {  
+      "CountryCode":"US",
+      "StateCode":"MI",
+      "StateName":"Michigan"
+   },
+   {  
+      "CountryCode":"US",
+      "StateCode":"MN",
+      "StateName":"Minnesota"
+   },
+   {  
+      "CountryCode":"US",
+      "StateCode":"MO",
+      "StateName":"Missouri"
+   },
+   {  
+      "CountryCode":"US",
+      "StateCode":"MP",
+      "StateName":"Northern Mariana Islands"
+   },
+   {  
+      "CountryCode":"US",
+      "StateCode":"MS",
+      "StateName":"Mississippi"
+   },
+   {  
+      "CountryCode":"US",
+      "StateCode":"MT",
+      "StateName":"Montana"
+   },
+   {  
+      "CountryCode":"US",
+      "StateCode":"NC",
+      "StateName":"North Carolina"
+   },
+   {  
+      "CountryCode":"US",
+      "StateCode":"ND",
+      "StateName":"North Dakota"
+   },
+   {  
+      "CountryCode":"US",
+      "StateCode":"NE",
+      "StateName":"Nebraska"
+   },
+   {  
+      "CountryCode":"US",
+      "StateCode":"NH",
+      "StateName":"New Hampshire"
+   },
+   {  
+      "CountryCode":"US",
+      "StateCode":"NJ",
+      "StateName":"New Jersey"
+   },
+   {  
+      "CountryCode":"US",
+      "StateCode":"NM",
+      "StateName":"New Mexico"
+   },
+   {  
+      "CountryCode":"US",
+      "StateCode":"NV",
+      "StateName":"Nevada"
+   },
+   {  
+      "CountryCode":"US",
+      "StateCode":"NY",
+      "StateName":"New York"
+   },
+   {  
+      "CountryCode":"US",
+      "StateCode":"OH",
+      "StateName":"Ohio"
+   },
+   {  
+      "CountryCode":"US",
+      "StateCode":"OK",
+      "StateName":"Oklahoma"
+   },
+   {  
+      "CountryCode":"US",
+      "StateCode":"OR",
+      "StateName":"Oregon"
+   },
+   {  
+      "CountryCode":"US",
+      "StateCode":"PA",
+      "StateName":"Pennsylvania"
+   },
+   {  
+      "CountryCode":"US",
+      "StateCode":"PR",
+      "StateName":"Puerto Rico"
+   },
+   {  
+      "CountryCode":"US",
+      "StateCode":"RI",
+      "StateName":"Rhode Island"
+   },
+   {  
+      "CountryCode":"US",
+      "StateCode":"SC",
+      "StateName":"South Carolina"
+   },
+   {  
+      "CountryCode":"US",
+      "StateCode":"SD",
+      "StateName":"South Dakota"
+   },
+   {  
+      "CountryCode":"US",
+      "StateCode":"TN",
+      "StateName":"Tennessee"
+   },
+   {  
+      "CountryCode":"US",
+      "StateCode":"TX",
+      "StateName":"Texas"
+   },
+   {  
+      "CountryCode":"US",
+      "StateCode":"UT",
+      "StateName":"Utah"
+   },
+   {  
+      "CountryCode":"US",
+      "StateCode":"VA",
+      "StateName":"Virginia"
+   },
+   {  
+      "CountryCode":"US",
+      "StateCode":"VI",
+      "StateName":"Virgin Islands"
+   },
+   {  
+      "CountryCode":"US",
+      "StateCode":"VT",
+      "StateName":"Vermont"
+   },
+   {  
+      "CountryCode":"US",
+      "StateCode":"WA",
+      "StateName":"Washington"
+   },
+   {  
+      "CountryCode":"US",
+      "StateCode":"WI",
+      "StateName":"Wisconsin"
+   },
+   {  
+      "CountryCode":"US",
+      "StateCode":"WV",
+      "StateName":"West Virginia"
+   },
+   {  
+      "CountryCode":"US",
+      "StateCode":"WY",
+      "StateName":"Wyoming"
+   }
+]
+```
 
 # Create an Order Use Other Payment
 ```
@@ -1343,7 +1728,7 @@ POST api/onebuy/order/add/sync?currency=EUR
   "description": "2x Hatmeo Women's Breathable Orthotic Shoes",
   "shopify_store_name": "",
   "produt_amount_base": "1",
-  "domain_name": "shop.hatmeo.com",
+  "domain_name": "",
   "price_template": "$price",
   "omnisend": "",
   "payment_account": "",
@@ -1358,12 +1743,12 @@ POST api/onebuy/order/add/sync?currency=EUR
   "error": false
 }
 ```
-
 ## Output Params
 ```
 
 ```
 
+## Order confirm
 ```
 POST api/onebuy/order/confirm?currency=EUR
 ```
@@ -1452,7 +1837,7 @@ POST api/onebuy/order/addr/after?currency=EUR
   "description": "2x Hatmeo Women's Breathable Orthotic Shoes",
   "shopify_store_name": "",
   "produt_amount_base": "1",
-  "domain_name": "shop.hatmeo.com",
+  "domain_name": "",
   "price_template": "$price",
   "omnisend": "",
   "payment_account": "",
