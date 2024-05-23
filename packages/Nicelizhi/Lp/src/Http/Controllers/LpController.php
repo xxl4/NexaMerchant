@@ -40,7 +40,8 @@ class LpController extends Controller
         $gtag = config('onebuy.gtag');
 
         $default_country = config('onebuy.default_country');
+        $crm_channel = config('onebuy.crm_channel');
         
-        return view('lp::Lp.index', compact('html', 'ob_adv_id','refer','gtag','default_country'));
+        return view('lp::Lp.index', compact('html', 'ob_adv_id','refer','gtag','default_country','crm_channel'));
     }
 }
