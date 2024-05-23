@@ -9,9 +9,9 @@ jobs:
       - name: 'Checkout'
         uses: actions/checkout@v1
       - name: 'Mirror to coding'
-        uses: pixta-dev/repository-mirroring-action@v1
+        uses: yesolutions/mirror-action@master
         with:
-          target_repo_url:
-            ${{ secrets.SYNC_GIT_HOST }}
-          ssh_private_key:
-            ${{ secrets.GITLAB_KEY }}
+            REMOTE: ${{ secrets.SYNC_GIT_HOST }}
+            GIT_USERNAME: Steve
+            GIT_PASSWORD: ${{ secrets.GITLAB_KEY }}
+            
