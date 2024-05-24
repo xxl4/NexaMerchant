@@ -109,7 +109,7 @@ class ImportProductCommentFromJudge extends Command
 
         $url = "https://judge.me/api/v1/reviews?shop_domain=".$shop_domain."&api_token=".$api_token."&page=".$page."&per_page=".$this->num;
 
-        $this->info($url);
+        //$this->info($url);
 
         // @link https://judge.me/api/docs#tag/Reviews
         try {
@@ -140,7 +140,7 @@ class ImportProductCommentFromJudge extends Command
 
             //var_dump($item);exit;
             if(!empty($item['title'])) {
-                $this->error($this->cache_key.$item['product_external_id']);
+                //$this->error($this->cache_key.$item['product_external_id']);
                 //$product = $this->productRepository->findBySlug($item['product_external_id']);
                 
                // $product = $this->productRepository->where("sku", $item['product_external_id'])->first();
@@ -160,7 +160,7 @@ class ImportProductCommentFromJudge extends Command
 
 
                 if(!is_null($product)) {
-                    $this->error($this->cache_key.$product->id);
+                    //$this->error($this->cache_key.$product->id);
                     $len = $redis->hlen($this->cache_key.$product->id);
 
                      //insert into db 
@@ -273,7 +273,7 @@ class ImportProductCommentFromJudge extends Command
                         }
                     }
                 
-                    $this->info($len);
+                    //$this->info($len);
                     if($len < 6 && $item['published']==true) {
                         $value = [];
                         $value['name'] = trim($item['reviewer']['name']);
@@ -286,11 +286,11 @@ class ImportProductCommentFromJudge extends Command
                         $redis->hSet("onebuy_v2_product_comments_".$product->id, $item['id'], json_encode($value));
                     }
 
-                    $this->error("onebuy_v2_product_comments_".$product->id);
+                    //$this->error("onebuy_v2_product_comments_".$product->id);
                     $len = $redis->hlen("onebuy_v2_product_comments_".$product->id);
                     //var_dump($item);exit;
                 
-                    $this->info($len);
+                    //$this->info($len);
                     if($len < 6 && $item['published']==true) {
                         $value = [];
                         $value['name'] = trim($item['reviewer']['name']);
