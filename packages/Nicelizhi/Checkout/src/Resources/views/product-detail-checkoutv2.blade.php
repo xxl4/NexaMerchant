@@ -5,6 +5,5 @@
 
 {{ core()->currencySymbol(core()->getBaseCurrencyCode()) }}
 
-<?php 
-echo $slug;
-?>
+
+{{ $slug }}
