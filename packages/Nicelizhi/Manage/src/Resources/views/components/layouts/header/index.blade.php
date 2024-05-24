@@ -95,7 +95,7 @@
             <!-- Message End -->
           </a>
           <div class="dropdown-divider"></div>
-          <a href="{{ route('admin.notification.index') }" class="dropdown-item dropdown-footer">@lang('admin::app.notifications.view-all')</a>
+          <a href="{{ route('admin.notification.index') }}" class="dropdown-item dropdown-footer">@lang('admin::app.notifications.view-all')</a>
         </div>
       </li>
 
