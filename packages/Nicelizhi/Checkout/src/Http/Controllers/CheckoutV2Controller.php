@@ -63,10 +63,10 @@ class CheckoutV2Controller extends Controller{
      */
     public function detail($slug, Request $request) {
         
-        var_dump($slug);
+        //var_dump($slug);
 
 
-        return view('checkout::product-detail-'.$this->view_prefix_key);
+        return view('checkout::product-detail-'.$this->view_prefix_key, compact('slug'));
 
     }
 
