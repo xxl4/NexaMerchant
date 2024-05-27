@@ -62,13 +62,28 @@ class CheckoutV2Controller extends Controller{
      * @return \Illuminate\View\View|\Exception
      */
     public function detail($slug, Request $request) {
+
+        $slugOrPath = $slug;
+        $cache_key = "product_url_".$slugOrPath;
+        $product = Cache::get($cache_key);
+        if(empty($product)) {
+            $product = $this->productRepository->findBySlug($slugOrPath);
+            Cache::put($cache_key, $product);
+        }
         
         //var_dump($slug);
 
         //$slug = $slug;
+        $redis = Redis::connection('default');
 
 
-        return view('checkout::product-detail-'.$this->view_prefix_key, compact('slug'));
+        $faqItems = $redis->hgetall($this->faq_cache_key);
+        ksort($faqItems);
+        $comments = $redis->hgetall($this->cache_prefix_key."product_comments_".$product['id']);
+        $default_country = config('onebuy.default_country');
+
+
+        return view('checkout::product-detail-'.$this->view_prefix_key, compact('slug','comments','faqItems','product','default_country'));
 
     }
 
