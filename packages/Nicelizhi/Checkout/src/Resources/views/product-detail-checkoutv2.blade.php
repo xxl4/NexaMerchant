@@ -2290,33 +2290,23 @@
     var params = {
       products: [],
     }
-    var currency = {
-      {
-        core() - > getCurrentCurrencyCode()
-      }
-    }
+    var currency = '{{ core() - > getCurrentCurrencyCode() }}'
     var paypalId = ''
     var attLength
     var productL1 = {}
     var productL2 = {}
     var productL3 = {}
     var productL4 = {}
-    var getProductId = {
-      {
-        $slug
-      }
-    }
-    var countries1 = {
-      {
-        app() - > getLocale()
-      }
-    }
+    var getProductId = '{{ $slug }}'
+    var countries1 = '{{ app() - > getLocale() }}'
+    var paypal_pay_acc = ''
     $(function() {
       var dataUrl = '/api/onebuy/product/detail/' + getProductId + '?currency=' + currency
       axios
         .get(dataUrl)
         .then(function(res) {
           data = res.data
+          paypal_pay_acc = data.paypal_client_id
           var attrList = data.attr.attributes
           $('#p-name2').text(data.package_products[0].name)
           $('#p-name1').text(data.package_products[1].name)
@@ -3959,12 +3949,6 @@
     window.is_stripe_pay = pay_type == 'stripe' ? true : false
     window.is_stripe_local = pay_type == 'stripe_local' ? true : false
     window.is_airwallex_klarna = pay_type == 'airwallex_klarna' ? true : false
-
-    var paypal_pay_acc = {
-      {
-        csrf_token()
-      }
-    }
 
     var script = document.createElement('script')
     if (script.readyState) {
