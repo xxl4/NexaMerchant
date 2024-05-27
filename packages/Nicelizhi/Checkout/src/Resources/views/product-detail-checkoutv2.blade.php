@@ -3048,6 +3048,7 @@
     $(function() {
 
       $("#payment_method_airwallex").on("click", function() {
+        $(".complete-btn").show();
         console.log("click headingOne ");
         $("#collapseOne").show();
         $("#collapseTwo").hide();
@@ -3066,6 +3067,7 @@
       });
 
       $("#airwallex-klarna").on("click", function() {
+        $(".complete-btn").show();
         $("#collapseOne").hide();
         $("#collapseTwo").hide();
         $("#collapseThree").show();
@@ -3098,8 +3100,9 @@
         $(".complete-btn").css("width", "100%");
 
         //payment-button
-        $(".complete-btn").empty();
+        $(".complete-btn").hide();
 
+        $()
 
         paypal.Buttons({
           style: {
@@ -3328,7 +3331,7 @@
               }
             });
           }
-        }).render('paypal-button');
+        }).render('#paypal-button');
 
       });
 
