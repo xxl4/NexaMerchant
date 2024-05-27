@@ -2832,10 +2832,12 @@
         .get(countryUrl)
         .then(function(res) {
           var stateList = res.data
+          console.log(stateList, 'stateList==')
           app_config.countries[params.country] = {}
           app_config.countries[params.country].states = {}
           var foreachList = app_config.countries[params.country]
           for (var resj = 0; resj < stateList.length; resj++) {
+            console.log(stateList[resj], 'stateList[resj]')
             app_config.countries[params.country].states[stateList[resj].StateCode] = {}
             app_config.countries[params.country].states[stateList[resj].StateCode].name = stateList[resj].StateName
 
@@ -3228,8 +3230,8 @@
             $('#loading').hide();
           },
           onClick() {
-            var params = getOrderParams('paypal_stand');
-            console.log("on click " + JSON.stringify(params));
+            // var params = getOrderParams('paypal_stand');
+            console.log("on click " + params);
             if (params.error) {
               $('#checkout-error').html(params.error.join('<br />'));
               $('#checkout-error').show();
