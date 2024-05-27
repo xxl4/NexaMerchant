@@ -1189,7 +1189,7 @@ class ProductController extends Controller
 
         $shopify_store_id = config('shopify.shopify_store_id');
 
-        $products = \Nicelizhi\Shopify\Models\ShopifyProduct::where("shopify_store_id",$shopify_store_id)->where("status", "active")->select(['title','handle',"variants","images"])->limit(5)->get();
+        $products = \Nicelizhi\Shopify\Models\ShopifyProduct::where("shopify_store_id",$shopify_store_id)->where("status", "active")->select(['title','handle',"variants","images"])->limit(3)->get();
 
         $recommended_info = [];
 
