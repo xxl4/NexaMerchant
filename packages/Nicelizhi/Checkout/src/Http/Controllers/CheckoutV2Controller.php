@@ -81,9 +81,11 @@ class CheckoutV2Controller extends Controller{
         ksort($faqItems);
         $comments = $redis->hgetall($this->cache_prefix_key."product_comments_".$product['id']);
         $default_country = config('onebuy.default_country');
+        $payments = config('onebuy.payments'); // config the payments status
+        $payments_default = config('onebuy.payments_default');
 
 
-        return view('checkout::product-detail-'.$this->view_prefix_key, compact('slug','comments','faqItems','product','default_country'));
+        return view('checkout::product-detail-'.$this->view_prefix_key, compact('slug','comments','faqItems','product','default_country',"payments","payments_default"));
 
     }
 
