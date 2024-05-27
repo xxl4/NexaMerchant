@@ -3035,7 +3035,7 @@
         params.payment_method = 'paypal_stand'
       }
       console.log(params)
-      var postUrl = '/api/onebuy/order/addr/after?currency=' + currency
+      createOrder('', '', 'airwallex')
       // axios.post(postUrl).then(function(res) {
       //     console.log(res, '===res')
       //   })
@@ -3293,7 +3293,6 @@
 
           // Call your server to finalize the transaction
           onApprove: function(data, actions) {
-
             var orderData = {
               paymentID: data.orderID,
               orderID: data.orderID,
@@ -3329,7 +3328,7 @@
               }
             });
           }
-        }).render('#paypal-button');
+        }).render('paypal-button');
 
       });
 
