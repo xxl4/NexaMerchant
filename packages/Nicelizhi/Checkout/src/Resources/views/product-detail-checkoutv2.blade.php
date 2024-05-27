@@ -1,19 +1,9 @@
-{{ csrf_token() }}
-{{ app()->getLocale() }}
-{{ core()->getCurrentCurrencyCode() }}
-
-
-{{ core()->currencySymbol(core()->getBaseCurrencyCode()) }}
-
-
-{{ $slug }}
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
   <title>Fur Sweep Collar</title>
-  <link rel="icon prefetch" href="images/favicon.png" type="image/png" sizes="16x16" />
+  <link rel="icon prefetch" href="/checkout/v2/images/favicon.png" type="image/png" sizes="16x16" />
   <meta charset="utf-8" />
   <meta name="description" content="Fur Sweep Collar" />
   <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" />
@@ -967,23 +957,23 @@
 <body>
   <page-builder-block>
     <!-- Start VWO SmartCode -->
-    <script src="js/51174.js"></script>
+    <script src="/checkout/v2/js/51174.js"></script>
     <!-- End VWO SmartCode -->
-    <link rel="stylesheet prefetch" href="css/app2.css" />
-    <link type="text/css" href="css/custom-extra.css" rel="stylesheet" />
+    <link rel="stylesheet prefetch" href="/checkout/v2/css/app2.css" />
+    <link type="text/css" href="/checkout/v2/css/custom-extra.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/5.0.4/css/swiper.css" />
-    <link type="text/css" href="css/repeated-order-confirmation.min.css" rel="stylesheet" />
-    <link type="text/css" href="css/repeated-order-confirmation-additional.css" rel="stylesheet" />
-    <link rel="stylesheet prefetch" type="text/css" href="css/checkout.css" />
-    <link rel="stylesheet prefetch" type="text/css" href="css/bootstrap.min.css" />
-    <link rel="stylesheet prefetch" type="text/css" href="css/slick.min.css" />
-    <link rel="stylesheet prefetch" type="text/css" href="css/upsell-new-02.css" />
-    <link rel="stylesheet prefetch" type="text/css" href="css/extra-style.css" />
-    <link rel="stylesheet prefetch" type="text/css" href="css/fonts.css" />
-    <link rel="stylesheet prefetch" type="text/css" href="css/custom.css" />
-    <link rel="stylesheet prefetch" type="text/css" href="css/bottom-popup.css" />
-    <link rel="stylesheet prefetch" type="text/css" href="css/new_addon.css" />
-    <link rel="stylesheet prefetch" type="text/css" href="css/all.min.css" />
+    <link type="text/css" href="/checkout/v2/css/repeated-order-confirmation.min.css" rel="stylesheet" />
+    <link type="text/css" href="/checkout/v2/css/repeated-order-confirmation-additional.css" rel="stylesheet" />
+    <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/checkout.css" />
+    <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/bootstrap.min.css" />
+    <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/slick.min.css" />
+    <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/upsell-new-02.css" />
+    <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/extra-style.css" />
+    <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/fonts.css" />
+    <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/custom.css" />
+    <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/bottom-popup.css" />
+    <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/new_addon.css" />
+    <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/all.min.css" />
     <span id="builderCssToken"> </span>
   </page-builder-block>
   <!-- Data Layer -->
@@ -1416,11 +1406,11 @@
   </script>
   <!-- End Google Tag Manager (noscript) -->
   <!-- BEGIN MVMT EVERFLOW CHECKOUT PAGEVIEW PIXEL -->
-  <script type="text/javascript" src="js/everflow.js"></script>
+  <script type="text/javascript" src="/checkout/v2/js/everflow.js"></script>
   <!-- END MVMT EVERFLOW CHECKOUT PAGEVIEW PIXEL -->
   <div id="">
-    <img class="w-100 d-none d-md-block" src="images/Black_Friday_top.png" />
-    <img class="w-100 d-block d-md-none" src="images/Mobile_Reconstruction_1.png" />
+    <img class="w-100 d-none d-md-block" src="/checkout/v2/images/Black_Friday_top.png" />
+    <img class="w-100 d-block d-md-none" src="/checkout/v2/images/Mobile_Reconstruction_1.png" />
   </div>
   <div class="topStrip">
     <div class="container">
@@ -1434,14 +1424,14 @@
     <div class="container">
       <div class="dis-box-logo">
         <div class="logo_wrap_dist">
-          <img src="images/logo.png" width="200" />
+          <img src="/checkout/v2/images/logo.png" width="200" />
         </div>
         <div class="box_style_thrty">
           <!-- <h3 class="thrty_logos">
               <span><img src="images/60-day.png" width="90" /></span><span>30-Days Money <br />Back Guarantee</span>
             </h3> -->
           <h3 class="top-phone_wrap">
-            <span><img src="images/icons8-phone-60.png" /></span>Questions? Call: <a href="tel:+1 (888) 257-3492">+1 (888) 257-3492</a>
+            <span><img src="/checkout/v2/images/icons8-phone-60.png" /></span>Questions? Call: <a href="tel:+1 (888) 257-3492">+1 (888) 257-3492</a>
           </h3>
         </div>
       </div>
@@ -1460,7 +1450,7 @@
     <div class="container">
       <p class="chk-rgt-text1 forMob">New &amp; Improved 2024 Model</p>
       <p class="prod-name forMob">Fur Sweep Collar</p>
-      <p class="str-rvw forMob go-rew"><img src="images/star02.png" alt="Star" />12,421 Verified Customer Reviews</p>
+      <p class="str-rvw forMob go-rew"><img src="/checkout/v2/images/star02.png" alt="Star" />12,421 Verified Customer Reviews</p>
       <div class="left-sec">
         <div id="sticky">
           <div class="vehicle-detail-banner banner-content clearfix">
@@ -1478,7 +1468,7 @@
       <div class="right-sec">
         <p class="chk-rgt-text1 hide-mob">New &amp; Improved 2024 Model</p>
         <p class="prod-name hide-mob">Fur Sweep Collar</p>
-        <p class="str-rvw hide-mob go-rew"><img src="images/star02.png" alt="Star" />12,421 Verified Customer Reviews</p>
+        <p class="str-rvw hide-mob go-rew"><img src="/checkout/v2/images/star02.png" alt="Star" />12,421 Verified Customer Reviews</p>
         <p class="bdr-line hide-mob"></p>
         <p class="prd-det-disc">Natural Protection for Your Beloved Dog: Safe, Effective Flea &amp; Tick Prevention</p>
         <p class="pkg-hdng">Choose your package</p>
@@ -1736,7 +1726,7 @@
                 <label class="paymybtn">
                   <input type="radio" class="ccard cb-paypemt-radio" name="cctype" value="cc" checked data-paymentmethod="credit_card" />
                   Credit card
-                  <img src="images/visa-mstr-disc.png" class="visa-imgg" />
+                  <img src="/checkout/v2/images/visa-mstr-disc.png" class="visa-imgg" />
                 </label>
               </div>
               <div class="payment-flds-box credit-card">
@@ -2010,8 +2000,8 @@
       </p>
       <!-- <center> -->
       <a href="//www.dmca.com/Protection/Status.aspx?ID=0b693e6c-31d5-424a-8417-2bacb9b8923c" title="DMCA.com Protection Status" target="_blank" class="dmca-badge">
-        <img src="images/dmca_protected_sml_120n.png" alt="DMCA.com Protection Status" /></a>
-      <script src="js/DMCABadgeHelper.min.js"></script>
+        <img src="/checkout/v2/images/dmca_protected_sml_120n.png" alt="DMCA.com Protection Status" /></a>
+      <script src="/checkout/v2/js/DMCABadgeHelper.min.js"></script>
       <!-- </center> -->
     </div>
   </div>
@@ -2027,7 +2017,7 @@
     }
     var app_query_params = []
   </script>
-  <script type="text/javascript" src="js/math.js"></script>
+  <script type="text/javascript" src="/checkout/v2/js/math.js"></script>
   <script type="text/javascript">
     AJAX_PATH = 'ajax.php/'
     app_config = {
@@ -2291,7 +2281,7 @@
       enable_us_statecode_validation: true,
     }
   </script>
-  <script src="js/jquery-3.0.0.min.js"></script>
+  <script src="/checkout/v2/js/jquery-3.0.0.min.js"></script>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
   <script>
@@ -3272,19 +3262,19 @@
         })
     })
   </script>
-  <script src="js/codebase.min.js" type="text/javascript"></script>
-  <script src="js/sticky-prospect-script.min.js"></script>
-  <script src="js/custom-extra.js"></script>
+  <script src="/checkout/v2/js/codebase.min.js" type="text/javascript"></script>
+  <script src="/checkout/v2/js/sticky-prospect-script.min.js"></script>
+  <script src="/checkout/v2/js/custom-extra.js"></script>
   <!-- <script async defer src="js/js"></script> -->
   <script>
     var restricted_countries = 'US,CA'
   </script>
-  <script src="js/address-auto-complete.min.js"></script>
-  <script type="text/javascript" src="js/slick.min.js"></script>
-  <script type="text/javascript" src="js/bookmarkscroll.js"></script>
-  <script type="text/javascript" src="js/jquery.sticky.js"></script>
+  <script src="/checkout/v2/js/address-auto-complete.min.js"></script>
+  <script type="text/javascript" src="/checkout/v2/js/slick.min.js"></script>
+  <script type="text/javascript" src="/checkout/v2/js/bookmarkscroll.js"></script>
+  <script type="text/javascript" src="/checkout/v2/js/jquery.sticky.js"></script>
 
-  <script type="text/javascript" src="js/slick-cust.js"></script>
+  <script type="text/javascript" src="/checkout/v2/js/slick-cust.js"></script>
   <script>
     var productsNames = {
       1: {
@@ -3746,7 +3736,7 @@
     }
     var cnty_code = 'US'
   </script>
-  <script type="text/javascript" src="js/popup.js"></script>
+  <script type="text/javascript" src="/checkout/v2/js/popup.js"></script>
   <!-- <script type="text/javascript" src="js/checkout.js"></script> -->
 
   <script>
