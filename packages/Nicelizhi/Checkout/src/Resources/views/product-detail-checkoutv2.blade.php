@@ -928,7 +928,9 @@
         height: 80px;
         opacity: 0;
       }
-
+      .left-sec {
+        height: auto !important;
+      }
       #gallery img {
         height: 320px;
         object-fit: contain;
@@ -2583,8 +2585,8 @@
     function paramsProductsinit(list) {
       console.log(list, 'paramsProductsinit')
         for (var listi = 0; listi < list.length; listi++) {
-          if ((listi = list.length - 1)) {
-            return
+          if (listi = list.length - 1) {
+            return  
           }
           if (list[listi].attr_id == list[listi + 1].attr_id) {
             var toNum = Number(list[listi].amount) + 1
@@ -2618,7 +2620,7 @@
       params.total = Number(data.package_products[num1].new_price) + Number(data.package_products[num1].shipping_fee)
       params.amount = num2
       params.description = data.package_products[num1].name
-      productsObj.amount = params.amount
+      productsObj.amount = '1'
       productsObj.description = data.package_products[num1].name
       productsObj.product_id = data.product.id
       productsObj.product_sku = data.sku
