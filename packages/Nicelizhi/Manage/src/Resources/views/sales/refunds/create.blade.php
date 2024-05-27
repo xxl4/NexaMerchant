@@ -77,7 +77,7 @@
                         </td>
                         <td>
                             <div class="form-group">
-                                <input type="text" class="input"  name="refund[items][{{ $item->id }}]" id="refund[items][{{ $item->id }}]" rules="'required|numeric|min_value:0|max_value:' . $item->qty_ordered" value="0" />
+                                <input type="text" class="input"  name="refund[items][{{ $item->id }}]" id="refund[items][{{ $item->id }}]" rules="'required|numeric|min_value:0|max_value:' . $item->qty_ordered" value="{{ $item->qty_to_refund}}" />
                             </div>
                         </td>
                         <td>
