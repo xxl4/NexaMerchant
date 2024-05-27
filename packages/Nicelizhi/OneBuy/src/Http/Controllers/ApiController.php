@@ -146,10 +146,6 @@ class ApiController extends Controller
 
         $data['ads'] = $ads;
 
-        
-
-
-
         return response()->json($data);
     }
 
