@@ -135,8 +135,14 @@ class ApiController extends Controller
             'attribute_id' => 30,
         ]);
 
+        $productSizeImage = $this->productAttributeValueRepository->findOneWhere([
+            'product_id'   => $product->id,
+            'attribute_id' => 32,
+        ]);
+
         $ads['pc']['img'] = $productBgAttribute;
         $ads['mobile']['img'] = $productBgAttribute_mobile;
+        $ads['size']['img'] = $productSizeImage;
 
         $data['ads'] = $ads;
 
