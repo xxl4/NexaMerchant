@@ -20,6 +20,7 @@
   <meta property="og:image" content="/offer/1/app/desktop/images/thumb.png" />
   <meta name="color-scheme" content="light only" />
   <link href="https://cdn.jsdelivr.net/npm/flag-icon-css@4.1.7/css/flag-icons.min.css" rel="stylesheet" />
+  <script src="https://checkout.airwallex.com/assets/elements.bundle.min.js"></script>
   <style>
     @media only screen and (max-width: 600px) {}
 
@@ -3731,14 +3732,14 @@
 
             // Call your server to set up the transaction
             createOrder: function(data, actions) {
-              sendInitiateCheckoutEvent()
+              // sendInitiateCheckoutEvent()
 
-              gtag('event', 'initiate_paypal_checkout', {
-                event_label: 'Initiate paypal Checkout',
-                event_category: 'ecommerce',
-              })
+              // gtag('event', 'initiate_paypal_checkout', {
+              //   event_label: 'Initiate paypal Checkout',
+              //   event_category: 'ecommerce',
+              // })
 
-              fbq('track', 'InitiateCheckout')
+              // fbq('track', 'InitiateCheckout')
               // obApi('track', 'Start Checkout');
               // var params = getOrderParams(paypal_type || 'paypal')
               // if (params.error) {
