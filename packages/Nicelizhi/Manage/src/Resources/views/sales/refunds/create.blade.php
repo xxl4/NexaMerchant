@@ -32,7 +32,8 @@
                         <th></th>
                         <th></th>
                         <th></th>
-                        <th>{{ trans('admin::app.sales.refunds.create.qty-to-refund') }} </th>
+                        <th>{{ trans('admin::app.sales.refunds.create.qty-to-refund') }}</th>
+                        <th> </th>
                         <th> </th>
                     </tr>   
                 </thead>
@@ -72,8 +73,11 @@
 
 {{ $item->qty_canceled ? trans('admin::app.sales.refunds.create.item-canceled', ['qty_canceled' => $item->qty_canceled]) : '' }}</td>
                         <td>
+                        {{ $item->qty_to_refund}}
+                        </td>
+                        <td>
                             <div class="form-group">
-                                <input type="text" class="input"  name="refund[items][{{ $item->id }}]" id="refund[items][{{ $item->id }}]" rules="'required|numeric|min_value:0|max_value:' . $item->qty_ordered" value="0" /> {{ $item->qty_to_refund}}
+                                <input type="text" class="input"  name="refund[items][{{ $item->id }}]" id="refund[items][{{ $item->id }}]" rules="'required|numeric|min_value:0|max_value:' . $item->qty_ordered" value="0" />
                             </div>
                         </td>
                         <td>
