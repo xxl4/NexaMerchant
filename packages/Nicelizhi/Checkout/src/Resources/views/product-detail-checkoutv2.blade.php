@@ -2591,7 +2591,7 @@
           if (list[listi].attr_id == list[listi + 1].attr_id) {
             var toNum = Number(list[listi].amount) + 1
             list[listi+1].amount = String(toNum)
-            list = list.splice(listi)
+            list.splice(listi)
             
           }
         }
