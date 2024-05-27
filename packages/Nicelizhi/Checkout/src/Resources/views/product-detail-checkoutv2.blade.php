@@ -2831,6 +2831,7 @@
         .get(countryUrl)
         .then(function(res) {
           var stateList = res.data
+          console.log(stateList, 'stateList')
           if (app_config.countries[params.country]) {
             app_config.countries[params.country].states = {}
 
