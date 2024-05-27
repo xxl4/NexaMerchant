@@ -2724,15 +2724,14 @@
 
           }
           for (var resj = 0; resj < stateList.length; resj++) {
-            if (app_config.countries[params.country]) {
-              app_config.countries[params.country].states[stateList[resj].StateCode] = {}
-              app_config.countries[params.country].states[stateList[resj].StateCode].name = stateList[resj].StateName
-            } else {
-              app_config.countries[params.country] = {}
-              app_config.countries[params.country].states = {}
-              app_config.countries[params.country].states[stateList[resj].StateCode] = {}
-              app_config.countries[params.country].states[stateList[resj].StateCode].name = stateList[resj].StateName
-            }
+            // if (app_config.countries[params.country]) {
+            //   app_config.countries[params.country].states[stateList[resj].StateCode] = {}
+            //   app_config.countries[params.country].states[stateList[resj].StateCode].name = stateList[resj].StateName
+            // } else {
+            app_config.countries[params.country] = {}
+            app_config.countries[params.country].states = {}
+            app_config.countries[params.country].states[stateList[resj].StateCode] = {}
+            app_config.countries[params.country].states[stateList[resj].StateCode].name = stateList[resj].StateName
 
           }
           console.log(app_config.countries[params.country].states, 'app_config.countries.US.states')
