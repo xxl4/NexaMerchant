@@ -2278,9 +2278,36 @@
         .get(dataUrl)
         .then(function(res) {
           data = res.data
-          paypal_pay_acc = data.paypal_client_id
-          console.log(paypal_pay_acc, 'paypal_pay_acc')
           var attrList = data.attr.attributes
+          paypal_pay_acc = data.paypal_client_id
+          var script = document.createElement('script')
+          if (script.readyState) {
+            // IE
+            script.onreadystatechange = function() {
+              if (
+                script.readyState === 'loaded' ||
+                script.readyState === 'complete'
+              ) {
+                script.onreadystatechange = null
+                creatPaypalCardButton()
+              }
+            }
+          } else {
+            // 其他浏览器
+            script.onload = function() {
+              creatPaypalCardButton()
+            }
+          }
+          script.type = 'text/javascript'
+          // script.src = 'https://www.paypal.com/sdk/js?client-id=Ac3a2fQqrAO_2skbKS4hb5okCBnRUdh_i78Vvjhh-s1xc4fqZc39OyawwGL4kdHGvlPiRsv6CmogaJZz&components=buttons,messages,funding-eligibility&currency='+currency+'&disable-funding=paylater';
+          script.src =
+            'https://www.paypal.com/sdk/js?client-id=' +
+            paypal_pay_acc +
+            '&components=buttons,messages,funding-eligibility&currency=' +
+            currency
+          // script.src = 'https://www.paypal.com/sdk/js?client-id=AUbkpTo_D9-l80qERS91ipcrXuIfSC3WMmFbK7Ey4n8RS3TaoJDw8H2rpxdhsWBIZWZbb6E3V7CSmK4R&components=buttons,messages,funding-eligibility&currency='+currency+'&disable-funding=paylater';
+          script.async = 1
+          document.body.appendChild(script)
           $('#p-name2').text(data.package_products[0].name)
           $('#p-name1').text(data.package_products[1].name)
           $('#p-name3').text(data.package_products[2].name)
@@ -2702,6 +2729,7 @@
               app_config.countries[params.country].states[stateList[resj].StateCode].name = stateList[resj].StateName
             } else {
               app_config.countries[params.country] = {}
+              app_config.countries[params.country].states = {}
               app_config.countries[params.country].states[stateList[resj].StateCode] = {}
               app_config.countries[params.country].states[stateList[resj].StateCode].name = stateList[resj].StateName
             }
@@ -3614,36 +3642,36 @@
     window.is_stripe_pay = pay_type == 'stripe' ? true : false
     window.is_stripe_local = pay_type == 'stripe_local' ? true : false
     window.is_airwallex_klarna = pay_type == 'airwallex_klarna' ? true : false
-    console.log(paypal_pay_acc, 'paypal_pay_acc222')
+    // console.log(paypal_pay_acc, 'paypal_pay_acc222')
 
-    var script = document.createElement('script')
-    if (script.readyState) {
-      // IE
-      script.onreadystatechange = function() {
-        if (
-          script.readyState === 'loaded' ||
-          script.readyState === 'complete'
-        ) {
-          script.onreadystatechange = null
-          creatPaypalCardButton()
-        }
-      }
-    } else {
-      // 其他浏览器
-      script.onload = function() {
-        creatPaypalCardButton()
-      }
-    }
-    script.type = 'text/javascript'
-    // script.src = 'https://www.paypal.com/sdk/js?client-id=Ac3a2fQqrAO_2skbKS4hb5okCBnRUdh_i78Vvjhh-s1xc4fqZc39OyawwGL4kdHGvlPiRsv6CmogaJZz&components=buttons,messages,funding-eligibility&currency='+currency+'&disable-funding=paylater';
-    script.src =
-      'https://www.paypal.com/sdk/js?client-id=' +
-      paypal_pay_acc +
-      '&components=buttons,messages,funding-eligibility&currency=' +
-      currency
-    // script.src = 'https://www.paypal.com/sdk/js?client-id=AUbkpTo_D9-l80qERS91ipcrXuIfSC3WMmFbK7Ey4n8RS3TaoJDw8H2rpxdhsWBIZWZbb6E3V7CSmK4R&components=buttons,messages,funding-eligibility&currency='+currency+'&disable-funding=paylater';
-    script.async = 1
-    document.body.appendChild(script)
+    // var script = document.createElement('script')
+    // if (script.readyState) {
+    //   // IE
+    //   script.onreadystatechange = function() {
+    //     if (
+    //       script.readyState === 'loaded' ||
+    //       script.readyState === 'complete'
+    //     ) {
+    //       script.onreadystatechange = null
+    //       creatPaypalCardButton()
+    //     }
+    //   }
+    // } else {
+    //   // 其他浏览器
+    //   script.onload = function() {
+    //     creatPaypalCardButton()
+    //   }
+    // }
+    // script.type = 'text/javascript'
+    // // script.src = 'https://www.paypal.com/sdk/js?client-id=Ac3a2fQqrAO_2skbKS4hb5okCBnRUdh_i78Vvjhh-s1xc4fqZc39OyawwGL4kdHGvlPiRsv6CmogaJZz&components=buttons,messages,funding-eligibility&currency='+currency+'&disable-funding=paylater';
+    // script.src =
+    //   'https://www.paypal.com/sdk/js?client-id=' +
+    //   paypal_pay_acc +
+    //   '&components=buttons,messages,funding-eligibility&currency=' +
+    //   currency
+    // // script.src = 'https://www.paypal.com/sdk/js?client-id=AUbkpTo_D9-l80qERS91ipcrXuIfSC3WMmFbK7Ey4n8RS3TaoJDw8H2rpxdhsWBIZWZbb6E3V7CSmK4R&components=buttons,messages,funding-eligibility&currency='+currency+'&disable-funding=paylater';
+    // script.async = 1
+    // document.body.appendChild(script)
 
     function creatPaypalCardButton() {
       var that = this
