@@ -2270,6 +2270,7 @@
     var getProductId = '{{ $slug }}'
     var countries1 = '{{ app()->getLocale() }}'
     var paypal_pay_acc = ''
+    var area = '{{ app()->getLocale() }}'
     var currencySymbol = '{{ core()->currencySymbol(core()->getBaseCurrencyCode()) }}'
     $(function() {
       var dataUrl = '/api/onebuy/product/detail/' + getProductId + '?currency=' + currency
@@ -2681,348 +2682,29 @@
         })
     })
 
-    // $('select[name="shippingCountry"]').click(function () {
-    //   console.log($(this).val())
-    //   params.country = $(this).val()
-    //   var countryUrl = '/template-common/checkout1/state/us_en.json'
-    //   axios
-    //     .get(countriesUrl)
-    //     .then(function (res) {
+    $('select[name="shippingCountry"]').click(function() {
+      console.log($(this).val())
+      params.country = $(this).val()
+      var countryClick = $(this).val().toLowerCase()
+      console.log(countryClick, params.country, 'countryClick')
+      var countryUrl = '/template-common/checkout1/state/' + countryClick + '_' + area + '.json'
+      axios
+        .get(countryUrl)
+        .then(function(res) {
+          var stateList = res.data
+          app_config.countries[params.country].states = {}
+          for (var resj = 0; resj < stateList.length; resj++) {
+            app_config.countries[params.country].states[stateList[resj].StateCode] = {}
+            app_config.countries[params.country].states[stateList[resj].StateCode].name = stateList[resj].StateName
+          }
+          console.log(app_config.countries[params.country].states, 'app_config.countries.US.states')
 
-    //     })
-    //     .catch(function (err) {
-    //       console.log(err, 'err====')
-    //     })
-    //    (Example)
-    // })
+        })
+        .catch(function(err) {
+          console.log(err, 'err====')
+        })
+    })
 
-    var res2 = [{
-        CountryCode: 'US',
-        StateCode: 'A',
-        StateName: 'Armed Forces Africa',
-      },
-      {
-        CountryCode: 'US',
-        StateCode: 'AA',
-        StateName: 'Armed Forces Americas',
-      },
-      {
-        CountryCode: 'US',
-        StateCode: 'AK',
-        StateName: 'Alaska',
-      },
-      {
-        CountryCode: 'US',
-        StateCode: 'AL',
-        StateName: 'Alabama',
-      },
-      {
-        CountryCode: 'US',
-        StateCode: 'AP',
-        StateName: 'Armed Forces Pacific',
-      },
-      {
-        CountryCode: 'US',
-        StateCode: 'AR',
-        StateName: 'Arkansas',
-      },
-      {
-        CountryCode: 'US',
-        StateCode: 'AS',
-        StateName: 'American Samoa',
-      },
-      {
-        CountryCode: 'US',
-        StateCode: 'AZ',
-        StateName: 'Arizona',
-      },
-      {
-        CountryCode: 'US',
-        StateCode: 'C',
-        StateName: 'Armed Forces Canada',
-      },
-      {
-        CountryCode: 'US',
-        StateCode: 'CA',
-        StateName: 'California',
-      },
-      {
-        CountryCode: 'US',
-        StateCode: 'CO',
-        StateName: 'Colorado',
-      },
-      {
-        CountryCode: 'US',
-        StateCode: 'CT',
-        StateName: 'Connecticut',
-      },
-      {
-        CountryCode: 'US',
-        StateCode: 'DC',
-        StateName: 'Districtof Columbia',
-      },
-      {
-        CountryCode: 'US',
-        StateCode: 'DE',
-        StateName: 'Delaware',
-      },
-      {
-        CountryCode: 'US',
-        StateCode: 'E',
-        StateName: 'Armed Forces Europe',
-      },
-      {
-        CountryCode: 'US',
-        StateCode: 'FL',
-        StateName: 'Florida',
-      },
-      {
-        CountryCode: 'US',
-        StateCode: 'FM',
-        StateName: 'Federated Statesof Micronesia',
-      },
-      {
-        CountryCode: 'US',
-        StateCode: 'GA',
-        StateName: 'Georgia',
-      },
-      {
-        CountryCode: 'US',
-        StateCode: 'GU',
-        StateName: 'Guam',
-      },
-      {
-        CountryCode: 'US',
-        StateCode: 'HI',
-        StateName: 'Hawaii',
-      },
-      {
-        CountryCode: 'US',
-        StateCode: 'IA',
-        StateName: 'Iowa',
-      },
-      {
-        CountryCode: 'US',
-        StateCode: 'ID',
-        StateName: 'Idaho',
-      },
-      {
-        CountryCode: 'US',
-        StateCode: 'IL',
-        StateName: 'Illinois',
-      },
-      {
-        CountryCode: 'US',
-        StateCode: 'IN',
-        StateName: 'Indiana',
-      },
-      {
-        CountryCode: 'US',
-        StateCode: 'KS',
-        StateName: 'Kansas',
-      },
-      {
-        CountryCode: 'US',
-        StateCode: 'KY',
-        StateName: 'Kentucky',
-      },
-      {
-        CountryCode: 'US',
-        StateCode: 'LA',
-        StateName: 'Louisiana',
-      },
-      {
-        CountryCode: 'US',
-        StateCode: 'M',
-        StateName: 'Armed Forces Middle East',
-      },
-      {
-        CountryCode: 'US',
-        StateCode: 'MA',
-        StateName: 'Massachusetts',
-      },
-      {
-        CountryCode: 'US',
-        StateCode: 'MD',
-        StateName: 'Maryland',
-      },
-      {
-        CountryCode: 'US',
-        StateCode: 'ME',
-        StateName: 'Maine',
-      },
-      {
-        CountryCode: 'US',
-        StateCode: 'MH',
-        StateName: 'Republicof Marshall Islands',
-      },
-      {
-        CountryCode: 'US',
-        StateCode: 'MI',
-        StateName: 'Michigan',
-      },
-      {
-        CountryCode: 'US',
-        StateCode: 'MN',
-        StateName: 'Minnesota',
-      },
-      {
-        CountryCode: 'US',
-        StateCode: 'MO',
-        StateName: 'Missouri',
-      },
-      {
-        CountryCode: 'US',
-        StateCode: 'MP',
-        StateName: 'Northern Mariana Islands',
-      },
-      {
-        CountryCode: 'US',
-        StateCode: 'MS',
-        StateName: 'Mississippi',
-      },
-      {
-        CountryCode: 'US',
-        StateCode: 'MT',
-        StateName: 'Montana',
-      },
-      {
-        CountryCode: 'US',
-        StateCode: 'NC',
-        StateName: 'North Carolina',
-      },
-      {
-        CountryCode: 'US',
-        StateCode: 'ND',
-        StateName: 'North Dakota',
-      },
-      {
-        CountryCode: 'US',
-        StateCode: 'NE',
-        StateName: 'Nebraska',
-      },
-      {
-        CountryCode: 'US',
-        StateCode: 'NH',
-        StateName: 'New Hampshire',
-      },
-      {
-        CountryCode: 'US',
-        StateCode: 'NJ',
-        StateName: 'New Jersey',
-      },
-      {
-        CountryCode: 'US',
-        StateCode: 'NM',
-        StateName: 'New Mexico',
-      },
-      {
-        CountryCode: 'US',
-        StateCode: 'NV',
-        StateName: 'Nevada',
-      },
-      {
-        CountryCode: 'US',
-        StateCode: 'NY',
-        StateName: 'New York',
-      },
-      {
-        CountryCode: 'US',
-        StateCode: 'OH',
-        StateName: 'Ohio',
-      },
-      {
-        CountryCode: 'US',
-        StateCode: 'OK',
-        StateName: 'Oklahoma',
-      },
-      {
-        CountryCode: 'US',
-        StateCode: 'OR',
-        StateName: 'Oregon',
-      },
-      {
-        CountryCode: 'US',
-        StateCode: 'PA',
-        StateName: 'Pennsylvania',
-      },
-      {
-        CountryCode: 'US',
-        StateCode: 'PR',
-        StateName: 'Puerto Rico',
-      },
-      {
-        CountryCode: 'US',
-        StateCode: 'RI',
-        StateName: 'Rhode Island',
-      },
-      {
-        CountryCode: 'US',
-        StateCode: 'SC',
-        StateName: 'South Carolina',
-      },
-      {
-        CountryCode: 'US',
-        StateCode: 'SD',
-        StateName: 'South Dakota',
-      },
-      {
-        CountryCode: 'US',
-        StateCode: 'TN',
-        StateName: 'Tennessee',
-      },
-      {
-        CountryCode: 'US',
-        StateCode: 'TX',
-        StateName: 'Texas',
-      },
-      {
-        CountryCode: 'US',
-        StateCode: 'UT',
-        StateName: 'Utah',
-      },
-      {
-        CountryCode: 'US',
-        StateCode: 'VA',
-        StateName: 'Virginia',
-      },
-      {
-        CountryCode: 'US',
-        StateCode: 'VI',
-        StateName: 'Virgin Islands',
-      },
-      {
-        CountryCode: 'US',
-        StateCode: 'VT',
-        StateName: 'Vermont',
-      },
-      {
-        CountryCode: 'US',
-        StateCode: 'WA',
-        StateName: 'Washington',
-      },
-      {
-        CountryCode: 'US',
-        StateCode: 'WI',
-        StateName: 'Wisconsin',
-      },
-      {
-        CountryCode: 'US',
-        StateCode: 'WV',
-        StateName: 'West Virginia',
-      },
-      {
-        CountryCode: 'US',
-        StateCode: 'WY',
-        StateName: 'Wyoming',
-      },
-    ]
-    app_config.countries.US.states = {}
-    for (var resj = 0; resj < res2.length; resj++) {
-      app_config.countries.US.states[res2[resj].StateCode] = {}
-      app_config.countries.US.states[res2[resj].StateCode].name = res2[resj].StateName
-    }
-    console.log(app_config.countries.US.states, 'app_config.countries.US.states')
 
     function getSku(id, n, value) {
       var nList = []
@@ -3210,11 +2892,6 @@
         params.payment_method = 'paypal_stand'
       }
       console.log(params)
-      if (params.wq) {
-        console.log(111)
-      } else {
-        console.log(222)
-      }
       var postUrl = '/api/onebuy/order/addr/after?currency=' + currency
       axios.post(postUrl).then(function(res) {
           console.log(res, '===res')
@@ -3779,7 +3456,6 @@
       var falg = isInViewport($('.section'))
       var falg2 = isInViewport($('.section')) || isInViewport($('.footer')) || isInViewport($('.faq-content'))
       var top = document.querySelector('.footer').getBoundingClientRect().top - window.innerHeight
-      console.log(top, falg)
       if (falg) {
         $('#sticky').unstick()
       }
