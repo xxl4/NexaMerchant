@@ -2581,15 +2581,17 @@
         })
     })
     function paramsProductsinit(list) {
-        for (var i = 0; i < list.length; i++) {
-          if ((i = list.length - 1)) {
+      console.log(list, 'paramsProductsinit')
+        for (var listi = 0; listi < list.length; listi++) {
+          if ((listi = list.length - 1)) {
             return
           }
-          if (list[i].attr_id == list[i + 1].attr_id) {
-            var toNum = Number(list[i].amount) + 1
-            list[i+1].amount = String(toNum)
-            list = list.splice(i)
+          if (list[listi].attr_id == list[listi + 1].attr_id) {
+            var toNum = Number(list[listi].amount) + 1
+            list[listi+1].amount = String(toNum)
+            list = list.splice(listi)
             params.products = list
+            console.log(params.products, 'params.products')
           }
         }
       }
