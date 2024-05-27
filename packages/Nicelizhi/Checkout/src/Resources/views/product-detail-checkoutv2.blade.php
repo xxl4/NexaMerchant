@@ -1452,7 +1452,7 @@
       <p class="prod-name forMob">Fur Sweep Collar</p>
       <p class="str-rvw forMob go-rew"><img src="/checkout/v2/images/star02.png" alt="Star" />12,421 Verified Customer Reviews</p>
       <div class="left-sec">
-        <div id="sticky">
+        <div id="sticky" style="position:sticky;top: 0;">
           <div class="vehicle-detail-banner banner-content clearfix">
             <div class="banner-slider">
               <div class="slider-banner-image">
@@ -3834,78 +3834,11 @@
       var result = mn + ':' + sc
       document.getElementById('stopwatch').innerHTML = result
     }, spd)
-
-    function stickycall() {
-      var wh = $(window).innerWidth()
-      if (wh > 767) {
-        $('#sticky').sticky({
-          topSpacing: 35,
-          bottomSpacing: 300
-        })
-      } else {
-        $('#sticky').unstick()
-      }
-    }
-    $(document).ready(function(e) {
-      stickycall()
-    })
-    $(window).resize(function(e) {
-      stickycall()
-    })
-
-    function isInViewport($element) {
-      var elementTop = $element.offset().top
-      var elementLeft = $element.offset().left
-      var elementBottom = elementTop + $element.outerHeight()
-      var elementRight = elementLeft + $element.outerWidth()
-
-      var viewportTop = $(window).scrollTop()
-      var viewportLeft = $(window).scrollLeft()
-      var viewportBottom = viewportTop + $(window).height()
-      var viewportRight = viewportLeft + $(window).width()
-
-      return elementBottom > viewportTop && elementTop < viewportBottom && elementRight > viewportLeft && elementLeft < viewportRight
-    }
-
-    function throttle(fn, threshhold, scope) {
-      threshhold || (threshhold = 250)
-      var last, timer
-      return function() {
-        var context = scope || this
-        var now = +new Date(),
-          args = arguments
-        if (last && now - last < threshhold) {
-          // 如果两次间隔小于指定的时间，则清除上一次的定时器并设置新的定时器
-          clearTimeout(timer)
-          timer = setTimeout(function() {
-            last = now
-            fn.apply(context, args)
-          }, threshhold)
-        } else {
-          // 如果两次间隔大于或等于指定的时间，则直接执行函数
-          last = now
-          fn.apply(context, args)
-        }
-      }
-    }
-    window.onscroll = throttle(function() {
-      var wh = $(window).innerWidth()
-      var falg = isInViewport($('.section'))
-      var falg2 = isInViewport($('.section')) || isInViewport($('.footer')) || isInViewport($('.faq-content'))
-      var top = document.querySelector('.footer').getBoundingClientRect().top - window.innerHeight
-      if (falg) {
-        $('#sticky').unstick()
-      }
-      if (!falg2) {
-        $('#sticky').sticky({
-          topSpacing: 35,
-          bottomSpacing: 300
-        })
-      }
-      if (wh < 767) {
-        $('#sticky').unstick()
-      }
-    }, 250)
+    $(function () {
+        var height = $('.right-sec').height()
+        console.log(height, 'height')
+        $('.left-sec').css('height', height)
+      })
 
     $('.fieldToggle').click(function() {
       if ($('#togData').prop('checked') == true) {
