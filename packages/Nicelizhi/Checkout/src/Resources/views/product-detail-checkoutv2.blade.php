@@ -2290,7 +2290,7 @@
     var params = {
       products: [],
     }
-    var currency = '{{ core() - > getCurrentCurrencyCode() }}'
+    var currency = '{{ core()->getCurrentCurrencyCode() }}'
     var paypalId = ''
     var attLength
     var productL1 = {}
@@ -2298,7 +2298,7 @@
     var productL3 = {}
     var productL4 = {}
     var getProductId = '{{ $slug }}'
-    var countries1 = '{{ app() - > getLocale() }}'
+    var countries1 = '{{ app()->getLocale() }}'
     var paypal_pay_acc = ''
     $(function() {
       var dataUrl = '/api/onebuy/product/detail/' + getProductId + '?currency=' + currency
