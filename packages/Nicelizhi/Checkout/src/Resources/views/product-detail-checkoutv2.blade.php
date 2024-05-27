@@ -1957,6 +1957,7 @@
             </div>
           </div>
           <button type="submit" class="complete-btn">Complete Checkout</button>
+          <div id='paypal-button'></div>
         </form>
 
       </div>
@@ -3328,7 +3329,7 @@
               }
             });
           }
-        }).render('.complete-btn');
+        }).render('#paypal-button');
 
       });
 
@@ -4841,7 +4842,7 @@
 
       params['error'] = checkoutProducts(params);
 
-
+      // 校验
       var checkout_function = {
         paypal: function() {
           return false
