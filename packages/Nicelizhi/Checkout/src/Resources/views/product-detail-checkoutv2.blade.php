@@ -1732,7 +1732,7 @@
               <div class="payment-flds-box credit-card">
                 <div class="frm-flds fl fl-form">
                   <label for="cardNumber" class="fl-label">Card Number #</label>
-                  <input type="tel" name="creditCardNumber" class="input-flds required frmField numeric remove" maxlength="16" placeholder="Credit Card #" data-error-message="Please enter your card number!" onkeyup="javascript: this.value = this.value.replace(/[^0-9]/g, '');" />
+                  <input type="tel" id="id_card" name="creditCardNumber" class="input-flds required frmField numeric remove" maxlength="16" placeholder="Credit Card #" data-error-message="Please enter your card number!" onkeyup="javascript: this.value = this.value.replace(/[^0-9]/g, '');" />
                 </div>
                 <div class="frm-flds half-fld fl">
                   <label for="month" class="fl-label">Month</label>
@@ -3857,7 +3857,7 @@
               //console.log(request);
 
               var url =
-                '/onebuy/order/status?_topayment-buttonken=tcp19tASqLc2mcXv57kyBxRM0ZxAZk12nN47LZqP&currency=USD'
+                '/onebuy/order/status?_topayment-buttonken={{ csrf_token() }}&currency={{ core()->getCurrentCurrencyCode() }}'
 
               $('#loading').show()
               return fetch(url, {
@@ -3926,6 +3926,95 @@
         // .render('#' + (render_id || 'paypal-card-submit'));
       })
     }
+  </script>
+  <script>
+    Airwallex.init({
+      env: 'prod', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
+      origin: window.location.origin, // Setup your event target to receive the browser events message
+    });
+
+    const cardNumber = Airwallex.createElement('cardNumber', {
+      allowedCardNetworks: ['visa', 'maestro', 'mastercard', 'amex', 'unionpay', 'jcb']
+    });
+    const cardExpiry = Airwallex.createElement('expiry');
+    const cardCvc = Airwallex.createElement('cvc');
+
+    const domcardNumber = cardNumber.mount('cardNumber'); // This 'cardNumber' id MUST MATCH the id on your cardNumber 
+    const domcardExpiry = cardExpiry.mount('cardExpiry'); // Same as above
+    const domcardCvv = cardCvc.mount('cardCvc'); // Same as above
+
+
+    // STEP #7: Add an event listener to ensure the element is mounted
+    domcardNumber.addEventListener('onReady', (event) => {
+      /*
+      ... Handle event
+      */
+      //window.alert(event.detail);
+      console.log(event.detail);
+    });
+
+    // STEP #8: Add an event listener to listen to the changes in each of the input fields
+    domcardNumber.addEventListener('onChange', (event) => {
+      /*
+      ... Handle event
+      */
+      //window.alert(event.detail);
+      console.log(event.detail)
+      //console.log(JSON.stringify(event));
+      console.log(event.detail.complete)
+      if (event.detail.complete == true) {
+        $("#id_card").val(event.detail.complete);
+        $("#cardNumber").removeClass("shipping-info-input-error");
+      }
+      if (event.detail.complete == false) {
+        $("#id_card").val(event.detail.complete);
+        $("#cardNumber").addClass("shipping-info-input-error");
+      }
+
+    });
+
+    domcardExpiry.addEventListener('onChange', (event) => {
+      /*
+      ... Handle event
+      */
+      //window.alert(event.detail);
+      console.log(event.detail)
+      //console.log(JSON.stringify(event));
+      console.log(event.detail.complete)
+      $("#id_expiry").val(event.detail.complete);
+
+      if (event.detail.complete == true) {
+        $("#id_expiry").val(event.detail.complete);
+        $("#cardExpiry").removeClass("shipping-info-input-error");
+      }
+
+      if (event.detail.complete == false) {
+        $("#id_expiry").val(event.detail.complete);
+        $("#cardExpiry").removeClass("shipping-info-input-error");
+      }
+    });
+
+    //id_cvc
+    domcardCvv.addEventListener('onChange', (event) => {
+      /*
+      ... Handle event
+      */
+      //window.alert(event.detail);
+      console.log(event.detail)
+      //console.log(JSON.stringify(event));
+      console.log(event.detail.complete)
+      //$("#id_cvc").val(event.detail.complete);
+
+      if (event.detail.complete == true) {
+        $("#id_cvc").val(event.detail.complete);
+        $("#cardCvc").removeClass("shipping-info-input-error");
+      }
+
+      if (event.detail.complete == false) {
+        $("#id_cvc").val(event.detail.complete);
+        $("#cardCvc").removeClass("shipping-info-input-error");
+      }
+    });
   </script>
 </body>
 
