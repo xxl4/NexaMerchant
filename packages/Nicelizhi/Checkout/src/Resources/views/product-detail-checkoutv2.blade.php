@@ -2586,12 +2586,12 @@
       console.log(list, 'paramsProductsinit')
         for (var listi = 0; listi < list.length; listi++) {
           if (listi == list.length - 1) {
-            return  
+            break;  
           }
           if (list[listi].attr_id == list[listi + 1].attr_id) {
             var toNum = Number(list[listi].amount) + 1
             list[listi+1].amount = String(toNum)
-            list.splice(listi)
+            list.splice(listi,1)
             
           }
         }
