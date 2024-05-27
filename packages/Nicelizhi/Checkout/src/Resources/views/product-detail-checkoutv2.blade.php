@@ -2585,17 +2585,18 @@
     function paramsProductsinit(list) {
       console.log(list, 'paramsProductsinit')
         for (var listi = 0; listi < list.length; listi++) {
-          if (listi = list.length - 1) {
+          if (listi == list.length - 1) {
             return  
           }
           if (list[listi].attr_id == list[listi + 1].attr_id) {
             var toNum = Number(list[listi].amount) + 1
             list[listi+1].amount = String(toNum)
             list = list.splice(listi)
-            params.products = list
-            console.log(params.products, 'params.products')
+            
           }
         }
+        params.products = list
+        console.log(params.products, 'params.products')
       }
     function initProuctData(num1, num2) {
       var name1,
