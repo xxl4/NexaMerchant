@@ -122,6 +122,24 @@ class ApiController extends Controller
         $data['quora_adv_id'] = $quora_adv_id;
         $data['paypal_client_id'] = $paypal_client_id;
 
+        $ads = []; // add ads
+        
+        $productBgAttribute = $this->productAttributeValueRepository->findOneWhere([
+            'product_id'   => $product->id,
+            'attribute_id' => 29,
+        ]);
+
+
+        $productBgAttribute_mobile = $this->productAttributeValueRepository->findOneWhere([
+            'product_id'   => $product->id,
+            'attribute_id' => 30,
+        ]);
+
+        $ads['pc']['img'] = $productBgAttribute;
+        $ads['mobile']['img'] = $productBgAttribute_mobile;
+
+        $data['ads'] = $ads;
+
         
 
 
