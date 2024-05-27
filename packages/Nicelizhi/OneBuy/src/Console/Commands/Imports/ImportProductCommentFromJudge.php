@@ -164,7 +164,7 @@ class ImportProductCommentFromJudge extends Command
                     $len = $redis->hlen($this->cache_key.$product->id);
 
                      //insert into db 
-                    $review = $this->productReviewRepository->findWhere(['title'=>$item['title'],'name'=>$item['reviewer']['name']])->first();
+                    $review = $this->productReviewRepository->findWhere(['title'=>$item['title'],'name'=>$item['reviewer']['name'],'product_id'=>$product->id])->first();
                     
                     if(!empty($this->prod_id)) {
                         if($item['product_external_id']== $this->prod_id ) {
@@ -247,7 +247,7 @@ class ImportProductCommentFromJudge extends Command
 
                                 
                                 
-                                $attachments = $this->productReviewAttachmentRepository->findWhere(['path'=>$local_image_path])->first();
+                                $attachments = $this->productReviewAttachmentRepository->findWhere(['path'=>$picture['urls']['original']])->first();
                                 if(!empty($attachments)) continue;
 
     
@@ -261,7 +261,7 @@ class ImportProductCommentFromJudge extends Command
                                 $attachments = [];
                                 $attachments['type'] = $fileType[0];
                                 $attachments['mime_type'] = $fileType[1];
-                                $attachments['path'] = $local_image_path;
+                                $attachments['path'] = $picture['urls']['original'];
                                 $attachments['review_id'] = $review->id;
                                 var_dump($attachments);
     
