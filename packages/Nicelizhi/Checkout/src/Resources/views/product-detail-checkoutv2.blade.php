@@ -1638,7 +1638,7 @@
         <p class="bdr-line"></p>
 
         <p class="pkg-hdng">Enter customer information</p>
-        <form class="form" method="post" action="ajax.php?method=downsell1" name="downsell_form1" accept-charset="utf-8" enctype="application/x-www-form-urlencoded;charset=utf-8">
+        <form class="form">
           <input type="hidden" name="prospectId" id="prospectId" value="" />
           <input type="hidden" name="campaigns[1][id]" id="campaign_id" value="" />
           <!--<input type="hidden" name="splitCampaigns" value="">-->
@@ -1885,36 +1885,6 @@
           <button type="submit" class="complete-btn">Complete Checkout</button>
         </form>
 
-        <!-- <div class="summary-wrapper">
-            <div style="padding: 15px">
-              <div class="summary-title">Order overview</div>
-              <div class="order-formation">
-                <div class="product-name">name</div>
-                <div class="order-left">
-                  <div id="product-number">number: 2</div>
-                  <div id="product-price">price</div>
-                </div>
-              </div>
-              <div class="order-box">
-                <p class="summary-total-item">
-                  <span class="summary-total-item-name">小计:</span>
-                  <span id="summary-total1"></span>
-                </p>
-                <p class="summary-total-item">
-                  <span class="summary-total-item-name">折扣:</span>
-                  <span id="summary-total2">€98.00</span>
-                </p>
-                <p class="summary-total-item">
-                  <span class="summary-total-item-name">运输:</span>
-                  <span id="summary-total3">€98.00</span>
-                </p>
-                <p class="summary-total-item">
-                  <span class="summary-total-item-name">总计:</span>
-                  <span id="summary-total4">€98.00</span>
-                </p>
-              </div>
-            </div>
-          </div> -->
       </div>
     </div>
     <p id="loading-indicator">Processing...</p>
@@ -2300,6 +2270,7 @@
     var getProductId = '{{ $slug }}'
     var countries1 = '{{ app()->getLocale() }}'
     var paypal_pay_acc = ''
+    var currencySymbol = '{{ core()->currencySymbol(core()->getBaseCurrencyCode()) }}'
     $(function() {
       var dataUrl = '/api/onebuy/product/detail/' + getProductId + '?currency=' + currency
       axios
@@ -2307,6 +2278,7 @@
         .then(function(res) {
           data = res.data
           paypal_pay_acc = data.paypal_client_id
+          console.log(paypal_pay_acc, 'paypal_pay_acc')
           var attrList = data.attr.attributes
           $('#p-name2').text(data.package_products[0].name)
           $('#p-name1').text(data.package_products[1].name)
@@ -2357,16 +2329,16 @@
             $('.buy-select').hide()
             $('.buy-select2').hide()
           }
-          var nprice = currency + data.package_products[0].new_price.toFixed(2)
+          var nprice = currencySymbol + data.package_products[0].new_price.toFixed(2)
           $('#summary-total1').text(nprice)
-          var shippingFee = currency + data.package_products[0].shipping_fee
+          var shippingFee = currencySymbol + data.package_products[0].shipping_fee
           $('#summary-total3').text(shippingFee)
 
           var discount = Number(data.package_products[0].old_price) - Number(data.package_products[0].new_price)
-          discount = currency + discount.toFixed(2)
+          discount = currencySymbol + discount.toFixed(2)
           $('#summary-total2').text(discount)
           var total = Number(data.package_products[0].new_price) + Number(data.package_products[0].shipping_fee)
-          total = currency + total.toFixed(2)
+          total = currencySymbol + total.toFixed(2)
           $('#summary-total4').text(total)
           $('.product-name').text(data.package_products[0].name)
           $('#product-number').text('number: 2')
@@ -3937,6 +3909,13 @@
     })
   </script>
   <script>
+    $(document).ready(function() {
+      $(".faq_view").click(function() {
+        $("#collapseContent").slideToggle();
+      });
+    });
+  </script>
+  <script>
     window.pay_type = 'airwallex'
     window.is_paypal_standard = pay_type == 'paypal_standard' ? true : false
     window.is_checkout_pay = pay_type == 'checkout' ? true : false
@@ -3949,6 +3928,7 @@
     window.is_stripe_pay = pay_type == 'stripe' ? true : false
     window.is_stripe_local = pay_type == 'stripe_local' ? true : false
     window.is_airwallex_klarna = pay_type == 'airwallex_klarna' ? true : false
+    console.log(paypal_pay_acc, 'paypal_pay_acc222')
 
     var script = document.createElement('script')
     if (script.readyState) {
