@@ -2570,7 +2570,7 @@
           productL1.attribute_name = name1List
           productL2.attribute_name = name2List
           params.products = []
-          params.products.push(productL1, productL2)
+          params.products.push(productL1)
           // productL1.attr_id
           // minList = midList.join(',')
           // productsObj.attr_id = minList
@@ -2580,7 +2580,19 @@
           console.error(error, 'err')
         })
     })
-
+    function paramsProductsinit(list) {
+        for (var i = 0; i < list.length; i++) {
+          if ((i = list.length - 1)) {
+            return
+          }
+          if (list[i].attr_id == list[i + 1].attr_id) {
+            var toNum = Number(list[i].amount) + 1
+            list[i+1].amount = String(toNum)
+            list = list.splice(i)
+            params.products = list
+          }
+        }
+      }
     function initProuctData(num1, num2) {
       var name1,
         name1List = [],
@@ -2754,6 +2766,7 @@
         productL2.attribute_name = name2List
         params.products = []
         params.products.push(productL1, productL2)
+        paramsProductsinit(params.products)
       }
       if (num2 == '3') {
         name1List = name1List.join(',')
@@ -2773,6 +2786,7 @@
         productL3.attribute_name = name3List
         params.products = []
         params.products.push(productL1, productL2, productL3)
+        paramsProductsinit(params.products)
       }
       if (num2 == '4') {
         name1List = name1List.join(',')
@@ -2796,6 +2810,7 @@
         productL4.attribute_name = name4List
         params.products = []
         params.products.push(productL1, productL2, productL3, productL4)
+        paramsProductsinit(params.products)
       }
     }
     $(function() {
@@ -2832,7 +2847,7 @@
         .get(countryUrl)
         .then(function(res) {
           var stateList = res.data
-          console.log(res, '=========res======')
+          console.log(res, '====res======')
           console.log(stateList, 'stateList==')
           app_config.countries[params.country] = {}
           app_config.countries[params.country].states = {}
@@ -2915,6 +2930,11 @@
       list.removeClass('choose-p')
       var list2 = $('#buy-select1,#buy-select3,#buy-select4')
       list2.removeClass('buy-select1')
+      $('#buy-select2').hide()
+      $('#buy-select3').hide()
+      $('#buy-select4').hide()
+      $('#buy-select1').show()
+
       var cssObj = {
         height: '0',
         opacity: '0',
@@ -2943,6 +2963,10 @@
       list.removeClass('choose-p')
       var list2 = $('#buy-select1,#buy-select3,#buy-select4')
       list2.removeClass('buy-select1')
+      $('#buy-select1').hide()
+      $('#buy-select3').hide()
+      $('#buy-select4').hide()
+      $('#buy-select2').show()
       var cssObj = {
         height: 'auto',
         opacity: '1',
@@ -2971,6 +2995,10 @@
       list.removeClass('choose-p')
       var list2 = $('#buy-select1,#buy-select3,#buy-select4')
       list2.removeClass('buy-select1')
+      $('#buy-select2').hide()
+      $('#buy-select1').hide()
+      $('#buy-select4').hide()
+      $('#buy-select3').show()
       var cssObj = {
         height: '0',
         opacity: '0',
@@ -2999,6 +3027,10 @@
       list.removeClass('choose-p')
       var list2 = $('#buy-select1,#buy-select3,#buy-select4')
       list2.removeClass('buy-select1')
+      $('#buy-select2').hide()
+      $('#buy-select3').hide()
+      $('#buy-select1').hide()
+      $('#buy-select4').show()
       var cssObj = {
         height: '0',
         opacity: '0',
