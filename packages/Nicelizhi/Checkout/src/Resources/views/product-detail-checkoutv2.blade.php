@@ -2831,14 +2831,10 @@
         .get(countryUrl)
         .then(function(res) {
           var stateList = res.data
-          console.log(stateList, 'stateList')
-
+          app_config.countries[params.country] = {}
+          app_config.countries[params.country].states = {}
+          var foreachList = app_config.countries[params.country]
           for (var resj = 0; resj < stateList.length; resj++) {
-            console.log(stateList[resj].StateCode, 'stateList[resj].StateCode=====',
-              stateList[resj].StateName, 'stateList[resj].StateName'
-            )
-            app_config.countries[params.country] = {}
-            app_config.countries[params.country].states = {}
             app_config.countries[params.country].states[stateList[resj].StateCode] = {}
             app_config.countries[params.country].states[stateList[resj].StateCode].name = stateList[resj].StateName
 
