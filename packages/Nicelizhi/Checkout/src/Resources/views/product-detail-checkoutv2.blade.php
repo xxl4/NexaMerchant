@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <title>Fur Sweep Collar</title>
   <link rel="icon prefetch" href="/checkout/v2/images/favicon.png" type="image/png" sizes="16x16" />
@@ -1465,7 +1466,6 @@
         </div>
       </div>
       <div class="right-sec">
-        <p class="chk-rgt-text1 hide-mob">New &amp; Improved 2024 Model</p>
         <p class="prod-name hide-mob">Fur Sweep Collar</p>
         <p class="str-rvw hide-mob go-rew"><img src="/checkout/v2/images/star02.png" alt="Star" />12,421 Verified Customer Reviews</p>
         <p class="bdr-line hide-mob"></p>
@@ -1707,7 +1707,7 @@
               <option value="discover">Discover</option>
               <option value="paypal">Paypal</option>
             </select>
-            
+
             <div class="htmleaf-container">
               <form id="myForm">
 
@@ -1893,13 +1893,13 @@
               </form>
             </div>
 
-            <div class="submit-block" style="padding-top:10px;">
+            <!-- <div class="submit-block" style="padding-top:10px;">
               <div class="submit-content">
 
                 <div class="zoom-fade submit-button" id="payment-button" style="text-align:center;">@lang('onebuy::app.product.payment.complete_secure_purchase')</div>
                 <div id="checkout-error" style="color:#e51f28;display:none;"></div>
               </div>
-            </div>
+            </div> -->
             <!-- <a
                 href="javascript:void(0)"
                 class="continue-ship"
@@ -1918,84 +1918,43 @@
                 <i class="icon-check"></i>
               </div>
             </div>
-            <!-- <label class="fieldToggle" id="fieldToggle">
-                <input type="checkbox" id="togData" class="cb-address-differs-check" name="billShipSame" checked />
-                <span class="togship"></span> Billing is the same as shipping
-              </label> -->
-            <!-- <div class="clearall"></div>
-              <div class="shipaddress billing-info">
-                <div class="frm-flds fl">
-                  <label for="fname" class="fl-label">Billing First Name</label>
-                  <input
-                    type="text"
-                    name="billingFirstName"
-                    class="input-flds required cb-remove-class-billing form-control-custom frmField"
-                    placeholder="Billing First Name"
-                    data-error-message="Please enter your billing first name!" />
-                </div>
-                <div class="frm-flds fl">
-                  <label for="lanme" class="fl-label">Billing Last Name</label>
-                  <input
-                    type="text"
-                    name="billingLastName"
-                    class="input-flds required cb-remove-class-billing frmField"
-                    placeholder="Billing Last Name"
-                    data-error-message="Please enter your billing last name!" />
-                </div>
-                <div class="frm-flds fl">
-                  <label for="address" class="fl-label">Billing Address</label>
-                  <input
-                    type="text"
-                    name="billingAddress1"
-                    class="input-flds required cb-remove-class-billing frmField"
-                    placeholder="Billing Address"
-                    data-error-message="Please enter your billing address!" />
-                </div>
-                <div class="frm-flds fl">
-                  <label for="appt" class="fl-label">Apartment, suite, etc. (optional)</label>
-                  <input type="text" name="billingAddress2" class="input-flds" placeholder="Apartment, suite, etc. (optional)" id="appt" />
-                </div>
-                <div class="frm-flds fl">
-                  <label for="city" class="fl-label">Your City</label>
-                  <input
-                    type="text"
-                    name="billingCity"
-                    class="input-flds required cb-remove-class-billing frmField"
-                    placeholder="Billing City"
-                    data-error-message="Please enter your billing city!" />
-                </div>
-                <div class="frm-flds fl">
-                  <label for="billingCountry" class="fl-label">Select Country</label>
-                  <select
-                    name="billingCountry"
-                    type="text"
-                    placeholder="Your State"
-                    class="selcet-fld required cb-remove-class-billing frmField"
-                    data-selected="US"
-                    data-error-message="Please select your billing country!">
-                    <option value="">Select Country</option>
-                  </select>
-                </div>
-                <div class="frm-flds fl">
-                  <label for="state" class="fl-label">Select State</label>
-                  <input
-                    type="text"
-                    name="billingState"
-                    class="selcet-fld required cb-remove-class-billing frmField"
-                    placeholder="Your State"
-                    data-error-message="Please select your billing state!"
-                    data-selected="" />
-                </div>
-                <div class="frm-flds fl">
-                  <label for="zip" class="fl-label">Zip Code</label>
-                  <input
-                    type="tel"
-                    name="billingZip"
-                    class="input-flds required cb-remove-class-billing frmField"
-                    placeholder="Billing Zip Code"
-                    data-error-message="Please enter a valid billing zip code!" />
-                </div>
-              </div> -->
+
+            <div class="shipaddress billing-info">
+              <div class="frm-flds fl">
+                <label for="fname" class="fl-label">Billing First Name</label>
+                <input type="text" name="billingFirstName" class="input-flds required cb-remove-class-billing form-control-custom frmField" placeholder="Billing First Name" data-error-message="Please enter your billing first name!" />
+              </div>
+              <div class="frm-flds fl">
+                <label for="lanme" class="fl-label">Billing Last Name</label>
+                <input type="text" name="billingLastName" class="input-flds required cb-remove-class-billing frmField" placeholder="Billing Last Name" data-error-message="Please enter your billing last name!" />
+              </div>
+              <div class="frm-flds fl">
+                <label for="address" class="fl-label">Billing Address</label>
+                <input type="text" name="billingAddress1" class="input-flds required cb-remove-class-billing frmField" placeholder="Billing Address" data-error-message="Please enter your billing address!" />
+              </div>
+              <div class="frm-flds fl">
+                <label for="appt" class="fl-label">Apartment, suite, etc. (optional)</label>
+                <input type="text" name="billingAddress2" class="input-flds" placeholder="Apartment, suite, etc. (optional)" id="appt" />
+              </div>
+              <div class="frm-flds fl">
+                <label for="city" class="fl-label">Your City</label>
+                <input type="text" name="billingCity" class="input-flds required cb-remove-class-billing frmField" placeholder="Billing City" data-error-message="Please enter your billing city!" />
+              </div>
+              <div class="frm-flds fl">
+                <label for="billingCountry" class="fl-label">Select Country</label>
+                <select name="billingCountry" type="text" placeholder="Your State" class="selcet-fld required cb-remove-class-billing frmField" data-selected="US" data-error-message="Please select your billing country!">
+                  <option value="">Select Country</option>
+                </select>
+              </div>
+              <div class="frm-flds fl">
+                <label for="state" class="fl-label">Select State</label>
+                <input type="text" name="billingState" class="selcet-fld required cb-remove-class-billing frmField" placeholder="Your State" data-error-message="Please select your billing state!" data-selected="" />
+              </div>
+              <div class="frm-flds fl">
+                <label for="zip" class="fl-label">Zip Code</label>
+                <input type="tel" name="billingZip" class="input-flds required cb-remove-class-billing frmField" placeholder="Billing Zip Code" data-error-message="Please enter a valid billing zip code!" />
+              </div>
+            </div>
           </div>
           <button type="submit" class="complete-btn">Complete Checkout</button>
         </form>
@@ -2091,7 +2050,7 @@
     </div>
   </div>
   <!-- End of Discount POp up-->
- 
+
   <script>
     var app_current_step = {
       id: 1,
@@ -3083,304 +3042,304 @@
       }
       console.log(params)
       var postUrl = '/api/onebuy/order/addr/after?currency=' + currency
-      axios.post(postUrl).then(function(res) {
-          console.log(res, '===res')
-        })
-        .catch(function(err) {
-          console.log(err, 'err==')
-        })
+      // axios.post(postUrl).then(function(res) {
+      //     console.log(res, '===res')
+      //   })
+      //   .catch(function(err) {
+      //     console.log(err, 'err==')
+      //   })
     })
   </script>
-   <script>
+  <script>
     $(function() {
-  
-      $("#payment_method_airwallex").on("click", function(){
-              console.log("click headingOne ");
-              $("#collapseOne").show();
-              $("#collapseTwo").hide();
-              $("#collapseThree").hide();
-              $("#airwallex_dropin_collapse").hide();
-  
-              $("#headingOne1").addClass("action");
-              $("#headingThree2").removeClass("action");
-              $("#headingOne2").removeClass("action");
-              $("#airwallex_dropin_2").removeClass("action");
-  
-              $("#payment-button").addClass("submit-button");
-  
-              $("#payment-button").html("@lang('onebuy::app.product.payment.complete_secure_purchase')");
-  
-        });
 
-        $("#airwallex-klarna").on("click", function(){
-            $("#collapseOne").hide();
-            $("#collapseTwo").hide();
-            $("#collapseThree").show();
-            $("#airwallex_dropin_collapse").hide();
+      $("#payment_method_airwallex").on("click", function() {
+        console.log("click headingOne ");
+        $("#collapseOne").show();
+        $("#collapseTwo").hide();
+        $("#collapseThree").hide();
+        $("#airwallex_dropin_collapse").hide();
 
-            $("#headingThree2").addClass("action");
-            $("#headingOne1").removeClass("action");
-            $("#headingOne2").removeClass("action");
-            $("#airwallex_dropin_2").removeClass("action");
+        $("#headingOne1").addClass("action");
+        $("#headingThree2").removeClass("action");
+        $("#headingOne2").removeClass("action");
+        $("#airwallex_dropin_2").removeClass("action");
 
-            $("#payment-button").addClass("submit-button");
+        $(".complete-btn").addClass("submit-button");
 
-            $("#payment-button").html("@lang('onebuy::app.product.payment.complete_secure_purchase')");
+        $(".complete-btn").html("@lang('onebuy::app.product.payment.complete_secure_purchase')");
 
-        })
+      });
 
-        $("#payal_standard").on("click", function(){
-            $("#collapseOne").hide();
-            $("#collapseTwo").show();
-            $("#collapseThree").hide();
-            $("#airwallex_dropin_collapse").hide();
+      $("#airwallex-klarna").on("click", function() {
+        $("#collapseOne").hide();
+        $("#collapseTwo").hide();
+        $("#collapseThree").show();
+        $("#airwallex_dropin_collapse").hide();
 
-            $("#headingOne2").addClass("action");
-            $("#headingOne1").removeClass("action");
-            $("#headingThree2").removeClass("action");
-            $("#airwallex_dropin_2").removeClass("action");
+        $("#headingThree2").addClass("action");
+        $("#headingOne1").removeClass("action");
+        $("#headingOne2").removeClass("action");
+        $("#airwallex_dropin_2").removeClass("action");
 
-            $("#payment-button").removeClass("submit-button");
+        $(".complete-btn").addClass("submit-button");
 
-            $("#payment-button").css("width", "500px");
+        $(".complete-btn").html("@lang('onebuy::app.product.payment.complete_secure_purchase')");
 
-            //payment-button
-            $("#payment-button").empty();
+      })
+
+      $("#payal_standard").on("click", function() {
+        $("#collapseOne").hide();
+        $("#collapseTwo").show();
+        $("#collapseThree").hide();
+        $("#airwallex_dropin_collapse").hide();
+
+        $("#headingOne2").addClass("action");
+        $("#headingOne1").removeClass("action");
+        $("#headingThree2").removeClass("action");
+        $("#airwallex_dropin_2").removeClass("action");
+
+        $(".complete-btn").removeClass("submit-button");
+
+        $(".complete-btn").css("width", "500px");
+
+        //payment-button
+        $(".complete-btn").empty();
 
 
-            paypal.Buttons({
-                style: {
-                    layout: 'horizontal',
-                    tagline: false,
-                    height: 55
-                },
+        paypal.Buttons({
+          style: {
+            layout: 'horizontal',
+            tagline: false,
+            height: 55
+          },
 
-                onInit(data, actions)  {
+          onInit(data, actions) {
 
-                // Disable the buttons
-                    actions.disable();
+            // Disable the buttons
+            actions.disable();
 
-                // Listen for changes to the checkbox
-                // document.querySelector('#check').addEventListener('change', function(event) {
-                //     // Enable or disable the button when it is checked or unchecked
-                //     if (event.target.checked)  {
-                //     actions.enable();
-                //     } else  {
-                //     actions.disable();
-                //     }
-                // });
-                    var params = getOrderParams('paypal_stand');
+            // Listen for changes to the checkbox
+            // document.querySelector('#check').addEventListener('change', function(event) {
+            //     // Enable or disable the button when it is checked or unchecked
+            //     if (event.target.checked)  {
+            //     actions.enable();
+            //     } else  {
+            //     actions.disable();
+            //     }
+            // });
+            var params = getOrderParams('paypal_stand');
 
-                    var can_paypal = 0;
-                    var email_can = 0;
-                    var first_name_can = 0;
-                    var last_name_can = 0;
-                    var phone_number_can = 0;
-                    var address_can = 0;
-                    var city_can = 0;
-                    var zip_code_can = 0;
-
-                
-
-                    $(".email").on('change', function() {
-                        var value = $(".email").val();
-                        if(value.length > 0) email_can = 1;
-                        console.log(value);
-                        var params = getOrderParams('paypal_stand');
-                        if(!params.error) {
-                            actions.enable();
-                        }
-                    });
-
-                    $(".first_name").on('change', function(){
-                        var value = $(".first_name").val();
-                        if(value.length > 0) first_name_can = 1;
-                        console.log(value);
-                        var params = getOrderParams('paypal_stand');
-                        if(!params.error) {
-                            actions.enable();
-                        }
-                    });
-
-                    $(".last_name").on('change', function(){
-                        var value = $(".last_name").val();
-                        if(value.length > 0) last_name_can = 1;
-                        console.log(value);
-                        var params = getOrderParams('paypal_stand');
-                        if(!params.error) {
-                            actions.enable();
-                        }
-                    });
-                    $(".phone_number").on('change', function(){
-                        var value = $(".phone_number").val();
-                        if(value.length > 0) phone_number_can = 1;
-                        console.log(value);
-                        var params = getOrderParams('paypal_stand');
-                        if(!params.error) {
-                            actions.enable();
-                        }
-                    });
-                    $(".address").on('change', function(){
-                        var value = $(".address").val();
-                        if(value.length > 0) address_can = 1;
-                        console.log(value);
-                        var params = getOrderParams('paypal_stand');
-                        if(!params.error) {
-                            actions.enable();
-                        }
-                    });
-                    $(".city").on('change', function(){
-                        var value = $(".city").val();
-                        if(value.length > 0) city_can = 1;
-                        console.log(value);
-                        var params = getOrderParams('paypal_stand');
-                        if(!params.error) {
-                            actions.enable();
-                        }
-                    });
-                    $(".zip_code").on('change', function(){
-                        var value = $(".zip_code").val();
-                        if(value.length > 0) zip_code_can = 1;
-                        console.log(value);
-                        var params = getOrderParams('paypal_stand');
-                        if(!params.error) {
-                            actions.enable();
-                        }
-                    });
-
-                    $("#state-select").on('change', function(){
-                        var params = getOrderParams('paypal_stand');
-                        if(!params.error) {
-                            actions.enable();
-                        }
-                    })
+            var can_paypal = 0;
+            var email_can = 0;
+            var first_name_can = 0;
+            var last_name_can = 0;
+            var phone_number_can = 0;
+            var address_can = 0;
+            var city_can = 0;
+            var zip_code_can = 0;
 
 
 
-                    if(params.error) {
-                        //$('#checkout-error').html(params.error.join('<br />'));
-                        //$('#checkout-error').show();
-                        actions.disable();
-                        //throw new Error('Verification failed');
-                    }else{
-                        actions.enable();
-                    }
-                },
-                onError(err) {
-                    $('#loading').hide();
-                    console.log("paypal " + JSON.stringify(err));
-                },
-                onCancel: function(data) {
-                    $('#loading').hide();
-                },
-                onClick(){
-                    var params = getOrderParams('paypal_stand');
-                    console.log("on click " + JSON.stringify(params));
-                    if(params.error) {
-                        $('#checkout-error').html(params.error.join('<br />'));
-                        $('#checkout-error').show();
-                    }
+            $(".email").on('change', function() {
+              var value = $(".email").val();
+              if (value.length > 0) email_can = 1;
+              console.log(value);
+              var params = getOrderParams('paypal_stand');
+              if (!params.error) {
+                actions.enable();
+              }
+            });
 
-                    
-                    console.log("post crm system");
+            $(".first_name").on('change', function() {
+              var value = $(".first_name").val();
+              if (value.length > 0) first_name_can = 1;
+              console.log(value);
+              var params = getOrderParams('paypal_stand');
+              if (!params.error) {
+                actions.enable();
+              }
+            });
 
-                },
+            $(".last_name").on('change', function() {
+              var value = $(".last_name").val();
+              if (value.length > 0) last_name_can = 1;
+              console.log(value);
+              var params = getOrderParams('paypal_stand');
+              if (!params.error) {
+                actions.enable();
+              }
+            });
+            $(".phone_number").on('change', function() {
+              var value = $(".phone_number").val();
+              if (value.length > 0) phone_number_can = 1;
+              console.log(value);
+              var params = getOrderParams('paypal_stand');
+              if (!params.error) {
+                actions.enable();
+              }
+            });
+            $(".address").on('change', function() {
+              var value = $(".address").val();
+              if (value.length > 0) address_can = 1;
+              console.log(value);
+              var params = getOrderParams('paypal_stand');
+              if (!params.error) {
+                actions.enable();
+              }
+            });
+            $(".city").on('change', function() {
+              var value = $(".city").val();
+              if (value.length > 0) city_can = 1;
+              console.log(value);
+              var params = getOrderParams('paypal_stand');
+              if (!params.error) {
+                actions.enable();
+              }
+            });
+            $(".zip_code").on('change', function() {
+              var value = $(".zip_code").val();
+              if (value.length > 0) zip_code_can = 1;
+              console.log(value);
+              var params = getOrderParams('paypal_stand');
+              if (!params.error) {
+                actions.enable();
+              }
+            });
 
-                // Call your server to set up the transaction
-                createOrder: function(data, actions) {
-                    $('#loading').show();
-                    var params = getOrderParams('paypal_stand');
-                    var url = '/onebuy/order/addr/after?currenty={{ core()->getCurrentCurrencyCode() }}&_token={{ csrf_token() }}&time=' + new Date().getTime()+"&force="+localStorage.getItem("force");
-                    return fetch(url, {
-                        body: JSON.stringify(params),
-                        method: 'POST',
-                        headers: {
-                            'content-type': 'application/json'
-                        }
-                    }).then(function(res) {
-                        return res.json();
-                    }).then(function(res) {
-                        //$('#loading').hide();
-                        var data = res;
-                        if(data.statusCode === 201){
-                            var order_info = data.result;
-                            //console.log(order_info);
-                            //console.log(order_info.purchase_units[0].amount);
-                            document.cookie="voluum_payout="+ order_info.purchase_units[0].amount.value + order_info.purchase_units[0].amount.currency_code + "; path=/";
-                            document.cookie="order_id="+ order_info.id + "; path=/";
-                            localStorage.setItem("order_id", order_info.id);
-                            localStorage.setItem("order_params", JSON.stringify(params));
+            $("#state-select").on('change', function() {
+              var params = getOrderParams('paypal_stand');
+              if (!params.error) {
+                actions.enable();
+              }
+            })
 
-                            return order_info.id;
-                        } else {
-                            if(data.code=='202') {
-                                if (confirm(data.error) == true) {
-                                    localStorage.setItem("force", 1);
-                                } 
-                            }
 
-                            var pay_error = JSON.parse(data.error);
-                            var pay_error_message = pay_error.details;
 
-                            if(pay_error_message && pay_error_message.length) {
-                                var show_pay_error_message_arr = [];
+            if (params.error) {
+              //$('#checkout-error').html(params.error.join('<br />'));
+              //$('#checkout-error').show();
+              actions.disable();
+              //throw new Error('Verification failed');
+            } else {
+              actions.enable();
+            }
+          },
+          onError(err) {
+            $('#loading').hide();
+            console.log("paypal " + JSON.stringify(err));
+          },
+          onCancel: function(data) {
+            $('#loading').hide();
+          },
+          onClick() {
+            var params = getOrderParams('paypal_stand');
+            console.log("on click " + JSON.stringify(params));
+            if (params.error) {
+              $('#checkout-error').html(params.error.join('<br />'));
+              $('#checkout-error').show();
+            }
 
-                                for(var pay_error_message_i = 0; pay_error_message_i < pay_error_message.length; pay_error_message_i++) {
-                                    show_pay_error_message_arr.push("Field:"+pay_error_message[pay_error_message_i].field + "<br /> Value" + pay_error_message[pay_error_message_i].value + '. <br />' + pay_error_message[pay_error_message_i].description + '<br /><br />')
-                                }
 
-                                $('#checkout-error').html(show_pay_error_message_arr.join(''));
-                                $('#checkout-error').show();
-                            }
-                        }
-                        
+            console.log("post crm system");
 
-                    });
-                },
+          },
 
-                // Call your server to finalize the transaction
-                onApprove: function(data, actions) {
+          // Call your server to set up the transaction
+          createOrder: function(data, actions) {
+            $('#loading').show();
+            var params = getOrderParams('paypal_stand');
+            var url = '/onebuy/order/addr/after?currenty={{ core()->getCurrentCurrencyCode() }}&_token={{ csrf_token() }}&time=' + new Date().getTime() + "&force=" + localStorage.getItem("force");
+            return fetch(url, {
+              body: JSON.stringify(params),
+              method: 'POST',
+              headers: {
+                'content-type': 'application/json'
+              }
+            }).then(function(res) {
+              return res.json();
+            }).then(function(res) {
+              //$('#loading').hide();
+              var data = res;
+              if (data.statusCode === 201) {
+                var order_info = data.result;
+                //console.log(order_info);
+                //console.log(order_info.purchase_units[0].amount);
+                document.cookie = "voluum_payout=" + order_info.purchase_units[0].amount.value + order_info.purchase_units[0].amount.currency_code + "; path=/";
+                document.cookie = "order_id=" + order_info.id + "; path=/";
+                localStorage.setItem("order_id", order_info.id);
+                localStorage.setItem("order_params", JSON.stringify(params));
 
-                    var orderData = {
-                        paymentID: data.orderID,
-                        orderID: data.orderID,
-                    };
-                    var request_params = {
-                        client_secret : data.orderID,
-                        id : localStorage.getItem('order_id'),
-                        orderData: orderData,
-                        data: data,
-                    }
-                    $('#loading').show();
-                    var url = "/onebuy/order/status?_token={{ csrf_token() }}";
-                    return fetch(url, {
-                        method: 'post',
-                        body: JSON.stringify(request_params),
-                        headers: {
-                            'content-type': 'application/json'
-                        },
-                    }).then(function(res) {
-                        return res.json();
-                    }).then(function(res) {
-                        $('#loading').hide();
-                        if(res.success == true) {
-                            //Goto('/checkout/v1/success/'+localStorage.getItem('order_id'));
-                            window.location.href='/onebuy/checkout/v1/success/'+localStorage.getItem('order_id');
-                            return true;
-                            //actions.redirect('/checkout/v1/success/'+localStorage.getItem('order_id'));
-                        }
-                        if(res.error == 'INSTRUMENT_DECLINED') {
-
-                            $('#checkout-error').html("The instrument presented  was either declined by the processor or bank, or it can't be used for this payment.<br><br> Please confirm your account or bank card has sufficient balance, and try again.");
-                            $('#checkout-error').show();
-                        }
-                    });
+                return order_info.id;
+              } else {
+                if (data.code == '202') {
+                  if (confirm(data.error) == true) {
+                    localStorage.setItem("force", 1);
+                  }
                 }
-            }).render('#payment-button');
 
-        });
-  
-  
+                var pay_error = JSON.parse(data.error);
+                var pay_error_message = pay_error.details;
+
+                if (pay_error_message && pay_error_message.length) {
+                  var show_pay_error_message_arr = [];
+
+                  for (var pay_error_message_i = 0; pay_error_message_i < pay_error_message.length; pay_error_message_i++) {
+                    show_pay_error_message_arr.push("Field:" + pay_error_message[pay_error_message_i].field + "<br /> Value" + pay_error_message[pay_error_message_i].value + '. <br />' + pay_error_message[pay_error_message_i].description + '<br /><br />')
+                  }
+
+                  $('#checkout-error').html(show_pay_error_message_arr.join(''));
+                  $('#checkout-error').show();
+                }
+              }
+
+
+            });
+          },
+
+          // Call your server to finalize the transaction
+          onApprove: function(data, actions) {
+
+            var orderData = {
+              paymentID: data.orderID,
+              orderID: data.orderID,
+            };
+            var request_params = {
+              client_secret: data.orderID,
+              id: localStorage.getItem('order_id'),
+              orderData: orderData,
+              data: data,
+            }
+            $('#loading').show();
+            var url = "/onebuy/order/status?_token={{ csrf_token() }}";
+            return fetch(url, {
+              method: 'post',
+              body: JSON.stringify(request_params),
+              headers: {
+                'content-type': 'application/json'
+              },
+            }).then(function(res) {
+              return res.json();
+            }).then(function(res) {
+              $('#loading').hide();
+              if (res.success == true) {
+                //Goto('/checkout/v1/success/'+localStorage.getItem('order_id'));
+                window.location.href = '/onebuy/checkout/v1/success/' + localStorage.getItem('order_id');
+                return true;
+                //actions.redirect('/checkout/v1/success/'+localStorage.getItem('order_id'));
+              }
+              if (res.error == 'INSTRUMENT_DECLINED') {
+
+                $('#checkout-error').html("The instrument presented  was either declined by the processor or bank, or it can't be used for this payment.<br><br> Please confirm your account or bank card has sufficient balance, and try again.");
+                $('#checkout-error').show();
+              }
+            });
+          }
+        }).render('.complete-btn');
+
+      });
+
+
     });
   </script>
   <script src="/checkout/v2/js/codebase.min.js" type="text/javascript"></script>
@@ -3962,7 +3921,7 @@
     $(document).on('click', '.go-rew', async function(evt) {
       if (evt.which) {
         $('html,body').animate({
-            scrollTop: $('.summary-wrapper').offset().top,
+            scrollTop: $('.footer').offset().top,
           },
           '2000'
         )
@@ -4072,6 +4031,12 @@
         $("#collapseContent").slideToggle();
       });
     });
+  </script>
+  <script>
+    function payAfterSubmit() {
+      $('#pay-after-submit-error').hide()
+      $('#loading').show()
+    }
   </script>
   <script>
     Airwallex.init({
@@ -4419,7 +4384,7 @@
               $('#loading').hide()
             },
           })
-          .render('#payment-button')
+          .render('.complete-btn')
         // .render('#' + (render_id || 'paypal-card-submit'));
       })
     }
