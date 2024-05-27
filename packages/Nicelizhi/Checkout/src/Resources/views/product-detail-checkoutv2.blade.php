@@ -3048,8 +3048,6 @@
     $(function() {
 
       $("#payment_method_airwallex").on("click", function() {
-
-        $("#paypal-button").remove();
         $(".complete-btn").show();
         console.log("click headingOne ");
         $("#collapseOne").show();
@@ -3069,8 +3067,6 @@
       });
 
       $("#airwallex-klarna").on("click", function() {
-
-        $("#paypal-button").remove();
         $(".complete-btn").show();
         $("#collapseOne").hide();
         $("#collapseTwo").hide();
@@ -3089,7 +3085,6 @@
       })
 
       $("#payal_standard").on("click", function() {
-        $("#paypal-button").remove();
         $("#collapseOne").hide();
         $("#collapseTwo").show();
         $("#collapseThree").hide();
@@ -3105,7 +3100,7 @@
         $(".complete-btn").css("width", "100%");
 
         //payment-button
-        $(".complete-btn").hide();
+        $(".complete-btn").empty();;
 
         paypal.Buttons({
           style: {
@@ -3334,7 +3329,7 @@
               }
             });
           }
-        }).render('#paypal-button');
+        }).render('.complete-btn');
 
       });
 
@@ -4592,7 +4587,7 @@
       if (pay_type == "payoneer" || pay_type == 'pacypay') {
         url = '/order/add/async?time=' + new Date().getTime();
       }
-      consoel.log(params, '===params====')
+      console.log(params, '===params====')
       $('#loading').show();
       fetch(url, {
           body: params,
