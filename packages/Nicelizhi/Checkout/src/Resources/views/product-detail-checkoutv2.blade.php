@@ -2832,15 +2832,11 @@
         .then(function(res) {
           var stateList = res.data
           console.log(stateList, 'stateList')
-          if (app_config.countries[params.country]) {
-            app_config.countries[params.country].states = {}
 
-          }
           for (var resj = 0; resj < stateList.length; resj++) {
-            // if (app_config.countries[params.country]) {
-            //   app_config.countries[params.country].states[stateList[resj].StateCode] = {}
-            //   app_config.countries[params.country].states[stateList[resj].StateCode].name = stateList[resj].StateName
-            // } else {
+            console.log(stateList[resj].StateCode, 'stateList[resj].StateCode=====',
+              stateList[resj].StateName, 'stateList[resj].StateName'
+            )
             app_config.countries[params.country] = {}
             app_config.countries[params.country].states = {}
             app_config.countries[params.country].states[stateList[resj].StateCode] = {}
@@ -3102,7 +3098,7 @@
 
         $(".complete-btn").removeClass("submit-button");
 
-        $(".complete-btn").css("width", "500px");
+        $(".complete-btn").css("width", "100%");
 
         //payment-button
         $(".complete-btn").empty();
@@ -4385,7 +4381,7 @@
               $('#loading').hide()
             },
           })
-          .render('.complete-btn')
+          .render('#payment-button')
         // .render('#' + (render_id || 'paypal-card-submit'));
       })
     }
