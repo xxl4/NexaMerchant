@@ -3048,6 +3048,8 @@
     $(function() {
 
       $("#payment_method_airwallex").on("click", function() {
+
+        $("#paypal-button").remove();
         $(".complete-btn").show();
         console.log("click headingOne ");
         $("#collapseOne").show();
@@ -3067,6 +3069,8 @@
       });
 
       $("#airwallex-klarna").on("click", function() {
+
+        $("#paypal-button").remove();
         $(".complete-btn").show();
         $("#collapseOne").hide();
         $("#collapseTwo").hide();
@@ -3101,8 +3105,6 @@
 
         //payment-button
         $(".complete-btn").hide();
-
-        $()
 
         paypal.Buttons({
           style: {
@@ -4570,7 +4572,7 @@
       //商品加入到购车中
       //addToCart(pay_type);
 
-      var params = getOrderParams(pay_type);
+      // var params = getOrderParams(pay_type);
       //return false;
       if (token) {
         params[token_field] = token;
@@ -4584,15 +4586,15 @@
       //console.log(JSON.stringify(params));
       //return false;
 
-      var url = '/onebuy/order/add/sync?currency=USD&_token=AK2Lk5A14LYVhEWYbgEVxvHDhzlMuvLZDN5pisAW&time=' + new Date().getTime();
+      var url = '/onebuy/order/add/sync?currency={{ core()->getCurrentCurrencyCode() }}&_token={{ csrf_token() }}' + new Date().getTime();
 
       if (pay_type == "payoneer" || pay_type == 'pacypay') {
         url = '/order/add/async?time=' + new Date().getTime();
       }
-
+      consoel.log(params, '===params====')
       $('#loading').show();
       fetch(url, {
-          body: JSON.stringify(params),
+          body: params,
           method: 'POST',
           headers: {
             'content-type': 'application/json'
