@@ -2901,15 +2901,19 @@
       var aid = ''
       if (parId == 'select1-item1' || parId == 'select2-item1' || parId == 'select3-item1' || parId == 'select4-item1') {
         getSku(itemId, 0, value)
+        paramsProductsinit(params.products)
       }
       if (parId == 'select2-item2' || parId == 'select3-item2' || parId == 'select4-item2') {
         getSku(itemId, 1, value)
+        paramsProductsinit(params.products)
       }
       if (parId == 'select3-item3' || parId == 'select4-item3') {
         getSku(itemId, 2, value)
+        paramsProductsinit(params.products)
       }
       if (parId == 'select4-item4') {
         getSku(itemId, 3, value)
+        paramsProductsinit(params.products)
       }
       var target = event.currentTarget
       var imgIndex = ''
