@@ -3731,14 +3731,14 @@
 
             // Call your server to set up the transaction
             createOrder: function(data, actions) {
-              // sendInitiateCheckoutEvent()
+              sendInitiateCheckoutEvent()
 
-              // gtag('event', 'initiate_paypal_checkout', {
-              //   event_label: 'Initiate paypal Checkout',
-              //   event_category: 'ecommerce',
-              // })
+              gtag('event', 'initiate_paypal_checkout', {
+                event_label: 'Initiate paypal Checkout',
+                event_category: 'ecommerce',
+              })
 
-              // fbq('track', 'InitiateCheckout')
+              fbq('track', 'InitiateCheckout')
               // obApi('track', 'Start Checkout');
               // var params = getOrderParams(paypal_type || 'paypal')
               // if (params.error) {
@@ -3749,7 +3749,7 @@
               //   throw new Error('Verification failed')
               // }
               var url =
-                '/onebuy/order/addr/after?currency=USD&_token=tcp19tASqLc2mcXv57kyBxRM0ZxAZk12nN47LZqP&time=' +
+                '/onebuy/order/addr/after?currency=USD&_token={{ csrf_token() }}&time=' +
                 new Date().getTime() +
                 '&force=' +
                 localStorage.getItem('force')
