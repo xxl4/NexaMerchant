@@ -63,17 +63,27 @@ class ApiController extends Controller
 
         $data = Cache::get($this->checkout_v2_cache_key.$slug);
         if(empty($data)) {
+        //if(true) {
             $product = $this->productRepository->findBySlug($slug);
             $data = [];
             $productViewHelper = new \Webkul\Product\Helpers\ConfigurableOption();
             $attributes = $productViewHelper->getConfigurationConfig($product);
+
     
             $redis = Redis::connection('default');
     
             foreach($attributes['attributes'] as $key=>$attribute) {
+
                 $product_attr_sort_cache_key = "product_attr_sort_".$attribute['id']."_".$product->id;
                 $product_attr_sort = $redis->hgetall($product_attr_sort_cache_key); // get sku sort
                 $attributes['attributes'][$key]['attr_sort'] = $product_attr_sort;
+            }
+
+            foreach($attributes['index'] as $key=>$index) {
+                
+                $sku_products = $this->productRepository->where("id", $key)->select(['sku'])->first();
+                $attributes['index'][$key]['sku'] = $sku_products->sku;
+
             }
     
             $package_products = [];
@@ -118,6 +128,7 @@ class ApiController extends Controller
             $data['crm_channel'] = $crm_channel;
             $data['quora_adv_id'] = $quora_adv_id;
             $data['paypal_client_id'] = $paypal_client_id;
+            $data['env'] = config("app.env");
     
             $ads = []; // add ads
             
