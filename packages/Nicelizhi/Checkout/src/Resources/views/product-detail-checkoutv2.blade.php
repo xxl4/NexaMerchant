@@ -3239,7 +3239,12 @@
         $("#airwallex_dropin_2").removeClass("action");
         $("#complete-btn-id").addClass(".complete-btn")
         $("#complete-btn-id").addClass("submit-button");
-
+        $("#complete-btn-id").css({
+          width: "100%",
+          background: "green!important",
+          padding: "18px 13px",
+          textAlign: 'center'
+        });
         $("#complete-btn-id").html("@lang('onebuy::app.product.payment.complete_secure_purchase')");
 
       });
@@ -3257,7 +3262,12 @@
         $("#airwallex_dropin_2").removeClass("action");
         $("#complete-btn-id").addClass(".complete-btn")
         $("#complete-btn-id").addClass("submit-button");
-
+        $("#complete-btn-id").css({
+          width: "100%",
+          background: "green!important",
+          padding: "18px 13px",
+          textAlign: 'center'
+        });
         $("#complete-btn-id").html("@lang('onebuy::app.product.payment.complete_secure_purchase')");
 
       })
@@ -4425,7 +4435,7 @@
               //console.log(request);
 
               var url =
-                '/onebuy/order/status?_topayment-buttonken={{ csrf_token() }}&currency={{ core()->getCurrentCurrencyCode() }}'
+                '/onebuy/order/status?_token={{ csrf_token() }}&currency={{ core()->getCurrentCurrencyCode() }}'
 
               return fetch(url, {
                   method: 'post',
