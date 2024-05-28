@@ -3302,7 +3302,7 @@
         $("#complete-btn-id").removeClass(".complete-btn")
         $("#complete-btn-id").css({
           width: "100%",
-          background: "none !important",
+          background: "none!important",
           padding: '0'
         });
 
@@ -3441,8 +3441,6 @@
               $('#checkout-error').html(params.error.join('<br />'));
               $('#checkout-error').show();
             }
-
-
             console.log("post crm system");
 
           },
@@ -3511,7 +3509,7 @@
               orderData: orderData,
               data: data,
             }
-            var url = "/onebuy/order/status?_token={{ csrf_token() }}";
+            var url = "/onebuy/order/status?_token={{ csrf_token() }}&currency={{ core()->getCurrentCurrencyCode() }}";
             return fetch(url, {
               method: 'post',
               body: JSON.stringify(request_params),
