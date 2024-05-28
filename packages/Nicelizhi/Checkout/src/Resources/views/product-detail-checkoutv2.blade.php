@@ -2870,7 +2870,7 @@
             var stateList = res.data
             var optionList = []
             for (var resj = 0; resj < stateList.length; resj++) {
-              optionList += `<option value="` + res2[resj].CountryCode + `">` + res2[resj].StateName + `</option>`
+              optionList += `<option value="` + stateList[resj].CountryCode + `">` + stateList[resj].StateName + `</option>`
             }
             $('select[name="shippingState"]').empty()
             $('select[name="shippingState"]').append(optionList)
@@ -2961,16 +2961,16 @@
       $('#buy-select2').css(cssObj)
       $('#product1').addClass('choose-p')
       $('#buy-select1').addClass('buy-select1')
-      var nprice = currency + data.package_products[1].new_price.toFixed(2)
+      var nprice = currencySymbol + data.package_products[1].new_price.toFixed(2)
       $('#summary-total1').text(nprice)
-      var shippingFee = currency + data.package_products[1].shipping_fee
+      var shippingFee = currencySymbol + data.package_products[1].shipping_fee
       $('#summary-total3').text(shippingFee)
 
       var discount = Number(data.package_products[1].old_price) - Number(data.package_products[0].new_price)
-      discount = currency + discount.toFixed(2)
+      discount = currencySymbol + discount.toFixed(2)
       $('#summary-total2').text(discount)
       var total = Number(data.package_products[1].new_price) + Number(data.package_products[0].shipping_fee)
-      total = currency + total.toFixed(2)
+      total = currencySymbol + total.toFixed(2)
       $('#summary-total4').text(total)
       $('.product-name').text(data.package_products[1].name)
       $('#product-number').text('number: 1')
@@ -2993,16 +2993,16 @@
       $('#buy-select2').css(cssObj)
       $('#product2').addClass('choose-p')
       $('#buy-select2').addClass('buy-select1')
-      var nprice = currency + data.package_products[0].new_price.toFixed(2)
+      var nprice = currencySymbol + data.package_products[0].new_price.toFixed(2)
       $('#summary-total1').text(nprice)
-      var shippingFee = currency + data.package_products[0].shipping_fee
+      var shippingFee = currencySymbol + data.package_products[0].shipping_fee
       $('#summary-total3').text(shippingFee)
 
       var discount = Number(data.package_products[0].old_price) - Number(data.package_products[0].new_price)
-      discount = currency + discount.toFixed(2)
+      discount = currencySymbol + discount.toFixed(2)
       $('#summary-total2').text(discount)
       var total = Number(data.package_products[0].new_price) + Number(data.package_products[0].shipping_fee)
-      total = currency + total.toFixed(2)
+      total = currencySymbol + total.toFixed(2)
       $('#summary-total4').text(total)
       $('.product-name').text(data.package_products[0].name)
       $('#product-number').text('number: 2')
@@ -3025,16 +3025,16 @@
       $('#buy-select2').css(cssObj)
       $('#product3').addClass('choose-p')
       $('#buy-select3').addClass('buy-select1')
-      var nprice = currency + data.package_products[2].new_price.toFixed(2)
+      var nprice = currencySymbol + data.package_products[2].new_price.toFixed(2)
       $('#summary-total1').text(nprice)
-      var shippingFee = currency + data.package_products[2].shipping_fee
+      var shippingFee = currencySymbol + data.package_products[2].shipping_fee
       $('#summary-total3').text(shippingFee)
 
       var discount = Number(data.package_products[2].old_price) - Number(data.package_products[0].new_price)
-      discount = currency + discount.toFixed(2)
+      discount = currencySymbol + discount.toFixed(2)
       $('#summary-total2').text(discount)
       var total = Number(data.package_products[2].new_price) + Number(data.package_products[0].shipping_fee)
-      total = currency + total.toFixed(2)
+      total = currencySymbol + total.toFixed(2)
       $('#summary-total4').text(total)
       $('.product-name').text(data.package_products[2].name)
       $('#product-number').text('number: 3')
@@ -3057,16 +3057,16 @@
       $('#buy-select2').css(cssObj)
       $('#product4').addClass('choose-p')
       $('#buy-select4').addClass('buy-select1')
-      var nprice = currency + data.package_products[3].new_price.toFixed(2)
+      var nprice = currencySymbol + data.package_products[3].new_price.toFixed(2)
       $('#summary-total1').text(nprice)
-      var shippingFee = currency + data.package_products[3].shipping_fee
+      var shippingFee = currencySymbol + data.package_products[3].shipping_fee
       $('#summary-total3').text(shippingFee)
 
       var discount = Number(data.package_products[3].old_price) - Number(data.package_products[0].new_price)
-      discount = currency + discount.toFixed(2)
+      discount = currencySymbol + discount.toFixed(2)
       $('#summary-total2').text(discount)
       var total = Number(data.package_products[3].new_price) + Number(data.package_products[0].shipping_fee)
-      total = currency + total.toFixed(2)
+      total = currencySymbol + total.toFixed(2)
       $('#summary-total4').text(total)
       $('.product-name').text(data.package_products[3].name)
       $('#product-number').text('number: 4')
@@ -4193,7 +4193,7 @@
               //   throw new Error('Verification failed')
               // }
               var url =
-                '/onebuy/order/addr/after?currency=USD&_token={{ csrf_token() }}&time=' +
+                '/onebuy/order/addr/after?currency={{ core()->getCurrentCurrencyCode() }}&_token={{ csrf_token() }}&time=' +
                 new Date().getTime() +
                 '&force=' +
                 localStorage.getItem('force')
@@ -4619,7 +4619,7 @@
               localStorage.setItem("order_id", order_info.id);
               localStorage.setItem("order_params", JSON.stringify(params));
 
-              url = "/onebuy/order/confirm?currency=USD&_token=AK2Lk5A14LYVhEWYbgEVxvHDhzlMuvLZDN5pisAW&payment_intent_id=" + data.payment_intent_id + "&order_id=" + data.order.id;
+              url = "/onebuy/order/confirm?currency={{ core()->getCurrentCurrencyCode() }}&_token={{ csrf_token() }}&payment_intent_id=" + data.payment_intent_id + "&order_id=" + data.order.id;
               fetch(url, {
                   method: 'GET',
                   headers: {
