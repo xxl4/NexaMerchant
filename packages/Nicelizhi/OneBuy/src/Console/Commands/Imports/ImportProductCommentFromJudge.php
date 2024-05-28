@@ -161,10 +161,15 @@ class ImportProductCommentFromJudge extends Command
 
                 if(!is_null($product)) {
                     //$this->error($this->cache_key.$product->id);
-                    $len = $redis->hlen($this->cache_key.$product->id);
+                    
+
+                    $product->id = empty($product->parent_id) ? $product->id : $product->parent_id;
 
                      //insert into db 
-                    $review = $this->productReviewRepository->findWhere(['title'=>$item['title'],'name'=>$item['reviewer']['name']])->first();
+
+                    //$review = $this->productReviewRepository->findWhere(['title'=>$item['title'],'comment'=>$item['body'],'product_id'=>$product->id])->first();
+                    $review =\Webkul\Product\Models\ProductReview::where('title', $item['title'])->where("comment", $item['body'])->where("product_id", $product->id)->first();
+                    //var_dump($review,$item, $product->id);exit;
                     
                     if(!empty($this->prod_id)) {
                         if($item['product_external_id']== $this->prod_id ) {
@@ -174,7 +179,7 @@ class ImportProductCommentFromJudge extends Command
                     
                     $images = [];
                     //var_dump($review);
-                    if(empty($review)) {
+                    if(is_null($review)) {
 
                         //var_dump($item);exit;
                         if($item['reviewer']['name']=='Anonymous') continue;
@@ -247,7 +252,7 @@ class ImportProductCommentFromJudge extends Command
 
                                 
                                 
-                                $attachments = $this->productReviewAttachmentRepository->findWhere(['path'=>$local_image_path])->first();
+                                $attachments = $this->productReviewAttachmentRepository->findWhere(['path'=>$picture['urls']['original'],'review_id'=>$review->id])->first();
                                 if(!empty($attachments)) continue;
 
     
@@ -261,7 +266,7 @@ class ImportProductCommentFromJudge extends Command
                                 $attachments = [];
                                 $attachments['type'] = $fileType[0];
                                 $attachments['mime_type'] = $fileType[1];
-                                $attachments['path'] = $local_image_path;
+                                $attachments['path'] = $picture['urls']['original'];
                                 $attachments['review_id'] = $review->id;
                                 var_dump($attachments);
     
@@ -272,8 +277,16 @@ class ImportProductCommentFromJudge extends Command
                             
                         }
                     }
-                
-                    //$this->info($len);
+                    $len = $redis->hlen($this->cache_key.$product->id);
+                    if($item['product_external_id']=='9344048005402') {
+                        //var_dump($len, $this->cache_key.$product->id, empty($product->parent_id) ? $product->id : $product->parent_id);
+                        //exit;
+                    }
+                    if($product->id==3768) {
+                        //var_dump($len, $this->cache_key.$product->id);
+                        //exit;
+                    }
+                    $this->info($len);
                     if($len < 6 && $item['published']==true) {
                         $value = [];
                         $value['name'] = trim($item['reviewer']['name']);
@@ -283,14 +296,14 @@ class ImportProductCommentFromJudge extends Command
                         $value['images'] = $images;
                         //var_dump($value);exit;
                         $redis->hSet($this->cache_key.$product->id, $item['id'], json_encode($value));
-                        $redis->hSet("onebuy_v2_product_comments_".$product->id, $item['id'], json_encode($value));
+                        //$redis->hSet("onebuy_v2_product_comments_".$product->id, $item['id'], json_encode($value));
                     }
 
                     //$this->error("onebuy_v2_product_comments_".$product->id);
                     $len = $redis->hlen("onebuy_v2_product_comments_".$product->id);
                     //var_dump($item);exit;
                 
-                    //$this->info($len);
+                    $this->info($len);
                     if($len < 6 && $item['published']==true) {
                         $value = [];
                         $value['name'] = trim($item['reviewer']['name']);

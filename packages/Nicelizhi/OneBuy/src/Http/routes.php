@@ -20,6 +20,7 @@ Route::group(['middleware' => ['locale', 'theme', 'currency'], 'prefix' => 'api'
         Route::get("order/confirm", "OrderConfirm")->name("api.onebuy.order.confirm");
         Route::post("check/coupon", "CheckCoupon")->name("api.onebuy.check.coupon");
         
+        
         Route::get("faq", "faq")->name("api.onebuy.faq");
         Route::get("product/detail/{slug}", "productDetail")->name("api.onebuy.product.detail");
     });
