@@ -3275,7 +3275,11 @@
 
         $("#complete-btn-id").removeClass("submit-button");
         $("#complete-btn-id").removeClass(".complete-btn")
-        $("#complete-btn-id").css("width", "100%");
+        $("#complete-btn-id").css({
+          width: "100%",
+          background: "none !important",
+          padding: '0'
+        });
 
         //payment-button
         $("#complete-btn-id").empty();;
