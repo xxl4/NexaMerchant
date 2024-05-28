@@ -4840,7 +4840,7 @@
       console.log(params, '===params====')
       $('#loading').show();
       fetch(url, {
-          body: params,
+          body: JSON.stringify(params),
           method: 'POST',
           headers: {
             'content-type': 'application/json'
