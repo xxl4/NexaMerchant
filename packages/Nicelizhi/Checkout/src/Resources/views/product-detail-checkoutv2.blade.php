@@ -964,7 +964,7 @@
       justify-content: center;
     }
 
-    #loader {
+    #loading {
       display: none;
     }
 
