@@ -193,7 +193,7 @@
       background-position-y: 0px;
       background-attachment: scroll;
       background-size: 100%;
-      font-family: AvenirNext-Bold-01;
+      font-family: var(--text-family);
     }
 
     .main {
@@ -277,7 +277,7 @@
       font-size: 16px;
       color: rgb(0, 0, 0);
       line-height: 23px;
-      font-family: AvenirNext-Regular-08;
+      font-family: var(--text-family);
     }
 
     .three_img {
@@ -290,9 +290,9 @@
       max-width: 80%;
     }
 
-    .icon_icon__ECGRl {
+    /* .icon_icon__ECGRl {
       padding-bottom: 2px;
-    }
+    } */
 
     .grade-top {
       display: flex;
@@ -340,7 +340,7 @@
 
     .stars_l {
       display: flex;
-      margin-top: 16px;
+      margin-top: 12px;
     }
 
     .r--title-average {
@@ -567,7 +567,7 @@
       padding-bottom: 18px;
       padding-left: 15px;
       font-size: 18px;
-      font-family: AvenirNext-Bold-01;
+      font-family: var(--text-family);
       font-weight: 700;
       line-height: 28px;
       letter-spacing: 0.42px;
@@ -711,7 +711,7 @@
       border-top-right-radius: 7px;
       border-bottom-right-radius: 7px;
       border-bottom-left-radius: 7px;
-      font-family: 'Avenir Next Bold';
+      font-family: var(--text-family);
       letter-spacing: normal;
       color: rgb(255, 255, 255);
     }
@@ -1495,14 +1495,6 @@
         <div class="logo_wrap_dist">
           <img src="/checkout/v2/images/logo.png" width="200" />
         </div>
-        <div class="box_style_thrty">
-          <!-- <h3 class="thrty_logos">
-              <span><img src="images/60-day.png" width="90" /></span><span>30-Days Money <br />Back Guarantee</span>
-            </h3> -->
-          <h3 class="top-phone_wrap">
-            <span><img src="/checkout/v2/images/icons8-phone-60.png" /></span>Questions? Call: <a href="tel:+1 (888) 257-3492">+1 (888) 257-3492</a>
-          </h3>
-        </div>
       </div>
     </div>
   </div>
@@ -1510,8 +1502,8 @@
     <div class="container">
       <ul class="stepsBox">
         <li><span>Checkout</span></li>
-        <li>Free Bonus</li>
-        <li>Receipt</li>
+        <li>delivery information</li>
+        <li>Payment</li>
       </ul>
     </div>
   </div>
@@ -1538,7 +1530,7 @@
         <p class="str-rvw hide-mob go-rew"><img src="/checkout/v2/images/star02.png" alt="Star" />12,421 Verified Customer Reviews</p>
         <p class="bdr-line hide-mob"></p>
         <p class="prd-det-disc">Natural Protection for Your Beloved Dog: Safe, Effective Flea &amp; Tick Prevention</p>
-        <p class="pkg-hdng">Choose your package</p>
+        <p class="pkg-hdng"><span class="pkg-step">Step 1 ></span> Choose your package</p>
         <div class="pkg-opt">
           <div class="cb-first-item"></div>
           <div class="buyopt packageClass cb-package-container choose-p" id="product2">
@@ -1557,7 +1549,7 @@
               </p>
             </div>
           </div>
-          <div class="buy-select2" id="buy-select2">
+          <div class="buy-select" id="buy-select2">
             <div class="buy-se-box">
               <div class="se-box" id="select2-item1">
                 <p class="se-title">item1</p>
@@ -1674,43 +1666,12 @@
               </div>
             </div>
           </div>
-          <div class="summary-wrapper">
-            <div class="order-summary-title">
-              <div><strong>item</strong></div>
-              <div><strong>price</strong></div>
-            </div>
-            <div class="order-summary-item">
-              <div class="os_main_product_name product-name"></div>
-              <div id="product-price" style="font-weight: bold"></div>
-            </div>
-            <div class="order-summary-item">
-              <div>Subtotal:</div>
-              <div id="summary-total1" style="font-weight: bold"></div>
-            </div>
-            <div class="order-summary-item">
-              <div>Discount:</div>
-              <div id="summary-total2" style="font-weight: bold; color: red"></div>
-            </div>
-            <div class="order-summary-item">
-              <div>Shipping:</div>
-              <div id="summary-total3"></div>
-            </div>
-            <div class="order-summary-item">
-              <div>Shipping Method:</div>
-              <div>USPS Express</div>
-            </div>
-            <div class="order-summary-total">
-              <div><strong>Today's Total:</strong></div>
-              <div>
-                <strong id="summary-total4" style="color: red">price</strong>
-              </div>
-            </div>
-          </div>
+
         </div>
 
         <p class="bdr-line"></p>
 
-        <p class="pkg-hdng">Enter customer information</p>
+        <p class="pkg-hdng"><span class="pkg-step">Step 2 ></span> Enter customer information</p>
         <form class="form">
           <input type="hidden" name="prospectId" id="prospectId" value="" />
           <input type="hidden" name="campaigns[1][id]" id="campaign_id" value="" />
@@ -1740,7 +1701,7 @@
             </div>
             <p class="bdr-line"></p>
             <div class="payment-flds-box">
-              <p class="pkg-hdng">Enter your shipping information</p>
+              <p class="pkg-hdng"><span class="pkg-step">Step 3 ></span> Enter your shipping information</p>
               <div class="frm-flds fl">
                 <label for="address" class="fl-label">Shipping Address</label>
                 <input type="text" name="shippingAddress1" class="input-flds required cb-remove-class frmField" placeholder="Your Address" data-error-message="Please enter your address!" id="shipAddress" />
@@ -1773,7 +1734,7 @@
               <!--   <a href="javascript:void(0)" class="continue-order addon_btn"
                         onclick="javascript:bookmarkscroll.scrollTo('wrnty')">Select Addon</a>-->
             </div>
-            <p class="pkg-hdng">Enter your payment information</p>
+            <p class="pkg-hdng"><span class="pkg-step">Step 4 ></span> Enter your payment information</p>
             <p>&nbsp;</p>
             <select name="creditCardType" class="form-control" data-error-message="Please select valid card type!">
               <option value="">Card Type</option>
@@ -1798,7 +1759,7 @@
                                 <div class="form-check form-check-inline" style="width: 100%;">
                                   <input class="form-check-input" type="radio" value="airwallex-klarna" id="airwallex-klarna" <?php if ($payments_default == 'airwallex-klarna') echo 'checked'; ?> name="payment_method">
                                   <label class="form-check-label" for="airwallex-klarna" style="float: right;min-width: 95%;">
-                                    <span>@lang('onebuy::app.product.payment.klarna.title')</span>
+                                    <span style="font-family: var(--title-family);">@lang('onebuy::app.product.payment.klarna.title')</span>
                                     <div style="float: right;min-width: 200px;display: inline;text-align: right;"><img src="/checkout/v1/app/desktop/images/Klarna.png" style="max-height:24px" /></div>
                                   </label>
                                 </div>
@@ -1823,7 +1784,7 @@
                                 <div class="form-check form-check-inline" style="width: 100%;">
                                   <input class="form-check-input" type="radio" value="paypal_standard" id="payal_standard" <?php if ($payments_default == 'payal_standard') echo 'checked'; ?> name="payment_method">
                                   <label class="form-check-label" for="payal_standard" style="float: right;min-width: 95%;">
-                                    <span>@lang('onebuy::app.product.payment.paypal.title') </span>
+                                    <span style="font-family: var(--title-family);">@lang('onebuy::app.product.payment.paypal.title') </span>
                                     <div style="float: right;min-width: 200px;display: inline;text-align: right;"><img src="/checkout/v1/app/desktop/images/paypal.png" style="max-height:24px" /></div>
                                   </label>
                                 </div>
@@ -1846,7 +1807,7 @@
                                 <div class="form-check form-check-inline" style="width: 100%;">
                                   <input class="form-check-input" type="radio" name="payment_method" id="payment_method_airwallex" <?php if ($payments_default == 'payment_method_airwallex') echo 'checked'; ?> value="airwallex">
                                   <label class="form-check-label" for="payment_method_airwallex" style="float: right;min-width: 95%;">
-                                    <span>@lang('onebuy::app.product.payment.creditCard.title')</span>
+                                    <span style="font-family: var(--title-family);">@lang('onebuy::app.product.payment.creditCard.title')</span>
 
                                     <div class="text-right" style="min-width:190px; display: inline;float: right;">
                                       <img src="https://cdn.shopify.com/shopifycloud/checkout-web/assets/0169695890db3db16bfe.svg" />
@@ -1874,7 +1835,7 @@
                                   font-size: 14px;
                                   padding: 3px 8px;
                                   outline: 0;
-                                  font-family: Arial, sans-serif;
+                                  font-family: SF Pro Text, sans-serif;
                                   font-weight: 400;
                                   box-sizing: border-box;
                                   background-color: #fff;
@@ -1892,7 +1853,7 @@
                                   font-size: 14px;
                                   padding: 3px 8px;
                                   outline: 0;
-                                  font-family: Arial, sans-serif;
+                                  font-family: SF Pro Text, sans-serif;
                                   font-weight: 400;
                                   box-sizing: border-box;
                                   background-color: #fff;
@@ -1910,7 +1871,7 @@
                                   font-size: 14px;
                                   padding: 3px 8px;
                                   outline: 0;
-                                  font-family: Arial, sans-serif;
+                                  font-family: SF Pro Text, sans-serif;
                                   font-weight: 400;
                                   box-sizing: border-box;
                                   background-color: #fff;
@@ -1927,7 +1888,7 @@
                                 <div class="form-check form-check-inline" style="width: 100%;">
                                   <input class="form-check-input" type="radio" value="airwallex_dropin" id="airwallex_dropin" <?php if ($payments_default == 'airwallex_dropin') echo 'checked'; ?> name="payment_method">
                                   <label class="form-check-label" for="airwallex_dropin" style="float: right;min-width: 95%;">
-                                    <span>@lang('onebuy::app.product.payment.airwallex_dropin.title') </span>
+                                    <span style="font-family: var(--title-family);">@lang('onebuy::app.product.payment.airwallex_dropin.title') </span>
                                     <!-- <div style="float: right;min-width: 200px;display: inline;text-align: right;"><img src="/checkout/v1/app/desktop/images/paypal.png" style="max-height:24px" /></div> -->
                                   </label>
                                 </div>
@@ -2018,12 +1979,107 @@
           <div class="complete-btn" id="complete-btn-id">Complete Checkout</div>
           <div id='paypal-button'></div>
         </form>
-
+        <div class="summary-wrapper">
+          <div class="order-summary-title">
+            <div>order details</div>
+          </div>
+          <div class="order-summary-item">
+            <div class="os_main_product_name product-name"></div>
+            <div id="product-price" style="font-weight: bold"></div>
+          </div>
+          <div class="order-summary-item">
+            <div>Subtotal:</div>
+            <div id="summary-total1" style="font-weight: bold"></div>
+          </div>
+          <div class="order-summary-item">
+            <div>Discount:</div>
+            <div id="summary-total2" style="font-weight: bold; color: red"></div>
+          </div>
+          <div class="order-summary-item">
+            <div>Shipping:</div>
+            <div id="summary-total3"></div>
+          </div>
+          <div class="order-summary-item">
+            <div>Shipping Method:</div>
+            <div>USPS Express</div>
+          </div>
+          <div class="order-summary-total">
+            <div><strong>Today's Total:</strong></div>
+            <div>
+              <strong id="summary-total4" style="color: red">price</strong>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
+
     <p id="loading-indicator">Processing...</p>
   </div>
   <div class="clearall"></div>
+  <div style="display: flex; justify-content: center;width:100%;">
+    <div id="iduzu" class="section" style="width: 70vw;">
+      <h3 class="container_title">Customer reviews</h3>
+      <div class="grade">
+        <h4 class="grade-top">
+          <span class="grade-text">Reviews</span>
+          <svg viewBox="0 0 16 16" fill="#ffce00" class="icon_icon__ECGRl" xmlns="http://www.w3.org/2000/svg" width="22px" height="22px">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M9.88 6.225H16l-4.929 3.504-3.047 2.149-4.953 3.504L4.952 9.73 0 6.225h6.119L8 .572l1.881 5.653Zm1.596 4.812L8 11.9l4.929 3.527-1.453-4.392Z"></path>
+          </svg>
+          <span class="grade-text2">4.5</span>
+        </h4>
+      </div>
+      <div class="speak">
+        <!-- <div class="speak_l">
+              <span class="r--title-average">Durchschnittlich</span
+              ><span class="r--stars_average">4.8</span
+              ><span class="average-star-image"
+                ><img
+                  src="./img/1656152467_4.8.webp"
+                  alt
+                  id="iznnl"
+              /></span>
+            </div> -->
+        <div class="speak_l">
+          <div class="stars_n">
+            <div class="border_b" id="bor1"></div>
+            <div class="left_text">5-star</div>
+          </div>
+          <div class="stars_l">
+            <div class="border_b" id="bor2"></div>
+            <div class="left_text">4-star</div>
+          </div>
+          <div class="stars_l">
+            <div class="border_b" id="bor3"></div>
+            <div class="left_text">3-star</div>
+          </div>
+          <div class="stars_l">
+            <div class="border_b" id="bor4"></div>
+            <div class="left_text">2-star</div>
+          </div>
+          <div class="stars_l">
+            <div class="border_b" id="bor5"></div>
+            <div class="left_text">1-star</div>
+          </div>
+        </div>
+        <div class="speak_r">
+          <div class="itnysh_global itnysh">
+            <div id="ina4n" class="iakor7_global iakor7">
+              <div class="ig637l"></div>
+            </div>
+            <div class="i55eho_global i55eho">
+              <div class="icdfoq"></div>
+            </div>
+            <div class="islybo_global islybo"></div>
+            <div class="i20q32"></div>
+            <div class="i9r4tj"></div>
+          </div>
+          <div class="i10l46_global i10l46">
+            <span class="count-percent">79.2%</span><span class="count-percent">20.8%</span><span class="count-percent">0%</span><span class="count-percent">0%</span><span class="count-percent">0%</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
   <div id="iduzu" class="section">
     <h3 class="container_title">@lang('onebuy::app.product.order.What customers are saying about')</h3>
   </div>
@@ -2444,6 +2500,9 @@
           var attrList = data.attr.attributes
           paypal_pay_acc = data.paypal_client_id
           var paymentsDefault = data.payments_default
+          $('.prod-name').text(data.product.name)
+          $('title').html(data.product.name)
+          $('#buy-select1, #buy-select3, #buy-select4').hide()
           if (payTypeShow.airwallex_klarna == '0') {
             $('#airwallex-klarna-box').hide()
           }
@@ -2576,9 +2635,7 @@
           $('#cb-buy-each3').text(data.package_products[2].new_price_format)
           $('#cb-buy-each4').text(data.package_products[3].new_price_format)
           if (attrList.length > 0) {
-            $('.buy-se-box').css('display', 'block')
             var selectList = ''
-
             for (var arri = 0; arri < attrList.length; arri++) {
               var optionList = ''
               for (var attj = 0; attj < attrList[arri].options.length; attj++) {
@@ -2586,27 +2643,16 @@
               }
               selectList += `<select class="in-se" id="in-se` + arri + `" onchange="seInput(value)">` + optionList + `</select>`
             }
-            var imgIndex = attrList[0].options[0].products[0]
-            var box =
-              `<div style="flex: 2;">` +
-              selectList +
-              `</div><img class="se-img" src="` +
-              data.attr.variant_images[imgIndex][0].small_image_url +
-              `" alt="" />`
-            $('.se-box').append(box)
+            // var imgIndex = attrList[0].options[0].products[0]
+            // var box =
+            //   `<div style="flex: 2;">` +
+            //   selectList +
+            //   `</div><img class="se-img" src="` +
+            //   data.attr.variant_images[imgIndex][0].small_image_url +
+            //   `" alt="" />`
+            $('.se-box').append(selectList)
           } else {
-            // var mImg2 = `<img src="` + data.package_products[0].image + `" class="buy-img">`
-            // var mImg1 = `<img src="` + data.package_products[1].image + `" class="buy-img">`
-            // var mImg3 = `<img src="` + data.package_products[2].image + `" class="buy-img">`
-            // var mImg4 = `<img src="` + data.package_products[3].image + `" class="buy-img">`
-
-            // $('#buy-select2').append(mImg2)
-            // $('#buy-select1').append(mImg1)
-            // $('#buy-select3').append(mImg3)
-            // $('#buy-select4').append(mImg4)
-            // $('.se-title').hide()
             $('.buy-select').hide()
-            $('.buy-select2').hide()
           }
           var nprice = currencySymbol + data.package_products[0].new_price.toFixed(2)
           $('#summary-total1').text(nprice)
@@ -2638,7 +2684,7 @@
           params.amount = '2'
           params.description = data.package_products[0].name
           paypalId = data.paypal_client_id
-          productsObj.amount = '2'
+          productsObj.amount = '1'
           productsObj.description = data.package_products[0].name
           productsObj.product_id = data.product.id
           productsObj.product_sku = data.sku
@@ -2672,9 +2718,9 @@
 
             if (params.amount == '1') {}
             if (params.amount == '2') {
-              name1 = $('#select2-item1').children('div').children('select').eq(m).val()
+              name1 = $('#select2-item1').children('select').eq(m).val()
               name1List.push(name1)
-              name2 = $('#select2-item2').children('div').children('select').eq(m).val()
+              name2 = $('#select2-item2').children('select').eq(m).val()
               name2List.push(name2)
               // productL1.attribute_name = v1+ ',' +v2
               for (var inm = 0; inm < data.attr.attributes[m].options.length; inm++) {
@@ -2772,7 +2818,7 @@
         var oid = '#in-se' + m
 
         if (params.amount == '1') {
-          name1 = $('#select1-item1').children('div').children('select').eq(m).val()
+          name1 = $('#select1-item1').children('select').eq(m).val()
           name1List.push(name1)
           for (var inm = 0; inm < data.attr.attributes[m].options.length; inm++) {
             if (m == 0 && data.attr.attributes[0].options[inm].label == name1) {
@@ -2786,11 +2832,11 @@
           }
         }
         if (params.amount == '2') {
-          name1 = $('#select2-item1').children('div').children('select').eq(m).val()
+          name1 = $('#select2-item1').children('select').eq(m).val()
           name1List.push(name1)
-          name2 = $('#select2-item2').children('div').children('select').eq(m).val()
+          name2 = $('#select2-item2').children('select').eq(m).val()
           name2List.push(name2)
-          name3 = $('#select2-item2').children('div').children('select').eq(m).val()
+          name3 = $('#select2-item2').children('select').eq(m).val()
           name2List.push(name2)
           // productL1.attribute_name = v1+ ',' +v2
           for (var inm = 0; inm < data.attr.attributes[m].options.length; inm++) {
@@ -2813,11 +2859,11 @@
           console.log(v1List, v2List, 'v1List')
         }
         if (params.amount == '3') {
-          name1 = $('#select3-item1').children('div').children('select').eq(m).val()
+          name1 = $('#select3-item1').children('select').eq(m).val()
           name1List.push(name1)
-          name2 = $('#select3-item2').children('div').children('select').eq(m).val()
+          name2 = $('#select3-item2').children('select').eq(m).val()
           name2List.push(name2)
-          name3 = $('#select3-item3').children('div').children('select').eq(m).val()
+          name3 = $('#select3-item3').children('select').eq(m).val()
           name3List.push(name3)
           // productL1.attribute_name = v1+ ',' +v2
           for (var inm = 0; inm < data.attr.attributes[m].options.length; inm++) {
@@ -2847,13 +2893,13 @@
           console.log(v1List, v2List, 'v1List')
         }
         if (params.amount == '4') {
-          name1 = $('#select4-item1').children('div').children('select').eq(m).val()
+          name1 = $('#select4-item1').children('select').eq(m).val()
           name1List.push(name1)
-          name2 = $('#select4-item2').children('div').children('select').eq(m).val()
+          name2 = $('#select4-item2').children('select').eq(m).val()
           name2List.push(name2)
-          name3 = $('#select4-item3').children('div').children('select').eq(m).val()
+          name3 = $('#select4-item3').children('select').eq(m).val()
           name3List.push(name3)
-          name4 = $('#select4-item4').children('div').children('select').eq(m).val()
+          name4 = $('#select4-item4').children('select').eq(m).val()
           name4List.push(name4)
           // productL1.attribute_name = v1+ ',' +v2
           for (var inm = 0; inm < data.attr.attributes[m].options.length; inm++) {
@@ -3077,20 +3123,12 @@
     $('#product1').click(function(e) {
       var list = $('#product1,#product2,#product3,#product4')
       list.removeClass('choose-p')
-      var list2 = $('#buy-select1,#buy-select3,#buy-select4')
-      list2.removeClass('buy-select1')
+
       $('#buy-select2').hide()
       $('#buy-select3').hide()
       $('#buy-select4').hide()
       $('#buy-select1').show()
-
-      var cssObj = {
-        height: '0',
-        opacity: '0',
-      }
-      $('#buy-select2').css(cssObj)
       $('#product1').addClass('choose-p')
-      $('#buy-select1').addClass('buy-select1')
       var nprice = currencySymbol + data.package_products[1].new_price.toFixed(2)
       $('#summary-total1').text(nprice)
       var shippingFee = currencySymbol + data.package_products[1].shipping_fee
@@ -3110,19 +3148,11 @@
     $('#product2').click(function(e) {
       var list = $('#product1,#product2,#product3,#product4')
       list.removeClass('choose-p')
-      var list2 = $('#buy-select1,#buy-select3,#buy-select4')
-      list2.removeClass('buy-select1')
       $('#buy-select1').hide()
       $('#buy-select3').hide()
       $('#buy-select4').hide()
       $('#buy-select2').show()
-      var cssObj = {
-        height: 'auto',
-        opacity: '1',
-      }
-      $('#buy-select2').css(cssObj)
       $('#product2').addClass('choose-p')
-      $('#buy-select2').addClass('buy-select1')
       var nprice = currencySymbol + data.package_products[0].new_price.toFixed(2)
       $('#summary-total1').text(nprice)
       var shippingFee = currencySymbol + data.package_products[0].shipping_fee
@@ -3142,19 +3172,11 @@
     $('#product3').click(function(e) {
       var list = $('#product1,#product2,#product3,#product4')
       list.removeClass('choose-p')
-      var list2 = $('#buy-select1,#buy-select3,#buy-select4')
-      list2.removeClass('buy-select1')
       $('#buy-select2').hide()
       $('#buy-select1').hide()
       $('#buy-select4').hide()
       $('#buy-select3').show()
-      var cssObj = {
-        height: '0',
-        opacity: '0',
-      }
-      $('#buy-select2').css(cssObj)
       $('#product3').addClass('choose-p')
-      $('#buy-select3').addClass('buy-select1')
       var nprice = currencySymbol + data.package_products[2].new_price.toFixed(2)
       $('#summary-total1').text(nprice)
       var shippingFee = currencySymbol + data.package_products[2].shipping_fee
@@ -3174,19 +3196,12 @@
     $('#product4').click(function(e) {
       var list = $('#product1,#product2,#product3,#product4')
       list.removeClass('choose-p')
-      var list2 = $('#buy-select1,#buy-select3,#buy-select4')
-      list2.removeClass('buy-select1')
+
       $('#buy-select2').hide()
       $('#buy-select3').hide()
       $('#buy-select1').hide()
       $('#buy-select4').show()
-      var cssObj = {
-        height: '0',
-        opacity: '0',
-      }
-      $('#buy-select2').css(cssObj)
       $('#product4').addClass('choose-p')
-      $('#buy-select4').addClass('buy-select1')
       var nprice = currencySymbol + data.package_products[3].new_price.toFixed(2)
       $('#summary-total1').text(nprice)
       var shippingFee = currencySymbol + data.package_products[3].shipping_fee
@@ -3215,12 +3230,12 @@
       params.code = $('input[name="shippingZip"]').val()
       if ($('input[id="airwallex-klarna"]:checked')) {
         console.log('klarna')
-        params.payment_method = 'worldpay'
+        params.payment_method = 'airwallex_klarna'
       }
       if ($('input[id="payal_standard"]:checked')) {
         console.log('klarna')
 
-        params.payment_method = 'worldpay'
+        params.payment_method = 'paypal'
       }
       if ($('input[id="payment_method_airwallex"]:checked')) {
         console.log('airwallex')
@@ -3256,7 +3271,7 @@
         $("#complete-btn-id").addClass("submit-button");
         $("#complete-btn-id").css({
           width: "100%",
-          background: "green!important",
+          background: "green",
           padding: "18px 13px",
           textAlign: 'center'
         });
@@ -3279,7 +3294,7 @@
         $("#complete-btn-id").addClass("submit-button");
         $("#complete-btn-id").css({
           width: "100%",
-          background: "green!important",
+          background: "green",
           padding: "18px 13px",
           textAlign: 'center'
         });
@@ -3302,7 +3317,7 @@
         $("#complete-btn-id").removeClass(".complete-btn")
         $("#complete-btn-id").css({
           width: "100%",
-          background: "none!important",
+          background: "none",
           padding: '0'
         });
 
@@ -4037,9 +4052,11 @@
       document.getElementById('stopwatch').innerHTML = result
     }, spd)
     $(function() {
-      var height = $('.right-sec').height()
-      console.log(height, 'height')
-      $('.left-sec').css('height', height)
+      var width = $(window).innerWidth()
+      if (wh > 767) {
+        var height = $('.right-sec').height()
+        $('.left-sec').css('height', height)
+      }
     })
 
     $('.fieldToggle').click(function() {
