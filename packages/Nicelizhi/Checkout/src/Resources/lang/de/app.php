@@ -17,5 +17,8 @@ return [
             'State/Province' => 'Staat/Provinz',
             'Zip/Postal Code' => 'Postleitzahl',
         ]
+    ],
+    'v2' => [
+        'Checkout' => 'Kasse',
     ]
 ];

@@ -22,51 +22,51 @@ GET api/onebuy/product/detail/{slug}?currency=EUR
 ```
 {
   "product": {
-    "id": 3011,
-    "sku": "8924785377562",
-    "name": "Brand Haltungskorrektur-BH",
-    "description": "\u003Cdiv class=\"_am_site-content-title-cell\" title=\"70-jährige Ingenieurin entwirft BH, der das Leben von Frauen verändern!\" _ngcontent-kmf-c468=\"\"\u003E\u003Cstrong\u003EVon Gynäkologen empfohlene BHs erobern Deutschland im Sturm\u003C/strong\u003E\u003C/div\u003E\n\u003Cdiv class=\"_am_site-content-title-cell\" title=\"70-jährige Ingenieurin entwirft BH, der das Leben von Frauen verändern!\" _ngcontent-kmf-c468=\"\"\u003E\n\u003Cem\u003E\u003Cstrong\u003EDer erste Push-up-BH, der speziell für Frauen\u003C/strong\u003E\u003C/em\u003E und ihre Bedürfnisse entwickelt wurde und eine bessere Körperhaltung und bessere Push-up-Ergebnisse garantiert. Jetzt mit 50 % Rabatt erhältlich.\u003C/div\u003E\n\u003Cdiv class=\"_am_site-content-title-cell\" title=\"70-jährige Ingenieurin entwirft BH, der das Leben von Frauen verändern!\" _ngcontent-kmf-c468=\"\"\u003E\u003Cem\u003E\u003Cstrong\u003E\u003Cimg src=\"https://offer.wexiy.com/de/m9/bh03-2/images/1.webp\"\u003E\u003C/strong\u003E\u003C/em\u003E\u003C/div\u003E\n\u003Cdiv class=\"_am_site-content-title-cell\" title=\"70-jährige Ingenieurin entwirft BH, der das Leben von Frauen verändern!\" _ngcontent-kmf-c468=\"\"\u003EEin neuer BH verändert vollständig unsere Art, Unterwäsche zu betrachten.Sind Sie es leid, unbequeme BHs zu tragen, die keinerlei Unterstützung bieten? Suchen Sie nach einem BH, der genauso schön ist wie ein BH mit einem großen Markennamen, aber gleichzeitig komfortabler und vor allem erschwinglicher? Möchten Sie sich jeden Tag wohl und frei von Schweiß fühlen? Heute ist Ihr Glückstag! Ein revolutionärer neuer BH wurde gerade auf den Markt gebracht und dieser ist einfach atemberaubend!\u003C/div\u003E\n\u003Cdiv class=\"_am_site-content-title-cell\" title=\"70-jährige Ingenieurin entwirft BH, der das Leben von Frauen verändern!\" _ngcontent-kmf-c468=\"\"\u003E\n\u003Cimg src=\"https://cdn.shopify.com/s/files/1/0838/9577/9610/files/00027_480x480.jpg?v=1709792025\" alt=\"\"\u003E\u003Cimg alt=\"\" src=\"https://cdn.shopify.com/s/files/1/0838/9577/9610/files/00023_480x480.jpg?v=1709792068\" data-mce-src=\"https://cdn.shopify.com/s/files/1/0838/9577/9610/files/00023_480x480.jpg?v=1709792068\" data-mce-fragment=\"1\"\u003E\u003Cimg height=\"708\" width=\"466\" alt=\"\" src=\"https://cdn.shopify.com/s/files/1/0838/9577/9610/files/00026_480x480.jpg?v=1709792088\" data-mce-src=\"https://cdn.shopify.com/s/files/1/0838/9577/9610/files/00026_480x480.jpg?v=1709792088\" data-mce-fragment=\"1\"\u003E\n\u003C/div\u003E\n\u003Cp data-mce-fragment=\"1\"\u003E\u003Cimg alt=\"\" src=\"https://cdn.shopify.com/s/files/1/0771/1411/4355/files/111111111111111-1_1024x1024.webp?v=1698650286\" data-mce-src=\"https://cdn.shopify.com/s/files/1/0771/1411/4355/files/111111111111111-1_1024x1024.webp?v=1698650286\" data-mce-fragment=\"1\"\u003E\u003C/p\u003E\n\u003Ch2 data-mce-fragment=\"1\"\u003EUNSERE GARANTIE\u003C/h2\u003E\n\u003Cul data-mce-fragment=\"1\"\u003E\n\u003Cli data-mce-fragment=\"1\"\u003E\n\u003Cspan data-mce-fragment=\"1\"\u003E⭐\u003C/span\u003E\u003Cstrong data-mce-fragment=\"1\"\u003ESichere Zahlung&gt;&gt;\u003C/strong\u003E\u003Cspan data-mce-fragment=\"1\"\u003E \u003C/span\u003EWir verwenden modernste sichere SSL-Verschlüsselung, um Ihre persönlichen und finanziellen Informationen zu 100% zu\u003C/li\u003E\n\u003Cli data-mce-fragment=\"1\"\u003E\n\u003Cspan data-mce-fragment=\"1\"\u003E⭐\u003C/span\u003E\u003Cstrong data-mce-fragment=\"1\"\u003Eschützen.Rückgabe&gt;&gt;\u003C/strong\u003E\u003Cspan data-mce-fragment=\"1\"\u003E \u003C/span\u003E100% Geld-zurück-Garantie.Versand&gt;&gt;Weltweiter\u003C/li\u003E\n\u003Cli data-mce-fragment=\"1\"\u003E\n\u003Cspan data-mce-fragment=\"1\"\u003E⭐\u003C/span\u003E\u003Cstrong data-mce-fragment=\"1\"\u003EExpressversand verfügbarBearbeitungszeit &gt;&gt;\u003C/strong\u003E\u003Cspan data-mce-fragment=\"1\"\u003E \u003C/span\u003EVersand innerhalb von 1-3 Tagen nach Zahlungseingang\u003C/li\u003E\n\u003C/ul\u003E\n\u003Ch2 data-mce-fragment=\"1\"\u003E\u003Cimg data-loaded=\"true\" src=\"https://img-va.myshopline.com/image/store/2000679021/1648015513052/f38b40b0c7784f3cb188972dc08c76da.png?w=640&amp;h=221&amp;t=webp\" height=\"84\" width=\"322\" alt=\"\" data-src=\"https://img-va.myshopline.com/image/store/2000679021/1648015513052/f38b40b0c7784f3cb188972dc08c76da.png?w=640&amp;h=221&amp;t=webp\" class=\"lozad lazyloaded lazyloaded\" referrerpolicy=\"same-origin\" data-mce-src=\"https://img-va.myshopline.com/image/store/2000679021/1648015513052/f38b40b0c7784f3cb188972dc08c76da.png?w=640&amp;h=221&amp;t=webp\" data-mce-fragment=\"1\"\u003E\u003C/h2\u003E",
-    "url_key": "8924785377562",
+    "id": 3065,
+    "sku": "8987102380314",
+    "name": "Orthopädische Wanderschuhe",
+    "description": "\u003Cp\u003E\u003Cspan data-mce-fragment=\"1\"\u003E✅ ⭐Rückgabe &gt;&gt; 100 % Geld-zurück-Garantie.\u003C/span\u003E\u003Cbr data-mce-fragment=\"1\"\u003E\u003Cspan data-mce-fragment=\"1\"\u003E✅ Versand &gt;&gt; Weltweiter Expressversand verfügbar\u003C/span\u003E\u003Cbr data-mce-fragment=\"1\"\u003E\u003Cspan data-mce-fragment=\"1\"\u003E✅ Bearbeitungszeit &gt;&gt; Versand innerhalb von 1-3 Tagen nach Zahlungseingang\u003C/span\u003E\u003Cbr data-mce-fragment=\"1\"\u003E\u003Cspan data-mce-fragment=\"1\"\u003E✅ 🔥99,2 % der Kunden kaufen 2 Sets und mehr!🔥\u003C/span\u003E\u003Cbr data-mce-fragment=\"1\"\u003E\u003Cspan data-mce-fragment=\"1\"\u003E✅ Kostenloser Versand ab €79.\u003C/span\u003E\u003C/p\u003E\r\n\u003Cp\u003E\u003Cspan data-mce-fragment=\"1\"\u003E\u003Cimg alt=\"\" src=\"https://cdn.shopify.com/s/files/1/0838/9577/9610/files/1709114882632_480x480.png?v=1709114929\"\u003E\u003C/span\u003E\u003C/p\u003E\r\n\u003Cp\u003E\u003Cspan data-mce-fragment=\"1\"\u003E\u003Cimg src=\"https://cdn.shopify.com/s/files/1/0838/9577/9610/files/1709113264239_480x480.png?v=1709113384\" alt=\"\"\u003E\u003C/span\u003E\u003C/p\u003E\r\n\u003Cp\u003E\u003Cspan data-mce-fragment=\"1\"\u003E\u003Cimg src=\"https://cdn.shopify.com/s/files/1/0838/9577/9610/files/1709113325024_480x480.png?v=1709113448\" alt=\"\"\u003E\u003C/span\u003E\u003C/p\u003E\r\n\u003Cp\u003E\u003Cspan data-mce-fragment=\"1\"\u003E\u003Cimg src=\"https://cdn.shopify.com/s/files/1/0838/9577/9610/files/1709113340282_480x480.png?v=1709113464\" alt=\"\"\u003E\u003C/span\u003E\u003C/p\u003E\r\n\u003Cp\u003E\u003Cbr\u003E\u003C/p\u003E",
+    "url_key": "8987102380314",
     "base_image": {
-      "small_image_url": "http://127.0.0.1:8000/themes/shop/default/build/assets/small-product-placeholder-64b7f208.webp",
-      "medium_image_url": "http://127.0.0.1:8000/themes/shop/default/build/assets/medium-product-placeholder-3b1a7b7d.webp",
-      "large_image_url": "http://127.0.0.1:8000/themes/shop/default/build/assets/large-product-placeholder-13b8a96b.webp",
-      "original_image_url": "http://127.0.0.1:8000/themes/shop/default/build/assets/large-product-placeholder-13b8a96b.webp"
+      "small_image_url": "https://127.0.0.1:8000/cache/small/product/3065/BY8A7477.webp",
+      "medium_image_url": "https://127.0.0.1:8000/cache/medium/product/3065/BY8A7477.webp",
+      "large_image_url": "https://127.0.0.1:8000/cache/large/product/3065/BY8A7477.webp",
+      "original_image_url": "https://127.0.0.1:8000/cache/original/product/3065/BY8A7477.webp"
     },
     "images": [
       {
-        "small_image_url": "http://127.0.0.1:8000/themes/shop/default/build/assets/small-product-placeholder-64b7f208.webp",
-        "medium_image_url": "http://127.0.0.1:8000/themes/shop/default/build/assets/medium-product-placeholder-3b1a7b7d.webp",
-        "large_image_url": "http://127.0.0.1:8000/themes/shop/default/build/assets/large-product-placeholder-13b8a96b.webp",
-        "original_image_url": "http://127.0.0.1:8000/themes/shop/default/build/assets/large-product-placeholder-13b8a96b.webp"
+        "small_image_url": "https://127.0.0.1:8000/themes/shop/default/build/assets/small-product-placeholder-64b7f208.webp",
+        "medium_image_url": "https://127.0.0.1:8000/themes/shop/default/build/assets/medium-product-placeholder-3b1a7b7d.webp",
+        "large_image_url": "https://127.0.0.1:8000/themes/shop/default/build/assets/large-product-placeholder-13b8a96b.webp",
+        "original_image_url": "https://127.0.0.1:8000/themes/shop/default/build/assets/large-product-placeholder-13b8a96b.webp"
       }
     ],
-    "is_new": true,
-    "is_featured": true,
+    "is_new": false,
+    "is_featured": false,
     "on_sale": false,
     "is_wishlist": false,
-    "min_price": "29,98 €",
+    "min_price": "45,00 €",
     "prices": {
       "regular": {
-        "price": 29.98,
-        "formatted_price": "29,98 €"
+        "price": 45,
+        "formatted_price": "45,00 €"
       }
     },
-    "price_html": "\u003Cp class=\"text-[14px] text-[#6E6E6E] price-label\"\u003E\r\n    Ab\u003C/p\u003E\r\n\r\n\u003Cp class=\"font-semibold special-price\"\u003E\r\n    29,98 €\r\n\u003C/p\u003E",
-    "avg_ratings": 5
+    "price_html": "\u003Cp class=\"text-[14px] text-[#6E6E6E] price-label\"\u003E\r\n    Ab\u003C/p\u003E\r\n\r\n\u003Cp class=\"font-semibold special-price\"\u003E\r\n    45,00 €\r\n\u003C/p\u003E",
+    "avg_ratings": 0
   },
   "package_products": [
     {
       "id": 2,
-      "name": "2x Brand Haltungskorrektur-BH",
-      "image": "http://127.0.0.1:8000/themes/shop/default/build/assets/medium-product-placeholder-3b1a7b7d.webp",
+      "name": "2x  Orthopädische Wanderschuhe",
+      "image": "https://127.0.0.1:8000/cache/medium/product/3065/BY8A7477.webp",
       "amount": 2,
-      "old_price": 99.92,
-      "old_price_format": "€99.92",
-      "new_price": 47.968,
-      "new_price_format": "€47.97",
-      "tip1": "52% ",
-      "tip2": "€23.98",
+      "old_price": 120,
+      "old_price_format": "€120",
+      "new_price": 72,
+      "new_price_format": "€72",
+      "tip1": "40% ",
+      "tip2": "€36",
       "shipping_fee": "9.99",
       "popup_info": {
         "name": null,
@@ -77,15 +77,15 @@ GET api/onebuy/product/detail/{slug}?currency=EUR
     },
     {
       "id": 1,
-      "name": "1x Brand Haltungskorrektur-BH",
-      "image": "http://127.0.0.1:8000/themes/shop/default/build/assets/medium-product-placeholder-3b1a7b7d.webp",
+      "name": "1x  Orthopädische Wanderschuhe",
+      "image": "https://127.0.0.1:8000/cache/medium/product/3065/BY8A7477.webp",
       "amount": 1,
-      "old_price": 49.96,
-      "old_price_format": "€49.96",
-      "new_price": 29.98,
-      "new_price_format": "€29.98",
-      "tip1": "40% ",
-      "tip2": "€29.98",
+      "old_price": 60,
+      "old_price_format": "€60",
+      "new_price": 45,
+      "new_price_format": "€45",
+      "tip1": "25% ",
+      "tip2": "€45",
       "shipping_fee": "9.99",
       "popup_info": {
         "name": null,
@@ -96,15 +96,15 @@ GET api/onebuy/product/detail/{slug}?currency=EUR
     },
     {
       "id": 3,
-      "name": "3x Brand Haltungskorrektur-BH",
-      "image": "http://127.0.0.1:8000/themes/shop/default/build/assets/medium-product-placeholder-3b1a7b7d.webp",
+      "name": "3x  Orthopädische Wanderschuhe",
+      "image": "https://127.0.0.1:8000/cache/medium/product/3065/BY8A7477.webp",
       "amount": 3,
-      "old_price": 149.88,
-      "old_price_format": "€149.88",
-      "new_price": 62.958,
-      "new_price_format": "€62.96",
-      "tip1": "58% ",
-      "tip2": "€20.99",
+      "old_price": 180,
+      "old_price_format": "€180",
+      "new_price": 94.5,
+      "new_price_format": "€94.5",
+      "tip1": "47% ",
+      "tip2": "€31.5",
       "shipping_fee": "9.99",
       "popup_info": {
         "name": null,
@@ -115,15 +115,15 @@ GET api/onebuy/product/detail/{slug}?currency=EUR
     },
     {
       "id": 4,
-      "name": "4x Brand Haltungskorrektur-BH",
-      "image": "http://127.0.0.1:8000/themes/shop/default/build/assets/medium-product-placeholder-3b1a7b7d.webp",
+      "name": "4x  Orthopädische Wanderschuhe",
+      "image": "https://127.0.0.1:8000/cache/medium/product/3065/BY8A7477.webp",
       "amount": 4,
-      "old_price": 199.84,
-      "old_price_format": "€199.84",
-      "new_price": 71.952,
-      "new_price_format": "€71.95",
-      "tip1": "64% ",
-      "tip2": "€17.99",
+      "old_price": 240,
+      "old_price_format": "€240",
+      "new_price": 108,
+      "new_price_format": "€108",
+      "tip1": "55% ",
+      "tip2": "€27",
       "shipping_fee": "9.99",
       "popup_info": {
         "name": null,
@@ -133,7 +133,7 @@ GET api/onebuy/product/detail/{slug}?currency=EUR
       }
     }
   ],
-  "sku": "8924785377562",
+  "sku": "8987102380314",
   "attr": {
     "attributes": [
       {
@@ -146,25 +146,19 @@ GET api/onebuy/product/detail/{slug}?currency=EUR
             "id": 1424,
             "label": "Khaki",
             "swatch_value": null,
-            "products": [3015, 3034, 3035, 3036, 3037, 3038, 3039]
-          },
-          {
-            "id": 1943,
-            "label": "DUNKELBLAU",
-            "swatch_value": null,
-            "products": [3012, 3016, 3017, 3018, 3019, 3020, 3021]
+            "products": [3067, 3067, 3075, 3075, 3076, 3076, 3077, 3077, 3078, 3078, 3079, 3079, 3080, 3080]
           },
           {
             "id": 1944,
             "label": "SCHWARZ",
             "swatch_value": null,
-            "products": [3013, 3022, 3023, 3024, 3025, 3026, 3027]
+            "products": [3066, 3066, 3069, 3069, 3070, 3070, 3071, 3071, 3072, 3072, 3073, 3073, 3074, 3074]
           },
           {
-            "id": 1945,
-            "label": "BLAU",
+            "id": 1953,
+            "label": "Dunkelgrau",
             "swatch_value": null,
-            "products": [3014, 3028, 3029, 3030, 3031, 3032, 3033]
+            "products": [3068, 3068, 3081, 3081, 3082, 3082, 3083, 3083, 3084, 3084, 3085, 3085, 3086, 3086]
           }
         ],
         "attr_sort": []
@@ -176,1042 +170,644 @@ GET api/onebuy/product/detail/{slug}?currency=EUR
         "swatch_type": "dropdown",
         "options": [
           {
-            "id": 1946,
-            "label": "M (40-50KG)",
+            "id": 1661,
+            "label": "EU 39",
             "swatch_value": null,
-            "products": [3012, 3013, 3014, 3015]
+            "products": [3066, 3066, 3067, 3067, 3068, 3068]
           },
           {
-            "id": 1947,
-            "label": "L (50-60KG)",
+            "id": 1662,
+            "label": "EU 40",
             "swatch_value": null,
-            "products": [3016, 3022, 3028, 3034]
+            "products": [3069, 3069, 3075, 3075, 3081, 3081]
           },
           {
-            "id": 1948,
-            "label": "2L (60-70KG)",
+            "id": 1663,
+            "label": "EU 41",
             "swatch_value": null,
-            "products": [3017, 3023, 3029, 3035]
+            "products": [3070, 3070, 3076, 3076, 3082, 3082]
           },
           {
-            "id": 1949,
-            "label": "3L (70-80kg)",
+            "id": 1664,
+            "label": "EU 42",
             "swatch_value": null,
-            "products": [3018, 3024, 3030, 3036]
+            "products": [3071, 3071, 3077, 3077, 3083, 3083]
           },
           {
-            "id": 1950,
-            "label": "4L (80-90KG)",
+            "id": 1665,
+            "label": "EU 43",
             "swatch_value": null,
-            "products": [3019, 3025, 3031, 3037]
+            "products": [3072, 3072, 3078, 3078, 3084, 3084]
           },
           {
-            "id": 1951,
-            "label": "5L (90-100KG）",
+            "id": 1666,
+            "label": "EU 44",
             "swatch_value": null,
-            "products": [3020, 3026, 3032, 3038]
+            "products": [3073, 3073, 3079, 3079, 3085, 3085]
           },
           {
-            "id": 1952,
-            "label": "6L (100-110KG)",
+            "id": 1667,
+            "label": "EU 45",
             "swatch_value": null,
-            "products": [3021, 3027, 3033, 3039]
+            "products": [3074, 3074, 3080, 3080, 3086, 3086]
+          }
+        ],
+        "attr_sort": []
+      },
+      {
+        "id": 23,
+        "code": "color",
+        "label": "Farbe",
+        "swatch_type": "dropdown",
+        "options": [
+          {
+            "id": 1424,
+            "label": "Khaki",
+            "swatch_value": null,
+            "products": [3067, 3067, 3075, 3075, 3076, 3076, 3077, 3077, 3078, 3078, 3079, 3079, 3080, 3080]
+          },
+          {
+            "id": 1944,
+            "label": "SCHWARZ",
+            "swatch_value": null,
+            "products": [3066, 3066, 3069, 3069, 3070, 3070, 3071, 3071, 3072, 3072, 3073, 3073, 3074, 3074]
+          },
+          {
+            "id": 1953,
+            "label": "Dunkelgrau",
+            "swatch_value": null,
+            "products": [3068, 3068, 3081, 3081, 3082, 3082, 3083, 3083, 3084, 3084, 3085, 3085, 3086, 3086]
+          }
+        ],
+        "attr_sort": []
+      },
+      {
+        "id": 24,
+        "code": "size",
+        "label": "Größe",
+        "swatch_type": "dropdown",
+        "options": [
+          {
+            "id": 1661,
+            "label": "EU 39",
+            "swatch_value": null,
+            "products": [3066, 3066, 3067, 3067, 3068, 3068]
+          },
+          {
+            "id": 1662,
+            "label": "EU 40",
+            "swatch_value": null,
+            "products": [3069, 3069, 3075, 3075, 3081, 3081]
+          },
+          {
+            "id": 1663,
+            "label": "EU 41",
+            "swatch_value": null,
+            "products": [3070, 3070, 3076, 3076, 3082, 3082]
+          },
+          {
+            "id": 1664,
+            "label": "EU 42",
+            "swatch_value": null,
+            "products": [3071, 3071, 3077, 3077, 3083, 3083]
+          },
+          {
+            "id": 1665,
+            "label": "EU 43",
+            "swatch_value": null,
+            "products": [3072, 3072, 3078, 3078, 3084, 3084]
+          },
+          {
+            "id": 1666,
+            "label": "EU 44",
+            "swatch_value": null,
+            "products": [3073, 3073, 3079, 3079, 3085, 3085]
+          },
+          {
+            "id": 1667,
+            "label": "EU 45",
+            "swatch_value": null,
+            "products": [3074, 3074, 3080, 3080, 3086, 3086]
           }
         ],
         "attr_sort": []
       }
     ],
     "index": {
-      "3012": {
-        "23": 1943,
-        "24": 1946
-      },
-      "3013": {
+      "3066": {
         "23": 1944,
-        "24": 1946
+        "24": 1661,
+        "sku": "8987102380314-47930439631130"
       },
-      "3014": {
-        "23": 1945,
-        "24": 1946
-      },
-      "3015": {
+      "3067": {
         "23": 1424,
-        "24": 1946
+        "24": 1661,
+        "sku": "8987102380314-47930439860506"
       },
-      "3016": {
-        "23": 1943,
-        "24": 1947
+      "3068": {
+        "23": 1953,
+        "24": 1661,
+        "sku": "8987102380314-47930440089882"
       },
-      "3017": {
-        "23": 1943,
-        "24": 1948
-      },
-      "3018": {
-        "23": 1943,
-        "24": 1949
-      },
-      "3019": {
-        "23": 1943,
-        "24": 1950
-      },
-      "3020": {
-        "23": 1943,
-        "24": 1951
-      },
-      "3021": {
-        "23": 1943,
-        "24": 1952
-      },
-      "3022": {
+      "3069": {
         "23": 1944,
-        "24": 1947
+        "24": 1662,
+        "sku": "8987102380314-47930439663898"
       },
-      "3023": {
+      "3070": {
         "23": 1944,
-        "24": 1948
+        "24": 1663,
+        "sku": "8987102380314-47930439696666"
       },
-      "3024": {
+      "3071": {
         "23": 1944,
-        "24": 1949
+        "24": 1664,
+        "sku": "8987102380314-47930439729434"
       },
-      "3025": {
+      "3072": {
         "23": 1944,
-        "24": 1950
+        "24": 1665,
+        "sku": "8987102380314-47930439762202"
       },
-      "3026": {
+      "3073": {
         "23": 1944,
-        "24": 1951
+        "24": 1666,
+        "sku": "8987102380314-47930439794970"
       },
-      "3027": {
+      "3074": {
         "23": 1944,
-        "24": 1952
+        "24": 1667,
+        "sku": "8987102380314-47930439827738"
       },
-      "3028": {
-        "23": 1945,
-        "24": 1947
-      },
-      "3029": {
-        "23": 1945,
-        "24": 1948
-      },
-      "3030": {
-        "23": 1945,
-        "24": 1949
-      },
-      "3031": {
-        "23": 1945,
-        "24": 1950
-      },
-      "3032": {
-        "23": 1945,
-        "24": 1951
-      },
-      "3033": {
-        "23": 1945,
-        "24": 1952
-      },
-      "3034": {
+      "3075": {
         "23": 1424,
-        "24": 1947
+        "24": 1662,
+        "sku": "8987102380314-47930439893274"
       },
-      "3035": {
+      "3076": {
         "23": 1424,
-        "24": 1948
+        "24": 1663,
+        "sku": "8987102380314-47930439926042"
       },
-      "3036": {
+      "3077": {
         "23": 1424,
-        "24": 1949
+        "24": 1664,
+        "sku": "8987102380314-47930439958810"
       },
-      "3037": {
+      "3078": {
         "23": 1424,
-        "24": 1950
+        "24": 1665,
+        "sku": "8987102380314-47930439991578"
       },
-      "3038": {
+      "3079": {
         "23": 1424,
-        "24": 1951
+        "24": 1666,
+        "sku": "8987102380314-47930440024346"
       },
-      "3039": {
+      "3080": {
         "23": 1424,
-        "24": 1952
+        "24": 1667,
+        "sku": "8987102380314-47930440057114"
+      },
+      "3081": {
+        "23": 1953,
+        "24": 1662,
+        "sku": "8987102380314-47930440122650"
+      },
+      "3082": {
+        "23": 1953,
+        "24": 1663,
+        "sku": "8987102380314-47930440155418"
+      },
+      "3083": {
+        "23": 1953,
+        "24": 1664,
+        "sku": "8987102380314-47930440188186"
+      },
+      "3084": {
+        "23": 1953,
+        "24": 1665,
+        "sku": "8987102380314-47930440220954"
+      },
+      "3085": {
+        "23": 1953,
+        "24": 1666,
+        "sku": "8987102380314-47930440253722"
+      },
+      "3086": {
+        "23": 1953,
+        "24": 1667,
+        "sku": "8987102380314-47930440286490"
       }
     },
     "variant_prices": {
-      "3012": {
+      "3066": {
         "regular": {
-          "price": 29.98,
-          "formatted_price": "29,98 €"
+          "price": 45,
+          "formatted_price": "45,00 €"
         },
         "final": {
-          "price": 29.98,
-          "formatted_price": "29,98 €"
+          "price": 45,
+          "formatted_price": "45,00 €"
         }
       },
-      "3013": {
+      "3067": {
         "regular": {
-          "price": 29.98,
-          "formatted_price": "29,98 €"
+          "price": 45,
+          "formatted_price": "45,00 €"
         },
         "final": {
-          "price": 29.98,
-          "formatted_price": "29,98 €"
+          "price": 45,
+          "formatted_price": "45,00 €"
         }
       },
-      "3014": {
+      "3068": {
         "regular": {
-          "price": 29.98,
-          "formatted_price": "29,98 €"
+          "price": 45,
+          "formatted_price": "45,00 €"
         },
         "final": {
-          "price": 29.98,
-          "formatted_price": "29,98 €"
+          "price": 45,
+          "formatted_price": "45,00 €"
         }
       },
-      "3015": {
+      "3069": {
         "regular": {
-          "price": 29.98,
-          "formatted_price": "29,98 €"
+          "price": 45,
+          "formatted_price": "45,00 €"
         },
         "final": {
-          "price": 29.98,
-          "formatted_price": "29,98 €"
+          "price": 45,
+          "formatted_price": "45,00 €"
         }
       },
-      "3016": {
+      "3070": {
         "regular": {
-          "price": 29.98,
-          "formatted_price": "29,98 €"
+          "price": 45,
+          "formatted_price": "45,00 €"
         },
         "final": {
-          "price": 29.98,
-          "formatted_price": "29,98 €"
+          "price": 45,
+          "formatted_price": "45,00 €"
         }
       },
-      "3017": {
+      "3071": {
         "regular": {
-          "price": 29.98,
-          "formatted_price": "29,98 €"
+          "price": 45,
+          "formatted_price": "45,00 €"
         },
         "final": {
-          "price": 29.98,
-          "formatted_price": "29,98 €"
+          "price": 45,
+          "formatted_price": "45,00 €"
         }
       },
-      "3018": {
+      "3072": {
         "regular": {
-          "price": 29.98,
-          "formatted_price": "29,98 €"
+          "price": 45,
+          "formatted_price": "45,00 €"
         },
         "final": {
-          "price": 29.98,
-          "formatted_price": "29,98 €"
+          "price": 45,
+          "formatted_price": "45,00 €"
         }
       },
-      "3019": {
+      "3073": {
         "regular": {
-          "price": 29.98,
-          "formatted_price": "29,98 €"
+          "price": 45,
+          "formatted_price": "45,00 €"
         },
         "final": {
-          "price": 29.98,
-          "formatted_price": "29,98 €"
+          "price": 45,
+          "formatted_price": "45,00 €"
         }
       },
-      "3020": {
+      "3074": {
         "regular": {
-          "price": 29.98,
-          "formatted_price": "29,98 €"
+          "price": 45,
+          "formatted_price": "45,00 €"
         },
         "final": {
-          "price": 29.98,
-          "formatted_price": "29,98 €"
+          "price": 45,
+          "formatted_price": "45,00 €"
         }
       },
-      "3021": {
+      "3075": {
         "regular": {
-          "price": 29.98,
-          "formatted_price": "29,98 €"
+          "price": 45,
+          "formatted_price": "45,00 €"
         },
         "final": {
-          "price": 29.98,
-          "formatted_price": "29,98 €"
+          "price": 45,
+          "formatted_price": "45,00 €"
         }
       },
-      "3022": {
+      "3076": {
         "regular": {
-          "price": 29.98,
-          "formatted_price": "29,98 €"
+          "price": 45,
+          "formatted_price": "45,00 €"
         },
         "final": {
-          "price": 29.98,
-          "formatted_price": "29,98 €"
+          "price": 45,
+          "formatted_price": "45,00 €"
         }
       },
-      "3023": {
+      "3077": {
         "regular": {
-          "price": 29.98,
-          "formatted_price": "29,98 €"
+          "price": 45,
+          "formatted_price": "45,00 €"
         },
         "final": {
-          "price": 29.98,
-          "formatted_price": "29,98 €"
+          "price": 45,
+          "formatted_price": "45,00 €"
         }
       },
-      "3024": {
+      "3078": {
         "regular": {
-          "price": 29.98,
-          "formatted_price": "29,98 €"
+          "price": 45,
+          "formatted_price": "45,00 €"
         },
         "final": {
-          "price": 29.98,
-          "formatted_price": "29,98 €"
+          "price": 45,
+          "formatted_price": "45,00 €"
         }
       },
-      "3025": {
+      "3079": {
         "regular": {
-          "price": 29.98,
-          "formatted_price": "29,98 €"
+          "price": 45,
+          "formatted_price": "45,00 €"
         },
         "final": {
-          "price": 29.98,
-          "formatted_price": "29,98 €"
+          "price": 45,
+          "formatted_price": "45,00 €"
         }
       },
-      "3026": {
+      "3080": {
         "regular": {
-          "price": 29.98,
-          "formatted_price": "29,98 €"
+          "price": 45,
+          "formatted_price": "45,00 €"
         },
         "final": {
-          "price": 29.98,
-          "formatted_price": "29,98 €"
+          "price": 45,
+          "formatted_price": "45,00 €"
         }
       },
-      "3027": {
+      "3081": {
         "regular": {
-          "price": 29.98,
-          "formatted_price": "29,98 €"
+          "price": 45,
+          "formatted_price": "45,00 €"
         },
         "final": {
-          "price": 29.98,
-          "formatted_price": "29,98 €"
+          "price": 45,
+          "formatted_price": "45,00 €"
         }
       },
-      "3028": {
+      "3082": {
         "regular": {
-          "price": 29.98,
-          "formatted_price": "29,98 €"
+          "price": 45,
+          "formatted_price": "45,00 €"
         },
         "final": {
-          "price": 29.98,
-          "formatted_price": "29,98 €"
+          "price": 45,
+          "formatted_price": "45,00 €"
         }
       },
-      "3029": {
+      "3083": {
         "regular": {
-          "price": 29.98,
-          "formatted_price": "29,98 €"
+          "price": 45,
+          "formatted_price": "45,00 €"
         },
         "final": {
-          "price": 29.98,
-          "formatted_price": "29,98 €"
+          "price": 45,
+          "formatted_price": "45,00 €"
         }
       },
-      "3030": {
+      "3084": {
         "regular": {
-          "price": 29.98,
-          "formatted_price": "29,98 €"
+          "price": 45,
+          "formatted_price": "45,00 €"
         },
         "final": {
-          "price": 29.98,
-          "formatted_price": "29,98 €"
+          "price": 45,
+          "formatted_price": "45,00 €"
         }
       },
-      "3031": {
+      "3085": {
         "regular": {
-          "price": 29.98,
-          "formatted_price": "29,98 €"
+          "price": 45,
+          "formatted_price": "45,00 €"
         },
         "final": {
-          "price": 29.98,
-          "formatted_price": "29,98 €"
+          "price": 45,
+          "formatted_price": "45,00 €"
         }
       },
-      "3032": {
+      "3086": {
         "regular": {
-          "price": 29.98,
-          "formatted_price": "29,98 €"
+          "price": 45,
+          "formatted_price": "45,00 €"
         },
         "final": {
-          "price": 29.98,
-          "formatted_price": "29,98 €"
-        }
-      },
-      "3033": {
-        "regular": {
-          "price": 29.98,
-          "formatted_price": "29,98 €"
-        },
-        "final": {
-          "price": 29.98,
-          "formatted_price": "29,98 €"
-        }
-      },
-      "3034": {
-        "regular": {
-          "price": 29.98,
-          "formatted_price": "29,98 €"
-        },
-        "final": {
-          "price": 29.98,
-          "formatted_price": "29,98 €"
-        }
-      },
-      "3035": {
-        "regular": {
-          "price": 29.98,
-          "formatted_price": "29,98 €"
-        },
-        "final": {
-          "price": 29.98,
-          "formatted_price": "29,98 €"
-        }
-      },
-      "3036": {
-        "regular": {
-          "price": 29.98,
-          "formatted_price": "29,98 €"
-        },
-        "final": {
-          "price": 29.98,
-          "formatted_price": "29,98 €"
-        }
-      },
-      "3037": {
-        "regular": {
-          "price": 29.98,
-          "formatted_price": "29,98 €"
-        },
-        "final": {
-          "price": 29.98,
-          "formatted_price": "29,98 €"
-        }
-      },
-      "3038": {
-        "regular": {
-          "price": 29.98,
-          "formatted_price": "29,98 €"
-        },
-        "final": {
-          "price": 29.98,
-          "formatted_price": "29,98 €"
-        }
-      },
-      "3039": {
-        "regular": {
-          "price": 29.98,
-          "formatted_price": "29,98 €"
-        },
-        "final": {
-          "price": 29.98,
-          "formatted_price": "29,98 €"
+          "price": 45,
+          "formatted_price": "45,00 €"
         }
       }
     },
     "variant_images": {
-      "3012": [
+      "3066": [
         {
-          "small_image_url": "http://127.0.0.1:8000/cache/small/product/3012/1709004734513.webp",
-          "medium_image_url": "http://127.0.0.1:8000/cache/medium/product/3012/1709004734513.webp",
-          "large_image_url": "http://127.0.0.1:8000/cache/large/product/3012/1709004734513.webp",
-          "original_image_url": "http://127.0.0.1:8000/cache/original/product/3012/1709004734513.webp"
-        },
-        {
-          "small_image_url": "http://127.0.0.1:8000/cache/small/product/3012/1709004734546.webp",
-          "medium_image_url": "http://127.0.0.1:8000/cache/medium/product/3012/1709004734546.webp",
-          "large_image_url": "http://127.0.0.1:8000/cache/large/product/3012/1709004734546.webp",
-          "original_image_url": "http://127.0.0.1:8000/cache/original/product/3012/1709004734546.webp"
-        },
-        {
-          "small_image_url": "http://127.0.0.1:8000/cache/small/product/3012/1709004734537.webp",
-          "medium_image_url": "http://127.0.0.1:8000/cache/medium/product/3012/1709004734537.webp",
-          "large_image_url": "http://127.0.0.1:8000/cache/large/product/3012/1709004734537.webp",
-          "original_image_url": "http://127.0.0.1:8000/cache/original/product/3012/1709004734537.webp"
+          "small_image_url": "https://127.0.0.1:8000/themes/shop/default/build/assets/small-product-placeholder-64b7f208.webp",
+          "medium_image_url": "https://127.0.0.1:8000/themes/shop/default/build/assets/medium-product-placeholder-3b1a7b7d.webp",
+          "large_image_url": "https://127.0.0.1:8000/themes/shop/default/build/assets/large-product-placeholder-13b8a96b.webp",
+          "original_image_url": "https://127.0.0.1:8000/themes/shop/default/build/assets/large-product-placeholder-13b8a96b.webp"
         }
       ],
-      "3013": [
+      "3067": [
         {
-          "small_image_url": "http://127.0.0.1:8000/cache/small/product/3013/1709004734513.webp",
-          "medium_image_url": "http://127.0.0.1:8000/cache/medium/product/3013/1709004734513.webp",
-          "large_image_url": "http://127.0.0.1:8000/cache/large/product/3013/1709004734513.webp",
-          "original_image_url": "http://127.0.0.1:8000/cache/original/product/3013/1709004734513.webp"
-        },
-        {
-          "small_image_url": "http://127.0.0.1:8000/cache/small/product/3013/1709004734546.webp",
-          "medium_image_url": "http://127.0.0.1:8000/cache/medium/product/3013/1709004734546.webp",
-          "large_image_url": "http://127.0.0.1:8000/cache/large/product/3013/1709004734546.webp",
-          "original_image_url": "http://127.0.0.1:8000/cache/original/product/3013/1709004734546.webp"
-        },
-        {
-          "small_image_url": "http://127.0.0.1:8000/cache/small/product/3013/1709004734537.webp",
-          "medium_image_url": "http://127.0.0.1:8000/cache/medium/product/3013/1709004734537.webp",
-          "large_image_url": "http://127.0.0.1:8000/cache/large/product/3013/1709004734537.webp",
-          "original_image_url": "http://127.0.0.1:8000/cache/original/product/3013/1709004734537.webp"
+          "small_image_url": "https://127.0.0.1:8000/themes/shop/default/build/assets/small-product-placeholder-64b7f208.webp",
+          "medium_image_url": "https://127.0.0.1:8000/themes/shop/default/build/assets/medium-product-placeholder-3b1a7b7d.webp",
+          "large_image_url": "https://127.0.0.1:8000/themes/shop/default/build/assets/large-product-placeholder-13b8a96b.webp",
+          "original_image_url": "https://127.0.0.1:8000/themes/shop/default/build/assets/large-product-placeholder-13b8a96b.webp"
         }
       ],
-      "3014": [
+      "3068": [
         {
-          "small_image_url": "http://127.0.0.1:8000/cache/small/product/3014/1709004734513.webp",
-          "medium_image_url": "http://127.0.0.1:8000/cache/medium/product/3014/1709004734513.webp",
-          "large_image_url": "http://127.0.0.1:8000/cache/large/product/3014/1709004734513.webp",
-          "original_image_url": "http://127.0.0.1:8000/cache/original/product/3014/1709004734513.webp"
-        },
-        {
-          "small_image_url": "http://127.0.0.1:8000/cache/small/product/3014/1709004734546.webp",
-          "medium_image_url": "http://127.0.0.1:8000/cache/medium/product/3014/1709004734546.webp",
-          "large_image_url": "http://127.0.0.1:8000/cache/large/product/3014/1709004734546.webp",
-          "original_image_url": "http://127.0.0.1:8000/cache/original/product/3014/1709004734546.webp"
-        },
-        {
-          "small_image_url": "http://127.0.0.1:8000/cache/small/product/3014/1709004734537.webp",
-          "medium_image_url": "http://127.0.0.1:8000/cache/medium/product/3014/1709004734537.webp",
-          "large_image_url": "http://127.0.0.1:8000/cache/large/product/3014/1709004734537.webp",
-          "original_image_url": "http://127.0.0.1:8000/cache/original/product/3014/1709004734537.webp"
+          "small_image_url": "https://127.0.0.1:8000/themes/shop/default/build/assets/small-product-placeholder-64b7f208.webp",
+          "medium_image_url": "https://127.0.0.1:8000/themes/shop/default/build/assets/medium-product-placeholder-3b1a7b7d.webp",
+          "large_image_url": "https://127.0.0.1:8000/themes/shop/default/build/assets/large-product-placeholder-13b8a96b.webp",
+          "original_image_url": "https://127.0.0.1:8000/themes/shop/default/build/assets/large-product-placeholder-13b8a96b.webp"
         }
       ],
-      "3015": [
+      "3069": [
         {
-          "small_image_url": "http://127.0.0.1:8000/cache/small/product/3015/1709004734513.webp",
-          "medium_image_url": "http://127.0.0.1:8000/cache/medium/product/3015/1709004734513.webp",
-          "large_image_url": "http://127.0.0.1:8000/cache/large/product/3015/1709004734513.webp",
-          "original_image_url": "http://127.0.0.1:8000/cache/original/product/3015/1709004734513.webp"
-        },
-        {
-          "small_image_url": "http://127.0.0.1:8000/cache/small/product/3015/1709004734546.webp",
-          "medium_image_url": "http://127.0.0.1:8000/cache/medium/product/3015/1709004734546.webp",
-          "large_image_url": "http://127.0.0.1:8000/cache/large/product/3015/1709004734546.webp",
-          "original_image_url": "http://127.0.0.1:8000/cache/original/product/3015/1709004734546.webp"
-        },
-        {
-          "small_image_url": "http://127.0.0.1:8000/cache/small/product/3015/1709004734537.webp",
-          "medium_image_url": "http://127.0.0.1:8000/cache/medium/product/3015/1709004734537.webp",
-          "large_image_url": "http://127.0.0.1:8000/cache/large/product/3015/1709004734537.webp",
-          "original_image_url": "http://127.0.0.1:8000/cache/original/product/3015/1709004734537.webp"
+          "small_image_url": "https://127.0.0.1:8000/themes/shop/default/build/assets/small-product-placeholder-64b7f208.webp",
+          "medium_image_url": "https://127.0.0.1:8000/themes/shop/default/build/assets/medium-product-placeholder-3b1a7b7d.webp",
+          "large_image_url": "https://127.0.0.1:8000/themes/shop/default/build/assets/large-product-placeholder-13b8a96b.webp",
+          "original_image_url": "https://127.0.0.1:8000/themes/shop/default/build/assets/large-product-placeholder-13b8a96b.webp"
         }
       ],
-      "3016": [
+      "3070": [
         {
-          "small_image_url": "http://127.0.0.1:8000/cache/small/product/3016/1709004734513.webp",
-          "medium_image_url": "http://127.0.0.1:8000/cache/medium/product/3016/1709004734513.webp",
-          "large_image_url": "http://127.0.0.1:8000/cache/large/product/3016/1709004734513.webp",
-          "original_image_url": "http://127.0.0.1:8000/cache/original/product/3016/1709004734513.webp"
-        },
-        {
-          "small_image_url": "http://127.0.0.1:8000/cache/small/product/3016/1709004734546.webp",
-          "medium_image_url": "http://127.0.0.1:8000/cache/medium/product/3016/1709004734546.webp",
-          "large_image_url": "http://127.0.0.1:8000/cache/large/product/3016/1709004734546.webp",
-          "original_image_url": "http://127.0.0.1:8000/cache/original/product/3016/1709004734546.webp"
-        },
-        {
-          "small_image_url": "http://127.0.0.1:8000/cache/small/product/3016/1709004734537.webp",
-          "medium_image_url": "http://127.0.0.1:8000/cache/medium/product/3016/1709004734537.webp",
-          "large_image_url": "http://127.0.0.1:8000/cache/large/product/3016/1709004734537.webp",
-          "original_image_url": "http://127.0.0.1:8000/cache/original/product/3016/1709004734537.webp"
+          "small_image_url": "https://127.0.0.1:8000/themes/shop/default/build/assets/small-product-placeholder-64b7f208.webp",
+          "medium_image_url": "https://127.0.0.1:8000/themes/shop/default/build/assets/medium-product-placeholder-3b1a7b7d.webp",
+          "large_image_url": "https://127.0.0.1:8000/themes/shop/default/build/assets/large-product-placeholder-13b8a96b.webp",
+          "original_image_url": "https://127.0.0.1:8000/themes/shop/default/build/assets/large-product-placeholder-13b8a96b.webp"
         }
       ],
-      "3017": [
+      "3071": [
         {
-          "small_image_url": "http://127.0.0.1:8000/cache/small/product/3017/1709004734513.webp",
-          "medium_image_url": "http://127.0.0.1:8000/cache/medium/product/3017/1709004734513.webp",
-          "large_image_url": "http://127.0.0.1:8000/cache/large/product/3017/1709004734513.webp",
-          "original_image_url": "http://127.0.0.1:8000/cache/original/product/3017/1709004734513.webp"
-        },
-        {
-          "small_image_url": "http://127.0.0.1:8000/cache/small/product/3017/1709004734546.webp",
-          "medium_image_url": "http://127.0.0.1:8000/cache/medium/product/3017/1709004734546.webp",
-          "large_image_url": "http://127.0.0.1:8000/cache/large/product/3017/1709004734546.webp",
-          "original_image_url": "http://127.0.0.1:8000/cache/original/product/3017/1709004734546.webp"
-        },
-        {
-          "small_image_url": "http://127.0.0.1:8000/cache/small/product/3017/1709004734537.webp",
-          "medium_image_url": "http://127.0.0.1:8000/cache/medium/product/3017/1709004734537.webp",
-          "large_image_url": "http://127.0.0.1:8000/cache/large/product/3017/1709004734537.webp",
-          "original_image_url": "http://127.0.0.1:8000/cache/original/product/3017/1709004734537.webp"
+          "small_image_url": "https://127.0.0.1:8000/themes/shop/default/build/assets/small-product-placeholder-64b7f208.webp",
+          "medium_image_url": "https://127.0.0.1:8000/themes/shop/default/build/assets/medium-product-placeholder-3b1a7b7d.webp",
+          "large_image_url": "https://127.0.0.1:8000/themes/shop/default/build/assets/large-product-placeholder-13b8a96b.webp",
+          "original_image_url": "https://127.0.0.1:8000/themes/shop/default/build/assets/large-product-placeholder-13b8a96b.webp"
         }
       ],
-      "3018": [
+      "3072": [
         {
-          "small_image_url": "http://127.0.0.1:8000/cache/small/product/3018/1709004734513.webp",
-          "medium_image_url": "http://127.0.0.1:8000/cache/medium/product/3018/1709004734513.webp",
-          "large_image_url": "http://127.0.0.1:8000/cache/large/product/3018/1709004734513.webp",
-          "original_image_url": "http://127.0.0.1:8000/cache/original/product/3018/1709004734513.webp"
-        },
-        {
-          "small_image_url": "http://127.0.0.1:8000/cache/small/product/3018/1709004734546.webp",
-          "medium_image_url": "http://127.0.0.1:8000/cache/medium/product/3018/1709004734546.webp",
-          "large_image_url": "http://127.0.0.1:8000/cache/large/product/3018/1709004734546.webp",
-          "original_image_url": "http://127.0.0.1:8000/cache/original/product/3018/1709004734546.webp"
-        },
-        {
-          "small_image_url": "http://127.0.0.1:8000/cache/small/product/3018/1709004734537.webp",
-          "medium_image_url": "http://127.0.0.1:8000/cache/medium/product/3018/1709004734537.webp",
-          "large_image_url": "http://127.0.0.1:8000/cache/large/product/3018/1709004734537.webp",
-          "original_image_url": "http://127.0.0.1:8000/cache/original/product/3018/1709004734537.webp"
+          "small_image_url": "https://127.0.0.1:8000/themes/shop/default/build/assets/small-product-placeholder-64b7f208.webp",
+          "medium_image_url": "https://127.0.0.1:8000/themes/shop/default/build/assets/medium-product-placeholder-3b1a7b7d.webp",
+          "large_image_url": "https://127.0.0.1:8000/themes/shop/default/build/assets/large-product-placeholder-13b8a96b.webp",
+          "original_image_url": "https://127.0.0.1:8000/themes/shop/default/build/assets/large-product-placeholder-13b8a96b.webp"
         }
       ],
-      "3019": [
+      "3073": [
         {
-          "small_image_url": "http://127.0.0.1:8000/cache/small/product/3019/1709004734513.webp",
-          "medium_image_url": "http://127.0.0.1:8000/cache/medium/product/3019/1709004734513.webp",
-          "large_image_url": "http://127.0.0.1:8000/cache/large/product/3019/1709004734513.webp",
-          "original_image_url": "http://127.0.0.1:8000/cache/original/product/3019/1709004734513.webp"
-        },
-        {
-          "small_image_url": "http://127.0.0.1:8000/cache/small/product/3019/1709004734546.webp",
-          "medium_image_url": "http://127.0.0.1:8000/cache/medium/product/3019/1709004734546.webp",
-          "large_image_url": "http://127.0.0.1:8000/cache/large/product/3019/1709004734546.webp",
-          "original_image_url": "http://127.0.0.1:8000/cache/original/product/3019/1709004734546.webp"
-        },
-        {
-          "small_image_url": "http://127.0.0.1:8000/cache/small/product/3019/1709004734537.webp",
-          "medium_image_url": "http://127.0.0.1:8000/cache/medium/product/3019/1709004734537.webp",
-          "large_image_url": "http://127.0.0.1:8000/cache/large/product/3019/1709004734537.webp",
-          "original_image_url": "http://127.0.0.1:8000/cache/original/product/3019/1709004734537.webp"
+          "small_image_url": "https://127.0.0.1:8000/themes/shop/default/build/assets/small-product-placeholder-64b7f208.webp",
+          "medium_image_url": "https://127.0.0.1:8000/themes/shop/default/build/assets/medium-product-placeholder-3b1a7b7d.webp",
+          "large_image_url": "https://127.0.0.1:8000/themes/shop/default/build/assets/large-product-placeholder-13b8a96b.webp",
+          "original_image_url": "https://127.0.0.1:8000/themes/shop/default/build/assets/large-product-placeholder-13b8a96b.webp"
         }
       ],
-      "3020": [
+      "3074": [
         {
-          "small_image_url": "http://127.0.0.1:8000/cache/small/product/3020/1709004734513.webp",
-          "medium_image_url": "http://127.0.0.1:8000/cache/medium/product/3020/1709004734513.webp",
-          "large_image_url": "http://127.0.0.1:8000/cache/large/product/3020/1709004734513.webp",
-          "original_image_url": "http://127.0.0.1:8000/cache/original/product/3020/1709004734513.webp"
-        },
-        {
-          "small_image_url": "http://127.0.0.1:8000/cache/small/product/3020/1709004734546.webp",
-          "medium_image_url": "http://127.0.0.1:8000/cache/medium/product/3020/1709004734546.webp",
-          "large_image_url": "http://127.0.0.1:8000/cache/large/product/3020/1709004734546.webp",
-          "original_image_url": "http://127.0.0.1:8000/cache/original/product/3020/1709004734546.webp"
-        },
-        {
-          "small_image_url": "http://127.0.0.1:8000/cache/small/product/3020/1709004734537.webp",
-          "medium_image_url": "http://127.0.0.1:8000/cache/medium/product/3020/1709004734537.webp",
-          "large_image_url": "http://127.0.0.1:8000/cache/large/product/3020/1709004734537.webp",
-          "original_image_url": "http://127.0.0.1:8000/cache/original/product/3020/1709004734537.webp"
+          "small_image_url": "https://127.0.0.1:8000/themes/shop/default/build/assets/small-product-placeholder-64b7f208.webp",
+          "medium_image_url": "https://127.0.0.1:8000/themes/shop/default/build/assets/medium-product-placeholder-3b1a7b7d.webp",
+          "large_image_url": "https://127.0.0.1:8000/themes/shop/default/build/assets/large-product-placeholder-13b8a96b.webp",
+          "original_image_url": "https://127.0.0.1:8000/themes/shop/default/build/assets/large-product-placeholder-13b8a96b.webp"
         }
       ],
-      "3021": [
+      "3075": [
         {
-          "small_image_url": "http://127.0.0.1:8000/cache/small/product/3021/1709004734513.webp",
-          "medium_image_url": "http://127.0.0.1:8000/cache/medium/product/3021/1709004734513.webp",
-          "large_image_url": "http://127.0.0.1:8000/cache/large/product/3021/1709004734513.webp",
-          "original_image_url": "http://127.0.0.1:8000/cache/original/product/3021/1709004734513.webp"
-        },
-        {
-          "small_image_url": "http://127.0.0.1:8000/cache/small/product/3021/1709004734546.webp",
-          "medium_image_url": "http://127.0.0.1:8000/cache/medium/product/3021/1709004734546.webp",
-          "large_image_url": "http://127.0.0.1:8000/cache/large/product/3021/1709004734546.webp",
-          "original_image_url": "http://127.0.0.1:8000/cache/original/product/3021/1709004734546.webp"
-        },
-        {
-          "small_image_url": "http://127.0.0.1:8000/cache/small/product/3021/1709004734537.webp",
-          "medium_image_url": "http://127.0.0.1:8000/cache/medium/product/3021/1709004734537.webp",
-          "large_image_url": "http://127.0.0.1:8000/cache/large/product/3021/1709004734537.webp",
-          "original_image_url": "http://127.0.0.1:8000/cache/original/product/3021/1709004734537.webp"
+          "small_image_url": "https://127.0.0.1:8000/themes/shop/default/build/assets/small-product-placeholder-64b7f208.webp",
+          "medium_image_url": "https://127.0.0.1:8000/themes/shop/default/build/assets/medium-product-placeholder-3b1a7b7d.webp",
+          "large_image_url": "https://127.0.0.1:8000/themes/shop/default/build/assets/large-product-placeholder-13b8a96b.webp",
+          "original_image_url": "https://127.0.0.1:8000/themes/shop/default/build/assets/large-product-placeholder-13b8a96b.webp"
         }
       ],
-      "3022": [
+      "3076": [
         {
-          "small_image_url": "http://127.0.0.1:8000/cache/small/product/3022/1709004734513.webp",
-          "medium_image_url": "http://127.0.0.1:8000/cache/medium/product/3022/1709004734513.webp",
-          "large_image_url": "http://127.0.0.1:8000/cache/large/product/3022/1709004734513.webp",
-          "original_image_url": "http://127.0.0.1:8000/cache/original/product/3022/1709004734513.webp"
-        },
-        {
-          "small_image_url": "http://127.0.0.1:8000/cache/small/product/3022/1709004734546.webp",
-          "medium_image_url": "http://127.0.0.1:8000/cache/medium/product/3022/1709004734546.webp",
-          "large_image_url": "http://127.0.0.1:8000/cache/large/product/3022/1709004734546.webp",
-          "original_image_url": "http://127.0.0.1:8000/cache/original/product/3022/1709004734546.webp"
-        },
-        {
-          "small_image_url": "http://127.0.0.1:8000/cache/small/product/3022/1709004734537.webp",
-          "medium_image_url": "http://127.0.0.1:8000/cache/medium/product/3022/1709004734537.webp",
-          "large_image_url": "http://127.0.0.1:8000/cache/large/product/3022/1709004734537.webp",
-          "original_image_url": "http://127.0.0.1:8000/cache/original/product/3022/1709004734537.webp"
+          "small_image_url": "https://127.0.0.1:8000/themes/shop/default/build/assets/small-product-placeholder-64b7f208.webp",
+          "medium_image_url": "https://127.0.0.1:8000/themes/shop/default/build/assets/medium-product-placeholder-3b1a7b7d.webp",
+          "large_image_url": "https://127.0.0.1:8000/themes/shop/default/build/assets/large-product-placeholder-13b8a96b.webp",
+          "original_image_url": "https://127.0.0.1:8000/themes/shop/default/build/assets/large-product-placeholder-13b8a96b.webp"
         }
       ],
-      "3023": [
+      "3077": [
         {
-          "small_image_url": "http://127.0.0.1:8000/cache/small/product/3023/1709004734513.webp",
-          "medium_image_url": "http://127.0.0.1:8000/cache/medium/product/3023/1709004734513.webp",
-          "large_image_url": "http://127.0.0.1:8000/cache/large/product/3023/1709004734513.webp",
-          "original_image_url": "http://127.0.0.1:8000/cache/original/product/3023/1709004734513.webp"
-        },
-        {
-          "small_image_url": "http://127.0.0.1:8000/cache/small/product/3023/1709004734546.webp",
-          "medium_image_url": "http://127.0.0.1:8000/cache/medium/product/3023/1709004734546.webp",
-          "large_image_url": "http://127.0.0.1:8000/cache/large/product/3023/1709004734546.webp",
-          "original_image_url": "http://127.0.0.1:8000/cache/original/product/3023/1709004734546.webp"
-        },
-        {
-          "small_image_url": "http://127.0.0.1:8000/cache/small/product/3023/1709004734537.webp",
-          "medium_image_url": "http://127.0.0.1:8000/cache/medium/product/3023/1709004734537.webp",
-          "large_image_url": "http://127.0.0.1:8000/cache/large/product/3023/1709004734537.webp",
-          "original_image_url": "http://127.0.0.1:8000/cache/original/product/3023/1709004734537.webp"
+          "small_image_url": "https://127.0.0.1:8000/themes/shop/default/build/assets/small-product-placeholder-64b7f208.webp",
+          "medium_image_url": "https://127.0.0.1:8000/themes/shop/default/build/assets/medium-product-placeholder-3b1a7b7d.webp",
+          "large_image_url": "https://127.0.0.1:8000/themes/shop/default/build/assets/large-product-placeholder-13b8a96b.webp",
+          "original_image_url": "https://127.0.0.1:8000/themes/shop/default/build/assets/large-product-placeholder-13b8a96b.webp"
         }
       ],
-      "3024": [
+      "3078": [
         {
-          "small_image_url": "http://127.0.0.1:8000/cache/small/product/3024/1709004734513.webp",
-          "medium_image_url": "http://127.0.0.1:8000/cache/medium/product/3024/1709004734513.webp",
-          "large_image_url": "http://127.0.0.1:8000/cache/large/product/3024/1709004734513.webp",
-          "original_image_url": "http://127.0.0.1:8000/cache/original/product/3024/1709004734513.webp"
-        },
-        {
-          "small_image_url": "http://127.0.0.1:8000/cache/small/product/3024/1709004734546.webp",
-          "medium_image_url": "http://127.0.0.1:8000/cache/medium/product/3024/1709004734546.webp",
-          "large_image_url": "http://127.0.0.1:8000/cache/large/product/3024/1709004734546.webp",
-          "original_image_url": "http://127.0.0.1:8000/cache/original/product/3024/1709004734546.webp"
-        },
-        {
-          "small_image_url": "http://127.0.0.1:8000/cache/small/product/3024/1709004734537.webp",
-          "medium_image_url": "http://127.0.0.1:8000/cache/medium/product/3024/1709004734537.webp",
-          "large_image_url": "http://127.0.0.1:8000/cache/large/product/3024/1709004734537.webp",
-          "original_image_url": "http://127.0.0.1:8000/cache/original/product/3024/1709004734537.webp"
+          "small_image_url": "https://127.0.0.1:8000/themes/shop/default/build/assets/small-product-placeholder-64b7f208.webp",
+          "medium_image_url": "https://127.0.0.1:8000/themes/shop/default/build/assets/medium-product-placeholder-3b1a7b7d.webp",
+          "large_image_url": "https://127.0.0.1:8000/themes/shop/default/build/assets/large-product-placeholder-13b8a96b.webp",
+          "original_image_url": "https://127.0.0.1:8000/themes/shop/default/build/assets/large-product-placeholder-13b8a96b.webp"
         }
       ],
-      "3025": [
+      "3079": [
         {
-          "small_image_url": "http://127.0.0.1:8000/cache/small/product/3025/1709004734513.webp",
-          "medium_image_url": "http://127.0.0.1:8000/cache/medium/product/3025/1709004734513.webp",
-          "large_image_url": "http://127.0.0.1:8000/cache/large/product/3025/1709004734513.webp",
-          "original_image_url": "http://127.0.0.1:8000/cache/original/product/3025/1709004734513.webp"
-        },
-        {
-          "small_image_url": "http://127.0.0.1:8000/cache/small/product/3025/1709004734546.webp",
-          "medium_image_url": "http://127.0.0.1:8000/cache/medium/product/3025/1709004734546.webp",
-          "large_image_url": "http://127.0.0.1:8000/cache/large/product/3025/1709004734546.webp",
-          "original_image_url": "http://127.0.0.1:8000/cache/original/product/3025/1709004734546.webp"
-        },
-        {
-          "small_image_url": "http://127.0.0.1:8000/cache/small/product/3025/1709004734537.webp",
-          "medium_image_url": "http://127.0.0.1:8000/cache/medium/product/3025/1709004734537.webp",
-          "large_image_url": "http://127.0.0.1:8000/cache/large/product/3025/1709004734537.webp",
-          "original_image_url": "http://127.0.0.1:8000/cache/original/product/3025/1709004734537.webp"
+          "small_image_url": "https://127.0.0.1:8000/themes/shop/default/build/assets/small-product-placeholder-64b7f208.webp",
+          "medium_image_url": "https://127.0.0.1:8000/themes/shop/default/build/assets/medium-product-placeholder-3b1a7b7d.webp",
+          "large_image_url": "https://127.0.0.1:8000/themes/shop/default/build/assets/large-product-placeholder-13b8a96b.webp",
+          "original_image_url": "https://127.0.0.1:8000/themes/shop/default/build/assets/large-product-placeholder-13b8a96b.webp"
         }
       ],
-      "3026": [
+      "3080": [
         {
-          "small_image_url": "http://127.0.0.1:8000/cache/small/product/3026/1709004734513.webp",
-          "medium_image_url": "http://127.0.0.1:8000/cache/medium/product/3026/1709004734513.webp",
-          "large_image_url": "http://127.0.0.1:8000/cache/large/product/3026/1709004734513.webp",
-          "original_image_url": "http://127.0.0.1:8000/cache/original/product/3026/1709004734513.webp"
-        },
-        {
-          "small_image_url": "http://127.0.0.1:8000/cache/small/product/3026/1709004734546.webp",
-          "medium_image_url": "http://127.0.0.1:8000/cache/medium/product/3026/1709004734546.webp",
-          "large_image_url": "http://127.0.0.1:8000/cache/large/product/3026/1709004734546.webp",
-          "original_image_url": "http://127.0.0.1:8000/cache/original/product/3026/1709004734546.webp"
-        },
-        {
-          "small_image_url": "http://127.0.0.1:8000/cache/small/product/3026/1709004734537.webp",
-          "medium_image_url": "http://127.0.0.1:8000/cache/medium/product/3026/1709004734537.webp",
-          "large_image_url": "http://127.0.0.1:8000/cache/large/product/3026/1709004734537.webp",
-          "original_image_url": "http://127.0.0.1:8000/cache/original/product/3026/1709004734537.webp"
+          "small_image_url": "https://127.0.0.1:8000/themes/shop/default/build/assets/small-product-placeholder-64b7f208.webp",
+          "medium_image_url": "https://127.0.0.1:8000/themes/shop/default/build/assets/medium-product-placeholder-3b1a7b7d.webp",
+          "large_image_url": "https://127.0.0.1:8000/themes/shop/default/build/assets/large-product-placeholder-13b8a96b.webp",
+          "original_image_url": "https://127.0.0.1:8000/themes/shop/default/build/assets/large-product-placeholder-13b8a96b.webp"
         }
       ],
-      "3027": [
+      "3081": [
         {
-          "small_image_url": "http://127.0.0.1:8000/cache/small/product/3027/1709004734513.webp",
-          "medium_image_url": "http://127.0.0.1:8000/cache/medium/product/3027/1709004734513.webp",
-          "large_image_url": "http://127.0.0.1:8000/cache/large/product/3027/1709004734513.webp",
-          "original_image_url": "http://127.0.0.1:8000/cache/original/product/3027/1709004734513.webp"
-        },
-        {
-          "small_image_url": "http://127.0.0.1:8000/cache/small/product/3027/1709004734546.webp",
-          "medium_image_url": "http://127.0.0.1:8000/cache/medium/product/3027/1709004734546.webp",
-          "large_image_url": "http://127.0.0.1:8000/cache/large/product/3027/1709004734546.webp",
-          "original_image_url": "http://127.0.0.1:8000/cache/original/product/3027/1709004734546.webp"
-        },
-        {
-          "small_image_url": "http://127.0.0.1:8000/cache/small/product/3027/1709004734537.webp",
-          "medium_image_url": "http://127.0.0.1:8000/cache/medium/product/3027/1709004734537.webp",
-          "large_image_url": "http://127.0.0.1:8000/cache/large/product/3027/1709004734537.webp",
-          "original_image_url": "http://127.0.0.1:8000/cache/original/product/3027/1709004734537.webp"
+          "small_image_url": "https://127.0.0.1:8000/themes/shop/default/build/assets/small-product-placeholder-64b7f208.webp",
+          "medium_image_url": "https://127.0.0.1:8000/themes/shop/default/build/assets/medium-product-placeholder-3b1a7b7d.webp",
+          "large_image_url": "https://127.0.0.1:8000/themes/shop/default/build/assets/large-product-placeholder-13b8a96b.webp",
+          "original_image_url": "https://127.0.0.1:8000/themes/shop/default/build/assets/large-product-placeholder-13b8a96b.webp"
         }
       ],
-      "3028": [
+      "3082": [
         {
-          "small_image_url": "http://127.0.0.1:8000/cache/small/product/3028/1709004734513.webp",
-          "medium_image_url": "http://127.0.0.1:8000/cache/medium/product/3028/1709004734513.webp",
-          "large_image_url": "http://127.0.0.1:8000/cache/large/product/3028/1709004734513.webp",
-          "original_image_url": "http://127.0.0.1:8000/cache/original/product/3028/1709004734513.webp"
-        },
-        {
-          "small_image_url": "http://127.0.0.1:8000/cache/small/product/3028/1709004734546.webp",
-          "medium_image_url": "http://127.0.0.1:8000/cache/medium/product/3028/1709004734546.webp",
-          "large_image_url": "http://127.0.0.1:8000/cache/large/product/3028/1709004734546.webp",
-          "original_image_url": "http://127.0.0.1:8000/cache/original/product/3028/1709004734546.webp"
-        },
-        {
-          "small_image_url": "http://127.0.0.1:8000/cache/small/product/3028/1709004734537.webp",
-          "medium_image_url": "http://127.0.0.1:8000/cache/medium/product/3028/1709004734537.webp",
-          "large_image_url": "http://127.0.0.1:8000/cache/large/product/3028/1709004734537.webp",
-          "original_image_url": "http://127.0.0.1:8000/cache/original/product/3028/1709004734537.webp"
+          "small_image_url": "https://127.0.0.1:8000/themes/shop/default/build/assets/small-product-placeholder-64b7f208.webp",
+          "medium_image_url": "https://127.0.0.1:8000/themes/shop/default/build/assets/medium-product-placeholder-3b1a7b7d.webp",
+          "large_image_url": "https://127.0.0.1:8000/themes/shop/default/build/assets/large-product-placeholder-13b8a96b.webp",
+          "original_image_url": "https://127.0.0.1:8000/themes/shop/default/build/assets/large-product-placeholder-13b8a96b.webp"
         }
       ],
-      "3029": [
+      "3083": [
         {
-          "small_image_url": "http://127.0.0.1:8000/cache/small/product/3029/1709004734513.webp",
-          "medium_image_url": "http://127.0.0.1:8000/cache/medium/product/3029/1709004734513.webp",
-          "large_image_url": "http://127.0.0.1:8000/cache/large/product/3029/1709004734513.webp",
-          "original_image_url": "http://127.0.0.1:8000/cache/original/product/3029/1709004734513.webp"
-        },
-        {
-          "small_image_url": "http://127.0.0.1:8000/cache/small/product/3029/1709004734546.webp",
-          "medium_image_url": "http://127.0.0.1:8000/cache/medium/product/3029/1709004734546.webp",
-          "large_image_url": "http://127.0.0.1:8000/cache/large/product/3029/1709004734546.webp",
-          "original_image_url": "http://127.0.0.1:8000/cache/original/product/3029/1709004734546.webp"
-        },
-        {
-          "small_image_url": "http://127.0.0.1:8000/cache/small/product/3029/1709004734537.webp",
-          "medium_image_url": "http://127.0.0.1:8000/cache/medium/product/3029/1709004734537.webp",
-          "large_image_url": "http://127.0.0.1:8000/cache/large/product/3029/1709004734537.webp",
-          "original_image_url": "http://127.0.0.1:8000/cache/original/product/3029/1709004734537.webp"
+          "small_image_url": "https://127.0.0.1:8000/themes/shop/default/build/assets/small-product-placeholder-64b7f208.webp",
+          "medium_image_url": "https://127.0.0.1:8000/themes/shop/default/build/assets/medium-product-placeholder-3b1a7b7d.webp",
+          "large_image_url": "https://127.0.0.1:8000/themes/shop/default/build/assets/large-product-placeholder-13b8a96b.webp",
+          "original_image_url": "https://127.0.0.1:8000/themes/shop/default/build/assets/large-product-placeholder-13b8a96b.webp"
         }
       ],
-      "3030": [
+      "3084": [
         {
-          "small_image_url": "http://127.0.0.1:8000/cache/small/product/3030/1709004734537.webp",
-          "medium_image_url": "http://127.0.0.1:8000/cache/medium/product/3030/1709004734537.webp",
-          "large_image_url": "http://127.0.0.1:8000/cache/large/product/3030/1709004734537.webp",
-          "original_image_url": "http://127.0.0.1:8000/cache/original/product/3030/1709004734537.webp"
-        },
-        {
-          "small_image_url": "http://127.0.0.1:8000/cache/small/product/3030/1709004734513.webp",
-          "medium_image_url": "http://127.0.0.1:8000/cache/medium/product/3030/1709004734513.webp",
-          "large_image_url": "http://127.0.0.1:8000/cache/large/product/3030/1709004734513.webp",
-          "original_image_url": "http://127.0.0.1:8000/cache/original/product/3030/1709004734513.webp"
-        },
-        {
-          "small_image_url": "http://127.0.0.1:8000/cache/small/product/3030/1709004734546.webp",
-          "medium_image_url": "http://127.0.0.1:8000/cache/medium/product/3030/1709004734546.webp",
-          "large_image_url": "http://127.0.0.1:8000/cache/large/product/3030/1709004734546.webp",
-          "original_image_url": "http://127.0.0.1:8000/cache/original/product/3030/1709004734546.webp"
+          "small_image_url": "https://127.0.0.1:8000/themes/shop/default/build/assets/small-product-placeholder-64b7f208.webp",
+          "medium_image_url": "https://127.0.0.1:8000/themes/shop/default/build/assets/medium-product-placeholder-3b1a7b7d.webp",
+          "large_image_url": "https://127.0.0.1:8000/themes/shop/default/build/assets/large-product-placeholder-13b8a96b.webp",
+          "original_image_url": "https://127.0.0.1:8000/themes/shop/default/build/assets/large-product-placeholder-13b8a96b.webp"
         }
       ],
-      "3031": [
+      "3085": [
         {
-          "small_image_url": "http://127.0.0.1:8000/cache/small/product/3031/1709004734513.webp",
-          "medium_image_url": "http://127.0.0.1:8000/cache/medium/product/3031/1709004734513.webp",
-          "large_image_url": "http://127.0.0.1:8000/cache/large/product/3031/1709004734513.webp",
-          "original_image_url": "http://127.0.0.1:8000/cache/original/product/3031/1709004734513.webp"
-        },
-        {
-          "small_image_url": "http://127.0.0.1:8000/cache/small/product/3031/1709004734546.webp",
-          "medium_image_url": "http://127.0.0.1:8000/cache/medium/product/3031/1709004734546.webp",
-          "large_image_url": "http://127.0.0.1:8000/cache/large/product/3031/1709004734546.webp",
-          "original_image_url": "http://127.0.0.1:8000/cache/original/product/3031/1709004734546.webp"
-        },
-        {
-          "small_image_url": "http://127.0.0.1:8000/cache/small/product/3031/1709004734537.webp",
-          "medium_image_url": "http://127.0.0.1:8000/cache/medium/product/3031/1709004734537.webp",
-          "large_image_url": "http://127.0.0.1:8000/cache/large/product/3031/1709004734537.webp",
-          "original_image_url": "http://127.0.0.1:8000/cache/original/product/3031/1709004734537.webp"
+          "small_image_url": "https://127.0.0.1:8000/themes/shop/default/build/assets/small-product-placeholder-64b7f208.webp",
+          "medium_image_url": "https://127.0.0.1:8000/themes/shop/default/build/assets/medium-product-placeholder-3b1a7b7d.webp",
+          "large_image_url": "https://127.0.0.1:8000/themes/shop/default/build/assets/large-product-placeholder-13b8a96b.webp",
+          "original_image_url": "https://127.0.0.1:8000/themes/shop/default/build/assets/large-product-placeholder-13b8a96b.webp"
         }
       ],
-      "3032": [
+      "3086": [
         {
-          "small_image_url": "http://127.0.0.1:8000/cache/small/product/3032/1709004734513.webp",
-          "medium_image_url": "http://127.0.0.1:8000/cache/medium/product/3032/1709004734513.webp",
-          "large_image_url": "http://127.0.0.1:8000/cache/large/product/3032/1709004734513.webp",
-          "original_image_url": "http://127.0.0.1:8000/cache/original/product/3032/1709004734513.webp"
-        },
-        {
-          "small_image_url": "http://127.0.0.1:8000/cache/small/product/3032/1709004734546.webp",
-          "medium_image_url": "http://127.0.0.1:8000/cache/medium/product/3032/1709004734546.webp",
-          "large_image_url": "http://127.0.0.1:8000/cache/large/product/3032/1709004734546.webp",
-          "original_image_url": "http://127.0.0.1:8000/cache/original/product/3032/1709004734546.webp"
-        },
-        {
-          "small_image_url": "http://127.0.0.1:8000/cache/small/product/3032/1709004734537.webp",
-          "medium_image_url": "http://127.0.0.1:8000/cache/medium/product/3032/1709004734537.webp",
-          "large_image_url": "http://127.0.0.1:8000/cache/large/product/3032/1709004734537.webp",
-          "original_image_url": "http://127.0.0.1:8000/cache/original/product/3032/1709004734537.webp"
-        }
-      ],
-      "3033": [
-        {
-          "small_image_url": "http://127.0.0.1:8000/cache/small/product/3033/1709004734513.webp",
-          "medium_image_url": "http://127.0.0.1:8000/cache/medium/product/3033/1709004734513.webp",
-          "large_image_url": "http://127.0.0.1:8000/cache/large/product/3033/1709004734513.webp",
-          "original_image_url": "http://127.0.0.1:8000/cache/original/product/3033/1709004734513.webp"
-        },
-        {
-          "small_image_url": "http://127.0.0.1:8000/cache/small/product/3033/1709004734546.webp",
-          "medium_image_url": "http://127.0.0.1:8000/cache/medium/product/3033/1709004734546.webp",
-          "large_image_url": "http://127.0.0.1:8000/cache/large/product/3033/1709004734546.webp",
-          "original_image_url": "http://127.0.0.1:8000/cache/original/product/3033/1709004734546.webp"
-        },
-        {
-          "small_image_url": "http://127.0.0.1:8000/cache/small/product/3033/1709004734537.webp",
-          "medium_image_url": "http://127.0.0.1:8000/cache/medium/product/3033/1709004734537.webp",
-          "large_image_url": "http://127.0.0.1:8000/cache/large/product/3033/1709004734537.webp",
-          "original_image_url": "http://127.0.0.1:8000/cache/original/product/3033/1709004734537.webp"
-        }
-      ],
-      "3034": [
-        {
-          "small_image_url": "http://127.0.0.1:8000/cache/small/product/3034/1709004734513.webp",
-          "medium_image_url": "http://127.0.0.1:8000/cache/medium/product/3034/1709004734513.webp",
-          "large_image_url": "http://127.0.0.1:8000/cache/large/product/3034/1709004734513.webp",
-          "original_image_url": "http://127.0.0.1:8000/cache/original/product/3034/1709004734513.webp"
-        },
-        {
-          "small_image_url": "http://127.0.0.1:8000/cache/small/product/3034/1709004734546.webp",
-          "medium_image_url": "http://127.0.0.1:8000/cache/medium/product/3034/1709004734546.webp",
-          "large_image_url": "http://127.0.0.1:8000/cache/large/product/3034/1709004734546.webp",
-          "original_image_url": "http://127.0.0.1:8000/cache/original/product/3034/1709004734546.webp"
-        },
-        {
-          "small_image_url": "http://127.0.0.1:8000/cache/small/product/3034/1709004734537.webp",
-          "medium_image_url": "http://127.0.0.1:8000/cache/medium/product/3034/1709004734537.webp",
-          "large_image_url": "http://127.0.0.1:8000/cache/large/product/3034/1709004734537.webp",
-          "original_image_url": "http://127.0.0.1:8000/cache/original/product/3034/1709004734537.webp"
-        }
-      ],
-      "3035": [
-        {
-          "small_image_url": "http://127.0.0.1:8000/cache/small/product/3035/1709004734513.webp",
-          "medium_image_url": "http://127.0.0.1:8000/cache/medium/product/3035/1709004734513.webp",
-          "large_image_url": "http://127.0.0.1:8000/cache/large/product/3035/1709004734513.webp",
-          "original_image_url": "http://127.0.0.1:8000/cache/original/product/3035/1709004734513.webp"
-        },
-        {
-          "small_image_url": "http://127.0.0.1:8000/cache/small/product/3035/1709004734546.webp",
-          "medium_image_url": "http://127.0.0.1:8000/cache/medium/product/3035/1709004734546.webp",
-          "large_image_url": "http://127.0.0.1:8000/cache/large/product/3035/1709004734546.webp",
-          "original_image_url": "http://127.0.0.1:8000/cache/original/product/3035/1709004734546.webp"
-        },
-        {
-          "small_image_url": "http://127.0.0.1:8000/cache/small/product/3035/1709004734537.webp",
-          "medium_image_url": "http://127.0.0.1:8000/cache/medium/product/3035/1709004734537.webp",
-          "large_image_url": "http://127.0.0.1:8000/cache/large/product/3035/1709004734537.webp",
-          "original_image_url": "http://127.0.0.1:8000/cache/original/product/3035/1709004734537.webp"
-        }
-      ],
-      "3036": [
-        {
-          "small_image_url": "http://127.0.0.1:8000/cache/small/product/3036/1709004734513.webp",
-          "medium_image_url": "http://127.0.0.1:8000/cache/medium/product/3036/1709004734513.webp",
-          "large_image_url": "http://127.0.0.1:8000/cache/large/product/3036/1709004734513.webp",
-          "original_image_url": "http://127.0.0.1:8000/cache/original/product/3036/1709004734513.webp"
-        },
-        {
-          "small_image_url": "http://127.0.0.1:8000/cache/small/product/3036/1709004734546.webp",
-          "medium_image_url": "http://127.0.0.1:8000/cache/medium/product/3036/1709004734546.webp",
-          "large_image_url": "http://127.0.0.1:8000/cache/large/product/3036/1709004734546.webp",
-          "original_image_url": "http://127.0.0.1:8000/cache/original/product/3036/1709004734546.webp"
-        },
-        {
-          "small_image_url": "http://127.0.0.1:8000/cache/small/product/3036/1709004734537.webp",
-          "medium_image_url": "http://127.0.0.1:8000/cache/medium/product/3036/1709004734537.webp",
-          "large_image_url": "http://127.0.0.1:8000/cache/large/product/3036/1709004734537.webp",
-          "original_image_url": "http://127.0.0.1:8000/cache/original/product/3036/1709004734537.webp"
-        }
-      ],
-      "3037": [
-        {
-          "small_image_url": "http://127.0.0.1:8000/cache/small/product/3037/1709004734513.webp",
-          "medium_image_url": "http://127.0.0.1:8000/cache/medium/product/3037/1709004734513.webp",
-          "large_image_url": "http://127.0.0.1:8000/cache/large/product/3037/1709004734513.webp",
-          "original_image_url": "http://127.0.0.1:8000/cache/original/product/3037/1709004734513.webp"
-        },
-        {
-          "small_image_url": "http://127.0.0.1:8000/cache/small/product/3037/1709004734546.webp",
-          "medium_image_url": "http://127.0.0.1:8000/cache/medium/product/3037/1709004734546.webp",
-          "large_image_url": "http://127.0.0.1:8000/cache/large/product/3037/1709004734546.webp",
-          "original_image_url": "http://127.0.0.1:8000/cache/original/product/3037/1709004734546.webp"
-        },
-        {
-          "small_image_url": "http://127.0.0.1:8000/cache/small/product/3037/1709004734537.webp",
-          "medium_image_url": "http://127.0.0.1:8000/cache/medium/product/3037/1709004734537.webp",
-          "large_image_url": "http://127.0.0.1:8000/cache/large/product/3037/1709004734537.webp",
-          "original_image_url": "http://127.0.0.1:8000/cache/original/product/3037/1709004734537.webp"
-        }
-      ],
-      "3038": [
-        {
-          "small_image_url": "http://127.0.0.1:8000/cache/small/product/3038/1709004734513.webp",
-          "medium_image_url": "http://127.0.0.1:8000/cache/medium/product/3038/1709004734513.webp",
-          "large_image_url": "http://127.0.0.1:8000/cache/large/product/3038/1709004734513.webp",
-          "original_image_url": "http://127.0.0.1:8000/cache/original/product/3038/1709004734513.webp"
-        },
-        {
-          "small_image_url": "http://127.0.0.1:8000/cache/small/product/3038/1709004734546.webp",
-          "medium_image_url": "http://127.0.0.1:8000/cache/medium/product/3038/1709004734546.webp",
-          "large_image_url": "http://127.0.0.1:8000/cache/large/product/3038/1709004734546.webp",
-          "original_image_url": "http://127.0.0.1:8000/cache/original/product/3038/1709004734546.webp"
-        },
-        {
-          "small_image_url": "http://127.0.0.1:8000/cache/small/product/3038/1709004734537.webp",
-          "medium_image_url": "http://127.0.0.1:8000/cache/medium/product/3038/1709004734537.webp",
-          "large_image_url": "http://127.0.0.1:8000/cache/large/product/3038/1709004734537.webp",
-          "original_image_url": "http://127.0.0.1:8000/cache/original/product/3038/1709004734537.webp"
-        }
-      ],
-      "3039": [
-        {
-          "small_image_url": "http://127.0.0.1:8000/cache/small/product/3039/1709004734513.webp",
-          "medium_image_url": "http://127.0.0.1:8000/cache/medium/product/3039/1709004734513.webp",
-          "large_image_url": "http://127.0.0.1:8000/cache/large/product/3039/1709004734513.webp",
-          "original_image_url": "http://127.0.0.1:8000/cache/original/product/3039/1709004734513.webp"
-        },
-        {
-          "small_image_url": "http://127.0.0.1:8000/cache/small/product/3039/1709004734546.webp",
-          "medium_image_url": "http://127.0.0.1:8000/cache/medium/product/3039/1709004734546.webp",
-          "large_image_url": "http://127.0.0.1:8000/cache/large/product/3039/1709004734546.webp",
-          "original_image_url": "http://127.0.0.1:8000/cache/original/product/3039/1709004734546.webp"
-        },
-        {
-          "small_image_url": "http://127.0.0.1:8000/cache/small/product/3039/1709004734537.webp",
-          "medium_image_url": "http://127.0.0.1:8000/cache/medium/product/3039/1709004734537.webp",
-          "large_image_url": "http://127.0.0.1:8000/cache/large/product/3039/1709004734537.webp",
-          "original_image_url": "http://127.0.0.1:8000/cache/original/product/3039/1709004734537.webp"
+          "small_image_url": "https://127.0.0.1:8000/themes/shop/default/build/assets/small-product-placeholder-64b7f208.webp",
+          "medium_image_url": "https://127.0.0.1:8000/themes/shop/default/build/assets/medium-product-placeholder-3b1a7b7d.webp",
+          "large_image_url": "https://127.0.0.1:8000/themes/shop/default/build/assets/large-product-placeholder-13b8a96b.webp",
+          "original_image_url": "https://127.0.0.1:8000/themes/shop/default/build/assets/large-product-placeholder-13b8a96b.webp"
         }
       ]
     },
     "variant_videos": {
-      "3012": [],
-      "3013": [],
-      "3014": [],
-      "3015": [],
-      "3016": [],
-      "3017": [],
-      "3018": [],
-      "3019": [],
-      "3020": [],
-      "3021": [],
-      "3022": [],
-      "3023": [],
-      "3024": [],
-      "3025": [],
-      "3026": [],
-      "3027": [],
-      "3028": [],
-      "3029": [],
-      "3030": [],
-      "3031": [],
-      "3032": [],
-      "3033": [],
-      "3034": [],
-      "3035": [],
-      "3036": [],
-      "3037": [],
-      "3038": [],
-      "3039": []
+      "3066": [],
+      "3067": [],
+      "3068": [],
+      "3069": [],
+      "3070": [],
+      "3071": [],
+      "3072": [],
+      "3073": [],
+      "3074": [],
+      "3075": [],
+      "3076": [],
+      "3077": [],
+      "3078": [],
+      "3079": [],
+      "3080": [],
+      "3081": [],
+      "3082": [],
+      "3083": [],
+      "3084": [],
+      "3085": [],
+      "3086": []
     },
     "regular": {
-      "price": 29.98,
-      "formatted_price": "29,98 €"
+      "price": 45,
+      "formatted_price": "45,00 €"
     }
   },
   "countries": null,
@@ -1228,13 +824,25 @@ GET api/onebuy/product/detail/{slug}?currency=EUR
     "airwallex_dropin": 0
   },
   "payments_default": "airwallex-klarna",
-  "brand": "brand",
-  "gtag": "111",
-  "fb_ids": "0,1,2,3",
+  "brand": "",
+  "gtag": "G-1",
+  "fb_ids": "1,2,3,4",
   "ob_adv_id": null,
   "crm_channel": null,
   "quora_adv_id": "1",
-  "paypal_client_id": "1111"
+  "paypal_client_id": "1",
+  "env": "demo",
+  "ads": {
+    "pc": {
+      "img": "product/3065/gyrTVjyWoPhhCWzkO6w4bQAlpfZAP28DhFi1YNNY.png"
+    },
+    "mobile": {
+      "img": "product/3065/MuVKPyaNxYRYDC22XX9CRr2QYmDiNcKA0uJO1LSR.png"
+    },
+    "size": {
+      "img": "product/3065/lNHnQNnxfrmGLSoFssWu7Rcn8SZb9GCAlWZZ9735.webp"
+    }
+  }
 }
 ```
 
