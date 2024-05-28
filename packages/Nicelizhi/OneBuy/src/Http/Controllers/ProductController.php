@@ -292,7 +292,7 @@ class ProductController extends Controller
         
         $faqItems = $redis->hgetall($this->faq_cache_key);
         ksort($faqItems);
-        $comments = $redis->hgetall($this->cache_prefix_key."product_comments_".$product['id']);
+        // $comments = $redis->hgetall($this->cache_prefix_key."product_comments_".$product['id']);
         
         $comments = $product->reviews->where('status', 'approved')->take(10);
 
