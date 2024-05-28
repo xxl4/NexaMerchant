@@ -3209,6 +3209,7 @@
       }
       console.log(params)
       createOrder('', '', 'airwallex')
+
       // axios.post(postUrl).then(function(res) {
       //     console.log(res, '===res')
       //   })
@@ -3478,7 +3479,6 @@
                 orderData: orderData,
                 data: data,
               }
-              $('#loading').show();
               var url = "/onebuy/order/status?_token={{ csrf_token() }}";
               return fetch(url, {
                 method: 'post',
@@ -4136,7 +4136,6 @@
   <script>
     function payAfterSubmit() {
       $('#pay-after-submit-error').hide()
-      $('#loading').show()
     }
   </script>
   <script>
@@ -4317,7 +4316,6 @@
                 new Date().getTime() +
                 '&force=' +
                 localStorage.getItem('force')
-              $('#loading').show()
               $('#' + (error_id || 'paypal-error')).hide()
 
               return fetch(url, {
@@ -4422,7 +4420,6 @@
               var url =
                 '/onebuy/order/status?_topayment-buttonken={{ csrf_token() }}&currency={{ core()->getCurrentCurrencyCode() }}'
 
-              $('#loading').show()
               return fetch(url, {
                   method: 'post',
                   body: JSON.stringify(request_params),
@@ -4551,7 +4548,6 @@
 
       var url = '/api/checkout/cart?_token=AK2Lk5A14LYVhEWYbgEVxvHDhzlMuvLZDN5pisAW&time=' + new Date().getTime();
 
-      $('#loading').show();
       fetch(url, {
           body: JSON.stringify(products),
           method: 'POST',
@@ -4616,7 +4612,6 @@
         return;
       }
 
-      $('#loading').show();
       $('#checkout-error').hide();
 
 
@@ -4695,7 +4690,6 @@
         url = '/order/add/async?time=' + new Date().getTime();
       }
       console.log(params, '===params====')
-      $('#loading').show();
       fetch(url, {
           body: JSON.stringify(params),
           method: 'POST',
@@ -4827,6 +4821,7 @@
               });
             }
           } else {
+            console.log('else====');
             $('#loading').hide();
             var pay_error = data.error;
 
@@ -4835,6 +4830,9 @@
               $('#checkout-error').show();
             }
           }
+        })
+        .catch(function(err) {
+          $('#loading').hide();
         })
     }
 
