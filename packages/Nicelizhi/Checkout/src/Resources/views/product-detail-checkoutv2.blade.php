@@ -956,6 +956,69 @@
         position: relative;
       }
     }
+
+    .flex-center {
+      display: inline-flex;
+      flex-flow: row nowrap;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #loader {
+      display: none;
+    }
+
+    .box {
+      display: inline-block;
+      font-size: 30px;
+      color: rgb(102, 101, 109);
+      padding: 1em;
+      margin-bottom: 30px;
+      vertical-align: top;
+      -webkit-transition: .3s color, .3s border;
+      transition: .3s color, .3s border;
+      text-align: center;
+    }
+
+    [class*="loader-"] {
+      display: inline-block;
+      width: 1em;
+      height: 1em;
+      color: inherit;
+      vertical-align: middle;
+      pointer-events: none;
+    }
+
+    .loader-01 {
+      border: .2em dotted currentcolor;
+      border-radius: 50%;
+      -webkit-animation: 1s loader-01 linear infinite;
+      animation: 1s loader-01 linear infinite;
+    }
+
+    @-webkit-keyframes loader-01 {
+      0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+      }
+
+      100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes loader-01 {
+      0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+      }
+
+      100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+      }
+    }
   </style>
 </head>
 
@@ -1603,7 +1666,13 @@
             </div>
           </div>
           <div class="zoom-fade submit-button" id="payment-button" style="text-align: center">COMPLETELY SAFE PURCHASE</div>
-          <div id="loading"></div>
+          <div id="loading">
+            <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 100000" id="loading-box" class="flex-center">
+              <div class="box">
+                <div class="loader loader-01"></div>
+              </div>
+            </div>
+          </div>
           <div class="summary-wrapper">
             <div class="order-summary-title">
               <div><strong>item</strong></div>
@@ -1756,14 +1825,8 @@
                                     <span>@lang('onebuy::app.product.payment.paypal.title') </span>
                                     <div style="float: right;min-width: 200px;display: inline;text-align: right;"><img src="/checkout/v1/app/desktop/images/paypal.png" style="max-height:24px" /></div>
                                   </label>
-
-
-
                                 </div>
-
                               </div>
-
-
                             </h4>
                           </div>
                           <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
@@ -1951,7 +2014,7 @@
               </div>
             </div>
           </div>
-          <button type="submit" class="complete-btn">Complete Checkout</button>
+          <button type="submit" class="complete-btn" id="complete-btn-id">Complete Checkout</button>
           <div id='paypal-button'></div>
         </form>
 
@@ -2395,7 +2458,8 @@
             $('#airwallex-dropin-box').hide()
           }
           if (paymentsDefault == 'airwallex-klarna') {
-            $(".complete-btn").show();
+            $('#airwallex-klarna').prop('checked', true);
+            $("#complete-btn-id").show();
             $("#collapseOne").hide();
             $("#collapseTwo").hide();
             $("#collapseThree").show();
@@ -2405,250 +2469,15 @@
             $("#headingOne1").removeClass("action");
             $("#headingOne2").removeClass("action");
             $("#airwallex_dropin_2").removeClass("action");
+            $("#complete-btn-id").addClass(".complete-btn")
+            $("#complete-btn-id").addClass("submit-button");
 
-            $(".complete-btn").addClass("submit-button");
-
-            $(".complete-btn").html("@lang('onebuy::app.product.payment.complete_secure_purchase')");
+            $("#complete-btn-id").html("@lang('onebuy::app.product.payment.complete_secure_purchase')");
 
           }
           if (paymentsDefault == 'payal-standard') {
-            $("#collapseOne").hide();
-            $("#collapseTwo").show();
-            $("#collapseThree").hide();
-            $("#airwallex_dropin_collapse").hide();
-
-            $("#headingOne2").addClass("action");
-            $("#headingOne1").removeClass("action");
-            $("#headingThree2").removeClass("action");
-            $("#airwallex_dropin_2").removeClass("action");
-
-            $(".complete-btn").removeClass("submit-button");
-
-            $(".complete-btn").css("width", "100%");
-
-            //payment-button
-            $(".complete-btn").empty();;
-
-            paypal.Buttons({
-              style: {
-                layout: 'horizontal',
-                tagline: false,
-                height: 55
-              },
-
-              onInit(data, actions) {
-                // Disable the buttons
-                actions.disable();
-                // Listen for changes to the checkbox
-                // document.querySelector('#check').addEventListener('change', function(event) {
-                var can_paypal = 0;
-                var email_can = 0;
-                var first_name_can = 0;
-                var last_name_can = 0;
-                var phone_number_can = 0;
-                var address_can = 0;
-                var city_can = 0;
-                var zip_code_can = 0;
-
-                $(".email").on('change', function() {
-                  var value = $(".email").val();
-                  if (value.length > 0) email_can = 1;
-                  console.log(value);
-                  var params = getOrderParams('paypal_stand');
-                  if (!params.error) {
-                    actions.enable();
-                  }
-                });
-
-                $(".first_name").on('change', function() {
-                  var value = $(".first_name").val();
-                  if (value.length > 0) first_name_can = 1;
-                  console.log(value);
-                  var params = getOrderParams('paypal_stand');
-                  if (!params.error) {
-                    actions.enable();
-                  }
-                });
-
-                $(".last_name").on('change', function() {
-                  var value = $(".last_name").val();
-                  if (value.length > 0) last_name_can = 1;
-                  console.log(value);
-                  var params = getOrderParams('paypal_stand');
-                  if (!params.error) {
-                    actions.enable();
-                  }
-                });
-                $(".phone_number").on('change', function() {
-                  var value = $(".phone_number").val();
-                  if (value.length > 0) phone_number_can = 1;
-                  console.log(value);
-                  var params = getOrderParams('paypal_stand');
-                  if (!params.error) {
-                    actions.enable();
-                  }
-                });
-                $(".address").on('change', function() {
-                  var value = $(".address").val();
-                  if (value.length > 0) address_can = 1;
-                  console.log(value);
-                  var params = getOrderParams('paypal_stand');
-                  if (!params.error) {
-                    actions.enable();
-                  }
-                });
-                $(".city").on('change', function() {
-                  var value = $(".city").val();
-                  if (value.length > 0) city_can = 1;
-                  console.log(value);
-                  var params = getOrderParams('paypal_stand');
-                  if (!params.error) {
-                    actions.enable();
-                  }
-                });
-                $(".zip_code").on('change', function() {
-                  var value = $(".zip_code").val();
-                  if (value.length > 0) zip_code_can = 1;
-                  console.log(value);
-                  var params = getOrderParams('paypal_stand');
-                  if (!params.error) {
-                    actions.enable();
-                  }
-                });
-
-                $("#state-select").on('change', function() {
-                  var params = getOrderParams('paypal_stand');
-                  if (!params.error) {
-                    actions.enable();
-                  }
-                })
-
-
-
-                if (params.error) {
-                  //$('#checkout-error').html(params.error.join('<br />'));
-                  //$('#checkout-error').show();
-                  actions.disable();
-                  //throw new Error('Verification failed');
-                } else {
-                  actions.enable();
-                }
-              },
-              onError(err) {
-                $('#loading').hide();
-                console.log("paypal " + JSON.stringify(err));
-              },
-              onCancel: function(data) {
-                $('#loading').hide();
-              },
-              onClick() {
-                // var params = getOrderParams('paypal_stand');
-                console.log("on click " + params);
-                if (params.error) {
-                  $('#checkout-error').html(params.error.join('<br />'));
-                  $('#checkout-error').show();
-                }
-
-
-                console.log("post crm system");
-
-              },
-
-              // Call your server to set up the transaction
-              createOrder: function(data, actions) {
-                $('#loading').show();
-                // var params = getOrderParams('paypal_stand');
-                var url = '/onebuy/order/addr/after?currenty={{ core()->getCurrentCurrencyCode() }}&_token={{ csrf_token() }}&time=' + new Date().getTime() + "&force=" + localStorage.getItem("force");
-                return fetch(url, {
-                  body: JSON.stringify(params),
-                  method: 'POST',
-                  headers: {
-                    'content-type': 'application/json'
-                  }
-                }).then(function(res) {
-                  return res.json();
-                }).then(function(res) {
-                  //$('#loading').hide();
-                  var data = res;
-                  if (data.statusCode === 201) {
-                    var order_info = data.result;
-                    //console.log(order_info);
-                    //console.log(order_info.purchase_units[0].amount);
-                    document.cookie = "voluum_payout=" + order_info.purchase_units[0].amount.value + order_info.purchase_units[0].amount.currency_code + "; path=/";
-                    document.cookie = "order_id=" + order_info.id + "; path=/";
-                    localStorage.setItem("order_id", order_info.id);
-                    localStorage.setItem("order_params", JSON.stringify(params));
-
-                    return order_info.id;
-                  } else {
-                    if (data.code == '202') {
-                      if (confirm(data.error) == true) {
-                        localStorage.setItem("force", 1);
-                      }
-                    }
-
-                    var pay_error = JSON.parse(data.error);
-                    var pay_error_message = pay_error.details;
-
-                    if (pay_error_message && pay_error_message.length) {
-                      var show_pay_error_message_arr = [];
-
-                      for (var pay_error_message_i = 0; pay_error_message_i < pay_error_message.length; pay_error_message_i++) {
-                        show_pay_error_message_arr.push("Field:" + pay_error_message[pay_error_message_i].field + "<br /> Value" + pay_error_message[pay_error_message_i].value + '. <br />' + pay_error_message[pay_error_message_i].description + '<br /><br />')
-                      }
-
-                      $('#checkout-error').html(show_pay_error_message_arr.join(''));
-                      $('#checkout-error').show();
-                    }
-                  }
-
-
-                });
-              },
-
-              // Call your server to finalize the transaction
-              onApprove: function(data, actions) {
-                var orderData = {
-                  paymentID: data.orderID,
-                  orderID: data.orderID,
-                };
-                var request_params = {
-                  client_secret: data.orderID,
-                  id: localStorage.getItem('order_id'),
-                  orderData: orderData,
-                  data: data,
-                }
-                $('#loading').show();
-                var url = "/onebuy/order/status?_token={{ csrf_token() }}";
-                return fetch(url, {
-                  method: 'post',
-                  body: JSON.stringify(request_params),
-                  headers: {
-                    'content-type': 'application/json'
-                  },
-                }).then(function(res) {
-                  return res.json();
-                }).then(function(res) {
-                  $('#loading').hide();
-                  if (res.success == true) {
-                    //Goto('/checkout/v1/success/'+localStorage.getItem('order_id'));
-                    window.location.href = '/onebuy/checkout/v1/success/' + localStorage.getItem('order_id');
-                    return true;
-                    //actions.redirect('/checkout/v1/success/'+localStorage.getItem('order_id'));
-                  }
-                  if (res.error == 'INSTRUMENT_DECLINED') {
-
-                    $('#checkout-error').html("The instrument presented  was either declined by the processor or bank, or it can't be used for this payment.<br><br> Please confirm your account or bank card has sufficient balance, and try again.");
-                    $('#checkout-error').show();
-                  }
-                });
-              }
-            }).render('.complete-btn');
-
-          };
-
-          if (paymentsDefault == 'airwallex-credit-card') {
-            $(".complete-btn").show();
+            $('#payment_method_airwallex').prop('checked', true);
+            $("#complete-btn-id").show();
             console.log("click headingOne ");
             $("#collapseOne").show();
             $("#collapseTwo").hide();
@@ -2659,10 +2488,30 @@
             $("#headingThree2").removeClass("action");
             $("#headingOne2").removeClass("action");
             $("#airwallex_dropin_2").removeClass("action");
+            $("#complete-btn-id").addClass(".complete-btn")
+            $("#complete-btn-id").addClass("submit-button");
 
-            $(".complete-btn").addClass("submit-button");
+            $("#complete-btn-id").html("@lang('onebuy::app.product.payment.complete_secure_purchase')");
 
-            $(".complete-btn").html("@lang('onebuy::app.product.payment.complete_secure_purchase')");
+          };
+
+          if (paymentsDefault == 'airwallex-credit-card') {
+            $('#payment_method_airwallex').prop('checked', true);
+            $("#complete-btn-id").show();
+            console.log("click headingOne ");
+            $("#collapseOne").show();
+            $("#collapseTwo").hide();
+            $("#collapseThree").hide();
+            $("#airwallex_dropin_collapse").hide();
+
+            $("#headingOne1").addClass("action");
+            $("#headingThree2").removeClass("action");
+            $("#headingOne2").removeClass("action");
+            $("#airwallex_dropin_2").removeClass("action");
+            $("#complete-btn-id").addClass(".complete-btn")
+            $("#complete-btn-id").addClass("submit-button");
+
+            $("#complete-btn-id").html("@lang('onebuy::app.product.payment.complete_secure_purchase')");
 
 
           }
@@ -3132,7 +2981,7 @@
             var stateList = res.data
             var optionList = []
             for (var resj = 0; resj < stateList.length; resj++) {
-              optionList += `<option value="` + stateList[resj].CountryCode + `">` + stateList[resj].StateName + `</option>`
+              optionList += `<option value="` + stateList[resj].StateCode + `">` + stateList[resj].StateName + `</option>`
             }
             $('select[name="shippingState"]').empty()
             $('select[name="shippingState"]').append(optionList)
@@ -3335,7 +3184,8 @@
       $('#product-price').text(data.package_products[3].tip2)
       initProuctData(3, '4')
     })
-    $('.complete-btn').click(function() {
+    $('#complete-btn-id').click(function() {
+      $('#loading').show()
       params.first_name = $('input[name="firstName"]').val()
       params.second_name = $('input[name="lastName"]').val()
       params.email = $('input[name="email"]').val()
@@ -3344,11 +3194,18 @@
       params.city = $('input[name="shippingCity"]').val()
       params.city = $('input[name="shippingCity"]').val()
       params.code = $('input[name="shippingZip"]').val()
-      if ($('input[name="cctype"]:checked').val() == 'cc') {
+      if ($('input[id="airwallex-klarna"]:checked')) {
+        console.log('klarna')
         params.payment_method = 'worldpay'
       }
-      if ($('input[name="cctype"]:checked').val() == 'paypal') {
-        params.payment_method = 'paypal_stand'
+      if ($('input[id="payal_standard"]:checked')) {
+        console.log('klarna')
+
+        params.payment_method = 'worldpay'
+      }
+      if ($('input[id="payment_method_airwallex"]:checked')) {
+        console.log('airwallex')
+        params.payment_method = 'airwallex'
       }
       console.log(params)
       createOrder('', '', 'airwallex')
@@ -3364,7 +3221,7 @@
     $(function() {
 
       $("#payment_method_airwallex").on("click", function() {
-        $(".complete-btn").show();
+        $("#complete-btn-id").show();
         console.log("click headingOne ");
         $("#collapseOne").show();
         $("#collapseTwo").hide();
@@ -3375,15 +3232,15 @@
         $("#headingThree2").removeClass("action");
         $("#headingOne2").removeClass("action");
         $("#airwallex_dropin_2").removeClass("action");
+        $("#complete-btn-id").addClass(".complete-btn")
+        $("#complete-btn-id").addClass("submit-button");
 
-        $(".complete-btn").addClass("submit-button");
-
-        $(".complete-btn").html("@lang('onebuy::app.product.payment.complete_secure_purchase')");
+        $("#complete-btn-id").html("@lang('onebuy::app.product.payment.complete_secure_purchase')");
 
       });
 
       $("#airwallex-klarna").on("click", function() {
-        $(".complete-btn").show();
+        $("#complete-btn-id").show();
         $("#collapseOne").hide();
         $("#collapseTwo").hide();
         $("#collapseThree").show();
@@ -3393,10 +3250,10 @@
         $("#headingOne1").removeClass("action");
         $("#headingOne2").removeClass("action");
         $("#airwallex_dropin_2").removeClass("action");
+        $("#complete-btn-id").addClass(".complete-btn")
+        $("#complete-btn-id").addClass("submit-button");
 
-        $(".complete-btn").addClass("submit-button");
-
-        $(".complete-btn").html("@lang('onebuy::app.product.payment.complete_secure_purchase')");
+        $("#complete-btn-id").html("@lang('onebuy::app.product.payment.complete_secure_purchase')");
 
       })
 
@@ -3412,12 +3269,12 @@
           $("#headingThree2").removeClass("action");
           $("#airwallex_dropin_2").removeClass("action");
 
-          $(".complete-btn").removeClass("submit-button");
-
-          $(".complete-btn").css("width", "100%");
+          $("#complete-btn-id").removeClass("submit-button");
+          $("#complete-btn-id").removeClass(".complete-btn")
+          $("#complete-btn-id").css("width", "100%");
 
           //payment-button
-          $(".complete-btn").empty();;
+          $("#complete-btn-id").empty();;
 
           paypal.Buttons({
             style: {
@@ -3646,7 +3503,7 @@
                 }
               });
             }
-          }).render('.complete-btn');
+          }).render('#complete-btn-id');
 
         });
 
