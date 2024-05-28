@@ -2860,248 +2860,246 @@
         })
     })
 
-    $('select[name="shippingCountry"]').click(function() {
-      console.log($(this).val())
-      params.country = $(this).val()
-      if ($(this).val()) {
+    $('select[name="shippingState"]').click(function() {
+          console.log($(this).val())
+          params.province = $(this).val()
+        }
+        $('select[name="shippingCountry"]').click(function() {
+          console.log($(this).val())
+          params.country = $(this).val()
+          if ($(this).val()) {
+            var countryClick = $(this).val().toLowerCase()
+            console.log(countryClick, params.country, 'countryClick')
+            var countryUrl = '/template-common/checkout1/state/' + countryClick + '_' + area + '.json'
+            axios
+              .get(countryUrl)
+              .then(function(res) {
+                var stateList = res.data
+                var optionList = []
+                for (var resj = 0; resj < stateList.length; resj++) {
+                  optionList += `<option value="` + stateList[resj].CountryCode + `">` + stateList[resj].StateName + `</option>`
+                }
+                $('select[name="shippingState"]').empty()
+                $('select[name="shippingState"]').append(optionList)
+              })
+              .catch(function(err) {
+                console.log(err, 'err====')
+              })
+          }
+        })
 
 
-        var countryClick = $(this).val().toLowerCase()
-        console.log(countryClick, params.country, 'countryClick')
-        var countryUrl = '/template-common/checkout1/state/' + countryClick + '_' + area + '.json'
-        axios
-          .get(countryUrl)
-          .then(function(res) {
-            var stateList = res.data
-            var optionList = []
-            for (var resj = 0; resj < stateList.length; resj++) {
-              optionList += `<option value="` + stateList[resj].CountryCode + `">` + stateList[resj].StateName + `</option>`
-            }
-            $('select[name="shippingState"]').empty()
-            $('select[name="shippingState"]').append(optionList)
-          })
-          .catch(function(err) {
-            console.log(err, 'err====')
-          })
-      }
-    })
-
-
-    function getSku(id, n, value) {
-      var nList = []
-      var aList = []
-      for (var i = 0; i < attLength; i++) {
-        var inSeId = 'in-se' + i
-        if (id == inSeId) {
-          nList = params.products[n].attribute_name.split(',')
-          nList[i] = value
-          params.products[n].attribute_name = nList.join(',')
-          console.log(params.products[n].attribute_name, 'nList')
-          for (var j = 0; j < data.attr.attributes[i].options.length; j++) {
-            if (data.attr.attributes[i].options[j].label == value) {
-              aid = data.attr.attributes[i].options[j].id
-              if (i == 0) {
-                params.products[n].variant_id = data.attr.attributes[i].options[j].products[0]
+        function getSku(id, n, value) {
+          var nList = []
+          var aList = []
+          for (var i = 0; i < attLength; i++) {
+            var inSeId = 'in-se' + i
+            if (id == inSeId) {
+              nList = params.products[n].attribute_name.split(',')
+              nList[i] = value
+              params.products[n].attribute_name = nList.join(',')
+              console.log(params.products[n].attribute_name, 'nList')
+              for (var j = 0; j < data.attr.attributes[i].options.length; j++) {
+                if (data.attr.attributes[i].options[j].label == value) {
+                  aid = data.attr.attributes[i].options[j].id
+                  if (i == 0) {
+                    params.products[n].variant_id = data.attr.attributes[i].options[j].products[0]
+                  }
+                }
               }
+              aList = params.products[n].attr_id.split(',')
+
+              aList[i] = data.attr.attributes[i].id + '_' + aid
+              params.products[n].attr_id = aList.join(',')
+              console.log(params.products[n].attr_id, 'attr_id')
             }
           }
-          aList = params.products[n].attr_id.split(',')
-
-          aList[i] = data.attr.attributes[i].id + '_' + aid
-          params.products[n].attr_id = aList.join(',')
-          console.log(params.products[n].attr_id, 'attr_id')
         }
-      }
-    }
 
-    function seInput(value) {
-      var parId = $(event.target).parent().parent().attr('id')
-      var itemId = $(event.target).attr('id')
+        function seInput(value) {
+          var parId = $(event.target).parent().parent().attr('id')
+          var itemId = $(event.target).attr('id')
 
-      var aid = ''
-      if (parId == 'select1-item1' || parId == 'select2-item1' || parId == 'select3-item1' || parId == 'select4-item1') {
-        getSku(itemId, 0, value)
-        // paramsProductsinit(params.products)
-      }
-      if (parId == 'select2-item2' || parId == 'select3-item2' || parId == 'select4-item2') {
-        getSku(itemId, 1, value)
-        // paramsProductsinit(params.products)
-      }
-      if (parId == 'select3-item3' || parId == 'select4-item3') {
-        getSku(itemId, 2, value)
-        // paramsProductsinit(params.products)
-      }
-      if (parId == 'select4-item4') {
-        getSku(itemId, 3, value)
-        // paramsProductsinit(params.products)
-      }
-      var target = event.currentTarget
-      var imgIndex = ''
-      var colorList = data.attr.attributes[0].options
-      for (var colori = 0; colori < colorList.length; colori++) {
-        if (colorList[colori].label == value) {
-          imgIndex = colorList[colori].products[0]
+          var aid = ''
+          if (parId == 'select1-item1' || parId == 'select2-item1' || parId == 'select3-item1' || parId == 'select4-item1') {
+            getSku(itemId, 0, value)
+            // paramsProductsinit(params.products)
+          }
+          if (parId == 'select2-item2' || parId == 'select3-item2' || parId == 'select4-item2') {
+            getSku(itemId, 1, value)
+            // paramsProductsinit(params.products)
+          }
+          if (parId == 'select3-item3' || parId == 'select4-item3') {
+            getSku(itemId, 2, value)
+            // paramsProductsinit(params.products)
+          }
+          if (parId == 'select4-item4') {
+            getSku(itemId, 3, value)
+            // paramsProductsinit(params.products)
+          }
+          var target = event.currentTarget
+          var imgIndex = ''
+          var colorList = data.attr.attributes[0].options
+          for (var colori = 0; colori < colorList.length; colori++) {
+            if (colorList[colori].label == value) {
+              imgIndex = colorList[colori].products[0]
+            }
+          }
+          if (imgIndex) {
+            var finUrl = data.attr.variant_images[imgIndex][0].small_image_url
+            $(event.target).parent().siblings('img').attr('src', finUrl)
+          }
+          console.log(params.products, '===params====')
         }
-      }
-      if (imgIndex) {
-        var finUrl = data.attr.variant_images[imgIndex][0].small_image_url
-        $(event.target).parent().siblings('img').attr('src', finUrl)
-      }
-      console.log(params.products, '===params====')
-    }
-    $('#product1').click(function(e) {
-      var list = $('#product1,#product2,#product3,#product4')
-      list.removeClass('choose-p')
-      var list2 = $('#buy-select1,#buy-select3,#buy-select4')
-      list2.removeClass('buy-select1')
-      $('#buy-select2').hide()
-      $('#buy-select3').hide()
-      $('#buy-select4').hide()
-      $('#buy-select1').show()
+        $('#product1').click(function(e) {
+          var list = $('#product1,#product2,#product3,#product4')
+          list.removeClass('choose-p')
+          var list2 = $('#buy-select1,#buy-select3,#buy-select4')
+          list2.removeClass('buy-select1')
+          $('#buy-select2').hide()
+          $('#buy-select3').hide()
+          $('#buy-select4').hide()
+          $('#buy-select1').show()
 
-      var cssObj = {
-        height: '0',
-        opacity: '0',
-      }
-      $('#buy-select2').css(cssObj)
-      $('#product1').addClass('choose-p')
-      $('#buy-select1').addClass('buy-select1')
-      var nprice = currencySymbol + data.package_products[1].new_price.toFixed(2)
-      $('#summary-total1').text(nprice)
-      var shippingFee = currencySymbol + data.package_products[1].shipping_fee
-      $('#summary-total3').text(shippingFee)
+          var cssObj = {
+            height: '0',
+            opacity: '0',
+          }
+          $('#buy-select2').css(cssObj)
+          $('#product1').addClass('choose-p')
+          $('#buy-select1').addClass('buy-select1')
+          var nprice = currencySymbol + data.package_products[1].new_price.toFixed(2)
+          $('#summary-total1').text(nprice)
+          var shippingFee = currencySymbol + data.package_products[1].shipping_fee
+          $('#summary-total3').text(shippingFee)
 
-      var discount = Number(data.package_products[1].old_price) - Number(data.package_products[0].new_price)
-      discount = currencySymbol + discount.toFixed(2)
-      $('#summary-total2').text(discount)
-      var total = Number(data.package_products[1].new_price) + Number(data.package_products[0].shipping_fee)
-      total = currencySymbol + total.toFixed(2)
-      $('#summary-total4').text(total)
-      $('.product-name').text(data.package_products[1].name)
-      $('#product-number').text('number: 1')
-      $('#product-price').text(data.package_products[1].tip2)
-      initProuctData(1, '1')
-    })
-    $('#product2').click(function(e) {
-      var list = $('#product1,#product2,#product3,#product4')
-      list.removeClass('choose-p')
-      var list2 = $('#buy-select1,#buy-select3,#buy-select4')
-      list2.removeClass('buy-select1')
-      $('#buy-select1').hide()
-      $('#buy-select3').hide()
-      $('#buy-select4').hide()
-      $('#buy-select2').show()
-      var cssObj = {
-        height: 'auto',
-        opacity: '1',
-      }
-      $('#buy-select2').css(cssObj)
-      $('#product2').addClass('choose-p')
-      $('#buy-select2').addClass('buy-select1')
-      var nprice = currencySymbol + data.package_products[0].new_price.toFixed(2)
-      $('#summary-total1').text(nprice)
-      var shippingFee = currencySymbol + data.package_products[0].shipping_fee
-      $('#summary-total3').text(shippingFee)
+          var discount = Number(data.package_products[1].old_price) - Number(data.package_products[0].new_price)
+          discount = currencySymbol + discount.toFixed(2)
+          $('#summary-total2').text(discount)
+          var total = Number(data.package_products[1].new_price) + Number(data.package_products[0].shipping_fee)
+          total = currencySymbol + total.toFixed(2)
+          $('#summary-total4').text(total)
+          $('.product-name').text(data.package_products[1].name)
+          $('#product-number').text('number: 1')
+          $('#product-price').text(data.package_products[1].tip2)
+          initProuctData(1, '1')
+        }) $('#product2').click(function(e) {
+          var list = $('#product1,#product2,#product3,#product4')
+          list.removeClass('choose-p')
+          var list2 = $('#buy-select1,#buy-select3,#buy-select4')
+          list2.removeClass('buy-select1')
+          $('#buy-select1').hide()
+          $('#buy-select3').hide()
+          $('#buy-select4').hide()
+          $('#buy-select2').show()
+          var cssObj = {
+            height: 'auto',
+            opacity: '1',
+          }
+          $('#buy-select2').css(cssObj)
+          $('#product2').addClass('choose-p')
+          $('#buy-select2').addClass('buy-select1')
+          var nprice = currencySymbol + data.package_products[0].new_price.toFixed(2)
+          $('#summary-total1').text(nprice)
+          var shippingFee = currencySymbol + data.package_products[0].shipping_fee
+          $('#summary-total3').text(shippingFee)
 
-      var discount = Number(data.package_products[0].old_price) - Number(data.package_products[0].new_price)
-      discount = currencySymbol + discount.toFixed(2)
-      $('#summary-total2').text(discount)
-      var total = Number(data.package_products[0].new_price) + Number(data.package_products[0].shipping_fee)
-      total = currencySymbol + total.toFixed(2)
-      $('#summary-total4').text(total)
-      $('.product-name').text(data.package_products[0].name)
-      $('#product-number').text('number: 2')
-      $('#product-price').text(data.package_products[0].tip2)
-      initProuctData(0, '2')
-    })
-    $('#product3').click(function(e) {
-      var list = $('#product1,#product2,#product3,#product4')
-      list.removeClass('choose-p')
-      var list2 = $('#buy-select1,#buy-select3,#buy-select4')
-      list2.removeClass('buy-select1')
-      $('#buy-select2').hide()
-      $('#buy-select1').hide()
-      $('#buy-select4').hide()
-      $('#buy-select3').show()
-      var cssObj = {
-        height: '0',
-        opacity: '0',
-      }
-      $('#buy-select2').css(cssObj)
-      $('#product3').addClass('choose-p')
-      $('#buy-select3').addClass('buy-select1')
-      var nprice = currencySymbol + data.package_products[2].new_price.toFixed(2)
-      $('#summary-total1').text(nprice)
-      var shippingFee = currencySymbol + data.package_products[2].shipping_fee
-      $('#summary-total3').text(shippingFee)
+          var discount = Number(data.package_products[0].old_price) - Number(data.package_products[0].new_price)
+          discount = currencySymbol + discount.toFixed(2)
+          $('#summary-total2').text(discount)
+          var total = Number(data.package_products[0].new_price) + Number(data.package_products[0].shipping_fee)
+          total = currencySymbol + total.toFixed(2)
+          $('#summary-total4').text(total)
+          $('.product-name').text(data.package_products[0].name)
+          $('#product-number').text('number: 2')
+          $('#product-price').text(data.package_products[0].tip2)
+          initProuctData(0, '2')
+        }) $('#product3').click(function(e) {
+          var list = $('#product1,#product2,#product3,#product4')
+          list.removeClass('choose-p')
+          var list2 = $('#buy-select1,#buy-select3,#buy-select4')
+          list2.removeClass('buy-select1')
+          $('#buy-select2').hide()
+          $('#buy-select1').hide()
+          $('#buy-select4').hide()
+          $('#buy-select3').show()
+          var cssObj = {
+            height: '0',
+            opacity: '0',
+          }
+          $('#buy-select2').css(cssObj)
+          $('#product3').addClass('choose-p')
+          $('#buy-select3').addClass('buy-select1')
+          var nprice = currencySymbol + data.package_products[2].new_price.toFixed(2)
+          $('#summary-total1').text(nprice)
+          var shippingFee = currencySymbol + data.package_products[2].shipping_fee
+          $('#summary-total3').text(shippingFee)
 
-      var discount = Number(data.package_products[2].old_price) - Number(data.package_products[0].new_price)
-      discount = currencySymbol + discount.toFixed(2)
-      $('#summary-total2').text(discount)
-      var total = Number(data.package_products[2].new_price) + Number(data.package_products[0].shipping_fee)
-      total = currencySymbol + total.toFixed(2)
-      $('#summary-total4').text(total)
-      $('.product-name').text(data.package_products[2].name)
-      $('#product-number').text('number: 3')
-      $('#product-price').text(data.package_products[2].tip2)
-      initProuctData(2, '3')
-    })
-    $('#product4').click(function(e) {
-      var list = $('#product1,#product2,#product3,#product4')
-      list.removeClass('choose-p')
-      var list2 = $('#buy-select1,#buy-select3,#buy-select4')
-      list2.removeClass('buy-select1')
-      $('#buy-select2').hide()
-      $('#buy-select3').hide()
-      $('#buy-select1').hide()
-      $('#buy-select4').show()
-      var cssObj = {
-        height: '0',
-        opacity: '0',
-      }
-      $('#buy-select2').css(cssObj)
-      $('#product4').addClass('choose-p')
-      $('#buy-select4').addClass('buy-select1')
-      var nprice = currencySymbol + data.package_products[3].new_price.toFixed(2)
-      $('#summary-total1').text(nprice)
-      var shippingFee = currencySymbol + data.package_products[3].shipping_fee
-      $('#summary-total3').text(shippingFee)
+          var discount = Number(data.package_products[2].old_price) - Number(data.package_products[0].new_price)
+          discount = currencySymbol + discount.toFixed(2)
+          $('#summary-total2').text(discount)
+          var total = Number(data.package_products[2].new_price) + Number(data.package_products[0].shipping_fee)
+          total = currencySymbol + total.toFixed(2)
+          $('#summary-total4').text(total)
+          $('.product-name').text(data.package_products[2].name)
+          $('#product-number').text('number: 3')
+          $('#product-price').text(data.package_products[2].tip2)
+          initProuctData(2, '3')
+        }) $('#product4').click(function(e) {
+          var list = $('#product1,#product2,#product3,#product4')
+          list.removeClass('choose-p')
+          var list2 = $('#buy-select1,#buy-select3,#buy-select4')
+          list2.removeClass('buy-select1')
+          $('#buy-select2').hide()
+          $('#buy-select3').hide()
+          $('#buy-select1').hide()
+          $('#buy-select4').show()
+          var cssObj = {
+            height: '0',
+            opacity: '0',
+          }
+          $('#buy-select2').css(cssObj)
+          $('#product4').addClass('choose-p')
+          $('#buy-select4').addClass('buy-select1')
+          var nprice = currencySymbol + data.package_products[3].new_price.toFixed(2)
+          $('#summary-total1').text(nprice)
+          var shippingFee = currencySymbol + data.package_products[3].shipping_fee
+          $('#summary-total3').text(shippingFee)
 
-      var discount = Number(data.package_products[3].old_price) - Number(data.package_products[0].new_price)
-      discount = currencySymbol + discount.toFixed(2)
-      $('#summary-total2').text(discount)
-      var total = Number(data.package_products[3].new_price) + Number(data.package_products[0].shipping_fee)
-      total = currencySymbol + total.toFixed(2)
-      $('#summary-total4').text(total)
-      $('.product-name').text(data.package_products[3].name)
-      $('#product-number').text('number: 4')
-      $('#product-price').text(data.package_products[3].tip2)
-      initProuctData(3, '4')
-    })
-    $('.complete-btn').click(function() {
-      params.first_name = $('input[name="firstName"]').val()
-      params.second_name = $('input[name="lastName"]').val()
-      params.email = $('input[name="email"]').val()
-      params.phone_full = $('input[name="phone"]').val()
-      params.address = $('input[name="shippingAddress1"]').val()
-      params.city = $('input[name="shippingCity"]').val()
-      params.city = $('input[name="shippingCity"]').val()
-      params.code = $('input[name="shippingZip"]').val()
-      if ($('input[name="cctype"]:checked').val() == 'cc') {
-        params.payment_method = 'worldpay'
-      }
-      if ($('input[name="cctype"]:checked').val() == 'paypal') {
-        params.payment_method = 'paypal_stand'
-      }
-      console.log(params)
-      createOrder('', '', 'airwallex')
-      // axios.post(postUrl).then(function(res) {
-      //     console.log(res, '===res')
-      //   })
-      //   .catch(function(err) {
-      //     console.log(err, 'err==')
-      //   })
-    })
+          var discount = Number(data.package_products[3].old_price) - Number(data.package_products[0].new_price)
+          discount = currencySymbol + discount.toFixed(2)
+          $('#summary-total2').text(discount)
+          var total = Number(data.package_products[3].new_price) + Number(data.package_products[0].shipping_fee)
+          total = currencySymbol + total.toFixed(2)
+          $('#summary-total4').text(total)
+          $('.product-name').text(data.package_products[3].name)
+          $('#product-number').text('number: 4')
+          $('#product-price').text(data.package_products[3].tip2)
+          initProuctData(3, '4')
+        }) $('.complete-btn').click(function() {
+          params.first_name = $('input[name="firstName"]').val()
+          params.second_name = $('input[name="lastName"]').val()
+          params.email = $('input[name="email"]').val()
+          params.phone_full = $('input[name="phone"]').val()
+          params.address = $('input[name="shippingAddress1"]').val()
+          params.city = $('input[name="shippingCity"]').val()
+          params.city = $('input[name="shippingCity"]').val()
+          params.code = $('input[name="shippingZip"]').val()
+          if ($('input[name="cctype"]:checked').val() == 'cc') {
+            params.payment_method = 'worldpay'
+          }
+          if ($('input[name="cctype"]:checked').val() == 'paypal') {
+            params.payment_method = 'paypal_stand'
+          }
+          console.log(params)
+          createOrder('', '', 'airwallex')
+          // axios.post(postUrl).then(function(res) {
+          //     console.log(res, '===res')
+          //   })
+          //   .catch(function(err) {
+          //     console.log(err, 'err==')
+          //   })
+        })
   </script>
   <script>
     $(function() {
