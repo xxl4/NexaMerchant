@@ -293,7 +293,15 @@ class ProductController extends Controller
         $faqItems = $redis->hgetall($this->faq_cache_key);
         ksort($faqItems);
         $comments = $redis->hgetall($this->cache_prefix_key."product_comments_".$product['id']);
-        //获取 paypal smart key
+        
+        $comments = $product->reviews->where('status', 'approved')->take(10);
+
+        $comments = $comments->map(function($comments) {
+            $comments->customer = $comments->customer;
+            $comments->images;
+            return $comments;
+        });
+
         $paypal_client_id = core()->getConfigData('sales.payment_methods.paypal_smart_button.client_id');
 
 
