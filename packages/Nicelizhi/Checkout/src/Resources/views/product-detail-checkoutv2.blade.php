@@ -928,9 +928,11 @@
         height: 80px;
         opacity: 0;
       }
+
       .left-sec {
         height: auto !important;
       }
+
       #gallery img {
         height: 320px;
         object-fit: contain;
@@ -2582,22 +2584,24 @@
           console.error(error, 'err')
         })
     })
+
     function paramsProductsinit(list) {
-      console.log(list, 'paramsProductsinit')
-        for (var listi = 0; listi < list.length; listi++) {
-          if (listi == list.length - 1) {
-            break;  
-          }
-          if (list[listi].attr_id == list[listi + 1].attr_id) {
-            var toNum = Number(list[listi].amount) + 1
-            list[listi+1].amount = String(toNum)
-            list.splice(listi,1)
-            
-          }
+      // console.log(list, 'paramsProductsinit')
+      for (var listi = 0; listi < list.length; listi++) {
+        if (listi == list.length - 1) {
+          break;
         }
-        params.products = list
-        console.log(params.products, 'params.products')
+        if (list[listi].attr_id == list[listi + 1].attr_id) {
+          var toNum = Number(list[listi].amount) + 1
+          list[listi + 1].amount = String(toNum)
+          list.splice(listi, 1)
+
+        }
       }
+      params.products = list
+      console.log(params.products, 'params.products')
+    }
+
     function initProuctData(num1, num2) {
       var name1,
         name1List = [],
@@ -2771,7 +2775,7 @@
         productL2.attribute_name = name2List
         params.products = []
         params.products.push(productL1, productL2)
-        paramsProductsinit(params.products)
+        // paramsProductsinit(params.products)
       }
       if (num2 == '3') {
         name1List = name1List.join(',')
@@ -2791,7 +2795,7 @@
         productL3.attribute_name = name3List
         params.products = []
         params.products.push(productL1, productL2, productL3)
-        paramsProductsinit(params.products)
+        // paramsProductsinit(params.products)
       }
       if (num2 == '4') {
         name1List = name1List.join(',')
@@ -2815,7 +2819,7 @@
         productL4.attribute_name = name4List
         params.products = []
         params.products.push(productL1, productL2, productL3, productL4)
-        paramsProductsinit(params.products)
+        // paramsProductsinit(params.products)
       }
     }
     $(function() {
@@ -2845,30 +2849,34 @@
     $('select[name="shippingCountry"]').click(function() {
       console.log($(this).val())
       params.country = $(this).val()
-      var countryClick = $(this).val().toLowerCase()
-      console.log(countryClick, params.country, 'countryClick')
-      var countryUrl = '/template-common/checkout1/state/' + countryClick + '_' + area + '.json'
-      axios
-        .get(countryUrl)
-        .then(function(res) {
-          var stateList = res.data
-          console.log(res, '====res======')
-          console.log(stateList, 'stateList==')
-          app_config.countries[params.country] = {}
-          app_config.countries[params.country].states = {}
-          var foreachList = app_config.countries[params.country]
-          for (var resj = 0; resj < stateList.length; resj++) {
-            console.log(stateList[resj], 'stateList[resj]')
-            app_config.countries[params.country].states[stateList[resj].StateCode] = {}
-            app_config.countries[params.country].states[stateList[resj].StateCode].name = stateList[resj].StateName
+      if ($(this).val()) {
 
-          }
-          console.log(app_config, 'app_config.countries.US.states')
 
-        })
-        .catch(function(err) {
-          console.log(err, 'err====')
-        })
+        var countryClick = $(this).val().toLowerCase()
+        console.log(countryClick, params.country, 'countryClick')
+        var countryUrl = '/template-common/checkout1/state/' + countryClick + '_' + area + '.json'
+        axios
+          .get(countryUrl)
+          .then(function(res) {
+            var stateList = res.data
+            console.log(res, '====res======')
+            console.log(stateList, 'stateList==')
+            app_config.countries[params.country] = {}
+            app_config.countries[params.country].states = {}
+            var foreachList = app_config.countries[params.country]
+            for (var resj = 0; resj < stateList.length; resj++) {
+              console.log(stateList[resj], 'stateList[resj]')
+              app_config.countries[params.country].states[stateList[resj].StateCode] = {}
+              app_config.countries[params.country].states[stateList[resj].StateCode].name = stateList[resj].StateName
+
+            }
+            console.log(app_config, 'app_config.countries.US.states')
+
+          })
+          .catch(function(err) {
+            console.log(err, 'err====')
+          })
+      }
     })
 
 
@@ -2906,19 +2914,19 @@
       var aid = ''
       if (parId == 'select1-item1' || parId == 'select2-item1' || parId == 'select3-item1' || parId == 'select4-item1') {
         getSku(itemId, 0, value)
-        paramsProductsinit(params.products)
+        // paramsProductsinit(params.products)
       }
       if (parId == 'select2-item2' || parId == 'select3-item2' || parId == 'select4-item2') {
         getSku(itemId, 1, value)
-        paramsProductsinit(params.products)
+        // paramsProductsinit(params.products)
       }
       if (parId == 'select3-item3' || parId == 'select4-item3') {
         getSku(itemId, 2, value)
-        paramsProductsinit(params.products)
+        // paramsProductsinit(params.products)
       }
       if (parId == 'select4-item4') {
         getSku(itemId, 3, value)
-        paramsProductsinit(params.products)
+        // paramsProductsinit(params.products)
       }
       var target = event.currentTarget
       var imgIndex = ''
@@ -3876,11 +3884,11 @@
       var result = mn + ':' + sc
       document.getElementById('stopwatch').innerHTML = result
     }, spd)
-    $(function () {
-        var height = $('.right-sec').height()
-        console.log(height, 'height')
-        $('.left-sec').css('height', height)
-      })
+    $(function() {
+      var height = $('.right-sec').height()
+      console.log(height, 'height')
+      $('.left-sec').css('height', height)
+    })
 
     $('.fieldToggle').click(function() {
       if ($('#togData').prop('checked') == true) {
