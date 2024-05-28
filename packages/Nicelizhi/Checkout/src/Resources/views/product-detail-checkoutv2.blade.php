@@ -1692,7 +1692,9 @@
               </div>
               <div class="frm-flds fl">
                 <label for="state" class="fl-label">Select State</label>
-                <input type="text" name="shippingState" placeholder="Your State" class="selcet-fld required cb-remove-class frmField" id="shippingStateSelect" data-error-message="Please select your state!" readonly data-selected="" />
+                <select type="text" name="shippingState" placeholder="Your State" class="selcet-fld required cb-remove-class frmField" id="shippingStateSelect" data-error-message="Please select your state!" data-selected="">
+                  <option value="">Select Country</option>
+                </select>
               </div>
               <div class="frm-flds fl">
                 <label for="zip" class="fl-label">Zip Code</label>
@@ -2264,6 +2266,13 @@
             },
           },
         },
+        FR: {
+          states: {
+            bb: {
+              name: '123'
+            }
+          }
+        }
       },
       country_lang_mapping: {
         US: {
@@ -2859,19 +2868,12 @@
           .get(countryUrl)
           .then(function(res) {
             var stateList = res.data
-            console.log(res, '====res======')
-            console.log(stateList, 'stateList==')
-            app_config.countries[params.country] = {}
-            app_config.countries[params.country].states = {}
-            var foreachList = app_config.countries[params.country]
+            var optionList = []
             for (var resj = 0; resj < stateList.length; resj++) {
-              console.log(stateList[resj], 'stateList[resj]')
-              app_config.countries[params.country].states[stateList[resj].StateCode] = {}
-              app_config.countries[params.country].states[stateList[resj].StateCode].name = stateList[resj].StateName
-
+              optionList += `<option value="` + res2[resj].CountryCode + `">` + res2[resj].StateName + `</option>`
             }
-            console.log(app_config, 'app_config.countries.US.states')
-
+            $('select[name="shippingState"]').empty()
+            $('select[name="shippingState"]').append(optionList)
           })
           .catch(function(err) {
             console.log(err, 'err====')
@@ -3388,7 +3390,7 @@
 
     });
   </script>
-  <script src="/checkout/v2/js/codebase.min.js" type="text/javascript"></script>
+  <!-- <script src="/checkout/v2/js/codebase.min.js" type="text/javascript"></script> -->
   <script src="/checkout/v2/js/sticky-prospect-script.min.js"></script>
   <script src="/checkout/v2/js/custom-extra.js"></script>
   <!-- <script async defer src="js/js"></script> -->
