@@ -695,7 +695,7 @@
           <?php foreach($comment->images as $key=>$image) { ?>
 
           <a href="javascript:;" onclick="showImgProp('<?php echo $image->url;?>')">
-            <img style="width: 30%;aspect-ratio: 1/1;" src="<?php echo $image->url;?>" alt="">
+            <img style="width: 30%;" src="<?php echo $image->url;?>" alt="">
           </a>
 
 
