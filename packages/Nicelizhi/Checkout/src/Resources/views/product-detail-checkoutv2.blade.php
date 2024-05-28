@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ app()->getLocale() }}">
 
 <head>
   <title>Fur Sweep Collar</title>
@@ -1693,7 +1693,7 @@
               <div class="frm-flds fl">
                 <label for="state" class="fl-label">Select State</label>
                 <select type="text" name="shippingState" placeholder="Your State" class="selcet-fld required cb-remove-class frmField" id="shippingStateSelect" data-error-message="Please select your state!" data-selected="">
-                  <option value="">Select Country</option>
+                  <option value="">Select Stata</option>
                 </select>
               </div>
               <div class="frm-flds fl">
@@ -2263,24 +2263,7 @@
           }
         }
       },
-      country_lang_mapping: {
-        US: {
-          state: 'State:',
-          zip: 'Zip Code:'
-        },
-        GB: {
-          state: 'County:',
-          zip: 'Postal Code:'
-        },
-        CA: {
-          state: 'Province:',
-          zip: 'Pin Code:'
-        },
-        IN: {
-          state: 'State:',
-          zip: 'Pin:'
-        },
-      },
+      country_lang_mapping: {},
       device_is_mobile: false,
       pageType: 'checkoutPage',
       enable_browser_back_button: false,
@@ -3132,8 +3115,8 @@
         })
     })
 
-    $('select[name="shippingState"]').click(function() {
-      console.log($(this).val())
+    $('select[name="shippingState"]').change(function() {
+      console.log($(this).val(), 'shippingState')
       params.province = $(this).val()
     })
     $('select[name="shippingCountry"]').click(function() {
@@ -4849,7 +4832,7 @@
       //console.log(JSON.stringify(params));
       //return false;
 
-      var url = '/onebuy/order/add/sync?currency={{ core()->getCurrentCurrencyCode() }}&_token={{ csrf_token() }}' + new Date().getTime();
+      var url = '/onebuy/order/add/sync?currency={{ core()->getCurrentCurrencyCode() }}&_token={{ csrf_token() }}&time=' + new Date().getTime();
 
       if (pay_type == "payoneer" || pay_type == 'pacypay') {
         url = '/order/add/async?time=' + new Date().getTime();
