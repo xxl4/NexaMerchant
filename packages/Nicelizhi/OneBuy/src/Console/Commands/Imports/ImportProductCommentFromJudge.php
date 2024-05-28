@@ -168,7 +168,7 @@ class ImportProductCommentFromJudge extends Command
                      //insert into db 
 
                     //$review = $this->productReviewRepository->findWhere(['title'=>$item['title'],'comment'=>$item['body'],'product_id'=>$product->id])->first();
-                    $review =\Webkul\Product\Models\ProductReview::where('title', $item['title'])->where("comment", $item['body'])->first();
+                    $review =\Webkul\Product\Models\ProductReview::where('title', $item['title'])->where("comment", $item['body'])->where("product_id", $product->id)->first();
                     //var_dump($review,$item, $product->id);exit;
                     
                     if(!empty($this->prod_id)) {
@@ -252,7 +252,7 @@ class ImportProductCommentFromJudge extends Command
 
                                 
                                 
-                                $attachments = $this->productReviewAttachmentRepository->findWhere(['path'=>$picture['urls']['original']])->first();
+                                $attachments = $this->productReviewAttachmentRepository->findWhere(['path'=>$picture['urls']['original'],'review_id'=>$review->id])->first();
                                 if(!empty($attachments)) continue;
 
     
