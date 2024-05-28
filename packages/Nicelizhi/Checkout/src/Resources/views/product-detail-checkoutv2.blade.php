@@ -2708,7 +2708,7 @@
           productL1.attribute_name = name1List
           productL2.attribute_name = name2List
           params.products = []
-          params.products.push(productL1)
+          params.products.push(productL1, productL2)
           // productL1.attr_id
           // minList = midList.join(',')
           // productsObj.attr_id = minList
