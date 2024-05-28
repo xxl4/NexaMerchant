@@ -2472,7 +2472,12 @@
             $("#airwallex_dropin_2").removeClass("action");
             $("#complete-btn-id").addClass(".complete-btn")
             $("#complete-btn-id").addClass("submit-button");
-
+            $("#complete-btn-id").css({
+              width: "100%",
+              background: "green!important",
+              padding: "18px 13px",
+              textAlign: 'center'
+            });
             $("#complete-btn-id").html("@lang('onebuy::app.product.payment.complete_secure_purchase')");
 
           }
@@ -2484,7 +2489,12 @@
             $("#collapseTwo").hide();
             $("#collapseThree").hide();
             $("#airwallex_dropin_collapse").hide();
-
+            $("#complete-btn-id").css({
+              width: "100%",
+              background: "green!important",
+              padding: "18px 13px",
+              textAlign: 'center'
+            });
             $("#headingOne1").addClass("action");
             $("#headingThree2").removeClass("action");
             $("#headingOne2").removeClass("action");
@@ -2511,7 +2521,12 @@
             $("#airwallex_dropin_2").removeClass("action");
             $("#complete-btn-id").addClass(".complete-btn")
             $("#complete-btn-id").addClass("submit-button");
-
+            $("#complete-btn-id").css({
+              width: "100%",
+              background: "green!important",
+              padding: "18px 13px",
+              textAlign: 'center'
+            });
             $("#complete-btn-id").html("@lang('onebuy::app.product.payment.complete_secure_purchase')");
 
 
@@ -3304,7 +3319,7 @@
           onInit(data, actions) {
 
             // Disable the buttons
-            actions.disable();
+            // actions.disable();
 
             // Listen for changes to the checkbox
             // document.querySelector('#check').addEventListener('change', function(event) {
@@ -3315,7 +3330,7 @@
             //     actions.disable();
             //     }
             // });
-            var params = getOrderParams('paypal_stand');
+            // var params = getOrderParams('paypal_stand');
 
             var can_paypal = 0;
             var email_can = 0;
