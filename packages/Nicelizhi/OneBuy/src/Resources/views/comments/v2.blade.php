@@ -670,7 +670,7 @@
   <div class="section">
 
     <?php foreach($comments as $key=>$comment) { 
-      $comment = json_decode($comment);    
+      //$comment = json_decode($comment);    
       //var_dump($comment);exit;
     ?>
 
@@ -680,7 +680,7 @@
         </div>
         <div>
           <img class="mb1 mr2" width="14px" src="/checkout/onebuy/images/icon_gou.svg">
-          <strong style="width: 100%;">Verified</strong>
+          <strong style="width: 100%;">@lang('onebuy::app.product.order.Verified')</strong>
         </div>
       </div>
       <div>
@@ -688,14 +688,14 @@
           <img width="110px" src="/checkout/onebuy/images/stars-5.svg" alt="">
         </div>
         <div class="cardtext">
-          <?php echo $comment->content;?>
+          <?php echo $comment->comment;?>
         </div>
         <?php if (isset($comment->images)) { ?>
 
           <?php foreach($comment->images as $key=>$image) { ?>
 
-          <a href="javascript:;" onclick="showImgProp('<?php echo $image;?>')">
-            <img style="width: 30%;aspect-ratio: 1/1;" src="<?php echo $image;?>" alt="">
+          <a href="javascript:;" onclick="showImgProp('<?php echo $image->url;?>')">
+            <img style="width: 30%;aspect-ratio: 1/1;" src="<?php echo $image->url;?>" alt="">
           </a>
 
 

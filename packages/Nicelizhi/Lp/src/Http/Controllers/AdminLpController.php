@@ -46,6 +46,7 @@ class AdminLpController extends Controller
                 array( 'db' => '`p`.`slug`',   'dt' => 'slug', 'field'=>'slug','formatter' => function($d, $row) {
                     return config('app.url')."/products/".$d;
                 } ),
+                array( 'db' => '`p`.`type`',   'dt' => 'type', 'field'=>'type' ),
                 array( 'db' => '`p`.`goto_url`',   'dt' => 'goto_url', 'field'=>'goto_url' ),
                 array( 'db' => '`p`.`status`',   'dt' => 'status', 'field'=>'status' ),
                 array( 'db' => '`p`.`updated_at`',   'dt' => 'updated_at', 'field'=>'updated_at' )
@@ -162,12 +163,14 @@ class AdminLpController extends Controller
         $name = request()->input("name");
         $slug = request()->input("slug");
         $goto_url = request()->input("goto_url");
+        $type = request()->input("type");
 
         $update = [];
         $update['html'] = $html;
         $update['name'] = $name;
         $update['slug'] = $slug;
         $update['goto_url'] = $goto_url;
+        $update['type'] = $type;
 
         \Nicelizhi\Lp\Models\Lp::where('id', $id)->update($update);
 

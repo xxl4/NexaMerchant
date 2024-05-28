@@ -20,7 +20,7 @@ class ApiController extends Controller {
      */
     public function CommentsListSlug($slug) {
 
-        $product = $product = $this->productRepository->findBySlug($slug);
+        $product = $this->productRepository->findBySlug($slug);
         if(is_null($product)) {
             return response()->json([
                 'message' => 'Product not found'
@@ -84,6 +84,8 @@ class ApiController extends Controller {
         $data['per_page'] = $per_page;
         $data['page'] = $page;
         $data['total'] = $reviewHelper->getTotalReviews($product);
+        $data['product'] = $this->productRepository->findBySlug($product_id);
+        $data['product_id'] = $product_id;
 
         return response()->json([
             'data' => $data,

@@ -18,6 +18,8 @@ use Webkul\Product\Models\ProductFlat;
 use Illuminate\Support\Facades\Redis;
 use Maatwebsite\Excel\Facades\Excel;
 use Webkul\CatalogRule\Listeners\Product;
+use Webkul\Product\Repositories\ProductReviewRepository;
+use Illuminate\Support\Facades\Event;
 
 
 class ProductController extends Controller
@@ -29,6 +31,7 @@ class ProductController extends Controller
         protected ProductRepository $productRepository,
         protected ProductAttributeValueRepository $productAttributeValueRepository,
         protected ShopifyStore $ShopifyStore,
+        protected ProductReviewRepository $productReviewRepository,
         protected ShopifyProduct $ShopifyProduct
 
     ){
@@ -97,7 +100,7 @@ class ProductController extends Controller
             return false;
         };
 
-        Cache::put("sync_".$product_id, 1, 3600);
+        Cache::put("sync_".$product_id, 1, 600);
 
         $options = $item->options;
         $LocalOptions = \Nicelizhi\Shopify\Helpers\Utils::createOptions($options);
@@ -181,6 +184,10 @@ class ProductController extends Controller
     public function comments($product_id, $act_type, Request $request) {
         $act_prod_type = Cache::get($act_type."_".$product_id);
         $product = $this->productRepository->findBySlug($product_id);
+        if(is_null($product)) {
+            echo "not found it";
+            return ;
+        }
         $redis = Redis::connection('default');
 
         $comment_list_key = "checkout_v1_product_comments_".$product['id'];
@@ -200,6 +207,9 @@ class ProductController extends Controller
             if($force=="1") {
                 $redis->del($comment_list_key);
                 $redis->del($comment_list_key2);
+
+              
+
             }
 
             $prod_id = $product->id;
@@ -289,7 +299,7 @@ class ProductController extends Controller
             }
 
 
-            if($version == "v1") {
+            if($version == "v1" || $version=='v2') {
                 $file3 = $request->file('product_size');
                 if(!empty($file3)) {
                     $fileName = $file3->getClientOriginalName();
@@ -457,19 +467,37 @@ class ProductController extends Controller
     public function commentsManual($product_id, Request $request) {
 
         $force = $request->input("force");
+        $product = $this->productRepository->findBySlug($product_id);
+        if(is_null($product)) {
+            return response()->json([
+                'message' => "error"
+            ]);
+        }
 
         if($force==1) {
             $redis = Redis::connection('default');
-            $product = $this->productRepository->findBySlug($product_id);
+            
 
             $comment_list_key = "checkout_v1_product_comments_".$product['id'];
             //$comment_list_key = "checkout_v1_product_comments_".$product_id;
             $redis->del($comment_list_key);
+
+              //delete the db
+              $items = $product->reviews;
+              //var_dump($items);
+              foreach($items as $key=>$item) {
+                   Event::dispatch('customer.review.delete.before', $item->id);
+                   $this->productReviewRepository->delete($item->id);
+                   Event::dispatch('customer.review.delete.after', $item->id);
+              }
+              //exit;
+
         }
         
         Artisan::queue("onebuy:import:products:comment:from:judge")->onConnection('redis')->onQueue('shopify-products'); // import the shopify comments
 
         return response()->json([
+            'product_id' => $product->id,
             'message' => "success"
         ]);
     }

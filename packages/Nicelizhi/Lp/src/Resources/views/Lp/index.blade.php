@@ -1,15 +1,30 @@
-<?php 
-echo $html->html;
-?>
-
 <script type="text/javascript">
+  window.base_api_url = "<?php echo config("app.url");?>";
   window.goto_url = "<?php echo isset($html->goto_url) ? $html->goto_url : ''; ?>";
   window.country = "<?php echo $default_country; ?>";
   function goto() {
     var url = "<?php echo isset($html->goto_url) ? $html->goto_url : ''; ?>";
+
+    // add refer post back
+              params = {
+                    "channel_id": "<?php echo $crm_channel;?>",
+                    "token": "<?php echo $refer; ?>",
+                    "type": "page_jump"
+                };
+        fetch('https://crm.heomai.com/api/user/action',{
+                body: JSON.stringify(params),
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json'
+                },
+        })
+
     window.location.href = url;
   }
 </script>
+<?php 
+echo $html->html;
+?>
 
 
 <script type="text/javascript">

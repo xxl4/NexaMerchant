@@ -32,6 +32,8 @@ class ImportProductCommentFromJudge extends Command
 
     protected $num = 0;
 
+    protected $prod_id = 0;
+
     /**
      * Create a new command instance.
      *
@@ -60,6 +62,8 @@ class ImportProductCommentFromJudge extends Command
 
         $shop_domain = config("onebuy.judge.shop_domain");
         $api_token = config("onebuy.judge.api_token");
+
+        $this->prod_id = $this->option("prod_id");
 
         $client = new Client();
 
@@ -105,7 +109,7 @@ class ImportProductCommentFromJudge extends Command
 
         $url = "https://judge.me/api/v1/reviews?shop_domain=".$shop_domain."&api_token=".$api_token."&page=".$page."&per_page=".$this->num;
 
-        $this->info($url);
+        //$this->info($url);
 
         // @link https://judge.me/api/docs#tag/Reviews
         try {
@@ -136,27 +140,46 @@ class ImportProductCommentFromJudge extends Command
 
             //var_dump($item);exit;
             if(!empty($item['title'])) {
-                $this->error($this->cache_key.$item['product_external_id']);
+                //$this->error($this->cache_key.$item['product_external_id']);
                 //$product = $this->productRepository->findBySlug($item['product_external_id']);
                 
-                $product = $this->productRepository->where("sku", $item['product_external_id'])->first();
+               // $product = $this->productRepository->where("sku", $item['product_external_id'])->first();
+                $product = $this->productRepository->findBySlug($item['product_external_id']);
 
-                if($item['product_external_id']=='8640539295974') {
-                    //var_dump($item);
-                    //exit;
-                    //var_dump($product);exit;
+                if(!empty($this->prod_id)) {
+                    if($item['product_external_id']== $this->prod_id ) {
+                        $this->info("Test ". json_encode($item));
+                        var_dump($item, $product);
+                        //exit;
+                        sleep(10);
+                        //continue;
+                        //exit;
+                        //var_dump($product);exit;
+                    }
                 }
 
+
                 if(!is_null($product)) {
-                    $this->error($this->cache_key.$product->id);
-                    $len = $redis->hlen($this->cache_key.$product->id);
+                    //$this->error($this->cache_key.$product->id);
+                    
+
+                    $product->id = empty($product->parent_id) ? $product->id : $product->parent_id;
 
                      //insert into db 
-                    $review = $this->productReviewRepository->findWhere(['title'=>$item['title']])->first();
+
+                    //$review = $this->productReviewRepository->findWhere(['title'=>$item['title'],'comment'=>$item['body'],'product_id'=>$product->id])->first();
+                    $review =\Webkul\Product\Models\ProductReview::where('title', $item['title'])->where("comment", $item['body'])->where("product_id", $product->id)->first();
+                    //var_dump($review,$item, $product->id);exit;
+                    
+                    if(!empty($this->prod_id)) {
+                        if($item['product_external_id']== $this->prod_id ) {
+                            //var_dump($review);
+                        }
+                    }
                     
                     $images = [];
                     //var_dump($review);
-                    if(empty($review)) {
+                    if(is_null($review)) {
 
                         //var_dump($item);exit;
                         if($item['reviewer']['name']=='Anonymous') continue;
@@ -194,11 +217,19 @@ class ImportProductCommentFromJudge extends Command
                         $data['comment'] = trim($item['body']);
                         $data['rating'] = $item['rating'];
                         $data['status'] = "pending";
-                        $data['product_id'] = $product->id;
+                        $data['product_id'] = empty($product->parent_id) ? $product->id : $product->parent_id; // why the product sku id is not the same it?
                         $data['attachments'] = [];
                         $data['customer_id'] = $customer->id;
     
                         if($item['published']==true) $data['status'] = "approved";
+
+                        if(!empty($this->prod_id)) {
+                            if($item['product_external_id']== $this->prod_id ) {
+                                var_dump($data, $product);
+                            }
+                        }
+
+
                 
                         $review = $this->productReviewRepository->create($data);
                         
@@ -217,9 +248,11 @@ class ImportProductCommentFromJudge extends Command
     
                                 $this->info($info['filename']);
                                 $image_path = "product/".$product->id."/".$info['filename'].".jpg";
-                                $local_image_path = "storage/".$image_path;
+                                $local_image_path = $image_path;
+
                                 
-                                $attachments = $this->productReviewAttachmentRepository->findWhere(['path'=>$local_image_path])->first();
+                                
+                                $attachments = $this->productReviewAttachmentRepository->findWhere(['path'=>$picture['urls']['original'],'review_id'=>$review->id])->first();
                                 if(!empty($attachments)) continue;
 
     
@@ -233,9 +266,9 @@ class ImportProductCommentFromJudge extends Command
                                 $attachments = [];
                                 $attachments['type'] = $fileType[0];
                                 $attachments['mime_type'] = $fileType[1];
-                                $attachments['path'] = $local_image_path;
+                                $attachments['path'] = $picture['urls']['original'];
                                 $attachments['review_id'] = $review->id;
-                                //var_dump($attachments);
+                                var_dump($attachments);
     
                                 $this->productReviewAttachmentRepository->create($attachments);
     
@@ -244,7 +277,15 @@ class ImportProductCommentFromJudge extends Command
                             
                         }
                     }
-                
+                    $len = $redis->hlen($this->cache_key.$product->id);
+                    if($item['product_external_id']=='9344048005402') {
+                        //var_dump($len, $this->cache_key.$product->id, empty($product->parent_id) ? $product->id : $product->parent_id);
+                        //exit;
+                    }
+                    if($product->id==3768) {
+                        //var_dump($len, $this->cache_key.$product->id);
+                        //exit;
+                    }
                     $this->info($len);
                     if($len < 6 && $item['published']==true) {
                         $value = [];
@@ -255,10 +296,10 @@ class ImportProductCommentFromJudge extends Command
                         $value['images'] = $images;
                         //var_dump($value);exit;
                         $redis->hSet($this->cache_key.$product->id, $item['id'], json_encode($value));
-                        $redis->hSet("onebuy_v2_product_comments_".$product->id, $item['id'], json_encode($value));
+                        //$redis->hSet("onebuy_v2_product_comments_".$product->id, $item['id'], json_encode($value));
                     }
 
-                    $this->error("onebuy_v2_product_comments_".$product->id);
+                    //$this->error("onebuy_v2_product_comments_".$product->id);
                     $len = $redis->hlen("onebuy_v2_product_comments_".$product->id);
                     //var_dump($item);exit;
                 

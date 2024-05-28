@@ -27,6 +27,7 @@
                           <th>Slug</th>
                           <th>Status</th>
                           <th>goto_url</th>
+                          <th>Type</th>
                           <th>updated at</th>
                           <th>Action</th>
                         </tr>
@@ -93,6 +94,9 @@
             data: 'goto_url'
           },
           {
+            data: 'type'
+          },
+          {
             data: 'updated_at'
           },
           {
@@ -106,7 +110,7 @@
             [20, 50, 100],
             [20, 50, 100]
         ],
-        order: [[4, 'desc']],
+        order: [[5, 'desc']],
         processing: true,
         serverSide: true,
         

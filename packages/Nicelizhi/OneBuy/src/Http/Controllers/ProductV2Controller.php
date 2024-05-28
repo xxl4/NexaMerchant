@@ -249,6 +249,7 @@ class ProductV2Controller extends Controller
 
             //获取到他底部的商品内容
         // $attributes = $this->productRepository->getSuperAttributes($product);
+            
             foreach($attributes['attributes'] as $key=>$attribute) {
                 $attribute['name'] = $attribute['code'];
                 $options = [];
@@ -263,6 +264,9 @@ class ProductV2Controller extends Controller
                         $option['image'] = @$NewproductBaseImage['medium_image_url'];
                         
                     }else{
+                        $new_id = $option['products'][0];
+                        $new_product = $this->productRepository->find($new_id);
+                        $NewproductBaseImage = product_image()->getProductBaseImage($new_product);
                         $option['image'] = $productBaseImage['medium_image_url'];
                         
                     }
@@ -326,6 +330,7 @@ class ProductV2Controller extends Controller
 
         $comments = $redis->hgetall($this->cache_prefix_key."product_comments_".$product['id']);
         if(empty($comments)) $comments = $redis->hgetall("checkout_v1_product_comments_".$product['id']);
+        
 
         
         //获取 paypal smart key

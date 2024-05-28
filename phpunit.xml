@@ -42,6 +42,11 @@
         <testsuite name="Shopify Unit Test">
             <directory suffix="Test.php">./packages/Nicelizhi/Shopify/tests/Feature</directory>
         </testsuite>
+
+        <!-- Comments package testsuites. -->
+        <testsuite name="Shopify Unit Test">
+            <directory suffix="Test.php">./packages/Nicelizhi/Comments/tests/Feature</directory>
+        </testsuite>
     </testsuites>
     <source>
         <include>

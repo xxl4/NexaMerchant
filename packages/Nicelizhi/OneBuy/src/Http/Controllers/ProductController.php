@@ -208,7 +208,7 @@ class ProductController extends Controller
                 $attribute['name'] = $attribute['code'];
                 $options = [];
                 foreach($attribute['options'] as $kk=>$option) {
-                    // 获取商品图片内容
+                    // 
                     $is_sold_out = false;
                     if($attribute['id']==23) {
                         $new_id = $option['products'][0];
@@ -293,7 +293,15 @@ class ProductController extends Controller
         $faqItems = $redis->hgetall($this->faq_cache_key);
         ksort($faqItems);
         $comments = $redis->hgetall($this->cache_prefix_key."product_comments_".$product['id']);
-        //获取 paypal smart key
+        
+        $comments = $product->reviews->where('status', 'approved')->take(10);
+
+        $comments = $comments->map(function($comments) {
+            $comments->customer = $comments->customer;
+            $comments->images;
+            return $comments;
+        });
+
         $paypal_client_id = core()->getConfigData('sales.payment_methods.paypal_smart_button.client_id');
 
 
@@ -1189,7 +1197,7 @@ class ProductController extends Controller
 
         $shopify_store_id = config('shopify.shopify_store_id');
 
-        $products = \Nicelizhi\Shopify\Models\ShopifyProduct::where("shopify_store_id",$shopify_store_id)->where("status", "active")->select(['title','handle',"variants","images"])->limit(5)->get();
+        $products = \Nicelizhi\Shopify\Models\ShopifyProduct::where("shopify_store_id",$shopify_store_id)->where("status", "active")->select(['title','handle',"variants","images"])->limit(3)->get();
 
         $recommended_info = [];
 

@@ -21,6 +21,10 @@
             <input type="text" class="form-control" id="goto_url" placeholder="Lp Goto url" name="goto_url" value="<?php echo $page->goto_url;?>">
         </div>
         <div class="form-group">
+            <label for="slug">Type</label>
+            <input type="text" class="form-control" id="type" placeholder="Lp Type" name="type" value="<?php echo $page->type;?>">
+        </div>
+        <div class="form-group">
             <label for="html">Html</label>
             <textarea id="html" name="html" class="form-control" rows="30" >
                 <?php echo $page->html;?>
@@ -66,9 +70,11 @@
  <script>
     $(function () {
       // Summernote
-      $('#html').summernote({
-        "height": 500
-      })
+      <?php if($page->type=='customize') { ?>
+        $('#html').summernote({
+            "height": 500
+        })
+      <?php } ?>
   
       
     })

@@ -268,7 +268,7 @@
 <div class="checkout-security-title-font">
  @lang('onebuy::app.product.order.Secure Checkout') </div>
 </div>
-<img class="checkout-security-img" src="/template-common/checkout1/images/secure-icons.png?v=1113" />
+<img class="checkout-security-img" src="/template-common/checkout1/images/secure-icons.png?v=1114" />
 </div>
 <div class="product-list js-list">
     <?php foreach($package_products as $key=>$package_product) { ?>
@@ -1436,6 +1436,8 @@ Apt / Suite / Other </label>
             }
             product_template += '</div>';
 
+            console.log("test message " + product_attribute.id + " has " + has_img_attribute_id + "  show_image " + show_image );
+
             if(product_attribute.id == has_img_attribute_id && show_image) {
                 
                 
@@ -1623,8 +1625,11 @@ function GotoNotRequest(url) {
 <script>
         window.product_attributes = <?php echo json_encode($product_attributes);?>;
 
+        console.log("window product attributes ");
+        console.log(window.product_attributes[0].id);
+
         var is_more_attribute = 1;
-        setAttributeTemplate('@lang('onebuy::app.product.order.SELECT YOUR')', '', '23', is_more_attribute ? true : false, 'common15', 'Sold out, please select another Attributes');
+        setAttributeTemplate('@lang('onebuy::app.product.order.SELECT YOUR')', '', window.product_attributes[0].id, is_more_attribute ? true : false, 'common15', 'Sold out, please select another Attributes');
         showAttributeSelecet('@lang('onebuy::app.product.order.Item')');
     </script>
 
@@ -2661,7 +2666,7 @@ function GotoNotRequest(url) {
 
         function getAttributeImg(attribute) {
             var product_attributes = <?php echo json_encode($product_attributes);?>;
-            var show_img_attribute_id =  '23';
+            var show_img_attribute_id =  '24';
             var product_img = "{{ $productBaseImage['small_image_url'] }}";
 
             for (var i = 0; i < product_attributes.length; i++) {
