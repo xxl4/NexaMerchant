@@ -301,8 +301,10 @@ class ProductController extends Controller
             $comments->images;
             return $comments;
         });
-        //$comments = [];
-        if(empty($comments)) {
+        //Log::info($product['id'].'--'.json_encode($comments));
+        //Log::info($product['id'].'--'.count($comments));
+        if(count($comments)==0) {
+            //Log::info($product['id'].'--'.$this->cache_prefix_key."product_comments_".$product['id']);
             $comments = $redis->hgetall($this->cache_prefix_key."product_comments_".$product['id']);
             foreach($comments as $key=>$comment) {
                 $comment = json_decode($comment);
