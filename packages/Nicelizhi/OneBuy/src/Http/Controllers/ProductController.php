@@ -292,7 +292,7 @@ class ProductController extends Controller
         
         $faqItems = $redis->hgetall($this->faq_cache_key);
         ksort($faqItems);
-        $comments = $redis->hgetall($this->cache_prefix_key."product_comments_".$product['id']);
+        // $comments = $redis->hgetall($this->cache_prefix_key."product_comments_".$product['id']);
         
         $comments = $product->reviews->where('status', 'approved')->take(10);
 
@@ -301,6 +301,16 @@ class ProductController extends Controller
             $comments->images;
             return $comments;
         });
+        //$comments = [];
+        if(empty($comments)) {
+            $comments = $redis->hgetall($this->cache_prefix_key."product_comments_".$product['id']);
+            foreach($comments as $key=>$comment) {
+                $comment = json_decode($comment);
+                $comment->comment = $comment->content;
+                $comments[$key] = $comment;
+            }
+            //var_dump($comments);
+        }
 
         $paypal_client_id = core()->getConfigData('sales.payment_methods.paypal_smart_button.client_id');
 
