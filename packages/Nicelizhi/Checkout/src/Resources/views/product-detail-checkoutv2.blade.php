@@ -1509,7 +1509,7 @@
   <div class="chk-header">
     <div class="container">
       <ul class="stepsBox">
-        <li><span>@lang('checkout::app.v1.Checkout')</span></li>
+        <li><span>@lang('checkout::app.v2.Checkout')</span></li>
         <li>Free Bonus</li>
         <li>Receipt</li>
       </ul>
