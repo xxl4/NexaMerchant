@@ -1185,6 +1185,7 @@ ul.s1-list li p {
      color:#fff;
     /* background:#0071e3;
      */
+     text-align: center;
      background: green!important;
      font-weight:bold;
      cursor:pointer;
