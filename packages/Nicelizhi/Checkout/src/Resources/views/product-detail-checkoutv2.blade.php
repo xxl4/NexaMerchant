@@ -2392,23 +2392,309 @@
       axios
         .get(dataUrl)
         .then(function(res) {
-          data = res.data
-          payTypeShow = data.payments
-          var attrList = data.attr.attributes
-          paypal_pay_acc = data.paypal_client_id
-          if (payTypeShow.airwallex_klarna == '0') {
-            $('#airwallex-klarna-box').hide()
-          }
-          if (payTypeShow.payal_standard == '0') {
-            $('#payal-standard-box').hide()
+            data = res.data
+            payTypeShow = data.payments
+            var attrList = data.attr.attributes
+            paypal_pay_acc = data.paypal_client_id
+            var paymentsDefault = data.payments_default
+            if (payTypeShow.airwallex_klarna == '0') {
+              $('#airwallex-klarna-box').hide()
+            }
+            if (payTypeShow.payal_standard == '0') {
+              $('#payal-standard-box').hide()
 
-          }
-          if (payTypeShow.airwallex_credit_card == '0') {
-            $('#airwallex-credit-card-box').hide()
+            }
+            if (payTypeShow.airwallex_credit_card == '0') {
+              $('#airwallex-credit-card-box').hide()
 
+            }
+            if (payTypeShow.airwallex_dropin == '0') {
+              $('#airwallex-dropin-box').hide()
+            }
+            if (paymentsDefault == 'airwallex-klarna') {
+              $(".complete-btn").show();
+              $("#collapseOne").hide();
+              $("#collapseTwo").hide();
+              $("#collapseThree").show();
+              $("#airwallex_dropin_collapse").hide();
+
+              $("#headingThree2").addClass("action");
+              $("#headingOne1").removeClass("action");
+              $("#headingOne2").removeClass("action");
+              $("#airwallex_dropin_2").removeClass("action");
+
+              $(".complete-btn").addClass("submit-button");
+
+              $(".complete-btn").html("@lang('onebuy::app.product.payment.complete_secure_purchase')");
+
+            }
+            if (paymentsDefault == 'payal-standard') {
+              function() {
+                $("#collapseOne").hide();
+                $("#collapseTwo").show();
+                $("#collapseThree").hide();
+                $("#airwallex_dropin_collapse").hide();
+
+                $("#headingOne2").addClass("action");
+                $("#headingOne1").removeClass("action");
+                $("#headingThree2").removeClass("action");
+                $("#airwallex_dropin_2").removeClass("action");
+
+                $(".complete-btn").removeClass("submit-button");
+
+                $(".complete-btn").css("width", "100%");
+
+                //payment-button
+                $(".complete-btn").empty();;
+
+                paypal.Buttons({
+                  style: {
+                    layout: 'horizontal',
+                    tagline: false,
+                    height: 55
+                  },
+
+                  onInit(data, actions) {
+
+                    // Disable the buttons
+                    actions.disable();
+
+                    // Listen for changes to the checkbox
+                    // document.querySelector('#check').addEventListener('change', function(event) {
+                    //     // Enable or disable the button when it is checked or unchecked
+                    //     if (event.target.checked)  {
+                    //     actions.enable();
+                    //     } else  {
+                    //     actions.disable();
+                    //     }
+                    // });
+                    var params = getOrderParams('paypal_stand');
+
+                    var can_paypal = 0;
+                    var email_can = 0;
+                    var first_name_can = 0;
+                    var last_name_can = 0;
+                    var phone_number_can = 0;
+                    var address_can = 0;
+                    var city_can = 0;
+                    var zip_code_can = 0;
+
+
+
+                    $(".email").on('change', function() {
+                      var value = $(".email").val();
+                      if (value.length > 0) email_can = 1;
+                      console.log(value);
+                      var params = getOrderParams('paypal_stand');
+                      if (!params.error) {
+                        actions.enable();
+                      }
+                    });
+
+                    $(".first_name").on('change', function() {
+                      var value = $(".first_name").val();
+                      if (value.length > 0) first_name_can = 1;
+                      console.log(value);
+                      var params = getOrderParams('paypal_stand');
+                      if (!params.error) {
+                        actions.enable();
+                      }
+                    });
+
+                    $(".last_name").on('change', function() {
+                      var value = $(".last_name").val();
+                      if (value.length > 0) last_name_can = 1;
+                      console.log(value);
+                      var params = getOrderParams('paypal_stand');
+                      if (!params.error) {
+                        actions.enable();
+                      }
+                    });
+                    $(".phone_number").on('change', function() {
+                      var value = $(".phone_number").val();
+                      if (value.length > 0) phone_number_can = 1;
+                      console.log(value);
+                      var params = getOrderParams('paypal_stand');
+                      if (!params.error) {
+                        actions.enable();
+                      }
+                    });
+                    $(".address").on('change', function() {
+                      var value = $(".address").val();
+                      if (value.length > 0) address_can = 1;
+                      console.log(value);
+                      var params = getOrderParams('paypal_stand');
+                      if (!params.error) {
+                        actions.enable();
+                      }
+                    });
+                    $(".city").on('change', function() {
+                      var value = $(".city").val();
+                      if (value.length > 0) city_can = 1;
+                      console.log(value);
+                      var params = getOrderParams('paypal_stand');
+                      if (!params.error) {
+                        actions.enable();
+                      }
+                    });
+                    $(".zip_code").on('change', function() {
+                      var value = $(".zip_code").val();
+                      if (value.length > 0) zip_code_can = 1;
+                      console.log(value);
+                      var params = getOrderParams('paypal_stand');
+                      if (!params.error) {
+                        actions.enable();
+                      }
+                    });
+
+                    $("#state-select").on('change', function() {
+                      var params = getOrderParams('paypal_stand');
+                      if (!params.error) {
+                        actions.enable();
+                      }
+                    })
+
+
+
+                    if (params.error) {
+                      //$('#checkout-error').html(params.error.join('<br />'));
+                      //$('#checkout-error').show();
+                      actions.disable();
+                      //throw new Error('Verification failed');
+                    } else {
+                      actions.enable();
+                    }
+                  },
+                  onError(err) {
+                    $('#loading').hide();
+                    console.log("paypal " + JSON.stringify(err));
+                  },
+                  onCancel: function(data) {
+                    $('#loading').hide();
+                  },
+                  onClick() {
+                    // var params = getOrderParams('paypal_stand');
+                    console.log("on click " + params);
+                    if (params.error) {
+                      $('#checkout-error').html(params.error.join('<br />'));
+                      $('#checkout-error').show();
+                    }
+
+
+                    console.log("post crm system");
+
+                  },
+
+                  // Call your server to set up the transaction
+                  createOrder: function(data, actions) {
+                    $('#loading').show();
+                    // var params = getOrderParams('paypal_stand');
+                    var url = '/onebuy/order/addr/after?currenty={{ core()->getCurrentCurrencyCode() }}&_token={{ csrf_token() }}&time=' + new Date().getTime() + "&force=" + localStorage.getItem("force");
+                    return fetch(url, {
+                      body: JSON.stringify(params),
+                      method: 'POST',
+                      headers: {
+                        'content-type': 'application/json'
+                      }
+                    }).then(function(res) {
+                      return res.json();
+                    }).then(function(res) {
+                      //$('#loading').hide();
+                      var data = res;
+                      if (data.statusCode === 201) {
+                        var order_info = data.result;
+                        //console.log(order_info);
+                        //console.log(order_info.purchase_units[0].amount);
+                        document.cookie = "voluum_payout=" + order_info.purchase_units[0].amount.value + order_info.purchase_units[0].amount.currency_code + "; path=/";
+                        document.cookie = "order_id=" + order_info.id + "; path=/";
+                        localStorage.setItem("order_id", order_info.id);
+                        localStorage.setItem("order_params", JSON.stringify(params));
+
+                        return order_info.id;
+                      } else {
+                        if (data.code == '202') {
+                          if (confirm(data.error) == true) {
+                            localStorage.setItem("force", 1);
+                          }
+                        }
+
+                        var pay_error = JSON.parse(data.error);
+                        var pay_error_message = pay_error.details;
+
+                        if (pay_error_message && pay_error_message.length) {
+                          var show_pay_error_message_arr = [];
+
+                          for (var pay_error_message_i = 0; pay_error_message_i < pay_error_message.length; pay_error_message_i++) {
+                            show_pay_error_message_arr.push("Field:" + pay_error_message[pay_error_message_i].field + "<br /> Value" + pay_error_message[pay_error_message_i].value + '. <br />' + pay_error_message[pay_error_message_i].description + '<br /><br />')
+                          }
+
+                          $('#checkout-error').html(show_pay_error_message_arr.join(''));
+                          $('#checkout-error').show();
+                        }
+                      }
+
+
+                    });
+                  },
+
+                  // Call your server to finalize the transaction
+                  onApprove: function(data, actions) {
+                    var orderData = {
+                      paymentID: data.orderID,
+                      orderID: data.orderID,
+                    };
+                    var request_params = {
+                      client_secret: data.orderID,
+                      id: localStorage.getItem('order_id'),
+                      orderData: orderData,
+                      data: data,
+                    }
+                    $('#loading').show();
+                    var url = "/onebuy/order/status?_token={{ csrf_token() }}";
+                    return fetch(url, {
+                      method: 'post',
+                      body: JSON.stringify(request_params),
+                      headers: {
+                        'content-type': 'application/json'
+                      },
+                    }).then(function(res) {
+                      return res.json();
+                    }).then(function(res) {
+                      $('#loading').hide();
+                      if (res.success == true) {
+                        //Goto('/checkout/v1/success/'+localStorage.getItem('order_id'));
+                        window.location.href = '/onebuy/checkout/v1/success/' + localStorage.getItem('order_id');
+                        return true;
+                        //actions.redirect('/checkout/v1/success/'+localStorage.getItem('order_id'));
+                      }
+                      if (res.error == 'INSTRUMENT_DECLINED') {
+
+                        $('#checkout-error').html("The instrument presented  was either declined by the processor or bank, or it can't be used for this payment.<br><br> Please confirm your account or bank card has sufficient balance, and try again.");
+                        $('#checkout-error').show();
+                      }
+                    });
+                  }
+                }).render('.complete-btn');
+
+              });
           }
-          if (payTypeShow.airwallex_dropin == '0') {
-            $('#airwallex-dropin-box').hide()
+          if (paymentsDefault == 'airwallex-credit-card') {
+            $(".complete-btn").show();
+            console.log("click headingOne ");
+            $("#collapseOne").show();
+            $("#collapseTwo").hide();
+            $("#collapseThree").hide();
+            $("#airwallex_dropin_collapse").hide();
+
+            $("#headingOne1").addClass("action");
+            $("#headingThree2").removeClass("action");
+            $("#headingOne2").removeClass("action");
+            $("#airwallex_dropin_2").removeClass("action");
+
+            $(".complete-btn").addClass("submit-button");
+
+            $(".complete-btn").html("@lang('onebuy::app.product.payment.complete_secure_purchase')");
+
 
           }
           var script = document.createElement('script')
@@ -2432,30 +2718,12 @@
           script.type = 'text/javascript'
           // script.src = 'https://www.paypal.com/sdk/js?client-id=Ac3a2fQqrAO_2skbKS4hb5okCBnRUdh_i78Vvjhh-s1xc4fqZc39OyawwGL4kdHGvlPiRsv6CmogaJZz&components=buttons,messages,funding-eligibility&currency='+currency+'&disable-funding=paylater';
           script.src =
-            'https://www.paypal.com/sdk/js?client-id=' +
-            paypal_pay_acc +
-            '&components=buttons,messages,funding-eligibility&currency=' +
-            currency
+          'https://www.paypal.com/sdk/js?client-id=' +
+          paypal_pay_acc +
+          '&components=buttons,messages,funding-eligibility&currency=' +
+          currency
           // script.src = 'https://www.paypal.com/sdk/js?client-id=AUbkpTo_D9-l80qERS91ipcrXuIfSC3WMmFbK7Ey4n8RS3TaoJDw8H2rpxdhsWBIZWZbb6E3V7CSmK4R&components=buttons,messages,funding-eligibility&currency='+currency+'&disable-funding=paylater';
-          script.async = 1
-          document.body.appendChild(script)
-          $('#p-name2').text(data.package_products[0].name)
-          $('#p-name1').text(data.package_products[1].name)
-          $('#p-name3').text(data.package_products[2].name)
-          $('#p-name4').text(data.package_products[3].name)
-          $('#b-off2').text('Save ' + data.package_products[0].tip1 + ' OFF')
-          $('#b-off1').text('Save ' + data.package_products[1].tip1 + ' OFF')
-          $('#b-off3').text('Save ' + data.package_products[2].tip1 + ' OFF')
-          $('#b-off4').text('Save ' + data.package_products[3].tip1 + ' OFF')
-          $('#cb-reg-price2').text(data.package_products[0].old_price_format)
-          $('#cb-reg-price1').text(data.package_products[1].old_price_format)
-          $('#cb-reg-price3').text(data.package_products[2].old_price_format)
-          $('#cb-reg-price4').text(data.package_products[3].old_price_format)
-          $('#cb-buy-each2').text(data.package_products[0].new_price_format)
-          $('#cb-buy-each1').text(data.package_products[1].new_price_format)
-          $('#cb-buy-each3').text(data.package_products[2].new_price_format)
-          $('#cb-buy-each4').text(data.package_products[3].new_price_format)
-          if (attrList.length > 0) {
+          script.async = 1 document.body.appendChild(script) $('#p-name2').text(data.package_products[0].name) $('#p-name1').text(data.package_products[1].name) $('#p-name3').text(data.package_products[2].name) $('#p-name4').text(data.package_products[3].name) $('#b-off2').text('Save ' + data.package_products[0].tip1 + ' OFF') $('#b-off1').text('Save ' + data.package_products[1].tip1 + ' OFF') $('#b-off3').text('Save ' + data.package_products[2].tip1 + ' OFF') $('#b-off4').text('Save ' + data.package_products[3].tip1 + ' OFF') $('#cb-reg-price2').text(data.package_products[0].old_price_format) $('#cb-reg-price1').text(data.package_products[1].old_price_format) $('#cb-reg-price3').text(data.package_products[2].old_price_format) $('#cb-reg-price4').text(data.package_products[3].old_price_format) $('#cb-buy-each2').text(data.package_products[0].new_price_format) $('#cb-buy-each1').text(data.package_products[1].new_price_format) $('#cb-buy-each3').text(data.package_products[2].new_price_format) $('#cb-buy-each4').text(data.package_products[3].new_price_format) if (attrList.length > 0) {
             $('.buy-se-box').css('display', 'block')
             var selectList = ''
 
@@ -2489,20 +2757,12 @@
             $('.buy-select2').hide()
           }
           var nprice = currencySymbol + data.package_products[0].new_price.toFixed(2)
-          $('#summary-total1').text(nprice)
-          var shippingFee = currencySymbol + data.package_products[0].shipping_fee
+          $('#summary-total1').text(nprice) var shippingFee = currencySymbol + data.package_products[0].shipping_fee
           $('#summary-total3').text(shippingFee)
 
           var discount = Number(data.package_products[0].old_price) - Number(data.package_products[0].new_price)
-          discount = currencySymbol + discount.toFixed(2)
-          $('#summary-total2').text(discount)
-          var total = Number(data.package_products[0].new_price) + Number(data.package_products[0].shipping_fee)
-          total = currencySymbol + total.toFixed(2)
-          $('#summary-total4').text(total)
-          $('.product-name').text(data.package_products[0].name)
-          $('#product-number').text('number: 2')
-          $('#product-price').text(data.package_products[0].tip2)
-          if (data.payments.airwallex_credit_card == '0') {
+          discount = currencySymbol + discount.toFixed(2) $('#summary-total2').text(discount) var total = Number(data.package_products[0].new_price) + Number(data.package_products[0].shipping_fee)
+          total = currencySymbol + total.toFixed(2) $('#summary-total4').text(total) $('.product-name').text(data.package_products[0].name) $('#product-number').text('number: 2') $('#product-price').text(data.package_products[0].tip2) if (data.payments.airwallex_credit_card == '0') {
             $('.paypal-box').hide()
           }
           if (data.payments.payal_standard == '0') {
@@ -2511,27 +2771,13 @@
           }
           var productsObj = {}
           var midList = []
-          attLength = data.attr.attributes.length
-          console.log(attLength, 'attLength')
-          params.product_delivery = data.package_products[0].shipping_fee
-          params.total = Number(data.package_products[0].new_price) + Number(data.package_products[0].shipping_fee)
-          params.amount = '2'
-          params.description = data.package_products[0].name
-          paypalId = data.paypal_client_id
-          productsObj.amount = '2'
-          productsObj.description = data.package_products[0].name
-          productsObj.product_id = data.product.id
-          productsObj.product_sku = data.sku
-          productsObj.img = data.product.base_image.large_image_url
+          attLength = data.attr.attributes.length console.log(attLength, 'attLength') params.product_delivery = data.package_products[0].shipping_fee params.total = Number(data.package_products[0].new_price) + Number(data.package_products[0].shipping_fee) params.amount = '2'
+          params.description = data.package_products[0].name paypalId = data.paypal_client_id productsObj.amount = '2'
+          productsObj.description = data.package_products[0].name productsObj.product_id = data.product.id productsObj.product_sku = data.sku productsObj.img = data.product.base_image.large_image_url
           // productsObj.price =
 
           // productsObj.variant_id =
-          console.log(data, 'data=====')
-          productL1 = JSON.parse(JSON.stringify(productsObj))
-          productL2 = JSON.parse(JSON.stringify(productsObj))
-          productL3 = JSON.parse(JSON.stringify(productsObj))
-          productL4 = JSON.parse(JSON.stringify(productsObj))
-          var name1,
+          console.log(data, 'data=====') productL1 = JSON.parse(JSON.stringify(productsObj)) productL2 = JSON.parse(JSON.stringify(productsObj)) productL3 = JSON.parse(JSON.stringify(productsObj)) productL4 = JSON.parse(JSON.stringify(productsObj)) var name1,
             name1List = [],
             name2,
             name2List = [],
@@ -2579,24 +2825,15 @@
             if (params.amount == '3') {}
             if (params.amount == '4') {}
           }
-          name1List = name1List.join(',')
-          name2List = name2List.join(',')
-          v1List = v1List.join(',')
-          v2List = v2List.join(',')
-          productL1.attr_id = v1List
-          productL2.attr_id = v2List
-          productL1.attribute_name = name1List
-          productL2.attribute_name = name2List
-          params.products = []
-          params.products.push(productL1)
+          name1List = name1List.join(',') name2List = name2List.join(',') v1List = v1List.join(',') v2List = v2List.join(',') productL1.attr_id = v1List productL2.attr_id = v2List productL1.attribute_name = name1List productL2.attribute_name = name2List params.products = [] params.products.push(productL1)
           // productL1.attr_id
           // minList = midList.join(',')
           // productsObj.attr_id = minList
           // console.log(productsObj, 'midList')
         })
-        .catch(function(error) {
-          console.error(error, 'err')
-        })
+    .catch(function(error) {
+      console.error(error, 'err')
+    })
     })
 
     function paramsProductsinit(list) {
@@ -2861,245 +3098,246 @@
     })
 
     $('select[name="shippingState"]').click(function() {
-          console.log($(this).val())
-          params.province = $(this).val()
-        }
-        $('select[name="shippingCountry"]').click(function() {
-          console.log($(this).val())
-          params.country = $(this).val()
-          if ($(this).val()) {
-            var countryClick = $(this).val().toLowerCase()
-            console.log(countryClick, params.country, 'countryClick')
-            var countryUrl = '/template-common/checkout1/state/' + countryClick + '_' + area + '.json'
-            axios
-              .get(countryUrl)
-              .then(function(res) {
-                var stateList = res.data
-                var optionList = []
-                for (var resj = 0; resj < stateList.length; resj++) {
-                  optionList += `<option value="` + stateList[resj].CountryCode + `">` + stateList[resj].StateName + `</option>`
-                }
-                $('select[name="shippingState"]').empty()
-                $('select[name="shippingState"]').append(optionList)
-              })
-              .catch(function(err) {
-                console.log(err, 'err====')
-              })
-          }
-        })
+      console.log($(this).val())
+      params.province = $(this).val()
+    })
+    $('select[name="shippingCountry"]').click(function() {
+      console.log($(this).val())
+      params.country = $(this).val()
+      if ($(this).val()) {
+        var countryClick = $(this).val().toLowerCase()
+        console.log(countryClick, params.country, 'countryClick')
+        var countryUrl = '/template-common/checkout1/state/' + countryClick + '_' + area + '.json'
+        axios
+          .get(countryUrl)
+          .then(function(res) {
+            var stateList = res.data
+            var optionList = []
+            for (var resj = 0; resj < stateList.length; resj++) {
+              optionList += `<option value="` + stateList[resj].CountryCode + `">` + stateList[resj].StateName + `</option>`
+            }
+            $('select[name="shippingState"]').empty()
+            $('select[name="shippingState"]').append(optionList)
+          })
+          .catch(function(err) {
+            console.log(err, 'err====')
+          })
+      }
+    })
 
 
-        function getSku(id, n, value) {
-          var nList = []
-          var aList = []
-          for (var i = 0; i < attLength; i++) {
-            var inSeId = 'in-se' + i
-            if (id == inSeId) {
-              nList = params.products[n].attribute_name.split(',')
-              nList[i] = value
-              params.products[n].attribute_name = nList.join(',')
-              console.log(params.products[n].attribute_name, 'nList')
-              for (var j = 0; j < data.attr.attributes[i].options.length; j++) {
-                if (data.attr.attributes[i].options[j].label == value) {
-                  aid = data.attr.attributes[i].options[j].id
-                  if (i == 0) {
-                    params.products[n].variant_id = data.attr.attributes[i].options[j].products[0]
-                  }
-                }
+    function getSku(id, n, value) {
+      var nList = []
+      var aList = []
+      for (var i = 0; i < attLength; i++) {
+        var inSeId = 'in-se' + i
+        if (id == inSeId) {
+          nList = params.products[n].attribute_name.split(',')
+          nList[i] = value
+          params.products[n].attribute_name = nList.join(',')
+          console.log(params.products[n].attribute_name, 'nList')
+          for (var j = 0; j < data.attr.attributes[i].options.length; j++) {
+            if (data.attr.attributes[i].options[j].label == value) {
+              aid = data.attr.attributes[i].options[j].id
+              if (i == 0) {
+                params.products[n].variant_id = data.attr.attributes[i].options[j].products[0]
               }
-              aList = params.products[n].attr_id.split(',')
-
-              aList[i] = data.attr.attributes[i].id + '_' + aid
-              params.products[n].attr_id = aList.join(',')
-              console.log(params.products[n].attr_id, 'attr_id')
             }
           }
+          aList = params.products[n].attr_id.split(',')
+
+          aList[i] = data.attr.attributes[i].id + '_' + aid
+          params.products[n].attr_id = aList.join(',')
+          console.log(params.products[n].attr_id, 'attr_id')
         }
+      }
+    }
 
-        function seInput(value) {
-          var parId = $(event.target).parent().parent().attr('id')
-          var itemId = $(event.target).attr('id')
+    function seInput(value) {
+      var parId = $(event.target).parent().parent().attr('id')
+      var itemId = $(event.target).attr('id')
 
-          var aid = ''
-          if (parId == 'select1-item1' || parId == 'select2-item1' || parId == 'select3-item1' || parId == 'select4-item1') {
-            getSku(itemId, 0, value)
-            // paramsProductsinit(params.products)
-          }
-          if (parId == 'select2-item2' || parId == 'select3-item2' || parId == 'select4-item2') {
-            getSku(itemId, 1, value)
-            // paramsProductsinit(params.products)
-          }
-          if (parId == 'select3-item3' || parId == 'select4-item3') {
-            getSku(itemId, 2, value)
-            // paramsProductsinit(params.products)
-          }
-          if (parId == 'select4-item4') {
-            getSku(itemId, 3, value)
-            // paramsProductsinit(params.products)
-          }
-          var target = event.currentTarget
-          var imgIndex = ''
-          var colorList = data.attr.attributes[0].options
-          for (var colori = 0; colori < colorList.length; colori++) {
-            if (colorList[colori].label == value) {
-              imgIndex = colorList[colori].products[0]
-            }
-          }
-          if (imgIndex) {
-            var finUrl = data.attr.variant_images[imgIndex][0].small_image_url
-            $(event.target).parent().siblings('img').attr('src', finUrl)
-          }
-          console.log(params.products, '===params====')
+      var aid = ''
+      if (parId == 'select1-item1' || parId == 'select2-item1' || parId == 'select3-item1' || parId == 'select4-item1') {
+        getSku(itemId, 0, value)
+        // paramsProductsinit(params.products)
+      }
+      if (parId == 'select2-item2' || parId == 'select3-item2' || parId == 'select4-item2') {
+        getSku(itemId, 1, value)
+        // paramsProductsinit(params.products)
+      }
+      if (parId == 'select3-item3' || parId == 'select4-item3') {
+        getSku(itemId, 2, value)
+        // paramsProductsinit(params.products)
+      }
+      if (parId == 'select4-item4') {
+        getSku(itemId, 3, value)
+        // paramsProductsinit(params.products)
+      }
+      var target = event.currentTarget
+      var imgIndex = ''
+      var colorList = data.attr.attributes[0].options
+      for (var colori = 0; colori < colorList.length; colori++) {
+        if (colorList[colori].label == value) {
+          imgIndex = colorList[colori].products[0]
         }
-        $('#product1').click(function(e) {
-          var list = $('#product1,#product2,#product3,#product4')
-          list.removeClass('choose-p')
-          var list2 = $('#buy-select1,#buy-select3,#buy-select4')
-          list2.removeClass('buy-select1')
-          $('#buy-select2').hide()
-          $('#buy-select3').hide()
-          $('#buy-select4').hide()
-          $('#buy-select1').show()
+      }
+      if (imgIndex) {
+        var finUrl = data.attr.variant_images[imgIndex][0].small_image_url
+        $(event.target).parent().siblings('img').attr('src', finUrl)
+      }
+      console.log(params.products, '===params====')
+    }
+    $('#product1').click(function(e) {
+      var list = $('#product1,#product2,#product3,#product4')
+      list.removeClass('choose-p')
+      var list2 = $('#buy-select1,#buy-select3,#buy-select4')
+      list2.removeClass('buy-select1')
+      $('#buy-select2').hide()
+      $('#buy-select3').hide()
+      $('#buy-select4').hide()
+      $('#buy-select1').show()
 
-          var cssObj = {
-            height: '0',
-            opacity: '0',
-          }
-          $('#buy-select2').css(cssObj)
-          $('#product1').addClass('choose-p')
-          $('#buy-select1').addClass('buy-select1')
-          var nprice = currencySymbol + data.package_products[1].new_price.toFixed(2)
-          $('#summary-total1').text(nprice)
-          var shippingFee = currencySymbol + data.package_products[1].shipping_fee
-          $('#summary-total3').text(shippingFee)
+      var cssObj = {
+        height: '0',
+        opacity: '0',
+      }
+      $('#buy-select2').css(cssObj)
+      $('#product1').addClass('choose-p')
+      $('#buy-select1').addClass('buy-select1')
+      var nprice = currencySymbol + data.package_products[1].new_price.toFixed(2)
+      $('#summary-total1').text(nprice)
+      var shippingFee = currencySymbol + data.package_products[1].shipping_fee
+      $('#summary-total3').text(shippingFee)
 
-          var discount = Number(data.package_products[1].old_price) - Number(data.package_products[0].new_price)
-          discount = currencySymbol + discount.toFixed(2)
-          $('#summary-total2').text(discount)
-          var total = Number(data.package_products[1].new_price) + Number(data.package_products[0].shipping_fee)
-          total = currencySymbol + total.toFixed(2)
-          $('#summary-total4').text(total)
-          $('.product-name').text(data.package_products[1].name)
-          $('#product-number').text('number: 1')
-          $('#product-price').text(data.package_products[1].tip2)
-          initProuctData(1, '1')
-        }) $('#product2').click(function(e) {
-          var list = $('#product1,#product2,#product3,#product4')
-          list.removeClass('choose-p')
-          var list2 = $('#buy-select1,#buy-select3,#buy-select4')
-          list2.removeClass('buy-select1')
-          $('#buy-select1').hide()
-          $('#buy-select3').hide()
-          $('#buy-select4').hide()
-          $('#buy-select2').show()
-          var cssObj = {
-            height: 'auto',
-            opacity: '1',
-          }
-          $('#buy-select2').css(cssObj)
-          $('#product2').addClass('choose-p')
-          $('#buy-select2').addClass('buy-select1')
-          var nprice = currencySymbol + data.package_products[0].new_price.toFixed(2)
-          $('#summary-total1').text(nprice)
-          var shippingFee = currencySymbol + data.package_products[0].shipping_fee
-          $('#summary-total3').text(shippingFee)
+      var discount = Number(data.package_products[1].old_price) - Number(data.package_products[0].new_price)
+      discount = currencySymbol + discount.toFixed(2)
+      $('#summary-total2').text(discount)
+      var total = Number(data.package_products[1].new_price) + Number(data.package_products[0].shipping_fee)
+      total = currencySymbol + total.toFixed(2)
+      $('#summary-total4').text(total)
+      $('.product-name').text(data.package_products[1].name)
+      $('#product-number').text('number: 1')
+      $('#product-price').text(data.package_products[1].tip2)
+      initProuctData(1, '1')
+    }) $('#product2').click(function(e) {
+      var list = $('#product1,#product2,#product3,#product4')
+      list.removeClass('choose-p')
+      var list2 = $('#buy-select1,#buy-select3,#buy-select4')
+      list2.removeClass('buy-select1')
+      $('#buy-select1').hide()
+      $('#buy-select3').hide()
+      $('#buy-select4').hide()
+      $('#buy-select2').show()
+      var cssObj = {
+        height: 'auto',
+        opacity: '1',
+      }
+      $('#buy-select2').css(cssObj)
+      $('#product2').addClass('choose-p')
+      $('#buy-select2').addClass('buy-select1')
+      var nprice = currencySymbol + data.package_products[0].new_price.toFixed(2)
+      $('#summary-total1').text(nprice)
+      var shippingFee = currencySymbol + data.package_products[0].shipping_fee
+      $('#summary-total3').text(shippingFee)
 
-          var discount = Number(data.package_products[0].old_price) - Number(data.package_products[0].new_price)
-          discount = currencySymbol + discount.toFixed(2)
-          $('#summary-total2').text(discount)
-          var total = Number(data.package_products[0].new_price) + Number(data.package_products[0].shipping_fee)
-          total = currencySymbol + total.toFixed(2)
-          $('#summary-total4').text(total)
-          $('.product-name').text(data.package_products[0].name)
-          $('#product-number').text('number: 2')
-          $('#product-price').text(data.package_products[0].tip2)
-          initProuctData(0, '2')
-        }) $('#product3').click(function(e) {
-          var list = $('#product1,#product2,#product3,#product4')
-          list.removeClass('choose-p')
-          var list2 = $('#buy-select1,#buy-select3,#buy-select4')
-          list2.removeClass('buy-select1')
-          $('#buy-select2').hide()
-          $('#buy-select1').hide()
-          $('#buy-select4').hide()
-          $('#buy-select3').show()
-          var cssObj = {
-            height: '0',
-            opacity: '0',
-          }
-          $('#buy-select2').css(cssObj)
-          $('#product3').addClass('choose-p')
-          $('#buy-select3').addClass('buy-select1')
-          var nprice = currencySymbol + data.package_products[2].new_price.toFixed(2)
-          $('#summary-total1').text(nprice)
-          var shippingFee = currencySymbol + data.package_products[2].shipping_fee
-          $('#summary-total3').text(shippingFee)
+      var discount = Number(data.package_products[0].old_price) - Number(data.package_products[0].new_price)
+      discount = currencySymbol + discount.toFixed(2)
+      $('#summary-total2').text(discount)
+      var total = Number(data.package_products[0].new_price) + Number(data.package_products[0].shipping_fee)
+      total = currencySymbol + total.toFixed(2)
+      $('#summary-total4').text(total)
+      $('.product-name').text(data.package_products[0].name)
+      $('#product-number').text('number: 2')
+      $('#product-price').text(data.package_products[0].tip2)
+      initProuctData(0, '2')
+    }) $('#product3').click(function(e) {
+      var list = $('#product1,#product2,#product3,#product4')
+      list.removeClass('choose-p')
+      var list2 = $('#buy-select1,#buy-select3,#buy-select4')
+      list2.removeClass('buy-select1')
+      $('#buy-select2').hide()
+      $('#buy-select1').hide()
+      $('#buy-select4').hide()
+      $('#buy-select3').show()
+      var cssObj = {
+        height: '0',
+        opacity: '0',
+      }
+      $('#buy-select2').css(cssObj)
+      $('#product3').addClass('choose-p')
+      $('#buy-select3').addClass('buy-select1')
+      var nprice = currencySymbol + data.package_products[2].new_price.toFixed(2)
+      $('#summary-total1').text(nprice)
+      var shippingFee = currencySymbol + data.package_products[2].shipping_fee
+      $('#summary-total3').text(shippingFee)
 
-          var discount = Number(data.package_products[2].old_price) - Number(data.package_products[0].new_price)
-          discount = currencySymbol + discount.toFixed(2)
-          $('#summary-total2').text(discount)
-          var total = Number(data.package_products[2].new_price) + Number(data.package_products[0].shipping_fee)
-          total = currencySymbol + total.toFixed(2)
-          $('#summary-total4').text(total)
-          $('.product-name').text(data.package_products[2].name)
-          $('#product-number').text('number: 3')
-          $('#product-price').text(data.package_products[2].tip2)
-          initProuctData(2, '3')
-        }) $('#product4').click(function(e) {
-          var list = $('#product1,#product2,#product3,#product4')
-          list.removeClass('choose-p')
-          var list2 = $('#buy-select1,#buy-select3,#buy-select4')
-          list2.removeClass('buy-select1')
-          $('#buy-select2').hide()
-          $('#buy-select3').hide()
-          $('#buy-select1').hide()
-          $('#buy-select4').show()
-          var cssObj = {
-            height: '0',
-            opacity: '0',
-          }
-          $('#buy-select2').css(cssObj)
-          $('#product4').addClass('choose-p')
-          $('#buy-select4').addClass('buy-select1')
-          var nprice = currencySymbol + data.package_products[3].new_price.toFixed(2)
-          $('#summary-total1').text(nprice)
-          var shippingFee = currencySymbol + data.package_products[3].shipping_fee
-          $('#summary-total3').text(shippingFee)
+      var discount = Number(data.package_products[2].old_price) - Number(data.package_products[0].new_price)
+      discount = currencySymbol + discount.toFixed(2)
+      $('#summary-total2').text(discount)
+      var total = Number(data.package_products[2].new_price) + Number(data.package_products[0].shipping_fee)
+      total = currencySymbol + total.toFixed(2)
+      $('#summary-total4').text(total)
+      $('.product-name').text(data.package_products[2].name)
+      $('#product-number').text('number: 3')
+      $('#product-price').text(data.package_products[2].tip2)
+      initProuctData(2, '3')
+    })
+    $('#product4').click(function(e) {
+      var list = $('#product1,#product2,#product3,#product4')
+      list.removeClass('choose-p')
+      var list2 = $('#buy-select1,#buy-select3,#buy-select4')
+      list2.removeClass('buy-select1')
+      $('#buy-select2').hide()
+      $('#buy-select3').hide()
+      $('#buy-select1').hide()
+      $('#buy-select4').show()
+      var cssObj = {
+        height: '0',
+        opacity: '0',
+      }
+      $('#buy-select2').css(cssObj)
+      $('#product4').addClass('choose-p')
+      $('#buy-select4').addClass('buy-select1')
+      var nprice = currencySymbol + data.package_products[3].new_price.toFixed(2)
+      $('#summary-total1').text(nprice)
+      var shippingFee = currencySymbol + data.package_products[3].shipping_fee
+      $('#summary-total3').text(shippingFee)
 
-          var discount = Number(data.package_products[3].old_price) - Number(data.package_products[0].new_price)
-          discount = currencySymbol + discount.toFixed(2)
-          $('#summary-total2').text(discount)
-          var total = Number(data.package_products[3].new_price) + Number(data.package_products[0].shipping_fee)
-          total = currencySymbol + total.toFixed(2)
-          $('#summary-total4').text(total)
-          $('.product-name').text(data.package_products[3].name)
-          $('#product-number').text('number: 4')
-          $('#product-price').text(data.package_products[3].tip2)
-          initProuctData(3, '4')
-        }) $('.complete-btn').click(function() {
-          params.first_name = $('input[name="firstName"]').val()
-          params.second_name = $('input[name="lastName"]').val()
-          params.email = $('input[name="email"]').val()
-          params.phone_full = $('input[name="phone"]').val()
-          params.address = $('input[name="shippingAddress1"]').val()
-          params.city = $('input[name="shippingCity"]').val()
-          params.city = $('input[name="shippingCity"]').val()
-          params.code = $('input[name="shippingZip"]').val()
-          if ($('input[name="cctype"]:checked').val() == 'cc') {
-            params.payment_method = 'worldpay'
-          }
-          if ($('input[name="cctype"]:checked').val() == 'paypal') {
-            params.payment_method = 'paypal_stand'
-          }
-          console.log(params)
-          createOrder('', '', 'airwallex')
-          // axios.post(postUrl).then(function(res) {
-          //     console.log(res, '===res')
-          //   })
-          //   .catch(function(err) {
-          //     console.log(err, 'err==')
-          //   })
-        })
+      var discount = Number(data.package_products[3].old_price) - Number(data.package_products[0].new_price)
+      discount = currencySymbol + discount.toFixed(2)
+      $('#summary-total2').text(discount)
+      var total = Number(data.package_products[3].new_price) + Number(data.package_products[0].shipping_fee)
+      total = currencySymbol + total.toFixed(2)
+      $('#summary-total4').text(total)
+      $('.product-name').text(data.package_products[3].name)
+      $('#product-number').text('number: 4')
+      $('#product-price').text(data.package_products[3].tip2)
+      initProuctData(3, '4')
+    }) $('.complete-btn').click(function() {
+      params.first_name = $('input[name="firstName"]').val()
+      params.second_name = $('input[name="lastName"]').val()
+      params.email = $('input[name="email"]').val()
+      params.phone_full = $('input[name="phone"]').val()
+      params.address = $('input[name="shippingAddress1"]').val()
+      params.city = $('input[name="shippingCity"]').val()
+      params.city = $('input[name="shippingCity"]').val()
+      params.code = $('input[name="shippingZip"]').val()
+      if ($('input[name="cctype"]:checked').val() == 'cc') {
+        params.payment_method = 'worldpay'
+      }
+      if ($('input[name="cctype"]:checked').val() == 'paypal') {
+        params.payment_method = 'paypal_stand'
+      }
+      console.log(params)
+      createOrder('', '', 'airwallex')
+      // axios.post(postUrl).then(function(res) {
+      //     console.log(res, '===res')
+      //   })
+      //   .catch(function(err) {
+      //     console.log(err, 'err==')
+      //   })
+    })
   </script>
   <script>
     $(function() {
@@ -3141,254 +3379,255 @@
 
       })
 
-      $("#payal_standard").on("click", function() {
-        $("#collapseOne").hide();
-        $("#collapseTwo").show();
-        $("#collapseThree").hide();
-        $("#airwallex_dropin_collapse").hide();
+      $("#payal_standard").on("click",
+        function() {
+          $("#collapseOne").hide();
+          $("#collapseTwo").show();
+          $("#collapseThree").hide();
+          $("#airwallex_dropin_collapse").hide();
 
-        $("#headingOne2").addClass("action");
-        $("#headingOne1").removeClass("action");
-        $("#headingThree2").removeClass("action");
-        $("#airwallex_dropin_2").removeClass("action");
+          $("#headingOne2").addClass("action");
+          $("#headingOne1").removeClass("action");
+          $("#headingThree2").removeClass("action");
+          $("#airwallex_dropin_2").removeClass("action");
 
-        $(".complete-btn").removeClass("submit-button");
+          $(".complete-btn").removeClass("submit-button");
 
-        $(".complete-btn").css("width", "100%");
+          $(".complete-btn").css("width", "100%");
 
-        //payment-button
-        $(".complete-btn").empty();;
+          //payment-button
+          $(".complete-btn").empty();;
 
-        paypal.Buttons({
-          style: {
-            layout: 'horizontal',
-            tagline: false,
-            height: 55
-          },
+          paypal.Buttons({
+            style: {
+              layout: 'horizontal',
+              tagline: false,
+              height: 55
+            },
 
-          onInit(data, actions) {
+            onInit(data, actions) {
 
-            // Disable the buttons
-            actions.disable();
-
-            // Listen for changes to the checkbox
-            // document.querySelector('#check').addEventListener('change', function(event) {
-            //     // Enable or disable the button when it is checked or unchecked
-            //     if (event.target.checked)  {
-            //     actions.enable();
-            //     } else  {
-            //     actions.disable();
-            //     }
-            // });
-            var params = getOrderParams('paypal_stand');
-
-            var can_paypal = 0;
-            var email_can = 0;
-            var first_name_can = 0;
-            var last_name_can = 0;
-            var phone_number_can = 0;
-            var address_can = 0;
-            var city_can = 0;
-            var zip_code_can = 0;
-
-
-
-            $(".email").on('change', function() {
-              var value = $(".email").val();
-              if (value.length > 0) email_can = 1;
-              console.log(value);
-              var params = getOrderParams('paypal_stand');
-              if (!params.error) {
-                actions.enable();
-              }
-            });
-
-            $(".first_name").on('change', function() {
-              var value = $(".first_name").val();
-              if (value.length > 0) first_name_can = 1;
-              console.log(value);
-              var params = getOrderParams('paypal_stand');
-              if (!params.error) {
-                actions.enable();
-              }
-            });
-
-            $(".last_name").on('change', function() {
-              var value = $(".last_name").val();
-              if (value.length > 0) last_name_can = 1;
-              console.log(value);
-              var params = getOrderParams('paypal_stand');
-              if (!params.error) {
-                actions.enable();
-              }
-            });
-            $(".phone_number").on('change', function() {
-              var value = $(".phone_number").val();
-              if (value.length > 0) phone_number_can = 1;
-              console.log(value);
-              var params = getOrderParams('paypal_stand');
-              if (!params.error) {
-                actions.enable();
-              }
-            });
-            $(".address").on('change', function() {
-              var value = $(".address").val();
-              if (value.length > 0) address_can = 1;
-              console.log(value);
-              var params = getOrderParams('paypal_stand');
-              if (!params.error) {
-                actions.enable();
-              }
-            });
-            $(".city").on('change', function() {
-              var value = $(".city").val();
-              if (value.length > 0) city_can = 1;
-              console.log(value);
-              var params = getOrderParams('paypal_stand');
-              if (!params.error) {
-                actions.enable();
-              }
-            });
-            $(".zip_code").on('change', function() {
-              var value = $(".zip_code").val();
-              if (value.length > 0) zip_code_can = 1;
-              console.log(value);
-              var params = getOrderParams('paypal_stand');
-              if (!params.error) {
-                actions.enable();
-              }
-            });
-
-            $("#state-select").on('change', function() {
-              var params = getOrderParams('paypal_stand');
-              if (!params.error) {
-                actions.enable();
-              }
-            })
-
-
-
-            if (params.error) {
-              //$('#checkout-error').html(params.error.join('<br />'));
-              //$('#checkout-error').show();
+              // Disable the buttons
               actions.disable();
-              //throw new Error('Verification failed');
-            } else {
-              actions.enable();
-            }
-          },
-          onError(err) {
-            $('#loading').hide();
-            console.log("paypal " + JSON.stringify(err));
-          },
-          onCancel: function(data) {
-            $('#loading').hide();
-          },
-          onClick() {
-            // var params = getOrderParams('paypal_stand');
-            console.log("on click " + params);
-            if (params.error) {
-              $('#checkout-error').html(params.error.join('<br />'));
-              $('#checkout-error').show();
-            }
+
+              // Listen for changes to the checkbox
+              // document.querySelector('#check').addEventListener('change', function(event) {
+              //     // Enable or disable the button when it is checked or unchecked
+              //     if (event.target.checked)  {
+              //     actions.enable();
+              //     } else  {
+              //     actions.disable();
+              //     }
+              // });
+              var params = getOrderParams('paypal_stand');
+
+              var can_paypal = 0;
+              var email_can = 0;
+              var first_name_can = 0;
+              var last_name_can = 0;
+              var phone_number_can = 0;
+              var address_can = 0;
+              var city_can = 0;
+              var zip_code_can = 0;
 
 
-            console.log("post crm system");
 
-          },
+              $(".email").on('change', function() {
+                var value = $(".email").val();
+                if (value.length > 0) email_can = 1;
+                console.log(value);
+                var params = getOrderParams('paypal_stand');
+                if (!params.error) {
+                  actions.enable();
+                }
+              });
 
-          // Call your server to set up the transaction
-          createOrder: function(data, actions) {
-            $('#loading').show();
-            // var params = getOrderParams('paypal_stand');
-            var url = '/onebuy/order/addr/after?currenty={{ core()->getCurrentCurrencyCode() }}&_token={{ csrf_token() }}&time=' + new Date().getTime() + "&force=" + localStorage.getItem("force");
-            return fetch(url, {
-              body: JSON.stringify(params),
-              method: 'POST',
-              headers: {
-                'content-type': 'application/json'
-              }
-            }).then(function(res) {
-              return res.json();
-            }).then(function(res) {
-              //$('#loading').hide();
-              var data = res;
-              if (data.statusCode === 201) {
-                var order_info = data.result;
-                //console.log(order_info);
-                //console.log(order_info.purchase_units[0].amount);
-                document.cookie = "voluum_payout=" + order_info.purchase_units[0].amount.value + order_info.purchase_units[0].amount.currency_code + "; path=/";
-                document.cookie = "order_id=" + order_info.id + "; path=/";
-                localStorage.setItem("order_id", order_info.id);
-                localStorage.setItem("order_params", JSON.stringify(params));
+              $(".first_name").on('change', function() {
+                var value = $(".first_name").val();
+                if (value.length > 0) first_name_can = 1;
+                console.log(value);
+                var params = getOrderParams('paypal_stand');
+                if (!params.error) {
+                  actions.enable();
+                }
+              });
 
-                return order_info.id;
+              $(".last_name").on('change', function() {
+                var value = $(".last_name").val();
+                if (value.length > 0) last_name_can = 1;
+                console.log(value);
+                var params = getOrderParams('paypal_stand');
+                if (!params.error) {
+                  actions.enable();
+                }
+              });
+              $(".phone_number").on('change', function() {
+                var value = $(".phone_number").val();
+                if (value.length > 0) phone_number_can = 1;
+                console.log(value);
+                var params = getOrderParams('paypal_stand');
+                if (!params.error) {
+                  actions.enable();
+                }
+              });
+              $(".address").on('change', function() {
+                var value = $(".address").val();
+                if (value.length > 0) address_can = 1;
+                console.log(value);
+                var params = getOrderParams('paypal_stand');
+                if (!params.error) {
+                  actions.enable();
+                }
+              });
+              $(".city").on('change', function() {
+                var value = $(".city").val();
+                if (value.length > 0) city_can = 1;
+                console.log(value);
+                var params = getOrderParams('paypal_stand');
+                if (!params.error) {
+                  actions.enable();
+                }
+              });
+              $(".zip_code").on('change', function() {
+                var value = $(".zip_code").val();
+                if (value.length > 0) zip_code_can = 1;
+                console.log(value);
+                var params = getOrderParams('paypal_stand');
+                if (!params.error) {
+                  actions.enable();
+                }
+              });
+
+              $("#state-select").on('change', function() {
+                var params = getOrderParams('paypal_stand');
+                if (!params.error) {
+                  actions.enable();
+                }
+              })
+
+
+
+              if (params.error) {
+                //$('#checkout-error').html(params.error.join('<br />'));
+                //$('#checkout-error').show();
+                actions.disable();
+                //throw new Error('Verification failed');
               } else {
-                if (data.code == '202') {
-                  if (confirm(data.error) == true) {
-                    localStorage.setItem("force", 1);
-                  }
-                }
-
-                var pay_error = JSON.parse(data.error);
-                var pay_error_message = pay_error.details;
-
-                if (pay_error_message && pay_error_message.length) {
-                  var show_pay_error_message_arr = [];
-
-                  for (var pay_error_message_i = 0; pay_error_message_i < pay_error_message.length; pay_error_message_i++) {
-                    show_pay_error_message_arr.push("Field:" + pay_error_message[pay_error_message_i].field + "<br /> Value" + pay_error_message[pay_error_message_i].value + '. <br />' + pay_error_message[pay_error_message_i].description + '<br /><br />')
-                  }
-
-                  $('#checkout-error').html(show_pay_error_message_arr.join(''));
-                  $('#checkout-error').show();
-                }
+                actions.enable();
               }
-
-
-            });
-          },
-
-          // Call your server to finalize the transaction
-          onApprove: function(data, actions) {
-            var orderData = {
-              paymentID: data.orderID,
-              orderID: data.orderID,
-            };
-            var request_params = {
-              client_secret: data.orderID,
-              id: localStorage.getItem('order_id'),
-              orderData: orderData,
-              data: data,
-            }
-            $('#loading').show();
-            var url = "/onebuy/order/status?_token={{ csrf_token() }}";
-            return fetch(url, {
-              method: 'post',
-              body: JSON.stringify(request_params),
-              headers: {
-                'content-type': 'application/json'
-              },
-            }).then(function(res) {
-              return res.json();
-            }).then(function(res) {
+            },
+            onError(err) {
               $('#loading').hide();
-              if (res.success == true) {
-                //Goto('/checkout/v1/success/'+localStorage.getItem('order_id'));
-                window.location.href = '/onebuy/checkout/v1/success/' + localStorage.getItem('order_id');
-                return true;
-                //actions.redirect('/checkout/v1/success/'+localStorage.getItem('order_id'));
-              }
-              if (res.error == 'INSTRUMENT_DECLINED') {
-
-                $('#checkout-error').html("The instrument presented  was either declined by the processor or bank, or it can't be used for this payment.<br><br> Please confirm your account or bank card has sufficient balance, and try again.");
+              console.log("paypal " + JSON.stringify(err));
+            },
+            onCancel: function(data) {
+              $('#loading').hide();
+            },
+            onClick() {
+              // var params = getOrderParams('paypal_stand');
+              console.log("on click " + params);
+              if (params.error) {
+                $('#checkout-error').html(params.error.join('<br />'));
                 $('#checkout-error').show();
               }
-            });
-          }
-        }).render('.complete-btn');
 
-      });
+
+              console.log("post crm system");
+
+            },
+
+            // Call your server to set up the transaction
+            createOrder: function(data, actions) {
+              $('#loading').show();
+              // var params = getOrderParams('paypal_stand');
+              var url = '/onebuy/order/addr/after?currenty={{ core()->getCurrentCurrencyCode() }}&_token={{ csrf_token() }}&time=' + new Date().getTime() + "&force=" + localStorage.getItem("force");
+              return fetch(url, {
+                body: JSON.stringify(params),
+                method: 'POST',
+                headers: {
+                  'content-type': 'application/json'
+                }
+              }).then(function(res) {
+                return res.json();
+              }).then(function(res) {
+                //$('#loading').hide();
+                var data = res;
+                if (data.statusCode === 201) {
+                  var order_info = data.result;
+                  //console.log(order_info);
+                  //console.log(order_info.purchase_units[0].amount);
+                  document.cookie = "voluum_payout=" + order_info.purchase_units[0].amount.value + order_info.purchase_units[0].amount.currency_code + "; path=/";
+                  document.cookie = "order_id=" + order_info.id + "; path=/";
+                  localStorage.setItem("order_id", order_info.id);
+                  localStorage.setItem("order_params", JSON.stringify(params));
+
+                  return order_info.id;
+                } else {
+                  if (data.code == '202') {
+                    if (confirm(data.error) == true) {
+                      localStorage.setItem("force", 1);
+                    }
+                  }
+
+                  var pay_error = JSON.parse(data.error);
+                  var pay_error_message = pay_error.details;
+
+                  if (pay_error_message && pay_error_message.length) {
+                    var show_pay_error_message_arr = [];
+
+                    for (var pay_error_message_i = 0; pay_error_message_i < pay_error_message.length; pay_error_message_i++) {
+                      show_pay_error_message_arr.push("Field:" + pay_error_message[pay_error_message_i].field + "<br /> Value" + pay_error_message[pay_error_message_i].value + '. <br />' + pay_error_message[pay_error_message_i].description + '<br /><br />')
+                    }
+
+                    $('#checkout-error').html(show_pay_error_message_arr.join(''));
+                    $('#checkout-error').show();
+                  }
+                }
+
+
+              });
+            },
+
+            // Call your server to finalize the transaction
+            onApprove: function(data, actions) {
+              var orderData = {
+                paymentID: data.orderID,
+                orderID: data.orderID,
+              };
+              var request_params = {
+                client_secret: data.orderID,
+                id: localStorage.getItem('order_id'),
+                orderData: orderData,
+                data: data,
+              }
+              $('#loading').show();
+              var url = "/onebuy/order/status?_token={{ csrf_token() }}";
+              return fetch(url, {
+                method: 'post',
+                body: JSON.stringify(request_params),
+                headers: {
+                  'content-type': 'application/json'
+                },
+              }).then(function(res) {
+                return res.json();
+              }).then(function(res) {
+                $('#loading').hide();
+                if (res.success == true) {
+                  //Goto('/checkout/v1/success/'+localStorage.getItem('order_id'));
+                  window.location.href = '/onebuy/checkout/v1/success/' + localStorage.getItem('order_id');
+                  return true;
+                  //actions.redirect('/checkout/v1/success/'+localStorage.getItem('order_id'));
+                }
+                if (res.error == 'INSTRUMENT_DECLINED') {
+
+                  $('#checkout-error').html("The instrument presented  was either declined by the processor or bank, or it can't be used for this payment.<br><br> Please confirm your account or bank card has sufficient balance, and try again.");
+                  $('#checkout-error').show();
+                }
+              });
+            }
+          }).render('.complete-btn');
+
+        });
 
 
     });
@@ -5655,7 +5894,7 @@
 
     //
     function changeOrderSummary(position = "") {
-      var product = getSelectProduct();
+      // var product = getSelectProduct();
       var produt_amount_base = '1';
       if (!produt_amount_base) {
         produt_amount_base = 1;
