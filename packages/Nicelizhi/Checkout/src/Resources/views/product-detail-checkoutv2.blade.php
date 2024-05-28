@@ -20,7 +20,8 @@
   <meta property="og:image" content="/offer/1/app/desktop/images/thumb.png" />
   <meta name="color-scheme" content="light only" />
   <link href="https://cdn.jsdelivr.net/npm/flag-icon-css@4.1.7/css/flag-icons.min.css" rel="stylesheet" />
-  <script src="https://checkout.airwallex.com/assets/elements.bundle.min.js"></script>
+  <script src="https://checkout-demo.airwallex.com/assets/elements.bundle.min.js"></script>
+  <!-- <script src="https://checkout.airwallex.com/assets/elements.bundle.min.js"></script> -->
   <style>
     @media only screen and (max-width: 600px) {}
 
@@ -4600,11 +4601,11 @@
 
     function checkout() {
       sendInitiateCheckoutEvent();
-      gtag('event', 'initiate_checkout', {
-        'event_label': 'Initiate Checkout',
-        'event_category': 'ecommerce'
-      });
-      fbq('track', 'InitiateCheckout');
+      // gtag('event', 'initiate_checkout', {
+      //   'event_label': 'Initiate Checkout',
+      //   'event_category': 'ecommerce'
+      // });
+      // fbq('track', 'InitiateCheckout');
       // obApi('track', 'Start Checkout'); 
       var pay_type = 'worldpay';
       var params = getOrderParams(pay_type);
@@ -4795,10 +4796,10 @@
               }).then((response) => {
 
                 $('#loading').hide();
-                gtag('event', 'initiate_pay_success', {
-                  'event_label': "Initiate cc success" + data.order.id,
-                  'event_category': 'ecommerce'
-                });
+                // gtag('event', 'initiate_pay_success', {
+                //   'event_label': "Initiate cc success" + data.order.id,
+                //   'event_category': 'ecommerce'
+                // });
 
                 window.location.href = "/onebuy/checkout/v1/success/" + data.order.id;
                 return false;
@@ -4813,10 +4814,10 @@
                 $('#checkout-error').show();
 
 
-                gtag('event', 'initiate_pay_error', {
-                  'event_label': response.message,
-                  'event_category': 'ecommerce'
-                });
+                // gtag('event', 'initiate_pay_error', {
+                //   'event_label': response.message,
+                //   'event_category': 'ecommerce'
+                // });
                 // cb.errorHandler(response.message);
                 return false;
 
