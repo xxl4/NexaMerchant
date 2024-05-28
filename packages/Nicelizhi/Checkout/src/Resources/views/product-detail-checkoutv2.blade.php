@@ -2958,6 +2958,8 @@
             }
           }
           $('select[name="shippingCountry"]').append(opList)
+          $('select[name="shippingCountry"]').val(countriesList[0].countryCode)
+
         })
         .catch(function(err) {
           console.log(err, 'err====')
@@ -2968,7 +2970,7 @@
       console.log($(this).val(), 'shippingState')
       params.province = $(this).val()
     })
-    $('select[name="shippingCountry"]').click(function() {
+    $('select[name="shippingCountry"]').change(function() {
       console.log($(this).val())
       params.country = $(this).val()
       if ($(this).val()) {
@@ -2985,6 +2987,7 @@
             }
             $('select[name="shippingState"]').empty()
             $('select[name="shippingState"]').append(optionList)
+            $('select[name="shippingState"]').val(stateList[0].StateCode)
           })
           .catch(function(err) {
             console.log(err, 'err====')
