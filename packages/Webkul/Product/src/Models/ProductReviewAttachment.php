@@ -48,7 +48,8 @@ class ProductReviewAttachment extends Model implements ProductReviewAttachmentCo
      */
     public function url(): string
     {
-        return Storage::url($this->path);
+        //return Storage::url($this->path);
+        return $this->path;
     }
 
     /**
