@@ -1537,33 +1537,6 @@
             </div>
           </div>
           <div class="grid-container">
-            <div class="grid-cell gallery-item grid-col-span-1">
-              <img src="/checkout/v2/images/money-back-new.jpg" alt="">
-            </div>
-            <div class="grid-cell gallery-item grid-col-span-2">
-              <img src="/checkout/v2/images/money-back-new.jpg" alt="">
-            </div>
-            <div class="grid-cell gallery-item grid-col-span-2">
-              <img src="/checkout/v2/images/money-back-new.jpg" alt="">
-            </div>
-            <div class="grid-cell gallery-item grid-col-span-1">
-              <img src="/checkout/v2/images/money-back-new.jpg" alt="">
-            </div>
-            <div class="grid-cell gallery-item grid-col-span-2">
-              <img src="/checkout/v2/images/money-back-new.jpg" alt="">
-            </div>
-            <div class="grid-cell gallery-item grid-col-span-2">
-              <img src="/checkout/v2/images/money-back-new.jpg" alt="">
-            </div>
-            <div class="grid-cell gallery-item grid-col-span-1">
-              <img src="/checkout/v2/images/money-back-new.jpg" alt="">
-            </div>
-            <div class="grid-cell gallery-item grid-col-span-2">
-              <img src="/checkout/v2/images/money-back-new.jpg" alt="">
-            </div>
-            <div class="grid-cell gallery-item grid-col-span-2">
-              <img src="/checkout/v2/images/money-back-new.jpg" alt="">
-            </div>
           </div>
         </div>
       </div>
@@ -4300,8 +4273,9 @@
             <div class="grid-cell gallery-item grid-col-span-2">
               <img src="` + img[i3].src + `" alt="">
             </div>`
-
+            console.log(showimg, 'showimg');
           }
+          $('.grid-container').append(showimg)
           var gallery =
             `<div class="swiper-container" id="gallery">
 					<div class="swiper-wrapper">` +
