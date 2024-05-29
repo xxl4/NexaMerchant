@@ -3058,10 +3058,10 @@
           for (let resi = 0; resi < countriesList.length; resi++) {
             var code = countriesList[resi].countryCode
             var name = countriesList[resi].countryName
-            if (code !== 'US') {
-              opList += `<option value="` + code + `">` + name + `</option>`
-              app_config.allowed_country_codes.push(code)
-            }
+            // if (code !== 'US') {
+            opList += `<option value="` + code + `">` + name + `</option>`
+            // app_config.allowed_country_codes.push(code)
+            // }
           }
           $('select[name="shippingCountry"]').append(opList)
           $('select[name="shippingCountry"]').val(countriesList[0].countryCode)
@@ -6150,22 +6150,22 @@
       console.log(cval, 'cval===')
       if (cval) {
         var countryUrl = '/template-common/checkout1/state/' + cval + '_' + area + '.json'
-        axios
-          .get(countryUrl)
-          .then(function(res) {
-            console.log(res, 'rrrrrrrssssssss')
-            var stateList = res.data
-            var optionList = []
-            for (var resj = 0; resj < stateList.length; resj++) {
-              optionList += `<option value="` + stateList[resj].StateCode + `">` + stateList[resj].StateName + `</option>`
-            }
-            $('select[name="shippingState"]').empty()
-            $('select[name="shippingState"]').append(optionList)
-            $('select[name="shippingState"]').val(stateList[0].StateCode)
-          })
-          .catch(function(err) {
-            console.log(err, 'err====')
-          })
+        // axios
+        //   .get(countryUrl)
+        //   .then(function(res) {
+        //     console.log(res, 'rrrrrrrssssssss')
+        //     var stateList = res.data
+        //     var optionList = []
+        //     for (var resj = 0; resj < stateList.length; resj++) {
+        //       optionList += `<option value="` + stateList[resj].StateCode + `">` + stateList[resj].StateName + `</option>`
+        //     }
+        //     $('select[name="shippingState"]').empty()
+        //     $('select[name="shippingState"]').append(optionList)
+        //     $('select[name="shippingState"]').val(stateList[0].StateCode)
+        //   })
+        //   .catch(function(err) {
+        //     console.log(err, 'err====')
+        //   })
       }
     }
   </script>
