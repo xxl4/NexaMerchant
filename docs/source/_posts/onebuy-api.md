@@ -19,7 +19,10 @@ GET api/onebuy/product/detail/{slug}?currency=EUR
 ```
 > Get Products Info, return will have product,product images,product sku, product attr etc
 
+<<<<<<< HEAD
+=======
 ## Out Params
+>>>>>>> 4f8b52b3310219028ce114efa5185af908a65b58
 ```
 {
   "product": {
@@ -1237,6 +1240,51 @@ GET api/onebuy/product/detail/{slug}?currency=EUR
   "quora_adv_id": "1",
   "paypal_client_id": "1111"
 }
+<<<<<<< HEAD
+```
+
+```
+POST api/onebuy/check/coupon 
+```
+> add coupon code info  
+
+| Field              | Type | required | Desc |
+| :---------------- | :------: | :------:| ----: |
+| code        |   string  | true | coupon code |
+
+```
+```
+
+```
+POST api/onebuy/order/add/sync 
+```
+> order create
+
+```
+```
+
+```
+POST api/onebuy/order/confirm
+```
+> paypal order confirm
+
+```
+```
+
+```
+POST api/onebuy/order/addr/after
+```
+> order create by airwallex and not paypal other
+
+
+
+
+```
+GET api/onebuy/product/detail/{slug}
+```
+> Get Products Info
+=======
+>>>>>>> 4f8b52b3310219028ce114efa5185af908a65b58
 ```
 
 # Coupon

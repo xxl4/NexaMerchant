@@ -183,6 +183,7 @@ class ImportProductCommentFromJudge extends Command
 
                         //var_dump($item);exit;
                         if($item['reviewer']['name']=='Anonymous') continue;
+                        if($item['published']!=true) continue;
 
                         
 
