@@ -9,6 +9,9 @@ use PayPalCheckoutSdk\Core\ProductionEnvironment;
 use PayPalCheckoutSdk\Orders\OrdersCreateRequest;
 use PayPalCheckoutSdk\Orders\OrdersCaptureRequest;
 use PayPalCheckoutSdk\Payments\CapturesRefundRequest;
+use PayPalCheckoutSdk\Core\AccessTokenRequest;
+use Webkul\Paypal\Http\Request\Paypal\WebhooksListRequest;
+use Webkul\Paypal\Http\Request\Paypal\CreateWebookRequest;
 use Illuminate\Support\Facades\Log;
 
 class SmartButton extends Paypal
@@ -104,7 +107,7 @@ class SmartButton extends Paypal
     {   
         try {
             $result = $this->client()->execute(new OrdersGetRequest($orderId));
-        }catch (Exception $e) {
+        }catch (\Exception $e) {
             var_dump($e->getMessage());
             //exit;
         }finally {
@@ -141,6 +144,55 @@ class SmartButton extends Paypal
         Log::info("payment refund" . json_encode($request));
         
         return $this->client()->execute($request);
+    }
+
+    /**
+     * Return paypal access token
+     *
+     * @return string
+     */
+    public function getAccessToken(){
+        $request = new AccessTokenRequest($this->environment());
+        $request->headers['PayPal-Partner-Attribution-Id'] = $this->paypalPartnerAttributionId;
+
+        return $this->client()->execute($request);
+    }
+
+    /**
+     * Return paypal webhook list
+     * 
+     * @return string
+     */
+    public function WebhookList() {
+        try {
+            $result = $this->client()->execute(new WebhooksListRequest());
+        }catch (\Exception $e) {
+            var_dump($e->getMessage());
+            //exit;
+        }finally {
+            //echo "Error";exit;
+        }
+        return $result;
+    }
+
+    /**
+     * Create a Webhook
+     * 
+     * @return string
+     */
+    public function CreateWebook($body) {
+        try {
+            $request = new CreateWebookRequest();
+            $request->body = $body;
+            $result = $this->client()->execute($request);
+            return $result;
+        }catch (\Exception $e) {
+            var_dump($e->getMessage());
+            //exit;
+        }finally {
+            //echo "Error";exit;
+        }
+        return false;
     }
 
     /**
