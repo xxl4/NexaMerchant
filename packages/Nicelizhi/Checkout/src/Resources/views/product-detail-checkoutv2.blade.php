@@ -21,8 +21,8 @@
   <meta name="color-scheme" content="light only" />
   <link href="https://cdn.jsdelivr.net/npm/flag-icon-css@4.1.7/css/flag-icons.min.css" rel="stylesheet" />
   <link href="https://cdn.jsdelivr.net/npm/jquery-colorbox@1.6.4/example1/colorbox.min.css" rel="stylesheet" />
-  <script src="https://checkout-demo.airwallex.com/assets/elements.bundle.min.js"></script>
-  <!-- <script src="https://checkout.airwallex.com/assets/elements.bundle.min.js"></script> -->
+  <!-- <script src="https://checkout-demo.airwallex.com/assets/elements.bundle.min.js"></script> -->
+  <script src="https://checkout.airwallex.com/assets/elements.bundle.min.js"></script>
   <style>
     @media only screen and (max-width: 600px) {}
 
@@ -2719,7 +2719,7 @@
           productsObj.amount = '1'
           productsObj.description = data.package_products[0].name
           productsObj.product_id = data.product.id
-          productsObj.product_sku = data.sku
+          // productsObj.product_sku = data.sku
           productsObj.img = data.product.base_image.large_image_url
           // productsObj.price =
 
@@ -2758,10 +2758,12 @@
               for (var inm = 0; inm < data.attr.attributes[m].options.length; inm++) {
                 if (m == 0 && data.attr.attributes[0].options[inm].label == name1) {
                   productL1.variant_id = data.attr.attributes[0].options[inm].products[0]
+                  productL1.product_sku = data.attr.index[productL1.variant_id].sku
                   productL1.price = data.attr.variant_prices[data.attr.attributes[0].options[inm].products[0]].final.price
                 }
                 if (m == 0 && data.attr.attributes[0].options[inm].label == name2) {
                   productL2.variant_id = data.attr.attributes[0].options[inm].products[0]
+                  productL2.product_sku = data.attr.index[productL2.variant_id].sku
                   productL2.price = data.attr.variant_prices[data.attr.attributes[0].options[inm].products[0]].final.price
                 }
                 var mid = data.attr.attributes[m].id
@@ -2840,7 +2842,7 @@
       productsObj.amount = '1'
       productsObj.description = data.package_products[num1].name
       productsObj.product_id = data.product.id
-      productsObj.product_sku = data.sku
+      // productsObj.product_sku = data.sku
       productsObj.img = data.product.base_image.large_image_url
       productL1 = JSON.parse(JSON.stringify(productsObj))
       productL2 = JSON.parse(JSON.stringify(productsObj))
@@ -2855,6 +2857,7 @@
           for (var inm = 0; inm < data.attr.attributes[m].options.length; inm++) {
             if (m == 0 && data.attr.attributes[0].options[inm].label == name1) {
               productL1.variant_id = data.attr.attributes[0].options[inm].products[0]
+              productL1.product_sku = data.attr.index[productL1.variant_id].sku
               productL1.price = data.attr.variant_prices[data.attr.attributes[0].options[inm].products[0]].final.price
             }
             var mid = data.attr.attributes[m].id
@@ -2874,10 +2877,12 @@
           for (var inm = 0; inm < data.attr.attributes[m].options.length; inm++) {
             if (m == 0 && data.attr.attributes[0].options[inm].label == name1) {
               productL1.variant_id = data.attr.attributes[0].options[inm].products[0]
+              productL1.product_sku = data.attr.index[productL1.variant_id].sku
               productL1.price = data.attr.variant_prices[data.attr.attributes[0].options[inm].products[0]].final.price
             }
             if (m == 0 && data.attr.attributes[0].options[inm].label == name2) {
               productL2.variant_id = data.attr.attributes[0].options[inm].products[0]
+              productL2.product_sku = data.attr.index[productL2.variant_id].sku
               productL2.price = data.attr.variant_prices[data.attr.attributes[0].options[inm].products[0]].final.price
             }
             var mid = data.attr.attributes[m].id
@@ -2901,14 +2906,17 @@
           for (var inm = 0; inm < data.attr.attributes[m].options.length; inm++) {
             if (m == 0 && data.attr.attributes[0].options[inm].label == name1) {
               productL1.variant_id = data.attr.attributes[0].options[inm].products[0]
+              productL1.product_sku = data.attr.index[productL1.variant_id].sku
               productL1.price = data.attr.variant_prices[data.attr.attributes[0].options[inm].products[0]].final.price
             }
             if (m == 0 && data.attr.attributes[0].options[inm].label == name2) {
               productL2.variant_id = data.attr.attributes[0].options[inm].products[0]
+              productL2.product_sku = data.attr.index[productL2.variant_id].sku
               productL2.price = data.attr.variant_prices[data.attr.attributes[0].options[inm].products[0]].final.price
             }
             if (m == 0 && data.attr.attributes[0].options[inm].label == name3) {
               productL3.variant_id = data.attr.attributes[0].options[inm].products[0]
+              productL3.product_sku = data.attr.index[productL3.variant_id].sku
               productL3.price = data.attr.variant_prices[data.attr.attributes[0].options[inm].products[0]].final.price
             }
             var mid = data.attr.attributes[m].id
@@ -2937,18 +2945,22 @@
           for (var inm = 0; inm < data.attr.attributes[m].options.length; inm++) {
             if (m == 0 && data.attr.attributes[0].options[inm].label == name1) {
               productL1.variant_id = data.attr.attributes[0].options[inm].products[0]
+              productL1.product_sku = data.attr.index[productL1.variant_id].sku
               productL1.price = data.attr.variant_prices[data.attr.attributes[0].options[inm].products[0]].final.price
             }
             if (m == 0 && data.attr.attributes[0].options[inm].label == name2) {
               productL2.variant_id = data.attr.attributes[0].options[inm].products[0]
+              productL2.product_sku = data.attr.index[productL2.variant_id].sku
               productL2.price = data.attr.variant_prices[data.attr.attributes[0].options[inm].products[0]].final.price
             }
             if (m == 0 && data.attr.attributes[0].options[inm].label == name3) {
               productL3.variant_id = data.attr.attributes[0].options[inm].products[0]
+              productL3.product_sku = data.attr.index[productL3.variant_id].sku
               productL3.price = data.attr.variant_prices[data.attr.attributes[0].options[inm].products[0]].final.price
             }
             if (m == 0 && data.attr.attributes[0].options[inm].label == name4) {
               productL4.variant_id = data.attr.attributes[0].options[inm].products[0]
+              productL4.product_sku = data.attr.index[productL4.variant_id].sku
               productL4.price = data.attr.variant_prices[data.attr.attributes[0].options[inm].products[0]].final.price
             }
             var mid = data.attr.attributes[m].id
@@ -4273,7 +4285,6 @@
             <div class="grid-cell gallery-item grid-col-span-2">
               <img src="` + img[i3].src + `" alt="">
             </div>`
-            console.log(showimg, 'showimg');
           }
           $('.grid-container').append(showimg)
           var gallery =
