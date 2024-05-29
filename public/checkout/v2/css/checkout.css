@@ -3,7 +3,7 @@
 /*---------------- RESET CSS -----------------*/
 :root {
   --title-family: Poppins, sans-serif;
-  --text-family: SF Pro Text, sans-serif;
+  --text-family: Poppins, sans-serif;
 }
  body {
      top:0;
@@ -358,14 +358,14 @@ ul.s1-list li p {
 .choose-p{
   box-shadow: -4px 3px 9px 0 rgba(0, 0, 0, 0.3);
   -webkit-box-shadow: -4px 3px 9px 0 rgba(0, 0, 0, 0.3);
-  border:3px solid rgb(76, 103, 216) !important;
+  border:2px solid #3f5e84 !important;
   background-color: #fff;
 }
 .summary-wrapper{
   float:left;
   width: 100%;
   margin-top: 10px;
-  background: rgba(255, 255, 255, 0.8);
+  background: #edf1f5;
   border: 1px solid #dedede;
   border-radius: 3px;
   -webkit-box-shadow: black 0px 6px 9px -9px;
@@ -379,6 +379,9 @@ ul.s1-list li p {
   justify-content: space-between;
   align-items: center;
   margin: 0 10px;
+}
+.summary-wrapper >div:nth-child(2) {
+  font-weight: 600;
   border-bottom: 1px solid #e0e0e0;
 }
 .summary-title{
@@ -406,8 +409,8 @@ ul.s1-list li p {
   float: left;
   padding: 10px;
   height: auto;
-  background-color: rgb(234, 247, 255);
-  border: none;
+  background-color: #edf1f5;
+  border:1px solid #162231 !important;
   box-shadow: -4px 3px 9px 0 rgba(0, 0, 0, 0.3);
   -webkit-box-shadow: -4px 3px 9px 0 rgba(0, 0, 0, 0.3);
 }
@@ -427,8 +430,11 @@ ul.s1-list li p {
   display: flex;
   justify-content: center;
   border-color: rgba(0 ,23 ,113, 1);
-  padding: 8px 0 4px;
-  background-color: #f5f5f5;
+  /* padding: 8px 0 4px; */
+  align-items: center;
+  background-color: #000;
+  color: #fff;
+  line-height: 30px;
 }
 .summary-total-item {
   display: flex;
@@ -492,10 +498,11 @@ ul.s1-list li p {
 }
 .se-title{
   text-align: center;
-  font-size: 16px;
-  color:#008000;
-  margin-top: 5px;
-  flex:1
+    font-size: 14px;
+    margin-top: 5px;
+    color: #000000ad;
+    flex: 1;
+    font-weight: 700;
 }
  .pkg-hdng{
   font-family: var(--title-family);
@@ -1190,7 +1197,7 @@ ul.s1-list li p {
     /* background:#0071e3;
      */
      text-align: center;
-     background: green!important;
+     /* background: green!important; */
      font-weight:bold;
      cursor:pointer;
      border:none;
@@ -1203,6 +1210,78 @@ ul.s1-list li p {
      margin:10px auto 0;
      max-width:100%;
 }
+.terms-block a {
+  color: #fff;
+}
+.dialog-error {
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2147483647;
+  background: rgba(255, 255, 255, .8);
+  display: none;
+  overflow-x: hidden;
+}
+.grid-container {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(2, 1fr);
+  width: 100%;
+  margin: auto;
+  position: relative;
+}
+.grid-cell {
+  position: relative;
+    overflow: hidden;
+    background-color: #f5f4f7;
+    width: 100%;
+}
+.grid-col-span-1 {
+  grid-column: span 2;
+}
+.grid-cell img {
+  object-fit: cover;
+  width: 100%;
+  max-height: 416px;
+}
+.dialog-box {
+    margin: 100px auto;
+    width: 500px;
+    padding: 20px;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid rgba(0, 0, 0, .2);
+    border-radius: 0;
+    -webkit-box-shadow: 0 3px 9px rgba(0, 0, 0, .5);
+    box-shadow: 0 3px 9px rgba(0, 0, 0, .5);
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #333;
+    position: relative;
+    -webkit-box-sizing: border-box;
+}
+#error-close {
+  position: absolute;
+  right: -10px;
+  top: -10px;
+  color: #FFF;
+  background-color: #333;
+  border: 2px solid #FFF;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  cursor: pointer;
+  text-decoration: none;
+  font-weight: 700;
+  padding: 0;
+  margin: 0;
+  line-height: 25px
+}
 /*==========footer===================*/
  .footer{
      float:left;
@@ -1211,6 +1290,7 @@ ul.s1-list li p {
      text-align:center;
      border-top:1px solid #ddd;
      background-color: #595858;
+     color: #fff;
 }
  .ftr-txt1{
      float:left;
@@ -1393,12 +1473,12 @@ ul.s1-list li p {
          font-size: 16px;
     }
 }
- (max-width:1021px) and (min-width:768px) {
+ @media (max-width:1021px) and (min-width:768px) {
      .buy-opt-left p {
-         font-size: 12px;
+         font-size: 14px;
     }
      .pkg-prc span {
-         font-size: 12px;
+         font-size: 14px;
     }
 }
  @media only screen and (max-width:767px){
@@ -1549,7 +1629,7 @@ ul.s1-list li p {
          padding: 5px 15px 10px;
     }
      .buy-opt-left p {
-         font-size: 11px;
+         font-size: 14px;
          letter-spacing: 0;
     }
      .pkg-prc span {

@@ -20,6 +20,7 @@
   <meta property="og:image" content="/offer/1/app/desktop/images/thumb.png" />
   <meta name="color-scheme" content="light only" />
   <link href="https://cdn.jsdelivr.net/npm/flag-icon-css@4.1.7/css/flag-icons.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/jquery-colorbox@1.6.4/example1/colorbox.min.css" rel="stylesheet" />
   <script src="https://checkout-demo.airwallex.com/assets/elements.bundle.min.js"></script>
   <!-- <script src="https://checkout.airwallex.com/assets/elements.bundle.min.js"></script> -->
   <style>
@@ -413,7 +414,7 @@
     }
 
     .ig637l {
-      max-width: 79.2%;
+      max-width: 86.2%;
       min-height: 12px;
       border-top-left-radius: 4px;
       border-top-right-radius: 0px;
@@ -488,7 +489,7 @@
     }
 
     .icdfoq {
-      max-width: 20.8%;
+      max-width: 13.8%;
       min-height: 12px;
       border-top-left-radius: 4px;
       border-top-right-radius: 0px;
@@ -924,10 +925,22 @@
     }
 
     @media (max-width: 780px) {
+      .grid-container {
+        display: none !important;
+      }
+
+      .banner-content {
+        display: block !important;
+      }
+
       .prd-det-disc {
         display: block !important;
         height: 80px;
         opacity: 0;
+      }
+
+      .dialog-box {
+        width: 95%;
       }
 
       .left-sec {
@@ -1513,7 +1526,7 @@
       <p class="str-rvw forMob go-rew"><img src="/checkout/v2/images/star02.png" alt="Star" />12,421 Verified Customer Reviews</p>
       <div class="left-sec">
         <div id="sticky" style="position:sticky;top: 0;">
-          <div class="vehicle-detail-banner banner-content clearfix">
+          <div style="display: none;" class="vehicle-detail-banner banner-content clearfix">
             <div class="banner-slider">
               <div class="slider-banner-image">
                 <div class="sw-box">
@@ -1521,6 +1534,35 @@
                   <div class="swiper-button-next"></div>
                 </div>
               </div>
+            </div>
+          </div>
+          <div class="grid-container">
+            <div class="grid-cell gallery-item grid-col-span-1">
+              <img src="/checkout/v2/images/money-back-new.jpg" alt="">
+            </div>
+            <div class="grid-cell gallery-item grid-col-span-2">
+              <img src="/checkout/v2/images/money-back-new.jpg" alt="">
+            </div>
+            <div class="grid-cell gallery-item grid-col-span-2">
+              <img src="/checkout/v2/images/money-back-new.jpg" alt="">
+            </div>
+            <div class="grid-cell gallery-item grid-col-span-1">
+              <img src="/checkout/v2/images/money-back-new.jpg" alt="">
+            </div>
+            <div class="grid-cell gallery-item grid-col-span-2">
+              <img src="/checkout/v2/images/money-back-new.jpg" alt="">
+            </div>
+            <div class="grid-cell gallery-item grid-col-span-2">
+              <img src="/checkout/v2/images/money-back-new.jpg" alt="">
+            </div>
+            <div class="grid-cell gallery-item grid-col-span-1">
+              <img src="/checkout/v2/images/money-back-new.jpg" alt="">
+            </div>
+            <div class="grid-cell gallery-item grid-col-span-2">
+              <img src="/checkout/v2/images/money-back-new.jpg" alt="">
+            </div>
+            <div class="grid-cell gallery-item grid-col-span-2">
+              <img src="/checkout/v2/images/money-back-new.jpg" alt="">
             </div>
           </div>
         </div>
@@ -1835,7 +1877,7 @@
                                   font-size: 14px;
                                   padding: 3px 8px;
                                   outline: 0;
-                                  font-family: SF Pro Text, sans-serif;
+                                  font-family: var(--title-family), sans-serif;
                                   font-weight: 400;
                                   box-sizing: border-box;
                                   background-color: #fff;
@@ -1853,7 +1895,7 @@
                                   font-size: 14px;
                                   padding: 3px 8px;
                                   outline: 0;
-                                  font-family: SF Pro Text, sans-serif;
+                                  font-family: var(--title-family), sans-serif;
                                   font-weight: 400;
                                   box-sizing: border-box;
                                   background-color: #fff;
@@ -1871,7 +1913,7 @@
                                   font-size: 14px;
                                   padding: 3px 8px;
                                   outline: 0;
-                                  font-family: SF Pro Text, sans-serif;
+                                  font-family: var(--title-family), sans-serif;
                                   font-weight: 400;
                                   box-sizing: border-box;
                                   background-color: #fff;
@@ -1981,7 +2023,7 @@
         </form>
         <div class="summary-wrapper">
           <div class="order-summary-title">
-            <div>order details</div>
+            <div>ORDER DETAILS</div>
           </div>
           <div class="order-summary-item">
             <div class="os_main_product_name product-name"></div>
@@ -2016,8 +2058,8 @@
     <p id="loading-indicator">Processing...</p>
   </div>
   <div class="clearall"></div>
-  <div style="display: flex; justify-content: center;width:100%;">
-    <div id="iduzu" class="section" style="width: 70vw;">
+  <div class="review-box" style="display: flex; justify-content: center;width:100%">
+    <div id="iduzu" class="section">
       <h3 class="container_title">Customer reviews</h3>
       <div class="grade">
         <h4 class="grade-top">
@@ -2074,7 +2116,7 @@
             <div class="i9r4tj"></div>
           </div>
           <div class="i10l46_global i10l46">
-            <span class="count-percent">79.2%</span><span class="count-percent">20.8%</span><span class="count-percent">0%</span><span class="count-percent">0%</span><span class="count-percent">0%</span>
+            <span class="count-percent">86.2%</span><span class="count-percent">13.8%</span><span class="count-percent">0%</span><span class="count-percent">0%</span><span class="count-percent">0%</span>
           </div>
         </div>
       </div>
@@ -2149,20 +2191,28 @@
     </div>
   </div>
   <div class="footer">
-    <div class="container">
-      <p class="ftr-txt1">Copyright ©2024 Fur Sweep Collar - All rights reserved.</p>
-      <p class="ftr-txt1">
-        <a align="center" href="contact.php?" target="_blank" class="link">Contact Us</a>
-        |
-        <a align="center" href="terms.php?" target="_blank" class="link">Terms of Use </a>
-        |
-        <a align="center" href="privacy.php?" target="_blank" class="link">Privacy Policy </a>
-      </p>
-      <!-- <center> -->
-      <a href="//www.dmca.com/Protection/Status.aspx?ID=0b693e6c-31d5-424a-8417-2bacb9b8923c" title="DMCA.com Protection Status" target="_blank" class="dmca-badge">
-        <img src="/checkout/v2/images/dmca_protected_sml_120n.png" alt="DMCA.com Protection Status" /></a>
-      <script src="/checkout/v2/js/DMCABadgeHelper.min.js"></script>
-      <!-- </center> -->
+    <p style="font-weight: 700">© 2024 Alle Rechte vorbehalten.</p>
+    <br class="br" />
+    <br class="br" />
+    <div class="phone-block"></div>
+    <div class="terms-block">
+      <a class="ajax" href="/onebuy/page/shipping-policy?locale={{ app()->getLocale() }}" target="_blank"> Versand & Lieferung </a>
+      <a class="ajax" href="/onebuy/page/refund-policy?locale={{ app()->getLocale() }}" target="_blank"> Rückgaberecht </a>
+      <a class="ajax" href="/onebuy/page/about-us?locale={{ app()->getLocale() }}" target="_blank"> Über uns</a>
+      <a class="ajax" href="/onebuy/page/privacy-policy?locale={{ app()->getLocale() }}" target="_blank"> Datenschutzrichtlinie </a>
+      <a class="ajax" href="/onebuy/page/contact-us?locale={{ app()->getLocale() }}" target="_blank"> Kontaktiere uns </a>
+      <a class="ajax" href="/onebuy/page/Impressum?locale={{ app()->getLocale() }}" target="_blank">Impressum</a>
+    </div>
+    <br /><br />
+    <div class="dmca_logo">
+      <img src="/checkout/v2/images/dmca_protected_sml_120n.png" alt="DMCA.com Protection Status" />
+    </div>
+  </div>
+  <div class="dialog-error">
+    <div class="dialog-box">
+      <a href="javascript:void(0)" id="error-close" onclick="closeDialog()">X</a>
+      <ul>
+      </ul>
     </div>
   </div>
   <!-- End of Discount POp up-->
@@ -2434,6 +2484,15 @@
   </script>
   <script src="/checkout/v2/js/jquery-3.0.0.min.js"></script>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery-colorbox@1.6.4/jquery.colorbox.min.js"></script>
+
+  <script>
+    $(document).ready(function() {
+      $('.ajax').colorbox({
+        width: '90%'
+      })
+    })
+  </script>
 
   <script>
     var data = ''
@@ -2533,7 +2592,7 @@
             $("#complete-btn-id").addClass("submit-button");
             $("#complete-btn-id").css({
               width: "100%",
-              background: "green!important",
+              background: "#1773b0",
               padding: "18px 13px",
               textAlign: 'center'
             });
@@ -2550,7 +2609,7 @@
             $("#airwallex_dropin_collapse").hide();
             $("#complete-btn-id").css({
               width: "100%",
-              background: "green!important",
+              background: "#1773b0",
               padding: "18px 13px",
               textAlign: 'center'
             });
@@ -2582,7 +2641,7 @@
             $("#complete-btn-id").addClass("submit-button");
             $("#complete-btn-id").css({
               width: "100%",
-              background: "green!important",
+              background: "#1773b0",
               padding: "18px 13px",
               textAlign: 'center'
             });
@@ -3021,7 +3080,6 @@
           }
           $('select[name="shippingCountry"]').append(opList)
           $('select[name="shippingCountry"]').val(countriesList[0].countryCode)
-
         })
         .catch(function(err) {
           console.log(err, 'err====')
@@ -3056,7 +3114,6 @@
           })
       }
     })
-
 
     function getSku(id, n, value) {
       var nList = []
@@ -3226,8 +3283,46 @@
       params.phone_full = $('input[name="phone"]').val()
       params.address = $('input[name="shippingAddress1"]').val()
       params.city = $('input[name="shippingCity"]').val()
-      params.city = $('input[name="shippingCity"]').val()
       params.code = $('input[name="shippingZip"]').val()
+      params.country = $('select[name="shippingCountry"]').val()
+      params.province = $('select[name="shippingState"]').val()
+      var errorShow = params.first_name && params.second_name && params.email && params.phone_full && params.address && params.city && params.code && params.country && params.province
+      console.log(errorShow, 'errorShow')
+      if (!errorShow) {
+        $('.dialog-error .dialog-box ul').empty()
+        var textList = ''
+        if (!params.first_name) {
+          textList += `<li>Please enter your first name!</li>`
+        }
+        if (!params.second_name) {
+          textList += `<li>Please enter your last name!</li>`
+        }
+        if (!params.email) {
+          textList += `<li>Please enter a valid email id!</li>`
+        }
+        if (!params.phone_full) {
+          textList += `<li>Please enter your phone number!</li>`
+        }
+        if (!params.address) {
+          textList += `<li>Please enter your address!</li>`
+        }
+        if (!params.city) {
+          textList += `<li>Please enter your city!</li>`
+        }
+        if (!params.code) {
+          textList += `<li>Please enter a valid zip code!</li>`
+        }
+        if (!params.country) {
+          textList += `<li>Please select your country!</li>`
+        }
+        if (!params.province) {
+          textList += `<li>Please select your state!</li>`
+        }
+        $('.dialog-error').show()
+        $('.dialog-error .dialog-box ul').append(textList)
+        $('#loading').hide()
+        return
+      }
       if ($('input[id="airwallex-klarna"]:checked')) {
         console.log('klarna')
         params.payment_method = 'airwallex_klarna'
@@ -3271,7 +3366,7 @@
         $("#complete-btn-id").addClass("submit-button");
         $("#complete-btn-id").css({
           width: "100%",
-          background: "green",
+          background: "#1773b0",
           padding: "18px 13px",
           textAlign: 'center'
         });
@@ -3294,7 +3389,7 @@
         $("#complete-btn-id").addClass("submit-button");
         $("#complete-btn-id").css({
           width: "100%",
-          background: "green",
+          background: "#1773b0",
           padding: "18px 13px",
           textAlign: 'center'
         });
@@ -3362,7 +3457,6 @@
               var value = $(".email").val();
               if (value.length > 0) email_can = 1;
               console.log(value);
-              var params = getOrderParams('paypal_stand');
               if (!params.error) {
                 actions.enable();
               }
@@ -3372,7 +3466,6 @@
               var value = $(".first_name").val();
               if (value.length > 0) first_name_can = 1;
               console.log(value);
-              var params = getOrderParams('paypal_stand');
               if (!params.error) {
                 actions.enable();
               }
@@ -3382,7 +3475,6 @@
               var value = $(".last_name").val();
               if (value.length > 0) last_name_can = 1;
               console.log(value);
-              var params = getOrderParams('paypal_stand');
               if (!params.error) {
                 actions.enable();
               }
@@ -3391,7 +3483,6 @@
               var value = $(".phone_number").val();
               if (value.length > 0) phone_number_can = 1;
               console.log(value);
-              var params = getOrderParams('paypal_stand');
               if (!params.error) {
                 actions.enable();
               }
@@ -3400,7 +3491,6 @@
               var value = $(".address").val();
               if (value.length > 0) address_can = 1;
               console.log(value);
-              var params = getOrderParams('paypal_stand');
               if (!params.error) {
                 actions.enable();
               }
@@ -3409,7 +3499,6 @@
               var value = $(".city").val();
               if (value.length > 0) city_can = 1;
               console.log(value);
-              var params = getOrderParams('paypal_stand');
               if (!params.error) {
                 actions.enable();
               }
@@ -3418,14 +3507,12 @@
               var value = $(".zip_code").val();
               if (value.length > 0) zip_code_can = 1;
               console.log(value);
-              var params = getOrderParams('paypal_stand');
               if (!params.error) {
                 actions.enable();
               }
             });
 
             $("#state-select").on('change', function() {
-              var params = getOrderParams('paypal_stand');
               if (!params.error) {
                 actions.enable();
               }
@@ -3451,7 +3538,8 @@
           },
           onClick() {
             // var params = getOrderParams('paypal_stand');
-            console.log("on click " + params);
+            console.log("on click " + JSON.parse(params));
+
             if (params.error) {
               $('#checkout-error').html(params.error.join('<br />'));
               $('#checkout-error').show();
@@ -3462,6 +3550,45 @@
 
           // Call your server to set up the transaction
           createOrder: function(data, actions) {
+            var errorShow = $('input[name="firstName"]').val() && $('input[name="lastName"]').val() && $('input[name="email"]').val() &&
+              $('input[name="phone"]').val() &&
+              $('input[name="shippingAddress1"]').val() && $('input[name="shippingCity"]').val() && $('input[name="shippingZip"]').val() && $('select[name="shippingCountry"]').val() && $('select[name="shippingState"]').val()
+            console.log(errorShow, 'errorShowpaypal====')
+            if (!errorShow) {
+              $('.dialog-error .dialog-box ul').empty()
+              var textList = ''
+              if (!$('input[name="firstName"]').val()) {
+                textList += `<li>Please enter your first name!</li>`
+              }
+              if (!$('input[name="lastName"]').val()) {
+                textList += `<li>Please enter your last name!</li>`
+              }
+              if (!$('input[name="email"]').val()) {
+                textList += `<li>Please enter a valid email id!</li>`
+              }
+              if (!$('input[name="phone"]').val()) {
+                textList += `<li>Please enter your phone number!</li>`
+              }
+              if (!$('input[name="shippingAddress1"]').val()) {
+                textList += `<li>Please enter your address!</li>`
+              }
+              if (!$('input[name="shippingCity"]').val()) {
+                textList += `<li>Please enter your city!</li>`
+              }
+              if (!$('input[name="shippingZip"]').val()) {
+                textList += `<li>Please enter a valid zip code!</li>`
+              }
+              if (!$('select[name="shippingCountry"]').val()) {
+                textList += `<li>Please select your country!</li>`
+              }
+              if (!$('select[name="shippingState"]').val()) {
+                textList += `<li>Please select your state!</li>`
+              }
+              $('.dialog-error').show()
+              $('.dialog-error .dialog-box ul').append(textList)
+              $('#loading').hide()
+              return
+            }
             $('#loading').show();
             // var params = getOrderParams('paypal_stand');
             var url = '/onebuy/order/addr/after?currenty={{ core()->getCurrentCurrencyCode() }}&_token={{ csrf_token() }}&time=' + new Date().getTime() + "&force=" + localStorage.getItem("force");
@@ -4053,12 +4180,31 @@
     }, spd)
     $(function() {
       var width = $(window).innerWidth()
-      if (wh > 767) {
+      if (width > 767) {
         var height = $('.right-sec').height()
+        console.log(height, 'height===');
         $('.left-sec').css('height', height)
       }
     })
 
+    function reviewWidth() {
+      var width = $(window).innerWidth()
+      if (width > 767) {
+        var rw = $('.right-sec').width()
+        var lw = $('.left-sec').width()
+        var rew = rw + lw + 'px'
+        $('#iduzu').css('width', rew)
+
+      } else {
+        $('#iduzu').css('width', '100%')
+      }
+    }
+    $(function() {
+      reviewWidth()
+    })
+    window.addEventListener('resize', function() {
+      reviewWidth()
+    })
     $('.fieldToggle').click(function() {
       if ($('#togData').prop('checked') == true) {
         $('.shipaddress').slideUp()
@@ -4119,18 +4265,42 @@
   </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/5.0.4/js/swiper.js"></script>
   <script>
+    function closeDialog() {
+      $('.dialog-error').hide()
+    }
     $(function() {
       var url = '/shopify/v1/api/images/' + getProductId
       axios
         .get(url)
         .then(function(res) {
           var swiperList = ''
+          var showimg = ''
           if (res.data.code !== 200) {
             return
           }
           var img = res.data.data.images
+          var imgListLength = img.length
+          var imglen = Math.floor(imgListLength / 3)
+          if (imglen > 3) {
+            imglen = 3;
+          }
           for (var i = 0; i < img.length; i++) {
             swiperList += `<div class="swiper-slide"><img src="${img[i].src}" ></div>`
+          }
+          for (var imgi = 0; imgi < imglen; imgi++) {
+            var i1 = 0 + imgi * 3,
+              i2 = 1 + imgi * 3,
+              i3 = 2 + imgi * 3
+            showimg += `<div class="grid-cell gallery-item grid-col-span-1">
+              <img src="` + img[i1].src + `" alt="">
+            </div>
+            <div class="grid-cell gallery-item grid-col-span-2">
+              <img src="` + img[i2].src + `" alt="">
+            </div>
+            <div class="grid-cell gallery-item grid-col-span-2">
+              <img src="` + img[i3].src + `" alt="">
+            </div>`
+
           }
           var gallery =
             `<div class="swiper-container" id="gallery">
@@ -4169,7 +4339,7 @@
           })
         })
         .catch(function(error) {
-          console.error(error, 'getQuestion err')
+          console.error(error, 'getswiper err')
         })
     })
   </script>
@@ -5904,11 +6074,6 @@
         }
       }
 
-
-
-
-
-
     }
 
     $('.js-list-item').on('click', function() {
@@ -5993,6 +6158,31 @@
       clearTimeout(window.no_top_turn_inter);
     }
   </script>
+
+  <script>
+    window.onload = function() {
+      var cval = $('select[name="shippingCountry"]').val()
+      console.log(cval, 'cval===')
+      if (cval) {
+        var countryUrl = '/template-common/checkout1/state/' + cval + '_' + area + '.json'
+        axios
+          .get(countryUrl)
+          .then(function(res) {
+            console.log(res, 'rrrrrrrssssssss')
+            var stateList = res.data
+            var optionList = []
+            for (var resj = 0; resj < stateList.length; resj++) {
+              optionList += `<option value="` + stateList[resj].StateCode + `">` + stateList[resj].StateName + `</option>`
+            }
+            $('select[name="shippingState"]').empty()
+            $('select[name="shippingState"]').append(optionList)
+            $('select[name="shippingState"]').val(stateList[0].StateCode)
+          })
+          .catch(function(err) {
+            console.log(err, 'err====')
+          })
+      }
+    }
   </script>
 
 </body>
