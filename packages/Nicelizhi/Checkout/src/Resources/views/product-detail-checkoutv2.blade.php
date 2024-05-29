@@ -1084,7 +1084,7 @@
     <!-- Start VWO SmartCode -->
     <script src="/checkout/v2/js/51174.js"></script>
     <!-- End VWO SmartCode -->
-    <link rel="stylesheet prefetch" href="/checkout/v2/css/app2.css?v=1" />
+    <link rel="stylesheet prefetch" href="/checkout/v2/css/app2.css?v=2" />
     <link type="text/css" href="/checkout/v2/css/custom-extra.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/5.0.4/css/swiper.css" />
     <link type="text/css" href="/checkout/v2/css/repeated-order-confirmation.min.css" rel="stylesheet" />
@@ -1800,7 +1800,7 @@
                 <label for="address" class="fl-label">Shipping Address</label>
                 <input type="text" name="shippingAddress1" class="input-flds required cb-remove-class frmField" placeholder="Your Address" data-error-message="Please enter your address!" id="shipAddress" />
               </div> -->
-              <div class="fl input-box">
+              <div class="fl input-box" style="margin-top: 15px;">
                 <label>
                   <input
                     class="input-item"
@@ -1850,15 +1850,43 @@
                   <span>Your Country</span>
                 </label>
               </div>
-              <div class="frm-flds fl">
+              <!-- <div class="frm-flds fl">
                 <label for="state" class="fl-label">Select State</label>
                 <select type="text" name="shippingState" placeholder="Your State" class="selcet-fld required cb-remove-class frmField" id="shippingStateSelect" data-error-message="Please select your state!" data-selected="">
                   <option value="">Select Stata</option>
                 </select>
+              </div> -->
+              <div class="fl input-box">
+                <label>
+                  <select
+                    class="input-item"
+                    name="shippingState"
+                    id="shippingStateSelect"
+                    type="text"
+                    placeholder=""
+                    required=""
+                  >
+                    <option value="">Select Stata</option>
+                  </select>
+                  <span>Your Stata</span>
+                </label>
               </div>
-              <div class="frm-flds fl">
+              <!-- <div class="frm-flds fl">
                 <label for="zip" class="fl-label">Zip Code</label>
                 <input type="tel" name="shippingZip" id="zip" class="input-flds required cb-remove-class frmField" placeholder="Zip Code" data-error-message="Please enter a valid zip code!" />
+              </div> -->
+              <div class="fl input-box">
+                <label>
+                  <input
+                    class="input-item"
+                    name="shippingZip"
+                    id="zip"
+                    type="tel"
+                    placeholder=""
+                    required=""
+                  />
+                  <span>Zip Code</span>
+                </label>
               </div>
               <!--   <a href="javascript:void(0)" class="continue-order addon_btn"
                         onclick="javascript:bookmarkscroll.scrollTo('wrnty')">Select Addon</a>-->

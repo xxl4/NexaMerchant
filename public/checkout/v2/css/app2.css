@@ -115,10 +115,6 @@ textarea {
 	padding: 6px;
 	height: 150px
 }
-select {
-	line-height: 24px;
-	height: 32px;
-}
 input[type=text]:focus,
 input[type=search]:focus,
 input[type=password]:focus,
