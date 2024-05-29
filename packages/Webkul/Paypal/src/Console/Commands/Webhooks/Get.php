@@ -6,6 +6,8 @@ use Illuminate\Console\Command;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Log;
 use Webkul\Paypal\Payment\SmartButton;
+use Webkul\Paypal\Http\Request\Paypal\WebhooksListRequest;
+
 
 class Get extends Command
 {
@@ -70,7 +72,46 @@ class Get extends Command
     public function handle()
     {
         
+        // 
         $smartButton = new SmartButton();
+        $client = $smartButton->client();
+
+
+        //$accesstoken = $smartButton->getAccessToken();
+
+        $accesstoken = "A21AAJXACJFuRThfaLmcO00Ib_egGuzkKDXKi0xaLS6T0SkbzMv5AZ0ftaQDUugmYVtgc2TuhsFNODLwzzHXZ3ZgRm1zPjKeA";
+
+
+        // https://developer.paypal.com/docs/api/webhooks/v1/#webhooks_post
+        
+        $body = [];
+        $body['url'] = config('app.url')."/paypal/smart-button/v1/webhooks/dispute";
+        $event_types = [];
+        $event_types[] = [
+            "name" => "CUSTOMER.DISPUTE.CREATED"
+        ];
+        $event_types[] = [
+            "name" => "CUSTOMER.DISPUTE.RESOLVED"
+        ];
+        $event_types[] = [
+            "name" => "CUSTOMER.DISPUTE.UPDATED"
+        ];
+        $event_types[] = [
+            "name" => "RISK. DISPUTE.CREATED"
+        ];
+        $body['event_types'] = $event_types;
+
+        var_dump($body);
+
+        $response = $smartButton->createWebook($body);
+
+        var_dump($response);
+
+        sleep(1);
+        
+        $response = $smartButton->WebhookList();
+
+        var_dump($response);
 
        
     }
