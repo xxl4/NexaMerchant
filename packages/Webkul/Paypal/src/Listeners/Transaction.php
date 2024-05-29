@@ -2,6 +2,7 @@
 
 namespace Webkul\Paypal\Listeners;
 
+use Illuminate\Support\Facades\Log;
 use Webkul\Paypal\Payment\SmartButton;
 use Webkul\Sales\Repositories\OrderTransactionRepository;
 
@@ -33,6 +34,8 @@ class Transaction
                 $transactionDetails = $this->smartButton->getOrder($data['orderData']['orderID']);
 
                 $transactionDetails = json_decode(json_encode($transactionDetails), true);
+
+                Log::info('Paypal Smart Transaction Details: ' . json_encode($transactionDetails));
 
                 if ($transactionDetails['statusCode'] == 200) {
                     $this->orderTransactionRepository->create([
