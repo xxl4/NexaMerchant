@@ -21,8 +21,8 @@
   <meta name="color-scheme" content="light only" />
   <link href="https://cdn.jsdelivr.net/npm/flag-icon-css@4.1.7/css/flag-icons.min.css" rel="stylesheet" />
   <link href="https://cdn.jsdelivr.net/npm/jquery-colorbox@1.6.4/example1/colorbox.min.css" rel="stylesheet" />
-  <!-- <script src="https://checkout-demo.airwallex.com/assets/elements.bundle.min.js"></script> -->
-  <script src="https://checkout.airwallex.com/assets/elements.bundle.min.js"></script>
+  <script src="https://checkout-demo.airwallex.com/assets/elements.bundle.min.js"></script>
+  <!-- <script src="https://checkout.airwallex.com/assets/elements.bundle.min.js"></script> -->
   <style>
     @media only screen and (max-width: 600px) {}
 
@@ -1034,6 +1034,46 @@
       }
     }
   </style>
+  <style>
+      .input-box {
+        width: 100%;
+        /* font-family: var(--); */
+        /* height: 32px !important; */
+      }
+      .input-box label {
+        width: 100%;
+        position: relative;
+        margin-bottom: 20px;
+      }
+      .input-box .input-item {
+        width: 100%;
+        padding: 20px 05px 05px 10px;
+        outline: 0;
+        border: 1px solid rgba(105, 105, 105, 0.397);
+        border-radius: 10px;
+      }
+
+      .input-box .input-item + span {
+        position: absolute;
+        left: 10px;
+        top: 0px;
+        font-size: 14px;
+        cursor: text;
+        transition: 0.3s ease;
+      }
+
+      .input-box .input-item:placeholder-shown + span {
+        top: 12.5px;
+        font-size: 14px;
+      }
+
+      .input-box .input-item:focus + span {
+        color: #00bfff;
+        top: 0px;
+        font-size: 0.7em;
+        font-weight: 600;
+      }
+    </style>
 </head>
 
 <body>
@@ -1041,7 +1081,7 @@
     <!-- Start VWO SmartCode -->
     <script src="/checkout/v2/js/51174.js"></script>
     <!-- End VWO SmartCode -->
-    <link rel="stylesheet prefetch" href="/checkout/v2/css/app2.css" />
+    <link rel="stylesheet prefetch" href="/checkout/v2/css/app2.css?v=1" />
     <link type="text/css" href="/checkout/v2/css/custom-extra.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/5.0.4/css/swiper.css" />
     <link type="text/css" href="/checkout/v2/css/repeated-order-confirmation.min.css" rel="stylesheet" />
@@ -1698,14 +1738,40 @@
           <input type="hidden" name="individualPrice" id="individualPrice" value="" />
           <input type="hidden" name="packageQuantity" id="packageQuantity" value="" />
           <div class="formBox">
-            <div class="frm-flds fl">
+            <!-- <div class="frm-flds fl">
               <label for="fname" class="fl-label">First Name</label>
               <input type="text" name="firstName" id="firstName" class="input-flds required cb-remove-class frmField" placeholder="First Name" data-error-message="Please enter your first name!" />
-            </div>
-            <div class="frm-flds fl">
+            </div> -->
+            <div class="fl input-box">
+                <label>
+                  <input
+                    class="input-item"
+                    name="firstName"
+                    id="firstName"
+                    type="text"
+                    placeholder=""
+                    required=""
+                  />
+                  <span>First Name</span>
+                </label>
+              </div>
+            <!-- <div class="frm-flds fl">
               <label for="lanme" class="fl-label">Last Name</label>
               <input type="text" name="lastName" id="lastName" class="input-flds required cb-remove-class frmField" placeholder="Last Name" data-error-message="Please enter your last name!" />
-            </div>
+            </div> -->
+            <div class="fl input-box">
+                <label>
+                  <input
+                    class="input-item"
+                    name="lastName"
+                    id="lastName"
+                    type="text"
+                    placeholder=""
+                    required=""
+                  />
+                  <span>Last Name</span>
+                </label>
+              </div>
             <div class="frm-flds fl">
               <label for="email" class="fl-label">Email (For order confirmation)</label>
               <input type="email" name="email" id="email" class="input-flds required cb-remove-class frmField" placeholder="Email Address" data-validate="email" data-error-message="Please enter a valid email id!" />

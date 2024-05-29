@@ -79,7 +79,7 @@ img {
 .config-errors li strong {
 	float: right
 }
-input[type=text],
+/* input[type=text],
 input[type=search],
 input[type=number],
 input[type=password],
@@ -103,7 +103,7 @@ textarea {
 	-moz-box-sizing: border-box;
 	-o-box-sizing: border-box;
 	-ms-box-sizing: border-box
-}
+} */
 ::placeholder {
         color: #8c8282;
 }
