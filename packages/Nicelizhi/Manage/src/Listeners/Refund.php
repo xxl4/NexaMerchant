@@ -62,6 +62,7 @@ class Refund extends Base
             }catch (Exception $e) {
                 var_dump($e->getMessage());
                 //exit;
+                \Nicelizhi\Shopify\Helpers\Utils::send($e->getMessage());
             } finally  {
                 //echo " Error plese check the log ";exit;
             }
@@ -70,7 +71,6 @@ class Refund extends Base
         }
         // airwallex
         if($order->payment->method=='airwallex') {
-
             Log::info("order refund Log info" . json_encode($order));
 
             $apiKey = core()->getConfigData('sales.payment_methods.airwallex.apikey');
@@ -90,9 +90,12 @@ class Refund extends Base
                 'apiKey' => $apiKey
             ];
 
-            $sdk = new AirwallexSdk($paymentConfig, $productionMode);
-    
-            $sdk->createReRefund($payment_intent_id, $order->id, round($refund->grand_total, 2));
+            try {
+                $sdk = new AirwallexSdk($paymentConfig, $productionMode);
+                $sdk->createReRefund($payment_intent_id, $order->id, round($refund->grand_total, 2));
+            }catch (Exception $e) {
+                \Nicelizhi\Shopify\Helpers\Utils::send($e->getMessage());
+            }  
         }
 
         Artisan::queue("shopify:refund:post", ['--order_id'=>$order->id,'--refund_id'=> $refund->id])->onConnection('redis')->onQueue('shopify-refund'); // add shopify refund queue
