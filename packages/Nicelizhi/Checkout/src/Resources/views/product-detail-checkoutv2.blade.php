@@ -1046,7 +1046,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/5.0.4/css/swiper.css" />
     <link type="text/css" href="/checkout/v2/css/repeated-order-confirmation.min.css" rel="stylesheet" />
     <link type="text/css" href="/checkout/v2/css/repeated-order-confirmation-additional.css" rel="stylesheet" />
-    <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/checkout.css" />
+    <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/checkout.css?v=1" />
     <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/bootstrap.min.css" />
     <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/slick.min.css" />
     <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/upsell-new-02.css" />
@@ -1545,7 +1545,7 @@
         <p class="str-rvw hide-mob go-rew"><img src="/checkout/v2/images/star02.png" alt="Star" />12,421 Verified Customer Reviews</p>
         <p class="bdr-line hide-mob"></p>
         <p class="prd-det-disc">Natural Protection for Your Beloved Dog: Safe, Effective Flea &amp; Tick Prevention</p>
-        <p class="pkg-hdng"><span class="pkg-step">Step 1 ></span> Choose your package</p>
+        <p class="pkg-hdng"><span class="pkg-step">Step1: </span> Choose your package</p>
         <div class="pkg-opt">
           <div class="cb-first-item"></div>
           <div class="buyopt packageClass cb-package-container choose-p" id="product2">
@@ -1686,7 +1686,7 @@
 
         <p class="bdr-line"></p>
 
-        <p class="pkg-hdng"><span class="pkg-step">Step 2 ></span> Enter customer information</p>
+        <p class="pkg-hdng"><span class="pkg-step">Step2:</span> Enter customer information</p>
         <form class="form">
           <input type="hidden" name="prospectId" id="prospectId" value="" />
           <input type="hidden" name="campaigns[1][id]" id="campaign_id" value="" />
@@ -1716,7 +1716,7 @@
             </div>
             <p class="bdr-line"></p>
             <div class="payment-flds-box">
-              <p class="pkg-hdng"><span class="pkg-step">Step 3 ></span> Enter your shipping information</p>
+              <p class="pkg-hdng"><span class="pkg-step">Step3:</span> Enter your shipping information</p>
               <div class="frm-flds fl">
                 <label for="address" class="fl-label">Shipping Address</label>
                 <input type="text" name="shippingAddress1" class="input-flds required cb-remove-class frmField" placeholder="Your Address" data-error-message="Please enter your address!" id="shipAddress" />
@@ -1749,7 +1749,7 @@
               <!--   <a href="javascript:void(0)" class="continue-order addon_btn"
                         onclick="javascript:bookmarkscroll.scrollTo('wrnty')">Select Addon</a>-->
             </div>
-            <p class="pkg-hdng"><span class="pkg-step">Step 4 ></span> Enter your payment information</p>
+            <p class="pkg-hdng"><span class="pkg-step">Step4:</span> Enter your payment information</p>
             <p>&nbsp;</p>
             <select name="creditCardType" class="form-control" data-error-message="Please select valid card type!">
               <option value="">Card Type</option>

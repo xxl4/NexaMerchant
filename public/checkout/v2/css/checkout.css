@@ -877,6 +877,10 @@ ul.s1-list li p {
  .frm-flds .fl-is-active .input-flds {
      padding-top: 10px !important;
 }
+.form-check-label {
+  font-size: 14px !important;
+  line-height: 30px !important;
+}
  .top-row {
      display: flex;
      justify-content: space-between;
