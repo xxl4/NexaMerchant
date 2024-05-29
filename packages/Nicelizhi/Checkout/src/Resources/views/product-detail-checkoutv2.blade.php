@@ -1772,14 +1772,40 @@
                   <span>Last Name</span>
                 </label>
               </div>
-            <div class="frm-flds fl">
+            <!-- <div class="frm-flds fl">
               <label for="email" class="fl-label">Email (For order confirmation)</label>
               <input type="email" name="email" id="email" class="input-flds required cb-remove-class frmField" placeholder="Email Address" data-validate="email" data-error-message="Please enter a valid email id!" />
-            </div>
-            <div class="frm-flds fl">
+            </div> -->
+            <div class="fl input-box">
+                <label>
+                  <input
+                    class="input-item"
+                    name="email"
+                    id="email"
+                    type="email"
+                    placeholder=""
+                    required=""
+                  />
+                  <span>Email Address</span>
+                </label>
+              </div>
+            <!-- <div class="frm-flds fl">
               <label for="phone" class="fl-label">Phone number</label>
               <input type="tel" name="phone" id="phone" class="input-flds required cb-remove-class frmField" placeholder="Phone" data-validate="phone" data-min-length="10" data-max-length="15" maxlength="10" onkeyup="javascript:this.value=this.value.replace(/[^0-9]/g,'');" data-error-message="Please enter a valid contact number!" />
-            </div>
+            </div> -->
+            <div class="fl input-box">
+                <label>
+                  <input
+                    class="input-item"
+                    name="phone"
+                    id="phone"
+                    type="tel"
+                    placeholder=""
+                    required=""
+                  />
+                  <span>Phone</span>
+                </label>
+              </div>
             <p class="bdr-line"></p>
             <div class="payment-flds-box">
               <p class="pkg-hdng"><span class="pkg-step">Step3:</span> Enter your shipping information</p>
