@@ -3531,7 +3531,7 @@
           },
           onClick() {
             // var params = getOrderParams('paypal_stand');
-            console.log("on click " + JSON.parse(params));
+            // console.log("on click " + JSON.parse(params));
 
             if (params.error) {
               $('#checkout-error').html(params.error.join('<br />'));
