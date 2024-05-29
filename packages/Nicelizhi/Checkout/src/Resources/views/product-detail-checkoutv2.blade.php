@@ -1063,7 +1063,7 @@
       }
 
       .input-box .input-item:placeholder-shown + span {
-        top: 12.5px;
+        top: 15.5px;
         font-size: 14px;
       }
 
@@ -1072,6 +1072,9 @@
         top: 0px;
         font-size: 0.7em;
         font-weight: 600;
+      }
+      .paypal-button.paypal-button-color-gold, .paypal-button-row.paypal-button-color-gold .menu-button {
+          background: rgb(23, 115, 176)!important;
       }
     </style>
 </head>
@@ -1738,10 +1741,6 @@
           <input type="hidden" name="individualPrice" id="individualPrice" value="" />
           <input type="hidden" name="packageQuantity" id="packageQuantity" value="" />
           <div class="formBox">
-            <!-- <div class="frm-flds fl">
-              <label for="fname" class="fl-label">First Name</label>
-              <input type="text" name="firstName" id="firstName" class="input-flds required cb-remove-class frmField" placeholder="First Name" data-error-message="Please enter your first name!" />
-            </div> -->
             <div class="fl input-box">
                 <label>
                   <input
@@ -1755,10 +1754,6 @@
                   <span>First Name</span>
                 </label>
               </div>
-            <!-- <div class="frm-flds fl">
-              <label for="lanme" class="fl-label">Last Name</label>
-              <input type="text" name="lastName" id="lastName" class="input-flds required cb-remove-class frmField" placeholder="Last Name" data-error-message="Please enter your last name!" />
-            </div> -->
             <div class="fl input-box">
                 <label>
                   <input
@@ -1772,10 +1767,6 @@
                   <span>Last Name</span>
                 </label>
               </div>
-            <!-- <div class="frm-flds fl">
-              <label for="email" class="fl-label">Email (For order confirmation)</label>
-              <input type="email" name="email" id="email" class="input-flds required cb-remove-class frmField" placeholder="Email Address" data-validate="email" data-error-message="Please enter a valid email id!" />
-            </div> -->
             <div class="fl input-box">
                 <label>
                   <input
@@ -1789,10 +1780,6 @@
                   <span>Email Address</span>
                 </label>
               </div>
-            <!-- <div class="frm-flds fl">
-              <label for="phone" class="fl-label">Phone number</label>
-              <input type="tel" name="phone" id="phone" class="input-flds required cb-remove-class frmField" placeholder="Phone" data-validate="phone" data-min-length="10" data-max-length="15" maxlength="10" onkeyup="javascript:this.value=this.value.replace(/[^0-9]/g,'');" data-error-message="Please enter a valid contact number!" />
-            </div> -->
             <div class="fl input-box">
                 <label>
                   <input
@@ -1809,24 +1796,59 @@
             <p class="bdr-line"></p>
             <div class="payment-flds-box">
               <p class="pkg-hdng"><span class="pkg-step">Step3:</span> Enter your shipping information</p>
-              <div class="frm-flds fl">
+              <!-- <div class="frm-flds fl">
                 <label for="address" class="fl-label">Shipping Address</label>
                 <input type="text" name="shippingAddress1" class="input-flds required cb-remove-class frmField" placeholder="Your Address" data-error-message="Please enter your address!" id="shipAddress" />
-                <!--<input type="text" name="shippingAddress1" class="input-flds" placeholder="Apartment, suite, etc. (optional)" > -->
+              </div> -->
+              <div class="fl input-box">
+                <label>
+                  <input
+                    class="input-item"
+                    name="shippingAddress1"
+                    id="shipAddress"
+                    type="text"
+                    placeholder=""
+                    required=""
+                  />
+                  <span>Your Address</span>
+                </label>
               </div>
               <!-- <div class="frm-flds fl">
-                  <label for="appt" class="fl-label">Apartment, suite, etc. (optional)</label>
-                  <input type="text" name="shippingAddress2" class="input-flds" placeholder="Apartment, suite, etc. (optional)" id="appt" />
-                </div> -->
-              <div class="frm-flds fl">
                 <label for="city" class="fl-label">Your City</label>
                 <input type="text" name="shippingCity" class="input-flds required cb-remove-class frmField" placeholder="Your City" data-error-message="Please enter your city!" />
+              </div> -->
+              <div class="fl input-box">
+                <label>
+                  <input
+                    class="input-item"
+                    name="shippingCity"
+                    id="shipAddress"
+                    type="text"
+                    placeholder=""
+                    required=""
+                  />
+                  <span>Your City</span>
+                </label>
               </div>
-              <div class="frm-flds fl">
+              <!-- <div class="frm-flds fl">
                 <label for="shippingCountry" class="fl-label">Select Country</label>
                 <select name="shippingCountry" type="text" placeholder="Your State" class="selcet-fld required cb-remove-class frmField" data-selected="US" data-error-message="Please select your country!">
                   <option value="">Select Country</option>
                 </select>
+              </div> -->
+              <div class="fl input-box">
+                <label>
+                  <select
+                    class="input-item"
+                    name="shippingCountry"
+                    type="text"
+                    placeholder=""
+                    required=""
+                  >
+                    <option value="">Select Country</option>
+                  </select>
+                  <span>Your Country</span>
+                </label>
               </div>
               <div class="frm-flds fl">
                 <label for="state" class="fl-label">Select State</label>
