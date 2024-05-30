@@ -1859,7 +1859,7 @@
                   <span>@lang('checkout::app.v2.Country')</span>
                 </label>
               </div> -->
-              <div class="frm-flds fl">
+              <div class="frm-flds fl" style="margin-top: 20px;">
                 <label for="state" class="fl-label"></label>
                 <select type="text" name="shippingState" placeholder="@lang('checkout::app.v2.State')" class="selcet-fld required cb-remove-class frmField" id="shippingStateSelect" data-error-message="Please select your state!" data-selected="">
                   <option value=""></option>
@@ -1876,7 +1876,7 @@
                 <label for="zip" class="fl-label">Zip Code</label>
                 <input type="tel" name="shippingZip" id="zip" class="input-flds required cb-remove-class frmField" placeholder="Zip Code" data-error-message="Please enter a valid zip code!" />
               </div> -->
-              <div class="fl input-box">
+              <div class="fl input-box" style="margin-top: 20px;">
                 <label>
                   <input class="input-item" name="shippingZip" id="zip" type="tel" placeholder="" required="" />
                   <span>@lang('checkout::app.v2.Zip Code')</span>
@@ -2633,9 +2633,7 @@
           }
           if (paymentsDefault == 'airwallex-klarna') {
             console.log(paymentsDefault, 'kelala');
-            $('input[name=payment_method]').prop('checked', true);
-
-            // $('input[name=airwallex-klarna]').prop('checked', true);
+            $('input[name=airwallex-klarna]').prop('checked', true);
             $("#complete-btn-id").show();
             $("#collapseOne").hide();
             $("#collapseTwo").hide();
@@ -2658,7 +2656,7 @@
 
           }
           if (paymentsDefault == 'payal-standard') {
-            $('#payment_method_airwallex').prop('checked', true);
+            $('input[name=payment_method]').prop('checked', true);
             $("#complete-btn-id").show();
             console.log("click headingOne ");
             $("#collapseOne").show();
@@ -2683,7 +2681,7 @@
           };
 
           if (paymentsDefault == 'airwallex-credit-card') {
-            $('#payment_method_airwallex').prop('checked', true);
+            $('input[name=payment_method]').prop('checked', true);
             $("#complete-btn-id").show();
             console.log("click headingOne ");
             $("#collapseOne").show();
