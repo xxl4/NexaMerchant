@@ -2632,7 +2632,7 @@
           if (payTypeShow.airwallex_dropin == '0') {
             $('#airwallex-dropin-box').hide()
           }
-          if (paymentsDefault == 'airwallex_klarna') {
+          if (paymentsDefault == 'airwallex-klarna') {
             console.log(paymentsDefault, 'kelala');
             $('input[name=payment_method]').prop('checked', true);
 
@@ -2658,7 +2658,7 @@
             $("#complete-btn-id").html("@lang('onebuy::app.product.payment.complete_secure_purchase')");
 
           }
-          if (paymentsDefault == 'payal_standard') {
+          if (paymentsDefault == 'payal-standard') {
             $('#payment_method_airwallex').prop('checked', true);
             $("#complete-btn-id").show();
             console.log("click headingOne ");
@@ -2683,7 +2683,7 @@
 
           };
 
-          if (paymentsDefault == 'airwallex_credit_card') {
+          if (paymentsDefault == 'airwallex-credit-card') {
             $('#payment_method_airwallex').prop('checked', true);
             $("#complete-btn-id").show();
             console.log("click headingOne ");
