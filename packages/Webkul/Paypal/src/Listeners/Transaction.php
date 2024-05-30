@@ -40,7 +40,7 @@ class Transaction
 
                 if ($transactionDetails['statusCode'] == 200) {
                     $this->orderTransactionRepository->create([
-                        'transaction_id' => $transactionDetails['result']['id'],
+                        'transaction_id' => $transactionDetails['result']['purchase_units'][0]['payments']['captures'][0]['id'],
                         'status'         => $transactionDetails['result']['status'],
                         'type'           => $transactionDetails['result']['intent'],
                         'amount'         => $transactionDetails['result']['purchase_units'][0]['amount']['value'],
