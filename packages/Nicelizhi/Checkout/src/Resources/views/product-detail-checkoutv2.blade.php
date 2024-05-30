@@ -2112,7 +2112,7 @@
                 <label for="city" class="fl-label">Your City</label>
                 <input type="text" name="billingCity" class="input-flds required cb-remove-class-billing frmField" placeholder="Billing City" data-error-message="Please enter your billing city!" />
               </div>
-              <div class="frm-flds fl">
+              <!-- <div class="frm-flds fl">
                 <label for="billingCountry" class="fl-label">Select Country</label>
                 <select name="billingCountry" type="text" placeholder="Your State" class="selcet-fld required cb-remove-class-billing frmField" data-selected="US" data-error-message="Please select your billing country!">
                   <option value="">Select Country</option>
@@ -2121,6 +2121,18 @@
               <div class="frm-flds fl">
                 <label for="state" class="fl-label">Select State</label>
                 <input type="text" name="billingState" class="selcet-fld required cb-remove-class-billing frmField" placeholder="Your State" data-error-message="Please select your billing state!" data-selected="" />
+              </div> -->
+              <div class="frm-flds fl">
+                <label for="shippingCountry" class="fl-label">Select Country</label>
+                <select name="shippingCountry" type="text" placeholder="Your State" class="selcet-fld required cb-remove-class frmField" data-selected="US" data-error-message="Please select your country!">
+                  <option value="">Select Country</option>
+                </select>
+              </div>
+              <div class="frm-flds fl">
+                <label for="state" class="fl-label">Select State</label>
+                <select type="text" name="shippingState" placeholder="Your State" class="selcet-fld required cb-remove-class frmField" id="shippingStateSelect" data-error-message="Please select your state!" data-selected="">
+                  <option value="">Select State</option>
+                </select>
               </div>
               <div class="frm-flds fl">
                 <label for="zip" class="fl-label">Zip Code</label>
