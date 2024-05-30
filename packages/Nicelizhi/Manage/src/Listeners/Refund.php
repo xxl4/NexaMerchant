@@ -51,6 +51,8 @@ class Refund extends Base
             /* getting capture id by paypal order id */
             $captureID = $smartButton->getCaptureId($paypalOrderID);
 
+            Log::info("refund captureID". json_encode($captureID));
+
             /* now refunding order on the basis of capture id and refund data */
             try {
                 $smartButton->refundOrder($captureID, [
