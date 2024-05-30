@@ -136,6 +136,12 @@ class RefundController extends Controller
             return redirect()->back();
         }
 
+        if (! $refundAmount) {
+            session()->flash('error', trans('admin::app.sales.refunds.create.invalid-refund-amount-error'));
+
+            return redirect()->back();
+        }
+
         if ($refundAmount > $maxRefundAmount) {
             session()->flash('error', trans('admin::app.sales.refunds.create.refund-limit-error', ['amount' => core()->formatBasePrice($maxRefundAmount)]));
 
