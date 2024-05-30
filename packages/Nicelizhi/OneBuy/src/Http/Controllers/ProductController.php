@@ -292,8 +292,28 @@ class ProductController extends Controller
         
         $faqItems = $redis->hgetall($this->faq_cache_key);
         ksort($faqItems);
-        $comments = $redis->hgetall($this->cache_prefix_key."product_comments_".$product['id']);
-        //获取 paypal smart key
+        // $comments = $redis->hgetall($this->cache_prefix_key."product_comments_".$product['id']);
+        
+        $comments = $product->reviews->where('status', 'approved')->take(10);
+
+        $comments = $comments->map(function($comments) {
+            $comments->customer = $comments->customer;
+            $comments->images;
+            return $comments;
+        });
+        //Log::info($product['id'].'--'.json_encode($comments));
+        //Log::info($product['id'].'--'.count($comments));
+        if(count($comments)==0) {
+            //Log::info($product['id'].'--'.$this->cache_prefix_key."product_comments_".$product['id']);
+            $comments = $redis->hgetall($this->cache_prefix_key."product_comments_".$product['id']);
+            foreach($comments as $key=>$comment) {
+                $comment = json_decode($comment);
+                $comment->comment = $comment->content;
+                $comments[$key] = $comment;
+            }
+            //var_dump($comments);
+        }
+
         $paypal_client_id = core()->getConfigData('sales.payment_methods.paypal_smart_button.client_id');
 
 
@@ -1189,7 +1209,7 @@ class ProductController extends Controller
 
         $shopify_store_id = config('shopify.shopify_store_id');
 
-        $products = \Nicelizhi\Shopify\Models\ShopifyProduct::where("shopify_store_id",$shopify_store_id)->where("status", "active")->select(['title','handle',"variants","images"])->limit(5)->get();
+        $products = \Nicelizhi\Shopify\Models\ShopifyProduct::where("shopify_store_id",$shopify_store_id)->where("status", "active")->select(['title','handle',"variants","images"])->limit(3)->get();
 
         $recommended_info = [];
 

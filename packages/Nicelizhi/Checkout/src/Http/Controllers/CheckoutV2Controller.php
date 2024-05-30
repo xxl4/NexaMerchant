@@ -62,7 +62,6 @@ class CheckoutV2Controller extends Controller{
      * @return \Illuminate\View\View|\Exception
      */
     public function detail($slug, Request $request) {
-
         $slugOrPath = $slug;
         $cache_key = "product_url_".$slugOrPath;
         $product = Cache::get($cache_key);
@@ -84,9 +83,7 @@ class CheckoutV2Controller extends Controller{
         $payments = config('onebuy.payments'); // config the payments status
         $payments_default = config('onebuy.payments_default');
 
-
         return view('checkout::product-detail-'.$this->view_prefix_key, compact('slug','comments','faqItems','product','default_country',"payments","payments_default"));
-
     }
 
 
