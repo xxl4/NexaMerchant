@@ -3222,9 +3222,20 @@
               if (i == 0) {
                 var iIndex = data.attr.attributes[i].options[j].products[0]
                 params.products[n].variant_id = iIndex
-                params.products[n].img = data.attr.variant_images[iIndex][0].small_image_url
               }
             }
+          }
+          var imgIndex = ''
+          var colorList = data.attr.attributes[0].options
+          for (var colori = 0; colori < colorList.length; colori++) {
+            if (colorList[colori].label == value) {
+              imgIndex = colorList[colori].products[0]
+            }
+          }
+          if (imgIndex) {
+            params.products[n]
+            var finUrl = data.attr.variant_images[imgIndex][0].small_image_url
+            params.products[n].img = finUrl
           }
           aList = params.products[n].attr_id.split(',')
           aList[i] = data.attr.attributes[i].id + '_' + aid
@@ -3255,18 +3266,18 @@
         getSku(itemId, 3, value)
         // paramsProductsinit(params.products)
       }
-      var target = event.currentTarget
-      var imgIndex = ''
-      var colorList = data.attr.attributes[0].options
-      for (var colori = 0; colori < colorList.length; colori++) {
-        if (colorList[colori].label == value) {
-          imgIndex = colorList[colori].products[0]
-        }
-      }
-      if (imgIndex) {
-        var finUrl = data.attr.variant_images[imgIndex][0].small_image_url
-        $(event.target).parent().siblings('img').attr('src', finUrl)
-      }
+      // var target = event.currentTarget
+      // var imgIndex = ''
+      // var colorList = data.attr.attributes[0].options
+      // for (var colori = 0; colori < colorList.length; colori++) {
+      //   if (colorList[colori].label == value) {
+      //     imgIndex = colorList[colori].products[0]
+      //   }
+      // }
+      // if (imgIndex) {
+      //   var finUrl = data.attr.variant_images[imgIndex][0].small_image_url
+      //   $(event.target).parent().siblings('img').attr('src', finUrl)
+      // }
       console.log(params.products, '===params====')
     }
     $('#product1').click(function(e) {
