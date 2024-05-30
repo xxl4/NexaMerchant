@@ -148,9 +148,9 @@ class ApiController extends Controller
                 'attribute_id' => 32,
             ]);
     
-            $ads['pc']['img'] = isset($productBgAttribute->text_value) ? $productBgAttribute->text_value : "";
-            $ads['mobile']['img'] = isset($productBgAttribute_mobile->text_value) ? $productBgAttribute_mobile->text_value : "";
-            $ads['size']['img'] = isset($productSizeImage->text_value) ? $productSizeImage->text_value : "";
+            $ads['pc']['img'] = isset($productBgAttribute->text_value) ? config("app.url").'/storage/'.$productBgAttribute->text_value : config("app.url")."/checkout/onebuy/banners/".$default_country."_pc.jpg";
+            $ads['mobile']['img'] = isset($productBgAttribute_mobile->text_value) ? config("app.url").'/storage/'.$productBgAttribute_mobile->text_value : config("app.url")."/checkout/onebuy/banners/".$default_country."_mobile.jpg";
+            $ads['size']['img'] = isset($productSizeImage->text_value) ? config("app.url").'/storage/'.$productSizeImage->text_value : "";
     
             $data['ads'] = $ads;
 
