@@ -1775,7 +1775,7 @@
               </div>
             </div>
           </div>
-          <div class="zoom-fade submit-button" id="payment-button" style="text-align: center"></div>
+          <div class="zoom-fade submit-button" id="payment-button" style="text-align: center;margin-top: 10px; width:100%;float: left"></div>
           <div id="loading">
             <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 100000" id="loading-box" class="flex-center">
               <div class="box">
@@ -1909,7 +1909,7 @@
                             <h4 class="panel-title">
                               <div class="panel-title-header" id="headingThree2">
                                 <div class="form-check form-check-inline" style="width: 100%;">
-                                  <input class="form-check-input" type="radio" value="airwallex-klarna" id="airwallex-klarna" <?php if ($payments_default == 'airwallex-klarna') echo 'checked'; ?> name="payment_method">
+                                  <input class="form-check-input" name="airwallex-klarna" type="radio" value="airwallex-klarna" id="airwallex-klarna" <?php if ($payments_default == 'airwallex-klarna') echo 'checked'; ?> name="payment_method">
                                   <label class="form-check-label" for="airwallex-klarna" style="float: right;min-width: 95%;">
                                     <span style="font-family: var(--title-family);">@lang('onebuy::app.product.payment.klarna.title')</span>
                                     <div style="float: right;min-width: 200px;display: inline;text-align: right;"><img src="/checkout/v1/app/desktop/images/Klarna.png" style="max-height:24px" /></div>
@@ -2632,7 +2632,9 @@
             $('#airwallex-dropin-box').hide()
           }
           if (paymentsDefault == 'airwallex_klarna') {
-            $('#airwallex-klarna').prop('checked', true);
+            $('input[name=payment_method]').prop('checked', true);
+
+            // $('input[name=airwallex-klarna]').prop('checked', true);
             $("#complete-btn-id").show();
             $("#collapseOne").hide();
             $("#collapseTwo").hide();
@@ -2837,14 +2839,6 @@
               name2List.push(name2)
               // productL1.attribute_name = v1+ ',' +v2
               for (var inm = 0; inm < data.attr.attributes[m].options.length; inm++) {
-                if (m == 0 && data.attr.attributes[0].options[inm].label == name1) {
-                  productL1.variant_id = data.attr.attributes[0].options[inm].products[0]
-                  productL1.product_sku = data.attr.index[productL1.variant_id].sku
-                }
-                if (m == 0 && data.attr.attributes[0].options[inm].label == name2) {
-                  productL2.variant_id = data.attr.attributes[0].options[inm].products[0]
-                  productL2.product_sku = data.attr.index[productL2.variant_id].sku
-                }
                 var mid = data.attr.attributes[m].id
                 if (data.attr.attributes[m].options[inm].label == name1) {
                   v1List.push(mid + '_' + data.attr.attributes[m].options[inm].id)
@@ -2866,6 +2860,7 @@
           productL2.attr_id = v2List
           productL1.attribute_name = name1List
           productL2.attribute_name = name2List
+          getVSID(data.attr.index2)
           params.products = []
           params.products.push(productL1, productL2)
           // productL1.attr_id
@@ -2879,6 +2874,31 @@
         })
 
     })
+
+    function getVSID(obj) {
+      console.log(obj, 'obj==+++');
+      console.log(productL1.attr_id, ' productL1.attr_id');
+      for (const key in obj) {
+        console.log(key, 'key');
+        if (key == productL1.attr_id) {
+          console.log(obj[key][0], 'obj[key][0]');
+          productL1.variant_id = obj[key][0]
+          productL1.product_sku = obj[key][1]
+        }
+        if (key == productL2.attr_id) {
+          productL2.variant_id = obj[key][0]
+          productL2.product_sku = obj[key][1]
+        }
+        if (key == productL3.attr_id) {
+          productL3.variant_id = obj[key][0]
+          productL3.product_sku = obj[key][1]
+        }
+        if (key == productL4.attr_id) {
+          productL4.variant_id = obj[key][0]
+          productL4.product_sku = obj[key][1]
+        }
+      }
+    }
 
     function getSkuListInfo() {
       $('.sku-info').empty()
@@ -2957,10 +2977,6 @@
           name1 = $('#select1-item1').children('select').eq(m).val()
           name1List.push(name1)
           for (var inm = 0; inm < data.attr.attributes[m].options.length; inm++) {
-            if (m == 0 && data.attr.attributes[0].options[inm].label == name1) {
-              productL1.variant_id = data.attr.attributes[0].options[inm].products[0]
-              productL1.product_sku = data.attr.index[productL1.variant_id].sku
-            }
             var mid = data.attr.attributes[m].id
             if (data.attr.attributes[m].options[inm].label == name1) {
               v1List.push(mid + '_' + data.attr.attributes[m].options[inm].id)
@@ -2976,14 +2992,6 @@
           name2List.push(name2)
           // productL1.attribute_name = v1+ ',' +v2
           for (var inm = 0; inm < data.attr.attributes[m].options.length; inm++) {
-            if (m == 0 && data.attr.attributes[0].options[inm].label == name1) {
-              productL1.variant_id = data.attr.attributes[0].options[inm].products[0]
-              productL1.product_sku = data.attr.index[productL1.variant_id].sku
-            }
-            if (m == 0 && data.attr.attributes[0].options[inm].label == name2) {
-              productL2.variant_id = data.attr.attributes[0].options[inm].products[0]
-              productL2.product_sku = data.attr.index[productL2.variant_id].sku
-            }
             var mid = data.attr.attributes[m].id
             if (data.attr.attributes[m].options[inm].label == name1) {
               v1List.push(mid + '_' + data.attr.attributes[m].options[inm].id)
@@ -3003,18 +3011,6 @@
           name3List.push(name3)
           // productL1.attribute_name = v1+ ',' +v2
           for (var inm = 0; inm < data.attr.attributes[m].options.length; inm++) {
-            if (m == 0 && data.attr.attributes[0].options[inm].label == name1) {
-              productL1.variant_id = data.attr.attributes[0].options[inm].products[0]
-              productL1.product_sku = data.attr.index[productL1.variant_id].sku
-            }
-            if (m == 0 && data.attr.attributes[0].options[inm].label == name2) {
-              productL2.variant_id = data.attr.attributes[0].options[inm].products[0]
-              productL2.product_sku = data.attr.index[productL2.variant_id].sku
-            }
-            if (m == 0 && data.attr.attributes[0].options[inm].label == name3) {
-              productL3.variant_id = data.attr.attributes[0].options[inm].products[0]
-              productL3.product_sku = data.attr.index[productL3.variant_id].sku
-            }
             var mid = data.attr.attributes[m].id
             if (data.attr.attributes[m].options[inm].label == name1) {
               v1List.push(mid + '_' + data.attr.attributes[m].options[inm].id)
@@ -3039,22 +3035,6 @@
           name4List.push(name4)
           // productL1.attribute_name = v1+ ',' +v2
           for (var inm = 0; inm < data.attr.attributes[m].options.length; inm++) {
-            if (m == 0 && data.attr.attributes[0].options[inm].label == name1) {
-              productL1.variant_id = data.attr.attributes[0].options[inm].products[0]
-              productL1.product_sku = data.attr.index[productL1.variant_id].sku
-            }
-            if (m == 0 && data.attr.attributes[0].options[inm].label == name2) {
-              productL2.variant_id = data.attr.attributes[0].options[inm].products[0]
-              productL2.product_sku = data.attr.index[productL2.variant_id].sku
-            }
-            if (m == 0 && data.attr.attributes[0].options[inm].label == name3) {
-              productL3.variant_id = data.attr.attributes[0].options[inm].products[0]
-              productL3.product_sku = data.attr.index[productL3.variant_id].sku
-            }
-            if (m == 0 && data.attr.attributes[0].options[inm].label == name4) {
-              productL4.variant_id = data.attr.attributes[0].options[inm].products[0]
-              productL4.product_sku = data.attr.index[productL4.variant_id].sku
-            }
             var mid = data.attr.attributes[m].id
             if (data.attr.attributes[m].options[inm].label == name1) {
               v1List.push(mid + '_' + data.attr.attributes[m].options[inm].id)
@@ -3077,6 +3057,7 @@
         v1List = v1List.join(',')
         productL1.attr_id = v1List
         productL1.attribute_name = name1List
+        getVSID(data.attr.index2)
         params.products = []
         params.products.push(productL1)
       }
@@ -3089,6 +3070,7 @@
         productL2.attr_id = v2List
         productL1.attribute_name = name1List
         productL2.attribute_name = name2List
+        getVSID(data.attr.index2)
         params.products = []
         params.products.push(productL1, productL2)
         // paramsProductsinit(params.products)
@@ -3109,6 +3091,7 @@
         productL1.attribute_name = name1List
         productL2.attribute_name = name2List
         productL3.attribute_name = name3List
+        getVSID(data.attr.index2)
         params.products = []
         params.products.push(productL1, productL2, productL3)
         // paramsProductsinit(params.products)
@@ -3133,6 +3116,7 @@
         productL2.attribute_name = name2List
         productL3.attribute_name = name3List
         productL4.attribute_name = name4List
+        getVSID(data.attr.index2)
         params.products = []
         params.products.push(productL1, productL2, productL3, productL4)
         // paramsProductsinit(params.products)
@@ -3215,10 +3199,6 @@
           for (var j = 0; j < data.attr.attributes[i].options.length; j++) {
             if (data.attr.attributes[i].options[j].label == value) {
               aid = data.attr.attributes[i].options[j].id
-              if (i == 0) {
-                var iIndex = data.attr.attributes[i].options[j].products[0]
-                params.products[n].variant_id = iIndex
-              }
             }
           }
           var imgIndex = ''
@@ -3239,6 +3219,7 @@
           console.log(params.products[n].attr_id, 'attr_id')
         }
       }
+      getVSID(data.attr.index2)
     }
 
     function seInput(value) {
@@ -3423,16 +3404,14 @@
         $('#loading').hide()
         return
       }
-      if ($('input[id="airwallex-klarna"]:checked')) {
+
+      var klarnaSelected = $("#airwallex-klarna").is(":checked");
+      var airwallexSelected = $("#payment_method_airwallex").is(":checked");
+      if (klarnaSelected) {
         console.log('klarna')
         params.payment_method = 'airwallex_klarna'
       }
-      if ($('input[id="payal_standard"]:checked')) {
-        console.log('klarna')
-
-        params.payment_method = 'paypal'
-      }
-      if ($('input[id="payment_method_airwallex"]:checked')) {
+      if (airwallexSelected) {
         console.log('airwallex')
         params.payment_method = 'airwallex'
       }
@@ -3448,6 +3427,19 @@
     })
   </script>
   <script>
+    function getParams(methods) {
+      params.first_name = $('input[name="firstName"]').val()
+      params.second_name = $('input[name="lastName"]').val()
+      params.email = $('input[name="email"]').val()
+      params.phone_full = $('input[name="phone"]').val()
+      params.address = $('input[name="shippingAddress1"]').val()
+      params.city = $('input[name="shippingCity"]').val()
+      params.country = $('select[name="shippingCountry"]').val()
+      params.province = $('select[name="shippingState"]').val()
+      params.code = $('input[name="shippingZip"]').val()
+      params.payment_method = methods
+      console.log(params, '++++++params++++');
+    }
     $(function() {
 
       $("#payment_method_airwallex").on("click", function() {
@@ -3690,8 +3682,9 @@
               return
             }
             $('#loading').show();
+            getParams('paypal_stand')
             // var params = getOrderParams('paypal_stand');
-            var url = '/onebuy/order/addr/after?currenty={{ core()->getCurrentCurrencyCode() }}&_token={{ csrf_token() }}&time=' + new Date().getTime() + "&force=" + localStorage.getItem("force");
+            var url = '/onebuy/order/addr/after?currency={{ core()->getCurrentCurrencyCode() }}&_token={{ csrf_token() }}&time=' + new Date().getTime() + "&force=" + localStorage.getItem("force");
             return fetch(url, {
               body: JSON.stringify(params),
               method: 'POST',
@@ -3720,7 +3713,7 @@
                   }
                 }
 
-                var pay_error = JSON.parse(data.error);
+                // var pay_error = JSON.parse(data.error);
                 var pay_error_message = pay_error.details;
 
                 if (pay_error_message && pay_error_message.length) {
@@ -3745,12 +3738,26 @@
               paymentID: data.orderID,
               orderID: data.orderID,
             };
+            var paypalParams = {
+              first_name: $('input[name="firstName"]').val(),
+              second_name: $('input[name="lastName"]').val(),
+              email: $('input[name="email"]').val(),
+              phone_full: $('input[name="phone"]').val(),
+              address: $('input[name="shippingAddress1"]').val(),
+              city: $('input[name="shippingCity"]').val(),
+              country: $('select[name="shippingCountry"]').val(),
+              province: $('select[name="shippingState"]').val(),
+              code: $('input[name="shippingZip"]').val(),
+              payment_method: 'paypal_stand'
+            }
             var request_params = {
               client_secret: data.orderID,
               id: localStorage.getItem('order_id'),
               orderData: orderData,
               data: data,
+              params: paypalParams
             }
+            console.log(request_params, '===request_params===');
             var url = "/onebuy/order/status?_token={{ csrf_token() }}&currency={{ core()->getCurrentCurrencyCode() }}";
             return fetch(url, {
               method: 'post',
@@ -4634,7 +4641,7 @@
                 '&force=' +
                 localStorage.getItem('force')
               $('#' + (error_id || 'paypal-error')).hide()
-
+              params.payment_method = 'paypal'
               return fetch(url, {
                   body: JSON.stringify(params),
                   method: 'POST',
@@ -4922,7 +4929,7 @@
       // fbq('track', 'InitiateCheckout');
       // obApi('track', 'Start Checkout'); 
       var pay_type = 'worldpay';
-      var params = getOrderParams(pay_type);
+      // var params = getOrderParams(pay_type);
       if (params.error && params.error.length) {
         $('#checkout-error').html(params.error.join('<br />'));
         $('#checkout-error').show();
@@ -5164,156 +5171,6 @@
       }
 
       return '';
-    }
-
-    function getOrderParams(pay_type, is_chain_payment, cancel_check_scroll = false) {
-
-      var product = getSelectProduct();
-
-      var shipping_fee = product.shipping_fee;
-
-      var product_info = {
-        product_name: product.name,
-        product_price: product.new_price,
-        product_sku: '',
-        product_id: '3167',
-        sku_id: '',
-        currency: 'USD',
-        shipping_fee: shipping_fee,
-        amount: product.amount,
-        product_image: 'https://shop.hatmeo.com/cache/small/product/3167/1_f3710786-04cc-41f0-9837-6004fa6114ae.webp'
-      };
-
-      var total = product_info.product_price * 1 + product_info.shipping_fee * 1;
-
-      var phone_number = $(".phone_number").val();
-      var phone_prefix = getPhonePrefix();
-
-
-
-      var products = getSubmitProducts(product_info.product_price, product_info.amount);
-
-      var shipping_address = "";
-
-      if ($("#shipping_address_other").is(':checked')) {
-        //$("#bill_address").show();
-        window.shipping_address = "other";
-        shipping_address = window.shipping_address;
-        //console.log("shipping address" + shipping_address);
-      }
-
-
-      var product_price = product_info.product_price;
-
-      var params = {
-        first_name: $(".first_name").val(),
-        second_name: $(".last_name").val(),
-        email: $(".email").val(),
-        phone_full: phone_number ? (phone_number.indexOf(phone_prefix) == 0 ? phone_number : (phone_prefix + phone_number)) : '',
-        country: $("#country-select").val(),
-        city: $(".city").val(),
-        province: $("#state-select").val(),
-        address: $(".address").val() ? $(".address").val() : '',
-        code: $(".zip_code").val(),
-        product_delivery: product_info.shipping_fee,
-        currency: product_info.currency,
-        product_price: product_price,
-        total: total.toFixed(2),
-        amount: product_info.amount,
-        payment_return_url: window.location.protocol + '//' + window.location.host + '/template-common/en/thankyou1/?' + GetRequest(),
-        payment_cancel_url: window.location.href,
-        phone_prefix: phone_prefix, //todo
-        payment_method: pay_type,
-        products: products,
-        logo_image: '',
-        brand: 'Hatmeo',
-        description: product_info.product_name,
-        shopify_store_name: '',
-        produt_amount_base: '1',
-        domain_name: document.domain || window.location.host,
-        price_template: '$price',
-        omnisend: '',
-        payment_account: '',
-        shipping_address: shipping_address,
-        bill_first_name: $(".bill-first_name").val(),
-        bill_second_name: $(".bill-last_name").val(),
-        bill_country: $("#bill-country-select").val(),
-        bill_city: $(".bill-city").val(),
-        bill_province: $("#bill-state-select").val(),
-        bill_address: $(".bill-address").val() ? $(".address").val() : '',
-        bill_code: $(".bill-zip_code").val(),
-
-      }
-
-      if (getQueryString('utm_campaign')) {
-        params['utm_campaign'] = getQueryString('utm_campaign');
-      }
-      if (getQueryString('smb_material_number')) {
-        var smb_material_number = getQueryString('smb_material_number')
-        params['smb_material_number'] = smb_material_number.split(',');
-      }
-
-      if (getQueryString('_ef_transaction_id')) {
-        params['ef_transaction_id'] = getQueryString('_ef_transaction_id');
-      }
-
-      var paypal_pay_type_arr = ['paypal', 'paypal_card'];
-      if (paypal_pay_type_arr.indexOf(pay_type) > -1) {
-        params['payment_account'] = 'miaodian';
-      }
-
-      params['error'] = checkoutProducts(params);
-
-      // 校验
-      var checkout_function = {
-        paypal: function() {
-          return false
-        },
-        checkout: checkOrderParams,
-        stripe: checkOrderParams,
-        payoneer: checkOrderParams,
-        paypal_card: checkOrderParams,
-        wintopay: checkOrderParams,
-        pacypay: checkOrderParams,
-        paypal_stand: checkOrderParams,
-      }
-      if (!params['error']) {
-        params['error'] = checkout_function[pay_type] ? checkout_function[pay_type](params, is_chain_payment, cancel_check_scroll) : checkOrderParams(params, is_chain_payment, cancel_check_scroll);
-      } else {
-        var checkout_err = checkout_function[pay_type] ? checkout_function[pay_type](params, is_chain_payment, cancel_check_scroll) : checkOrderParams(params, is_chain_payment, cancel_check_scroll);
-        if (checkout_err) {
-          params['error'] = params['error'].concat(checkout_err);
-        }
-      }
-
-
-      if (!params['error']) {
-        params['error'] = checkoutAmount(params);
-
-        postparams = {
-          "channel_id": "660bccc0efa6a",
-          "token": "",
-          "type": "add_pay"
-        };
-        fetch('https://crm.heomai.com/api/user/action', {
-          body: JSON.stringify(postparams),
-          method: 'POST',
-          headers: {
-            'content-type': 'application/json'
-          },
-        })
-
-      } else {
-        var amount_err = checkoutAmount(params);
-        if (amount_err) {
-          params['error'] = params['error'].concat(amount_err);
-        }
-
-
-
-      }
-
-      return params;
     }
 
     function checkoutProducts(params) {
