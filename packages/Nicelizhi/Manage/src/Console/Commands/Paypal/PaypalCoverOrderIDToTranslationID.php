@@ -23,8 +23,7 @@ class PaypalCoverOrderIDToTranslationID extends Command {
     protected $description = "Cover the order id to translation id";
 
     public function __construct(
-        protected OrderTransactionRepository $orderTransactionRepository,
-        protected SmartButton $smartButton
+        protected OrderTransactionRepository $orderTransactionRepository
     ) {
         parent::__construct();
     }
@@ -39,12 +38,14 @@ class PaypalCoverOrderIDToTranslationID extends Command {
     {
 
         $items = $this->orderTransactionRepository->where('payment_method', "paypal_smart_button")->select(['transaction_id','id'])->get();
+
+        $smartButton = new SmartButton();
             
         foreach($items as $key=>$item) {
 
             $this->info($item->transaction_id);
             try {
-                $captureID = $this->smartButton->getCaptureId($item->transaction_id);
+                $captureID = $smartButton->getCaptureId($item->transaction_id);
                 $this->error($captureID);
 
                 $this->orderTransactionRepository->update([
