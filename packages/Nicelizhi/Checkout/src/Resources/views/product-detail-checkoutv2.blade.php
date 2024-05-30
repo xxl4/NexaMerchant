@@ -1601,6 +1601,7 @@
       <p>
         <span class="cb-total-discount-applied"></span> @lang('checkout::app.v2.discount') <span class="cb-discountPercentage"></span> @lang('checkout::app.v2.applied')
         <span id="stopwatch">05:00</span> @lang('checkout::app.v2.Please do not leave this page!')
+      </p>
     </div>
   </div>
   <div class="top_bar_nav">
