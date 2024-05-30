@@ -1082,17 +1082,26 @@
     }
 
     .sku-info {
-      position: absolute;
+      /* float: left; */
+      /* position: absolute; */
       width: 100%;
       /* height: 200px; */
-      top: 0;
-      opacity: 0;
-      background: #F5F5F5;
-      border: 1px solid;
-      padding: 10px;
+      /* top: 0; */
+      /* opacity: 0; */
+      /* margin-top: 10px; */
+      /* background: #EDF1F5; */
+      /* border: 1px solid #dedede; */
+      /* padding: 10px; */
       font-family: var(--text-family);
-      border-radius: 3px;
-      transition: all 0.3s;
+      /* border-radius: 3px; */
+      /* transition: all 0.3s; */
+      /* -webkit-box-shadow: black 0px 6px 9px -9px;
+      box-shadow: black 0px 6px 9px -9px; */
+    }
+
+    .sku-info>.sku-item-info {
+      /* border-bottom: 1px solid #e0e0e0; */
+      margin-top: 10px;
     }
 
     .sku-item-info {
@@ -1120,12 +1129,12 @@
       font-size: 14px;
     }
 
-    .summary-wrapper:hover .sku-info {
+    /* .summary-wrapper:hover .sku-info {
       top: -100px;
       opacity: 1;
       visibility: visible;
       pointer-events: auto;
-    }
+    } */
   </style>
 </head>
 
@@ -2128,7 +2137,7 @@
           <div class="order-summary-title">
             <div>ORDER DETAILS</div>
           </div>
-          <div class="order-summary-item" style="position: relative;">
+          <div class="order-summary-item">
             <div class="sku-info">
               <!-- <div class="sku-item-info">
                 <img src="/checkout/onebuy/images/icon_gou.svg" alt="" style="width: 64px;height:64px">
@@ -2139,8 +2148,8 @@
                 <div class="sku-price">11</div>
               </div> -->
             </div>
-            <div class="os_main_product_name product-name"></div>
-            <div id="product-price" style="font-weight: bold"></div>
+            <!-- <div class="os_main_product_name product-name"></div>
+            <div id="product-price" style="font-weight: bold"></div> -->
           </div>
           <div class="order-summary-item">
             <div>Subtotal:</div>
@@ -2165,6 +2174,7 @@
             </div>
           </div>
         </div>
+
       </div>
     </div>
 
@@ -2797,8 +2807,7 @@
           productsObj.product_id = data.product.id
           // productsObj.product_sku = data.sku
           productsObj.img = data.product.base_image.large_image_url
-          // productsObj.price =
-
+          productsObj.price = data.package_products[0].tip2
           // productsObj.variant_id =
           console.log(data, 'data=====')
           productL1 = JSON.parse(JSON.stringify(productsObj))
@@ -2835,12 +2844,10 @@
                 if (m == 0 && data.attr.attributes[0].options[inm].label == name1) {
                   productL1.variant_id = data.attr.attributes[0].options[inm].products[0]
                   productL1.product_sku = data.attr.index[productL1.variant_id].sku
-                  productL1.price = data.attr.variant_prices[data.attr.attributes[0].options[inm].products[0]].final.price
                 }
                 if (m == 0 && data.attr.attributes[0].options[inm].label == name2) {
                   productL2.variant_id = data.attr.attributes[0].options[inm].products[0]
                   productL2.product_sku = data.attr.index[productL2.variant_id].sku
-                  productL2.price = data.attr.variant_prices[data.attr.attributes[0].options[inm].products[0]].final.price
                 }
                 var mid = data.attr.attributes[m].id
                 if (data.attr.attributes[m].options[inm].label == name1) {
@@ -2869,11 +2876,33 @@
           // minList = midList.join(',')
           // productsObj.attr_id = minList
           // console.log(productsObj, 'midList')
+          getSkuListInfo();
         })
         .catch(function(error) {
           console.error(error, 'err')
         })
+
     })
+
+    function getSkuListInfo() {
+      $('.sku-info').empty()
+      var skuData = params.products
+      console.log(skuData, 'skuData=======');
+      var skuList = ''
+      for (let i = 0; i < skuData.length; i++) {
+        var description = skuData[i].description.slice(2)
+        console.log(skuData[i], 'skuiii');
+        skuList += `<div class="sku-item-info">
+                <img src="` + skuData[i].img + `" alt="" style="width: 64px;height:64px">
+                <div class="sku-content">
+                  <p class="sku-item-title">` + description + `</p>
+                  <span class="sku-item-text">` + skuData[i].attribute_name + `</span>
+                </div>
+                <div class="sku-price">` + skuData[i].price + `</div>
+              </div>`
+      }
+      $('.sku-info').append(skuList)
+    }
 
     function paramsProductsinit(list) {
       // console.log(list, 'paramsProductsinit')
@@ -2918,6 +2947,7 @@
       productsObj.amount = '1'
       productsObj.description = data.package_products[num1].name
       productsObj.product_id = data.product.id
+      productsObj.price = data.package_products[num1].tip2
       // productsObj.product_sku = data.sku
       productsObj.img = data.product.base_image.large_image_url
       productL1 = JSON.parse(JSON.stringify(productsObj))
@@ -2934,7 +2964,6 @@
             if (m == 0 && data.attr.attributes[0].options[inm].label == name1) {
               productL1.variant_id = data.attr.attributes[0].options[inm].products[0]
               productL1.product_sku = data.attr.index[productL1.variant_id].sku
-              productL1.price = data.attr.variant_prices[data.attr.attributes[0].options[inm].products[0]].final.price
             }
             var mid = data.attr.attributes[m].id
             if (data.attr.attributes[m].options[inm].label == name1) {
@@ -2954,12 +2983,10 @@
             if (m == 0 && data.attr.attributes[0].options[inm].label == name1) {
               productL1.variant_id = data.attr.attributes[0].options[inm].products[0]
               productL1.product_sku = data.attr.index[productL1.variant_id].sku
-              productL1.price = data.attr.variant_prices[data.attr.attributes[0].options[inm].products[0]].final.price
             }
             if (m == 0 && data.attr.attributes[0].options[inm].label == name2) {
               productL2.variant_id = data.attr.attributes[0].options[inm].products[0]
               productL2.product_sku = data.attr.index[productL2.variant_id].sku
-              productL2.price = data.attr.variant_prices[data.attr.attributes[0].options[inm].products[0]].final.price
             }
             var mid = data.attr.attributes[m].id
             if (data.attr.attributes[m].options[inm].label == name1) {
@@ -2983,17 +3010,14 @@
             if (m == 0 && data.attr.attributes[0].options[inm].label == name1) {
               productL1.variant_id = data.attr.attributes[0].options[inm].products[0]
               productL1.product_sku = data.attr.index[productL1.variant_id].sku
-              productL1.price = data.attr.variant_prices[data.attr.attributes[0].options[inm].products[0]].final.price
             }
             if (m == 0 && data.attr.attributes[0].options[inm].label == name2) {
               productL2.variant_id = data.attr.attributes[0].options[inm].products[0]
               productL2.product_sku = data.attr.index[productL2.variant_id].sku
-              productL2.price = data.attr.variant_prices[data.attr.attributes[0].options[inm].products[0]].final.price
             }
             if (m == 0 && data.attr.attributes[0].options[inm].label == name3) {
               productL3.variant_id = data.attr.attributes[0].options[inm].products[0]
               productL3.product_sku = data.attr.index[productL3.variant_id].sku
-              productL3.price = data.attr.variant_prices[data.attr.attributes[0].options[inm].products[0]].final.price
             }
             var mid = data.attr.attributes[m].id
             if (data.attr.attributes[m].options[inm].label == name1) {
@@ -3022,22 +3046,18 @@
             if (m == 0 && data.attr.attributes[0].options[inm].label == name1) {
               productL1.variant_id = data.attr.attributes[0].options[inm].products[0]
               productL1.product_sku = data.attr.index[productL1.variant_id].sku
-              productL1.price = data.attr.variant_prices[data.attr.attributes[0].options[inm].products[0]].final.price
             }
             if (m == 0 && data.attr.attributes[0].options[inm].label == name2) {
               productL2.variant_id = data.attr.attributes[0].options[inm].products[0]
               productL2.product_sku = data.attr.index[productL2.variant_id].sku
-              productL2.price = data.attr.variant_prices[data.attr.attributes[0].options[inm].products[0]].final.price
             }
             if (m == 0 && data.attr.attributes[0].options[inm].label == name3) {
               productL3.variant_id = data.attr.attributes[0].options[inm].products[0]
               productL3.product_sku = data.attr.index[productL3.variant_id].sku
-              productL3.price = data.attr.variant_prices[data.attr.attributes[0].options[inm].products[0]].final.price
             }
             if (m == 0 && data.attr.attributes[0].options[inm].label == name4) {
               productL4.variant_id = data.attr.attributes[0].options[inm].products[0]
               productL4.product_sku = data.attr.index[productL4.variant_id].sku
-              productL4.price = data.attr.variant_prices[data.attr.attributes[0].options[inm].products[0]].final.price
             }
             var mid = data.attr.attributes[m].id
             if (data.attr.attributes[m].options[inm].label == name1) {
@@ -3121,6 +3141,7 @@
         params.products.push(productL1, productL2, productL3, productL4)
         // paramsProductsinit(params.products)
       }
+      getSkuListInfo();
     }
     $(function() {
       var countriesUrl = '/template-common/checkout1/state/countries_' + countries1 + '.json'
@@ -3185,6 +3206,7 @@
     })
 
     function getSku(id, n, value) {
+      console.log(id, n, value, 'id, n, value');
       var nList = []
       var aList = []
       for (var i = 0; i < attLength; i++) {
@@ -3198,12 +3220,13 @@
             if (data.attr.attributes[i].options[j].label == value) {
               aid = data.attr.attributes[i].options[j].id
               if (i == 0) {
-                params.products[n].variant_id = data.attr.attributes[i].options[j].products[0]
+                var iIndex = data.attr.attributes[i].options[j].products[0]
+                params.products[n].variant_id = iIndex
+                params.products[n].img = data.attr.variant_images[iIndex][0].small_image_url
               }
             }
           }
           aList = params.products[n].attr_id.split(',')
-
           aList[i] = data.attr.attributes[i].id + '_' + aid
           params.products[n].attr_id = aList.join(',')
           console.log(params.products[n].attr_id, 'attr_id')
@@ -3212,9 +3235,9 @@
     }
 
     function seInput(value) {
-      var parId = $(event.target).parent().parent().attr('id')
+      var parId = $(event.target).parent().attr('id')
       var itemId = $(event.target).attr('id')
-
+      console.log(parId, itemId, 'itemIditemIditemId');
       var aid = ''
       if (parId == 'select1-item1' || parId == 'select2-item1' || parId == 'select3-item1' || parId == 'select4-item1') {
         getSku(itemId, 0, value)
@@ -6255,25 +6278,6 @@
           })
       }
 
-      // $(function() {
-      var skuData = params.products
-      console.log(skuData, 'skuData=======');
-      var skuList = ''
-      for (let i = 0; i < skuData.length; i++) {
-        var description = skuData[i].description.slice(2)
-        console.log(skuData[i], 'skuiii');
-        skuList += `<div class="sku-item-info">
-                <img src="` + skuData[i].img + `" alt="" style="width: 64px;height:64px">
-                <div class="sku-content">
-                  <p class="sku-item-title">` + description + `</p>
-                  <span class="sku-item-text">` + skuData[i].attribute_name + `</span>
-                </div>
-                <div class="sku-price">{{ core()->currencySymbol(core()->getBaseCurrencyCode()) }}` + skuData[i].price + `</div>
-              </div>`
-      }
-
-      $('.sku-info').append(skuList)
-      // })
     }
   </script>
 
