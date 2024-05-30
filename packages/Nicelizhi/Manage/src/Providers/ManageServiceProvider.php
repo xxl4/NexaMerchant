@@ -185,6 +185,7 @@ class ManageServiceProvider extends ServiceProvider
         if ($this->app->runningInConsole()) {
             $this->commands([
                 \Nicelizhi\Manage\Console\Commands\Customers\ImportOrderCustomer::class,
+                \Nicelizhi\Manage\Console\Commands\Paypal\PaypalCoverOrderIDToTranslationID::class,
             ]);
         }
     }
