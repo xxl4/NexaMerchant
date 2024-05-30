@@ -832,17 +832,17 @@ GET api/onebuy/product/detail/{slug}?currency=EUR
   "quora_adv_id": "1",
   "paypal_client_id": "1",
   "env": "demo",
-  "ads": {
-    "pc": {
-      "img": "product/3065/gyrTVjyWoPhhCWzkO6w4bQAlpfZAP28DhFi1YNNY.png"
-    },
-    "mobile": {
-      "img": "product/3065/MuVKPyaNxYRYDC22XX9CRr2QYmDiNcKA0uJO1LSR.png"
-    },
-    "size": {
-      "img": "product/3065/lNHnQNnxfrmGLSoFssWu7Rcn8SZb9GCAlWZZ9735.webp"
+   "ads": {
+        "pc": {
+            "img": "http:\/\/127.0.0.1:8000\/storage\/product\/3011\/joJCiXabUkKMrlwPO36SuAvcQCpTJTyjfAJ2WULS.jpg"
+        },
+        "mobile": {
+            "img": "http:\/\/127.0.0.1:8000\/storage\/product\/3011\/wxjLxj5K7YRzp2h3eAX7C3bVBWLD7OI164AkBSDm.jpg"
+        },
+        "size": {
+            "img": "http:\/\/127.0.0.1:8000\/storage\/product\/3011\/V4T3Rqj8m8RNg5aHZ0Vx8ROGBy3eA48SAgifNLDA.jpg"
+        }
     }
-  }
 }
 ```
 
