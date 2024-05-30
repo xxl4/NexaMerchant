@@ -6263,7 +6263,7 @@
         var description = skuData[i].description.slice(2)
         console.log(skuData[i], 'skuiii');
         skuList += `<div class="sku-item-info">
-                <img src="` + skuData[i] + `" alt="" style="width: 64px;height:64px">
+                <img src="` + skuData[i].img + `" alt="" style="width: 64px;height:64px">
                 <div class="sku-content">
                   <p class="sku-item-title">` + description + `</p>
                   <span class="sku-item-text">` + skuData[i].attribute_name + `</span>
