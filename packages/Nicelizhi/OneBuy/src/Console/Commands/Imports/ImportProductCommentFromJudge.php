@@ -136,6 +136,9 @@ class ImportProductCommentFromJudge extends Command
 
         foreach($body['reviews'] as $key=>$item) {
 
+            if(!empty($this->prod_id)) {
+                if($item['product_external_id']!=$this->prod_id) continue;
+            }
             
 
             //var_dump($item);exit;
@@ -183,6 +186,7 @@ class ImportProductCommentFromJudge extends Command
                         //var_dump($item);exit;
                         if($item['reviewer']['name']=='Anonymous') continue;
                         if($item['published']!=true) continue;
+                        if($item['rating'] < 5) continue;
 
                         
 
