@@ -62,8 +62,8 @@ class ApiController extends Controller
     public function productDetail($slug) {
 
         $data = Cache::get($this->checkout_v2_cache_key.$slug);
-        if(empty($data)) {
-        //if(true) {
+        //if(empty($data)) {
+        if(true) {
             $product = $this->productRepository->findBySlug($slug);
             $data = [];
             $productViewHelper = new \Webkul\Product\Helpers\ConfigurableOption();
@@ -83,6 +83,19 @@ class ApiController extends Controller
                 
                 $sku_products = $this->productRepository->where("id", $key)->select(['sku'])->first();
                 $attributes['index'][$key]['sku'] = $sku_products->sku;
+                $index2 = "";
+                $total = count($index);
+                $i = 0;
+                foreach($index as $key2=>$ind) {
+                    $i++;
+                    if(empty($index2)) {
+                        $index2=$key2."_".$ind;
+                    } else {
+                        $index2=$index2.",".$key2."_".$ind;
+                    }
+                    if($i==$total) $attributes['index2'][$index2] = [$key,$sku_products->sku];
+                }
+                //var_dump($index);
 
             }
     
