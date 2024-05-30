@@ -2,7 +2,7 @@
 <html lang="{{ app()->getLocale() }}">
 
 <head>
-  <title>Fur Sweep Collar</title>
+  <title></title>
   <link rel="icon prefetch" href="/checkout/v2/images/favicon.png" type="image/png" sizes="16x16" />
   <meta charset="utf-8" />
   <meta name="description" content="Fur Sweep Collar" />
@@ -1599,8 +1599,8 @@
   <div class="topStrip">
     <div class="container">
       <p>
-        <span class="cb-total-discount-applied"></span> discount <span class="cb-discountPercentage"></span> applied. This code expires in:
-        <span id="stopwatch">05:00</span> Please do not leave this page!
+        <span class="cb-total-discount-applied"></span> @lang('checkout::app.v2.discount') <span class="cb-discountPercentage"></span> @lang('checkout::app.v2.applied')
+        <span id="stopwatch">05:00</span> @lang('checkout::app.v2.Please do not leave this page!')
       </p>
     </div>
   </div>
@@ -1617,15 +1617,15 @@
     <div class="container">
       <ul class="stepsBox">
         <li><span>@lang('checkout::app.v2.Checkout')</span></li>
-        <li>Free Bonus</li>
-        <li>Receipt</li>
+        <li>@lang('checkout::app.v2.Free Bonus')</li>
+        <li>@lang('checkout::app.v2.Receipt')</li>
       </ul>
     </div>
   </div>
   <div class="checkout-section">
     <div class="container">
-      <p class="prod-name forMob">Fur Sweep Collar</p>
-      <p class="str-rvw forMob go-rew"><img src="/checkout/v2/images/star02.png" alt="Star" />12,421 Verified Customer Reviews</p>
+      <p class="prod-name forMob"></p>
+      <p class="str-rvw forMob go-rew"><img src="/checkout/v2/images/star02.png" alt="Star" />@lang('checkout::app.v2.12,421 Verified Customer Reviews')</p>
       <div class="left-sec">
         <div id="sticky" style="position:sticky;top: 0;">
           <div style="display: none;" class="vehicle-detail-banner banner-content clearfix">
@@ -1643,11 +1643,11 @@
         </div>
       </div>
       <div class="right-sec">
-        <p class="prod-name hide-mob">Fur Sweep Collar</p>
-        <p class="str-rvw hide-mob go-rew"><img src="/checkout/v2/images/star02.png" alt="Star" />12,421 Verified Customer Reviews</p>
+        <p class="prod-name hide-mob"></p>
+        <p class="str-rvw hide-mob go-rew"><img src="/checkout/v2/images/star02.png" alt="Star" />@lang('checkout::app.v2.12,421 Verified Customer Reviews')</p>
         <p class="bdr-line hide-mob"></p>
         <p class="prd-det-disc">Natural Protection for Your Beloved Dog: Safe, Effective Flea &amp; Tick Prevention</p>
-        <p class="pkg-hdng"><span class="pkg-step">Step1: </span> Choose your package</p>
+        <p class="pkg-hdng"><span class="pkg-step">@lang('checkout::app.v2.Step')1: </span> @lang('checkout::app.v2.Choose your package')</p>
         <div class="pkg-opt">
           <div class="cb-first-item"></div>
           <div class="buyopt packageClass cb-package-container choose-p" id="product2">
@@ -1669,13 +1669,13 @@
           <div class="buy-select" id="buy-select2">
             <div class="buy-se-box">
               <div class="se-box" id="select2-item1">
-                <p class="se-title">item1</p>
+                <p class="se-title">@lang('checkout::app.v2.item')1</p>
               </div>
             </div>
 
             <div class="buy-se-box" id="p2-i2">
               <div class="se-box" id="select2-item2">
-                <p class="se-title">item2</p>
+                <p class="se-title">@lang('checkout::app.v2.item')2</p>
               </div>
             </div>
           </div>
@@ -1699,7 +1699,7 @@
           <div class="buy-select" id="buy-select1">
             <div class="buy-se-box">
               <div class="se-box" id="select1-item1">
-                <p class="se-title">item1</p>
+                <p class="se-title">@lang('checkout::app.v2.item')1</p>
               </div>
             </div>
           </div>
@@ -1723,17 +1723,17 @@
           <div class="buy-select" id="buy-select3">
             <div class="buy-se-box">
               <div class="se-box" id="select3-item1">
-                <p class="se-title">item1</p>
+                <p class="se-title">@lang('checkout::app.v2.item')1</p>
               </div>
             </div>
             <div class="buy-se-box">
               <div class="se-box" id="select3-item2">
-                <p class="se-title">item2</p>
+                <p class="se-title">@lang('checkout::app.v2.item')2</p>
               </div>
             </div>
             <div class="buy-se-box">
               <div class="se-box" id="select3-item3">
-                <p class="se-title">item3</p>
+                <p class="se-title">@lang('checkout::app.v2.item')3</p>
               </div>
             </div>
           </div>
@@ -1756,26 +1756,26 @@
           <div class="buy-select" id="buy-select4">
             <div class="buy-se-box">
               <div class="se-box" id="select4-item1">
-                <p class="se-title">item1</p>
+                <p class="se-title">@lang('checkout::app.v2.item')1</p>
               </div>
             </div>
             <div class="buy-se-box">
               <div class="se-box" id="select4-item2">
-                <p class="se-title">item2</p>
+                <p class="se-title">@lang('checkout::app.v2.item')2</p>
               </div>
             </div>
             <div class="buy-se-box">
               <div class="se-box" id="select4-item3">
-                <p class="se-title">item3</p>
+                <p class="se-title">@lang('checkout::app.v2.item')3</p>
               </div>
             </div>
             <div class="buy-se-box">
               <div class="se-box" id="select4-item4">
-                <p class="se-title">item4</p>
+                <p class="se-title">@lang('checkout::app.v2.item')4</p>
               </div>
             </div>
           </div>
-          <div class="zoom-fade submit-button" id="payment-button" style="text-align: center">COMPLETELY SAFE PURCHASE</div>
+          <div class="zoom-fade submit-button" id="payment-button" style="text-align: center"></div>
           <div id="loading">
             <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 100000" id="loading-box" class="flex-center">
               <div class="box">
@@ -1788,7 +1788,7 @@
 
         <p class="bdr-line"></p>
 
-        <p class="pkg-hdng"><span class="pkg-step">Step2:</span> Enter customer information</p>
+        <p class="pkg-hdng"><span class="pkg-step">@lang('checkout::app.v2.Step')2:</span> @lang('checkout::app.v2.Enter customer information')</p>
         <form class="form">
           <input type="hidden" name="prospectId" id="prospectId" value="" />
           <input type="hidden" name="campaigns[1][id]" id="campaign_id" value="" />
@@ -1803,30 +1803,30 @@
             <div class="fl input-box">
               <label>
                 <input class="input-item" name="firstName" id="firstName" type="text" placeholder="" required="" />
-                <span>First Name</span>
+                <span>@lang('checkout::app.v2.First Name')</span>
               </label>
             </div>
             <div class="fl input-box">
               <label>
                 <input class="input-item" name="lastName" id="lastName" type="text" placeholder="" required="" />
-                <span>Last Name</span>
+                <span>@lang('checkout::app.v2.Last Name')</span>
               </label>
             </div>
             <div class="fl input-box">
               <label>
                 <input class="input-item" name="email" id="email" type="email" placeholder="" required="" />
-                <span>Email Address</span>
+                <span>@lang('checkout::app.v2.Email')</span>
               </label>
             </div>
             <div class="fl input-box">
               <label>
                 <input class="input-item" name="phone" id="phone" type="tel" placeholder="" required="" />
-                <span>Phone</span>
+                <span>@lang('checkout::app.v2.Phone')</span>
               </label>
             </div>
             <p class="bdr-line"></p>
             <div class="payment-flds-box">
-              <p class="pkg-hdng"><span class="pkg-step">Step3:</span> Enter your shipping information</p>
+              <p class="pkg-hdng"><span class="pkg-step">@lang('checkout::app.v2.Step')3:</span> @lang('checkout::app.v2.Enter your shipping information')</p>
               <!-- <div class="frm-flds fl">
                 <label for="address" class="fl-label">Shipping Address</label>
                 <input type="text" name="shippingAddress1" class="input-flds required cb-remove-class frmField" placeholder="Your Address" data-error-message="Please enter your address!" id="shipAddress" />
@@ -1834,7 +1834,7 @@
               <div class="fl input-box" style="margin-top: 15px;">
                 <label>
                   <input class="input-item" name="shippingAddress1" id="shipAddress" type="text" placeholder="" required="" />
-                  <span>Address</span>
+                  <span>@lang('checkout::app.v2.Address')</span>
                 </label>
               </div>
               <!-- <div class="frm-flds fl">
@@ -1844,7 +1844,7 @@
               <div class="fl input-box">
                 <label>
                   <input class="input-item" name="shippingCity" id="shipAddress" type="text" placeholder="" required="" />
-                  <span>City</span>
+                  <span>@lang('checkout::app.v2.City')</span>
                 </label>
               </div>
               <!-- <div class="frm-flds fl">
@@ -1856,9 +1856,8 @@
               <div class="fl input-box">
                 <label>
                   <select class="input-item" name="shippingCountry" type="text" placeholder="" required="">
-                    <option value="">Select Country</option>
                   </select>
-                  <span>Country</span>
+                  <span>@lang('checkout::app.v2.Country')</span>
                 </label>
               </div>
               <!-- <div class="frm-flds fl">
@@ -1870,9 +1869,8 @@
               <div class="fl input-box">
                 <label>
                   <select class="input-item" name="shippingState" id="shippingStateSelect" type="text" placeholder="" required="">
-                    <option value="">Select Stata</option>
                   </select>
-                  <span>Stata</span>
+                  <span>@lang('checkout::app.v2.State')</span>
                 </label>
               </div>
               <!-- <div class="frm-flds fl">
@@ -1882,13 +1880,13 @@
               <div class="fl input-box">
                 <label>
                   <input class="input-item" name="shippingZip" id="zip" type="tel" placeholder="" required="" />
-                  <span>Zip Code</span>
+                  <span>@lang('checkout::app.v2.Zip Code')</span>
                 </label>
               </div>
               <!--   <a href="javascript:void(0)" class="continue-order addon_btn"
                         onclick="javascript:bookmarkscroll.scrollTo('wrnty')">Select Addon</a>-->
             </div>
-            <p class="pkg-hdng"><span class="pkg-step">Step4:</span> Enter your payment information</p>
+            <p class="pkg-hdng"><span class="pkg-step">@lang('checkout::app.v2.Step')4:</span> @lang('checkout::app.v2.Enter your payment information')</p>
             <p>&nbsp;</p>
             <select name="creditCardType" class="form-control" data-error-message="Please select valid card type!">
               <option value="">Card Type</option>
@@ -2130,12 +2128,12 @@
               </div>
             </div>
           </div>
-          <div class="complete-btn" id="complete-btn-id">Complete Checkout</div>
+          <div class="complete-btn" id="complete-btn-id"></div>
           <div id='paypal-button'></div>
         </form>
         <div class="summary-wrapper">
           <div class="order-summary-title">
-            <div>ORDER DETAILS</div>
+            <div>@lang('checkout::app.v2.ORDER DETAILS')</div>
           </div>
           <div class="order-summary-item">
             <div class="sku-info">
@@ -2152,33 +2150,31 @@
             <div id="product-price" style="font-weight: bold"></div> -->
           </div>
           <div class="order-summary-item">
-            <div>Subtotal:</div>
+            <div>@lang('checkout::app.v2.Subtotal'):</div>
             <div id="summary-total1" style="font-weight: bold"></div>
           </div>
           <div class="order-summary-item">
-            <div>Discount:</div>
+            <div>@lang('checkout::app.v2.Discount'):</div>
             <div id="summary-total2" style="font-weight: bold; color: red"></div>
           </div>
           <div class="order-summary-item">
-            <div>Shipping:</div>
+            <div>@lang('checkout::app.v2.Shipping'):</div>
             <div id="summary-total3"></div>
           </div>
           <div class="order-summary-item">
-            <div>Shipping Method:</div>
-            <div>USPS Express</div>
+            <div>@lang('checkout::app.v2.Shipping Method'):</div>
+            <div>@lang('checkout::app.v2.USPS Express')</div>
           </div>
           <div class="order-summary-total">
-            <div><strong>Today's Total:</strong></div>
+            <div><strong>@lang("checkout::app.v2.Today's Total"):</strong></div>
             <div>
-              <strong id="summary-total4" style="color: red">price</strong>
+              <strong id="summary-total4" style="color: red">@lang('checkout::app.v2.price')</strong>
             </div>
           </div>
         </div>
 
       </div>
     </div>
-
-    <p id="loading-indicator">Processing...</p>
   </div>
   <div class="clearall"></div>
   <div id="iduzu" class="section">
@@ -2250,17 +2246,17 @@
     </div>
   </div>
   <div class="footer">
-    <p style="font-weight: 700">© 2024 Alle Rechte vorbehalten.</p>
+    <p style="font-weight: 700">© @lang('checkout::app.v2.2024 Alle Rechte vorbehalten').</p>
     <br class="br" />
     <br class="br" />
     <div class="phone-block"></div>
     <div class="terms-block">
-      <a class="ajax" href="/onebuy/page/shipping-policy?locale={{ app()->getLocale() }}" target="_blank"> Versand & Lieferung </a>
-      <a class="ajax" href="/onebuy/page/refund-policy?locale={{ app()->getLocale() }}" target="_blank"> Rückgaberecht </a>
-      <a class="ajax" href="/onebuy/page/about-us?locale={{ app()->getLocale() }}" target="_blank"> Über uns</a>
-      <a class="ajax" href="/onebuy/page/privacy-policy?locale={{ app()->getLocale() }}" target="_blank"> Datenschutzrichtlinie </a>
-      <a class="ajax" href="/onebuy/page/contact-us?locale={{ app()->getLocale() }}" target="_blank"> Kontaktiere uns </a>
-      <a class="ajax" href="/onebuy/page/Impressum?locale={{ app()->getLocale() }}" target="_blank">Impressum</a>
+      <a class="ajax" href="/onebuy/page/shipping-policy?locale={{ app()->getLocale() }}" target="_blank"> @lang('checkout::app.v2.Versand & Lieferung') </a>
+      <a class="ajax" href="/onebuy/page/refund-policy?locale={{ app()->getLocale() }}" target="_blank"> @lang('checkout::app.v2.refund policy')</a>
+      <a class="ajax" href="/onebuy/page/about-us?locale={{ app()->getLocale() }}" target="_blank"> @lang('checkout::app.v2.About Us')</a>
+      <a class="ajax" href="/onebuy/page/privacy-policy?locale={{ app()->getLocale() }}" target="_blank"> @lang('checkout::app.v2.Privacy Policy')</a>
+      <a class="ajax" href="/onebuy/page/contact-us?locale={{ app()->getLocale() }}" target="_blank"> lang('checkout::app.v2.Contact us')</a>
+      <a class="ajax" href="/onebuy/page/Impressum?locale={{ app()->getLocale() }}" target="_blank">lang('checkout::app.v2.imprint')</a>
     </div>
     <br /><br />
     <div class="dmca_logo">
@@ -2635,7 +2631,7 @@
           if (payTypeShow.airwallex_dropin == '0') {
             $('#airwallex-dropin-box').hide()
           }
-          if (paymentsDefault == 'airwallex-klarna') {
+          if (paymentsDefault == 'airwallex_klarna') {
             $('#airwallex-klarna').prop('checked', true);
             $("#complete-btn-id").show();
             $("#collapseOne").hide();
@@ -2658,7 +2654,7 @@
             $("#complete-btn-id").html("@lang('onebuy::app.product.payment.complete_secure_purchase')");
 
           }
-          if (paymentsDefault == 'payal-standard') {
+          if (paymentsDefault == 'payal_standard') {
             $('#payment_method_airwallex').prop('checked', true);
             $("#complete-btn-id").show();
             console.log("click headingOne ");
@@ -2683,7 +2679,7 @@
 
           };
 
-          if (paymentsDefault == 'airwallex-credit-card') {
+          if (paymentsDefault == 'airwallex_credit_card') {
             $('#payment_method_airwallex').prop('checked', true);
             $("#complete-btn-id").show();
             console.log("click headingOne ");
@@ -2740,10 +2736,10 @@
           $('#p-name1').text(data.package_products[1].name)
           $('#p-name3').text(data.package_products[2].name)
           $('#p-name4').text(data.package_products[3].name)
-          $('#b-off2').text('Save ' + data.package_products[0].tip1 + ' OFF')
-          $('#b-off1').text('Save ' + data.package_products[1].tip1 + ' OFF')
-          $('#b-off3').text('Save ' + data.package_products[2].tip1 + ' OFF')
-          $('#b-off4').text('Save ' + data.package_products[3].tip1 + ' OFF')
+          $('#b-off2').text("@lang('checkout::app.v2.Save')" + data.package_products[0].tip1 + "@lang('checkout::app.v2.OFF')")
+          $('#b-off1').text("@lang('checkout::app.v2.Save')" + data.package_products[1].tip1 + "@lang('checkout::app.v2.OFF')")
+          $('#b-off3').text("@lang('checkout::app.v2.Save')" + data.package_products[2].tip1 + "@lang('checkout::app.v2.OFF')")
+          $('#b-off4').text("@lang('checkout::app.v2.Save')" + data.package_products[3].tip1 + "@lang('checkout::app.v2.OFF')")
           $('#cb-reg-price2').text(data.package_products[0].old_price_format)
           $('#cb-reg-price1').text(data.package_products[1].old_price_format)
           $('#cb-reg-price3').text(data.package_products[2].old_price_format)
