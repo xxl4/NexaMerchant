@@ -848,53 +848,7 @@ GET api/onebuy/product/detail/{slug}?currency=EUR
         }
     }
 }
-<<<<<<< HEAD
 ```
-
-```
-POST api/onebuy/check/coupon 
-```
-> add coupon code info  
-
-| Field              | Type | required | Desc |
-| :---------------- | :------: | :------:| ----: |
-| code        |   string  | true | coupon code |
-
-```
-```
-
-```
-POST api/onebuy/order/add/sync 
-```
-> order create
-
-```
-```
-
-```
-POST api/onebuy/order/confirm
-```
-> paypal order confirm
-
-```
-```
-
-```
-POST api/onebuy/order/addr/after
-```
-> order create by airwallex and not paypal other
-
-
-
-
-```
-GET api/onebuy/product/detail/{slug}
-```
-> Get Products Info
-=======
->>>>>>> 4f8b52b3310219028ce114efa5185af908a65b58
-```
-
 # Coupon
 
 ```
