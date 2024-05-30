@@ -1254,7 +1254,7 @@ ul.s1-list li p {
 }
 .dialog-box {
     margin: 100px auto;
-    width: 500px;
+    width: 80%;
     padding: 20px;
     background-color: #fff;
     background-clip: padding-box;

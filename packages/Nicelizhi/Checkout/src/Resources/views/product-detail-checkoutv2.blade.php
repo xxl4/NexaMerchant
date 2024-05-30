@@ -1035,48 +1035,98 @@
     }
   </style>
   <style>
-      .input-box {
-        width: 100%;
-        /* font-family: var(--); */
-        /* height: 32px !important; */
-      }
-      .input-box label {
-        width: 100%;
-        position: relative;
-        margin-bottom: 20px;
-      }
-      .input-box .input-item {
-        width: 100%;
-        padding: 20px 05px 05px 10px;
-        outline: 0;
-        border: 1px solid rgba(105, 105, 105, 0.397);
-        border-radius: 10px;
-      }
+    .input-box {
+      width: 100%;
+      /* font-family: var(--); */
+      /* height: 32px !important; */
+    }
 
-      .input-box .input-item + span {
-        position: absolute;
-        left: 10px;
-        top: 0px;
-        font-size: 14px;
-        cursor: text;
-        transition: 0.3s ease;
-      }
+    .input-box label {
+      width: 100%;
+      position: relative;
+      margin-bottom: 20px;
+    }
 
-      .input-box .input-item:placeholder-shown + span {
-        top: 15.5px;
-        font-size: 14px;
-      }
+    .input-box .input-item {
+      width: 100%;
+      padding: 20px 05px 05px 10px;
+      outline: 0;
+      border: 1px solid rgba(105, 105, 105, 0.397);
+      border-radius: 10px;
+    }
 
-      .input-box .input-item:focus + span {
-        color: #00bfff;
-        top: 0px;
-        font-size: 0.7em;
-        font-weight: 600;
-      }
-      .paypal-button.paypal-button-color-gold, .paypal-button-row.paypal-button-color-gold .menu-button {
-          background: rgb(23, 115, 176)!important;
-      }
-    </style>
+    .input-box .input-item+span {
+      position: absolute;
+      left: 10px;
+      top: 0px;
+      font-size: 14px;
+      cursor: text;
+      transition: 0.3s ease;
+    }
+
+    .input-box .input-item:placeholder-shown+span {
+      top: 15.5px;
+      font-size: 14px;
+    }
+
+    .input-box .input-item:focus+span {
+      color: #00bfff;
+      top: 0px;
+      font-size: 0.7em;
+      font-weight: 600;
+    }
+
+    .paypal-button.paypal-button-color-gold,
+    .paypal-button-row.paypal-button-color-gold .menu-button {
+      background: rgb(23, 115, 176) !important;
+    }
+
+    .sku-info {
+      position: absolute;
+      width: 100%;
+      /* height: 200px; */
+      top: 0;
+      opacity: 0;
+      background: #F5F5F5;
+      border: 1px solid;
+      padding: 10px;
+      font-family: var(--text-family);
+      border-radius: 3px;
+      transition: all 0.3s;
+    }
+
+    .sku-item-info {
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .sku-item-title {
+      font-size: 14px;
+    }
+
+    .sku-content {
+      width: 100%;
+      padding-left: 14px;
+    }
+
+    .sku-item-text {
+      font-size: 12px;
+      color: #666666;
+    }
+
+    .sku-price {
+      font-size: 14px;
+    }
+
+    .summary-wrapper:hover .sku-info {
+      top: -100px;
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+  </style>
 </head>
 
 <body>
@@ -1742,57 +1792,29 @@
           <input type="hidden" name="packageQuantity" id="packageQuantity" value="" />
           <div class="formBox">
             <div class="fl input-box">
-                <label>
-                  <input
-                    class="input-item"
-                    name="firstName"
-                    id="firstName"
-                    type="text"
-                    placeholder=""
-                    required=""
-                  />
-                  <span>First Name</span>
-                </label>
-              </div>
+              <label>
+                <input class="input-item" name="firstName" id="firstName" type="text" placeholder="" required="" />
+                <span>First Name</span>
+              </label>
+            </div>
             <div class="fl input-box">
-                <label>
-                  <input
-                    class="input-item"
-                    name="lastName"
-                    id="lastName"
-                    type="text"
-                    placeholder=""
-                    required=""
-                  />
-                  <span>Last Name</span>
-                </label>
-              </div>
+              <label>
+                <input class="input-item" name="lastName" id="lastName" type="text" placeholder="" required="" />
+                <span>Last Name</span>
+              </label>
+            </div>
             <div class="fl input-box">
-                <label>
-                  <input
-                    class="input-item"
-                    name="email"
-                    id="email"
-                    type="email"
-                    placeholder=""
-                    required=""
-                  />
-                  <span>Email Address</span>
-                </label>
-              </div>
+              <label>
+                <input class="input-item" name="email" id="email" type="email" placeholder="" required="" />
+                <span>Email Address</span>
+              </label>
+            </div>
             <div class="fl input-box">
-                <label>
-                  <input
-                    class="input-item"
-                    name="phone"
-                    id="phone"
-                    type="tel"
-                    placeholder=""
-                    required=""
-                  />
-                  <span>Phone</span>
-                </label>
-              </div>
+              <label>
+                <input class="input-item" name="phone" id="phone" type="tel" placeholder="" required="" />
+                <span>Phone</span>
+              </label>
+            </div>
             <p class="bdr-line"></p>
             <div class="payment-flds-box">
               <p class="pkg-hdng"><span class="pkg-step">Step3:</span> Enter your shipping information</p>
@@ -1802,15 +1824,8 @@
               </div> -->
               <div class="fl input-box" style="margin-top: 15px;">
                 <label>
-                  <input
-                    class="input-item"
-                    name="shippingAddress1"
-                    id="shipAddress"
-                    type="text"
-                    placeholder=""
-                    required=""
-                  />
-                  <span>Your Address</span>
+                  <input class="input-item" name="shippingAddress1" id="shipAddress" type="text" placeholder="" required="" />
+                  <span>Address</span>
                 </label>
               </div>
               <!-- <div class="frm-flds fl">
@@ -1819,15 +1834,8 @@
               </div> -->
               <div class="fl input-box">
                 <label>
-                  <input
-                    class="input-item"
-                    name="shippingCity"
-                    id="shipAddress"
-                    type="text"
-                    placeholder=""
-                    required=""
-                  />
-                  <span>Your City</span>
+                  <input class="input-item" name="shippingCity" id="shipAddress" type="text" placeholder="" required="" />
+                  <span>City</span>
                 </label>
               </div>
               <!-- <div class="frm-flds fl">
@@ -1838,16 +1846,10 @@
               </div> -->
               <div class="fl input-box">
                 <label>
-                  <select
-                    class="input-item"
-                    name="shippingCountry"
-                    type="text"
-                    placeholder=""
-                    required=""
-                  >
+                  <select class="input-item" name="shippingCountry" type="text" placeholder="" required="">
                     <option value="">Select Country</option>
                   </select>
-                  <span>Your Country</span>
+                  <span>Country</span>
                 </label>
               </div>
               <!-- <div class="frm-flds fl">
@@ -1858,17 +1860,10 @@
               </div> -->
               <div class="fl input-box">
                 <label>
-                  <select
-                    class="input-item"
-                    name="shippingState"
-                    id="shippingStateSelect"
-                    type="text"
-                    placeholder=""
-                    required=""
-                  >
+                  <select class="input-item" name="shippingState" id="shippingStateSelect" type="text" placeholder="" required="">
                     <option value="">Select Stata</option>
                   </select>
-                  <span>Your Stata</span>
+                  <span>Stata</span>
                 </label>
               </div>
               <!-- <div class="frm-flds fl">
@@ -1877,14 +1872,7 @@
               </div> -->
               <div class="fl input-box">
                 <label>
-                  <input
-                    class="input-item"
-                    name="shippingZip"
-                    id="zip"
-                    type="tel"
-                    placeholder=""
-                    required=""
-                  />
+                  <input class="input-item" name="shippingZip" id="zip" type="tel" placeholder="" required="" />
                   <span>Zip Code</span>
                 </label>
               </div>
@@ -2140,7 +2128,17 @@
           <div class="order-summary-title">
             <div>ORDER DETAILS</div>
           </div>
-          <div class="order-summary-item">
+          <div class="order-summary-item" style="position: relative;">
+            <div class="sku-info">
+              <!-- <div class="sku-item-info">
+                <img src="/checkout/onebuy/images/icon_gou.svg" alt="" style="width: 64px;height:64px">
+                <div class="sku-content">
+                  <p class="sku-item-title">title</p>
+                  <span class="sku-item-text">blue</span>
+                </div>
+                <div class="sku-price">11</div>
+              </div> -->
+            </div>
             <div class="os_main_product_name product-name"></div>
             <div id="product-price" style="font-weight: bold"></div>
           </div>
@@ -2173,70 +2171,6 @@
     <p id="loading-indicator">Processing...</p>
   </div>
   <div class="clearall"></div>
-  <div class="review-box" style="display: flex; justify-content: center;width:100%">
-    <div id="iduzu" class="section">
-      <h3 class="container_title">Customer reviews</h3>
-      <div class="grade">
-        <h4 class="grade-top">
-          <span class="grade-text">Reviews</span>
-          <svg viewBox="0 0 16 16" fill="#ffce00" class="icon_icon__ECGRl" xmlns="http://www.w3.org/2000/svg" width="22px" height="22px">
-            <path fill-rule="evenodd" clip-rule="evenodd" d="M9.88 6.225H16l-4.929 3.504-3.047 2.149-4.953 3.504L4.952 9.73 0 6.225h6.119L8 .572l1.881 5.653Zm1.596 4.812L8 11.9l4.929 3.527-1.453-4.392Z"></path>
-          </svg>
-          <span class="grade-text2">4.5</span>
-        </h4>
-      </div>
-      <div class="speak">
-        <!-- <div class="speak_l">
-              <span class="r--title-average">Durchschnittlich</span
-              ><span class="r--stars_average">4.8</span
-              ><span class="average-star-image"
-                ><img
-                  src="./img/1656152467_4.8.webp"
-                  alt
-                  id="iznnl"
-              /></span>
-            </div> -->
-        <div class="speak_l">
-          <div class="stars_n">
-            <div class="border_b" id="bor1"></div>
-            <div class="left_text">5-star</div>
-          </div>
-          <div class="stars_l">
-            <div class="border_b" id="bor2"></div>
-            <div class="left_text">4-star</div>
-          </div>
-          <div class="stars_l">
-            <div class="border_b" id="bor3"></div>
-            <div class="left_text">3-star</div>
-          </div>
-          <div class="stars_l">
-            <div class="border_b" id="bor4"></div>
-            <div class="left_text">2-star</div>
-          </div>
-          <div class="stars_l">
-            <div class="border_b" id="bor5"></div>
-            <div class="left_text">1-star</div>
-          </div>
-        </div>
-        <div class="speak_r">
-          <div class="itnysh_global itnysh">
-            <div id="ina4n" class="iakor7_global iakor7">
-              <div class="ig637l"></div>
-            </div>
-            <div class="i55eho_global i55eho">
-              <div class="icdfoq"></div>
-            </div>
-            <div class="islybo_global islybo"></div>
-            <div class="i20q32"></div>
-            <div class="i9r4tj"></div>
-          </div>
-          <div class="i10l46_global i10l46">
-            <span class="count-percent">86.2%</span><span class="count-percent">13.8%</span><span class="count-percent">0%</span><span class="count-percent">0%</span><span class="count-percent">0%</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
   <div id="iduzu" class="section">
     <h3 class="container_title">@lang('onebuy::app.product.order.What customers are saying about')</h3>
   </div>
@@ -6299,6 +6233,7 @@
       var cval = $('select[name="shippingCountry"]').val()
       console.log(cval, 'cval===')
       if (cval) {
+        cval = cval.toLowerCase()
         var countryUrl = '/template-common/checkout1/state/' + cval + '_' + area + '.json'
         axios
           .get(countryUrl)
@@ -6319,6 +6254,26 @@
             console.log(err, 'err====')
           })
       }
+
+      // $(function() {
+      var skuData = params.products
+      console.log(skuData, 'skuData=======');
+      var skuList = ''
+      for (let i = 0; i < skuData.length; i++) {
+        var description = skuData[i].description.slice(2)
+        console.log(skuData[i], 'skuiii');
+        skuList += `<div class="sku-item-info">
+                <img src="` + skuData[i] + `" alt="" style="width: 64px;height:64px">
+                <div class="sku-content">
+                  <p class="sku-item-title">` + description + `</p>
+                  <span class="sku-item-text">` + skuData[i].attribute_name + `</span>
+                </div>
+                <div class="sku-price">{{ core()->currencySymbol(core()->getBaseCurrencyCode()) }}` + skuData[i].price + `</div>
+              </div>`
+      }
+
+      $('.sku-info').append(skuList)
+      // })
     }
   </script>
 
