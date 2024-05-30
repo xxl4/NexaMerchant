@@ -2201,7 +2201,7 @@
           <div style="text-align: start; width: 100%; margin-top: 15px">
             <img width="110px" src="/checkout/onebuy/images/stars-5.svg" alt="" />
           </div>
-          <div class="cardtext"><?php echo $comment->content; ?></div>
+          <div class="cardtext" style="text-align: start;"><?php echo $comment->content; ?></div>
           <?php if (isset($comment->images)) { ?>
 
             <?php foreach ($comment->images as $key => $image) { ?>
@@ -2614,6 +2614,7 @@
           var attrList = data.attr.attributes
           paypal_pay_acc = data.paypal_client_id
           var paymentsDefault = data.payments_default
+          console.log(paymentsDefault, 'paymentsDefault=====');
           $('.prod-name').text(data.product.name)
           $('title').html(data.product.name)
           $('#buy-select1, #buy-select3, #buy-select4').hide()
@@ -2632,6 +2633,7 @@
             $('#airwallex-dropin-box').hide()
           }
           if (paymentsDefault == 'airwallex_klarna') {
+            console.log(paymentsDefault, 'kelala');
             $('input[name=payment_method]').prop('checked', true);
 
             // $('input[name=airwallex-klarna]').prop('checked', true);
