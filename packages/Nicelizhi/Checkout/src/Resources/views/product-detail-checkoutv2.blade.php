@@ -1679,10 +1679,10 @@
           <div style="display: none;" class="vehicle-detail-banner banner-content clearfix">
             <div class="banner-slider">
               <div class="slider-banner-image">
-                <!-- <div class="sw-box">
-                  <div class="swiper-button-prev"></div>
-                  <div class="swiper-button-next"></div>
-                </div> -->
+                <div class="sw-box">
+                  <!-- <div class="swiper-button-prev"></div>
+                  <div class="swiper-button-next"></div> -->
+                </div>
               </div>
             </div>
           </div>
