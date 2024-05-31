@@ -895,10 +895,10 @@
     }
   </style>
   <style>
-    #gallery img {
+    /* #gallery img {
       height: 460px;
       object-fit: contain;
-    }
+    } */
 
     #thumbs {
       height: 150px;
@@ -914,7 +914,7 @@
     }
 
     .slider-banner-image {
-      height: 460px !important;
+      /* height: 460px !important; */
       position: relative;
     }
 
@@ -953,10 +953,11 @@
         height: auto !important;
       }
 
+      /* 
       #gallery img {
         height: 320px;
         object-fit: contain;
-      }
+      } */
 
       #thumbs {
         height: 80px;
@@ -972,7 +973,7 @@
       }
 
       .slider-banner-image {
-        height: 400px !important;
+        /* height: 400px !important; */
         position: relative;
       }
 
