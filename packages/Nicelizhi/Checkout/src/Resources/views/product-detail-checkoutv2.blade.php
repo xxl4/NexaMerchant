@@ -1220,7 +1220,7 @@
     <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/checkout.css?v=3" />
     <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/bootstrap.min.css" />
     <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/slick.min.css" />
-    <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/upsell-new-02.css" />
+    <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/upsell-new-02.css?v=1" />
     <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/extra-style.css" />
     <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/fonts.css" />
     <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/custom.css" />
@@ -3404,16 +3404,17 @@
       console.log(params.products, '===params====')
     }
     $('#product1').click(function(e) {
-      if (data.attr.attributes.length == 0) {
-        return
-      }
       var list = $('#product1,#product2,#product3,#product4')
       list.removeClass('choose-p')
 
       $('#buy-select2').hide()
       $('#buy-select3').hide()
       $('#buy-select4').hide()
-      $('#buy-select1').show()
+      if (data.attr.attributes.length > 0) {
+        $('#buy-select1').show()
+      } else {
+        $('#buy-select1').hide()
+      }
       $('#product1').addClass('choose-p')
       var nprice = currencySymbol + data.package_products[1].new_price.toFixed(2)
       $('#summary-total1').text(nprice)
@@ -3432,15 +3433,17 @@
       initProuctData(1, '1')
     })
     $('#product2').click(function(e) {
-      if (data.attr.attributes.length == 0) {
-        return
-      }
+
       var list = $('#product1,#product2,#product3,#product4')
       list.removeClass('choose-p')
       $('#buy-select1').hide()
       $('#buy-select3').hide()
       $('#buy-select4').hide()
-      $('#buy-select2').show()
+      if (data.attr.attributes.length > 0) {
+        $('#buy-select2').show()
+      } else {
+        $('#buy-select2').hide()
+      }
       $('#product2').addClass('choose-p')
       var nprice = currencySymbol + data.package_products[0].new_price.toFixed(2)
       $('#summary-total1').text(nprice)
@@ -3459,15 +3462,17 @@
       initProuctData(0, '2')
     })
     $('#product3').click(function(e) {
-      if (data.attr.attributes.length == 0) {
-        return
-      }
       var list = $('#product1,#product2,#product3,#product4')
       list.removeClass('choose-p')
       $('#buy-select2').hide()
       $('#buy-select1').hide()
       $('#buy-select4').hide()
-      $('#buy-select3').show()
+      if (data.attr.attributes.length > 0) {
+        $('#buy-select3').show()
+      } else {
+        $('#buy-select3').hide()
+      }
+
       $('#product3').addClass('choose-p')
       var nprice = currencySymbol + data.package_products[2].new_price.toFixed(2)
       $('#summary-total1').text(nprice)
@@ -3486,16 +3491,17 @@
       initProuctData(2, '3')
     })
     $('#product4').click(function(e) {
-      if (data.attr.attributes.length == 0) {
-        return
-      }
       var list = $('#product1,#product2,#product3,#product4')
       list.removeClass('choose-p')
 
       $('#buy-select2').hide()
       $('#buy-select3').hide()
       $('#buy-select1').hide()
-      $('#buy-select4').show()
+      if (data.attr.attributes.length > 0) {
+        $('#buy-select4').show()
+      } else {
+        $('#buy-select4').hide()
+      }
       $('#product4').addClass('choose-p')
       var nprice = currencySymbol + data.package_products[3].new_price.toFixed(2)
       $('#summary-total1').text(nprice)
