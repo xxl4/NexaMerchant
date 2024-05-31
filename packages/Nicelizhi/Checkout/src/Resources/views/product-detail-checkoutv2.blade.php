@@ -74,9 +74,10 @@
       width: 100%;
       /* height: 140px; */
       /* padding: 0 15px; */
-      margin: 15px 0;
+      margin: 6px 0;
       overflow-y: auto;
-      font-size: 16px;
+      font-size: 13px;
+      color: #444444;
     }
 
     #seeFaqBtn {
@@ -238,11 +239,11 @@
     }
 
     .container_title {
-      font-size: 24px;
-      line-height: 30px;
+      font-size: 17px;
       margin-top: 20px;
-      color: rgb(0, 48, 87);
+      color: #444444;
       text-align: center;
+      font-family: var(--text-family);
     }
 
     .three_main {
@@ -1211,7 +1212,7 @@
     <!-- Start VWO SmartCode -->
     <script src="/checkout/v2/js/51174.js"></script>
     <!-- End VWO SmartCode -->
-    <link rel="stylesheet prefetch" href="/checkout/v2/css/app2.css?v=3" />
+    <link rel="stylesheet prefetch" href="/checkout/v2/css/app2.css?v=4" />
     <link type="text/css" href="/checkout/v2/css/custom-extra.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/5.0.4/css/swiper.css" />
     <link type="text/css" href="/checkout/v2/css/repeated-order-confirmation.min.css" rel="stylesheet" />
@@ -1219,7 +1220,7 @@
     <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/checkout.css?v=3" />
     <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/bootstrap.min.css" />
     <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/slick.min.css" />
-    <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/upsell-new-02.css?v=1" />
+    <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/upsell-new-02.css?v=2" />
     <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/extra-style.css" />
     <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/fonts.css" />
     <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/custom.css" />
@@ -1730,6 +1731,8 @@
             </g>
           </svg>@lang('checkout::app.v2.12,421 Verified Customer Reviews')</p>
         <p class="bdr-line hide-mob"></p>
+        <p>Sie können sehen</p>
+        <img src="/checkout/v2/images/1701506369_01.webp" alt="">
         <!-- <p class="prd-det-disc">Natural Protection for Your Beloved Dog: Safe, Effective Flea &amp; Tick Prevention</p> -->
         <p class="pkg-hdng" style="border-bottom: ;"><span class="pkg-step">@lang('checkout::app.v2.Step')1: </span> @lang('checkout::app.v2.Choose your package')</p>
         <div class="pkg-opt">
@@ -1894,6 +1897,7 @@
               </div>
             </div>
           </div>
+          <p>Express-Kaufabwicklung</p>
           <div class="zoom-fade submit-button" id="payment-button" style="text-align: center;margin-top: 20px; width:100%;float: left"></div>
           <div id="loading">
             <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 100000; background:#ddd;opacity: 0.3;" id="loading-box" class="flex-center">
@@ -2285,7 +2289,7 @@
             </div>
           </div>
         </div>
-        <div id="iduzu" class="section" style="width: 100%;float: right;margin-bottom:10px;    display: flex;">
+        <div id="iduzu" class="section" style="width: 100%;float: right;margin-bottom:10px; display: flex;">
           <h3 class="container_title">@lang('onebuy::app.product.order.What customers are saying about')</h3>
         </div>
         <!-- review -->
@@ -2294,19 +2298,19 @@
             $comment = json_decode($comment); //var_dump($comment);exit; 
           ?>
 
-            <div class="comment-card" style="background-color: #f6f6f6">
+            <div class="comment-card" style="background-color: #F4F4F4">
               <div style="display: flex">
-                <div class="mr4">
+                <div class="mr4" style="font-size: 14px;margin-top: 3px;">
                   <?php echo $comment->name; ?>
                   <i class="flag-icon flag-icon-<?php echo strtolower($default_country); ?> mr-2"></i>
                 </div>
                 <div>
                   <img class="mb1 mr2" width="14px" src="/checkout/onebuy/images/icon_gou.svg" />
-                  <strong style="width: 100%">@lang('onebuy::app.product.order.Verified')</strong>
+                  <span style="width: 100%; font-size:12px">@lang('onebuy::app.product.order.Verified')</span>
                 </div>
               </div>
               <div>
-                <div style="text-align: start; width: 100%; margin-top: 15px">
+                <div style="text-align: start; width: 100%;">
                   <img width="110px" src="/checkout/onebuy/images/stars-5.svg" alt="" />
                 </div>
                 <div class="cardtext" style="text-align: start;"><?php echo $comment->content; ?></div>
