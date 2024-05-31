@@ -80,8 +80,7 @@
     }
 
     #seeFaqBtn {
-      text-align: center;
-      padding: 20px;
+      padding: 20px 20px 20px 0;
       font-size: 24px;
       color: #333;
     }
@@ -1666,7 +1665,7 @@
     <img class="w-100 d-block d-md-none" id="mobile-banner" src="" />
   </div>
   <div class="topStrip">
-    <div class="container">
+    <div class="container-xl">
       <p>
         <span class="cb-total-discount-applied"></span> @lang('checkout::app.v2.discount') <span class="cb-discountPercentage"></span> @lang('checkout::app.v2.applied')
         <span id="stopwatch">05:00</span> @lang('checkout::app.v2.Please do not leave this page!')
@@ -1732,7 +1731,7 @@
           </svg>@lang('checkout::app.v2.12,421 Verified Customer Reviews')</p>
         <p class="bdr-line hide-mob"></p>
         <!-- <p class="prd-det-disc">Natural Protection for Your Beloved Dog: Safe, Effective Flea &amp; Tick Prevention</p> -->
-        <p class="pkg-hdng"><span class="pkg-step">@lang('checkout::app.v2.Step')1: </span> @lang('checkout::app.v2.Choose your package')</p>
+        <p class="pkg-hdng" style="border-bottom: ;"><span class="pkg-step">@lang('checkout::app.v2.Step')1: </span> @lang('checkout::app.v2.Choose your package')</p>
         <div class="pkg-opt">
           <div class="cb-first-item"></div>
           <div class="buyopt packageClass cb-package-container choose-p" id="product2">
@@ -2005,6 +2004,7 @@
               <!--   <a href="javascript:void(0)" class="continue-order addon_btn"
                         onclick="javascript:bookmarkscroll.scrollTo('wrnty')">Select Addon</a>-->
             </div>
+            <p class="bdr-line hide-mob"></p>
             <p class="pkg-hdng"><span class="pkg-step">@lang('checkout::app.v2.Step')4:</span> @lang('checkout::app.v2.Enter your payment information')</p>
             <p style="font-size: 13px;color: #444444; margin-bottom: 15px">Alle Transaktionen sind sicher und verschlüsselt.</p>
             <select name="creditCardType" class="form-control" data-error-message="Please select valid card type!">
@@ -2285,8 +2285,7 @@
             </div>
           </div>
         </div>
-        <div id="iduzu" class="section" style="width: 100%;float: right;margin-bottom:10px;    display: flex;
-">
+        <div id="iduzu" class="section" style="width: 100%;float: right;margin-bottom:10px;    display: flex;">
           <h3 class="container_title">@lang('onebuy::app.product.order.What customers are saying about')</h3>
         </div>
         <!-- review -->
@@ -2325,39 +2324,40 @@
             </div>
           <?php } ?>
         </div>
+        <div class="faq-content" style="width: 100%;float: right;">
+          <div id="seeFaqBtn">
+            @lang('onebuy::app.product.order.Frequently Asked Questions')
+            <span class="faq_view">@lang('onebuy::app.product.order.See Our FAQs')</span>
+          </div>
+          <div id="faq-text">
+            <div id="collapseContent">
+              <?php foreach ($faqItems as $key => $item) {
+                $item = json_decode($item); ?>
+
+                <div class="panel-group" id="accordion<?php echo $key; ?>" role="tablist" aria-multiselectable="true">
+                  <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingOne">
+                      <h4 class="panel-title">
+                        <a class="faq-question" role="button" data-toggle="collapse" data-parent="#accordion<?php echo $key; ?>" href="#faq<?php echo $key; ?>" aria-expanded="true" aria-controls="faq<?php echo $key; ?>" style="color: #333; text-decoration: none">
+                          <?php echo $item->q; ?>
+                        </a>
+                      </h4>
+                    </div>
+                    <div id="faq<?php echo $key; ?>" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingOne">
+                      <div class="panel-body"><?php echo $item->a; ?></div>
+                    </div>
+                  </div>
+                </div>
+
+              <?php } ?>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
   <div class="clearall"></div>
-  <div class="faq-content">
-    <div id="seeFaqBtn">
-      @lang('onebuy::app.product.order.Frequently Asked Questions')
-      <span class="faq_view">@lang('onebuy::app.product.order.See Our FAQs')</span>
-    </div>
-    <div id="faq-text">
-      <div id="collapseContent">
-        <?php foreach ($faqItems as $key => $item) {
-          $item = json_decode($item); ?>
 
-          <div class="panel-group" id="accordion<?php echo $key; ?>" role="tablist" aria-multiselectable="true">
-            <div class="panel panel-default">
-              <div class="panel-heading" role="tab" id="headingOne">
-                <h4 class="panel-title">
-                  <a class="faq-question" role="button" data-toggle="collapse" data-parent="#accordion<?php echo $key; ?>" href="#faq<?php echo $key; ?>" aria-expanded="true" aria-controls="faq<?php echo $key; ?>" style="color: #333; text-decoration: none">
-                    <?php echo $item->q; ?>
-                  </a>
-                </h4>
-              </div>
-              <div id="faq<?php echo $key; ?>" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingOne">
-                <div class="panel-body"><?php echo $item->a; ?></div>
-              </div>
-            </div>
-          </div>
-
-        <?php } ?>
-      </div>
-    </div>
-  </div>
   <div class="footer">
     <p style="font-weight: 700">© @lang('checkout::app.v2.2024 Alle Rechte vorbehalten').</p>
     <br class="br" />
@@ -2722,6 +2722,10 @@
     var paypal_pay_acc = ''
     var area = '{{ app()->getLocale() }}'
     var currencySymbol = '{{ core()->currencySymbol(core()->getBaseCurrencyCode()) }}'
+    var airwallexArr = {
+      complete: false
+    }
+    var skuErr = false
     $(function() {
       var dataUrl = '/api/onebuy/product/detail/' + getProductId + '?currency=' + currency
       axios
@@ -2879,7 +2883,7 @@
           if (attrList.length > 0) {
             var selectList = ''
             for (var arri = 0; arri < attrList.length; arri++) {
-              var optionList = `<option value="">` + attrList[arri].label + `</option>`
+              var optionList = `<option value="" style="display:none">` + attrList[arri].label + `</option>`
               for (var attj = 0; attj < attrList[arri].options.length; attj++) {
                 optionList += `<option value="` + attrList[arri].options[attj].label + `">` + attrList[arri].options[attj].label + `</option>`
               }
@@ -3531,7 +3535,8 @@
       params.country = $('select[name="shippingCountry"]').val()
       params.province = $('select[name="shippingState"]').val()
       var errIsShow = skuIsScelect()
-      var errorShow = params.first_name && params.second_name && params.email && params.phone_full && params.address && params.city && params.code && params.country && params.province && errIsShow
+      var errorShow = params.first_name && params.second_name && params.email && params.phone_full && params.address && params.city && params.code && params.country && params.province && errIsShow && airwallexArr.complete
+      console.log(airwallexArr, 'airwallexArr');
       console.log(errorShow, 'errorShow')
       if (!errorShow) {
         $('.dialog-error .dialog-box ul').empty()
@@ -3565,6 +3570,9 @@
         }
         if (!errIsShow) {
           textList += `<li>Please select product information!</li>`
+        }
+        if (!airwallexArr.complete) {
+          textList += `<li>` + airwallexArr.errText + `</li>`
         }
         $('.dialog-error').show()
         $('.dialog-error .dialog-box ul').append(textList)
@@ -4702,10 +4710,13 @@
       //console.log(JSON.stringify(event));
       console.log(event.detail.complete)
       if (event.detail.complete == true) {
+        airwallexArr.complete = true
         $("#id_card").val(event.detail.complete);
         $("#cardNumber").removeClass("shipping-info-input-error");
       }
       if (event.detail.complete == false) {
+        airwallexArr.complete = false
+        airwallexArr.errText = event.detail.error.message
         $("#id_card").val(event.detail.complete);
         $("#cardNumber").addClass("shipping-info-input-error");
       }
