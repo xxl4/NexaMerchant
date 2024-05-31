@@ -930,6 +930,10 @@
         display: none !important;
       }
 
+      .sku-preview-img img {
+        width: 80%;
+      }
+
       .banner-content {
         display: block !important;
       }
@@ -1173,7 +1177,7 @@
     }
 
     .sku-preview-img img {
-      width: 80%;
+      width: 200px;
     }
 
     .sku-preview-img-box {
