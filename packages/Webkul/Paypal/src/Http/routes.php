@@ -25,6 +25,12 @@ Route::group(['middleware' => ['web']], function () {
     });
 });
 
+
+Route::prefix('paypal/smart-button')->group(function () {
+    Route::post('/v1/webhooks/dispute', [SmartButtonWebhookController::class, 'dispute'])->name('paypal.smart-button.webhooks.dispute');
+
+});
+
 Route::post('paypal/standard/ipn', [StandardController::class, 'ipn'])
     ->withoutMiddleware(\App\Http\Middleware\VerifyCsrfToken::class)
     ->name('paypal.standard.ipn');

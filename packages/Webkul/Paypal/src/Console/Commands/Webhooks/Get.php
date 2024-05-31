@@ -85,20 +85,26 @@ class Get extends Command
         // https://developer.paypal.com/docs/api/webhooks/v1/#webhooks_post
         
         $body = [];
-        $body['url'] = config('app.url')."/paypal/smart-button/v1/webhooks/dispute";
-        $event_types = [];
-        $event_types[] = [
-            "name" => "CUSTOMER.DISPUTE.CREATED"
-        ];
-        $event_types[] = [
-            "name" => "CUSTOMER.DISPUTE.RESOLVED"
-        ];
-        $event_types[] = [
-            "name" => "CUSTOMER.DISPUTE.UPDATED"
-        ];
-        $event_types[] = [
-            "name" => "RISK. DISPUTE.CREATED"
-        ];
+
+        $body['url'] = config('app.url')."/paypal/smart-button/v1/webhooks/dispute?uniqid=".uniqid();
+        $event_types = array();
+        // $event_types[] = [
+        //     "name" => "CUSTOMER.DISPUTE.CREATED"
+        // ];
+        // $event_types[] = [
+        //     "name" => "CUSTOMER.DISPUTE.RESOLVED"
+        // ];
+        // $event_types[] = [
+        //     "name" => "CUSTOMER.DISPUTE.UPDATED"
+        // ];
+        // $event_types[] = [
+        //     "name" => "RISK. DISPUTE.CREATED"
+        // ];
+       $event_types[] = ["name" => "CUSTOMER.DISPUTE.CREATED"];
+       $event_types[] = ["name" => "CUSTOMER.DISPUTE.RESOLVED"];
+       $event_types[] = ["name" => "CUSTOMER.DISPUTE.UPDATED"];
+       //$event_types[] = ["name" => "RISK. DISPUTE.CREATED"]; //{"name":"VALIDATION_ERROR","message":"Invalid data provided","debug_id":"4e334ff3a2122","information_link":"https://developer.paypal.com/docs/api/webhooks/#errors","details":[{"field":"event_types[0].name","location":"body","issue":"Not a valid event name"}],"links":[]}
+
         $body['event_types'] = $event_types;
 
         var_dump($body);

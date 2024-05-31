@@ -35,7 +35,8 @@ class Transaction
 
                 $transactionDetails = json_decode(json_encode($transactionDetails), true);
 
-                Log::info("paypal smart button transaction details: " . json_encode($transactionDetails));
+                Log::info('Paypal Smart Transaction Details: ' . json_encode($transactionDetails));
+                if(isset($transactionDetails['result']['purchase_units'][0]['payments']['captures'][0]['id'])) Log::info('Paypal Smart Transaction ID'. $transactionDetails['result']['purchase_units'][0]['payments']['captures'][0]['id']);
 
                 if ($transactionDetails['statusCode'] == 200) {
                     $this->orderTransactionRepository->create([

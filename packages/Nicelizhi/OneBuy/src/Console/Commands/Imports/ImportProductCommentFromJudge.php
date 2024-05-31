@@ -136,6 +136,9 @@ class ImportProductCommentFromJudge extends Command
 
         foreach($body['reviews'] as $key=>$item) {
 
+            if(!empty($this->prod_id)) {
+                if($item['product_external_id']!=$this->prod_id) continue;
+            }
             
 
             //var_dump($item);exit;
@@ -161,10 +164,9 @@ class ImportProductCommentFromJudge extends Command
 
                 if(!is_null($product)) {
                     //$this->error($this->cache_key.$product->id);
-                    
-
+                  
+                    $len = $redis->hlen($this->cache_key.$product->id);
                     $product->id = empty($product->parent_id) ? $product->id : $product->parent_id;
-
                      //insert into db 
 
                     //$review = $this->productReviewRepository->findWhere(['title'=>$item['title'],'comment'=>$item['body'],'product_id'=>$product->id])->first();
@@ -184,7 +186,7 @@ class ImportProductCommentFromJudge extends Command
                         //var_dump($item);exit;
                         if($item['reviewer']['name']=='Anonymous') continue;
                         if($item['published']!=true) continue;
-
+                        if($item['rating'] < 5) continue;
                         
 
                         //check the email exist
@@ -278,16 +280,8 @@ class ImportProductCommentFromJudge extends Command
                             
                         }
                     }
+
                     $len = $redis->hlen($this->cache_key.$product->id);
-                    if($item['product_external_id']=='9344048005402') {
-                        //var_dump($len, $this->cache_key.$product->id, empty($product->parent_id) ? $product->id : $product->parent_id);
-                        //exit;
-                    }
-                    if($product->id==3768) {
-                        //var_dump($len, $this->cache_key.$product->id);
-                        //exit;
-                    }
-                    $this->info($len);
                     if($len < 6 && $item['published']==true) {
                         $value = [];
                         $value['name'] = trim($item['reviewer']['name']);
@@ -304,7 +298,7 @@ class ImportProductCommentFromJudge extends Command
                     $len = $redis->hlen("onebuy_v2_product_comments_".$product->id);
                     //var_dump($item);exit;
                 
-                    $this->info($len);
+                    //$this->info($len);
                     if($len < 6 && $item['published']==true) {
                         $value = [];
                         $value['name'] = trim($item['reviewer']['name']);

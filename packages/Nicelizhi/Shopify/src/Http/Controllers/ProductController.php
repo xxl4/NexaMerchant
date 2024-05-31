@@ -208,6 +208,8 @@ class ProductController extends Controller
                 $redis->del($comment_list_key);
                 $redis->del($comment_list_key2);
 
+                \Webkul\Product\Models\ProductReview::where("product_id", $product->id)->delete();
+
               
 
             }
