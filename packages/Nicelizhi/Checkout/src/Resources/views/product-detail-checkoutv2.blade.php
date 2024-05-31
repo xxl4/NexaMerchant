@@ -82,8 +82,9 @@
 
     #seeFaqBtn {
       padding: 20px 20px 20px 0;
-      font-size: 24px;
-      color: #333;
+      font-size: 17px;
+      font-weight: bold;
+      color: #444444
     }
 
     #seeFaqBtn span {
@@ -125,7 +126,8 @@
     }
 
     .panel-default>.panel-heading {
-      color: #333;
+      color: var(--text-color);
+      font-weight: 500;
       background-color: #F0F5FF;
       border-color: #ddd;
     }
@@ -144,6 +146,7 @@
     .panel-default>.panel-heading+.panel-collapse>.panel-body {
       font-size: 13px;
       border-top-color: #ddd;
+      color: var(--text-color);
     }
 
     .panel-group .panel-heading+.panel-collapse>.list-group,
@@ -243,6 +246,7 @@
       margin-top: 20px;
       color: #444444;
       text-align: center;
+      font-weight: bold;
       font-family: var(--text-family);
     }
 
@@ -715,7 +719,7 @@
       color: rgb(255, 255, 255);
     }
 
-    .footer {
+    .footer-box {
       background-color: #F5F5F5;
       padding: 60px 30px 60px 30px;
       margin-top: 30px;
@@ -726,7 +730,7 @@
       font-size: 12px;
     }
 
-    .footer a {
+    .footer-box a {
       text-decoration-line: none;
       text-decoration-thickness: initial;
       text-decoration-style: initial;
@@ -867,7 +871,7 @@
         padding: 0 15px;
       }
 
-      .footer {
+      .footer-box {
         padding: 20px 30px 20px 30px;
         margin-bottom: 30px;
       }
@@ -1203,6 +1207,27 @@
     }
 
     .input-span {
+      color: var(--text-color);
+    }
+
+    .text-Schritt-top {
+      font-size: 14px;
+      margin: 10px 0 8px 0;
+      float: left;
+    }
+
+    .Schritt-top-box {
+      width: 100%;
+      padding: 10px 0;
+    }
+
+    .button-top {
+      float: left;
+      margin-top: 10px;
+      margin-left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
+      font-weight: bold;
       color: var(--text-color);
     }
   </style>
@@ -1732,8 +1757,10 @@
             </g>
           </svg>@lang('checkout::app.v2.12,421 Verified Customer Reviews')</p>
         <p class="bdr-line hide-mob"></p>
-        <p>Sie können sehen</p>
-        <img src="/checkout/v2/images/1701506369_01.webp" alt="">
+        <div class="Schritt-top-box">
+          <p class="text-Schritt-top">Sie können sehen</p>
+          <img src="/checkout/v2/images/1701506369_01.webp" alt="">
+        </div>
         <!-- <p class="prd-det-disc">Natural Protection for Your Beloved Dog: Safe, Effective Flea &amp; Tick Prevention</p> -->
         <p class="pkg-hdng" style="border-bottom: ;"><span class="pkg-step">@lang('checkout::app.v2.Step')1: </span> @lang('checkout::app.v2.Choose your package')</p>
         <div class="pkg-opt">
@@ -1898,8 +1925,8 @@
               </div>
             </div>
           </div>
-          <p>Express-Kaufabwicklung</p>
-          <div class="zoom-fade submit-button" id="payment-button" style="text-align: center;margin-top: 20px; width:100%;float: left"></div>
+          <p class="button-top">Express-Kaufabwicklung</p>
+          <div class="zoom-fade submit-button" id="payment-button" style="text-align: center;margin-top: 12px; width:100%;float: left"></div>
           <div id="loading">
             <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 100000; background:#ddd;opacity: 0.3;" id="loading-box" class="flex-center">
               <div class="box">
@@ -2301,13 +2328,13 @@
 
             <div class="comment-card" style="background-color: #F4F4F4">
               <div style="display: flex">
-                <div class="mr4" style="font-size: 14px;margin-top: 3px;">
+                <div class="mr4" style="font-size: 14px;margin-top: 3px;color: #444444; ">
                   <?php echo $comment->name; ?>
                   <i class="flag-icon flag-icon-<?php echo strtolower($default_country); ?> mr-2"></i>
                 </div>
                 <div>
                   <img class="mb1 mr2" width="14px" src="/checkout/onebuy/images/icon_gou.svg" />
-                  <span style="width: 100%; font-size:12px">@lang('onebuy::app.product.order.Verified')</span>
+                  <span style="width: 100%; font-size:12px; color: #444444">@lang('onebuy::app.product.order.Verified')</span>
                 </div>
               </div>
               <div>
@@ -2342,11 +2369,11 @@
                 <div class="panel-group" id="accordion<?php echo $key; ?>" role="tablist" aria-multiselectable="true">
                   <div class="panel panel-default">
                     <div class="panel-heading" role="tab" id="headingOne">
-                      <h4 class="panel-title">
+                      <p class="panel-title">
                         <a class="faq-question" role="button" data-toggle="collapse" data-parent="#accordion<?php echo $key; ?>" href="#faq<?php echo $key; ?>" aria-expanded="true" aria-controls="faq<?php echo $key; ?>" style="color: #333; text-decoration: none">
                           <?php echo $item->q; ?>
                         </a>
-                      </h4>
+                      </p>
                     </div>
                     <div id="faq<?php echo $key; ?>" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingOne">
                       <div class="panel-body"><?php echo $item->a; ?></div>
@@ -2363,7 +2390,7 @@
   </div>
   <div class="clearall"></div>
 
-  <div class="footer">
+  <div class="footer-box">
     <p style="font-weight: 700">© @lang('checkout::app.v2.2024 Alle Rechte vorbehalten').</p>
     <br class="br" />
     <br class="br" />
@@ -3562,19 +3589,19 @@
           textList += `<li>Geben Sie bitte Ihre Adresse ein!</li>`
         }
         if (!params.city) {
-          textList += `<li>Please enter your city!</li>`
+          textList += `<li>Geben Sie bitte Ihre Stadt ein!</li>`
         }
         if (!params.code) {
-          textList += `<li>Please enter a valid zip code!</li>`
+          textList += `<li>Geben Sie bitte eine gültige Postleitzahl ein!</li>`
         }
         if (!params.country) {
-          textList += `<li>Please select your country!</li>`
+          textList += `<li>Bitte wählen Sie Ihr Land aus!</li>`
         }
         if (!params.province) {
-          textList += `<li>Please select your state!</li>`
+          textList += `<li>Bitte wählen Sie Ihr Bundesland aus!</li>`
         }
         if (!errIsShow) {
-          textList += `<li>Please select product information!</li>`
+          textList += `<li>Bitte wählen Sie Produktinformationen aus!</li>`
         }
         if (!airwallexArr.complete) {
           textList += `<li>` + airwallexArr.errText + `</li>`
@@ -3880,19 +3907,19 @@
                 textList += `<li>Geben Sie bitte Ihre Adresse ein!</li>`
               }
               if (!$('input[name="shippingCity"]').val()) {
-                textList += `<li>Please enter your city!</li>`
+                textList += `<li>Geben Sie bitte Ihre Stadt ein!</li>`
               }
               if (!$('input[name="shippingZip"]').val()) {
-                textList += `<li>Please enter a valid zip code!</li>`
+                textList += `<li>Geben Sie bitte eine gültige Postleitzahl ein!</li>`
               }
               if (!$('select[name="shippingCountry"]').val()) {
-                textList += `<li>Please select your country!</li>`
+                textList += `<li>Bitte wählen Sie Ihr Land aus!</li>`
               }
               if (!$('select[name="shippingState"]').val()) {
-                textList += `<li>Please select your state!</li>`
+                textList += `<li>Bitte wählen Sie Ihr Bundesland aus!</li>`
               }
               if (!errIsShow) {
-                textList += `<li>Please select product information!</li>`
+                textList += `<li>Bitte wählen Sie Produktinformationen aus!</li>`
               }
               $('.dialog-error').show()
               $('.dialog-error .dialog-box ul').append(textList)
@@ -4841,7 +4868,7 @@
               var errIsShow = skuIsScelect()
               if (!errIsShow) {
                 $('.dialog-error .dialog-box ul').empty()
-                var textList = `<li>Please select product information!</li>`
+                var textList = `<li>Bitte wählen Sie Produktinformationen aus!</li>`
                 $('.dialog-error').show()
                 $('.dialog-error .dialog-box ul').append(textList)
                 $('#loading').hide()
