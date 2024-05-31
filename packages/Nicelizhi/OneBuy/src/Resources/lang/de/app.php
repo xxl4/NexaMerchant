@@ -61,7 +61,7 @@ return [
       'Discount' => 'Rabatt',
       'Subtotal' => 'Zwischensumme',
       '30 DAY GUARANTEE' => '30-tägige Rückgabegarantie',
-      'What customers are saying about' => 'Gesamt',
+      'What customers are saying about' => 'Bewertungen',
       'Frequently Asked Questions' => 'Eine Frage haben?',
       'See Our FAQs' => 'Siehe unsere FAQs',
       'Verified' => 'Verifiziert',

@@ -47,7 +47,7 @@ return [
     'Subtotal' => 'Zwischensumme',
     'Discount' => 'Rabatt',
     'Shipping' => 'Versand',
-    'Shipping Method' => 'Transportfehler',
+    'Shipping Method' => 'Transportzeit',
     'USPS Express' => '5-7 Tage',
     "Today's Total" => "Gesamt",
     'price' => 'Preis',

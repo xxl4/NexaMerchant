@@ -256,7 +256,7 @@
 }
  .left-sec{
      float:left;
-     width:45%;
+     width:48%;
      text-align:center;
 }
  .prodSlider-Left{
@@ -299,8 +299,8 @@ ul.s1-list li p {
 /*==========right-sec===========*/
  .right-sec{
      float:right;
-     width:49%;
-     padding:0 25px;
+     width:48%;
+     padding:0 10px;
      text-align:left;
 }
  .chk-rgt-text1{
@@ -382,7 +382,7 @@ ul.s1-list li p {
   margin: 0 10px;
 }
 .summary-wrapper >div:nth-child(2) {
-  font-weight: 600;
+  /* font-weight: 600; */
   border-bottom: 1px solid #e0e0e0;
 }
 .summary-title{
@@ -1034,7 +1034,6 @@ ul.s1-list li p {
  .payment-flds-box{
      float:left;
      width:100%;
-     margin-top:10px;
 }
  .payment-flds-box.credit-card{
      float:left;
@@ -1294,7 +1293,7 @@ ul.s1-list li p {
   line-height: 25px
 }
 /*==========footer===================*/
- .footer{
+ /* .footer{
      float:left;
      width:100%;
      padding:40px 0;
@@ -1302,7 +1301,7 @@ ul.s1-list li p {
      border-top:1px solid #ddd;
      background-color: #595858;
      color: #fff;
-}
+} */
  .ftr-txt1{
      float:left;
      width:100%;
@@ -1407,9 +1406,6 @@ ul.s1-list li p {
  .payment-cards-box{
      display: flex;
      align-items: center;
-}
- .payment-flds-box{
-     padding: 10px 0px;
 }
  .payment-flds-box.credit-card{
      padding: 0!important;
