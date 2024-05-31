@@ -3677,7 +3677,7 @@
 
       })
 
-      $("#payal_standard").on("click", function(params) {
+      $("#payal_standard").on("click", function() {
         $('#airwallex-klarna').prop('checked', false);
         $('#payal_standard').prop('checked', true);
         $('#payment_method_airwallex').prop('checked', false);
@@ -3701,7 +3701,8 @@
         console.log(params, '==========1');
         //payment-button
         $("#complete-btn-id").empty();;
-
+        // var paramsinfo = params
+        // console.log(paramsinfo, 'paramsinfo');
         paypal.Buttons({
           style: {
             layout: 'horizontal',
@@ -3833,7 +3834,7 @@
 
           // Call your server to set up the transaction
           createOrder: function(data, actions) {
-            getParams('paypal_stand')
+            // getParams('paypal_stand')
             var errIsShow = skuIsScelect()
             console.log(params, '==========2', data);
 
