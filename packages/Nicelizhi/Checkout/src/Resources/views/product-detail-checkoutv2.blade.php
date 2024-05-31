@@ -152,6 +152,7 @@
 
     .panel-body {
       padding: 15px;
+      background-color: #edeff596;
     }
   </style>
   <style>
@@ -969,6 +970,10 @@
         height: 320px !important;
         position: relative;
       }
+
+      .chk-header {
+        display: none;
+      }
     }
 
     .flex-center {
@@ -1050,6 +1055,7 @@
     .input-box .input-item {
       width: 100%;
       padding: 20px 05px 05px 10px;
+      line-height: 32px;
       outline: 0;
       border: 1px solid rgba(105, 105, 105, 0.397);
       border-radius: 10px;
@@ -1135,6 +1141,44 @@
       visibility: visible;
       pointer-events: auto;
     } */
+    .buy-relative {
+      position: relative;
+    }
+
+    .buy-box {
+      display: inline-block;
+      font-size: 30px;
+      color: rgb(102, 101, 109);
+      padding: 1em;
+      vertical-align: top;
+      -webkit-transition: .3s color, .3s border;
+      transition: .3s color, .3s border;
+      text-align: center;
+    }
+
+    #cb-buy-each2 {
+      color: red;
+    }
+
+    .sku-preview-img {
+      width: 100%;
+      height: 100%;
+      /* background-color: #f5f5f5; */
+      /* opacity: 0.3; */
+      position: fixed;
+      top: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .sku-preview-img img {
+      width: 80%;
+    }
+
+    .sku-preview-img-box {
+      display: none;
+    }
   </style>
 </head>
 
@@ -1148,7 +1192,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/5.0.4/css/swiper.css" />
     <link type="text/css" href="/checkout/v2/css/repeated-order-confirmation.min.css" rel="stylesheet" />
     <link type="text/css" href="/checkout/v2/css/repeated-order-confirmation-additional.css" rel="stylesheet" />
-    <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/checkout.css?v=1" />
+    <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/checkout.css?v=2" />
     <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/bootstrap.min.css" />
     <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/slick.min.css" />
     <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/upsell-new-02.css" />
@@ -1593,8 +1637,8 @@
   <script type="text/javascript" src="/checkout/v2/js/everflow.js"></script>
   <!-- END MVMT EVERFLOW CHECKOUT PAGEVIEW PIXEL -->
   <div id="">
-    <img class="w-100 d-none d-md-block" src="/checkout/v2/images/Black_Friday_top.png" />
-    <img class="w-100 d-block d-md-none" src="/checkout/v2/images/Mobile_Reconstruction_1.png" />
+    <img class="w-100 d-none d-md-block" id="pc-banner" src="/checkout/v2/images/Black_Friday_top.png" />
+    <img class="w-100 d-block d-md-none" id="mobile-banner" src="/checkout/v2/images/Mobile_Reconstruction_1.png" />
   </div>
   <div class="topStrip">
     <div class="container">
@@ -1631,10 +1675,10 @@
           <div style="display: none;" class="vehicle-detail-banner banner-content clearfix">
             <div class="banner-slider">
               <div class="slider-banner-image">
-                <div class="sw-box">
+                <!-- <div class="sw-box">
                   <div class="swiper-button-prev"></div>
                   <div class="swiper-button-next"></div>
-                </div>
+                </div> -->
               </div>
             </div>
           </div>
@@ -1666,7 +1710,16 @@
               </p>
             </div>
           </div>
-          <div class="buy-select" id="buy-select2">
+          <div class="buy-select buy-relative" id="buy-select2">
+
+            <div class="buy-loading">
+              <div style="position: absolute; top: -5px; left: -10px; width: 110%; height: 110%; z-index: 100000; background:#fff;" id="loading-box" class="flex-center">
+                <div class="buy-box">
+                  <div class="loader loader-01"></div>
+                </div>
+              </div>
+            </div>
+
             <div class="buy-se-box">
               <div class="se-box" id="select2-item1">
                 <p class="se-title">@lang('checkout::app.v2.item')1</p>
@@ -1696,8 +1749,17 @@
               </p>
             </div>
           </div>
-          <div class="buy-select" id="buy-select1">
+          <div class="buy-select buy-relative" id="buy-select1">
             <div class="buy-se-box">
+
+              <div class="buy-loading">
+                <div style="position: absolute; top: -5px; left: -10px; width: 110%; height: 120%; z-index: 100000; background:#fff;" id="loading-box" class="flex-center">
+                  <div class="buy-box">
+                    <div class="loader loader-01"></div>
+                  </div>
+                </div>
+              </div>
+
               <div class="se-box" id="select1-item1">
                 <p class="se-title">@lang('checkout::app.v2.item')1</p>
               </div>
@@ -1720,7 +1782,16 @@
               </p>
             </div>
           </div>
-          <div class="buy-select" id="buy-select3">
+          <div class="buy-select buy-relative" id="buy-select3">
+
+            <div class="buy-loading">
+              <div style="position: absolute; top: -5px; left: -10px; width: 110%; height: 110%; z-index: 100000; background:#fff;" id="loading-box" class="flex-center">
+                <div class="buy-box">
+                  <div class="loader loader-01"></div>
+                </div>
+              </div>
+            </div>
+
             <div class="buy-se-box">
               <div class="se-box" id="select3-item1">
                 <p class="se-title">@lang('checkout::app.v2.item')1</p>
@@ -1753,7 +1824,15 @@
               </p>
             </div>
           </div>
-          <div class="buy-select" id="buy-select4">
+          <div class="buy-select buy-relative" id="buy-select4">
+            <div class="buy-loading">
+              <div style="position: absolute; top: -5px; left: -10px; width: 110%; height: 110%; z-index: 100000; background:#fff;" id="loading-box" class="flex-center">
+                <div class="buy-box">
+                  <div class="loader loader-01"></div>
+                </div>
+              </div>
+            </div>
+
             <div class="buy-se-box">
               <div class="se-box" id="select4-item1">
                 <p class="se-title">@lang('checkout::app.v2.item')1</p>
@@ -1775,9 +1854,9 @@
               </div>
             </div>
           </div>
-          <div class="zoom-fade submit-button" id="payment-button" style="text-align: center;margin-top: 10px; width:100%;float: left"></div>
+          <div class="zoom-fade submit-button" id="payment-button" style="text-align: center;margin-top: 20px; width:100%;float: left"></div>
           <div id="loading">
-            <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 100000" id="loading-box" class="flex-center">
+            <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 100000; background:#ddd;opacity: 0.3;" id="loading-box" class="flex-center">
               <div class="box">
                 <div class="loader loader-01"></div>
               </div>
@@ -1847,36 +1926,36 @@
                   <span>@lang('checkout::app.v2.City')</span>
                 </label>
               </div>
-              <div class="frm-flds fl">
+              <!-- <div class="frm-flds fl">
                 <label for="shippingCountry" class="fl-label"></label>
                 <select name="shippingCountry" type="text" placeholder="@lang('checkout::app.v2.Country')" class="selcet-fld required cb-remove-class frmField" data-selected="US" data-error-message="Please select your country!">
                 </select>
-              </div>
-              <!-- <div class="fl input-box">
+              </div> -->
+              <div class="fl input-box">
                 <label>
                   <select class="input-item" name="shippingCountry" type="text" placeholder="" required="">
                   </select>
                   <span>@lang('checkout::app.v2.Country')</span>
                 </label>
-              </div> -->
-              <div class="frm-flds fl" style="margin-top: 20px;">
+              </div>
+              <!-- <div class="frm-flds fl" style="margin-top: 20px;">
                 <label for="state" class="fl-label"></label>
                 <select type="text" name="shippingState" placeholder="@lang('checkout::app.v2.State')" class="selcet-fld required cb-remove-class frmField" id="shippingStateSelect" data-error-message="Please select your state!" data-selected="">
                   <option value=""></option>
                 </select>
-              </div>
-              <!-- <div class="fl input-box">
+              </div> -->
+              <div class="fl input-box">
                 <label>
                   <select class="input-item" name="shippingState" id="shippingStateSelect" type="text" placeholder="" required="">
                   </select>
                   <span>@lang('checkout::app.v2.State')</span>
                 </label>
-              </div> -->
+              </div>
               <!-- <div class="frm-flds fl">
                 <label for="zip" class="fl-label">Zip Code</label>
                 <input type="tel" name="shippingZip" id="zip" class="input-flds required cb-remove-class frmField" placeholder="Zip Code" data-error-message="Please enter a valid zip code!" />
               </div> -->
-              <div class="fl input-box" style="margin-top: 20px;">
+              <div class="fl input-box">
                 <label>
                   <input class="input-item" name="shippingZip" id="zip" type="tel" placeholder="" required="" />
                   <span>@lang('checkout::app.v2.Zip Code')</span>
@@ -1959,7 +2038,6 @@
                                   <input class="form-check-input" type="radio" name="payment_method" id="payment_method_airwallex" <?php if ($payments_default == 'payment_method_airwallex') echo 'checked'; ?> value="airwallex">
                                   <label class="form-check-label" for="payment_method_airwallex" style="float: right;min-width: 95%;">
                                     <span style="font-family: var(--title-family);">@lang('onebuy::app.product.payment.creditCard.title')</span>
-
                                     <div class="text-right" style="min-width:190px; display: inline;float: right;">
                                       <img src="https://cdn.shopify.com/shopifycloud/checkout-web/assets/0169695890db3db16bfe.svg" />
                                       <img src="https://cdn.shopify.com/shopifycloud/checkout-web/assets/ae9ceec48b1dc489596c.svg" />
@@ -1977,7 +2055,13 @@
                             <div class="panel-body">
                               <div style={containerStyle}>
                                 <div>@lang('onebuy::app.product.payment.creditCard.card_number')</div>
-                                <div id="cardNumber" class="form-floating input-group has-icon-left" style="
+                                <div class="input-box" style="float: right;min-width: 95%;">
+                                  <label>
+                                    <input id="cardNumber" class="input-item" name="firstName" id="firstName" type="text" placeholder="" required="" />
+                                    <span>@lang('checkout::app.v2.First Name')</span>
+                                  </label>
+                                </div>
+                                <div class="form-floating input-group has-icon-left" style="
                                   border: 1px solid #a7abad;
                                   color: #222;
                                   height: 32px;
@@ -2036,8 +2120,8 @@
                           <div class="panel-heading" role="tab" id="airwallex_dropin_head_1">
                             <h4 class="panel-title">
                               <div class="panel-title-header" id="airwallex_dropin_2">
-                                <div class="form-check form-check-inline" style="width: 100%;">
-                                  <input class="form-check-input" type="radio" value="airwallex_dropin" id="airwallex_dropin" <?php if ($payments_default == 'airwallex_dropin') echo 'checked'; ?> name="payment_method">
+                                <div class="form-check form-check-inline input-box" style="width: 100%;">
+                                  <input class="form-check-input input-item" type="radio" value="airwallex_dropin" id="airwallex_dropin" <?php if ($payments_default == 'airwallex_dropin') echo 'checked'; ?> name="payment_method">
                                   <label class="form-check-label" for="airwallex_dropin" style="float: right;min-width: 95%;">
                                     <span style="font-family: var(--title-family);">@lang('onebuy::app.product.payment.airwallex_dropin.title') </span>
                                     <!-- <div style="float: right;min-width: 200px;display: inline;text-align: right;"><img src="/checkout/v1/app/desktop/images/paypal.png" style="max-height:24px" /></div> -->
@@ -2140,7 +2224,12 @@
                 <img src="/checkout/onebuy/images/icon_gou.svg" alt="" style="width: 64px;height:64px">
                 <div class="sku-content">
                   <p class="sku-item-title">title</p>
-                  <span class="sku-item-text">blue</span>
+                  <span class="sku-item-text">blue</span> 
+                  <a
+                    href="javascript:void(0)"
+                    onclick="javascript:bookmarkscroll.scrollTo('shipAddress')"
+                    >edit</a
+                  > 
                 </div>
                 <div class="sku-price">11</div>
               </div> -->
@@ -2254,8 +2343,8 @@
       <a class="ajax" href="/onebuy/page/refund-policy?locale={{ app()->getLocale() }}" target="_blank"> @lang('checkout::app.v2.refund policy')</a>
       <a class="ajax" href="/onebuy/page/about-us?locale={{ app()->getLocale() }}" target="_blank"> @lang('checkout::app.v2.About Us')</a>
       <a class="ajax" href="/onebuy/page/privacy-policy?locale={{ app()->getLocale() }}" target="_blank"> @lang('checkout::app.v2.Privacy Policy')</a>
-      <a class="ajax" href="/onebuy/page/contact-us?locale={{ app()->getLocale() }}" target="_blank"> lang('checkout::app.v2.Contact us')</a>
-      <a class="ajax" href="/onebuy/page/Impressum?locale={{ app()->getLocale() }}" target="_blank">lang('checkout::app.v2.imprint')</a>
+      <a class="ajax" href="/onebuy/page/contact-us?locale={{ app()->getLocale() }}" target="_blank"> @lang('checkout::app.v2.Contact us')</a>
+      <a class="ajax" href="/onebuy/page/Impressum?locale={{ app()->getLocale() }}" target="_blank">@lang('checkout::app.v2.imprint')</a>
     </div>
     <br /><br />
     <div class="dmca_logo">
@@ -2267,6 +2356,11 @@
       <a href="javascript:void(0)" id="error-close" onclick="closeDialog()">X</a>
       <ul>
       </ul>
+    </div>
+  </div>
+  <div class="sku-preview-img-box" onclick="imgBoxClose()">
+    <div class="sku-preview-img">
+      <img src="/checkout/v2/images/dmca_protected_sml_120n.png" alt="" />
     </div>
   </div>
   <!-- End of Discount POp up-->
@@ -2613,7 +2707,9 @@
           var attrList = data.attr.attributes
           paypal_pay_acc = data.paypal_client_id
           var paymentsDefault = data.payments_default
-          console.log(paymentsDefault, 'paymentsDefault=====');
+          console.log(paymentsDefault, data.ads.pc.img, 'paymentsDefault=====');
+          $('#pc-banner').attr('src', data.ads.pc.img);
+          $('#mobile-banner').attr('src', data.ads.mobile.img);
           $('.prod-name').text(data.product.name)
           $('title').html(data.product.name)
           $('#buy-select1, #buy-select3, #buy-select4').hide()
@@ -2633,7 +2729,9 @@
           }
           if (paymentsDefault == 'airwallex-klarna') {
             console.log(paymentsDefault, 'kelala');
-            $('input[name=airwallex-klarna]').prop('checked', true);
+            $('#airwallex-klarna').prop('checked', true);
+            $('#payal_standard').prop('checked', false);
+            $('#payment_method_airwallex').prop('checked', false);
             $("#complete-btn-id").show();
             $("#collapseOne").hide();
             $("#collapseTwo").hide();
@@ -2656,7 +2754,9 @@
 
           }
           if (paymentsDefault == 'payal-standard') {
-            $('input[name=payment_method]').prop('checked', true);
+            $('#airwallex-klarna').prop('checked', false);
+            $('#payal_standard').prop('checked', false);
+            $('#payment_method_airwallex').prop('checked', true);
             $("#complete-btn-id").show();
             console.log("click headingOne ");
             $("#collapseOne").show();
@@ -2681,7 +2781,9 @@
           };
 
           if (paymentsDefault == 'airwallex-credit-card') {
-            $('input[name=payment_method]').prop('checked', true);
+            $('#airwallex-klarna').prop('checked', false);
+            $('#payal_standard').prop('checked', false);
+            $('#payment_method_airwallex').prop('checked', true);
             $("#complete-btn-id").show();
             console.log("click headingOne ");
             $("#collapseOne").show();
@@ -2752,7 +2854,7 @@
           if (attrList.length > 0) {
             var selectList = ''
             for (var arri = 0; arri < attrList.length; arri++) {
-              var optionList = ''
+              var optionList = `<option value="">` + attrList[arri].code + `</option>`
               for (var attj = 0; attj < attrList[arri].options.length; attj++) {
                 optionList += `<option value="` + attrList[arri].options[attj].label + `">` + attrList[arri].options[attj].label + `</option>`
               }
@@ -2765,6 +2867,7 @@
             //   `</div><img class="se-img" src="` +
             //   data.attr.variant_images[imgIndex][0].small_image_url +
             //   `" alt="" />`
+            $('.buy-loading').hide()
             $('.se-box').append(selectList)
           } else {
             $('.buy-select').hide()
@@ -2906,17 +3009,34 @@
       var skuList = ''
       for (let i = 0; i < skuData.length; i++) {
         var description = skuData[i].description.slice(2)
+        var attributeName = skuData[i].attribute_name.split(',').join('/')
+        var skuImgUrl = skuData[i].img
         console.log(skuData[i], 'skuiii');
         skuList += `<div class="sku-item-info">
-                <img src="` + skuData[i].img + `" alt="" style="width: 64px;height:64px">
+                <img src="` + skuImgUrl + `" alt="" onclick="skuImgPreview(event)" style="width: 64px;height:64px" />
                 <div class="sku-content">
                   <p class="sku-item-title">` + description + `</p>
-                  <span class="sku-item-text">` + skuData[i].attribute_name + `</span>
+                  <span class="sku-item-text">` + attributeName + `</span>
+                  <a
+                    style="display:block;color:blue"
+                    href="javascript:void(0)"
+                    onclick="javascript:bookmarkscroll.scrollTo('product2')"
+                    >edit</a> 
                 </div>
                 <div class="sku-price">` + skuData[i].price + `</div>
               </div>`
       }
       $('.sku-info').append(skuList)
+    }
+
+    function skuImgPreview(event) {
+      var imgUrl = $(event.target).attr('src')
+      $('.sku-preview-img-box').show()
+      $('.sku-preview-img img').attr('src', imgUrl)
+    }
+
+    function imgBoxClose() {
+      $('.sku-preview-img-box').hide()
     }
 
     function paramsProductsinit(list) {
@@ -3442,6 +3562,9 @@
     $(function() {
 
       $("#payment_method_airwallex").on("click", function() {
+        $('#airwallex-klarna').prop('checked', false);
+        $('#payal_standard').prop('checked', false);
+        $('#payment_method_airwallex').prop('checked', true);
         $("#complete-btn-id").show();
         console.log("click headingOne ");
         $("#collapseOne").show();
@@ -3466,6 +3589,9 @@
       });
 
       $("#airwallex-klarna").on("click", function() {
+        $('#airwallex-klarna').prop('checked', true);
+        $('#payal_standard').prop('checked', false);
+        $('#payment_method_airwallex').prop('checked', false);
         $("#complete-btn-id").show();
         $("#collapseOne").hide();
         $("#collapseTwo").hide();
@@ -3489,6 +3615,9 @@
       })
 
       $("#payal_standard").on("click", function() {
+        $('#airwallex-klarna').prop('checked', false);
+        $('#payal_standard').prop('checked', true);
+        $('#payment_method_airwallex').prop('checked', false);
         $("#collapseOne").hide();
         $("#collapseTwo").show();
         $("#collapseThree").hide();
@@ -3648,6 +3777,21 @@
             if (!errorShow) {
               $('.dialog-error .dialog-box ul').empty()
               var textList = ''
+              // if (params.products) {
+              //   console.log('params.products');
+              //   if (params.products[0].length > 0 && !params.products[0].attr_id) {
+              //     textList += `<li>Please enter product1 information!</li>`
+              //   }
+              //   if (params.products[1].length > 0 && !params.products[1].attr_id) {
+              //     textList += `<li>Please enter product2 information!</li>`
+              //   }
+              //   if (params.products[2].length > 0 && !params.products[2].attr_id) {
+              //     textList += `<li>Please enter product3 information!</li>`
+              //   }
+              //   if (params.products[3].length > 0 && !params.products[3].attr_id) {
+              //     textList += `<li>Please enter product4 information!</li>`
+              //   }
+              // }
               if (!$('input[name="firstName"]').val()) {
                 textList += `<li>Please enter your first name!</li>`
               }
@@ -4434,7 +4578,7 @@
             thumbs: {
               swiper: {
                 el: '#thumbs',
-                slidesPerView: 3,
+                slidesPerView: 5,
                 spaceBetween: 10,
                 watchSlidesVisibility: true,
                 loop: true,
