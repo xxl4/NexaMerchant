@@ -158,10 +158,6 @@
   </style>
   <style>
     .section {
-      padding-top: 0px;
-      padding-right: 15px;
-      padding-bottom: 0px;
-      padding-left: 15px;
       box-sizing: border-box;
     }
 
@@ -2376,7 +2372,7 @@
     </div>
     <br /><br />
     <div class="dmca_logo">
-      <img src="/checkout/v2/images/dmca_protected_sml_120n.png" alt="DMCA.com Protection Status" />
+      <img src="/checkout/v2/images/1662477222-dmca.webp" alt="DMCA.com Protection Status" />
     </div>
   </div>
   <div class="dialog-error">
@@ -3514,7 +3510,8 @@
       params.code = $('input[name="shippingZip"]').val()
       params.country = $('select[name="shippingCountry"]').val()
       params.province = $('select[name="shippingState"]').val()
-      var errorShow = params.first_name && params.second_name && params.email && params.phone_full && params.address && params.city && params.code && params.country && params.province
+      var errIsShow = skuIsScelect()
+      var errorShow = params.first_name && params.second_name && params.email && params.phone_full && params.address && params.city && params.code && params.country && params.province && errIsShow
       console.log(errorShow, 'errorShow')
       if (!errorShow) {
         $('.dialog-error .dialog-box ul').empty()
@@ -3546,6 +3543,9 @@
         if (!params.province) {
           textList += `<li>Please select your state!</li>`
         }
+        if (!errIsShow) {
+          textList += `<li>Please select product information!</li>`
+        }
         $('.dialog-error').show()
         $('.dialog-error .dialog-box ul').append(textList)
         $('#loading').hide()
@@ -3574,23 +3574,22 @@
     })
 
     function skuIsScelect() {
-      var errParams = {
-        showDialog: fasle
-      }
+      var showDialog = true
       if (params.products.length > 0) {
-        if (params.products[0].product_id && !params.products[0].attr_id) {
-          err
+        if (typeof params.products[0] !== 'undefined' && !params.products[0].product_sku) {
+          showDialog = false
         }
-        if (params.products[1].product_id) {
-
+        if (typeof params.products[1] !== 'undefined' && !params.products[1].product_sku) {
+          showDialog = false
         }
-        if (params.products[2].product_id) {
-
+        if (typeof params.products[2] !== 'undefined' && !params.products[2].product_sku) {
+          showDialog = false
         }
-        if (params.products[3].product_id) {
-
+        if (typeof params.products[3] !== 'undefined' && !params.products[3].product_sku) {
+          showDialog = false
         }
       }
+      return showDialog;
     }
   </script>
   <script>
