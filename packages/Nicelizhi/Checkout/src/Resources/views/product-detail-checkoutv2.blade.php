@@ -3661,7 +3661,7 @@
 
       })
 
-      $("#payal_standard").on("click", function() {
+      $("#payal_standard").on("click", function(params) {
         $('#airwallex-klarna').prop('checked', false);
         $('#payal_standard').prop('checked', true);
         $('#payment_method_airwallex').prop('checked', false);
@@ -3682,7 +3682,7 @@
           background: "none",
           padding: '0'
         });
-
+        console.log(params, '==========1');
         //payment-button
         $("#complete-btn-id").empty();;
 
@@ -3817,28 +3817,17 @@
 
           // Call your server to set up the transaction
           createOrder: function(data, actions) {
+            getParams('paypal_stand')
+            var errIsShow = skuIsScelect()
+            console.log(params, '==========2', data);
+
             var errorShow = $('input[name="firstName"]').val() && $('input[name="lastName"]').val() && $('input[name="email"]').val() &&
               $('input[name="phone"]').val() &&
-              $('input[name="shippingAddress1"]').val() && $('input[name="shippingCity"]').val() && $('input[name="shippingZip"]').val() && $('select[name="shippingCountry"]').val() && $('select[name="shippingState"]').val()
+              $('input[name="shippingAddress1"]').val() && $('input[name="shippingCity"]').val() && $('input[name="shippingZip"]').val() && $('select[name="shippingCountry"]').val() && $('select[name="shippingState"]').val() && errIsShow
             console.log(errorShow, 'errorShowpaypal====')
             if (!errorShow) {
               $('.dialog-error .dialog-box ul').empty()
               var textList = ''
-              // if (params.products) {
-              //   console.log('params.products');
-              //   if (params.products[0].length > 0 && !params.products[0].attr_id) {
-              //     textList += `<li>Please enter product1 information!</li>`
-              //   }
-              //   if (params.products[1].length > 0 && !params.products[1].attr_id) {
-              //     textList += `<li>Please enter product2 information!</li>`
-              //   }
-              //   if (params.products[2].length > 0 && !params.products[2].attr_id) {
-              //     textList += `<li>Please enter product3 information!</li>`
-              //   }
-              //   if (params.products[3].length > 0 && !params.products[3].attr_id) {
-              //     textList += `<li>Please enter product4 information!</li>`
-              //   }
-              // }
               if (!$('input[name="firstName"]').val()) {
                 textList += `<li>Please enter your first name!</li>`
               }
@@ -3866,13 +3855,15 @@
               if (!$('select[name="shippingState"]').val()) {
                 textList += `<li>Please select your state!</li>`
               }
+              if (!errIsShow) {
+                textList += `<li>Please select product information!</li>`
+              }
               $('.dialog-error').show()
               $('.dialog-error .dialog-box ul').append(textList)
               $('#loading').hide()
               return
             }
             $('#loading').show();
-            getParams('paypal_stand')
             // var params = getOrderParams('paypal_stand');
             var url = '/onebuy/order/addr/after?currency={{ core()->getCurrentCurrencyCode() }}&_token={{ csrf_token() }}&time=' + new Date().getTime() + "&force=" + localStorage.getItem("force");
             return fetch(url, {
@@ -4808,6 +4799,16 @@
 
             // Call your server to set up the transaction
             createOrder: function(data, actions) {
+              var errIsShow = skuIsScelect()
+              if (!errIsShow) {
+                $('.dialog-error .dialog-box ul').empty()
+                var textList = `<li>Please select product information!</li>`
+                $('.dialog-error').show()
+                $('.dialog-error .dialog-box ul').append(textList)
+                $('#loading').hide()
+                return;
+              }
+              console.log(data, '==========');
               // sendInitiateCheckoutEvent()
 
               // gtag('event', 'initiate_paypal_checkout', {
