@@ -69,6 +69,14 @@ class CheckoutV2Controller extends Controller{
             $product = $this->productRepository->findBySlug($slugOrPath);
             Cache::put($cache_key, $product);
         }
+
+        $refer = $request->input("refer");
+
+        if(!empty($refer)) { 
+            $request->session()->put('refer', $refer);
+        }else{
+            $refer = $request->session()->get('refer');
+        }
         
         //var_dump($slug);
 
