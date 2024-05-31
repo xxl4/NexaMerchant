@@ -354,7 +354,7 @@ class ProductController extends Controller
     public function order_add_sync(Request $request) {
         //var_dump($request->all());
 
-        $payment_method = $request->input('payment_method');
+        $payment_method_input = $request->input('payment_method');
 
         $input = $request->all();
 
@@ -505,8 +505,19 @@ class ProductController extends Controller
 
         Cart::collectTotals();
 
-        if($payment_method=="airwallex_klarna") $payment_method = "airwallex";
-        if($payment_method=="airwallex_dropin") $payment_method = "airwallex";
+        if($payment_method_input=="airwallex_klarna") $payment_method = "airwallex";
+        if($payment_method_input=="airwallex_dropin") $payment_method = "airwallex";
+        if($payment_method_input=="airwallex_google") $payment_method = "airwallex";
+        if($payment_method_input=="airwallex_apple") $payment_method = "airwallex";
+        if($payment_method_input=="airwallex") $payment_method = "airwallex";
+
+        if($payment_method=="airwallex_google") {
+
+        }
+
+        if($payment_method=="airwallex_apple") {
+
+        }
 
         // 获取支付信息
         
@@ -541,7 +552,14 @@ class ProductController extends Controller
             $data['order'] = $order;
             if ($order) {
                 $orderId = $order->id;
-                $transactionManager = $this->airwallex->createPaymentOrder($cart, $order->id);
+                if($payment_method_input=="airwallex_google") {
+                    $transactionManager = $this->airwallex->createPaymentAuthen($cart, $order->id);
+                }elseif($payment_method_input=="airwallex_apple") {
+                    $transactionManager = $this->airwallex->createPaymentAuthen($cart, $order->id);
+                } else {
+                    $transactionManager = $this->airwallex->createPaymentOrder($cart, $order->id);
+                }
+                
                 Log::info("airwallex-".$order->id."--".json_encode($transactionManager));
                 $data['client_secret'] = $transactionManager->client_secret;
                 $data['payment_intent_id'] = $transactionManager->id;
