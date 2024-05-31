@@ -1059,7 +1059,6 @@
     .input-box .input-item {
       width: 100%;
       padding: 20px 05px 05px 10px;
-      line-height: 32px;
       outline: 0;
       border: 1px solid rgba(105, 105, 105, 0.397);
       border-radius: 10px;
@@ -1195,7 +1194,7 @@
     <!-- Start VWO SmartCode -->
     <script src="/checkout/v2/js/51174.js"></script>
     <!-- End VWO SmartCode -->
-    <link rel="stylesheet prefetch" href="/checkout/v2/css/app2.css?v=2" />
+    <link rel="stylesheet prefetch" href="/checkout/v2/css/app2.css?v=3" />
     <link type="text/css" href="/checkout/v2/css/custom-extra.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/5.0.4/css/swiper.css" />
     <link type="text/css" href="/checkout/v2/css/repeated-order-confirmation.min.css" rel="stylesheet" />
@@ -1934,36 +1933,36 @@
                   <span>@lang('checkout::app.v2.City')</span>
                 </label>
               </div>
-              <!-- <div class="frm-flds fl">
+              <div class="frm-flds fl">
                 <label for="shippingCountry" class="fl-label"></label>
                 <select name="shippingCountry" type="text" placeholder="@lang('checkout::app.v2.Country')" class="selcet-fld required cb-remove-class frmField" data-selected="US" data-error-message="Please select your country!">
                 </select>
-              </div> -->
-              <div class="fl input-box">
+              </div>
+              <!-- <div class="fl input-box">
                 <label>
                   <select class="input-item" name="shippingCountry" type="text" placeholder="" required="">
                   </select>
                   <span>@lang('checkout::app.v2.Country')</span>
                 </label>
-              </div>
-              <!-- <div class="frm-flds fl" style="margin-top: 20px;">
+              </div> -->
+              <div class="frm-flds fl" style="margin-top: 20px;">
                 <label for="state" class="fl-label"></label>
                 <select type="text" name="shippingState" placeholder="@lang('checkout::app.v2.State')" class="selcet-fld required cb-remove-class frmField" id="shippingStateSelect" data-error-message="Please select your state!" data-selected="">
                   <option value=""></option>
                 </select>
-              </div> -->
-              <div class="fl input-box">
+              </div>
+              <!-- <div class="fl input-box">
                 <label>
                   <select class="input-item" name="shippingState" id="shippingStateSelect" type="text" placeholder="" required="">
                   </select>
                   <span>@lang('checkout::app.v2.State')</span>
                 </label>
-              </div>
+              </div> -->
               <!-- <div class="frm-flds fl">
                 <label for="zip" class="fl-label">Zip Code</label>
                 <input type="tel" name="shippingZip" id="zip" class="input-flds required cb-remove-class frmField" placeholder="Zip Code" data-error-message="Please enter a valid zip code!" />
               </div> -->
-              <div class="fl input-box">
+              <div class="fl input-box" style="margin-top: 20px;">
                 <label>
                   <input class="input-item" name="shippingZip" id="zip" type="tel" placeholder="" required="" />
                   <span>@lang('checkout::app.v2.Zip Code')</span>
