@@ -52,7 +52,7 @@ return [
     "Today's Total" => "Gesamt",
     'price' => 'Preis',
     '2024 Alle Rechte vorbehalten' => '2024 Alle Rechte vorbehalten',
-    'shipping ' => 'Versand',
+    'shipping' => 'Versand',
     'refund policy' => 'Rückgaberecht',
     'About Us' => 'Über uns',
     'Privacy Policy' => 'Datenschutzrichtlinie',
