@@ -19,10 +19,7 @@ GET api/onebuy/product/detail/{slug}?currency=EUR
 ```
 > Get Products Info, return will have product,product images,product sku, product attr etc
 
-<<<<<<< HEAD
-=======
 ## Out Params
->>>>>>> 4f8b52b3310219028ce114efa5185af908a65b58
 ```
 {
   "product": {
