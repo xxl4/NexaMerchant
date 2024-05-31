@@ -1662,8 +1662,8 @@
   <script type="text/javascript" src="/checkout/v2/js/everflow.js"></script>
   <!-- END MVMT EVERFLOW CHECKOUT PAGEVIEW PIXEL -->
   <div id="">
-    <img class="w-100 d-none d-md-block" id="pc-banner" src="/checkout/v2/images/Black_Friday_top.png" />
-    <img class="w-100 d-block d-md-none" id="mobile-banner" src="/checkout/v2/images/Mobile_Reconstruction_1.png" />
+    <img class="w-100 d-none d-md-block" id="pc-banner" src="" />
+    <img class="w-100 d-block d-md-none" id="mobile-banner" src="" />
   </div>
   <div class="topStrip">
     <div class="container">
@@ -2363,12 +2363,12 @@
     <br class="br" />
     <div class="phone-block"></div>
     <div class="terms-block">
-      <a class="ajax" href="/onebuy/page/shipping-policy?locale={{ app()->getLocale() }}" target="_blank"> @lang('checkout::app.v2.shipping') </a>
-      <a class="ajax" href="/onebuy/page/refund-policy?locale={{ app()->getLocale() }}" target="_blank"> @lang('checkout::app.v2.refund policy')</a>
-      <a class="ajax" href="/onebuy/page/about-us?locale={{ app()->getLocale() }}" target="_blank"> @lang('checkout::app.v2.About Us')</a>
-      <a class="ajax" href="/onebuy/page/privacy-policy?locale={{ app()->getLocale() }}" target="_blank"> @lang('checkout::app.v2.Privacy Policy')</a>
-      <a class="ajax" href="/onebuy/page/contact-us?locale={{ app()->getLocale() }}" target="_blank"> @lang('checkout::app.v2.Contact us')</a>
-      <a class="ajax" href="/onebuy/page/Impressum?locale={{ app()->getLocale() }}" target="_blank">@lang('checkout::app.v2.imprint')</a>
+      <a class="ajax" href="/onebuy/page/shipping-policy?locale=<?php echo strtolower($default_country); ?>" target="_blank"> @lang('checkout::app.v2.shipping') </a>
+      <a class="ajax" href="/onebuy/page/refund-policy?locale=<?php echo strtolower($default_country); ?>" target="_blank"> @lang('checkout::app.v2.refund policy')</a>
+      <a class="ajax" href="/onebuy/page/about-us?locale=<?php echo strtolower($default_country); ?>" target="_blank"> @lang('checkout::app.v2.About Us')</a>
+      <a class="ajax" href="/onebuy/page/privacy-policy?locale=<?php echo strtolower($default_country); ?>" target="_blank"> @lang('checkout::app.v2.Privacy Policy')</a>
+      <a class="ajax" href="/onebuy/page/contact-us?locale=<?php echo strtolower($default_country); ?>" target="_blank"> @lang('checkout::app.v2.Contact us')</a>
+      <a class="ajax" href="/onebuy/page/Impressum?locale=<?php echo strtolower($default_country); ?>" target="_blank">@lang('checkout::app.v2.imprint')</a>
     </div>
     <br /><br />
     <div class="dmca_logo">
@@ -2717,7 +2717,7 @@
     var productL3 = {}
     var productL4 = {}
     var getProductId = '{{ $slug }}'
-    var countries1 = '{{ app()->getLocale() }}'
+    var countries1 = '<?php echo strtolower($default_country); ?>'
     var paypal_pay_acc = ''
     var area = '{{ app()->getLocale() }}'
     var currencySymbol = '{{ core()->currencySymbol(core()->getBaseCurrencyCode()) }}'
@@ -2751,7 +2751,7 @@
           if (payTypeShow.airwallex_dropin == '0') {
             $('#airwallex-dropin-box').hide()
           }
-          if (paymentsDefault == 'airwallex-klarna') {
+          if (paymentsDefault == 'airwallex_klarna') {
             console.log(paymentsDefault, 'kelala');
             $('#airwallex-klarna').prop('checked', true);
             $('#payal_standard').prop('checked', false);
@@ -2777,7 +2777,7 @@
             $("#complete-btn-id").html("@lang('onebuy::app.product.payment.complete_secure_purchase')");
 
           }
-          if (paymentsDefault == 'payal-standard') {
+          if (paymentsDefault == 'payal_standard') {
             $('#airwallex-klarna').prop('checked', false);
             $('#payal_standard').prop('checked', false);
             $('#payment_method_airwallex').prop('checked', true);
@@ -2804,7 +2804,7 @@
 
           };
 
-          if (paymentsDefault == 'airwallex-credit-card') {
+          if (paymentsDefault == '"payment_method_airwallex"') {
             $('#airwallex-klarna').prop('checked', false);
             $('#payal_standard').prop('checked', false);
             $('#payment_method_airwallex').prop('checked', true);
@@ -2894,6 +2894,7 @@
             $('.buy-loading').hide()
             $('.se-box').append(selectList)
           } else {
+            $('.buy-loading').hide()
             $('.buy-select').hide()
           }
           var nprice = currencySymbol + data.package_products[0].new_price.toFixed(2)
@@ -3353,7 +3354,7 @@
           }
           if (imgIndex) {
             params.products[n]
-            var finUrl = data.attr.variant_images[imgIndex][0].small_image_url
+            var finUrl = data.attr.variant_images[imgIndex][0].original_image_url
             params.products[n].img = finUrl
           }
           aList = params.products[n].attr_id.split(',')
@@ -3575,7 +3576,7 @@
 
     function skuIsScelect() {
       var showDialog = true
-      if (params.products.length > 0) {
+      if (data.attr.attributes.length > 0 && params.products.length > 0) {
         if (typeof params.products[0] !== 'undefined' && !params.products[0].product_sku) {
           showDialog = false
         }
@@ -3588,7 +3589,9 @@
         if (typeof params.products[3] !== 'undefined' && !params.products[3].product_sku) {
           showDialog = false
         }
+
       }
+
       return showDialog;
     }
   </script>
