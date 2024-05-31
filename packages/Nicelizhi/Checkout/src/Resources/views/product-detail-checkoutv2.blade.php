@@ -2190,7 +2190,7 @@
               <div class="submit-content">
 
                 <div class="zoom-fade submit-button" id="payment-button" style="text-align:center;">@lang('onebuy::app.product.payment.complete_secure_purchase')</div>
-                <div id="checkout-error" style="color:#e51f28;display:none;"></div>
+                
               </div>
             </div> -->
             <!-- <a
@@ -2199,6 +2199,7 @@
                 onclick="javascript:bookmarkscroll.scrollTo('shipAddress')"
                 >Continue to Shipping</a
               > -->
+            <div id="checkout-error" style="color:#e51f28;display:none;"></div>
             <div class="js_choose_billing">
               <div class="w_radio">
                 <input type="radio" id="radio_same_as_shipping" name="billingSameAsShipping" value="yes" checked />
