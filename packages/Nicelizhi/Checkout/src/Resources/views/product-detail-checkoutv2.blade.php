@@ -1177,7 +1177,7 @@
     }
 
     .sku-preview-img img {
-      width: 200px;
+      width: 300px;
     }
 
     .sku-preview-img-box {
