@@ -1220,8 +1220,8 @@ ul.s1-list li p {
      margin:10px auto 0;
      max-width:100%;
 }
-.terms-block a {
-  color: #fff;
+.terms-block {
+  margin-top: 10px;
 }
 .dialog-error {
   position: fixed;
