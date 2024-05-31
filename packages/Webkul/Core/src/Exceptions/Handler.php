@@ -90,7 +90,7 @@ class Handler extends BaseHandler
         } else {
 
             $mystring = $exception->getFile();
-            $findme   = 'packages';
+            $findme   = 'Nicelizhi';
             $pos = strpos($mystring, $findme);
 
             if ($pos === false) {
