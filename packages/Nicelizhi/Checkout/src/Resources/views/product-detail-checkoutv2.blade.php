@@ -2058,13 +2058,6 @@
                           <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
                             <div class="panel-body">
                               <div>
-                                <!-- <div>@lang('onebuy::app.product.payment.creditCard.card_number')</div> -->
-                                <!-- <div class="input-box"  style="float: right;min-width: 95%;">
-                                  <label>
-                                    <input class="input-item" type="text" placeholder="" required="" />
-                                    <span>@lang('checkout::app.v2.First Name')</span>
-                                  </label>
-                                </div> -->
                                 <div id="cardNumber" class="form-floating input-group has-icon-left" style="
                                   border: 1px solid rgba(105, 105, 105, 0.397);
                                   border-radius: 10px;
@@ -2120,6 +2113,7 @@
                                   -webkit-box-sizing: border-box;height: calc(3.5rem + 2px);
                                   line-height: 1.25;padding: 1rem 0.75rem "></div>
                               </div>
+
                             </div>
                           </div>
                         </div>
@@ -4560,7 +4554,7 @@
           }
           $('.grid-container').append(showimg)
           var gallery =
-            `<div class="swiper-container" id="gallery">
+            `<div class="swiper-container" style="width:100%" id="gallery">
 					<div class="swiper-wrapper">` +
             swiperList +
             `</div>
@@ -4586,7 +4580,7 @@
               swiper: {
                 el: '#thumbs',
                 slidesPerView: 5,
-                spaceBetween: 10,
+                spaceBetween: 5,
                 watchSlidesVisibility: true,
                 loop: true,
               },
