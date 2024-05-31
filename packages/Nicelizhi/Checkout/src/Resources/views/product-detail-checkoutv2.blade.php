@@ -4578,10 +4578,10 @@
             loop: true,
             autoplay: true,
             allowTouchMove: true,
-            navigation: {
-              nextEl: '.swiper-button-next',
-              prevEl: '.swiper-button-prev',
-            },
+            //navigation: {
+            //nextEl: '.swiper-button-next',
+            //prevEl: '.swiper-button-prev',
+            //},
             thumbs: {
               swiper: {
                 el: '#thumbs',
