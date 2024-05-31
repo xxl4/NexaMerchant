@@ -2805,7 +2805,7 @@
 
           };
 
-          if (paymentsDefault == '"payment_method_airwallex"') {
+          if (paymentsDefault == 'payment_method_airwallex') {
             $('#airwallex-klarna').prop('checked', false);
             $('#payal_standard').prop('checked', false);
             $('#payment_method_airwallex').prop('checked', true);
@@ -3404,6 +3404,9 @@
       console.log(params.products, '===params====')
     }
     $('#product1').click(function(e) {
+      if (data.attr.attributes.length == 0) {
+        return
+      }
       var list = $('#product1,#product2,#product3,#product4')
       list.removeClass('choose-p')
 
@@ -3429,6 +3432,9 @@
       initProuctData(1, '1')
     })
     $('#product2').click(function(e) {
+      if (data.attr.attributes.length == 0) {
+        return
+      }
       var list = $('#product1,#product2,#product3,#product4')
       list.removeClass('choose-p')
       $('#buy-select1').hide()
@@ -3453,6 +3459,9 @@
       initProuctData(0, '2')
     })
     $('#product3').click(function(e) {
+      if (data.attr.attributes.length == 0) {
+        return
+      }
       var list = $('#product1,#product2,#product3,#product4')
       list.removeClass('choose-p')
       $('#buy-select2').hide()
@@ -3477,6 +3486,9 @@
       initProuctData(2, '3')
     })
     $('#product4').click(function(e) {
+      if (data.attr.attributes.length == 0) {
+        return
+      }
       var list = $('#product1,#product2,#product3,#product4')
       list.removeClass('choose-p')
 
