@@ -1230,6 +1230,10 @@
       font-weight: bold;
       color: var(--text-color);
     }
+
+    .flag-icon-size {
+      font-size: 10px;
+    }
   </style>
 </head>
 
@@ -2330,7 +2334,7 @@
               <div style="display: flex">
                 <div class="mr4" style="font-size: 14px;margin-top: 3px;color: #444444; ">
                   <?php echo $comment->name; ?>
-                  <i class="flag-icon flag-icon-<?php echo strtolower($default_country); ?> mr-2"></i>
+                  <i class="flag-icon-size flag-icon flag-icon-<?php echo strtolower($default_country); ?> mr-2"></i>
                 </div>
                 <div>
                   <img class="mb1 mr2" width="14px" src="/checkout/onebuy/images/icon_gou.svg" />
