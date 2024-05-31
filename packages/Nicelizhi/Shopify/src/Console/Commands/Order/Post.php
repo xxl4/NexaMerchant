@@ -381,6 +381,27 @@ class Post extends Command
 
         $pOrder['order'] = $postOrder;
 
+        $app_env = config("app.env");
+        if($app_env=='demo') {
+
+            $cnv_id = explode('-',$orderPayment['method_title']);
+            $url = "https://track.heomai2021.com/click.php?cnv_id=".$cnv_id[1]."&payout=".$order->grand_total;
+            $res = $this->get_content($url);
+            Log::info("post to bm url ".$url." res ".json_encode($res));
+            $url = "https://binom.heomai.com/click.php?cnv_id=".$cnv_id[1]."&payout=".$order->grand_total;
+            $res = $this->get_content($url);
+            Log::info("post to bm url ".$url." res ".json_encode($res));
+
+            $crm_channel = config('onebuy.crm_channel');
+
+            
+            $url = "https://crm.heomai.com/api/offers/callBack?refer=".$cnv_id[1]."&revenue=".$order->grand_total."&currency_code=".$order->order_currency_code."&channel_id=".$crm_channel."&q_ty=".$q_ty;
+            $res = $this->get_content($url);
+            Log::info("post to bm 2 url ".$url." res ".json_encode($res));
+            return true;
+
+        }
+
         try {
             $response = $client->post($shopify['shopify_app_host_name'].'/admin/api/2023-10/orders.json', [
                 'http_errors' => true,
