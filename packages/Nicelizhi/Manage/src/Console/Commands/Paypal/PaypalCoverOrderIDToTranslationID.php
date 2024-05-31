@@ -37,7 +37,7 @@ class PaypalCoverOrderIDToTranslationID extends Command {
     public function handle()
     {
 
-        $items = $this->orderTransactionRepository->where('payment_method', "paypal_smart_button")->whereNull('captures_id')->select(['transaction_id','id','data'])->get();
+        $items = $this->orderTransactionRepository->where('payment_method', "paypal_smart_button")->whereNull('captures_id')->select(['transaction_id','id','order_id'])->get();
 
         $smartButton = new SmartButton();
             
@@ -49,12 +49,26 @@ class PaypalCoverOrderIDToTranslationID extends Command {
                 $this->error($captureID);
 
                 $this->orderTransactionRepository->update([
-                    'transaction_id' => $captureID
+                    'captures_id' => $captureID
                 ], $item->id);
 
 
             }catch(\Exception $e) {
                 $this->error($e->getMessage());
+
+                $orderPayment = \Webkul\Sales\Models\OrderPayment::where('method', 'paypal_smart_button')->select(['additional'])->where('order_id', $item->order_id)->first();
+
+                if(!is_null($orderPayment)) {
+                    $additional = $orderPayment->additional;
+                    if($item->transaction_id!=$additional['orderID']) {
+
+                        $this->orderTransactionRepository->update([
+                            'transaction_id' => $additional['orderID']
+                        ], $item->id);
+
+                    }
+                }
+                
                 continue;
             }
         }
