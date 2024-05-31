@@ -82,6 +82,7 @@
                         <th>Content</th>
                         <th>Status</th>
                         <th>Rank</th>
+                        <th>Images</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -94,7 +95,18 @@
                             echo "<td>".$comment->comment."</td>";
                             echo "<td>".$comment->status."</td>";
                             echo "<td>".$comment->rating."</td>";
+                            
+
+                            echo "<td>";
+
+                                foreach($comment->images as $image) {
+                                    echo "<img src='".$image->url."' style='width: 100px; height: 100px;'>";
+                                }
+
+                            echo "</td>";
+
                             echo "<td><buttont class='comment_delte btn' value='".$comment->id."'>Delete</button></td>";
+                            
                             echo "</tr>";
                         }
                     ?>
