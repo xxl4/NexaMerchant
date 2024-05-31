@@ -722,7 +722,7 @@
     .footer-box {
       background-color: #F5F5F5;
       padding: 60px 30px 60px 30px;
-      margin-top: 30px;
+      /* margin-top: 30px; */
       margin-right: 0px;
       margin-left: 0px;
       text-align: center;
@@ -873,7 +873,7 @@
 
       .footer-box {
         padding: 20px 30px 20px 30px;
-        margin-bottom: 30px;
+        /* margin-bottom: 30px; */
       }
 
       .br {
