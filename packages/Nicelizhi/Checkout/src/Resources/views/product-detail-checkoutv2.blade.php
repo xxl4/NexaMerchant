@@ -2,7 +2,7 @@
 <html lang="{{ app()->getLocale() }}">
 
 <head>
-  <title>Fur Sweep Collar</title>
+  <title></title>
   <link rel="icon prefetch" href="/checkout/v2/images/favicon.png" type="image/png" sizes="16x16" />
   <meta charset="utf-8" />
   <meta name="description" content="Fur Sweep Collar" />
@@ -126,7 +126,7 @@
 
     .panel-default>.panel-heading {
       color: #333;
-      background-color: #f5f5f5;
+      background-color: #F0F5FF;
       border-color: #ddd;
     }
 
@@ -142,6 +142,7 @@
     }
 
     .panel-default>.panel-heading+.panel-collapse>.panel-body {
+      font-size: 13px;
       border-top-color: #ddd;
     }
 
@@ -152,14 +153,11 @@
 
     .panel-body {
       padding: 15px;
+      background-color: #F4F4F4;
     }
   </style>
   <style>
     .section {
-      padding-top: 0px;
-      padding-right: 15px;
-      padding-bottom: 0px;
-      padding-left: 15px;
       box-sizing: border-box;
     }
 
@@ -893,10 +891,10 @@
     }
   </style>
   <style>
-    #gallery img {
+    /* #gallery img {
       height: 460px;
       object-fit: contain;
-    }
+    } */
 
     #thumbs {
       height: 150px;
@@ -929,6 +927,10 @@
         display: none !important;
       }
 
+      .sku-preview-img img {
+        width: 80%;
+      }
+
       .banner-content {
         display: block !important;
       }
@@ -947,10 +949,11 @@
         height: auto !important;
       }
 
+      /* 
       #gallery img {
         height: 320px;
         object-fit: contain;
-      }
+      } */
 
       #thumbs {
         height: 80px;
@@ -966,8 +969,12 @@
       }
 
       .slider-banner-image {
-        height: 320px !important;
+        height: 400px !important;
         position: relative;
+      }
+
+      .chk-header {
+        display: none;
       }
     }
 
@@ -1113,6 +1120,7 @@
 
     .sku-item-title {
       font-size: 14px;
+      font-weight: normal;
     }
 
     .sku-content {
@@ -1126,7 +1134,9 @@
     }
 
     .sku-price {
-      font-size: 14px;
+      font-size: 13px;
+      color: red;
+      font-weight: normal;
     }
 
     /* .summary-wrapper:hover .sku-info {
@@ -1135,6 +1145,65 @@
       visibility: visible;
       pointer-events: auto;
     } */
+    .buy-relative {
+      position: relative;
+    }
+
+    .buy-box {
+      display: inline-block;
+      font-size: 30px;
+      color: rgb(102, 101, 109);
+      padding: 1em;
+      vertical-align: top;
+      -webkit-transition: .3s color, .3s border;
+      transition: .3s color, .3s border;
+      text-align: center;
+    }
+
+    #cb-buy-each2 {
+      color: red;
+    }
+
+    .sku-preview-img {
+      width: 100%;
+      height: 100%;
+      /* background-color: #f5f5f5; */
+      /* opacity: 0.3; */
+      position: fixed;
+      top: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .sku-preview-img img {
+      width: 300px;
+    }
+
+    .sku-preview-img-box {
+      display: none;
+    }
+
+    .swiper-slide {
+      padding: 0 !important;
+    }
+
+    .cb-reg-price {
+      font-size: 14px;
+    }
+
+    .font-weight-bold {
+      color: red
+    }
+
+    .p-off {
+      font-size: 13px;
+      color: red
+    }
+
+    .input-span {
+      color: var(--text-color);
+    }
   </style>
 </head>
 
@@ -1143,12 +1212,12 @@
     <!-- Start VWO SmartCode -->
     <script src="/checkout/v2/js/51174.js"></script>
     <!-- End VWO SmartCode -->
-    <link rel="stylesheet prefetch" href="/checkout/v2/css/app2.css?v=2" />
+    <link rel="stylesheet prefetch" href="/checkout/v2/css/app2.css?v=3" />
     <link type="text/css" href="/checkout/v2/css/custom-extra.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/5.0.4/css/swiper.css" />
     <link type="text/css" href="/checkout/v2/css/repeated-order-confirmation.min.css" rel="stylesheet" />
     <link type="text/css" href="/checkout/v2/css/repeated-order-confirmation-additional.css" rel="stylesheet" />
-    <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/checkout.css?v=1" />
+    <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/checkout.css?v=3" />
     <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/bootstrap.min.css" />
     <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/slick.min.css" />
     <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/upsell-new-02.css" />
@@ -1593,14 +1662,14 @@
   <script type="text/javascript" src="/checkout/v2/js/everflow.js"></script>
   <!-- END MVMT EVERFLOW CHECKOUT PAGEVIEW PIXEL -->
   <div id="">
-    <img class="w-100 d-none d-md-block" src="/checkout/v2/images/Black_Friday_top.png" />
-    <img class="w-100 d-block d-md-none" src="/checkout/v2/images/Mobile_Reconstruction_1.png" />
+    <img class="w-100 d-none d-md-block" id="pc-banner" src="/checkout/v2/images/Black_Friday_top.png" />
+    <img class="w-100 d-block d-md-none" id="mobile-banner" src="/checkout/v2/images/Mobile_Reconstruction_1.png" />
   </div>
   <div class="topStrip">
     <div class="container">
       <p>
-        <span class="cb-total-discount-applied"></span> discount <span class="cb-discountPercentage"></span> applied. This code expires in:
-        <span id="stopwatch">05:00</span> Please do not leave this page!
+        <span class="cb-total-discount-applied"></span> @lang('checkout::app.v2.discount') <span class="cb-discountPercentage"></span> @lang('checkout::app.v2.applied')
+        <span id="stopwatch">05:00</span> @lang('checkout::app.v2.Please do not leave this page!')
       </p>
     </div>
   </div>
@@ -1613,27 +1682,27 @@
       </div>
     </div>
   </div>
-  <div class="chk-header">
+  <!-- <div class="chk-header">
     <div class="container">
       <ul class="stepsBox">
         <li><span>@lang('checkout::app.v2.Checkout')</span></li>
-        <li>Free Bonus</li>
-        <li>Receipt</li>
+        <li>@lang('checkout::app.v2.Free Bonus')</li>
+        <li>@lang('checkout::app.v2.Receipt')</li>
       </ul>
     </div>
-  </div>
+  </div> -->
   <div class="checkout-section">
     <div class="container">
-      <p class="prod-name forMob">Fur Sweep Collar</p>
-      <p class="str-rvw forMob go-rew"><img src="/checkout/v2/images/star02.png" alt="Star" />12,421 Verified Customer Reviews</p>
+      <p class="prod-name forMob" style="color: #444444 !important;"></p>
+      <p class="str-rvw forMob go-rew"><img src="/checkout/v2/images/star02.png" alt="Star" />@lang('checkout::app.v2.12,421 Verified Customer Reviews')</p>
       <div class="left-sec">
         <div id="sticky" style="position:sticky;top: 0;">
           <div style="display: none;" class="vehicle-detail-banner banner-content clearfix">
             <div class="banner-slider">
-              <div class="slider-banner-image">
+              <div class="slider-banner-image1">
                 <div class="sw-box">
-                  <div class="swiper-button-prev"></div>
-                  <div class="swiper-button-next"></div>
+                  <!-- <div class="swiper-button-prev"></div>
+                  <div class="swiper-button-next"></div> -->
                 </div>
               </div>
             </div>
@@ -1643,11 +1712,27 @@
         </div>
       </div>
       <div class="right-sec">
-        <p class="prod-name hide-mob">Fur Sweep Collar</p>
-        <p class="str-rvw hide-mob go-rew"><img src="/checkout/v2/images/star02.png" alt="Star" />12,421 Verified Customer Reviews</p>
+        <p class="prod-name hide-mob"></p>
+        <p class="str-rvw hide-mob go-rew"><svg width="98px" height="16px" viewBox="0 0 512 96" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <!-- Generator: Sketch 53.2 (72643) - https://sketchapp.com -->
+            <g id="Trustpilot_ratings_5star-RGB" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+              <g fill-rule="nonzero">
+                <rect id="Rectangle-path" fill="#00B67A" x="0" y="0" width="96" height="96"></rect>
+                <rect id="Rectangle-path" fill="#00B67A" x="104" y="0" width="96" height="96"></rect>
+                <rect id="Rectangle-path" fill="#00B67A" x="208" y="0" width="96" height="96"></rect>
+                <rect id="Rectangle-path" fill="#00B67A" x="312" y="0" width="96" height="96"></rect>
+                <rect id="Rectangle-path" fill="#00B67A" x="416" y="0" width="96" height="96"></rect>
+                <path d="M48,64.7 L62.6,61 L68.7,79.8 L48,64.7 Z M81.6,40.4 L55.9,40.4 L48,16.2 L40.1,40.4 L14.4,40.4 L35.2,55.4 L27.3,79.6 L48.1,64.6 L60.9,55.4 L81.6,40.4 L81.6,40.4 L81.6,40.4 L81.6,40.4 Z" id="Shape" fill="#FFFFFF"></path>
+                <path d="M152,64.7 L166.6,61 L172.7,79.8 L152,64.7 Z M185.6,40.4 L159.9,40.4 L152,16.2 L144.1,40.4 L118.4,40.4 L139.2,55.4 L131.3,79.6 L152.1,64.6 L164.9,55.4 L185.6,40.4 L185.6,40.4 L185.6,40.4 L185.6,40.4 Z" id="Shape" fill="#FFFFFF"></path>
+                <path d="M256,64.7 L270.6,61 L276.7,79.8 L256,64.7 Z M289.6,40.4 L263.9,40.4 L256,16.2 L248.1,40.4 L222.4,40.4 L243.2,55.4 L235.3,79.6 L256.1,64.6 L268.9,55.4 L289.6,40.4 L289.6,40.4 L289.6,40.4 L289.6,40.4 Z" id="Shape" fill="#FFFFFF"></path>
+                <path d="M360,64.7 L374.6,61 L380.7,79.8 L360,64.7 Z M393.6,40.4 L367.9,40.4 L360,16.2 L352.1,40.4 L326.4,40.4 L347.2,55.4 L339.3,79.6 L360.1,64.6 L372.9,55.4 L393.6,40.4 L393.6,40.4 L393.6,40.4 L393.6,40.4 Z" id="Shape" fill="#FFFFFF"></path>
+                <path d="M464,64.7 L478.6,61 L484.7,79.8 L464,64.7 Z M497.6,40.4 L471.9,40.4 L464,16.2 L456.1,40.4 L430.4,40.4 L451.2,55.4 L443.3,79.6 L464.1,64.6 L476.9,55.4 L497.6,40.4 L497.6,40.4 L497.6,40.4 L497.6,40.4 Z" id="Shape" fill="#FFFFFF"></path>
+              </g>
+            </g>
+          </svg>@lang('checkout::app.v2.12,421 Verified Customer Reviews')</p>
         <p class="bdr-line hide-mob"></p>
-        <p class="prd-det-disc">Natural Protection for Your Beloved Dog: Safe, Effective Flea &amp; Tick Prevention</p>
-        <p class="pkg-hdng"><span class="pkg-step">Step1: </span> Choose your package</p>
+        <!-- <p class="prd-det-disc">Natural Protection for Your Beloved Dog: Safe, Effective Flea &amp; Tick Prevention</p> -->
+        <p class="pkg-hdng"><span class="pkg-step">@lang('checkout::app.v2.Step')1: </span> @lang('checkout::app.v2.Choose your package')</p>
         <div class="pkg-opt">
           <div class="cb-first-item"></div>
           <div class="buyopt packageClass cb-package-container choose-p" id="product2">
@@ -1655,7 +1740,7 @@
               <p>
                 <strong id="p-name2"></strong>
                 <br />
-                <span id="b-off2"></span>
+                <span class="p-off" id="b-off2"></span>
                 <span class="cb-discountPercentage"></span>
               </p>
             </div>
@@ -1666,16 +1751,25 @@
               </p>
             </div>
           </div>
-          <div class="buy-select" id="buy-select2">
+          <div class="buy-select buy-relative" id="buy-select2">
+
+            <div class="buy-loading">
+              <div style="position: absolute; top: -5px; left: -10px; width: 110%; height: 110%; z-index: 100000; background:#fff;" id="loading-box" class="flex-center">
+                <div class="buy-box">
+                  <div class="loader loader-01"></div>
+                </div>
+              </div>
+            </div>
+
             <div class="buy-se-box">
               <div class="se-box" id="select2-item1">
-                <p class="se-title">item1</p>
+                <p class="se-title">@lang('checkout::app.v2.item')1</p>
               </div>
             </div>
 
             <div class="buy-se-box" id="p2-i2">
               <div class="se-box" id="select2-item2">
-                <p class="se-title">item2</p>
+                <p class="se-title">@lang('checkout::app.v2.item')2</p>
               </div>
             </div>
           </div>
@@ -1685,7 +1779,7 @@
               <p>
                 <strong id="p-name1"></strong>
                 <br />
-                <span id="b-off1"></span>
+                <span class="p-off" id="b-off1"></span>
                 <span class="cb-discountPercentage"></span>
               </p>
             </div>
@@ -1696,10 +1790,19 @@
               </p>
             </div>
           </div>
-          <div class="buy-select" id="buy-select1">
+          <div class="buy-select buy-relative" id="buy-select1">
             <div class="buy-se-box">
+
+              <div class="buy-loading">
+                <div style="position: absolute; top: -5px; left: -10px; width: 110%; height: 120%; z-index: 100000; background:#fff;" id="loading-box" class="flex-center">
+                  <div class="buy-box">
+                    <div class="loader loader-01"></div>
+                  </div>
+                </div>
+              </div>
+
               <div class="se-box" id="select1-item1">
-                <p class="se-title">item1</p>
+                <p class="se-title">@lang('checkout::app.v2.item')1</p>
               </div>
             </div>
           </div>
@@ -1709,7 +1812,7 @@
               <p>
                 <strong id="p-name3"></strong>
                 <br />
-                <span id="b-off3"></span>
+                <span class="p-off" id="b-off3"></span>
                 <span class="cb-discountPercentage"></span>
               </p>
             </div>
@@ -1720,20 +1823,29 @@
               </p>
             </div>
           </div>
-          <div class="buy-select" id="buy-select3">
+          <div class="buy-select buy-relative" id="buy-select3">
+
+            <div class="buy-loading">
+              <div style="position: absolute; top: -5px; left: -10px; width: 110%; height: 110%; z-index: 100000; background:#fff;" id="loading-box" class="flex-center">
+                <div class="buy-box">
+                  <div class="loader loader-01"></div>
+                </div>
+              </div>
+            </div>
+
             <div class="buy-se-box">
               <div class="se-box" id="select3-item1">
-                <p class="se-title">item1</p>
+                <p class="se-title">@lang('checkout::app.v2.item')1</p>
               </div>
             </div>
             <div class="buy-se-box">
               <div class="se-box" id="select3-item2">
-                <p class="se-title">item2</p>
+                <p class="se-title">@lang('checkout::app.v2.item')2</p>
               </div>
             </div>
             <div class="buy-se-box">
               <div class="se-box" id="select3-item3">
-                <p class="se-title">item3</p>
+                <p class="se-title">@lang('checkout::app.v2.item')3</p>
               </div>
             </div>
           </div>
@@ -1742,7 +1854,7 @@
               <p>
                 <strong id="p-name4"></strong>
                 <br />
-                <span id="b-off4"></span>
+                <span class="p-off" id="b-off4"></span>
                 <span class="cb-discountPercentage"></span>
               </p>
             </div>
@@ -1753,31 +1865,39 @@
               </p>
             </div>
           </div>
-          <div class="buy-select" id="buy-select4">
+          <div class="buy-select buy-relative" id="buy-select4">
+            <div class="buy-loading">
+              <div style="position: absolute; top: -5px; left: -10px; width: 110%; height: 110%; z-index: 100000; background:#fff;" id="loading-box" class="flex-center">
+                <div class="buy-box">
+                  <div class="loader loader-01"></div>
+                </div>
+              </div>
+            </div>
+
             <div class="buy-se-box">
               <div class="se-box" id="select4-item1">
-                <p class="se-title">item1</p>
+                <p class="se-title">@lang('checkout::app.v2.item')1</p>
               </div>
             </div>
             <div class="buy-se-box">
               <div class="se-box" id="select4-item2">
-                <p class="se-title">item2</p>
+                <p class="se-title">@lang('checkout::app.v2.item')2</p>
               </div>
             </div>
             <div class="buy-se-box">
               <div class="se-box" id="select4-item3">
-                <p class="se-title">item3</p>
+                <p class="se-title">@lang('checkout::app.v2.item')3</p>
               </div>
             </div>
             <div class="buy-se-box">
               <div class="se-box" id="select4-item4">
-                <p class="se-title">item4</p>
+                <p class="se-title">@lang('checkout::app.v2.item')4</p>
               </div>
             </div>
           </div>
-          <div class="zoom-fade submit-button" id="payment-button" style="text-align: center">COMPLETELY SAFE PURCHASE</div>
+          <div class="zoom-fade submit-button" id="payment-button" style="text-align: center;margin-top: 20px; width:100%;float: left"></div>
           <div id="loading">
-            <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 100000" id="loading-box" class="flex-center">
+            <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 100000; background:#ddd;opacity: 0.3;" id="loading-box" class="flex-center">
               <div class="box">
                 <div class="loader loader-01"></div>
               </div>
@@ -1788,7 +1908,7 @@
 
         <p class="bdr-line"></p>
 
-        <p class="pkg-hdng"><span class="pkg-step">Step2:</span> Enter customer information</p>
+        <p class="pkg-hdng"><span class="pkg-step">@lang('checkout::app.v2.Step')2:</span> @lang('checkout::app.v2.Enter customer information')</p>
         <form class="form">
           <input type="hidden" name="prospectId" id="prospectId" value="" />
           <input type="hidden" name="campaigns[1][id]" id="campaign_id" value="" />
@@ -1803,30 +1923,30 @@
             <div class="fl input-box">
               <label>
                 <input class="input-item" name="firstName" id="firstName" type="text" placeholder="" required="" />
-                <span>First Name</span>
+                <span class="input-span">@lang('checkout::app.v2.First Name')</span>
               </label>
             </div>
             <div class="fl input-box">
               <label>
                 <input class="input-item" name="lastName" id="lastName" type="text" placeholder="" required="" />
-                <span>Last Name</span>
+                <span class="input-span">@lang('checkout::app.v2.Last Name')</span>
               </label>
             </div>
             <div class="fl input-box">
               <label>
                 <input class="input-item" name="email" id="email" type="email" placeholder="" required="" />
-                <span>Email Address</span>
+                <span class="input-span">@lang('checkout::app.v2.Email')</span>
               </label>
             </div>
             <div class="fl input-box">
               <label>
                 <input class="input-item" name="phone" id="phone" type="tel" placeholder="" required="" />
-                <span>Phone</span>
+                <span class="input-span">@lang('checkout::app.v2.Phone')</span>
               </label>
             </div>
             <p class="bdr-line"></p>
             <div class="payment-flds-box">
-              <p class="pkg-hdng"><span class="pkg-step">Step3:</span> Enter your shipping information</p>
+              <p class="pkg-hdng"><span class="pkg-step">@lang('checkout::app.v2.Step')3:</span> @lang('checkout::app.v2.Enter your shipping information')</p>
               <!-- <div class="frm-flds fl">
                 <label for="address" class="fl-label">Shipping Address</label>
                 <input type="text" name="shippingAddress1" class="input-flds required cb-remove-class frmField" placeholder="Your Address" data-error-message="Please enter your address!" id="shipAddress" />
@@ -1834,7 +1954,7 @@
               <div class="fl input-box" style="margin-top: 15px;">
                 <label>
                   <input class="input-item" name="shippingAddress1" id="shipAddress" type="text" placeholder="" required="" />
-                  <span>Address</span>
+                  <span class="input-span">@lang('checkout::app.v2.Address')</span>
                 </label>
               </div>
               <!-- <div class="frm-flds fl">
@@ -1844,52 +1964,49 @@
               <div class="fl input-box">
                 <label>
                   <input class="input-item" name="shippingCity" id="shipAddress" type="text" placeholder="" required="" />
-                  <span>City</span>
+                  <span class="input-span">@lang('checkout::app.v2.City')</span>
                 </label>
               </div>
-              <!-- <div class="frm-flds fl">
-                <label for="shippingCountry" class="fl-label">Select Country</label>
-                <select name="shippingCountry" type="text" placeholder="Your State" class="selcet-fld required cb-remove-class frmField" data-selected="US" data-error-message="Please select your country!">
-                  <option value="">Select Country</option>
+              <div class="frm-flds fl">
+                <label for="shippingCountry" class="fl-label"></label>
+                <select name="shippingCountry" type="text" placeholder="@lang('checkout::app.v2.Country')" class="selcet-fld required cb-remove-class frmField" data-selected="US" data-error-message="Please select your country!">
                 </select>
-              </div> -->
-              <div class="fl input-box">
+              </div>
+              <!-- <div class="fl input-box">
                 <label>
                   <select class="input-item" name="shippingCountry" type="text" placeholder="" required="">
-                    <option value="">Select Country</option>
                   </select>
-                  <span>Country</span>
+                  <span>@lang('checkout::app.v2.Country')</span>
                 </label>
-              </div>
-              <!-- <div class="frm-flds fl">
-                <label for="state" class="fl-label">Select State</label>
-                <select type="text" name="shippingState" placeholder="Your State" class="selcet-fld required cb-remove-class frmField" id="shippingStateSelect" data-error-message="Please select your state!" data-selected="">
-                  <option value="">Select Stata</option>
-                </select>
               </div> -->
-              <div class="fl input-box">
+              <div class="frm-flds fl" style="margin-top: 20px;">
+                <label for="state" class="fl-label"></label>
+                <select type="text" name="shippingState" placeholder="@lang('checkout::app.v2.State')" class="selcet-fld required cb-remove-class frmField" id="shippingStateSelect" data-error-message="Please select your state!" data-selected="">
+                  <option value=""></option>
+                </select>
+              </div>
+              <!-- <div class="fl input-box">
                 <label>
                   <select class="input-item" name="shippingState" id="shippingStateSelect" type="text" placeholder="" required="">
-                    <option value="">Select Stata</option>
                   </select>
-                  <span>Stata</span>
+                  <span>@lang('checkout::app.v2.State')</span>
                 </label>
-              </div>
+              </div> -->
               <!-- <div class="frm-flds fl">
                 <label for="zip" class="fl-label">Zip Code</label>
                 <input type="tel" name="shippingZip" id="zip" class="input-flds required cb-remove-class frmField" placeholder="Zip Code" data-error-message="Please enter a valid zip code!" />
               </div> -->
-              <div class="fl input-box">
+              <div class="fl input-box" style="margin-top: 20px;">
                 <label>
                   <input class="input-item" name="shippingZip" id="zip" type="tel" placeholder="" required="" />
-                  <span>Zip Code</span>
+                  <span class="input-span">@lang('checkout::app.v2.Zip Code')</span>
                 </label>
               </div>
               <!--   <a href="javascript:void(0)" class="continue-order addon_btn"
                         onclick="javascript:bookmarkscroll.scrollTo('wrnty')">Select Addon</a>-->
             </div>
-            <p class="pkg-hdng"><span class="pkg-step">Step4:</span> Enter your payment information</p>
-            <p>&nbsp;</p>
+            <p class="pkg-hdng"><span class="pkg-step">@lang('checkout::app.v2.Step')4:</span> @lang('checkout::app.v2.Enter your payment information')</p>
+            <p style="font-size: 13px;color: #444444; margin-bottom: 15px">Alle Transaktionen sind sicher und verschlüsselt.</p>
             <select name="creditCardType" class="form-control" data-error-message="Please select valid card type!">
               <option value="">Card Type</option>
               <option value="master">Master Card</option>
@@ -1911,7 +2028,7 @@
                             <h4 class="panel-title">
                               <div class="panel-title-header" id="headingThree2">
                                 <div class="form-check form-check-inline" style="width: 100%;">
-                                  <input class="form-check-input" type="radio" value="airwallex-klarna" id="airwallex-klarna" <?php if ($payments_default == 'airwallex-klarna') echo 'checked'; ?> name="payment_method">
+                                  <input class="form-check-input" name="airwallex-klarna" type="radio" value="airwallex-klarna" id="airwallex-klarna" <?php if ($payments_default == 'airwallex-klarna') echo 'checked'; ?> name="payment_method">
                                   <label class="form-check-label" for="airwallex-klarna" style="float: right;min-width: 95%;">
                                     <span style="font-family: var(--title-family);">@lang('onebuy::app.product.payment.klarna.title')</span>
                                     <div style="float: right;min-width: 200px;display: inline;text-align: right;"><img src="/checkout/v1/app/desktop/images/Klarna.png" style="max-height:24px" /></div>
@@ -1962,7 +2079,6 @@
                                   <input class="form-check-input" type="radio" name="payment_method" id="payment_method_airwallex" <?php if ($payments_default == 'payment_method_airwallex') echo 'checked'; ?> value="airwallex">
                                   <label class="form-check-label" for="payment_method_airwallex" style="float: right;min-width: 95%;">
                                     <span style="font-family: var(--title-family);">@lang('onebuy::app.product.payment.creditCard.title')</span>
-
                                     <div class="text-right" style="min-width:190px; display: inline;float: right;">
                                       <img src="https://cdn.shopify.com/shopifycloud/checkout-web/assets/0169695890db3db16bfe.svg" />
                                       <img src="https://cdn.shopify.com/shopifycloud/checkout-web/assets/ae9ceec48b1dc489596c.svg" />
@@ -1978,10 +2094,10 @@
                           </div>
                           <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
                             <div class="panel-body">
-                              <div style={containerStyle}>
-                                <div>@lang('onebuy::app.product.payment.creditCard.card_number')</div>
+                              <div>
                                 <div id="cardNumber" class="form-floating input-group has-icon-left" style="
-                                  border: 1px solid #a7abad;
+                                  border: 1px solid rgba(105, 105, 105, 0.397);
+                                  border-radius: 10px;
                                   color: #222;
                                   height: 32px;
                                   line-height: 22px;
@@ -1996,10 +2112,11 @@
                                   -webkit-box-sizing: border-box;height: calc(3.5rem + 2px);
                                   line-height: 1.25;padding: 1rem 0.75rem "></div>
                               </div>
-                              <div style={containerStyle}>
-                                <div>@lang('onebuy::app.product.payment.creditCard.Expiry')</div>
+                              <div style='margin-top:10px'>
+                                <!-- <div>@lang('onebuy::app.product.payment.creditCard.Expiry')</div> -->
                                 <div id="cardExpiry" style="
-                                  border: 1px solid #a7abad;
+                                  border: 1px solid rgba(105, 105, 105, 0.397);
+                                  border-radius: 10px;
                                   color: #222;
                                   height: 32px;
                                   line-height: 22px;
@@ -2014,10 +2131,11 @@
                                   -webkit-box-sizing: border-box;height: calc(3.5rem + 2px);
                                   line-height: 1.25;padding: 1rem 0.75rem "></div>
                               </div>
-                              <div style={containerStyle}>
-                                <div>@lang('onebuy::app.product.payment.creditCard.cvc')</div>
+                              <div style='margin-top:10px'>
+                                <!-- <div>@lang('onebuy::app.product.payment.creditCard.cvc')</div> -->
                                 <div id="cardCvc" style="
-                                  border: 1px solid #a7abad;
+                                  border: 1px solid rgba(105, 105, 105, 0.397);
+                                  border-radius: 10px;
                                   color: #222;
                                   height: 32px;
                                   line-height: 22px;
@@ -2032,6 +2150,7 @@
                                   -webkit-box-sizing: border-box;height: calc(3.5rem + 2px);
                                   line-height: 1.25;padding: 1rem 0.75rem "></div>
                               </div>
+
                             </div>
                           </div>
                         </div>
@@ -2039,8 +2158,8 @@
                           <div class="panel-heading" role="tab" id="airwallex_dropin_head_1">
                             <h4 class="panel-title">
                               <div class="panel-title-header" id="airwallex_dropin_2">
-                                <div class="form-check form-check-inline" style="width: 100%;">
-                                  <input class="form-check-input" type="radio" value="airwallex_dropin" id="airwallex_dropin" <?php if ($payments_default == 'airwallex_dropin') echo 'checked'; ?> name="payment_method">
+                                <div class="form-check form-check-inline input-box" style="width: 100%;">
+                                  <input class="form-check-input input-item" type="radio" value="airwallex_dropin" id="airwallex_dropin" <?php if ($payments_default == 'airwallex_dropin') echo 'checked'; ?> name="payment_method">
                                   <label class="form-check-label" for="airwallex_dropin" style="float: right;min-width: 95%;">
                                     <span style="font-family: var(--title-family);">@lang('onebuy::app.product.payment.airwallex_dropin.title') </span>
                                     <!-- <div style="float: right;min-width: 200px;display: inline;text-align: right;"><img src="/checkout/v1/app/desktop/images/paypal.png" style="max-height:24px" /></div> -->
@@ -2130,96 +2249,85 @@
               </div>
             </div>
           </div>
-          <div class="complete-btn" id="complete-btn-id">Complete Checkout</div>
+          <div class="complete-btn" id="complete-btn-id"></div>
           <div id='paypal-button'></div>
         </form>
         <div class="summary-wrapper">
           <div class="order-summary-title">
-            <div>ORDER DETAILS</div>
+            <div style="font-size: 14px;font-weight: 500;">@lang('checkout::app.v2.ORDER DETAILS')</div>
           </div>
           <div class="order-summary-item">
             <div class="sku-info">
-              <!-- <div class="sku-item-info">
-                <img src="/checkout/onebuy/images/icon_gou.svg" alt="" style="width: 64px;height:64px">
-                <div class="sku-content">
-                  <p class="sku-item-title">title</p>
-                  <span class="sku-item-text">blue</span>
-                </div>
-                <div class="sku-price">11</div>
-              </div> -->
+
             </div>
-            <!-- <div class="os_main_product_name product-name"></div>
-            <div id="product-price" style="font-weight: bold"></div> -->
           </div>
           <div class="order-summary-item">
-            <div>Subtotal:</div>
-            <div id="summary-total1" style="font-weight: bold"></div>
+            <div>@lang('checkout::app.v2.Subtotal'):</div>
+            <div id="summary-total1" style="color: red;"></div>
           </div>
           <div class="order-summary-item">
-            <div>Discount:</div>
-            <div id="summary-total2" style="font-weight: bold; color: red"></div>
+            <div>@lang('checkout::app.v2.Discount'):</div>
+            <div id="summary-total2"></div>
           </div>
           <div class="order-summary-item">
-            <div>Shipping:</div>
-            <div id="summary-total3"></div>
+            <div>@lang('checkout::app.v2.Shipping'):</div>
+            <div id="summary-total3" style="color: red;"></div>
           </div>
           <div class="order-summary-item">
-            <div>Shipping Method:</div>
-            <div>USPS Express</div>
+            <div>@lang('checkout::app.v2.Shipping Method'):</div>
+            <div>@lang('checkout::app.v2.USPS Express')</div>
           </div>
           <div class="order-summary-total">
-            <div><strong>Today's Total:</strong></div>
+            <div><strong>@lang("checkout::app.v2.Today's Total"):</strong></div>
             <div>
-              <strong id="summary-total4" style="color: red">price</strong>
+              <strong id="summary-total4" style="color: red">@lang('checkout::app.v2.price')</strong>
             </div>
           </div>
         </div>
+        <div id="iduzu" class="section" style="width: 100%;float: right;margin-bottom:10px;    display: flex;
+">
+          <h3 class="container_title">@lang('onebuy::app.product.order.What customers are saying about')</h3>
+        </div>
+        <!-- review -->
+        <div class="section" style="width: 100%;float: right;">
+          <?php foreach ($comments as $key => $comment) {
+            $comment = json_decode($comment); //var_dump($comment);exit; 
+          ?>
 
+            <div class="comment-card" style="background-color: #f6f6f6">
+              <div style="display: flex">
+                <div class="mr4">
+                  <?php echo $comment->name; ?>
+                  <i class="flag-icon flag-icon-<?php echo strtolower($default_country); ?> mr-2"></i>
+                </div>
+                <div>
+                  <img class="mb1 mr2" width="14px" src="/checkout/onebuy/images/icon_gou.svg" />
+                  <strong style="width: 100%">@lang('onebuy::app.product.order.Verified')</strong>
+                </div>
+              </div>
+              <div>
+                <div style="text-align: start; width: 100%; margin-top: 15px">
+                  <img width="110px" src="/checkout/onebuy/images/stars-5.svg" alt="" />
+                </div>
+                <div class="cardtext" style="text-align: start;"><?php echo $comment->content; ?></div>
+                <?php if (isset($comment->images)) { ?>
+
+                  <?php foreach ($comment->images as $key => $image) { ?>
+
+                    <a href="javascript:;" onclick="showImgProp('<?php echo $image; ?>')">
+                      <img style="width: 30%; aspect-ratio: 1/1" src="<?php echo $image; ?>" alt="" />
+                    </a>
+
+                <?php }
+                } ?>
+              </div>
+            </div>
+          <?php } ?>
+        </div>
       </div>
     </div>
-
-    <p id="loading-indicator">Processing...</p>
   </div>
   <div class="clearall"></div>
-  <div id="iduzu" class="section">
-    <h3 class="container_title">@lang('onebuy::app.product.order.What customers are saying about')</h3>
-  </div>
-  <!-- review -->
-  <div class="section">
-    <?php foreach ($comments as $key => $comment) {
-      $comment = json_decode($comment); //var_dump($comment);exit; 
-    ?>
-
-      <div class="comment-card" style="background-color: #f6f6f6">
-        <div style="display: flex">
-          <div class="mr4">
-            <?php echo $comment->name; ?>
-            <i class="flag-icon flag-icon-<?php echo strtolower($default_country); ?> mr-2"></i>
-          </div>
-          <div>
-            <img class="mb1 mr2" width="14px" src="/checkout/onebuy/images/icon_gou.svg" />
-            <strong style="width: 100%">@lang('onebuy::app.product.order.Verified')</strong>
-          </div>
-        </div>
-        <div>
-          <div style="text-align: start; width: 100%; margin-top: 15px">
-            <img width="110px" src="/checkout/onebuy/images/stars-5.svg" alt="" />
-          </div>
-          <div class="cardtext"><?php echo $comment->content; ?></div>
-          <?php if (isset($comment->images)) { ?>
-
-            <?php foreach ($comment->images as $key => $image) { ?>
-
-              <a href="javascript:;" onclick="showImgProp('<?php echo $image; ?>')">
-                <img style="width: 30%; aspect-ratio: 1/1" src="<?php echo $image; ?>" alt="" />
-              </a>
-
-          <?php }
-          } ?>
-        </div>
-      </div>
-    <?php } ?>
-  </div>
   <div class="faq-content">
     <div id="seeFaqBtn">
       @lang('onebuy::app.product.order.Frequently Asked Questions')
@@ -2250,21 +2358,21 @@
     </div>
   </div>
   <div class="footer">
-    <p style="font-weight: 700">© 2024 Alle Rechte vorbehalten.</p>
+    <p style="font-weight: 700">© @lang('checkout::app.v2.2024 Alle Rechte vorbehalten').</p>
     <br class="br" />
     <br class="br" />
     <div class="phone-block"></div>
     <div class="terms-block">
-      <a class="ajax" href="/onebuy/page/shipping-policy?locale={{ app()->getLocale() }}" target="_blank"> Versand & Lieferung </a>
-      <a class="ajax" href="/onebuy/page/refund-policy?locale={{ app()->getLocale() }}" target="_blank"> Rückgaberecht </a>
-      <a class="ajax" href="/onebuy/page/about-us?locale={{ app()->getLocale() }}" target="_blank"> Über uns</a>
-      <a class="ajax" href="/onebuy/page/privacy-policy?locale={{ app()->getLocale() }}" target="_blank"> Datenschutzrichtlinie </a>
-      <a class="ajax" href="/onebuy/page/contact-us?locale={{ app()->getLocale() }}" target="_blank"> Kontaktiere uns </a>
-      <a class="ajax" href="/onebuy/page/Impressum?locale={{ app()->getLocale() }}" target="_blank">Impressum</a>
+      <a class="ajax" href="/onebuy/page/shipping-policy?locale={{ app()->getLocale() }}" target="_blank"> @lang('checkout::app.v2.shipping') </a>
+      <a class="ajax" href="/onebuy/page/refund-policy?locale={{ app()->getLocale() }}" target="_blank"> @lang('checkout::app.v2.refund policy')</a>
+      <a class="ajax" href="/onebuy/page/about-us?locale={{ app()->getLocale() }}" target="_blank"> @lang('checkout::app.v2.About Us')</a>
+      <a class="ajax" href="/onebuy/page/privacy-policy?locale={{ app()->getLocale() }}" target="_blank"> @lang('checkout::app.v2.Privacy Policy')</a>
+      <a class="ajax" href="/onebuy/page/contact-us?locale={{ app()->getLocale() }}" target="_blank"> @lang('checkout::app.v2.Contact us')</a>
+      <a class="ajax" href="/onebuy/page/Impressum?locale={{ app()->getLocale() }}" target="_blank">@lang('checkout::app.v2.imprint')</a>
     </div>
     <br /><br />
     <div class="dmca_logo">
-      <img src="/checkout/v2/images/dmca_protected_sml_120n.png" alt="DMCA.com Protection Status" />
+      <img src="/checkout/v2/images/1662477222-dmca.webp" alt="DMCA.com Protection Status" />
     </div>
   </div>
   <div class="dialog-error">
@@ -2272,6 +2380,11 @@
       <a href="javascript:void(0)" id="error-close" onclick="closeDialog()">X</a>
       <ul>
       </ul>
+    </div>
+  </div>
+  <div class="sku-preview-img-box" onclick="imgBoxClose()">
+    <div class="sku-preview-img">
+      <img src="/checkout/v2/images/dmca_protected_sml_120n.png" alt="" />
     </div>
   </div>
   <!-- End of Discount POp up-->
@@ -2618,6 +2731,9 @@
           var attrList = data.attr.attributes
           paypal_pay_acc = data.paypal_client_id
           var paymentsDefault = data.payments_default
+          console.log(paymentsDefault, data.ads.pc.img, 'paymentsDefault=====');
+          $('#pc-banner').attr('src', data.ads.pc.img);
+          $('#mobile-banner').attr('src', data.ads.mobile.img);
           $('.prod-name').text(data.product.name)
           $('title').html(data.product.name)
           $('#buy-select1, #buy-select3, #buy-select4').hide()
@@ -2636,7 +2752,10 @@
             $('#airwallex-dropin-box').hide()
           }
           if (paymentsDefault == 'airwallex-klarna') {
+            console.log(paymentsDefault, 'kelala');
             $('#airwallex-klarna').prop('checked', true);
+            $('#payal_standard').prop('checked', false);
+            $('#payment_method_airwallex').prop('checked', false);
             $("#complete-btn-id").show();
             $("#collapseOne").hide();
             $("#collapseTwo").hide();
@@ -2659,6 +2778,8 @@
 
           }
           if (paymentsDefault == 'payal-standard') {
+            $('#airwallex-klarna').prop('checked', false);
+            $('#payal_standard').prop('checked', false);
             $('#payment_method_airwallex').prop('checked', true);
             $("#complete-btn-id").show();
             console.log("click headingOne ");
@@ -2684,6 +2805,8 @@
           };
 
           if (paymentsDefault == 'airwallex-credit-card') {
+            $('#airwallex-klarna').prop('checked', false);
+            $('#payal_standard').prop('checked', false);
             $('#payment_method_airwallex').prop('checked', true);
             $("#complete-btn-id").show();
             console.log("click headingOne ");
@@ -2740,10 +2863,10 @@
           $('#p-name1').text(data.package_products[1].name)
           $('#p-name3').text(data.package_products[2].name)
           $('#p-name4').text(data.package_products[3].name)
-          $('#b-off2').text('Save ' + data.package_products[0].tip1 + ' OFF')
-          $('#b-off1').text('Save ' + data.package_products[1].tip1 + ' OFF')
-          $('#b-off3').text('Save ' + data.package_products[2].tip1 + ' OFF')
-          $('#b-off4').text('Save ' + data.package_products[3].tip1 + ' OFF')
+          $('#b-off2').text("@lang('checkout::app.v2.Save')" + data.package_products[0].tip1 + "@lang('checkout::app.v2.OFF')")
+          $('#b-off1').text("@lang('checkout::app.v2.Save')" + data.package_products[1].tip1 + "@lang('checkout::app.v2.OFF')")
+          $('#b-off3').text("@lang('checkout::app.v2.Save')" + data.package_products[2].tip1 + "@lang('checkout::app.v2.OFF')")
+          $('#b-off4').text("@lang('checkout::app.v2.Save')" + data.package_products[3].tip1 + "@lang('checkout::app.v2.OFF')")
           $('#cb-reg-price2').text(data.package_products[0].old_price_format)
           $('#cb-reg-price1').text(data.package_products[1].old_price_format)
           $('#cb-reg-price3').text(data.package_products[2].old_price_format)
@@ -2755,7 +2878,7 @@
           if (attrList.length > 0) {
             var selectList = ''
             for (var arri = 0; arri < attrList.length; arri++) {
-              var optionList = ''
+              var optionList = `<option value="">` + attrList[arri].label + `</option>`
               for (var attj = 0; attj < attrList[arri].options.length; attj++) {
                 optionList += `<option value="` + attrList[arri].options[attj].label + `">` + attrList[arri].options[attj].label + `</option>`
               }
@@ -2768,6 +2891,7 @@
             //   `</div><img class="se-img" src="` +
             //   data.attr.variant_images[imgIndex][0].small_image_url +
             //   `" alt="" />`
+            $('.buy-loading').hide()
             $('.se-box').append(selectList)
           } else {
             $('.buy-select').hide()
@@ -2841,14 +2965,6 @@
               name2List.push(name2)
               // productL1.attribute_name = v1+ ',' +v2
               for (var inm = 0; inm < data.attr.attributes[m].options.length; inm++) {
-                if (m == 0 && data.attr.attributes[0].options[inm].label == name1) {
-                  productL1.variant_id = data.attr.attributes[0].options[inm].products[0]
-                  productL1.product_sku = data.attr.index[productL1.variant_id].sku
-                }
-                if (m == 0 && data.attr.attributes[0].options[inm].label == name2) {
-                  productL2.variant_id = data.attr.attributes[0].options[inm].products[0]
-                  productL2.product_sku = data.attr.index[productL2.variant_id].sku
-                }
                 var mid = data.attr.attributes[m].id
                 if (data.attr.attributes[m].options[inm].label == name1) {
                   v1List.push(mid + '_' + data.attr.attributes[m].options[inm].id)
@@ -2870,6 +2986,7 @@
           productL2.attr_id = v2List
           productL1.attribute_name = name1List
           productL2.attribute_name = name2List
+          getVSID(data.attr.index2)
           params.products = []
           params.products.push(productL1, productL2)
           // productL1.attr_id
@@ -2884,6 +3001,31 @@
 
     })
 
+    function getVSID(obj) {
+      console.log(obj, 'obj==+++');
+      console.log(productL1.attr_id, ' productL1.attr_id');
+      for (const key in obj) {
+        console.log(key, 'key');
+        if (key == productL1.attr_id) {
+          console.log(obj[key][0], 'obj[key][0]');
+          productL1.variant_id = obj[key][0]
+          productL1.product_sku = obj[key][1]
+        }
+        if (key == productL2.attr_id) {
+          productL2.variant_id = obj[key][0]
+          productL2.product_sku = obj[key][1]
+        }
+        if (key == productL3.attr_id) {
+          productL3.variant_id = obj[key][0]
+          productL3.product_sku = obj[key][1]
+        }
+        if (key == productL4.attr_id) {
+          productL4.variant_id = obj[key][0]
+          productL4.product_sku = obj[key][1]
+        }
+      }
+    }
+
     function getSkuListInfo() {
       $('.sku-info').empty()
       var skuData = params.products
@@ -2891,17 +3033,34 @@
       var skuList = ''
       for (let i = 0; i < skuData.length; i++) {
         var description = skuData[i].description.slice(2)
+        var attributeName = skuData[i].attribute_name.split(',').join(' / ')
+        var skuImgUrl = skuData[i].img
         console.log(skuData[i], 'skuiii');
         skuList += `<div class="sku-item-info">
-                <img src="` + skuData[i].img + `" alt="" style="width: 64px;height:64px">
+                <img src="` + skuImgUrl + `" alt="" onclick="skuImgPreview(event)" style="width: 64px;height:64px" />
                 <div class="sku-content">
                   <p class="sku-item-title">` + description + `</p>
-                  <span class="sku-item-text">` + skuData[i].attribute_name + `</span>
+                  <span class="sku-item-text">` + attributeName + `</span>
+                  <a
+                    style="display:block;color:#1773B0; font-size:13px"
+                    href="javascript:void(0)"
+                    onclick="javascript:bookmarkscroll.scrollTo('product2')"
+                    >bearbeiten</a> 
                 </div>
                 <div class="sku-price">` + skuData[i].price + `</div>
               </div>`
       }
       $('.sku-info').append(skuList)
+    }
+
+    function skuImgPreview(event) {
+      var imgUrl = $(event.target).attr('src')
+      $('.sku-preview-img-box').show()
+      $('.sku-preview-img img').attr('src', imgUrl)
+    }
+
+    function imgBoxClose() {
+      $('.sku-preview-img-box').hide()
     }
 
     function paramsProductsinit(list) {
@@ -2961,10 +3120,6 @@
           name1 = $('#select1-item1').children('select').eq(m).val()
           name1List.push(name1)
           for (var inm = 0; inm < data.attr.attributes[m].options.length; inm++) {
-            if (m == 0 && data.attr.attributes[0].options[inm].label == name1) {
-              productL1.variant_id = data.attr.attributes[0].options[inm].products[0]
-              productL1.product_sku = data.attr.index[productL1.variant_id].sku
-            }
             var mid = data.attr.attributes[m].id
             if (data.attr.attributes[m].options[inm].label == name1) {
               v1List.push(mid + '_' + data.attr.attributes[m].options[inm].id)
@@ -2980,14 +3135,6 @@
           name2List.push(name2)
           // productL1.attribute_name = v1+ ',' +v2
           for (var inm = 0; inm < data.attr.attributes[m].options.length; inm++) {
-            if (m == 0 && data.attr.attributes[0].options[inm].label == name1) {
-              productL1.variant_id = data.attr.attributes[0].options[inm].products[0]
-              productL1.product_sku = data.attr.index[productL1.variant_id].sku
-            }
-            if (m == 0 && data.attr.attributes[0].options[inm].label == name2) {
-              productL2.variant_id = data.attr.attributes[0].options[inm].products[0]
-              productL2.product_sku = data.attr.index[productL2.variant_id].sku
-            }
             var mid = data.attr.attributes[m].id
             if (data.attr.attributes[m].options[inm].label == name1) {
               v1List.push(mid + '_' + data.attr.attributes[m].options[inm].id)
@@ -3007,18 +3154,6 @@
           name3List.push(name3)
           // productL1.attribute_name = v1+ ',' +v2
           for (var inm = 0; inm < data.attr.attributes[m].options.length; inm++) {
-            if (m == 0 && data.attr.attributes[0].options[inm].label == name1) {
-              productL1.variant_id = data.attr.attributes[0].options[inm].products[0]
-              productL1.product_sku = data.attr.index[productL1.variant_id].sku
-            }
-            if (m == 0 && data.attr.attributes[0].options[inm].label == name2) {
-              productL2.variant_id = data.attr.attributes[0].options[inm].products[0]
-              productL2.product_sku = data.attr.index[productL2.variant_id].sku
-            }
-            if (m == 0 && data.attr.attributes[0].options[inm].label == name3) {
-              productL3.variant_id = data.attr.attributes[0].options[inm].products[0]
-              productL3.product_sku = data.attr.index[productL3.variant_id].sku
-            }
             var mid = data.attr.attributes[m].id
             if (data.attr.attributes[m].options[inm].label == name1) {
               v1List.push(mid + '_' + data.attr.attributes[m].options[inm].id)
@@ -3043,22 +3178,6 @@
           name4List.push(name4)
           // productL1.attribute_name = v1+ ',' +v2
           for (var inm = 0; inm < data.attr.attributes[m].options.length; inm++) {
-            if (m == 0 && data.attr.attributes[0].options[inm].label == name1) {
-              productL1.variant_id = data.attr.attributes[0].options[inm].products[0]
-              productL1.product_sku = data.attr.index[productL1.variant_id].sku
-            }
-            if (m == 0 && data.attr.attributes[0].options[inm].label == name2) {
-              productL2.variant_id = data.attr.attributes[0].options[inm].products[0]
-              productL2.product_sku = data.attr.index[productL2.variant_id].sku
-            }
-            if (m == 0 && data.attr.attributes[0].options[inm].label == name3) {
-              productL3.variant_id = data.attr.attributes[0].options[inm].products[0]
-              productL3.product_sku = data.attr.index[productL3.variant_id].sku
-            }
-            if (m == 0 && data.attr.attributes[0].options[inm].label == name4) {
-              productL4.variant_id = data.attr.attributes[0].options[inm].products[0]
-              productL4.product_sku = data.attr.index[productL4.variant_id].sku
-            }
             var mid = data.attr.attributes[m].id
             if (data.attr.attributes[m].options[inm].label == name1) {
               v1List.push(mid + '_' + data.attr.attributes[m].options[inm].id)
@@ -3081,6 +3200,7 @@
         v1List = v1List.join(',')
         productL1.attr_id = v1List
         productL1.attribute_name = name1List
+        getVSID(data.attr.index2)
         params.products = []
         params.products.push(productL1)
       }
@@ -3093,6 +3213,7 @@
         productL2.attr_id = v2List
         productL1.attribute_name = name1List
         productL2.attribute_name = name2List
+        getVSID(data.attr.index2)
         params.products = []
         params.products.push(productL1, productL2)
         // paramsProductsinit(params.products)
@@ -3113,6 +3234,7 @@
         productL1.attribute_name = name1List
         productL2.attribute_name = name2List
         productL3.attribute_name = name3List
+        getVSID(data.attr.index2)
         params.products = []
         params.products.push(productL1, productL2, productL3)
         // paramsProductsinit(params.products)
@@ -3137,6 +3259,7 @@
         productL2.attribute_name = name2List
         productL3.attribute_name = name3List
         productL4.attribute_name = name4List
+        getVSID(data.attr.index2)
         params.products = []
         params.products.push(productL1, productL2, productL3, productL4)
         // paramsProductsinit(params.products)
@@ -3219,10 +3342,6 @@
           for (var j = 0; j < data.attr.attributes[i].options.length; j++) {
             if (data.attr.attributes[i].options[j].label == value) {
               aid = data.attr.attributes[i].options[j].id
-              if (i == 0) {
-                var iIndex = data.attr.attributes[i].options[j].products[0]
-                params.products[n].variant_id = iIndex
-              }
             }
           }
           var imgIndex = ''
@@ -3243,6 +3362,7 @@
           console.log(params.products[n].attr_id, 'attr_id')
         }
       }
+      getVSID(data.attr.index2)
     }
 
     function seInput(value) {
@@ -3390,7 +3510,8 @@
       params.code = $('input[name="shippingZip"]').val()
       params.country = $('select[name="shippingCountry"]').val()
       params.province = $('select[name="shippingState"]').val()
-      var errorShow = params.first_name && params.second_name && params.email && params.phone_full && params.address && params.city && params.code && params.country && params.province
+      var errIsShow = skuIsScelect()
+      var errorShow = params.first_name && params.second_name && params.email && params.phone_full && params.address && params.city && params.code && params.country && params.province && errIsShow
       console.log(errorShow, 'errorShow')
       if (!errorShow) {
         $('.dialog-error .dialog-box ul').empty()
@@ -3422,21 +3543,22 @@
         if (!params.province) {
           textList += `<li>Please select your state!</li>`
         }
+        if (!errIsShow) {
+          textList += `<li>Please select product information!</li>`
+        }
         $('.dialog-error').show()
         $('.dialog-error .dialog-box ul').append(textList)
         $('#loading').hide()
         return
       }
-      if ($('input[id="airwallex-klarna"]:checked')) {
+
+      var klarnaSelected = $("#airwallex-klarna").is(":checked");
+      var airwallexSelected = $("#payment_method_airwallex").is(":checked");
+      if (klarnaSelected) {
         console.log('klarna')
         params.payment_method = 'airwallex_klarna'
       }
-      if ($('input[id="payal_standard"]:checked')) {
-        console.log('klarna')
-
-        params.payment_method = 'paypal'
-      }
-      if ($('input[id="payment_method_airwallex"]:checked')) {
+      if (airwallexSelected) {
         console.log('airwallex')
         params.payment_method = 'airwallex'
       }
@@ -3450,11 +3572,46 @@
       //     console.log(err, 'err==')
       //   })
     })
+
+    function skuIsScelect() {
+      var showDialog = true
+      if (params.products.length > 0) {
+        if (typeof params.products[0] !== 'undefined' && !params.products[0].product_sku) {
+          showDialog = false
+        }
+        if (typeof params.products[1] !== 'undefined' && !params.products[1].product_sku) {
+          showDialog = false
+        }
+        if (typeof params.products[2] !== 'undefined' && !params.products[2].product_sku) {
+          showDialog = false
+        }
+        if (typeof params.products[3] !== 'undefined' && !params.products[3].product_sku) {
+          showDialog = false
+        }
+      }
+      return showDialog;
+    }
   </script>
   <script>
+    function getParams(methods) {
+      params.first_name = $('input[name="firstName"]').val()
+      params.second_name = $('input[name="lastName"]').val()
+      params.email = $('input[name="email"]').val()
+      params.phone_full = $('input[name="phone"]').val()
+      params.address = $('input[name="shippingAddress1"]').val()
+      params.city = $('input[name="shippingCity"]').val()
+      params.country = $('select[name="shippingCountry"]').val()
+      params.province = $('select[name="shippingState"]').val()
+      params.code = $('input[name="shippingZip"]').val()
+      params.payment_method = methods
+      console.log(params, '++++++params++++');
+    }
     $(function() {
 
       $("#payment_method_airwallex").on("click", function() {
+        $('#airwallex-klarna').prop('checked', false);
+        $('#payal_standard').prop('checked', false);
+        $('#payment_method_airwallex').prop('checked', true);
         $("#complete-btn-id").show();
         console.log("click headingOne ");
         $("#collapseOne").show();
@@ -3479,6 +3636,9 @@
       });
 
       $("#airwallex-klarna").on("click", function() {
+        $('#airwallex-klarna').prop('checked', true);
+        $('#payal_standard').prop('checked', false);
+        $('#payment_method_airwallex').prop('checked', false);
         $("#complete-btn-id").show();
         $("#collapseOne").hide();
         $("#collapseTwo").hide();
@@ -3501,7 +3661,10 @@
 
       })
 
-      $("#payal_standard").on("click", function() {
+      $("#payal_standard").on("click", function(params) {
+        $('#airwallex-klarna').prop('checked', false);
+        $('#payal_standard').prop('checked', true);
+        $('#payment_method_airwallex').prop('checked', false);
         $("#collapseOne").hide();
         $("#collapseTwo").show();
         $("#collapseThree").hide();
@@ -3519,7 +3682,7 @@
           background: "none",
           padding: '0'
         });
-
+        console.log(params, '==========1');
         //payment-button
         $("#complete-btn-id").empty();;
 
@@ -3654,9 +3817,13 @@
 
           // Call your server to set up the transaction
           createOrder: function(data, actions) {
+            getParams('paypal_stand')
+            var errIsShow = skuIsScelect()
+            console.log(params, '==========2', data);
+
             var errorShow = $('input[name="firstName"]').val() && $('input[name="lastName"]').val() && $('input[name="email"]').val() &&
               $('input[name="phone"]').val() &&
-              $('input[name="shippingAddress1"]').val() && $('input[name="shippingCity"]').val() && $('input[name="shippingZip"]').val() && $('select[name="shippingCountry"]').val() && $('select[name="shippingState"]').val()
+              $('input[name="shippingAddress1"]').val() && $('input[name="shippingCity"]').val() && $('input[name="shippingZip"]').val() && $('select[name="shippingCountry"]').val() && $('select[name="shippingState"]').val() && errIsShow
             console.log(errorShow, 'errorShowpaypal====')
             if (!errorShow) {
               $('.dialog-error .dialog-box ul').empty()
@@ -3688,6 +3855,9 @@
               if (!$('select[name="shippingState"]').val()) {
                 textList += `<li>Please select your state!</li>`
               }
+              if (!errIsShow) {
+                textList += `<li>Please select product information!</li>`
+              }
               $('.dialog-error').show()
               $('.dialog-error .dialog-box ul').append(textList)
               $('#loading').hide()
@@ -3695,7 +3865,7 @@
             }
             $('#loading').show();
             // var params = getOrderParams('paypal_stand');
-            var url = '/onebuy/order/addr/after?currenty={{ core()->getCurrentCurrencyCode() }}&_token={{ csrf_token() }}&time=' + new Date().getTime() + "&force=" + localStorage.getItem("force");
+            var url = '/onebuy/order/addr/after?currency={{ core()->getCurrentCurrencyCode() }}&_token={{ csrf_token() }}&time=' + new Date().getTime() + "&force=" + localStorage.getItem("force");
             return fetch(url, {
               body: JSON.stringify(params),
               method: 'POST',
@@ -3724,7 +3894,7 @@
                   }
                 }
 
-                var pay_error = JSON.parse(data.error);
+                // var pay_error = JSON.parse(data.error);
                 var pay_error_message = pay_error.details;
 
                 if (pay_error_message && pay_error_message.length) {
@@ -3749,12 +3919,26 @@
               paymentID: data.orderID,
               orderID: data.orderID,
             };
+            var paypalParams = {
+              first_name: $('input[name="firstName"]').val(),
+              second_name: $('input[name="lastName"]').val(),
+              email: $('input[name="email"]').val(),
+              phone_full: $('input[name="phone"]').val(),
+              address: $('input[name="shippingAddress1"]').val(),
+              city: $('input[name="shippingCity"]').val(),
+              country: $('select[name="shippingCountry"]').val(),
+              province: $('select[name="shippingState"]').val(),
+              code: $('input[name="shippingZip"]').val(),
+              payment_method: 'paypal_stand'
+            }
             var request_params = {
               client_secret: data.orderID,
               id: localStorage.getItem('order_id'),
               orderData: orderData,
               data: data,
+              params: paypalParams
             }
+            console.log(request_params, '===request_params===');
             var url = "/onebuy/order/status?_token={{ csrf_token() }}&currency={{ core()->getCurrentCurrencyCode() }}";
             return fetch(url, {
               method: 'post',
@@ -4291,24 +4475,24 @@
       }
     })
 
-    function reviewWidth() {
-      var width = $(window).innerWidth()
-      if (width > 767) {
-        var rw = $('.right-sec').width()
-        var lw = $('.left-sec').width()
-        var rew = rw + lw + 'px'
-        $('#iduzu').css('width', rew)
+    // function reviewWidth() {
+    //   var width = $(window).innerWidth()
+    //   if (width > 767) {
+    //     var rw = $('.right-sec').width()
+    //     var lw = $('.left-sec').width()
+    //     var rew = rw + lw + 'px'
+    //     $('#iduzu').css('width', rew)
 
-      } else {
-        $('#iduzu').css('width', '100%')
-      }
-    }
-    $(function() {
-      reviewWidth()
-    })
-    window.addEventListener('resize', function() {
-      reviewWidth()
-    })
+    //   } else {
+    //     $('#iduzu').css('width', '100%')
+    //   }
+    // }
+    // $(function() {
+    //   reviewWidth()
+    // })
+    // window.addEventListener('resize', function() {
+    //   reviewWidth()
+    // })
     $('.fieldToggle').click(function() {
       if ($('#togData').prop('checked') == true) {
         $('.shipaddress').slideUp()
@@ -4407,7 +4591,7 @@
           }
           $('.grid-container').append(showimg)
           var gallery =
-            `<div class="swiper-container" id="gallery">
+            `<div class="swiper-container" style="width:100%" id="gallery">
 					<div class="swiper-wrapper">` +
             swiperList +
             `</div>
@@ -4425,15 +4609,15 @@
             loop: true,
             autoplay: true,
             allowTouchMove: true,
-            navigation: {
-              nextEl: '.swiper-button-next',
-              prevEl: '.swiper-button-prev',
-            },
+            //navigation: {
+            //nextEl: '.swiper-button-next',
+            //prevEl: '.swiper-button-prev',
+            //},
             thumbs: {
               swiper: {
                 el: '#thumbs',
-                slidesPerView: 3,
-                spaceBetween: 10,
+                slidesPerView: 5,
+                spaceBetween: 5,
                 watchSlidesVisibility: true,
                 loop: true,
               },
@@ -4615,6 +4799,16 @@
 
             // Call your server to set up the transaction
             createOrder: function(data, actions) {
+              var errIsShow = skuIsScelect()
+              if (!errIsShow) {
+                $('.dialog-error .dialog-box ul').empty()
+                var textList = `<li>Please select product information!</li>`
+                $('.dialog-error').show()
+                $('.dialog-error .dialog-box ul').append(textList)
+                $('#loading').hide()
+                return;
+              }
+              console.log(data, '==========');
               // sendInitiateCheckoutEvent()
 
               // gtag('event', 'initiate_paypal_checkout', {
@@ -4638,7 +4832,7 @@
                 '&force=' +
                 localStorage.getItem('force')
               $('#' + (error_id || 'paypal-error')).hide()
-
+              params.payment_method = 'paypal'
               return fetch(url, {
                   body: JSON.stringify(params),
                   method: 'POST',
@@ -4926,7 +5120,7 @@
       // fbq('track', 'InitiateCheckout');
       // obApi('track', 'Start Checkout'); 
       var pay_type = 'worldpay';
-      var params = getOrderParams(pay_type);
+      // var params = getOrderParams(pay_type);
       if (params.error && params.error.length) {
         $('#checkout-error').html(params.error.join('<br />'));
         $('#checkout-error').show();
@@ -5168,156 +5362,6 @@
       }
 
       return '';
-    }
-
-    function getOrderParams(pay_type, is_chain_payment, cancel_check_scroll = false) {
-
-      var product = getSelectProduct();
-
-      var shipping_fee = product.shipping_fee;
-
-      var product_info = {
-        product_name: product.name,
-        product_price: product.new_price,
-        product_sku: '',
-        product_id: '3167',
-        sku_id: '',
-        currency: 'USD',
-        shipping_fee: shipping_fee,
-        amount: product.amount,
-        product_image: 'https://shop.hatmeo.com/cache/small/product/3167/1_f3710786-04cc-41f0-9837-6004fa6114ae.webp'
-      };
-
-      var total = product_info.product_price * 1 + product_info.shipping_fee * 1;
-
-      var phone_number = $(".phone_number").val();
-      var phone_prefix = getPhonePrefix();
-
-
-
-      var products = getSubmitProducts(product_info.product_price, product_info.amount);
-
-      var shipping_address = "";
-
-      if ($("#shipping_address_other").is(':checked')) {
-        //$("#bill_address").show();
-        window.shipping_address = "other";
-        shipping_address = window.shipping_address;
-        //console.log("shipping address" + shipping_address);
-      }
-
-
-      var product_price = product_info.product_price;
-
-      var params = {
-        first_name: $(".first_name").val(),
-        second_name: $(".last_name").val(),
-        email: $(".email").val(),
-        phone_full: phone_number ? (phone_number.indexOf(phone_prefix) == 0 ? phone_number : (phone_prefix + phone_number)) : '',
-        country: $("#country-select").val(),
-        city: $(".city").val(),
-        province: $("#state-select").val(),
-        address: $(".address").val() ? $(".address").val() : '',
-        code: $(".zip_code").val(),
-        product_delivery: product_info.shipping_fee,
-        currency: product_info.currency,
-        product_price: product_price,
-        total: total.toFixed(2),
-        amount: product_info.amount,
-        payment_return_url: window.location.protocol + '//' + window.location.host + '/template-common/en/thankyou1/?' + GetRequest(),
-        payment_cancel_url: window.location.href,
-        phone_prefix: phone_prefix, //todo
-        payment_method: pay_type,
-        products: products,
-        logo_image: '',
-        brand: 'Hatmeo',
-        description: product_info.product_name,
-        shopify_store_name: '',
-        produt_amount_base: '1',
-        domain_name: document.domain || window.location.host,
-        price_template: '$price',
-        omnisend: '',
-        payment_account: '',
-        shipping_address: shipping_address,
-        bill_first_name: $(".bill-first_name").val(),
-        bill_second_name: $(".bill-last_name").val(),
-        bill_country: $("#bill-country-select").val(),
-        bill_city: $(".bill-city").val(),
-        bill_province: $("#bill-state-select").val(),
-        bill_address: $(".bill-address").val() ? $(".address").val() : '',
-        bill_code: $(".bill-zip_code").val(),
-
-      }
-
-      if (getQueryString('utm_campaign')) {
-        params['utm_campaign'] = getQueryString('utm_campaign');
-      }
-      if (getQueryString('smb_material_number')) {
-        var smb_material_number = getQueryString('smb_material_number')
-        params['smb_material_number'] = smb_material_number.split(',');
-      }
-
-      if (getQueryString('_ef_transaction_id')) {
-        params['ef_transaction_id'] = getQueryString('_ef_transaction_id');
-      }
-
-      var paypal_pay_type_arr = ['paypal', 'paypal_card'];
-      if (paypal_pay_type_arr.indexOf(pay_type) > -1) {
-        params['payment_account'] = 'miaodian';
-      }
-
-      params['error'] = checkoutProducts(params);
-
-      // 校验
-      var checkout_function = {
-        paypal: function() {
-          return false
-        },
-        checkout: checkOrderParams,
-        stripe: checkOrderParams,
-        payoneer: checkOrderParams,
-        paypal_card: checkOrderParams,
-        wintopay: checkOrderParams,
-        pacypay: checkOrderParams,
-        paypal_stand: checkOrderParams,
-      }
-      if (!params['error']) {
-        params['error'] = checkout_function[pay_type] ? checkout_function[pay_type](params, is_chain_payment, cancel_check_scroll) : checkOrderParams(params, is_chain_payment, cancel_check_scroll);
-      } else {
-        var checkout_err = checkout_function[pay_type] ? checkout_function[pay_type](params, is_chain_payment, cancel_check_scroll) : checkOrderParams(params, is_chain_payment, cancel_check_scroll);
-        if (checkout_err) {
-          params['error'] = params['error'].concat(checkout_err);
-        }
-      }
-
-
-      if (!params['error']) {
-        params['error'] = checkoutAmount(params);
-
-        postparams = {
-          "channel_id": "660bccc0efa6a",
-          "token": "",
-          "type": "add_pay"
-        };
-        fetch('https://crm.heomai.com/api/user/action', {
-          body: JSON.stringify(postparams),
-          method: 'POST',
-          headers: {
-            'content-type': 'application/json'
-          },
-        })
-
-      } else {
-        var amount_err = checkoutAmount(params);
-        if (amount_err) {
-          params['error'] = params['error'].concat(amount_err);
-        }
-
-
-
-      }
-
-      return params;
     }
 
     function checkoutProducts(params) {
