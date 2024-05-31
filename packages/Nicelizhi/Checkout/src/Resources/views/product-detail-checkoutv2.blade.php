@@ -722,7 +722,7 @@
     .footer-box {
       background-color: #F5F5F5;
       padding: 60px 30px 60px 30px;
-      margin-top: 30px;
+      /* margin-top: 30px; */
       margin-right: 0px;
       margin-left: 0px;
       text-align: center;
@@ -867,13 +867,13 @@
         display: none;
       }
 
-      .faq-content {
+      /* .faq-content {
         padding: 0 15px;
-      }
+      } */
 
       .footer-box {
         padding: 20px 30px 20px 30px;
-        margin-bottom: 30px;
+        /* margin-bottom: 30px; */
       }
 
       .br {
@@ -1230,6 +1230,10 @@
       font-weight: bold;
       color: var(--text-color);
     }
+
+    .flag-icon-size {
+      font-size: 10px;
+    }
   </style>
 </head>
 
@@ -1243,7 +1247,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/5.0.4/css/swiper.css" />
     <link type="text/css" href="/checkout/v2/css/repeated-order-confirmation.min.css" rel="stylesheet" />
     <link type="text/css" href="/checkout/v2/css/repeated-order-confirmation-additional.css" rel="stylesheet" />
-    <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/checkout.css?v=4" />
+    <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/checkout.css?v=6" />
     <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/bootstrap.min.css" />
     <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/slick.min.css" />
     <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/upsell-new-02.css?v=2" />
@@ -1694,8 +1698,8 @@
   <div class="topStrip">
     <div class="container-xxl">
       <p>
-        <span class="cb-total-discount-applied"></span> @lang('checkout::app.v2.discount') <span class="cb-discountPercentage"></span> @lang('checkout::app.v2.applied')
-        <span id="stopwatch">05:00</span> @lang('checkout::app.v2.Please do not leave this page!')
+        <span class="cb-total-discount-applied">Im Sommerschlussverkauf gilt der Rabatt für</span>
+        <span id="stopwatch">05:00</span>
       </p>
     </div>
   </div>
@@ -1720,7 +1724,23 @@
   <div class="checkout-section">
     <div class="container">
       <p class="prod-name forMob" style="color: #444444 !important;"></p>
-      <p class="str-rvw forMob go-rew"><img src="/checkout/v2/images/star02.png" alt="Star" />@lang('checkout::app.v2.12,421 Verified Customer Reviews')</p>
+      <p class="str-rvw forMob go-rew"><svg width="98px" height="16px" viewBox="0 0 512 96" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+          <!-- Generator: Sketch 53.2 (72643) - https://sketchapp.com -->
+          <g id="Trustpilot_ratings_5star-RGB" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+            <g fill-rule="nonzero">
+              <rect id="Rectangle-path" fill="#00B67A" x="0" y="0" width="96" height="96"></rect>
+              <rect id="Rectangle-path" fill="#00B67A" x="104" y="0" width="96" height="96"></rect>
+              <rect id="Rectangle-path" fill="#00B67A" x="208" y="0" width="96" height="96"></rect>
+              <rect id="Rectangle-path" fill="#00B67A" x="312" y="0" width="96" height="96"></rect>
+              <rect id="Rectangle-path" fill="#00B67A" x="416" y="0" width="96" height="96"></rect>
+              <path d="M48,64.7 L62.6,61 L68.7,79.8 L48,64.7 Z M81.6,40.4 L55.9,40.4 L48,16.2 L40.1,40.4 L14.4,40.4 L35.2,55.4 L27.3,79.6 L48.1,64.6 L60.9,55.4 L81.6,40.4 L81.6,40.4 L81.6,40.4 L81.6,40.4 Z" id="Shape" fill="#FFFFFF"></path>
+              <path d="M152,64.7 L166.6,61 L172.7,79.8 L152,64.7 Z M185.6,40.4 L159.9,40.4 L152,16.2 L144.1,40.4 L118.4,40.4 L139.2,55.4 L131.3,79.6 L152.1,64.6 L164.9,55.4 L185.6,40.4 L185.6,40.4 L185.6,40.4 L185.6,40.4 Z" id="Shape" fill="#FFFFFF"></path>
+              <path d="M256,64.7 L270.6,61 L276.7,79.8 L256,64.7 Z M289.6,40.4 L263.9,40.4 L256,16.2 L248.1,40.4 L222.4,40.4 L243.2,55.4 L235.3,79.6 L256.1,64.6 L268.9,55.4 L289.6,40.4 L289.6,40.4 L289.6,40.4 L289.6,40.4 Z" id="Shape" fill="#FFFFFF"></path>
+              <path d="M360,64.7 L374.6,61 L380.7,79.8 L360,64.7 Z M393.6,40.4 L367.9,40.4 L360,16.2 L352.1,40.4 L326.4,40.4 L347.2,55.4 L339.3,79.6 L360.1,64.6 L372.9,55.4 L393.6,40.4 L393.6,40.4 L393.6,40.4 L393.6,40.4 Z" id="Shape" fill="#FFFFFF"></path>
+              <path d="M464,64.7 L478.6,61 L484.7,79.8 L464,64.7 Z M497.6,40.4 L471.9,40.4 L464,16.2 L456.1,40.4 L430.4,40.4 L451.2,55.4 L443.3,79.6 L464.1,64.6 L476.9,55.4 L497.6,40.4 L497.6,40.4 L497.6,40.4 L497.6,40.4 Z" id="Shape" fill="#FFFFFF"></path>
+            </g>
+          </g>
+        </svg>@lang('checkout::app.v2.12,421 Verified Customer Reviews')</p>
       <div class="left-sec">
         <div id="sticky" style="position:sticky;top: 0;">
           <div style="display: none;" class="vehicle-detail-banner banner-content clearfix">
@@ -2330,7 +2350,7 @@
               <div style="display: flex">
                 <div class="mr4" style="font-size: 14px;margin-top: 3px;color: #444444; ">
                   <?php echo $comment->name; ?>
-                  <i class="flag-icon flag-icon-<?php echo strtolower($default_country); ?> mr-2"></i>
+                  <i class="flag-icon-size flag-icon flag-icon-<?php echo strtolower($default_country); ?> mr-2"></i>
                 </div>
                 <div>
                   <img class="mb1 mr2" width="14px" src="/checkout/onebuy/images/icon_gou.svg" />
