@@ -914,7 +914,7 @@
     }
 
     .slider-banner-image {
-      /* height: 460px !important; */
+      height: 460px !important;
       position: relative;
     }
 
@@ -973,7 +973,7 @@
       }
 
       .slider-banner-image {
-        /* height: 400px !important; */
+        height: 400px !important;
         position: relative;
       }
 
@@ -1703,7 +1703,7 @@
         <div id="sticky" style="position:sticky;top: 0;">
           <div style="display: none;" class="vehicle-detail-banner banner-content clearfix">
             <div class="banner-slider">
-              <div class="slider-banner-image">
+              <div class="slider-banner-image1">
                 <div class="sw-box">
                   <!-- <div class="swiper-button-prev"></div>
                   <div class="swiper-button-next"></div> -->
@@ -3572,6 +3572,26 @@
       //     console.log(err, 'err==')
       //   })
     })
+
+    function skuIsScelect() {
+      var errParams = {
+        showDialog: fasle
+      }
+      if (params.products.length > 0) {
+        if (params.products[0].product_id && !params.products[0].attr_id) {
+          err
+        }
+        if (params.products[1].product_id) {
+
+        }
+        if (params.products[2].product_id) {
+
+        }
+        if (params.products[3].product_id) {
+
+        }
+      }
+    }
   </script>
   <script>
     function getParams(methods) {
