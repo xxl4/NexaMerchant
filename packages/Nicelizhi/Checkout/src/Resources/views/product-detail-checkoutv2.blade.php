@@ -126,7 +126,8 @@
     }
 
     .panel-default>.panel-heading {
-      color: #333;
+      color: var(--text-color);
+      font-weight: 500;
       background-color: #F0F5FF;
       border-color: #ddd;
     }
@@ -718,7 +719,7 @@
       color: rgb(255, 255, 255);
     }
 
-    .footer {
+    .footer-box {
       background-color: #F5F5F5;
       padding: 60px 30px 60px 30px;
       margin-top: 30px;
@@ -729,7 +730,7 @@
       font-size: 12px;
     }
 
-    .footer a {
+    .footer-box a {
       text-decoration-line: none;
       text-decoration-thickness: initial;
       text-decoration-style: initial;
@@ -870,7 +871,7 @@
         padding: 0 15px;
       }
 
-      .footer {
+      .footer-box {
         padding: 20px 30px 20px 30px;
         margin-bottom: 30px;
       }
@@ -2389,7 +2390,7 @@
   </div>
   <div class="clearall"></div>
 
-  <div class="footer">
+  <div class="footer-box">
     <p style="font-weight: 700">© @lang('checkout::app.v2.2024 Alle Rechte vorbehalten').</p>
     <br class="br" />
     <br class="br" />
