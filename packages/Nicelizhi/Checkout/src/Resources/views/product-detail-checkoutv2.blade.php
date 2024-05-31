@@ -867,9 +867,9 @@
         display: none;
       }
 
-      .faq-content {
+      /* .faq-content {
         padding: 0 15px;
-      }
+      } */
 
       .footer-box {
         padding: 20px 30px 20px 30px;
@@ -1698,8 +1698,8 @@
   <div class="topStrip">
     <div class="container-xxl">
       <p>
-        <span class="cb-total-discount-applied"></span> @lang('checkout::app.v2.discount') <span class="cb-discountPercentage"></span> @lang('checkout::app.v2.applied')
-        <span id="stopwatch">05:00</span> @lang('checkout::app.v2.Please do not leave this page!')
+        <span class="cb-total-discount-applied">Im Sommerschlussverkauf gilt der Rabatt für</span>
+        <span id="stopwatch">05:00</span>
       </p>
     </div>
   </div>
