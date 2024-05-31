@@ -830,9 +830,35 @@ class ProductController extends Controller
             array_push($address1, "");
             $addressData['shipping']['address1'] = $address1;
 
+            $params = request()->input("params");
+            /**
+             * 
+             * 
+             * 
+             * 
+             */
+            if(!empty($params)) {
+                $addressData['billing']['city'] = $params['city'];
+                $addressData['billing']['email'] = $params['email'];
+                $addressData['billing']['country'] = $params['country'];
+                $addressData['billing']['first_name'] = $params['first_name'];
+                $addressData['billing']['last_name'] = $params['second_name'];
+                $addressData['billing']['phone'] = $params['phone_full'];
+                $addressData['billing']['phone'] = $params['phone_full'];
+                $addressData['billing']['address1'] = $params['address'];
+                
+                $addressData['billing']['state'] = $params['province'];
+                $addressData['billing']['postcode'] = $params['code'];
+
+                $addressData['shipping']['address1'] = $params['address'];
+            }
+
             $addressData['billing']['address1'] = implode(PHP_EOL, $addressData['billing']['address1']);
 
             $addressData['shipping']['address1'] = implode(PHP_EOL, $addressData['shipping']['address1']);
+
+            
+            
 
             //Log::info("address data-".$refer.'--'.json_encode($addressData));
 
