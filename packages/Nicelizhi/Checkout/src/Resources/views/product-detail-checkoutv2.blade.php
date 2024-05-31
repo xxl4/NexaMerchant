@@ -971,7 +971,7 @@
       }
 
       .slider-banner-image {
-        height: 320px !important;
+        height: 400px !important;
         position: relative;
       }
 
@@ -1182,6 +1182,10 @@
 
     .sku-preview-img-box {
       display: none;
+    }
+
+    .swiper-slide {
+      padding: 0 !important;
     }
   </style>
 </head>
@@ -2221,22 +2225,8 @@
           </div>
           <div class="order-summary-item">
             <div class="sku-info">
-              <!-- <div class="sku-item-info">
-                <img src="/checkout/onebuy/images/icon_gou.svg" alt="" style="width: 64px;height:64px">
-                <div class="sku-content">
-                  <p class="sku-item-title">title</p>
-                  <span class="sku-item-text">blue</span> 
-                  <a
-                    href="javascript:void(0)"
-                    onclick="javascript:bookmarkscroll.scrollTo('shipAddress')"
-                    >edit</a
-                  > 
-                </div>
-                <div class="sku-price">11</div>
-              </div> -->
+
             </div>
-            <!-- <div class="os_main_product_name product-name"></div>
-            <div id="product-price" style="font-weight: bold"></div> -->
           </div>
           <div class="order-summary-item">
             <div>@lang('checkout::app.v2.Subtotal'):</div>
@@ -2261,50 +2251,49 @@
             </div>
           </div>
         </div>
+        <div id="iduzu" class="section">
+          <h3 class="container_title">@lang('onebuy::app.product.order.What customers are saying about')</h3>
+        </div>
+        <!-- review -->
+        <div class="section">
+          <?php foreach ($comments as $key => $comment) {
+            $comment = json_decode($comment); //var_dump($comment);exit; 
+          ?>
 
+            <div class="comment-card" style="background-color: #f6f6f6">
+              <div style="display: flex">
+                <div class="mr4">
+                  <?php echo $comment->name; ?>
+                  <i class="flag-icon flag-icon-<?php echo strtolower($default_country); ?> mr-2"></i>
+                </div>
+                <div>
+                  <img class="mb1 mr2" width="14px" src="/checkout/onebuy/images/icon_gou.svg" />
+                  <strong style="width: 100%">@lang('onebuy::app.product.order.Verified')</strong>
+                </div>
+              </div>
+              <div>
+                <div style="text-align: start; width: 100%; margin-top: 15px">
+                  <img width="110px" src="/checkout/onebuy/images/stars-5.svg" alt="" />
+                </div>
+                <div class="cardtext" style="text-align: start;"><?php echo $comment->content; ?></div>
+                <?php if (isset($comment->images)) { ?>
+
+                  <?php foreach ($comment->images as $key => $image) { ?>
+
+                    <a href="javascript:;" onclick="showImgProp('<?php echo $image; ?>')">
+                      <img style="width: 30%; aspect-ratio: 1/1" src="<?php echo $image; ?>" alt="" />
+                    </a>
+
+                <?php }
+                } ?>
+              </div>
+            </div>
+          <?php } ?>
+        </div>
       </div>
     </div>
   </div>
   <div class="clearall"></div>
-  <div id="iduzu" class="section">
-    <h3 class="container_title">@lang('onebuy::app.product.order.What customers are saying about')</h3>
-  </div>
-  <!-- review -->
-  <div class="section">
-    <?php foreach ($comments as $key => $comment) {
-      $comment = json_decode($comment); //var_dump($comment);exit; 
-    ?>
-
-      <div class="comment-card" style="background-color: #f6f6f6">
-        <div style="display: flex">
-          <div class="mr4">
-            <?php echo $comment->name; ?>
-            <i class="flag-icon flag-icon-<?php echo strtolower($default_country); ?> mr-2"></i>
-          </div>
-          <div>
-            <img class="mb1 mr2" width="14px" src="/checkout/onebuy/images/icon_gou.svg" />
-            <strong style="width: 100%">@lang('onebuy::app.product.order.Verified')</strong>
-          </div>
-        </div>
-        <div>
-          <div style="text-align: start; width: 100%; margin-top: 15px">
-            <img width="110px" src="/checkout/onebuy/images/stars-5.svg" alt="" />
-          </div>
-          <div class="cardtext" style="text-align: start;"><?php echo $comment->content; ?></div>
-          <?php if (isset($comment->images)) { ?>
-
-            <?php foreach ($comment->images as $key => $image) { ?>
-
-              <a href="javascript:;" onclick="showImgProp('<?php echo $image; ?>')">
-                <img style="width: 30%; aspect-ratio: 1/1" src="<?php echo $image; ?>" alt="" />
-              </a>
-
-          <?php }
-          } ?>
-        </div>
-      </div>
-    <?php } ?>
-  </div>
   <div class="faq-content">
     <div id="seeFaqBtn">
       @lang('onebuy::app.product.order.Frequently Asked Questions')
