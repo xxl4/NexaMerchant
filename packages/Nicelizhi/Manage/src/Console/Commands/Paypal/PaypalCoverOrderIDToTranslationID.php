@@ -37,7 +37,7 @@ class PaypalCoverOrderIDToTranslationID extends Command {
     public function handle()
     {
 
-        $items = $this->orderTransactionRepository->where('payment_method', "paypal_smart_button")->select(['transaction_id','id'])->get();
+        $items = $this->orderTransactionRepository->where('payment_method', "paypal_smart_button")->whereNull('captures_id')->select(['transaction_id','id','data'])->get();
 
         $smartButton = new SmartButton();
             
