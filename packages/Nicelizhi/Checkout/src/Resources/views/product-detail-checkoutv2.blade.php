@@ -2053,16 +2053,17 @@
                           </div>
                           <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
                             <div class="panel-body">
-                              <div style={containerStyle}>
-                                <div>@lang('onebuy::app.product.payment.creditCard.card_number')</div>
-                                <div class="input-box" style="float: right;min-width: 95%;">
+                              <div>
+                                <!-- <div>@lang('onebuy::app.product.payment.creditCard.card_number')</div> -->
+                                <!-- <div class="input-box"  style="float: right;min-width: 95%;">
                                   <label>
-                                    <input id="cardNumber" class="input-item" name="firstName" id="firstName" type="text" placeholder="" required="" />
+                                    <input class="input-item" type="text" placeholder="" required="" />
                                     <span>@lang('checkout::app.v2.First Name')</span>
                                   </label>
-                                </div>
-                                <div class="form-floating input-group has-icon-left" style="
-                                  border: 1px solid #a7abad;
+                                </div> -->
+                                <div id="cardNumber" class="form-floating input-group has-icon-left" style="
+                                  border: 1px solid rgba(105, 105, 105, 0.397);
+                                  border-radius: 10px;
                                   color: #222;
                                   height: 32px;
                                   line-height: 22px;
@@ -2077,10 +2078,11 @@
                                   -webkit-box-sizing: border-box;height: calc(3.5rem + 2px);
                                   line-height: 1.25;padding: 1rem 0.75rem "></div>
                               </div>
-                              <div style={containerStyle}>
-                                <div>@lang('onebuy::app.product.payment.creditCard.Expiry')</div>
+                              <div style='margin-top:10px'>
+                                <!-- <div>@lang('onebuy::app.product.payment.creditCard.Expiry')</div> -->
                                 <div id="cardExpiry" style="
-                                  border: 1px solid #a7abad;
+                                  border: 1px solid rgba(105, 105, 105, 0.397);
+                                  border-radius: 10px;
                                   color: #222;
                                   height: 32px;
                                   line-height: 22px;
@@ -2095,10 +2097,11 @@
                                   -webkit-box-sizing: border-box;height: calc(3.5rem + 2px);
                                   line-height: 1.25;padding: 1rem 0.75rem "></div>
                               </div>
-                              <div style={containerStyle}>
-                                <div>@lang('onebuy::app.product.payment.creditCard.cvc')</div>
+                              <div style='margin-top:10px'>
+                                <!-- <div>@lang('onebuy::app.product.payment.creditCard.cvc')</div> -->
                                 <div id="cardCvc" style="
-                                  border: 1px solid #a7abad;
+                                  border: 1px solid rgba(105, 105, 105, 0.397);
+                                  border-radius: 10px;
                                   color: #222;
                                   height: 32px;
                                   line-height: 22px;
