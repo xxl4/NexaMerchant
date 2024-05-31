@@ -187,7 +187,6 @@ class ImportProductCommentFromJudge extends Command
                         if($item['reviewer']['name']=='Anonymous') continue;
                         if($item['published']!=true) continue;
                         if($item['rating'] < 5) continue;
-
                         
 
                         //check the email exist
