@@ -366,7 +366,7 @@ ul.s1-list li p {
   float:left;
   width: 100%;
   margin-top: 10px;
-  background: #F0F5FF;
+  background: #F4F4F4;
   border: 1px solid #dedede;
   border-radius: 3px;
   -webkit-box-shadow: black 0px 6px 9px -9px;
@@ -1256,7 +1256,7 @@ ul.s1-list li p {
 .grid-cell img {
   object-fit: cover;
   width: 100%;
-  max-height: 416px;
+  /* max-height: 416px; */
 }
 .dialog-box {
     margin: 100px auto;
