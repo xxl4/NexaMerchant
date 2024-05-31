@@ -716,7 +716,7 @@
     }
 
     .footer {
-      background-color: #f5f5f5;
+      background-color: #F5F5F5;
       padding: 60px 30px 60px 30px;
       margin-top: 30px;
       margin-right: 0px;
@@ -1130,6 +1130,7 @@
 
     .sku-item-text {
       font-size: 12px;
+      font-weight: normal;
       color: #666666;
     }
 
@@ -1217,7 +1218,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/5.0.4/css/swiper.css" />
     <link type="text/css" href="/checkout/v2/css/repeated-order-confirmation.min.css" rel="stylesheet" />
     <link type="text/css" href="/checkout/v2/css/repeated-order-confirmation-additional.css" rel="stylesheet" />
-    <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/checkout.css?v=3" />
+    <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/checkout.css?v=4" />
     <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/bootstrap.min.css" />
     <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/slick.min.css" />
     <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/upsell-new-02.css?v=2" />
@@ -1666,7 +1667,7 @@
     <img class="w-100 d-block d-md-none" id="mobile-banner" src="" />
   </div>
   <div class="topStrip">
-    <div class="container-xl">
+    <div class="container-xxl">
       <p>
         <span class="cb-total-discount-applied"></span> @lang('checkout::app.v2.discount') <span class="cb-discountPercentage"></span> @lang('checkout::app.v2.applied')
         <span id="stopwatch">05:00</span> @lang('checkout::app.v2.Please do not leave this page!')
@@ -3546,19 +3547,19 @@
         $('.dialog-error .dialog-box ul').empty()
         var textList = ''
         if (!params.first_name) {
-          textList += `<li>Please enter your first name!</li>`
+          textList += `<li>Geben Sie bitte Ihren Vornamen ein!</li>`
         }
         if (!params.second_name) {
-          textList += `<li>Please enter your last name!</li>`
+          textList += `<li>Geben Sie bitte Ihren Nachnamen ein</li>`
         }
         if (!params.email) {
-          textList += `<li>Please enter a valid email id!</li>`
+          textList += `<li>Geben Sie bitte eine gültige E-Mail-Adresse ein!</li>`
         }
         if (!params.phone_full) {
-          textList += `<li>Please enter your phone number!</li>`
+          textList += `<li>Geben Sie bitte Ihre Telefonnummer ein!</li>`
         }
         if (!params.address) {
-          textList += `<li>Please enter your address!</li>`
+          textList += `<li>Geben Sie bitte Ihre Adresse ein!</li>`
         }
         if (!params.city) {
           textList += `<li>Please enter your city!</li>`
@@ -3864,19 +3865,19 @@
               $('.dialog-error .dialog-box ul').empty()
               var textList = ''
               if (!$('input[name="firstName"]').val()) {
-                textList += `<li>Please enter your first name!</li>`
+                textList += `<li>Geben Sie bitte Ihren Vornamen ein!</li>`
               }
               if (!$('input[name="lastName"]').val()) {
-                textList += `<li>Please enter your last name!</li>`
+                textList += `<li>Geben Sie bitte Ihren Nachnamen ein</li>`
               }
               if (!$('input[name="email"]').val()) {
-                textList += `<li>Please enter a valid email id!</li>`
+                textList += `<li>Geben Sie bitte eine gültige E-Mail-Adresse ein!</li>`
               }
               if (!$('input[name="phone"]').val()) {
-                textList += `<li>Please enter your phone number!</li>`
+                textList += `<li>Geben Sie bitte Ihre Telefonnummer ein!</li>`
               }
               if (!$('input[name="shippingAddress1"]').val()) {
-                textList += `<li>Please enter your address!</li>`
+                textList += `<li>Geben Sie bitte Ihre Adresse ein!</li>`
               }
               if (!$('input[name="shippingCity"]').val()) {
                 textList += `<li>Please enter your city!</li>`
@@ -4538,7 +4539,7 @@
     $(document).on('click', '.go-rew', async function(evt) {
       if (evt.which) {
         $('html,body').animate({
-            scrollTop: $('.footer').offset().top,
+            scrollTop: $('#iduzu').offset().top,
           },
           '2000'
         )

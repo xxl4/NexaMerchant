@@ -382,7 +382,7 @@ ul.s1-list li p {
   margin: 0 10px;
 }
 .summary-wrapper >div:nth-child(2) {
-  font-weight: 600;
+  /* font-weight: 600; */
   border-bottom: 1px solid #e0e0e0;
 }
 .summary-title{
@@ -1293,7 +1293,7 @@ ul.s1-list li p {
   line-height: 25px
 }
 /*==========footer===================*/
- .footer{
+ /* .footer{
      float:left;
      width:100%;
      padding:40px 0;
@@ -1301,7 +1301,7 @@ ul.s1-list li p {
      border-top:1px solid #ddd;
      background-color: #595858;
      color: #fff;
-}
+} */
  .ftr-txt1{
      float:left;
      width:100%;
