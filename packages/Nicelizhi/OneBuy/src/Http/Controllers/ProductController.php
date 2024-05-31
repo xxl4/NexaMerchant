@@ -838,6 +838,10 @@ class ProductController extends Controller
              * 
              */
             if(!empty($params)) {
+
+                $address1 = [];
+               array_push($address1, $params['address']);
+
                 $addressData['billing']['city'] = $params['city'];
                 $addressData['billing']['email'] = $params['email'];
                 $addressData['billing']['country'] = $params['country'];
@@ -845,12 +849,12 @@ class ProductController extends Controller
                 $addressData['billing']['last_name'] = $params['second_name'];
                 $addressData['billing']['phone'] = $params['phone_full'];
                 $addressData['billing']['phone'] = $params['phone_full'];
-                $addressData['billing']['address1'] = $params['address'];
+                $addressData['billing']['address1'] = $address1;
                 
                 $addressData['billing']['state'] = $params['province'];
                 $addressData['billing']['postcode'] = $params['code'];
 
-                $addressData['shipping']['address1'] = $params['address'];
+                $addressData['shipping']['address1'] = $address1;
             }
 
             $addressData['billing']['address1'] = implode(PHP_EOL, $addressData['billing']['address1']);
