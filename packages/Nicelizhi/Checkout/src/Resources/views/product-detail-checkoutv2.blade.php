@@ -126,7 +126,7 @@
 
     .panel-default>.panel-heading {
       color: #333;
-      background-color: #f5f5f5;
+      background-color: #F0F5FF;
       border-color: #ddd;
     }
 
@@ -142,6 +142,7 @@
     }
 
     .panel-default>.panel-heading+.panel-collapse>.panel-body {
+      font-size: 13px;
       border-top-color: #ddd;
     }
 
@@ -152,7 +153,7 @@
 
     .panel-body {
       padding: 15px;
-      background-color: #edeff596;
+      background-color: #F4F4F4;
     }
   </style>
   <style>
@@ -1122,6 +1123,7 @@
 
     .sku-item-title {
       font-size: 14px;
+      font-weight: normal;
     }
 
     .sku-content {
@@ -1135,7 +1137,9 @@
     }
 
     .sku-price {
-      font-size: 14px;
+      font-size: 13px;
+      color: red;
+      font-weight: normal;
     }
 
     /* .summary-wrapper:hover .sku-info {
@@ -1185,6 +1189,23 @@
 
     .swiper-slide {
       padding: 0 !important;
+    }
+
+    .cb-reg-price {
+      font-size: 14px;
+    }
+
+    .font-weight-bold {
+      color: red
+    }
+
+    .p-off {
+      font-size: 13px;
+      color: red
+    }
+
+    .input-span {
+      color: var(--text-color);
     }
   </style>
 </head>
@@ -1664,7 +1685,7 @@
       </div>
     </div>
   </div>
-  <div class="chk-header">
+  <!-- <div class="chk-header">
     <div class="container">
       <ul class="stepsBox">
         <li><span>@lang('checkout::app.v2.Checkout')</span></li>
@@ -1672,10 +1693,10 @@
         <li>@lang('checkout::app.v2.Receipt')</li>
       </ul>
     </div>
-  </div>
+  </div> -->
   <div class="checkout-section">
     <div class="container">
-      <p class="prod-name forMob"></p>
+      <p class="prod-name forMob" style="color: #444444 !important;"></p>
       <p class="str-rvw forMob go-rew"><img src="/checkout/v2/images/star02.png" alt="Star" />@lang('checkout::app.v2.12,421 Verified Customer Reviews')</p>
       <div class="left-sec">
         <div id="sticky" style="position:sticky;top: 0;">
@@ -1695,7 +1716,23 @@
       </div>
       <div class="right-sec">
         <p class="prod-name hide-mob"></p>
-        <p class="str-rvw hide-mob go-rew"><img src="/checkout/v2/images/star02.png" alt="Star" />@lang('checkout::app.v2.12,421 Verified Customer Reviews')</p>
+        <p class="str-rvw hide-mob go-rew"><svg width="98px" height="16px" viewBox="0 0 512 96" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <!-- Generator: Sketch 53.2 (72643) - https://sketchapp.com -->
+            <g id="Trustpilot_ratings_5star-RGB" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+              <g fill-rule="nonzero">
+                <rect id="Rectangle-path" fill="#00B67A" x="0" y="0" width="96" height="96"></rect>
+                <rect id="Rectangle-path" fill="#00B67A" x="104" y="0" width="96" height="96"></rect>
+                <rect id="Rectangle-path" fill="#00B67A" x="208" y="0" width="96" height="96"></rect>
+                <rect id="Rectangle-path" fill="#00B67A" x="312" y="0" width="96" height="96"></rect>
+                <rect id="Rectangle-path" fill="#00B67A" x="416" y="0" width="96" height="96"></rect>
+                <path d="M48,64.7 L62.6,61 L68.7,79.8 L48,64.7 Z M81.6,40.4 L55.9,40.4 L48,16.2 L40.1,40.4 L14.4,40.4 L35.2,55.4 L27.3,79.6 L48.1,64.6 L60.9,55.4 L81.6,40.4 L81.6,40.4 L81.6,40.4 L81.6,40.4 Z" id="Shape" fill="#FFFFFF"></path>
+                <path d="M152,64.7 L166.6,61 L172.7,79.8 L152,64.7 Z M185.6,40.4 L159.9,40.4 L152,16.2 L144.1,40.4 L118.4,40.4 L139.2,55.4 L131.3,79.6 L152.1,64.6 L164.9,55.4 L185.6,40.4 L185.6,40.4 L185.6,40.4 L185.6,40.4 Z" id="Shape" fill="#FFFFFF"></path>
+                <path d="M256,64.7 L270.6,61 L276.7,79.8 L256,64.7 Z M289.6,40.4 L263.9,40.4 L256,16.2 L248.1,40.4 L222.4,40.4 L243.2,55.4 L235.3,79.6 L256.1,64.6 L268.9,55.4 L289.6,40.4 L289.6,40.4 L289.6,40.4 L289.6,40.4 Z" id="Shape" fill="#FFFFFF"></path>
+                <path d="M360,64.7 L374.6,61 L380.7,79.8 L360,64.7 Z M393.6,40.4 L367.9,40.4 L360,16.2 L352.1,40.4 L326.4,40.4 L347.2,55.4 L339.3,79.6 L360.1,64.6 L372.9,55.4 L393.6,40.4 L393.6,40.4 L393.6,40.4 L393.6,40.4 Z" id="Shape" fill="#FFFFFF"></path>
+                <path d="M464,64.7 L478.6,61 L484.7,79.8 L464,64.7 Z M497.6,40.4 L471.9,40.4 L464,16.2 L456.1,40.4 L430.4,40.4 L451.2,55.4 L443.3,79.6 L464.1,64.6 L476.9,55.4 L497.6,40.4 L497.6,40.4 L497.6,40.4 L497.6,40.4 Z" id="Shape" fill="#FFFFFF"></path>
+              </g>
+            </g>
+          </svg>@lang('checkout::app.v2.12,421 Verified Customer Reviews')</p>
         <p class="bdr-line hide-mob"></p>
         <p class="prd-det-disc">Natural Protection for Your Beloved Dog: Safe, Effective Flea &amp; Tick Prevention</p>
         <p class="pkg-hdng"><span class="pkg-step">@lang('checkout::app.v2.Step')1: </span> @lang('checkout::app.v2.Choose your package')</p>
@@ -1706,7 +1743,7 @@
               <p>
                 <strong id="p-name2"></strong>
                 <br />
-                <span id="b-off2"></span>
+                <span class="p-off" id="b-off2"></span>
                 <span class="cb-discountPercentage"></span>
               </p>
             </div>
@@ -1745,7 +1782,7 @@
               <p>
                 <strong id="p-name1"></strong>
                 <br />
-                <span id="b-off1"></span>
+                <span class="p-off" id="b-off1"></span>
                 <span class="cb-discountPercentage"></span>
               </p>
             </div>
@@ -1778,7 +1815,7 @@
               <p>
                 <strong id="p-name3"></strong>
                 <br />
-                <span id="b-off3"></span>
+                <span class="p-off" id="b-off3"></span>
                 <span class="cb-discountPercentage"></span>
               </p>
             </div>
@@ -1820,7 +1857,7 @@
               <p>
                 <strong id="p-name4"></strong>
                 <br />
-                <span id="b-off4"></span>
+                <span class="p-off" id="b-off4"></span>
                 <span class="cb-discountPercentage"></span>
               </p>
             </div>
@@ -1889,25 +1926,25 @@
             <div class="fl input-box">
               <label>
                 <input class="input-item" name="firstName" id="firstName" type="text" placeholder="" required="" />
-                <span>@lang('checkout::app.v2.First Name')</span>
+                <span class="input-span">@lang('checkout::app.v2.First Name')</span>
               </label>
             </div>
             <div class="fl input-box">
               <label>
                 <input class="input-item" name="lastName" id="lastName" type="text" placeholder="" required="" />
-                <span>@lang('checkout::app.v2.Last Name')</span>
+                <span class="input-span">@lang('checkout::app.v2.Last Name')</span>
               </label>
             </div>
             <div class="fl input-box">
               <label>
                 <input class="input-item" name="email" id="email" type="email" placeholder="" required="" />
-                <span>@lang('checkout::app.v2.Email')</span>
+                <span class="input-span">@lang('checkout::app.v2.Email')</span>
               </label>
             </div>
             <div class="fl input-box">
               <label>
                 <input class="input-item" name="phone" id="phone" type="tel" placeholder="" required="" />
-                <span>@lang('checkout::app.v2.Phone')</span>
+                <span class="input-span">@lang('checkout::app.v2.Phone')</span>
               </label>
             </div>
             <p class="bdr-line"></p>
@@ -1920,7 +1957,7 @@
               <div class="fl input-box" style="margin-top: 15px;">
                 <label>
                   <input class="input-item" name="shippingAddress1" id="shipAddress" type="text" placeholder="" required="" />
-                  <span>@lang('checkout::app.v2.Address')</span>
+                  <span class="input-span">@lang('checkout::app.v2.Address')</span>
                 </label>
               </div>
               <!-- <div class="frm-flds fl">
@@ -1930,7 +1967,7 @@
               <div class="fl input-box">
                 <label>
                   <input class="input-item" name="shippingCity" id="shipAddress" type="text" placeholder="" required="" />
-                  <span>@lang('checkout::app.v2.City')</span>
+                  <span class="input-span">@lang('checkout::app.v2.City')</span>
                 </label>
               </div>
               <div class="frm-flds fl">
@@ -1965,14 +2002,14 @@
               <div class="fl input-box" style="margin-top: 20px;">
                 <label>
                   <input class="input-item" name="shippingZip" id="zip" type="tel" placeholder="" required="" />
-                  <span>@lang('checkout::app.v2.Zip Code')</span>
+                  <span class="input-span">@lang('checkout::app.v2.Zip Code')</span>
                 </label>
               </div>
               <!--   <a href="javascript:void(0)" class="continue-order addon_btn"
                         onclick="javascript:bookmarkscroll.scrollTo('wrnty')">Select Addon</a>-->
             </div>
             <p class="pkg-hdng"><span class="pkg-step">@lang('checkout::app.v2.Step')4:</span> @lang('checkout::app.v2.Enter your payment information')</p>
-            <p>&nbsp;</p>
+            <p style="font-size: 13px;color: #444444; margin-bottom: 15px">Alle Transaktionen sind sicher und verschlüsselt.</p>
             <select name="creditCardType" class="form-control" data-error-message="Please select valid card type!">
               <option value="">Card Type</option>
               <option value="master">Master Card</option>
@@ -2220,7 +2257,7 @@
         </form>
         <div class="summary-wrapper">
           <div class="order-summary-title">
-            <div>@lang('checkout::app.v2.ORDER DETAILS')</div>
+            <div style="font-size: 14px;font-weight: 500;">@lang('checkout::app.v2.ORDER DETAILS')</div>
           </div>
           <div class="order-summary-item">
             <div class="sku-info">
@@ -2229,15 +2266,15 @@
           </div>
           <div class="order-summary-item">
             <div>@lang('checkout::app.v2.Subtotal'):</div>
-            <div id="summary-total1" style="font-weight: bold"></div>
+            <div id="summary-total1" style="color: red;"></div>
           </div>
           <div class="order-summary-item">
             <div>@lang('checkout::app.v2.Discount'):</div>
-            <div id="summary-total2" style="font-weight: bold; color: red"></div>
+            <div id="summary-total2"></div>
           </div>
           <div class="order-summary-item">
             <div>@lang('checkout::app.v2.Shipping'):</div>
-            <div id="summary-total3"></div>
+            <div id="summary-total3" style="color: red;"></div>
           </div>
           <div class="order-summary-item">
             <div>@lang('checkout::app.v2.Shipping Method'):</div>
@@ -2250,7 +2287,8 @@
             </div>
           </div>
         </div>
-        <div id="iduzu" class="section" style="width: 100%;float: right;margin-bottom:10px">
+        <div id="iduzu" class="section" style="width: 100%;float: right;margin-bottom:10px;    display: flex;
+">
           <h3 class="container_title">@lang('onebuy::app.product.order.What customers are saying about')</h3>
         </div>
         <!-- review -->
@@ -2998,7 +3036,7 @@
       var skuList = ''
       for (let i = 0; i < skuData.length; i++) {
         var description = skuData[i].description.slice(2)
-        var attributeName = skuData[i].attribute_name.split(',').join('/')
+        var attributeName = skuData[i].attribute_name.split(',').join(' / ')
         var skuImgUrl = skuData[i].img
         console.log(skuData[i], 'skuiii');
         skuList += `<div class="sku-item-info">
@@ -3007,10 +3045,10 @@
                   <p class="sku-item-title">` + description + `</p>
                   <span class="sku-item-text">` + attributeName + `</span>
                   <a
-                    style="display:block;color:blue"
+                    style="display:block;color:#1773B0; font-size:13px"
                     href="javascript:void(0)"
                     onclick="javascript:bookmarkscroll.scrollTo('product2')"
-                    >edit</a> 
+                    >bearbeiten</a> 
                 </div>
                 <div class="sku-price">` + skuData[i].price + `</div>
               </div>`
@@ -4426,24 +4464,24 @@
       }
     })
 
-    function reviewWidth() {
-      var width = $(window).innerWidth()
-      if (width > 767) {
-        var rw = $('.right-sec').width()
-        var lw = $('.left-sec').width()
-        var rew = rw + lw + 'px'
-        $('#iduzu').css('width', rew)
+    // function reviewWidth() {
+    //   var width = $(window).innerWidth()
+    //   if (width > 767) {
+    //     var rw = $('.right-sec').width()
+    //     var lw = $('.left-sec').width()
+    //     var rew = rw + lw + 'px'
+    //     $('#iduzu').css('width', rew)
 
-      } else {
-        $('#iduzu').css('width', '100%')
-      }
-    }
-    $(function() {
-      reviewWidth()
-    })
-    window.addEventListener('resize', function() {
-      reviewWidth()
-    })
+    //   } else {
+    //     $('#iduzu').css('width', '100%')
+    //   }
+    // }
+    // $(function() {
+    //   reviewWidth()
+    // })
+    // window.addEventListener('resize', function() {
+    //   reviewWidth()
+    // })
     $('.fieldToggle').click(function() {
       if ($('#togData').prop('checked') == true) {
         $('.shipaddress').slideUp()

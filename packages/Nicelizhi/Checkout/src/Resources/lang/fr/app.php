@@ -26,7 +26,7 @@ return [
     'Please do not leave this page!' => 'Ne quittez pas cette page !',
     'Free Bonus' => 'Bonus gratuit',
     'Receipt' => 'Reçu',
-    '12,421 Verified Customer Reviews' => '12,421 avis clients vérifiés',
+    '12,421 Verified Customer Reviews' => 'avis clients vérifiés',
     'Step' => 'Étape',
     'Choose your package' => 'Choisissez votre forfait',
     'Save' => 'Sauvegarder ',

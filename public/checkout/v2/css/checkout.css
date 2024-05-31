@@ -4,6 +4,7 @@
 :root {
   --title-family: Poppins, sans-serif;
   --text-family: Poppins, sans-serif;
+  --text-color: #444444;
 }
  body {
      top:0;
@@ -13,7 +14,7 @@
      margin:auto;
      padding:0;
      background:#F2F6FC;
-     color:#000000;
+     color:var(--text-color);
      text-align:center;
      font-family: var(--text-family);
      font-weight: normal;
@@ -199,7 +200,7 @@
      vertical-align:middle;
      font-size:17px;
      line-height:20px;
-     color:#000000;
+     color:var(--text-color);
      font-weight:300;
      padding:0 17px;
      position:relative;
@@ -222,7 +223,7 @@
      font-size:14px;
      line-height:18px;
      letter-spacing: 0.5px;
-     color:#000000;
+     color:var(--text-color);
 }
  .hdr-rgt b{
      font-weight:500;
@@ -292,7 +293,7 @@ ul.s1-list li img {
 ul.s1-list li p {
     font-size: 14px;
     line-height: 18px;
-    color: #000000;
+    color: var(--text-color);
     font-weight: bold;
 }
 /*==========right-sec===========*/
@@ -312,17 +313,17 @@ ul.s1-list li p {
 }
 .pkg-step{
   font-family: var(--title-family);
-  font-size: 22px;
+  font-size: 17px;
 }
  .prod-name{
-     float:left;
-     width:100%;
-     font-size:40px;
-     line-height:50px;
-     color:#000000;
-     font-weight:bold;
-     margin-top:10px;
-     font-family: var(--title-family);
+    float:left;
+    width:100%;
+    font-size:40px;
+    line-height:50px;
+    color:#444444;
+    font-weight:600;
+    margin-top:10px;
+    font-family: var(--title-family);
 }
  .str-rvw {
      float: left;
@@ -350,7 +351,7 @@ ul.s1-list li p {
      width: 100%;
      font-size: 17px;
      line-height: 26px;
-     color: #000000;
+     color: var(--text-color);
      margin-top: 8px;
      letter-spacing: 0.5px;
      display: none;
@@ -365,7 +366,7 @@ ul.s1-list li p {
   float:left;
   width: 100%;
   margin-top: 10px;
-  background: #F5F5F5;
+  background: #F0F5FF;
   border: 1px solid #dedede;
   border-radius: 3px;
   -webkit-box-shadow: black 0px 6px 9px -9px;
@@ -409,7 +410,7 @@ ul.s1-list li p {
   float: left;
   padding: 10px;
   height: auto;
-  background-color:  #edeff596;
+  background-color: #F4F4F4;
   border:1px solid #162231 !important;
   box-shadow: -4px 3px 9px 0 rgba(0, 0, 0, 0.3);
   -webkit-box-shadow: -4px 3px 9px 0 rgba(0, 0, 0, 0.3);
@@ -443,7 +444,7 @@ ul.s1-list li p {
 
 }
 .summary-total-item-name {
-  color: #000;
+  color: var(--text-color);
   font-size: 16px;
 }
 .summary-total-item-price {
@@ -501,9 +502,9 @@ ul.s1-list li p {
     text-align: center;
     font-size: 14px;
     margin-top: 5px;
-    color: #000000ad;
+    color: var(--text-color);
     flex: 1;
-    font-weight: 700;
+    font-weight: 500;
 }
  .pkg-hdng{
   font-family: var(--title-family);
@@ -513,7 +514,7 @@ ul.s1-list li p {
      line-height: 24px;
      font-weight: bold;
      margin-top: 8px;
-     color: #000000;
+     color: #444444;
      letter-spacing:0.5px;
      text-align:left;
 }
@@ -535,7 +536,7 @@ ul.s1-list li p {
      display: -ms-flexbox;
      display: -webkit-flex;
      display: flex;
-     background-color: #f5f5f5;
+     background-color: #F0F5FF ;
     /* flex-wrap: wrap;
      */
      margin-top: 10px;
@@ -555,14 +556,18 @@ ul.s1-list li p {
      -webkit-transition: all 0.5s ease;
      transition: all 0.5s ease;
 }
+.buy-opt-left strong{
+  font-size:16px !important;
+  font-weight: 400;
+}
  .buy-opt-left{
      float:left;
      text-align:left;
 }
  .buy-opt-left p{
-     font-size:17px;
+     font-size:16px;
      line-height:26px;
-     color:#000000;
+     color:var(--text-color);
      font-weight:bold;
      letter-spacing:0.5px;
 }
@@ -577,7 +582,7 @@ ul.s1-list li p {
  .pkg-prc{
      font-size:18px;
      line-height:26px;
-     color:#000000;
+     color:var(--text-color)0;
      font-weight:bold;
      letter-spacing:0.5px;
 }
@@ -590,6 +595,7 @@ ul.s1-list li p {
      font-weight: bold;
 }
  .pkg-prc .cb-reg-price:before{
+    font-size: 12px;
      position:absolute;
      left:-5px;
      top:11px;
@@ -647,7 +653,7 @@ ul.s1-list li p {
  .colr-text1{
      font-size: 17px;
      line-height: 26px;
-     color: #000000;
+     color: var(--text-color);
      font-weight: bold;
      letter-spacing: 0.5px;
 }
@@ -665,7 +671,7 @@ ul.s1-list li p {
      width: 100%;
      font-size: 17px;
      line-height:36px;
-     color: #000000;
+     color: var(--text-color);
      text-align: left;
      padding:5px 20px 5px 45px;
      border-bottom: 1px solid #dcdcdc;
@@ -704,7 +710,7 @@ ul.s1-list li p {
      width: 100%;
      font-size: 17px;
      line-height:36px;
-     color: #000000;
+     color: var(--text-color);
      text-align: left;
      padding:5px 20px 5px 45px;
      position:relative;
@@ -1076,7 +1082,7 @@ ul.s1-list li p {
      font-size: 17px;
      line-height: 24px;
      font-weight: bold;
-     color: #000000;
+     color: var(--text-color);
      letter-spacing: 0.5px;
      text-align: left;
 }
@@ -1085,7 +1091,7 @@ ul.s1-list li p {
      width: 100%;
      font-size: 17px;
      line-height: 24px;
-     color: #000000;
+     color: var(--text-color);
      letter-spacing: 0.5px;
      text-align: left;
      margin-top:15px;
@@ -1117,7 +1123,7 @@ ul.s1-list li p {
      margin-top:5px;
      font-size:14px;
      line-height:20px;
-     color:#000000;
+     color:var(--text-color);
      list-style:disc;
 }
  .summry-row{
@@ -1171,7 +1177,7 @@ ul.s1-list li p {
      text-align:right;
      font-size:18px;
      line-height:26px;
-     color:#000000;
+     color:var(--text-color);
      font-weight:bold;
 }
  .regulr-prc span{
@@ -1208,7 +1214,6 @@ ul.s1-list li p {
      cursor:pointer;
      border:none;
      outline:none;
-     margin-top:15px;
      font-family: var(--text-family);
 }
  .secure-icons{
@@ -1303,7 +1308,7 @@ ul.s1-list li p {
      width:100%;
      font-size:17px;
      line-height:23px;
-     color:#000000;
+     color:var(--text-color);
      margin:5px 0;
      letter-spacing:0.5px;
 }
