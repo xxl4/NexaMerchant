@@ -2251,11 +2251,11 @@
             </div>
           </div>
         </div>
-        <div id="iduzu" class="section">
+        <div id="iduzu" class="section" style="width: 100%;float: right;margin-bottom:10px">
           <h3 class="container_title">@lang('onebuy::app.product.order.What customers are saying about')</h3>
         </div>
         <!-- review -->
-        <div class="section">
+        <div class="section" style="width: 100%;float: right;">
           <?php foreach ($comments as $key => $comment) {
             $comment = json_decode($comment); //var_dump($comment);exit; 
           ?>
