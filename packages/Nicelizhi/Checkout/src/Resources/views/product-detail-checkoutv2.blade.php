@@ -1187,6 +1187,7 @@
 
     .sku-preview-img-box {
       display: none;
+      z-index: 999999999999999;
     }
 
     .swiper-slide {
