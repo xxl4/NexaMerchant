@@ -2363,7 +2363,7 @@
     <br class="br" />
     <div class="phone-block"></div>
     <div class="terms-block">
-      <a class="ajax" href="/onebuy/page/shipping-policy?locale={{ app()->getLocale() }}" target="_blank"> @lang('checkout::app.v2.Versand & Lieferung') </a>
+      <a class="ajax" href="/onebuy/page/shipping-policy?locale={{ app()->getLocale() }}" target="_blank"> @lang('checkout::app.v2.shipping') </a>
       <a class="ajax" href="/onebuy/page/refund-policy?locale={{ app()->getLocale() }}" target="_blank"> @lang('checkout::app.v2.refund policy')</a>
       <a class="ajax" href="/onebuy/page/about-us?locale={{ app()->getLocale() }}" target="_blank"> @lang('checkout::app.v2.About Us')</a>
       <a class="ajax" href="/onebuy/page/privacy-policy?locale={{ app()->getLocale() }}" target="_blank"> @lang('checkout::app.v2.Privacy Policy')</a>
