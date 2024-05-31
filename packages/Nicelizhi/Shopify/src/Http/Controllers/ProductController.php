@@ -223,7 +223,49 @@ class ProductController extends Controller
 
         $comments = $redis->hgetall($comment_list_key);
 
-        return view("shopify::products.".$act_type.".comments",compact("comments","product","product_id", "act_type", "act_prod_type"));
+        $reviews = $product->reviews->where('status', 'approved');
+
+        $reviews = $reviews->map(function($review) {
+            $review->customer = $review->customer;
+            $review->images;
+            return $review;
+        });
+
+        //var_dump($reviews);
+
+        
+
+        return view("shopify::products.".$act_type.".comments",compact("comments","reviews","product","product_id", "act_type", "act_prod_type"));
+
+    }
+
+    /**
+     * 
+     * Comments Delete
+     * @return void
+     * 
+     */
+    public function commentDelete(Request $request) {
+        
+        $comment_id = $request->input("comment_id");
+
+        $comment = $this->productReviewRepository->find($comment_id);
+        if(is_null($comment)) {
+            return response()->json([
+                'message' => "error"
+            ]);
+        }
+
+        $product_id = $comment->product_id;
+        $comment->delete();
+
+        // echo"<script>alert('Delete Success!');window.close();</script>";  
+        // return false;
+
+        return response()->json([
+            'message' => "success",
+            'product_id' => $product_id
+        ]);
 
     }
 

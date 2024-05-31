@@ -72,6 +72,32 @@
                         }
                     ?>
             </table>
+            <h3>From Shopify Comments</h3>
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Title</th>
+                        <th>Content</th>
+                        <th>Status</th>
+                        <th>Rank</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                        foreach($reviews as $key => $comment) {
+                            echo "<tr>";
+                            echo "<td>".$comment->id."</td>";
+                            echo "<td>".$comment->name."</td>";
+                            echo "<td>".$comment->title."</td>";
+                            echo "<td>".$comment->comment."</td>";
+                            echo "<td>".$comment->status."</td>";
+                            echo "<td>".$comment->rating."</td>";
+                            echo "<td><buttont class='comment_delte btn' value='".$comment->id."'>Delete</button></td>";
+                            echo "</tr>";
+                        }
+                    ?>
 
         </div>
       </div>
@@ -96,6 +122,19 @@
                 type: 'GET',
                 success: function(data) {
                     alert('Sync Comment From Shopify, will cost a few minutes, please wait for');
+                }
+            });
+        });
+
+        $('.comment_delte').click(function(){
+            var comment_id = $(this).attr("value");
+            console.log(comment_id);
+            $.ajax({
+                url: "{{ route('admin.shopify.products.comments.delete') }}?comment_id="+comment_id,
+                type: 'GET',
+                success: function(data) {
+                    alert(data.message);
+                    window.location.reload();
                 }
             });
         });
