@@ -58,6 +58,20 @@ return [
     'About Us' => 'About Us',
     'Privacy Policy' => 'Privacy Policy',
     'Contact us' => 'Contact us',
-    'imprint' => 'imprint'
+    'imprint' => 'imprint',
+    'size chart' => 'size chart',
+    'During the summer sale the discount is valid for' => 'During the summer sale the discount is valid for',
+    'All transactions are secure and encrypted.' => 'All transactions are secure and encrypted.',
+    'Please enter your first name!' => 'Please enter your first name!',
+    'Please enter your last name!' => 'Please enter your last name!',
+    'Please enter a valid email address!' => 'Please enter a valid email address!',
+    'Please enter your phone number!' => 'Please enter your phone number!',
+    'Please enter your address!' => 'Please enter your address!',
+    'Please enter your city!' => 'Please enter your city!',
+    'Please insert a valid postal code!' => 'Please insert a valid postal code!',
+    'Please select your country!' => 'Please select your country!',
+    'Please select your state!' => 'Please select your state!',
+    'Please select product information!' => 'Please select product information!'
+
   ]
 ];

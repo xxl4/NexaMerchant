@@ -1168,7 +1168,28 @@
     #cb-buy-each2 {
       color: red;
     }
-
+    .size-chart-img {
+      width: 100%;
+      height: 100%;
+      /* background-color: #f5f5f5; */
+      /* opacity: 0.3; */
+      position: fixed;
+      top: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: rgba(0, 0, 0, 0.6);
+    }
+    .size-chart-img img {
+      max-height: 60%;
+      max-width: 100%;
+    }
+    /* .sku-preview-img img {
+      width: 300px;
+    } */
+    .size-chart-img-box {
+      display: none;
+    }
     .sku-preview-img {
       width: 100%;
       height: 100%;
@@ -1698,7 +1719,7 @@
   <div class="topStrip">
     <div class="container-xxl">
       <p>
-        <span class="cb-total-discount-applied">Im Sommerschlussverkauf gilt der Rabatt für</span>
+        <span class="cb-total-discount-applied">@lang('checkout::app.v2.During the summer sale the discount is valid for')</span>
         <span id="stopwatch">05:00</span>
       </p>
     </div>
@@ -1782,7 +1803,20 @@
           <img src="/checkout/v2/images/1701506369_01.webp" alt="">
         </div>
         <!-- <p class="prd-det-disc">Natural Protection for Your Beloved Dog: Safe, Effective Flea &amp; Tick Prevention</p> -->
-        <p class="pkg-hdng" style="border-bottom: ;"><span class="pkg-step">@lang('checkout::app.v2.Step')1: </span> @lang('checkout::app.v2.Choose your package')</p>
+        <p class="pkg-hdng" style="border-bottom: ;">
+          <span class="pkg-step">
+            @lang('checkout::app.v2.Step')1: 
+          </span> 
+          @lang('checkout::app.v2.Choose your package')
+          <a
+            style="margin-left:5px;color:#1773B0; font-size:13px"
+            href="javascript:void(0)"
+            id="size-chart"
+            onclick="sizeCharImgPreview()"
+          >
+              @lang('checkout::app.v2.size chart')
+          </a>
+        </p>
         <div class="pkg-opt">
           <div class="cb-first-item"></div>
           <div class="buyopt packageClass cb-package-container choose-p" id="product2">
@@ -2058,7 +2092,7 @@
             </div>
             <p class="bdr-line hide-mob"></p>
             <p class="pkg-hdng"><span class="pkg-step">@lang('checkout::app.v2.Step')4:</span> @lang('checkout::app.v2.Enter your payment information')</p>
-            <p style="font-size: 13px;color: #444444; margin-bottom: 15px">Alle Transaktionen sind sicher und verschlüsselt.</p>
+            <p style="font-size: 13px;color: #444444; margin-bottom: 15px">@lang('checkout::app.v2.All transactions are secure and encrypted.')</p>
             <select name="creditCardType" class="form-control" data-error-message="Please select valid card type!">
               <option value="">Card Type</option>
               <option value="master">Master Card</option>
@@ -2238,20 +2272,6 @@
               </form>
             </div>
 
-            <!-- <div class="submit-block" style="padding-top:10px;">
-              <div class="submit-content">
-
-                <div class="zoom-fade submit-button" id="payment-button" style="text-align:center;">@lang('onebuy::app.product.payment.complete_secure_purchase')</div>
-                
-              </div>
-            </div> -->
-            <!-- <a
-                href="javascript:void(0)"
-                class="continue-ship"
-                onclick="javascript:bookmarkscroll.scrollTo('shipAddress')"
-                >Continue to Shipping</a
-              > -->
-            <!-- <div id="checkout-error" style="color:#e51f28;display:none;"></div> -->
             <div class="js_choose_billing">
               <div class="w_radio">
                 <input type="radio" id="radio_same_as_shipping" name="billingSameAsShipping" value="yes" checked />
@@ -2411,7 +2431,7 @@
   <div class="clearall"></div>
 
   <div class="footer-box">
-    <p style="font-weight: 700">© @lang('checkout::app.v2.2024 Alle Rechte vorbehalten').</p>
+    <p style="font-weight: 700" id="footer-top-text">© 2024</p>
     <br class="br" />
     <br class="br" />
     <div class="phone-block"></div>
@@ -2438,6 +2458,11 @@
   <div class="sku-preview-img-box" onclick="imgBoxClose()">
     <div class="sku-preview-img">
       <img src="/checkout/v2/images/dmca_protected_sml_120n.png" alt="" />
+    </div>
+  </div>
+  <div class="size-chart-img-box" onclick="sizeChartBoxClose()">
+    <div class="size-chart-img">
+      <img src="" alt="" />
     </div>
   </div>
   <!-- End of Discount POp up-->
@@ -2794,6 +2819,12 @@
           $('.prod-name').text(data.product.name)
           $('title').html(data.product.name)
           $('#buy-select1, #buy-select3, #buy-select4').hide()
+          $('#footer-top-text').append(data.brand)
+          if (Object.keys(data.ads.size).lenght == 0) {
+            $('#size-chart').hide()
+          }else {
+            $('#size-chart').show()
+          }
           if (payTypeShow.airwallex_klarna == '0') {
             $('#airwallex-klarna-box').hide()
           }
@@ -2935,7 +2966,7 @@
           if (attrList.length > 0) {
             var selectList = ''
             for (var arri = 0; arri < attrList.length; arri++) {
-              var optionList = `<option value="" style="display:none">` + attrList[arri].label + `</option>`
+              var optionList = `<option value="" disabled>` + attrList[arri].label + `</option>`
               for (var attj = 0; attj < attrList[arri].options.length; attj++) {
                 optionList += `<option value="` + attrList[arri].options[attj].label + `">` + attrList[arri].options[attj].label + `</option>`
               }
@@ -3063,7 +3094,6 @@
       console.log(obj, 'obj==+++');
       console.log(productL1.attr_id, ' productL1.attr_id');
       for (const key in obj) {
-        console.log(key, 'key');
         if (key == productL1.attr_id) {
           console.log(obj[key][0], 'obj[key][0]');
           productL1.variant_id = obj[key][0]
@@ -3116,11 +3146,18 @@
       $('.sku-preview-img-box').show()
       $('.sku-preview-img img').attr('src', imgUrl)
     }
-
+    function sizeCharImgPreview() {
+      var imgUrl = data.ads.size.img
+      console.log(imgUrl, 'sizeCharImgPreview')
+      $('.size-chart-img-box').show()
+      $('.size-chart-img img').attr('src', imgUrl)
+    }
     function imgBoxClose() {
       $('.sku-preview-img-box').hide()
     }
-
+    function sizeChartBoxClose() {
+      $('.size-chart-img-box').hide()
+    }
     function paramsProductsinit(list) {
       // console.log(list, 'paramsProductsinit')
       for (var listi = 0; listi < list.length; listi++) {
@@ -3594,34 +3631,34 @@
         $('.dialog-error .dialog-box ul').empty()
         var textList = ''
         if (!params.first_name) {
-          textList += `<li>Geben Sie bitte Ihren Vornamen ein!</li>`
+          textList += `<li>@lang('checkout::app.v2.Please enter your first name!')</li>`
         }
         if (!params.second_name) {
-          textList += `<li>Geben Sie bitte Ihren Nachnamen ein</li>`
+          textList += `<li>@lang('checkout::app.v2.Please enter your last name!')</li>`
         }
         if (!params.email) {
-          textList += `<li>Geben Sie bitte eine gültige E-Mail-Adresse ein!</li>`
+          textList += `<li>@lang('checkout::app.v2.Please enter a valid email address!')</li>`
         }
         if (!params.phone_full) {
-          textList += `<li>Geben Sie bitte Ihre Telefonnummer ein!</li>`
+          textList += `<li>@lang('checkout::app.v2.Please enter your phone number!')</li>`
         }
         if (!params.address) {
-          textList += `<li>Geben Sie bitte Ihre Adresse ein!</li>`
+          textList += `<li>@lang('checkout::app.v2.Please enter your address!')</li>`
         }
         if (!params.city) {
-          textList += `<li>Geben Sie bitte Ihre Stadt ein!</li>`
+          textList += `<li>@lang('checkout::app.v2.Please enter your city!')</li>`
         }
         if (!params.code) {
-          textList += `<li>Geben Sie bitte eine gültige Postleitzahl ein!</li>`
+          textList += `<li>@lang('checkout::app.v2.Please insert a valid postal code!')</li>`
         }
         if (!params.country) {
-          textList += `<li>Bitte wählen Sie Ihr Land aus!</li>`
+          textList += `<li>@lang('checkout::app.v2.Please select your country!')</li>`
         }
         if (!params.province) {
-          textList += `<li>Bitte wählen Sie Ihr Bundesland aus!</li>`
+          textList += `<li>@lang('checkout::app.v2.Please select your state!')</li>`
         }
         if (!errIsShow) {
-          textList += `<li>Bitte wählen Sie Produktinformationen aus!</li>`
+          textList += `<li>@lang('checkout::app.v2.Please select product information!')</li>`
         }
         if (!airwallexArr.complete) {
           textList += `<li>` + airwallexArr.errText + `</li>`
@@ -3912,34 +3949,34 @@
               $('.dialog-error .dialog-box ul').empty()
               var textList = ''
               if (!$('input[name="firstName"]').val()) {
-                textList += `<li>Geben Sie bitte Ihren Vornamen ein!</li>`
+                textList += `<li>@lang('checkout::app.v2.Please enter your first name!')</li>`
               }
               if (!$('input[name="lastName"]').val()) {
-                textList += `<li>Geben Sie bitte Ihren Nachnamen ein</li>`
+                textList += `<li>@lang('checkout::app.v2.Please enter your last name!')</li>`
               }
               if (!$('input[name="email"]').val()) {
-                textList += `<li>Geben Sie bitte eine gültige E-Mail-Adresse ein!</li>`
+                textList += `<li>@lang('checkout::app.v2.Please enter a valid email address!')</li>`
               }
               if (!$('input[name="phone"]').val()) {
-                textList += `<li>Geben Sie bitte Ihre Telefonnummer ein!</li>`
+                textList += `<li>@lang('checkout::app.v2.Please enter your phone number!')</li>`
               }
               if (!$('input[name="shippingAddress1"]').val()) {
-                textList += `<li>Geben Sie bitte Ihre Adresse ein!</li>`
+                textList += `<li>@lang('checkout::app.v2.Please enter your address!')</li>`
               }
               if (!$('input[name="shippingCity"]').val()) {
-                textList += `<li>Geben Sie bitte Ihre Stadt ein!</li>`
+                textList += `<li>@lang('checkout::app.v2.Please enter your city!')</li>`
               }
               if (!$('input[name="shippingZip"]').val()) {
-                textList += `<li>Geben Sie bitte eine gültige Postleitzahl ein!</li>`
+                textList += `<li>@lang('checkout::app.v2.Please insert a valid postal code!')</li>`
               }
               if (!$('select[name="shippingCountry"]').val()) {
-                textList += `<li>Bitte wählen Sie Ihr Land aus!</li>`
+                textList += `<li>@lang('checkout::app.v2.Please select your country!')</li>`
               }
               if (!$('select[name="shippingState"]').val()) {
-                textList += `<li>Bitte wählen Sie Ihr Bundesland aus!</li>`
+                textList += `<li>@lang('checkout::app.v2.Please select your state!')</li>`
               }
               if (!errIsShow) {
-                textList += `<li>Bitte wählen Sie Produktinformationen aus!</li>`
+                textList += `<li>@lang('checkout::app.v2.Please select product information!')</li>`
               }
               $('.dialog-error').show()
               $('.dialog-error .dialog-box ul').append(textList)
@@ -4558,24 +4595,6 @@
       }
     })
 
-    // function reviewWidth() {
-    //   var width = $(window).innerWidth()
-    //   if (width > 767) {
-    //     var rw = $('.right-sec').width()
-    //     var lw = $('.left-sec').width()
-    //     var rew = rw + lw + 'px'
-    //     $('#iduzu').css('width', rew)
-
-    //   } else {
-    //     $('#iduzu').css('width', '100%')
-    //   }
-    // }
-    // $(function() {
-    //   reviewWidth()
-    // })
-    // window.addEventListener('resize', function() {
-    //   reviewWidth()
-    // })
     $('.fieldToggle').click(function() {
       if ($('#togData').prop('checked') == true) {
         $('.shipaddress').slideUp()
@@ -4831,37 +4850,6 @@
     window.is_stripe_pay = pay_type == 'stripe' ? true : false
     window.is_stripe_local = pay_type == 'stripe_local' ? true : false
     window.is_airwallex_klarna = pay_type == 'airwallex_klarna' ? true : false
-    // console.log(paypal_pay_acc, 'paypal_pay_acc222')
-
-    // var script = document.createElement('script')
-    // if (script.readyState) {
-    //   // IE
-    //   script.onreadystatechange = function() {
-    //     if (
-    //       script.readyState === 'loaded' ||
-    //       script.readyState === 'complete'
-    //     ) {
-    //       script.onreadystatechange = null
-    //       creatPaypalCardButton()
-    //     }
-    //   }
-    // } else {
-    //   // 其他浏览器
-    //   script.onload = function() {
-    //     creatPaypalCardButton()
-    //   }
-    // }
-    // script.type = 'text/javascript'
-    // // script.src = 'https://www.paypal.com/sdk/js?client-id=Ac3a2fQqrAO_2skbKS4hb5okCBnRUdh_i78Vvjhh-s1xc4fqZc39OyawwGL4kdHGvlPiRsv6CmogaJZz&components=buttons,messages,funding-eligibility&currency='+currency+'&disable-funding=paylater';
-    // script.src =
-    //   'https://www.paypal.com/sdk/js?client-id=' +
-    //   paypal_pay_acc +
-    //   '&components=buttons,messages,funding-eligibility&currency=' +
-    //   currency
-    // // script.src = 'https://www.paypal.com/sdk/js?client-id=AUbkpTo_D9-l80qERS91ipcrXuIfSC3WMmFbK7Ey4n8RS3TaoJDw8H2rpxdhsWBIZWZbb6E3V7CSmK4R&components=buttons,messages,funding-eligibility&currency='+currency+'&disable-funding=paylater';
-    // script.async = 1
-    // document.body.appendChild(script)
-
     function creatPaypalCardButton() {
       var that = this
       var FUNDING_SOURCES = [{
@@ -4895,23 +4883,7 @@
                 return;
               }
               console.log(data, '==========');
-              // sendInitiateCheckoutEvent()
-
-              // gtag('event', 'initiate_paypal_checkout', {
-              //   event_label: 'Initiate paypal Checkout',
-              //   event_category: 'ecommerce',
-              // })
-
-              // fbq('track', 'InitiateCheckout')
-              // obApi('track', 'Start Checkout');
-              // var params = getOrderParams(paypal_type || 'paypal')
-              // if (params.error) {
-              //   $('#' + (error_id || 'paypal-error')).html(
-              //     params.error.join('<br />')
-              //   )
-              //   $('#' + (error_id || 'paypal-error')).show()
-              //   throw new Error('Verification failed')
-              // }
+             
               var url =
                 '/onebuy/order/addr/after?currency={{ core()->getCurrentCurrencyCode() }}&_token={{ csrf_token() }}&time=' +
                 new Date().getTime() +
@@ -5728,498 +5700,6 @@
       return products
     }
 
-    function getSKuMaps() {
-      if (window.sku_maps) {
-        return window.sku_maps
-      }
-
-
-      var skus = [{
-        "name": "Variant 5 1443",
-        "sku_code": "8472767791334-44387807133926",
-        "sku_id": 3168,
-        "attribute_name": "US 5,White",
-        "attr_id": "24_5,23_1443",
-        "key": "US 5_White"
-      }, {
-        "name": "Variant 1437 1443",
-        "sku_code": "8472767791334-44387807428838",
-        "sku_id": 3169,
-        "attribute_name": "US 5,Pink",
-        "attr_id": "24_1437,23_1443",
-        "key": "US 5_Pink"
-      }, {
-        "name": "Variant 1883 1443",
-        "sku_code": "8472767791334-44387807723750",
-        "sku_id": 3170,
-        "attribute_name": "US 5,Rainbow",
-        "attr_id": "24_1883,23_1443",
-        "key": "US 5_Rainbow"
-      }, {
-        "name": "Variant 4 1443",
-        "sku_code": "8472767791334-44387808018662",
-        "sku_id": 3171,
-        "attribute_name": "US 5,Black",
-        "attr_id": "24_4,23_1443",
-        "key": "US 5_Black"
-      }, {
-        "name": "Variant 1390 1443",
-        "sku_code": "8472767791334-44387808313574",
-        "sku_id": 3172,
-        "attribute_name": "US 5,Grey",
-        "attr_id": "24_1390,23_1443",
-        "key": "US 5_Grey"
-      }, {
-        "name": "Variant 5 1431",
-        "sku_code": "8472767791334-44387807166694",
-        "sku_id": 3173,
-        "attribute_name": "US 6,White",
-        "attr_id": "24_5,23_1431",
-        "key": "US 6_White"
-      }, {
-        "name": "Variant 5 1432",
-        "sku_code": "8472767791334-44387807199462",
-        "sku_id": 3174,
-        "attribute_name": "US 7,White",
-        "attr_id": "24_5,23_1432",
-        "key": "US 7_White"
-      }, {
-        "name": "Variant 5 1433",
-        "sku_code": "8472767791334-44387807232230",
-        "sku_id": 3175,
-        "attribute_name": "US 8,White",
-        "attr_id": "24_5,23_1433",
-        "key": "US 8_White"
-      }, {
-        "name": "Variant 5 1434",
-        "sku_code": "8472767791334-44387807264998",
-        "sku_id": 3176,
-        "attribute_name": "US 8.5,White",
-        "attr_id": "24_5,23_1434",
-        "key": "US 8.5_White"
-      }, {
-        "name": "Variant 5 1435",
-        "sku_code": "8472767791334-44387807297766",
-        "sku_id": 3177,
-        "attribute_name": "US 9,White",
-        "attr_id": "24_5,23_1435",
-        "key": "US 9_White"
-      }, {
-        "name": "Variant 5 1436",
-        "sku_code": "8472767791334-44387807330534",
-        "sku_id": 3178,
-        "attribute_name": "US 9.5,White",
-        "attr_id": "24_5,23_1436",
-        "key": "US 9.5_White"
-      }, {
-        "name": "Variant 5 1444",
-        "sku_code": "8472767791334-44387807363302",
-        "sku_id": 3179,
-        "attribute_name": "US 10,White",
-        "attr_id": "24_5,23_1444",
-        "key": "US 10_White"
-      }, {
-        "name": "Variant 5 1445",
-        "sku_code": "8472767791334-44387807396070",
-        "sku_id": 3180,
-        "attribute_name": "US 10.5,White",
-        "attr_id": "24_5,23_1445",
-        "key": "US 10.5_White"
-      }, {
-        "name": "Variant 1437 1431",
-        "sku_code": "8472767791334-44387807461606",
-        "sku_id": 3181,
-        "attribute_name": "US 6,Pink",
-        "attr_id": "24_1437,23_1431",
-        "key": "US 6_Pink"
-      }, {
-        "name": "Variant 1437 1432",
-        "sku_code": "8472767791334-44387807494374",
-        "sku_id": 3182,
-        "attribute_name": "US 7,Pink",
-        "attr_id": "24_1437,23_1432",
-        "key": "US 7_Pink"
-      }, {
-        "name": "Variant 1437 1433",
-        "sku_code": "8472767791334-44387807527142",
-        "sku_id": 3183,
-        "attribute_name": "US 8,Pink",
-        "attr_id": "24_1437,23_1433",
-        "key": "US 8_Pink"
-      }, {
-        "name": "Variant 1437 1434",
-        "sku_code": "8472767791334-44387807559910",
-        "sku_id": 3184,
-        "attribute_name": "US 8.5,Pink",
-        "attr_id": "24_1437,23_1434",
-        "key": "US 8.5_Pink"
-      }, {
-        "name": "Variant 1437 1435",
-        "sku_code": "8472767791334-44387807592678",
-        "sku_id": 3185,
-        "attribute_name": "US 9,Pink",
-        "attr_id": "24_1437,23_1435",
-        "key": "US 9_Pink"
-      }, {
-        "name": "Variant 1437 1436",
-        "sku_code": "8472767791334-44387807625446",
-        "sku_id": 3186,
-        "attribute_name": "US 9.5,Pink",
-        "attr_id": "24_1437,23_1436",
-        "key": "US 9.5_Pink"
-      }, {
-        "name": "Variant 1437 1444",
-        "sku_code": "8472767791334-44387807658214",
-        "sku_id": 3187,
-        "attribute_name": "US 10,Pink",
-        "attr_id": "24_1437,23_1444",
-        "key": "US 10_Pink"
-      }, {
-        "name": "Variant 1437 1445",
-        "sku_code": "8472767791334-44387807690982",
-        "sku_id": 3188,
-        "attribute_name": "US 10.5,Pink",
-        "attr_id": "24_1437,23_1445",
-        "key": "US 10.5_Pink"
-      }, {
-        "name": "Variant 1883 1431",
-        "sku_code": "8472767791334-44387807756518",
-        "sku_id": 3189,
-        "attribute_name": "US 6,Rainbow",
-        "attr_id": "24_1883,23_1431",
-        "key": "US 6_Rainbow"
-      }, {
-        "name": "Variant 1883 1432",
-        "sku_code": "8472767791334-44387807789286",
-        "sku_id": 3190,
-        "attribute_name": "US 7,Rainbow",
-        "attr_id": "24_1883,23_1432",
-        "key": "US 7_Rainbow"
-      }, {
-        "name": "Variant 1883 1433",
-        "sku_code": "8472767791334-44387807822054",
-        "sku_id": 3191,
-        "attribute_name": "US 8,Rainbow",
-        "attr_id": "24_1883,23_1433",
-        "key": "US 8_Rainbow"
-      }, {
-        "name": "Variant 1883 1434",
-        "sku_code": "8472767791334-44387807854822",
-        "sku_id": 3192,
-        "attribute_name": "US 8.5,Rainbow",
-        "attr_id": "24_1883,23_1434",
-        "key": "US 8.5_Rainbow"
-      }, {
-        "name": "Variant 1883 1435",
-        "sku_code": "8472767791334-44387807887590",
-        "sku_id": 3193,
-        "attribute_name": "US 9,Rainbow",
-        "attr_id": "24_1883,23_1435",
-        "key": "US 9_Rainbow"
-      }, {
-        "name": "Variant 1883 1436",
-        "sku_code": "8472767791334-44387807920358",
-        "sku_id": 3194,
-        "attribute_name": "US 9.5,Rainbow",
-        "attr_id": "24_1883,23_1436",
-        "key": "US 9.5_Rainbow"
-      }, {
-        "name": "Variant 1883 1444",
-        "sku_code": "8472767791334-44387807953126",
-        "sku_id": 3195,
-        "attribute_name": "US 10,Rainbow",
-        "attr_id": "24_1883,23_1444",
-        "key": "US 10_Rainbow"
-      }, {
-        "name": "Variant 1883 1445",
-        "sku_code": "8472767791334-44387807985894",
-        "sku_id": 3196,
-        "attribute_name": "US 10.5,Rainbow",
-        "attr_id": "24_1883,23_1445",
-        "key": "US 10.5_Rainbow"
-      }, {
-        "name": "Variant 4 1431",
-        "sku_code": "8472767791334-44387808051430",
-        "sku_id": 3197,
-        "attribute_name": "US 6,Black",
-        "attr_id": "24_4,23_1431",
-        "key": "US 6_Black"
-      }, {
-        "name": "Variant 4 1432",
-        "sku_code": "8472767791334-44387808084198",
-        "sku_id": 3198,
-        "attribute_name": "US 7,Black",
-        "attr_id": "24_4,23_1432",
-        "key": "US 7_Black"
-      }, {
-        "name": "Variant 4 1433",
-        "sku_code": "8472767791334-44387808116966",
-        "sku_id": 3199,
-        "attribute_name": "US 8,Black",
-        "attr_id": "24_4,23_1433",
-        "key": "US 8_Black"
-      }, {
-        "name": "Variant 4 1434",
-        "sku_code": "8472767791334-44387808149734",
-        "sku_id": 3200,
-        "attribute_name": "US 8.5,Black",
-        "attr_id": "24_4,23_1434",
-        "key": "US 8.5_Black"
-      }, {
-        "name": "Variant 4 1435",
-        "sku_code": "8472767791334-44387808182502",
-        "sku_id": 3201,
-        "attribute_name": "US 9,Black",
-        "attr_id": "24_4,23_1435",
-        "key": "US 9_Black"
-      }, {
-        "name": "Variant 4 1436",
-        "sku_code": "8472767791334-44387808215270",
-        "sku_id": 3202,
-        "attribute_name": "US 9.5,Black",
-        "attr_id": "24_4,23_1436",
-        "key": "US 9.5_Black"
-      }, {
-        "name": "Variant 4 1444",
-        "sku_code": "8472767791334-44387808248038",
-        "sku_id": 3203,
-        "attribute_name": "US 10,Black",
-        "attr_id": "24_4,23_1444",
-        "key": "US 10_Black"
-      }, {
-        "name": "Variant 4 1445",
-        "sku_code": "8472767791334-44387808280806",
-        "sku_id": 3204,
-        "attribute_name": "US 10.5,Black",
-        "attr_id": "24_4,23_1445",
-        "key": "US 10.5_Black"
-      }, {
-        "name": "Variant 1390 1431",
-        "sku_code": "8472767791334-44387808346342",
-        "sku_id": 3205,
-        "attribute_name": "US 6,Grey",
-        "attr_id": "24_1390,23_1431",
-        "key": "US 6_Grey"
-      }, {
-        "name": "Variant 1390 1432",
-        "sku_code": "8472767791334-44387808379110",
-        "sku_id": 3206,
-        "attribute_name": "US 7,Grey",
-        "attr_id": "24_1390,23_1432",
-        "key": "US 7_Grey"
-      }, {
-        "name": "Variant 1390 1433",
-        "sku_code": "8472767791334-44387808411878",
-        "sku_id": 3207,
-        "attribute_name": "US 8,Grey",
-        "attr_id": "24_1390,23_1433",
-        "key": "US 8_Grey"
-      }, {
-        "name": "Variant 1390 1434",
-        "sku_code": "8472767791334-44387808444646",
-        "sku_id": 3208,
-        "attribute_name": "US 8.5,Grey",
-        "attr_id": "24_1390,23_1434",
-        "key": "US 8.5_Grey"
-      }, {
-        "name": "Variant 1390 1435",
-        "sku_code": "8472767791334-44387808477414",
-        "sku_id": 3209,
-        "attribute_name": "US 9,Grey",
-        "attr_id": "24_1390,23_1435",
-        "key": "US 9_Grey"
-      }]
-      var sku_maps = {};
-
-      for (var i = 0; i < skus.length; i++) {
-        sku_maps[skus[i].key] = JSON.parse(JSON.stringify(skus[i]));
-        // console.log("sku map");
-        // console.log(JSON.parse(JSON.stringify(skus[i])));
-      }
-
-      window.sku_maps = sku_maps;
-      return window.sku_maps;
-    }
-
-    function getAttributeImg(attribute) {
-      var product_attributes = [{
-        "id": 24,
-        "code": "size",
-        "label": "Size",
-        "swatch_type": "dropdown",
-        "options": [{
-          "id": 1443,
-          "label": "US 5",
-          "swatch_value": null,
-          "products": [3168, 3169, 3170, 3171, 3172],
-          "image": "https:\/\/shop.hatmeo.com\/cache\/large\/product\/3167\/1_f3710786-04cc-41f0-9837-6004fa6114ae.webp",
-          "large_image": "https:\/\/shop.hatmeo.com\/cache\/large\/product\/3167\/1_f3710786-04cc-41f0-9837-6004fa6114ae.webp",
-          "is_sold_out": false,
-          "name": "US 5",
-          "sort": 0
-        }, {
-          "id": 1431,
-          "label": "US 6",
-          "swatch_value": null,
-          "products": [3173, 3181, 3189, 3197, 3205],
-          "image": "https:\/\/shop.hatmeo.com\/cache\/large\/product\/3167\/1_f3710786-04cc-41f0-9837-6004fa6114ae.webp",
-          "large_image": "https:\/\/shop.hatmeo.com\/cache\/large\/product\/3167\/1_f3710786-04cc-41f0-9837-6004fa6114ae.webp",
-          "is_sold_out": false,
-          "name": "US 6",
-          "sort": 1
-        }, {
-          "id": 1432,
-          "label": "US 7",
-          "swatch_value": null,
-          "products": [3174, 3182, 3190, 3198, 3206],
-          "image": "https:\/\/shop.hatmeo.com\/cache\/large\/product\/3167\/1_f3710786-04cc-41f0-9837-6004fa6114ae.webp",
-          "large_image": "https:\/\/shop.hatmeo.com\/cache\/large\/product\/3167\/1_f3710786-04cc-41f0-9837-6004fa6114ae.webp",
-          "is_sold_out": false,
-          "name": "US 7",
-          "sort": 2
-        }, {
-          "id": 1433,
-          "label": "US 8",
-          "swatch_value": null,
-          "products": [3175, 3183, 3191, 3199, 3207],
-          "image": "https:\/\/shop.hatmeo.com\/cache\/large\/product\/3167\/1_f3710786-04cc-41f0-9837-6004fa6114ae.webp",
-          "large_image": "https:\/\/shop.hatmeo.com\/cache\/large\/product\/3167\/1_f3710786-04cc-41f0-9837-6004fa6114ae.webp",
-          "is_sold_out": false,
-          "name": "US 8",
-          "sort": 3
-        }, {
-          "id": 1434,
-          "label": "US 8.5",
-          "swatch_value": null,
-          "products": [3176, 3184, 3192, 3200, 3208],
-          "image": "https:\/\/shop.hatmeo.com\/cache\/large\/product\/3167\/1_f3710786-04cc-41f0-9837-6004fa6114ae.webp",
-          "large_image": "https:\/\/shop.hatmeo.com\/cache\/large\/product\/3167\/1_f3710786-04cc-41f0-9837-6004fa6114ae.webp",
-          "is_sold_out": false,
-          "name": "US 8.5",
-          "sort": 4
-        }, {
-          "id": 1435,
-          "label": "US 9",
-          "swatch_value": null,
-          "products": [3177, 3185, 3193, 3201, 3209],
-          "image": "https:\/\/shop.hatmeo.com\/cache\/large\/product\/3167\/1_f3710786-04cc-41f0-9837-6004fa6114ae.webp",
-          "large_image": "https:\/\/shop.hatmeo.com\/cache\/large\/product\/3167\/1_f3710786-04cc-41f0-9837-6004fa6114ae.webp",
-          "is_sold_out": false,
-          "name": "US 9",
-          "sort": 5
-        }, {
-          "id": 1436,
-          "label": "US 9.5",
-          "swatch_value": null,
-          "products": [3178, 3186, 3194, 3202],
-          "image": "https:\/\/shop.hatmeo.com\/cache\/large\/product\/3167\/1_f3710786-04cc-41f0-9837-6004fa6114ae.webp",
-          "large_image": "https:\/\/shop.hatmeo.com\/cache\/large\/product\/3167\/1_f3710786-04cc-41f0-9837-6004fa6114ae.webp",
-          "is_sold_out": false,
-          "name": "US 9.5",
-          "sort": 6
-        }, {
-          "id": 1444,
-          "label": "US 10",
-          "swatch_value": null,
-          "products": [3179, 3187, 3195, 3203],
-          "image": "https:\/\/shop.hatmeo.com\/cache\/large\/product\/3167\/1_f3710786-04cc-41f0-9837-6004fa6114ae.webp",
-          "large_image": "https:\/\/shop.hatmeo.com\/cache\/large\/product\/3167\/1_f3710786-04cc-41f0-9837-6004fa6114ae.webp",
-          "is_sold_out": false,
-          "name": "US 10",
-          "sort": 7
-        }, {
-          "id": 1445,
-          "label": "US 10.5",
-          "swatch_value": null,
-          "products": [3180, 3188, 3196, 3204],
-          "image": "https:\/\/shop.hatmeo.com\/cache\/large\/product\/3167\/1_f3710786-04cc-41f0-9837-6004fa6114ae.webp",
-          "large_image": "https:\/\/shop.hatmeo.com\/cache\/large\/product\/3167\/1_f3710786-04cc-41f0-9837-6004fa6114ae.webp",
-          "is_sold_out": false,
-          "name": "US 10.5",
-          "sort": 8
-        }],
-        "name": "size",
-        "tip": "Size Chart",
-        "tip_img": "product\/3167\/fLPpmLPL1oDVKfYMdQDJJz8i9h3PzTcnIy7qVESw.jpg",
-        "image": "https:\/\/shop.hatmeo.com\/cache\/large\/product\/3167\/1_f3710786-04cc-41f0-9837-6004fa6114ae.webp",
-        "large_image": "https:\/\/shop.hatmeo.com\/cache\/large\/product\/3167\/1_f3710786-04cc-41f0-9837-6004fa6114ae.webp"
-      }, {
-        "id": 23,
-        "code": "color",
-        "label": "Color",
-        "swatch_type": "dropdown",
-        "options": [{
-          "id": 4,
-          "label": "Black",
-          "swatch_value": null,
-          "products": [3171, 3197, 3198, 3199, 3200, 3201, 3202, 3203, 3204],
-          "image": "https:\/\/shop.hatmeo.com\/cache\/large\/product\/3171\/NQMLFQhd1wBr5L6MHQ3mUI6HKhF5ce0r1DbWmbXV.webp",
-          "big_image": "https:\/\/shop.hatmeo.com\/cache\/large\/product\/3171\/NQMLFQhd1wBr5L6MHQ3mUI6HKhF5ce0r1DbWmbXV.webp",
-          "is_sold_out": false,
-          "name": "Black"
-        }, {
-          "id": 5,
-          "label": "White",
-          "swatch_value": null,
-          "products": [3168, 3173, 3174, 3175, 3176, 3177, 3178, 3179, 3180],
-          "image": "https:\/\/shop.hatmeo.com\/cache\/large\/product\/3168\/5_dbd240c9-3713-4452-8ade-ba8ee783965a.webp",
-          "big_image": "https:\/\/shop.hatmeo.com\/cache\/large\/product\/3168\/5_dbd240c9-3713-4452-8ade-ba8ee783965a.webp",
-          "is_sold_out": false,
-          "name": "White"
-        }, {
-          "id": 1390,
-          "label": "Grey",
-          "swatch_value": null,
-          "products": [3172, 3205, 3206, 3207, 3208, 3209],
-          "image": "https:\/\/shop.hatmeo.com\/cache\/large\/product\/3172\/4r4Zb8gdI7gC9Cy8V2FJpDB0FV6fjPFX9j4fI9RJ.webp",
-          "big_image": "https:\/\/shop.hatmeo.com\/cache\/large\/product\/3172\/4r4Zb8gdI7gC9Cy8V2FJpDB0FV6fjPFX9j4fI9RJ.webp",
-          "is_sold_out": false,
-          "name": "Grey"
-        }, {
-          "id": 1437,
-          "label": "Pink",
-          "swatch_value": null,
-          "products": [3169, 3181, 3182, 3183, 3184, 3185, 3186, 3187, 3188],
-          "image": "https:\/\/shop.hatmeo.com\/cache\/large\/product\/3169\/4_07e66cd5-eb3d-4e03-9e25-e6bcc77b643c.webp",
-          "big_image": "https:\/\/shop.hatmeo.com\/cache\/large\/product\/3169\/4_07e66cd5-eb3d-4e03-9e25-e6bcc77b643c.webp",
-          "is_sold_out": false,
-          "name": "Pink"
-        }, {
-          "id": 1883,
-          "label": "Rainbow",
-          "swatch_value": null,
-          "products": [3170, 3189, 3190, 3191, 3192, 3193, 3194, 3195, 3196],
-          "image": "https:\/\/shop.hatmeo.com\/cache\/large\/product\/3170\/1_f3710786-04cc-41f0-9837-6004fa6114ae.webp",
-          "big_image": "https:\/\/shop.hatmeo.com\/cache\/large\/product\/3170\/1_f3710786-04cc-41f0-9837-6004fa6114ae.webp",
-          "is_sold_out": false,
-          "name": "Rainbow"
-        }],
-        "name": "color",
-        "tip": "",
-        "tip_img": "",
-        "image": "https:\/\/shop.hatmeo.com\/cache\/large\/product\/3167\/1_f3710786-04cc-41f0-9837-6004fa6114ae.webp",
-        "large_image": "https:\/\/shop.hatmeo.com\/cache\/large\/product\/3167\/1_f3710786-04cc-41f0-9837-6004fa6114ae.webp"
-      }];
-      var show_img_attribute_id = '23';
-      var product_img = "https://shop.hatmeo.com/cache/small/product/3167/1_f3710786-04cc-41f0-9837-6004fa6114ae.webp";
-
-      for (var i = 0; i < product_attributes.length; i++) {
-        var product_attribute = product_attributes[i];
-        if (product_attribute.id = show_img_attribute_id) {
-          for (var j = 0; j < product_attribute.options.length; j++) {
-            var option = product_attribute.options[j];
-            console.log(option);
-            if (option.name == attribute) {
-              return option.image || product_img;
-            }
-          }
-        }
-      }
-
-      return product_img;
-    }
-
-    //
     function changeOrderSummary(position = "") {
       // var product = getSelectProduct();
       var produt_amount_base = '1';
