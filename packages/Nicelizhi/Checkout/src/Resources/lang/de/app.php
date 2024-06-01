@@ -58,5 +58,6 @@ return [
     'Privacy Policy' => 'Datenschutzrichtlinie',
     'Contact us' => 'Kontaktiere uns',
     'imprint' => 'Impressum'
+    'size chart' => 'Größentabelle'
   ]
 ];

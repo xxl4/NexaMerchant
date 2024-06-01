@@ -59,5 +59,6 @@ return [
     'Privacy Policy' => 'Privacy Policy',
     'Contact us' => 'Contact us',
     'imprint' => 'imprint'
+    'size chart' => 'size chart'
   ]
 ];

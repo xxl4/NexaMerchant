@@ -1168,7 +1168,20 @@
     #cb-buy-each2 {
       color: red;
     }
-
+    .size-chart-img {
+      width: 100%;
+      height: 100%;
+      /* background-color: #f5f5f5; */
+      /* opacity: 0.3; */
+      position: fixed;
+      top: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    /* .sku-preview-img img {
+      width: 300px;
+    } */
     .sku-preview-img {
       width: 100%;
       height: 100%;
@@ -1782,7 +1795,20 @@
           <img src="/checkout/v2/images/1701506369_01.webp" alt="">
         </div>
         <!-- <p class="prd-det-disc">Natural Protection for Your Beloved Dog: Safe, Effective Flea &amp; Tick Prevention</p> -->
-        <p class="pkg-hdng" style="border-bottom: ;"><span class="pkg-step">@lang('checkout::app.v2.Step')1: </span> @lang('checkout::app.v2.Choose your package')</p>
+        <p class="pkg-hdng" style="border-bottom: ;">
+          <span class="pkg-step">
+            @lang('checkout::app.v2.Step')1: 
+          </span> 
+          @lang('checkout::app.v2.Choose your package')
+          <a
+            style="margin-left:5px;color:#1773B0; font-size:13px"
+            href="javascript:void(0)"
+            id="size-chart"
+            onclick="sizeCharImgPreview()"
+          >
+              @lang('checkout::app.v2.size chart')
+          </a>
+        </p>
         <div class="pkg-opt">
           <div class="cb-first-item"></div>
           <div class="buyopt packageClass cb-package-container choose-p" id="product2">
@@ -2411,7 +2437,7 @@
   <div class="clearall"></div>
 
   <div class="footer-box">
-    <p style="font-weight: 700">© @lang('checkout::app.v2.2024 Alle Rechte vorbehalten').</p>
+    <p style="font-weight: 700" id="footer-top-text">© 2024</p>
     <br class="br" />
     <br class="br" />
     <div class="phone-block"></div>
@@ -2438,6 +2464,11 @@
   <div class="sku-preview-img-box" onclick="imgBoxClose()">
     <div class="sku-preview-img">
       <img src="/checkout/v2/images/dmca_protected_sml_120n.png" alt="" />
+    </div>
+  </div>
+  <div class="size-chart-img-box" onclick="sizeChartBoxClose()>
+    <div class="size-chart-img">
+      <img src="" alt="" />
     </div>
   </div>
   <!-- End of Discount POp up-->
@@ -2794,6 +2825,12 @@
           $('.prod-name').text(data.product.name)
           $('title').html(data.product.name)
           $('#buy-select1, #buy-select3, #buy-select4').hide()
+          $('#footer-top-text').append(data.brand)
+          if (Object.keys(data.ads.size).lenght == 0) {
+            $('#size-chart').hide()
+          }else {
+            $('#size-chart').show()
+          }
           if (payTypeShow.airwallex_klarna == '0') {
             $('#airwallex-klarna-box').hide()
           }
@@ -2935,7 +2972,7 @@
           if (attrList.length > 0) {
             var selectList = ''
             for (var arri = 0; arri < attrList.length; arri++) {
-              var optionList = `<option value="" style="display:none">` + attrList[arri].label + `</option>`
+              var optionList = `<option value="" hidden>` + attrList[arri].label + `</option>`
               for (var attj = 0; attj < attrList[arri].options.length; attj++) {
                 optionList += `<option value="` + attrList[arri].options[attj].label + `">` + attrList[arri].options[attj].label + `</option>`
               }
@@ -3063,7 +3100,6 @@
       console.log(obj, 'obj==+++');
       console.log(productL1.attr_id, ' productL1.attr_id');
       for (const key in obj) {
-        console.log(key, 'key');
         if (key == productL1.attr_id) {
           console.log(obj[key][0], 'obj[key][0]');
           productL1.variant_id = obj[key][0]
@@ -3116,11 +3152,17 @@
       $('.sku-preview-img-box').show()
       $('.sku-preview-img img').attr('src', imgUrl)
     }
-
+    function sizeCharImgPreview() {
+      var imgUrl = data.abs.size.img
+      $('.size-chart-img-box').show()
+      $('.size-chart-img img').attr('src', imgUrl)
+    }
     function imgBoxClose() {
       $('.sku-preview-img-box').hide()
     }
-
+    function sizeChartBoxClose() {
+      $('.size-chart-img-box').hide()
+    }
     function paramsProductsinit(list) {
       // console.log(list, 'paramsProductsinit')
       for (var listi = 0; listi < list.length; listi++) {
@@ -4558,24 +4600,6 @@
       }
     })
 
-    // function reviewWidth() {
-    //   var width = $(window).innerWidth()
-    //   if (width > 767) {
-    //     var rw = $('.right-sec').width()
-    //     var lw = $('.left-sec').width()
-    //     var rew = rw + lw + 'px'
-    //     $('#iduzu').css('width', rew)
-
-    //   } else {
-    //     $('#iduzu').css('width', '100%')
-    //   }
-    // }
-    // $(function() {
-    //   reviewWidth()
-    // })
-    // window.addEventListener('resize', function() {
-    //   reviewWidth()
-    // })
     $('.fieldToggle').click(function() {
       if ($('#togData').prop('checked') == true) {
         $('.shipaddress').slideUp()
