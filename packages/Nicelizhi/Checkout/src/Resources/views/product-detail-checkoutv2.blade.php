@@ -1179,6 +1179,7 @@
       justify-content: center;
       align-items: center;
       background: rgba(0, 0, 0, 0.6);
+      z-index: 9999;
     }
     .size-chart-img img {
       max-height: 60%;
@@ -1200,6 +1201,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      z-index: 9999;
     }
 
     .sku-preview-img img {
