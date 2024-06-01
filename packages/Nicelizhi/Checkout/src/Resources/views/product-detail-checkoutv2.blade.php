@@ -1178,10 +1178,18 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      background: rgba(0, 0, 0, 0.6);
+    }
+    .size-chart-img img {
+      max-height: 60%;
+      max-width: 100%;
     }
     /* .sku-preview-img img {
       width: 300px;
     } */
+    .size-chart-img-box {
+      display: none;
+    }
     .sku-preview-img {
       width: 100%;
       height: 100%;
@@ -3140,6 +3148,7 @@
     }
     function sizeCharImgPreview() {
       var imgUrl = data.ads.size.img
+      console.log(imgUrl, 'sizeCharImgPreview')
       $('.size-chart-img-box').show()
       $('.size-chart-img img').attr('src', imgUrl)
     }
