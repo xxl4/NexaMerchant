@@ -59,6 +59,18 @@ return [
     'Privacy Policy' => 'politique de confidentialité',
     'Contact us' => 'Contactez-nous',
     'imprint' => 'imprimer',
-    'size chart' => 'tableau des tailles'
+    'size chart' => 'tableau des tailles',
+    'During the summer sale the discount is valid for' => "Pendant les soldes d'été, la réduction s'applique sur",
+    'All transactions are secure and encrypted.' => 'Toutes les transactions sont sécurisées et cryptées.',
+    'Please enter your first name!' => "Entrez votre prénom s'il vous plait!",
+    'Please enter your last name!' => 'Veuillez entrer votre nom de famille!',
+    'Please enter a valid email address!' => "S'il vous plaît, mettez une adresse email valide!",
+    'Please enter your phone number!' => 'Veuillez entrer votre numéro de téléphone!',
+    'Please enter your address!' => 'Veuillez entrer votre adresse!',
+    'Please enter your city!' => 'Veuillez entrer votre ville!',
+    'Please insert a valid postal code!' => 'Veuillez insérer un code postal valide!',
+    'Please select your country!' => "S'il vous plaît sélectionnez votre pays!",
+    'Please select your state!' => 'Veuillez sélectionner votre état!',
+    'Please select product information!' => 'Veuillez sélectionner les informations sur le produit!'
   ]
 ];
