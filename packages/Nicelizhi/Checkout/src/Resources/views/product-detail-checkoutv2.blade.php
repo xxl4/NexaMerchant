@@ -1707,7 +1707,7 @@
     <div class="container">
       <div class="dis-box-logo">
         <div class="logo_wrap_dist">
-          <img src="/checkout/v2/images/logo.png" width="200" />
+          <img src="/checkout/v2/images/logo_de.png" width="200" />
         </div>
       </div>
     </div>
