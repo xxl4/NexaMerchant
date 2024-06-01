@@ -4782,7 +4782,7 @@
       ... Handle event
       */
       //window.alert(event.detail);
-      console.log(event.detail);
+      // console.log(event.detail);
     });
 
     // STEP #8: Add an event listener to listen to the changes in each of the input fields
