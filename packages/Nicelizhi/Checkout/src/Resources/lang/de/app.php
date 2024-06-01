@@ -57,7 +57,7 @@ return [
     'About Us' => 'Über uns',
     'Privacy Policy' => 'Datenschutzrichtlinie',
     'Contact us' => 'Kontaktiere uns',
-    'imprint' => 'Impressum'
+    'imprint' => 'Impressum',
     'size chart' => 'Größentabelle'
   ]
 ];

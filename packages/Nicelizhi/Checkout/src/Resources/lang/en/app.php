@@ -58,7 +58,7 @@ return [
     'About Us' => 'About Us',
     'Privacy Policy' => 'Privacy Policy',
     'Contact us' => 'Contact us',
-    'imprint' => 'imprint'
+    'imprint' => 'imprint',
     'size chart' => 'size chart'
   ]
 ];

@@ -58,6 +58,7 @@ return [
     'About Us' => 'À propos de nous',
     'Privacy Policy' => 'politique de confidentialité',
     'Contact us' => 'Contactez-nous',
-    'imprint' => 'imprimer'
+    'imprint' => 'imprimer',
+    'size chart' => 'tableau des tailles'
   ]
 ];
