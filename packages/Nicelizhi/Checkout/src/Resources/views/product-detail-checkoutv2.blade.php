@@ -2460,7 +2460,7 @@
       <img src="/checkout/v2/images/dmca_protected_sml_120n.png" alt="" />
     </div>
   </div>
-  <div class="size-chart-img-box" onclick="sizeChartBoxClose()>
+  <div class="size-chart-img-box" onclick="sizeChartBoxClose()">
     <div class="size-chart-img">
       <img src="" alt="" />
     </div>
