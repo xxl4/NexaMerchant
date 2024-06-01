@@ -2968,7 +2968,7 @@
           if (attrList.length > 0) {
             var selectList = ''
             for (var arri = 0; arri < attrList.length; arri++) {
-              var optionList = `<option value="" disabled>` + attrList[arri].label + `</option>`
+              var optionList = `<option value="" hidden>` + attrList[arri].label + `</option>`
               for (var attj = 0; attj < attrList[arri].options.length; attj++) {
                 optionList += `<option value="` + attrList[arri].options[attj].label + `">` + attrList[arri].options[attj].label + `</option>`
               }
@@ -3372,19 +3372,36 @@
             console.log(res, '===recountries1res===')
             app_config.allowed_country_codes = []
             var countriesList = res.data
-            var opList = ''
+            var opList = "<option value="" disable>@lang('checkout::app.v2.select country')</option>"
             for (let resi = 0; resi < countriesList.length; resi++) {
               var code = countriesList[resi].countryCode
               var name = countriesList[resi].countryName
-              // if (code !== 'US') {
               opList += `<option value="` + code + `">` + name + `</option>`
-              // app_config.allowed_country_codes.push(code)
-              // }
             }
             $('select[name="shippingCountry"]').append(opList)
             $('select[name="shippingCountry"]').val(countriesList[0].countryCode)
           }
-
+          var cval = $('select[name="shippingCountry"]').val()
+      console.log(cval, 'cval===')
+      if (cval) {
+        cval = cval.toLowerCase()
+        var countryUrl = '/template-common/checkout1/state/' + cval + '_' + area + '.json'
+        axios
+          .get(countryUrl)
+          .then(function(res) {
+            if (res.data[0].CountryCode) {
+              console.log(res, 'rrrrrrrssssssss')
+              var stateList = res.data
+              var optionList = "<option value="" disabled>@lang('checkout::app.v2.Select State')</option>"
+              for (var resj = 0; resj < stateList.length; resj++) {
+                optionList += `<option value="` + stateList[resj].StateCode + `">` + stateList[resj].StateName + `</option>`
+              }
+              $('select[name="shippingState"]').empty()
+              $('select[name="shippingState"]').append(optionList)
+              $('select[name="shippingState"]').val(stateList[0].StateCode)
+            }
+          })
+         }
 
         })
         .catch(function(err) {
@@ -3409,7 +3426,7 @@
             if (res.data[0].CountryCode) {
               console.log(res, 'rererererere')
               var stateList = res.data
-              var optionList = []
+              var optionList = "<option value="" disabled>@lang('checkout::app.v2.Select State')</option>"
               for (var resj = 0; resj < stateList.length; resj++) {
                 optionList += `<option value="` + stateList[resj].StateCode + `">` + stateList[resj].StateName + `</option>`
               }
@@ -5874,37 +5891,6 @@
       clearTimeout(window.no_top_turn_inter);
     }
   </script>
-
-  <script>
-    window.onload = function() {
-      var cval = $('select[name="shippingCountry"]').val()
-      console.log(cval, 'cval===')
-      if (cval) {
-        cval = cval.toLowerCase()
-        var countryUrl = '/template-common/checkout1/state/' + cval + '_' + area + '.json'
-        axios
-          .get(countryUrl)
-          .then(function(res) {
-            if (res.data[0].CountryCode) {
-              console.log(res, 'rrrrrrrssssssss')
-              var stateList = res.data
-              var optionList = []
-              for (var resj = 0; resj < stateList.length; resj++) {
-                optionList += `<option value="` + stateList[resj].StateCode + `">` + stateList[resj].StateName + `</option>`
-              }
-              $('select[name="shippingState"]').empty()
-              $('select[name="shippingState"]').append(optionList)
-              $('select[name="shippingState"]').val(stateList[0].StateCode)
-            }
-          })
-          .catch(function(err) {
-            console.log(err, 'err====')
-          })
-      }
-
-    }
-  </script>
-
 </body>
 
 </html>

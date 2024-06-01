@@ -30,7 +30,7 @@ return [
     'Choose your package' => 'Wählen Sie ein Paket',
     'Save' => 'Speichern ',
     'OFF' => ' AUS',
-    'item' => 'Artikel',
+    'item' => 'Produkt',
     'Enter your payment information' => 'Zahlung',
     'Enter customer information' => 'Empfängerinformation',
     'Last Name' => 'Nachname',
@@ -70,6 +70,8 @@ return [
     'Please insert a valid postal code!' => 'Geben Sie bitte eine gültige Postleitzahl ein!',
     'Please select your country!' => 'Bitte wählen Sie Ihr Land aus!',
     'Please select your state!' => 'Bitte wählen Sie Ihr Bundesland aus!',
-    'Please select product information!' => 'Bitte wählen Sie Produktinformationen aus'
+    'Please select product information!' => 'Bitte wählen Sie Produktinformationen aus',
+    'Select State' => 'Staat wählen',
+    'select country' => 'Wähle ein Land'
   ]
 ];
