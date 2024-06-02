@@ -2974,7 +2974,7 @@
           if (attrList.length > 0) {
             var selectList = ''
             for (var arri = 0; arri < attrList.length; arri++) {
-              var optionList = `<span id="first-option"><option value="" hidden>` + attrList[arri].label + `</option></span>`
+              var optionList = `<span id="first-option"><option value="">` + attrList[arri].label + `</option></span>`
               for (var attj = 0; attj < attrList[arri].options.length; attj++) {
                 optionList += `<option value="` + attrList[arri].options[attj].label + `">` + attrList[arri].options[attj].label + `</option>`
               }
