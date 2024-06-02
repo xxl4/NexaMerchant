@@ -61,7 +61,7 @@ return [
     'imprint' => 'imprint',
     'size chart' => 'size chart',
     'During the summer sale the discount is valid for' => 'During the summer sale the discount is valid for',
-    'All transactions are secure and encrypted.' => 'All transactions are secure and encrypted.',
+    'All transactions are secure and encrypted' => 'All transactions are secure and encrypted.',
     'Please enter your first name!' => 'Please enter your first name!',
     'Please enter your last name!' => 'Please enter your last name!',
     'Please enter a valid email address!' => 'Please enter a valid email address!',

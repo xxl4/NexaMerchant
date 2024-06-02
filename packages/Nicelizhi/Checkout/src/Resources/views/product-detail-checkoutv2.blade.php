@@ -2081,7 +2081,7 @@
             </div>
             <p class="bdr-line hide-mob"></p>
             <p class="pkg-hdng"><span class="pkg-step">@lang('checkout::app.v2.Step')4:</span> @lang('checkout::app.v2.Enter your payment information')</p>
-            <p style="font-size: 13px;color: #444444; margin-bottom: 15px">@lang('checkout::app.v2.All transactions are secure and encrypted.')</p>
+            <p style="font-size: 13px;color: #444444; margin-bottom: 15px">@lang('checkout::app.v2.All transactions are secure and encrypted')</p>
             <select name="creditCardType" class="form-control" data-error-message="Please select valid card type!">
               <option value="">Card Type</option>
               <option value="master">Master Card</option>

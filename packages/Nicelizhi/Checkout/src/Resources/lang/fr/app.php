@@ -61,7 +61,7 @@ return [
     'imprint' => 'imprimer',
     'size chart' => 'tableau des tailles',
     'During the summer sale the discount is valid for' => "Pendant les soldes d'été, la réduction s'applique sur",
-    'All transactions are secure and encrypted.' => 'Toutes les transactions sont sécurisées et cryptées.',
+    'All transactions are secure and encrypted' => 'Toutes les transactions sont sécurisées et cryptées.',
     'Please enter your first name!' => "Entrez votre prénom s'il vous plait!",
     'Please enter your last name!' => 'Veuillez entrer votre nom de famille!',
     'Please enter a valid email address!' => "S'il vous plaît, mettez une adresse email valide!",

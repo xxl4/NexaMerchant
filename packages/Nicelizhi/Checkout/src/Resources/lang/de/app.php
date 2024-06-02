@@ -60,7 +60,7 @@ return [
     'imprint' => 'Impressum',
     'size chart' => 'Größentabelle',
     'During the summer sale the discount is valid for' => 'Im Sommerschlussverkauf gilt der Rabatt für',
-    'All transactions are secure and encrypted.' => 'Alle Transaktionen sind sicher und verschlüsselt.',
+    'All transactions are secure and encrypted' => 'Alle Transaktionen sind sicher und verschlüsselt.',
     'Please enter your first name!' => 'Geben Sie bitte Ihren Vornamen ein!',
     'Please enter your last name!' => 'Geben Sie bitte Ihren Nachnamen ein!',
     'Please enter a valid email address!' => 'Geben Sie bitte eine gültige E-Mail-Adresse ein!',
