@@ -3100,9 +3100,9 @@
     function inputBlur(event) {
       console.log(event.target, 'event.target')
       if ($(event.target).val() !== '') {
-        $(event.target).addClass('input-focus')
+        $(event.target).next().addClass('input-focus')
       }else {
-        $(event.target).removeClass('input-focus')
+        $(event.target).next().removeClass('input-focus')
       }
     }
     function throttle(fn, wait) {
