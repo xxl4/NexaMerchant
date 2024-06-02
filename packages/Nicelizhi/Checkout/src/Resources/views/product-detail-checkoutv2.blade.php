@@ -2974,7 +2974,7 @@
           if (attrList.length > 0) {
             var selectList = ''
             for (var arri = 0; arri < attrList.length; arri++) {
-              var optionList = `<option value="" hidden>` + attrList[arri].label + `</option>`
+              var optionList = `<option value="" id="first-option" hidden>` + attrList[arri].label + `</option>`
               for (var attj = 0; attj < attrList[arri].options.length; attj++) {
                 optionList += `<option value="` + attrList[arri].options[attj].label + `">` + attrList[arri].options[attj].label + `</option>`
               }
@@ -3531,6 +3531,7 @@
     }
 
     function seInput(value) {
+      $('#first-option').hide()
       var parId = $(event.target).parent().attr('id')
       var itemId = $(event.target).attr('id')
       console.log(parId, itemId, 'itemIditemIditemId');
