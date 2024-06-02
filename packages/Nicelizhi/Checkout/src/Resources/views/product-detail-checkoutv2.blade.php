@@ -3110,7 +3110,7 @@
     }
     function crmTrack(type) {
       console.log(type, 'crmTrack')
-      params = {
+      var postParams = {
         channel_id: "<?php echo $crm_channel;?>",
         token: "<?php echo $refer; ?>",
         type: type
@@ -3119,7 +3119,7 @@
       // 3）用户发起支付 触发 add_pay
       // 2）用户填写表单内容 ，触发 add_user_info
       fetch('https://crm.heomai.com/api/user/action',{
-      body: JSON.stringify(params),
+      body: JSON.stringify(postParams),
       method: 'POST',
       headers: {
         'content-type': 'application/json'
