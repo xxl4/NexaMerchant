@@ -3111,10 +3111,10 @@
     function crmTrack(type) {
       console.log(type. 'crmTrack')
       params = {
-        "channel_id": "<?php echo $crm_channel;?>",
-        "token": "<?php echo $refer; ?>",
-        "type": type
-        };
+        channel_id: "<?php echo $crm_channel;?>",
+        token: "<?php echo $refer; ?>",
+        type: type
+      };
       // 1) 用户修改商品信息add_cart
       // 3）用户发起支付 触发 add_pay
       // 2）用户填写表单内容 ，触发 add_user_info
