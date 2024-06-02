@@ -21,8 +21,8 @@
   <meta name="color-scheme" content="light only" />
   <link href="https://cdn.jsdelivr.net/npm/flag-icon-css@4.1.7/css/flag-icons.min.css" rel="stylesheet" />
   <link href="https://cdn.jsdelivr.net/npm/jquery-colorbox@1.6.4/example1/colorbox.min.css" rel="stylesheet" />
-  <script src="https://checkout-demo.airwallex.com/assets/elements.bundle.min.js"></script>
-  <!-- <script src="https://checkout.airwallex.com/assets/elements.bundle.min.js"></script> -->
+  <!-- <script src="https://checkout-demo.airwallex.com/assets/elements.bundle.min.js"></script> -->
+  <script src="https://checkout.airwallex.com/assets/elements.bundle.min.js"></script>
   <style>
     @media only screen and (max-width: 600px) {}
 
@@ -1179,6 +1179,7 @@
       justify-content: center;
       align-items: center;
       background: rgba(0, 0, 0, 0.6);
+      z-index: 9999;
     }
     .size-chart-img img {
       max-height: 60%;
@@ -1200,6 +1201,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      z-index: 9999;
     }
 
     .sku-preview-img img {
@@ -1306,24 +1308,6 @@
     })
   </script>
   <!-- Data Layer -->
-  <!-- Google Tag Manager -->
-  <script>
-    ;
-    (function(w, d, s, l, i) {
-      w[l] = w[l] || []
-      w[l].push({
-        'gtm.start': new Date().getTime(),
-        event: 'gtm.js',
-      })
-      var f = d.getElementsByTagName(s)[0],
-        j = d.createElement(s),
-        dl = l != 'dataLayer' ? '&l=' + l : ''
-      j.async = true
-      j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl
-      f.parentNode.insertBefore(j, f)
-    })(window, document, 'script', 'dataLayer', 'GTM-N455F8BB')
-  </script>
-  <!-- End Google Tag Manager -->
   <script>
     var campaigns = {
       1: {
@@ -1708,7 +1692,6 @@
       },
     }
   </script>
-  <!-- End Google Tag Manager (noscript) -->
   <!-- BEGIN MVMT EVERFLOW CHECKOUT PAGEVIEW PIXEL -->
   <script type="text/javascript" src="/checkout/v2/js/everflow.js"></script>
   <!-- END MVMT EVERFLOW CHECKOUT PAGEVIEW PIXEL -->
@@ -2744,6 +2727,20 @@
     })
   </script>
 
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P6343Y2GKT"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+      gtag('config', 'G-P6343Y2GKT',{"debug_mode": true});
+</script>
+
+<script type="text/javascript"> 
+(function(c,l,a,r,i,t,y){ c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)}; t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i; y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y); })(window, document, "clarity", "script", "kruepex7cm"); 
+</script> 
+
   <script>
     var data = ''
     var orderObj = {}
@@ -2966,7 +2963,7 @@
           if (attrList.length > 0) {
             var selectList = ''
             for (var arri = 0; arri < attrList.length; arri++) {
-              var optionList = `<option value="" disabled>` + attrList[arri].label + `</option>`
+              var optionList = `<option value="" hidden>` + attrList[arri].label + `</option>`
               for (var attj = 0; attj < attrList[arri].options.length; attj++) {
                 optionList += `<option value="` + attrList[arri].options[attj].label + `">` + attrList[arri].options[attj].label + `</option>`
               }
@@ -3370,19 +3367,36 @@
             console.log(res, '===recountries1res===')
             app_config.allowed_country_codes = []
             var countriesList = res.data
-            var opList = ''
+            var opList = `<option value="" disabled>@lang('checkout::app.v2.select country')</option>`
             for (let resi = 0; resi < countriesList.length; resi++) {
               var code = countriesList[resi].countryCode
               var name = countriesList[resi].countryName
-              // if (code !== 'US') {
               opList += `<option value="` + code + `">` + name + `</option>`
-              // app_config.allowed_country_codes.push(code)
-              // }
             }
             $('select[name="shippingCountry"]').append(opList)
             $('select[name="shippingCountry"]').val(countriesList[0].countryCode)
           }
-
+          var cval = $('select[name="shippingCountry"]').val()
+      console.log(cval, 'cval===')
+      if (cval) {
+        cval = cval.toLowerCase()
+        var countryUrl = '/template-common/checkout1/state/' + cval + '_' + area + '.json'
+        axios
+          .get(countryUrl)
+          .then(function(res) {
+            if (res.data[0].CountryCode) {
+              console.log(res, 'rrrrrrrssssssss')
+              var stateList = res.data
+              var optionList = `<option value="" disabled>@lang('checkout::app.v2.Select State')</option>`
+              for (var resj = 0; resj < stateList.length; resj++) {
+                optionList += `<option value="` + stateList[resj].StateCode + `">` + stateList[resj].StateName + `</option>`
+              }
+              $('select[name="shippingState"]').empty()
+              $('select[name="shippingState"]').append(optionList)
+              $('select[name="shippingState"]').val(stateList[0].StateCode)
+            }
+          })
+         }
 
         })
         .catch(function(err) {
@@ -3407,7 +3421,7 @@
             if (res.data[0].CountryCode) {
               console.log(res, 'rererererere')
               var stateList = res.data
-              var optionList = []
+              var optionList = `<option value="" disabled>@lang('checkout::app.v2.Select State')</option>`
               for (var resj = 0; resj < stateList.length; resj++) {
                 optionList += `<option value="` + stateList[resj].StateCode + `">` + stateList[resj].StateName + `</option>`
               }
@@ -4747,7 +4761,7 @@
   </script>
   <script>
     Airwallex.init({
-      env: 'demo', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
+      env: 'prod', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
       origin: window.location.origin, // Setup your event target to receive the browser events message
     });
 
@@ -4768,7 +4782,7 @@
       ... Handle event
       */
       //window.alert(event.detail);
-      console.log(event.detail);
+      // console.log(event.detail);
     });
 
     // STEP #8: Add an event listener to listen to the changes in each of the input fields
@@ -5092,52 +5106,6 @@
         })
       }
     }
-
-    // 添加到购买车中
-    function addToCart(pay_type) {
-      var product = getSelectProduct();
-      var shipping_fee = product.shipping_fee;
-
-      var product_info = {
-        product_name: product.name,
-        product_price: product.new_price,
-        product_sku: '',
-        product_id: '3167',
-        sku_id: '',
-        currency: 'USD',
-        shipping_fee: shipping_fee,
-        amount: product.amount,
-        product_image: 'https://shop.hatmeo.com/cache/small/product/3167/1_f3710786-04cc-41f0-9837-6004fa6114ae.webp'
-      };
-
-      var total = product_info.product_price * 1 + product_info.shipping_fee * 1;
-
-      var phone_number = $(".phone_number").val();
-      var phone_prefix = getPhonePrefix();
-
-
-
-      var products = getSubmitProducts(product_info.product_price, product_info.amount);
-
-      var url = '/api/checkout/cart?_token=AK2Lk5A14LYVhEWYbgEVxvHDhzlMuvLZDN5pisAW&time=' + new Date().getTime();
-
-      fetch(url, {
-          body: JSON.stringify(products),
-          method: 'POST',
-          headers: {
-            'content-type': 'application/json'
-          },
-        })
-        .then(function(res) {
-          return res.json()
-        })
-        .then(function(res) {
-          //console.log(res);
-        });
-
-    }
-
-
     $(".email").on("focus", function() {
       //console.log("email focus");
     });
@@ -5146,7 +5114,6 @@
       console.log("email blur");
       var email = $(".email").val();
       if (email.length > 0) {
-        fbq('track', 'AddPaymentInfo');
 
         params = {
           "channel_id": "660bccc0efa6a",
@@ -5171,12 +5138,6 @@
 
     function checkout() {
       sendInitiateCheckoutEvent();
-      // gtag('event', 'initiate_checkout', {
-      //   'event_label': 'Initiate Checkout',
-      //   'event_category': 'ecommerce'
-      // });
-      // fbq('track', 'InitiateCheckout');
-      // obApi('track', 'Start Checkout'); 
       var pay_type = 'worldpay';
       // var params = getOrderParams(pay_type);
       if (params.error && params.error.length) {
@@ -5239,9 +5200,6 @@
     }
 
     function createOrder(token, token_field = "checkout_frames_token", pay_type = "checkout", card = {}) {
-
-      //商品加入到购车中
-      //addToCart(pay_type);
 
       // var params = getOrderParams(pay_type);
       //return false;
@@ -5366,10 +5324,6 @@
               }).then((response) => {
 
                 $('#loading').hide();
-                // gtag('event', 'initiate_pay_success', {
-                //   'event_label': "Initiate cc success" + data.order.id,
-                //   'event_category': 'ecommerce'
-                // });
 
                 window.location.href = "/onebuy/checkout/v1/success/" + data.order.id;
                 return false;
@@ -5383,12 +5337,6 @@
                 $('#checkout-error').html(response.message + '<br /><br />');
                 $('#checkout-error').show();
 
-
-                // gtag('event', 'initiate_pay_error', {
-                //   'event_label': response.message,
-                //   'event_category': 'ecommerce'
-                // });
-                // cb.errorHandler(response.message);
                 return false;
 
               });
@@ -5756,17 +5704,6 @@
 
       $('.js-sku').html(sku_html);
 
-      gtag("event", "view_item", {
-        value: product.amount,
-        currency: "USD",
-        items: [{
-          item_id: "8472767791334",
-          item_name: product.name,
-          price: product.new_price,
-          quantity: product.amount * produt_amount_base
-        }]
-      });
-
       var add_to_cart_crm = localStorage.getItem("add_to_cart_3167");
 
       if (position == 'sku_select') {
@@ -5872,37 +5809,6 @@
       clearTimeout(window.no_top_turn_inter);
     }
   </script>
-
-  <script>
-    window.onload = function() {
-      var cval = $('select[name="shippingCountry"]').val()
-      console.log(cval, 'cval===')
-      if (cval) {
-        cval = cval.toLowerCase()
-        var countryUrl = '/template-common/checkout1/state/' + cval + '_' + area + '.json'
-        axios
-          .get(countryUrl)
-          .then(function(res) {
-            if (res.data[0].CountryCode) {
-              console.log(res, 'rrrrrrrssssssss')
-              var stateList = res.data
-              var optionList = []
-              for (var resj = 0; resj < stateList.length; resj++) {
-                optionList += `<option value="` + stateList[resj].StateCode + `">` + stateList[resj].StateName + `</option>`
-              }
-              $('select[name="shippingState"]').empty()
-              $('select[name="shippingState"]').append(optionList)
-              $('select[name="shippingState"]').val(stateList[0].StateCode)
-            }
-          })
-          .catch(function(err) {
-            console.log(err, 'err====')
-          })
-      }
-
-    }
-  </script>
-
 </body>
 
 </html>
