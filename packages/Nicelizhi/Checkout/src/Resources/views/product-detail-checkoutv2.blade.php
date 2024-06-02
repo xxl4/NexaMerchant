@@ -1081,7 +1081,7 @@
     } */
 
     .input-focus {
-      top: 0;
+      top: 0!important;
       font-size: 14px;
     }
 
@@ -2006,20 +2006,20 @@
             </div>
             <div class="fl input-box">
               <label>
-                <input onchange="throttleCrmTrack()" class="input-item" name="lastName" id="lastName" type="text" placeholder="" required="" />
+                <input onchange="throttleCrmTrack()"  onblur="inputBlur(event)" class="input-item" name="lastName" id="lastName" type="text" placeholder="" required="" />
                 <span class="input-span">@lang('checkout::app.v2.Last Name')</span>
               </label>
             </div>
             <p class="email-warn">@lang('checkout::app.v2.Add a house number if you have one')</p>
             <div class="fl input-box">
               <label>
-                <input onchange="throttleCrmTrack()" class="input-item" name="email" id="email" type="email" placeholder="" required="" />
+                <input onchange="throttleCrmTrack()" onblur="inputBlur(event)" class="input-item" name="email" id="email" type="email" placeholder="" required="" />
                 <span class="input-span">@lang('checkout::app.v2.Email')</span>
               </label>
             </div>
             <div class="fl input-box">
               <label>
-                <input onchange="throttleCrmTrack()" class="input-item" name="phone" id="phone" type="tel" placeholder="" required="" />
+                <input onchange="throttleCrmTrack()" onblur="inputBlur(event)" class="input-item" name="phone" id="phone" type="tel" placeholder="" required="" />
                 <span class="input-span">@lang('checkout::app.v2.Phone')</span>
               </label>
             </div>
@@ -2032,7 +2032,7 @@
               </div> -->
               <div class="fl input-box" style="margin-top: 15px;">
                 <label>
-                  <input onchange="throttleCrmTrack()" class="input-item" name="shippingAddress1" id="shipAddress" type="text" placeholder="" required="" />
+                  <input onchange="throttleCrmTrack()" onblur="inputBlur(event)" class="input-item" name="shippingAddress1" id="shipAddress" type="text" placeholder="" required="" />
                   <span class="input-span">@lang('checkout::app.v2.Address')</span>
                 </label>
               </div>
@@ -2042,7 +2042,7 @@
               </div> -->
               <div class="fl input-box">
                 <label>
-                  <input onchange="throttleCrmTrack()" class="input-item" name="shippingCity" id="shipAddress" type="text" placeholder="" required="" />
+                  <input onchange="throttleCrmTrack()" onblur="inputBlur(event)" class="input-item" name="shippingCity" id="shipAddress" type="text" placeholder="" required="" />
                   <span class="input-span">@lang('checkout::app.v2.City')</span>
                 </label>
               </div>
@@ -2077,7 +2077,7 @@
               </div> -->
               <div class="fl input-box" style="margin-top: 20px;">
                 <label>
-                  <input onchange="throttleCrmTrack()" class="input-item" name="shippingZip" id="zip" type="tel" placeholder="" required="" />
+                  <input onchange="throttleCrmTrack()" onblur="inputBlur(event)" class="input-item" name="shippingZip" id="zip" type="tel" placeholder="" required="" />
                   <span class="input-span">@lang('checkout::app.v2.Zip Code')</span>
                 </label>
               </div>
