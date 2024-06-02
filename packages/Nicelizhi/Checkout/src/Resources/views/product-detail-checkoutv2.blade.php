@@ -1274,7 +1274,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/5.0.4/css/swiper.css" />
     <link type="text/css" href="/checkout/v2/css/repeated-order-confirmation.min.css" rel="stylesheet" />
     <link type="text/css" href="/checkout/v2/css/repeated-order-confirmation-additional.css" rel="stylesheet" />
-    <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/checkout.css?v=6" />
+    <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/checkout.css?v=7" />
     <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/bootstrap.min.css" />
     <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/slick.min.css" />
     <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/upsell-new-02.css?v=2" />
@@ -1994,7 +1994,7 @@
           <div class="formBox">
             <div class="fl input-box">
               <label>
-                <input onchange="throttleCrmTrack" class="input-item" name="firstName" id="firstName" type="text" placeholder="" required="" />
+                <input onchange="throttleCrmTrack()" class="input-item" name="firstName" id="firstName" type="text" placeholder="" required="" />
                 <span class="input-span">@lang('checkout::app.v2.First Name')</span>
               </label>
             </div>
@@ -3122,8 +3122,8 @@
       body: JSON.stringify(params),
       method: 'POST',
       headers: {
-      'content-type': 'application/json'
-      },
+        'content-type': 'application/json'
+        },
       })
     }
 
