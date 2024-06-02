@@ -73,6 +73,7 @@ return [
     'Please select your state!' => 'Veuillez sélectionner votre état!',
     'Please select product information!' => 'Veuillez sélectionner les informations sur le produit!',
     'Select State' => "Sélectionnez l'état",
-    'select country' => 'Choisissez un pays'
+    'select country' => 'Choisissez un pays',
+    'Add a house number if you have one' => 'Ajoutez un numéro de maison si vous en avez un'
   ]
 ];
