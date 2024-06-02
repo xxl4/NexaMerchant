@@ -3109,7 +3109,7 @@
       throttle(crmTrack('add_user_info'), 2000)
     }
     function crmTrack(type) {
-      console.log(type. 'crmTrack')
+      console.log(type, 'crmTrack')
       params = {
         channel_id: "<?php echo $crm_channel;?>",
         token: "<?php echo $refer; ?>",
