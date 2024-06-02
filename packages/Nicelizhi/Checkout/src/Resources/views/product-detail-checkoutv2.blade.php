@@ -1075,12 +1075,12 @@
       transition: 0.3s ease;
     }
 
-    .input-box .input-item:placeholder-shown+span {
+    /* .input-box .input-item:placeholder-shown+span {
       top: 15.5px;
       font-size: 14px;
-    }
+    } */
 
-    .input-box .input-item::-webkit-input-placeholder+span {
+    .input-focus {
       top: 15.5px;
       font-size: 14px;
     }
@@ -2000,7 +2000,7 @@
           <div class="formBox">
             <div class="fl input-box">
               <label>
-                <input onchange="throttleCrmTrack()" class="input-item" name="firstName" id="firstName" type="text" placeholder="" required="" />
+                <input onchange="throttleCrmTrack()" onfocus="inputFocus()" class="input-item" name="firstName" id="firstName" type="text" placeholder="" required="" />
                 <span class="input-span">@lang('checkout::app.v2.First Name')</span>
               </label>
             </div>
@@ -3097,7 +3097,10 @@
         })
 
     })
-    
+    function inputFocus(event) {
+      console.log(event.target, 'event.target')
+      $(event.target).addClass('input-focus')
+    }
     function throttle(fn, wait) {
       console.log('节流')
       let timeout = null;
