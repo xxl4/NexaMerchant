@@ -2010,7 +2010,6 @@
                 <span class="input-span">@lang('checkout::app.v2.Last Name')</span>
               </label>
             </div>
-            <p class="email-warn">@lang('checkout::app.v2.Add a house number if you have one')</p>
             <div class="fl input-box">
               <label>
                 <input onchange="throttleCrmTrack()" onblur="inputBlur(event)" class="input-item" name="email" id="email" type="email" placeholder="" required="" />
@@ -2030,7 +2029,8 @@
                 <label for="address" class="fl-label">Shipping Address</label>
                 <input type="text" name="shippingAddress1" class="input-flds required cb-remove-class frmField" placeholder="Your Address" data-error-message="Please enter your address!" id="shipAddress" />
               </div> -->
-              <div class="fl input-box" style="margin-top: 15px;">
+              <p class="email-warn" style="margin-top: 15px;">@lang('checkout::app.v2.Add a house number if you have one')</p>
+              <div class="fl input-box">
                 <label>
                   <input onchange="throttleCrmTrack()" onblur="inputBlur(event)" class="input-item" name="shippingAddress1" id="shipAddress" type="text" placeholder="" required="" />
                   <span class="input-span">@lang('checkout::app.v2.Address')</span>
