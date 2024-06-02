@@ -1075,7 +1075,7 @@
       transition: 0.3s ease;
     }
 
-    .input-box .input-item:placeholder-shown+span {
+    .input-box span {
       top: 15.5px;
       font-size: 14px;
     }
