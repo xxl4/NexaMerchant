@@ -21,8 +21,8 @@
   <meta name="color-scheme" content="light only" />
   <link href="https://cdn.jsdelivr.net/npm/flag-icon-css@4.1.7/css/flag-icons.min.css" rel="stylesheet" />
   <link href="https://cdn.jsdelivr.net/npm/jquery-colorbox@1.6.4/example1/colorbox.min.css" rel="stylesheet" />
-  <script src="https://checkout-demo.airwallex.com/assets/elements.bundle.min.js"></script>
-  <!-- <script src="https://checkout.airwallex.com/assets/elements.bundle.min.js"></script> -->
+  <!-- <script src="https://checkout-demo.airwallex.com/assets/elements.bundle.min.js"></script> -->
+  <script src="https://checkout.airwallex.com/assets/elements.bundle.min.js"></script>
   <style>
     @media only screen and (max-width: 600px) {}
 
@@ -3367,7 +3367,7 @@
             console.log(res, '===recountries1res===')
             app_config.allowed_country_codes = []
             var countriesList = res.data
-            var opList = `<option value="" disable>@lang('checkout::app.v2.select country')</option>`
+            var opList = `<option value="" disabled>@lang('checkout::app.v2.select country')</option>`
             for (let resi = 0; resi < countriesList.length; resi++) {
               var code = countriesList[resi].countryCode
               var name = countriesList[resi].countryName
@@ -4761,7 +4761,7 @@
   </script>
   <script>
     Airwallex.init({
-      env: 'demo', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
+      env: 'prod', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
       origin: window.location.origin, // Setup your event target to receive the browser events message
     });
 
