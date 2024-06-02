@@ -3367,7 +3367,7 @@
             console.log(res, '===recountries1res===')
             app_config.allowed_country_codes = []
             var countriesList = res.data
-            var opList = "<option value="" disable>@lang('checkout::app.v2.select country')</option>"
+            var opList = `<option value="" disable>@lang('checkout::app.v2.select country')</option>`
             for (let resi = 0; resi < countriesList.length; resi++) {
               var code = countriesList[resi].countryCode
               var name = countriesList[resi].countryName
