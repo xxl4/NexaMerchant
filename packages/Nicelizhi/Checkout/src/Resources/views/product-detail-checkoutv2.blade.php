@@ -1080,6 +1080,11 @@
       font-size: 14px;
     }
 
+    .input-box .input-item::-webkit-input-placeholder+span {
+      top: 15.5px;
+      font-size: 14px;
+    }
+
     .input-box .input-item:focus+span {
       color: #00bfff;
       top: 0px;
