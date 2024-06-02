@@ -1257,6 +1257,10 @@
     .flag-icon-size {
       font-size: 10px;
     }
+    .email-warn{
+      color: red;
+      font-size: 13px;
+    }
   </style>
 </head>
 
@@ -1990,7 +1994,7 @@
           <div class="formBox">
             <div class="fl input-box">
               <label>
-                <input class="input-item" name="firstName" id="firstName" type="text" placeholder="" required="" />
+                <input onchange="throttle(crmTrack('add_user_info'), 2000)" class="input-item" name="firstName" id="firstName" type="text" placeholder="" required="" />
                 <span class="input-span">@lang('checkout::app.v2.First Name')</span>
               </label>
             </div>
@@ -2000,6 +2004,7 @@
                 <span class="input-span">@lang('checkout::app.v2.Last Name')</span>
               </label>
             </div>
+            <p class="fl email-warn">Add a house number if you have one</p>
             <div class="fl input-box">
               <label>
                 <input class="input-item" name="email" id="email" type="email" placeholder="" required="" />
@@ -3086,6 +3091,38 @@
         })
 
     })
+    
+    function throttle(fn, wait) {
+      console.log('节流')
+      let timeout = null;
+      return function() {
+        let context = this, args = arguments;
+        if (!timeout) {
+          timeout = setTimeout(() => {
+            fn.apply(context, args);
+            timeout = null;
+          }, wait);
+        }
+      };
+    }
+    function crmTrack(type) {
+      console.log(type. 'crmTrack')
+      params = {
+        "channel_id": "<?php echo $crm_channel;?>",
+        "token": "<?php echo $refer; ?>",
+        "type": type
+        };
+      // 1) 用户修改商品信息add_cart
+      // 3）用户发起支付 触发 add_pay
+      // 2）用户填写表单内容 ，触发 add_user_info
+      fetch('https://crm.heomai.com/api/user/action',{
+      body: JSON.stringify(params),
+      method: 'POST',
+      headers: {
+      'content-type': 'application/json'
+      },
+      })
+    }
 
     function getVSID(obj) {
       console.log(obj, 'obj==+++');
@@ -3507,6 +3544,7 @@
       //   var finUrl = data.attr.variant_images[imgIndex][0].small_image_url
       //   $(event.target).parent().siblings('img').attr('src', finUrl)
       // }
+      crmTrack('add_cart')
       getSkuListInfo();
       console.log(params.products, '===params====')
     }
@@ -3537,6 +3575,7 @@
       $('.product-name').text(data.package_products[1].name)
       $('#product-number').text('number: 1')
       $('#product-price').text(data.package_products[1].tip2)
+      crmTrack('add_cart')
       initProuctData(1, '1')
     })
     $('#product2').click(function(e) {
@@ -3566,6 +3605,7 @@
       $('.product-name').text(data.package_products[0].name)
       $('#product-number').text('number: 2')
       $('#product-price').text(data.package_products[0].tip2)
+      crmTrack('add_cart')
       initProuctData(0, '2')
     })
     $('#product3').click(function(e) {
@@ -3595,6 +3635,7 @@
       $('.product-name').text(data.package_products[2].name)
       $('#product-number').text('number: 3')
       $('#product-price').text(data.package_products[2].tip2)
+      crmTrack('add_cart')
       initProuctData(2, '3')
     })
     $('#product4').click(function(e) {
@@ -3624,9 +3665,11 @@
       $('.product-name').text(data.package_products[3].name)
       $('#product-number').text('number: 4')
       $('#product-price').text(data.package_products[3].tip2)
+      crmTrack('add_cart')
       initProuctData(3, '4')
     })
     $('#complete-btn-id').click(function() {
+      crmTrack('add_pay')
       $('#loading').show()
       params.first_name = $('input[name="firstName"]').val()
       params.second_name = $('input[name="lastName"]').val()
@@ -3940,12 +3983,11 @@
           onClick() {
             // var params = getOrderParams('paypal_stand');
             // console.log("on click " + JSON.parse(params));
-
+            crmTrack('add_pay')
             if (params.error) {
               $('#checkout-error').html(params.error.join('<br />'));
               $('#checkout-error').show();
             }
-            console.log("post crm system");
 
           },
 
@@ -5058,7 +5100,9 @@
                 })
             },
 
-            onClick() {},
+            onClick() {
+              crmTrack('add_pay')
+            },
 
             onError: function(err) {
               console.log('error from the onError callback', err)
