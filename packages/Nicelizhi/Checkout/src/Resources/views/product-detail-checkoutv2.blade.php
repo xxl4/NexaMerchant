@@ -2005,7 +2005,7 @@
                 <span class="input-span">@lang('checkout::app.v2.Last Name')</span>
               </label>
             </div>
-            <p class="email-warn">Add a house number if you have one</p>
+            <p class="email-warn">@lang('checkout::app.v2.Add a house number if you have one')</p>
             <div class="fl input-box">
               <label>
                 <input onchange="throttleCrmTrack()" class="input-item" name="email" id="email" type="email" placeholder="" required="" />
@@ -3116,6 +3116,7 @@
         token: "<?php echo $refer; ?>",
         type: type
       };
+      console.log(JSON.stringify(postParams), 'JSON.stringify(postParams)==')
       // 1) 用户修改商品信息add_cart
       // 3）用户发起支付 触发 add_pay
       // 2）用户填写表单内容 ，触发 add_user_info
