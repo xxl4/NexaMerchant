@@ -1260,6 +1260,7 @@
     .email-warn{
       color: red;
       font-size: 13px;
+      margin-left: 8px;
     }
   </style>
 </head>
@@ -2004,7 +2005,7 @@
                 <span class="input-span">@lang('checkout::app.v2.Last Name')</span>
               </label>
             </div>
-            <p class="fl email-warn">Add a house number if you have one</p>
+            <p class="email-warn">Add a house number if you have one</p>
             <div class="fl input-box">
               <label>
                 <input onchange="throttleCrmTrack()" class="input-item" name="email" id="email" type="email" placeholder="" required="" />
