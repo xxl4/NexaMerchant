@@ -3,7 +3,7 @@
 
 <head>
   <title></title>
-  <link rel="icon prefetch" href="/checkout/v2/images/favicon.png" type="image/png" sizes="16x16" />
+  <link rel="icon prefetch" href="/checkout/v2/images/favicon_de.png" type="image/png" sizes="16x16" />
   <meta charset="utf-8" />
   <meta name="description" content="Fur Sweep Collar" />
   <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" />
@@ -1715,7 +1715,7 @@
     <div class="container">
       <div class="dis-box-logo">
         <div class="logo_wrap_dist">
-          <img src="/checkout/v2/images/logo.png" width="200" />
+          <img src="/checkout/v2/images/logo_de.png" width="200" />
         </div>
       </div>
     </div>
