@@ -2000,7 +2000,7 @@
           <div class="formBox">
             <div class="fl input-box">
               <label>
-                <input onchange="throttleCrmTrack()" onblur="inputBlur(e)" class="input-item" name="firstName" id="firstName" type="text" placeholder="" required="" />
+                <input onchange="throttleCrmTrack()" onblur="inputBlur(event)" class="input-item" name="firstName" id="firstName" type="text" placeholder="" required="" />
                 <span class="input-span">@lang('checkout::app.v2.First Name')</span>
               </label>
             </div>
