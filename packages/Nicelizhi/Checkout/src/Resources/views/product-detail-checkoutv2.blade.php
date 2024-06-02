@@ -2974,7 +2974,7 @@
           if (attrList.length > 0) {
             var selectList = ''
             for (var arri = 0; arri < attrList.length; arri++) {
-              var optionList = `<option value="">` + attrList[arri].label + `</option>`
+              var optionList = `<option value="" hidden>` + attrList[arri].label + `</option>`
               for (var attj = 0; attj < attrList[arri].options.length; attj++) {
                 optionList += `<option value="` + attrList[arri].options[attj].label + `">` + attrList[arri].options[attj].label + `</option>`
               }
@@ -3531,14 +3531,14 @@
     }
 
     function seInput(value) {
-      var selectList = ''
-      for (var arri = 0; arri < data.attrList.length; arri++) {
-        var optionList = ''
-        for (var attj = 0; attj < data.attrList[arri].options.length; attj++) {
-          optionList += `<option value="` + data.attrList[arri].options[attj].label + `">` + data.attrList[arri].options[attj].label + `</option>`
-        }
-        selectList += `<select class="in-se" id="in-se` + arri + `" onchange="seInput(value)">` + optionList + `</select>`
-      }
+      // var selectList = ''
+      // for (var arri = 0; arri < data.attrList.length; arri++) {
+      //   var optionList = ''
+      //   for (var attj = 0; attj < data.attrList[arri].options.length; attj++) {
+      //     optionList += `<option value="` + data.attrList[arri].options[attj].label + `">` + data.attrList[arri].options[attj].label + `</option>`
+      //   }
+      //   selectList += `<select class="in-se" id="in-se` + arri + `" onchange="seInput(value)">` + optionList + `</select>`
+      // }
       var parId = $(event.target).parent().attr('id')
       var itemId = $(event.target).attr('id')
       console.log(parId, itemId, 'itemIditemIditemId');
