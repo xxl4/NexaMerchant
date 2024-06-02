@@ -1075,7 +1075,7 @@
       transition: 0.3s ease;
     }
 
-    .input-box span {
+    .input-box .input-item:placeholder-shown+span {
       top: 15.5px;
       font-size: 14px;
     }
@@ -2000,20 +2000,20 @@
             </div>
             <div class="fl input-box">
               <label>
-                <input class="input-item" name="lastName" id="lastName" type="text" placeholder="" required="" />
+                <input onchange="throttleCrmTrack()" class="input-item" name="lastName" id="lastName" type="text" placeholder="" required="" />
                 <span class="input-span">@lang('checkout::app.v2.Last Name')</span>
               </label>
             </div>
             <p class="fl email-warn">Add a house number if you have one</p>
             <div class="fl input-box">
               <label>
-                <input class="input-item" name="email" id="email" type="email" placeholder="" required="" />
+                <input onchange="throttleCrmTrack()" class="input-item" name="email" id="email" type="email" placeholder="" required="" />
                 <span class="input-span">@lang('checkout::app.v2.Email')</span>
               </label>
             </div>
             <div class="fl input-box">
               <label>
-                <input class="input-item" name="phone" id="phone" type="tel" placeholder="" required="" />
+                <input onchange="throttleCrmTrack()" class="input-item" name="phone" id="phone" type="tel" placeholder="" required="" />
                 <span class="input-span">@lang('checkout::app.v2.Phone')</span>
               </label>
             </div>
@@ -2026,7 +2026,7 @@
               </div> -->
               <div class="fl input-box" style="margin-top: 15px;">
                 <label>
-                  <input class="input-item" name="shippingAddress1" id="shipAddress" type="text" placeholder="" required="" />
+                  <input onchange="throttleCrmTrack()" class="input-item" name="shippingAddress1" id="shipAddress" type="text" placeholder="" required="" />
                   <span class="input-span">@lang('checkout::app.v2.Address')</span>
                 </label>
               </div>
@@ -2036,7 +2036,7 @@
               </div> -->
               <div class="fl input-box">
                 <label>
-                  <input class="input-item" name="shippingCity" id="shipAddress" type="text" placeholder="" required="" />
+                  <input onchange="throttleCrmTrack()" class="input-item" name="shippingCity" id="shipAddress" type="text" placeholder="" required="" />
                   <span class="input-span">@lang('checkout::app.v2.City')</span>
                 </label>
               </div>
@@ -2071,7 +2071,7 @@
               </div> -->
               <div class="fl input-box" style="margin-top: 20px;">
                 <label>
-                  <input class="input-item" name="shippingZip" id="zip" type="tel" placeholder="" required="" />
+                  <input onchange="throttleCrmTrack()" class="input-item" name="shippingZip" id="zip" type="tel" placeholder="" required="" />
                   <span class="input-span">@lang('checkout::app.v2.Zip Code')</span>
                 </label>
               </div>
@@ -3445,10 +3445,12 @@
     })
 
     $('select[name="shippingState"]').change(function() {
+      throttleCrmTrack()
       console.log($(this).val(), 'shippingState')
       params.province = $(this).val()
     })
     $('select[name="shippingCountry"]').change(function() {
+      throttleCrmTrack()
       console.log($(this).val())
       params.country = $(this).val()
       if ($(this).val()) {
@@ -4832,6 +4834,7 @@
 
     // STEP #8: Add an event listener to listen to the changes in each of the input fields
     domcardNumber.addEventListener('onChange', (event) => {
+      throttleCrmTrack()
       /*
       ... Handle event
       */
@@ -4854,6 +4857,7 @@
     });
 
     domcardExpiry.addEventListener('onChange', (event) => {
+      throttleCrmTrack()
       /*
       ... Handle event
       */
@@ -4876,6 +4880,7 @@
 
     //id_cvc
     domcardCvv.addEventListener('onChange', (event) => {
+      throttleCrmTrack()
       /*
       ... Handle event
       */
