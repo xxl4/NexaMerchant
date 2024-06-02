@@ -91,7 +91,9 @@ class CheckoutV2Controller extends Controller{
         $payments = config('onebuy.payments'); // config the payments status
         $payments_default = config('onebuy.payments_default');
 
-        return view('checkout::product-detail-'.$this->view_prefix_key, compact('slug','comments','faqItems','product','default_country',"payments","payments_default"));
+        $crm_channel = config('onebuy.crm_channel');
+
+        return view('checkout::product-detail-'.$this->view_prefix_key, compact('slug','comments','faqItems','product','default_country',"payments","payments_default","refer","crm_channel"));
     }
 
 
