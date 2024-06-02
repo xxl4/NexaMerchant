@@ -1069,7 +1069,7 @@
     .input-box .input-item+span {
       position: absolute;
       left: 10px;
-      top: 0px;
+      top: 15.5px;
       font-size: 14px;
       cursor: text;
       transition: 0.3s ease;
@@ -1081,7 +1081,7 @@
     } */
 
     .input-focus {
-      top: 15.5px;
+      top: 0;
       font-size: 14px;
     }
 
@@ -2000,7 +2000,7 @@
           <div class="formBox">
             <div class="fl input-box">
               <label>
-                <input onchange="throttleCrmTrack()" onfocus="inputFocus()" class="input-item" name="firstName" id="firstName" type="text" placeholder="" required="" />
+                <input onchange="throttleCrmTrack()" onblur="inputBlur(e)" class="input-item" name="firstName" id="firstName" type="text" placeholder="" required="" />
                 <span class="input-span">@lang('checkout::app.v2.First Name')</span>
               </label>
             </div>
@@ -3097,9 +3097,13 @@
         })
 
     })
-    function inputFocus(event) {
+    function inputBlur(event) {
       console.log(event.target, 'event.target')
-      $(event.target).addClass('input-focus')
+      if ($(event.target).val() !== '') {
+        $(event.target).addClass('input-focus')
+      }else {
+        $(event.target).removeClass('input-focus')
+      }
     }
     function throttle(fn, wait) {
       console.log('节流')
