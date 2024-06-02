@@ -1994,7 +1994,7 @@
           <div class="formBox">
             <div class="fl input-box">
               <label>
-                <input onchange="throttle(crmTrack('add_user_info'), 2000)" class="input-item" name="firstName" id="firstName" type="text" placeholder="" required="" />
+                <input onchange="throttleCrmTrack" class="input-item" name="firstName" id="firstName" type="text" placeholder="" required="" />
                 <span class="input-span">@lang('checkout::app.v2.First Name')</span>
               </label>
             </div>
@@ -3104,6 +3104,9 @@
           }, wait);
         }
       };
+    }
+    function throttleCrmTrack() {
+      throttle(crmTrack('add_user_info'), 2000)
     }
     function crmTrack(type) {
       console.log(type. 'crmTrack')
