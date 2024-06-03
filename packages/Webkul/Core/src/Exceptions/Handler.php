@@ -96,7 +96,7 @@ class Handler extends BaseHandler
             if ($pos === false) {
                 
             } else {
-               
+                \Nicelizhi\Shopify\Helpers\Utils::send(json_encode($exception->getMessage()). " File is ".$exception->getFile()." please check the log file for more details");
             }
             
             
