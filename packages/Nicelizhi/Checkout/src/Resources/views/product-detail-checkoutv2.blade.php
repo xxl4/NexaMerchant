@@ -1243,9 +1243,10 @@
     }
 
     .text-Schritt-top {
-      font-size: 14px;
+      font-size: 13px;
       margin: 10px 0 8px 0;
       float: left;
+      color: #444444
     }
 
     .Schritt-top-box {
