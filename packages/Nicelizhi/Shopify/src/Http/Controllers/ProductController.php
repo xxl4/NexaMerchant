@@ -544,7 +544,7 @@ class ProductController extends Controller
 
         }
         
-        Artisan::queue("onebuy:import:products:comment:from:judge")->onConnection('redis')->onQueue('shopify-products'); // import the shopify comments
+        Artisan::queue("onebuy:import:products:comment:from:judge",  ["--prod_id"=> $product_id])->onConnection('redis')->onQueue('shopify-products'); // import the shopify comments
 
         return response()->json([
             'product_id' => $product->id,
