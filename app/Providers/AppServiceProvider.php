@@ -7,24 +7,23 @@ use Illuminate\Support\Facades\Schema;
 
 class AppServiceProvider extends ServiceProvider
 {
-    /**
-     * Bootstrap any application services.
-     *
-     * @return void
-     */
-    public function boot(): void
-    {
-        Schema::defaultStringLength(191);
-        \Illuminate\Support\Facades\URL::forceScheme('https');
-    }
+  /**
+   * Bootstrap any application services.
+   *
+   * @return void
+   */
+  public function boot(): void
+  {
+    Schema::defaultStringLength(191);
+    \Illuminate\Support\Facades\URL::forceScheme('https');
+  }
 
-    /**
-     * Register any application services.
-     *
-     * @return void
-     */
-    public function register(): void
-    {
-
-    }
+  /**
+   * Register any application services.
+   *
+   * @return void
+   */
+  public function register(): void
+  {
+  }
 }

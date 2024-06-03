@@ -903,7 +903,7 @@ Apt / Suite / Other </label>
                 createOrder: function(data, actions) {
                     $('#loading').show();
                     var params = getOrderParams('paypal_stand');
-                    var url = '/onebuy/order/addr/after?currenty={{ core()->getCurrentCurrencyCode() }}&_token={{ csrf_token() }}&time=' + new Date().getTime()+"&force="+localStorage.getItem("force");
+                    var url = '/onebuy/order/addr/after?currency={{ core()->getCurrentCurrencyCode() }}&_token={{ csrf_token() }}&time=' + new Date().getTime()+"&force="+localStorage.getItem("force");
                     return fetch(url, {
                         body: JSON.stringify(params),
                         method: 'POST',

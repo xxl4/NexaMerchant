@@ -108,6 +108,7 @@ class ProductController extends Controller
         $version = $LocalOptions['version'];
 
         Cache::put("onebuy_".$product_id, $version);
+        
 
         // two attr
         if($version=='v1') {
@@ -135,6 +136,8 @@ class ProductController extends Controller
 
     public function checkoutUrlGet($product_id) {
 
+          $product = $this->productRepository->findBySlug($product_id);
+        
         $version = Cache::get("onebuy_".$product_id);
         if(empty($version)) {
             $item = \Nicelizhi\Shopify\Models\ShopifyProduct::where("product_id", $product_id)->first();
@@ -147,6 +150,9 @@ class ProductController extends Controller
             $version = $LocalOptions['version'];
             Cache::put("onebuy_".$product_id, $version);
         }
+
+        \Nicelizhi\Shopify\Helpers\Utils::clearCache($product->id, $product_id); // clear cache
+        
         // two attr
         if($version=='v1') {
             //Artisan::call("shopify:product:get", ["--prod_id"=> $product_id]);

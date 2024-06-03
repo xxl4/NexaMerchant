@@ -20,8 +20,6 @@ body {
 
 	background:#fff;
 
-	color:#000;
-
 	text-align:center;
 
 	-webkit-font-smoothing: antialiased;
@@ -29,8 +27,6 @@ body {
 	-moz-font-smoothing: antialiased;
 
 	font-smoothing: antialiased;
-
-	font-family: 'SF Pro Text';
 
 	font-weight:normal;
 
