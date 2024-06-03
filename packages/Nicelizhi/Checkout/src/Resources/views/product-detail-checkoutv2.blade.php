@@ -2431,12 +2431,12 @@
     <br class="br" />
     <div class="phone-block"></div>
     <div class="terms-block">
-      <a class="ajax" href="/onebuy/page/shipping-policy?locale=<?php echo strtolower($default_country); ?>" target="_blank"> @lang('checkout::app.v2.shipping') </a>
+      <a class="ajax" href="/onebuy/page/shipping-policy?locale=<?php echo strtolower($default_country); ?>" target="_blank"> @lang('checkout::app.v2.Shipping') </a>
       <a class="ajax" href="/onebuy/page/refund-policy?locale=<?php echo strtolower($default_country); ?>" target="_blank"> @lang('checkout::app.v2.refund policy')</a>
       <a class="ajax" href="/onebuy/page/about-us?locale=<?php echo strtolower($default_country); ?>" target="_blank"> @lang('checkout::app.v2.About Us')</a>
       <a class="ajax" href="/onebuy/page/privacy-policy?locale=<?php echo strtolower($default_country); ?>" target="_blank"> @lang('checkout::app.v2.Privacy Policy')</a>
       <a class="ajax" href="/onebuy/page/contact-us?locale=<?php echo strtolower($default_country); ?>" target="_blank"> @lang('checkout::app.v2.Contact us')</a>
-      <a class="ajax" href="/onebuy/page/Impressum?locale=<?php echo strtolower($default_country); ?>" target="_blank">@lang('checkout::app.v2.imprint')</a>
+      <a class="ajax terms-block-last" style="display: none;" href="/onebuy/page/Impressum?locale=<?php echo strtolower($default_country); ?>" target="_blank">@lang('checkout::app.v2.imprint')</a>
     </div>
     <br /><br />
     <div class="dmca_logo">
@@ -2837,6 +2837,9 @@
         console.log(schrittImg, 'schrittImg');
         $('.Schritt-top-box').show()
         $('.Schritt-top-box img').attr('src', schrittImg)
+      }
+      if (countries1 == 'de') {
+        $('.terms-block-last').show
       }
       var dataUrl = '/api/onebuy/product/detail/' + getProductId + '?currency=' + currency
       axios
