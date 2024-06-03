@@ -3610,6 +3610,22 @@
     }
 
     function seInput(value) {
+      var parId = $(event.target).parent().attr('id')
+      var itemId = $(event.target).attr('id')
+      var aid = ''
+      if (parId == 'select1-item1' || parId == 'select2-item1' || parId == 'select3-item1' || parId == 'select4-item1') {
+        getSku(itemId, 0, value)
+      }
+      if (parId == 'select2-item2' || parId == 'select3-item2' || parId == 'select4-item2') {
+        getSku(itemId, 1, value)
+      }
+      if (parId == 'select3-item3' || parId == 'select4-item3') {
+        getSku(itemId, 2, value)
+      }
+      if (parId == 'select4-item4') {
+        getSku(itemId, 3, value)
+      }
+      getSkuListInfo();
       var skuAll = $(event.target).parent().parent().parent()
       var list = []
       skuAll.find('select').each(function() {
@@ -3618,42 +3634,8 @@
       var isCrmTrack = listEach(list)
       if (isCrmTrack) {
         crmTrack('add_cart')
-        // console.log(params, 'googlepay');
-        // var payUrl = '/onebuy/order/add/sync?currency={{ core()->getCurrentCurrencyCode() }}&_token={{ csrf_token() }}&time=' + new Date().getTime();
-        // params.
+        createGoogleButton(params)
       }
-      var parId = $(event.target).parent().attr('id')
-      var itemId = $(event.target).attr('id')
-      var aid = ''
-      if (parId == 'select1-item1' || parId == 'select2-item1' || parId == 'select3-item1' || parId == 'select4-item1') {
-        getSku(itemId, 0, value)
-        // paramsProductsinit(params.products)
-      }
-      if (parId == 'select2-item2' || parId == 'select3-item2' || parId == 'select4-item2') {
-        getSku(itemId, 1, value)
-        // paramsProductsinit(params.products)
-      }
-      if (parId == 'select3-item3' || parId == 'select4-item3') {
-        getSku(itemId, 2, value)
-        // paramsProductsinit(params.products)
-      }
-      if (parId == 'select4-item4') {
-        getSku(itemId, 3, value)
-        // paramsProductsinit(params.products)
-      }
-      // var target = event.currentTarget
-      // var imgIndex = ''
-      // var colorList = data.attr.attributes[0].options
-      // for (var colori = 0; colori < colorList.length; colori++) {
-      //   if (colorList[colori].label == value) {
-      //     imgIndex = colorList[colori].products[0]
-      //   }
-      // }
-      // if (imgIndex) {
-      //   var finUrl = data.attr.variant_images[imgIndex][0].small_image_url
-      //   $(event.target).parent().siblings('img').attr('src', finUrl)
-      // }
-      getSkuListInfo();
       console.log(params.products, '===params====')
     }
     $('#product1').click(function(e) {
@@ -3836,6 +3818,75 @@
       }
 
       return showDialog;
+    }
+
+    function createGoogleButton(params) {
+      console.log(params, 'googlepay');
+      var payUrl = '/onebuy/order/add/sync?currency={{ core()->getCurrentCurrencyCode() }}&_token={{ csrf_token() }}&time=' + new Date().getTime();
+      // airwallex_apple
+      // airwallex_google
+      params.payment_method = 'airwallex_google'
+      fetch(payUrl, {
+          body: JSON.stringify(params),
+          method: 'POST',
+          headers: {
+            'content-type': 'application/json'
+          },
+        })
+        .then(function(res) {
+          return res.json()
+        })
+        .then(function(res) {
+          console.log(res, 'googleres==');
+          if (data.result === 200) {
+            const googlePayElement = Airwallex.createElement('googlePayButton', {
+              intent: {
+                // Required, googlePayButton uses intent_id and client_secret to prepare checkout
+                id: res.payment_intent_id,
+                client_secret: res.client_secret,
+              },
+              amount: {
+                value: 1,
+                currency: res.currency,
+              },
+              countryCode: res.country,
+              origin: window.location.origin,
+              autoCapture: true,
+              merchantInfo: {
+                merchantName: 'Airwallex',
+              },
+            });
+            const domGooglePay = googlePayElement.mount('googlePayButton');
+            domGooglePay.addEventListener('onReady', (event) => {
+              /*
+                ... Handle event
+              */
+              // window.alert(event.detail);
+              console.log(event.detail);
+            });
+            domGooglePay.addEventListener('onSuccess', (event) => {
+              /*
+                ... Handle event on success
+              */
+              // window.alert(event.detail);
+              console.log(event.detail);
+
+            });
+            domGooglePay.addEventListener('onError', (event) => {
+              /*
+                ... Handle event on error
+              */
+              // window.alert(event.detail);
+              console.log(event.detail);
+
+            });
+          } else {
+            alert(data.error)
+          }
+        })
+        .catch(function(err) {
+          console.log(err, 'err==');
+        })
     }
   </script>
   <script>
