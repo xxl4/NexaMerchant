@@ -74,6 +74,7 @@ return [
     'Please select product information!' => 'Veuillez sélectionner les informations sur le produit!',
     'Select State' => "Sélectionnez l'état",
     'select country' => 'Choisissez un pays',
-    'Add a house number if you have one' => 'Ajoutez un numéro de maison si vous en avez un'
+    'Add a house number if you have one' => 'Ajoutez un numéro de maison si vous en avez un',
+    'Express checkout' => 'Paiement express'
   ]
 ];

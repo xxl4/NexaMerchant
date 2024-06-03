@@ -74,6 +74,8 @@ return [
     'Please select product information!' => 'Please select product information!',
     'Select State' => 'Select State',
     'select country' => 'select country',
-    'Add a house number if you have one' => 'Add a house number if you have one'
+    'Add a house number if you have one' => 'Add a house number if you have one',
+    'You Can See By' => 'You Can See By',
+    'Express checkout' => 'Express checkout'
   ]
 ];

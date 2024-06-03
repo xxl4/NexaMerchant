@@ -1714,7 +1714,7 @@
     <img class="w-100 d-none d-md-block" id="pc-banner" src="" />
     <img class="w-100 d-block d-md-none" id="mobile-banner" src="" />
   </div>
-  <div class="topStrip">
+  <div class="topStrip" style="text-align: center;">
     <div class="container-xxl">
       <p>
         <span class="cb-total-discount-applied">@lang('checkout::app.v2.During the summer sale the discount is valid for')</span>
@@ -1797,11 +1797,11 @@
           </svg>@lang('checkout::app.v2.12,421 Verified Customer Reviews')</p>
         <p class="bdr-line hide-mob"></p>
         <div class="Schritt-top-box">
-          <p class="text-Schritt-top">Sie können sehen</p>
+          <p class="text-Schritt-top">@lang('checkout::app.v2.You Can See By')</p>
           <img src="" alt="">
         </div>
         <!-- <p class="prd-det-disc">Natural Protection for Your Beloved Dog: Safe, Effective Flea &amp; Tick Prevention</p> -->
-        <p class="pkg-hdng" style="border-bottom: ;">
+        <p class="pkg-hdng">
           <span class="pkg-step">
             @lang('checkout::app.v2.Step')1:
           </span>
@@ -1972,8 +1972,9 @@
               </div>
             </div>
           </div>
-          <p class="button-top">Express-Kaufabwicklung</p>
+          <p class="button-top">@lang('checkout::app.v2.Express checkout')</p>
           <div class="zoom-fade submit-button" id="payment-button" style="text-align: center;margin-top: 12px; width:100%;float: left"></div>
+          <div class="zoom-fade submit-button" id="googlePayButton" style="text-align: center;margin-top: 12px; width:100%;float: left"></div>
           <div id="loading">
             <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 100000; background:#ddd;opacity: 0.3;" id="loading-box" class="flex-center">
               <div class="box">
@@ -4202,469 +4203,7 @@
   <script type="text/javascript" src="/checkout/v2/js/slick.min.js"></script>
   <script type="text/javascript" src="/checkout/v2/js/bookmarkscroll.js"></script>
   <script type="text/javascript" src="/checkout/v2/js/jquery.sticky.js"></script>
-
   <script type="text/javascript" src="/checkout/v2/js/slick-cust.js"></script>
-  <script>
-    var productsNames = {
-      1: {
-        mainProduct: {
-          1: {
-            camp: {
-              US: '1',
-              CA: '3',
-              PPUS: '5',
-              PPCA: '7'
-            },
-            product: [{
-              package_name: 'Single Pack',
-              title: 'Buy 1',
-              sub_title: '',
-              data_warranty: '8.00',
-              data_discount: '50',
-              data_badge: 'Moderate',
-              product_id: '37609',
-              product_price: '39.99',
-              retail_price: '79.98',
-              product_quantity: 1,
-              rebill_product_price: 0,
-              product_schedule: '',
-              product_schedule_quantity: '',
-              product_key: '',
-              nmi_plan_id: '',
-              product_name: '1x Fur Sweep Collar',
-            }, ],
-            shipping_price: '9.95',
-          },
-          2: {
-            camp: {
-              US: '9',
-              CA: '11',
-              PPUS: '13',
-              PPCA: '15'
-            },
-            product: [{
-              package_name: 'Studio Pack',
-              title: 'Buy 2',
-              sub_title: '',
-              data_warranty: '15.20',
-              data_discount: '55',
-              data_badge: 'Popular',
-              product_id: '37610',
-              product_price: '75.99',
-              retail_price: '159.96',
-              product_quantity: 1,
-              rebill_product_price: 0,
-              product_schedule: '',
-              product_schedule_quantity: '',
-              product_key: '',
-              nmi_plan_id: '',
-              product_name: '2x Fur Sweep Collars',
-            }, ],
-            shipping_price: '9.95',
-          },
-          3: {
-            camp: {
-              US: '17',
-              CA: '19',
-              PPUS: '21',
-              PPCA: '23'
-            },
-            product: [{
-              package_name: 'Multi Pack',
-              title: 'Buy 3',
-              sub_title: '',
-              data_warranty: '21.60',
-              data_discount: '60',
-              is_active: true,
-              data_badge: 'Best Seller',
-              product_id: '37611',
-              product_price: '107.98',
-              retail_price: '239.94',
-              product_quantity: 1,
-              rebill_product_price: 0,
-              product_schedule: '',
-              product_schedule_quantity: '',
-              product_key: '',
-              nmi_plan_id: '',
-              product_name: '3x Fur Sweep Collars',
-            }, ],
-            shipping_price: '9.95',
-          },
-          4: {
-            camp: {
-              US: '25',
-              CA: '27',
-              PPUS: '29',
-              PPCA: '31'
-            },
-            product: [{
-              package_name: 'Deluxe Pack',
-              title: 'Buy 4',
-              sub_title: '',
-              data_warranty: '27.19',
-              data_discount: '65',
-              data_badge: 'Moderate',
-              product_id: '37612',
-              product_price: '135.97',
-              retail_price: '319.92',
-              product_quantity: 1,
-              rebill_product_price: 0,
-              product_schedule: '',
-              product_schedule_quantity: '',
-              product_key: '',
-              nmi_plan_id: '',
-              product_name: '4x Fur Sweep Collars',
-            }, ],
-            shipping_price: '9.95',
-          },
-          5: {
-            camp: {
-              US: '33',
-              CA: '35',
-              PPUS: '37',
-              PPCA: '39'
-            },
-            product: [{
-              package_name: 'Family Pack',
-              title: 'Buy 5',
-              sub_title: '',
-              data_warranty: '31.99',
-              data_discount: '70',
-              data_badge: 'Moderate',
-              product_id: '37613',
-              product_price: '159.96',
-              retail_price: '399.90',
-              product_quantity: 1,
-              rebill_product_price: 0,
-              product_schedule: '',
-              product_schedule_quantity: '',
-              product_key: '',
-              nmi_plan_id: '',
-              product_name: '5x Fur Sweep Collars',
-            }, ],
-            shipping_price: '9.95',
-          },
-        },
-        splitProduct: {
-          1: {
-            camp: {
-              US: '41',
-              CA: '43',
-              PPUS: '45',
-              PPCA: '47'
-            },
-            product: [{
-              product_id: '37614',
-              product_price: '0.00',
-              retail_price: '0.00',
-              product_quantity: 1,
-              rebill_product_price: 0,
-              product_schedule: '',
-              product_schedule_quantity: '',
-              product_key: '',
-              nmi_plan_id: '',
-              product_name: 'Fur Sweep Collar - 1-Year Extended Warranty',
-            }, ],
-            shipping_price: '0.00',
-          },
-        },
-      },
-      2: {
-        mainProduct: {
-          1: {
-            camp: {
-              US: '49',
-              CA: '51',
-              PPUS: '53',
-              PPCA: '55'
-            },
-            product: [{
-              product_id: '37615',
-              product_price: '24.99',
-              retail_price: '79.98',
-              product_quantity: 1,
-              rebill_product_price: 0,
-              product_schedule: '',
-              product_schedule_quantity: '',
-              product_key: '',
-              nmi_plan_id: '',
-              product_name: 'Special 1x EXTRA Fur Sweep Collar',
-            }, ],
-            shipping_price: '0.00',
-          },
-        },
-      },
-      3: {
-        mainProduct: {
-          1: {
-            camp: {
-              US: '57',
-              CA: '59',
-              PPUS: '61',
-              PPCA: '63'
-            },
-            product: [{
-              product_id: '37616',
-              product_price: '19.99',
-              retail_price: '79.98',
-              product_quantity: 1,
-              rebill_product_price: 0,
-              product_schedule: '',
-              product_schedule_quantity: '',
-              product_key: '',
-              nmi_plan_id: '',
-              product_name: 'Special 1x EXTRA Fur Sweep Collar',
-            }, ],
-            shipping_price: '0.00',
-          },
-        },
-      },
-      4: {
-        mainProduct: {
-          1: {
-            camp: {
-              US: '65',
-              CA: '67',
-              PPUS: '69',
-              PPCA: '71'
-            },
-            product: [{
-              product_id: '37617',
-              product_price: '29.99',
-              retail_price: '59.98',
-              product_quantity: 1,
-              rebill_product_price: 0,
-              product_schedule: '',
-              product_schedule_quantity: '',
-              product_key: '',
-              nmi_plan_id: '',
-              product_name: '1x Pet Brush',
-            }, ],
-            shipping_price: '0.00',
-          },
-          2: {
-            camp: {
-              US: '73',
-              CA: '75',
-              PPUS: '77',
-              PPCA: '79'
-            },
-            product: [{
-              product_id: '37618',
-              product_price: '53.98',
-              retail_price: '119.96',
-              product_quantity: 1,
-              rebill_product_price: 0,
-              product_schedule: '',
-              product_schedule_quantity: '',
-              product_key: '',
-              nmi_plan_id: '',
-              product_name: '2x Pet Brushes',
-            }, ],
-            shipping_price: '0.00',
-          },
-          3: {
-            camp: {
-              US: '81',
-              CA: '83',
-              PPUS: '85',
-              PPCA: '87'
-            },
-            product: [{
-              product_id: '37619',
-              product_price: '71.98',
-              retail_price: '179.94',
-              product_quantity: 1,
-              rebill_product_price: 0,
-              product_schedule: '',
-              product_schedule_quantity: '',
-              product_key: '',
-              nmi_plan_id: '',
-              product_name: '3x Pet Brushes',
-            }, ],
-            shipping_price: '0.00',
-          },
-          4: {
-            camp: {
-              US: '89',
-              CA: '91',
-              PPUS: '93',
-              PPCA: '95'
-            },
-            product: [{
-              product_id: '37620',
-              product_price: '83.97',
-              retail_price: '239.92',
-              product_quantity: 1,
-              rebill_product_price: 0,
-              product_schedule: '',
-              product_schedule_quantity: '',
-              product_key: '',
-              nmi_plan_id: '',
-              product_name: '4x Pet Brushes',
-            }, ],
-            shipping_price: '0.00',
-          },
-          5: {
-            camp: {
-              US: '97',
-              CA: '99',
-              PPUS: '101',
-              PPCA: '103'
-            },
-            product: [{
-              product_id: '37621',
-              product_price: '89.97',
-              retail_price: '299.90',
-              product_quantity: 1,
-              rebill_product_price: 0,
-              product_schedule: '',
-              product_schedule_quantity: '',
-              product_key: '',
-              nmi_plan_id: '',
-              product_name: '5x Pet Brushes',
-            }, ],
-            shipping_price: '0.00',
-          },
-        },
-      },
-      5: {
-        mainProduct: {
-          1: {
-            camp: {
-              US: '105',
-              CA: '107',
-              PPUS: '109',
-              PPCA: '111'
-            },
-            product: [{
-              product_id: '37622',
-              product_price: '29.95',
-              retail_price: '59.90',
-              product_quantity: 1,
-              rebill_product_price: 0,
-              product_schedule: '',
-              product_schedule_quantity: '',
-              product_key: '',
-              nmi_plan_id: '',
-              product_name: '1x Pet Trainer Whistle',
-            }, ],
-            shipping_price: '0.00',
-          },
-          2: {
-            camp: {
-              US: '113',
-              CA: '115',
-              PPUS: '117',
-              PPCA: '119'
-            },
-            product: [{
-              product_id: '37623',
-              product_price: '53.91',
-              retail_price: '119.80',
-              product_quantity: 1,
-              rebill_product_price: 0,
-              product_schedule: '',
-              product_schedule_quantity: '',
-              product_key: '',
-              nmi_plan_id: '',
-              product_name: '2x Pet Trainer Whistles',
-            }, ],
-            shipping_price: '0.00',
-          },
-          3: {
-            camp: {
-              US: '121',
-              CA: '123',
-              PPUS: '125',
-              PPCA: '127'
-            },
-            product: [{
-              product_id: '37624',
-              product_price: '71.88',
-              retail_price: '179.70',
-              product_quantity: 1,
-              rebill_product_price: 0,
-              product_schedule: '',
-              product_schedule_quantity: '',
-              product_key: '',
-              nmi_plan_id: '',
-              product_name: '3x Pet Trainer Whistles',
-            }, ],
-            shipping_price: '0.00',
-          },
-          4: {
-            camp: {
-              US: '129',
-              CA: '131',
-              PPUS: '133',
-              PPCA: '135'
-            },
-            product: [{
-              product_id: '37625',
-              product_price: '83.86',
-              retail_price: '239.60',
-              product_quantity: 1,
-              rebill_product_price: 0,
-              product_schedule: '',
-              product_schedule_quantity: '',
-              product_key: '',
-              nmi_plan_id: '',
-              product_name: '4x Pet Trainer Whistles',
-            }, ],
-            shipping_price: '0.00',
-          },
-          5: {
-            camp: {
-              US: '137',
-              CA: '139',
-              PPUS: '141',
-              PPCA: '143'
-            },
-            product: [{
-              product_id: '37626',
-              product_price: '89.85',
-              retail_price: '299.50',
-              product_quantity: 1,
-              rebill_product_price: 0,
-              product_schedule: '',
-              product_schedule_quantity: '',
-              product_key: '',
-              nmi_plan_id: '',
-              product_name: '5x Pet Trainer Whistles',
-            }, ],
-            shipping_price: '0.00',
-          },
-        },
-      },
-      6: {
-        mainProduct: {
-          1: {
-            camp: {
-              US: '145',
-              CA: '147',
-              PPUS: '149',
-              PPCA: '151'
-            },
-            product: [{
-              product_id: '37627',
-              product_price: '65.99',
-              retail_price: '239.94',
-              product_quantity: 1,
-              rebill_product_price: 0,
-              product_schedule: '',
-              product_schedule_quantity: '',
-              product_key: '',
-              nmi_plan_id: '',
-              product_name: "Fur Sweep Collar Inventory 3x EXTRA's Special",
-            }, ],
-            shipping_price: '0.00',
-          },
-        },
-      },
-    }
-    var cnty_code = 'US'
-  </script>
   <script type="text/javascript" src="/checkout/v2/js/popup.js"></script>
   <!-- <script type="text/javascript" src="js/checkout.js"></script> -->
 
@@ -4792,15 +4331,12 @@
           console.error(error, 'getswiper err')
         })
     })
-  </script>
-  <script>
     $(document).ready(function() {
       $(".faq_view").click(function() {
         $("#collapseContent").slideToggle();
       });
     });
-  </script>
-  <script>
+
     function payAfterSubmit() {
       $('#pay-after-submit-error').hide()
     }
@@ -4896,21 +4432,54 @@
         $("#cardCvc").removeClass("shipping-info-input-error");
       }
     });
+
+    const googlePayElement = Airwallex.createElement('googlePayButton', {
+      intent: {
+        // Required, googlePayButton uses intent_id and client_secret to prepare checkout
+        id: '123',
+        client_secret: '',
+      },
+
+      amount: {
+
+        value: 1,
+
+        currency: 'CNY',
+
+      },
+
+      origin: window.location.origin,
+
+      autoCapture: true,
+
+      merchantInfo: {
+
+        merchantName: 'Airwallex',
+
+      },
+
+    });
+    const domGooglePay = googlePayElement.mount('googlePayButton');
+    domGooglePay.addEventListener('onReady', (event) => {
+      /*
+        ... Handle event
+      */
+      window.alert(event.detail);
+    });
+    domGooglePay.addEventListener('onSuccess', (event) => {
+      /*
+        ... Handle event on success
+      */
+      window.alert(event.detail);
+    });
+    domGooglePay.addEventListener('onError', (event) => {
+      /*
+        ... Handle event on error
+      */
+      window.alert(event.detail);
+    });
   </script>
   <script>
-    window.pay_type = 'airwallex'
-    window.is_paypal_standard = pay_type == 'paypal_standard' ? true : false
-    window.is_checkout_pay = pay_type == 'checkout' ? true : false
-    window.is_payoneer_pay = pay_type == 'payoneer' ? true : false
-    window.is_paypal_card_pay = pay_type == 'paypal_card' ? true : false
-    window.is_wintopay = pay_type == 'wintopay' ? true : false
-    window.is_pacypay = pay_type == 'pacypay' ? true : false
-    window.is_worldpay = pay_type == 'worldpay' ? true : false
-    window.is_airwallex = pay_type == 'airwallex' ? true : false
-    window.is_stripe_pay = pay_type == 'stripe' ? true : false
-    window.is_stripe_local = pay_type == 'stripe_local' ? true : false
-    window.is_airwallex_klarna = pay_type == 'airwallex_klarna' ? true : false
-
     function creatPaypalCardButton() {
       var that = this
       var FUNDING_SOURCES = [{
@@ -5158,32 +4727,6 @@
     $(".email").on("focus", function() {
       //console.log("email focus");
     });
-
-    // $(".email").on("blur", function() {
-    //   console.log("email blur");
-    //   var email = $(".email").val();
-    //   if (email.length > 0) {
-
-    //     params = {
-    //       "channel_id": "660bccc0efa6a",
-    //       "token": "",
-    //       "type": "add_user_info"
-    //     };
-    //     fetch('https://crm.heomai.com/api/user/action', {
-    //       body: JSON.stringify(params),
-    //       method: 'POST',
-    //       headers: {
-    //         'content-type': 'application/json'
-    //       },
-    //     })
-
-    //   }
-    // });
-
-
-
-
-
 
     function checkout() {
       sendInitiateCheckoutEvent();
