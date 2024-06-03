@@ -1081,7 +1081,7 @@
     } */
 
     .input-focus {
-      top: 0!important;
+      top: 0 !important;
       font-size: 14px;
     }
 
@@ -1173,6 +1173,7 @@
     #cb-buy-each2 {
       color: red;
     }
+
     .size-chart-img {
       width: 100%;
       height: 100%;
@@ -1186,16 +1187,19 @@
       background: rgba(0, 0, 0, 0.6);
       z-index: 9999;
     }
+    
     .size-chart-img img {
       max-height: 60%;
       max-width: 100%;
     }
+
     /* .sku-preview-img img {
       width: 300px;
     } */
     .size-chart-img-box {
       display: none;
     }
+
     .sku-preview-img {
       width: 100%;
       height: 100%;
@@ -1262,7 +1266,8 @@
     .flag-icon-size {
       font-size: 10px;
     }
-    .email-warn{
+
+    .email-warn {
       color: red;
       font-size: 13px;
       margin-left: 8px;
@@ -1283,7 +1288,7 @@
     <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/checkout.css?v=7" />
     <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/bootstrap.min.css" />
     <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/slick.min.css" />
-    <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/upsell-new-02.css?v=2" />
+    <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/upsell-new-02.css?v=3" />
     <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/extra-style.css" />
     <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/fonts.css" />
     <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/custom.css" />
@@ -1721,7 +1726,7 @@
     <div class="container">
       <div class="dis-box-logo">
         <div class="logo_wrap_dist">
-          <img src="/checkout/v2/images/logo_de.png" width="200" />
+          <img src="" width="200" />
         </div>
       </div>
     </div>
@@ -1793,21 +1798,16 @@
         <p class="bdr-line hide-mob"></p>
         <div class="Schritt-top-box">
           <p class="text-Schritt-top">Sie können sehen</p>
-          <img src="/checkout/v2/images/1701506369_01.webp" alt="">
+          <img src="" alt="">
         </div>
         <!-- <p class="prd-det-disc">Natural Protection for Your Beloved Dog: Safe, Effective Flea &amp; Tick Prevention</p> -->
         <p class="pkg-hdng" style="border-bottom: ;">
           <span class="pkg-step">
-            @lang('checkout::app.v2.Step')1: 
-          </span> 
+            @lang('checkout::app.v2.Step')1:
+          </span>
           @lang('checkout::app.v2.Choose your package')
-          <a
-            style="margin-left:5px;color:#1773B0; font-size:13px"
-            href="javascript:void(0)"
-            id="size-chart"
-            onclick="sizeCharImgPreview()"
-          >
-              @lang('checkout::app.v2.size chart')
+          <a style="margin-left:5px;color:#1773B0; font-size:13px" href="javascript:void(0)" id="size-chart" onclick="sizeCharImgPreview()">
+            @lang('checkout::app.v2.size chart')
           </a>
         </p>
         <div class="pkg-opt">
@@ -2000,25 +2000,25 @@
           <div class="formBox">
             <div class="fl input-box">
               <label>
-                <input onchange="throttleCrmTrack()" onblur="inputBlur(event)" class="input-item" name="firstName" id="firstName" type="text" placeholder="" required="" />
+                <input onblur="inputBlur(event)" class="input-item" name="firstName" id="firstName" type="text" placeholder="" required="" />
                 <span class="input-span">@lang('checkout::app.v2.First Name')</span>
               </label>
             </div>
             <div class="fl input-box">
               <label>
-                <input onchange="throttleCrmTrack()"  onblur="inputBlur(event)" class="input-item" name="lastName" id="lastName" type="text" placeholder="" required="" />
+                <input onblur="inputBlur(event)" class="input-item" name="lastName" id="lastName" type="text" placeholder="" required="" />
                 <span class="input-span">@lang('checkout::app.v2.Last Name')</span>
               </label>
             </div>
             <div class="fl input-box">
               <label>
-                <input onchange="throttleCrmTrack()" onblur="inputBlur(event)" class="input-item" name="email" id="email" type="email" placeholder="" required="" />
+                <input onblur="inputBlur(event)" class="input-item" name="email" id="email" type="email" placeholder="" required="" />
                 <span class="input-span">@lang('checkout::app.v2.Email')</span>
               </label>
             </div>
             <div class="fl input-box">
               <label>
-                <input onchange="throttleCrmTrack()" onblur="inputBlur(event)" class="input-item" name="phone" id="phone" type="tel" placeholder="" required="" />
+                <input onblur="inputBlur(event)" class="input-item" name="phone" id="phone" type="tel" placeholder="" required="" />
                 <span class="input-span">@lang('checkout::app.v2.Phone')</span>
               </label>
             </div>
@@ -2032,7 +2032,7 @@
               <p class="email-warn" style="margin-top: 15px;">@lang('checkout::app.v2.Add a house number if you have one')</p>
               <div class="fl input-box">
                 <label>
-                  <input onchange="throttleCrmTrack()" onblur="inputBlur(event)" class="input-item" name="shippingAddress1" id="shipAddress" type="text" placeholder="" required="" />
+                  <input onblur="inputBlur(event)" class="input-item" name="shippingAddress1" id="shipAddress" type="text" placeholder="" required="" />
                   <span class="input-span">@lang('checkout::app.v2.Address')</span>
                 </label>
               </div>
@@ -2042,7 +2042,7 @@
               </div> -->
               <div class="fl input-box">
                 <label>
-                  <input onchange="throttleCrmTrack()" onblur="inputBlur(event)" class="input-item" name="shippingCity" id="shipAddress" type="text" placeholder="" required="" />
+                  <input onblur="inputBlur(event)" class="input-item" name="shippingCity" id="shipAddress" type="text" placeholder="" required="" />
                   <span class="input-span">@lang('checkout::app.v2.City')</span>
                 </label>
               </div>
@@ -2077,7 +2077,7 @@
               </div> -->
               <div class="fl input-box" style="margin-top: 20px;">
                 <label>
-                  <input onchange="throttleCrmTrack()" onblur="inputBlur(event)" class="input-item" name="shippingZip" id="zip" type="tel" placeholder="" required="" />
+                  <input onblur="inputBlur(event)" class="input-item" name="shippingZip" id="zip" type="tel" placeholder="" required="" />
                   <span class="input-span">@lang('checkout::app.v2.Zip Code')</span>
                 </label>
               </div>
@@ -2739,18 +2739,32 @@
   </script>
 
   <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-P6343Y2GKT"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-P6343Y2GKT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
 
-      gtag('config', 'G-P6343Y2GKT',{"debug_mode": true});
-</script>
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
 
-<script type="text/javascript"> 
-(function(c,l,a,r,i,t,y){ c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)}; t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i; y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y); })(window, document, "clarity", "script", "kruepex7cm"); 
-</script> 
+    gtag('config', 'G-P6343Y2GKT', {
+      "debug_mode": true
+    });
+  </script>
+
+  <script type="text/javascript">
+    (function(c, l, a, r, i, t, y) {
+      c[a] = c[a] || function() {
+        (c[a].q = c[a].q || []).push(arguments)
+      };
+      t = l.createElement(r);
+      t.async = 1;
+      t.src = "https://www.clarity.ms/tag/" + i;
+      y = l.getElementsByTagName(r)[0];
+      y.parentNode.insertBefore(t, y);
+    })(window, document, "clarity", "script", "kruepex7cm");
+  </script>
 
   <script>
     var data = ''
@@ -2811,7 +2825,18 @@
       complete: false
     }
     var skuErr = false
+    var logoImg = "/checkout/v2/images/logo_" + countries1 + ".png"
+    var schrittImg = "/checkout/v2/images/1701506369_" + countries1 + ".webp"
     $(function() {
+      console.log(logoImg, 'logoImg');
+      $('.logo_wrap_dist img').attr('src', logoImg)
+      if (countries1 == 'fr' || countries1 == 'es') {
+        $('.Schritt-top-box').hide()
+      } else {
+        console.log(schrittImg, 'schrittImg');
+        $('.Schritt-top-box').show()
+        $('.Schritt-top-box img').attr('src', schrittImg)
+      }
       var dataUrl = '/api/onebuy/product/detail/' + getProductId + '?currency=' + currency
       axios
         .get(dataUrl)
@@ -2830,7 +2855,7 @@
           $('#footer-top-text').append(data.brand)
           if (Object.keys(data.ads.size).lenght == 0) {
             $('#size-chart').hide()
-          }else {
+          } else {
             $('#size-chart').show()
           }
           if (payTypeShow.airwallex_klarna == '0') {
@@ -2974,7 +2999,7 @@
           if (attrList.length > 0) {
             var selectList = ''
             for (var arri = 0; arri < attrList.length; arri++) {
-              var optionList = `<option value="" hidden>` + attrList[arri].label + `</option>`
+              var optionList = `<option value="" hidden style="color: red">` + attrList[arri].label + `</option>`
               for (var attj = 0; attj < attrList[arri].options.length; attj++) {
                 optionList += `<option value="` + attrList[arri].options[attj].label + `">` + attrList[arri].options[attj].label + `</option>`
               }
@@ -3165,16 +3190,128 @@
       }
     }
 
+    function inputBlur(event) {
+      console.log(event.target, 'event.target')
+      if ($(event.target).val() !== '') {
+        $(event.target).next().addClass('input-focus')
+      } else {
+        $(event.target).next().removeClass('input-focus')
+      }
+      var trackFlag = $('input[name="firstName"]').val() && $('input[name="lastName"]').val() && $('input[name="email"]').val() && $('input[name="phone"]').val() && $('input[name="shippingAddress1"]').val() && $('input[name="shippingCity"]').val() && $('input[name="shippingZip"]').val()
+      if (trackFlag) {
+        crmTrack('add_user_info')
+      }
+    }
+
+    function throttle(fn, wait) {
+      let timeout = null;
+      return function() {
+        let context = this,
+          args = arguments;
+        if (!timeout) {
+          timeout = setTimeout(() => {
+            fn.apply(context, args);
+            timeout = null;
+          }, wait);
+        }
+      };
+    }
+
+    function crmTrack(type) {
+      console.log(type, 'crmTrack')
+      var postParams = {
+        channel_id: "<?php echo $crm_channel; ?>",
+        token: "<?php echo $refer; ?>",
+        type: type
+      };
+      console.log(JSON.stringify(postParams), 'JSON.stringify(postParams)==')
+      // 1) 用户修改商品信息add_cart
+      // 3）用户发起支付 触发 add_pay
+      // 2）用户填写表单内容 ，触发 add_user_info
+      fetch('https://crm.heomai.com/api/user/action', {
+        body: JSON.stringify(postParams),
+        method: 'POST',
+        headers: {
+          'content-type': 'application/json'
+        },
+      })
+    }
+
+    function validateEmail(email) {
+      const regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/;
+      return regex.test(email);
+    }
+
+    function errDialogShow(errIsShow, emailErr, airwallexArror = true) {
+      $('.dialog-error .dialog-box ul').empty()
+      var textList = ''
+      if (!$('input[name="firstName"]').val()) {
+        textList += `<li>@lang('checkout::app.v2.Please enter your first name!')</li>`
+      }
+      if (!$('input[name="lastName"]').val()) {
+        textList += `<li>@lang('checkout::app.v2.Please enter your last name!')</li>`
+      }
+      if (!$('input[name="email"]').val() || !emailErr) {
+        textList += `<li>@lang('checkout::app.v2.Please enter a valid email address!')</li>`
+      }
+      if (!$('input[name="phone"]').val()) {
+        textList += `<li>@lang('checkout::app.v2.Please enter your phone number!')</li>`
+      }
+      if (!$('input[name="shippingAddress1"]').val()) {
+        textList += `<li>@lang('checkout::app.v2.Please enter your address!')</li>`
+      }
+      if (!$('input[name="shippingCity"]').val()) {
+        textList += `<li>@lang('checkout::app.v2.Please enter your city!')</li>`
+      }
+      if (!$('input[name="shippingZip"]').val()) {
+        textList += `<li>@lang('checkout::app.v2.Please insert a valid postal code!')</li>`
+      }
+      if (!$('select[name="shippingCountry"]').val()) {
+        textList += `<li>@lang('checkout::app.v2.Please select your country!')</li>`
+      }
+      if (!$('select[name="shippingState"]').val()) {
+        textList += `<li>@lang('checkout::app.v2.Please select your state!')</li>`
+      }
+      if (!errIsShow) {
+        textList += `<li>@lang('checkout::app.v2.Please select product information!')</li>`
+      }
+      if (!airwallexArr) {
+        textList += `<li>` + airwallexArr.errText + `</li>`
+      }
+      $('.dialog-error').show()
+      $('.dialog-error .dialog-box ul').append(textList)
+    }
+
+    function getVSID(obj) {
+      for (const key in obj) {
+        if (key == productL1.attr_id) {
+          console.log(obj[key][0], 'obj[key][0]');
+          productL1.variant_id = obj[key][0]
+          productL1.product_sku = obj[key][1]
+        }
+        if (key == productL2.attr_id) {
+          productL2.variant_id = obj[key][0]
+          productL2.product_sku = obj[key][1]
+        }
+        if (key == productL3.attr_id) {
+          productL3.variant_id = obj[key][0]
+          productL3.product_sku = obj[key][1]
+        }
+        if (key == productL4.attr_id) {
+          productL4.variant_id = obj[key][0]
+          productL4.product_sku = obj[key][1]
+        }
+      }
+    }
+
     function getSkuListInfo() {
       $('.sku-info').empty()
       var skuData = params.products
-      console.log(skuData, 'skuData=======');
       var skuList = ''
       for (let i = 0; i < skuData.length; i++) {
         var description = skuData[i].description.slice(2)
         var attributeName = skuData[i].attribute_name.split(',').join(' / ')
         var skuImgUrl = skuData[i].img
-        console.log(skuData[i], 'skuiii');
         skuList += `<div class="sku-item-info">
                 <img src="` + skuImgUrl + `" alt="" onclick="skuImgPreview(event)" style="width: 64px;height:64px" />
                 <div class="sku-content">
@@ -3206,9 +3343,11 @@
     function imgBoxClose() {
       $('.sku-preview-img-box').hide()
     }
+
     function sizeChartBoxClose() {
       $('.size-chart-img-box').hide()
     }
+
     function paramsProductsinit(list) {
       // console.log(list, 'paramsProductsinit')
       for (var listi = 0; listi < list.length; listi++) {
@@ -3431,26 +3570,26 @@
             $('select[name="shippingCountry"]').val(countriesList[0].countryCode)
           }
           var cval = $('select[name="shippingCountry"]').val()
-      console.log(cval, 'cval===')
-      if (cval) {
-        cval = cval.toLowerCase()
-        var countryUrl = '/template-common/checkout1/state/' + cval + '_' + area + '.json'
-        axios
-          .get(countryUrl)
-          .then(function(res) {
-            if (res.data[0].CountryCode) {
-              console.log(res, 'rrrrrrrssssssss')
-              var stateList = res.data
-              var optionList = `<option value="" disabled>@lang('checkout::app.v2.Select State')</option>`
-              for (var resj = 0; resj < stateList.length; resj++) {
-                optionList += `<option value="` + stateList[resj].StateCode + `">` + stateList[resj].StateName + `</option>`
-              }
-              $('select[name="shippingState"]').empty()
-              $('select[name="shippingState"]').append(optionList)
-              $('select[name="shippingState"]').val(stateList[0].StateCode)
-            }
-          })
-         }
+          console.log(cval, 'cval===')
+          if (cval) {
+            cval = cval.toLowerCase()
+            var countryUrl = '/template-common/checkout1/state/' + cval + '_' + area + '.json'
+            axios
+              .get(countryUrl)
+              .then(function(res) {
+                if (res.data[0].CountryCode) {
+                  console.log(res, 'rrrrrrrssssssss')
+                  var stateList = res.data
+                  var optionList = `<option value="" disabled>@lang('checkout::app.v2.Select State')</option>`
+                  for (var resj = 0; resj < stateList.length; resj++) {
+                    optionList += `<option value="` + stateList[resj].StateCode + `">` + stateList[resj].StateName + `</option>`
+                  }
+                  $('select[name="shippingState"]').empty()
+                  $('select[name="shippingState"]').append(optionList)
+                  $('select[name="shippingState"]').val(stateList[0].StateCode)
+                }
+              })
+          }
 
         })
         .catch(function(err) {
@@ -3494,7 +3633,6 @@
     })
 
     function getSku(id, n, value) {
-      console.log(id, n, value, 'id, n, value');
       var nList = []
       var aList = []
       for (var i = 0; i < attLength; i++) {
@@ -3503,7 +3641,6 @@
           nList = params.products[n].attribute_name.split(',')
           nList[i] = value
           params.products[n].attribute_name = nList.join(',')
-          console.log(params.products[n].attribute_name, 'nList')
           for (var j = 0; j < data.attr.attributes[i].options.length; j++) {
             if (data.attr.attributes[i].options[j].label == value) {
               aid = data.attr.attributes[i].options[j].id
@@ -3524,24 +3661,43 @@
           aList = params.products[n].attr_id.split(',')
           aList[i] = data.attr.attributes[i].id + '_' + aid
           params.products[n].attr_id = aList.join(',')
-          console.log(params.products[n].attr_id, 'attr_id')
         }
       }
       getVSID(data.attr.index2)
     }
 
+    function listEach(list) {
+      return list.every(function(item) {
+        return item !== ''
+      })
+    }
+
     function seInput(value) {
-      // var selectList = ''
-      // for (var arri = 0; arri < data.attrList.length; arri++) {
-      //   var optionList = ''
-      //   for (var attj = 0; attj < data.attrList[arri].options.length; attj++) {
-      //     optionList += `<option value="` + data.attrList[arri].options[attj].label + `">` + data.attrList[arri].options[attj].label + `</option>`
-      //   }
-      //   selectList += `<select class="in-se" id="in-se` + arri + `" onchange="seInput(value)">` + optionList + `</select>`
-      // }
+      var skuAll = $(event.target).parent().parent().parent()
+      var list = []
+      skuAll.find('select').each(function() {
+        list.push($(this).val())
+      })
+      var isCrmTrack = listEach(list)
+      if (isCrmTrack) {
+        crmTrack('add_cart')
+      }
+      var selectList = ''
+      for (var arri = 0; arri < data.attr.attributes.length; arri++) {
+        var optionList = ''
+        for (var attj = 0; attj < data.attr.attributes[arri].options.length; attj++) {
+          optionList += `<option value="` + data.attr.attributes[arri].options[attj].label + `">` + data.attr.attributes[arri].options[attj].label + `</option>`
+        }
+        var id = "#in-se" + arri
+        $(id).empty()
+        $(id).append(optionList)
+        console.log($(id).val(), '$(id)');
+        // selectList += `<select class="in-se" id="in-se` + arri + `" onchange="seInput(value)">` + optionList + `</select>`
+      }
+      // console.log(selectList, 'selectList==');
+      // $('.se-box').append(selectList)
       var parId = $(event.target).parent().attr('id')
       var itemId = $(event.target).attr('id')
-      console.log(parId, itemId, 'itemIditemIditemId');
       var aid = ''
       if (parId == 'select1-item1' || parId == 'select2-item1' || parId == 'select3-item1' || parId == 'select4-item1') {
         getSku(itemId, 0, value)
@@ -3708,47 +3864,13 @@
       params.country = $('select[name="shippingCountry"]').val()
       params.province = $('select[name="shippingState"]').val()
       var errIsShow = skuIsScelect()
-      var errorShow = params.first_name && params.second_name && params.email && params.phone_full && params.address && params.city && params.code && params.country && params.province && errIsShow && airwallexArr.complete
+      var emailErr = validateEmail($('input[name="email"]').val())
+      console.log(emailErr, 'emailErr');
+      var errorShow = params.first_name && params.second_name && params.email && params.phone_full && params.address && params.city && params.code && params.country && params.province && errIsShow && airwallexArr.complete && emailErr
       console.log(airwallexArr, 'airwallexArr');
       console.log(errorShow, 'errorShow')
       if (!errorShow) {
-        $('.dialog-error .dialog-box ul').empty()
-        var textList = ''
-        if (!params.first_name) {
-          textList += `<li>@lang('checkout::app.v2.Please enter your first name!')</li>`
-        }
-        if (!params.second_name) {
-          textList += `<li>@lang('checkout::app.v2.Please enter your last name!')</li>`
-        }
-        if (!params.email) {
-          textList += `<li>@lang('checkout::app.v2.Please enter a valid email address!')</li>`
-        }
-        if (!params.phone_full) {
-          textList += `<li>@lang('checkout::app.v2.Please enter your phone number!')</li>`
-        }
-        if (!params.address) {
-          textList += `<li>@lang('checkout::app.v2.Please enter your address!')</li>`
-        }
-        if (!params.city) {
-          textList += `<li>@lang('checkout::app.v2.Please enter your city!')</li>`
-        }
-        if (!params.code) {
-          textList += `<li>@lang('checkout::app.v2.Please insert a valid postal code!')</li>`
-        }
-        if (!params.country) {
-          textList += `<li>@lang('checkout::app.v2.Please select your country!')</li>`
-        }
-        if (!params.province) {
-          textList += `<li>@lang('checkout::app.v2.Please select your state!')</li>`
-        }
-        if (!errIsShow) {
-          textList += `<li>@lang('checkout::app.v2.Please select product information!')</li>`
-        }
-        if (!airwallexArr.complete) {
-          textList += `<li>` + airwallexArr.errText + `</li>`
-        }
-        $('.dialog-error').show()
-        $('.dialog-error .dialog-box ul').append(textList)
+        errDialogShow(errIsShow, emailErr, airwallexArr.complete)
         $('#loading').hide()
         return
       }
@@ -4023,46 +4145,14 @@
             // getParams('paypal_stand')
             var errIsShow = skuIsScelect()
             console.log(params, '==========2', data);
-
+            var emailErr = validateEmail($('input[name="email"]').val())
+            console.log(emailErr, 'emailErr');
             var errorShow = $('input[name="firstName"]').val() && $('input[name="lastName"]').val() && $('input[name="email"]').val() &&
               $('input[name="phone"]').val() &&
-              $('input[name="shippingAddress1"]').val() && $('input[name="shippingCity"]').val() && $('input[name="shippingZip"]').val() && $('select[name="shippingCountry"]').val() && $('select[name="shippingState"]').val() && errIsShow
+              $('input[name="shippingAddress1"]').val() && $('input[name="shippingCity"]').val() && $('input[name="shippingZip"]').val() && $('select[name="shippingCountry"]').val() && $('select[name="shippingState"]').val() && errIsShow && emailErr
             console.log(errorShow, 'errorShowpaypal====')
             if (!errorShow) {
-              $('.dialog-error .dialog-box ul').empty()
-              var textList = ''
-              if (!$('input[name="firstName"]').val()) {
-                textList += `<li>@lang('checkout::app.v2.Please enter your first name!')</li>`
-              }
-              if (!$('input[name="lastName"]').val()) {
-                textList += `<li>@lang('checkout::app.v2.Please enter your last name!')</li>`
-              }
-              if (!$('input[name="email"]').val()) {
-                textList += `<li>@lang('checkout::app.v2.Please enter a valid email address!')</li>`
-              }
-              if (!$('input[name="phone"]').val()) {
-                textList += `<li>@lang('checkout::app.v2.Please enter your phone number!')</li>`
-              }
-              if (!$('input[name="shippingAddress1"]').val()) {
-                textList += `<li>@lang('checkout::app.v2.Please enter your address!')</li>`
-              }
-              if (!$('input[name="shippingCity"]').val()) {
-                textList += `<li>@lang('checkout::app.v2.Please enter your city!')</li>`
-              }
-              if (!$('input[name="shippingZip"]').val()) {
-                textList += `<li>@lang('checkout::app.v2.Please insert a valid postal code!')</li>`
-              }
-              if (!$('select[name="shippingCountry"]').val()) {
-                textList += `<li>@lang('checkout::app.v2.Please select your country!')</li>`
-              }
-              if (!$('select[name="shippingState"]').val()) {
-                textList += `<li>@lang('checkout::app.v2.Please select your state!')</li>`
-              }
-              if (!errIsShow) {
-                textList += `<li>@lang('checkout::app.v2.Please select product information!')</li>`
-              }
-              $('.dialog-error').show()
-              $('.dialog-error .dialog-box ul').append(textList)
+              errDialogShow(errIsShow, emailErr)
               $('#loading').hide()
               return
             }
@@ -4695,47 +4785,6 @@
       }
     })
   </script>
-
-  <script>
-    ;
-    (function() {
-      if (!document.body) return
-      var js =
-        "window['__CF$cv$params']={r:'884160effb240fbe',t:'MTcxNTc1Nzc2NS4xOTgwMDA='};_cpo=document.createElement('script');_cpo.nonce='',_cpo.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js',document.getElementsByTagName('head')[0].appendChild(_cpo);"
-      var _0xh = document.createElement('iframe')
-      _0xh.height = 1
-      _0xh.width = 1
-      _0xh.style.position = 'absolute'
-      _0xh.style.top = 0
-      _0xh.style.left = 0
-      _0xh.style.border = 'none'
-      _0xh.style.visibility = 'hidden'
-      document.body.appendChild(_0xh)
-
-      function handler() {
-        var _0xi = _0xh.contentDocument || _0xh.contentWindow.document
-        if (_0xi) {
-          var _0xj = _0xi.createElement('script')
-          _0xj.innerHTML = js
-          _0xi.getElementsByTagName('head')[0].appendChild(_0xj)
-        }
-      }
-      if (document.readyState !== 'loading') {
-        handler()
-      } else if (window.addEventListener) {
-        document.addEventListener('DOMContentLoaded', handler)
-      } else {
-        var prev = document.onreadystatechange || function() {}
-        document.onreadystatechange = function(e) {
-          prev(e)
-          if (document.readyState !== 'loading') {
-            document.onreadystatechange = prev
-            handler()
-          }
-        }
-      }
-    })()
-  </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/5.0.4/js/swiper.js"></script>
   <script>
     function closeDialog() {
@@ -4969,7 +5018,6 @@
                 return;
               }
               console.log(data, '==========');
-             
               var url =
                 '/onebuy/order/addr/after?currency={{ core()->getCurrentCurrencyCode() }}&_token={{ csrf_token() }}&time=' +
                 new Date().getTime() +
@@ -5184,26 +5232,25 @@
       //console.log("email focus");
     });
 
-    $(".email").on("blur", function() {
-      console.log("email blur");
-      var email = $(".email").val();
-      if (email.length > 0) {
+    // $(".email").on("blur", function() {
+    //   console.log("email blur");
+    //   var email = $(".email").val();
+    //   if (email.length > 0) {
 
-        params = {
-          "channel_id": "660bccc0efa6a",
-          "token": "",
-          "type": "add_user_info"
-        };
-        fetch('https://crm.heomai.com/api/user/action', {
-          body: JSON.stringify(params),
-          method: 'POST',
-          headers: {
-            'content-type': 'application/json'
-          },
-        })
-
-      }
-    });
+    //     params = {
+    //       "channel_id": "660bccc0efa6a",
+    //       "token": "",
+    //       "type": "add_user_info"
+    //     };
+    //     fetch('https://crm.heomai.com/api/user/action', {
+    //       body: JSON.stringify(params),
+    //       method: 'POST',
+    //       headers: {
+    //         'content-type': 'application/json'
+    //       },
+    //     })
+    //   }
+    // });
 
 
 
@@ -5721,97 +5768,6 @@
 
       return products
     }
-
-    function changeOrderSummary(position = "") {
-      // var product = getSelectProduct();
-      var produt_amount_base = '1';
-      if (!produt_amount_base) {
-        produt_amount_base = 1;
-      }
-
-      var shipping_fee = product.shipping_fee;
-
-      var total = product.new_price * 1 + shipping_fee * 1;
-
-      $('.js-product-name').html($('.list-item--checked .js-name').text());
-      $('.js-product-qty').html(product.amount * produt_amount_base);
-      $('.js-product-price').html(getFormatPrice(product.new_price));
-      $('.js-old-price').html(getFormatPrice(product.old_price));
-      $('.js-discount-price').html(getFormatPrice(product.new_price - product.old_price));
-      $('.js-shipping-price').html(getFormatPrice(shipping_fee));
-      $('.js-total').html(getFormatPrice(total));
-
-
-      var product = getSelectProduct();
-
-      var shipping_fee = product.shipping_fee;
-
-      var product_info = {
-        product_name: product.name,
-        product_price: product.new_price,
-        product_sku: '',
-        product_id: '3167',
-        sku_id: '',
-        currency: 'USD',
-        shipping_fee: shipping_fee,
-        amount: product.amount,
-        product_image: 'https://shop.hatmeo.com/cache/small/product/3167/1_f3710786-04cc-41f0-9837-6004fa6114ae.webp'
-      };
-
-      var total = product_info.product_price * 1 + product_info.shipping_fee * 1;
-      var products = getSubmitProducts(product_info.product_price, product_info.amount);
-
-      // console.log("select product ");
-      // console.log(products);
-      // console.log("select product ");
-
-      var sku_html = "";
-      $('.js-sku').empty();
-
-      products.forEach(function(currentValue, index, arr) {
-        gitem = [];
-        console.log(currentValue);
-        console.log(index);
-        console.log(arr);
-        sku_html += products[index].attribute_name + " / " + products[index].amount + "<br>";
-      })
-
-      $('.js-sku').html(sku_html);
-
-      var add_to_cart_crm = localStorage.getItem("add_to_cart_3167");
-
-      if (position == 'sku_select') {
-        if (add_to_cart_crm != "1") {
-          params = {
-            "channel_id": "660bccc0efa6a",
-            "token": "",
-            "type": "add_cart"
-          };
-          fetch('https://crm.heomai.com/api/user/action', {
-            body: JSON.stringify(params),
-            method: 'POST',
-            headers: {
-              'content-type': 'application/json'
-            },
-          })
-
-          localStorage.setItem("add_to_cart_3167", "1");
-        }
-      }
-
-    }
-
-    $('.js-list-item').on('click', function() {
-      $('.js-list-item').each(function() {
-        $(this).removeClass('list-item--checked');
-      })
-
-      $(this).addClass('list-item--checked');
-      showAttributeSelecet('Item');
-      changeOrderSummary();
-    })
-
-    changeOrderSummary();
 
     function turnByCreatA(link, order_id) {
       var a = document.createElement("a");
