@@ -3,15 +3,11 @@
 namespace Nicelizhi\Shopify\Console\Commands\Refund;
 
 use Illuminate\Console\Command;
-use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Log;
-use Webkul\Sales\Repositories\OrderRepository;
 use Illuminate\Support\Facades\Cache;
 use Nicelizhi\Shopify\Models\ShopifyOrder;
 use Nicelizhi\Shopify\Models\ShopifyStore;
 use Webkul\Sales\Models\Order;
-use Illuminate\Http\Client\RequestException;
-use GuzzleHttp\Exception\ClientException;
 use Webkul\Sales\Repositories\RefundRepository;
 
 class Post extends Command
@@ -83,13 +79,13 @@ class Post extends Command
         $refund_id = $this->option("refund_id");
 
         //search shopify order
-        $shopifyOrder = $this->ShopifyOrder->where("shopify_store_id", $this->shopify_store_id)->where("order_id", $order_id)->first();
-        if(is_null($shopifyOrder)) {
-            $this->error("no order". $order_id);
-            return false;
-        }
+        // $shopifyOrder = $this->ShopifyOrder->where("shopify_store_id", $this->shopify_store_id)->where("order_id", $order_id)->first();
+        // if(is_null($shopifyOrder)) {
+        //     $this->error("no order". $order_id);
+        //     return false;
+        // }
 
-        $shopifyOrderLineItem = $shopifyOrder->line_items;
+        // $shopifyOrderLineItem = $shopifyOrder->line_items;
 
         //var_dump($shopifyOrderLineItem);exit;
 
@@ -231,7 +227,7 @@ class Post extends Command
         // order/refund
         
 
-        $client = new Client();
+        //$client = new Client();
 
         //var_dump($params);
 
