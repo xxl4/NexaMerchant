@@ -507,6 +507,8 @@ class ProductController extends Controller
 
         if($payment_method=="airwallex_klarna") $payment_method = "airwallex";
         if($payment_method=="airwallex_dropin") $payment_method = "airwallex";
+        if($payment_method=="airwallex_google") $payment_method = "airwallex";
+        if($payment_method=="airwallex_apple") $payment_method = "airwallex";
 
         // 获取支付信息
         
