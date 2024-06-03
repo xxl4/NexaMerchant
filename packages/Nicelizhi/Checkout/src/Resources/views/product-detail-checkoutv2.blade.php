@@ -3620,7 +3620,7 @@
         crmTrack('add_cart')
         // console.log(params, 'googlepay');
         // var payUrl = '/onebuy/order/add/sync?currency={{ core()->getCurrentCurrencyCode() }}&_token={{ csrf_token() }}&time=' + new Date().getTime();
-
+        // params.
       }
       var parId = $(event.target).parent().attr('id')
       var itemId = $(event.target).attr('id')
@@ -3806,7 +3806,7 @@
         console.log('airwallex')
         params.payment_method = 'airwallex'
       }
-      console.log(params)
+      console.log(params, 'airwallexparams')
       createOrder('', '', 'airwallex')
 
       // axios.post(postUrl).then(function(res) {
@@ -4053,6 +4053,7 @@
           onClick() {
             // var params = getOrderParams('paypal_stand');
             // console.log("on click " + JSON.parse(params));
+            console.log(params, 'paypalparams');
             crmTrack('add_pay')
             if (params.error) {
               $('#checkout-error').html(params.error.join('<br />'));
@@ -4425,51 +4426,51 @@
       }
     });
 
-    const googlePayElement = Airwallex.createElement('googlePayButton', {
-      intent: {
-        // Required, googlePayButton uses intent_id and client_secret to prepare checkout
-        id: '123',
-        client_secret: '',
-      },
+    // const googlePayElement = Airwallex.createElement('googlePayButton', {
+    //   intent: {
+    //     // Required, googlePayButton uses intent_id and client_secret to prepare checkout
+    //     id: '123',
+    //     client_secret: '',
+    //   },
 
-      amount: {
+    //   amount: {
 
-        value: 1,
+    //     value: 1,
 
-        currency: 'CNY',
+    //     currency: 'CNY',
 
-      },
+    //   },
 
-      origin: window.location.origin,
+    //   origin: window.location.origin,
 
-      autoCapture: true,
+    //   autoCapture: true,
 
-      merchantInfo: {
+    //   merchantInfo: {
 
-        merchantName: 'Airwallex',
+    //     merchantName: 'Airwallex',
 
-      },
+    //   },
 
-    });
-    const domGooglePay = googlePayElement.mount('googlePayButton');
-    domGooglePay.addEventListener('onReady', (event) => {
-      /*
-        ... Handle event
-      */
-      window.alert(event.detail);
-    });
-    domGooglePay.addEventListener('onSuccess', (event) => {
-      /*
-        ... Handle event on success
-      */
-      window.alert(event.detail);
-    });
-    domGooglePay.addEventListener('onError', (event) => {
-      /*
-        ... Handle event on error
-      */
-      window.alert(event.detail);
-    });
+    // });
+    // const domGooglePay = googlePayElement.mount('googlePayButton');
+    // domGooglePay.addEventListener('onReady', (event) => {
+    //   /*
+    //     ... Handle event
+    //   */
+    //   window.alert(event.detail);
+    // });
+    // domGooglePay.addEventListener('onSuccess', (event) => {
+    //   /*
+    //     ... Handle event on success
+    //   */
+    //   window.alert(event.detail);
+    // });
+    // domGooglePay.addEventListener('onError', (event) => {
+    //   /*
+    //     ... Handle event on error
+    //   */
+    //   window.alert(event.detail);
+    // });
   </script>
   <script>
     function creatPaypalCardButton() {
