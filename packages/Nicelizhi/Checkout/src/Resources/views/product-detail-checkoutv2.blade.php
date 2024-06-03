@@ -3634,7 +3634,7 @@
       var isCrmTrack = listEach(list)
       if (isCrmTrack) {
         crmTrack('add_cart')
-        createGoogleButton(params)
+        // createGoogleButton(params)
       }
       console.log(params.products, '===params====')
     }
