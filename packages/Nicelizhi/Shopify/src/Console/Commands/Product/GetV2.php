@@ -607,7 +607,7 @@ class GetV2 extends Command
 
         }
 
-        Artisan::queue("onebuy:import:products:comment:from:judge")->onConnection('redis')->onQueue('shopify-products'); // import the shopify comments
+        Artisan::queue("onebuy:import:products:comment:from:judge", ["--prod_id"=> $item['product_id']])->onConnection('redis')->onQueue('shopify-products'); // import the shopify comments
     }
 
     private function getAttr($options, $val, $val2="", $val3="") {

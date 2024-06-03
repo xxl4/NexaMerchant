@@ -336,6 +336,6 @@ class GetV3 extends Command
             sleep(1);
         }
 
-        Artisan::queue("onebuy:import:products:comment:from:judge")->onConnection('redis')->onQueue('shopify-products'); // import the shopify comments
+        Artisan::queue("onebuy:import:products:comment:from:judge", ["--prod_id"=> $item['product_id']])->onConnection('redis')->onQueue('shopify-products'); // import the shopify comments
     }
 }
