@@ -27,8 +27,8 @@ return new class extends Migration
 
             $table->index("transaction_id");
             $table->index("dispute_id");
+            $table->index("order_id");
 
-            $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
         });
     }
 
@@ -38,6 +38,6 @@ return new class extends Migration
     public function down(): void
     {
         //
-        Schema::dropIfExists('order_transactions');
+        Schema::dropIfExists('order_disputes');
     }
 };
