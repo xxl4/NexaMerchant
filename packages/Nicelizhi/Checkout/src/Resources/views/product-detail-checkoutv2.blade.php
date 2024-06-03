@@ -3175,8 +3175,7 @@
       return regex.test(email);
     }
 
-    function errDialogShow(errIsShow, airwallexArror = true) {
-      var emailErr = validateEmail($('input[name="email"]').val())
+    function errDialogShow(errIsShow, emailErr, airwallexArror = true) {
       $('.dialog-error .dialog-box ul').empty()
       var textList = ''
       if (!$('input[name="firstName"]').val()) {
@@ -3209,7 +3208,7 @@
       if (!errIsShow) {
         textList += `<li>@lang('checkout::app.v2.Please select product information!')</li>`
       }
-      if (!airwallexArr.complete) {
+      if (!airwallexArr) {
         textList += `<li>` + airwallexArr.errText + `</li>`
       }
       $('.dialog-error').show()
@@ -3622,8 +3621,10 @@
         for (var attj = 0; attj < data.attr.attributes[arri].options.length; attj++) {
           optionList += `<option value="` + data.attr.attributes[arri].options[attj].label + `">` + data.attr.attributes[arri].options[attj].label + `</option>`
         }
-        var id = "in-se" + arri
+        var id = "#in-se" + arri
+        $(id).empty()
         $(id).append(optionList)
+        console.log($(id).val(), '$(id)');
         // selectList += `<select class="in-se" id="in-se` + arri + `" onchange="seInput(value)">` + optionList + `</select>`
       }
       // console.log(selectList, 'selectList==');
@@ -3791,11 +3792,13 @@
       params.country = $('select[name="shippingCountry"]').val()
       params.province = $('select[name="shippingState"]').val()
       var errIsShow = skuIsScelect()
-      var errorShow = params.first_name && params.second_name && params.email && params.phone_full && params.address && params.city && params.code && params.country && params.province && errIsShow && airwallexArr.complete
+      var emailErr = validateEmail($('input[name="email"]').val())
+      console.log(emailErr, 'emailErr');
+      var errorShow = params.first_name && params.second_name && params.email && params.phone_full && params.address && params.city && params.code && params.country && params.province && errIsShow && airwallexArr.complete && emailErr
       console.log(airwallexArr, 'airwallexArr');
       console.log(errorShow, 'errorShow')
       if (!errorShow) {
-        errDialogShow(errIsShow, airwallexArr.complete)
+        errDialogShow(errIsShow, emailErr, airwallexArr.complete)
         $('#loading').hide()
         return
       }
@@ -4070,13 +4073,14 @@
             // getParams('paypal_stand')
             var errIsShow = skuIsScelect()
             console.log(params, '==========2', data);
-
+            var emailErr = validateEmail($('input[name="email"]').val())
+            console.log(emailErr, 'emailErr');
             var errorShow = $('input[name="firstName"]').val() && $('input[name="lastName"]').val() && $('input[name="email"]').val() &&
               $('input[name="phone"]').val() &&
-              $('input[name="shippingAddress1"]').val() && $('input[name="shippingCity"]').val() && $('input[name="shippingZip"]').val() && $('select[name="shippingCountry"]').val() && $('select[name="shippingState"]').val() && errIsShow
+              $('input[name="shippingAddress1"]').val() && $('input[name="shippingCity"]').val() && $('input[name="shippingZip"]').val() && $('select[name="shippingCountry"]').val() && $('select[name="shippingState"]').val() && errIsShow && emailErr
             console.log(errorShow, 'errorShowpaypal====')
             if (!errorShow) {
-              errDialogShow(errIsShow)
+              errDialogShow(errIsShow, emailErr)
               $('#loading').hide()
               return
             }
