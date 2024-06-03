@@ -1187,7 +1187,7 @@
       background: rgba(0, 0, 0, 0.6);
       z-index: 9999;
     }
-    
+
     .size-chart-img img {
       max-height: 60%;
       max-width: 100%;
@@ -3126,73 +3126,6 @@
         })
 
     })
-    function inputBlur(event) {
-      console.log(event.target, 'event.target')
-      if ($(event.target).val() !== '') {
-        $(event.target).next().addClass('input-focus')
-      }else {
-        $(event.target).next().removeClass('input-focus')
-      }
-    }
-    function throttle(fn, wait) {
-      console.log('节流')
-      let timeout = null;
-      return function() {
-        let context = this, args = arguments;
-        if (!timeout) {
-          timeout = setTimeout(() => {
-            fn.apply(context, args);
-            timeout = null;
-          }, wait);
-        }
-      };
-    }
-    function throttleCrmTrack() {
-      throttle(crmTrack('add_user_info'), 2000)
-    }
-    function crmTrack(type) {
-      console.log(type, 'crmTrack')
-      var postParams = {
-        channel_id: "<?php echo $crm_channel;?>",
-        token: "<?php echo $refer; ?>",
-        type: type
-      };
-      console.log(JSON.stringify(postParams), 'JSON.stringify(postParams)==')
-      // 1) 用户修改商品信息add_cart
-      // 3）用户发起支付 触发 add_pay
-      // 2）用户填写表单内容 ，触发 add_user_info
-      fetch('https://crm.heomai.com/api/user/action',{
-      body: JSON.stringify(postParams),
-      method: 'POST',
-      headers: {
-        'content-type': 'application/json'
-        },
-      })
-    }
-
-    function getVSID(obj) {
-      console.log(obj, 'obj==+++');
-      console.log(productL1.attr_id, ' productL1.attr_id');
-      for (const key in obj) {
-        if (key == productL1.attr_id) {
-          console.log(obj[key][0], 'obj[key][0]');
-          productL1.variant_id = obj[key][0]
-          productL1.product_sku = obj[key][1]
-        }
-        if (key == productL2.attr_id) {
-          productL2.variant_id = obj[key][0]
-          productL2.product_sku = obj[key][1]
-        }
-        if (key == productL3.attr_id) {
-          productL3.variant_id = obj[key][0]
-          productL3.product_sku = obj[key][1]
-        }
-        if (key == productL4.attr_id) {
-          productL4.variant_id = obj[key][0]
-          productL4.product_sku = obj[key][1]
-        }
-      }
-    }
 
     function inputBlur(event) {
       console.log(event.target, 'event.target')
@@ -3338,12 +3271,14 @@
       $('.sku-preview-img-box').show()
       $('.sku-preview-img img').attr('src', imgUrl)
     }
+
     function sizeCharImgPreview() {
       var imgUrl = data.ads.size.img
       console.log(imgUrl, 'sizeCharImgPreview')
       $('.size-chart-img-box').show()
       $('.size-chart-img img').attr('src', imgUrl)
     }
+
     function imgBoxClose() {
       $('.sku-preview-img-box').hide()
     }
@@ -3602,12 +3537,10 @@
     })
 
     $('select[name="shippingState"]').change(function() {
-      throttleCrmTrack()
       console.log($(this).val(), 'shippingState')
       params.province = $(this).val()
     })
     $('select[name="shippingCountry"]').change(function() {
-      throttleCrmTrack()
       console.log($(this).val())
       params.country = $(this).val()
       if ($(this).val()) {
@@ -3677,6 +3610,22 @@
     }
 
     function seInput(value) {
+      var parId = $(event.target).parent().attr('id')
+      var itemId = $(event.target).attr('id')
+      var aid = ''
+      if (parId == 'select1-item1' || parId == 'select2-item1' || parId == 'select3-item1' || parId == 'select4-item1') {
+        getSku(itemId, 0, value)
+      }
+      if (parId == 'select2-item2' || parId == 'select3-item2' || parId == 'select4-item2') {
+        getSku(itemId, 1, value)
+      }
+      if (parId == 'select3-item3' || parId == 'select4-item3') {
+        getSku(itemId, 2, value)
+      }
+      if (parId == 'select4-item4') {
+        getSku(itemId, 3, value)
+      }
+      getSkuListInfo();
       var skuAll = $(event.target).parent().parent().parent()
       var list = []
       skuAll.find('select').each(function() {
@@ -3685,43 +3634,8 @@
       var isCrmTrack = listEach(list)
       if (isCrmTrack) {
         crmTrack('add_cart')
-        // console.log(params, 'googlepay');
-        // var payUrl = '/onebuy/order/add/sync?currency={{ core()->getCurrentCurrencyCode() }}&_token={{ csrf_token() }}&time=' + new Date().getTime();
-        // params.
+        // createGoogleButton(params)
       }
-      var parId = $(event.target).parent().attr('id')
-      var itemId = $(event.target).attr('id')
-      var aid = ''
-      if (parId == 'select1-item1' || parId == 'select2-item1' || parId == 'select3-item1' || parId == 'select4-item1') {
-        getSku(itemId, 0, value)
-        // paramsProductsinit(params.products)
-      }
-      if (parId == 'select2-item2' || parId == 'select3-item2' || parId == 'select4-item2') {
-        getSku(itemId, 1, value)
-        // paramsProductsinit(params.products)
-      }
-      if (parId == 'select3-item3' || parId == 'select4-item3') {
-        getSku(itemId, 2, value)
-        // paramsProductsinit(params.products)
-      }
-      if (parId == 'select4-item4') {
-        getSku(itemId, 3, value)
-        // paramsProductsinit(params.products)
-      }
-      // var target = event.currentTarget
-      // var imgIndex = ''
-      // var colorList = data.attr.attributes[0].options
-      // for (var colori = 0; colori < colorList.length; colori++) {
-      //   if (colorList[colori].label == value) {
-      //     imgIndex = colorList[colori].products[0]
-      //   }
-      // }
-      // if (imgIndex) {
-      //   var finUrl = data.attr.variant_images[imgIndex][0].small_image_url
-      //   $(event.target).parent().siblings('img').attr('src', finUrl)
-      // }
-      crmTrack('add_cart')
-      getSkuListInfo();
       console.log(params.products, '===params====')
     }
     $('#product1').click(function(e) {
@@ -3751,7 +3665,6 @@
       $('.product-name').text(data.package_products[1].name)
       $('#product-number').text('number: 1')
       $('#product-price').text(data.package_products[1].tip2)
-      crmTrack('add_cart')
       initProuctData(1, '1')
     })
     $('#product2').click(function(e) {
@@ -3781,7 +3694,6 @@
       $('.product-name').text(data.package_products[0].name)
       $('#product-number').text('number: 2')
       $('#product-price').text(data.package_products[0].tip2)
-      crmTrack('add_cart')
       initProuctData(0, '2')
     })
     $('#product3').click(function(e) {
@@ -3811,7 +3723,6 @@
       $('.product-name').text(data.package_products[2].name)
       $('#product-number').text('number: 3')
       $('#product-price').text(data.package_products[2].tip2)
-      crmTrack('add_cart')
       initProuctData(2, '3')
     })
     $('#product4').click(function(e) {
@@ -3841,7 +3752,6 @@
       $('.product-name').text(data.package_products[3].name)
       $('#product-number').text('number: 4')
       $('#product-price').text(data.package_products[3].tip2)
-      crmTrack('add_cart')
       initProuctData(3, '4')
     })
     $('#complete-btn-id').click(function() {
@@ -3908,6 +3818,75 @@
       }
 
       return showDialog;
+    }
+
+    function createGoogleButton(params) {
+      console.log(params, 'googlepay');
+      var payUrl = '/onebuy/order/add/sync?currency={{ core()->getCurrentCurrencyCode() }}&_token={{ csrf_token() }}&time=' + new Date().getTime();
+      // airwallex_apple
+      // airwallex_google
+      params.payment_method = 'airwallex_google'
+      fetch(payUrl, {
+          body: JSON.stringify(params),
+          method: 'POST',
+          headers: {
+            'content-type': 'application/json'
+          },
+        })
+        .then(function(res) {
+          return res.json()
+        })
+        .then(function(res) {
+          console.log(res, 'googleres==');
+          if (data.result === 200) {
+            const googlePayElement = Airwallex.createElement('googlePayButton', {
+              intent: {
+                // Required, googlePayButton uses intent_id and client_secret to prepare checkout
+                id: res.payment_intent_id,
+                client_secret: res.client_secret,
+              },
+              amount: {
+                value: 1,
+                currency: res.currency,
+              },
+              countryCode: res.country,
+              origin: window.location.origin,
+              autoCapture: true,
+              merchantInfo: {
+                merchantName: 'Airwallex',
+              },
+            });
+            const domGooglePay = googlePayElement.mount('googlePayButton');
+            domGooglePay.addEventListener('onReady', (event) => {
+              /*
+                ... Handle event
+              */
+              // window.alert(event.detail);
+              console.log(event.detail);
+            });
+            domGooglePay.addEventListener('onSuccess', (event) => {
+              /*
+                ... Handle event on success
+              */
+              // window.alert(event.detail);
+              console.log(event.detail);
+
+            });
+            domGooglePay.addEventListener('onError', (event) => {
+              /*
+                ... Handle event on error
+              */
+              // window.alert(event.detail);
+              console.log(event.detail);
+
+            });
+          } else {
+            alert(data.error)
+          }
+        })
+        .catch(function(err) {
+          console.log(err, 'err==');
+        })
     }
   </script>
   <script>
@@ -4434,7 +4413,6 @@
 
     // STEP #8: Add an event listener to listen to the changes in each of the input fields
     domcardNumber.addEventListener('onChange', (event) => {
-      throttleCrmTrack()
       /*
       ... Handle event
       */
@@ -4457,7 +4435,6 @@
     });
 
     domcardExpiry.addEventListener('onChange', (event) => {
-      throttleCrmTrack()
       /*
       ... Handle event
       */
@@ -4480,7 +4457,6 @@
 
     //id_cvc
     domcardCvv.addEventListener('onChange', (event) => {
-      throttleCrmTrack()
       /*
       ... Handle event
       */
@@ -4581,6 +4557,7 @@
                 return;
               }
               console.log(data, '==========');
+
               var url =
                 '/onebuy/order/addr/after?currency={{ core()->getCurrentCurrencyCode() }}&_token={{ csrf_token() }}&time=' +
                 new Date().getTime() +
@@ -4794,6 +4771,7 @@
     $(".email").on("focus", function() {
       //console.log("email focus");
     });
+
     function checkout() {
       sendInitiateCheckoutEvent();
       var pay_type = 'worldpay';
