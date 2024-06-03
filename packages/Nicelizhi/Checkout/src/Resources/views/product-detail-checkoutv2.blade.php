@@ -3615,21 +3615,10 @@
       var isCrmTrack = listEach(list)
       if (isCrmTrack) {
         crmTrack('add_cart')
+        // console.log(params, 'googlepay');
+        // var payUrl = '/onebuy/order/add/sync?currency={{ core()->getCurrentCurrencyCode() }}&_token={{ csrf_token() }}&time=' + new Date().getTime();
+
       }
-      var selectList = ''
-      for (var arri = 0; arri < data.attr.attributes.length; arri++) {
-        var optionList = ''
-        for (var attj = 0; attj < data.attr.attributes[arri].options.length; attj++) {
-          optionList += `<option value="` + data.attr.attributes[arri].options[attj].label + `">` + data.attr.attributes[arri].options[attj].label + `</option>`
-        }
-        var id = "#in-se" + arri
-        $(id).empty()
-        $(id).append(optionList)
-        console.log($(id).val(), '$(id)');
-        // selectList += `<select class="in-se" id="in-se` + arri + `" onchange="seInput(value)">` + optionList + `</select>`
-      }
-      // console.log(selectList, 'selectList==');
-      // $('.se-box').append(selectList)
       var parId = $(event.target).parent().attr('id')
       var itemId = $(event.target).attr('id')
       var aid = ''
@@ -4948,6 +4937,10 @@
           $('#loading').hide();
         })
     }
+
+    // function createGooglePay() {
+
+    // }
 
     function getPhonePrefix() {
       return '';
