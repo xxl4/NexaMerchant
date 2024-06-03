@@ -49,7 +49,7 @@ return [
     'Discount' => 'Rabais',
     'Shipping' => 'Expédition',
     'Shipping Method' => 'Mode de livraison',
-    'USPS Express' => 'USPS Express',
+    'USPS Express' => '5-7 jours',
     "Today's Total" => "Total du jour",
     'price' => 'prix',
     '2024 Alle Rechte vorbehalten' => '2024 Tous droits réservés',
@@ -75,6 +75,7 @@ return [
     'Select State' => "Sélectionnez l'état",
     'select country' => 'Choisissez un pays',
     'Add a house number if you have one' => 'Ajoutez un numéro de maison si vous en avez un',
-    'Express checkout' => 'Paiement express'
+    'Express checkout' => 'Paiement express',
+    'edit' => 'modifier'
   ]
 ];

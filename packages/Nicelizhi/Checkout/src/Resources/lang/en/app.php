@@ -31,7 +31,7 @@ return [
     'Choose your package' => 'Choose your package',
     'Save' => 'Save ',
     'OFF' => ' OFF',
-    'item' => 'item',
+    'item' => 'Product',
     'Enter your payment information' => 'Enter your payment information',
     'Enter customer information' => 'Enter customer information',
     'Last Name' => 'Last Name',
@@ -49,8 +49,8 @@ return [
     'Discount' => 'Discount',
     'Shipping' => 'Shipping',
     'Shipping Method' => 'Shipping Method',
-    'USPS Express' => '5-7 Tage',
-    "Today's Total" => "Today's Total",
+    'USPS Express' => '5-7 Days',
+    "Today's Total" => "Total",
     'price' => 'price',
     '2024 Alle Rechte vorbehalten' => '2024 Alle Rechte vorbehalten',
     'shipping' => 'shipping',
@@ -59,7 +59,7 @@ return [
     'Privacy Policy' => 'Privacy Policy',
     'Contact us' => 'Contact Us',
     'imprint' => 'imprint',
-    'size chart' => 'size chart',
+    'size chart' => 'Size Chart',
     'During the summer sale the discount is valid for' => 'During the summer sale the discount is valid for',
     'All transactions are secure and encrypted' => 'All transactions are secure and encrypted.',
     'Please enter your first name!' => 'Please enter your first name!',
@@ -76,6 +76,7 @@ return [
     'select country' => 'select country',
     'Add a house number if you have one' => 'Add a house number if you have one',
     'You Can See By' => 'You Can See By',
-    'Express checkout' => 'Express checkout'
+    'Express checkout' => 'Express checkout',
+    'edit' => 'edit'
   ]
 ];

@@ -2426,7 +2426,7 @@
   <div class="clearall"></div>
 
   <div class="footer-box">
-    <p style="font-weight: 700" id="footer-top-text">© 2024</p>
+    <p style="font-weight: 700" id="footer-top-text">© 2024 </p>
     <br class="br" />
     <br class="br" />
     <div class="phone-block"></div>
@@ -3258,7 +3258,7 @@
                     style="display:block;color:#1773B0; font-size:13px"
                     href="javascript:void(0)"
                     onclick="javascript:bookmarkscroll.scrollTo('product2')"
-                    >bearbeiten</a> 
+                    >@lang('checkout::app.v2.edit')</a> 
                 </div>
                 <div class="sku-price">` + skuData[i].price + `</div>
               </div>`
@@ -4550,7 +4550,7 @@
               var errIsShow = skuIsScelect()
               if (!errIsShow) {
                 $('.dialog-error .dialog-box ul').empty()
-                var textList = `<li>Bitte wählen Sie Produktinformationen aus!</li>`
+                var textList = `<li>@lang('checkout::app.v2.Please select product information')</li>`
                 $('.dialog-error').show()
                 $('.dialog-error .dialog-box ul').append(textList)
                 $('#loading').hide()
