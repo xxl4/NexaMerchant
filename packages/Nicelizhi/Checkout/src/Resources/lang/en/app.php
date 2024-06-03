@@ -54,10 +54,10 @@ return [
     'price' => 'price',
     '2024 Alle Rechte vorbehalten' => '2024 Alle Rechte vorbehalten',
     'shipping' => 'shipping',
-    'refund policy' => 'refund policy',
+    'refund policy' => 'Refund Policy',
     'About Us' => 'About Us',
     'Privacy Policy' => 'Privacy Policy',
-    'Contact us' => 'Contact us',
+    'Contact us' => 'Contact Us',
     'imprint' => 'imprint',
     'size chart' => 'size chart',
     'During the summer sale the discount is valid for' => 'During the summer sale the discount is valid for',
@@ -74,6 +74,8 @@ return [
     'Please select product information!' => 'Please select product information!',
     'Select State' => 'Select State',
     'select country' => 'select country',
-    'Add a house number if you have one' => 'Add a house number if you have one'
+    'Add a house number if you have one' => 'Add a house number if you have one',
+    'You Can See By' => 'You Can See By',
+    'Express checkout' => 'Express checkout'
   ]
 ];

@@ -25,6 +25,8 @@ return [
         'airwallex_klarna' => env('ONEBUY_PAYMENT_AIRWALLEX_KLARNA', 0),
         'payal_standard' => env('ONEBUY_PAYMNET_PAYAL_STANDARD', 0),
         'airwallex_credit_card' => env('ONEBUY_PAYMENT_AIRWALLEX_CREDIT_CARD', 0),
-        'airwallex_dropin' => env('ONEBUY_PAYMENT_AIRWALLEX_DROPIN', 0)
+        'airwallex_dropin' => env('ONEBUY_PAYMENT_AIRWALLEX_DROPIN', 0),
+        'airwallex_google'  => env('ONEBUY_PAYMENT_AIRWALLEX_GOOGLE', 0),
+        'airwallex_appley'  => env('ONEBUY_PAYMENT_AIRWALLEX_APPLE', 0),
     ]
 ];
