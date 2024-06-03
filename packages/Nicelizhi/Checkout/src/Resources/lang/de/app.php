@@ -30,7 +30,7 @@ return [
     'Choose your package' => 'Wählen Sie ein Paket',
     'Save' => 'Speichern ',
     'OFF' => ' AUS',
-    'item' => 'Artikel',
+    'item' => 'Produkt',
     'Enter your payment information' => 'Zahlung',
     'Enter customer information' => 'Empfängerinformation',
     'Last Name' => 'Nachname',
@@ -57,6 +57,22 @@ return [
     'About Us' => 'Über uns',
     'Privacy Policy' => 'Datenschutzrichtlinie',
     'Contact us' => 'Kontaktiere uns',
-    'imprint' => 'Impressum'
+    'imprint' => 'Impressum',
+    'size chart' => 'Größentabelle',
+    'During the summer sale the discount is valid for' => 'Im Sommerschlussverkauf gilt der Rabatt für',
+    'All transactions are secure and encrypted' => 'Alle Transaktionen sind sicher und verschlüsselt.',
+    'Please enter your first name!' => 'Geben Sie bitte Ihren Vornamen ein!',
+    'Please enter your last name!' => 'Geben Sie bitte Ihren Nachnamen ein!',
+    'Please enter a valid email address!' => 'Geben Sie bitte eine gültige E-Mail-Adresse ein!',
+    'Please enter your phone number!' => 'Geben Sie bitte Ihre Telefonnummer ein!',
+    'Please enter your address!' => 'Geben Sie bitte Ihre Adresse ein!',
+    'Please enter your city!' => 'Geben Sie bitte Ihre Stadt ein!',
+    'Please insert a valid postal code!' => 'Geben Sie bitte eine gültige Postleitzahl ein!',
+    'Please select your country!' => 'Bitte wählen Sie Ihr Land aus!',
+    'Please select your state!' => 'Bitte wählen Sie Ihr Bundesland aus!',
+    'Please select product information!' => 'Bitte wählen Sie Produktinformationen aus',
+    'Select State' => 'Staat wählen',
+    'select country' => 'Wähle ein Land',
+    'Add a house number if you have one' => 'Fügen Sie eine Hausnummer hinzu, falls Sie eine haben'
   ]
 ];
