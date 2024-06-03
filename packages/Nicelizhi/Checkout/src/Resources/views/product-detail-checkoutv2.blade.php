@@ -1187,7 +1187,7 @@
       background: rgba(0, 0, 0, 0.6);
       z-index: 9999;
     }
-
+    
     .size-chart-img img {
       max-height: 60%;
       max-width: 100%;
@@ -3122,6 +3122,73 @@
         })
 
     })
+    function inputBlur(event) {
+      console.log(event.target, 'event.target')
+      if ($(event.target).val() !== '') {
+        $(event.target).next().addClass('input-focus')
+      }else {
+        $(event.target).next().removeClass('input-focus')
+      }
+    }
+    function throttle(fn, wait) {
+      console.log('节流')
+      let timeout = null;
+      return function() {
+        let context = this, args = arguments;
+        if (!timeout) {
+          timeout = setTimeout(() => {
+            fn.apply(context, args);
+            timeout = null;
+          }, wait);
+        }
+      };
+    }
+    function throttleCrmTrack() {
+      throttle(crmTrack('add_user_info'), 2000)
+    }
+    function crmTrack(type) {
+      console.log(type, 'crmTrack')
+      var postParams = {
+        channel_id: "<?php echo $crm_channel;?>",
+        token: "<?php echo $refer; ?>",
+        type: type
+      };
+      console.log(JSON.stringify(postParams), 'JSON.stringify(postParams)==')
+      // 1) 用户修改商品信息add_cart
+      // 3）用户发起支付 触发 add_pay
+      // 2）用户填写表单内容 ，触发 add_user_info
+      fetch('https://crm.heomai.com/api/user/action',{
+      body: JSON.stringify(postParams),
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json'
+        },
+      })
+    }
+
+    function getVSID(obj) {
+      console.log(obj, 'obj==+++');
+      console.log(productL1.attr_id, ' productL1.attr_id');
+      for (const key in obj) {
+        if (key == productL1.attr_id) {
+          console.log(obj[key][0], 'obj[key][0]');
+          productL1.variant_id = obj[key][0]
+          productL1.product_sku = obj[key][1]
+        }
+        if (key == productL2.attr_id) {
+          productL2.variant_id = obj[key][0]
+          productL2.product_sku = obj[key][1]
+        }
+        if (key == productL3.attr_id) {
+          productL3.variant_id = obj[key][0]
+          productL3.product_sku = obj[key][1]
+        }
+        if (key == productL4.attr_id) {
+          productL4.variant_id = obj[key][0]
+          productL4.product_sku = obj[key][1]
+        }
+      }
+    }
 
     function inputBlur(event) {
       console.log(event.target, 'event.target')
@@ -3267,14 +3334,12 @@
       $('.sku-preview-img-box').show()
       $('.sku-preview-img img').attr('src', imgUrl)
     }
-
     function sizeCharImgPreview() {
       var imgUrl = data.ads.size.img
       console.log(imgUrl, 'sizeCharImgPreview')
       $('.size-chart-img-box').show()
       $('.size-chart-img img').attr('src', imgUrl)
     }
-
     function imgBoxClose() {
       $('.sku-preview-img-box').hide()
     }
@@ -3533,10 +3598,12 @@
     })
 
     $('select[name="shippingState"]').change(function() {
+      throttleCrmTrack()
       console.log($(this).val(), 'shippingState')
       params.province = $(this).val()
     })
     $('select[name="shippingCountry"]').change(function() {
+      throttleCrmTrack()
       console.log($(this).val())
       params.country = $(this).val()
       if ($(this).val()) {
@@ -3660,6 +3727,7 @@
       //   var finUrl = data.attr.variant_images[imgIndex][0].small_image_url
       //   $(event.target).parent().siblings('img').attr('src', finUrl)
       // }
+      crmTrack('add_cart')
       getSkuListInfo();
       console.log(params.products, '===params====')
     }
@@ -3690,6 +3758,7 @@
       $('.product-name').text(data.package_products[1].name)
       $('#product-number').text('number: 1')
       $('#product-price').text(data.package_products[1].tip2)
+      crmTrack('add_cart')
       initProuctData(1, '1')
     })
     $('#product2').click(function(e) {
@@ -3719,6 +3788,7 @@
       $('.product-name').text(data.package_products[0].name)
       $('#product-number').text('number: 2')
       $('#product-price').text(data.package_products[0].tip2)
+      crmTrack('add_cart')
       initProuctData(0, '2')
     })
     $('#product3').click(function(e) {
@@ -3748,6 +3818,7 @@
       $('.product-name').text(data.package_products[2].name)
       $('#product-number').text('number: 3')
       $('#product-price').text(data.package_products[2].tip2)
+      crmTrack('add_cart')
       initProuctData(2, '3')
     })
     $('#product4').click(function(e) {
@@ -3777,6 +3848,7 @@
       $('.product-name').text(data.package_products[3].name)
       $('#product-number').text('number: 4')
       $('#product-price').text(data.package_products[3].tip2)
+      crmTrack('add_cart')
       initProuctData(3, '4')
     })
     $('#complete-btn-id').click(function() {
@@ -4833,6 +4905,7 @@
 
     // STEP #8: Add an event listener to listen to the changes in each of the input fields
     domcardNumber.addEventListener('onChange', (event) => {
+      throttleCrmTrack()
       /*
       ... Handle event
       */
@@ -4855,6 +4928,7 @@
     });
 
     domcardExpiry.addEventListener('onChange', (event) => {
+      throttleCrmTrack()
       /*
       ... Handle event
       */
@@ -4877,6 +4951,7 @@
 
     //id_cvc
     domcardCvv.addEventListener('onChange', (event) => {
+      throttleCrmTrack()
       /*
       ... Handle event
       */
@@ -4910,7 +4985,6 @@
     window.is_stripe_pay = pay_type == 'stripe' ? true : false
     window.is_stripe_local = pay_type == 'stripe_local' ? true : false
     window.is_airwallex_klarna = pay_type == 'airwallex_klarna' ? true : false
-
     function creatPaypalCardButton() {
       var that = this
       var FUNDING_SOURCES = [{
@@ -4944,7 +5018,6 @@
                 return;
               }
               console.log(data, '==========');
-
               var url =
                 '/onebuy/order/addr/after?currency={{ core()->getCurrentCurrencyCode() }}&_token={{ csrf_token() }}&time=' +
                 new Date().getTime() +
@@ -5176,7 +5249,6 @@
     //         'content-type': 'application/json'
     //       },
     //     })
-
     //   }
     // });
 
