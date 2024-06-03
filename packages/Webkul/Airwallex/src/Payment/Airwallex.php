@@ -285,7 +285,7 @@ class Airwallex extends Payment
         $customer['phone_number'] = $cart->billing_address->phone;
         $data['customer'] = $customer;
         $data['merchant_order_id'] = "orderid_".$orderId;
-        $metadata['my_test_metadata_id'] = "my_test_metadata_id_".$orderId;
+        $metadata['order_id'] = $orderId;
         $data['metadata'] = $metadata;
         $data['request_id'] = $orderId."_".time();
         $order = [];

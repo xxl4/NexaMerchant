@@ -108,6 +108,7 @@ class ProductController extends Controller
         $version = $LocalOptions['version'];
 
         Cache::put("onebuy_".$product_id, $version);
+        
 
         // two attr
         if($version=='v1') {
@@ -135,6 +136,8 @@ class ProductController extends Controller
 
     public function checkoutUrlGet($product_id) {
 
+          $product = $this->productRepository->findBySlug($product_id);
+        
         $version = Cache::get("onebuy_".$product_id);
         if(empty($version)) {
             $item = \Nicelizhi\Shopify\Models\ShopifyProduct::where("product_id", $product_id)->first();
@@ -147,6 +150,9 @@ class ProductController extends Controller
             $version = $LocalOptions['version'];
             Cache::put("onebuy_".$product_id, $version);
         }
+
+        \Nicelizhi\Shopify\Helpers\Utils::clearCache($product->id, $product_id); // clear cache
+        
         // two attr
         if($version=='v1') {
             //Artisan::call("shopify:product:get", ["--prod_id"=> $product_id]);
@@ -208,6 +214,8 @@ class ProductController extends Controller
                 $redis->del($comment_list_key);
                 $redis->del($comment_list_key2);
 
+                \Webkul\Product\Models\ProductReview::where("product_id", $product->id)->delete();
+
               
 
             }
@@ -221,7 +229,49 @@ class ProductController extends Controller
 
         $comments = $redis->hgetall($comment_list_key);
 
-        return view("shopify::products.".$act_type.".comments",compact("comments","product","product_id", "act_type", "act_prod_type"));
+        $reviews = $product->reviews->where('status', 'approved');
+
+        $reviews = $reviews->map(function($review) {
+            $review->customer = $review->customer;
+            $review->images;
+            return $review;
+        });
+
+        //var_dump($reviews);
+
+        
+
+        return view("shopify::products.".$act_type.".comments",compact("comments","reviews","product","product_id", "act_type", "act_prod_type"));
+
+    }
+
+    /**
+     * 
+     * Comments Delete
+     * @return void
+     * 
+     */
+    public function commentDelete(Request $request) {
+        
+        $comment_id = $request->input("comment_id");
+
+        $comment = $this->productReviewRepository->find($comment_id);
+        if(is_null($comment)) {
+            return response()->json([
+                'message' => "error"
+            ]);
+        }
+
+        $product_id = $comment->product_id;
+        $comment->delete();
+
+        // echo"<script>alert('Delete Success!');window.close();</script>";  
+        // return false;
+
+        return response()->json([
+            'message' => "success",
+            'product_id' => $product_id
+        ]);
 
     }
 
