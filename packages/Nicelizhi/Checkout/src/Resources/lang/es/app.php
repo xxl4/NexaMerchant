@@ -56,6 +56,7 @@ return [
     'Select State' => 'Seleccione estado',
     'select country' => 'seleccionar país',
     'Add a house number if you have one' => 'Agregue un número de casa si tiene uno',
-    'Express checkout' => 'chequeo rápido'
+    'Express checkout' => 'chequeo rápido',
+    'edit' => 'editar'
   ]
 ];
