@@ -1278,8 +1278,6 @@
     .button-opacity {
       opacity: 0.5;
     }
-
-    ;
   </style>
 </head>
 
