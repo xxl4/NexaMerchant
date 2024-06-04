@@ -2238,7 +2238,10 @@
                                   -webkit-box-sizing: border-box;height: calc(3.5rem + 2px);
                                   line-height: 1.25;padding: 1rem 0.75rem "></div>
                               </div>
+                              <div class="choose-billing-box">
+                                <input type="checkbox" name="hobby" value="music"> 音乐
 
+                              </div>
                             </div>
                           </div>
                         </div>
@@ -3950,6 +3953,12 @@
             const applePayElement = Airwallex.createElement('applePayButton', {
               intent_id: res.payment_intent_id,
               client_secret: res.client_secret,
+              amount: {
+                value: 1,
+                currency: res.currency,
+              },
+              countryCode: '<?php echo $default_country; ?>',
+              origin: window.location.origin,
             });
             const domApplePay = applePayElement.mount('applePayButton');
             domApplePay.addEventListener('onReady', (event) => {
