@@ -78,6 +78,6 @@ return [
     'You Can See By' => 'You Can See By',
     'Express checkout' => 'Express checkout',
     'edit' => 'Edit',
-    'complete_secure_purchase' => 'Zahlen Sie jetzt'
+    'complete_secure_purchase' => 'Pay Now'
   ]
 ];
