@@ -4012,10 +4012,11 @@
               intent_id: res.payment_intent_id,
               client_secret: res.client_secret,
               amount: {
-                value: 1,
+                value: res.order.base_grand_total,
                 currency: res.currency,
               },
-              countryCode: '<?php echo $default_country; ?>',
+              countryCode: 'HK',
+              buttonType: 'buy',
               origin: window.location.origin,
             });
             const domApplePay = applePayElement.mount('applePayButton');
