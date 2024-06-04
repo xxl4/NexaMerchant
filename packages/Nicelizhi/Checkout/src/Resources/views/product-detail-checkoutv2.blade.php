@@ -2430,7 +2430,6 @@
                   <img width="110px" src="/checkout/onebuy/images/stars-5.svg" alt="" />
                 </div>
                 <div class="cardtext" style="text-align: start;"><?php echo $comment->comment; ?></div>
-                
               </div>
             </div>
           <?php } ?>
@@ -2934,7 +2933,7 @@
               $('.appalpay-button').show()
             }
           }
-          if (Object.keys(data.ads.size).lenght == 0) {
+          if (!data.ads.size.img) {
             $('#size-chart').hide()
           } else {
             $('#size-chart').show()
@@ -4498,24 +4497,24 @@
   <!-- <script type="text/javascript" src="js/checkout.js"></script> -->
 
   <script>
-    var spd = 100
-    var spdVal = 10
-    var cntDown = 5 * 60 * spdVal
-    setInterval(function() {
-      var mn, sc, ms
-      cntDown--
-      if (cntDown < 0) {
-        return false
-      }
-      mn = Math.floor(cntDown / spdVal / 60)
-      mn = mn < 10 ? '0' + mn : mn
-      sc = Math.floor((cntDown / spdVal) % 60)
-      sc = sc < 10 ? '0' + sc : sc
-      ms = Math.floor(cntDown % spdVal)
-      ms = ms < 10 ? '0' + ms : ms
-      var result = mn + ':' + sc
-      document.getElementById('stopwatch').innerHTML = result
-    }, spd)
+    // var spd = 100
+    // var spdVal = 10
+    // var cntDown = 5 * 60 * spdVal
+    // setInterval(function() {
+    //   var mn, sc, ms
+    //   cntDown--
+    //   if (cntDown < 0) {
+    //     return false
+    //   }
+    //   mn = Math.floor(cntDown / spdVal / 60)
+    //   mn = mn < 10 ? '0' + mn : mn
+    //   sc = Math.floor((cntDown / spdVal) % 60)
+    //   sc = sc < 10 ? '0' + sc : sc
+    //   ms = Math.floor(cntDown % spdVal)
+    //   ms = ms < 10 ? '0' + ms : ms
+    //   var result = mn + ':' + sc
+    //   document.getElementById('stopwatch').innerHTML = result
+    // }, spd)
     $(function() {
       var width = $(window).innerWidth()
       if (width > 767) {

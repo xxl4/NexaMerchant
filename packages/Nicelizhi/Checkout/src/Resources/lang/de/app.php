@@ -77,6 +77,6 @@ return [
     'You Can See By' => 'Sie können sehen',
     'Express checkout' => 'Express-Kaufabwicklung',
     'edit' => 'bearbeiten',
-    'complete_secure_purchase' => 'Pay Now'
+    'complete_secure_purchase' => 'Zahlen Sie jetzt'
   ]
 ];
