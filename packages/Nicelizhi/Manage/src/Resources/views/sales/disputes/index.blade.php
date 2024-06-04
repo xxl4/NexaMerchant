@@ -27,6 +27,7 @@
                           <th>Transaction ID</th>
                           <th>Status</th>
                           <th>created_at</th>
+                          <th>updated_at</th>
                           <th>Options</th>
                         </tr>
                         </thead>
@@ -93,6 +94,9 @@
           {
             data: 'created_at'
           },{
+            data: 'updated_at'
+          }
+          ,{
             data: 'id',
             render: function(data, type, row, meta) {
               return "";
@@ -104,7 +108,7 @@
             [20, 50, 100],
             [20, 50, 100]
         ],
-        order: [[0, 'desc']],
+        order: [[5, 'desc']],
         processing: true,
         serverSide: true,
         
