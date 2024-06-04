@@ -2844,10 +2844,11 @@
         let isMac = /macintosh|mac os x/i.test(navigator.userAgent);
         console.log(isMac, 'isMac');
         googlerOrApple = isMac ? 'apple' : 'google'
+
       } else {
-        let isIos = isIos()
-        console.log(isIos, 'isIos');
-        googlerOrApple = isIos ? 'apple' : 'google'
+        let type = getMobileOperatingSystem()
+        console.log(type, 'type');
+        googlerOrApple = type == 'iOS' ? 'apple' : 'google'
       }
       if (googlerOrApple == 'apple') {
         $('.pay-button').hide()
@@ -3035,7 +3036,7 @@
           if (attrList.length > 0) {
             var selectList = ''
             for (var arri = 0; arri < attrList.length; arri++) {
-              var optionList = `<option value="" hidden style="color: red">` + attrList[arri].label + `</option>`
+              var optionList = `<option value="" hidden">` + attrList[arri].label + `</option>`
               for (var attj = 0; attj < attrList[arri].options.length; attj++) {
                 optionList += `<option value="` + attrList[arri].options[attj].label + `">` + attrList[arri].options[attj].label + `</option>`
               }
@@ -3188,10 +3189,16 @@
       return flag;
     }
 
-    function isIos() { //苹果设备
-      const u = navigator.userAgent;
-      if (u.indexOf("iPhone") > -1 || u.indexOf("iOS") > -1 || u.indexOf("iPad") > -1 || u.indexOf("Mac") > -1) return true
-      return false;
+    function getMobileOperatingSystem() {
+      var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+      if (userAgent.match(/iPad/i) || userAgent.match(/iPhone/i) || userAgent.match(/iPod/i)) {
+        return 'iOS';
+      } else if (userAgent.match(/Android/i)) {
+        return 'Android';
+      } else {
+        return 'unknown';
+      }
     }
 
     function throttle(fn, wait) {
@@ -3688,8 +3695,13 @@
       var isCrmTrack = listEach(list)
       if (isCrmTrack) {
         crmTrack('add_cart')
-        createGoogleButton(params)
-        createApplePayButton(params)
+        // if (countries1 == 'us') {
+        if (googlerOrApple == 'google') {
+          createGoogleButton(params)
+        } else {
+          createApplePayButton(params)
+        }
+        // }
       }
       console.log(params.products, '===params====')
     }
@@ -3726,8 +3738,13 @@
       console.log(data.attr.attributes, 'data.attr');
       if (data.attr.attributes.length == 0) {
         crmTrack('add_cart')
-        createGoogleButton(params)
-        createApplePayButton(params)
+        // if (countries1 == 'us') {
+        if (googlerOrApple == 'google') {
+          createGoogleButton(params)
+        } else {
+          createApplePayButton(params)
+        }
+        // }
       }
     })
     $('#product2').click(function(e) {
@@ -3760,8 +3777,13 @@
       initProuctData(0, '2')
       if (data.attr.attributes.length == 0) {
         crmTrack('add_cart')
-        createGoogleButton(params)
-        createApplePayButton(params)
+        // if (countries1 == 'us') {
+        if (googlerOrApple == 'google') {
+          createGoogleButton(params)
+        } else {
+          createApplePayButton(params)
+        }
+        // }
       }
     })
     $('#product3').click(function(e) {
@@ -3794,8 +3816,13 @@
       initProuctData(2, '3')
       if (data.attr.attributes.length == 0) {
         crmTrack('add_cart')
-        createGoogleButton(params)
-        createApplePayButton(params)
+        // if (countries1 == 'us') {
+        if (googlerOrApple == 'google') {
+          createGoogleButton(params)
+        } else {
+          createApplePayButton(params)
+        }
+        // }
       }
     })
     $('#product4').click(function(e) {
@@ -3828,8 +3855,13 @@
       initProuctData(3, '4')
       if (data.attr.attributes.length == 0) {
         crmTrack('add_cart')
-        createGoogleButton(params)
-        createApplePayButton(params)
+        // if (countries1 == 'us') {
+        if (googlerOrApple == 'google') {
+          createGoogleButton(params)
+        } else {
+          createApplePayButton(params)
+        }
+        // }
       }
     })
     $('#complete-btn-id').click(function() {
