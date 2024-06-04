@@ -102,12 +102,6 @@ return [
         'sort'  => 1,
     ],
     [
-        'key'   => 'sales.disputes.view',
-        'name'  => 'admin::app.acl.view',
-        'route' => 'admin.sales.disputes.view',
-        'sort'  => 1,
-    ],
-    [
         'key'   => 'sales.orders.duplicate',
         'name'  => 'admin::app.orders.duplicate.view',
         'route' => 'admin.sales.orders.duplicate',

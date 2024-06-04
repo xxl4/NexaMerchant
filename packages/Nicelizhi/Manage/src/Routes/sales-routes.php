@@ -6,7 +6,6 @@ use Nicelizhi\Manage\Http\Controllers\Sales\OrderController;
 use Nicelizhi\Manage\Http\Controllers\Sales\RefundController;
 use Nicelizhi\Manage\Http\Controllers\Sales\ShipmentController;
 use Nicelizhi\Manage\Http\Controllers\Sales\TransactionController;
-use Nicelizhi\Manage\Http\Controllers\Sales\DisputesController;
 
 /**
  * Sales routes.
@@ -92,19 +91,6 @@ Route::group(['middleware' => ['admin','admin_option_log'], 'prefix' => config('
             Route::post('create', 'store')->name('admin.sales.transactions.store');
 
             Route::get('view/{id}', 'view')->name('admin.sales.transactions.view');
-        });
-
-        /**
-         * Disputes routes.
-         */
-        Route::controller(DisputesController::class)->prefix('disputes')->group(function () {
-            Route::get('', 'index')->name('admin.sales.disputes.index');
-
-            // Route::get('create', 'create')->name('admin.sales.transactions.create');
-
-            // Route::post('create', 'store')->name('admin.sales.transactions.store');
-
-            // Route::get('view/{id}', 'view')->name('admin.sales.transactions.view');
         });
     });
 });

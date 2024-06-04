@@ -62,10 +62,8 @@ class ApiController extends Controller
     public function productDetail($slug) {
 
         $data = Cache::get($this->checkout_v2_cache_key.$slug);
-        $env = config("app.env");
-        // when the env is pord use cache
-        if(empty($data) && $env=='demo') {
-        //if(true) {
+        //if(empty($data)) {
+        if(true) {
             $product = $this->productRepository->findBySlug($slug);
             $data = [];
             $productViewHelper = new \Webkul\Product\Helpers\ConfigurableOption();

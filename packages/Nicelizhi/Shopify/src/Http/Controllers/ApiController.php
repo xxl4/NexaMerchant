@@ -48,9 +48,7 @@ class ApiController extends Controller
     /**
      * 
      * 
-     * shopify images
-     * @param int $product_id
-     * @return \Illuminate\Http\JsonResponse
+     * faq interface
      * 
      * 
      */
@@ -71,32 +69,5 @@ class ApiController extends Controller
         ], 200);
         
     }
-
-    /**
-     * 
-     * 
-     * shopify full
-     * @param int $product_id
-     * @return \Illuminate\Http\JsonResponse
-     * 
-     * 
-     */
-
-    public function ShopifyFull($product_id) {
-        $shopifyProduct = \Nicelizhi\Shopify\Models\ShopifyProduct::where("product_id", $product_id)->first();
-        if(is_null($shopifyProduct)) {
-            return response()->json([
-                "code" => 404,
-                "message" => "product not found"
-            ], 404);
-        } 
-        return response()->json([
-            'data' => $shopifyProduct,
-            'code' => 200,
-            'message' => 'success'
-        ], 200);
-    }
-
-
 
 }

@@ -3,7 +3,7 @@
 
 <head>
   <title></title>
-  <link rel="icon prefetch" id="favicon-icon" href="/checkout/v2/images/favicon_de.png" type="image/png" sizes="16x16" />
+  <link rel="icon prefetch" href="/checkout/v2/images/favicon_de.png" type="image/png" sizes="16x16" />
   <meta charset="utf-8" />
   <meta name="description" content="Fur Sweep Collar" />
   <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" />
@@ -1098,8 +1098,21 @@
     }
 
     .sku-info {
+      /* float: left; */
+      /* position: absolute; */
       width: 100%;
+      /* height: 200px; */
+      /* top: 0; */
+      /* opacity: 0; */
+      /* margin-top: 10px; */
+      /* background: #EDF1F5; */
+      /* border: 1px solid #dedede; */
+      /* padding: 10px; */
       font-family: var(--text-family);
+      /* border-radius: 3px; */
+      /* transition: all 0.3s; */
+      /* -webkit-box-shadow: black 0px 6px 9px -9px;
+      box-shadow: black 0px 6px 9px -9px; */
     }
 
     .sku-info>.sku-item-info {
@@ -1136,6 +1149,12 @@
       font-weight: normal;
     }
 
+    /* .summary-wrapper:hover .sku-info {
+      top: -100px;
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    } */
     .buy-relative {
       position: relative;
     }
@@ -1254,39 +1273,6 @@
       font-size: 13px;
       margin-left: 8px;
     }
-
-    .pay-button {
-      display: none;
-      text-align: center;
-      margin-top: 12px;
-      width: 100%;
-      height: 48px;
-      background: #000 url('/checkout/v2/images/googlePay.png') no-repeat 100%/contain;
-      background-position: center;
-      border-radius: 4px;
-    }
-
-    .appalpay-button {
-      display: none;
-      text-align: center;
-      margin-top: 12px;
-      width: 100%;
-      height: 48px;
-      background: #000 url('/checkout/v2/images/applePay.png') no-repeat 100%/contain;
-      background-position: center;
-      border-radius: 4px;
-    }
-
-    .button-opacity {
-      opacity: 0.5;
-    }
-
-    /* .choose-billing-box {
-      margin: 5px;
-      font-size: 13px;
-      font-family: var(--text-family);
-      color: var(--text-color);
-    } */
   </style>
 </head>
 
@@ -1731,7 +1717,7 @@
   </div>
   <div class="topStrip" style="text-align: center;">
     <div class="container-xxl">
-      <p style="text-align: center;">
+      <p>
         <span class="cb-total-discount-applied">@lang('checkout::app.v2.During the summer sale the discount is valid for')</span>
         <span id="stopwatch">05:00</span>
       </p>
@@ -1740,8 +1726,8 @@
   <div class="top_bar_nav">
     <div class="container">
       <div class="dis-box-logo">
-        <div class="logo_wrap_dist" style="display: flex;justify-content: center;align-items: center;">
-          <img src="" style=" max-height: 35px;" />
+        <div class="logo_wrap_dist">
+          <img src="" width="200" />
         </div>
       </div>
     </div>
@@ -1988,9 +1974,8 @@
             </div>
           </div>
           <p class="button-top">@lang('checkout::app.v2.Express checkout')</p>
-          <div class="zoom-fade submit-button button-opacity pay-button fl" id="googlePayButton"></div>
-          <div class="zoom-fade submit-button button-opacity appalpay-button fl" id="applePayButton"></div>
-          <div class="zoom-fade submit-button fl" id="payment-button" style="text-align: center;margin-top: 12px; width:100%;height:73px;"></div>
+          <div class="zoom-fade submit-button" id="payment-button" style="text-align: center;margin-top: 12px; width:100%;float: left"></div>
+          <div class="zoom-fade submit-button" id="googlePayButton" style="text-align: center;margin-top: 12px; width:100%;float: left"></div>
           <div id="loading">
             <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 100000; background:#ddd;opacity: 0.3;" id="loading-box" class="flex-center">
               <div class="box">
@@ -2247,76 +2232,39 @@
                                   -webkit-box-sizing: border-box;height: calc(3.5rem + 2px);
                                   line-height: 1.25;padding: 1rem 0.75rem "></div>
                               </div>
-                              <!-- <div class="choose-billing-box" style="display: none;">
-                                <div style="display: flex;align-items: center;">
-                                  <input type="checkbox" name="hobby" value="music">
-                                  <p style="margin-left: 5px;">Use differce address for billing</p>
-                                </div>
-                              </div> -->
-                              <!-- <div class="billing-content">
-                                <div class="input-box" style="margin-top: 5px;">
-                                  <label>
-                                    <input onblur="inputBlur(event)" class="input-item" name="shippingZip" id="zip" type="tel" placeholder="" required="" />
-                                    <span class="input-span">@lang('checkout::app.v2.Zip Code')</span>
-                                  </label>
-                                </div>
-                                <div class="input-box">
-                                  <label>
-                                    <input onblur="inputBlur(event)" class="input-item" name="shippingZip" id="zip" type="tel" placeholder="" required="" />
-                                    <span class="input-span">@lang('checkout::app.v2.Zip Code')</span>
-                                  </label>
-                                </div>
-                                <div class="input-box">
-                                  <label>
-                                    <input onblur="inputBlur(event)" class="input-item" name="shippingZip" id="zip" type="tel" placeholder="" required="" />
-                                    <span class="input-span">@lang('checkout::app.v2.Zip Code')</span>
-                                  </label>
-                                </div>
-                                <div class="input-box">
-                                  <label>
-                                    <input onblur="inputBlur(event)" class="input-item" name="shippingZip" id="zip" type="tel" placeholder="" required="" />
-                                    <span class="input-span">@lang('checkout::app.v2.Zip Code')</span>
-                                  </label>
-                                </div>
-                                <div class="input-box">
-                                  <label>
-                                    <input onblur="inputBlur(event)" class="input-item" name="shippingZip" id="zip" type="tel" placeholder="" required="" />
-                                    <span class="input-span">@lang('checkout::app.v2.Zip Code')</span>
-                                  </label>
-                                </div>
-                              </div>
-                            </div> -->
-                            </div>
-                          </div>
-                          <div class="panel panel-default" id="airwallex-dropin-box">
-                            <div class="panel-heading" role="tab" id="airwallex_dropin_head_1">
-                              <h4 class="panel-title">
-                                <div class="panel-title-header" id="airwallex_dropin_2">
-                                  <div class="form-check form-check-inline input-box" style="width: 100%;">
-                                    <input class="form-check-input input-item" type="radio" value="airwallex_dropin" id="airwallex_dropin" <?php if ($payments_default == 'airwallex_dropin') echo 'checked'; ?> name="payment_method">
-                                    <label class="form-check-label" for="airwallex_dropin" style="float: right;min-width: 95%;">
-                                      <span style="font-family: var(--title-family);">@lang('onebuy::app.product.payment.airwallex_dropin.title') </span>
-                                      <!-- <div style="float: right;min-width: 200px;display: inline;text-align: right;"><img src="/checkout/v1/app/desktop/images/paypal.png" style="max-height:24px" /></div> -->
-                                    </label>
-                                  </div>
-                                </div>
-                              </h4>
-                            </div>
-                            <div id="airwallex_dropin_collapse" class="panel-collapse collapse" role="tabpanel" aria-labelledby="airwallex_dropin_head_2">
-                              <div class="panel-body">
-                                <p>
-                                <div>
-                                  @lang('onebuy::app.product.payment.airwallex_dropin.description')
-                                </div>
-                                </p>
-                              </div>
-                            </div>
-                          </div>
 
+                            </div>
+                          </div>
                         </div>
+                        <div class="panel panel-default" id="airwallex-dropin-box">
+                          <div class="panel-heading" role="tab" id="airwallex_dropin_head_1">
+                            <h4 class="panel-title">
+                              <div class="panel-title-header" id="airwallex_dropin_2">
+                                <div class="form-check form-check-inline input-box" style="width: 100%;">
+                                  <input class="form-check-input input-item" type="radio" value="airwallex_dropin" id="airwallex_dropin" <?php if ($payments_default == 'airwallex_dropin') echo 'checked'; ?> name="payment_method">
+                                  <label class="form-check-label" for="airwallex_dropin" style="float: right;min-width: 95%;">
+                                    <span style="font-family: var(--title-family);">@lang('onebuy::app.product.payment.airwallex_dropin.title') </span>
+                                    <!-- <div style="float: right;min-width: 200px;display: inline;text-align: right;"><img src="/checkout/v1/app/desktop/images/paypal.png" style="max-height:24px" /></div> -->
+                                  </label>
+                                </div>
+                              </div>
+                            </h4>
+                          </div>
+                          <div id="airwallex_dropin_collapse" class="panel-collapse collapse" role="tabpanel" aria-labelledby="airwallex_dropin_head_2">
+                            <div class="panel-body">
+                              <p>
+                              <div>
+                                @lang('onebuy::app.product.payment.airwallex_dropin.description')
+                              </div>
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+
                       </div>
                     </div>
                   </div>
+                </div>
               </form>
             </div>
 
@@ -2429,13 +2377,13 @@
                 <div style="text-align: start; width: 100%;">
                   <img width="110px" src="/checkout/onebuy/images/stars-5.svg" alt="" />
                 </div>
-                <div class="cardtext" style="text-align: start;"><?php echo $comment->comment; ?></div>
+                <div class="cardtext" style="text-align: start;"><?php echo $comment->content; ?></div>
                 <?php if (isset($comment->images)) { ?>
 
                   <?php foreach ($comment->images as $key => $image) { ?>
 
-                    <a href="javascript:;" onclick="showImgProp('<?php echo @$image; ?>')">
-                      <img style="width: 30%; aspect-ratio: 1/1" src="<?php echo @$image; ?>" alt="" />
+                    <a href="javascript:;" onclick="showImgProp('<?php echo $image; ?>')">
+                      <img style="width: 30%; aspect-ratio: 1/1" src="<?php echo $image; ?>" alt="" />
                     </a>
 
                 <?php }
@@ -2499,7 +2447,7 @@
   <div class="dialog-error">
     <div class="dialog-box">
       <a href="javascript:void(0)" id="error-close" onclick="closeDialog()">X</a>
-      <ul style="text-align: center;">
+      <ul>
       </ul>
     </div>
   </div>
@@ -2881,9 +2829,6 @@
     var skuErr = false
     var logoImg = "/checkout/v2/images/logo_" + countries1 + ".png"
     var schrittImg = "/checkout/v2/images/1701506369_" + countries1 + ".webp"
-    var googlerOrApple = ''
-    var googleShow = false
-    var appleShow = false
     $(function() {
       console.log(logoImg, 'logoImg');
       $('.logo_wrap_dist img').attr('src', logoImg)
@@ -2896,10 +2841,6 @@
       }
       if (countries1 == 'de') {
         $('.terms-block-last').show
-      }
-      if (countries1 == 'us' || countries1 == 'uk') {
-        var favicon = '/checkout/v2/images/favicon.png'
-        $('#favicon-icon').attr('href', favicon)
       }
       var dataUrl = '/api/onebuy/product/detail/' + getProductId + '?currency=' + currency
       axios
@@ -2917,32 +2858,6 @@
           $('title').html(data.product.name)
           $('#buy-select1, #buy-select3, #buy-select4').hide()
           $('#footer-top-text').append(data.brand)
-          var isPc = IsPC()
-          console.log(isPc, 'ispc');
-          if (countries1 == 'us') {
-            if (isPc) {
-              let isMac = /macintosh|mac os x/i.test(navigator.userAgent);
-              console.log(isMac, 'isMac');
-              googlerOrApple = isMac ? 'apple' : 'google'
-
-            } else {
-              let type = getMobileOperatingSystem()
-              console.log(type, 'type');
-              googlerOrApple = type == 'iOS' ? 'apple' : 'google'
-            }
-            if (googlerOrApple == 'google' && payTypeShow.airwallex_google == 1) {
-              googleShow = true
-              console.log('googleShow');
-              $('.pay-button').show()
-              $('.appalpay-button').hide()
-            }
-            if (googlerOrApple == 'apple' && payTypeShow.airwallex_appley == 1) {
-              appleShow = true
-              console.log('appalpayShow');
-              $('.pay-button').hide()
-              $('.appalpay-button').show()
-            }
-          }
           if (Object.keys(data.ads.size).lenght == 0) {
             $('#size-chart').hide()
           } else {
@@ -2985,14 +2900,10 @@
               padding: "18px 13px",
               textAlign: 'center'
             });
-            $("#complete-btn-id").html("@lang('checkout::app.v2.complete_secure_purchase')");
+            $("#complete-btn-id").html("@lang('onebuy::app.product.payment.complete_secure_purchase')");
 
           }
           if (paymentsDefault == 'payal_standard') {
-            window.is_airwallex = true
-            // if (countries1 == 'us') {
-            //   $('choose-billing-box').show
-            // }
             $('#airwallex-klarna').prop('checked', false);
             $('#payal_standard').prop('checked', false);
             $('#payment_method_airwallex').prop('checked', true);
@@ -3015,15 +2926,11 @@
             $("#complete-btn-id").addClass(".complete-btn")
             $("#complete-btn-id").addClass("submit-button");
 
-            $("#complete-btn-id").html("@lang('checkout::app.v2.complete_secure_purchase')");
+            $("#complete-btn-id").html("@lang('onebuy::app.product.payment.complete_secure_purchase')");
 
           };
 
           if (paymentsDefault == 'payment_method_airwallex') {
-            window.is_airwallex = true
-            // if (countries1 == 'us') {
-            //   $('choose-billing-box').show
-            // }
             $('#airwallex-klarna').prop('checked', false);
             $('#payal_standard').prop('checked', false);
             $('#payment_method_airwallex').prop('checked', true);
@@ -3046,7 +2953,7 @@
               padding: "18px 13px",
               textAlign: 'center'
             });
-            $("#complete-btn-id").html("@lang('checkout::app.v2.complete_secure_purchase')");
+            $("#complete-btn-id").html("@lang('onebuy::app.product.payment.complete_secure_purchase')");
 
 
           }
@@ -3097,7 +3004,7 @@
           if (attrList.length > 0) {
             var selectList = ''
             for (var arri = 0; arri < attrList.length; arri++) {
-              var optionList = `<option value="" hidden">` + attrList[arri].label + `</option>`
+              var optionList = `<option value="" hidden style="color: red">` + attrList[arri].label + `</option>`
               for (var attj = 0; attj < attrList[arri].options.length; attj++) {
                 optionList += `<option value="` + attrList[arri].options[attj].label + `">` + attrList[arri].options[attj].label + `</option>`
               }
@@ -3231,34 +3138,6 @@
       var trackFlag = $('input[name="firstName"]').val() && $('input[name="lastName"]').val() && $('input[name="email"]').val() && $('input[name="phone"]').val() && $('input[name="shippingAddress1"]').val() && $('input[name="shippingCity"]').val() && $('input[name="shippingZip"]').val()
       if (trackFlag) {
         crmTrack('add_user_info')
-      }
-    }
-
-    function IsPC() {
-      var userAgentInfo = navigator.userAgent;
-      var Agents = ["Android", "iPhone",
-        "SymbianOS", "Windows Phone",
-        "iPad", "iPod"
-      ];
-      var flag = true;
-      for (var v = 0; v < Agents.length; v++) {
-        if (userAgentInfo.indexOf(Agents[v]) > 0) {
-          flag = false;
-          break;
-        }
-      }
-      return flag;
-    }
-
-    function getMobileOperatingSystem() {
-      var userAgent = navigator.userAgent || navigator.vendor || window.opera;
-
-      if (userAgent.match(/iPad/i) || userAgent.match(/iPhone/i) || userAgent.match(/iPod/i)) {
-        return 'iOS';
-      } else if (userAgent.match(/Android/i)) {
-        return 'Android';
-      } else {
-        return 'unknown';
       }
     }
 
@@ -3756,22 +3635,11 @@
       var isCrmTrack = listEach(list)
       if (isCrmTrack) {
         crmTrack('add_cart')
-        if (countries1 == 'us') {
-          if (googlerOrApple == 'google' && googleShow) {
-            console.log('googleShow');
-            createGoogleButton(params)
-          }
-          if (googlerOrApple == 'apple' && appleShow) {
-            console.log('appleShow');
-            createApplePayButton(params)
-          }
-        }
+        // createGoogleButton(params)
       }
       console.log(params.products, '===params====')
     }
     $('#product1').click(function(e) {
-      $('.pay-button').addClass('button-opacity')
-      $('.appalpay-button').addClass('button-opacity')
       var list = $('#product1,#product2,#product3,#product4')
       list.removeClass('choose-p')
 
@@ -3799,20 +3667,6 @@
       $('#product-number').text('number: 1')
       $('#product-price').text(data.package_products[1].tip2)
       initProuctData(1, '1')
-      console.log(data.attr.attributes, 'data.attr');
-      if (data.attr.attributes.length == 0) {
-        crmTrack('add_cart')
-        if (countries1 == 'us') {
-          if (googlerOrApple == 'google' && googleShow) {
-            console.log('googleShow');
-            createGoogleButton(params)
-          }
-          if (googlerOrApple == 'apple' && appleShow) {
-            console.log('appleShow');
-            createApplePayButton(params)
-          }
-        }
-      }
     })
     $('#product2').click(function(e) {
 
@@ -3842,19 +3696,6 @@
       $('#product-number').text('number: 2')
       $('#product-price').text(data.package_products[0].tip2)
       initProuctData(0, '2')
-      if (data.attr.attributes.length == 0) {
-        crmTrack('add_cart')
-        if (countries1 == 'us') {
-          if (googlerOrApple == 'google' && googleShow) {
-            console.log('googleShow');
-            createGoogleButton(params)
-          }
-          if (googlerOrApple == 'apple' && appleShow) {
-            console.log('appleShow');
-            createApplePayButton(params)
-          }
-        }
-      }
     })
     $('#product3').click(function(e) {
       var list = $('#product1,#product2,#product3,#product4')
@@ -3884,19 +3725,6 @@
       $('#product-number').text('number: 3')
       $('#product-price').text(data.package_products[2].tip2)
       initProuctData(2, '3')
-      if (data.attr.attributes.length == 0) {
-        crmTrack('add_cart')
-        if (countries1 == 'us') {
-          if (googlerOrApple == 'google' && googleShow) {
-            console.log('googleShow');
-            createGoogleButton(params)
-          }
-          if (googlerOrApple == 'apple' && appleShow) {
-            console.log('appleShow');
-            createApplePayButton(params)
-          }
-        }
-      }
     })
     $('#product4').click(function(e) {
       var list = $('#product1,#product2,#product3,#product4')
@@ -3926,26 +3754,10 @@
       $('#product-number').text('number: 4')
       $('#product-price').text(data.package_products[3].tip2)
       initProuctData(3, '4')
-      if (data.attr.attributes.length == 0) {
-        crmTrack('add_cart')
-        if (countries1 == 'us') {
-          if (googlerOrApple == 'google' && googleShow) {
-            console.log('googleShow');
-            createGoogleButton(params)
-          }
-          if (googlerOrApple == 'apple' && appleShow) {
-            console.log('appleShow');
-            createApplePayButton(params)
-          }
-        }
-      }
     })
     $('#complete-btn-id').click(function() {
+      crmTrack('add_pay')
       $('#loading').show()
-      window.is_airwallex = true
-      // if (countries1 == 'de') {
-      //   $('choose-billing-box').show
-      // }
       params.first_name = $('input[name="firstName"]').val()
       params.second_name = $('input[name="lastName"]').val()
       params.email = $('input[name="email"]').val()
@@ -4009,68 +3821,6 @@
       return showDialog;
     }
 
-    function createApplePayButton(params) {
-      console.log(params, 'applepay');
-      var payUrl = '/onebuy/order/add/sync?currency={{ core()->getCurrentCurrencyCode() }}&_token={{ csrf_token() }}&time=' + new Date().getTime();
-      params.payment_method = 'airwallex_apple'
-      fetch(payUrl, {
-          body: JSON.stringify(params),
-          method: 'POST',
-          headers: {
-            'content-type': 'application/json'
-          },
-        })
-        .then(function(res) {
-          return res.json()
-        })
-        .then(function(res) {
-          console.log(res, 'applePayres==');
-          if (res.result === 200) {
-            const applePayElement = Airwallex.createElement('applePayButton', {
-              intent_id: res.payment_intent_id,
-              client_secret: res.client_secret,
-              amount: {
-                value: res.order.base_grand_total,
-                currency: res.currency,
-              },
-              countryCode: 'HK',
-              buttonType: 'buy',
-              origin: window.location.origin,
-            });
-            const domApplePay = applePayElement.mount('applePayButton');
-            domApplePay.addEventListener('onReady', (event) => {
-              $('#applePayButton').removeClass('button-opacity')
-              $('.appalpay-button').css('background', '#fff')
-              /*
-                ... Handle event
-              */
-              // window.alert(event.detail);
-              console.log(event.detail, event, 'applePay ===  ready');
-            });
-            domApplePay.addEventListener('onSuccess', (event) => {
-              /*
-                ... Handle event on success
-              */
-              // window.alert(event.detail);
-              console.log(event.detail, event, 'applePay ===  success');
-
-            });
-            domApplePay.addEventListener('onError', (event) => {
-              /*
-                ... Handle event on error
-              */
-              // window.alert(event.detail);
-              console.log(event.detail, event, 'applePay ===  error');
-            });
-          } else {
-            alert(data.error)
-          }
-        })
-        .catch(function(err) {
-          console.log(err, 'err==');
-        })
-    }
-
     function createGoogleButton(params) {
       console.log(params, 'googlepay');
       var payUrl = '/onebuy/order/add/sync?currency={{ core()->getCurrentCurrencyCode() }}&_token={{ csrf_token() }}&time=' + new Date().getTime();
@@ -4089,7 +3839,7 @@
         })
         .then(function(res) {
           console.log(res, 'googleres==');
-          if (res.result === 200) {
+          if (data.result === 200) {
             const googlePayElement = Airwallex.createElement('googlePayButton', {
               intent: {
                 // Required, googlePayButton uses intent_id and client_secret to prepare checkout
@@ -4097,12 +3847,10 @@
                 client_secret: res.client_secret,
               },
               amount: {
-                value: res.order.base_grand_total,
+                value: 1,
                 currency: res.currency,
               },
-              // countryCode: res.country,
-              countryCode: 'HK',
-              buttonType: 'buy',
+              countryCode: res.country,
               origin: window.location.origin,
               autoCapture: true,
               merchantInfo: {
@@ -4111,21 +3859,19 @@
             });
             const domGooglePay = googlePayElement.mount('googlePayButton');
             domGooglePay.addEventListener('onReady', (event) => {
-              $('#googlePayButton').removeClass('button-opacity')
-              $('.pay-button').css('background', '#fff')
               /*
                 ... Handle event
               */
               // window.alert(event.detail);
-              console.log(event.detail, event, 'googlePay ===  ready');
+              console.log(event.detail);
             });
             domGooglePay.addEventListener('onSuccess', (event) => {
               /*
                 ... Handle event on success
               */
               // window.alert(event.detail);
-              // console.log(event.detail);
-              console.log(event.detail, event, 'googlePay ===  success');
+              console.log(event.detail);
+
             });
             domGooglePay.addEventListener('onError', (event) => {
               /*
@@ -4133,7 +3879,7 @@
               */
               // window.alert(event.detail);
               console.log(event.detail);
-              console.log(event.detail, event, 'googlePay ===  error');
+
             });
           } else {
             alert(data.error)
@@ -4183,7 +3929,7 @@
           padding: "18px 13px",
           textAlign: 'center'
         });
-        $("#complete-btn-id").html("@lang('checkout::app.v2.complete_secure_purchase')");
+        $("#complete-btn-id").html("@lang('onebuy::app.product.payment.complete_secure_purchase')");
 
       });
 
@@ -4209,7 +3955,7 @@
           padding: "18px 13px",
           textAlign: 'center'
         });
-        $("#complete-btn-id").html("@lang('checkout::app.v2.complete_secure_purchase')");
+        $("#complete-btn-id").html("@lang('onebuy::app.product.payment.complete_secure_purchase')");
 
       })
 
@@ -4360,6 +4106,7 @@
             // var params = getOrderParams('paypal_stand');
             // console.log("on click " + JSON.parse(params));
             console.log(params, 'paypalparams');
+            crmTrack('add_pay')
             if (params.error) {
               $('#checkout-error').html(params.error.join('<br />'));
               $('#checkout-error').show();
@@ -4384,7 +4131,6 @@
               return
             }
             $('#loading').show();
-            crmTrack('add_pay')
             // var params = getOrderParams('paypal_stand');
             var url = '/onebuy/order/addr/after?currency={{ core()->getCurrentCurrencyCode() }}&_token={{ csrf_token() }}&time=' + new Date().getTime() + "&force=" + localStorage.getItem("force");
             return fetch(url, {
@@ -4731,6 +4477,52 @@
         $("#cardCvc").removeClass("shipping-info-input-error");
       }
     });
+
+    // const googlePayElement = Airwallex.createElement('googlePayButton', {
+    //   intent: {
+    //     // Required, googlePayButton uses intent_id and client_secret to prepare checkout
+    //     id: '123',
+    //     client_secret: '',
+    //   },
+
+    //   amount: {
+
+    //     value: 1,
+
+    //     currency: 'CNY',
+
+    //   },
+
+    //   origin: window.location.origin,
+
+    //   autoCapture: true,
+
+    //   merchantInfo: {
+
+    //     merchantName: 'Airwallex',
+
+    //   },
+
+    // });
+    // const domGooglePay = googlePayElement.mount('googlePayButton');
+    // domGooglePay.addEventListener('onReady', (event) => {
+    //   /*
+    //     ... Handle event
+    //   */
+    //   window.alert(event.detail);
+    // });
+    // domGooglePay.addEventListener('onSuccess', (event) => {
+    //   /*
+    //     ... Handle event on success
+    //   */
+    //   window.alert(event.detail);
+    // });
+    // domGooglePay.addEventListener('onError', (event) => {
+    //   /*
+    //     ... Handle event on error
+    //   */
+    //   window.alert(event.detail);
+    // });
   </script>
   <script>
     function creatPaypalCardButton() {
@@ -4759,14 +4551,14 @@
               var errIsShow = skuIsScelect()
               if (!errIsShow) {
                 $('.dialog-error .dialog-box ul').empty()
-                var textList = `<li>@lang('checkout::app.v2.Please select product information!')</li>`
+                var textList = `<li>@lang('checkout::app.v2.Please select product information')</li>`
                 $('.dialog-error').show()
                 $('.dialog-error .dialog-box ul').append(textList)
                 $('#loading').hide()
                 return;
               }
-              crmTrack('add_pay')
               console.log(data, '==========');
+
               var url =
                 '/onebuy/order/addr/after?currency={{ core()->getCurrentCurrencyCode() }}&_token={{ csrf_token() }}&time=' +
                 new Date().getTime() +
@@ -4927,7 +4719,9 @@
                 })
             },
 
-            onClick() {},
+            onClick() {
+              crmTrack('add_pay')
+            },
 
             onError: function(err) {
               console.log('error from the onError callback', err)
@@ -5075,11 +4869,9 @@
           return res.json()
         })
         .then(function(res) {
-          crmTrack('add_pay')
           var data = res;
           //console.log(data);
           if (data.result === 200) {
-
             var order_info = data.order;
 
             //console.log(order_info);

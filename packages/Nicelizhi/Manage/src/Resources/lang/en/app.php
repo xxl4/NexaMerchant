@@ -494,22 +494,6 @@ return [
                 ],
             ],
         ],
-
-        'disputes' => [
-            'index' => [
-                'title' => 'Disputes',
-
-                'datagrid' => [
-                    'id'           => 'ID',
-                    'dispute-id'   => 'Dispute ID',
-                    'order-id'     => 'Order ID',
-                    'transaction-id' => 'Transaction ID',
-                    'status'       => 'Status',
-                    'created-at'   => 'Created At',
-                    'view'         => 'View',
-                ],
-            ],
-        ],
     ],
 
     'catalog' => [
@@ -3277,7 +3261,6 @@ return [
                 'duplicate'                => 'Duplicate',
                 'unpost'                   => 'UnPost',
                 'abnormal'                 => 'Abnormal',
-                'disputes'                 => 'Disputes',
             ],
         ],
 
