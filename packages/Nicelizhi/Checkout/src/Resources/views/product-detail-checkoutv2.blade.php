@@ -1287,6 +1287,18 @@
       font-family: var(--text-family);
       color: var(--text-color);
     } */
+    .product-selected {
+      display: none;
+      position: absolute;
+      top: 9px;
+      right: 19%;
+      color: #fff;
+      background: #1773B0;
+      font-size: 13px;
+      padding: 5px;
+      font-weight: 600;
+      border-radius: 4px;
+    }
   </style>
 </head>
 
@@ -1828,6 +1840,7 @@
         <div class="pkg-opt">
           <div class="cb-first-item"></div>
           <div class="buyopt packageClass cb-package-container choose-p" id="product2">
+            <p class="product-selected" id="p2-select">@lang('checkout::app.v2.Selected')</p>
             <div class="buy-opt-left">
               <p>
                 <strong id="p-name2"></strong>
@@ -1867,6 +1880,7 @@
           </div>
 
           <div class="buyopt packageClass cb-package-container" id="product1">
+            <p class="product-selected" id="p1-select">@lang('checkout::app.v2.Selected')</p>
             <div class="buy-opt-left">
               <p>
                 <strong id="p-name1"></strong>
@@ -1900,6 +1914,7 @@
           </div>
 
           <div class="buyopt packageClass cb-package-container" id="product3">
+            <p class="product-selected" id="p3-select">@lang('checkout::app.v2.Selected')</p>
             <div class="buy-opt-left">
               <p>
                 <strong id="p-name3"></strong>
@@ -1942,6 +1957,7 @@
             </div>
           </div>
           <div class="buyopt packageClass cb-package-container" id="product4">
+            <p class="product-selected" id="p4-select">@lang('checkout::app.v2.Selected')</p>
             <div class="buy-opt-left">
               <p>
                 <strong id="p-name4"></strong>
@@ -3801,6 +3817,10 @@
       initProuctData(1, '1')
       console.log(data.attr.attributes, 'data.attr');
       if (data.attr.attributes.length == 0) {
+        $('#p1-select').show()
+        $('#p2-select').hide()
+        $('#p3-select').hide()
+        $('#p4-select').hide()
         crmTrack('add_cart')
         if (countries1 == 'us') {
           if (googlerOrApple == 'google' && googleShow) {
@@ -3815,7 +3835,6 @@
       }
     })
     $('#product2').click(function(e) {
-
       var list = $('#product1,#product2,#product3,#product4')
       list.removeClass('choose-p')
       $('#buy-select1').hide()
@@ -3843,6 +3862,10 @@
       $('#product-price').text(data.package_products[0].tip2)
       initProuctData(0, '2')
       if (data.attr.attributes.length == 0) {
+        $('#p2-select').show()
+        $('#p1-select').hide()
+        $('#p3-select').hide()
+        $('#p4-select').hide()
         crmTrack('add_cart')
         if (countries1 == 'us') {
           if (googlerOrApple == 'google' && googleShow) {
@@ -3885,6 +3908,10 @@
       $('#product-price').text(data.package_products[2].tip2)
       initProuctData(2, '3')
       if (data.attr.attributes.length == 0) {
+        $('#p3-select').show()
+        $('#p2-select').hide()
+        $('#p1-select').hide()
+        $('#p4-select').hide()
         crmTrack('add_cart')
         if (countries1 == 'us') {
           if (googlerOrApple == 'google' && googleShow) {
@@ -3927,6 +3954,10 @@
       $('#product-price').text(data.package_products[3].tip2)
       initProuctData(3, '4')
       if (data.attr.attributes.length == 0) {
+        $('#p4-select').show()
+        $('#p2-select').hide()
+        $('#p3-select').hide()
+        $('#p1-select').hide()
         crmTrack('add_cart')
         if (countries1 == 'us') {
           if (googlerOrApple == 'google' && googleShow) {

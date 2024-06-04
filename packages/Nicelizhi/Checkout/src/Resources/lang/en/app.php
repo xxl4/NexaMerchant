@@ -78,6 +78,7 @@ return [
     'You Can See By' => 'You Can See By',
     'Express checkout' => 'Express checkout',
     'edit' => 'Edit',
-    'complete_secure_purchase' => 'Pay Now'
+    'complete_secure_purchase' => 'Pay Now',
+    'Selected' => 'Selected'
   ]
 ];
