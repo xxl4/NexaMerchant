@@ -1256,6 +1256,7 @@
     }
 
     .pay-button {
+      display: none;
       text-align: center;
       margin-top: 12px;
       width: 100%;
@@ -1266,6 +1267,7 @@
     }
 
     .appalpay-button {
+      display: none;
       text-align: center;
       margin-top: 12px;
       width: 100%;
@@ -2930,11 +2932,13 @@
             }
             if (googlerOrApple == 'google' && payTypeShow.airwallex_google == 1) {
               googleShow = true
+              console.log('googleShow');
               $('.pay-button').show()
               $('.appalpay-button').hide()
             }
             if (googlerOrApple == 'apple' && payTypeShow.airwallex_appley == 1) {
               appleShow = true
+              console.log('appalpayShow');
               $('.pay-button').hide()
               $('.appalpay-button').show()
             }
@@ -3754,9 +3758,11 @@
         crmTrack('add_cart')
         if (countries1 == 'us') {
           if (googlerOrApple == 'google' && googleShow) {
+            console.log('googleShow');
             createGoogleButton(params)
           }
           if (googlerOrApple == 'apple' && appleShow) {
+            console.log('appleShow');
             createApplePayButton(params)
           }
         }
@@ -3797,9 +3803,12 @@
       if (data.attr.attributes.length == 0) {
         crmTrack('add_cart')
         if (countries1 == 'us') {
-          if (googlerOrApple == 'google') {
+          if (googlerOrApple == 'google' && googleShow) {
+            console.log('googleShow');
             createGoogleButton(params)
-          } else {
+          }
+          if (googlerOrApple == 'apple' && appleShow) {
+            console.log('appleShow');
             createApplePayButton(params)
           }
         }
@@ -3836,9 +3845,12 @@
       if (data.attr.attributes.length == 0) {
         crmTrack('add_cart')
         if (countries1 == 'us') {
-          if (googlerOrApple == 'google') {
+          if (googlerOrApple == 'google' && googleShow) {
+            console.log('googleShow');
             createGoogleButton(params)
-          } else {
+          }
+          if (googlerOrApple == 'apple' && appleShow) {
+            console.log('appleShow');
             createApplePayButton(params)
           }
         }
@@ -3875,9 +3887,12 @@
       if (data.attr.attributes.length == 0) {
         crmTrack('add_cart')
         if (countries1 == 'us') {
-          if (googlerOrApple == 'google') {
+          if (googlerOrApple == 'google' && googleShow) {
+            console.log('googleShow');
             createGoogleButton(params)
-          } else {
+          }
+          if (googlerOrApple == 'apple' && appleShow) {
+            console.log('appleShow');
             createApplePayButton(params)
           }
         }
@@ -3914,9 +3929,12 @@
       if (data.attr.attributes.length == 0) {
         crmTrack('add_cart')
         if (countries1 == 'us') {
-          if (googlerOrApple == 'google') {
+          if (googlerOrApple == 'google' && googleShow) {
+            console.log('googleShow');
             createGoogleButton(params)
-          } else {
+          }
+          if (googlerOrApple == 'apple' && appleShow) {
+            console.log('appleShow');
             createApplePayButton(params)
           }
         }
