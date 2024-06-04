@@ -3839,7 +3839,7 @@
         })
         .then(function(res) {
           console.log(res, 'googleres==');
-          if (data.result === 200) {
+          if (res.result === 200) {
             const googlePayElement = Airwallex.createElement('googlePayButton', {
               intent: {
                 // Required, googlePayButton uses intent_id and client_secret to prepare checkout
@@ -3850,7 +3850,8 @@
                 value: 1,
                 currency: res.currency,
               },
-              countryCode: res.country,
+              // countryCode: res.country,
+              countryCode: '<?php echo $default_country; ?>',
               origin: window.location.origin,
               autoCapture: true,
               merchantInfo: {
