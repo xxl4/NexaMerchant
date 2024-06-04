@@ -76,6 +76,7 @@ return [
     'Add a house number if you have one' => 'Fügen Sie eine Hausnummer hinzu, falls Sie eine haben',
     'You Can See By' => 'Sie können sehen',
     'Express checkout' => 'Express-Kaufabwicklung',
-    'edit' => 'bearbeiten'
+    'edit' => 'bearbeiten',
+    'complete_secure_purchase' => 'Pay Now'
   ]
 ];
