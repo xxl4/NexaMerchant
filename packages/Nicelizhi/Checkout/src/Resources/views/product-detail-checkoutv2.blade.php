@@ -2446,16 +2446,6 @@
                   <img width="110px" src="/checkout/onebuy/images/stars-5.svg" alt="" />
                 </div>
                 <div class="cardtext" style="text-align: start;"><?php echo $comment->comment; ?></div>
-                <?php if (isset($comment->images)) { ?>
-
-                  <?php foreach ($comment->images as $key => $image) { ?>
-
-                    <a href="javascript:;" onclick="showImgProp('<?php echo @$image; ?>')">
-                      <img style="width: 30%; aspect-ratio: 1/1" src="<?php echo @$image; ?>" alt="" />
-                    </a>
-
-                <?php }
-                } ?>
               </div>
             </div>
           <?php } ?>
@@ -2515,7 +2505,7 @@
   <div class="dialog-error">
     <div class="dialog-box">
       <a href="javascript:void(0)" id="error-close" onclick="closeDialog()">X</a>
-      <ul>
+      <ul style="text-align: center;">
       </ul>
     </div>
   </div>
