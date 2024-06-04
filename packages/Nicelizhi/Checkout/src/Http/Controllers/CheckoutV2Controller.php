@@ -86,7 +86,24 @@ class CheckoutV2Controller extends Controller{
 
         $faqItems = $redis->hgetall($this->faq_cache_key);
         ksort($faqItems);
-        $comments = $redis->hgetall($this->cache_prefix_key."product_comments_".$product['id']);
+        //$comments = $redis->hgetall($this->cache_prefix_key."product_comments_".$product['id']);
+
+        $comments = $product->reviews->where('status', 'approved')->take(10);
+
+        $comments = $comments->map(function($comments) {
+            $comments->customer = $comments->customer;
+            $comments->images;
+            return $comments;
+        });
+        if(count($comments)==0) {
+            $comments = $redis->hgetall($this->cache_prefix_key."product_comments_".$product['id']);
+            foreach($comments as $key=>$comment) {
+                $comment = json_decode($comment);
+                $comment->comment = $comment->content;
+                $comments[$key] = $comment;
+            }
+        }
+
         $default_country = config('onebuy.default_country');
         $payments = config('onebuy.payments'); // config the payments status
         $payments_default = config('onebuy.payments_default');
