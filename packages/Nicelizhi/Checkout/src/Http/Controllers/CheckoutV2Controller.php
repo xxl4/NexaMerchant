@@ -95,14 +95,6 @@ class CheckoutV2Controller extends Controller{
             $comments->images;
             return $comments;
         });
-        if(count($comments)==0) {
-            $comments = $redis->hgetall($this->cache_prefix_key."product_comments_".$product['id']);
-            foreach($comments as $key=>$comment) {
-                $comment = json_decode($comment);
-                $comment->comment = $comment->content;
-                $comments[$key] = $comment;
-            }
-        }
 
         $default_country = config('onebuy.default_country');
         $payments = config('onebuy.payments'); // config the payments status
