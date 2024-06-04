@@ -2499,7 +2499,7 @@
   <div class="dialog-error">
     <div class="dialog-box">
       <a href="javascript:void(0)" id="error-close" onclick="closeDialog()">X</a>
-      <ul>
+      <ul style="text-align: center;">
       </ul>
     </div>
   </div>
