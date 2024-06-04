@@ -3,7 +3,7 @@
 
 <head>
   <title></title>
-  <link rel="icon prefetch" href="/checkout/v2/images/favicon_de.png" type="image/png" sizes="16x16" />
+  <link rel="icon prefetch" id="favicon-icon" href="/checkout/v2/images/favicon_de.png" type="image/png" sizes="16x16" />
   <meta charset="utf-8" />
   <meta name="description" content="Fur Sweep Collar" />
   <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" />
@@ -1098,21 +1098,8 @@
     }
 
     .sku-info {
-      /* float: left; */
-      /* position: absolute; */
       width: 100%;
-      /* height: 200px; */
-      /* top: 0; */
-      /* opacity: 0; */
-      /* margin-top: 10px; */
-      /* background: #EDF1F5; */
-      /* border: 1px solid #dedede; */
-      /* padding: 10px; */
       font-family: var(--text-family);
-      /* border-radius: 3px; */
-      /* transition: all 0.3s; */
-      /* -webkit-box-shadow: black 0px 6px 9px -9px;
-      box-shadow: black 0px 6px 9px -9px; */
     }
 
     .sku-info>.sku-item-info {
@@ -1149,12 +1136,6 @@
       font-weight: normal;
     }
 
-    /* .summary-wrapper:hover .sku-info {
-      top: -100px;
-      opacity: 1;
-      visibility: visible;
-      pointer-events: auto;
-    } */
     .buy-relative {
       position: relative;
     }
@@ -1273,6 +1254,32 @@
       font-size: 13px;
       margin-left: 8px;
     }
+
+    .pay-button {
+      text-align: center;
+      margin-top: 12px;
+      width: 100%;
+      height: 48px;
+      background: #000 url('/checkout/v2/images/googlePay.png') no-repeat 100%/contain;
+      background-position: center;
+      border-radius: 4px;
+    }
+
+    .appalpay-button {
+      text-align: center;
+      margin-top: 12px;
+      width: 100%;
+      height: 48px;
+      background: #000 url('/checkout/v2/images/applePay.png') no-repeat 100%/contain;
+      background-position: center;
+      border-radius: 4px;
+    }
+
+    .button-opacity {
+      opacity: 0.5;
+    }
+
+    ;
   </style>
 </head>
 
@@ -1726,8 +1733,8 @@
   <div class="top_bar_nav">
     <div class="container">
       <div class="dis-box-logo">
-        <div class="logo_wrap_dist">
-          <img src="" width="200" />
+        <div class="logo_wrap_dist" style="display: flex;justify-content: center;align-items: center;">
+          <img src="" style="width: 65%; max-height: 40px;" />
         </div>
       </div>
     </div>
@@ -1974,11 +1981,9 @@
             </div>
           </div>
           <p class="button-top">@lang('checkout::app.v2.Express checkout')</p>
-          <div class="payment-box fl">
-            <div class="zoom-fade submit-button" id="payment-button" style="text-align: center;margin-top: 12px; width:100%;float: left"></div>
-            <div class="zoom-fade submit-button" id="googlePayButton" style="text-align: center;margin-top: 12px; width:100%;float: left;height:100px;background:red"></div>
-          </div>
-          <div class="zoom-fade submit-button" id="applePayButton" style="text-align: center;margin-top: 12px; width:100%;float: left"></div>
+          <div class="zoom-fade submit-button button-opacity pay-button fl" id="googlePayButton"></div>
+          <div class="zoom-fade submit-button button-opacity appalpay-button fl" id="applePayButton"></div>
+          <div class="zoom-fade submit-button fl" id="payment-button" style="text-align: center;margin-top: 12px; width:100%;height:73px;"></div>
           <div id="loading">
             <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 100000; background:#ddd;opacity: 0.3;" id="loading-box" class="flex-center">
               <div class="box">
@@ -2832,8 +2837,27 @@
     var skuErr = false
     var logoImg = "/checkout/v2/images/logo_" + countries1 + ".png"
     var schrittImg = "/checkout/v2/images/1701506369_" + countries1 + ".webp"
+    var googlerOrApple = ''
     $(function() {
       console.log(logoImg, 'logoImg');
+      var isPc = IsPC()
+      console.log(isPc, 'ispc');
+      if (isPc) {
+        let isMac = /macintosh|mac os x/i.test(navigator.userAgent);
+        console.log(isMac, 'isMac');
+        googlerOrApple = isMac ? 'apple' : 'google'
+      } else {
+        let isIos = isIos()
+        console.log(isIos, 'isIos');
+        googlerOrApple = isIos ? 'apple' : 'google'
+      }
+      if (googlerOrApple == 'apple') {
+        $('.pay-button').hide()
+        $('.appalpay-button').show()
+      } else {
+        $('.pay-button').show()
+        $('.appalpay-button').hide()
+      }
       $('.logo_wrap_dist img').attr('src', logoImg)
       if (countries1 == 'fr' || countries1 == 'es') {
         $('.Schritt-top-box').hide()
@@ -2844,6 +2868,10 @@
       }
       if (countries1 == 'de') {
         $('.terms-block-last').show
+      }
+      if (countries1 == 'us' || countries1 == 'uk') {
+        var favicon = '/checkout/v2/images/favicon.png'
+        $('#favicon-icon').attr('href', favicon)
       }
       var dataUrl = '/api/onebuy/product/detail/' + getProductId + '?currency=' + currency
       axios
@@ -2903,10 +2931,11 @@
               padding: "18px 13px",
               textAlign: 'center'
             });
-            $("#complete-btn-id").html("@lang('onebuy::app.product.payment.complete_secure_purchase')");
+            $("#complete-btn-id").html("@lang('checkout::app.v2.complete_secure_purchase')");
 
           }
           if (paymentsDefault == 'payal_standard') {
+            window.is_airwallex = true
             $('#airwallex-klarna').prop('checked', false);
             $('#payal_standard').prop('checked', false);
             $('#payment_method_airwallex').prop('checked', true);
@@ -2929,11 +2958,12 @@
             $("#complete-btn-id").addClass(".complete-btn")
             $("#complete-btn-id").addClass("submit-button");
 
-            $("#complete-btn-id").html("@lang('onebuy::app.product.payment.complete_secure_purchase')");
+            $("#complete-btn-id").html("@lang('checkout::app.v2.complete_secure_purchase')");
 
           };
 
           if (paymentsDefault == 'payment_method_airwallex') {
+            window.is_airwallex = true
             $('#airwallex-klarna').prop('checked', false);
             $('#payal_standard').prop('checked', false);
             $('#payment_method_airwallex').prop('checked', true);
@@ -2956,7 +2986,7 @@
               padding: "18px 13px",
               textAlign: 'center'
             });
-            $("#complete-btn-id").html("@lang('onebuy::app.product.payment.complete_secure_purchase')");
+            $("#complete-btn-id").html("@lang('checkout::app.v2.complete_secure_purchase')");
 
 
           }
@@ -3142,6 +3172,28 @@
       if (trackFlag) {
         crmTrack('add_user_info')
       }
+    }
+
+    function IsPC() {
+      var userAgentInfo = navigator.userAgent;
+      var Agents = ["Android", "iPhone",
+        "SymbianOS", "Windows Phone",
+        "iPad", "iPod"
+      ];
+      var flag = true;
+      for (var v = 0; v < Agents.length; v++) {
+        if (userAgentInfo.indexOf(Agents[v]) > 0) {
+          flag = false;
+          break;
+        }
+      }
+      return flag;
+    }
+
+    function isIos() { //苹果设备
+      const u = navigator.userAgent;
+      if (u.indexOf("iPhone") > -1 || u.indexOf("iOS") > -1 || u.indexOf("iPad") > -1 || u.indexOf("Mac") > -1) return true
+      return false;
     }
 
     function throttle(fn, wait) {
@@ -3644,6 +3696,8 @@
       console.log(params.products, '===params====')
     }
     $('#product1').click(function(e) {
+      $('.pay-button').addClass('button-opacity')
+      $('.appalpay-button').addClass('button-opacity')
       var list = $('#product1,#product2,#product3,#product4')
       list.removeClass('choose-p')
 
@@ -3781,8 +3835,8 @@
       }
     })
     $('#complete-btn-id').click(function() {
-      crmTrack('add_pay')
       $('#loading').show()
+      window.is_airwallex = true
       params.first_name = $('input[name="firstName"]').val()
       params.second_name = $('input[name="lastName"]').val()
       params.email = $('input[name="email"]').val()
@@ -3869,11 +3923,12 @@
             });
             const domApplePay = applePayElement.mount('applePayButton');
             domApplePay.addEventListener('onReady', (event) => {
+              $('#applePayButton').removeClass('button-opacity')
               /*
                 ... Handle event
               */
               // window.alert(event.detail);
-              console.log(event.detail);
+              console.log(event.detail, event, 'applePay ===  ready');
             });
             domApplePay.addEventListener('onSuccess', (event) => {
               /*
@@ -3888,8 +3943,7 @@
                 ... Handle event on error
               */
               // window.alert(event.detail);
-              console.log(event.detail);
-
+              console.log(event.detail, event, 'applePay ===  error');
             });
           } else {
             alert(data.error)
@@ -3939,11 +3993,12 @@
             });
             const domGooglePay = googlePayElement.mount('googlePayButton');
             domGooglePay.addEventListener('onReady', (event) => {
+              $('#googlePayButton').removeClass('button-opacity')
               /*
                 ... Handle event
               */
               // window.alert(event.detail);
-              console.log(event.detail);
+              console.log(event.detail, event, 'googlePay ===  ready');
             });
             domGooglePay.addEventListener('onSuccess', (event) => {
               /*
@@ -3959,7 +4014,7 @@
               */
               // window.alert(event.detail);
               console.log(event.detail);
-
+              console.log(event.detail, event, 'googlePay ===  error');
             });
           } else {
             alert(data.error)
@@ -4009,7 +4064,7 @@
           padding: "18px 13px",
           textAlign: 'center'
         });
-        $("#complete-btn-id").html("@lang('onebuy::app.product.payment.complete_secure_purchase')");
+        $("#complete-btn-id").html("@lang('checkout::app.v2.complete_secure_purchase')");
 
       });
 
@@ -4035,7 +4090,7 @@
           padding: "18px 13px",
           textAlign: 'center'
         });
-        $("#complete-btn-id").html("@lang('onebuy::app.product.payment.complete_secure_purchase')");
+        $("#complete-btn-id").html("@lang('checkout::app.v2.complete_secure_purchase')");
 
       })
 
@@ -4186,7 +4241,6 @@
             // var params = getOrderParams('paypal_stand');
             // console.log("on click " + JSON.parse(params));
             console.log(params, 'paypalparams');
-            crmTrack('add_pay')
             if (params.error) {
               $('#checkout-error').html(params.error.join('<br />'));
               $('#checkout-error').show();
@@ -4211,6 +4265,7 @@
               return
             }
             $('#loading').show();
+            crmTrack('add_pay')
             // var params = getOrderParams('paypal_stand');
             var url = '/onebuy/order/addr/after?currency={{ core()->getCurrentCurrencyCode() }}&_token={{ csrf_token() }}&time=' + new Date().getTime() + "&force=" + localStorage.getItem("force");
             return fetch(url, {
@@ -4585,14 +4640,14 @@
               var errIsShow = skuIsScelect()
               if (!errIsShow) {
                 $('.dialog-error .dialog-box ul').empty()
-                var textList = `<li>@lang('checkout::app.v2.Please select product information')</li>`
+                var textList = `<li>@lang('checkout::app.v2.Please select product information!')</li>`
                 $('.dialog-error').show()
                 $('.dialog-error .dialog-box ul').append(textList)
                 $('#loading').hide()
                 return;
               }
+              crmTrack('add_pay')
               console.log(data, '==========');
-
               var url =
                 '/onebuy/order/addr/after?currency={{ core()->getCurrentCurrencyCode() }}&_token={{ csrf_token() }}&time=' +
                 new Date().getTime() +
@@ -4753,9 +4808,7 @@
                 })
             },
 
-            onClick() {
-              crmTrack('add_pay')
-            },
+            onClick() {},
 
             onError: function(err) {
               console.log('error from the onError callback', err)
@@ -4903,9 +4956,11 @@
           return res.json()
         })
         .then(function(res) {
+          crmTrack('add_pay')
           var data = res;
           //console.log(data);
           if (data.result === 200) {
+
             var order_info = data.order;
 
             //console.log(order_info);
