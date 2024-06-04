@@ -1717,7 +1717,7 @@
   </div>
   <div class="topStrip" style="text-align: center;">
     <div class="container-xxl">
-      <p>
+      <p style="text-align: center;">
         <span class="cb-total-discount-applied">@lang('checkout::app.v2.During the summer sale the discount is valid for')</span>
         <span id="stopwatch">05:00</span>
       </p>
@@ -3635,7 +3635,7 @@
       var isCrmTrack = listEach(list)
       if (isCrmTrack) {
         crmTrack('add_cart')
-        // createGoogleButton(params)
+        createGoogleButton(params)
       }
       console.log(params.products, '===params====')
     }
