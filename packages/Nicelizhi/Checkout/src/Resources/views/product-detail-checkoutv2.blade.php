@@ -4019,11 +4019,12 @@
                 client_secret: res.client_secret,
               },
               amount: {
-                value: 1,
+                value: res.order.base_grand_total,
                 currency: res.currency,
               },
               // countryCode: res.country,
-              countryCode: '<?php echo $default_country; ?>',
+              countryCode: 'HK',
+              buttonType: 'buy',
               origin: window.location.origin,
               autoCapture: true,
               merchantInfo: {
