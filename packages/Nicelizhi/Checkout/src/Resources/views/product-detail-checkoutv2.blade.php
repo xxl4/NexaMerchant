@@ -1974,8 +1974,11 @@
             </div>
           </div>
           <p class="button-top">@lang('checkout::app.v2.Express checkout')</p>
-          <div class="zoom-fade submit-button" id="payment-button" style="text-align: center;margin-top: 12px; width:100%;float: left"></div>
-          <div class="zoom-fade submit-button" id="googlePayButton" style="text-align: center;margin-top: 12px; width:100%;float: left"></div>
+          <div class="payment-box fl">
+            <div class="zoom-fade submit-button" id="payment-button" style="text-align: center;margin-top: 12px; width:100%;float: left"></div>
+            <div class="zoom-fade submit-button" id="googlePayButton" style="text-align: center;margin-top: 12px; width:100%;float: left;height:100px;background:red"></div>
+          </div>
+          <div class="zoom-fade submit-button" id="applePayButton" style="text-align: center;margin-top: 12px; width:100%;float: left"></div>
           <div id="loading">
             <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 100000; background:#ddd;opacity: 0.3;" id="loading-box" class="flex-center">
               <div class="box">
@@ -3636,6 +3639,7 @@
       if (isCrmTrack) {
         crmTrack('add_cart')
         createGoogleButton(params)
+        createApplePayButton(params)
       }
       console.log(params.products, '===params====')
     }
@@ -3667,6 +3671,12 @@
       $('#product-number').text('number: 1')
       $('#product-price').text(data.package_products[1].tip2)
       initProuctData(1, '1')
+      console.log(data.attr.attributes, 'data.attr');
+      if (data.attr.attributes.length == 0) {
+        crmTrack('add_cart')
+        createGoogleButton(params)
+        createApplePayButton(params)
+      }
     })
     $('#product2').click(function(e) {
 
@@ -3696,6 +3706,11 @@
       $('#product-number').text('number: 2')
       $('#product-price').text(data.package_products[0].tip2)
       initProuctData(0, '2')
+      if (data.attr.attributes.length == 0) {
+        crmTrack('add_cart')
+        createGoogleButton(params)
+        createApplePayButton(params)
+      }
     })
     $('#product3').click(function(e) {
       var list = $('#product1,#product2,#product3,#product4')
@@ -3725,6 +3740,11 @@
       $('#product-number').text('number: 3')
       $('#product-price').text(data.package_products[2].tip2)
       initProuctData(2, '3')
+      if (data.attr.attributes.length == 0) {
+        crmTrack('add_cart')
+        createGoogleButton(params)
+        createApplePayButton(params)
+      }
     })
     $('#product4').click(function(e) {
       var list = $('#product1,#product2,#product3,#product4')
@@ -3754,6 +3774,11 @@
       $('#product-number').text('number: 4')
       $('#product-price').text(data.package_products[3].tip2)
       initProuctData(3, '4')
+      if (data.attr.attributes.length == 0) {
+        crmTrack('add_cart')
+        createGoogleButton(params)
+        createApplePayButton(params)
+      }
     })
     $('#complete-btn-id').click(function() {
       crmTrack('add_pay')
@@ -3821,6 +3846,60 @@
       return showDialog;
     }
 
+    function createApplePayButton(params) {
+      console.log(params, 'applepay');
+      var payUrl = '/onebuy/order/add/sync?currency={{ core()->getCurrentCurrencyCode() }}&_token={{ csrf_token() }}&time=' + new Date().getTime();
+      params.payment_method = 'airwallex_apple'
+      fetch(payUrl, {
+          body: JSON.stringify(params),
+          method: 'POST',
+          headers: {
+            'content-type': 'application/json'
+          },
+        })
+        .then(function(res) {
+          return res.json()
+        })
+        .then(function(res) {
+          console.log(res, 'applePayres==');
+          if (res.result === 200) {
+            const applePayElement = Airwallex.createElement('applePayButton', {
+              intent_id: res.payment_intent_id,
+              client_secret: res.client_secret,
+            });
+            const domApplePay = applePayElement.mount('applePayButton');
+            domApplePay.addEventListener('onReady', (event) => {
+              /*
+                ... Handle event
+              */
+              // window.alert(event.detail);
+              console.log(event.detail);
+            });
+            domApplePay.addEventListener('onSuccess', (event) => {
+              /*
+                ... Handle event on success
+              */
+              // window.alert(event.detail);
+              console.log(event.detail, event, 'applePay ===  success');
+
+            });
+            domApplePay.addEventListener('onError', (event) => {
+              /*
+                ... Handle event on error
+              */
+              // window.alert(event.detail);
+              console.log(event.detail);
+
+            });
+          } else {
+            alert(data.error)
+          }
+        })
+        .catch(function(err) {
+          console.log(err, 'err==');
+        })
+    }
+
     function createGoogleButton(params) {
       console.log(params, 'googlepay');
       var payUrl = '/onebuy/order/add/sync?currency={{ core()->getCurrentCurrencyCode() }}&_token={{ csrf_token() }}&time=' + new Date().getTime();
@@ -3871,8 +3950,8 @@
                 ... Handle event on success
               */
               // window.alert(event.detail);
-              console.log(event.detail);
-
+              // console.log(event.detail);
+              console.log(event.detail, event, 'googlePay ===  success');
             });
             domGooglePay.addEventListener('onError', (event) => {
               /*
@@ -4478,52 +4557,6 @@
         $("#cardCvc").removeClass("shipping-info-input-error");
       }
     });
-
-    // const googlePayElement = Airwallex.createElement('googlePayButton', {
-    //   intent: {
-    //     // Required, googlePayButton uses intent_id and client_secret to prepare checkout
-    //     id: '123',
-    //     client_secret: '',
-    //   },
-
-    //   amount: {
-
-    //     value: 1,
-
-    //     currency: 'CNY',
-
-    //   },
-
-    //   origin: window.location.origin,
-
-    //   autoCapture: true,
-
-    //   merchantInfo: {
-
-    //     merchantName: 'Airwallex',
-
-    //   },
-
-    // });
-    // const domGooglePay = googlePayElement.mount('googlePayButton');
-    // domGooglePay.addEventListener('onReady', (event) => {
-    //   /*
-    //     ... Handle event
-    //   */
-    //   window.alert(event.detail);
-    // });
-    // domGooglePay.addEventListener('onSuccess', (event) => {
-    //   /*
-    //     ... Handle event on success
-    //   */
-    //   window.alert(event.detail);
-    // });
-    // domGooglePay.addEventListener('onError', (event) => {
-    //   /*
-    //     ... Handle event on error
-    //   */
-    //   window.alert(event.detail);
-    // });
   </script>
   <script>
     function creatPaypalCardButton() {
