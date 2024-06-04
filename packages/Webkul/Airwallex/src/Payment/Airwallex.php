@@ -201,6 +201,28 @@ class Airwallex extends Payment
       return $transactionManager;
     }
 
+    /**
+     * 
+     * create payment authen
+     * @https://www.airwallex.com/docs/payments__global__apple-pay__embedded-elements
+     * 
+     * 
+     */
+    public function createPaymentAuthen($cart, $orderId) {
+
+      $sdk = new AirwallexSdk($this->paymentConfig, $this->productionMode);
+
+      $buildRequestBody = $this->buildAuthenOrderData($cart, $orderId);
+      //var_dump($buildRequestBody);
+      $transactionManager = $sdk->CreatePayment(json_encode($buildRequestBody, JSON_OBJECT_AS_ARRAY | JSON_UNESCAPED_UNICODE));
+
+      // 针对生成订单后，需要和订单关联起来，从而在回告的过程中，好识别
+
+      //var_dump($transactionManager);
+
+      return $transactionManager;
+    }
+
     public function confirmPayment($payment_intents_id, $order) {
       $sdk = new AirwallexSdk($this->paymentConfig, $this->productionMode);
       $buildRequestBody = [];
@@ -248,6 +270,20 @@ class Airwallex extends Payment
 
       return $transactionManager;
       
+    }
+
+    public function buildAuthenOrderData($cart, $orderId) {
+        //$cart = Cart::getCart();
+
+        $data = [];
+        $amount = (float) $cart->sub_total + $cart->tax_total + ($cart->selected_shipping_rate ? $cart->selected_shipping_rate->price : 0) - $cart->discount_amount;
+        $data['amount'] = round($amount, 2, PHP_ROUND_HALF_UP);
+        $data['currency'] = $cart->cart_currency_code;
+        $data['merchant_order_id'] = $orderId;
+        $data['request_id'] = $orderId."_".time();
+        $data['return_url'] = route('airwallex.payment.success');
+        return $data;
+
     }
 
     /**
