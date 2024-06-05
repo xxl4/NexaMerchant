@@ -21,8 +21,8 @@
   <meta name="color-scheme" content="light only" />
   <link href="https://cdn.jsdelivr.net/npm/flag-icon-css@4.1.7/css/flag-icons.min.css" rel="stylesheet" />
   <link href="https://cdn.jsdelivr.net/npm/jquery-colorbox@1.6.4/example1/colorbox.min.css" rel="stylesheet" />
-  <script src="https://checkout-demo.airwallex.com/assets/elements.bundle.min.js"></script>
-  <!-- <script src="https://checkout.airwallex.com/assets/elements.bundle.min.js"></script> -->
+  <!-- <script src="https://checkout-demo.airwallex.com/assets/elements.bundle.min.js"></script> -->
+  <script src="https://checkout.airwallex.com/assets/elements.bundle.min.js"></script>
   <style>
     @media only screen and (max-width: 600px) {}
 
@@ -2488,8 +2488,8 @@
     var productL3 = {}
     var productL4 = {}
     var getProductId = '{{ $slug }}'
-    var countries1 = 'us'
-    // var countries1 = '<?php echo strtolower($default_country); ?>'
+    // var countries1 = 'us'
+    var countries1 = '<?php echo strtolower($default_country); ?>'
     var paypal_pay_acc = ''
     var area = '{{ app()->getLocale() }}'
     var currencySymbol = '{{ core()->currencySymbol(core()->getBaseCurrencyCode()) }}'
@@ -2524,10 +2524,6 @@
         .get(dataUrl)
         .then(function(res) {
           data = res.data
-
-          data.payments.airwallex_google = 1
-          data.payments.airwallex_appley = 1
-
           payTypeShow = data.payments
           var attrList = data.attr.attributes
           paypal_pay_acc = data.paypal_client_id
@@ -2724,9 +2720,8 @@
           if (payTypeShow.airwallex_google == '0' || googlerOrApple !== 'google') {
             $('#google-pay-box').hide()
           }
-          // if (payTypeShow.airwallex_appley == '0' || googlerOrApple !== 'apple') {
-          if (payTypeShow.airwallex_appley == '0') {
-
+          if (payTypeShow.airwallex_appley == '0' || googlerOrApple !== 'apple') {
+            // if (payTypeShow.airwallex_appley == '0') {
             $('#apple-pay-box').hide()
           }
           if (paymentsDefault == 'airwallex_klarna') {
@@ -3269,7 +3264,6 @@
       axios
         .get(countriesUrl)
         .then(function(res) {
-          console.log(res, '国家');
           if (res.data[0].countryCode) {
             console.log(res, '===recountries1res===')
             app_config.allowed_country_codes = []
@@ -3658,6 +3652,7 @@
         })
         .then(function(res) {
           console.log(res, 'applePayres==');
+          var orderId = res.order.id
           if (res.result === 200) {
             const applePayElement = Airwallex.createElement('applePayButton', {
               intent_id: res.payment_intent_id,
@@ -3687,7 +3682,7 @@
               */
               // window.alert(event.detail);
               console.log(event.detail, event, 'applePay ===  success');
-              window.location.href = "/onebuy/checkout/v1/success/";
+              window.location.href = "/onebuy/checkout/v1/success/" + orderId;
             });
             domApplePay.addEventListener('onError', (event) => {
               crmTrack('add_pay')
@@ -3724,6 +3719,7 @@
         })
         .then(function(res) {
           console.log(res, 'googleres==');
+          var orderId = res.order.id
           if (res.result === 200) {
 
             const googlePayElement = Airwallex.createElement('googlePayButton', {
@@ -3733,7 +3729,7 @@
                 value: res.order.base_grand_total,
                 currency: res.currency,
               },
-              shippingAddressRequired: true,
+              // shippingAddressRequired: true,
               // billingAddressParameters: {
               //   format: 'FULL',
               //   phoneNumberRequired: true
@@ -3766,7 +3762,7 @@
               // window.alert(event.detail);
               // console.log(event.detail);
               console.log(event.detail, event, 'googlePay ===  success');
-              // window.location.href = "/onebuy/checkout/v1/success/";
+              window.location.href = "/onebuy/checkout/v1/success/" + orderId;
             });
             domGooglePay.addEventListener('onError', (event) => {
               crmTrack('add_pay')
@@ -4327,7 +4323,7 @@
   </script>
   <script>
     Airwallex.init({
-      env: 'demo', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
+      env: 'prod', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
       origin: window.location.origin, // Setup your event target to receive the browser events message
     });
 
