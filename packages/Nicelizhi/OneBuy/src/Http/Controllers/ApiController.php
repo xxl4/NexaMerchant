@@ -64,7 +64,7 @@ class ApiController extends Controller
         $data = Cache::get($this->checkout_v2_cache_key.$slug);
         $env = config("app.env");
         // when the env is pord use cache
-        if(empty($data) && $env=='demo') {
+        if(empty($data)) {
         //if(true) {
             $product = $this->productRepository->findBySlug($slug);
             $data = [];
