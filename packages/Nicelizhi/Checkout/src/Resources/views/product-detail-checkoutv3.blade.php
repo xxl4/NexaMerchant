@@ -1390,7 +1390,7 @@
         <img src="" style="height: 35px;" />
         <div class="top-left-button">
           <p class="header-text-hide">Details</p>
-          <a class="headertext-hide" href="#iduzu">Reviews</a>
+          <a class="header-text-hide" href="#iduzu">Reviews</a>
           <div class="top-left-button-box">
             <a style="color: #fff;" href="#product2">Buy Now</a>
           </div>
