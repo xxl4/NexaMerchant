@@ -4112,19 +4112,37 @@
         .then(function(res) {
           console.log(res, 'googleres==');
           if (res.result === 200) {
+
+            Airwallex.init({
+              env: 'prod', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
+              origin: window.location.origin, // Setup your event target to receive the browser events message
+            });
+
             const googlePayElement = Airwallex.createElement('googlePayButton', {
-              intent: {
-                // Required, googlePayButton uses intent_id and client_secret to prepare checkout
-                id: res.payment_intent_id,
-                client_secret: res.client_secret,
-              },
+              // intent: {
+              //   // Required, googlePayButton uses intent_id and client_secret to prepare checkout
+              //   id: res.payment_intent_id,
+              //   client_secret: res.client_secret,
+              // },
+              intent_id: res.payment_intent_id,
+              client_secret: res.client_secret,
               amount: {
                 value: res.order.base_grand_total,
                 currency: res.currency,
               },
+              billingAddressParameters: {
+                format: 'FULL',
+                phoneNumberRequired: true
+              },
+              billingAddressRequired: true,
+              shippingAddressRequired: true,
+              // billingAddressParameters: {
+              //   format: 'FULL',
+              //   phoneNumberRequired: true
+              // },
+              // billingAddressRequired: true,
               // countryCode: res.country,
               countryCode: 'HK',
-              buttonType: 'buy',
               origin: window.location.origin,
               autoCapture: true,
               merchantInfo: {
@@ -4132,7 +4150,7 @@
               },
             });
             const domGooglePay = googlePayElement.mount('googlePayButton');
-            domGooglePay.addEventListener('onReady', (event) => {
+            window.addEventListener('onReady', (event) => {
               $('#googlePayButton').removeClass('button-opacity')
               $('.pay-button').css('background', '#fff')
               /*
@@ -4141,7 +4159,8 @@
               // window.alert(event.detail);
               console.log(event.detail, event, 'googlePay ===  ready');
             });
-            domGooglePay.addEventListener('onSuccess', (event) => {
+            console.log("onSuccess");
+            window.addEventListener('onSuccess', (event) => {
               /*
                 ... Handle event on success
               */
@@ -4149,7 +4168,8 @@
               // console.log(event.detail);
               console.log(event.detail, event, 'googlePay ===  success');
             });
-            domGooglePay.addEventListener('onError', (event) => {
+            console.log("onError");
+            window.addEventListener('onError', (event) => {
               /*
                 ... Handle event on error
               */
