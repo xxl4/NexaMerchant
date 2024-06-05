@@ -938,6 +938,10 @@
         display: none;
       }
 
+      .top-left-button {
+        justify-content: end;
+      }
+
       .grid-container {
         display: none !important;
       }
@@ -1349,7 +1353,7 @@
     }
 
     .description-img-box {
-      margin width: 100%;
+      width: 100%;
       height: 60px;
       display: flex;
     }
@@ -1396,8 +1400,6 @@
           </div>
         </div>
       </div>
-
-
     </div>
   </div>
   <div class="checkout-section">
