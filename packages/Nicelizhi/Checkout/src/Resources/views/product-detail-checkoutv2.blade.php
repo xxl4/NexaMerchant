@@ -2917,6 +2917,143 @@
           paypal_pay_acc = data.paypal_client_id
           var paymentsDefault = data.payments_default
           console.log(paymentsDefault, data.ads.pc.img, 'paymentsDefault=====');
+
+          $('#p-name2').text(data.package_products[0].name)
+          $('#p-name1').text(data.package_products[1].name)
+          $('#p-name3').text(data.package_products[2].name)
+          $('#p-name4').text(data.package_products[3].name)
+          $('#b-off2').text("@lang('checkout::app.v2.Save')" + data.package_products[0].tip1 + "@lang('checkout::app.v2.OFF')")
+          $('#b-off1').text("@lang('checkout::app.v2.Save')" + data.package_products[1].tip1 + "@lang('checkout::app.v2.OFF')")
+          $('#b-off3').text("@lang('checkout::app.v2.Save')" + data.package_products[2].tip1 + "@lang('checkout::app.v2.OFF')")
+          $('#b-off4').text("@lang('checkout::app.v2.Save')" + data.package_products[3].tip1 + "@lang('checkout::app.v2.OFF')")
+          $('#cb-reg-price2').text(data.package_products[0].old_price_format)
+          $('#cb-reg-price1').text(data.package_products[1].old_price_format)
+          $('#cb-reg-price3').text(data.package_products[2].old_price_format)
+          $('#cb-reg-price4').text(data.package_products[3].old_price_format)
+          $('#cb-buy-each2').text(data.package_products[0].new_price_format)
+          $('#cb-buy-each1').text(data.package_products[1].new_price_format)
+          $('#cb-buy-each3').text(data.package_products[2].new_price_format)
+          $('#cb-buy-each4').text(data.package_products[3].new_price_format)
+          if (attrList.length > 0) {
+            var selectList = ''
+            for (var arri = 0; arri < attrList.length; arri++) {
+              var optionList = `<option value="" hidden">` + attrList[arri].label + `</option>`
+              for (var attj = 0; attj < attrList[arri].options.length; attj++) {
+                optionList += `<option value="` + attrList[arri].options[attj].label + `">` + attrList[arri].options[attj].label + `</option>`
+              }
+              selectList += `<select class="in-se" id="in-se` + arri + `" onchange="seInput(value)">` + optionList + `</select>`
+            }
+            // var imgIndex = attrList[0].options[0].products[0]
+            // var box =
+            //   `<div style="flex: 2;">` +
+            //   selectList +
+            //   `</div><img class="se-img" src="` +
+            //   data.attr.variant_images[imgIndex][0].small_image_url +
+            //   `" alt="" />`
+            $('.buy-loading').hide()
+            $('.se-box').append(selectList)
+          } else {
+            $('.buy-loading').hide()
+            $('.buy-select').hide()
+          }
+          var nprice = currencySymbol + data.package_products[0].new_price.toFixed(2)
+          $('#summary-total1').text(nprice)
+          var shippingFee = currencySymbol + data.package_products[0].shipping_fee
+          $('#summary-total3').text(shippingFee)
+
+          var discount = Number(data.package_products[0].old_price) - Number(data.package_products[0].new_price)
+          discount = currencySymbol + discount.toFixed(2)
+          $('#summary-total2').text(discount)
+          var total = Number(data.package_products[0].new_price) + Number(data.package_products[0].shipping_fee)
+          total = currencySymbol + total.toFixed(2)
+          $('#summary-total4').text(total)
+          $('.product-name').text(data.package_products[0].name)
+          $('#product-number').text('number: 2')
+          $('#product-price').text(data.package_products[0].tip2)
+          if (data.payments.airwallex_credit_card == '0') {
+            $('.paypal-box').hide()
+          }
+          if (data.payments.payal_standard == '0') {
+            $('.cardPayOpt').hide()
+            $('.credit-card').hide()
+          }
+          var productsObj = {}
+          var midList = []
+          attLength = data.attr.attributes.length
+          console.log(attLength, 'attLength')
+          params.product_delivery = data.package_products[0].shipping_fee
+          params.total = Number(data.package_products[0].new_price) + Number(data.package_products[0].shipping_fee)
+          params.amount = '2'
+          params.description = data.package_products[0].name
+          paypalId = data.paypal_client_id
+          productsObj.amount = '1'
+          productsObj.description = data.package_products[0].name
+          productsObj.product_id = data.product.id
+          // productsObj.product_sku = data.sku
+          productsObj.img = data.product.base_image.large_image_url
+          productsObj.price = data.package_products[0].tip2
+          // productsObj.variant_id =
+          console.log(data, 'data=====')
+          productL1 = JSON.parse(JSON.stringify(productsObj))
+          productL2 = JSON.parse(JSON.stringify(productsObj))
+          productL3 = JSON.parse(JSON.stringify(productsObj))
+          productL4 = JSON.parse(JSON.stringify(productsObj))
+          var name1,
+            name1List = [],
+            name2,
+            name2List = [],
+            name3,
+            name3List = [],
+            name4,
+            name4List = [],
+            v1,
+            v1List = [],
+            v2,
+            v2List = [],
+            v3,
+            v3List = [],
+            v4,
+            v4List = []
+          for (let m = 0; m < attLength; m++) {
+            var oid = '#in-se' + m
+
+            if (params.amount == '1') {}
+            if (params.amount == '2') {
+              name1 = $('#select2-item1').children('select').eq(m).val()
+              name1List.push(name1)
+              name2 = $('#select2-item2').children('select').eq(m).val()
+              name2List.push(name2)
+              // productL1.attribute_name = v1+ ',' +v2
+              for (var inm = 0; inm < data.attr.attributes[m].options.length; inm++) {
+                var mid = data.attr.attributes[m].id
+                if (data.attr.attributes[m].options[inm].label == name1) {
+                  v1List.push(mid + '_' + data.attr.attributes[m].options[inm].id)
+                }
+                if (data.attr.attributes[m].options[inm].label == name2) {
+                  v2List.push(mid + '_' + data.attr.attributes[m].options[inm].id)
+                }
+              }
+              console.log(v1List, v2List, 'v1List')
+            }
+            if (params.amount == '3') {}
+            if (params.amount == '4') {}
+          }
+          name1List = name1List.join(',')
+          name2List = name2List.join(',')
+          v1List = v1List.join(',')
+          v2List = v2List.join(',')
+          productL1.attr_id = v1List
+          productL2.attr_id = v2List
+          productL1.attribute_name = name1List
+          productL2.attribute_name = name2List
+          getVSID(data.attr.index2)
+          params.products = []
+          params.products.push(productL1, productL2)
+          // productL1.attr_id
+          // minList = midList.join(',')
+          // productsObj.attr_id = minList
+          // console.log(productsObj, 'midList')
+          getSkuListInfo();
           $('#pc-banner').attr('src', data.ads.pc.img);
           $('#mobile-banner').attr('src', data.ads.mobile.img);
           $('.prod-name').text(data.product.name)
@@ -3084,142 +3221,6 @@
           // script.src = 'https://www.paypal.com/sdk/js?client-id=AUbkpTo_D9-l80qERS91ipcrXuIfSC3WMmFbK7Ey4n8RS3TaoJDw8H2rpxdhsWBIZWZbb6E3V7CSmK4R&components=buttons,messages,funding-eligibility&currency='+currency+'&disable-funding=paylater';
           script.async = 1
           document.body.appendChild(script)
-          $('#p-name2').text(data.package_products[0].name)
-          $('#p-name1').text(data.package_products[1].name)
-          $('#p-name3').text(data.package_products[2].name)
-          $('#p-name4').text(data.package_products[3].name)
-          $('#b-off2').text("@lang('checkout::app.v2.Save')" + data.package_products[0].tip1 + "@lang('checkout::app.v2.OFF')")
-          $('#b-off1').text("@lang('checkout::app.v2.Save')" + data.package_products[1].tip1 + "@lang('checkout::app.v2.OFF')")
-          $('#b-off3').text("@lang('checkout::app.v2.Save')" + data.package_products[2].tip1 + "@lang('checkout::app.v2.OFF')")
-          $('#b-off4').text("@lang('checkout::app.v2.Save')" + data.package_products[3].tip1 + "@lang('checkout::app.v2.OFF')")
-          $('#cb-reg-price2').text(data.package_products[0].old_price_format)
-          $('#cb-reg-price1').text(data.package_products[1].old_price_format)
-          $('#cb-reg-price3').text(data.package_products[2].old_price_format)
-          $('#cb-reg-price4').text(data.package_products[3].old_price_format)
-          $('#cb-buy-each2').text(data.package_products[0].new_price_format)
-          $('#cb-buy-each1').text(data.package_products[1].new_price_format)
-          $('#cb-buy-each3').text(data.package_products[2].new_price_format)
-          $('#cb-buy-each4').text(data.package_products[3].new_price_format)
-          if (attrList.length > 0) {
-            var selectList = ''
-            for (var arri = 0; arri < attrList.length; arri++) {
-              var optionList = `<option value="" hidden">` + attrList[arri].label + `</option>`
-              for (var attj = 0; attj < attrList[arri].options.length; attj++) {
-                optionList += `<option value="` + attrList[arri].options[attj].label + `">` + attrList[arri].options[attj].label + `</option>`
-              }
-              selectList += `<select class="in-se" id="in-se` + arri + `" onchange="seInput(value)">` + optionList + `</select>`
-            }
-            // var imgIndex = attrList[0].options[0].products[0]
-            // var box =
-            //   `<div style="flex: 2;">` +
-            //   selectList +
-            //   `</div><img class="se-img" src="` +
-            //   data.attr.variant_images[imgIndex][0].small_image_url +
-            //   `" alt="" />`
-            $('.buy-loading').hide()
-            $('.se-box').append(selectList)
-          } else {
-            $('.buy-loading').hide()
-            $('.buy-select').hide()
-          }
-          var nprice = currencySymbol + data.package_products[0].new_price.toFixed(2)
-          $('#summary-total1').text(nprice)
-          var shippingFee = currencySymbol + data.package_products[0].shipping_fee
-          $('#summary-total3').text(shippingFee)
-
-          var discount = Number(data.package_products[0].old_price) - Number(data.package_products[0].new_price)
-          discount = currencySymbol + discount.toFixed(2)
-          $('#summary-total2').text(discount)
-          var total = Number(data.package_products[0].new_price) + Number(data.package_products[0].shipping_fee)
-          total = currencySymbol + total.toFixed(2)
-          $('#summary-total4').text(total)
-          $('.product-name').text(data.package_products[0].name)
-          $('#product-number').text('number: 2')
-          $('#product-price').text(data.package_products[0].tip2)
-          if (data.payments.airwallex_credit_card == '0') {
-            $('.paypal-box').hide()
-          }
-          if (data.payments.payal_standard == '0') {
-            $('.cardPayOpt').hide()
-            $('.credit-card').hide()
-          }
-          var productsObj = {}
-          var midList = []
-          attLength = data.attr.attributes.length
-          console.log(attLength, 'attLength')
-          params.product_delivery = data.package_products[0].shipping_fee
-          params.total = Number(data.package_products[0].new_price) + Number(data.package_products[0].shipping_fee)
-          params.amount = '2'
-          params.description = data.package_products[0].name
-          paypalId = data.paypal_client_id
-          productsObj.amount = '1'
-          productsObj.description = data.package_products[0].name
-          productsObj.product_id = data.product.id
-          // productsObj.product_sku = data.sku
-          productsObj.img = data.product.base_image.large_image_url
-          productsObj.price = data.package_products[0].tip2
-          // productsObj.variant_id =
-          console.log(data, 'data=====')
-          productL1 = JSON.parse(JSON.stringify(productsObj))
-          productL2 = JSON.parse(JSON.stringify(productsObj))
-          productL3 = JSON.parse(JSON.stringify(productsObj))
-          productL4 = JSON.parse(JSON.stringify(productsObj))
-          var name1,
-            name1List = [],
-            name2,
-            name2List = [],
-            name3,
-            name3List = [],
-            name4,
-            name4List = [],
-            v1,
-            v1List = [],
-            v2,
-            v2List = [],
-            v3,
-            v3List = [],
-            v4,
-            v4List = []
-          for (let m = 0; m < attLength; m++) {
-            var oid = '#in-se' + m
-
-            if (params.amount == '1') {}
-            if (params.amount == '2') {
-              name1 = $('#select2-item1').children('select').eq(m).val()
-              name1List.push(name1)
-              name2 = $('#select2-item2').children('select').eq(m).val()
-              name2List.push(name2)
-              // productL1.attribute_name = v1+ ',' +v2
-              for (var inm = 0; inm < data.attr.attributes[m].options.length; inm++) {
-                var mid = data.attr.attributes[m].id
-                if (data.attr.attributes[m].options[inm].label == name1) {
-                  v1List.push(mid + '_' + data.attr.attributes[m].options[inm].id)
-                }
-                if (data.attr.attributes[m].options[inm].label == name2) {
-                  v2List.push(mid + '_' + data.attr.attributes[m].options[inm].id)
-                }
-              }
-              console.log(v1List, v2List, 'v1List')
-            }
-            if (params.amount == '3') {}
-            if (params.amount == '4') {}
-          }
-          name1List = name1List.join(',')
-          name2List = name2List.join(',')
-          v1List = v1List.join(',')
-          v2List = v2List.join(',')
-          productL1.attr_id = v1List
-          productL2.attr_id = v2List
-          productL1.attribute_name = name1List
-          productL2.attribute_name = name2List
-          getVSID(data.attr.index2)
-          params.products = []
-          params.products.push(productL1, productL2)
-          // productL1.attr_id
-          // minList = midList.join(',')
-          // productsObj.attr_id = minList
-          // console.log(productsObj, 'midList')
-          getSkuListInfo();
         })
         .catch(function(error) {
           console.error(error, 'err')
@@ -4528,24 +4529,24 @@
   <!-- <script type="text/javascript" src="js/checkout.js"></script> -->
 
   <script>
-    // var spd = 100
-    // var spdVal = 10
-    // var cntDown = 5 * 60 * spdVal
-    // setInterval(function() {
-    //   var mn, sc, ms
-    //   cntDown--
-    //   if (cntDown < 0) {
-    //     return false
-    //   }
-    //   mn = Math.floor(cntDown / spdVal / 60)
-    //   mn = mn < 10 ? '0' + mn : mn
-    //   sc = Math.floor((cntDown / spdVal) % 60)
-    //   sc = sc < 10 ? '0' + sc : sc
-    //   ms = Math.floor(cntDown % spdVal)
-    //   ms = ms < 10 ? '0' + ms : ms
-    //   var result = mn + ':' + sc
-    //   document.getElementById('stopwatch').innerHTML = result
-    // }, spd)
+    var spd = 100
+    var spdVal = 10
+    var cntDown = 5 * 60 * spdVal
+    setInterval(function() {
+      var mn, sc, ms
+      cntDown--
+      if (cntDown < 0) {
+        return false
+      }
+      mn = Math.floor(cntDown / spdVal / 60)
+      mn = mn < 10 ? '0' + mn : mn
+      sc = Math.floor((cntDown / spdVal) % 60)
+      sc = sc < 10 ? '0' + sc : sc
+      ms = Math.floor(cntDown % spdVal)
+      ms = ms < 10 ? '0' + ms : ms
+      var result = mn + ':' + sc
+      document.getElementById('stopwatch').innerHTML = result
+    }, spd)
     $(function() {
       var width = $(window).innerWidth()
       if (width > 767) {
