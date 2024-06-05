@@ -2899,8 +2899,8 @@
     }
 
     function getShopify() {
-      // const shopifyUrl = '/shopify/v1/api/full/{{ $slug }}'
-      const shopifyUrl = 'http://127.0.0.1:8000/shopify/v1/api/full/8398348714214 '
+      const shopifyUrl = '/shopify/v1/api/full/{{ $slug }}'
+      // const shopifyUrl = 'http://127.0.0.1:8000/shopify/v1/api/full/8398348714214 '
       axios
         .get(shopifyUrl)
         .then(function(res) {
