@@ -3766,7 +3766,7 @@
               // window.alert(event.detail);
               // console.log(event.detail);
               console.log(event.detail, event, 'googlePay ===  success');
-              window.location.href = "/onebuy/checkout/v1/success/";
+              // window.location.href = "/onebuy/checkout/v1/success/";
             });
             domGooglePay.addEventListener('onError', (event) => {
               crmTrack('add_pay')
