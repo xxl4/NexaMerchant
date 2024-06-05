@@ -934,6 +934,10 @@
     }
 
     @media (max-width: 780px) {
+      .header-text-hide {
+        display: none;
+      }
+
       .grid-container {
         display: none !important;
       }
@@ -1385,8 +1389,8 @@
       <div class="herder-content">
         <img src="" style="height: 35px;" />
         <div class="top-left-button">
-          <p>Details</p>
-          <a href="#iduzu">Reviews</a>
+          <p class="header-text-hide">Details</p>
+          <a class="headertext-hide" href="#iduzu">Reviews</a>
           <div class="top-left-button-box">
             <a style="color: #fff;" href="#product2">Buy Now</a>
           </div>
