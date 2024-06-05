@@ -4098,7 +4098,12 @@
                 value: res.order.base_grand_total,
                 currency: res.currency,
               },
-              emailRequired: true,
+              billingAddressParameters: {
+                format: 'FULL',
+                phoneNumberRequired: true
+              },
+              billingAddressRequired: true,
+              shippingAddressRequired: true,
               // billingAddressParameters: {
               //   format: 'FULL',
               //   phoneNumberRequired: true
