@@ -242,11 +242,18 @@
     }
 
     .container_title {
-      font-size: 17px;
-      margin-top: 20px;
-      color: #444444;
-      text-align: center;
-      font-weight: bold;
+      margin-top: 10px;
+      font-size: 16px;
+      /* color: #fff; */
+      font-weight: 500;
+      width: 100%;
+      transition: all .2s ease-in-out;
+      background: #F0F5FF;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      padding-left: 4px;
+      height: 35px;
       font-family: var(--text-family);
     }
 
@@ -927,6 +934,14 @@
     }
 
     @media (max-width: 780px) {
+      .header-text-hide {
+        display: none;
+      }
+
+      .top-left-button {
+        justify-content: end;
+      }
+
       .grid-container {
         display: none !important;
       }
@@ -1046,6 +1061,10 @@
     }
   </style>
   <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
     .input-box {
       width: 100%;
       /* font-family: var(--); */
@@ -1233,6 +1252,7 @@
     .Schritt-top-box {
       width: 100%;
       padding: 10px 0;
+      float: left;
     }
 
     .button-top {
@@ -1287,17 +1307,60 @@
       font-family: var(--text-family);
       color: var(--text-color);
     } */
-    .product-selected {
-      display: none;
-      position: absolute;
-      top: 9px;
-      right: 19%;
-      color: #fff;
-      background: #1773B0;
-      font-size: 13px;
-      padding: 5px;
+    .header-container {
+      width: 100%;
+      height: 55px;
+      background-color: #fff;
+      border-bottom: 1px solid #f2f2f2;
+    }
+
+    .herder-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .top-left-button {
+      display: flex;
+      font-size: 14px;
+      color: var(--text-color);
+      width: 200px;
+      align-items: center;
+      justify-content: space-around;
+      height: 55px;
+    }
+
+    .top-left-button-box {
+      padding: 8px;
+      background-color: #1773B0;
+      border-radius: 15px;
       font-weight: 600;
-      border-radius: 4px;
+    }
+
+    .shopify-title {
+      margin-top: 10px;
+      font-size: 16px;
+      /* color: #fff; */
+      font-weight: 500;
+      width: 100%;
+      transition: all .2s ease-in-out;
+      background: #F0F5FF;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      padding-left: 4px;
+      height: 35px;
+    }
+
+    .description-img-box {
+      width: 100%;
+      height: 60px;
+      display: flex;
+    }
+
+    .description-img-box img {
+      flex: 1;
+      object-fit: contain;
     }
   </style>
 </head>
@@ -1324,449 +1387,21 @@
     <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/all.min.css" />
     <span id="builderCssToken"> </span>
   </page-builder-block>
-  <!-- Data Layer -->
-  <script>
-    var customerId, reload, exclude
-    customerId = undefined
-    reload = false
-    exclude = false
 
-    window.dataLayer = window.dataLayer || []
-    window.dataLayer.push({
-      event: 'pageView',
-      offer: 'Fur Sweep Collar',
-      ua_property: 'UA-156182996-147', //insert UA Property ID here
-      customer_id: customerId, // add customer ID or undefined
-      page: {
-        type: 'Checkout',
-        isReload: reload, //boolean
-        isExclude: exclude, //boolean
-      },
-      experiment: {
-        id: undefined, //currently undefined as a placeholder
-        name: undefined, //currently undefined as a placeholder
-        variation: undefined, //currently undefined as a placeholder
-      },
-    })
-  </script>
-  <!-- Data Layer -->
-  <script>
-    var campaigns = {
-      1: {
-        id: 1,
-        shipping_price: '9.95',
-        product_array: '[{"product_id":"37609","product_price":"39.99","retail_price":"79.98","product_quantity":1,"rebill_product_price":0,"product_schedule":"","product_schedule_quantity":"","product_key":"","nmi_plan_id":"","product_name":"1x Fur Sweep Collar"}]',
-      },
-      3: {
-        id: 3,
-        shipping_price: '14.95',
-        product_array: '[{"product_id":"37609","product_price":"39.99","retail_price":"79.98","product_quantity":1,"rebill_product_price":0,"product_schedule":"","product_schedule_quantity":"","product_key":"","nmi_plan_id":"","product_name":"1x Fur Sweep Collar"}]',
-      },
-      5: {
-        id: 5,
-        shipping_price: '9.95',
-        product_array: '[{"product_id":"37609","product_price":"39.99","retail_price":"79.98","product_quantity":1,"rebill_product_price":0,"product_schedule":"","product_schedule_quantity":"","product_key":"","nmi_plan_id":"","product_name":"1x Fur Sweep Collar"}]',
-      },
-      7: {
-        id: 7,
-        shipping_price: '14.95',
-        product_array: '[{"product_id":"37609","product_price":"39.99","retail_price":"79.98","product_quantity":1,"rebill_product_price":0,"product_schedule":"","product_schedule_quantity":"","product_key":"","nmi_plan_id":"","product_name":"1x Fur Sweep Collar"}]',
-      },
-      9: {
-        id: 9,
-        shipping_price: '9.95',
-        product_array: '[{"product_id":"37610","product_price":"75.99","retail_price":"159.96","product_quantity":1,"rebill_product_price":0,"product_schedule":"","product_schedule_quantity":"","product_key":"","nmi_plan_id":"","product_name":"2x Fur Sweep Collars"}]',
-      },
-      11: {
-        id: 11,
-        shipping_price: '14.95',
-        product_array: '[{"product_id":"37610","product_price":"75.99","retail_price":"159.96","product_quantity":1,"rebill_product_price":0,"product_schedule":"","product_schedule_quantity":"","product_key":"","nmi_plan_id":"","product_name":"2x Fur Sweep Collars"}]',
-      },
-      13: {
-        id: 13,
-        shipping_price: '9.95',
-        product_array: '[{"product_id":"37610","product_price":"75.99","retail_price":"159.96","product_quantity":1,"rebill_product_price":0,"product_schedule":"","product_schedule_quantity":"","product_key":"","nmi_plan_id":"","product_name":"2x Fur Sweep Collars"}]',
-      },
-      15: {
-        id: 15,
-        shipping_price: '14.95',
-        product_array: '[{"product_id":"37610","product_price":"75.99","retail_price":"159.96","product_quantity":1,"rebill_product_price":0,"product_schedule":"","product_schedule_quantity":"","product_key":"","nmi_plan_id":"","product_name":"2x Fur Sweep Collars"}]',
-      },
-      17: {
-        id: 17,
-        shipping_price: '9.95',
-        product_array: '[{"product_id":"37611","product_price":"107.98","retail_price":"239.94","product_quantity":1,"rebill_product_price":0,"product_schedule":"","product_schedule_quantity":"","product_key":"","nmi_plan_id":"","product_name":"3x Fur Sweep Collars"}]',
-      },
-      19: {
-        id: 19,
-        shipping_price: '14.95',
-        product_array: '[{"product_id":"37611","product_price":"107.98","retail_price":"239.94","product_quantity":1,"rebill_product_price":0,"product_schedule":"","product_schedule_quantity":"","product_key":"","nmi_plan_id":"","product_name":"3x Fur Sweep Collars"}]',
-      },
-      21: {
-        id: 21,
-        shipping_price: '9.95',
-        product_array: '[{"product_id":"37611","product_price":"107.98","retail_price":"239.94","product_quantity":1,"rebill_product_price":0,"product_schedule":"","product_schedule_quantity":"","product_key":"","nmi_plan_id":"","product_name":"3x Fur Sweep Collars"}]',
-      },
-      23: {
-        id: 23,
-        shipping_price: '14.95',
-        product_array: '[{"product_id":"37611","product_price":"107.98","retail_price":"239.94","product_quantity":1,"rebill_product_price":0,"product_schedule":"","product_schedule_quantity":"","product_key":"","nmi_plan_id":"","product_name":"3x Fur Sweep Collars"}]',
-      },
-      25: {
-        id: 25,
-        shipping_price: '9.95',
-        product_array: '[{"product_id":"37612","product_price":"135.97","retail_price":"319.92","product_quantity":1,"rebill_product_price":0,"product_schedule":"","product_schedule_quantity":"","product_key":"","nmi_plan_id":"","product_name":"4x Fur Sweep Collars"}]',
-      },
-      27: {
-        id: 27,
-        shipping_price: '14.95',
-        product_array: '[{"product_id":"37612","product_price":"135.97","retail_price":"319.92","product_quantity":1,"rebill_product_price":0,"product_schedule":"","product_schedule_quantity":"","product_key":"","nmi_plan_id":"","product_name":"4x Fur Sweep Collars"}]',
-      },
-      29: {
-        id: 29,
-        shipping_price: '9.95',
-        product_array: '[{"product_id":"37612","product_price":"135.97","retail_price":"319.92","product_quantity":1,"rebill_product_price":0,"product_schedule":"","product_schedule_quantity":"","product_key":"","nmi_plan_id":"","product_name":"4x Fur Sweep Collars"}]',
-      },
-      31: {
-        id: 31,
-        shipping_price: '14.95',
-        product_array: '[{"product_id":"37612","product_price":"135.97","retail_price":"319.92","product_quantity":1,"rebill_product_price":0,"product_schedule":"","product_schedule_quantity":"","product_key":"","nmi_plan_id":"","product_name":"4x Fur Sweep Collars"}]',
-      },
-      33: {
-        id: 33,
-        shipping_price: '9.95',
-        product_array: '[{"product_id":"37613","product_price":"159.96","retail_price":"399.90","product_quantity":1,"rebill_product_price":0,"product_schedule":"","product_schedule_quantity":"","product_key":"","nmi_plan_id":"","product_name":"5x Fur Sweep Collars"}]',
-      },
-      35: {
-        id: 35,
-        shipping_price: '14.95',
-        product_array: '[{"product_id":"37613","product_price":"159.96","retail_price":"399.90","product_quantity":1,"rebill_product_price":0,"product_schedule":"","product_schedule_quantity":"","product_key":"","nmi_plan_id":"","product_name":"5x Fur Sweep Collars"}]',
-      },
-      37: {
-        id: 37,
-        shipping_price: '9.95',
-        product_array: '[{"product_id":"37613","product_price":"159.96","retail_price":"399.90","product_quantity":1,"rebill_product_price":0,"product_schedule":"","product_schedule_quantity":"","product_key":"","nmi_plan_id":"","product_name":"5x Fur Sweep Collars"}]',
-      },
-      39: {
-        id: 39,
-        shipping_price: '14.95',
-        product_array: '[{"product_id":"37613","product_price":"159.96","retail_price":"399.90","product_quantity":1,"rebill_product_price":0,"product_schedule":"","product_schedule_quantity":"","product_key":"","nmi_plan_id":"","product_name":"5x Fur Sweep Collars"}]',
-      },
-      41: {
-        id: 41,
-        shipping_price: '0.00',
-        product_array: '[{"product_id":"37614","product_price":"0.00","retail_price":"0.00","product_quantity":1,"rebill_product_price":0,"product_schedule":"","product_schedule_quantity":"","product_key":"","nmi_plan_id":"","product_name":"Fur Sweep Collar - 1-Year Extended Warranty"}]',
-      },
-      43: {
-        id: 43,
-        shipping_price: '0.00',
-        product_array: '[{"product_id":"37614","product_price":"0.00","retail_price":"0.00","product_quantity":1,"rebill_product_price":0,"product_schedule":"","product_schedule_quantity":"","product_key":"","nmi_plan_id":"","product_name":"Fur Sweep Collar - 1-Year Extended Warranty"}]',
-      },
-      45: {
-        id: 45,
-        shipping_price: '0.00',
-        product_array: '[{"product_id":"37614","product_price":"0.00","retail_price":"0.00","product_quantity":1,"rebill_product_price":0,"product_schedule":"","product_schedule_quantity":"","product_key":"","nmi_plan_id":"","product_name":"Fur Sweep Collar - 1-Year Extended Warranty"}]',
-      },
-      47: {
-        id: 47,
-        shipping_price: '0.00',
-        product_array: '[{"product_id":"37614","product_price":"0.00","retail_price":"0.00","product_quantity":1,"rebill_product_price":0,"product_schedule":"","product_schedule_quantity":"","product_key":"","nmi_plan_id":"","product_name":"Fur Sweep Collar - 1-Year Extended Warranty"}]',
-      },
-      49: {
-        id: 49,
-        shipping_price: '0.00',
-        product_array: '[{"product_id":"37615","product_price":"24.99","retail_price":"79.98","product_quantity":1,"rebill_product_price":0,"product_schedule":"","product_schedule_quantity":"","product_key":"","nmi_plan_id":"","product_name":"Special 1x EXTRA Fur Sweep Collar"}]',
-      },
-      51: {
-        id: 51,
-        shipping_price: '0.00',
-        product_array: '[{"product_id":"37615","product_price":"24.99","retail_price":"79.98","product_quantity":1,"rebill_product_price":0,"product_schedule":"","product_schedule_quantity":"","product_key":"","nmi_plan_id":"","product_name":"Special 1x EXTRA Fur Sweep Collar"}]',
-      },
-      53: {
-        id: 53,
-        shipping_price: '0.00',
-        product_array: '[{"product_id":"37615","product_price":"24.99","retail_price":"79.98","product_quantity":1,"rebill_product_price":0,"product_schedule":"","product_schedule_quantity":"","product_key":"","nmi_plan_id":"","product_name":"Special 1x EXTRA Fur Sweep Collar"}]',
-      },
-      55: {
-        id: 55,
-        shipping_price: '0.00',
-        product_array: '[{"product_id":"37615","product_price":"24.99","retail_price":"79.98","product_quantity":1,"rebill_product_price":0,"product_schedule":"","product_schedule_quantity":"","product_key":"","nmi_plan_id":"","product_name":"Special 1x EXTRA Fur Sweep Collar"}]',
-      },
-      57: {
-        id: 57,
-        shipping_price: '0.00',
-        product_array: '[{"product_id":"37616","product_price":"19.99","retail_price":"79.98","product_quantity":1,"rebill_product_price":0,"product_schedule":"","product_schedule_quantity":"","product_key":"","nmi_plan_id":"","product_name":"Special 1x EXTRA Fur Sweep Collar"}]',
-      },
-      59: {
-        id: 59,
-        shipping_price: '0.00',
-        product_array: '[{"product_id":"37616","product_price":"19.99","retail_price":"79.98","product_quantity":1,"rebill_product_price":0,"product_schedule":"","product_schedule_quantity":"","product_key":"","nmi_plan_id":"","product_name":"Special 1x EXTRA Fur Sweep Collar"}]',
-      },
-      61: {
-        id: 61,
-        shipping_price: '0.00',
-        product_array: '[{"product_id":"37616","product_price":"19.99","retail_price":"79.98","product_quantity":1,"rebill_product_price":0,"product_schedule":"","product_schedule_quantity":"","product_key":"","nmi_plan_id":"","product_name":"Special 1x EXTRA Fur Sweep Collar"}]',
-      },
-      63: {
-        id: 63,
-        shipping_price: '0.00',
-        product_array: '[{"product_id":"37616","product_price":"19.99","retail_price":"79.98","product_quantity":1,"rebill_product_price":0,"product_schedule":"","product_schedule_quantity":"","product_key":"","nmi_plan_id":"","product_name":"Special 1x EXTRA Fur Sweep Collar"}]',
-      },
-      65: {
-        id: 65,
-        shipping_price: '0.00',
-        product_array: '[{"product_id":"37617","product_price":"29.99","retail_price":"59.98","product_quantity":1,"rebill_product_price":0,"product_schedule":"","product_schedule_quantity":"","product_key":"","nmi_plan_id":"","product_name":"1x Pet Brush"}]',
-      },
-      67: {
-        id: 67,
-        shipping_price: '0.00',
-        product_array: '[{"product_id":"37617","product_price":"29.99","retail_price":"59.98","product_quantity":1,"rebill_product_price":0,"product_schedule":"","product_schedule_quantity":"","product_key":"","nmi_plan_id":"","product_name":"1x Pet Brush"}]',
-      },
-      69: {
-        id: 69,
-        shipping_price: '0.00',
-        product_array: '[{"product_id":"37617","product_price":"29.99","retail_price":"59.98","product_quantity":1,"rebill_product_price":0,"product_schedule":"","product_schedule_quantity":"","product_key":"","nmi_plan_id":"","product_name":"1x Pet Brush"}]',
-      },
-      71: {
-        id: 71,
-        shipping_price: '0.00',
-        product_array: '[{"product_id":"37617","product_price":"29.99","retail_price":"59.98","product_quantity":1,"rebill_product_price":0,"product_schedule":"","product_schedule_quantity":"","product_key":"","nmi_plan_id":"","product_name":"1x Pet Brush"}]',
-      },
-      73: {
-        id: 73,
-        shipping_price: '0.00',
-        product_array: '[{"product_id":"37618","product_price":"53.98","retail_price":"119.96","product_quantity":1,"rebill_product_price":0,"product_schedule":"","product_schedule_quantity":"","product_key":"","nmi_plan_id":"","product_name":"2x Pet Brushes"}]',
-      },
-      75: {
-        id: 75,
-        shipping_price: '0.00',
-        product_array: '[{"product_id":"37618","product_price":"53.98","retail_price":"119.96","product_quantity":1,"rebill_product_price":0,"product_schedule":"","product_schedule_quantity":"","product_key":"","nmi_plan_id":"","product_name":"2x Pet Brushes"}]',
-      },
-      77: {
-        id: 77,
-        shipping_price: '0.00',
-        product_array: '[{"product_id":"37618","product_price":"53.98","retail_price":"119.96","product_quantity":1,"rebill_product_price":0,"product_schedule":"","product_schedule_quantity":"","product_key":"","nmi_plan_id":"","product_name":"2x Pet Brushes"}]',
-      },
-      79: {
-        id: 79,
-        shipping_price: '0.00',
-        product_array: '[{"product_id":"37618","product_price":"53.98","retail_price":"119.96","product_quantity":1,"rebill_product_price":0,"product_schedule":"","product_schedule_quantity":"","product_key":"","nmi_plan_id":"","product_name":"2x Pet Brushes"}]',
-      },
-      81: {
-        id: 81,
-        shipping_price: '0.00',
-        product_array: '[{"product_id":"37619","product_price":"71.98","retail_price":"179.94","product_quantity":1,"rebill_product_price":0,"product_schedule":"","product_schedule_quantity":"","product_key":"","nmi_plan_id":"","product_name":"3x Pet Brushes"}]',
-      },
-      83: {
-        id: 83,
-        shipping_price: '0.00',
-        product_array: '[{"product_id":"37619","product_price":"71.98","retail_price":"179.94","product_quantity":1,"rebill_product_price":0,"product_schedule":"","product_schedule_quantity":"","product_key":"","nmi_plan_id":"","product_name":"3x Pet Brushes"}]',
-      },
-      85: {
-        id: 85,
-        shipping_price: '0.00',
-        product_array: '[{"product_id":"37619","product_price":"71.98","retail_price":"179.94","product_quantity":1,"rebill_product_price":0,"product_schedule":"","product_schedule_quantity":"","product_key":"","nmi_plan_id":"","product_name":"3x Pet Brushes"}]',
-      },
-      87: {
-        id: 87,
-        shipping_price: '0.00',
-        product_array: '[{"product_id":"37619","product_price":"71.98","retail_price":"179.94","product_quantity":1,"rebill_product_price":0,"product_schedule":"","product_schedule_quantity":"","product_key":"","nmi_plan_id":"","product_name":"3x Pet Brushes"}]',
-      },
-      89: {
-        id: 89,
-        shipping_price: '0.00',
-        product_array: '[{"product_id":"37620","product_price":"83.97","retail_price":"239.92","product_quantity":1,"rebill_product_price":0,"product_schedule":"","product_schedule_quantity":"","product_key":"","nmi_plan_id":"","product_name":"4x Pet Brushes"}]',
-      },
-      91: {
-        id: 91,
-        shipping_price: '0.00',
-        product_array: '[{"product_id":"37620","product_price":"83.97","retail_price":"239.92","product_quantity":1,"rebill_product_price":0,"product_schedule":"","product_schedule_quantity":"","product_key":"","nmi_plan_id":"","product_name":"4x Pet Brushes"}]',
-      },
-      93: {
-        id: 93,
-        shipping_price: '0.00',
-        product_array: '[{"product_id":"37620","product_price":"83.97","retail_price":"239.92","product_quantity":1,"rebill_product_price":0,"product_schedule":"","product_schedule_quantity":"","product_key":"","nmi_plan_id":"","product_name":"4x Pet Brushes"}]',
-      },
-      95: {
-        id: 95,
-        shipping_price: '0.00',
-        product_array: '[{"product_id":"37620","product_price":"83.97","retail_price":"239.92","product_quantity":1,"rebill_product_price":0,"product_schedule":"","product_schedule_quantity":"","product_key":"","nmi_plan_id":"","product_name":"4x Pet Brushes"}]',
-      },
-      97: {
-        id: 97,
-        shipping_price: '0.00',
-        product_array: '[{"product_id":"37621","product_price":"89.97","retail_price":"299.90","product_quantity":1,"rebill_product_price":0,"product_schedule":"","product_schedule_quantity":"","product_key":"","nmi_plan_id":"","product_name":"5x Pet Brushes"}]',
-      },
-      99: {
-        id: 99,
-        shipping_price: '0.00',
-        product_array: '[{"product_id":"37621","product_price":"89.97","retail_price":"299.90","product_quantity":1,"rebill_product_price":0,"product_schedule":"","product_schedule_quantity":"","product_key":"","nmi_plan_id":"","product_name":"5x Pet Brushes"}]',
-      },
-      101: {
-        id: 101,
-        shipping_price: '0.00',
-        product_array: '[{"product_id":"37621","product_price":"89.97","retail_price":"299.90","product_quantity":1,"rebill_product_price":0,"product_schedule":"","product_schedule_quantity":"","product_key":"","nmi_plan_id":"","product_name":"5x Pet Brushes"}]',
-      },
-      103: {
-        id: 103,
-        shipping_price: '0.00',
-        product_array: '[{"product_id":"37621","product_price":"89.97","retail_price":"299.90","product_quantity":1,"rebill_product_price":0,"product_schedule":"","product_schedule_quantity":"","product_key":"","nmi_plan_id":"","product_name":"5x Pet Brushes"}]',
-      },
-      105: {
-        id: 105,
-        shipping_price: '0.00',
-        product_array: '[{"product_id":"37622","product_price":"29.95","retail_price":"59.90","product_quantity":1,"rebill_product_price":0,"product_schedule":"","product_schedule_quantity":"","product_key":"","nmi_plan_id":"","product_name":"1x Pet Trainer Whistle"}]',
-      },
-      107: {
-        id: 107,
-        shipping_price: '0.00',
-        product_array: '[{"product_id":"37622","product_price":"29.95","retail_price":"59.90","product_quantity":1,"rebill_product_price":0,"product_schedule":"","product_schedule_quantity":"","product_key":"","nmi_plan_id":"","product_name":"1x Pet Trainer Whistle"}]',
-      },
-      109: {
-        id: 109,
-        shipping_price: '0.00',
-        product_array: '[{"product_id":"37622","product_price":"29.95","retail_price":"59.90","product_quantity":1,"rebill_product_price":0,"product_schedule":"","product_schedule_quantity":"","product_key":"","nmi_plan_id":"","product_name":"1x Pet Trainer Whistle"}]',
-      },
-      111: {
-        id: 111,
-        shipping_price: '0.00',
-        product_array: '[{"product_id":"37622","product_price":"29.95","retail_price":"59.90","product_quantity":1,"rebill_product_price":0,"product_schedule":"","product_schedule_quantity":"","product_key":"","nmi_plan_id":"","product_name":"1x Pet Trainer Whistle"}]',
-      },
-      113: {
-        id: 113,
-        shipping_price: '0.00',
-        product_array: '[{"product_id":"37623","product_price":"53.91","retail_price":"119.80","product_quantity":1,"rebill_product_price":0,"product_schedule":"","product_schedule_quantity":"","product_key":"","nmi_plan_id":"","product_name":"2x Pet Trainer Whistles"}]',
-      },
-      115: {
-        id: 115,
-        shipping_price: '0.00',
-        product_array: '[{"product_id":"37623","product_price":"53.91","retail_price":"119.80","product_quantity":1,"rebill_product_price":0,"product_schedule":"","product_schedule_quantity":"","product_key":"","nmi_plan_id":"","product_name":"2x Pet Trainer Whistles"}]',
-      },
-      117: {
-        id: 117,
-        shipping_price: '0.00',
-        product_array: '[{"product_id":"37623","product_price":"53.91","retail_price":"119.80","product_quantity":1,"rebill_product_price":0,"product_schedule":"","product_schedule_quantity":"","product_key":"","nmi_plan_id":"","product_name":"2x Pet Trainer Whistles"}]',
-      },
-      119: {
-        id: 119,
-        shipping_price: '0.00',
-        product_array: '[{"product_id":"37623","product_price":"53.91","retail_price":"119.80","product_quantity":1,"rebill_product_price":0,"product_schedule":"","product_schedule_quantity":"","product_key":"","nmi_plan_id":"","product_name":"2x Pet Trainer Whistles"}]',
-      },
-      121: {
-        id: 121,
-        shipping_price: '0.00',
-        product_array: '[{"product_id":"37624","product_price":"71.88","retail_price":"179.70","product_quantity":1,"rebill_product_price":0,"product_schedule":"","product_schedule_quantity":"","product_key":"","nmi_plan_id":"","product_name":"3x Pet Trainer Whistles"}]',
-      },
-      123: {
-        id: 123,
-        shipping_price: '0.00',
-        product_array: '[{"product_id":"37624","product_price":"71.88","retail_price":"179.70","product_quantity":1,"rebill_product_price":0,"product_schedule":"","product_schedule_quantity":"","product_key":"","nmi_plan_id":"","product_name":"3x Pet Trainer Whistles"}]',
-      },
-      125: {
-        id: 125,
-        shipping_price: '0.00',
-        product_array: '[{"product_id":"37624","product_price":"71.88","retail_price":"179.70","product_quantity":1,"rebill_product_price":0,"product_schedule":"","product_schedule_quantity":"","product_key":"","nmi_plan_id":"","product_name":"3x Pet Trainer Whistles"}]',
-      },
-      127: {
-        id: 127,
-        shipping_price: '0.00',
-        product_array: '[{"product_id":"37624","product_price":"71.88","retail_price":"179.70","product_quantity":1,"rebill_product_price":0,"product_schedule":"","product_schedule_quantity":"","product_key":"","nmi_plan_id":"","product_name":"3x Pet Trainer Whistles"}]',
-      },
-      129: {
-        id: 129,
-        shipping_price: '0.00',
-        product_array: '[{"product_id":"37625","product_price":"83.86","retail_price":"239.60","product_quantity":1,"rebill_product_price":0,"product_schedule":"","product_schedule_quantity":"","product_key":"","nmi_plan_id":"","product_name":"4x Pet Trainer Whistles"}]',
-      },
-      131: {
-        id: 131,
-        shipping_price: '0.00',
-        product_array: '[{"product_id":"37625","product_price":"83.86","retail_price":"239.60","product_quantity":1,"rebill_product_price":0,"product_schedule":"","product_schedule_quantity":"","product_key":"","nmi_plan_id":"","product_name":"4x Pet Trainer Whistles"}]',
-      },
-      133: {
-        id: 133,
-        shipping_price: '0.00',
-        product_array: '[{"product_id":"37625","product_price":"83.86","retail_price":"239.60","product_quantity":1,"rebill_product_price":0,"product_schedule":"","product_schedule_quantity":"","product_key":"","nmi_plan_id":"","product_name":"4x Pet Trainer Whistles"}]',
-      },
-      135: {
-        id: 135,
-        shipping_price: '0.00',
-        product_array: '[{"product_id":"37625","product_price":"83.86","retail_price":"239.60","product_quantity":1,"rebill_product_price":0,"product_schedule":"","product_schedule_quantity":"","product_key":"","nmi_plan_id":"","product_name":"4x Pet Trainer Whistles"}]',
-      },
-      137: {
-        id: 137,
-        shipping_price: '0.00',
-        product_array: '[{"product_id":"37626","product_price":"89.85","retail_price":"299.50","product_quantity":1,"rebill_product_price":0,"product_schedule":"","product_schedule_quantity":"","product_key":"","nmi_plan_id":"","product_name":"5x Pet Trainer Whistles"}]',
-      },
-      139: {
-        id: 139,
-        shipping_price: '0.00',
-        product_array: '[{"product_id":"37626","product_price":"89.85","retail_price":"299.50","product_quantity":1,"rebill_product_price":0,"product_schedule":"","product_schedule_quantity":"","product_key":"","nmi_plan_id":"","product_name":"5x Pet Trainer Whistles"}]',
-      },
-      141: {
-        id: 141,
-        shipping_price: '0.00',
-        product_array: '[{"product_id":"37626","product_price":"89.85","retail_price":"299.50","product_quantity":1,"rebill_product_price":0,"product_schedule":"","product_schedule_quantity":"","product_key":"","nmi_plan_id":"","product_name":"5x Pet Trainer Whistles"}]',
-      },
-      143: {
-        id: 143,
-        shipping_price: '0.00',
-        product_array: '[{"product_id":"37626","product_price":"89.85","retail_price":"299.50","product_quantity":1,"rebill_product_price":0,"product_schedule":"","product_schedule_quantity":"","product_key":"","nmi_plan_id":"","product_name":"5x Pet Trainer Whistles"}]',
-      },
-      145: {
-        id: 145,
-        shipping_price: '0.00',
-        product_array: '[{"product_id":"37627","product_price":"65.99","retail_price":"239.94","product_quantity":1,"rebill_product_price":0,"product_schedule":"","product_schedule_quantity":"","product_key":"","nmi_plan_id":"","product_name":"Fur Sweep Collar Inventory 3x EXTRA\'s Special"}]',
-      },
-      147: {
-        id: 147,
-        shipping_price: '0.00',
-        product_array: '[{"product_id":"37627","product_price":"65.99","retail_price":"239.94","product_quantity":1,"rebill_product_price":0,"product_schedule":"","product_schedule_quantity":"","product_key":"","nmi_plan_id":"","product_name":"Fur Sweep Collar Inventory 3x EXTRA\'s Special"}]',
-      },
-      149: {
-        id: 149,
-        shipping_price: '0.00',
-        product_array: '[{"product_id":"37627","product_price":"65.99","retail_price":"239.94","product_quantity":1,"rebill_product_price":0,"product_schedule":"","product_schedule_quantity":"","product_key":"","nmi_plan_id":"","product_name":"Fur Sweep Collar Inventory 3x EXTRA\'s Special"}]',
-      },
-      151: {
-        id: 151,
-        shipping_price: '0.00',
-        product_array: '[{"product_id":"37627","product_price":"65.99","retail_price":"239.94","product_quantity":1,"rebill_product_price":0,"product_schedule":"","product_schedule_quantity":"","product_key":"","nmi_plan_id":"","product_name":"Fur Sweep Collar Inventory 3x EXTRA\'s Special"}]',
-      },
-    }
-  </script>
-  <!-- BEGIN MVMT EVERFLOW CHECKOUT PAGEVIEW PIXEL -->
-  <script type="text/javascript" src="/checkout/v2/js/everflow.js"></script>
-  <!-- END MVMT EVERFLOW CHECKOUT PAGEVIEW PIXEL -->
-  <div id="">
-    <img class="w-100 d-none d-md-block" id="pc-banner" src="" />
-    <img class="w-100 d-block d-md-none" id="mobile-banner" src="" />
-  </div>
-  <div class="topStrip" style="text-align: center;">
-    <div class="container-xxl">
-      <p style="text-align: center;">
-        <span class="cb-total-discount-applied">@lang('checkout::app.v2.During the summer sale the discount is valid for')</span>
-        <span id="stopwatch">05:00</span>
-      </p>
-    </div>
-  </div>
-  <div class="top_bar_nav">
+  <div class="header-container">
     <div class="container">
-      <div class="dis-box-logo">
-        <div class="logo_wrap_dist" style="display: flex;justify-content: center;align-items: center;">
-          <img src="" style=" max-height: 35px;" />
+      <div class="herder-content">
+        <img src="" style="height: 35px;" />
+        <div class="top-left-button">
+          <p class="header-text-hide">Details</p>
+          <a class="header-text-hide" href="#iduzu">Reviews</a>
+          <div class="top-left-button-box">
+            <a style="color: #fff;" href="#product2">Buy Now</a>
+          </div>
         </div>
       </div>
     </div>
   </div>
-  <!-- <div class="chk-header">
-    <div class="container">
-      <ul class="stepsBox">
-        <li><span>@lang('checkout::app.v2.Checkout')</span></li>
-        <li>@lang('checkout::app.v2.Free Bonus')</li>
-        <li>@lang('checkout::app.v2.Receipt')</li>
-      </ul>
-    </div>
-  </div> -->
   <div class="checkout-section">
     <div class="container">
       <p class="prod-name forMob" style="color: #444444 !important;"></p>
@@ -1822,12 +1457,73 @@
               </g>
             </g>
           </svg>@lang('checkout::app.v2.12,421 Verified Customer Reviews')</p>
-        <p class="bdr-line hide-mob"></p>
         <div class="Schritt-top-box">
-          <p class="text-Schritt-top">@lang('checkout::app.v2.You Can See By')</p>
-          <img src="" alt="">
+          <!-- <p class="text-Schritt-top">@lang('checkout::app.v2.You Can See By')</p> -->
+          <div class="description-img-box">
+            <img src="/checkout/v2/images/description1.png" alt="">
+            <img src="/checkout/v2/images/description2.png" alt="">
+            <img src="/checkout/v2/images/description3.png" alt="">
+          </div>
+          <!-- <img id="schritt-top-box-img" src="" alt=""> -->
         </div>
-        <!-- <p class="prd-det-disc">Natural Protection for Your Beloved Dog: Safe, Effective Flea &amp; Tick Prevention</p> -->
+        <p class="bdr-line hide-mob"></p>
+        <div class="shopify-title">
+          <svg style="display: none;" id="svg-down" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+            <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
+          </svg>
+          <svg id="svg-up" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-up-fill" viewBox="0 0 16 16">
+            <path d="m7.247 4.86-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z" />
+          </svg>
+          <p style="margin-left: 5px;">Details</p>
+        </div>
+        <div class="shopify-container"></div>
+        <div id="iduzu" class="section" style="width: 100%;float: right;margin-bottom:10px; display: flex;">
+
+          <p class="container_title" onclick="reviewToggle()">
+            <svg style="display: none; margin-right:5px" id="review-down" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+              <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
+            </svg>
+            <svg id="review-up" style="margin-right:5px" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-up-fill" viewBox="0 0 16 16">
+              <path d="m7.247 4.86-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z" />
+            </svg>@lang('onebuy::app.product.order.What customers are saying about')
+          </p>
+        </div>
+        <!-- review -->
+        <div class="section" id="reviews-box" style="width: 100%;float: right;">
+          <?php foreach ($comments as $key => $comment) {
+            $comment = json_decode($comment); //var_dump($comment);exit; 
+          ?>
+
+            <div class="comment-card" style="background-color: #F4F4F4">
+              <div style="display: flex">
+                <div class="mr4" style="font-size: 14px;margin-top: 3px;color: #444444; ">
+                  <?php echo $comment->name; ?>
+                  <i class="flag-icon-size flag-icon flag-icon-<?php echo strtolower($default_country); ?> mr-2"></i>
+                </div>
+                <div>
+                  <img class="mb1 mr2" width="14px" src="/checkout/onebuy/images/icon_gou.svg" />
+                  <span style="width: 100%; font-size:12px; color: #444444">@lang('onebuy::app.product.order.Verified')</span>
+                </div>
+              </div>
+              <div>
+                <div style="text-align: start; width: 100%;">
+                  <img width="110px" src="/checkout/onebuy/images/stars-5.svg" alt="" />
+                </div>
+                <div class="cardtext" style="text-align: start;"><?php echo $comment->comment; ?></div>
+                <?php if (isset($comment->images)) { ?>
+
+                  <?php foreach ($comment->images as $key => $image) { ?>
+
+                    <a href="javascript:;" onclick="showImgProp('<?php echo @$image; ?>')">
+                      <img style="width: 30%; aspect-ratio: 1/1" src="<?php echo @$image; ?>" alt="" />
+                    </a>
+
+                <?php }
+                } ?>
+              </div>
+            </div>
+          <?php } ?>
+        </div>
         <p class="pkg-hdng">
           <span class="pkg-step">
             @lang('checkout::app.v2.Step')1:
@@ -1840,7 +1536,6 @@
         <div class="pkg-opt">
           <div class="cb-first-item"></div>
           <div class="buyopt packageClass cb-package-container choose-p" id="product2">
-            <p class="product-selected" id="p2-select">@lang('checkout::app.v2.Selected')</p>
             <div class="buy-opt-left">
               <p>
                 <strong id="p-name2"></strong>
@@ -1880,7 +1575,6 @@
           </div>
 
           <div class="buyopt packageClass cb-package-container" id="product1">
-            <p class="product-selected" id="p1-select">@lang('checkout::app.v2.Selected')</p>
             <div class="buy-opt-left">
               <p>
                 <strong id="p-name1"></strong>
@@ -1914,7 +1608,6 @@
           </div>
 
           <div class="buyopt packageClass cb-package-container" id="product3">
-            <p class="product-selected" id="p3-select">@lang('checkout::app.v2.Selected')</p>
             <div class="buy-opt-left">
               <p>
                 <strong id="p-name3"></strong>
@@ -1957,7 +1650,6 @@
             </div>
           </div>
           <div class="buyopt packageClass cb-package-container" id="product4">
-            <p class="product-selected" id="p4-select">@lang('checkout::app.v2.Selected')</p>
             <div class="buy-opt-left">
               <p>
                 <strong id="p-name4"></strong>
@@ -2021,15 +1713,6 @@
 
         <p class="pkg-hdng"><span class="pkg-step">@lang('checkout::app.v2.Step')2:</span> @lang('checkout::app.v2.Enter customer information')</p>
         <form class="form">
-          <input type="hidden" name="prospectId" id="prospectId" value="" />
-          <input type="hidden" name="campaigns[1][id]" id="campaign_id" value="" />
-          <!--<input type="hidden" name="splitCampaigns" value="">-->
-          <input type="hidden" name="campaigns[2][id]" id="split_click_bump" class="cb-split-click-bump" value="" disabled />
-          <input type="hidden" name="campaigns[2][price]" value="" id="clickbumpPrice" class="cb-click-bump-price" disabled />
-          <input type="hidden" name="coupon_code" value="No Discount" />
-          <input type="hidden" name="regprice" id="regprice" value="" />
-          <input type="hidden" name="individualPrice" id="individualPrice" value="" />
-          <input type="hidden" name="packageQuantity" id="packageQuantity" value="" />
           <div class="formBox">
             <div class="fl input-box">
               <label>
@@ -2420,35 +2103,6 @@
               <strong id="summary-total4" style="color: red">@lang('checkout::app.v2.price')</strong>
             </div>
           </div>
-        </div>
-        <div id="iduzu" class="section" style="width: 100%;float: right;margin-bottom:10px; display: flex;">
-          <h3 class="container_title">@lang('onebuy::app.product.order.What customers are saying about')</h3>
-        </div>
-        <!-- review -->
-        <div class="section" style="width: 100%;float: right;">
-          <?php foreach ($comments as $key => $comment) {
-            $comment = json_decode($comment); //var_dump($comment);exit; 
-          ?>
-
-            <div class="comment-card" style="background-color: #F4F4F4">
-              <div style="display: flex">
-                <div class="mr4" style="font-size: 14px;margin-top: 3px;color: #444444; ">
-                  <?php echo $comment->name; ?>
-                  <i class="flag-icon-size flag-icon flag-icon-<?php echo strtolower($default_country); ?> mr-2"></i>
-                </div>
-                <div>
-                  <img class="mb1 mr2" width="14px" src="/checkout/onebuy/images/icon_gou.svg" />
-                  <span style="width: 100%; font-size:12px; color: #444444">@lang('onebuy::app.product.order.Verified')</span>
-                </div>
-              </div>
-              <div>
-                <div style="text-align: start; width: 100%;">
-                  <img width="110px" src="/checkout/onebuy/images/stars-5.svg" alt="" />
-                </div>
-                <div class="cardtext" style="text-align: start;"><?php echo $comment->comment; ?></div>
-              </div>
-            </div>
-          <?php } ?>
         </div>
         <div class="faq-content" style="width: 100%;float: right;">
           <div id="seeFaqBtn">
@@ -2886,20 +2540,23 @@
     }
     var skuErr = false
     var logoImg = "/checkout/v2/images/logo_" + countries1 + ".png"
-    var schrittImg = "/checkout/v2/images/1701506369_" + countries1 + ".webp"
+    // var schrittImg = "/checkout/v2/images/1701506369_" + countries1 + ".webp"
     var googlerOrApple = ''
     var googleShow = false
     var appleShow = false
+    var shopifyToggle = true
+    var reviewsToggle = true
     $(function() {
+      getShopify()
       console.log(logoImg, 'logoImg');
-      $('.logo_wrap_dist img').attr('src', logoImg)
-      if (countries1 == 'fr' || countries1 == 'es') {
-        $('.Schritt-top-box').hide()
-      } else {
-        console.log(schrittImg, 'schrittImg');
-        $('.Schritt-top-box').show()
-        $('.Schritt-top-box img').attr('src', schrittImg)
-      }
+      $('.header-container img').attr('src', logoImg)
+      // if (countries1 == 'fr' || countries1 == 'es') {
+      //   $('.Schritt-top-box').hide()
+      // } else {
+      //   console.log(schrittImg, 'schrittImg');
+      //   $('.Schritt-top-box').show()
+      //   $('#schritt-top-box-img').attr('src', schrittImg)
+      // }
       if (countries1 == 'de') {
         $('.terms-block-last').show
       }
@@ -2911,6 +2568,7 @@
       axios
         .get(dataUrl)
         .then(function(res) {
+          console.log(new Date().getTime(), '开始');
           data = res.data
           payTypeShow = data.payments
           var attrList = data.attr.attributes
@@ -3054,8 +2712,10 @@
           // productsObj.attr_id = minList
           // console.log(productsObj, 'midList')
           getSkuListInfo();
-          $('#pc-banner').attr('src', data.ads.pc.img);
-          $('#mobile-banner').attr('src', data.ads.mobile.img);
+          console.log(new Date().getTime(), '中间');
+
+          // $('#pc-banner').attr('src', data.ads.pc.img);
+          // $('#mobile-banner').attr('src', data.ads.mobile.img);
           $('.prod-name').text(data.product.name)
           $('title').html(data.product.name)
           $('#buy-select1, #buy-select3, #buy-select4').hide()
@@ -3086,7 +2746,7 @@
               $('.appalpay-button').show()
             }
           }
-          if (!data.ads.size.img) {
+          if (Object.keys(data.ads.size).lenght == 0) {
             $('#size-chart').hide()
           } else {
             $('#size-chart').show()
@@ -3221,12 +2881,55 @@
           // script.src = 'https://www.paypal.com/sdk/js?client-id=AUbkpTo_D9-l80qERS91ipcrXuIfSC3WMmFbK7Ey4n8RS3TaoJDw8H2rpxdhsWBIZWZbb6E3V7CSmK4R&components=buttons,messages,funding-eligibility&currency='+currency+'&disable-funding=paylater';
           script.async = 1
           document.body.appendChild(script)
+          console.log(new Date().getTime(), '结束');
+
         })
         .catch(function(error) {
           console.error(error, 'err')
         })
 
     })
+
+    function reviewToggle() {
+      $("#reviews-box").slideToggle();
+      if (reviewsToggle) {
+        reviewsToggle = false
+        $('#review-down').show()
+        $('#review-up').hide()
+      } else {
+        reviewsToggle = true
+        $('#review-down').hide()
+        $('#review-up').show()
+      }
+
+    }
+
+    function getShopify() {
+      const shopifyUrl = '/shopify/v1/api/full/{{ $slug }}'
+      // const shopifyUrl = 'http://127.0.0.1:8000/shopify/v1/api/full/8398348714214 '
+      axios
+        .get(shopifyUrl)
+        .then(function(res) {
+          console.log(res, 'getShopify===res');
+          let bodyHtml = res.data.data.body_html
+          $('.shopify-container').html(bodyHtml)
+          $('.shopify-title').click(function() {
+            $(".shopify-container").slideToggle();
+            if (shopifyToggle) {
+              shopifyToggle = false
+              $('#svg-down').show()
+              $('#svg-up').hide()
+            } else {
+              shopifyToggle = true
+              $('#svg-down').hide()
+              $('#svg-up').show()
+            }
+          })
+        })
+        .catch(function(err) {
+          console.log(err, 'getShopify===err');
+        })
+    }
 
     function inputBlur(event) {
       console.log(event.target, 'event.target')
@@ -3808,10 +3511,6 @@
       initProuctData(1, '1')
       console.log(data.attr.attributes, 'data.attr');
       if (data.attr.attributes.length == 0) {
-        $('#p1-select').show()
-        $('#p2-select').hide()
-        $('#p3-select').hide()
-        $('#p4-select').hide()
         crmTrack('add_cart')
         if (countries1 == 'us') {
           if (googlerOrApple == 'google' && googleShow) {
@@ -3826,6 +3525,7 @@
       }
     })
     $('#product2').click(function(e) {
+
       var list = $('#product1,#product2,#product3,#product4')
       list.removeClass('choose-p')
       $('#buy-select1').hide()
@@ -3853,10 +3553,6 @@
       $('#product-price').text(data.package_products[0].tip2)
       initProuctData(0, '2')
       if (data.attr.attributes.length == 0) {
-        $('#p2-select').show()
-        $('#p1-select').hide()
-        $('#p3-select').hide()
-        $('#p4-select').hide()
         crmTrack('add_cart')
         if (countries1 == 'us') {
           if (googlerOrApple == 'google' && googleShow) {
@@ -3899,10 +3595,6 @@
       $('#product-price').text(data.package_products[2].tip2)
       initProuctData(2, '3')
       if (data.attr.attributes.length == 0) {
-        $('#p3-select').show()
-        $('#p2-select').hide()
-        $('#p1-select').hide()
-        $('#p4-select').hide()
         crmTrack('add_cart')
         if (countries1 == 'us') {
           if (googlerOrApple == 'google' && googleShow) {
@@ -3945,10 +3637,6 @@
       $('#product-price').text(data.package_products[3].tip2)
       initProuctData(3, '4')
       if (data.attr.attributes.length == 0) {
-        $('#p4-select').show()
-        $('#p2-select').hide()
-        $('#p3-select').hide()
-        $('#p1-select').hide()
         crmTrack('add_cart')
         if (countries1 == 'us') {
           if (googlerOrApple == 'google' && googleShow) {
@@ -4112,37 +3800,19 @@
         .then(function(res) {
           console.log(res, 'googleres==');
           if (res.result === 200) {
-
-            Airwallex.init({
-              env: 'prod', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
-              origin: window.location.origin, // Setup your event target to receive the browser events message
-            });
-
             const googlePayElement = Airwallex.createElement('googlePayButton', {
-              // intent: {
-              //   // Required, googlePayButton uses intent_id and client_secret to prepare checkout
-              //   id: res.payment_intent_id,
-              //   client_secret: res.client_secret,
-              // },
-              intent_id: res.payment_intent_id,
-              client_secret: res.client_secret,
+              intent: {
+                // Required, googlePayButton uses intent_id and client_secret to prepare checkout
+                id: res.payment_intent_id,
+                client_secret: res.client_secret,
+              },
               amount: {
                 value: res.order.base_grand_total,
                 currency: res.currency,
               },
-              billingAddressParameters: {
-                format: 'FULL',
-                phoneNumberRequired: true
-              },
-              billingAddressRequired: true,
-              shippingAddressRequired: true,
-              // billingAddressParameters: {
-              //   format: 'FULL',
-              //   phoneNumberRequired: true
-              // },
-              // billingAddressRequired: true,
               // countryCode: res.country,
               countryCode: 'HK',
+              buttonType: 'buy',
               origin: window.location.origin,
               autoCapture: true,
               merchantInfo: {
@@ -4150,7 +3820,7 @@
               },
             });
             const domGooglePay = googlePayElement.mount('googlePayButton');
-            window.addEventListener('onReady', (event) => {
+            domGooglePay.addEventListener('onReady', (event) => {
               $('#googlePayButton').removeClass('button-opacity')
               $('.pay-button').css('background', '#fff')
               /*
@@ -4159,8 +3829,7 @@
               // window.alert(event.detail);
               console.log(event.detail, event, 'googlePay ===  ready');
             });
-            console.log("onSuccess");
-            window.addEventListener('onSuccess', (event) => {
+            domGooglePay.addEventListener('onSuccess', (event) => {
               /*
                 ... Handle event on success
               */
@@ -4168,8 +3837,7 @@
               // console.log(event.detail);
               console.log(event.detail, event, 'googlePay ===  success');
             });
-            console.log("onError");
-            window.addEventListener('onError', (event) => {
+            domGooglePay.addEventListener('onError', (event) => {
               /*
                 ... Handle event on error
               */
@@ -4549,24 +4217,6 @@
   <!-- <script type="text/javascript" src="js/checkout.js"></script> -->
 
   <script>
-    var spd = 100
-    var spdVal = 10
-    var cntDown = 5 * 60 * spdVal
-    setInterval(function() {
-      var mn, sc, ms
-      cntDown--
-      if (cntDown < 0) {
-        return false
-      }
-      mn = Math.floor(cntDown / spdVal / 60)
-      mn = mn < 10 ? '0' + mn : mn
-      sc = Math.floor((cntDown / spdVal) % 60)
-      sc = sc < 10 ? '0' + sc : sc
-      ms = Math.floor(cntDown % spdVal)
-      ms = ms < 10 ? '0' + ms : ms
-      var result = mn + ':' + sc
-      document.getElementById('stopwatch').innerHTML = result
-    }, spd)
     $(function() {
       var width = $(window).innerWidth()
       if (width > 767) {
