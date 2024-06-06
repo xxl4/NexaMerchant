@@ -2916,13 +2916,6 @@
           console.log(res, 'getShopify===res');
           let bodyHtml = res.data.data.body_html
           $('.shopify-container').html(bodyHtml)
-          var width = $(window).innerWidth()
-          if (width > 767) {
-            var height = $('.checkout-section').height()
-            console.log(height, 'height===');
-            $('.left-sec').css('height', height)
-            $('body').css('height', height)
-          }
           $('.shopify-title').click(function() {
             $(".shopify-container").slideToggle();
             if (shopifyToggle) {
@@ -4236,7 +4229,15 @@
     //     $('body').css('height', height)
     //   }
     // })
-
+    window.onload = function() {
+      var width = $(window).innerWidth()
+      if (width > 767) {
+        var height = $('.checkout-section').height()
+        console.log(height, 'height===');
+        $('.left-sec').css('height', height)
+        $('body').css('height', height)
+      }
+    }
     $('.fieldToggle').click(function() {
       if ($('#togData').prop('checked') == true) {
         $('.shipaddress').slideUp()
