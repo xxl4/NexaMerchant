@@ -1312,6 +1312,9 @@
       height: 55px;
       background-color: #fff;
       border-bottom: 1px solid #f2f2f2;
+      position: sticky;
+      top: 0;
+      z-index: 99999;
     }
 
     .herder-content {
