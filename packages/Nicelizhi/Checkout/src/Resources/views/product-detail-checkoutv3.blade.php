@@ -942,17 +942,17 @@
         justify-content: end;
       }
 
-      .grid-container {
+      /* .grid-container {
         display: none !important;
-      }
+      } */
 
       .sku-preview-img img {
         width: 80%;
       }
 
-      .banner-content {
+      /* .banner-content {
         display: block !important;
-      }
+      } */
 
       .prd-det-disc {
         display: block !important;
@@ -1359,6 +1359,7 @@
       width: 100%;
       height: 60px;
       display: flex;
+      margin-top: 10px;
     }
 
     .description-img-box img {
@@ -1400,7 +1401,7 @@
   <div class="header-container">
     <div class="container">
       <div class="herder-content">
-        <img src="" style="height: 35px;" />
+        <img src="" style="height: 50px;" />
         <div class="top-left-button">
           <p class="header-text-hide">Details</p>
           <a class="header-text-hide" href="#iduzu">Reviews</a>
@@ -1433,7 +1434,7 @@
         </svg>@lang('checkout::app.v2.12,421 Verified Customer Reviews')</p>
       <div class="left-sec">
         <div id="sticky" style="position:sticky;top: 0;">
-          <div style="display: none;" class="vehicle-detail-banner banner-content clearfix">
+          <div class="vehicle-detail-banner banner-content clearfix">
             <div class="banner-slider">
               <div class="slider-banner-image1">
                 <div class="sw-box">
@@ -1443,8 +1444,17 @@
               </div>
             </div>
           </div>
-          <div class="grid-container">
+          <div class="Schritt-top-box">
+            <!-- <p class="text-Schritt-top">@lang('checkout::app.v2.You Can See By')</p> -->
+            <div class="description-img-box">
+              <img src="/checkout/v2/images/description1.png" alt="">
+              <img src="/checkout/v2/images/description2.png" alt="">
+              <img src="/checkout/v2/images/description3.png" alt="">
+            </div>
+            <!-- <img id="schritt-top-box-img" src="" alt=""> -->
           </div>
+          <!-- <div class="grid-container">
+          </div> -->
         </div>
       </div>
       <div class="right-sec">
@@ -1465,18 +1475,9 @@
                 <path d="M464,64.7 L478.6,61 L484.7,79.8 L464,64.7 Z M497.6,40.4 L471.9,40.4 L464,16.2 L456.1,40.4 L430.4,40.4 L451.2,55.4 L443.3,79.6 L464.1,64.6 L476.9,55.4 L497.6,40.4 L497.6,40.4 L497.6,40.4 L497.6,40.4 Z" id="Shape" fill="#FFFFFF"></path>
               </g>
             </g>
-          </svg>@lang('checkout::app.v2.12,421 Verified Customer Reviews')</p>
-        <div class="Schritt-top-box">
-          <!-- <p class="text-Schritt-top">@lang('checkout::app.v2.You Can See By')</p> -->
-          <div class="description-img-box">
-            <img src="/checkout/v2/images/description1.png" alt="">
-            <img src="/checkout/v2/images/description2.png" alt="">
-            <img src="/checkout/v2/images/description3.png" alt="">
-          </div>
-          <!-- <img id="schritt-top-box-img" src="" alt=""> -->
-        </div>
-        <p class="bdr-line hide-mob"></p>
-        <div class="shopify-title">
+          </svg>@lang('checkout::app.v2.12,421 Verified Customer Reviews')</p <p class="bdr-line hide-mob">
+        </p>
+        <div class="shopify-title fl">
           <svg style="display: none;" id="svg-down" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
             <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
           </svg>
@@ -4279,27 +4280,27 @@
           var img = res.data.data.images
           var imgListLength = img.length
           var imglen = Math.floor(imgListLength / 3)
-          if (imglen > 3) {
-            imglen = 3;
-          }
+          // if (imglen > 3) {
+          //   imglen = 3;
+          // }
           for (var i = 0; i < img.length; i++) {
             swiperList += `<div class="swiper-slide"><img src="${img[i].src}" ></div>`
           }
-          for (var imgi = 0; imgi < imglen; imgi++) {
-            var i1 = 0 + imgi * 3,
-              i2 = 1 + imgi * 3,
-              i3 = 2 + imgi * 3
-            showimg += `<div class="grid-cell gallery-item grid-col-span-1">
-              <img src="` + img[i1].src + `" alt="">
-            </div>
-            <div class="grid-cell gallery-item grid-col-span-2">
-              <img src="` + img[i2].src + `" alt="">
-            </div>
-            <div class="grid-cell gallery-item grid-col-span-2">
-              <img src="` + img[i3].src + `" alt="">
-            </div>`
-          }
-          $('.grid-container').append(showimg)
+          // for (var imgi = 0; imgi < imglen; imgi++) {
+          //   var i1 = 0 + imgi * 3,
+          //     i2 = 1 + imgi * 3,
+          //     i3 = 2 + imgi * 3
+          //   showimg += `<div class="grid-cell gallery-item grid-col-span-1">
+          //     <img src="` + img[i1].src + `" alt="">
+          //   </div>
+          //   <div class="grid-cell gallery-item grid-col-span-2">
+          //     <img src="` + img[i2].src + `" alt="">
+          //   </div>
+          //   <div class="grid-cell gallery-item grid-col-span-2">
+          //     <img src="` + img[i3].src + `" alt="">
+          //   </div>`
+          // }
+          // $('.grid-container').append(showimg)
           var gallery =
             `<div class="swiper-container" style="width:100%" id="gallery">
 					<div class="swiper-wrapper">` +
