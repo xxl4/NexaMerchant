@@ -1433,12 +1433,16 @@
     }
 
     .payment-icon-box {
+      position: relative;
+      border: 1px solid #ddcccc;
+      height: 50px;
       width: 100%;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-top: 15px;
+      margin-top: 20px;
       float: left;
+      padding: 0 5px;
     }
 
     .payment-icon-box img {
@@ -1516,6 +1520,30 @@
 
     .bor-bom {
       border-bottom: 3px solid #b1a9a9;
+    }
+
+    .payment-top {
+      align-items: center;
+      display: flex;
+      justify-content: center;
+      position: absolute;
+      top: -14px;
+      background: #fff;
+      padding: 0 8px;
+      transform: translateX(-50%);
+      left: 50%;
+    }
+
+    .payment-top img {
+      width: 14px;
+      height: 14px;
+    }
+
+    .payment-top p {
+      margin-left: 4px;
+      font-size: 14px;
+      color: var(--text-color);
+      font-family: var(--text-family);
     }
 
     @keyframes bounce {
@@ -1663,6 +1691,10 @@
           </svg>@lang('checkout::app.v2.12,421 Verified Customer Reviews')</p <p class="bdr-line hide-mob">
         </p>
         <div class="payment-icon-box">
+          <div class="payment-top">
+            <img src="/checkout/v2/images/secure-checkout.png" alt="">
+            <p>Secure Checkout</p>
+          </div>
           <img src="/checkout/v2/images/payment6.svg" alt="">
           <!-- <img width="20" src="/checkout/v2/images/payment7.svg" alt=""> -->
           <img src="/checkout/v2/images/payment2.svg" alt="">
