@@ -86,9 +86,6 @@ class CheckoutV2Controller extends Controller{
             $refer = $request->session()->get('refer');
         }
         
-        //var_dump($slug);
-
-        //$slug = $slug;
         $redis = Redis::connection('default');
 
 

@@ -104,6 +104,8 @@ class CheckoutV3Controller extends Controller{
             return $comments;
         });
 
+        //var_dump($comments);exit;
+
         $default_country = config('onebuy.default_country');
         $payments = config('onebuy.payments'); // config the payments status
         $payments_default = config('onebuy.payments_default');
