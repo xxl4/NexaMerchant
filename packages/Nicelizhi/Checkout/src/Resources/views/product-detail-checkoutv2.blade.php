@@ -1280,6 +1280,7 @@
     }
 
     .choose-billing-box {
+      display: none;
       margin: 5px;
       font-size: 13px;
       font-family: var(--text-family);
@@ -2091,7 +2092,7 @@
                 ?>
 
                     <a href="javascript:;" onclick="reviewImgPreview('<?php echo $image->url; ?>')">
-                      <img style="width: 30%; max-height:120px" src="<?php echo $image->url; ?>" alt="" />
+                      <img style="width: 30%; max-height:120px;object-fit:con" src="<?php echo $image->url; ?>" alt="" />
                     </a>
 
                 <?php }
@@ -2703,31 +2704,31 @@
           $('#footer-top-text').append(data.brand)
           var isPc = IsPC()
           console.log(isPc, 'ispc');
-          if (countries1 == 'us') {
-            $('.choose-billing-box').show()
-            if (isPc) {
-              let isMac = /macintosh|mac os x/i.test(navigator.userAgent);
-              console.log(isMac, 'isMac');
-              googlerOrApple = isMac ? 'apple' : 'google'
+          // if (countries1 == 'us') {
+          //   $('.choose-billing-box').show()
+          //   if (isPc) {
+          //     let isMac = /macintosh|mac os x/i.test(navigator.userAgent);
+          //     console.log(isMac, 'isMac');
+          //     googlerOrApple = isMac ? 'apple' : 'google'
 
-            } else {
-              let type = getMobileOperatingSystem()
-              console.log(type, 'type');
-              googlerOrApple = type == 'iOS' ? 'apple' : 'google'
-            }
-            if (googlerOrApple == 'google' && payTypeShow.airwallex_google == 1) {
-              googleShow = true
-              //   console.log('googleShow');
-              //   $('.pay-button').show()
-              //   $('.appalpay-button').hide()
-            }
-            if (googlerOrApple == 'apple' && payTypeShow.airwallex_appley == 1) {
-              appleShow = true
-              //   console.log('appalpayShow');
-              //   $('.pay-button').hide()
-              //   $('.appalpay-button').show()
-            }
-          }
+          //   } else {
+          //     let type = getMobileOperatingSystem()
+          //     console.log(type, 'type');
+          //     googlerOrApple = type == 'iOS' ? 'apple' : 'google'
+          //   }
+          //   if (googlerOrApple == 'google' && payTypeShow.airwallex_google == 1) {
+          //     googleShow = true
+          //     //   console.log('googleShow');
+          //     //   $('.pay-button').show()
+          //     //   $('.appalpay-button').hide()
+          //   }
+          //   if (googlerOrApple == 'apple' && payTypeShow.airwallex_appley == 1) {
+          //     appleShow = true
+          //     //   console.log('appalpayShow');
+          //     //   $('.pay-button').hide()
+          //     //   $('.appalpay-button').show()
+          //   }
+          // }
           if (!data.ads.size.img) {
             $('#size-chart').hide()
           } else {
@@ -3072,7 +3073,10 @@
       }
       $('.sku-info').append(skuList)
     }
-
+    function reviewImgPreview(imgUrl) {
+      $('.size-chart-img-box').show()
+      $('.size-chart-img img').attr('src', imgUrl)
+    }
     function skuImgPreview(event) {
       var imgUrl = $(event.target).attr('src')
       $('.sku-preview-img-box').show()
