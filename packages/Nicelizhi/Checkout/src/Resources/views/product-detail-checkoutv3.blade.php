@@ -1560,7 +1560,7 @@
     }
 
     .shopify-container p {
-      margin-top: 10px;
+      margin: 6px 0;
     }
 
     @keyframes bounce {
