@@ -72,40 +72,44 @@ class ImportProductCommentFromJudge extends Command
 
         $this->info($url);
 
-        // @link https://judge.me/api/docs#tag/Reviews
-        try {
-            $response = $client->get($url, [
-                'http_errors' => true,
-                'headers' => [
-                    'Content-Type' => 'application/json',
-                    'Accept' => 'application/json',
-                ]
-            ]);
-        }catch(ClientException $e) {
+        // // @link https://judge.me/api/docs#tag/Reviews
+        // try {
+        //     $response = $client->get($url, [
+        //         'http_errors' => true,
+        //         'headers' => [
+        //             'Content-Type' => 'application/json',
+        //             'Accept' => 'application/json',
+        //         ]
+        //     ]);
+        // }catch(ClientException $e) {
            
-        }
+        // }
 
-        $body = json_decode($response->getBody(), true);
+        // $body = json_decode($response->getBody(), true);
 
-        //var_dump($body['count']);exit;
+        // //var_dump($body['count']);exit;
 
-        $count = $body['count'];
+        // $count = $body['count'];
+        $count = 100;
         $pages = ceil($count / $this->num);
+
+        $client = new Client();
 
         for($i=1; $i<=$pages; $i++) {
             $this->info($i." page start ");
-            $this->GetFromComments($i);
+            echo $i."\r\n";
+            $this->GetFromComments($i, $client);
             //exit;
         }
     }
 
-    protected function GetFromComments($page) {
+    protected function GetFromComments($page, $client) {
         $shop_domain = config("onebuy.judge.shop_domain");
         $api_token = config("onebuy.judge.api_token");
 
         $redis = Redis::connection('default');
 
-        $client = new Client();
+        
 
         $url = "https://judge.me/api/v1/reviews?shop_domain=".$shop_domain."&api_token=".$api_token."&page=".$page."&per_page=".$this->num;
 
@@ -121,10 +125,11 @@ class ImportProductCommentFromJudge extends Command
                 ]
             ]);
         }catch(ClientException $e) {
-           
+           var_dump($e);
         }
 
         $body = json_decode($response->getBody(), true);
+        //var_dump($body);
 
         $arrContextOptions=array(
             "ssl"=>array(
@@ -140,38 +145,19 @@ class ImportProductCommentFromJudge extends Command
                 if($item['product_external_id']!=$this->prod_id) continue;
             }
             
+            if($item['reviewer']['name']=='Anonymous') continue;
+            if($item['published']!=true) continue;
+            if($item['rating'] < 5) continue;
 
-            //var_dump($item);exit;
             if(!empty($item['title'])) {
-                //$this->error($this->cache_key.$item['product_external_id']);
-                //$product = $this->productRepository->findBySlug($item['product_external_id']);
-                
-               // $product = $this->productRepository->where("sku", $item['product_external_id'])->first();
                 $product = $this->productRepository->findBySlug($item['product_external_id']);
 
-                if(!empty($this->prod_id)) {
-                    if($item['product_external_id']== $this->prod_id ) {
-                        $this->info("Test ". json_encode($item));
-                        var_dump($item, $product);
-                        //exit;
-                        sleep(10);
-                        //continue;
-                        //exit;
-                        //var_dump($product);exit;
-                    }
-                }
-
-
                 if(!is_null($product)) {
-                    //$this->error($this->cache_key.$product->id);
-                  
                     $len = $redis->hlen($this->cache_key.$product->id);
                     $product->id = empty($product->parent_id) ? $product->id : $product->parent_id;
                      //insert into db 
 
-                    //$review = $this->productReviewRepository->findWhere(['title'=>$item['title'],'comment'=>$item['body'],'product_id'=>$product->id])->first();
                     $review =\Webkul\Product\Models\ProductReview::where('title', $item['title'])->where("comment", $item['body'])->where("product_id", $product->id)->first();
-                    //var_dump($review,$item, $product->id);exit;
                     
                     if(!empty($this->prod_id)) {
                         if($item['product_external_id']== $this->prod_id ) {
@@ -184,9 +170,7 @@ class ImportProductCommentFromJudge extends Command
                     if(is_null($review)) {
 
                         //var_dump($item);exit;
-                        if($item['reviewer']['name']=='Anonymous') continue;
-                        if($item['published']!=true) continue;
-                        if($item['rating'] < 5) continue;
+                        
                         
 
                         //check the email exist
@@ -228,12 +212,8 @@ class ImportProductCommentFromJudge extends Command
 
                         if(!empty($this->prod_id)) {
                             if($item['product_external_id']== $this->prod_id ) {
-                                var_dump($data, $product);
                             }
                         }
-
-
-                
                         $review = $this->productReviewRepository->create($data);
                         
                         if(!empty($item['pictures'])) {
@@ -241,30 +221,36 @@ class ImportProductCommentFromJudge extends Command
                             $attachments = [];
     
                             foreach($item['pictures'] as $key=>$picture) {
-                                //var_dump($picture['urls']['original']);
-    
-                                $info = pathinfo($picture['urls']['original']);
-
-                                array_push($images, $picture['urls']['original']);
-    
-                                //var_dump($info);exit;
-    
-                                $this->info($info['filename']);
-                                $image_path = "product/".$product->id."/".$info['filename'].".jpg";
-                                $local_image_path = $image_path;
-
-                                
-                                
                                 $attachments = $this->productReviewAttachmentRepository->findWhere(['path'=>$picture['urls']['original'],'review_id'=>$review->id])->first();
                                 if(!empty($attachments)) continue;
 
     
-                                $contents = file_get_contents($picture['urls']['original'], false, stream_context_create($arrContextOptions));
-                                Storage::disk("images")->put($local_image_path, $contents);
-    
-                                $mimeType = Storage::disk("images")->mimeType($local_image_path);
+                                $fileType[0] = "image";
+                                $fileType[1] = "jpeg";
 
-                                $fileType = explode('/', $mimeType);
+                                $attachments = [];
+                                $attachments['type'] = $fileType[0];
+                                $attachments['mime_type'] = $fileType[1];
+                                $attachments['path'] = $picture['urls']['original'];
+                                $attachments['review_id'] = $review->id;
+                                var_dump($attachments);
+    
+                                $this->productReviewAttachmentRepository->create($attachments);
+    
+                            }
+                            
+                        }
+                    }else{
+                        if(!empty($item['pictures'])) {
+                            $attachments = [];
+                            foreach($item['pictures'] as $key=>$picture) {
+
+                                $attachments = $this->productReviewAttachmentRepository->findWhere(['path'=>$picture['urls']['original'],'review_id'=>$review->id])->first();
+                                if(!empty($attachments)) continue;
+
+    
+                                $fileType[0] = "image";
+                                $fileType[1] = "jpeg";
     
                                 $attachments = [];
                                 $attachments['type'] = $fileType[0];
@@ -275,41 +261,11 @@ class ImportProductCommentFromJudge extends Command
     
                                 $this->productReviewAttachmentRepository->create($attachments);
     
-    
                             }
-                            
+
                         }
                     }
 
-                    $len = $redis->hlen($this->cache_key.$product->id);
-                    if($len < 6 && $item['published']==true) {
-                        $value = [];
-                        $value['name'] = trim($item['reviewer']['name']);
-                        $value['title'] = trim($item['title']);
-                        $value['content'] = trim($item['body']);
-                        $value['rating'] = $item['rating'];
-                        $value['images'] = $images;
-                        //var_dump($value);exit;
-                        $redis->hSet($this->cache_key.$product->id, $item['id'], json_encode($value));
-                        //$redis->hSet("onebuy_v2_product_comments_".$product->id, $item['id'], json_encode($value));
-                    }
-
-                    //$this->error("onebuy_v2_product_comments_".$product->id);
-                    $len = $redis->hlen("onebuy_v2_product_comments_".$product->id);
-                    //var_dump($item);exit;
-                
-                    //$this->info($len);
-                    if($len < 6 && $item['published']==true) {
-                        $value = [];
-                        $value['name'] = trim($item['reviewer']['name']);
-                        $value['title'] = trim($item['title']);
-                        $value['content'] = trim($item['body']);
-                        $value['rating'] = $item['rating'];
-                        $value['images'] = $images;
-                        //var_dump($value);exit;
-                        //$redis->hSet($this->cache_key.$product->id, $item['id'], json_encode($value));
-                        $redis->hSet("onebuy_v2_product_comments_".$product->id, $item['id'], json_encode($value));
-                    }
                 }
             } 
         }

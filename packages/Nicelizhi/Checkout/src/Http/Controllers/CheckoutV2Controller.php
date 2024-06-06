@@ -69,6 +69,14 @@ class CheckoutV2Controller extends Controller{
             $product = $this->productRepository->findBySlug($slugOrPath);
             Cache::put($cache_key, $product);
         }
+        if (
+            ! $product
+            || ! $product->visible_individually
+            || ! $product->url_key
+            || ! $product->status
+        ) {
+            abort(404);
+        }
 
         $refer = $request->input("refer");
 
@@ -78,9 +86,6 @@ class CheckoutV2Controller extends Controller{
             $refer = $request->session()->get('refer');
         }
         
-        //var_dump($slug);
-
-        //$slug = $slug;
         $redis = Redis::connection('default');
 
 

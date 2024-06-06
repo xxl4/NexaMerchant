@@ -2,7 +2,7 @@
 
     {{-- Page Title --}}
     <x-slot:title>
-        @lang('admin::app.settings.channels.index.title')
+        Shopify Home
     </x-slot:title>
 
      <!-- DataTables -->
@@ -17,7 +17,7 @@
               
                 <div class="card">
                     <div class="card-header">
-                      <h3 class="card-title">@lang('admin::app.settings.channels.index.title')</h3>
+                      <h3 class="card-title">Shopify Home</h3>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
@@ -29,6 +29,8 @@
                           <th>handle</th>
                           <th>Status</th>
                           <th>Checkout</th>
+                          <th>Checkout V2</th>
+                          <th>Checkout V3</th>
                           <th>updated at</th>
                           <th>Action</th>
                         </tr>
@@ -99,6 +101,18 @@
               return '<a href="./products/checkout-url-get/'+data+'/onebuy" target="_blank" class="btn btn-primary btn-sm">Checkout URl</a>';
             }
           }
+          ,{
+            data: 'product_id',
+            render: function(data, type, row, meta) {
+              return '<a href="/checkout/v2/'+ data +'" target="_blank" class="btn btn-primary btn-sm">Checkout V2</a>';
+            }
+          }
+          ,{
+            data: 'product_id',
+            render: function(data, type, row, meta) {
+              return '<a href="/checkout/v3/'+data+'" target="_blank" class="btn btn-primary btn-sm">Checkout V3</a>';
+            }
+          }
           ,
           {
             data: 'updated_at'
@@ -106,7 +120,7 @@
           {
             data: "product_id",
             render: function(data, type, row, meta) {
-              return '<a href="./products/sync/'+data+'" title="product sync"><i class="fas fa-sync"></i></a> <a href="./products/images/'+data+'/onebuy" title="product images"><i class="fas fa-images"></i></a> <a href="./products/comments/'+data+'/onebuy?locale={{ app()->getLocale() }}" title="product comments"><i class="fas fa-comments"></i></a> <a href="./products/info/'+data+'/onebuy?locale={{ app()->getLocale() }}" title="product info"><i class="fas fa-info-circle"></i> </a> ';
+              return '<a href="./products/sync/'+data+'" title="product sync"><i class="fas fa-sync"></i></a> <a href="./products/images/'+data+'/onebuy" title="product images"><i class="fas fa-images"></i></a> <a href="./products/comments/'+data+'/onebuy?locale={{ app()->getLocale() }}" title="product comments"><i class="fas fa-comments"></i></a> <a href="./products/info/'+data+'/onebuy?locale={{ app()->getLocale() }}" title="product info"><i class="fas fa-info-circle"></i> </a> <a href="./products/sell-points/'+data+'/onebuy?locale={{ app()->getLocale() }}" title="sell points"> <i class="fa fa-building"></i> </a> ';
             }
           }
         ],

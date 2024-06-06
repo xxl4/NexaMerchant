@@ -69,6 +69,14 @@ class CheckoutV3Controller extends Controller{
             $product = $this->productRepository->findBySlug($slugOrPath);
             Cache::put($cache_key, $product);
         }
+        if (
+            ! $product
+            || ! $product->visible_individually
+            || ! $product->url_key
+            || ! $product->status
+        ) {
+            abort(404);
+        }
 
         $refer = $request->input("refer");
 
@@ -95,6 +103,8 @@ class CheckoutV3Controller extends Controller{
             $comments->images;
             return $comments;
         });
+
+        //var_dump($comments);exit;
 
         $default_country = config('onebuy.default_country');
         $payments = config('onebuy.payments'); // config the payments status
