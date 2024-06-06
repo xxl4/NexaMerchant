@@ -1790,7 +1790,7 @@
                 ?>
 
                     <a href="javascript:;" onclick="reviewImgPreview('<?php echo $image->url; ?>')">
-                      <img style="width: 30%; max-height:120px" src="<?php echo $image->url; ?>" alt="" />
+                      <img style="width: 30%; max-height:120px;object-fit:contain" src="<?php echo $image->url; ?>" alt="" />
                     </a>
 
                 <?php }
