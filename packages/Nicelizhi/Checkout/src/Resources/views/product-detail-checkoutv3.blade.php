@@ -1378,7 +1378,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/5.0.4/css/swiper.css" />
     <link type="text/css" href="/checkout/v2/css/repeated-order-confirmation.min.css" rel="stylesheet" />
     <link type="text/css" href="/checkout/v2/css/repeated-order-confirmation-additional.css" rel="stylesheet" />
-    <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/checkout.css?v=7" />
+    <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/checkout.css?v=8" />
     <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/bootstrap.min.css" />
     <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/slick.min.css" />
     <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/upsell-new-02.css?v=3" />
@@ -2916,6 +2916,13 @@
           console.log(res, 'getShopify===res');
           let bodyHtml = res.data.data.body_html
           $('.shopify-container').html(bodyHtml)
+          var width = $(window).innerWidth()
+          if (width > 767) {
+            var height = $('.checkout-section').height()
+            console.log(height, 'height===');
+            $('.left-sec').css('height', height)
+            $('body').css('height', height)
+          }
           $('.shopify-title').click(function() {
             $(".shopify-container").slideToggle();
             if (shopifyToggle) {
@@ -4220,15 +4227,15 @@
   <!-- <script type="text/javascript" src="js/checkout.js"></script> -->
 
   <script>
-    $(function() {
-      var width = $(window).innerWidth()
-      if (width > 767) {
-        var height = $('.checkout-section').height()
-        console.log(height, 'height===');
-        $('.left-sec').css('height', height)
-        $('body').css('height', height)
-      }
-    })
+    // $(function() {
+    //   var width = $(window).innerWidth()
+    //   if (width > 767) {
+    //     var height = $('.checkout-section').height()
+    //     console.log(height, 'height===');
+    //     $('.left-sec').css('height', height)
+    //     $('body').css('height', height)
+    //   }
+    // })
 
     $('.fieldToggle').click(function() {
       if ($('#togData').prop('checked') == true) {
