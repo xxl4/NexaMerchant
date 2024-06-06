@@ -1373,7 +1373,7 @@
       display: flex;
       font-size: 14px;
       color: var(--text-color);
-      width: 300px;
+      width: 200px;
       align-items: center;
       justify-content: space-around;
       height: 55px;
@@ -1546,6 +1546,13 @@
       font-family: var(--text-family);
     }
 
+    .shopify-container {
+      text-align: left !important;
+      font-size: 13px !important;
+      color: var(--text-color) !important;
+      font-family: var(--text-family) !important;
+    }
+
     @keyframes bounce {
 
       0%,
@@ -1601,7 +1608,7 @@
       <div class="herder-content">
         <img src="" style="height: 50px;" />
         <div class="top-left-button">
-          <p class="header-text-hide">@lang('checkout::app.v3.Description')</p>
+          <!-- <p class="header-text-hide">@lang('checkout::app.v3.Description')</p> -->
           <a class="header-text-hide" id="header-text" href="#iduzu">@lang('checkout::app.v3.Reviews')</a>
           <div class="top-left-button-box">
             <a style="color: #fff;" href="#pkg-hdng1">@lang('checkout::app.v3.Buy Now')</a>
@@ -3141,11 +3148,11 @@
     })
 
     function reviewToggle() {
-      console.log('reviewTogglereviewToggle');
-      $(".shopify-container").hide()
-      $('#reviews-box').show()
       $('#shopify-title-item2').addClass('bor-bom')
       $('#shopify-title-item1').removeClass('bor-bom')
+      $(".shopify-container").hide()
+      $('#reviews-box').show()
+      console.log('reviewTogglereviewToggle');
       // $("#reviews-box").slideToggle();
       // if (reviewsToggle) {
       //   reviewsToggle = false
