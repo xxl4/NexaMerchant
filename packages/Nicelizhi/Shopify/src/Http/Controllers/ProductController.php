@@ -552,4 +552,34 @@ class ProductController extends Controller
             'message' => "success"
         ]);
     }
+
+    // sell points
+    public function sellPoints($product_id, Request $request) {
+        $product = $this->productRepository->findBySlug($product_id);
+        $act_type = "checkoutv2";
+
+        $redis = Redis::connection('default');
+
+        $sell_points_key = "sell_points_".$product_id;
+
+        $sell_points = $redis->hgetall($sell_points_key);
+        if(count($sell_points)==0) {
+            for($i=1;$i<=5;$i++) {
+                $redis->hset($sell_points_key, $i, "");
+            }
+        }
+        $sell_points = $redis->hgetall($sell_points_key);
+        if ($request->isMethod('POST'))
+        {
+            $sell_points = $request->input('sell_points');
+            foreach($sell_points as $key=>$value) {
+                $redis->hset($sell_points_key, $key, $value);
+            }
+            
+            \Nicelizhi\Shopify\Helpers\Utils::clearCache($product->id, $product_id);
+
+        }
+
+        return view("shopify::products.".$act_type.".sell-points-v2", compact("product", "product_id", "act_type","sell_points"));
+    }
 }
