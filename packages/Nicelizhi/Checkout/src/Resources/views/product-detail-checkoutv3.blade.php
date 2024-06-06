@@ -4223,6 +4223,7 @@
         var height = $('.checkout-section').height()
         console.log(height, 'height===');
         $('.left-sec').css('height', height)
+        $('body').css('height', height)
       }
     })
 
