@@ -1524,7 +1524,7 @@
       text-decoration: none;
     }
 
-    .bor-bom {
+    .bor-bom-3 {
       border-bottom: 3px solid #b1a9a9;
     }
 
@@ -1735,7 +1735,7 @@
         </div>
 
         <div class="shopify-title fl">
-          <div class="shopify-title-item bor-bom" id="shopify-title-item1">
+          <div class="shopify-title-item bor-bom-3" id="shopify-title-item1">
             <p style="margin-left: 5px;">@lang('checkout::app.v3.Description')</p>
           </div>
           <div class="shopify-title-item" id="shopify-title-item2">
@@ -3018,7 +3018,7 @@
               $('.appalpay-button').show()
             }
           }
-          if (Object.keys(data.ads.size).lenght == 0) {
+          if (data.ads.size.img == '') {
             $('#size-chart').hide()
           } else {
             $('#size-chart').show()
@@ -3179,10 +3179,28 @@
       }
       $('.three-description-box').append(descriptionContent)
     }
+    $('#shopify-title-item1').click(function() {
+      console.log();
+      $(".shopify-container").show()
+      $('#reviews-box').hide()
+      $('#shopify-title-item1').addClass('bor-bom-3')
+      $('#shopify-title-item2').removeClass('bor-bom-3')
+      // slideToggle();
+      // if (shopifyToggle) {
+      //   shopifyToggle = false
+      //   $('#svg-down').show()
+      //   $('#svg-up').hide()
+      // } else {
+      //   shopifyToggle = true
+      //   $('#svg-down').hide()
+      //   $('#svg-up').show()
+      // }
+    })
 
     function reviewToggle() {
-      $('#shopify-title-item2').addClass('bor-bom')
-      $('#shopify-title-item1').removeClass('bor-bom')
+      $('#shopify-title-item2').addClass('bor-bom-3')
+      console.log($('#shopify-title-item2'), '#shopify-title-item2');
+      $('#shopify-title-item1').removeClass('bor-bom-3')
       $(".shopify-container").hide()
       $('#reviews-box').show()
       console.log('reviewTogglereviewToggle');
@@ -3212,22 +3230,6 @@
           console.log(res, 'getShopify===res');
           let bodyHtml = res.data.data.body_html
           $('.shopify-container').html(bodyHtml)
-          $('.shopify-title').click(function() {
-            $(".shopify-container").show()
-            $('#reviews-box').hide()
-            $('#shopify-title-item1').addClass('bor-bom')
-            $('#shopify-title-item2').removeClass('bor-bom')
-            // slideToggle();
-            // if (shopifyToggle) {
-            //   shopifyToggle = false
-            //   $('#svg-down').show()
-            //   $('#svg-up').hide()
-            // } else {
-            //   shopifyToggle = true
-            //   $('#svg-down').hide()
-            //   $('#svg-up').show()
-            // }
-          })
         })
         .catch(function(err) {
           console.log(err, 'getShopify===err');
