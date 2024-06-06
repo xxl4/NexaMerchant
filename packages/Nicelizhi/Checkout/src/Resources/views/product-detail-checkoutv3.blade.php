@@ -1972,8 +1972,8 @@
             </div>
           </div>
           <p class="button-top">@lang('checkout::app.v2.Express checkout')</p>
-          <div class="zoom-fade submit-button button-opacity pay-button fl" id="googlePayButton"></div>
-          <div class="zoom-fade submit-button button-opacity appalpay-button fl" id="applePayButton"></div>
+          <!-- <div class="zoom-fade submit-button button-opacity pay-button fl" id="googlePayButton"></div>
+          <div class="zoom-fade submit-button button-opacity appalpay-button fl" id="applePayButton"></div> -->
           <div class="zoom-fade submit-button fl" id="payment-button" style="text-align: center;margin-top: 12px; width:100%;height:73px;"></div>
           <div id="loading">
             <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 100000; background:#ddd;opacity: 0.3;" id="loading-box" class="flex-center">
@@ -2998,30 +2998,30 @@
           $('#footer-top-text').append(data.brand)
           var isPc = IsPC()
           console.log(isPc, 'ispc');
-          if (countries1 == 'us') {
-            if (isPc) {
-              let isMac = /macintosh|mac os x/i.test(navigator.userAgent);
-              console.log(isMac, 'isMac');
-              googlerOrApple = isMac ? 'apple' : 'google'
+          // if (countries1 == 'us') {
+          //   if (isPc) {
+          //     let isMac = /macintosh|mac os x/i.test(navigator.userAgent);
+          //     console.log(isMac, 'isMac');
+          //     googlerOrApple = isMac ? 'apple' : 'google'
 
-            } else {
-              let type = getMobileOperatingSystem()
-              console.log(type, 'type');
-              googlerOrApple = type == 'iOS' ? 'apple' : 'google'
-            }
-            if (googlerOrApple == 'google' && payTypeShow.airwallex_google == 1) {
-              googleShow = true
-              console.log('googleShow');
-              $('.pay-button').show()
-              $('.appalpay-button').hide()
-            }
-            if (googlerOrApple == 'apple' && payTypeShow.airwallex_appley == 1) {
-              appleShow = true
-              console.log('appalpayShow');
-              $('.pay-button').hide()
-              $('.appalpay-button').show()
-            }
-          }
+          //   } else {
+          //     let type = getMobileOperatingSystem()
+          //     console.log(type, 'type');
+          //     googlerOrApple = type == 'iOS' ? 'apple' : 'google'
+          //   }
+          //   if (googlerOrApple == 'google' && payTypeShow.airwallex_google == 1) {
+          //     googleShow = true
+          //     console.log('googleShow');
+          //     $('.pay-button').show()
+          //     $('.appalpay-button').hide()
+          //   }
+          //   if (googlerOrApple == 'apple' && payTypeShow.airwallex_appley == 1) {
+          //     appleShow = true
+          //     console.log('appalpayShow');
+          //     $('.pay-button').hide()
+          //     $('.appalpay-button').show()
+          //   }
+          // }
           if (data.ads.size.img == '') {
             $('#size-chart').hide()
           } else {
