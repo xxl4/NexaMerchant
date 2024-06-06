@@ -29,6 +29,8 @@
                           <th>handle</th>
                           <th>Status</th>
                           <th>Checkout</th>
+                          <th>Checkout V2</th>
+                          <th>Checkout V3</th>
                           <th>updated at</th>
                           <th>Action</th>
                         </tr>
@@ -97,6 +99,18 @@
             data: 'product_id',
             render: function(data, type, row, meta) {
               return '<a href="./products/checkout-url-get/'+data+'/onebuy" target="_blank" class="btn btn-primary btn-sm">Checkout URl</a>';
+            }
+          }
+          ,{
+            data: 'product_id',
+            render: function(data, type, row, meta) {
+              return '<a href="/checkout/v2/'+ data +'" target="_blank" class="btn btn-primary btn-sm">Checkout V2</a>';
+            }
+          }
+          ,{
+            data: 'product_id',
+            render: function(data, type, row, meta) {
+              return '<a href="/checkout/v3/'+data+'" target="_blank" class="btn btn-primary btn-sm">Checkout V3</a>';
             }
           }
           ,
