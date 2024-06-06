@@ -3166,7 +3166,7 @@
       if (!data.sellPoints) {
         $('.three-description-box').hide()
       } else {
-
+        
       }
     }
 
