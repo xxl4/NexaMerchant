@@ -4220,7 +4220,7 @@
     $(function() {
       var width = $(window).innerWidth()
       if (width > 767) {
-        var height = $('.right-sec').height()
+        var height = $('.checkout-section').height()
         console.log(height, 'height===');
         $('.left-sec').css('height', height)
       }
