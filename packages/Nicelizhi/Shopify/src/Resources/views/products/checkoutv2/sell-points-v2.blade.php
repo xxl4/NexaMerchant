@@ -3,7 +3,7 @@
 
     {{-- Page Title --}}
     <x-slot:title>
-        
+        Product Sell Points
     </x-slot:title>
 
      <!-- DataTables -->
@@ -21,7 +21,7 @@
                 <form action="{{ route('admin.shopify.products.sell-points', ['product_id' => $product_id, 'act_type' => $act_type]) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="card-header">
-                        <h3 class="card-title">Pc Images</h3>
+                        <h3 class="card-title">Product Sell Points</h3>
                     </div>
                     <div class="card-body">
                         <div id="actions" class="row">
