@@ -1433,7 +1433,7 @@
           </g>
         </svg>@lang('checkout::app.v2.12,421 Verified Customer Reviews')</p>
       <div class="left-sec">
-        <div id="sticky" style="position:sticky;top: 0;">
+        <div id="sticky" style="position:sticky;top: 55px;">
           <div class="vehicle-detail-banner banner-content clearfix">
             <div class="banner-slider">
               <div class="slider-banner-image1">
