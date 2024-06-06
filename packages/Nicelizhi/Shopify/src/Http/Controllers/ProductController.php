@@ -569,6 +569,7 @@ class ProductController extends Controller
             }
         }
         $sell_points = $redis->hgetall($sell_points_key);
+        ksort($sell_points);
         if ($request->isMethod('POST'))
         {
             $sell_points = $request->input('sell_points');
