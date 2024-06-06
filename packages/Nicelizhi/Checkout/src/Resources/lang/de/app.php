@@ -84,7 +84,7 @@ return [
     '30-Day Return' => '30 Tage Rückgaberecht',
     'Quality Guarantee' => 'Hohe Qualität garantiert',
     'Secure Payment' => 'Sichere Zahlung',
-    'Description' => 'beschreiben',
+    'Description' => 'Beschreiben',
     'Reviews' => 'Bewertungen',
     'Buy Now' => 'Kaufe jetzt',
     'Secure Checkout' => 'Sichere Zahlung'
