@@ -143,21 +143,13 @@ class ImportProductCommentFromJudge extends Command
 
             //var_dump($item);exit;
             if(!empty($item['title'])) {
-                //$this->error($this->cache_key.$item['product_external_id']);
-                //$product = $this->productRepository->findBySlug($item['product_external_id']);
-                
-               // $product = $this->productRepository->where("sku", $item['product_external_id'])->first();
                 $product = $this->productRepository->findBySlug($item['product_external_id']);
 
                 if(!empty($this->prod_id)) {
                     if($item['product_external_id']== $this->prod_id ) {
                         $this->info("Test ". json_encode($item));
-                        var_dump($item, $product);
-                        //exit;
-                        sleep(10);
-                        //continue;
-                        //exit;
-                        //var_dump($product);exit;
+                        //var_dump($item, $product);
+                        //sleep(10);
                     }
                 }
 
@@ -228,7 +220,7 @@ class ImportProductCommentFromJudge extends Command
 
                         if(!empty($this->prod_id)) {
                             if($item['product_external_id']== $this->prod_id ) {
-                                var_dump($data, $product);
+                                //var_dump($data, $product);
                             }
                         }
 
@@ -278,6 +270,50 @@ class ImportProductCommentFromJudge extends Command
     
                             }
                             
+                        }
+                    }else{
+                        if(!empty($item['pictures'])) {
+
+
+                            $attachments = [];
+    
+                            foreach($item['pictures'] as $key=>$picture) {
+                                //var_dump($picture['urls']['original']);
+    
+                                $info = pathinfo($picture['urls']['original']);
+
+                                array_push($images, $picture['urls']['original']);
+    
+                                //var_dump($info);exit;
+    
+                                $this->info($info['filename']);
+                                $image_path = "product/".$product->id."/".$info['filename'].".jpg";
+                                $local_image_path = $image_path;
+
+                                
+                                
+                                $attachments = $this->productReviewAttachmentRepository->findWhere(['path'=>$picture['urls']['original'],'review_id'=>$review->id])->first();
+                                if(!empty($attachments)) continue;
+
+    
+                                $contents = file_get_contents($picture['urls']['original'], false, stream_context_create($arrContextOptions));
+                                Storage::disk("images")->put($local_image_path, $contents);
+    
+                                $mimeType = Storage::disk("images")->mimeType($local_image_path);
+
+                                $fileType = explode('/', $mimeType);
+    
+                                $attachments = [];
+                                $attachments['type'] = $fileType[0];
+                                $attachments['mime_type'] = $fileType[1];
+                                $attachments['path'] = $picture['urls']['original'];
+                                $attachments['review_id'] = $review->id;
+                                var_dump($attachments);
+    
+                                $this->productReviewAttachmentRepository->create($attachments);
+    
+                            }
+
                         }
                     }
 
