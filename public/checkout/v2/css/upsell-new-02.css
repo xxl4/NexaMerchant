@@ -85,9 +85,7 @@ MAIN CSS START
 ------------------------*/
 
 .container{
-
-	width:1170px;
-
+  
 	margin:0 auto;
 
 	padding:0;
@@ -2014,7 +2012,7 @@ a.cart-btn{ height: 65px; font-size: 26px; line-height: 65px;}
 
 .for-mob{display:block;}
 
-.hide-mob{display:none;}
+/* .hide-mob{display:none;} */
 
 
 
@@ -2066,7 +2064,7 @@ ul.step-lst li p{width:100%; font-size:14px; line-height:20px;}
 
 .prodDtls1-rght{ width:100%;}
 
-.prod-name{ font-size:16px; line-height:16px; display:none;}
+.prod-name{ font-size:16px; line-height:16px;}
 
 .prod-caption{ font-size:16px; line-height:20px; margin-top:15px;}
 
