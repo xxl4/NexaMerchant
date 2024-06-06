@@ -49,7 +49,7 @@
             </form>
             </div>
 
-            <h3>Comments List</h3>
+            {{-- <h3>Comments List</h3>
             <table class="table table-bordered table-striped">
                 <thead>
                     <tr>
@@ -71,7 +71,7 @@
                             echo "</tr>";
                         }
                     ?>
-            </table>
+            </table> --}}
             <h3>From Shopify Comments</h3>
             <table class="table table-bordered table-striped">
                 <thead>
@@ -81,6 +81,7 @@
                         <th>Title</th>
                         <th>Content</th>
                         <th>Status</th>
+                        <th>Create Date</th>
                         <th>Rank</th>
                         <th>Images</th>
                     </tr>
@@ -94,6 +95,7 @@
                             echo "<td>".$comment->title."</td>";
                             echo "<td>".$comment->comment."</td>";
                             echo "<td>".$comment->status."</td>";
+                            echo "<td>".$comment->created_at."</td>";
                             echo "<td>".$comment->rating."</td>";
                             
 
