@@ -91,7 +91,9 @@ class Post extends Command
 
         // find the refund order
         $refundOrder = $this->refundRepository->findOrFail($refund_id);
-
+	if(is_null($refundOrder)) {
+		return false;
+	}
         //var_dump($refundOrder);exit;
 
         //@link https://shopify.dev/docs/api/admin-rest/2024-01/resources/refund#post-orders-order-id-refunds

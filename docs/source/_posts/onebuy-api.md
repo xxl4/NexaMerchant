@@ -833,6 +833,13 @@ GET api/onebuy/product/detail/{slug}?currency=EUR
   "quora_adv_id": "1",
   "paypal_client_id": "1",
   "env": "demo",
+  "sell-points": {
+        "1": "Sell Point 1",
+        "2": "Sell Point 2",
+        "3": "Sell Point 3",
+        "4": "Sell Point 4",
+        "5": "Sell Point 5"
+    },
    "ads": {
         "pc": {
             "img": "http:\/\/127.0.0.1:8000\/storage\/product\/3011\/joJCiXabUkKMrlwPO36SuAvcQCpTJTyjfAJ2WULS.jpg"

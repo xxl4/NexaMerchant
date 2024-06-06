@@ -552,13 +552,15 @@ class ProductController extends Controller
             $data['order'] = $order;
             if ($order) {
                 $orderId = $order->id;
-                if($payment_method_input=="airwallex_google") {
-                    $transactionManager = $this->airwallex->createPaymentAuthen($cart, $order->id);
-                }elseif($payment_method_input=="airwallex_apple") {
-                    $transactionManager = $this->airwallex->createPaymentAuthen($cart, $order->id);
-                } else {
-                    $transactionManager = $this->airwallex->createPaymentOrder($cart, $order->id);
-                }
+                // if($payment_method_input=="airwallex_google") {
+                //     $transactionManager = $this->airwallex->createPaymentAuthen($cart, $order->id);
+                // }elseif($payment_method_input=="airwallex_apple") {
+                //     $transactionManager = $this->airwallex->createPaymentAuthen($cart, $order->id);
+                // } else {
+                //     $transactionManager = $this->airwallex->createPaymentOrder($cart, $order->id);
+                // }
+
+                $transactionManager = $this->airwallex->createPaymentOrder($cart, $order->id);
                 
                 Log::info("airwallex-".$order->id."--".json_encode($transactionManager));
                 $data['client_secret'] = $transactionManager->client_secret;
