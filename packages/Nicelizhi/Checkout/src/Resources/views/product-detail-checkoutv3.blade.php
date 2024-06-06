@@ -727,7 +727,7 @@
     .footer-box {
       background-color: #F5F5F5;
       padding: 60px 30px 60px 30px;
-      /* margin-top: 30px; */
+      margin-top: 10px;
       margin-right: 0px;
       margin-left: 0px;
       text-align: center;
@@ -1302,7 +1302,7 @@
 
     .Schritt-top-box {
       width: 100%;
-      padding: 5px 0;
+      padding: 5px 0 10px 0;
       display: flex;
       background-color: #F4F4F4;
     }
@@ -1524,7 +1524,7 @@
       text-decoration: none;
     }
 
-    .bor-bom {
+    .bor-bom-3 {
       border-bottom: 3px solid #b1a9a9;
     }
 
@@ -1557,6 +1557,10 @@
       font-size: 13px !important;
       color: var(--text-color) !important;
       font-family: var(--text-family) !important;
+    }
+
+    .shopify-container p {
+      margin-top: 10px;
     }
 
     @keyframes bounce {
@@ -1617,7 +1621,7 @@
           <!-- <p class="header-text-hide">@lang('checkout::app.v3.Description')</p> -->
           <a class="header-text-hide" id="header-text" href="#iduzu">@lang('checkout::app.v3.Reviews')</a>
           <div class="top-left-button-box">
-            <a style="color: #fff;" href="#pkg-hdng1">@lang('checkout::app.v3.Buy Now')</a>
+            <a style="color: #fff;" href="#shopify-title-item1">@lang('checkout::app.v3.Buy Now')</a>
           </div>
         </div>
       </div>
@@ -1735,7 +1739,7 @@
         </div>
 
         <div class="shopify-title fl">
-          <div class="shopify-title-item bor-bom" id="shopify-title-item1">
+          <div class="shopify-title-item bor-bom-3" id="shopify-title-item1">
             <p style="margin-left: 5px;">@lang('checkout::app.v3.Description')</p>
           </div>
           <div class="shopify-title-item" id="shopify-title-item2">
@@ -2379,7 +2383,7 @@
         <div class="faq-content" style="width: 100%;float: right;">
           <div id="seeFaqBtn">
             @lang('onebuy::app.product.order.Frequently Asked Questions')
-            <span class="faq_view">@lang('onebuy::app.product.order.See Our FAQs')</span>
+            <span class="faq_view" onclick="heightChange()">@lang('onebuy::app.product.order.See Our FAQs')</span>
           </div>
           <div id="faq-text">
             <div id="collapseContent">
@@ -3018,7 +3022,7 @@
               $('.appalpay-button').show()
             }
           }
-          if (Object.keys(data.ads.size).lenght == 0) {
+          if (data.ads.size.img == '') {
             $('#size-chart').hide()
           } else {
             $('#size-chart').show()
@@ -3179,10 +3183,27 @@
       }
       $('.three-description-box').append(descriptionContent)
     }
+    $('#shopify-title-item1').click(function() {
+      $(".shopify-container").show()
+      $('#reviews-box').hide()
+      $('#shopify-title-item1').addClass('bor-bom-3')
+      $('#shopify-title-item2').removeClass('bor-bom-3')
+      // slideToggle();
+      // if (shopifyToggle) {
+      //   shopifyToggle = false
+      //   $('#svg-down').show()
+      //   $('#svg-up').hide()
+      // } else {
+      //   shopifyToggle = true
+      //   $('#svg-down').hide()
+      //   $('#svg-up').show()
+      // }
+    })
 
     function reviewToggle() {
-      $('#shopify-title-item2').addClass('bor-bom')
-      $('#shopify-title-item1').removeClass('bor-bom')
+      $('#shopify-title-item2').addClass('bor-bom-3')
+      console.log($('#shopify-title-item2'), '#shopify-title-item2');
+      $('#shopify-title-item1').removeClass('bor-bom-3')
       $(".shopify-container").hide()
       $('#reviews-box').show()
       console.log('reviewTogglereviewToggle');
@@ -3212,22 +3233,6 @@
           console.log(res, 'getShopify===res');
           let bodyHtml = res.data.data.body_html
           $('.shopify-container').html(bodyHtml)
-          $('.shopify-title').click(function() {
-            $(".shopify-container").show()
-            $('#reviews-box').hide()
-            $('#shopify-title-item1').addClass('bor-bom')
-            $('#shopify-title-item2').removeClass('bor-bom')
-            // slideToggle();
-            // if (shopifyToggle) {
-            //   shopifyToggle = false
-            //   $('#svg-down').show()
-            //   $('#svg-up').hide()
-            // } else {
-            //   shopifyToggle = true
-            //   $('#svg-down').hide()
-            //   $('#svg-up').show()
-            // }
-          })
         })
         .catch(function(err) {
           console.log(err, 'getShopify===err');
@@ -4529,6 +4534,15 @@
     //     $('body').css('height', height)
     //   }
     // })
+    function heightChange() {
+      var width = $(window).innerWidth()
+      if (width > 767) {
+        var height = $('.checkout-section').height()
+        console.log(height, 'height===');
+        $('.left-sec').css('height', height)
+        $('body').css('height', height)
+      }
+    }
     window.onload = function() {
       var width = $(window).innerWidth()
       if (width > 767) {
