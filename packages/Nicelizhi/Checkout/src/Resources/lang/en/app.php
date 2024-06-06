@@ -80,5 +80,14 @@ return [
     'edit' => 'Edit',
     'complete_secure_purchase' => 'Pay Now',
     'Selected' => 'Selected'
+  ],
+  'v3' => [
+    '30-Day Return' => '30-Day Return',
+    'Quality Guarantee' => 'Quality Guarantee',
+    'Secure Payment' => 'Secure Payment',
+    'Description' => 'Description',
+    'Reviews' => 'Reviews',
+    'Buy Now' => 'Buy Now',
+
   ]
 ];

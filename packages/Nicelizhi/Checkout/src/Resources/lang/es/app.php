@@ -60,5 +60,13 @@ return [
     'edit' => 'editar',
     'complete_secure_purchase' => 'Pagar ahora',
     'Selected' => 'Seleccionado'
+  ],
+  'v3' => [
+    '30-Day Return' => '30 días de devolución',
+    'Quality Guarantee' => 'Alta calidad garantizada',
+    'Secure Payment' => 'Pago seguro',
+    'Description' => 'Descripción',
+    'Reviews' => 'Comentario',
+    'Buy Now' => 'Compre ya'
   ]
 ];
