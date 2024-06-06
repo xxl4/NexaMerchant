@@ -144,7 +144,7 @@ class ApiController extends Controller
             $data['quora_adv_id'] = $quora_adv_id;
             $data['paypal_client_id'] = $paypal_client_id;
             $data['env'] = config("app.env");
-            $data['sell-points'] = $redis->hgetall("sell_points_".$slug);
+            $data['sellPoints'] = $redis->hgetall("sell_points_".$slug);
     
             $ads = []; // add ads
             
