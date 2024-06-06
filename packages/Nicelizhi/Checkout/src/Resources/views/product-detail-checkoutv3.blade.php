@@ -1773,23 +1773,24 @@
                   <img width="110px" src="/checkout/onebuy/images/stars-5.svg" alt="" />
                 </div>
                 <div class="cardtext" style="text-align: start;"><?php echo $comment->comment; ?></div>
-                
 
-                <?php 
-                
-                
-                if(!empty($comment->images)) { 
+
+                <?php
+
+
+                if (!empty($comment->images)) {
 
                   // var_dump($comment->images);
-                  foreach ($comment->images as $key => $image) { 
+                  foreach ($comment->images as $key => $image) {
                     //var_dump($image);
                 ?>
 
-                <a href="javascript:;" onclick="showImgProp('<?php echo $image->url; ?>')">
-                  <img style="width: 30%; aspect-ratio: 1/1" src="<?php echo $image->url; ?>" alt="" />
-                </a>
+                    <a href="javascript:;" onclick="showImgProp('<?php echo $image->url; ?>')">
+                      <img style="width: 30%; aspect-ratio: 1/1" src="<?php echo $image->url; ?>" alt="" />
+                    </a>
 
-                <?php } } ?>
+                <?php }
+                } ?>
 
               </div>
             </div>
@@ -3163,11 +3164,20 @@
 
     function getDescriptionItem(data) {
       console.log(data, 'getDescriptionItem');
+      let descriptionContent = ''
       if (!data.sellPoints) {
         $('.three-description-box').hide()
       } else {
-        
+        let sellObj = data.sellPoints
+        $.each(sellObj, function(key, value) {
+          if (value) {
+            descriptionContent += `<div class="three-description-item">
+            <img src="/checkout/v2/images/1673346232-mainpage.png" alt="">
+            <p class="three-description-text"> ` + value + `</p></div>`
+          }
+        })
       }
+      $('.three-description-box').append(descriptionContent)
     }
 
     function reviewToggle() {
