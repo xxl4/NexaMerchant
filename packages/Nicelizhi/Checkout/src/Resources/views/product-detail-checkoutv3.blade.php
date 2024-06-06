@@ -939,7 +939,7 @@
 
     @media (max-width: 780px) {
       .header-container {
-        height: 40px !important;
+        height: 45px !important;
       }
 
       .prod-name {
@@ -966,7 +966,7 @@
       }
 
       .header-container img {
-        max-height: 40px;
+        max-height: 45px;
       }
 
       .item-text {
@@ -986,7 +986,7 @@
       }
 
       .herder-content img {
-        height: 20px;
+        height: 20px !important;
       }
 
       /* .grid-container {
