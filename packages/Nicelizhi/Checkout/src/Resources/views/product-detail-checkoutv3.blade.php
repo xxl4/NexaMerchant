@@ -863,6 +863,12 @@
       }
     }
 
+    @media (max-width: 1120px) {
+      .Schritt-top-box {
+        height: 85px !important;
+      }
+    }
+
     @media (max-width: 480px) {
       #iwni3 {
         width: 100px;
@@ -1730,7 +1736,7 @@
 
         <div class="shopify-title fl">
           <div class="shopify-title-item bor-bom" id="shopify-title-item1">
-            <p style="margin-left: 5px;">@lang('checkout::app.v3.Details')</p>
+            <p style="margin-left: 5px;">@lang('checkout::app.v3.Description')</p>
           </div>
           <div class="shopify-title-item" id="shopify-title-item2">
             <p class="container_title" onclick="reviewToggle()">
@@ -2832,7 +2838,7 @@
           paypal_pay_acc = data.paypal_client_id
           var paymentsDefault = data.payments_default
           console.log(paymentsDefault, data.ads.pc.img, 'paymentsDefault=====');
-
+          getDescriptionItem(data)
           $('#p-name2').text(data.package_products[0].name)
           $('#p-name1').text(data.package_products[1].name)
           $('#p-name3').text(data.package_products[2].name)
@@ -3146,6 +3152,15 @@
         })
 
     })
+
+    function getDescriptionItem(data) {
+      console.log(data, 'getDescriptionItem');
+      if (!data.sellPoints) {
+        $('.three-description-box').hide()
+      } else {
+
+      }
+    }
 
     function reviewToggle() {
       $('#shopify-title-item2').addClass('bor-bom')
