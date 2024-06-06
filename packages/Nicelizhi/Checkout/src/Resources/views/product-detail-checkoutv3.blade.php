@@ -946,7 +946,7 @@
 
       .Schritt-top-box {
         height: 80px;
-        padding: 5px 0;
+        padding: 5px 0 8px 0;
       }
 
       .top-left-button-box {
