@@ -906,7 +906,7 @@
     } */
 
     #thumbs {
-      height: 150px;
+      height: 140px;
     }
 
     #thumbs .swiper-slide {
@@ -1722,8 +1722,8 @@
         </div>
 
         <div class="shopify-title fl">
-          <div class="shopify-title-item" id="shopify-title-item1">
-            <p style="margin-left: 5px;">Details</p>
+          <div class="shopify-title-item bor-bom" id="shopify-title-item1">
+            <p style="margin-left: 5px;">@lang('checkout::app.v3.Details')</p>
           </div>
           <div class="shopify-title-item" id="shopify-title-item2">
             <p class="container_title" onclick="reviewToggle()">
@@ -1739,7 +1739,7 @@
           </p> -->
         </div>
         <!-- review -->
-        <div class="section" id="reviews-box" style="width: 100%;float: right;">
+        <div class="section" id="reviews-box" style="width: 100%;float: right; display:none">
           <?php foreach ($comments as $key => $comment) {
             $comment = json_decode($comment); //var_dump($comment);exit; 
           ?>
@@ -3141,6 +3141,7 @@
     })
 
     function reviewToggle() {
+      console.log('reviewTogglereviewToggle');
       $(".shopify-container").hide()
       $('#reviews-box').show()
       $('#shopify-title-item2').addClass('bor-bom')
