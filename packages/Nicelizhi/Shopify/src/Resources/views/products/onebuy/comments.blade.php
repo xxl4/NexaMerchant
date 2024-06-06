@@ -23,7 +23,7 @@
                     Upload Comments 
                 </div>
                 <div class="card-body">
-                    <div class="form-group">
+                    {{-- <div class="form-group">
                         <label for="comments_list_file">Comments List File</label>
                         <div class="input-group">
                             <div class="custom-file">
@@ -31,7 +31,7 @@
                                 <label class="custom-file-label" for="comments_list_file">Choose file</label>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                     <div class="form-group">
                         <label for="comments_list_file">Replace</label>
                         <div class="input-group">
@@ -43,7 +43,7 @@
                 </div>
                 <div class="card-footer">
                     <input type="hidden" name="version" value="<?php echo $act_prod_type; ?>">
-                    <button type="submit" class="btn btn-primary">submit</button>
+                    {{-- <button type="submit" class="btn btn-primary">submit</button> --}}
                     <button type="button" class="btn btn-secondary manual-sync-comment">Manual Sync Comment</button>
                 </div>
             </form>
