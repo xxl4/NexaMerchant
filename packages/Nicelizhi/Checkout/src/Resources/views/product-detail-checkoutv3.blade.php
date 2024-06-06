@@ -1717,7 +1717,7 @@
         </div>
 
         <div class="three-description-box">
-          <div class="three-description-item">
+          <!-- <div class="three-description-item">
             <img src="/checkout/v2/images/1673346232-mainpage.png" alt="">
             <p class="three-description-text"> Temporarily increases local blood circulation and relaxes muscle tissue</p>
           </div>
@@ -1728,7 +1728,7 @@
           <div class="three-description-item">
             <img src="/checkout/v2/images/1673346232-mainpage.png" alt="">
             <p class="three-description-text"> Temporarily increases local blood circulation and relaxes muscle </p>
-          </div>
+          </div> -->
         </div>
         <div class="btn-bx">
           <a href="#product2" class="comn-btn">@lang('checkout::app.v3.Buy Now')</a>
