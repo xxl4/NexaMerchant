@@ -1446,7 +1446,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-top: 20px;
+      margin-top: 25px;
       float: left;
       padding: 0 5px;
     }
@@ -1525,7 +1525,7 @@
     }
 
     .bor-bom-3 {
-      border-bottom: 3px solid #b1a9a9;
+      border-bottom: 3px solid #1773B0;
     }
 
     .payment-top {
@@ -1560,7 +1560,7 @@
     }
 
     .shopify-container p {
-      margin-top: 10px;
+      margin: 8px 0;
     }
 
     @keyframes bounce {
@@ -1619,9 +1619,9 @@
         <img src="" style="height: 50px;" />
         <div class="top-left-button">
           <!-- <p class="header-text-hide">@lang('checkout::app.v3.Description')</p> -->
-          <a class="header-text-hide" id="header-text" href="#iduzu">@lang('checkout::app.v3.Reviews')</a>
+          <a class="header-text-hide" id="header-text" href="#shopify-title-item1">@lang('checkout::app.v3.Reviews')</a>
           <div class="top-left-button-box">
-            <a style="color: #fff;" href="#shopify-title-item1">@lang('checkout::app.v3.Buy Now')</a>
+            <a style="color: #fff;" href="#pkg-hdng1">@lang('checkout::app.v3.Buy Now')</a>
           </div>
         </div>
       </div>
@@ -1789,8 +1789,8 @@
                     //var_dump($image);
                 ?>
 
-                    <a href="javascript:;" onclick="showImgProp('<?php echo $image->url; ?>')">
-                      <img style="width: 30%; aspect-ratio: 1/1" src="<?php echo $image->url; ?>" alt="" />
+                    <a href="javascript:;" onclick="reviewImgPreview('<?php echo $image->url; ?>')">
+                      <img style="width: 30%; max-height:120px" src="<?php echo $image->url; ?>" alt="" />
                     </a>
 
                 <?php }
@@ -3410,6 +3410,11 @@
       var imgUrl = $(event.target).attr('src')
       $('.sku-preview-img-box').show()
       $('.sku-preview-img img').attr('src', imgUrl)
+    }
+
+    function reviewImgPreview(imgUrl) {
+      $('.size-chart-img-box').show()
+      $('.size-chart-img img').attr('src', imgUrl)
     }
 
     function sizeCharImgPreview() {
