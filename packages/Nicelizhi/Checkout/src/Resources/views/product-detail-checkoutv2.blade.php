@@ -1279,12 +1279,13 @@
       opacity: 0.5;
     }
 
-    /* .choose-billing-box {
+    .choose-billing-box {
       margin: 5px;
       font-size: 13px;
       font-family: var(--text-family);
       color: var(--text-color);
-    } */
+    }
+
     .product-selected {
       display: none;
       position: absolute;
@@ -1296,6 +1297,14 @@
       padding: 5px;
       font-weight: 600;
       border-radius: 4px;
+    }
+
+    .in-se option[disabled][selected] {
+      display: none;
+    }
+
+    .in-se {
+      color: red;
     }
   </style>
 </head>
@@ -1338,7 +1347,7 @@
     <div class="container">
       <div class="dis-box-logo">
         <div class="logo_wrap_dist" style="display: flex;justify-content: center;align-items: center;">
-          <img src="" style=" max-height: 35px;" />
+          <img src="" style=" max-height: 50px;" />
         </div>
       </div>
     </div>
@@ -1837,16 +1846,17 @@
                                   -webkit-box-sizing: border-box;height: calc(3.5rem + 2px);
                                   line-height: 1.25;padding: 1rem 0.75rem "></div>
                               </div>
-                              <!-- <div class="choose-billing-box" style="display: none;">
+                              <!-- <div class="choose-billing-box" style="display: none;"> -->
+                              <div class="choose-billing-box">
                                 <div style="display: flex;align-items: center;">
-                                  <input type="checkbox" name="hobby" value="music">
+                                  <input type="checkbox" name="hobby" value="music" onchange="billingAddress()">
                                   <p style="margin-left: 5px;">Use differce address for billing</p>
                                 </div>
-                              </div> -->
-                              <!-- <div class="billing-content">
+                              </div>
+                              <div class="billing-content" style="display: none;">
                                 <div class="input-box" style="margin-top: 5px;">
                                   <label>
-                                    <input onblur="inputBlur(event)" class="input-item" name="shippingZip" id="zip" type="tel" placeholder="" required="" />
+                                    <input onblur="inputBlur(event)" class="input-item" name="shippingZip" placeholder="" required="" />
                                     <span class="input-span">@lang('checkout::app.v2.Zip Code')</span>
                                   </label>
                                 </div>
@@ -1875,85 +1885,85 @@
                                   </label>
                                 </div>
                               </div>
-                            </div> -->
                             </div>
                           </div>
-                          <div class="panel panel-default" id="airwallex-dropin-box">
-                            <div class="panel-heading" role="tab" id="airwallex_dropin_head_1">
-                              <h4 class="panel-title">
-                                <div class="panel-title-header" id="airwallex_dropin_2">
-                                  <div class="form-check form-check-inline input-box" style="width: 100%;">
-                                    <input class="form-check-input input-item" type="radio" value="airwallex_dropin" id="airwallex_dropin" <?php if ($payments_default == 'airwallex_dropin') echo 'checked'; ?> name="payment_method">
-                                    <label class="form-check-label" for="airwallex_dropin" style="float: right;min-width: 95%;">
-                                      <span style="font-family: var(--title-family);">@lang('onebuy::app.product.payment.airwallex_dropin.title') </span>
-                                      <!-- <div style="float: right;min-width: 200px;display: inline;text-align: right;"><img src="/checkout/v1/app/desktop/images/paypal.png" style="max-height:24px" /></div> -->
-                                    </label>
-                                  </div>
-                                </div>
-                              </h4>
-                            </div>
-                            <div id="airwallex_dropin_collapse" class="panel-collapse collapse" role="tabpanel" aria-labelledby="airwallex_dropin_head_2">
-                              <div class="panel-body">
-                                <p>
-                                <div>
-                                  @lang('onebuy::app.product.payment.airwallex_dropin.description')
-                                </div>
-                                </p>
-                              </div>
-                            </div>
-                          </div>
-
                         </div>
-
-                        <div class="panel panel-default" id="google-pay-box">
-                          <div class="panel-heading" role="tab">
+                        <div class="panel panel-default" id="airwallex-dropin-box">
+                          <div class="panel-heading" role="tab" id="airwallex_dropin_head_1">
                             <h4 class="panel-title">
-                              <div class="panel-title-header">
-                                <div class="form-check form-check-inline" style="width: 100%;">
-                                  <input class="form-check-input" type="radio" onchange="gooleOrAppleChange()" value="airwallex_google" id="airwallex_google" name="payment_method">
-                                  <label class="form-check-label" for="airwallex_google" style="float: right;min-width: 95%;">
-                                    <span style="font-family: var(--title-family);line-height:40px">GooglePay </span>
-                                    <div style="float: right;min-width: 200px;display: inline;text-align: right;"><img src="/checkout/v2/images/googlePay.png" style="max-height:40px" /></div>
+                              <div class="panel-title-header" id="airwallex_dropin_2">
+                                <div class="form-check form-check-inline input-box" style="width: 100%;">
+                                  <input class="form-check-input input-item" type="radio" value="airwallex_dropin" id="airwallex_dropin" <?php if ($payments_default == 'airwallex_dropin') echo 'checked'; ?> name="payment_method">
+                                  <label class="form-check-label" for="airwallex_dropin" style="float: right;min-width: 95%;">
+                                    <span style="font-family: var(--title-family);">@lang('onebuy::app.product.payment.airwallex_dropin.title') </span>
+                                    <!-- <div style="float: right;min-width: 200px;display: inline;text-align: right;"><img src="/checkout/v1/app/desktop/images/paypal.png" style="max-height:24px" /></div> -->
                                   </label>
                                 </div>
                               </div>
                             </h4>
                           </div>
-                          <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                          <div id="airwallex_dropin_collapse" class="panel-collapse collapse" role="tabpanel" aria-labelledby="airwallex_dropin_head_2">
                             <div class="panel-body">
-                              <div style="margin:10px;">
-                                After clicking "Pay with GooglePay" you will be redirected to GooglePay to securely complete your purchase.
+                              <p>
+                              <div>
+                                @lang('onebuy::app.product.payment.airwallex_dropin.description')
                               </div>
-                            </div>
-                          </div>
-                        </div>
-
-                        <div class="panel panel-default" id="apple-pay-box">
-                          <div class="panel-heading" role="tab">
-                            <h4 class="panel-title">
-                              <div class="panel-title-header">
-                                <div class="form-check form-check-inline" style="width: 100%;">
-                                  <input class="form-check-input" onchange="gooleOrAppleChange()" type="radio" value="airwallex_apple" id="airwallex_apple" name="payment_method">
-                                  <label class="form-check-label" for="airwallex_apple" style="float: right;min-width: 95%;">
-                                    <span style="font-family: var(--title-family);line-height:40px">ApplePay</span>
-                                    <div style="float: right;min-width: 200px;display: inline;text-align: right;"><img src="/checkout/v2/images/applePay.png" style="max-height:40px" /></div>
-                                  </label>
-                                </div>
-                              </div>
-                            </h4>
-                          </div>
-                          <div id="collapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-                            <div class="panel-body">
-                              <div style="margin:10px;">
-                                After clicking "Pay with ApplePay" you will be redirected to ApplePay to securely complete your purchase.
-                              </div>
+                              </p>
                             </div>
                           </div>
                         </div>
 
                       </div>
+
+                      <div class="panel panel-default" id="google-pay-box">
+                        <div class="panel-heading" role="tab">
+                          <h4 class="panel-title">
+                            <div class="panel-title-header">
+                              <div class="form-check form-check-inline" style="width: 100%;">
+                                <input class="form-check-input" type="radio" onchange="gooleOrAppleChange()" value="airwallex_google" id="airwallex_google" name="payment_method">
+                                <label class="form-check-label" for="airwallex_google" style="float: right;min-width: 95%;">
+                                  <span style="font-family: var(--title-family);line-height:40px">GooglePay </span>
+                                  <div style="float: right;min-width: 200px;display: inline;text-align: right;"><img src="/checkout/v2/images/googlePay.png" style="max-height:40px" /></div>
+                                </label>
+                              </div>
+                            </div>
+                          </h4>
+                        </div>
+                        <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                          <div class="panel-body">
+                            <div style="margin:10px;">
+                              After clicking "Pay with GooglePay" you will be redirected to GooglePay to securely complete your purchase.
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="panel panel-default" id="apple-pay-box">
+                        <div class="panel-heading" role="tab">
+                          <h4 class="panel-title">
+                            <div class="panel-title-header">
+                              <div class="form-check form-check-inline" style="width: 100%;">
+                                <input class="form-check-input" onchange="gooleOrAppleChange()" type="radio" value="airwallex_apple" id="airwallex_apple" name="payment_method">
+                                <label class="form-check-label" for="airwallex_apple" style="float: right;min-width: 95%;">
+                                  <span style="font-family: var(--title-family);line-height:40px">ApplePay</span>
+                                  <div style="float: right;min-width: 200px;display: inline;text-align: right;"><img src="/checkout/v2/images/applePay.png" style="max-height:40px" /></div>
+                                </label>
+                              </div>
+                            </div>
+                          </h4>
+                        </div>
+                        <div id="collapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                          <div class="panel-body">
+                            <div style="margin:10px;">
+                              After clicking "Pay with ApplePay" you will be redirected to ApplePay to securely complete your purchase.
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
                     </div>
                   </div>
+                </div>
               </form>
             </div>
 
@@ -2549,7 +2559,8 @@
           if (attrList.length > 0) {
             var selectList = ''
             for (var arri = 0; arri < attrList.length; arri++) {
-              var optionList = `<option value="" hidden">` + attrList[arri].label + `</option>`
+              var optionList = `<option value="" selected disabled>` + attrList[arri].label + `</option>`
+
               for (var attj = 0; attj < attrList[arri].options.length; attj++) {
                 optionList += `<option value="` + attrList[arri].options[attj].label + `">` + attrList[arri].options[attj].label + `</option>`
               }
@@ -2675,6 +2686,7 @@
           var isPc = IsPC()
           console.log(isPc, 'ispc');
           if (countries1 == 'us') {
+            $('.choose-billing-box').show()
             if (isPc) {
               let isMac = /macintosh|mac os x/i.test(navigator.userAgent);
               console.log(isMac, 'isMac');
@@ -2811,6 +2823,14 @@
         })
 
     })
+
+    function billingAddress() {
+      if ($('input[name=hobby]').is(":checked")) {
+        $('.billing-content').show()
+      } else {
+        $('.billing-content').hide()
+      }
+    }
 
     function inputBlur(event) {
       console.log(event.target, 'event.target')
@@ -3379,6 +3399,7 @@
     }
 
     function seInput(value) {
+      $(event.target).css('color', '#444444')
       var parId = $(event.target).parent().attr('id')
       var itemId = $(event.target).attr('id')
       var aid = ''
@@ -4209,7 +4230,7 @@
     $(function() {
       var width = $(window).innerWidth()
       if (width > 767) {
-        var height = $('.right-sec').height()
+        var height = $('.checkout-section').height()
         console.log(height, 'height===');
         $('.left-sec').css('height', height)
       }
