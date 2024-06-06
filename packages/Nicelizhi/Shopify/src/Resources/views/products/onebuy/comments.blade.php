@@ -20,7 +20,7 @@
                 <form action="{{ route('admin.shopify.products.comments', ['product_id' => $product_id, 'act_type' => $act_type]) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                 <div class="card-header">
-                    Upload Comments 
+                    Shopify Comments 
                 </div>
                 <div class="card-body">
                     {{-- <div class="form-group">
@@ -44,7 +44,7 @@
                 <div class="card-footer">
                     <input type="hidden" name="version" value="<?php echo $act_prod_type; ?>">
                     {{-- <button type="submit" class="btn btn-primary">submit</button> --}}
-                    <button type="button" class="btn btn-secondary manual-sync-comment">Manual Sync Comment</button>
+                    <button type="button" class="btn btn-primary manual-sync-comment">Manual Sync Shopify Comment</button>
                 </div>
             </form>
             </div>
