@@ -727,7 +727,7 @@
     .footer-box {
       background-color: #F5F5F5;
       padding: 60px 30px 60px 30px;
-      /* margin-top: 30px; */
+      margin-top: 10px;
       margin-right: 0px;
       margin-left: 0px;
       text-align: center;
@@ -1302,7 +1302,7 @@
 
     .Schritt-top-box {
       width: 100%;
-      padding: 5px 0;
+      padding: 5px 0 10px 0;
       display: flex;
       background-color: #F4F4F4;
     }
@@ -1559,6 +1559,10 @@
       font-family: var(--text-family) !important;
     }
 
+    .shopify-container p {
+      margin-top: 10px;
+    }
+
     @keyframes bounce {
 
       0%,
@@ -1617,7 +1621,7 @@
           <!-- <p class="header-text-hide">@lang('checkout::app.v3.Description')</p> -->
           <a class="header-text-hide" id="header-text" href="#iduzu">@lang('checkout::app.v3.Reviews')</a>
           <div class="top-left-button-box">
-            <a style="color: #fff;" href="#pkg-hdng1">@lang('checkout::app.v3.Buy Now')</a>
+            <a style="color: #fff;" href="#shopify-title-item1">@lang('checkout::app.v3.Buy Now')</a>
           </div>
         </div>
       </div>
@@ -2379,7 +2383,7 @@
         <div class="faq-content" style="width: 100%;float: right;">
           <div id="seeFaqBtn">
             @lang('onebuy::app.product.order.Frequently Asked Questions')
-            <span class="faq_view">@lang('onebuy::app.product.order.See Our FAQs')</span>
+            <span class="faq_view" onclick="heightChange()">@lang('onebuy::app.product.order.See Our FAQs')</span>
           </div>
           <div id="faq-text">
             <div id="collapseContent">
@@ -3180,7 +3184,6 @@
       $('.three-description-box').append(descriptionContent)
     }
     $('#shopify-title-item1').click(function() {
-      console.log();
       $(".shopify-container").show()
       $('#reviews-box').hide()
       $('#shopify-title-item1').addClass('bor-bom-3')
@@ -4531,6 +4534,15 @@
     //     $('body').css('height', height)
     //   }
     // })
+    function heightChange() {
+      var width = $(window).innerWidth()
+      if (width > 767) {
+        var height = $('.checkout-section').height()
+        console.log(height, 'height===');
+        $('.left-sec').css('height', height)
+        $('body').css('height', height)
+      }
+    }
     window.onload = function() {
       var width = $(window).innerWidth()
       if (width > 767) {
