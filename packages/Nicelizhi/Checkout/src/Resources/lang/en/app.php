@@ -88,6 +88,6 @@ return [
     'Description' => 'Description',
     'Reviews' => 'Reviews',
     'Buy Now' => 'Buy Now',
-
+    'Secure Checkout' => 'Secure Checkout'
   ]
 ];

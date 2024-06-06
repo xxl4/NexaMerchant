@@ -1688,12 +1688,12 @@
                 <path d="M464,64.7 L478.6,61 L484.7,79.8 L464,64.7 Z M497.6,40.4 L471.9,40.4 L464,16.2 L456.1,40.4 L430.4,40.4 L451.2,55.4 L443.3,79.6 L464.1,64.6 L476.9,55.4 L497.6,40.4 L497.6,40.4 L497.6,40.4 L497.6,40.4 Z" id="Shape" fill="#FFFFFF"></path>
               </g>
             </g>
-          </svg>@lang('checkout::app.v2.12,421 Verified Customer Reviews')</p <p class="bdr-line hide-mob">
+          </svg>@lang('checkout::app.v2.12,421 Verified Customer Reviews')</p>
         </p>
         <div class="payment-icon-box">
           <div class="payment-top">
             <img src="/checkout/v2/images/secure-checkout.png" alt="">
-            <p>Secure Checkout</p>
+            <p>@lang('checkout::app.v3.Secure Checkout')</p>
           </div>
           <img src="/checkout/v2/images/payment6.svg" alt="">
           <!-- <img width="20" src="/checkout/v2/images/payment7.svg" alt=""> -->

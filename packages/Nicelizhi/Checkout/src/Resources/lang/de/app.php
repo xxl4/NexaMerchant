@@ -86,6 +86,7 @@ return [
     'Secure Payment' => 'Sichere Zahlung',
     'Description' => 'beschreiben',
     'Reviews' => 'Bewertungen',
-    'Buy Now' => 'Kaufe jetzt'
+    'Buy Now' => 'Kaufe jetzt',
+    'Secure Checkout' => 'Sichere Zahlung'
   ]
 ];
