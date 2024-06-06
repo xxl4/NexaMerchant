@@ -2,7 +2,7 @@
 
     {{-- Page Title --}}
     <x-slot:title>
-        @lang('admin::app.settings.channels.index.title')
+        Shopify Home
     </x-slot:title>
 
      <!-- DataTables -->
@@ -17,7 +17,7 @@
               
                 <div class="card">
                     <div class="card-header">
-                      <h3 class="card-title">@lang('admin::app.settings.channels.index.title')</h3>
+                      <h3 class="card-title">Shopify Home</h3>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
