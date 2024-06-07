@@ -1055,7 +1055,7 @@
     .input-box label {
       width: 100%;
       position: relative;
-      margin-bottom: 20px;
+      margin-bottom: 10px;
     }
 
     .input-box .input-item {
@@ -1287,6 +1287,13 @@
       color: var(--text-color);
     }
 
+    .billing-input-box {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
     .product-selected {
       display: none;
       position: absolute;
@@ -1302,10 +1309,6 @@
 
     .in-se option[disabled][selected] {
       display: none;
-    }
-
-    .in-se {
-      color: red;
     }
   </style>
 </head>
@@ -1847,7 +1850,6 @@
                                   -webkit-box-sizing: border-box;height: calc(3.5rem + 2px);
                                   line-height: 1.25;padding: 1rem 0.75rem "></div>
                               </div>
-                              <!-- <div class="choose-billing-box" style="display: none;"> -->
                               <div class="choose-billing-box">
                                 <div style="display: flex;align-items: center;">
                                   <input type="checkbox" name="hobby" value="music" onchange="billingAddress()">
@@ -1855,116 +1857,130 @@
                                 </div>
                               </div>
                               <div class="billing-content" style="display: none;">
-                                <div class="input-box" style="margin-top: 5px;">
+                                <div class="input-box">
                                   <label>
-                                    <input onblur="inputBlur(event)" class="input-item" name="shippingZip" placeholder="" required="" />
-                                    <span class="input-span">@lang('checkout::app.v2.Zip Code')</span>
+                                    <input onblur="billingInputBlur(event)" class="input-item" name="billingStreetAddress" type="text" placeholder="" required="" />
+                                    <span class="input-span">Billing Street Address</span>
+                                  </label>
+                                </div>
+                                <div class="billing-input-box">
+                                  <div class="frm-flds fl" style="width:48% !important">
+                                    <label for="billingCountry " class="fl-label"></label>
+                                    <select name="billingCountry" type="text" placeholder="Billing Country" class="selcet-fld required cb-remove-class frmField">
+                                    </select>
+                                  </div>
+                                  <div class="frm-flds fl" style="width:48% !important">
+                                    <label for="billingState" class="fl-label"></label>
+                                    <select name="billingState" type="text" placeholder="Billing State" class="selcet-fld required cb-remove-class frmField">
+                                    </select>
+                                  </div>
+                                </div>
+                                <div class="input-box" style="margin-top: 10px;">
+                                  <label>
+                                    <input onblur="billingInputBlur(event)" class="input-item" name="billingZip" id="billingZip" type="tel" placeholder="" required="" />
+                                    <span class="input-span">Billing Zip/Postal Code</span>
                                   </label>
                                 </div>
                                 <div class="input-box">
                                   <label>
-                                    <input onblur="inputBlur(event)" class="input-item" name="shippingZip" id="zip" type="tel" placeholder="" required="" />
-                                    <span class="input-span">@lang('checkout::app.v2.Zip Code')</span>
+                                    <input onblur="billingInputBlur(event)" class="input-item" name="billingCity" placeholder="" required="" />
+                                    <span class="input-span">Billing City</span>
                                   </label>
                                 </div>
-                                <div class="input-box">
-                                  <label>
-                                    <input onblur="inputBlur(event)" class="input-item" name="shippingZip" id="zip" type="tel" placeholder="" required="" />
-                                    <span class="input-span">@lang('checkout::app.v2.Zip Code')</span>
-                                  </label>
-                                </div>
-                                <div class="input-box">
-                                  <label>
-                                    <input onblur="inputBlur(event)" class="input-item" name="shippingZip" id="zip" type="tel" placeholder="" required="" />
-                                    <span class="input-span">@lang('checkout::app.v2.Zip Code')</span>
-                                  </label>
-                                </div>
-                                <div class="input-box">
-                                  <label>
-                                    <input onblur="inputBlur(event)" class="input-item" name="shippingZip" id="zip" type="tel" placeholder="" required="" />
-                                    <span class="input-span">@lang('checkout::app.v2.Zip Code')</span>
-                                  </label>
+                                <div class="billing-input-box">
+                                  <div class="input-box" style="width:48% !important">
+                                    <label>
+                                      <input onblur="billingInputBlur(event)" class="input-item" name="billingFirstName" placeholder="" required="" />
+                                      <span class="input-span">Billing First Name</span>
+                                    </label>
+                                  </div>
+                                  <div class="input-box" style="width:48% !important">
+                                    <label>
+                                      <input onblur="billingInputBlur(event)" class="input-item" name="billingLastName" placeholder="" required="" />
+                                      <span class="input-span">Billing Last Name</span>
+                                    </label>
+                                  </div>
+
                                 </div>
                               </div>
                             </div>
                           </div>
+                          <div class="panel panel-default" id="airwallex-dropin-box">
+                            <div class="panel-heading" role="tab" id="airwallex_dropin_head_1">
+                              <h4 class="panel-title">
+                                <div class="panel-title-header" id="airwallex_dropin_2">
+                                  <div class="form-check form-check-inline input-box" style="width: 100%;">
+                                    <input class="form-check-input input-item" type="radio" value="airwallex_dropin" id="airwallex_dropin" <?php if ($payments_default == 'airwallex_dropin') echo 'checked'; ?> name="payment_method">
+                                    <label class="form-check-label" for="airwallex_dropin" style="float: right;min-width: 95%;">
+                                      <span style="font-family: var(--title-family);">@lang('onebuy::app.product.payment.airwallex_dropin.title') </span>
+                                      <!-- <div style="float: right;min-width: 200px;display: inline;text-align: right;"><img src="/checkout/v1/app/desktop/images/paypal.png" style="max-height:24px" /></div> -->
+                                    </label>
+                                  </div>
+                                </div>
+                              </h4>
+                            </div>
+                            <div id="airwallex_dropin_collapse" class="panel-collapse collapse" role="tabpanel" aria-labelledby="airwallex_dropin_head_2">
+                              <div class="panel-body">
+                                <p>
+                                <div>
+                                  @lang('onebuy::app.product.payment.airwallex_dropin.description')
+                                </div>
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+
                         </div>
-                        <div class="panel panel-default" id="airwallex-dropin-box">
-                          <div class="panel-heading" role="tab" id="airwallex_dropin_head_1">
+
+                        <div class="panel panel-default" id="google-pay-box">
+                          <div class="panel-heading" role="tab">
                             <h4 class="panel-title">
-                              <div class="panel-title-header" id="airwallex_dropin_2">
-                                <div class="form-check form-check-inline input-box" style="width: 100%;">
-                                  <input class="form-check-input input-item" type="radio" value="airwallex_dropin" id="airwallex_dropin" <?php if ($payments_default == 'airwallex_dropin') echo 'checked'; ?> name="payment_method">
-                                  <label class="form-check-label" for="airwallex_dropin" style="float: right;min-width: 95%;">
-                                    <span style="font-family: var(--title-family);">@lang('onebuy::app.product.payment.airwallex_dropin.title') </span>
-                                    <!-- <div style="float: right;min-width: 200px;display: inline;text-align: right;"><img src="/checkout/v1/app/desktop/images/paypal.png" style="max-height:24px" /></div> -->
+                              <div class="panel-title-header">
+                                <div class="form-check form-check-inline" style="width: 100%;">
+                                  <input class="form-check-input" type="radio" onchange="gooleOrAppleChange()" value="airwallex_google" id="airwallex_google" name="payment_method">
+                                  <label class="form-check-label" for="airwallex_google" style="float: right;min-width: 95%;">
+                                    <span style="font-family: var(--title-family);line-height:40px">GooglePay </span>
+                                    <div style="float: right;min-width: 200px;display: inline;text-align: right;"><img src="/checkout/v2/images/googlePay.png" style="max-height:40px" /></div>
                                   </label>
                                 </div>
                               </div>
                             </h4>
                           </div>
-                          <div id="airwallex_dropin_collapse" class="panel-collapse collapse" role="tabpanel" aria-labelledby="airwallex_dropin_head_2">
+                          <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
                             <div class="panel-body">
-                              <p>
-                              <div>
-                                @lang('onebuy::app.product.payment.airwallex_dropin.description')
+                              <div style="margin:10px;">
+                                After clicking "Pay with GooglePay" you will be redirected to GooglePay to securely complete your purchase.
                               </div>
-                              </p>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="panel panel-default" id="apple-pay-box">
+                          <div class="panel-heading" role="tab">
+                            <h4 class="panel-title">
+                              <div class="panel-title-header">
+                                <div class="form-check form-check-inline" style="width: 100%;">
+                                  <input class="form-check-input" onchange="gooleOrAppleChange()" type="radio" value="airwallex_apple" id="airwallex_apple" name="payment_method">
+                                  <label class="form-check-label" for="airwallex_apple" style="float: right;min-width: 95%;">
+                                    <span style="font-family: var(--title-family);line-height:40px">ApplePay</span>
+                                    <div style="float: right;min-width: 200px;display: inline;text-align: right;"><img src="/checkout/v2/images/applePay.png" style="max-height:40px" /></div>
+                                  </label>
+                                </div>
+                              </div>
+                            </h4>
+                          </div>
+                          <div id="collapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                            <div class="panel-body">
+                              <div style="margin:10px;">
+                                After clicking "Pay with ApplePay" you will be redirected to ApplePay to securely complete your purchase.
+                              </div>
                             </div>
                           </div>
                         </div>
 
                       </div>
-
-                      <div class="panel panel-default" id="google-pay-box">
-                        <div class="panel-heading" role="tab">
-                          <h4 class="panel-title">
-                            <div class="panel-title-header">
-                              <div class="form-check form-check-inline" style="width: 100%;">
-                                <input class="form-check-input" type="radio" onchange="gooleOrAppleChange()" value="airwallex_google" id="airwallex_google" name="payment_method">
-                                <label class="form-check-label" for="airwallex_google" style="float: right;min-width: 95%;">
-                                  <span style="font-family: var(--title-family);line-height:40px">GooglePay </span>
-                                  <div style="float: right;min-width: 200px;display: inline;text-align: right;"><img src="/checkout/v2/images/googlePay.png" style="max-height:40px" /></div>
-                                </label>
-                              </div>
-                            </div>
-                          </h4>
-                        </div>
-                        <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-                          <div class="panel-body">
-                            <div style="margin:10px;">
-                              After clicking "Pay with GooglePay" you will be redirected to GooglePay to securely complete your purchase.
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="panel panel-default" id="apple-pay-box">
-                        <div class="panel-heading" role="tab">
-                          <h4 class="panel-title">
-                            <div class="panel-title-header">
-                              <div class="form-check form-check-inline" style="width: 100%;">
-                                <input class="form-check-input" onchange="gooleOrAppleChange()" type="radio" value="airwallex_apple" id="airwallex_apple" name="payment_method">
-                                <label class="form-check-label" for="airwallex_apple" style="float: right;min-width: 95%;">
-                                  <span style="font-family: var(--title-family);line-height:40px">ApplePay</span>
-                                  <div style="float: right;min-width: 200px;display: inline;text-align: right;"><img src="/checkout/v2/images/applePay.png" style="max-height:40px" /></div>
-                                </label>
-                              </div>
-                            </div>
-                          </h4>
-                        </div>
-                        <div id="collapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-                          <div class="panel-body">
-                            <div style="margin:10px;">
-                              After clicking "Pay with ApplePay" you will be redirected to ApplePay to securely complete your purchase.
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
                     </div>
                   </div>
-                </div>
               </form>
             </div>
           </div>
@@ -2467,7 +2483,6 @@
     var productL3 = {}
     var productL4 = {}
     var getProductId = '{{ $slug }}'
-    // var countries1 = 'us'
     var countries1 = '<?php echo strtolower($default_country); ?>'
     var paypal_pay_acc = ''
     var area = '{{ app()->getLocale() }}'
@@ -2481,6 +2496,8 @@
     var googlerOrApple = ''
     var googleShow = false
     var appleShow = false
+    var countryOptions = ''
+    var countriesList = ''
     $(function() {
       console.log(logoImg, 'logoImg');
       $('.logo_wrap_dist img').attr('src', logoImg)
@@ -2535,13 +2552,6 @@
               }
               selectList += `<select class="in-se" id="in-se` + arri + `" onchange="seInput(value)">` + optionList + `</select>`
             }
-            // var imgIndex = attrList[0].options[0].products[0]
-            // var box =
-            //   `<div style="flex: 2;">` +
-            //   selectList +
-            //   `</div><img class="se-img" src="` +
-            //   data.attr.variant_images[imgIndex][0].small_image_url +
-            //   `" alt="" />`
             $('.buy-loading').hide()
             $('.se-box').append(selectList)
           } else {
@@ -2641,10 +2651,6 @@
           getVSID(data.attr.index2)
           params.products = []
           params.products.push(productL1, productL2)
-          // productL1.attr_id
-          // minList = midList.join(',')
-          // productsObj.attr_id = minList
-          // console.log(productsObj, 'midList')
           getSkuListInfo();
           $('#pc-banner').attr('src', data.ads.pc.img);
           $('#mobile-banner').attr('src', data.ads.mobile.img);
@@ -2655,7 +2661,7 @@
           var isPc = IsPC()
           console.log(isPc, 'ispc');
           if (countries1 == 'us') {
-            // $('.choose-billing-box').show()
+            $('.choose-billing-box').show()
             if (isPc) {
               let isMac = /macintosh|mac os x/i.test(navigator.userAgent);
               console.log(isMac, 'isMac');
@@ -2668,15 +2674,9 @@
             }
             if (googlerOrApple == 'google' && payTypeShow.airwallex_google == 1) {
               googleShow = true
-              //   console.log('googleShow');
-              //   $('.pay-button').show()
-              //   $('.appalpay-button').hide()
             }
             if (googlerOrApple == 'apple' && payTypeShow.airwallex_appley == 1) {
               appleShow = true
-              //   console.log('appalpayShow');
-              //   $('.pay-button').hide()
-              //   $('.appalpay-button').show()
             }
           }
           if (data.ads.size.img = '') {
@@ -2777,13 +2777,11 @@
             }
           }
           script.type = 'text/javascript'
-          // script.src = 'https://www.paypal.com/sdk/js?client-id=Ac3a2fQqrAO_2skbKS4hb5okCBnRUdh_i78Vvjhh-s1xc4fqZc39OyawwGL4kdHGvlPiRsv6CmogaJZz&components=buttons,messages,funding-eligibility&currency='+currency+'&disable-funding=paylater';
           script.src =
             'https://www.paypal.com/sdk/js?client-id=' +
             paypal_pay_acc +
             '&components=buttons,messages,funding-eligibility&currency=' +
             currency
-          // script.src = 'https://www.paypal.com/sdk/js?client-id=AUbkpTo_D9-l80qERS91ipcrXuIfSC3WMmFbK7Ey4n8RS3TaoJDw8H2rpxdhsWBIZWZbb6E3V7CSmK4R&components=buttons,messages,funding-eligibility&currency='+currency+'&disable-funding=paylater';
           script.async = 1
           document.body.appendChild(script)
         })
@@ -2793,11 +2791,104 @@
 
     })
 
+    function getbillingAddress() {
+      var billingText = ''
+      if ($('input[name=hobby]').is(":checked")) {
+        console.log('is(":checked")')
+        params.bill_first_name = $('input[name="billingFirstName"]').val()
+        params.bill_second_name = $('input[name="billingLastName"]').val()
+        params.bill_country = $('select[name="billingCountry"]').val()
+        params.bill_city = $('input[name="billingCity"]').val()
+        params.bill_province = $('select[name="billingState"]').val()
+        params.bill_address = $('input[name="billingStreetAddress"]').val()
+        params.bill_code = $('input[name="billingZip"]').val()
+        if (params.bill_first_name == '') {
+          billingText += '<li>Please enter your billing first name!</li>'
+        }
+        if (params.bill_second_name == '') {
+          billingText += '<li>Please enter your billing last name!</li>'
+        }
+        if (params.bill_country == '') {
+          billingText += '<li>Please select your billing country!</li>'
+        }
+        if (params.bill_city == '') {
+          billingText += '<li>Please enter your billing city!</li>'
+        }
+        if (params.bill_province == '') {
+          billingText += '<li>Please select your billing state!</li>'
+        }
+        if (params.bill_address == '') {
+          billingText += '<li>Please enter your billing address!</li>'
+        }
+        if (params.bill_code == '') {
+          billingText += '<li>Please enter your billing first name</li>'
+        }
+      }
+      return billingText;
+    }
+
     function billingAddress() {
       if ($('input[name=hobby]').is(":checked")) {
         $('.billing-content').show()
+        console.log(countryOptions, countriesList[0], 'countriesList[0]countriesList[0]countriesList[0]');
+        if (countryOptions !== '' && countriesList[0]?.countryCode !== '') {
+
+          $('select[name="billingCountry"]').append(countryOptions)
+          $('select[name="billingCountry"]').val(countriesList[0].countryCode)
+          var cval = countriesList[0].countryCode.toLowerCase()
+          var countryUrl = '/template-common/checkout1/state/' + cval + '_' + area + '.json'
+          axios
+            .get(countryUrl)
+            .then(function(res) {
+              if (res.data[0].CountryCode) {
+                console.log(res, 'rrrrrrrssssssss')
+                var stateList = res.data
+                var optionList = `<option value="" disabled>@lang('checkout::app.v2.Select State')</option>`
+                for (var resj = 0; resj < stateList.length; resj++) {
+                  optionList += `<option value="` + stateList[resj].StateCode + `">` + stateList[resj].StateName + `</option>`
+                }
+                $('select[name="billingState"]').empty()
+                $('select[name="billingState"]').append(optionList)
+                $('select[name="billingState"]').val(stateList[0].StateCode)
+              }
+            })
+        }
+
       } else {
         $('.billing-content').hide()
+      }
+    }
+    $('select[name="billingCountry"]').change(function() {
+      if ($(this).val()) {
+        var countryClick = $(this).val().toLowerCase()
+        console.log(countryClick, params.country, 'countryClick')
+        var countryUrl = '/template-common/checkout1/state/' + countryClick + '_' + area + '.json'
+        axios
+          .get(countryUrl)
+          .then(function(res) {
+            if (res.data[0].CountryCode) {
+              var stateList = res.data
+              var optionList = `<option value="" disabled>@lang('checkout::app.v2.Select State')</option>`
+              for (var resj = 0; resj < stateList.length; resj++) {
+                optionList += `<option value="` + stateList[resj].StateCode + `">` + stateList[resj].StateName + `</option>`
+              }
+              $('select[name="billingState"]').empty()
+              $('select[name="billingState"]').append(optionList)
+              $('select[name="billingState"]').val(stateList[0].StateCode)
+            }
+
+          })
+          .catch(function(err) {
+            console.log(err, 'err====')
+          })
+      }
+    })
+
+    function billingInputBlur(event) {
+      if ($(event.target).val() !== '') {
+        $(event.target).next().addClass('input-focus')
+      } else {
+        $(event.target).next().removeClass('input-focus')
       }
     }
 
@@ -2919,9 +3010,6 @@
         type: type
       };
       console.log(JSON.stringify(postParams), 'JSON.stringify(postParams)==')
-      // 1) 用户修改商品信息add_cart
-      // 3）用户发起支付 触发 add_pay
-      // 2）用户填写表单内容 ，触发 add_user_info
       fetch('https://crm.heomai.com/api/user/action', {
         body: JSON.stringify(postParams),
         method: 'POST',
@@ -2936,7 +3024,7 @@
       return regex.test(email);
     }
 
-    function errDialogShow(errIsShow, emailErr, airwallexArror = true) {
+    function errDialogShow(errIsShow, emailErr, billingErr = '', airwallexArror = true) {
       $('.dialog-error .dialog-box ul').empty()
       var textList = ''
       if (!$('input[name="firstName"]').val()) {
@@ -2971,6 +3059,9 @@
       }
       if (!airwallexArr) {
         textList += `<li>` + airwallexArr.errText + `</li>`
+      }
+      if (billingErr !== '') {
+        textList += billingErr
       }
       $('.dialog-error').show()
       $('.dialog-error .dialog-box ul').append(textList)
@@ -3260,14 +3351,14 @@
           if (res.data[0].countryCode) {
             console.log(res, '===recountries1res===')
             app_config.allowed_country_codes = []
-            var countriesList = res.data
-            var opList = `<option value="" disabled>@lang('checkout::app.v2.select country')</option>`
+            countriesList = res.data
+            countryOptions = `<option value="" disabled>@lang('checkout::app.v2.select country')</option>`
             for (let resi = 0; resi < countriesList.length; resi++) {
               var code = countriesList[resi].countryCode
               var name = countriesList[resi].countryName
-              opList += `<option value="` + code + `">` + name + `</option>`
+              countryOptions += `<option value="` + code + `">` + name + `</option>`
             }
-            $('select[name="shippingCountry"]').append(opList)
+            $('select[name="shippingCountry"]').append(countryOptions)
             $('select[name="shippingCountry"]').val(countriesList[0].countryCode)
           }
           var cval = $('select[name="shippingCountry"]').val()
@@ -3372,7 +3463,6 @@
     }
 
     function seInput(value) {
-      $(event.target).css('color', '#444444')
       var parId = $(event.target).parent().attr('id')
       var itemId = $(event.target).attr('id')
       var aid = ''
@@ -3566,14 +3656,17 @@
       params.code = $('input[name="shippingZip"]').val()
       params.country = $('select[name="shippingCountry"]').val()
       params.province = $('select[name="shippingState"]').val()
+      var billingErr = getbillingAddress()
+      console.log(params, 'billing');
       var errIsShow = skuIsScelect()
       var emailErr = validateEmail($('input[name="email"]').val())
       console.log(emailErr, 'emailErr');
       var errorShow = params.first_name && params.second_name && params.email && params.phone_full && params.address && params.city && params.code && params.country && params.province && errIsShow && airwallexArr.complete && emailErr
       console.log(airwallexArr, 'airwallexArr');
       console.log(errorShow, 'errorShow')
-      if (!errorShow) {
-        errDialogShow(errIsShow, emailErr, airwallexArr.complete)
+      if (!errorShow || billingErr !== '') {
+        console.log(billingErr, 'billingErr');
+        errDialogShow(errIsShow, emailErr, billingErr, airwallexArr.complete)
         $('#loading').hide()
         return
       }
@@ -3591,12 +3684,6 @@
       console.log(params, 'airwallexparams')
       createOrder('', '', 'airwallex')
 
-      // axios.post(postUrl).then(function(res) {
-      //     console.log(res, '===res')
-      //   })
-      //   .catch(function(err) {
-      //     console.log(err, 'err==')
-      //   })
     })
 
     function skuIsScelect() {
@@ -3936,20 +4023,6 @@
           },
 
           onInit(data, actions) {
-
-            // Disable the buttons
-            // actions.disable();
-
-            // Listen for changes to the checkbox
-            // document.querySelector('#check').addEventListener('change', function(event) {
-            //     // Enable or disable the button when it is checked or unchecked
-            //     if (event.target.checked)  {
-            //     actions.enable();
-            //     } else  {
-            //     actions.disable();
-            //     }
-            // });
-            // var params = getOrderParams('paypal_stand');
 
             var can_paypal = 0;
             var email_can = 0;
@@ -4578,7 +4651,6 @@
                     errorDetail.issue === 'INSTRUMENT_DECLINED'
                   ) {
                     return actions.restart() // Recoverable state, per:
-                    // https://developer.paypal.com/docs/checkout/integration-features/funding-failure/
                   }
 
                   if (errorDetail) {
@@ -4597,7 +4669,6 @@
                       '/onebuy/checkout/v1/success/' +
                       localStorage.getItem('order_id')
                     return true
-                    //actions.redirect('/checkout/v1/success/'+localStorage.getItem('order_id'));
                   }
                   if (res.error == 'INSTRUMENT_DECLINED') {
                     $('#' + (error_id || 'paypal-error')).html(
@@ -4708,18 +4779,6 @@
           $('#checkout-error').html(error);
           $('#checkout-error').show();
         });
-        // createOrder('', 'stripe_charge_token', 'stripe');
-        // stripe.createToken(cardNumber).then(function(result) {
-        //     if (result.error) {
-        //         // Inform the customer that there was an error.
-        //         $('#checkout-error').html(result.error.message+'<br /><br />');
-        //         $('#checkout-error').show();
-        //         $('#loading').hide();
-        //     } else {
-        //         // Send the token to your server.
-        //         createOrder(result.token.id, 'stripe_charge_token', 'stripe');
-        //     }
-        // });
       }
     }
 
