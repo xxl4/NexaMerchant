@@ -1121,7 +1121,7 @@
     .input-box label {
       width: 100%;
       position: relative;
-      margin-bottom: 20px;
+      margin-bottom: 10px;
     }
 
     .input-box .input-item {
@@ -1349,12 +1349,21 @@
       opacity: 0.5;
     }
 
-    /* .choose-billing-box {
+    .choose-billing-box {
+      display: none;
       margin: 5px;
       font-size: 13px;
       font-family: var(--text-family);
       color: var(--text-color);
-    } */
+    }
+
+    .billing-input-box {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
     .header-container {
       width: 100%;
       height: 55px;
@@ -2206,7 +2215,6 @@
                                   line-height: 1.25;padding: 1rem 0.75rem "></div>
                               </div>
                               <div style='margin-top:10px'>
-                                <!-- <div>@lang('onebuy::app.product.payment.creditCard.cvc')</div> -->
                                 <div id="cardCvc" style="
                                   border: 1px solid rgba(105, 105, 105, 0.397);
                                   border-radius: 10px;
@@ -2224,45 +2232,59 @@
                                   -webkit-box-sizing: border-box;height: calc(3.5rem + 2px);
                                   line-height: 1.25;padding: 1rem 0.75rem "></div>
                               </div>
-                              <!-- <div class="choose-billing-box" style="display: none;">
+                              <div class="choose-billing-box">
                                 <div style="display: flex;align-items: center;">
-                                  <input type="checkbox" name="hobby" value="music">
+                                  <input type="checkbox" name="hobby" value="music" onchange="billingAddress()">
                                   <p style="margin-left: 5px;">Use differce address for billing</p>
                                 </div>
-                              </div> -->
-                              <!-- <div class="billing-content">
-                                <div class="input-box" style="margin-top: 5px;">
+                              </div>
+                              <div class="billing-content" style="display: none;">
+                                <div class="input-box">
                                   <label>
-                                    <input onblur="inputBlur(event)" class="input-item" name="shippingZip" id="zip" type="tel" placeholder="" required="" />
-                                    <span class="input-span">@lang('checkout::app.v2.Zip Code')</span>
+                                    <input onblur="billingInputBlur(event)" class="input-item" name="billingStreetAddress" type="text" placeholder="" required="" />
+                                    <span class="input-span">Billing Street Address</span>
+                                  </label>
+                                </div>
+                                <div class="billing-input-box">
+                                  <div class="frm-flds fl" style="width:48% !important">
+                                    <label for="billingCountry " class="fl-label"></label>
+                                    <select name="billingCountry" type="text" placeholder="Billing Country" class="selcet-fld required cb-remove-class frmField">
+                                    </select>
+                                  </div>
+                                  <div class="frm-flds fl" style="width:48% !important">
+                                    <label for="billingState" class="fl-label"></label>
+                                    <select name="billingState" type="text" placeholder="Billing State" class="selcet-fld required cb-remove-class frmField">
+                                    </select>
+                                  </div>
+                                </div>
+                                <div class="input-box" style="margin-top: 10px;">
+                                  <label>
+                                    <input onblur="billingInputBlur(event)" class="input-item" name="billingZip" id="billingZip" type="tel" placeholder="" required="" />
+                                    <span class="input-span">Billing Zip/Postal Code</span>
                                   </label>
                                 </div>
                                 <div class="input-box">
                                   <label>
-                                    <input onblur="inputBlur(event)" class="input-item" name="shippingZip" id="zip" type="tel" placeholder="" required="" />
-                                    <span class="input-span">@lang('checkout::app.v2.Zip Code')</span>
+                                    <input onblur="billingInputBlur(event)" class="input-item" name="billingCity" placeholder="" required="" />
+                                    <span class="input-span">Billing City</span>
                                   </label>
                                 </div>
-                                <div class="input-box">
-                                  <label>
-                                    <input onblur="inputBlur(event)" class="input-item" name="shippingZip" id="zip" type="tel" placeholder="" required="" />
-                                    <span class="input-span">@lang('checkout::app.v2.Zip Code')</span>
-                                  </label>
-                                </div>
-                                <div class="input-box">
-                                  <label>
-                                    <input onblur="inputBlur(event)" class="input-item" name="shippingZip" id="zip" type="tel" placeholder="" required="" />
-                                    <span class="input-span">@lang('checkout::app.v2.Zip Code')</span>
-                                  </label>
-                                </div>
-                                <div class="input-box">
-                                  <label>
-                                    <input onblur="inputBlur(event)" class="input-item" name="shippingZip" id="zip" type="tel" placeholder="" required="" />
-                                    <span class="input-span">@lang('checkout::app.v2.Zip Code')</span>
-                                  </label>
+                                <div class="billing-input-box">
+                                  <div class="input-box" style="width:48% !important">
+                                    <label>
+                                      <input onblur="billingInputBlur(event)" class="input-item" name="billingFirstName" placeholder="" required="" />
+                                      <span class="input-span">Billing First Name</span>
+                                    </label>
+                                  </div>
+                                  <div class="input-box" style="width:48% !important">
+                                    <label>
+                                      <input onblur="billingInputBlur(event)" class="input-item" name="billingLastName" placeholder="" required="" />
+                                      <span class="input-span">Billing Last Name</span>
+                                    </label>
+                                  </div>
+
                                 </div>
                               </div>
-                            </div> -->
                             </div>
                           </div>
                           <div class="panel panel-default" id="airwallex-dropin-box">
@@ -2342,55 +2364,6 @@
               </form>
             </div>
 
-            <div class="js_choose_billing">
-              <div class="w_radio">
-                <input type="radio" id="radio_same_as_shipping" name="billingSameAsShipping" value="yes" checked />
-                <label for="radio_same_as_shipping"> Billing is the same as shipping </label>
-                <i class="icon-check"></i>
-              </div>
-              <div class="w_radio">
-                <input type="radio" id="radio_different_shipping" name="billingSameAsShipping" value="no" />
-                <label for="radio_different_shipping"> Billing Address different as Shipping </label>
-                <i class="icon-check"></i>
-              </div>
-            </div>
-
-            <div class="shipaddress billing-info">
-              <div class="frm-flds fl">
-                <label for="fname" class="fl-label">Billing First Name</label>
-                <input type="text" name="billingFirstName" class="input-flds required cb-remove-class-billing form-control-custom frmField" placeholder="Billing First Name" data-error-message="Please enter your billing first name!" />
-              </div>
-              <div class="frm-flds fl">
-                <label for="lanme" class="fl-label">Billing Last Name</label>
-                <input type="text" name="billingLastName" class="input-flds required cb-remove-class-billing frmField" placeholder="Billing Last Name" data-error-message="Please enter your billing last name!" />
-              </div>
-              <div class="frm-flds fl">
-                <label for="address" class="fl-label">Billing Address</label>
-                <input type="text" name="billingAddress1" class="input-flds required cb-remove-class-billing frmField" placeholder="Billing Address" data-error-message="Please enter your billing address!" />
-              </div>
-              <div class="frm-flds fl">
-                <label for="appt" class="fl-label">Apartment, suite, etc. (optional)</label>
-                <input type="text" name="billingAddress2" class="input-flds" placeholder="Apartment, suite, etc. (optional)" id="appt" />
-              </div>
-              <div class="frm-flds fl">
-                <label for="city" class="fl-label">Your City</label>
-                <input type="text" name="billingCity" class="input-flds required cb-remove-class-billing frmField" placeholder="Billing City" data-error-message="Please enter your billing city!" />
-              </div>
-              <div class="frm-flds fl">
-                <label for="billingCountry" class="fl-label">Select Country</label>
-                <select name="billingCountry" type="text" placeholder="Your State" class="selcet-fld required cb-remove-class-billing frmField" data-selected="US" data-error-message="Please select your billing country!">
-                  <option value="">Select Country</option>
-                </select>
-              </div>
-              <div class="frm-flds fl">
-                <label for="state" class="fl-label">Select State</label>
-                <input type="text" name="billingState" class="selcet-fld required cb-remove-class-billing frmField" placeholder="Your State" data-error-message="Please select your billing state!" data-selected="" />
-              </div>
-              <div class="frm-flds fl">
-                <label for="zip" class="fl-label">Zip Code</label>
-                <input type="tel" name="billingZip" class="input-flds required cb-remove-class-billing frmField" placeholder="Billing Zip Code" data-error-message="Please enter a valid billing zip code!" />
-              </div>
-            </div>
           </div>
           <div class="complete-btn" id="complete-btn-id"></div>
           <div id='paypal-button'></div>
@@ -2856,7 +2829,6 @@
     var productL3 = {}
     var productL4 = {}
     var getProductId = '{{ $slug }}'
-    // var countries1 = 'us'
     var countries1 = '<?php echo strtolower($default_country); ?>'
     var paypal_pay_acc = ''
     var area = '{{ app()->getLocale() }}'
@@ -2872,6 +2844,8 @@
     var appleShow = false
     var shopifyToggle = true
     var reviewsToggle = true
+    var countryOptions = ''
+    var countriesList = ''
     $(function() {
       getShopify()
       console.log(logoImg, 'logoImg');
@@ -2921,19 +2895,12 @@
           if (attrList.length > 0) {
             var selectList = ''
             for (var arri = 0; arri < attrList.length; arri++) {
-              var optionList = `<option value="" hidden">` + attrList[arri].label + `</option>`
+              var optionList = `<option value="" selected disabled">` + attrList[arri].label + `</option>`
               for (var attj = 0; attj < attrList[arri].options.length; attj++) {
                 optionList += `<option value="` + attrList[arri].options[attj].label + `">` + attrList[arri].options[attj].label + `</option>`
               }
               selectList += `<select class="in-se" id="in-se` + arri + `" onchange="seInput(value)">` + optionList + `</select>`
             }
-            // var imgIndex = attrList[0].options[0].products[0]
-            // var box =
-            //   `<div style="flex: 2;">` +
-            //   selectList +
-            //   `</div><img class="se-img" src="` +
-            //   data.attr.variant_images[imgIndex][0].small_image_url +
-            //   `" alt="" />`
             $('.buy-loading').hide()
             $('.se-box').append(selectList)
           } else {
@@ -3033,14 +3000,8 @@
           getVSID(data.attr.index2)
           params.products = []
           params.products.push(productL1, productL2)
-          // productL1.attr_id
-          // minList = midList.join(',')
-          // productsObj.attr_id = minList
-          // console.log(productsObj, 'midList')
           getSkuListInfo();
           console.log(new Date().getTime(), '中间');
-          // $('#pc-banner').attr('src', data.ads.pc.img);
-          // $('#mobile-banner').attr('src', data.ads.mobile.img);
           $('.prod-name').text(data.product.name)
           $('title').html(data.product.name)
           $('#buy-select1, #buy-select3, #buy-select4').hide()
@@ -3048,7 +3009,7 @@
           var isPc = IsPC()
           console.log(isPc, 'ispc');
           if (countries1 == 'us') {
-            // $('.choose-billing-box').show()
+            $('.choose-billing-box').show()
             if (isPc) {
               let isMac = /macintosh|mac os x/i.test(navigator.userAgent);
               console.log(isMac, 'isMac');
@@ -3061,15 +3022,9 @@
             }
             if (googlerOrApple == 'google' && payTypeShow.airwallex_google == 1) {
               googleShow = true
-              //   console.log('googleShow');
-              //   $('.pay-button').show()
-              //   $('.appalpay-button').hide()
             }
             if (googlerOrApple == 'apple' && payTypeShow.airwallex_appley == 1) {
               appleShow = true
-              //   console.log('appalpayShow');
-              //   $('.pay-button').hide()
-              //   $('.appalpay-button').show()
             }
           }
           if (data.ads.size.img == '') {
@@ -3125,9 +3080,6 @@
             $("#complete-btn-id").html("@lang('checkout::app.v2.complete_secure_purchase')");
           } else {
             window.is_airwallex = true
-            // if (countries1 == 'us') {
-            //   $('choose-billing-box').show
-            // }
             $('#airwallex-klarna').prop('checked', false);
             $('#payal_standard').prop('checked', false);
             $('#payment_method_airwallex').prop('checked', true);
@@ -3171,13 +3123,11 @@
             }
           }
           script.type = 'text/javascript'
-          // script.src = 'https://www.paypal.com/sdk/js?client-id=Ac3a2fQqrAO_2skbKS4hb5okCBnRUdh_i78Vvjhh-s1xc4fqZc39OyawwGL4kdHGvlPiRsv6CmogaJZz&components=buttons,messages,funding-eligibility&currency='+currency+'&disable-funding=paylater';
           script.src =
             'https://www.paypal.com/sdk/js?client-id=' +
             paypal_pay_acc +
             '&components=buttons,messages,funding-eligibility&currency=' +
             currency
-          // script.src = 'https://www.paypal.com/sdk/js?client-id=AUbkpTo_D9-l80qERS91ipcrXuIfSC3WMmFbK7Ey4n8RS3TaoJDw8H2rpxdhsWBIZWZbb6E3V7CSmK4R&components=buttons,messages,funding-eligibility&currency='+currency+'&disable-funding=paylater';
           script.async = 1
           document.body.appendChild(script)
           console.log(new Date().getTime(), '结束');
@@ -3188,6 +3138,42 @@
         })
 
     })
+
+    function getbillingAddress() {
+      var billingText = ''
+      if ($('input[name=hobby]').is(":checked")) {
+        console.log('is(":checked")')
+        params.bill_first_name = $('input[name="billingFirstName"]').val()
+        params.bill_second_name = $('input[name="billingLastName"]').val()
+        params.bill_country = $('select[name="billingCountry"]').val()
+        params.bill_city = $('input[name="billingCity"]').val()
+        params.bill_province = $('select[name="billingState"]').val()
+        params.bill_address = $('input[name="billingStreetAddress"]').val()
+        params.bill_code = $('input[name="billingZip"]').val()
+        if (params.bill_first_name == '') {
+          billingText += '<li>Please enter your billing first name!</li>'
+        }
+        if (params.bill_second_name == '') {
+          billingText += '<li>Please enter your billing last name!</li>'
+        }
+        if (params.bill_country == '') {
+          billingText += '<li>Please select your billing country!</li>'
+        }
+        if (params.bill_city == '') {
+          billingText += '<li>Please enter your billing city!</li>'
+        }
+        if (params.bill_province == '') {
+          billingText += '<li>Please select your billing state!</li>'
+        }
+        if (params.bill_address == '') {
+          billingText += '<li>Please enter your billing address!</li>'
+        }
+        if (params.bill_code == '') {
+          billingText += '<li>Please enter your billing first name</li>'
+        }
+      }
+      return billingText;
+    }
 
     function getDescriptionItem(data) {
       console.log(data, 'getDescriptionItem');
@@ -3262,6 +3248,72 @@
         })
     }
 
+    function billingAddress() {
+      if ($('input[name=hobby]').is(":checked")) {
+        $('.billing-content').show()
+        console.log(countryOptions, countriesList[0], 'countriesList[0]countriesList[0]countriesList[0]');
+        if (countryOptions !== '' && countriesList[0]?.countryCode !== '') {
+
+          $('select[name="billingCountry"]').append(countryOptions)
+          $('select[name="billingCountry"]').val(countriesList[0].countryCode)
+          var cval = countriesList[0].countryCode.toLowerCase()
+          var countryUrl = '/template-common/checkout1/state/' + cval + '_' + area + '.json'
+          axios
+            .get(countryUrl)
+            .then(function(res) {
+              if (res.data[0].CountryCode) {
+                console.log(res, 'rrrrrrrssssssss')
+                var stateList = res.data
+                var optionList = `<option value="" disabled>@lang('checkout::app.v2.Select State')</option>`
+                for (var resj = 0; resj < stateList.length; resj++) {
+                  optionList += `<option value="` + stateList[resj].StateCode + `">` + stateList[resj].StateName + `</option>`
+                }
+                $('select[name="billingState"]').empty()
+                $('select[name="billingState"]').append(optionList)
+                $('select[name="billingState"]').val(stateList[0].StateCode)
+              }
+            })
+        }
+
+      } else {
+        $('.billing-content').hide()
+      }
+    }
+
+    $('select[name="billingCountry"]').change(function() {
+      if ($(this).val()) {
+        var countryClick = $(this).val().toLowerCase()
+        console.log(countryClick, params.country, 'countryClick')
+        var countryUrl = '/template-common/checkout1/state/' + countryClick + '_' + area + '.json'
+        axios
+          .get(countryUrl)
+          .then(function(res) {
+            if (res.data[0].CountryCode) {
+              var stateList = res.data
+              var optionList = `<option value="" disabled>@lang('checkout::app.v2.Select State')</option>`
+              for (var resj = 0; resj < stateList.length; resj++) {
+                optionList += `<option value="` + stateList[resj].StateCode + `">` + stateList[resj].StateName + `</option>`
+              }
+              $('select[name="billingState"]').empty()
+              $('select[name="billingState"]').append(optionList)
+              $('select[name="billingState"]').val(stateList[0].StateCode)
+            }
+
+          })
+          .catch(function(err) {
+            console.log(err, 'err====')
+          })
+      }
+    })
+
+    function billingInputBlur(event) {
+      if ($(event.target).val() !== '') {
+        $(event.target).next().addClass('input-focus')
+      } else {
+        $(event.target).next().removeClass('input-focus')
+      }
+    }
+
     function inputBlur(event) {
       console.log(event.target, 'event.target')
       if ($(event.target).val() !== '') {
@@ -3326,9 +3378,6 @@
         type: type
       };
       console.log(JSON.stringify(postParams), 'JSON.stringify(postParams)==')
-      // 1) 用户修改商品信息add_cart
-      // 3）用户发起支付 触发 add_pay
-      // 2）用户填写表单内容 ，触发 add_user_info
       fetch('https://crm.heomai.com/api/user/action', {
         body: JSON.stringify(postParams),
         method: 'POST',
@@ -3343,7 +3392,7 @@
       return regex.test(email);
     }
 
-    function errDialogShow(errIsShow, emailErr, airwallexArror = true) {
+    function errDialogShow(errIsShow, emailErr, billingErr = '', airwallexArror = true) {
       $('.dialog-error .dialog-box ul').empty()
       var textList = ''
       if (!$('input[name="firstName"]').val()) {
@@ -3378,6 +3427,9 @@
       }
       if (!airwallexArr) {
         textList += `<li>` + airwallexArr.errText + `</li>`
+      }
+      if (billingErr !== '') {
+        textList += billingErr
       }
       $('.dialog-error').show()
       $('.dialog-error .dialog-box ul').append(textList)
@@ -3667,14 +3719,14 @@
           if (res.data[0].countryCode) {
             console.log(res, '===recountries1res===')
             app_config.allowed_country_codes = []
-            var countriesList = res.data
-            var opList = `<option value="" disabled>@lang('checkout::app.v2.select country')</option>`
+            countriesList = res.data
+            countryOptions = `<option value="" disabled>@lang('checkout::app.v2.select country')</option>`
             for (let resi = 0; resi < countriesList.length; resi++) {
               var code = countriesList[resi].countryCode
               var name = countriesList[resi].countryName
-              opList += `<option value="` + code + `">` + name + `</option>`
+              countryOptions += `<option value="` + code + `">` + name + `</option>`
             }
-            $('select[name="shippingCountry"]').append(opList)
+            $('select[name="shippingCountry"]').append(countryOptions)
             $('select[name="shippingCountry"]').val(countriesList[0].countryCode)
           }
           var cval = $('select[name="shippingCountry"]').val()
