@@ -1967,56 +1967,6 @@
                 </div>
               </form>
             </div>
-
-            <div class="js_choose_billing">
-              <div class="w_radio">
-                <input type="radio" id="radio_same_as_shipping" name="billingSameAsShipping" value="yes" checked />
-                <label for="radio_same_as_shipping"> Billing is the same as shipping </label>
-                <i class="icon-check"></i>
-              </div>
-              <div class="w_radio">
-                <input type="radio" id="radio_different_shipping" name="billingSameAsShipping" value="no" />
-                <label for="radio_different_shipping"> Billing Address different as Shipping </label>
-                <i class="icon-check"></i>
-              </div>
-            </div>
-
-            <div class="shipaddress billing-info">
-              <div class="frm-flds fl">
-                <label for="fname" class="fl-label">Billing First Name</label>
-                <input type="text" name="billingFirstName" class="input-flds required cb-remove-class-billing form-control-custom frmField" placeholder="Billing First Name" data-error-message="Please enter your billing first name!" />
-              </div>
-              <div class="frm-flds fl">
-                <label for="lanme" class="fl-label">Billing Last Name</label>
-                <input type="text" name="billingLastName" class="input-flds required cb-remove-class-billing frmField" placeholder="Billing Last Name" data-error-message="Please enter your billing last name!" />
-              </div>
-              <div class="frm-flds fl">
-                <label for="address" class="fl-label">Billing Address</label>
-                <input type="text" name="billingAddress1" class="input-flds required cb-remove-class-billing frmField" placeholder="Billing Address" data-error-message="Please enter your billing address!" />
-              </div>
-              <div class="frm-flds fl">
-                <label for="appt" class="fl-label">Apartment, suite, etc. (optional)</label>
-                <input type="text" name="billingAddress2" class="input-flds" placeholder="Apartment, suite, etc. (optional)" id="appt" />
-              </div>
-              <div class="frm-flds fl">
-                <label for="city" class="fl-label">Your City</label>
-                <input type="text" name="billingCity" class="input-flds required cb-remove-class-billing frmField" placeholder="Billing City" data-error-message="Please enter your billing city!" />
-              </div>
-              <div class="frm-flds fl">
-                <label for="billingCountry" class="fl-label">Select Country</label>
-                <select name="billingCountry" type="text" placeholder="Your State" class="selcet-fld required cb-remove-class-billing frmField" data-selected="US" data-error-message="Please select your billing country!">
-                  <option value="">Select Country</option>
-                </select>
-              </div>
-              <div class="frm-flds fl">
-                <label for="state" class="fl-label">Select State</label>
-                <input type="text" name="billingState" class="selcet-fld required cb-remove-class-billing frmField" placeholder="Your State" data-error-message="Please select your billing state!" data-selected="" />
-              </div>
-              <div class="frm-flds fl">
-                <label for="zip" class="fl-label">Zip Code</label>
-                <input type="tel" name="billingZip" class="input-flds required cb-remove-class-billing frmField" placeholder="Billing Zip Code" data-error-message="Please enter a valid billing zip code!" />
-              </div>
-            </div>
           </div>
           <div class="complete-btn" id="complete-btn-id"></div>
           <div id='paypal-button'></div>
@@ -2704,32 +2654,32 @@
           $('#footer-top-text').append(data.brand)
           var isPc = IsPC()
           console.log(isPc, 'ispc');
-          // if (countries1 == 'us') {
-          //   $('.choose-billing-box').show()
-          //   if (isPc) {
-          //     let isMac = /macintosh|mac os x/i.test(navigator.userAgent);
-          //     console.log(isMac, 'isMac');
-          //     googlerOrApple = isMac ? 'apple' : 'google'
+          if (countries1 == 'us') {
+            // $('.choose-billing-box').show()
+            if (isPc) {
+              let isMac = /macintosh|mac os x/i.test(navigator.userAgent);
+              console.log(isMac, 'isMac');
+              googlerOrApple = isMac ? 'apple' : 'google'
 
-          //   } else {
-          //     let type = getMobileOperatingSystem()
-          //     console.log(type, 'type');
-          //     googlerOrApple = type == 'iOS' ? 'apple' : 'google'
-          //   }
-          //   if (googlerOrApple == 'google' && payTypeShow.airwallex_google == 1) {
-          //     googleShow = true
-          //     //   console.log('googleShow');
-          //     //   $('.pay-button').show()
-          //     //   $('.appalpay-button').hide()
-          //   }
-          //   if (googlerOrApple == 'apple' && payTypeShow.airwallex_appley == 1) {
-          //     appleShow = true
-          //     //   console.log('appalpayShow');
-          //     //   $('.pay-button').hide()
-          //     //   $('.appalpay-button').show()
-          //   }
-          // }
-          if (!data.ads.size.img) {
+            } else {
+              let type = getMobileOperatingSystem()
+              console.log(type, 'type');
+              googlerOrApple = type == 'iOS' ? 'apple' : 'google'
+            }
+            if (googlerOrApple == 'google' && payTypeShow.airwallex_google == 1) {
+              googleShow = true
+              //   console.log('googleShow');
+              //   $('.pay-button').show()
+              //   $('.appalpay-button').hide()
+            }
+            if (googlerOrApple == 'apple' && payTypeShow.airwallex_appley == 1) {
+              appleShow = true
+              //   console.log('appalpayShow');
+              //   $('.pay-button').hide()
+              //   $('.appalpay-button').show()
+            }
+          }
+          if (data.ads.size.img = '') {
             $('#size-chart').hide()
           } else {
             $('#size-chart').show()
@@ -2917,7 +2867,6 @@
         var emailErr = validateEmail($('input[name="email"]').val())
         errDialogShow(errIsShow, emailErr)
       }
-
     }
 
     function IsPC() {
@@ -3073,10 +3022,12 @@
       }
       $('.sku-info').append(skuList)
     }
+
     function reviewImgPreview(imgUrl) {
       $('.size-chart-img-box').show()
       $('.size-chart-img img').attr('src', imgUrl)
     }
+
     function skuImgPreview(event) {
       var imgUrl = $(event.target).attr('src')
       $('.sku-preview-img-box').show()
@@ -3680,6 +3631,7 @@
     }
 
     function createApplePayButton(params) {
+      $('#loading').show();
       console.log(params, 'applepay');
       var payUrl = '/onebuy/order/add/sync?currency={{ core()->getCurrentCurrencyCode() }}&_token={{ csrf_token() }}&time=' + new Date().getTime();
       params.payment_method = 'airwallex_apple'
@@ -3736,15 +3688,18 @@
               console.log(event.detail, event, 'applePay ===  error');
             });
           } else {
+            $('#loading').hide();
             alert(data.error)
           }
         })
         .catch(function(err) {
+          $('#loading').hide();
           console.log(err, 'err==');
         })
     }
 
     function createGoogleButton(params) {
+      $('#loading').show();
       console.log(params, 'googlepay');
       var payUrl = '/onebuy/order/add/sync?currency={{ core()->getCurrentCurrencyCode() }}&_token={{ csrf_token() }}&time=' + new Date().getTime();
       // airwallex_apple
@@ -3818,10 +3773,12 @@
               console.log(event.detail, event, 'googlePay ===  error');
             });
           } else {
+            $('#loading').hide();
             alert(data.error)
           }
         })
         .catch(function(err) {
+          $('#loading').hide();
           console.log(err, 'err==');
         })
     }
