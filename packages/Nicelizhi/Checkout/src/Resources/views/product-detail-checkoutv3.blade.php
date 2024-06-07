@@ -21,8 +21,8 @@
   <meta name="color-scheme" content="light only" />
   <link href="https://cdn.jsdelivr.net/npm/flag-icon-css@4.1.7/css/flag-icons.min.css" rel="stylesheet" />
   <link href="https://cdn.jsdelivr.net/npm/jquery-colorbox@1.6.4/example1/colorbox.min.css" rel="stylesheet" />
-  <!-- <script src="https://checkout-demo.airwallex.com/assets/elements.bundle.min.js"></script> -->
-  <script src="https://checkout.airwallex.com/assets/elements.bundle.min.js"></script>
+  <script src="https://checkout-demo.airwallex.com/assets/elements.bundle.min.js"></script>
+  <!-- <script src="https://checkout.airwallex.com/assets/elements.bundle.min.js"></script> -->
   <style>
     @media only screen and (max-width: 600px) {}
 
@@ -939,7 +939,7 @@
 
     @media (max-width: 780px) {
       .header-container {
-        height: 45px !important;
+        height: 50px !important;
       }
 
       .prod-name {
@@ -947,7 +947,7 @@
       }
 
       .herder-content {
-        height: 40px !important;
+        height: 50px !important;
       }
 
       .Schritt-top-box {
@@ -960,13 +960,13 @@
         justify-content: center;
         align-items: center;
         font-size: 14px;
-        width: 100px;
+        width: 130px;
         height: 25px;
         border-radius: 6px;
       }
 
       .header-container img {
-        max-height: 45px;
+        max-height: 35px;
       }
 
       .item-text {
@@ -983,10 +983,6 @@
 
       .top-left-button {
         justify-content: end !important;
-      }
-
-      .herder-content img {
-        height: 20px !important;
       }
 
       /* .grid-container {
@@ -1559,6 +1555,11 @@
       font-family: var(--text-family) !important;
     }
 
+    .header-middle {
+      width: 100%;
+      padding: 10px 0;
+    }
+
     .shopify-container p {
       margin: 8px 0;
     }
@@ -1619,7 +1620,7 @@
         <img src="" style="height: 50px;" />
         <div class="top-left-button">
           <!-- <p class="header-text-hide">@lang('checkout::app.v3.Description')</p> -->
-          <a class="header-text-hide" id="header-text" href="#shopify-title-item1">@lang('checkout::app.v3.Reviews')</a>
+          <a class="header-text-hide" onclick="reviewToggle()" id="header-text" href="#shopify-title-item1">@lang('checkout::app.v3.Reviews')</a>
           <div class="top-left-button-box">
             <a style="color: #fff;" href="#pkg-hdng1">@lang('checkout::app.v3.Buy Now')</a>
           </div>
@@ -1689,7 +1690,7 @@
       </div>
       <div class="right-sec">
         <p class="prod-name hide-mob"></p>
-        <p class="str-rvw hide-mob go-rew"><svg width="98px" height="16px" viewBox="0 0 512 96" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <p class="str-rvw hide-mob go-rew" onclick="reviewToggle()"><svg width="98px" height="16px" viewBox="0 0 512 96" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
             <!-- Generator: Sketch 53.2 (72643) - https://sketchapp.com -->
             <g id="Trustpilot_ratings_5star-RGB" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
               <g fill-rule="nonzero">
@@ -1707,19 +1708,10 @@
             </g>
           </svg>@lang('checkout::app.v2.12,421 Verified Customer Reviews')</p>
         </p>
-        <div class="payment-icon-box">
-          <div class="payment-top">
-            <img src="/checkout/v2/images/secure-checkout.png" alt="">
-            <p>@lang('checkout::app.v3.Secure Checkout')</p>
-          </div>
-          <img src="/checkout/v2/images/payment6.svg" alt="">
-          <!-- <img width="20" src="/checkout/v2/images/payment7.svg" alt=""> -->
-          <img src="/checkout/v2/images/payment2.svg" alt="">
-          <img src="/checkout/v2/images/payment3.svg" alt="">
-          <img src="/checkout/v2/images/payment4.svg" alt="">
-          <img src="/checkout/v2/images/payment5.svg" alt="">
+        <div class="header-middle">
+          <p class="text-Schritt-top">@lang('checkout::app.v2.You Can See By')</p>
+          <img src="" alt="">
         </div>
-
         <div class="three-description-box">
           <!-- <div class="three-description-item">
             <img src="/checkout/v2/images/1673346232-mainpage.png" alt="">
@@ -1736,6 +1728,18 @@
         </div>
         <div class="btn-bx">
           <a href="#product2" class="comn-btn">@lang('checkout::app.v3.Buy Now')</a>
+        </div>
+        <div class="payment-icon-box">
+          <div class="payment-top">
+            <img src="/checkout/v2/images/secure-checkout.png" alt="">
+            <p>@lang('checkout::app.v3.Secure Checkout')</p>
+          </div>
+          <img src="/checkout/v2/images/payment6.svg" alt="">
+          <!-- <img width="20" src="/checkout/v2/images/payment7.svg" alt=""> -->
+          <img src="/checkout/v2/images/payment2.svg" alt="">
+          <img src="/checkout/v2/images/payment3.svg" alt="">
+          <img src="/checkout/v2/images/payment4.svg" alt="">
+          <img src="/checkout/v2/images/payment5.svg" alt="">
         </div>
 
         <div class="shopify-title fl">
@@ -1800,7 +1804,7 @@
             </div>
           <?php } ?>
         </div>
-        <p class="pkg-hdng" id="pkg-hdng1">
+        <p class="pkg-hdng" id="pkg-hdng1" style="border-top: 1px solid #ccc; padding-top: 10px">
           <span class="pkg-step">
             @lang('checkout::app.v2.Step')1:
           </span>
@@ -1972,8 +1976,6 @@
             </div>
           </div>
           <p class="button-top">@lang('checkout::app.v2.Express checkout')</p>
-          <!-- <div class="zoom-fade submit-button button-opacity pay-button fl" id="googlePayButton"></div>
-          <div class="zoom-fade submit-button button-opacity appalpay-button fl" id="applePayButton"></div> -->
           <div class="zoom-fade submit-button fl" id="payment-button" style="text-align: center;margin-top: 12px; width:100%;height:73px;"></div>
           <div id="loading">
             <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 100000; background:#ddd;opacity: 0.3;" id="loading-box" class="flex-center">
@@ -2289,6 +2291,51 @@
                           </div>
 
                         </div>
+                        <div class="panel panel-default" id="google-pay-box">
+                          <div class="panel-heading" role="tab">
+                            <h4 class="panel-title">
+                              <div class="panel-title-header">
+                                <div class="form-check form-check-inline" style="width: 100%;">
+                                  <input class="form-check-input" type="radio" onchange="gooleOrAppleChange()" value="airwallex_google" id="airwallex_google" name="payment_method">
+                                  <label class="form-check-label" for="airwallex_google" style="float: right;min-width: 95%;">
+                                    <span style="font-family: var(--title-family);line-height:40px">GooglePay </span>
+                                    <div style="float: right;min-width: 200px;display: inline;text-align: right;"><img src="/checkout/v2/images/googlePay.png" style="max-height:40px" /></div>
+                                  </label>
+                                </div>
+                              </div>
+                            </h4>
+                          </div>
+                          <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                            <div class="panel-body">
+                              <div style="margin:10px;">
+                                createdButton()createdButton()will be redirected to GooglePay to securely complete your purchase.
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="panel panel-default" id="apple-pay-box">
+                          <div class="panel-heading" role="tab">
+                            <h4 class="panel-title">
+                              <div class="panel-title-header">
+                                <div class="form-check form-check-inline" style="width: 100%;">
+                                  <input class="form-check-input" onchange="gooleOrAppleChange()" type="radio" value="airwallex_apple" id="airwallex_apple" name="payment_method">
+                                  <label class="form-check-label" for="airwallex_apple" style="float: right;min-width: 95%;">
+                                    <span style="font-family: var(--title-family);line-height:40px">ApplePay</span>
+                                    <div style="float: right;min-width: 200px;display: inline;text-align: right;"><img src="/checkout/v2/images/applePay.png" style="max-height:40px" /></div>
+                                  </label>
+                                </div>
+                              </div>
+                            </h4>
+                          </div>
+                          <div id="collapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                            <div class="panel-body">
+                              <div style="margin:10px;">
+                                After clicking "Pay with ApplePay" you will be redirected to ApplePay to securely complete your purchase.
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -2347,6 +2394,8 @@
           </div>
           <div class="complete-btn" id="complete-btn-id"></div>
           <div id='paypal-button'></div>
+          <div class="zoom-fade submit-button button-opacity pay-button fl" id="googlePayButton" onclick="googleOrAppleCheck()"></div>
+          <div class="zoom-fade submit-button button-opacity appalpay-button fl" id="applePayButton" onclick="googleOrAppleCheck()"></div>
         </form>
         <div class="summary-wrapper">
           <div class="order-summary-title">
@@ -2807,6 +2856,7 @@
     var productL3 = {}
     var productL4 = {}
     var getProductId = '{{ $slug }}'
+    // var countries1 = 'us'
     var countries1 = '<?php echo strtolower($default_country); ?>'
     var paypal_pay_acc = ''
     var area = '{{ app()->getLocale() }}'
@@ -2816,7 +2866,7 @@
     }
     var skuErr = false
     var logoImg = "/checkout/v2/images/logo_" + countries1 + ".png"
-    // var schrittImg = "/checkout/v2/images/1701506369_" + countries1 + ".webp"
+    var schrittImg = "/checkout/v2/images/1701506369_" + countries1 + ".webp"
     var googlerOrApple = ''
     var googleShow = false
     var appleShow = false
@@ -2826,13 +2876,13 @@
       getShopify()
       console.log(logoImg, 'logoImg');
       $('.header-container img').attr('src', logoImg)
-      // if (countries1 == 'fr' || countries1 == 'es') {
-      //   $('.Schritt-top-box').hide()
-      // } else {
-      //   console.log(schrittImg, 'schrittImg');
-      //   $('.Schritt-top-box').show()
-      //   $('#schritt-top-box-img').attr('src', schrittImg)
-      // }
+      if (countries1 == 'fr' || countries1 == 'es') {
+        $('.header-middle').hide()
+      } else {
+        console.log(schrittImg, 'schrittImg');
+        $('.header-middle').show()
+        $('.header-middle img').attr('src', schrittImg)
+      }
       if (countries1 == 'de') {
         $('.terms-block-last').show
       }
@@ -2989,7 +3039,6 @@
           // console.log(productsObj, 'midList')
           getSkuListInfo();
           console.log(new Date().getTime(), '中间');
-
           // $('#pc-banner').attr('src', data.ads.pc.img);
           // $('#mobile-banner').attr('src', data.ads.mobile.img);
           $('.prod-name').text(data.product.name)
@@ -2998,30 +3047,31 @@
           $('#footer-top-text').append(data.brand)
           var isPc = IsPC()
           console.log(isPc, 'ispc');
-          // if (countries1 == 'us') {
-          //   if (isPc) {
-          //     let isMac = /macintosh|mac os x/i.test(navigator.userAgent);
-          //     console.log(isMac, 'isMac');
-          //     googlerOrApple = isMac ? 'apple' : 'google'
+          if (countries1 == 'us') {
+            // $('.choose-billing-box').show()
+            if (isPc) {
+              let isMac = /macintosh|mac os x/i.test(navigator.userAgent);
+              console.log(isMac, 'isMac');
+              googlerOrApple = isMac ? 'apple' : 'google'
 
-          //   } else {
-          //     let type = getMobileOperatingSystem()
-          //     console.log(type, 'type');
-          //     googlerOrApple = type == 'iOS' ? 'apple' : 'google'
-          //   }
-          //   if (googlerOrApple == 'google' && payTypeShow.airwallex_google == 1) {
-          //     googleShow = true
-          //     console.log('googleShow');
-          //     $('.pay-button').show()
-          //     $('.appalpay-button').hide()
-          //   }
-          //   if (googlerOrApple == 'apple' && payTypeShow.airwallex_appley == 1) {
-          //     appleShow = true
-          //     console.log('appalpayShow');
-          //     $('.pay-button').hide()
-          //     $('.appalpay-button').show()
-          //   }
-          // }
+            } else {
+              let type = getMobileOperatingSystem()
+              console.log(type, 'type');
+              googlerOrApple = type == 'iOS' ? 'apple' : 'google'
+            }
+            if (googlerOrApple == 'google' && payTypeShow.airwallex_google == 1) {
+              googleShow = true
+              //   console.log('googleShow');
+              //   $('.pay-button').show()
+              //   $('.appalpay-button').hide()
+            }
+            if (googlerOrApple == 'apple' && payTypeShow.airwallex_appley == 1) {
+              appleShow = true
+              //   console.log('appalpayShow');
+              //   $('.pay-button').hide()
+              //   $('.appalpay-button').show()
+            }
+          }
           if (data.ads.size.img == '') {
             $('#size-chart').hide()
           } else {
@@ -3040,6 +3090,14 @@
           }
           if (payTypeShow.airwallex_dropin == '0') {
             $('#airwallex-dropin-box').hide()
+          }
+          if (payTypeShow.airwallex_google == '0' || googlerOrApple !== 'google') {
+            console.log('googleshow');
+            $('#google-pay-box').hide()
+          }
+          if (payTypeShow.airwallex_appley == '0' || googlerOrApple !== 'apple') {
+            // if (payTypeShow.airwallex_appley == '0') {
+            $('#apple-pay-box').hide()
           }
           if (paymentsDefault == 'airwallex_klarna') {
             console.log(paymentsDefault, 'kelala');
@@ -3065,40 +3123,7 @@
               textAlign: 'center'
             });
             $("#complete-btn-id").html("@lang('checkout::app.v2.complete_secure_purchase')");
-
-          }
-          if (paymentsDefault == 'payal_standard') {
-            window.is_airwallex = true
-            // if (countries1 == 'us') {
-            //   $('choose-billing-box').show
-            // }
-            $('#airwallex-klarna').prop('checked', false);
-            $('#payal_standard').prop('checked', false);
-            $('#payment_method_airwallex').prop('checked', true);
-            $("#complete-btn-id").show();
-            console.log("click headingOne ");
-            $("#collapseOne").show();
-            $("#collapseTwo").hide();
-            $("#collapseThree").hide();
-            $("#airwallex_dropin_collapse").hide();
-            $("#complete-btn-id").css({
-              width: "100%",
-              background: "#1773b0",
-              padding: "18px 13px",
-              textAlign: 'center'
-            });
-            $("#headingOne1").addClass("action");
-            $("#headingThree2").removeClass("action");
-            $("#headingOne2").removeClass("action");
-            $("#airwallex_dropin_2").removeClass("action");
-            $("#complete-btn-id").addClass(".complete-btn")
-            $("#complete-btn-id").addClass("submit-button");
-
-            $("#complete-btn-id").html("@lang('checkout::app.v2.complete_secure_purchase')");
-
-          };
-
-          if (paymentsDefault == 'payment_method_airwallex') {
+          } else {
             window.is_airwallex = true
             // if (countries1 == 'us') {
             //   $('choose-billing-box').show
@@ -3126,8 +3151,6 @@
               textAlign: 'center'
             });
             $("#complete-btn-id").html("@lang('checkout::app.v2.complete_secure_purchase')");
-
-
           }
           var script = document.createElement('script')
           if (script.readyState) {
@@ -3250,6 +3273,7 @@
       if (trackFlag) {
         crmTrack('add_user_info')
       }
+      createdButton()
     }
 
     function IsPC() {
@@ -3779,16 +3803,7 @@
       var isCrmTrack = listEach(list)
       if (isCrmTrack) {
         crmTrack('add_cart')
-        if (countries1 == 'us') {
-          if (googlerOrApple == 'google' && googleShow) {
-            console.log('googleShow');
-            createGoogleButton(params)
-          }
-          if (googlerOrApple == 'apple' && appleShow) {
-            console.log('appleShow');
-            createApplePayButton(params)
-          }
-        }
+        createdButton()
       }
       console.log(params.products, '===params====')
     }
@@ -3825,16 +3840,7 @@
       console.log(data.attr.attributes, 'data.attr');
       if (data.attr.attributes.length == 0) {
         crmTrack('add_cart')
-        if (countries1 == 'us') {
-          if (googlerOrApple == 'google' && googleShow) {
-            console.log('googleShow');
-            createGoogleButton(params)
-          }
-          if (googlerOrApple == 'apple' && appleShow) {
-            console.log('appleShow');
-            createApplePayButton(params)
-          }
-        }
+        createdButton()
       }
     })
     $('#product2').click(function(e) {
@@ -3867,16 +3873,7 @@
       initProuctData(0, '2')
       if (data.attr.attributes.length == 0) {
         crmTrack('add_cart')
-        if (countries1 == 'us') {
-          if (googlerOrApple == 'google' && googleShow) {
-            console.log('googleShow');
-            createGoogleButton(params)
-          }
-          if (googlerOrApple == 'apple' && appleShow) {
-            console.log('appleShow');
-            createApplePayButton(params)
-          }
-        }
+        createdButton()
       }
     })
     $('#product3').click(function(e) {
@@ -3909,16 +3906,7 @@
       initProuctData(2, '3')
       if (data.attr.attributes.length == 0) {
         crmTrack('add_cart')
-        if (countries1 == 'us') {
-          if (googlerOrApple == 'google' && googleShow) {
-            console.log('googleShow');
-            createGoogleButton(params)
-          }
-          if (googlerOrApple == 'apple' && appleShow) {
-            console.log('appleShow');
-            createApplePayButton(params)
-          }
-        }
+        createdButton()
       }
     })
     $('#product4').click(function(e) {
@@ -3951,16 +3939,7 @@
       initProuctData(3, '4')
       if (data.attr.attributes.length == 0) {
         crmTrack('add_cart')
-        if (countries1 == 'us') {
-          if (googlerOrApple == 'google' && googleShow) {
-            console.log('googleShow');
-            createGoogleButton(params)
-          }
-          if (googlerOrApple == 'apple' && appleShow) {
-            console.log('appleShow');
-            createApplePayButton(params)
-          }
-        }
+        createdButton()
       }
     })
     $('#complete-btn-id').click(function() {
@@ -4032,7 +4011,71 @@
       return showDialog;
     }
 
+    function gooleOrAppleChange() {
+      var googleSelected = $("#airwallex_google").is(":checked");
+      var appleSelected = $("#airwallex_apple").is(":checked");
+      if (googleSelected || appleSelected) {
+        createdButton()
+      }
+    }
+
+    function createdButton() {
+      var paramsNotEmpty = paramsIsEmpty()
+      var googleSelected = $("#airwallex_google").is(":checked");
+      var appleSelected = $("#airwallex_apple").is(":checked");
+      console.log(googleSelected, appleSelected, paramsNotEmpty, 'paramsNotEmpty=====');
+      if (countries1 == 'us') {
+        if (googlerOrApple == 'google' && googleShow && googleSelected && paramsNotEmpty) {
+          console.log('googleShow');
+          params.first_name = $('input[name="firstName"]').val()
+          params.second_name = $('input[name="lastName"]').val()
+          params.email = $('input[name="email"]').val()
+          params.phone_full = $('input[name="phone"]').val()
+          params.address = $('input[name="shippingAddress1"]').val()
+          params.city = $('input[name="shippingCity"]').val()
+          params.code = $('input[name="shippingZip"]').val()
+          params.country = $('select[name="shippingCountry"]').val()
+          params.province = $('select[name="shippingState"]').val()
+          createGoogleButton(params)
+        }
+        if (googlerOrApple == 'apple' && appleShow && appleSelected && paramsNotEmpty) {
+          console.log('appleShow');
+          params.first_name = $('input[name="firstName"]').val()
+          params.second_name = $('input[name="lastName"]').val()
+          params.email = $('input[name="email"]').val()
+          params.phone_full = $('input[name="phone"]').val()
+          params.address = $('input[name="shippingAddress1"]').val()
+          params.city = $('input[name="shippingCity"]').val()
+          params.code = $('input[name="shippingZip"]').val()
+          params.country = $('select[name="shippingCountry"]').val()
+          params.province = $('select[name="shippingState"]').val()
+          createApplePayButton(params)
+        }
+      }
+    }
+
+    function googleOrAppleCheck() {
+      var paramsNotEmpty = paramsIsEmpty()
+      if (!paramsNotEmpty) {
+        var errIsShow = skuIsScelect()
+        console.log(params, '==========2', data);
+        var emailErr = validateEmail($('input[name="email"]').val())
+        errDialogShow(errIsShow, emailErr)
+      }
+    }
+
+    function paramsIsEmpty() {
+      var errIsShow = skuIsScelect()
+      console.log(params, '==========2', data);
+      var emailErr = validateEmail($('input[name="email"]').val())
+      var errorShow = $('input[name="firstName"]').val() && $('input[name="lastName"]').val() && $('input[name="email"]').val() &&
+        $('input[name="phone"]').val() &&
+        $('input[name="shippingAddress1"]').val() && $('input[name="shippingCity"]').val() && $('input[name="shippingZip"]').val() && $('select[name="shippingCountry"]').val() && $('select[name="shippingState"]').val() && errIsShow && emailErr
+      return errorShow
+    }
+
     function createApplePayButton(params) {
+      $('#loading').show();
       console.log(params, 'applepay');
       var payUrl = '/onebuy/order/add/sync?currency={{ core()->getCurrentCurrencyCode() }}&_token={{ csrf_token() }}&time=' + new Date().getTime();
       params.payment_method = 'airwallex_apple'
@@ -4048,6 +4091,7 @@
         })
         .then(function(res) {
           console.log(res, 'applePayres==');
+          var orderId = res.order.id
           if (res.result === 200) {
             const applePayElement = Airwallex.createElement('applePayButton', {
               intent_id: res.payment_intent_id,
@@ -4062,6 +4106,7 @@
             });
             const domApplePay = applePayElement.mount('applePayButton');
             domApplePay.addEventListener('onReady', (event) => {
+              $('#loading').hide();
               $('#applePayButton').removeClass('button-opacity')
               $('.appalpay-button').css('background', '#fff')
               /*
@@ -4071,14 +4116,16 @@
               console.log(event.detail, event, 'applePay ===  ready');
             });
             domApplePay.addEventListener('onSuccess', (event) => {
+              crmTrack('add_pay')
               /*
                 ... Handle event on success
               */
               // window.alert(event.detail);
               console.log(event.detail, event, 'applePay ===  success');
-
+              window.location.href = "/onebuy/checkout/v1/success/" + orderId;
             });
             domApplePay.addEventListener('onError', (event) => {
+              crmTrack('add_pay')
               /*
                 ... Handle event on error
               */
@@ -4086,15 +4133,18 @@
               console.log(event.detail, event, 'applePay ===  error');
             });
           } else {
+            $('#loading').hide();
             alert(data.error)
           }
         })
         .catch(function(err) {
+          $('#loading').hide();
           console.log(err, 'err==');
         })
     }
 
     function createGoogleButton(params) {
+      $('#loading').show();
       console.log(params, 'googlepay');
       var payUrl = '/onebuy/order/add/sync?currency={{ core()->getCurrentCurrencyCode() }}&_token={{ csrf_token() }}&time=' + new Date().getTime();
       // airwallex_apple
@@ -4112,28 +4162,33 @@
         })
         .then(function(res) {
           console.log(res, 'googleres==');
+          var orderId = res.order.id
           if (res.result === 200) {
+
             const googlePayElement = Airwallex.createElement('googlePayButton', {
-              intent: {
-                // Required, googlePayButton uses intent_id and client_secret to prepare checkout
-                id: res.payment_intent_id,
-                client_secret: res.client_secret,
-              },
+              intent_id: res.payment_intent_id,
+              client_secret: res.client_secret,
               amount: {
                 value: res.order.base_grand_total,
                 currency: res.currency,
               },
+              // shippingAddressRequired: true,
+              // billingAddressParameters: {
+              //   format: 'FULL',
+              //   phoneNumberRequired: true
+              // },
+              // billingAddressRequired: true,
               // countryCode: res.country,
               countryCode: 'HK',
-              buttonType: 'buy',
               origin: window.location.origin,
-              autoCapture: true,
+              // autoCapture: true,
               merchantInfo: {
                 merchantName: 'Airwallex',
               },
             });
             const domGooglePay = googlePayElement.mount('googlePayButton');
             domGooglePay.addEventListener('onReady', (event) => {
+              $('#loading').hide();
               $('#googlePayButton').removeClass('button-opacity')
               $('.pay-button').css('background', '#fff')
               /*
@@ -4142,15 +4197,20 @@
               // window.alert(event.detail);
               console.log(event.detail, event, 'googlePay ===  ready');
             });
+            console.log("onSuccess");
             domGooglePay.addEventListener('onSuccess', (event) => {
+              crmTrack('add_pay')
               /*
                 ... Handle event on success
               */
               // window.alert(event.detail);
               // console.log(event.detail);
               console.log(event.detail, event, 'googlePay ===  success');
+              window.location.href = "/onebuy/checkout/v1/success/" + orderId;
             });
             domGooglePay.addEventListener('onError', (event) => {
+              crmTrack('add_pay')
+              // alert(event.detail.error.message)
               /*
                 ... Handle event on error
               */
@@ -4159,10 +4219,12 @@
               console.log(event.detail, event, 'googlePay ===  error');
             });
           } else {
+            $('#loading').hide();
             alert(data.error)
           }
         })
         .catch(function(err) {
+          $('#loading').hide();
           console.log(err, 'err==');
         })
     }
@@ -4183,16 +4245,53 @@
     }
     $(function() {
 
+      $('#airwallex_google').on("click", function() {
+        $('#airwallex-klarna').prop('checked', false);
+        $('#payal_standard').prop('checked', false);
+        $('#airwallex_google').prop('checked', true);
+        $('#payment_method_airwallex').prop('checked', false);
+        $('#airwallex_apple').prop('checked', false);
+        $("#collapseOne").hide();
+        $("#collapseTwo").hide();
+        $("#collapseThree").hide();
+        $("#collapseFour").show();
+        $("#collapseFive").hide();
+        $("#complete-btn-id").hide();
+        $('.pay-button').show()
+
+      })
+
+      $('#airwallex_apple').on("click", function() {
+        $('#airwallex-klarna').prop('checked', false);
+        $('#payal_standard').prop('checked', false);
+        $('#airwallex_apple').prop('checked', true);
+        $('#airwallex_google').prop('checked', false);
+        $('#payment_method_airwallex').prop('checked', false);
+        $("#collapseOne").hide();
+        $("#collapseTwo").hide();
+        $("#collapseThree").hide();
+        $("#collapseFour").hide();
+        $("#collapseFive").show();
+        $("#complete-btn-id").hide();
+        $('.appalpay-button').show()
+      })
+
       $("#payment_method_airwallex").on("click", function() {
         $('#airwallex-klarna').prop('checked', false);
         $('#payal_standard').prop('checked', false);
         $('#payment_method_airwallex').prop('checked', true);
+        $('#airwallex_apple').prop('checked', false);
+        $('#airwallex_google').prop('checked', false)
         $("#complete-btn-id").show();
         console.log("click headingOne ");
         $("#collapseOne").show();
         $("#collapseTwo").hide();
         $("#collapseThree").hide();
+        $("#collapseFour").hide();
+        $("#collapseFive").hide();
         $("#airwallex_dropin_collapse").hide();
+        $('.appalpay-button').hide()
+        $('.pay-button').hide()
 
         $("#headingOne1").addClass("action");
         $("#headingThree2").removeClass("action");
@@ -4214,11 +4313,17 @@
         $('#airwallex-klarna').prop('checked', true);
         $('#payal_standard').prop('checked', false);
         $('#payment_method_airwallex').prop('checked', false);
+        $('#airwallex_apple').prop('checked', false);
+        $('#airwallex_google').prop('checked', false)
         $("#complete-btn-id").show();
         $("#collapseOne").hide();
         $("#collapseTwo").hide();
         $("#collapseThree").show();
+        $("#collapseFour").hide();
+        $("#collapseFive").hide();
         $("#airwallex_dropin_collapse").hide();
+        $('.appalpay-button').hide()
+        $('.pay-button').hide()
 
         $("#headingThree2").addClass("action");
         $("#headingOne1").removeClass("action");
@@ -4237,13 +4342,20 @@
       })
 
       $("#payal_standard").on("click", function() {
+        $("#complete-btn-id").show();
         $('#airwallex-klarna').prop('checked', false);
         $('#payal_standard').prop('checked', true);
         $('#payment_method_airwallex').prop('checked', false);
+        $('#airwallex_apple').prop('checked', false);
+        $('#airwallex_google').prop('checked', false)
         $("#collapseOne").hide();
         $("#collapseTwo").show();
         $("#collapseThree").hide();
+        $("#collapseFour").hide();
+        $("#collapseFive").hide();
         $("#airwallex_dropin_collapse").hide();
+        $('.appalpay-button').hide()
+        $('.pay-button').hide()
 
         $("#headingOne2").addClass("action");
         $("#headingOne1").removeClass("action");
@@ -4567,7 +4679,7 @@
     $(document).on('click', '.go-rew', async function(evt) {
       if (evt.which) {
         $('html,body').animate({
-            scrollTop: $('#iduzu').offset().top,
+            scrollTop: $('#shopify-title-item1').offset().top,
           },
           '2000'
         )
@@ -4665,7 +4777,7 @@
   </script>
   <script>
     Airwallex.init({
-      env: 'prod', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
+      env: 'demo', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
       origin: window.location.origin, // Setup your event target to receive the browser events message
     });
 
