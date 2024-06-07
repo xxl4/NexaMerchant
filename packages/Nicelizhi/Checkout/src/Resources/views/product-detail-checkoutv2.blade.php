@@ -3768,6 +3768,7 @@
             });
             const domApplePay = applePayElement.mount('applePayButton');
             domApplePay.addEventListener('onReady', (event) => {
+              $('#loading').hide();
               $('#applePayButton').removeClass('button-opacity')
               $('.appalpay-button').css('background', '#fff')
               /*
