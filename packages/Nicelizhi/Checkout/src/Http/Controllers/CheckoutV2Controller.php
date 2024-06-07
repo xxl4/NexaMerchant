@@ -231,7 +231,7 @@ class CheckoutV2Controller extends Controller{
             return $data;
 
         }else{
-            return json_decode($data);
+            return json_decode($data,true);
         }
 
 
