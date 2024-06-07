@@ -2888,8 +2888,8 @@
         $('.header-middle').show()
         $('.header-middle img').attr('src', schrittImg)
       }
-      if (countries1 == 'de') {
-        $('.terms-block-last').show
+      if (countries1 == 'de' ||countries1 == 'fr' ) {
+        $('.terms-block-last').show()
       }
       if (countries1 == 'us' || countries1 == 'uk') {
         var favicon = '/checkout/v2/images/favicon.png'
