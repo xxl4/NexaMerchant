@@ -3683,7 +3683,7 @@
       var errorShow = params.first_name && params.second_name && params.email && params.phone_full && params.address && params.city && params.code && params.country && params.province && errIsShow && airwallexArr.complete && emailErr
       console.log(airwallexArr, 'airwallexArr');
       console.log(errorShow, 'errorShow')
-      if (!errorShow && billingErr !== '') {
+      if (!errorShow || billingErr !== '') {
         console.log(billingErr, 'billingErr');
         errDialogShow(errIsShow, emailErr, billingErr, airwallexArr.complete)
         $('#loading').hide()
