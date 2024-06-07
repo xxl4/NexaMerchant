@@ -1046,6 +1046,10 @@
     }
   </style>
   <style>
+    .buy-select {
+      display: none;
+    }
+
     .input-box {
       width: 100%;
       /* font-family: var(--); */
@@ -1429,13 +1433,13 @@
           </div>
           <div class="buy-select buy-relative" id="buy-select2">
 
-            <div class="buy-loading">
+            <!-- <div class="buy-loading">
               <div style="position: absolute; top: -5px; left: -10px; width: 110%; height: 110%; z-index: 100000; background:#fff;" id="loading-box" class="flex-center">
                 <div class="buy-box">
                   <div class="loader loader-01"></div>
                 </div>
               </div>
-            </div>
+            </div> -->
 
             <div class="buy-se-box">
               <div class="se-box" id="select2-item1">
@@ -1470,13 +1474,13 @@
           <div class="buy-select buy-relative" id="buy-select1">
             <div class="buy-se-box">
 
-              <div class="buy-loading">
+              <!-- <div class="buy-loading">
                 <div style="position: absolute; top: -5px; left: -10px; width: 110%; height: 120%; z-index: 100000; background:#fff;" id="loading-box" class="flex-center">
                   <div class="buy-box">
                     <div class="loader loader-01"></div>
                   </div>
                 </div>
-              </div>
+              </div> -->
 
               <div class="se-box" id="select1-item1">
                 <p class="se-title">@lang('checkout::app.v2.item')1</p>
@@ -1503,13 +1507,13 @@
           </div>
           <div class="buy-select buy-relative" id="buy-select3">
 
-            <div class="buy-loading">
+            <!-- <div class="buy-loading">
               <div style="position: absolute; top: -5px; left: -10px; width: 110%; height: 110%; z-index: 100000; background:#fff;" id="loading-box" class="flex-center">
                 <div class="buy-box">
                   <div class="loader loader-01"></div>
                 </div>
               </div>
-            </div>
+            </div> -->
 
             <div class="buy-se-box">
               <div class="se-box" id="select3-item1">
@@ -1545,13 +1549,13 @@
             </div>
           </div>
           <div class="buy-select buy-relative" id="buy-select4">
-            <div class="buy-loading">
+            <!-- <div class="buy-loading">
               <div style="position: absolute; top: -5px; left: -10px; width: 110%; height: 110%; z-index: 100000; background:#fff;" id="loading-box" class="flex-center">
                 <div class="buy-box">
                   <div class="loader loader-01"></div>
                 </div>
               </div>
-            </div>
+            </div> -->
 
             <div class="buy-se-box">
               <div class="se-box" id="select4-item1">
@@ -2413,74 +2417,102 @@
       y.parentNode.insertBefore(t, y);
     })(window, document, "clarity", "script", "kruepex7cm");
   </script>
-
   <script>
-    var data = ''
-    var orderObj = {}
-    var params = {
-      first_name: "",
-      second_name: "",
-      email: "",
-      phone_full: "",
-      country: "",
-      city: "",
-      province: "",
-      address: "",
-      code: "",
-      product_delivery: "",
-      currency: "",
-      coupon_code: "",
-      product_price: "",
-      total: "",
-      amount: "",
-      payment_return_url: "",
-      payment_cancel_url: "",
-      phone_prefix: "",
-      payment_method: "",
-      products: [],
-      logo_image: "",
-      brand: "",
-      description: "",
-      shopify_store_name: "",
-      produt_amount_base: "",
-      domain_name: "",
-      price_template: "",
-      omnisend: "",
-      payment_account: "",
-      shipping_address: "",
-      bill_first_name: "",
-      bill_second_name: "",
-      bill_country: null,
-      bill_city: "",
-      bill_province: null,
-      bill_address: "",
-      bill_code: "",
-      error: false
-    }
-    var currency = '{{ core()->getCurrentCurrencyCode() }}'
-    var paypalId = ''
-    var attLength
-    var productL1 = {}
-    var productL2 = {}
-    var productL3 = {}
-    var productL4 = {}
-    var getProductId = '{{ $slug }}'
-    var countries1 = '<?php echo strtolower($default_country); ?>'
-    var paypal_pay_acc = ''
-    var area = '{{ app()->getLocale() }}'
-    var currencySymbol = '{{ core()->currencySymbol(core()->getBaseCurrencyCode()) }}'
-    var airwallexArr = {
-      complete: false
-    }
-    var skuErr = false
-    var logoImg = "/checkout/v2/images/logo_" + countries1 + ".png"
-    var schrittImg = "/checkout/v2/images/1701506369_" + countries1 + ".webp"
-    var googlerOrApple = ''
-    var googleShow = false
-    var appleShow = false
-    var countryOptions = ''
-    var countriesList = ''
+    var orderObj = {},
+      params = {
+        first_name: "",
+        second_name: "",
+        email: "",
+        phone_full: "",
+        country: "",
+        city: "",
+        province: "",
+        address: "",
+        code: "",
+        product_delivery: "",
+        currency: "",
+        coupon_code: "",
+        product_price: "",
+        total: "",
+        amount: "",
+        payment_return_url: "",
+        payment_cancel_url: "",
+        phone_prefix: "",
+        payment_method: "",
+        products: [],
+        logo_image: "",
+        brand: "",
+        description: "",
+        shopify_store_name: "",
+        produt_amount_base: "",
+        domain_name: "",
+        price_template: "",
+        omnisend: "",
+        payment_account: "",
+        shipping_address: "",
+        bill_first_name: "",
+        bill_second_name: "",
+        bill_country: null,
+        bill_city: "",
+        bill_province: null,
+        bill_address: "",
+        bill_code: "",
+        error: false
+      },
+      currency = '{{ core()->getCurrentCurrencyCode() }}',
+      paypalId = '',
+      attLength, productL1 = {},
+      productL2 = {},
+      productL3 = {},
+      productL4 = {},
+      getProductId = '{{ $slug }}',
+      countries1 = '<?php echo strtolower($default_country); ?>',
+      paypal_pay_acc = '',
+      area = '{{ app()->getLocale() }}',
+      currencySymbol = '{{ core()->currencySymbol(core()->getBaseCurrencyCode()) }}',
+      airwallexArr = {
+        complete: false
+      },
+      skuErr = false,
+      logoImg = "/checkout/v2/images/logo_" + countries1 + ".png",
+      schrittImg = "/checkout/v2/images/1701506369_" + countries1 + ".webp",
+      googlerOrApple = '',
+      googleShow = false,
+      appleShow = false,
+      countryOptions = '',
+      countriesList = '',
+      phppackage_products = '<?php echo json_encode($data->package_products); ?>',
+      phpads = '<?php echo json_encode($data->ads); ?>',
+      phpattr = '<?php echo json_encode($data->attr); ?>',
+      phpbrand = '<?php echo json_encode($data->brand); ?>',
+      phpcountries = '<?php echo json_encode($data->countries); ?>',
+      phpcrm_channel = '<?php echo json_encode($data->crm_channel); ?>',
+      phpdefault_country = '<?php echo json_encode($data->default_country); ?>',
+      phpenv = '<?php echo json_encode($data->env); ?>',
+      phppayments = '<?php echo json_encode($data->payments); ?>',
+      phppayments_default = '<?php echo json_encode($data->payments_default); ?>',
+      phppaypal_client_id = '<?php echo json_encode($data->paypal_client_id); ?>',
+      phpproduct = '<?php echo json_encode($data->product); ?>',
+      phpsku = '<?php echo json_encode($data->sku); ?>',
+      data = {
+        ads: JSON.parse(phpads),
+        attr: JSON.parse(phpattr),
+        brand: JSON.parse(phpbrand),
+        countries: JSON.parse(phpcountries),
+        crm_channel: JSON.parse(phpcrm_channel),
+        default_country: JSON.parse(phpdefault_country),
+        env: JSON.parse(phpenv),
+        package_products: JSON.parse(phppackage_products),
+        payments: JSON.parse(phppayments),
+        payments_default: JSON.parse(phppayments_default),
+        paypal_client_id: JSON.parse(phppaypal_client_id),
+        // product: JSON.parse(phpproduct),
+        sku: JSON.parse(phpsku),
+      }
+    console.log(data, 'phpdata');
+    // console.log(phpData1, 'package_products ======');
     $(function() {
+      // console.log(phpData, 'php======== data======');
       console.log(logoImg, 'logoImg');
       $('.logo_wrap_dist img').attr('src', logoImg)
       if (countries1 == 'fr' || countries1 == 'es') {
@@ -2497,279 +2529,284 @@
         var favicon = '/checkout/v2/images/favicon.png'
         $('#favicon-icon').attr('href', favicon)
       }
-      var dataUrl = '/api/onebuy/product/detail/' + getProductId + '?currency=' + currency
-      axios
-        .get(dataUrl)
-        .then(function(res) {
-          data = res.data
-          payTypeShow = data.payments
-          var attrList = data.attr.attributes
-          paypal_pay_acc = data.paypal_client_id
-          var paymentsDefault = data.payments_default
-          console.log(paymentsDefault, data.ads.pc.img, 'paymentsDefault=====');
+      // var dataUrl = '/api/onebuy/product/detail/' + getProductId + '?currency=' + currency
+      // axios
+      //   .get(dataUrl)
+      // .then(function(res) {
+      // data = res.data
+      payTypeShow = data.payments
+      var attrList = data.attr.attributes
+      paypal_pay_acc = data.paypal_client_id
+      var paymentsDefault = data.payments_default
+      console.log(paymentsDefault, data.ads.pc.img, 'paymentsDefault=====');
 
-          $('#p-name2').text(data.package_products[0].name)
-          $('#p-name1').text(data.package_products[1].name)
-          $('#p-name3').text(data.package_products[2].name)
-          $('#p-name4').text(data.package_products[3].name)
-          $('#b-off2').text("@lang('checkout::app.v2.Save')" + data.package_products[0].tip1 + "@lang('checkout::app.v2.OFF')")
-          $('#b-off1').text("@lang('checkout::app.v2.Save')" + data.package_products[1].tip1 + "@lang('checkout::app.v2.OFF')")
-          $('#b-off3').text("@lang('checkout::app.v2.Save')" + data.package_products[2].tip1 + "@lang('checkout::app.v2.OFF')")
-          $('#b-off4').text("@lang('checkout::app.v2.Save')" + data.package_products[3].tip1 + "@lang('checkout::app.v2.OFF')")
-          $('#cb-reg-price2').text(data.package_products[0].old_price_format)
-          $('#cb-reg-price1').text(data.package_products[1].old_price_format)
-          $('#cb-reg-price3').text(data.package_products[2].old_price_format)
-          $('#cb-reg-price4').text(data.package_products[3].old_price_format)
-          $('#cb-buy-each2').text(data.package_products[0].new_price_format)
-          $('#cb-buy-each1').text(data.package_products[1].new_price_format)
-          $('#cb-buy-each3').text(data.package_products[2].new_price_format)
-          $('#cb-buy-each4').text(data.package_products[3].new_price_format)
-          if (attrList.length > 0) {
-            var selectList = ''
-            for (var arri = 0; arri < attrList.length; arri++) {
-              var optionList = `<option value="" selected disabled>` + attrList[arri].label + `</option>`
+      $('#p-name2').text(data.package_products[0].name)
+      $('#p-name1').text(data.package_products[1].name)
+      $('#p-name3').text(data.package_products[2].name)
+      $('#p-name4').text(data.package_products[3].name)
+      $('#b-off2').text("@lang('checkout::app.v2.Save')" + data.package_products[0].tip1 + "@lang('checkout::app.v2.OFF')")
+      $('#b-off1').text("@lang('checkout::app.v2.Save')" + data.package_products[1].tip1 + "@lang('checkout::app.v2.OFF')")
+      $('#b-off3').text("@lang('checkout::app.v2.Save')" + data.package_products[2].tip1 + "@lang('checkout::app.v2.OFF')")
+      $('#b-off4').text("@lang('checkout::app.v2.Save')" + data.package_products[3].tip1 + "@lang('checkout::app.v2.OFF')")
+      $('#cb-reg-price2').text(data.package_products[0].old_price_format)
+      $('#cb-reg-price1').text(data.package_products[1].old_price_format)
+      $('#cb-reg-price3').text(data.package_products[2].old_price_format)
+      $('#cb-reg-price4').text(data.package_products[3].old_price_format)
+      $('#cb-buy-each2').text(data.package_products[0].new_price_format)
+      $('#cb-buy-each1').text(data.package_products[1].new_price_format)
+      $('#cb-buy-each3').text(data.package_products[2].new_price_format)
+      $('#cb-buy-each4').text(data.package_products[3].new_price_format)
+      if (attrList.length > 0) {
+        var selectList = ''
+        for (var arri = 0; arri < attrList.length; arri++) {
+          var optionList = `<option value="" selected disabled>` + attrList[arri].label + `</option>`
 
-              for (var attj = 0; attj < attrList[arri].options.length; attj++) {
-                optionList += `<option value="` + attrList[arri].options[attj].label + `">` + attrList[arri].options[attj].label + `</option>`
-              }
-              selectList += `<select class="in-se" id="in-se` + arri + `" onchange="seInput(value)">` + optionList + `</select>`
-            }
-            $('.buy-loading').hide()
-            $('.se-box').append(selectList)
-          } else {
-            $('.buy-loading').hide()
-            $('.buy-select').hide()
+          for (var attj = 0; attj < attrList[arri].options.length; attj++) {
+            optionList += `<option value="` + attrList[arri].options[attj].label + `">` + attrList[arri].options[attj].label + `</option>`
           }
-          var nprice = currencySymbol + data.package_products[0].new_price.toFixed(2)
-          $('#summary-total1').text(nprice)
-          var shippingFee = currencySymbol + data.package_products[0].shipping_fee
-          $('#summary-total3').text(shippingFee)
+          selectList += `<select class="in-se" id="in-se` + arri + `" onchange="seInput(value)">` + optionList + `</select>`
+        }
+        // $('.buy-loading').hide()
+        $('.se-box').append(selectList)
+        $('#buy-select2').show()
+      } else {
+        // $('.buy-loading').hide()
+        $('.buy-select').hide()
+      }
+      var nprice = currencySymbol + data.package_products[0].new_price.toFixed(2)
+      $('#summary-total1').text(nprice)
+      var shippingFee = currencySymbol + data.package_products[0].shipping_fee
+      $('#summary-total3').text(shippingFee)
 
-          var discount = Number(data.package_products[0].old_price) - Number(data.package_products[0].new_price)
-          discount = currencySymbol + discount.toFixed(2)
-          $('#summary-total2').text(discount)
-          var total = Number(data.package_products[0].new_price) + Number(data.package_products[0].shipping_fee)
-          total = currencySymbol + total.toFixed(2)
-          $('#summary-total4').text(total)
-          $('.product-name').text(data.package_products[0].name)
-          $('#product-number').text('number: 2')
-          $('#product-price').text(data.package_products[0].tip2)
-          if (data.payments.airwallex_credit_card == '0') {
-            $('.paypal-box').hide()
-          }
-          if (data.payments.payal_standard == '0') {
-            $('.cardPayOpt').hide()
-            $('.credit-card').hide()
-          }
-          var productsObj = {}
-          var midList = []
-          attLength = data.attr.attributes.length
-          console.log(attLength, 'attLength')
-          params.product_delivery = data.package_products[0].shipping_fee
-          params.total = Number(data.package_products[0].new_price) + Number(data.package_products[0].shipping_fee)
-          params.amount = '2'
-          params.description = data.package_products[0].name
-          paypalId = data.paypal_client_id
-          productsObj.amount = '1'
-          productsObj.description = data.package_products[0].name
-          productsObj.product_id = data.product.id
-          // productsObj.product_sku = data.sku
-          productsObj.img = data.product.base_image.large_image_url
-          productsObj.price = data.package_products[0].tip2
-          // productsObj.variant_id =
-          console.log(data, 'data=====')
-          productL1 = JSON.parse(JSON.stringify(productsObj))
-          productL2 = JSON.parse(JSON.stringify(productsObj))
-          productL3 = JSON.parse(JSON.stringify(productsObj))
-          productL4 = JSON.parse(JSON.stringify(productsObj))
-          var name1,
-            name1List = [],
-            name2,
-            name2List = [],
-            name3,
-            name3List = [],
-            name4,
-            name4List = [],
-            v1,
-            v1List = [],
-            v2,
-            v2List = [],
-            v3,
-            v3List = [],
-            v4,
-            v4List = []
-          for (let m = 0; m < attLength; m++) {
-            var oid = '#in-se' + m
+      var discount = Number(data.package_products[0].old_price) - Number(data.package_products[0].new_price)
+      discount = currencySymbol + discount.toFixed(2)
+      $('#summary-total2').text(discount)
+      var total = Number(data.package_products[0].new_price) + Number(data.package_products[0].shipping_fee)
+      total = currencySymbol + total.toFixed(2)
+      $('#summary-total4').text(total)
+      $('.product-name').text(data.package_products[0].name)
+      $('#product-number').text('number: 2')
+      $('#product-price').text(data.package_products[0].tip2)
+      if (data.payments.airwallex_credit_card == '0') {
+        $('.paypal-box').hide()
+      }
+      if (data.payments.payal_standard == '0') {
+        $('.cardPayOpt').hide()
+        $('.credit-card').hide()
+      }
+      var productsObj = {}
+      var midList = []
+      attLength = data.attr.attributes.length
+      console.log(attLength, 'attLength')
+      params.product_delivery = data.package_products[0].shipping_fee
+      params.total = Number(data.package_products[0].new_price) + Number(data.package_products[0].shipping_fee)
+      params.amount = '2'
+      params.description = data.package_products[0].name
+      paypalId = data.paypal_client_id
+      productsObj.amount = '1'
+      productsObj.description = data.package_products[0].name
+      // productsObj.product_id = data.product.id
+      productsObj.product_id = '<?php echo json_encode($data->product->id); ?>'
+      console.log(productsObj.product_id, 'productsObj.product_id');
+      // productsObj.product_sku = data.sku
+      // productsObj.img = data.product.base_image.large_image_url
+      productsObj.img = '<?php echo json_encode($data->product->base_image->large_image_url) ?>'
+      console.log(productsObj.img, 'productsObj.img ');
+      productsObj.price = data.package_products[0].tip2
+      // productsObj.variant_id =
+      console.log(data, 'data=====')
+      productL1 = JSON.parse(JSON.stringify(productsObj))
+      productL2 = JSON.parse(JSON.stringify(productsObj))
+      productL3 = JSON.parse(JSON.stringify(productsObj))
+      productL4 = JSON.parse(JSON.stringify(productsObj))
+      var name1,
+        name1List = [],
+        name2,
+        name2List = [],
+        name3,
+        name3List = [],
+        name4,
+        name4List = [],
+        v1,
+        v1List = [],
+        v2,
+        v2List = [],
+        v3,
+        v3List = [],
+        v4,
+        v4List = []
+      for (let m = 0; m < attLength; m++) {
+        var oid = '#in-se' + m
 
-            if (params.amount == '1') {}
-            if (params.amount == '2') {
-              name1 = $('#select2-item1').children('select').eq(m).val()
-              name1List.push(name1)
-              name2 = $('#select2-item2').children('select').eq(m).val()
-              name2List.push(name2)
-              // productL1.attribute_name = v1+ ',' +v2
-              for (var inm = 0; inm < data.attr.attributes[m].options.length; inm++) {
-                var mid = data.attr.attributes[m].id
-                if (data.attr.attributes[m].options[inm].label == name1) {
-                  v1List.push(mid + '_' + data.attr.attributes[m].options[inm].id)
-                }
-                if (data.attr.attributes[m].options[inm].label == name2) {
-                  v2List.push(mid + '_' + data.attr.attributes[m].options[inm].id)
-                }
-              }
-              console.log(v1List, v2List, 'v1List')
+        if (params.amount == '1') {}
+        if (params.amount == '2') {
+          name1 = $('#select2-item1').children('select').eq(m).val()
+          name1List.push(name1)
+          name2 = $('#select2-item2').children('select').eq(m).val()
+          name2List.push(name2)
+          // productL1.attribute_name = v1+ ',' +v2
+          for (var inm = 0; inm < data.attr.attributes[m].options.length; inm++) {
+            var mid = data.attr.attributes[m].id
+            if (data.attr.attributes[m].options[inm].label == name1) {
+              v1List.push(mid + '_' + data.attr.attributes[m].options[inm].id)
             }
-            if (params.amount == '3') {}
-            if (params.amount == '4') {}
-          }
-          name1List = name1List.join(',')
-          name2List = name2List.join(',')
-          v1List = v1List.join(',')
-          v2List = v2List.join(',')
-          productL1.attr_id = v1List
-          productL2.attr_id = v2List
-          productL1.attribute_name = name1List
-          productL2.attribute_name = name2List
-          getVSID(data.attr.index2)
-          params.products = []
-          params.products.push(productL1, productL2)
-          getSkuListInfo();
-          $('#pc-banner').attr('src', data.ads.pc.img);
-          $('#mobile-banner').attr('src', data.ads.mobile.img);
-          $('.prod-name').text(data.product.name)
-          $('title').html(data.product.name)
-          $('#buy-select1, #buy-select3, #buy-select4').hide()
-          $('#footer-top-text').append(data.brand)
-          var isPc = IsPC()
-          console.log(isPc, 'ispc');
-          if (countries1 == 'us') {
-            $('.choose-billing-box').show()
-            if (isPc) {
-              let isMac = /macintosh|mac os x/i.test(navigator.userAgent);
-              console.log(isMac, 'isMac');
-              googlerOrApple = isMac ? 'apple' : 'google'
-
-            } else {
-              let type = getMobileOperatingSystem()
-              console.log(type, 'type');
-              googlerOrApple = type == 'iOS' ? 'apple' : 'google'
-            }
-            if (googlerOrApple == 'google' && payTypeShow.airwallex_google == 1) {
-              googleShow = true
-            }
-            if (googlerOrApple == 'apple' && payTypeShow.airwallex_appley == 1) {
-              appleShow = true
+            if (data.attr.attributes[m].options[inm].label == name2) {
+              v2List.push(mid + '_' + data.attr.attributes[m].options[inm].id)
             }
           }
-          if (data.ads.size.img = '') {
-            $('#size-chart').hide()
-          } else {
-            $('#size-chart').show()
-          }
-          if (payTypeShow.airwallex_klarna == '0') {
-            $('#airwallex-klarna-box').hide()
-          }
-          if (payTypeShow.payal_standard == '0') {
-            $('#payal-standard-box').hide()
+          console.log(v1List, v2List, 'v1List')
+        }
+        if (params.amount == '3') {}
+        if (params.amount == '4') {}
+      }
+      name1List = name1List.join(',')
+      name2List = name2List.join(',')
+      v1List = v1List.join(',')
+      v2List = v2List.join(',')
+      productL1.attr_id = v1List
+      productL2.attr_id = v2List
+      productL1.attribute_name = name1List
+      productL2.attribute_name = name2List
+      getVSID(data.attr.index2)
+      params.products = []
+      params.products.push(productL1, productL2)
+      getSkuListInfo();
+      $('#pc-banner').attr('src', data.ads.pc.img);
+      $('#mobile-banner').attr('src', data.ads.mobile.img);
+      $('.prod-name').text('<?php echo json_encode($data->product->name) ?>')
+      $('title').html('<?php echo json_encode($data->product->name) ?>')
+      $('#buy-select1, #buy-select3, #buy-select4').hide()
+      $('#footer-top-text').append(data.brand)
+      var isPc = IsPC()
+      console.log(isPc, 'ispc');
+      if (countries1 == 'us') {
+        $('.choose-billing-box').show()
+        if (isPc) {
+          let isMac = /macintosh|mac os x/i.test(navigator.userAgent);
+          console.log(isMac, 'isMac');
+          googlerOrApple = isMac ? 'apple' : 'google'
 
-          }
-          if (payTypeShow.airwallex_credit_card == '0') {
-            $('#airwallex-credit-card-box').hide()
+        } else {
+          let type = getMobileOperatingSystem()
+          console.log(type, 'type');
+          googlerOrApple = type == 'iOS' ? 'apple' : 'google'
+        }
+        if (googlerOrApple == 'google' && payTypeShow.airwallex_google == 1) {
+          googleShow = true
+        }
+        if (googlerOrApple == 'apple' && payTypeShow.airwallex_appley == 1) {
+          appleShow = true
+        }
+      }
+      if (data.ads.size.img = '') {
+        $('#size-chart').hide()
+      } else {
+        $('#size-chart').show()
+      }
+      if (payTypeShow.airwallex_klarna == '0') {
+        $('#airwallex-klarna-box').hide()
+      }
+      if (payTypeShow.payal_standard == '0') {
+        $('#payal-standard-box').hide()
 
-          }
-          if (payTypeShow.airwallex_dropin == '0') {
-            $('#airwallex-dropin-box').hide()
-          }
-          if (payTypeShow.airwallex_google == '0' || googlerOrApple !== 'google') {
-            $('#google-pay-box').hide()
-          }
-          if (payTypeShow.airwallex_appley == '0' || googlerOrApple !== 'apple') {
-            // if (payTypeShow.airwallex_appley == '0') {
-            $('#apple-pay-box').hide()
-          }
-          if (paymentsDefault == 'airwallex_klarna') {
-            console.log(paymentsDefault, 'kelala');
-            $('#airwallex-klarna').prop('checked', true);
-            $('#payal_standard').prop('checked', false);
-            $('#payment_method_airwallex').prop('checked', false);
-            $("#complete-btn-id").show();
-            $("#collapseOne").hide();
-            $("#collapseTwo").hide();
-            $("#collapseThree").show();
-            $("#airwallex_dropin_collapse").hide();
+      }
+      if (payTypeShow.airwallex_credit_card == '0') {
+        $('#airwallex-credit-card-box').hide()
 
-            $("#headingThree2").addClass("action");
-            $("#headingOne1").removeClass("action");
-            $("#headingOne2").removeClass("action");
-            $("#airwallex_dropin_2").removeClass("action");
-            $("#complete-btn-id").addClass(".complete-btn")
-            $("#complete-btn-id").addClass("submit-button");
-            $("#complete-btn-id").css({
-              width: "100%",
-              background: "#1773b0",
-              padding: "18px 13px",
-              textAlign: 'center'
-            });
-            $("#complete-btn-id").html("@lang('checkout::app.v2.complete_secure_purchase')");
-          } else {
-            window.is_airwallex = true
-            // if (countries1 == 'us') {
-            //   $('choose-billing-box').show
-            // }
-            $('#airwallex-klarna').prop('checked', false);
-            $('#payal_standard').prop('checked', false);
-            $('#payment_method_airwallex').prop('checked', true);
-            $("#complete-btn-id").show();
-            console.log("click headingOne ");
-            $("#collapseOne").show();
-            $("#collapseTwo").hide();
-            $("#collapseThree").hide();
-            $("#airwallex_dropin_collapse").hide();
+      }
+      if (payTypeShow.airwallex_dropin == '0') {
+        $('#airwallex-dropin-box').hide()
+      }
+      if (payTypeShow.airwallex_google == '0' || googlerOrApple !== 'google') {
+        $('#google-pay-box').hide()
+      }
+      if (payTypeShow.airwallex_appley == '0' || googlerOrApple !== 'apple') {
+        // if (payTypeShow.airwallex_appley == '0') {
+        $('#apple-pay-box').hide()
+      }
+      if (paymentsDefault == 'airwallex_klarna') {
+        console.log(paymentsDefault, 'kelala');
+        $('#airwallex-klarna').prop('checked', true);
+        $('#payal_standard').prop('checked', false);
+        $('#payment_method_airwallex').prop('checked', false);
+        $("#complete-btn-id").show();
+        $("#collapseOne").hide();
+        $("#collapseTwo").hide();
+        $("#collapseThree").show();
+        $("#airwallex_dropin_collapse").hide();
 
-            $("#headingOne1").addClass("action");
-            $("#headingThree2").removeClass("action");
-            $("#headingOne2").removeClass("action");
-            $("#airwallex_dropin_2").removeClass("action");
-            $("#complete-btn-id").addClass(".complete-btn")
-            $("#complete-btn-id").addClass("submit-button");
-            $("#complete-btn-id").css({
-              width: "100%",
-              background: "#1773b0",
-              padding: "18px 13px",
-              textAlign: 'center'
-            });
-            $("#complete-btn-id").html("@lang('checkout::app.v2.complete_secure_purchase')");
+        $("#headingThree2").addClass("action");
+        $("#headingOne1").removeClass("action");
+        $("#headingOne2").removeClass("action");
+        $("#airwallex_dropin_2").removeClass("action");
+        $("#complete-btn-id").addClass(".complete-btn")
+        $("#complete-btn-id").addClass("submit-button");
+        $("#complete-btn-id").css({
+          width: "100%",
+          background: "#1773b0",
+          padding: "18px 13px",
+          textAlign: 'center'
+        });
+        $("#complete-btn-id").html("@lang('checkout::app.v2.complete_secure_purchase')");
+      } else {
+        window.is_airwallex = true
+        // if (countries1 == 'us') {
+        //   $('choose-billing-box').show
+        // }
+        $('#airwallex-klarna').prop('checked', false);
+        $('#payal_standard').prop('checked', false);
+        $('#payment_method_airwallex').prop('checked', true);
+        $("#complete-btn-id").show();
+        console.log("click headingOne ");
+        $("#collapseOne").show();
+        $("#collapseTwo").hide();
+        $("#collapseThree").hide();
+        $("#airwallex_dropin_collapse").hide();
+
+        $("#headingOne1").addClass("action");
+        $("#headingThree2").removeClass("action");
+        $("#headingOne2").removeClass("action");
+        $("#airwallex_dropin_2").removeClass("action");
+        $("#complete-btn-id").addClass(".complete-btn")
+        $("#complete-btn-id").addClass("submit-button");
+        $("#complete-btn-id").css({
+          width: "100%",
+          background: "#1773b0",
+          padding: "18px 13px",
+          textAlign: 'center'
+        });
+        $("#complete-btn-id").html("@lang('checkout::app.v2.complete_secure_purchase')");
+      }
+      var script = document.createElement('script')
+      if (script.readyState) {
+        // IE
+        script.onreadystatechange = function() {
+          if (
+            script.readyState === 'loaded' ||
+            script.readyState === 'complete'
+          ) {
+            script.onreadystatechange = null
+            creatPaypalCardButton()
           }
-          var script = document.createElement('script')
-          if (script.readyState) {
-            // IE
-            script.onreadystatechange = function() {
-              if (
-                script.readyState === 'loaded' ||
-                script.readyState === 'complete'
-              ) {
-                script.onreadystatechange = null
-                creatPaypalCardButton()
-              }
-            }
-          } else {
-            // 其他浏览器
-            script.onload = function() {
-              creatPaypalCardButton()
-            }
-          }
-          script.type = 'text/javascript'
-          script.src =
-            'https://www.paypal.com/sdk/js?client-id=' +
-            paypal_pay_acc +
-            '&components=buttons,messages,funding-eligibility&currency=' +
-            currency
-          script.async = 1
-          document.body.appendChild(script)
-        })
-        .catch(function(error) {
-          console.error(error, 'err')
-        })
+        }
+      } else {
+        // 其他浏览器
+        script.onload = function() {
+          creatPaypalCardButton()
+        }
+      }
+      script.type = 'text/javascript'
+      script.src =
+        'https://www.paypal.com/sdk/js?client-id=' +
+        paypal_pay_acc +
+        '&components=buttons,messages,funding-eligibility&currency=' +
+        currency
+      script.async = 1
+      document.body.appendChild(script)
+      // })
+      // .catch(function(error) {
+      //   console.error(error, 'err')
+      // })
 
     })
 
@@ -3164,10 +3201,10 @@
       params.description = data.package_products[num1].name
       productsObj.amount = '1'
       productsObj.description = data.package_products[num1].name
-      productsObj.product_id = data.product.id
+      productsObj.product_id = '<?php echo json_encode($data->product->id) ?>'
       productsObj.price = data.package_products[num1].tip2
       // productsObj.product_sku = data.sku
-      productsObj.img = data.product.base_image.large_image_url
+      productsObj.img = '<?php echo json_encode($data->product->base_image->large_image_url) ?>'
       productL1 = JSON.parse(JSON.stringify(productsObj))
       productL2 = JSON.parse(JSON.stringify(productsObj))
       productL3 = JSON.parse(JSON.stringify(productsObj))
@@ -3439,8 +3476,9 @@
     }
 
     function listEach(list) {
+      console.log(list, 'listeach');
       return list.every(function(item) {
-        return item !== ''
+        return item !== '' && item !== null
       })
     }
 
