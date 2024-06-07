@@ -3359,6 +3359,12 @@
         params.products.push(productL1, productL2, productL3, productL4)
         // paramsProductsinit(params.products)
       }
+      if (data.attr.attributes.length == 0) {
+        params.products.forEach(function(item){
+          item.product_sku = data.sku
+          item.variant_id = ''
+        })
+      }
       getSkuListInfo();
     }
     $(function() {
@@ -3522,10 +3528,6 @@
       if (data.attr.attributes.length > 0) {
         $('#buy-select1').show()
       } else {
-        params.products.forEach(function(item){
-          item.product_sku = data.sku
-          item.variant_id = ''
-        })
         $('#buy-select1').hide()
       }
       $('#product1').addClass('choose-p')
@@ -3563,10 +3565,6 @@
       if (data.attr.attributes.length > 0) {
         $('#buy-select2').show()
       } else {
-        params.products.forEach(function(item){
-          item.product_sku = data.sku
-          item.variant_id = ''
-        })
         $('#buy-select2').hide()
       }
       $('#product2').addClass('choose-p')
@@ -3603,10 +3601,6 @@
       if (data.attr.attributes.length > 0) {
         $('#buy-select3').show()
       } else {
-        params.products.forEach(function(item){
-          item.product_sku = data.sku
-          item.variant_id = ''
-        })
         $('#buy-select3').hide()
       }
 
@@ -3645,10 +3639,6 @@
       if (data.attr.attributes.length > 0) {
         $('#buy-select4').show()
       } else {
-        params.products.forEach(function(item){
-          item.product_sku = data.sku
-          item.variant_id = ''
-        })
         $('#buy-select4').hide()
       }
       $('#product4').addClass('choose-p')
