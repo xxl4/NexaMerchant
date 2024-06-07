@@ -2655,7 +2655,7 @@
           var isPc = IsPC()
           console.log(isPc, 'ispc');
           if (countries1 == 'us') {
-            $('.choose-billing-box').show()
+            // $('.choose-billing-box').show()
             if (isPc) {
               let isMac = /macintosh|mac os x/i.test(navigator.userAgent);
               console.log(isMac, 'isMac');
