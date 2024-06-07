@@ -2848,36 +2848,32 @@
       countryOptions = '',
       countriesList = '',
       phppackage_products = <?php echo json_encode($data->package_products); ?>,
-      phppackage_products.forEach(function(index, item) {
-        JSON.parse(item)
-      })
-    phpads = '<?php echo json_encode($data->ads); ?>',
+
+      phpads = '<?php echo json_encode($data->ads); ?>',
       phpattr = '<?php echo json_encode($data->attr); ?>',
-      phpbrand = '<?php echo json_encode($data->brand); ?>',
-      phpcountries = '<?php echo json_encode($data->countries); ?>',
-      phpcrm_channel = '<?php echo json_encode($data->crm_channel); ?>',
-      phpdefault_country = '<?php echo json_encode($data->default_country); ?>',
-      phpenv = '<?php echo json_encode($data->env); ?>',
+      phpbrand = '<?php echo $data->brand; ?>',
+      phpdefault_country = '<?php echo $data->default_country; ?>',
+      phpenv = '<?php echo $data->env; ?>',
       phppayments = '<?php echo json_encode($data->payments); ?>',
-      phppayments_default = '<?php echo json_encode($data->payments_default); ?>',
-      phppaypal_client_id = '<?php echo json_encode($data->paypal_client_id); ?>',
-      phpproduct = '<?php echo json_encode($data->product); ?>',
-      phpsku = '<?php echo json_encode($data->sku); ?>',
-      data = {
-        ads: JSON.parse(phpads),
-        attr: JSON.parse(phpattr),
-        brand: JSON.parse(phpbrand),
-        countries: JSON.parse(phpcountries),
-        crm_channel: JSON.parse(phpcrm_channel),
-        default_country: JSON.parse(phpdefault_country),
-        env: JSON.parse(phpenv),
-        package_products: phppackage_products,
-        payments: JSON.parse(phppayments),
-        payments_default: JSON.parse(phppayments_default),
-        paypal_client_id: JSON.parse(phppaypal_client_id),
-        // product: JSON.parse(phpproduct),
-        sku: JSON.parse(phpsku),
-      }
+      phppayments_default = '<?php echo $data->payments_default; ?>',
+      phppaypal_client_id = '<?php echo $data->paypal_client_id; ?>',
+      phpsku = '<?php echo $data->sku; ?>'
+    phppackage_products.forEach(function(index, item) {
+      JSON.parse(item)
+    })
+    var data = {
+      ads: JSON.parse(phpads),
+      attr: JSON.parse(phpattr),
+      brand: phpbrand,
+      default_country: phpdefault_country,
+      env: phpenv,
+      package_products: phppackage_products,
+      payments: JSON.parse(phppayments),
+      payments_default: phppayments_default,
+      paypal_client_id: phppaypal_client_id,
+      // product: JSON.parse(phpproduct),
+      sku: phpsku,
+    }
     console.log(data, 'phpdata');
     $(function() {
       getShopify()
@@ -2974,11 +2970,11 @@
       productsObj.amount = '1'
       productsObj.description = data.package_products[0].name
       // productsObj.product_id = data.product.id
-      productsObj.product_id = '<?php echo json_encode($data->product->id); ?>'
+      productsObj.product_id = '<?php echo $data->product->id; ?>'
       console.log(productsObj.product_id, 'productsObj.product_id');
       // productsObj.product_sku = data.sku
       // productsObj.img = data.product.base_image.large_image_url
-      productsObj.img = '<?php echo json_encode($data->product->base_image->large_image_url) ?>'
+      productsObj.img = '<?php echo $data->product->base_image->large_image_url; ?>'
       console.log(productsObj.img, 'productsObj.img ');
       productsObj.price = data.package_products[0].tip2
       // productsObj.variant_id =
@@ -3039,8 +3035,8 @@
       params.products = []
       params.products.push(productL1, productL2)
       getSkuListInfo();
-      $('.prod-name').text('<?php echo json_encode($data->product->name) ?>')
-      $('title').html('<?php echo json_encode($data->product->name) ?>')
+      $('.prod-name').text('<?php echo $data->product->name; ?>')
+      $('title').html('<?php echo $data->product->name; ?>')
       $('#buy-select1, #buy-select3, #buy-select4').hide()
       $('#footer-top-text').append(data.brand)
       var isPc = IsPC()
@@ -3587,10 +3583,10 @@
       params.description = data.package_products[num1].name
       productsObj.amount = '1'
       productsObj.description = data.package_products[num1].name
-      productsObj.product_id = '<?php echo json_encode($data->product->id) ?>'
+      productsObj.product_id = '<?php echo $data->product->id; ?>'
       productsObj.price = data.package_products[num1].tip2
       // productsObj.product_sku = data.sku
-      productsObj.img = '<?php echo json_encode($data->product->base_image->large_image_url) ?>'
+      productsObj.img = '<?php echo $data->product->base_image->large_image_url; ?>'
       productL1 = JSON.parse(JSON.stringify(productsObj))
       productL2 = JSON.parse(JSON.stringify(productsObj))
       productL3 = JSON.parse(JSON.stringify(productsObj))
