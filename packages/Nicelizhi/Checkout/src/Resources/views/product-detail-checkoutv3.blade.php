@@ -3037,8 +3037,8 @@
       params.products = []
       params.products.push(productL1, productL2)
       getSkuListInfo();
-      $('.prod-name').text('<?php echo $data['product']['name']; ?>')
-      $('title').html('<?php echo $data['product']['name']; ?>')
+      $('.prod-name').text("<?php echo $data['product']['name']; ?>")
+      $('title').html("<?php echo $data['product']['name']; ?>")
       $('#buy-select1, #buy-select3, #buy-select4').hide()
       $('#footer-top-text').append(data.brand)
       var isPc = IsPC()
