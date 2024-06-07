@@ -2857,7 +2857,8 @@
       phppayments = '<?php echo json_encode($data->payments); ?>',
       phppayments_default = '<?php echo $data->payments_default; ?>',
       phppaypal_client_id = '<?php echo $data->paypal_client_id; ?>',
-      phpsku = '<?php echo $data->sku; ?>'
+      phpsku = '<?php echo $data->sku; ?>',
+      phpsellPoints = '<?php echo json_encode($data->sellPoints); ?>'
     phppackage_products.forEach(function(index, item) {
       JSON.parse(item)
     })
@@ -2873,6 +2874,7 @@
       paypal_client_id: phppaypal_client_id,
       // product: JSON.parse(phpproduct),
       sku: phpsku,
+      sellPoints: JSON.parse(phpsellPoints)
     }
     console.log(data, 'phpdata');
     $(function() {
