@@ -2466,9 +2466,8 @@
       productL3 = {},
       productL4 = {},
       getProductId = '{{ $slug }}',
-      countries1 = 'us'
-    // countries1 = '<?php echo strtolower($default_country); ?>',
-    paypal_pay_acc = '',
+      countries1 = '<?php echo strtolower($default_country); ?>',
+      paypal_pay_acc = '',
       area = '{{ app()->getLocale() }}',
       currencySymbol = '{{ core()->currencySymbol(core()->getBaseCurrencyCode()) }}',
       airwallexArr = {
