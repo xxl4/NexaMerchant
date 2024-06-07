@@ -2308,7 +2308,7 @@
                           <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
                             <div class="panel-body">
                               <div style="margin:10px;">
-                                createdButton()createdButton()will be redirected to GooglePay to securely complete your purchase.
+                                After clicking "Pay with GooglePay" you will be redirected to GooglePay to securely complete your purchase.
                               </div>
                             </div>
                           </div>
