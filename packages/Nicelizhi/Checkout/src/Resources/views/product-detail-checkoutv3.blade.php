@@ -2847,8 +2847,11 @@
       reviewsToggle = true,
       countryOptions = '',
       countriesList = '',
-      phppackage_products = '<?php echo json_encode($data->package_products); ?>',
-      phpads = '<?php echo json_encode($data->ads); ?>',
+      phppackage_products = <?php echo json_encode($data->package_products); ?>,
+      phppackage_products.forEach(function(index, item) {
+        JSON.parse(item)
+      })
+    phpads = '<?php echo json_encode($data->ads); ?>',
       phpattr = '<?php echo json_encode($data->attr); ?>',
       phpbrand = '<?php echo json_encode($data->brand); ?>',
       phpcountries = '<?php echo json_encode($data->countries); ?>',
@@ -2868,7 +2871,7 @@
         crm_channel: JSON.parse(phpcrm_channel),
         default_country: JSON.parse(phpdefault_country),
         env: JSON.parse(phpenv),
-        package_products: JSON.parse(phppackage_products),
+        package_products: phppackage_products,
         payments: JSON.parse(phppayments),
         payments_default: JSON.parse(phppayments_default),
         paypal_client_id: JSON.parse(phppaypal_client_id),
