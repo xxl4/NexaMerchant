@@ -229,7 +229,8 @@ class ProductController extends Controller
 
         $comments = $redis->hgetall($comment_list_key);
 
-        $reviews = $product->reviews->where('status', 'approved');
+        //$reviews = $product->reviews->where('status', 'approved');
+        $reviews = $product->reviews;
 
         $reviews = $reviews->map(function($review) {
             $review->customer = $review->customer;

@@ -371,7 +371,11 @@ class ProductController extends Controller
         foreach($products as $key=>$product) {
             //var_dump($product);
             $product['quantity'] = $product['amount'];
+            if(!isset($product['variant_id'])) {
+                return response()->json(['error' => 'No product found in cart','code'=>'202'], 400);
+            }
             $product['selected_configurable_option'] = $product['variant_id'];
+            
             if(!empty($product['attr_id'])) {
                 $attr_ids = explode(',', $product['attr_id']);
                 foreach($attr_ids as $key=>$attr_id) {

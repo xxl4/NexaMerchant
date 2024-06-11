@@ -32,6 +32,7 @@ class DisputesController extends Controller
                 array( 'db' => '`t`.`dispute_id`',  'dt' => 'dispute_id', 'field'=>'dispute_id'),
                 array( 'db' => '`t`.`transaction_id`',   'dt' => 'transaction_id', 'field'=>'transaction_id' ),
                 array( 'db' => '`t`.`status`',   'dt' => 'status', 'field'=>'status' ),
+                array( 'db' => '`t`.`order_id`',   'dt' => 'order_id', 'field'=>'order_id' ),
                 array( 'db' => '`t`.`created_at`',   'dt' => 'created_at', 'field'=>'created_at' ),
                 array( 'db' => '`t`.`updated_at`',   'dt' => 'updated_at', 'field'=>'updated_at' ),
             );
