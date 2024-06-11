@@ -26,6 +26,7 @@
                           <th>Dispute ID</th>
                           <th>Transaction ID</th>
                           <th>Status</th>
+                          <th>Order ID</th>
                           <th>created_at</th>
                           <th>updated_at</th>
                           <th>Options</th>
@@ -90,6 +91,9 @@
           }
           ,{
             data: 'status'
+          },
+          {
+            data: 'order_id'
           },
           {
             data: 'created_at'
