@@ -4,6 +4,7 @@ namespace Webkul\Sales\Models;
 use Illuminate\Database\Eloquent\Model;
 use Webkul\Sales\Contracts\OrderDispute as OrderDisputeContract;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Webkul\Sales\Database\Factories\OrderDisputeFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class OrderDispute extends Model implements OrderDisputeContract {
@@ -45,5 +46,15 @@ class OrderDispute extends Model implements OrderDisputeContract {
         'created_at',
         'updated_at',
     ];
+
+    /**
+     * Create a new factory instance for the model.
+     *
+     * @return Factory
+     */
+    protected static function newFactory(): Factory
+    {
+        return OrderDisputeFactory::new();
+    }
 
 }

@@ -69,6 +69,7 @@ class Order extends Model implements OrderContract
         'customer',
         'channel',
         'payment',
+        'dispute',
         'created_at',
         'updated_at',
     ];
@@ -210,6 +211,14 @@ class Order extends Model implements OrderContract
     public function addresses(): HasMany
     {
         return $this->hasMany(OrderAddressProxy::modelClass());
+    }
+
+    /**
+     * Get the payment for the order.
+     */
+    public function dispute(): HasOne
+    {
+        return $this->hasOne(OrderDispute::class, 'order_id');
     }
 
     /**
@@ -396,6 +405,11 @@ class Order extends Model implements OrderContract
     public function canRefund(): bool
     {
         if ($this->status === self::STATUS_FRAUD) {
+            return false;
+        }
+
+        $dispute = $this->dispute()->first();
+        if($dispute) {
             return false;
         }
 
