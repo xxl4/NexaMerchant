@@ -2672,8 +2672,8 @@
       getSkuListInfo();
       $('#pc-banner').attr('src', data.ads.pc.img);
       $('#mobile-banner').attr('src', data.ads.mobile.img);
-      $('.prod-name').text("<?php echo $data['product']['name']; ?>")
-      $('title').html("<?php echo $data['product']['name']; ?>")
+      $('.prod-name').text('<?php echo addslashes($data['product']['name']); ?>')
+      $('title').html('<?php echo addslashes($data['product']['name']); ?>')
       $('#buy-select1, #buy-select3, #buy-select4').hide()
       $('#footer-top-text').append(data.brand)
       var isPc = IsPC()
