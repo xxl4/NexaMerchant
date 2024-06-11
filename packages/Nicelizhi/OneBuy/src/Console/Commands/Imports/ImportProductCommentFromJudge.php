@@ -145,9 +145,9 @@ class ImportProductCommentFromJudge extends Command
                 if($item['product_external_id']!=$this->prod_id) continue;
             }
             
-            if($item['reviewer']['name']=='Anonymous') continue;
+            //if($item['reviewer']['name']=='Anonymous') continue;
             if($item['published']!=true) continue;
-            if($item['rating'] < 5) continue;
+            //if($item['rating'] < 5) continue;
 
             if(!empty($item['title'])) {
                 $product = $this->productRepository->findBySlug($item['product_external_id']);
@@ -170,9 +170,6 @@ class ImportProductCommentFromJudge extends Command
                     if(is_null($review)) {
 
                         //var_dump($item);exit;
-                        
-                        
-
                         //check the email exist
                         $customer = $this->customerRepository->findOneByField('email', $item['reviewer']['email']);
                         if(!$customer) {
@@ -209,6 +206,8 @@ class ImportProductCommentFromJudge extends Command
                         $data['customer_id'] = $customer->id;
     
                         if($item['published']==true) $data['status'] = "approved";
+                        if($item['reviewer']['name']=='Anonymous') $data['status'] = "pending";
+                        if($item['rating'] < 5) $data['status'] = "pending";
 
                         if(!empty($this->prod_id)) {
                             if($item['product_external_id']== $this->prod_id ) {
