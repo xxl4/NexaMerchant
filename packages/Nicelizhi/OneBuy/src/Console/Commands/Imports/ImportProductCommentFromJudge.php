@@ -90,7 +90,7 @@ class ImportProductCommentFromJudge extends Command
         // //var_dump($body['count']);exit;
 
         // $count = $body['count'];
-        $count = 100;
+        $count = 1000;
         $pages = ceil($count / $this->num);
 
         $client = new Client();
