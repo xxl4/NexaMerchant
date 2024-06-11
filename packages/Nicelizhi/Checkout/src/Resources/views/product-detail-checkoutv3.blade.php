@@ -2858,7 +2858,7 @@
       phppayments_default = '<?php echo $data['payments_default']; ?>',
       phppaypal_client_id = '<?php echo $data['paypal_client_id']; ?>',
       phpsku = '<?php echo $data['sku']; ?>',
-      phpsellPoints = '<?php echo json_encode($data['sellPoints']); ?>'
+      phpsellPoints = '<?php echo addslashes(json_encode($data['sellPoints'])); ?>'
     phppackage_products.forEach(function(index, item) {
       JSON.parse(item)
     })
@@ -3037,8 +3037,8 @@
       params.products = []
       params.products.push(productL1, productL2)
       getSkuListInfo();
-      $('.prod-name').text('<?php echo $data['product']['name']; ?>')
-      $('title').html('<?php echo $data['product']['name']; ?>')
+      $('.prod-name').text('<?php echo addslashes($data['product']['name']); ?>')
+      $('title').html('<?php echo addslashes($data['product']['name']); ?>')
       $('#buy-select1, #buy-select3, #buy-select4').hide()
       $('#footer-top-text').append(data.brand)
       var isPc = IsPC()
