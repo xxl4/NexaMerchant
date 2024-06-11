@@ -1222,6 +1222,7 @@ class ProductController extends Controller
         $countries = config("countries");
 
         $default_country = config('onebuy.default_country');
+        $order_pre = config('shopify.order_pre');
 
         $recommend_products = [];
 
@@ -1234,6 +1235,7 @@ class ProductController extends Controller
             "quora_adv_id",
             "countries",
             "default_country",
+            "order_pre",
             "recommend_products"
         ));
     }
