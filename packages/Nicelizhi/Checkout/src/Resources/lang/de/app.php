@@ -76,6 +76,17 @@ return [
     'Add a house number if you have one' => 'Fügen Sie eine Hausnummer hinzu, falls Sie eine haben',
     'You Can See By' => 'Sie können sehen',
     'Express checkout' => 'Express-Kaufabwicklung',
-    'edit' => 'bearbeiten'
+    'edit' => 'bearbeiten',
+    'complete_secure_purchase' => 'Zahlen Sie jetzt',
+    'Selected' => 'Ausgewählt'
+  ],
+  'v3' => [
+    '30-Day Return' => '30 Tage Rückgaberecht',
+    'Quality Guarantee' => 'Hohe Qualität garantiert',
+    'Secure Payment' => 'Sichere Zahlung',
+    'Description' => 'Beschreiben',
+    'Reviews' => 'Bewertungen',
+    'Buy Now' => 'Kaufe jetzt',
+    'Secure Checkout' => 'Sichere Zahlung'
   ]
 ];

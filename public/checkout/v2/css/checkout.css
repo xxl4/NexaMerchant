@@ -54,9 +54,9 @@
      line-height:1px;
      height:1px;
 }
- .forMob,.forTab{
+ /* .forMob,.forTab{
      display:none ;
-}
+} */
  .fl{
      float:left;
 }
@@ -252,7 +252,7 @@
      width:100%;
     /* padding:50px 0;
      */
-     padding: 10px 0 50px;
+     padding-top: 10px;
 }
  .left-sec{
      float:left;
@@ -1494,9 +1494,9 @@ ul.s1-list li p {
      .forMob{
          display:block;
     }
-     .hide-mob{
+     /* .hide-mob{
          display:none;
-    }
+    } */
      .topStrip p{
         font-size: 14px;
         line-height: 19px;
@@ -1536,7 +1536,7 @@ ul.s1-list li p {
      .str-rvw{
         font-size: 14px;
          line-height: 18px;
-        margin-top: 5px;
+        margin-top: 15px;
     }
      .str-rvw img {
         margin: -3px 3px 0 0;

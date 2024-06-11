@@ -75,8 +75,19 @@ return [
     'Select State' => 'Select State',
     'select country' => 'select country',
     'Add a house number if you have one' => 'Add a house number if you have one',
-    'You Can See By' => 'You Can See By',
+    'You Can See By' => 'AS SEEN ON:',
     'Express checkout' => 'Express checkout',
-    'edit' => 'edit'
+    'edit' => 'Edit',
+    'complete_secure_purchase' => 'Pay Now',
+    'Selected' => 'Selected'
+  ],
+  'v3' => [
+    '30-Day Return' => '30-Day Return',
+    'Quality Guarantee' => 'Quality Guarantee',
+    'Secure Payment' => 'Secure Payment',
+    'Description' => 'Description',
+    'Reviews' => 'Reviews',
+    'Buy Now' => 'Buy Now',
+    'Secure Checkout' => 'Secure Checkout'
   ]
 ];

@@ -66,7 +66,7 @@ class AirwallexController extends Controller
      */
     public function webhook(Request $request)
     {
-        // Log::info(json_encode($request->all())); // log body
+        Log::info(json_encode($request->all())); // log body
         $input = $request->all();
         if (isset($input['data']['object']['merchant_order_id'])) {
             $orderId = $input['data']['object']['merchant_order_id'];

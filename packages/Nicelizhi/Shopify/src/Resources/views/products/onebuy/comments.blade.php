@@ -20,10 +20,10 @@
                 <form action="{{ route('admin.shopify.products.comments', ['product_id' => $product_id, 'act_type' => $act_type]) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                 <div class="card-header">
-                    Upload Comments 
+                    Shopify Comments 
                 </div>
                 <div class="card-body">
-                    <div class="form-group">
+                    {{-- <div class="form-group">
                         <label for="comments_list_file">Comments List File</label>
                         <div class="input-group">
                             <div class="custom-file">
@@ -31,7 +31,7 @@
                                 <label class="custom-file-label" for="comments_list_file">Choose file</label>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                     <div class="form-group">
                         <label for="comments_list_file">Replace</label>
                         <div class="input-group">
@@ -43,13 +43,13 @@
                 </div>
                 <div class="card-footer">
                     <input type="hidden" name="version" value="<?php echo $act_prod_type; ?>">
-                    <button type="submit" class="btn btn-primary">submit</button>
-                    <button type="button" class="btn btn-secondary manual-sync-comment">Manual Sync Comment</button>
+                    {{-- <button type="submit" class="btn btn-primary">submit</button> --}}
+                    <button type="button" class="btn btn-primary manual-sync-comment">Manual Sync Shopify Comment</button>
                 </div>
             </form>
             </div>
 
-            <h3>Comments List</h3>
+            {{-- <h3>Comments List</h3>
             <table class="table table-bordered table-striped">
                 <thead>
                     <tr>
@@ -71,7 +71,7 @@
                             echo "</tr>";
                         }
                     ?>
-            </table>
+            </table> --}}
             <h3>From Shopify Comments</h3>
             <table class="table table-bordered table-striped">
                 <thead>
@@ -81,6 +81,7 @@
                         <th>Title</th>
                         <th>Content</th>
                         <th>Status</th>
+                        <th>Create Date</th>
                         <th>Rank</th>
                         <th>Images</th>
                     </tr>
@@ -94,6 +95,7 @@
                             echo "<td>".$comment->title."</td>";
                             echo "<td>".$comment->comment."</td>";
                             echo "<td>".$comment->status."</td>";
+                            echo "<td>".$comment->created_at."</td>";
                             echo "<td>".$comment->rating."</td>";
                             
 

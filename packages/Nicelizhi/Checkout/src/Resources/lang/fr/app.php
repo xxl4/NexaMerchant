@@ -28,12 +28,12 @@ return [
     'Receipt' => 'Reçu',
     '12,421 Verified Customer Reviews' => 'avis clients vérifiés',
     'Step' => 'Étape',
-    'Choose your package' => 'Choisissez votre forfait',
+    'Choose your package' => 'Sélectionnez le package de produits',
     'Save' => 'Sauvegarder ',
     'OFF' => ' HORS DE',
     'item' => 'Article',
-    'Enter your payment information' => 'Entrez vos informations de paiement',
-    'Enter customer information' => 'Saisir les détails du client',
+    'Enter your payment information' => "L'addition, s'il vous plaît",
+    'Enter customer information' => 'adresse postale',
     'Last Name' => 'Nom de famille, nom de famille',
     'First Name' => 'Prénom',
     'Email' => 'E-mail',
@@ -76,6 +76,17 @@ return [
     'select country' => 'Choisissez un pays',
     'Add a house number if you have one' => 'Ajoutez un numéro de maison si vous en avez un',
     'Express checkout' => 'Paiement express',
-    'edit' => 'modifier'
+    'edit' => 'modifier',
+    'complete_secure_purchase' => 'Payez maintenant',
+    'Selected' => 'Choisi'
+  ],
+  'v3' => [
+    '30-Day Return' => '30 jours de retour',
+    'Quality Guarantee' => 'Haute qualité garantie',
+    'Secure Payment' => 'Paiement sécurisé',
+    'Description' => 'décrire',
+    'Reviews' => 'Commentaire',
+    'Buy Now' => 'Achetez-le maintenant',
+    'Secure Checkout' => 'Paiement sécurisé'
   ]
 ];

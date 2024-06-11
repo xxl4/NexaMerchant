@@ -371,7 +371,11 @@ class ProductController extends Controller
         foreach($products as $key=>$product) {
             //var_dump($product);
             $product['quantity'] = $product['amount'];
+            if(!isset($product['variant_id'])) {
+                return response()->json(['error' => 'No product found in cart','code'=>'202'], 400);
+            }
             $product['selected_configurable_option'] = $product['variant_id'];
+            
             if(!empty($product['attr_id'])) {
                 $attr_ids = explode(',', $product['attr_id']);
                 foreach($attr_ids as $key=>$attr_id) {
@@ -552,13 +556,15 @@ class ProductController extends Controller
             $data['order'] = $order;
             if ($order) {
                 $orderId = $order->id;
-                if($payment_method_input=="airwallex_google") {
-                    $transactionManager = $this->airwallex->createPaymentAuthen($cart, $order->id);
-                }elseif($payment_method_input=="airwallex_apple") {
-                    $transactionManager = $this->airwallex->createPaymentAuthen($cart, $order->id);
-                } else {
-                    $transactionManager = $this->airwallex->createPaymentOrder($cart, $order->id);
-                }
+                // if($payment_method_input=="airwallex_google") {
+                //     $transactionManager = $this->airwallex->createPaymentAuthen($cart, $order->id);
+                // }elseif($payment_method_input=="airwallex_apple") {
+                //     $transactionManager = $this->airwallex->createPaymentAuthen($cart, $order->id);
+                // } else {
+                //     $transactionManager = $this->airwallex->createPaymentOrder($cart, $order->id);
+                // }
+
+                $transactionManager = $this->airwallex->createPaymentOrder($cart, $order->id);
                 
                 Log::info("airwallex-".$order->id."--".json_encode($transactionManager));
                 $data['client_secret'] = $transactionManager->client_secret;

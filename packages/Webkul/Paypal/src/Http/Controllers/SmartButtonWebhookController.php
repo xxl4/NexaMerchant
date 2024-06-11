@@ -39,7 +39,7 @@ class SmartButtonWebhookController extends Controller
         $dispute->adjudications = $data['resource']['disputed_transactions'];
         $dispute->refund_details = $data['resource']['refund_details'];
         $dispute->offer = $data['resource']['offer'];
-        $dispute->messages = $data['resource']['messages'];
+        $dispute->messages = isset($data['resource']['messages']) ?  $data['resource']['messages'] : NULL;
 
         // check the order id
         $order_id = 0;

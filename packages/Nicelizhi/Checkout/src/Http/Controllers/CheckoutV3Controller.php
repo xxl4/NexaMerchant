@@ -25,11 +25,11 @@ use Illuminate\Support\Facades\Redis;
 use Webkul\Sales\Repositories\OrderTransactionRepository;
 
 
-class CheckoutV2Controller extends Controller{
+class CheckoutV3Controller extends Controller{
 
     private $cache_prefix_key = "checkout_v1_";
     private $cache_ttl = "360000";
-    private $view_prefix_key = "checkoutv2";
+    private $view_prefix_key = "checkoutv3";
 
     private $checkout_v2_cache_key = "checkout_v2_";
 
@@ -88,6 +88,9 @@ class CheckoutV2Controller extends Controller{
             $refer = $request->session()->get('refer');
         }
         
+        //var_dump($slug);
+
+        //$slug = $slug;
         $redis = Redis::connection('default');
 
 
@@ -103,6 +106,8 @@ class CheckoutV2Controller extends Controller{
             return $comments;
         });
 
+        //var_dump($comments);exit;
+
         $default_country = config('onebuy.default_country');
         $payments = config('onebuy.payments'); // config the payments status
         $payments_default = config('onebuy.payments_default');
@@ -111,9 +116,11 @@ class CheckoutV2Controller extends Controller{
 
         $data = $this->ProductDetail($slug);
 
-        return view('checkout::product-detail-'.$this->view_prefix_key, compact('slug','comments','faqItems','product','default_country',"payments","payments_default","refer","crm_channel", "data"));
+        return view('checkout::product-detail-'.$this->view_prefix_key, compact('slug','comments','faqItems','product','default_country',"payments","payments_default","refer","crm_channel","data"));
     }
 
+
+   
     public function ProductDetail($slug) {
 
 
@@ -238,10 +245,6 @@ class CheckoutV2Controller extends Controller{
 
 
     }
-
-
-   
-
 
 
 

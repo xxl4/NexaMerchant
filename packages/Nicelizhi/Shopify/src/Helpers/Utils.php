@@ -168,6 +168,7 @@ final class Utils {
             Cache::pull("product_url_".$shopify_id);
             Cache::pull("checkout_v2_cache_".$shopify_id);
             Cache::pull("checkout_v1_cache_".$shopify_id);
+            Cache::pull("checkout_v2_".$shopify_id);
         }
     }
 

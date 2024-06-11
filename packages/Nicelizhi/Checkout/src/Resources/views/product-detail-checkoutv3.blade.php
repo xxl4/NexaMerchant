@@ -21,8 +21,6 @@
   <meta name="color-scheme" content="light only" />
   <link href="https://cdn.jsdelivr.net/npm/flag-icon-css@4.1.7/css/flag-icons.min.css" rel="stylesheet" />
   <link href="https://cdn.jsdelivr.net/npm/jquery-colorbox@1.6.4/example1/colorbox.min.css" rel="stylesheet" />
-  <!-- <script src="https://checkout-demo.airwallex.com/assets/elements.bundle.min.js"></script> -->
-  <script src="https://checkout.airwallex.com/assets/elements.bundle.min.js"></script>
   <style>
     @media only screen and (max-width: 600px) {}
 
@@ -241,15 +239,20 @@
       max-width: 75%;
     }
 
-    .container_title {
-      font-size: 17px;
-      margin-top: 20px;
-      color: #444444;
-      text-align: center;
-      font-weight: bold;
-      font-family: var(--text-family);
-    }
-
+    /* .container_title {
+      margin-top: 10px;
+      font-size: 16px;
+      color: #fff; 
+    font-weight: 500;
+    width: 100%;
+    transition: all .2s ease-in-out;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding-left: 4px;
+    height: 35px;
+    font-family: var(--text-family);
+    }*/
     .three_main {
       display: flex;
       justify-content: space-between;
@@ -722,7 +725,7 @@
     .footer-box {
       background-color: #F5F5F5;
       padding: 60px 30px 60px 30px;
-      /* margin-top: 30px; */
+      margin-top: 10px;
       margin-right: 0px;
       margin-left: 0px;
       text-align: center;
@@ -858,6 +861,12 @@
       }
     }
 
+    @media (max-width: 1120px) {
+      .Schritt-top-box {
+        height: 85px !important;
+      }
+    }
+
     @media (max-width: 480px) {
       #iwni3 {
         width: 100px;
@@ -901,7 +910,7 @@
     } */
 
     #thumbs {
-      height: 150px;
+      height: 140px;
     }
 
     #thumbs .swiper-slide {
@@ -927,17 +936,64 @@
     }
 
     @media (max-width: 780px) {
-      .grid-container {
-        display: none !important;
+      .header-container {
+        height: 50px !important;
       }
+
+      .prod-name {
+        margin-top: 15px !important;
+      }
+
+      .herder-content {
+        height: 50px !important;
+      }
+
+      .Schritt-top-box {
+        height: 80px;
+        padding: 5px 0 8px 0;
+      }
+
+      .top-left-button-box {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 14px;
+        width: 130px;
+        height: 25px;
+        border-radius: 6px;
+      }
+
+      .header-container img {
+        max-height: 35px;
+      }
+
+      .item-text {
+        font-size: 13px;
+      }
+
+      .header-text-hide {
+        display: none;
+      }
+
+      #header-text:hover {
+        color: #1773B0;
+      }
+
+      .top-left-button {
+        justify-content: end !important;
+      }
+
+      /* .grid-container {
+        display: none !important;
+      } */
 
       .sku-preview-img img {
         width: 80%;
       }
 
-      .banner-content {
+      /* .banner-content {
         display: block !important;
-      }
+      } */
 
       .prd-det-disc {
         display: block !important;
@@ -1021,6 +1077,10 @@
       animation: 1s loader-01 linear infinite;
     }
 
+    .item-text {
+      font-size: 13px;
+    }
+
     @-webkit-keyframes loader-01 {
       0% {
         -webkit-transform: rotate(0deg);
@@ -1046,8 +1106,8 @@
     }
   </style>
   <style>
-    .buy-select {
-      display: none;
+    html {
+      scroll-behavior: smooth;
     }
 
     .input-box {
@@ -1236,7 +1296,9 @@
 
     .Schritt-top-box {
       width: 100%;
-      padding: 10px 0;
+      padding: 5px 0 10px 0;
+      display: flex;
+      background-color: #F4F4F4;
     }
 
     .button-top {
@@ -1262,6 +1324,7 @@
     .pay-button {
       display: none;
       text-align: center;
+      margin-top: 12px;
       width: 100%;
       height: 48px;
       background: #000 url('/checkout/v2/images/googlePay.png') no-repeat 100%/contain;
@@ -1272,6 +1335,7 @@
     .appalpay-button {
       display: none;
       text-align: center;
+      margin-top: 12px;
       width: 100%;
       height: 48px;
       background: #000 url('/checkout/v2/images/applePay.png') no-repeat 100%/contain;
@@ -1298,36 +1362,260 @@
       align-items: center;
     }
 
-    .product-selected {
-      display: none;
-      position: absolute;
-      top: 9px;
-      right: 19%;
-      color: #fff;
-      background: #1773B0;
-      font-size: 13px;
-      padding: 5px;
-      font-weight: 600;
-      border-radius: 4px;
+    .header-container {
+      width: 100%;
+      height: 55px;
+      background-color: #fff;
+      border-bottom: 1px solid #f2f2f2;
+      position: sticky;
+      top: 0;
+      z-index: 99999;
     }
 
-    .in-se option[disabled][selected] {
+    .herder-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .top-left-button {
+      display: flex;
+      font-size: 14px;
+      color: var(--text-color);
+      width: 200px;
+      align-items: center;
+      justify-content: space-around;
+      height: 55px;
+    }
+
+    .top-left-button-box {
+      padding: 8px;
+      background-color: #1773B0;
+      border-radius: 6px;
+      font-weight: 600;
+    }
+
+    .shopify-title {
+      margin-top: 10px;
+      font-size: 16px;
+      /* color: #fff; */
+      font-weight: 500;
+      width: 100%;
+      transition: all .2s ease-in-out;
+      /* background: #F4F4F4; */
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      padding-left: 4px;
+      height: 35px;
+    }
+
+    .shopify-title-item {
+      width: 50%;
+      display: flex;
+      justify-content: center;
+      border-bottom: 1px solid #dedede;
+    }
+
+    /* .shopify-title p {
+      border-bottom: 3px solid #dedede;
+    } */
+
+    .description-img-box {
+      height: 100%;
+      max-height: 48px;
+      flex: 1;
+      /* display: flex;
+      justify-content: center;
+      align-items: center;
+      
+      flex-direction: column; */
+    }
+
+    .iten-text {
+      font-size: 13px;
+      color: var(--text-color);
+    }
+
+    .description-img-box img {
+      object-fit: contain;
+    }
+
+    .payment-icon-box {
+      position: relative;
+      border: 1px solid #ddcccc;
+      height: 50px;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 25px;
+      float: left;
+      padding: 0 5px;
+    }
+
+    .payment-icon-box img {
+      width: 78px;
+    }
+
+    .payment-icon-box>img:nth-child(1) {
+      width: 70px;
+    }
+
+    .payment-icon-box>img:nth-child(3) {
+      width: 40px;
+    }
+
+    .payment-icon-box>img:nth-child(2) {
+      width: 40px;
+    }
+
+    .three-description-box {
+      width: 100%;
+      float: left;
+      margin-top: 15px;
+    }
+
+    .three-description-item {
+      margin-top: 10px;
+      display: flex;
+      align-items: center;
+    }
+
+    .three-description-item img {
+      width: 30px;
+    }
+
+    .three-description-text {
+      font-size: 13px;
+      font-family: var(--text-family);
+      color: var(--text-color);
+      padding-left: 10px;
+    }
+
+    .btn-bx {
+      display: inline-block;
+      vertical-align: top;
+      width: 100%;
+      text-align: center;
+      float: left;
+      margin-top: 15px;
+    }
+
+    .comn-btn {
+      width: 100%;
+      height: 45px;
+      font-size: 22px;
+      line-height: 43px;
+      font-weight: 800;
+      color: #fff;
+      border-radius: 8px;
+      background: #1773B0;
+      display: inline-block;
+      vertical-align: top;
+      letter-spacing: 0.8px;
+      animation: bounce 2s ease infinite, shadow-pulse 3s infinite;
+    }
+
+    .comn-btn:hover {
+      color: #fff;
+    }
+
+    .comn-btn {
+      outline: none;
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .bor-bom-3 {
+      border-bottom: 3px solid #1773B0;
+    }
+
+    .payment-top {
+      align-items: center;
+      display: flex;
+      justify-content: center;
+      position: absolute;
+      top: -14px;
+      background: #fff;
+      padding: 0 8px;
+      transform: translateX(-50%);
+      left: 50%;
+    }
+
+    .payment-top img {
+      width: 14px;
+      height: 14px;
+    }
+
+    .buy-select {
       display: none;
+    }
+
+    .payment-top p {
+      margin-left: 4px;
+      font-size: 14px;
+      color: var(--text-color);
+      font-family: var(--text-family);
+    }
+
+    .shopify-container {
+      text-align: left !important;
+      font-size: 13px !important;
+      color: var(--text-color) !important;
+      font-family: var(--text-family) !important;
+    }
+
+    .header-middle {
+      width: 100%;
+      padding: 10px 0;
+    }
+
+    .shopify-container p {
+      margin: 8px 0;
+    }
+
+    @keyframes bounce {
+
+      0%,
+      20%,
+      50%,
+      80%,
+      100% {
+        transform: translateY(0);
+      }
+
+      40% {
+        transform: translateY(-10px);
+      }
+
+      60% {
+        transform: translateY(-5px);
+      }
+    }
+
+    @media (min-width: 1200px) {
+      .container {
+        max-width: 80% !important;
+      }
     }
   </style>
 </head>
 
 <body>
   <page-builder-block>
+    <!-- Start VWO SmartCode -->
+    <!-- <script src="/checkout/v2/js/51174.js"></script> -->
+    <!-- End VWO SmartCode -->
     <link rel="stylesheet prefetch" href="/checkout/v2/css/app2.css?v=4" />
     <link type="text/css" href="/checkout/v2/css/custom-extra.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/5.0.4/css/swiper.css" />
     <link type="text/css" href="/checkout/v2/css/repeated-order-confirmation.min.css" rel="stylesheet" />
     <link type="text/css" href="/checkout/v2/css/repeated-order-confirmation-additional.css" rel="stylesheet" />
-    <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/checkout.css?v=8" />
+    <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/checkout.css?v=9" />
     <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/bootstrap.min.css" />
     <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/slick.min.css" />
-    <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/upsell-new-02.css?v=4" />
+    <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/upsell-new-02.css?v=5" />
     <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/extra-style.css" />
     <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/fonts.css" />
     <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/custom.css" />
@@ -1336,35 +1624,44 @@
     <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/all.min.css" />
     <span id="builderCssToken"> </span>
   </page-builder-block>
-  <!-- BEGIN MVMT EVERFLOW CHECKOUT PAGEVIEW PIXEL -->
-  <script type="text/javascript" src="/checkout/v2/js/everflow.js"></script>
-  <!-- END MVMT EVERFLOW CHECKOUT PAGEVIEW PIXEL -->
-  <div id="">
-    <img class="w-100 d-none d-md-block" id="pc-banner" src="" />
-    <img class="w-100 d-block d-md-none" id="mobile-banner" src="" />
-  </div>
-  <div class="topStrip" style="text-align: center;">
-    <div class="container-xxl">
-      <p style="text-align: center;">
-        <span class="cb-total-discount-applied">@lang('checkout::app.v2.During the summer sale the discount is valid for')</span>
-        <span id="stopwatch">05:00</span>
-      </p>
-    </div>
-  </div>
-  <div class="top_bar_nav">
+
+  <div class="header-container">
     <div class="container">
-      <div class="dis-box-logo">
-        <div class="logo_wrap_dist" style="display: flex;justify-content: center;align-items: center;">
-          <img src="" style=" max-height: 50px;" />
+      <div class="herder-content">
+        <img src="" style="height: 50px;" />
+        <div class="top-left-button">
+          <!-- <p class="header-text-hide">@lang('checkout::app.v3.Description')</p> -->
+          <a class="header-text-hide" onclick="reviewToggle()" id="header-text" href="#shopify-title-item1">@lang('checkout::app.v3.Reviews')</a>
+          <div class="top-left-button-box">
+            <a style="color: #fff;" href="#pkg-hdng1">@lang('checkout::app.v3.Buy Now')</a>
+          </div>
         </div>
       </div>
     </div>
   </div>
   <div class="checkout-section">
     <div class="container">
+      <!-- <p class="prod-name forMob" style="color: #444444 !important;"></p>
+      <p class="str-rvw forMob go-rew"><svg width="98px" height="16px" viewBox="0 0 512 96" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+          Generator: Sketch 53.2 (72643) - https://sketchapp.com -->
+      <!-- <g id="Trustpilot_ratings_5star-RGB" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+            <g fill-rule="nonzero">
+              <rect id="Rectangle-path" fill="#00B67A" x="0" y="0" width="96" height="96"></rect>
+              <rect id="Rectangle-path" fill="#00B67A" x="104" y="0" width="96" height="96"></rect>
+              <rect id="Rectangle-path" fill="#00B67A" x="208" y="0" width="96" height="96"></rect>
+              <rect id="Rectangle-path" fill="#00B67A" x="312" y="0" width="96" height="96"></rect>
+              <rect id="Rectangle-path" fill="#00B67A" x="416" y="0" width="96" height="96"></rect>
+              <path d="M48,64.7 L62.6,61 L68.7,79.8 L48,64.7 Z M81.6,40.4 L55.9,40.4 L48,16.2 L40.1,40.4 L14.4,40.4 L35.2,55.4 L27.3,79.6 L48.1,64.6 L60.9,55.4 L81.6,40.4 L81.6,40.4 L81.6,40.4 L81.6,40.4 Z" id="Shape" fill="#FFFFFF"></path>
+              <path d="M152,64.7 L166.6,61 L172.7,79.8 L152,64.7 Z M185.6,40.4 L159.9,40.4 L152,16.2 L144.1,40.4 L118.4,40.4 L139.2,55.4 L131.3,79.6 L152.1,64.6 L164.9,55.4 L185.6,40.4 L185.6,40.4 L185.6,40.4 L185.6,40.4 Z" id="Shape" fill="#FFFFFF"></path>
+              <path d="M256,64.7 L270.6,61 L276.7,79.8 L256,64.7 Z M289.6,40.4 L263.9,40.4 L256,16.2 L248.1,40.4 L222.4,40.4 L243.2,55.4 L235.3,79.6 L256.1,64.6 L268.9,55.4 L289.6,40.4 L289.6,40.4 L289.6,40.4 L289.6,40.4 Z" id="Shape" fill="#FFFFFF"></path>
+              <path d="M360,64.7 L374.6,61 L380.7,79.8 L360,64.7 Z M393.6,40.4 L367.9,40.4 L360,16.2 L352.1,40.4 L326.4,40.4 L347.2,55.4 L339.3,79.6 L360.1,64.6 L372.9,55.4 L393.6,40.4 L393.6,40.4 L393.6,40.4 L393.6,40.4 Z" id="Shape" fill="#FFFFFF"></path>
+              <path d="M464,64.7 L478.6,61 L484.7,79.8 L464,64.7 Z M497.6,40.4 L471.9,40.4 L464,16.2 L456.1,40.4 L430.4,40.4 L451.2,55.4 L443.3,79.6 L464.1,64.6 L476.9,55.4 L497.6,40.4 L497.6,40.4 L497.6,40.4 L497.6,40.4 Z" id="Shape" fill="#FFFFFF"></path>
+            </g>
+          </g> -->
+      <!-- </svg>@lang('checkout::app.v2.12,421 Verified Customer Reviews')</p> -->
       <div class="left-sec">
-        <div id="sticky" style="position:sticky;top: 0;">
-          <div style="display: none;" class="vehicle-detail-banner banner-content clearfix">
+        <div id="sticky" style="position:sticky;top: 55px;">
+          <div class="vehicle-detail-banner banner-content clearfix">
             <div class="banner-slider">
               <div class="slider-banner-image1">
                 <div class="sw-box">
@@ -1374,13 +1671,37 @@
               </div>
             </div>
           </div>
-          <div class="grid-container">
+          <div class="Schritt-top-box">
+            <div class="description-img-box">
+              <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M24 24C19.5817 28.4183 12.4183 28.4183 8 24C3.58172 19.5817 3.58172 12.4183 8 8C12.4183 3.58172 19.5817 3.58172 24 8" stroke="#4A4A4A" stroke-width="2.5" stroke-linecap="round" />
+                <path d="M17.3222 15.9213L17.3219 15.9212L15.1141 15.3107L15.1132 15.3104C14.3915 15.1138 14.0132 14.6502 14.0132 14.2378C14.0132 13.9486 14.1781 13.662 14.4927 13.4378C14.8066 13.2141 15.2524 13.0679 15.7545 13.0679H16.2307C17.0952 13.0679 17.7601 13.4901 17.9283 13.9618C18.0381 14.2824 18.3552 14.4878 18.6838 14.4878H18.6982C18.9471 14.4878 19.1749 14.3742 19.322 14.2002L19.3223 14.2004L19.3301 14.1902C19.4794 13.994 19.5221 13.7542 19.459 13.522L19.4566 13.5131L19.4535 13.5045C19.1015 12.5052 18.0518 11.7728 16.7982 11.5988V11.1723C16.7982 10.7362 16.4208 10.418 15.9998 10.418H15.9854C15.5644 10.418 15.1871 10.7362 15.1871 11.1723V11.5976C13.6553 11.8039 12.4165 12.8679 12.4165 14.2378C12.4165 15.4035 13.3476 16.4093 14.6646 16.7617C14.6649 16.7618 14.6652 16.7619 14.6654 16.7619L16.8853 17.3718C16.8854 17.3718 16.8855 17.3718 16.8857 17.3719C17.5923 17.5682 17.9721 18.0312 17.9721 18.4447V18.4712C17.9721 18.7071 17.8531 18.9597 17.6535 19.1455C17.268 19.4624 16.7661 19.6399 16.2363 19.628L16.2363 19.628H16.2307H16.2163H15.7401C14.8769 19.628 14.2245 19.2064 14.0565 18.7327L14.0559 18.7311C13.9448 18.4244 13.6279 18.2212 13.3014 18.2212H13.287C13.0525 18.2212 12.8157 18.3117 12.659 18.5139C12.5023 18.7029 12.4633 18.9619 12.5278 19.1793L12.5276 19.1794L12.5314 19.1903C12.8828 20.2021 13.9445 20.9352 15.1871 21.0989V21.497C15.1871 21.9331 15.5644 22.2513 15.9854 22.2513H15.9998C16.2104 22.2513 16.3941 22.1725 16.5462 22.0501L16.5526 22.0449L16.5587 22.0393C16.7107 21.8995 16.7982 21.7002 16.7982 21.497V21.1128C17.5274 21.0178 18.2121 20.7174 18.7479 20.2382C19.277 19.7803 19.567 19.1436 19.5831 18.4773L19.5832 18.4773V18.4712V18.458C19.5832 17.2762 18.6342 16.286 17.3222 15.9213Z" fill="#009EE0" stroke="#009EE0" stroke-width="0.5" />
+                <path d="M26.7562 4.50957C26.7562 3.81922 26.1965 3.25958 25.5062 3.25958C24.8158 3.25958 24.2562 3.81922 24.2562 4.50957H26.7562ZM25.5062 9.66621V10.9162C26.1965 10.9162 26.7562 10.3566 26.7562 9.66621H25.5062ZM20.3495 8.41621C19.6592 8.41621 19.0995 8.97585 19.0995 9.66621C19.0995 10.3566 19.6592 10.9162 20.3495 10.9162V8.41621ZM24.2562 4.50957V9.66621H26.7562V4.50957H24.2562ZM25.5062 8.41621H20.3495V10.9162H25.5062V8.41621Z" fill="#4A4A4A" />
+              </svg>
+              <p class="item-text">@lang('checkout::app.v3.30-Day Return')</p>
+            </div>
+            <div class="description-img-box">
+              <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M30.7693 16.6469V23.1246C30.7693 23.4682 30.6278 23.7977 30.376 24.0407C30.1242 24.2837 29.7827 24.4202 29.4266 24.4202H28.084C28.084 25.451 27.6596 26.4395 26.9042 27.1684C26.1488 27.8973 25.1243 28.3068 24.056 28.3068C22.9877 28.3068 21.9632 27.8973 21.2078 27.1684C20.4524 26.4395 20.028 25.451 20.028 24.4202H11.9721C11.9721 25.451 11.5477 26.4395 10.7923 27.1684C10.0369 27.8973 9.0124 28.3068 7.94411 28.3068C6.87583 28.3068 5.8513 27.8973 5.09591 27.1684C4.34052 26.4395 3.91614 25.451 3.91614 24.4202H2.57349C2.21739 24.4202 1.87588 24.2837 1.62408 24.0407C1.37229 23.7977 1.23083 23.4682 1.23083 23.1246V7.57805C1.23083 6.54724 1.6552 5.55866 2.41059 4.82978C3.16598 4.10089 4.19052 3.69141 5.2588 3.69141H17.3427C18.411 3.69141 19.4355 4.10089 20.1909 4.82978C20.9463 5.55866 21.3707 6.54724 21.3707 7.57805V10.1691H24.056C24.6813 10.1691 25.2981 10.3096 25.8574 10.5795C26.4167 10.8493 26.9032 11.2411 27.2784 11.7238L30.5008 15.8695C30.54 15.9259 30.5716 15.9868 30.5947 16.0509L30.6753 16.1934C30.7346 16.3379 30.7664 16.4915 30.7693 16.6469V16.6469ZM9.28677 24.4202C9.28677 24.1639 9.20803 23.9134 9.06049 23.7004C8.91296 23.4873 8.70326 23.3213 8.45793 23.2232C8.21259 23.1252 7.94262 23.0995 7.68217 23.1495C7.42172 23.1995 7.18249 23.3229 6.99471 23.5041C6.80694 23.6852 6.67906 23.9161 6.62726 24.1674C6.57545 24.4187 6.60204 24.6792 6.70366 24.9159C6.80528 25.1527 6.97737 25.355 7.19817 25.4974C7.41897 25.6397 7.67856 25.7157 7.94411 25.7157C8.30021 25.7157 8.64172 25.5792 8.89352 25.3362C9.14531 25.0933 9.28677 24.7638 9.28677 24.4202ZM18.6854 7.57805C18.6854 7.23445 18.5439 6.90492 18.2921 6.66196C18.0403 6.41899 17.6988 6.2825 17.3427 6.2825H5.2588C4.90271 6.2825 4.56119 6.41899 4.3094 6.66196C4.0576 6.90492 3.91614 7.23445 3.91614 7.57805V21.8291H4.96342C5.34095 21.4283 5.80112 21.108 6.31442 20.8889C6.82772 20.6698 7.38282 20.5566 7.94411 20.5566C8.50541 20.5566 9.06051 20.6698 9.57381 20.8889C10.0871 21.108 10.5473 21.4283 10.9248 21.8291H18.6854V7.57805ZM21.3707 15.3513H26.7413L25.1301 13.2785C25.0051 13.1175 24.8429 12.987 24.6565 12.897C24.47 12.8071 24.2644 12.7602 24.056 12.7602H21.3707V15.3513ZM25.3987 24.4202C25.3987 24.1639 25.3199 23.9134 25.1724 23.7004C25.0248 23.4873 24.8152 23.3213 24.5698 23.2232C24.3245 23.1252 24.0545 23.0995 23.7941 23.1495C23.5336 23.1995 23.2944 23.3229 23.1066 23.5041C22.9188 23.6852 22.7909 23.9161 22.7391 24.1674C22.6873 24.4187 22.7139 24.6792 22.8155 24.9159C22.9172 25.1527 23.0893 25.355 23.3101 25.4974C23.5309 25.6397 23.7904 25.7157 24.056 25.7157C24.4121 25.7157 24.7536 25.5792 25.0054 25.3362C25.2572 25.0933 25.3987 24.7638 25.3987 24.4202ZM28.084 17.9424H21.3707V21.544C22.1631 20.8607 23.2032 20.5072 24.2645 20.5606C25.3258 20.614 26.3222 21.0699 27.0367 21.8291H28.084V17.9424Z" fill="#4A4A4A" />
+                <rect x="5.33325" y="8" width="11.3333" height="5.33333" fill="#009EE0" />
+                <rect x="5.33325" y="14" width="5.33333" height="5.33333" fill="#009EE0" />
+                <rect x="11.3333" y="14" width="5.33333" height="5.33333" fill="#009EE0" />
+              </svg>
+              <p class="item-text">@lang('checkout::app.v3.Quality Guarantee')</p>
+            </div>
+            <div class="description-img-box">
+              <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M15.3846 8.86914L8.43634 9.2065C6.46906 9.30202 4.9231 10.9249 4.9231 12.8945V18.8043C4.9231 20.6714 6.31696 22.2447 8.17049 22.4697L21.7089 24.113C23.9084 24.38 25.8462 22.6632 25.8462 20.4476V16.4882V10.393" stroke="#4A4A4A" stroke-width="3.69231" />
+                <path d="M10.1538 15.4724L13.0307 19.0279L22.1846 8.61523" stroke="#009EE0" stroke-width="3.69231" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+              <p class="item-text">@lang('checkout::app.v3.Secure Payment')</p>
+            </div>
           </div>
         </div>
       </div>
       <div class="right-sec">
         <p class="prod-name hide-mob"></p>
-        <p class="str-rvw hide-mob go-rew"><svg width="98px" height="16px" viewBox="0 0 512 96" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <p class="str-rvw hide-mob go-rew" onclick="reviewToggle()"><svg width="98px" height="16px" viewBox="0 0 512 96" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
             <!-- Generator: Sketch 53.2 (72643) - https://sketchapp.com -->
             <g id="Trustpilot_ratings_5star-RGB" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
               <g fill-rule="nonzero">
@@ -1397,13 +1718,104 @@
               </g>
             </g>
           </svg>@lang('checkout::app.v2.12,421 Verified Customer Reviews')</p>
-        <p class="bdr-line hide-mob"></p>
-        <div class="Schritt-top-box">
+        </p>
+        <div class="header-middle">
           <p class="text-Schritt-top">@lang('checkout::app.v2.You Can See By')</p>
           <img src="" alt="">
         </div>
-        <!-- <p class="prd-det-disc">Natural Protection for Your Beloved Dog: Safe, Effective Flea &amp; Tick Prevention</p> -->
-        <p class="pkg-hdng">
+        <div class="three-description-box">
+          <!-- <div class="three-description-item">
+            <img src="/checkout/v2/images/1673346232-mainpage.png" alt="">
+            <p class="three-description-text"> Temporarily increases local blood circulation and relaxes muscle tissue</p>
+          </div>
+          <div class="three-description-item">
+            <img src="/checkout/v2/images/1673346232-mainpage.png" alt="">
+            <p class="three-description-text"> Temporarily increases local blood circulation and relaxes muscle muscle tissuemuscle tissuemuscle tissuemuscle tissuemuscle tissuemuscle tissue</p>
+          </div>
+          <div class="three-description-item">
+            <img src="/checkout/v2/images/1673346232-mainpage.png" alt="">
+            <p class="three-description-text"> Temporarily increases local blood circulation and relaxes muscle </p>
+          </div> -->
+        </div>
+        <div class="btn-bx">
+          <a href="#product2" class="comn-btn">@lang('checkout::app.v3.Buy Now')</a>
+        </div>
+        <div class="payment-icon-box">
+          <div class="payment-top">
+            <img src="/checkout/v2/images/secure-checkout.png" alt="">
+            <p>@lang('checkout::app.v3.Secure Checkout')</p>
+          </div>
+          <img src="/checkout/v2/images/payment6.svg" alt="">
+          <!-- <img width="20" src="/checkout/v2/images/payment7.svg" alt=""> -->
+          <img src="/checkout/v2/images/payment2.svg" alt="">
+          <img src="/checkout/v2/images/payment3.svg" alt="">
+          <img src="/checkout/v2/images/payment4.svg" alt="">
+          <img src="/checkout/v2/images/payment5.svg" alt="">
+        </div>
+
+        <div class="shopify-title fl">
+          <div class="shopify-title-item bor-bom-3" id="shopify-title-item1">
+            <p style="margin-left: 5px;">@lang('checkout::app.v3.Description')</p>
+          </div>
+          <div class="shopify-title-item" id="shopify-title-item2">
+            <p class="container_title" onclick="reviewToggle()">
+              @lang('onebuy::app.product.order.What customers are saying about')
+            </p>
+          </div>
+        </div>
+        <div class="shopify-container"></div>
+        <div id="iduzu" class="section" style="width: 100%;float: right;margin-bottom:10px; display: flex;">
+
+          <!-- <p class="container_title" onclick="reviewToggle()">
+           @lang('onebuy::app.product.order.What customers are saying about')
+          </p> -->
+        </div>
+        <!-- review -->
+        <div class="section" id="reviews-box" style="width: 100%;float: right; display:none">
+          <?php foreach ($comments as $key => $comment) {
+            $comment = json_decode($comment); //var_dump($comment);exit; 
+          ?>
+
+            <div class="comment-card" style="background-color: #F4F4F4">
+              <div style="display: flex">
+                <div class="mr4" style="font-size: 14px;margin-top: 3px;color: #444444; ">
+                  <?php echo $comment->name; ?>
+                  <i class="flag-icon-size flag-icon flag-icon-<?php echo strtolower($default_country); ?> mr-2"></i>
+                </div>
+                <div>
+                  <img class="mb1 mr2" width="14px" src="/checkout/onebuy/images/icon_gou.svg" />
+                  <span style="width: 100%; font-size:12px; color: #444444">@lang('onebuy::app.product.order.Verified')</span>
+                </div>
+              </div>
+              <div>
+                <div style="text-align: start; width: 100%;">
+                  <img width="110px" src="/checkout/onebuy/images/stars-5.svg" alt="" />
+                </div>
+                <div class="cardtext" style="text-align: start;"><?php echo $comment->comment; ?></div>
+
+
+                <?php
+
+
+                if (!empty($comment->images)) {
+
+                  // var_dump($comment->images);
+                  foreach ($comment->images as $key => $image) {
+                    //var_dump($image);
+                ?>
+
+                    <a href="javascript:;" onclick="reviewImgPreview('<?php echo $image->url; ?>')">
+                      <img style="width: 30%; max-height:120px;object-fit:contain" src="<?php echo $image->url; ?>" alt="" />
+                    </a>
+
+                <?php }
+                } ?>
+
+              </div>
+            </div>
+          <?php } ?>
+        </div>
+        <p class="pkg-hdng" id="pkg-hdng1" style="border-top: 1px solid #ccc; padding-top: 10px">
           <span class="pkg-step">
             @lang('checkout::app.v2.Step')1:
           </span>
@@ -1415,7 +1827,6 @@
         <div class="pkg-opt">
           <div class="cb-first-item"></div>
           <div class="buyopt packageClass cb-package-container choose-p" id="product2">
-            <p class="product-selected" id="p2-select">@lang('checkout::app.v2.Selected')</p>
             <div class="buy-opt-left">
               <p>
                 <strong id="p-name2"></strong>
@@ -1455,7 +1866,6 @@
           </div>
 
           <div class="buyopt packageClass cb-package-container" id="product1">
-            <p class="product-selected" id="p1-select">@lang('checkout::app.v2.Selected')</p>
             <div class="buy-opt-left">
               <p>
                 <strong id="p-name1"></strong>
@@ -1489,7 +1899,6 @@
           </div>
 
           <div class="buyopt packageClass cb-package-container" id="product3">
-            <p class="product-selected" id="p3-select">@lang('checkout::app.v2.Selected')</p>
             <div class="buy-opt-left">
               <p>
                 <strong id="p-name3"></strong>
@@ -1532,7 +1941,6 @@
             </div>
           </div>
           <div class="buyopt packageClass cb-package-container" id="product4">
-            <p class="product-selected" id="p4-select">@lang('checkout::app.v2.Selected')</p>
             <div class="buy-opt-left">
               <p>
                 <strong id="p-name4"></strong>
@@ -1594,15 +2002,6 @@
 
         <p class="pkg-hdng"><span class="pkg-step">@lang('checkout::app.v2.Step')2:</span> @lang('checkout::app.v2.Enter customer information')</p>
         <form class="form">
-          <input type="hidden" name="prospectId" id="prospectId" value="" />
-          <input type="hidden" name="campaigns[1][id]" id="campaign_id" value="" />
-          <!--<input type="hidden" name="splitCampaigns" value="">-->
-          <input type="hidden" name="campaigns[2][id]" id="split_click_bump" class="cb-split-click-bump" value="" disabled />
-          <input type="hidden" name="campaigns[2][price]" value="" id="clickbumpPrice" class="cb-click-bump-price" disabled />
-          <input type="hidden" name="coupon_code" value="No Discount" />
-          <input type="hidden" name="regprice" id="regprice" value="" />
-          <input type="hidden" name="individualPrice" id="individualPrice" value="" />
-          <input type="hidden" name="packageQuantity" id="packageQuantity" value="" />
           <div class="formBox">
             <div class="fl input-box">
               <label>
@@ -1818,7 +2217,6 @@
                                   line-height: 1.25;padding: 1rem 0.75rem "></div>
                               </div>
                               <div style='margin-top:10px'>
-                                <!-- <div>@lang('onebuy::app.product.payment.creditCard.cvc')</div> -->
                                 <div id="cardCvc" style="
                                   border: 1px solid rgba(105, 105, 105, 0.397);
                                   border-radius: 10px;
@@ -1917,7 +2315,6 @@
                           </div>
 
                         </div>
-
                         <div class="panel panel-default" id="google-pay-box">
                           <div class="panel-heading" role="tab">
                             <h4 class="panel-title">
@@ -1963,12 +2360,12 @@
                             </div>
                           </div>
                         </div>
-
                       </div>
                     </div>
                   </div>
               </form>
             </div>
+
           </div>
           <div class="complete-btn" id="complete-btn-id"></div>
           <div id='paypal-button'></div>
@@ -2007,57 +2404,10 @@
             </div>
           </div>
         </div>
-        <div id="iduzu" class="section" style="width: 100%;float: right;margin-bottom:10px; display: flex;">
-          <h3 class="container_title">@lang('onebuy::app.product.order.What customers are saying about')</h3>
-        </div>
-        <!-- review -->
-        <div class="section" style="width: 100%;float: right;">
-          <?php foreach ($comments as $key => $comment) {
-            $comment = json_decode($comment); //var_dump($comment);exit; 
-          ?>
-
-            <div class="comment-card" style="background-color: #F4F4F4">
-              <div style="display: flex">
-                <div class="mr4" style="font-size: 14px;margin-top: 3px;color: #444444; ">
-                  <?php echo $comment->name; ?>
-                  <i class="flag-icon-size flag-icon flag-icon-<?php echo strtolower($default_country); ?> mr-2"></i>
-                </div>
-                <div>
-                  <img class="mb1 mr2" width="14px" src="/checkout/onebuy/images/icon_gou.svg" />
-                  <span style="width: 100%; font-size:12px; color: #444444">@lang('onebuy::app.product.order.Verified')</span>
-                </div>
-              </div>
-              <div>
-                <div style="text-align: start; width: 100%;">
-                  <img width="110px" src="/checkout/onebuy/images/stars-5.svg" alt="" />
-                </div>
-                <div class="cardtext" style="text-align: start;"><?php echo $comment->comment; ?></div>
-
-                <?php
-
-
-                if (!empty($comment->images)) {
-
-                  // var_dump($comment->images);
-                  foreach ($comment->images as $key => $image) {
-                    //var_dump($image);
-                ?>
-
-                    <a href="javascript:;" onclick="reviewImgPreview('<?php echo $image->url; ?>')">
-                      <img style="width: 30%; max-height:120px;object-fit:contain" src="<?php echo $image->url; ?>" alt="" />
-                    </a>
-
-                <?php }
-                } ?>
-
-              </div>
-            </div>
-          <?php } ?>
-        </div>
         <div class="faq-content" style="width: 100%;float: right;">
           <div id="seeFaqBtn">
             @lang('onebuy::app.product.order.Frequently Asked Questions')
-            <span class="faq_view">@lang('onebuy::app.product.order.See Our FAQs')</span>
+            <span class="faq_view" onclick="heightChange()">@lang('onebuy::app.product.order.See Our FAQs')</span>
           </div>
           <div id="faq-text">
             <div id="collapseContent">
@@ -2124,7 +2474,19 @@
     </div>
   </div>
   <!-- End of Discount POp up-->
-  <script type="text/javascript" src="/checkout/v2/js/math.js"></script>
+
+  <script>
+    var app_current_step = {
+      id: 1,
+      configId: 1,
+      goto: 'upsell1a.php',
+      pageType: 'checkoutPage',
+      ajaxDelay: 0,
+      link: 'checkout-now-v3.php',
+    }
+    var app_query_params = []
+  </script>
+  <!-- <script type="text/javascript" src="/checkout/v2/js/math.js"></script> -->
   <script type="text/javascript">
     AJAX_PATH = 'ajax.php/'
     app_config = {
@@ -2417,6 +2779,7 @@
       y.parentNode.insertBefore(t, y);
     })(window, document, "clarity", "script", "kruepex7cm");
   </script>
+
   <script>
     var orderObj = {},
       params = {
@@ -2461,7 +2824,8 @@
       },
       currency = '{{ core()->getCurrentCurrencyCode() }}',
       paypalId = '',
-      attLength, productL1 = {},
+      attLength,
+      productL1 = {},
       productL2 = {},
       productL3 = {},
       productL4 = {},
@@ -2479,6 +2843,8 @@
       googlerOrApple = '',
       googleShow = false,
       appleShow = false,
+      shopifyToggle = true,
+      reviewsToggle = true,
       countryOptions = '',
       countriesList = '',
       phppackage_products = <?php echo json_encode($data['package_products']); ?>,
@@ -2491,7 +2857,8 @@
       phppayments = '<?php echo json_encode($data['payments']); ?>',
       phppayments_default = '<?php echo $data['payments_default']; ?>',
       phppaypal_client_id = '<?php echo $data['paypal_client_id']; ?>',
-      phpsku = '<?php echo $data['sku']; ?>'
+      phpsku = '<?php echo $data['sku']; ?>',
+      phpsellPoints = '<?php echo json_encode($data['sellPoints']); ?>'
     phppackage_products.forEach(function(index, item) {
       JSON.parse(item)
     })
@@ -2507,21 +2874,21 @@
       paypal_client_id: phppaypal_client_id,
       // product: JSON.parse(phpproduct),
       sku: phpsku,
+      sellPoints: JSON.parse(phpsellPoints)
     }
     console.log(data, 'phpdata');
-    // console.log(phpData1, 'package_products ======');
     $(function() {
-      // console.log(phpData, 'php======== data======');
+      getShopify()
       console.log(logoImg, 'logoImg');
-      $('.logo_wrap_dist img').attr('src', logoImg)
+      $('.header-container img').attr('src', logoImg)
       if (countries1 == 'fr' || countries1 == 'es') {
-        $('.Schritt-top-box').hide()
+        $('.header-middle').hide()
       } else {
         console.log(schrittImg, 'schrittImg');
-        $('.Schritt-top-box').show()
-        $('.Schritt-top-box img').attr('src', schrittImg)
+        $('.header-middle').show()
+        $('.header-middle img').attr('src', schrittImg)
       }
-      if (countries1 == 'de' || countries1 == 'fr') {
+      if (countries1 == 'de' ||countries1 == 'fr' ) {
         $('.terms-block-last').show()
       }
       if (countries1 == 'us' || countries1 == 'uk') {
@@ -2531,14 +2898,15 @@
       // var dataUrl = '/api/onebuy/product/detail/' + getProductId + '?currency=' + currency
       // axios
       //   .get(dataUrl)
-      // .then(function(res) {
-      // data = res.data
+      //   .then(function(res) {
+      //     console.log(new Date().getTime(), '开始');
+      //     data = res.data
       payTypeShow = data.payments
       var attrList = data.attr.attributes
       paypal_pay_acc = data.paypal_client_id
       var paymentsDefault = data.payments_default
       console.log(paymentsDefault, data.ads.pc.img, 'paymentsDefault=====');
-
+      getDescriptionItem(data)
       $('#p-name2').text(data.package_products[0].name)
       $('#p-name1').text(data.package_products[1].name)
       $('#p-name3').text(data.package_products[2].name)
@@ -2558,8 +2926,7 @@
       if (attrList.length > 0) {
         var selectList = ''
         for (var arri = 0; arri < attrList.length; arri++) {
-          var optionList = `<option value="" selected disabled>` + attrList[arri].label + `</option>`
-
+          var optionList = `<option value="" selected disabled">` + attrList[arri].label + `</option>`
           for (var attj = 0; attj < attrList[arri].options.length; attj++) {
             optionList += `<option value="` + attrList[arri].options[attj].label + `">` + attrList[arri].options[attj].label + `</option>`
           }
@@ -2670,8 +3037,6 @@
       params.products = []
       params.products.push(productL1, productL2)
       getSkuListInfo();
-      $('#pc-banner').attr('src', data.ads.pc.img);
-      $('#mobile-banner').attr('src', data.ads.mobile.img);
       $('.prod-name').text("<?php echo $data['product']['name']; ?>")
       $('title').html("<?php echo $data['product']['name']; ?>")
       $('#buy-select1, #buy-select3, #buy-select4').hide()
@@ -2697,7 +3062,7 @@
           appleShow = true
         }
       }
-      if (data.ads.size.img = '') {
+      if (data.ads.size.img == '') {
         $('#size-chart').hide()
       } else {
         $('#size-chart').show()
@@ -2717,6 +3082,7 @@
         $('#airwallex-dropin-box').hide()
       }
       if (payTypeShow.airwallex_google == '0' || googlerOrApple !== 'google') {
+        console.log('googleshow');
         $('#google-pay-box').hide()
       }
       if (payTypeShow.airwallex_appley == '0' || googlerOrApple !== 'apple') {
@@ -2749,9 +3115,6 @@
         $("#complete-btn-id").html("@lang('checkout::app.v2.complete_secure_purchase')");
       } else {
         window.is_airwallex = true
-        // if (countries1 == 'us') {
-        //   $('choose-billing-box').show
-        // }
         $('#airwallex-klarna').prop('checked', false);
         $('#payal_standard').prop('checked', false);
         $('#payment_method_airwallex').prop('checked', true);
@@ -2802,6 +3165,8 @@
         currency
       script.async = 1
       document.body.appendChild(script)
+      console.log(new Date().getTime(), '结束');
+
       // })
       // .catch(function(error) {
       //   console.error(error, 'err')
@@ -2845,6 +3210,79 @@
       return billingText;
     }
 
+    function getDescriptionItem(data) {
+      console.log(data, 'getDescriptionItem');
+      let descriptionContent = ''
+      if (!data.sellPoints) {
+        $('.three-description-box').hide()
+      } else {
+        let sellObj = data.sellPoints
+        $.each(sellObj, function(key, value) {
+          if (value) {
+            descriptionContent += `<div class="three-description-item">
+            <img src="/checkout/v2/images/1673346232-mainpage.png" alt="">
+            <p class="three-description-text"> ` + value + `</p></div>`
+          }
+        })
+      }
+      $('.three-description-box').append(descriptionContent)
+    }
+    $('#shopify-title-item1').click(function() {
+      $(".shopify-container").show()
+      $('#reviews-box').hide()
+      $('#shopify-title-item1').addClass('bor-bom-3')
+      $('#shopify-title-item2').removeClass('bor-bom-3')
+      // slideToggle();
+      // if (shopifyToggle) {
+      //   shopifyToggle = false
+      //   $('#svg-down').show()
+      //   $('#svg-up').hide()
+      // } else {
+      //   shopifyToggle = true
+      //   $('#svg-down').hide()
+      //   $('#svg-up').show()
+      // }
+    })
+
+    function reviewToggle() {
+      $('#shopify-title-item2').addClass('bor-bom-3')
+      console.log($('#shopify-title-item2'), '#shopify-title-item2');
+      $('#shopify-title-item1').removeClass('bor-bom-3')
+      $(".shopify-container").hide()
+      $('#reviews-box').show()
+      console.log('reviewTogglereviewToggle');
+      // $("#reviews-box").slideToggle();
+      // if (reviewsToggle) {
+      //   reviewsToggle = false
+      //   $('#review-down').show()
+      //   $('#review-up').hide()
+      // } else {
+      //   reviewsToggle = true
+      //   $('#review-down').hide()
+      //   $('#review-up').show()
+      // }
+
+    }
+
+    // function textColorChange(event) {
+    //   $(event.target).css("color", 'blue')
+    // }
+
+    function getShopify() {
+      const shopifyUrl = '/shopify/v1/api/full/{{ $slug }}'
+      // const shopifyUrl = 'http://127.0.0.1:8000/shopify/v1/api/full/8398348714214 '
+      axios
+        .get(shopifyUrl)
+        .then(function(res) {
+          console.log(res, 'getShopify===res');
+          let bodyHtml = res.data.data.body_html
+          $('.shopify-container').html(bodyHtml)
+        })
+        .catch(function(err) {
+          console.log(err, 'getShopify===err');
+        })
+    }
+
     function billingAddress() {
       if ($('input[name=hobby]').is(":checked")) {
         $('.billing-content').show()
@@ -2876,6 +3314,7 @@
         $('.billing-content').hide()
       }
     }
+
     $('select[name="billingCountry"]').change(function() {
       if ($(this).val()) {
         var countryClick = $(this).val().toLowerCase()
@@ -2922,60 +3361,6 @@
         crmTrack('add_user_info')
       }
       createdButton()
-    }
-
-    function gooleOrAppleChange() {
-      var googleSelected = $("#airwallex_google").is(":checked");
-      var appleSelected = $("#airwallex_apple").is(":checked");
-      if (googleSelected || appleSelected) {
-        createdButton()
-      }
-    }
-
-
-    function createdButton() {
-      var paramsNotEmpty = paramsIsEmpty()
-      var googleSelected = $("#airwallex_google").is(":checked");
-      var appleSelected = $("#airwallex_apple").is(":checked");
-      console.log(googleSelected, appleSelected, paramsNotEmpty, 'paramsNotEmpty=====');
-      if (countries1 == 'us') {
-        if (googlerOrApple == 'google' && googleShow && googleSelected && paramsNotEmpty) {
-          console.log('googleShow');
-          params.first_name = $('input[name="firstName"]').val()
-          params.second_name = $('input[name="lastName"]').val()
-          params.email = $('input[name="email"]').val()
-          params.phone_full = $('input[name="phone"]').val()
-          params.address = $('input[name="shippingAddress1"]').val()
-          params.city = $('input[name="shippingCity"]').val()
-          params.code = $('input[name="shippingZip"]').val()
-          params.country = $('select[name="shippingCountry"]').val()
-          params.province = $('select[name="shippingState"]').val()
-          createGoogleButton(params)
-        }
-        if (googlerOrApple == 'apple' && appleShow && appleSelected && paramsNotEmpty) {
-          console.log('appleShow');
-          params.first_name = $('input[name="firstName"]').val()
-          params.second_name = $('input[name="lastName"]').val()
-          params.email = $('input[name="email"]').val()
-          params.phone_full = $('input[name="phone"]').val()
-          params.address = $('input[name="shippingAddress1"]').val()
-          params.city = $('input[name="shippingCity"]').val()
-          params.code = $('input[name="shippingZip"]').val()
-          params.country = $('select[name="shippingCountry"]').val()
-          params.province = $('select[name="shippingState"]').val()
-          createApplePayButton(params)
-        }
-      }
-    }
-
-    function googleOrAppleCheck() {
-      var paramsNotEmpty = paramsIsEmpty()
-      if (!paramsNotEmpty) {
-        var errIsShow = skuIsScelect()
-        console.log(params, '==========2', data);
-        var emailErr = validateEmail($('input[name="email"]').val())
-        errDialogShow(errIsShow, emailErr)
-      }
     }
 
     function IsPC() {
@@ -3132,15 +3517,15 @@
       $('.sku-info').append(skuList)
     }
 
-    function reviewImgPreview(imgUrl) {
-      $('.size-chart-img-box').show()
-      $('.size-chart-img img').attr('src', imgUrl)
-    }
-
     function skuImgPreview(event) {
       var imgUrl = $(event.target).attr('src')
       $('.sku-preview-img-box').show()
       $('.sku-preview-img img').attr('src', imgUrl)
+    }
+
+    function reviewImgPreview(imgUrl) {
+      $('.size-chart-img-box').show()
+      $('.size-chart-img img').attr('src', imgUrl)
     }
 
     function sizeCharImgPreview() {
@@ -3481,7 +3866,6 @@
     }
 
     function listEach(list) {
-      console.log(list, 'listeach');
       return list.every(function(item) {
         return item !== '' && item !== null
       })
@@ -3511,6 +3895,7 @@
       })
       var isCrmTrack = listEach(list)
       if (isCrmTrack) {
+        console.log(isCrmTrack);
         crmTrack('add_cart')
         createdButton()
       }
@@ -3548,10 +3933,6 @@
       initProuctData(1, '1')
       console.log(data.attr.attributes, 'data.attr');
       if (data.attr.attributes.length == 0) {
-        $('#p1-select').show()
-        $('#p2-select').hide()
-        $('#p3-select').hide()
-        $('#p4-select').hide()
         crmTrack('add_cart')
         createdButton()
       }
@@ -3584,10 +3965,6 @@
       $('#product-price').text(data.package_products[0].tip2)
       initProuctData(0, '2')
       if (data.attr.attributes.length == 0) {
-        $('#p2-select').show()
-        $('#p1-select').hide()
-        $('#p3-select').hide()
-        $('#p4-select').hide()
         crmTrack('add_cart')
         createdButton()
       }
@@ -3621,10 +3998,6 @@
       $('#product-price').text(data.package_products[2].tip2)
       initProuctData(2, '3')
       if (data.attr.attributes.length == 0) {
-        $('#p3-select').show()
-        $('#p2-select').hide()
-        $('#p1-select').hide()
-        $('#p4-select').hide()
         crmTrack('add_cart')
         createdButton()
       }
@@ -3658,10 +4031,6 @@
       $('#product-price').text(data.package_products[3].tip2)
       initProuctData(3, '4')
       if (data.attr.attributes.length == 0) {
-        $('#p4-select').show()
-        $('#p2-select').hide()
-        $('#p3-select').hide()
-        $('#p1-select').hide()
         crmTrack('add_cart')
         createdButton()
       }
@@ -3682,7 +4051,6 @@
       params.country = $('select[name="shippingCountry"]').val()
       params.province = $('select[name="shippingState"]').val()
       var billingErr = getbillingAddress()
-      console.log(params, 'billing');
       var errIsShow = skuIsScelect()
       var emailErr = validateEmail($('input[name="email"]').val())
       console.log(emailErr, 'emailErr');
@@ -3690,7 +4058,6 @@
       console.log(airwallexArr, 'airwallexArr');
       console.log(errorShow, 'errorShow')
       if (!errorShow || billingErr !== '') {
-        console.log(billingErr, 'billingErr');
         errDialogShow(errIsShow, emailErr, billingErr, airwallexArr.complete)
         $('#loading').hide()
         return
@@ -3709,6 +4076,12 @@
       console.log(params, 'airwallexparams')
       createOrder('', '', 'airwallex')
 
+      // axios.post(postUrl).then(function(res) {
+      //     console.log(res, '===res')
+      //   })
+      //   .catch(function(err) {
+      //     console.log(err, 'err==')
+      //   })
     })
 
     function skuIsScelect() {
@@ -3730,6 +4103,59 @@
       }
 
       return showDialog;
+    }
+
+    function gooleOrAppleChange() {
+      var googleSelected = $("#airwallex_google").is(":checked");
+      var appleSelected = $("#airwallex_apple").is(":checked");
+      if (googleSelected || appleSelected) {
+        createdButton()
+      }
+    }
+
+    function createdButton() {
+      var paramsNotEmpty = paramsIsEmpty()
+      var googleSelected = $("#airwallex_google").is(":checked");
+      var appleSelected = $("#airwallex_apple").is(":checked");
+      console.log(googleSelected, appleSelected, paramsNotEmpty, 'paramsNotEmpty=====');
+      if (countries1 == 'us') {
+        if (googlerOrApple == 'google' && googleShow && googleSelected && paramsNotEmpty) {
+          console.log('googleShow');
+          params.first_name = $('input[name="firstName"]').val()
+          params.second_name = $('input[name="lastName"]').val()
+          params.email = $('input[name="email"]').val()
+          params.phone_full = $('input[name="phone"]').val()
+          params.address = $('input[name="shippingAddress1"]').val()
+          params.city = $('input[name="shippingCity"]').val()
+          params.code = $('input[name="shippingZip"]').val()
+          params.country = $('select[name="shippingCountry"]').val()
+          params.province = $('select[name="shippingState"]').val()
+          createGoogleButton(params)
+        }
+        if (googlerOrApple == 'apple' && appleShow && appleSelected && paramsNotEmpty) {
+          console.log('appleShow');
+          params.first_name = $('input[name="firstName"]').val()
+          params.second_name = $('input[name="lastName"]').val()
+          params.email = $('input[name="email"]').val()
+          params.phone_full = $('input[name="phone"]').val()
+          params.address = $('input[name="shippingAddress1"]').val()
+          params.city = $('input[name="shippingCity"]').val()
+          params.code = $('input[name="shippingZip"]').val()
+          params.country = $('select[name="shippingCountry"]').val()
+          params.province = $('select[name="shippingState"]').val()
+          createApplePayButton(params)
+        }
+      }
+    }
+
+    function googleOrAppleCheck() {
+      var paramsNotEmpty = paramsIsEmpty()
+      if (!paramsNotEmpty) {
+        var errIsShow = skuIsScelect()
+        console.log(params, '==========2', data);
+        var emailErr = validateEmail($('input[name="email"]').val())
+        errDialogShow(errIsShow, emailErr)
+      }
     }
 
     function paramsIsEmpty() {
@@ -4051,6 +4477,20 @@
 
           onInit(data, actions) {
 
+            // Disable the buttons
+            // actions.disable();
+
+            // Listen for changes to the checkbox
+            // document.querySelector('#check').addEventListener('change', function(event) {
+            //     // Enable or disable the button when it is checked or unchecked
+            //     if (event.target.checked)  {
+            //     actions.enable();
+            //     } else  {
+            //     actions.disable();
+            //     }
+            // });
+            // var params = getOrderParams('paypal_stand');
+
             var can_paypal = 0;
             var email_can = 0;
             var first_name_can = 0;
@@ -4280,41 +4720,49 @@
 
     });
   </script>
-  <script src="/checkout/v2/js/custom-extra.js"></script>
+  <!-- <script src="/checkout/v2/js/codebase.min.js" type="text/javascript"></script> -->
+  <!-- <script src="/checkout/v2/js/sticky-prospect-script.min.js"></script> -->
+  <!-- <script src="/checkout/v2/js/custom-extra.js"></script> -->
+  <!-- <script async defer src="js/js"></script> -->
+  <script>
+    var restricted_countries = 'US,CA'
+  </script>
+  <script src="/checkout/v2/js/address-auto-complete.min.js"></script>
   <script type="text/javascript" src="/checkout/v2/js/slick.min.js"></script>
   <script type="text/javascript" src="/checkout/v2/js/bookmarkscroll.js"></script>
   <script type="text/javascript" src="/checkout/v2/js/jquery.sticky.js"></script>
   <script type="text/javascript" src="/checkout/v2/js/slick-cust.js"></script>
-  <script type="text/javascript" src="/checkout/v2/js/popup.js"></script>
+  <!-- <script type="text/javascript" src="/checkout/v2/js/popup.js"></script> -->
+  <!-- <script type="text/javascript" src="js/checkout.js"></script> -->
 
   <script>
-    var spd = 100
-    var spdVal = 10
-    var cntDown = 5 * 60 * spdVal
-    setInterval(function() {
-      var mn, sc, ms
-      cntDown--
-      if (cntDown < 0) {
-        return false
-      }
-      mn = Math.floor(cntDown / spdVal / 60)
-      mn = mn < 10 ? '0' + mn : mn
-      sc = Math.floor((cntDown / spdVal) % 60)
-      sc = sc < 10 ? '0' + sc : sc
-      ms = Math.floor(cntDown % spdVal)
-      ms = ms < 10 ? '0' + ms : ms
-      var result = mn + ':' + sc
-      document.getElementById('stopwatch').innerHTML = result
-    }, spd)
-    $(function() {
+    // $(function() {
+    //   var width = $(window).innerWidth()
+    //   if (width > 767) {
+    //     var height = $('.checkout-section').height()
+    //     console.log(height, 'height===');
+    //     $('.left-sec').css('height', height)
+    //     $('body').css('height', height)
+    //   }
+    // })
+    function heightChange() {
       var width = $(window).innerWidth()
       if (width > 767) {
         var height = $('.checkout-section').height()
         console.log(height, 'height===');
         $('.left-sec').css('height', height)
+        $('body').css('height', height)
       }
-    })
-
+    }
+    window.onload = function() {
+      var width = $(window).innerWidth()
+      if (width > 767) {
+        var height = $('.checkout-section').height()
+        console.log(height, 'height===');
+        $('.left-sec').css('height', height)
+        $('body').css('height', height)
+      }
+    }
     $('.fieldToggle').click(function() {
       if ($('#togData').prop('checked') == true) {
         $('.shipaddress').slideUp()
@@ -4325,7 +4773,7 @@
     $(document).on('click', '.go-rew', async function(evt) {
       if (evt.which) {
         $('html,body').animate({
-            scrollTop: $('#iduzu').offset().top,
+            scrollTop: $('#shopify-title-item1').offset().top,
           },
           '2000'
         )
@@ -4350,27 +4798,27 @@
           var img = res.data.data.images
           var imgListLength = img.length
           var imglen = Math.floor(imgListLength / 3)
-          if (imglen > 3) {
-            imglen = 3;
-          }
+          // if (imglen > 3) {
+          //   imglen = 3;
+          // }
           for (var i = 0; i < img.length; i++) {
             swiperList += `<div class="swiper-slide"><img src="${img[i].src}" ></div>`
           }
-          for (var imgi = 0; imgi < imglen; imgi++) {
-            var i1 = 0 + imgi * 3,
-              i2 = 1 + imgi * 3,
-              i3 = 2 + imgi * 3
-            showimg += `<div class="grid-cell gallery-item grid-col-span-1">
-              <img src="` + img[i1].src + `" alt="">
-            </div>
-            <div class="grid-cell gallery-item grid-col-span-2">
-              <img src="` + img[i2].src + `" alt="">
-            </div>
-            <div class="grid-cell gallery-item grid-col-span-2">
-              <img src="` + img[i3].src + `" alt="">
-            </div>`
-          }
-          $('.grid-container').append(showimg)
+          // for (var imgi = 0; imgi < imglen; imgi++) {
+          //   var i1 = 0 + imgi * 3,
+          //     i2 = 1 + imgi * 3,
+          //     i3 = 2 + imgi * 3
+          //   showimg += `<div class="grid-cell gallery-item grid-col-span-1">
+          //     <img src="` + img[i1].src + `" alt="">
+          //   </div>
+          //   <div class="grid-cell gallery-item grid-col-span-2">
+          //     <img src="` + img[i2].src + `" alt="">
+          //   </div>
+          //   <div class="grid-cell gallery-item grid-col-span-2">
+          //     <img src="` + img[i3].src + `" alt="">
+          //   </div>`
+          // }
+          // $('.grid-container').append(showimg)
           var gallery =
             `<div class="swiper-container" style="width:100%" id="gallery">
 					<div class="swiper-wrapper">` +
@@ -4421,6 +4869,8 @@
       $('#pay-after-submit-error').hide()
     }
   </script>
+  <!-- <script src="https://checkout-demo.airwallex.com/assets/elements.bundle.min.js"></script> -->
+  <script src="https://checkout.airwallex.com/assets/elements.bundle.min.js"></script>
   <script>
     Airwallex.init({
       env: 'prod', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
@@ -4678,6 +5128,7 @@
                     errorDetail.issue === 'INSTRUMENT_DECLINED'
                   ) {
                     return actions.restart() // Recoverable state, per:
+                    // https://developer.paypal.com/docs/checkout/integration-features/funding-failure/
                   }
 
                   if (errorDetail) {
@@ -4696,6 +5147,7 @@
                       '/onebuy/checkout/v1/success/' +
                       localStorage.getItem('order_id')
                     return true
+                    //actions.redirect('/checkout/v1/success/'+localStorage.getItem('order_id'));
                   }
                   if (res.error == 'INSTRUMENT_DECLINED') {
                     $('#' + (error_id || 'paypal-error')).html(
@@ -4806,6 +5258,18 @@
           $('#checkout-error').html(error);
           $('#checkout-error').show();
         });
+        // createOrder('', 'stripe_charge_token', 'stripe');
+        // stripe.createToken(cardNumber).then(function(result) {
+        //     if (result.error) {
+        //         // Inform the customer that there was an error.
+        //         $('#checkout-error').html(result.error.message+'<br /><br />');
+        //         $('#checkout-error').show();
+        //         $('#loading').hide();
+        //     } else {
+        //         // Send the token to your server.
+        //         createOrder(result.token.id, 'stripe_charge_token', 'stripe');
+        //     }
+        // });
       }
     }
 
@@ -4968,6 +5432,10 @@
           $('#loading').hide();
         })
     }
+
+    // function createGooglePay() {
+
+    // }
 
     function getPhonePrefix() {
       return '';

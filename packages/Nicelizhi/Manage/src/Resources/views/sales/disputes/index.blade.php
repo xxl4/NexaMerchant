@@ -1,8 +1,6 @@
 <x-admin::layouts>
-
-    {{-- Page Title --}}
     <x-slot:title>
-        Shopify Home
+        @lang('admin::app.sales.disputes.index.title')
     </x-slot:title>
 
      <!-- DataTables -->
@@ -17,22 +15,20 @@
               
                 <div class="card">
                     <div class="card-header">
-                      <h3 class="card-title">Shopify Home</h3>
+                      <h3 class="card-title">@lang('admin::app.sales.disputes.index.title')</h3>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
                       <table id="tables" class="table table-bordered table-striped">
                         <thead>
                         <tr>
-                          <th>Product ID</th>
-                          <th>Title</th>
-                          <th>handle</th>
+                          <th>ID</th>
+                          <th>Dispute ID</th>
+                          <th>Transaction ID</th>
                           <th>Status</th>
-                          <th>Checkout</th>
-                          <th>Checkout V2</th>
-                          <th>Checkout V3</th>
-                          <th>updated at</th>
-                          <th>Action</th>
+                          <th>created_at</th>
+                          <th>updated_at</th>
+                          <th>Options</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -73,54 +69,38 @@
 
 <script>
     $(function () {
+      
       $("#tables").DataTable({
+      
         autoWidth: true,
         keys: true,
         ajax: {
-          url: "{{ route('admin.shopify.products.index') }}",
+          url: "{{ route('admin.sales.disputes.index') }}",
           type: 'GET'
         },
         columns: [
           {
-            data: 'product_id'
+            data: 'id'
           },
           {
-            data: 'title'
-          },{
-            data: 'handle',
-            render: function(data, type, row, meta) {
-              return '<a href="<?php echo $shopifyStore->shopify_app_host_name?>'+data+'" target="_blank">'+data+'</a>';
-            }
-          }
-          ,
+            data: 'dispute_id'
+          },
           {
+            data: 'transaction_id'
+          }
+          ,{
             data: 'status'
-          },{
-            data: 'product_id',
-            render: function(data, type, row, meta) {
-              return '<a href="./products/checkout-url-get/'+data+'/onebuy" target="_blank" class="btn btn-primary btn-sm">Checkout URl</a>';
-            }
-          }
-          ,{
-            data: 'product_id',
-            render: function(data, type, row, meta) {
-              return '<a href="/checkout/v2/'+ data +'" target="_blank" class="btn btn-primary btn-sm">Checkout V2</a>';
-            }
-          }
-          ,{
-            data: 'product_id',
-            render: function(data, type, row, meta) {
-              return '<a href="/checkout/v3/'+data+'" target="_blank" class="btn btn-primary btn-sm">Checkout V3</a>';
-            }
-          }
-          ,
-          {
-            data: 'updated_at'
           },
           {
-            data: "product_id",
+            data: 'created_at'
+          },{
+            data: 'updated_at'
+          }
+          ,{
+            data: 'id',
             render: function(data, type, row, meta) {
-              return '<a href="./products/sync/'+data+'" title="product sync"><i class="fas fa-sync"></i></a> <a href="./products/images/'+data+'/onebuy" title="product images"><i class="fas fa-images"></i></a> <a href="./products/comments/'+data+'/onebuy?locale={{ app()->getLocale() }}" title="product comments"><i class="fas fa-comments"></i></a> <a href="./products/info/'+data+'/onebuy?locale={{ app()->getLocale() }}" title="product info"><i class="fas fa-info-circle"></i> </a> <a href="./products/sell-points/'+data+'/onebuy?locale={{ app()->getLocale() }}" title="sell points"> <i class="fa fa-building"></i> </a> ';
+              return "";
+              //return '<a href="./orders/view/'+data+'" class="btn btn-primary btn-sm">View</a><a href="./orders/confirm-payment/'+data+'" class="btn btn-danger btn-sm" title="Confirm Payment">Confim</a> ';
             }
           }
         ],
@@ -128,7 +108,7 @@
             [20, 50, 100],
             [20, 50, 100]
         ],
-        order: [[3, 'desc']],
+        order: [[5, 'desc']],
         processing: true,
         serverSide: true,
         
@@ -140,8 +120,12 @@
 
 
       });
+
+      $('.dataTables_filter input[type="search"]').css(
+        {'width':'450px','display':'inline-block'}
+      );
     
     });
   </script>
-    
+
 </x-admin::layouts>
