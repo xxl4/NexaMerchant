@@ -64,6 +64,7 @@ class ImportProductCommentFromJudge extends Command
         $api_token = config("onebuy.judge.api_token");
 
         $this->prod_id = $this->option("prod_id");
+        echo $this->prod_id."\r\n";
 
         $client = new Client();
 
