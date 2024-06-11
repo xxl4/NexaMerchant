@@ -398,6 +398,27 @@ class Order extends Model implements OrderContract
     }
 
     /**
+     * 
+     * Checks if order need dispute or not
+     * 
+     * @return bool
+     * 
+     */
+    public function canDispute(): bool
+    {
+        if ($this->status === self::STATUS_FRAUD) {
+            return false;
+        }
+
+        $dispute = $this->dispute()->first();
+        if($dispute) {
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
      * Checks if order can be refunded or not
      *
      * @return bool
