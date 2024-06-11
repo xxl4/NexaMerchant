@@ -6,7 +6,7 @@ test('test checkout successful response', function() {
 });
 
 test('test checkout v2', function() {
-    $response = $this->get('/checkout/v2/cms/contact-us');
+    $response = $this->get('/checkout/v2/8395243356390');
 
     $response->assertStatus(200);
 });
