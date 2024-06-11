@@ -2521,8 +2521,8 @@
         $('.Schritt-top-box').show()
         $('.Schritt-top-box img').attr('src', schrittImg)
       }
-      if (countries1 == 'de') {
-        $('.terms-block-last').show
+      if (countries1 == 'de' || countries1 == 'fr') {
+        $('.terms-block-last').show()
       }
       if (countries1 == 'us' || countries1 == 'uk') {
         var favicon = '/checkout/v2/images/favicon.png'
@@ -3359,6 +3359,12 @@
         params.products.push(productL1, productL2, productL3, productL4)
         // paramsProductsinit(params.products)
       }
+      if (data.attr.attributes.length == 0) {
+        params.products.forEach(function(item){
+          item.product_sku = data.sku
+          item.variant_id = ''
+        })
+      }
       getSkuListInfo();
     }
     $(function() {
@@ -3683,7 +3689,7 @@
       var errorShow = params.first_name && params.second_name && params.email && params.phone_full && params.address && params.city && params.code && params.country && params.province && errIsShow && airwallexArr.complete && emailErr
       console.log(airwallexArr, 'airwallexArr');
       console.log(errorShow, 'errorShow')
-      if (!errorShow && billingErr !== '') {
+      if (!errorShow || billingErr !== '') {
         console.log(billingErr, 'billingErr');
         errDialogShow(errIsShow, emailErr, billingErr, airwallexArr.complete)
         $('#loading').hide()
@@ -3850,6 +3856,7 @@
             });
             const domGooglePay = googlePayElement.mount('googlePayButton');
             domGooglePay.addEventListener('onReady', (event) => {
+              $('#loading').hide();
               $('#googlePayButton').removeClass('button-opacity')
               $('.pay-button').css('background', '#fff')
               /*
