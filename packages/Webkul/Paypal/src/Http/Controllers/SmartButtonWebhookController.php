@@ -41,7 +41,7 @@ class SmartButtonWebhookController extends Controller
         $dispute->refund_details = $data['resource']['refund_details'];
         $dispute->offer = $data['resource']['offer'];
         $dispute->messages = isset($data['resource']['messages']) ?  $data['resource']['messages'] : NULL;
-
+        $dispute->json = json_encode($data);
         // check the order id
         $order_id = 0;
         $orderTransaction = $this->orderTransactionRepository->findOneWhere(['captures_id' => $dispute->transaction_id]);
