@@ -74,6 +74,8 @@ jobs:
       run: unzip db.zip -d ./
     - name: mysql import
       run: mysql -u root -ppassword -h mysql test < db.sql
+    - name: migrate db
+      run: php artisan migrate
     - name: route list
       run: php artisan route:list
     - name: Tests
