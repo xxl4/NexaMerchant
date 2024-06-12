@@ -114,6 +114,7 @@
             "Nicelizhi\\Shopify\\Tests\\": "packages/Nicelizhi/Shopify/tests",
             "Nicelizhi\\Maange\\Tests\\": "packages/Nicelizhi/Mange/tests",
             "Nicelizhi\\OneBuy\\Tests\\": "packages/Nicelizhi/OneBuy/tests",
+            "Nicelizhi\\Lp\\Tests\\": "packages/Nicelizhi/Lp/tests",
             "Nicelizhi\\Comments\\Tests\\": "packages/Nicelizhi/Comments/tests",
             "Nicelizhi\\ShopLine\\Tests\\": "packages/Nicelizhi/ShopLine/tests"
         }
