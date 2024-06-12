@@ -2888,7 +2888,7 @@
         $('.header-middle').show()
         $('.header-middle img').attr('src', schrittImg)
       }
-      if (countries1 == 'de' ||countries1 == 'fr' ) {
+      if (countries1 == 'de' || countries1 == 'fr') {
         $('.terms-block-last').show()
       }
       if (countries1 == 'us' || countries1 == 'uk') {
@@ -3745,7 +3745,7 @@
         // paramsProductsinit(params.products)
       }
       if (data.attr.attributes.length == 0) {
-        params.products.forEach(function(item){
+        params.products.forEach(function(item) {
           item.product_sku = data.sku
           item.variant_id = ''
         })
@@ -4869,11 +4869,11 @@
       $('#pay-after-submit-error').hide()
     }
   </script>
-  <!-- <script src="https://checkout-demo.airwallex.com/assets/elements.bundle.min.js"></script> -->
-  <script src="https://checkout.airwallex.com/assets/elements.bundle.min.js"></script>
+  <script src="https://checkout-demo.airwallex.com/assets/elements.bundle.min.js"></script>
+  <!-- <script src="https://checkout.airwallex.com/assets/elements.bundle.min.js"></script> -->
   <script>
     Airwallex.init({
-      env: 'prod', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
+      env: 'demo', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
       origin: window.location.origin, // Setup your event target to receive the browser events message
     });
 
@@ -5371,7 +5371,7 @@
 
 
             if (window.is_airwallex) {
-
+              console.log(data, 'data===window.is_airwallex');
               document.querySelector(".submit-button").scrollIntoView({
                 behavior: "smooth"
               })

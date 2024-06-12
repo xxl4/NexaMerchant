@@ -31,3 +31,4 @@ yarn-error.log
 /storage/debugbar/
 /packages/Nicelizhi/GraphQLAPI/
 /app/Providers/AppServiceProvider.php
+/storage/installed
