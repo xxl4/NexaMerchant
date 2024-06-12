@@ -3185,6 +3185,7 @@
         params.bill_province = $('select[name="billingState"]').val()
         params.bill_address = $('input[name="billingStreetAddress"]').val()
         params.bill_code = $('input[name="billingZip"]').val()
+        params.shipping_address = 'other'
         if (params.bill_first_name == '') {
           billingText += '<li>Please enter your billing first name!</li>'
         }
@@ -3305,7 +3306,7 @@
                 }
                 $('select[name="billingState"]').empty()
                 $('select[name="billingState"]').append(optionList)
-                $('select[name="billingState"]').val(stateList[0].StateCode)
+                // $('select[name="billingState"]').val(stateList[0].StateCode)
               }
             })
         }
@@ -3331,7 +3332,7 @@
               }
               $('select[name="billingState"]').empty()
               $('select[name="billingState"]').append(optionList)
-              $('select[name="billingState"]').val(stateList[0].StateCode)
+              // $('select[name="billingState"]').val(stateList[0].StateCode)
             }
 
           })
@@ -3787,7 +3788,7 @@
                   }
                   $('select[name="shippingState"]').empty()
                   $('select[name="shippingState"]').append(optionList)
-                  $('select[name="shippingState"]').val(stateList[0].StateCode)
+                  // $('select[name="shippingState"]').val(stateList[0].StateCode)
                 }
               })
           }
@@ -3821,7 +3822,7 @@
               }
               $('select[name="shippingState"]').empty()
               $('select[name="shippingState"]').append(optionList)
-              $('select[name="shippingState"]').val(stateList[0].StateCode)
+              // $('select[name="shippingState"]').val(stateList[0].StateCode)
             }
 
           })
@@ -4598,7 +4599,7 @@
 
           // Call your server to set up the transaction
           createOrder: function(data, actions) {
-            // getParams('paypal_stand')
+            getParams('paypal_stand')
             var errIsShow = skuIsScelect()
             console.log(params, '==========2', data);
             var emailErr = validateEmail($('input[name="email"]').val())
@@ -4869,11 +4870,11 @@
       $('#pay-after-submit-error').hide()
     }
   </script>
-  <script src="https://checkout-demo.airwallex.com/assets/elements.bundle.min.js"></script>
-  <!-- <script src="https://checkout.airwallex.com/assets/elements.bundle.min.js"></script> -->
+  <!-- <script src="https://checkout-demo.airwallex.com/assets/elements.bundle.min.js"></script> -->
+  <script src="https://checkout.airwallex.com/assets/elements.bundle.min.js"></script>
   <script>
     Airwallex.init({
-      env: 'demo', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
+      env: 'prod', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
       origin: window.location.origin, // Setup your event target to receive the browser events message
     });
 
