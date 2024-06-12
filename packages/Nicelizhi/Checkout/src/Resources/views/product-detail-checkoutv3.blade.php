@@ -2891,7 +2891,7 @@
       if (countries1 == 'de' || countries1 == 'fr') {
         $('.terms-block-last').show()
       }
-      if (countries1 == 'us' || countries1 == 'uk') {
+      if (countries1 == 'us' || countries1 == 'gb') {
         var favicon = '/checkout/v2/images/favicon.png'
         $('#favicon-icon').attr('href', favicon)
       }
@@ -2926,7 +2926,7 @@
       if (attrList.length > 0) {
         var selectList = ''
         for (var arri = 0; arri < attrList.length; arri++) {
-          var optionList = `<option value="" selected disabled">` + attrList[arri].label + `</option>`
+          var optionList = `<option value="" selected disabled>` + attrList[arri].label + `</option>`
           for (var attj = 0; attj < attrList[arri].options.length; attj++) {
             optionList += `<option value="` + attrList[arri].options[attj].label + `">` + attrList[arri].options[attj].label + `</option>`
           }
@@ -3300,7 +3300,7 @@
               if (res.data[0].CountryCode) {
                 console.log(res, 'rrrrrrrssssssss')
                 var stateList = res.data
-                var optionList = `<option value="" disabled>@lang('checkout::app.v2.Select State')</option>`
+                var optionList = `<option value="" selected disabled>@lang('checkout::app.v2.Select State')</option>`
                 for (var resj = 0; resj < stateList.length; resj++) {
                   optionList += `<option value="` + stateList[resj].StateCode + `">` + stateList[resj].StateName + `</option>`
                 }
@@ -3326,7 +3326,7 @@
           .then(function(res) {
             if (res.data[0].CountryCode) {
               var stateList = res.data
-              var optionList = `<option value="" disabled>@lang('checkout::app.v2.Select State')</option>`
+              var optionList = `<option value="" selected disabled>@lang('checkout::app.v2.Select State')</option>`
               for (var resj = 0; resj < stateList.length; resj++) {
                 optionList += `<option value="` + stateList[resj].StateCode + `">` + stateList[resj].StateName + `</option>`
               }
@@ -3782,7 +3782,7 @@
                 if (res.data[0].CountryCode) {
                   console.log(res, 'rrrrrrrssssssss')
                   var stateList = res.data
-                  var optionList = `<option value="" disabled>@lang('checkout::app.v2.Select State')</option>`
+                  var optionList = `<option value="" selected disabled>@lang('checkout::app.v2.Select State')</option>`
                   for (var resj = 0; resj < stateList.length; resj++) {
                     optionList += `<option value="` + stateList[resj].StateCode + `">` + stateList[resj].StateName + `</option>`
                   }
@@ -3816,7 +3816,7 @@
             if (res.data[0].CountryCode) {
               console.log(res, 'rererererere')
               var stateList = res.data
-              var optionList = `<option value="" disabled>@lang('checkout::app.v2.Select State')</option>`
+              var optionList = `<option value="" selected disabled>@lang('checkout::app.v2.Select State')</option>`
               for (var resj = 0; resj < stateList.length; resj++) {
                 optionList += `<option value="` + stateList[resj].StateCode + `">` + stateList[resj].StateName + `</option>`
               }
