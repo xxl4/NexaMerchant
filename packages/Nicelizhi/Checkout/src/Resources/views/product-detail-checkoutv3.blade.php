@@ -3192,13 +3192,13 @@
         if (params.bill_second_name == '') {
           billingText += '<li>Please enter your billing last name!</li>'
         }
-        if (params.bill_country == '') {
+        if (params.bill_country == '' || params.bill_country == null) {
           billingText += '<li>Please select your billing country!</li>'
         }
         if (params.bill_city == '') {
           billingText += '<li>Please enter your billing city!</li>'
         }
-        if (params.bill_province == '') {
+        if (params.bill_province == '' || params.bill_province == null) {
           billingText += '<li>Please select your billing state!</li>'
         }
         if (params.bill_address == '') {
