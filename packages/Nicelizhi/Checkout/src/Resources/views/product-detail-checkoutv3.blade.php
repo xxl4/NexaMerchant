@@ -4870,11 +4870,14 @@
       $('#pay-after-submit-error').hide()
     }
   </script>
-  <!-- <script src="https://checkout-demo.airwallex.com/assets/elements.bundle.min.js"></script> -->
-  <script src="https://checkout.airwallex.com/assets/elements.bundle.min.js"></script>
+  <?php if (@$data['env'] == 'demo') { ?>
+    <script src="https://checkout-demo.airwallex.com/assets/elements.bundle.min.js"></script>
+  <?php } else { ?>
+    <script src="https://checkout.airwallex.com/assets/elements.bundle.min.js"></script>
+  <?php } ?>
   <script>
     Airwallex.init({
-      env: 'prod', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
+      env: '<?php echo $data['env']; ?>', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
       origin: window.location.origin, // Setup your event target to receive the browser events message
     });
 
