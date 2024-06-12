@@ -2820,6 +2820,7 @@
         params.bill_province = $('select[name="billingState"]').val()
         params.bill_address = $('input[name="billingStreetAddress"]').val()
         params.bill_code = $('input[name="billingZip"]').val()
+        params.shipping_address = 'other'
         if (params.bill_first_name == '') {
           billingText += '<li>Please enter your billing first name!</li>'
         }
@@ -2867,7 +2868,7 @@
                 }
                 $('select[name="billingState"]').empty()
                 $('select[name="billingState"]').append(optionList)
-                $('select[name="billingState"]').val(stateList[0].StateCode)
+                // $('select[name="billingState"]').val(stateList[0].StateCode)
               }
             })
         }
@@ -2892,7 +2893,7 @@
               }
               $('select[name="billingState"]').empty()
               $('select[name="billingState"]').append(optionList)
-              $('select[name="billingState"]').val(stateList[0].StateCode)
+              // $('select[name="billingState"]').val(stateList[0].StateCode)
             }
 
           })
@@ -3360,7 +3361,7 @@
         // paramsProductsinit(params.products)
       }
       if (data.attr.attributes.length == 0) {
-        params.products.forEach(function(item){
+        params.products.forEach(function(item) {
           item.product_sku = data.sku
           item.variant_id = ''
         })
@@ -3402,7 +3403,7 @@
                   }
                   $('select[name="shippingState"]').empty()
                   $('select[name="shippingState"]').append(optionList)
-                  $('select[name="shippingState"]').val(stateList[0].StateCode)
+                  // $('select[name="shippingState"]').val(stateList[0].StateCode)
                 }
               })
           }
@@ -3436,7 +3437,7 @@
               }
               $('select[name="shippingState"]').empty()
               $('select[name="shippingState"]').append(optionList)
-              $('select[name="shippingState"]').val(stateList[0].StateCode)
+              // $('select[name="shippingState"]').val(stateList[0].StateCode)
             }
 
           })
@@ -4158,7 +4159,7 @@
 
           // Call your server to set up the transaction
           createOrder: function(data, actions) {
-            // getParams('paypal_stand')
+            getParams('paypal_stand')
             var errIsShow = skuIsScelect()
             console.log(params, '==========2', data);
             var emailErr = validateEmail($('input[name="email"]').val())
