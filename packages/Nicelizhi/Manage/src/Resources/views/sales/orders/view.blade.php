@@ -234,16 +234,10 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($order->items as $item)
+                                        @foreach ($order->sku_items as $item)
                                         <tr>
                                             <td>
 
-
-                                            <?php 
-                                            
-                                            //var_dump($item);exit;
-                                            
-                                            ?>
 
                                                 @if($item->product?->base_image_url)
                                                 <img
