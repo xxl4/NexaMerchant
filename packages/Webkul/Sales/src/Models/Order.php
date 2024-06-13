@@ -141,6 +141,12 @@ class Order extends Model implements OrderContract
             ->whereNull('parent_id');
     }
 
+    public function sku_items(): HasMany
+    {
+        return $this->hasMany(OrderItemProxy::modelClass())
+            ->whereNotNull('parent_id');
+    }
+
     /**
      * Get the comments record associated with the order.
      */
