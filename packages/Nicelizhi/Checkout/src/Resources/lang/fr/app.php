@@ -87,6 +87,11 @@ return [
     'Description' => 'décrire',
     'Reviews' => 'Commentaire',
     'Buy Now' => 'Achetez-le maintenant',
-    'Secure Checkout' => 'Paiement sécurisé'
+    'Secure Checkout' => 'Paiement sécurisé',
+    'sold in last' => 'vendu en dernier',
+    'hours' => 'heures',
+    'Estimated Delivery between' => 'Livraison estimée entre',
+    'and' => 'et',
+    'People Looking For This Product' => 'Personnes recherchant ce produit'
   ]
 ];
