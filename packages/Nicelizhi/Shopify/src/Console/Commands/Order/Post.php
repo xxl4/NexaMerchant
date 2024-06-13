@@ -170,6 +170,8 @@ class Post extends Command
 
         $orderPayment = $order->payment;  
 
+        $this->customerRepository = app(CustomerRepository::class);
+
         
 
         //var_dump($order);exit;
@@ -229,24 +231,24 @@ class Post extends Command
         $postOrder['billing_address'] = $billing_address;
 
         // create user
-        // $customer = $this->customerRepository->findOneByField('email', $shipping_address->email);
-        // if(is_null($customer)) {
-        //     $customer = $this->customerRepository->findOneByField('phone', $shipping_address->phone);
-        //     if(is_null($customer)) {
+        $customer = $this->customerRepository->findOneByField('email', $shipping_address->email);
+        if(is_null($customer)) {
+            $customer = $this->customerRepository->findOneByField('phone', $shipping_address->phone);
+            if(is_null($customer)) {
 
-        //         $data = [];
-        //         $data['email'] = $shipping_address->email;
-        //         $data['customer_group_id'] = 2;
-        //         $data['first_name'] = $shipping_address->first_name;
-        //         $data['last_name'] = $shipping_address->last_name;
-        //         $data['gender'] = $shipping_address->gender;
-        //         $data['phone'] = $shipping_address->phone;
+                $data = [];
+                $data['email'] = $shipping_address->email;
+                $data['customer_group_id'] = 2;
+                $data['first_name'] = $shipping_address->first_name;
+                $data['last_name'] = $shipping_address->last_name;
+                $data['gender'] = $shipping_address->gender;
+                $data['phone'] = $shipping_address->phone;
 
-        //         //var_dump($data);
+                //var_dump($data);
     
-        //         $this->createCuster($data);
-        //     }
-        // }
+                $this->createCuster($data);
+            }
+        }
         
 
         $shipping_address = [
