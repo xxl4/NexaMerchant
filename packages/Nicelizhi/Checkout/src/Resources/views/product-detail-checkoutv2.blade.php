@@ -1292,7 +1292,7 @@
 
     .choose-billing-box {
       display: none;
-      margin: 5px;
+      margin: 15px 5px 0;
       font-size: 13px;
       font-family: var(--text-family);
       color: var(--text-color);

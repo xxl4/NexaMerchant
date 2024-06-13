@@ -14,6 +14,7 @@
 
 body{
     margin: 0;
+    font-family: Poppins, sans-serif!important;
 }
 
 img {
@@ -54,7 +55,7 @@ img {
     background-color: #30bd51;
     font-size: 18px;
     line-height: 18px;
-    font-family: Helvetica Bold;
+    /* font-family: Helvetica Bold; */
     padding: 13px 10px;
 }
 
@@ -122,9 +123,9 @@ img {
 .main-container-progress-state-content-step-title {
     margin: 20px 0 15px;
     text-align: center;
-    font-size: 24px;
+    font-size: 20px;
     line-height: 1em;
-    font-family: AvenirNext-Demi;
+    /* font-family: AvenirNext-Demi; */
     font-weight: 700;
     color: #8d8d8d;
 }
@@ -202,7 +203,7 @@ img {
     margin: 0 0 0 5px;
     font-size: 20px;
     line-height: 24px;
-    font-family: helvetica-regular;
+    /* font-family: helvetica-regular; */
     text-align: center;
 }
 
@@ -214,9 +215,12 @@ img {
 }
 
 .product-list {
-    display: flex;
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(2, 1fr);
+    /* display: flex;
     align-items: flex-end;
-    justify-content: space-between;
+    justify-content: space-between; */
     min-height: auto;
     color: #1a1a1a;
     position: static;
@@ -224,18 +228,19 @@ img {
 }
 
 .list-item {
-    display: flex;
-    cursor: pointer;
-    transition: .2s;
-    border-radius: 3px;
-    overflow: hidden;
-    padding: 30px 10px 20px;
-    margin: 0 10px 8px;
-    flex-direction: column;
-    align-items: center;
-    background-color: #fff;
-    width: 30%;
-    justify-content: center;
+  width: 100%!important;
+  display: flex;
+  cursor: pointer;
+  transition: .2s;
+  border-radius: 3px;
+  overflow: hidden;
+  padding: 10px;
+  margin: 0 10px 8px; 
+  flex-direction: column;
+  align-items: center;
+  background-color: #fff;
+  width: 30%;
+  justify-content: center;
 }
 
 .recommend_deal {
@@ -260,20 +265,21 @@ img {
 
 .recommend_deal_font {
     margin: 0;
-    font-family: Avenir Next Bold;
+    /* font-family: Avenir Next Bold; */
     color: #fff;
-    font-size: 18px;
-    line-height: 25px;
+    font-size: 14px;
+    line-height: 22px;
 }
 
 .list-item-content {
     display: flex;
     flex-grow: 1;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: center;
+    align-items: center;
     width: 100%!important;
     max-width: none!important;
-    padding: 22px 10px 20px;
+    padding: 10px;
 }
 
 .list-item-title {
@@ -283,12 +289,12 @@ img {
 }
 
 .list-item-title-name {
-    font-family: Avenir Next Bold;
-    font-size: 26px;
-    line-height: 30px;
+    /* font-family: Avenir Next Bold; */
+    font-size: 18px;
+    line-height: 22px;
     display: block;
     text-align: center;
-    margin: 0 0 30px;
+    /* margin: 0 0 30px; */
 }
 
 .list-item-footer {
@@ -297,6 +303,9 @@ img {
 }
 
 .list-item-prices {
+  display: flex;
+  align-items: center;
+  justify-content: center;
     margin: 20px 0 0;
 }
 
@@ -304,22 +313,21 @@ img {
     text-decoration: line-through;
     margin: 0;
     color: #1a1a1a;
-    font-family: Avenir Next Medium;
+    /* font-family: Avenir Next Medium; */
     text-align: center;
 }
 
 .new-price {
-    font-family: Avenir Next Bold;
     margin: 0;
     font-weight: 700;
     color: #00c1f1;
-    font-size: 33px;
-    line-height: 45px;
+    font-size: 26px;
+    line-height: 36px;
 }
 
 .tip_wrapper {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     justify-content: center;
     min-height: auto;
     margin: 10px 0 5px;
@@ -327,16 +335,16 @@ img {
 
 .tip_wrapper img {
     display: block;
-    width: 24px;
+    width: 16px;
     margin: 0 10px 0 0;
 }
 
 .tip1 {
     margin: 0;
     color: #000;
-    font-family: Avenir Next Medium;
-    font-size: 20px;
-    line-height: 27px;
+    /* font-family: Avenir Next Medium; */
+    font-size: 16px;
+    line-height: 23px;
 }
 .attribute-select {
     display: flex;
@@ -405,7 +413,7 @@ img {
     display: flex;
     padding: 5px;
     text-decoration: none;
-    font-family: Avenir Next Bold;
+    /* font-family: Avenir Next Bold; */
     color: #000;
     font-size: 18px;
     text-align: center;
@@ -440,7 +448,16 @@ img {
     height: auto;
     min-height: 600px;
 }
-
+.faqandcommon{
+  max-width: 1208px;
+    display: block;
+    margin: 26px auto 100px;
+    padding: 0 15px;
+    position: relative;
+    border-radius: 0;
+    width: 100%;
+    align-items: stretch;
+}
 .shipping-and-payment {
     min-height: auto;
     max-width: 760px;
@@ -457,7 +474,7 @@ img {
 
 .payment-title {
     margin: 0 0 30px;
-    font-family: AvenirNext-Demi;
+    /* font-family: AvenirNext-Demi; */
     font-size: 31px;
     color: #1a1a1a;
     font-weight: 700;
@@ -477,7 +494,7 @@ img {
     align-items: center;
     justify-content: center;
     border-top: 1px solid #dfdfdf;
-    margin: 0 auto 30px;
+    margin: 0 auto 1%;
     max-width: 380px;
     width: 100%;
     position: relative;
@@ -492,13 +509,13 @@ img {
     display: inline-block;
     margin: 0 auto;
     position: absolute;
-    font-family: AvenirNext-Demi;
+    /* font-family: AvenirNext-Demi; */
     font-weight: 700;
 }
 
 .checkout-button {
     border: 2px #767676;
-    font-family: AvenirNext-DemiBold;
+    /* font-family: AvenirNext-DemiBold; */
     display: block !important;
     font-size: 20px !important;
     background-color: #29af5c;
@@ -519,7 +536,7 @@ img {
 }
 
 .checkout-button span{
-    font-family: Arial;
+    /* font-family: Arial; */
 }
 
 .checkout-content {
@@ -599,7 +616,7 @@ img {
     padding: 0 10px;
     background-color: #fff;
     display: inline-block;
-    font-family: Avenir Next Bold;
+    /* font-family: Avenir Next Bold; */
 }
 
 .payment-img {
@@ -619,16 +636,16 @@ img {
 .shipping-title {
     color: #1a1a1a;
     margin: 0;
-    font-size: 31px;
-    font-family: AvenirNext-Demi;
+    font-size: 20px;
+    /* font-family: AvenirNext-Demi; */
     font-weight: 700;
 }
 
 .shipping-tip {
     margin: 5px 0 15px;
-    font-size: 18px;
-    line-height: 25px;
-    font-family: AvenirNext-Demi;
+    font-size: 16px;
+    line-height: 23px;
+    /* font-family: AvenirNext-Demi; */
     font-weight: 700;
 }
 
@@ -729,6 +746,9 @@ img {
     width: auto;
     margin-bottom: 0px;
     top: 0px;
+    /* position: absolute;
+    top: 0;
+    right: 15px; */
 }
 
 .summary-wrapper {
@@ -738,17 +758,17 @@ img {
 }
 
 .summary-title {
-    font-family: Avenir Next Bold;
-    font-size: 20px;
+    /* font-family: Avenir Next Bold; */
+    font-size: 16px;
     color: #1a1a1a;
-    line-height: 32px;
+    line-height: 28px;
     margin: 12px 12px 20px;
     letter-spacing: 1px;
     padding: 10px 0 0;
 }
 
 .summary-content {
-    font-family: Avenir Next Regular;
+    /* font-family: Avenir Next Regular; */
 }
 
 .summary-list {
@@ -774,9 +794,9 @@ img {
 }
 
 .product-name {
-    font-size: 16px;
-    line-height: 17px;
-    font-family: AvenirNext-Demi;
+    font-size: 14px;
+    line-height: 15px;
+    /* font-family: AvenirNext-Demi; */
     font-weight: 700;
 }
 
@@ -785,13 +805,13 @@ img {
     text-decoration: underline;
     cursor: pointer;
     color: #b4b4b4;
-    font-family: Avenir Next Regular;
+    /* font-family: Avenir Next Regular; */
 }
 
 .edit-block a {
     color: #b4b4b4;
     text-decoration: underline;
-    font-family: Avenir Next Regular;
+    /* font-family: Avenir Next Regular; */
 }
 
 .qty-price {
@@ -804,17 +824,17 @@ img {
 .qty {
     margin: 0 0 10px;
     text-align: right;
-    font-family: AvenirNext-Demi;
+    /* font-family: AvenirNext-Demi; */
     font-weight: 700;
-    line-height: 22px;
-    font-size: 16px;
+    line-height: 20px;
+    font-size: 14px;
 }
 
 .product-price {
-    font-family: AvenirNext-Demi;
-    line-height: 22px;
+    /* font-family: AvenirNext-Demi; */
+    line-height: 20px;
     font-weight: 700;
-    font-size: 16px;
+    font-size: 14px;
 }
 
 .summary-total {
@@ -833,13 +853,13 @@ img {
 
 .summary-total-item-name {
     color: #000;
-    font-size: 16px;
+    font-size: 14px;
 }
 
 .summary-total-item-price {
-    font-size: 16px;
-    line-height: 22px;
-    font-family: AvenirNext-Demi;
+    font-size: 14px;
+    line-height: 20px;
+    /* font-family: AvenirNext-Demi; */
 }
 
 .summary-footer {
@@ -853,7 +873,8 @@ img {
 }
 
 .agree-block {
-    margin-bottom: 10px;
+  font-size: 14px;
+  margin-bottom: 10px;
 }
 
 .agree-block a {
@@ -910,7 +931,7 @@ img {
     border: 1px #cacaca;
     box-shadow: 0 2px 0 0 #116e35;
     padding: 15px 10px;
-    font-family: Avenir Next Bold;
+    /* font-family: Avenir Next Bold; */
     font-size: 20px;
     line-height: 27px;
     height: auto;
@@ -933,7 +954,7 @@ img {
 .copyright-block {
     color: #a9a9a9;
     font-size: 12px;
-    font-family: Helvetica Bold;
+    /* font-family: Helvetica Bold; */
     margin: 0 0 15px;
     text-align: center;
     padding: 5px 0;
@@ -952,7 +973,7 @@ img {
     text-decoration: none;
     color: #5c5c5c;
     font-size: 12px;
-    font-family: Helvetica Regular;
+    /* font-family: Helvetica Regular; */
     opacity: 1;
 }
 
@@ -1056,7 +1077,7 @@ img {
     border: 1px #cacaca;
     box-shadow: 0 2px 0 0 #116e35;
     padding: 15px 10px;
-    font-family: Avenir Next Bold;
+    /* font-family: Avenir Next Bold; */
     font-size: 20px;
     line-height: 27px;
     height: auto;
@@ -1120,8 +1141,8 @@ img {
         padding-right: 18px !important;
     }
     .list-item-title-name {
-        font-size: 21px !important;
-        line-height: 26px !important;
+        font-size: 18px !important;
+        line-height: 23px !important;
     }
     .shipping-and-payment {
         max-width: 70% !important;
@@ -1215,16 +1236,17 @@ img {
         padding: 40px 25px 30px;
     }
     .product-list {
-        flex-direction: column;
+        grid-template-columns:repeat(1, 1fr);
+        gap: 0;
     }
     .list-item {
         width: 100%;
-        min-height: 140px;
+        /* min-height: 140px; */
         height: auto;
         position: relative;
         align-items: flex-start;
         margin: 0 0 12px;
-        padding: 0 25px;
+        padding: 10px;
         justify-content: center;
     }
     .list-item-content {
@@ -1233,14 +1255,17 @@ img {
     }
     .list-item-title-name {
         display: block;
-        text-align: left;
+        /* text-align: left; */
         margin: 0;
     }
     .list-item-footer {
         margin: 5px 0 0;
     }
     .list-item-prices {
-        margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0;
     }
     .new-price {
         text-align: center;
@@ -1407,10 +1432,10 @@ img {
         display: none;
     }
     .list-item {
-        min-height: 160px;
+        /* min-height: 160px; */
         justify-content: flex-start;
         align-items: flex-start;
-        padding: 15px 10px 15px 20px;
+        padding: 10px;
     }
     .recommend_deal {
         padding: 0 5px;
@@ -1424,8 +1449,8 @@ img {
         font-size: 12px;
     }
     .list-item-content {
-        align-items: flex-start;
-        justify-content: flex-start;
+        align-items: center;
+        justify-content: center;
         margin: 0;
     }
     .list-item-title-name {
@@ -1439,10 +1464,11 @@ img {
         width: 100%;
     }
     .list-item-prices {
-        max-width: 120px;
+        /* max-width: 120px; */
         display: flex;
-        align-items: flex-start;
-        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        /* flex-direction: column; */
     }
     .old-price {
         font-size: 15px;
@@ -1472,19 +1498,19 @@ img {
         display: block;
     }
     .split-line {
-        margin: 20px auto 30px;
+        margin: 20px auto 10px;
     }
     .payment-img {
         width: auto;
     }
     .shipping-title {
-        font-size: 20px;
-        line-height: 20px;
+        font-size: 18px;
+        line-height: 18px;
         letter-spacing: 1.66px;
     }
     .shipping-tip {
-        font-size: 15px;
-        line-height: 20px;
+        font-size: 14px;
+        line-height: 19px;
     }
     .submit-button {
         font-size: 20px;
