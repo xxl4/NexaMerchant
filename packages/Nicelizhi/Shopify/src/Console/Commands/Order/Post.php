@@ -50,8 +50,9 @@ class Post extends Command
     {
         $this->ShopifyOrder = new ShopifyOrder();
         $this->ShopifyStore = new ShopifyStore();
-       // $this->customerRepository = new CustomerRepository();
+        $this->customerRepository = app(CustomerRepository::class);
         $this->Order = new Order();
+
 
         $this->shopify_store_id = config('shopify.shopify_store_id');
         $this->lang = config('shopify.store_lang');
@@ -170,7 +171,7 @@ class Post extends Command
 
         $orderPayment = $order->payment;  
 
-        $this->customerRepository = app(CustomerRepository::class);
+        
 
         
 
