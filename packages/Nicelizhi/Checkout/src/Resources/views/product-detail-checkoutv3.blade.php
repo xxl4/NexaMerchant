@@ -958,8 +958,9 @@
         justify-content: center;
         align-items: center;
         font-size: 14px;
-        width: 130px;
+        /* width: 130px; */
         height: 25px;
+        margin-left: 10px;
         border-radius: 6px;
       }
 
@@ -1398,7 +1399,7 @@
       display: flex;
       font-size: 14px;
       color: var(--text-color);
-      width: 200px;
+      /* width: 200px; */
       align-items: center;
       justify-content: space-around;
       height: 55px;
