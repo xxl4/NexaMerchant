@@ -138,6 +138,15 @@
         background: url('/checkout/onebuy/success/{{ $default_country }}_pc.jpg') no-repeat center center/100% 100px;
         height: 100px;
       }
+
+      .recommend-item-box {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .order-summary {
+        position: sticky;
+        top: 0;
+      }
     }
 
     /* 移动端两列布局 */
@@ -154,6 +163,10 @@
         /* width: 100%; */
         background: url('/checkout/onebuy/success/{{ $default_country }}_mobile.jpg') no-repeat center center/100%;
         height: 80px;
+      }
+
+      .recommend-item-box {
+        grid-template-columns: repeat(1, 1fr);
       }
     }
 
@@ -341,6 +354,41 @@
     .main__footer .copyright-text {
       margin-top: 15px;
     }
+
+    /* recommend start */
+    .recommend-container {
+      background-color: #fff;
+      border-radius: 10px;
+      padding: 15px;
+    }
+
+    .recommend-title {
+      color: var(--title-color);
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    .recommend-item {
+      text-align: center;
+      font-size: 14px;
+    }
+
+    .recommend-item-box {
+      display: grid;
+      gap: 20px;
+      margin-top: 10px;
+      padding: 10px;
+    }
+
+    .recommend-img {
+      width: 100%;
+    }
+
+    .recommend-price>span:first-child {
+      text-decoration: line-through;
+    }
+
+    /* recommend end */
   </style>
   <?php if (!empty($quora_adv_id)) { ?>
 
@@ -761,7 +809,7 @@
 
         <div class="grid-col">
           <!-- Order Summary start -->
-          <div class="box">
+          <div class="box order-summary">
             <div class="order-summary-title">@lang('onebuy::app.v2.success.Order Summary')</div>
             <div class="sku-item flex-between">
 
@@ -809,12 +857,17 @@
       </div>
 
     </div>
+    <div class="recommend-container w100 mt20">
+      <div class="recommend-title"></div>
+      <div class="recommend-item-box">
+      </div>
+    </div>
 
     <div class="solid-line"></div>
   </div>
 
 
-  <footer class="main__footer main__footer-pc" role="contentinfo">
+  <footer class="main__footer" role="contentinfo">
     @include('onebuy::footer-container-'.strtolower($default_country))
   </footer>
 
@@ -847,6 +900,62 @@
       console.log('<?php echo $order->billing_address; ?>', '$$order->billing_address');
     })
 
+    function getRecommended(path) {
+      var checkout_path = ''
+      var path_f = path.split('/onebuy/')[1]
+      if (path_f.indexOf('?') != -1) {
+        checkout_path = path_f.substring(0, path_f.indexOf('?'))
+      } else {
+        checkout_path = path_f
+      }
+      if (checkout_path) {
+        fetch('/onebuy/recommended/query?checkout_path=' + decodeURI(checkout_path) + '', {
+            method: 'GET',
+            headers: {
+              'content-type': 'application/json',
+            },
+          })
+          .then(function(data) {
+            return data.json()
+          })
+          .then(function(data) {
+            console.log(data, 'getRecommendedData==222')
+            const recommendData = data.data.recommended_info
+            console.log(recommendData, 'recommendData');
+            $('.recommend-title').text(data.data.recommended_info_title)
+            let recommendDom = ''
+            let url = ''
+            for (const item of recommendData) {
+              let recommend_source_page = 'utm_source=checkout-recommendations'
+              if (item.url.indexOf('?') != -1) {
+                if (item.url.lastIndexOf('?') == item.url.length - 1) {
+                  url = item.url + recommend_source_page
+                } else {
+                  url = item.url + '&' + recommend_source_page
+                }
+              } else {
+                url = item.url + '?' + recommend_source_page
+              }
+
+              console.log(item, 'key');
+              recommendDom += `<div class="recommend-item">
+                <img class="recommend-img" src=" ` + item.image_url + `" alt="">
+                <p class="recommend-subtitle mt10">
+                  <a href="` + url + `" target="_blank" rel="noopener noreferrer">` + item.title + `</a>
+                </p>
+                <div class="recommend-price mt10">
+                  <span>{{ core()->currencySymbol(core()->getBaseCurrencyCode()) }}` + item.origin_price + `</span>
+                  <span class="ml5">{{ core()->currencySymbol(core()->getBaseCurrencyCode()) }}` + item.discount_price + `</span>
+                </div>
+              </div>`
+            }
+            $('.recommend-item-box').append(recommendDom)
+          }).catch(function(err) {
+            console.log(err, 'getRecommended====err');
+          })
+      }
+    }
+
     function initDomData() {
       let orderPre = '<?php echo $order_pre; ?>',
         payment = '<?php echo $payment; ?>',
@@ -867,9 +976,9 @@
       $('.order-details-country').text(shippingAddress.country)
       $('.order-details-state').text(shippingAddress.state)
       $('.order-details-code').text(shippingAddress.postcode)
-
     }
     initDomData();
+
     if (getCookie('voluum_payout') && getCookie('order_id') == getQueryString('id')) {
       var order_params = {};
 
@@ -992,8 +1101,7 @@
       showPaySuccess();
       console.log("getRecommendedData");
       console.log(order_param.items[0].sku);
-      getRecommendedData("/onebuy/v4/" + order_param.items[0].sku);
-
+      getRecommended("/onebuy/v4/" + order_param.items[0].sku);
     }
 
     function setProductHtml() {
