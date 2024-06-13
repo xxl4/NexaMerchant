@@ -12,6 +12,7 @@ use Nicelizhi\Manage\DataGrids\Customers\CustomerDataGrid;
 use Nicelizhi\Manage\Http\Requests\MassUpdateRequest;
 use Nicelizhi\Manage\Http\Requests\MassDestroyRequest;
 use Webkul\Customer\Repositories\CustomerNoteRepository;
+use Nicelizhi\Manage\Helpers\SSP;
 
 class CustomerController extends Controller
 {
@@ -34,7 +35,36 @@ class CustomerController extends Controller
     public function index()
     {
         if (request()->ajax()) {
-            return app(CustomerDataGrid::class)->toJson();
+            $table_pre = config("database.connections.mysql.prefix");
+            $table = $table_pre.'customers';
+
+            // Table's primary key
+            $primaryKey = 'id';
+            
+            $columns = array(
+                //array( 'db' => 'id', 'dt' => 0 ),
+                array( 'db' => '`o`.`id`',  'dt' => 'id', 'field'=>'id','formatter' => function($d, $row){
+                    return '#'.$d;
+                } ),
+                array( 'db' => '`o`.`first_name`',  'dt' => 'first_name', 'field'=>'first_name'),
+                array( 'db' => '`o`.`last_name`',   'dt' => 'last_name', 'field'=>'last_name' ),
+                array( 'db' => '`o`.`gender`',   'dt' => 'gender', 'field'=>'gender' ),
+                array( 'db' => '`o`.`date_of_birth`',   'dt' => 'date_of_birth', 'field'=>'date_of_birth' ),
+                array( 'db' => '`o`.`email`',   'dt' => 'email', 'field'=>'email' ),
+                array( 'db' => '`o`.`phone`',   'dt' => 'phone', 'field'=>'phone' ),
+                array( 'db' => '`o`.`status`',   'dt' => 'status', 'field'=>'status' ),
+                array( 'db' => '`o`.`created_at`',   'dt' => 'created_at', 'field'=>'created_at' ),
+                array( 'db' => '`o`.`id`',   'dt' => 'oid', 'field'=>'id' )
+            );
+            // SQL server connection information
+            $sql_details = [];
+
+            $joinQuery = "FROM `{$table}` AS `o` LEFT JOIN `{$table_pre}order_transactions` AS t ON (`t`.`order_id` = `o`.`id`) LEFT JOIN `{$table_pre}order_payment` AS p ON (`p`.`order_id` = `o`.`id`) LEFT JOIN `{$table_pre}shipments` AS s on (`s`.`order_id` = `o`.`id`) ";
+            $extraCondition = "";
+            //$extraCondition = "`a`.`address_type`='cart_shipping'";
+
+
+            return json_encode(SSP::simple( request()->input(), $sql_details, $table, $primaryKey, $columns, $joinQuery, $extraCondition ));
         }
 
         $groups = $this->customerGroupRepository->findWhere([['code', '<>', 'guest']]);
