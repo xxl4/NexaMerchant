@@ -1116,6 +1116,10 @@
       /* height: 32px !important; */
     }
 
+    .background-green {
+      background-color: #E0FDBA !important;
+    }
+
     .input-box label {
       width: 100%;
       position: relative;
@@ -1137,6 +1141,18 @@
       font-size: 14px;
       cursor: text;
       transition: 0.3s ease;
+    }
+
+    .product-selected {
+      display: none;
+      position: absolute;
+      top: 9px;
+      right: 21%;
+      color: #fff;
+      background: #1773B0;
+      font-size: 12px;
+      padding: 5px;
+      border-radius: 4px;
     }
 
     /* .input-box .input-item:placeholder-shown+span {
@@ -1827,6 +1843,7 @@
         <div class="pkg-opt">
           <div class="cb-first-item"></div>
           <div class="buyopt packageClass cb-package-container choose-p" id="product2">
+            <p class="product-selected" id="p2-select">@lang('checkout::app.v2.Selected')</p>
             <div class="buy-opt-left">
               <p>
                 <strong id="p-name2"></strong>
@@ -1866,6 +1883,7 @@
           </div>
 
           <div class="buyopt packageClass cb-package-container" id="product1">
+            <p class="product-selected" id="p1-select">@lang('checkout::app.v2.Selected')</p>
             <div class="buy-opt-left">
               <p>
                 <strong id="p-name1"></strong>
@@ -1899,6 +1917,7 @@
           </div>
 
           <div class="buyopt packageClass cb-package-container" id="product3">
+            <p class="product-selected" id="p3-select">@lang('checkout::app.v2.Selected')</p>
             <div class="buy-opt-left">
               <p>
                 <strong id="p-name3"></strong>
@@ -1941,6 +1960,7 @@
             </div>
           </div>
           <div class="buyopt packageClass cb-package-container" id="product4">
+            <p class="product-selected" id="p4-select">@lang('checkout::app.v2.Selected')</p>
             <div class="buy-opt-left">
               <p>
                 <strong id="p-name4"></strong>
@@ -2938,6 +2958,8 @@
       } else {
         // $('.buy-loading').hide()
         $('.buy-select').hide()
+        $('#p2-select').show()
+        $('#product2').addClass('background-green')
       }
       var nprice = currencySymbol + data.package_products[0].new_price.toFixed(2)
       $('#summary-total1').text(nprice)
@@ -3915,6 +3937,8 @@
         $('#buy-select1').show()
       } else {
         $('#buy-select1').hide()
+        list.removeClass('background-green')
+        $('#product1').addClass('background-green')
       }
       $('#product1').addClass('choose-p')
       var nprice = currencySymbol + data.package_products[1].new_price.toFixed(2)
@@ -3934,6 +3958,10 @@
       initProuctData(1, '1')
       console.log(data.attr.attributes, 'data.attr');
       if (data.attr.attributes.length == 0) {
+        $('#p1-select').show()
+        $('#p2-select').hide()
+        $('#p3-select').hide()
+        $('#p4-select').hide()
         crmTrack('add_cart')
         createdButton()
       }
@@ -3948,6 +3976,8 @@
         $('#buy-select2').show()
       } else {
         $('#buy-select2').hide()
+        list.removeClass('background-green')
+        $('#product2').addClass('background-green')
       }
       $('#product2').addClass('choose-p')
       var nprice = currencySymbol + data.package_products[0].new_price.toFixed(2)
@@ -3966,6 +3996,10 @@
       $('#product-price').text(data.package_products[0].tip2)
       initProuctData(0, '2')
       if (data.attr.attributes.length == 0) {
+        $('#p2-select').show()
+        $('#p1-select').hide()
+        $('#p3-select').hide()
+        $('#p4-select').hide()
         crmTrack('add_cart')
         createdButton()
       }
@@ -3980,6 +4014,8 @@
         $('#buy-select3').show()
       } else {
         $('#buy-select3').hide()
+        list.removeClass('background-green')
+        $('#product3').addClass('background-green')
       }
 
       $('#product3').addClass('choose-p')
@@ -3999,6 +4035,10 @@
       $('#product-price').text(data.package_products[2].tip2)
       initProuctData(2, '3')
       if (data.attr.attributes.length == 0) {
+        $('#p3-select').show()
+        $('#p2-select').hide()
+        $('#p1-select').hide()
+        $('#p4-select').hide()
         crmTrack('add_cart')
         createdButton()
       }
@@ -4014,6 +4054,8 @@
         $('#buy-select4').show()
       } else {
         $('#buy-select4').hide()
+        list.removeClass('background-green')
+        $('#product4').addClass('background-green')
       }
       $('#product4').addClass('choose-p')
       var nprice = currencySymbol + data.package_products[3].new_price.toFixed(2)
@@ -4032,6 +4074,10 @@
       $('#product-price').text(data.package_products[3].tip2)
       initProuctData(3, '4')
       if (data.attr.attributes.length == 0) {
+        $('#p4-select').show()
+        $('#p2-select').hide()
+        $('#p3-select').hide()
+        $('#p1-select').hide()
         crmTrack('add_cart')
         createdButton()
       }
@@ -4217,7 +4263,7 @@
               */
               // window.alert(event.detail);
               console.log(event.detail, event, 'applePay ===  success');
-              window.location.href = "/onebuy/checkout/v1/success/" + orderId;
+              window.location.href = "/onebuy/checkout/v2/success/" + orderId;
             });
             domApplePay.addEventListener('onError', (event) => {
               crmTrack('add_pay')
@@ -4301,7 +4347,7 @@
               // window.alert(event.detail);
               // console.log(event.detail);
               console.log(event.detail, event, 'googlePay ===  success');
-              window.location.href = "/onebuy/checkout/v1/success/" + orderId;
+              window.location.href = "/onebuy/checkout/v2/success/" + orderId;
             });
             domGooglePay.addEventListener('onError', (event) => {
               crmTrack('add_pay')
@@ -4703,7 +4749,7 @@
               $('#loading').hide();
               if (res.success == true) {
                 //Goto('/checkout/v1/success/'+localStorage.getItem('order_id'));
-                window.location.href = '/onebuy/checkout/v1/success/' + localStorage.getItem('order_id');
+                window.location.href = '/onebuy/checkout/v2/success/' + localStorage.getItem('order_id');
                 return true;
                 //actions.redirect('/checkout/v1/success/'+localStorage.getItem('order_id'));
               }
@@ -4870,11 +4916,14 @@
       $('#pay-after-submit-error').hide()
     }
   </script>
-  <!-- <script src="https://checkout-demo.airwallex.com/assets/elements.bundle.min.js"></script> -->
-  <script src="https://checkout.airwallex.com/assets/elements.bundle.min.js"></script>
+  <?php if (@$data['env'] == 'demo') { ?>
+    <script src="https://checkout-demo.airwallex.com/assets/elements.bundle.min.js"></script>
+  <?php } else { ?>
+    <script src="https://checkout.airwallex.com/assets/elements.bundle.min.js"></script>
+  <?php } ?>
   <script>
     Airwallex.init({
-      env: 'prod', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
+      env: '<?php echo $data['env']; ?>', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
       origin: window.location.origin, // Setup your event target to receive the browser events message
     });
 
@@ -5145,7 +5194,7 @@
 
                   if (res.success == true) {
                     window.location.href =
-                      '/onebuy/checkout/v1/success/' +
+                      '/onebuy/checkout/v2/success/' +
                       localStorage.getItem('order_id')
                     return true
                     //actions.redirect('/checkout/v1/success/'+localStorage.getItem('order_id'));
@@ -5402,7 +5451,7 @@
 
                 $('#loading').hide();
 
-                window.location.href = "/onebuy/checkout/v1/success/" + data.order.id;
+                window.location.href = "/onebuy/checkout/v2/success/" + data.order.id;
                 return false;
 
               }).catch((response) => {

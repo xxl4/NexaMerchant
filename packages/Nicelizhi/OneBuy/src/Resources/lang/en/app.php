@@ -99,4 +99,35 @@ return [
   ],
   'order-success' => [],
   'You may also like' => 'You may also like',
+  'v2' => [
+    'success' => [
+      'Order' => 'Order',
+      'confirm' => 'confirm',
+      'Buy Again' => 'Buy Again',
+      'Log in to view all order details' => 'Log in to view all order details',
+      'Login' => 'Login',
+      'comfirmed' => 'comfirmed',
+      'Updated' => 'Updated',
+      'We have received your order' => 'We have received your order',
+      'Order details' => 'Order details',
+      'contact information' => 'contact information',
+      'firstname' => 'firstname',
+      'lastname' => 'lastname',
+      'phone' => 'phone',
+      'email' => 'email',
+      'mailing address' => 'mailing address',
+      'Street address and number' => 'address',
+      'City' => 'City',
+      'Country' => 'Country',
+      'State' => 'State',
+      'Postal Code' => 'Postal Code',
+      'billing Address' => 'Billing Address',
+      'Order Summary' => 'Order Summary',
+      '/pcs' => '/pcs',
+      'Subtotal' => 'Subtotal',
+      'Discount' => 'Discount',
+      'Shipping' => 'Shipping',
+      'Total' => 'Total'
+    ]
+  ]
 ];
