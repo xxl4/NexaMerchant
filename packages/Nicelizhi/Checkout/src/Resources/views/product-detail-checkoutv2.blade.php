@@ -4279,7 +4279,7 @@
               $('#loading').hide();
               if (res.success == true) {
                 //Goto('/checkout/v1/success/'+localStorage.getItem('order_id'));
-                window.location.href = '/onebuy/checkout/v1/success/' + localStorage.getItem('order_id');
+                window.location.href = '/onebuy/checkout/v2/success/' + localStorage.getItem('order_id');
                 return true;
                 //actions.redirect('/checkout/v1/success/'+localStorage.getItem('order_id'));
               }
@@ -4710,7 +4710,7 @@
 
                   if (res.success == true) {
                     window.location.href =
-                      '/onebuy/checkout/v1/success/' +
+                      '/onebuy/checkout/v2/success/' +
                       localStorage.getItem('order_id')
                     return true
                   }
