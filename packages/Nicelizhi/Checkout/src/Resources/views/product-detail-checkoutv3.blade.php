@@ -1146,7 +1146,7 @@
     .product-selected {
       display: none;
       position: absolute;
-      top: 9px;
+      bottom: 8px;
       right: 21%;
       color: #fff;
       background: #1773B0;
@@ -1547,6 +1547,10 @@
       border-bottom: 3px solid #1773B0;
     }
 
+    .ml5 {
+      margin-left: 5px;
+    }
+
     .payment-top {
       align-items: center;
       display: flex;
@@ -1614,6 +1618,13 @@
       .container {
         max-width: 80% !important;
       }
+    }
+
+    .order-msg {
+      display: flex;
+      align-items: center;
+      color: var(--text-color);
+      font-family: var(--text-family);
     }
   </style>
 </head>
@@ -1740,18 +1751,15 @@
           <img src="" alt="">
         </div>
         <div class="three-description-box">
-          <!-- <div class="three-description-item">
-            <img src="/checkout/v2/images/1673346232-mainpage.png" alt="">
-            <p class="three-description-text"> Temporarily increases local blood circulation and relaxes muscle tissue</p>
-          </div>
-          <div class="three-description-item">
-            <img src="/checkout/v2/images/1673346232-mainpage.png" alt="">
-            <p class="three-description-text"> Temporarily increases local blood circulation and relaxes muscle muscle tissuemuscle tissuemuscle tissuemuscle tissuemuscle tissuemuscle tissue</p>
-          </div>
-          <div class="three-description-item">
-            <img src="/checkout/v2/images/1673346232-mainpage.png" alt="">
-            <p class="three-description-text"> Temporarily increases local blood circulation and relaxes muscle </p>
-          </div> -->
+        </div>
+        <div class="order-msg fl" style="display: none;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-fire" viewBox="0 0 16 16">
+            <path d="M8 16c3.314 0 6-2 6-5.5 0-1.5-.5-4-2.5-6 .25 1.5-1.25 2-1.25 2C11 4 9 .5 6 0c.357 2 .5 4-2 6-1.25 1-2 2.729-2 4.5C2 14 4.686 16 8 16Zm0-1c-1.657 0-3-1-3-2.75 0-.75.25-2 1.25-3C6.125 10 7 10.5 7 10.5c-.375-1.25.5-3.25 2-3.5-.179 1-.25 2 1 3 .625.5 1 1.364 1 2.25C11 14 9.657 15 8 15Z" />
+          </svg>
+          <span class="ml5">过去</span>
+          <strong>xx</strong>
+          <span>小时内售出</span>
+          <strong>xx件</strong>
         </div>
         <div class="btn-bx">
           <a href="#product2" class="comn-btn">@lang('checkout::app.v3.Buy Now')</a>
@@ -3196,6 +3204,20 @@
 
     })
 
+    function getRandomIntInclusive(min, max) {
+      min = Math.ceil(min);
+      max = Math.floor(max);
+      return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
+    function getOrderMsg() {
+      let hour = getRandomIntInclusive(1, 24)
+      console.log(hour, 'xx小时');
+      let number = getRandomIntInclusive(10, 200)
+      $('.order-msg > strong:first-child').text(hour)
+    }
+    // getOrderMsg();
+
     function getbillingAddress() {
       var billingText = ''
       if ($('input[name=hobby]').is(":checked")) {
@@ -3945,11 +3967,12 @@
       $('#summary-total1').text(nprice)
       var shippingFee = currencySymbol + data.package_products[1].shipping_fee
       $('#summary-total3').text(shippingFee)
-
-      var discount = Number(data.package_products[1].old_price) - Number(data.package_products[0].new_price)
+      console.log(data, 'data');
+      var discount = Number(data.package_products[1].old_price) - Number(data.package_products[1].new_price)
+      console.log(discount, 'discount');
       discount = currencySymbol + discount.toFixed(2)
       $('#summary-total2').text(discount)
-      var total = Number(data.package_products[1].new_price) + Number(data.package_products[0].shipping_fee)
+      var total = Number(data.package_products[1].new_price) + Number(data.package_products[1].shipping_fee)
       total = currencySymbol + total.toFixed(2)
       $('#summary-total4').text(total)
       $('.product-name').text(data.package_products[1].name)
@@ -4024,10 +4047,10 @@
       var shippingFee = currencySymbol + data.package_products[2].shipping_fee
       $('#summary-total3').text(shippingFee)
 
-      var discount = Number(data.package_products[2].old_price) - Number(data.package_products[0].new_price)
+      var discount = Number(data.package_products[2].old_price) - Number(data.package_products[2].new_price)
       discount = currencySymbol + discount.toFixed(2)
       $('#summary-total2').text(discount)
-      var total = Number(data.package_products[2].new_price) + Number(data.package_products[0].shipping_fee)
+      var total = Number(data.package_products[2].new_price) + Number(data.package_products[2].shipping_fee)
       total = currencySymbol + total.toFixed(2)
       $('#summary-total4').text(total)
       $('.product-name').text(data.package_products[2].name)
@@ -4063,10 +4086,10 @@
       var shippingFee = currencySymbol + data.package_products[3].shipping_fee
       $('#summary-total3').text(shippingFee)
 
-      var discount = Number(data.package_products[3].old_price) - Number(data.package_products[0].new_price)
+      var discount = Number(data.package_products[3].old_price) - Number(data.package_products[3].new_price)
       discount = currencySymbol + discount.toFixed(2)
       $('#summary-total2').text(discount)
-      var total = Number(data.package_products[3].new_price) + Number(data.package_products[0].shipping_fee)
+      var total = Number(data.package_products[3].new_price) + Number(data.package_products[3].shipping_fee)
       total = currencySymbol + total.toFixed(2)
       $('#summary-total4').text(total)
       $('.product-name').text(data.package_products[3].name)
