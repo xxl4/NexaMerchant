@@ -225,6 +225,14 @@ class GetV4 extends Command
 
                 $method = "update";
                 $id = $product->id;
+
+                $data['channel'] = "default";
+
+                $this->productRepository->update($data, $id);
+
+                Event::dispatch('catalog.product.update.after', $product);
+
+                
             }
 
             //var_dump($id);exit;
