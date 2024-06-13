@@ -646,7 +646,7 @@
       <div class="grid-row">
         <div class="grid-col">
           <!-- login start-->
-          <div class="login-container box">
+          <div class="login-container box" style="display: none;">
             <div class="login-left">@lang('onebuy::app.v2.success.Log in to view all order details')</div>
             <div class="login-right">@lang('onebuy::app.v2.success.Login')</div>
           </div>
