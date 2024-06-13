@@ -14,8 +14,6 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    - name: Build the Docker image
-      run: docker build . --file ./docker/Dockerfile --tag nexamerchant:$(date +%s)
     - name: Log in to Docker Hub
       uses: docker/login-action@f4ef78c080cd8ba55a85445d5b36e214a81df20a
       with:
@@ -32,7 +30,7 @@ jobs:
       uses: docker/build-push-action@3b5e8027fcad23fda98b2e3ac259d8d67585f671
       with:
         context: .
-        file: ./docker/Dockerfile
+        file: ./Dockerfile
         push: true
         tags: nicesteven/nexamerchant:2.0.0
     
@@ -40,6 +38,6 @@ jobs:
       uses: docker/build-push-action@3b5e8027fcad23fda98b2e3ac259d8d67585f671
       with:
         context: .
-        file: ./docker/Dockerfile
+        file: ./Dockerfile
         push: true
         tags: nicesteven/nexamerchant:latest
