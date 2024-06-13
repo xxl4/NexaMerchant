@@ -1059,6 +1059,10 @@
       /* height: 32px !important; */
     }
 
+    .background-green {
+      background-color: #E0FDBA !important;
+    }
+
     .input-box label {
       width: 100%;
       position: relative;
@@ -1305,12 +1309,11 @@
       display: none;
       position: absolute;
       top: 9px;
-      right: 19%;
+      right: 21%;
       color: #fff;
       background: #1773B0;
-      font-size: 13px;
+      font-size: 12px;
       padding: 5px;
-      font-weight: 600;
       border-radius: 4px;
     }
 
@@ -2574,6 +2577,8 @@
       } else {
         // $('.buy-loading').hide()
         $('.buy-select').hide()
+        $('#p2-select').show()
+        $('#product2').addClass('background-green')
       }
       var nprice = currencySymbol + data.package_products[0].new_price.toFixed(2)
       $('#summary-total1').text(nprice)
@@ -3533,6 +3538,8 @@
         $('#buy-select1').show()
       } else {
         $('#buy-select1').hide()
+        list.removeClass('background-green')
+        $('#product1').addClass('background-green')
       }
       $('#product1').addClass('choose-p')
       var nprice = currencySymbol + data.package_products[1].new_price.toFixed(2)
@@ -3570,6 +3577,8 @@
         $('#buy-select2').show()
       } else {
         $('#buy-select2').hide()
+        list.removeClass('background-green')
+        $('#product2').addClass('background-green')
       }
       $('#product2').addClass('choose-p')
       var nprice = currencySymbol + data.package_products[0].new_price.toFixed(2)
@@ -3606,6 +3615,8 @@
         $('#buy-select3').show()
       } else {
         $('#buy-select3').hide()
+        list.removeClass('background-green')
+        $('#product3').addClass('background-green')
       }
 
       $('#product3').addClass('choose-p')
@@ -3644,6 +3655,8 @@
         $('#buy-select4').show()
       } else {
         $('#buy-select4').hide()
+        list.removeClass('background-green')
+        $('#product4').addClass('background-green')
       }
       $('#product4').addClass('choose-p')
       var nprice = currencySymbol + data.package_products[3].new_price.toFixed(2)
