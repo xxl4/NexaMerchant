@@ -3547,10 +3547,10 @@
       var shippingFee = currencySymbol + data.package_products[1].shipping_fee
       $('#summary-total3').text(shippingFee)
 
-      var discount = Number(data.package_products[1].old_price) - Number(data.package_products[0].new_price)
+      var discount = Number(data.package_products[1].old_price) - Number(data.package_products[1].new_price)
       discount = currencySymbol + discount.toFixed(2)
       $('#summary-total2').text(discount)
-      var total = Number(data.package_products[1].new_price) + Number(data.package_products[0].shipping_fee)
+      var total = Number(data.package_products[1].new_price) + Number(data.package_products[1].shipping_fee)
       total = currencySymbol + total.toFixed(2)
       $('#summary-total4').text(total)
       $('.product-name').text(data.package_products[1].name)
@@ -3625,10 +3625,10 @@
       var shippingFee = currencySymbol + data.package_products[2].shipping_fee
       $('#summary-total3').text(shippingFee)
 
-      var discount = Number(data.package_products[2].old_price) - Number(data.package_products[0].new_price)
+      var discount = Number(data.package_products[2].old_price) - Number(data.package_products[2].new_price)
       discount = currencySymbol + discount.toFixed(2)
       $('#summary-total2').text(discount)
-      var total = Number(data.package_products[2].new_price) + Number(data.package_products[0].shipping_fee)
+      var total = Number(data.package_products[2].new_price) + Number(data.package_products[2].shipping_fee)
       total = currencySymbol + total.toFixed(2)
       $('#summary-total4').text(total)
       $('.product-name').text(data.package_products[2].name)
@@ -3664,10 +3664,10 @@
       var shippingFee = currencySymbol + data.package_products[3].shipping_fee
       $('#summary-total3').text(shippingFee)
 
-      var discount = Number(data.package_products[3].old_price) - Number(data.package_products[0].new_price)
+      var discount = Number(data.package_products[3].old_price) - Number(data.package_products[3].new_price)
       discount = currencySymbol + discount.toFixed(2)
       $('#summary-total2').text(discount)
-      var total = Number(data.package_products[3].new_price) + Number(data.package_products[0].shipping_fee)
+      var total = Number(data.package_products[3].new_price) + Number(data.package_products[3].shipping_fee)
       total = currencySymbol + total.toFixed(2)
       $('#summary-total4').text(total)
       $('.product-name').text(data.package_products[3].name)
