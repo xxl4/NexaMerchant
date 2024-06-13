@@ -245,9 +245,9 @@
                                             
                                             ?>
 
-                                                @if(!empty($item->product))
+                                                @if($item->product?->base_image_url)
                                                 <img
-                                            class="" height="200px"
+                                                class="img-thumbnail" height="200px"
                                             src="{{ $item->product?->base_image_url }}"
                                                 @else
                                                 <img src="{{ bagisto_asset('images/product-placeholders/front.svg') }}">
