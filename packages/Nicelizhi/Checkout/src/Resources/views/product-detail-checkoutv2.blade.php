@@ -1308,7 +1308,7 @@
     .product-selected {
       display: none;
       position: absolute;
-      top: 9px;
+      bottom: 8px;
       right: 21%;
       color: #fff;
       background: #1773B0;
