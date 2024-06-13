@@ -1410,6 +1410,7 @@
       background-color: #1773B0;
       border-radius: 6px;
       font-weight: 600;
+      margin-left: 10px;
     }
 
     .shopify-title {
