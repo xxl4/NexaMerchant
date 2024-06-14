@@ -16,6 +16,8 @@ class Create extends Command
         'src',
         'src/Controllers',
         'src/Config',
+        'src/Config/menu.php',
+        'src/Config/acl.php',
         'src/Dtabase',
         'src/Dtabase/Migrations',
         'src/Dtabase/Seeds',
@@ -27,7 +29,9 @@ class Create extends Command
         'src/Http/Requests',
         'src/Http/Controllers',
         'src/Http/Controllers/Api',
+        'src/Http/Controllers/Api/Controller.php',
         'src/Http/Controllers/Web',
+        'src/Http/Controllers/Web/Controller.php',
         'src/Http/Controllers/Admin',
         'src/Console/Commands',
         'src/Console/Commands/Install.php',
@@ -53,7 +57,9 @@ class Create extends Command
         $this->info("Creating app: $name");
         $base_dir = config("apps.base_dir");
         $name = trim($name);
-        $name = strtolower($name);
+
+        $name = ucfirst($name);
+
         $dir = base_path().$base_dir.'/'.$name;
 
         if (!$this->confirm('Do you wish to continue?')) {
@@ -80,6 +86,7 @@ class Create extends Command
         }
 
         array_push($this->dirList, 'src/Providers/'.$name.'Provider.php');
+        array_push($this->dirList, 'src/Config/'.$name.'.php');
 
         foreach($this->dirList as $d) {
             if (strpos($d, '.')) {
@@ -116,6 +123,24 @@ class Create extends Command
             break;
             case 'src/Console/Commands/Publish.php':
                 $content = file_get_contents(__DIR__.'/stubs/Publish.php.stub');
+            break;
+            case 'src/Http/Controllers/Web/Controller.php':
+                $content = file_get_contents(__DIR__.'/stubs/Controller.php.stub');
+            break;
+            case 'src/Http/Controllers/Api/Controller.php':
+                $content = file_get_contents(__DIR__.'/stubs/Controller.api.php.stub');
+            break;
+            case 'src/Providers/'.$this->AppName.'Provider.php':
+                $content = file_get_contents(__DIR__.'/stubs/Provider.php.stub');
+            break;
+            case 'src/Config/'.$this->AppName.'.php':
+                $content = file_get_contents(__DIR__.'/stubs/config.php.stub');
+            break;
+            case 'src/Config/menu.php':
+                $content = file_get_contents(__DIR__.'/stubs/config.menu.php.stub');
+            break;
+            case 'src/Config/acl.php':
+                $content = file_get_contents(__DIR__.'/stubs/config.acl.php.stub');
             break;
             default:
             break;
