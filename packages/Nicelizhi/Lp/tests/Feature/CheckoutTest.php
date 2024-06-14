@@ -10,9 +10,9 @@ it('can check all the checkout page', function () {
         $env = Config::get("app.env");
         
         $response = $this->get($item->goto_url);
-        var_dump($response->status());
+        //var_dump($response->status());
         //var_dump($response);
-        if ($env=='prod') $response->assertStatus(200);
+        $response->assertStatus(200);
         sleep(1);
     }
 });
