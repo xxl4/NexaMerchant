@@ -155,7 +155,7 @@ class ConfigurableOption
     {
         $attributeOptionsData = [];
 
-        $attributeOptions = [];
+        
 
         foreach ($attribute->options as $attributeOption) {
             $optionId = $attributeOption->id;
@@ -163,7 +163,7 @@ class ConfigurableOption
             if (! isset($options[$attribute->id][$optionId])) {
                 continue;
             }
-
+            $attributeOptions = [];
             $products = $options[$attribute->id][$optionId];
             $index = $options['index'];
             foreach ($products as $productId) {
