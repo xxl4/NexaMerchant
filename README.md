@@ -19,3 +19,9 @@ docker pull nicesteven/nexamerchant
 ## Airwallex
 
 ## Google Analytices
+
+## Issue
+[Github](https://github.com/xxl4/NexaMerchant/issues)  
+
+## Discussions
+[Github](https://github.com/xxl4/NexaMerchant/discussions)  
