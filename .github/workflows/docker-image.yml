@@ -2,9 +2,20 @@ name: Docker Image CI
 
 on:
   push:
-    branches: [ "main_de" ]
+    branches: 
+    - docker
+    paths-ignore:
+      - 'README.md'
+      - .github/**
+      - docs/**
   pull_request:
-    branches: [ "main_de" ]
+    branches: 
+    - docker
+    paths-ignore:
+      - 'README.md'
+      - .github/**
+      - docs/**
+
 
 jobs:
 
@@ -30,7 +41,7 @@ jobs:
         context: .
         file: ./Dockerfile
         push: true
-        tags: nicesteven/nexamerchant:2.0.0
+        tags: nicesteven/nexamerchant:${{secrets.DOCKER_VERSION }}
     
     - name: Build and push Docker image
       uses: docker/build-push-action@3b5e8027fcad23fda98b2e3ac259d8d67585f671
