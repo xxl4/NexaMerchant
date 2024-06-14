@@ -83,7 +83,7 @@ class Handler extends BaseHandler
 
             
             
-            \Nicelizhi\Shopify\Helpers\Utils::send(json_encode($exception->getMessage()). " code is 500 please check the log file for more details");
+            \Nicelizhi\Shopify\Helpers\Utils::send(json_encode($exception->getMessage()). " code is 500  url is".$request->fullUrl()." please check the log file for more details");
 
 
             return $this->response($path, 500);
@@ -96,7 +96,7 @@ class Handler extends BaseHandler
             if ($pos === false) {
                 
             } else {
-                \Nicelizhi\Shopify\Helpers\Utils::send(json_encode($exception->getMessage()). " File is ".$exception->getFile()." please check the log file for more details");
+                \Nicelizhi\Shopify\Helpers\Utils::send(json_encode($exception->getMessage()). " File is ".$exception->getFile()." url is ".$request->fullUrl()." please check the log file for more details");
             }
             
             
