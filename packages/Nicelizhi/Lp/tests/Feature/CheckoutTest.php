@@ -6,11 +6,13 @@ it('can check all the checkout page', function () {
         echo $item->goto_url."\r\n";
         if(isset($item->goto_url)) continue;
         if(empty($item->goto_url)) continue;
+
+        $env = Config::get("app.env");
         
         $response = $this->get($item->goto_url);
         var_dump($response->status());
         //var_dump($response);
-        //$response->assertStatus(200);
+        if ($env=='prod') $response->assertStatus(200);
         sleep(1);
     }
 });
