@@ -29,6 +29,7 @@ class DisputesController extends Controller
                 array( 'db' => '`t`.`id`',  'dt' => 'id', 'field'=>'id','formatter' => function($d, $row){
                     return '#'.$d;
                 } ),
+                array( 'db' => '`t`.`platform`',  'dt' => 'platform', 'field'=>'platform'),
                 array( 'db' => '`t`.`dispute_id`',  'dt' => 'dispute_id', 'field'=>'dispute_id'),
                 array( 'db' => '`t`.`transaction_id`',   'dt' => 'transaction_id', 'field'=>'transaction_id' ),
                 array( 'db' => '`t`.`status`',   'dt' => 'status', 'field'=>'status' ),

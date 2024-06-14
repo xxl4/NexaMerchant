@@ -958,8 +958,9 @@
         justify-content: center;
         align-items: center;
         font-size: 14px;
-        width: 130px;
+        /* width: 130px; */
         height: 25px;
+        margin-left: 10px;
         border-radius: 6px;
       }
 
@@ -1116,6 +1117,10 @@
       /* height: 32px !important; */
     }
 
+    .background-green {
+      background-color: #E0FDBA !important;
+    }
+
     .input-box label {
       width: 100%;
       position: relative;
@@ -1137,6 +1142,18 @@
       font-size: 14px;
       cursor: text;
       transition: 0.3s ease;
+    }
+
+    .product-selected {
+      display: none;
+      position: absolute;
+      bottom: 8px;
+      right: 21%;
+      color: #fff;
+      background: #1773B0;
+      font-size: 12px;
+      padding: 5px;
+      border-radius: 4px;
     }
 
     /* .input-box .input-item:placeholder-shown+span {
@@ -1349,7 +1366,7 @@
 
     .choose-billing-box {
       display: none;
-      margin: 5px;
+      margin: 15px 5px 0;
       font-size: 13px;
       font-family: var(--text-family);
       color: var(--text-color);
@@ -1382,7 +1399,7 @@
       display: flex;
       font-size: 14px;
       color: var(--text-color);
-      width: 200px;
+      /* width: 200px; */
       align-items: center;
       justify-content: space-around;
       height: 55px;
@@ -1393,6 +1410,7 @@
       background-color: #1773B0;
       border-radius: 6px;
       font-weight: 600;
+      margin-left: 10px;
     }
 
     .shopify-title {
@@ -1531,6 +1549,10 @@
       border-bottom: 3px solid #1773B0;
     }
 
+    .ml5 {
+      margin-left: 5px;
+    }
+
     .payment-top {
       align-items: center;
       display: flex;
@@ -1560,6 +1582,7 @@
     }
 
     .shopify-container {
+      width: 100%;
       text-align: left !important;
       font-size: 13px !important;
       color: var(--text-color) !important;
@@ -1598,6 +1621,63 @@
       .container {
         max-width: 80% !important;
       }
+    }
+
+    .order-msg {
+      display: flex;
+      align-items: center;
+      color: var(--text-color);
+      font-family: var(--text-family);
+      font-size: 14px;
+    }
+
+    .pr-price-single {
+      display: flex;
+      align-items: center;
+      color: var(--text-color);
+      font-family: var(--text-family);
+      font-size: 14px;
+    }
+
+    .shippingMsg {
+      color: var(--text-color);
+      font-family: var(--text-family);
+      font-size: 14px;
+    }
+
+    .user-view {
+      color: var(--text-color);
+      font-family: var(--text-family);
+      font-size: 14px;
+    }
+
+    .pr-price-single>p:nth-child(1) {
+      font-size: 14px;
+      margin-right: 8px;
+      color: #090a0a;
+      text-decoration: line-through;
+    }
+
+    .mb10 {
+      margin-bottom: 10px;
+    }
+
+    .mt10 {
+      margin-top: 10px;
+    }
+
+    .pr-price-single>p:nth-child(2) {
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 1;
+      margin-right: 10px;
+      color: #e95144;
+    }
+
+    .pr-price-single>p:nth-child(3) {
+      letter-spacing: normal;
+      color: #e95144;
+      border-bottom: 1px solid #e95144;
     }
   </style>
 </head>
@@ -1723,23 +1803,56 @@
           <p class="text-Schritt-top">@lang('checkout::app.v2.You Can See By')</p>
           <img src="" alt="">
         </div>
-        <div class="three-description-box">
-          <!-- <div class="three-description-item">
-            <img src="/checkout/v2/images/1673346232-mainpage.png" alt="">
-            <p class="three-description-text"> Temporarily increases local blood circulation and relaxes muscle tissue</p>
+        <div class="fl mt10">
+
+          <div class="pr-price-single m120">
+            <p></p>
+            <p></p>
+            <p>
+              <span>@lang('checkout::app.v2.Save'):</span>
+              <span id="pr-price1"></span>
+              <span id="pr-price2"></span>
+            </p>
           </div>
-          <div class="three-description-item">
-            <img src="/checkout/v2/images/1673346232-mainpage.png" alt="">
-            <p class="three-description-text"> Temporarily increases local blood circulation and relaxes muscle muscle tissuemuscle tissuemuscle tissuemuscle tissuemuscle tissuemuscle tissue</p>
-          </div>
-          <div class="three-description-item">
-            <img src="/checkout/v2/images/1673346232-mainpage.png" alt="">
-            <p class="three-description-text"> Temporarily increases local blood circulation and relaxes muscle </p>
-          </div> -->
         </div>
+        <div class="three-description-box">
+        </div>
+
+
         <div class="btn-bx">
           <a href="#product2" class="comn-btn">@lang('checkout::app.v3.Buy Now')</a>
         </div>
+        <div class="fl mt10">
+          <div class="order-msg mb10">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-fire" viewBox="0 0 16 16">
+              <path d="M8 16c3.314 0 6-2 6-5.5 0-1.5-.5-4-2.5-6 .25 1.5-1.25 2-1.25 2C11 4 9 .5 6 0c.357 2 .5 4-2 6-1.25 1-2 2.729-2 4.5C2 14 4.686 16 8 16Zm0-1c-1.657 0-3-1-3-2.75 0-.75.25-2 1.25-3C6.125 10 7 10.5 7 10.5c-.375-1.25.5-3.25 2-3.5-.179 1-.25 2 1 3 .625.5 1 1.364 1 2.25C11 14 9.657 15 8 15Z" />
+            </svg>
+            <strong id="order-msg-number" style="margin-left: 5px;"></strong>
+            <span class="ml5"> @lang('checkout::app.v3.sold in last') &nbsp;</span>
+            <strong id="order-msg-hour"></strong>
+            <span>&nbsp;@lang('checkout::app.v3.hours')</span>
+          </div>
+          <div class="user-view mb10">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
+              <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z" />
+              <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z" />
+            </svg>
+            <strong class="user-view-num"></strong>
+            <span>@lang('checkout::app.v3.People Looking For This Product')</span>
+          </div>
+          <div class="shippingMsg mt10 mb10">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16">
+              <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z" />
+              <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z" />
+            </svg>
+            <span>@lang('checkout::app.v3.Estimated Delivery between')</span>
+            <strong id="shipping-date1"></strong>
+            <span>-</span>
+            <strong id="shipping-date2"></strong>
+          </div>
+        </div>
+
+
         <div class="payment-icon-box">
           <div class="payment-top">
             <img src="/checkout/v2/images/secure-checkout.png" alt="">
@@ -1763,7 +1876,7 @@
             </p>
           </div>
         </div>
-        <div class="shopify-container"></div>
+        <div class="shopify-container fl"></div>
         <div id="iduzu" class="section" style="width: 100%;float: right;margin-bottom:10px; display: flex;">
 
           <!-- <p class="container_title" onclick="reviewToggle()">
@@ -1827,6 +1940,7 @@
         <div class="pkg-opt">
           <div class="cb-first-item"></div>
           <div class="buyopt packageClass cb-package-container choose-p" id="product2">
+            <p class="product-selected" id="p2-select">@lang('checkout::app.v2.Selected')</p>
             <div class="buy-opt-left">
               <p>
                 <strong id="p-name2"></strong>
@@ -1866,6 +1980,7 @@
           </div>
 
           <div class="buyopt packageClass cb-package-container" id="product1">
+            <p class="product-selected" id="p1-select">@lang('checkout::app.v2.Selected')</p>
             <div class="buy-opt-left">
               <p>
                 <strong id="p-name1"></strong>
@@ -1899,6 +2014,7 @@
           </div>
 
           <div class="buyopt packageClass cb-package-container" id="product3">
+            <p class="product-selected" id="p3-select">@lang('checkout::app.v2.Selected')</p>
             <div class="buy-opt-left">
               <p>
                 <strong id="p-name3"></strong>
@@ -1941,6 +2057,7 @@
             </div>
           </div>
           <div class="buyopt packageClass cb-package-container" id="product4">
+            <p class="product-selected" id="p4-select">@lang('checkout::app.v2.Selected')</p>
             <div class="buy-opt-left">
               <p>
                 <strong id="p-name4"></strong>
@@ -2858,7 +2975,7 @@
       phppayments_default = '<?php echo $data['payments_default']; ?>',
       phppaypal_client_id = '<?php echo $data['paypal_client_id']; ?>',
       phpsku = '<?php echo $data['sku']; ?>',
-      phpsellPoints = '<?php echo json_encode($data['sellPoints']); ?>'
+      phpsellPoints = '<?php echo addslashes(json_encode($data['sellPoints'])); ?>'
     phppackage_products.forEach(function(index, item) {
       JSON.parse(item)
     })
@@ -2888,10 +3005,10 @@
         $('.header-middle').show()
         $('.header-middle img').attr('src', schrittImg)
       }
-      if (countries1 == 'de' ||countries1 == 'fr' ) {
+      if (countries1 == 'de' || countries1 == 'fr') {
         $('.terms-block-last').show()
       }
-      if (countries1 == 'us' || countries1 == 'uk') {
+      if (countries1 == 'us' || countries1 == 'gb') {
         var favicon = '/checkout/v2/images/favicon.png'
         $('#favicon-icon').attr('href', favicon)
       }
@@ -2923,10 +3040,16 @@
       $('#cb-buy-each1').text(data.package_products[1].new_price_format)
       $('#cb-buy-each3').text(data.package_products[2].new_price_format)
       $('#cb-buy-each4').text(data.package_products[3].new_price_format)
+      let discount1 = Number(data.package_products[0].old_price) - Number(data.package_products[0].new_price)
+      discount1 = currencySymbol + discount1.toFixed(2)
+      $('.pr-price-single > :eq(0)').text(data.package_products[1].old_price_format)
+      $('.pr-price-single > :eq(1)').text(data.package_products[1].new_price_format)
+      $('#pr-price1').text(discount1)
+      $('#pr-price2').text("(" + data.package_products[1].tip1 + ")")
       if (attrList.length > 0) {
         var selectList = ''
         for (var arri = 0; arri < attrList.length; arri++) {
-          var optionList = `<option value="" selected disabled">` + attrList[arri].label + `</option>`
+          var optionList = `<option value="" selected disabled>` + attrList[arri].label + `</option>`
           for (var attj = 0; attj < attrList[arri].options.length; attj++) {
             optionList += `<option value="` + attrList[arri].options[attj].label + `">` + attrList[arri].options[attj].label + `</option>`
           }
@@ -2938,6 +3061,8 @@
       } else {
         // $('.buy-loading').hide()
         $('.buy-select').hide()
+        $('#p2-select').show()
+        $('#product2').addClass('background-green')
       }
       var nprice = currencySymbol + data.package_products[0].new_price.toFixed(2)
       $('#summary-total1').text(nprice)
@@ -3037,8 +3162,8 @@
       params.products = []
       params.products.push(productL1, productL2)
       getSkuListInfo();
-      $('.prod-name').text("<?php echo $data['product']['name']; ?>")
-      $('title').html("<?php echo $data['product']['name']; ?>")
+      $('.prod-name').text('<?php echo addslashes($data['product']['name']); ?>')
+      $('title').html('<?php echo addslashes($data['product']['name']); ?>')
       $('#buy-select1, #buy-select3, #buy-select4').hide()
       $('#footer-top-text').append(data.brand)
       var isPc = IsPC()
@@ -3185,19 +3310,20 @@
         params.bill_province = $('select[name="billingState"]').val()
         params.bill_address = $('input[name="billingStreetAddress"]').val()
         params.bill_code = $('input[name="billingZip"]').val()
+        params.shipping_address = 'other'
         if (params.bill_first_name == '') {
           billingText += '<li>Please enter your billing first name!</li>'
         }
         if (params.bill_second_name == '') {
           billingText += '<li>Please enter your billing last name!</li>'
         }
-        if (params.bill_country == '') {
+        if (params.bill_country == '' || params.bill_country == null) {
           billingText += '<li>Please select your billing country!</li>'
         }
         if (params.bill_city == '') {
           billingText += '<li>Please enter your billing city!</li>'
         }
-        if (params.bill_province == '') {
+        if (params.bill_province == '' || params.bill_province == null) {
           billingText += '<li>Please select your billing state!</li>'
         }
         if (params.bill_address == '') {
@@ -3299,13 +3425,13 @@
               if (res.data[0].CountryCode) {
                 console.log(res, 'rrrrrrrssssssss')
                 var stateList = res.data
-                var optionList = `<option value="" disabled>@lang('checkout::app.v2.Select State')</option>`
+                var optionList = `<option value="" selected disabled>@lang('checkout::app.v2.Select State')</option>`
                 for (var resj = 0; resj < stateList.length; resj++) {
                   optionList += `<option value="` + stateList[resj].StateCode + `">` + stateList[resj].StateName + `</option>`
                 }
                 $('select[name="billingState"]').empty()
                 $('select[name="billingState"]').append(optionList)
-                $('select[name="billingState"]').val(stateList[0].StateCode)
+                // $('select[name="billingState"]').val(stateList[0].StateCode)
               }
             })
         }
@@ -3325,13 +3451,13 @@
           .then(function(res) {
             if (res.data[0].CountryCode) {
               var stateList = res.data
-              var optionList = `<option value="" disabled>@lang('checkout::app.v2.Select State')</option>`
+              var optionList = `<option value="" selected disabled>@lang('checkout::app.v2.Select State')</option>`
               for (var resj = 0; resj < stateList.length; resj++) {
                 optionList += `<option value="` + stateList[resj].StateCode + `">` + stateList[resj].StateName + `</option>`
               }
               $('select[name="billingState"]').empty()
               $('select[name="billingState"]').append(optionList)
-              $('select[name="billingState"]').val(stateList[0].StateCode)
+              // $('select[name="billingState"]').val(stateList[0].StateCode)
             }
 
           })
@@ -3745,7 +3871,7 @@
         // paramsProductsinit(params.products)
       }
       if (data.attr.attributes.length == 0) {
-        params.products.forEach(function(item){
+        params.products.forEach(function(item) {
           item.product_sku = data.sku
           item.variant_id = ''
         })
@@ -3781,13 +3907,13 @@
                 if (res.data[0].CountryCode) {
                   console.log(res, 'rrrrrrrssssssss')
                   var stateList = res.data
-                  var optionList = `<option value="" disabled>@lang('checkout::app.v2.Select State')</option>`
+                  var optionList = `<option value="" selected disabled>@lang('checkout::app.v2.Select State')</option>`
                   for (var resj = 0; resj < stateList.length; resj++) {
                     optionList += `<option value="` + stateList[resj].StateCode + `">` + stateList[resj].StateName + `</option>`
                   }
                   $('select[name="shippingState"]').empty()
                   $('select[name="shippingState"]').append(optionList)
-                  $('select[name="shippingState"]').val(stateList[0].StateCode)
+                  // $('select[name="shippingState"]').val(stateList[0].StateCode)
                 }
               })
           }
@@ -3815,13 +3941,13 @@
             if (res.data[0].CountryCode) {
               console.log(res, 'rererererere')
               var stateList = res.data
-              var optionList = `<option value="" disabled>@lang('checkout::app.v2.Select State')</option>`
+              var optionList = `<option value="" selected disabled>@lang('checkout::app.v2.Select State')</option>`
               for (var resj = 0; resj < stateList.length; resj++) {
                 optionList += `<option value="` + stateList[resj].StateCode + `">` + stateList[resj].StateName + `</option>`
               }
               $('select[name="shippingState"]').empty()
               $('select[name="shippingState"]').append(optionList)
-              $('select[name="shippingState"]').val(stateList[0].StateCode)
+              // $('select[name="shippingState"]').val(stateList[0].StateCode)
             }
 
           })
@@ -3914,17 +4040,20 @@
         $('#buy-select1').show()
       } else {
         $('#buy-select1').hide()
+        list.removeClass('background-green')
+        $('#product1').addClass('background-green')
       }
       $('#product1').addClass('choose-p')
       var nprice = currencySymbol + data.package_products[1].new_price.toFixed(2)
       $('#summary-total1').text(nprice)
       var shippingFee = currencySymbol + data.package_products[1].shipping_fee
       $('#summary-total3').text(shippingFee)
-
-      var discount = Number(data.package_products[1].old_price) - Number(data.package_products[0].new_price)
+      console.log(data, 'data');
+      var discount = Number(data.package_products[1].old_price) - Number(data.package_products[1].new_price)
+      console.log(discount, 'discount');
       discount = currencySymbol + discount.toFixed(2)
       $('#summary-total2').text(discount)
-      var total = Number(data.package_products[1].new_price) + Number(data.package_products[0].shipping_fee)
+      var total = Number(data.package_products[1].new_price) + Number(data.package_products[1].shipping_fee)
       total = currencySymbol + total.toFixed(2)
       $('#summary-total4').text(total)
       $('.product-name').text(data.package_products[1].name)
@@ -3933,6 +4062,10 @@
       initProuctData(1, '1')
       console.log(data.attr.attributes, 'data.attr');
       if (data.attr.attributes.length == 0) {
+        $('#p1-select').show()
+        $('#p2-select').hide()
+        $('#p3-select').hide()
+        $('#p4-select').hide()
         crmTrack('add_cart')
         createdButton()
       }
@@ -3947,6 +4080,8 @@
         $('#buy-select2').show()
       } else {
         $('#buy-select2').hide()
+        list.removeClass('background-green')
+        $('#product2').addClass('background-green')
       }
       $('#product2').addClass('choose-p')
       var nprice = currencySymbol + data.package_products[0].new_price.toFixed(2)
@@ -3965,6 +4100,10 @@
       $('#product-price').text(data.package_products[0].tip2)
       initProuctData(0, '2')
       if (data.attr.attributes.length == 0) {
+        $('#p2-select').show()
+        $('#p1-select').hide()
+        $('#p3-select').hide()
+        $('#p4-select').hide()
         crmTrack('add_cart')
         createdButton()
       }
@@ -3979,6 +4118,8 @@
         $('#buy-select3').show()
       } else {
         $('#buy-select3').hide()
+        list.removeClass('background-green')
+        $('#product3').addClass('background-green')
       }
 
       $('#product3').addClass('choose-p')
@@ -3987,10 +4128,10 @@
       var shippingFee = currencySymbol + data.package_products[2].shipping_fee
       $('#summary-total3').text(shippingFee)
 
-      var discount = Number(data.package_products[2].old_price) - Number(data.package_products[0].new_price)
+      var discount = Number(data.package_products[2].old_price) - Number(data.package_products[2].new_price)
       discount = currencySymbol + discount.toFixed(2)
       $('#summary-total2').text(discount)
-      var total = Number(data.package_products[2].new_price) + Number(data.package_products[0].shipping_fee)
+      var total = Number(data.package_products[2].new_price) + Number(data.package_products[2].shipping_fee)
       total = currencySymbol + total.toFixed(2)
       $('#summary-total4').text(total)
       $('.product-name').text(data.package_products[2].name)
@@ -3998,6 +4139,10 @@
       $('#product-price').text(data.package_products[2].tip2)
       initProuctData(2, '3')
       if (data.attr.attributes.length == 0) {
+        $('#p3-select').show()
+        $('#p2-select').hide()
+        $('#p1-select').hide()
+        $('#p4-select').hide()
         crmTrack('add_cart')
         createdButton()
       }
@@ -4013,6 +4158,8 @@
         $('#buy-select4').show()
       } else {
         $('#buy-select4').hide()
+        list.removeClass('background-green')
+        $('#product4').addClass('background-green')
       }
       $('#product4').addClass('choose-p')
       var nprice = currencySymbol + data.package_products[3].new_price.toFixed(2)
@@ -4020,10 +4167,10 @@
       var shippingFee = currencySymbol + data.package_products[3].shipping_fee
       $('#summary-total3').text(shippingFee)
 
-      var discount = Number(data.package_products[3].old_price) - Number(data.package_products[0].new_price)
+      var discount = Number(data.package_products[3].old_price) - Number(data.package_products[3].new_price)
       discount = currencySymbol + discount.toFixed(2)
       $('#summary-total2').text(discount)
-      var total = Number(data.package_products[3].new_price) + Number(data.package_products[0].shipping_fee)
+      var total = Number(data.package_products[3].new_price) + Number(data.package_products[3].shipping_fee)
       total = currencySymbol + total.toFixed(2)
       $('#summary-total4').text(total)
       $('.product-name').text(data.package_products[3].name)
@@ -4031,6 +4178,10 @@
       $('#product-price').text(data.package_products[3].tip2)
       initProuctData(3, '4')
       if (data.attr.attributes.length == 0) {
+        $('#p4-select').show()
+        $('#p2-select').hide()
+        $('#p3-select').hide()
+        $('#p1-select').hide()
         crmTrack('add_cart')
         createdButton()
       }
@@ -4216,7 +4367,7 @@
               */
               // window.alert(event.detail);
               console.log(event.detail, event, 'applePay ===  success');
-              window.location.href = "/onebuy/checkout/v1/success/" + orderId;
+              window.location.href = "/onebuy/checkout/v2/success/" + orderId;
             });
             domApplePay.addEventListener('onError', (event) => {
               crmTrack('add_pay')
@@ -4300,7 +4451,7 @@
               // window.alert(event.detail);
               // console.log(event.detail);
               console.log(event.detail, event, 'googlePay ===  success');
-              window.location.href = "/onebuy/checkout/v1/success/" + orderId;
+              window.location.href = "/onebuy/checkout/v2/success/" + orderId;
             });
             domGooglePay.addEventListener('onError', (event) => {
               crmTrack('add_pay')
@@ -4598,7 +4749,7 @@
 
           // Call your server to set up the transaction
           createOrder: function(data, actions) {
-            // getParams('paypal_stand')
+            getParams('paypal_stand')
             var errIsShow = skuIsScelect()
             console.log(params, '==========2', data);
             var emailErr = validateEmail($('input[name="email"]').val())
@@ -4702,7 +4853,7 @@
               $('#loading').hide();
               if (res.success == true) {
                 //Goto('/checkout/v1/success/'+localStorage.getItem('order_id'));
-                window.location.href = '/onebuy/checkout/v1/success/' + localStorage.getItem('order_id');
+                window.location.href = '/onebuy/checkout/v2/success/' + localStorage.getItem('order_id');
                 return true;
                 //actions.redirect('/checkout/v1/success/'+localStorage.getItem('order_id'));
               }
@@ -4736,6 +4887,54 @@
   <!-- <script type="text/javascript" src="js/checkout.js"></script> -->
 
   <script>
+    function getRandomIntInclusive(min, max) {
+      min = Math.ceil(min);
+      max = Math.floor(max);
+      return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
+    function getOrderMsg() {
+      let hour = getRandomIntInclusive(1, 24)
+      console.log(hour, 'xx小时');
+      let number = getRandomIntInclusive(10, 200)
+      console.log(number, 'xx件');
+      $('#order-msg-hour').text(hour)
+      $('#order-msg-number').text(number)
+    }
+
+    function getDateAfterNDays(n) {
+      // 创建一个包含当前日期和时间的 Date 对象
+      let currentDate = new Date();
+
+      // 添加 n 天
+      currentDate.setDate(currentDate.getDate() + n);
+
+      // 返回新的日期
+      return currentDate;
+    }
+
+    function formatDate(date) {
+      let month = String(date.getMonth() + 1).padStart(2, '0'); // 月份从0开始，所以需要加1
+      let day = String(date.getDate()).padStart(2, '0');
+      return `${month}/${day}`;
+    }
+
+    function getshippingMsg() {
+      let date1 = formatDate(getDateAfterNDays(5))
+      let date2 = formatDate(getDateAfterNDays(7))
+      $('#shipping-date1').text(date1)
+      $('#shipping-date2').text(date2)
+    }
+
+    function getUserView() {
+      let viewNum = getRandomIntInclusive(1, 99)
+      $('.user-view-num').text(viewNum)
+    }
+    getshippingMsg();
+    getOrderMsg();
+    setInterval(function() {
+      getUserView()
+    }, 3000);
     // $(function() {
     //   var width = $(window).innerWidth()
     //   if (width > 767) {
@@ -4869,11 +5068,14 @@
       $('#pay-after-submit-error').hide()
     }
   </script>
-  <!-- <script src="https://checkout-demo.airwallex.com/assets/elements.bundle.min.js"></script> -->
-  <script src="https://checkout.airwallex.com/assets/elements.bundle.min.js"></script>
+  <?php if (@$data['env'] == 'demo') { ?>
+    <script src="https://checkout-demo.airwallex.com/assets/elements.bundle.min.js"></script>
+  <?php } else { ?>
+    <script src="https://checkout.airwallex.com/assets/elements.bundle.min.js"></script>
+  <?php } ?>
   <script>
     Airwallex.init({
-      env: 'prod', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
+      env: '<?php echo $data['env']; ?>', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
       origin: window.location.origin, // Setup your event target to receive the browser events message
     });
 
@@ -5144,7 +5346,7 @@
 
                   if (res.success == true) {
                     window.location.href =
-                      '/onebuy/checkout/v1/success/' +
+                      '/onebuy/checkout/v2/success/' +
                       localStorage.getItem('order_id')
                     return true
                     //actions.redirect('/checkout/v1/success/'+localStorage.getItem('order_id'));
@@ -5371,7 +5573,7 @@
 
 
             if (window.is_airwallex) {
-
+              console.log(data, 'data===window.is_airwallex');
               document.querySelector(".submit-button").scrollIntoView({
                 behavior: "smooth"
               })
@@ -5401,7 +5603,7 @@
 
                 $('#loading').hide();
 
-                window.location.href = "/onebuy/checkout/v1/success/" + data.order.id;
+                window.location.href = "/onebuy/checkout/v2/success/" + data.order.id;
                 return false;
 
               }).catch((response) => {

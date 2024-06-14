@@ -21,8 +21,11 @@
   <meta name="color-scheme" content="light only" />
   <link href="https://cdn.jsdelivr.net/npm/flag-icon-css@4.1.7/css/flag-icons.min.css" rel="stylesheet" />
   <link href="https://cdn.jsdelivr.net/npm/jquery-colorbox@1.6.4/example1/colorbox.min.css" rel="stylesheet" />
-  <!-- <script src="https://checkout-demo.airwallex.com/assets/elements.bundle.min.js"></script> -->
-  <script src="https://checkout.airwallex.com/assets/elements.bundle.min.js"></script>
+  <?php if (@$data['env'] == 'demo') { ?>
+    <script src="https://checkout-demo.airwallex.com/assets/elements.bundle.min.js"></script>
+  <?php } else { ?>
+    <script src="https://checkout.airwallex.com/assets/elements.bundle.min.js"></script>
+  <?php } ?>
   <style>
     @media only screen and (max-width: 600px) {}
 
@@ -1056,6 +1059,10 @@
       /* height: 32px !important; */
     }
 
+    .background-green {
+      background-color: #E0FDBA !important;
+    }
+
     .input-box label {
       width: 100%;
       position: relative;
@@ -1285,7 +1292,7 @@
 
     .choose-billing-box {
       display: none;
-      margin: 5px;
+      margin: 15px 5px 0;
       font-size: 13px;
       font-family: var(--text-family);
       color: var(--text-color);
@@ -1301,13 +1308,12 @@
     .product-selected {
       display: none;
       position: absolute;
-      top: 9px;
-      right: 19%;
+      bottom: 8px;
+      right: 21%;
       color: #fff;
       background: #1773B0;
-      font-size: 13px;
+      font-size: 12px;
       padding: 5px;
-      font-weight: 600;
       border-radius: 4px;
     }
 
@@ -2524,7 +2530,7 @@
       if (countries1 == 'de' || countries1 == 'fr') {
         $('.terms-block-last').show()
       }
-      if (countries1 == 'us' || countries1 == 'uk') {
+      if (countries1 == 'us' || countries1 == 'gb') {
         var favicon = '/checkout/v2/images/favicon.png'
         $('#favicon-icon').attr('href', favicon)
       }
@@ -2571,6 +2577,8 @@
       } else {
         // $('.buy-loading').hide()
         $('.buy-select').hide()
+        $('#p2-select').show()
+        $('#product2').addClass('background-green')
       }
       var nprice = currencySymbol + data.package_products[0].new_price.toFixed(2)
       $('#summary-total1').text(nprice)
@@ -2672,8 +2680,8 @@
       getSkuListInfo();
       $('#pc-banner').attr('src', data.ads.pc.img);
       $('#mobile-banner').attr('src', data.ads.mobile.img);
-      $('.prod-name').text("<?php echo $data['product']['name']; ?>")
-      $('title').html("<?php echo $data['product']['name']; ?>")
+      $('.prod-name').text('<?php echo addslashes($data['product']['name']); ?>')
+      $('title').html('<?php echo addslashes($data['product']['name']); ?>')
       $('#buy-select1, #buy-select3, #buy-select4').hide()
       $('#footer-top-text').append(data.brand)
       var isPc = IsPC()
@@ -2820,19 +2828,20 @@
         params.bill_province = $('select[name="billingState"]').val()
         params.bill_address = $('input[name="billingStreetAddress"]').val()
         params.bill_code = $('input[name="billingZip"]').val()
+        params.shipping_address = 'other'
         if (params.bill_first_name == '') {
           billingText += '<li>Please enter your billing first name!</li>'
         }
         if (params.bill_second_name == '') {
           billingText += '<li>Please enter your billing last name!</li>'
         }
-        if (params.bill_country == '') {
+        if (params.bill_country == '' || params.bill_country == null) {
           billingText += '<li>Please select your billing country!</li>'
         }
         if (params.bill_city == '') {
           billingText += '<li>Please enter your billing city!</li>'
         }
-        if (params.bill_province == '') {
+        if (params.bill_province == '' || params.bill_province == null) {
           billingText += '<li>Please select your billing state!</li>'
         }
         if (params.bill_address == '') {
@@ -2861,13 +2870,13 @@
               if (res.data[0].CountryCode) {
                 console.log(res, 'rrrrrrrssssssss')
                 var stateList = res.data
-                var optionList = `<option value="" disabled>@lang('checkout::app.v2.Select State')</option>`
+                var optionList = `<option value="" selected disabled>@lang('checkout::app.v2.Select State')</option>`
                 for (var resj = 0; resj < stateList.length; resj++) {
                   optionList += `<option value="` + stateList[resj].StateCode + `">` + stateList[resj].StateName + `</option>`
                 }
                 $('select[name="billingState"]').empty()
                 $('select[name="billingState"]').append(optionList)
-                $('select[name="billingState"]').val(stateList[0].StateCode)
+                // $('select[name="billingState"]').val(stateList[0].StateCode)
               }
             })
         }
@@ -2886,13 +2895,13 @@
           .then(function(res) {
             if (res.data[0].CountryCode) {
               var stateList = res.data
-              var optionList = `<option value="" disabled>@lang('checkout::app.v2.Select State')</option>`
+              var optionList = `<option value="" selected disabled>@lang('checkout::app.v2.Select State')</option>`
               for (var resj = 0; resj < stateList.length; resj++) {
                 optionList += `<option value="` + stateList[resj].StateCode + `">` + stateList[resj].StateName + `</option>`
               }
               $('select[name="billingState"]').empty()
               $('select[name="billingState"]').append(optionList)
-              $('select[name="billingState"]').val(stateList[0].StateCode)
+              // $('select[name="billingState"]').val(stateList[0].StateCode)
             }
 
           })
@@ -3360,7 +3369,7 @@
         // paramsProductsinit(params.products)
       }
       if (data.attr.attributes.length == 0) {
-        params.products.forEach(function(item){
+        params.products.forEach(function(item) {
           item.product_sku = data.sku
           item.variant_id = ''
         })
@@ -3396,13 +3405,13 @@
                 if (res.data[0].CountryCode) {
                   console.log(res, 'rrrrrrrssssssss')
                   var stateList = res.data
-                  var optionList = `<option value="" disabled>@lang('checkout::app.v2.Select State')</option>`
+                  var optionList = `<option value="" selected disabled>@lang('checkout::app.v2.Select State')</option>`
                   for (var resj = 0; resj < stateList.length; resj++) {
                     optionList += `<option value="` + stateList[resj].StateCode + `">` + stateList[resj].StateName + `</option>`
                   }
                   $('select[name="shippingState"]').empty()
                   $('select[name="shippingState"]').append(optionList)
-                  $('select[name="shippingState"]').val(stateList[0].StateCode)
+                  // $('select[name="shippingState"]').val(stateList[0].StateCode)
                 }
               })
           }
@@ -3430,13 +3439,13 @@
             if (res.data[0].CountryCode) {
               console.log(res, 'rererererere')
               var stateList = res.data
-              var optionList = `<option value="" disabled>@lang('checkout::app.v2.Select State')</option>`
+              var optionList = `<option value="" selected disabled>@lang('checkout::app.v2.Select State')</option>`
               for (var resj = 0; resj < stateList.length; resj++) {
                 optionList += `<option value="` + stateList[resj].StateCode + `">` + stateList[resj].StateName + `</option>`
               }
               $('select[name="shippingState"]').empty()
               $('select[name="shippingState"]').append(optionList)
-              $('select[name="shippingState"]').val(stateList[0].StateCode)
+              // $('select[name="shippingState"]').val(stateList[0].StateCode)
             }
 
           })
@@ -3529,6 +3538,8 @@
         $('#buy-select1').show()
       } else {
         $('#buy-select1').hide()
+        list.removeClass('background-green')
+        $('#product1').addClass('background-green')
       }
       $('#product1').addClass('choose-p')
       var nprice = currencySymbol + data.package_products[1].new_price.toFixed(2)
@@ -3536,10 +3547,10 @@
       var shippingFee = currencySymbol + data.package_products[1].shipping_fee
       $('#summary-total3').text(shippingFee)
 
-      var discount = Number(data.package_products[1].old_price) - Number(data.package_products[0].new_price)
+      var discount = Number(data.package_products[1].old_price) - Number(data.package_products[1].new_price)
       discount = currencySymbol + discount.toFixed(2)
       $('#summary-total2').text(discount)
-      var total = Number(data.package_products[1].new_price) + Number(data.package_products[0].shipping_fee)
+      var total = Number(data.package_products[1].new_price) + Number(data.package_products[1].shipping_fee)
       total = currencySymbol + total.toFixed(2)
       $('#summary-total4').text(total)
       $('.product-name').text(data.package_products[1].name)
@@ -3566,6 +3577,8 @@
         $('#buy-select2').show()
       } else {
         $('#buy-select2').hide()
+        list.removeClass('background-green')
+        $('#product2').addClass('background-green')
       }
       $('#product2').addClass('choose-p')
       var nprice = currencySymbol + data.package_products[0].new_price.toFixed(2)
@@ -3602,6 +3615,8 @@
         $('#buy-select3').show()
       } else {
         $('#buy-select3').hide()
+        list.removeClass('background-green')
+        $('#product3').addClass('background-green')
       }
 
       $('#product3').addClass('choose-p')
@@ -3610,10 +3625,10 @@
       var shippingFee = currencySymbol + data.package_products[2].shipping_fee
       $('#summary-total3').text(shippingFee)
 
-      var discount = Number(data.package_products[2].old_price) - Number(data.package_products[0].new_price)
+      var discount = Number(data.package_products[2].old_price) - Number(data.package_products[2].new_price)
       discount = currencySymbol + discount.toFixed(2)
       $('#summary-total2').text(discount)
-      var total = Number(data.package_products[2].new_price) + Number(data.package_products[0].shipping_fee)
+      var total = Number(data.package_products[2].new_price) + Number(data.package_products[2].shipping_fee)
       total = currencySymbol + total.toFixed(2)
       $('#summary-total4').text(total)
       $('.product-name').text(data.package_products[2].name)
@@ -3640,6 +3655,8 @@
         $('#buy-select4').show()
       } else {
         $('#buy-select4').hide()
+        list.removeClass('background-green')
+        $('#product4').addClass('background-green')
       }
       $('#product4').addClass('choose-p')
       var nprice = currencySymbol + data.package_products[3].new_price.toFixed(2)
@@ -3647,10 +3664,10 @@
       var shippingFee = currencySymbol + data.package_products[3].shipping_fee
       $('#summary-total3').text(shippingFee)
 
-      var discount = Number(data.package_products[3].old_price) - Number(data.package_products[0].new_price)
+      var discount = Number(data.package_products[3].old_price) - Number(data.package_products[3].new_price)
       discount = currencySymbol + discount.toFixed(2)
       $('#summary-total2').text(discount)
-      var total = Number(data.package_products[3].new_price) + Number(data.package_products[0].shipping_fee)
+      var total = Number(data.package_products[3].new_price) + Number(data.package_products[3].shipping_fee)
       total = currencySymbol + total.toFixed(2)
       $('#summary-total4').text(total)
       $('.product-name').text(data.package_products[3].name)
@@ -3790,7 +3807,7 @@
               */
               // window.alert(event.detail);
               console.log(event.detail, event, 'applePay ===  success');
-              window.location.href = "/onebuy/checkout/v1/success/" + orderId;
+              window.location.href = "/onebuy/checkout/v2/success/" + orderId;
             });
             domApplePay.addEventListener('onError', (event) => {
               crmTrack('add_pay')
@@ -3874,7 +3891,7 @@
               // window.alert(event.detail);
               // console.log(event.detail);
               console.log(event.detail, event, 'googlePay ===  success');
-              window.location.href = "/onebuy/checkout/v1/success/" + orderId;
+              window.location.href = "/onebuy/checkout/v2/success/" + orderId;
             });
             domGooglePay.addEventListener('onError', (event) => {
               crmTrack('add_pay')
@@ -4158,7 +4175,7 @@
 
           // Call your server to set up the transaction
           createOrder: function(data, actions) {
-            // getParams('paypal_stand')
+            getParams('paypal_stand')
             var errIsShow = skuIsScelect()
             console.log(params, '==========2', data);
             var emailErr = validateEmail($('input[name="email"]').val())
@@ -4262,7 +4279,7 @@
               $('#loading').hide();
               if (res.success == true) {
                 //Goto('/checkout/v1/success/'+localStorage.getItem('order_id'));
-                window.location.href = '/onebuy/checkout/v1/success/' + localStorage.getItem('order_id');
+                window.location.href = '/onebuy/checkout/v2/success/' + localStorage.getItem('order_id');
                 return true;
                 //actions.redirect('/checkout/v1/success/'+localStorage.getItem('order_id'));
               }
@@ -4423,7 +4440,7 @@
   </script>
   <script>
     Airwallex.init({
-      env: 'prod', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
+      env: '<?php echo $data['env']; ?>', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
       origin: window.location.origin, // Setup your event target to receive the browser events message
     });
 
@@ -4693,7 +4710,7 @@
 
                   if (res.success == true) {
                     window.location.href =
-                      '/onebuy/checkout/v1/success/' +
+                      '/onebuy/checkout/v2/success/' +
                       localStorage.getItem('order_id')
                     return true
                   }
@@ -4937,7 +4954,7 @@
 
                 $('#loading').hide();
 
-                window.location.href = "/onebuy/checkout/v1/success/" + data.order.id;
+                window.location.href = "/onebuy/checkout/v2/success/" + data.order.id;
                 return false;
 
               }).catch((response) => {

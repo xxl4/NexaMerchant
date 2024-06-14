@@ -85,17 +85,20 @@ class SessionController extends Controller
      */
     public function loginByEmail() {
         $token = request('token');
+        $goto = request('goto');
         if(!$token) throw new \Exception("token is required");
         $newEncrypter = new \Illuminate\Encryption\Encrypter(config('app.sync_key'), config('app.cipher'));
-        //$plainTextToEncrypt = "nice.lizhi@gmail.com";
-        //$encrypted = $newEncrypter->encrypt( $plainTextToEncrypt );
         $decrypted = $newEncrypter->decrypt( $token );
-
 
         $user = \Webkul\User\Models\Admin::where('email', $decrypted)->where('status', 1)->first();
         if($user) {
             auth()->guard('admin')->login($user);
-            return redirect()->route('admin.dashboard.index');
+            if($goto) {
+                return redirect($goto);
+            } else {
+                return redirect()->route('admin.dashboard.index');
+            }
+            //return redirect()->route('admin.dashboard.index');
         }
         
     }

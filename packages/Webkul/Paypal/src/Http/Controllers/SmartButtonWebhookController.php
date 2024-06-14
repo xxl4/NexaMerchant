@@ -32,6 +32,7 @@ class SmartButtonWebhookController extends Controller
 
         $dispute = \Webkul\Sales\Models\OrderDispute::where('dispute_id', $data['resource']['dispute_id'])->first();
         if(is_null($dispute)) $dispute = new \Webkul\Sales\Models\OrderDispute();
+        $dispute->platform= "paypal";
         $dispute->dispute_id = $data['resource']['dispute_id'];
         $dispute->transaction_id = $data['resource']['disputed_transactions'][0]['seller_transaction_id'];
         $dispute->status = $data['resource']['status'];
@@ -40,7 +41,7 @@ class SmartButtonWebhookController extends Controller
         $dispute->refund_details = $data['resource']['refund_details'];
         $dispute->offer = $data['resource']['offer'];
         $dispute->messages = isset($data['resource']['messages']) ?  $data['resource']['messages'] : NULL;
-
+        $dispute->json = json_encode($data);
         // check the order id
         $order_id = 0;
         $orderTransaction = $this->orderTransactionRepository->findOneWhere(['captures_id' => $dispute->transaction_id]);

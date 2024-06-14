@@ -176,7 +176,7 @@ class ImportProductCommentFromJudge extends Command
                         if(!$customer) {
                             $data = [];
                             $data['email'] = $item['reviewer']['email'];
-                            $data['customer_group_id'] = 2;
+                            $data['customer_group_id'] = 3;
                             $name = explode("-", $item['reviewer']['name']);
 
                             $data['first_name'] = $name[0];
@@ -188,7 +188,7 @@ class ImportProductCommentFromJudge extends Command
                             Event::dispatch('customer.registration.before');
                             $data = array_merge($data, [
                                 'password'    => bcrypt($password),
-                                'is_verified' => 1,
+                                'is_verified' => 0,
                             ]);
                             $this->customerRepository->create($data);
                             $customer = $this->customerRepository->findOneByField('email', $item['reviewer']['email']);

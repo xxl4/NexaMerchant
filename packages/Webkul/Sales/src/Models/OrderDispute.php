@@ -26,6 +26,7 @@ class OrderDispute extends Model implements OrderDisputeContract {
         'refund_details' => 'json',
         'offer' => 'json',
         'messages' => 'json',
+        'json' => 'json',
     ];
 
      /**
@@ -42,6 +43,7 @@ class OrderDispute extends Model implements OrderDisputeContract {
         'adjudications',
         'refund_details',
         'offer',
+        'json',
         'messages',
         'created_at',
         'updated_at',

@@ -23,6 +23,7 @@
                         <thead>
                         <tr>
                           <th>ID</th>
+                          <th>Platform</th>
                           <th>Dispute ID</th>
                           <th>Transaction ID</th>
                           <th>Status</th>
@@ -84,6 +85,9 @@
             data: 'id'
           },
           {
+            data: 'platform'
+          },
+          {
             data: 'dispute_id'
           },
           {
@@ -112,7 +116,7 @@
             [20, 50, 100],
             [20, 50, 100]
         ],
-        order: [[5, 'desc']],
+        order: [[7, 'desc']],
         processing: true,
         serverSide: true,
         

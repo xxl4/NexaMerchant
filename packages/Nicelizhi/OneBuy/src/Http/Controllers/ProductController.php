@@ -509,6 +509,8 @@ class ProductController extends Controller
 
         Cart::collectTotals();
 
+        $payment_method = "airwallex";
+
         if($payment_method_input=="airwallex_klarna") $payment_method = "airwallex";
         if($payment_method_input=="airwallex_dropin") $payment_method = "airwallex";
         if($payment_method_input=="airwallex_google") $payment_method = "airwallex";
@@ -1198,6 +1200,46 @@ class ProductController extends Controller
 
 
         return view('onebuy::checkout-success', compact('product','fb_ids','ob_adv_id'));
+    }
+
+    public function checkout_success_v2($order_id, Request $request) {
+        $order = [];
+
+        $orderTrans = $this->orderTransactionRepository->where('transaction_id', $order_id)->select(['order_id'])->first();
+        if(!is_null($orderTrans)) {
+            $order = $this->orderRepository->findOrFail($orderTrans->order_id);
+        }else{
+            $order = $this->orderRepository->findOrFail($order_id);
+        }
+        
+
+        $fb_ids = config('onebuy.fb_ids');
+        $ob_adv_id = config('onebuy.ob_adv_id');
+        $crm_channel = config('onebuy.crm_channel');
+        $refer = $request->session()->get('refer');
+        $gtag = config('onebuy.gtag');
+
+        $quora_adv_id = config('onebuy.quora_adv_id');
+
+        $countries = config("countries");
+
+        $default_country = config('onebuy.default_country');
+        $order_pre = config('shopify.order_pre');
+
+        $recommend_products = [];
+
+        return view('onebuy::checkout-success-v2', compact('order',
+            "fb_ids",
+            "ob_adv_id",
+            "crm_channel",
+            "refer",
+            "gtag",
+            "quora_adv_id",
+            "countries",
+            "default_country",
+            "order_pre",
+            "recommend_products"
+        ));
     }
 
     public function checkout_success_v1($order_id, Request $request) {

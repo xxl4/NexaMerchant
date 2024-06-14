@@ -85,4 +85,35 @@ return [
   ],
   'order-success' => [],
   'You may also like' => 'Sie können auch mögen',
+  'v2' => [
+    'success' => [
+      'Order' => 'Befehl',
+      'confirm' => 'bestätigen',
+      'Buy Again' => 'noch einmal kaufen',
+      'Log in to view all order details' => 'Melden Sie sich an, um alle Bestelldetails anzuzeigen',
+      'Login' => 'Anmeldung',
+      'comfirmed' => 'bestätigt',
+      'Updated' => 'aktualisiert am',
+      'We have received your order' => 'Wir haben Ihre Bestellung erhalten',
+      'Order details' => 'Bestelldetails',
+      'contact information' => 'Kontaktinformationen',
+      'firstname' => 'Vorname',
+      'lastname' => 'Familienname, Nachname',
+      'phone' => 'Telefon',
+      'email' => 'Email',
+      'mailing address' => 'Postanschrift',
+      'Street address and number' => 'Adresse',
+      'City' => 'Stadt',
+      'Country' => 'Nation',
+      'State' => 'Zustand',
+      'Postal Code' => 'Postleitzahl',
+      'billing Address' => 'Rechnungsadresse',
+      'Order Summary' => 'Bestellübersicht',
+      '/pcs' => '/Stück',
+      'Subtotal' => 'Zwischensumme',
+      'Discount' => 'Rabatt',
+      'Shipping' => 'Transport',
+      'Total' => 'gesamt'
+    ]
+  ]
 ];

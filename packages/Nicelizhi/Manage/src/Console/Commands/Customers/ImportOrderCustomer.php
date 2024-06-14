@@ -17,6 +17,8 @@ class ImportOrderCustomer extends Command {
      */
     protected $signature = 'manage:customers:import:order';
 
+    private $customerRepository;
+
     /**
      * The console command description.
      *
@@ -25,7 +27,7 @@ class ImportOrderCustomer extends Command {
     protected $description = 'Impoty the customer from orders';
 
     public function __construct(
-        protected CustomerRepository $customerRepository
+        
     )
     {
         parent::__construct();
@@ -38,6 +40,7 @@ class ImportOrderCustomer extends Command {
      */
     public function handle()
     {
+        $this->customerRepository = app(CustomerRepository::class);
 
         $count = Order::count();
         $max = 100;
@@ -49,9 +52,6 @@ class ImportOrderCustomer extends Command {
             $items = Order::select(['id'])->offset($offset)->limit($max)->get();
             
             foreach($items as $item) {
-
-                
-
                // var_dump($item->shipping_address);
 
                 $shipping_address = $item->shipping_address;

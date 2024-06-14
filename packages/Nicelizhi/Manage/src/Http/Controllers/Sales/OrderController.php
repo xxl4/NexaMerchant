@@ -65,7 +65,7 @@ class OrderController extends Controller
             // SQL server connection information
             $sql_details = [];
 
-            $joinQuery = "FROM `{$table}` AS `o` LEFT JOIN `{$table_pre}addresses` AS `a` ON (`a`.`order_id` = `o`.`id` AND `a`.`address_type`='cart_shipping') LEFT JOIN `{$table_pre}order_transactions` AS t ON (`t`.`order_id` = `o`.`id`) LEFT JOIN `{$table_pre}order_payment` AS p ON (`p`.`order_id` = `o`.`id`) LEFT JOIN `{$table_pre}shipments` AS s on (`s`.`order_id` = `o`.`id`) ";
+            $joinQuery = "FROM `{$table}` AS `o` LEFT JOIN `{$table_pre}order_transactions` AS t ON (`t`.`order_id` = `o`.`id`) LEFT JOIN `{$table_pre}order_payment` AS p ON (`p`.`order_id` = `o`.`id`) LEFT JOIN `{$table_pre}shipments` AS s on (`s`.`order_id` = `o`.`id`) ";
             $extraCondition = "";
             //$extraCondition = "`a`.`address_type`='cart_shipping'";
 
@@ -109,7 +109,7 @@ class OrderController extends Controller
             // SQL server connection information
             $sql_details = [];
 
-            $joinQuery = " FROM `{$table}` AS `o` LEFT JOIN `{$table_pre}addresses` AS `a` ON (`a`.`order_id` = `o`.`id` AND `a`.`address_type`='cart_shipping') LEFT JOIN `{$table_pre}order_transactions` AS t ON (`t`.`order_id` = `o`.`id`) LEFT JOIN `{$table_pre}order_payment` AS p ON (`p`.`order_id` = `o`.`id`) LEFT JOIN `{$table_pre}shipments` AS s on (`s`.`order_id` = `o`.`id`) where `o`.status='processing' group by `o`.customer_email having count>1 ";
+            $joinQuery = " FROM `{$table}` AS `o` LEFT JOIN `{$table_pre}order_transactions` AS t ON (`t`.`order_id` = `o`.`id`) LEFT JOIN `{$table_pre}order_payment` AS p ON (`p`.`order_id` = `o`.`id`) LEFT JOIN `{$table_pre}shipments` AS s on (`s`.`order_id` = `o`.`id`) where `o`.status='processing' group by `o`.customer_email having count>1 ";
             $extraCondition = "";
             //$extraCondition = "`a`.`address_type`='cart_shipping'";
 

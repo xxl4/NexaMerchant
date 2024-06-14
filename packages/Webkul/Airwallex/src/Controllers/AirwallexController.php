@@ -12,7 +12,8 @@ use Webkul\Sales\Repositories\InvoiceRepository;
 use Webkul\Sales\Repositories\OrderRepository;
 use Webkul\Sales\Repositories\OrderTransactionRepository;
 use Illuminate\Support\Facades\Artisan;
-use Nicelizhi\Shopify\Console\Commands\Order\Post;
+use Nicelizhi\Shopify\Console\Commands\Order\Post;  
+use Nicelizhi\Airwallex\Helpers\WebHook;
 
 
 class AirwallexController extends Controller
@@ -53,6 +54,7 @@ class AirwallexController extends Controller
         protected InvoiceRepository $invoiceRepository,
         protected OrderRepository $orderRepository,
         protected OrderTransactionRepository $orderTransactionRepository,
+        protected WebHook $webhookhelp,
         protected Airwallex $airwallex
     ) {
     }
@@ -78,18 +80,13 @@ class AirwallexController extends Controller
             $this->order = $order;
 
             if ($order) {
-                Log::info("airwallex notification received for order id:" . $transactionId);
-
-                                
+                Log::info("airwallex notification received for order id:" . $transactionId);            
                 $status = $input['data']['object']['status'];
                 
-                if ($status === 'SUCCEEDED') {
+                if ($status === 'SUCCEEDED' && $input['name']==='payment_intent.succeeded') {
                    // $amount = $transactionData->data->object->amount;
                     $amount = $input['data']['object']['amount'] * 100;
                     $orderAmount = round($order->base_grand_total * 100);
-
-
-
                     if ($amount === $orderAmount) { // 核对价格是否一样的情况。
                         if ($order->status === 'pending') {
                             $order->status = 'processing';
@@ -98,12 +95,6 @@ class AirwallexController extends Controller
 
                         // send order to shopify
                         Artisan::queue((new Post())->getName(), ['--order_id'=> $order->id])->onConnection('redis')->onQueue('commands');
-
-                        // Log::info(json_encode("order can invoice". json_encode($order)));
-
-                        // Log::info("order invoice can". json_encode($order->canInvoice()));
-
-                        //var_dump($order->canInvoice()); exit;
 
                         if ($order->canInvoice()) {
                             request()->merge(['can_create_transaction' => 1]);
@@ -121,19 +112,6 @@ class AirwallexController extends Controller
                         $invoice = $this->invoiceRepository->findOneWhere(['order_id' => $order->id]);
                         //insert into order payment traces
 
-                        // Log::info("orderTransactionRepository ".json_encode([
-                        //     'transaction_id' => $input['data']['object']['id'],
-                        //     'status'         => $input['data']['object']['status'],
-                        //     'type'           => $input['name'],
-                        //     'amount'         => $input['data']['object']['amount'],
-                        //     'payment_method' => $invoice->order->payment->method,
-                        //     'order_id'       => $order->id,
-                        //     'invoice_id'     => $invoice->id,
-                        //     'data'           => json_encode(
-                        //         $input
-                        //     ),
-                        // ]));
-
                         $this->orderTransactionRepository->create([
                             'transaction_id' => $input['data']['object']['id'],
                             'status'         => $input['data']['object']['status'],
@@ -149,14 +127,7 @@ class AirwallexController extends Controller
 
                     }
                 } else {
-                    /*
-                    if ($order->canInvoice()) {
-                        request()->merge(['can_create_transaction' => 1]);
-
-                        $orderStatus = $order->status !== 'pending' ? $order->status : 'pending';
-                        
-                        $this->invoiceRepository->create($this->prepareInvoiceData($order), 'pending', $orderStatus);
-                    }*/
+                    $this->webhookProcess($input['name'], $input); // process other webhook events
                 }
                 
                 return response('OK', 200);
@@ -199,4 +170,78 @@ class AirwallexController extends Controller
 
         return response()->json($data);
     }
+
+
+    protected function webhookProcess($name, $data)
+    {
+        //$webhookhelp = new \Webkul\Airwallex\Helpers\Webhook($name, $data);
+        $webhookhelp = $this->webhookhelp->init($name, $data);
+
+        switch ($name) {
+            case 'payment_intent.created':
+                // Handle payment_intent.created
+                break;
+            case 'payment_intent.succeeded':
+                // Handle payment_intent.succeeded
+                break;
+            case 'payment_intent.failed':
+                // Handle payment_intent.failed
+                break;
+            case 'payment_intent.canceled':
+                // Handle payment_intent.canceled
+                break;
+            case 'payment_intent.authorized':
+                // Handle payment_intent.authorized
+                break;
+            case 'payment_intent.capture.succeeded':
+                // Handle payment_intent.capture.succeeded
+                break;
+            case 'payment_intent.capture.failed':
+                // Handle payment_intent.capture.failed
+                break;
+            case 'payment_intent.capture.canceled':
+                // Handle payment_intent.capture.canceled
+                break;
+            case 'payment_intent.capture.created':
+                // Handle payment_intent.capture.created
+                break;
+            case 'payment_intent.capture.pending':
+                // Handle payment_intent.capture.pending
+                break;
+            case 'payment_intent.capture.processing':
+                // Handle payment_intent.capture.processing
+                break;
+            case 'payment_intent.capture.requires_confirmation':
+                // Handle payment_intent.capture.requires_confirmation
+                break;
+            case 'payment_intent.capture.requires_action':
+                // Handle payment_intent.capture.requires_action
+                break;
+            case 'payment_intent.capture.canceled':
+                // Handle payment_intent.capture.canceled
+                break;
+            case 'payment_dispute.challenged': // You have received a pre-chargeback / chargeback request which needs your response.
+                $webhookhelp->payment_dispute_challenged();
+                break;
+            case 'payment_dispute.pending_closure': // You have received a Pre-arbitration request from the Issuing bank. Airwallex auto-accepts pre-arbitration requests on behalf of you.
+                $webhookhelp->payment_dispute_pending_closure();
+                break;
+            case 'payment_dispute.requires_response': //You have further challenged the chargeback or pre-arbitration with your response
+                $webhookhelp->payment_dispute_requires_response();
+                break;
+            case 'payment_dispute.accepted': // You have accepted the Pre-chargeback / chargeback / Pre-arbitration request
+                $webhookhelp->payment_dispute_accepted();
+                break;
+            case 'payment_dispute.reversed': // Issuing bank has reversed the dispute event, you do not have to respond to the dispute event anymore.
+                $webhookhelp->payment_dispute_reversed();
+                break;
+            case 'payment_dispute.won': //You have won the chargeback / Pre-arbitration, no further action needed from your side.
+                $webhookhelp->payment_dispute_won();
+                break;
+            case 'payment_dispute.lost': //You have lost the chargeback / Pre-arbitration, no further action needed from your side.
+                $webhookhelp->payment_dispute_lost();
+                break;
+        }
+    }
+
 }
