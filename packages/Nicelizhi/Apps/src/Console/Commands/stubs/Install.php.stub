@@ -1,0 +1,16 @@
+<?php
+namespace NexaMerchant\{{NAME}}\Console\Commands;
+
+use Illuminate\Console\Command;
+
+class Install extends Command 
+{
+    protected $signature = '{{NAME}}:install';
+
+    protected $description = 'Install an app';
+
+    public function handle()
+    {
+        $this->info("Install app: {{NAME}}");
+    }
+}

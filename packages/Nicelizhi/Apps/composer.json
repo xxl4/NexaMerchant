@@ -1,0 +1,26 @@
+{
+    "name": "Nicelizhi/Apps",
+    "license": "MIT",
+    "description" : "Apps",
+    "authors": [
+        {
+            "name": "Steven",
+            "email": "nice.lizhi@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Nicelizhi\\Apps\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Nicelizhi\\Apps\\Providers\\AppsServiceProvider"
+            ],
+            "aliases": {}
+        }
+    },
+    "minimum-stability": "dev"
+}
