@@ -1582,6 +1582,7 @@
     }
 
     .shopify-container {
+      width: 100%;
       text-align: left !important;
       font-size: 13px !important;
       color: var(--text-color) !important;

@@ -90,6 +90,12 @@ class ApiController extends Controller
                 "message" => "product not found"
             ], 404);
         } 
+
+        $redis = Redis::connection('default');
+
+        // get product sell points
+        $shopifyProduct->sellPoints = $redis->hgetall("sell_points_".$product_id);
+
         return response()->json([
             'data' => $shopifyProduct,
             'code' => 200,
