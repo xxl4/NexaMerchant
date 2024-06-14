@@ -71,7 +71,7 @@ return [
     'Please insert a valid postal code!' => 'Please insert a valid postal code!',
     'Please select your country!' => 'Please select your country!',
     'Please select your state!' => 'Please select your state!',
-    'Please select product information!' => 'Please select product information!',
+    'Please select product information!' => 'Please select the product or it is out of stock!',
     'Select State' => 'Select State',
     'select country' => 'select country',
     'Add a house number if you have one' => 'Add a house number if you have one',
