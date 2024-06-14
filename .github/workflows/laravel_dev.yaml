@@ -7,12 +7,14 @@ on:
       - 'README.md'
       - .github/**
       - docs/**
+      - 'Dockerfile'
   pull_request:
     branches: [ "develop","package_admin_dev" ]
     paths-ignore:
       - 'README.md'
       - .github/**
       - docs/**
+      - 'Dockerfile'
 
 jobs:
   laravel-tests:
