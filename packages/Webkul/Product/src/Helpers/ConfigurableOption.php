@@ -167,6 +167,7 @@ class ConfigurableOption
                 'label'        => $attributeOption->label ? $attributeOption->label : $attributeOption->admin_name,
                 'swatch_value' => $attribute->swatch_type == 'image' ? $attributeOption->swatch_value_url : $attributeOption->swatch_value,
                 'products'     => $options[$attribute->id][$optionId],
+                'sku'          => $options,
             ];
         }
 

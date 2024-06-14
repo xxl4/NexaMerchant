@@ -91,8 +91,8 @@ return [
     'Secure Checkout' => 'Secure Checkout',
     'sold in last' => 'sold in last',
     'hours' => 'hours',
-    'Estimated Delivery between' => 'Estimated Delivery between',
+    'Estimated Delivery between' => 'Estimated Delivery Between',
     'and' => 'and',
-    'People Looking For This Product' => 'People Looking For This Product'
+    'People Looking For This Product' => 'People Looking for This Product'
   ]
 ];

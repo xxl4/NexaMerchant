@@ -2565,9 +2565,10 @@
         var selectList = ''
         for (var arri = 0; arri < attrList.length; arri++) {
           var optionList = `<option value="" selected disabled>` + attrList[arri].label + `</option>`
-
-          for (var attj = 0; attj < attrList[arri].options.length; attj++) {
-            optionList += `<option value="` + attrList[arri].options[attj].label + `">` + attrList[arri].options[attj].label + `</option>`
+          if (arri == 0) {
+            for (var attj = 0; attj < attrList[arri].options.length; attj++) {
+              optionList += `<option value="` + attrList[arri].options[attj].label + `">` + attrList[arri].options[attj].label + `</option>`
+            }
           }
           selectList += `<select class="in-se" id="in-se` + arri + `" onchange="seInput(value)">` + optionList + `</select>`
         }
@@ -3094,7 +3095,13 @@
       $('.dialog-error .dialog-box ul').append(textList)
     }
 
-    function getVSID(obj) {
+    function getVSID(obj, value = '1') {
+      if (value == '') {
+        productL1.product_sku = ''
+        productL2.product_sku = ''
+        productL3.product_sku = ''
+        productL4.product_sku = ''
+      }
       for (const key in obj) {
         if (key == productL1.attr_id) {
           console.log(obj[key][0], 'obj[key][0]');
@@ -3482,11 +3489,47 @@
             params.products[n].img = finUrl
           }
           aList = params.products[n].attr_id.split(',')
-          aList[i] = data.attr.attributes[i].id + '_' + aid
+          if (value !== '') {
+            aList[i] = data.attr.attributes[i].id + '_' + aid
+          } else {
+            aList[i] = ''
+          }
           params.products[n].attr_id = aList.join(',')
         }
       }
-      getVSID(data.attr.index2)
+      getVSID(data.attr.index2, value)
+    }
+
+    function getNextOptions(value) {
+      let attribute = data.attr.attributes[0],
+        nextList = data.attr.attributes[1],
+        nextId = data.attr.attributes[1].id,
+        skuList = '',
+        keys = [],
+        updateNext = []
+      console.log(attribute, value);
+      attribute.options.forEach(function(item) {
+        if (item.label == value) {
+          skuList = item.sku
+        }
+      })
+      console.log(skuList, 'skuList', skuList[nextId]);
+      if (skuList !== '' && Object.keys(skuList[nextId]).length !== 0) {
+        keys = Object.keys(skuList[nextId])
+        keys.forEach(function(item) {
+          nextList.options.forEach(function(nextItem) {
+            if (item == nextItem.id) {
+              updateNext.push(nextItem)
+            }
+          })
+        })
+      }
+      let nextOption = `<option value="" selected disabled>` + data.attr.attributes[1].label + `</option>`
+      for (let i = 0; i < updateNext.length; i++) {
+        nextOption += `<option value="` + updateNext[i].label + `">` + updateNext[i].label + `</option>`
+      }
+      console.log(keys, updateNext, nextOption, 'keys');
+      return nextOption
     }
 
     function listEach(list) {
@@ -3497,6 +3540,9 @@
     }
 
     function seInput(value) {
+      if (value == null) {
+        value = ''
+      }
       var parId = $(event.target).parent().attr('id')
       var itemId = $(event.target).attr('id')
       var aid = ''
@@ -3511,6 +3557,14 @@
       }
       if (parId == 'select4-item4') {
         getSku(itemId, 3, value)
+      }
+      if (itemId == 'in-se0' && data.attr.attributes.length > 1) {
+        let nextOption = getNextOptions(value)
+        $(event.target).siblings('#in-se1').empty()
+        $(event.target).siblings('#in-se1').append(nextOption)
+        let lastChar = parId.substring(parId.length - 1);
+        console.log(lastChar);
+        getSku('in-se1', Number(lastChar) - 1, '')
       }
       getSkuListInfo();
       var skuAll = $(event.target).parent().parent().parent()

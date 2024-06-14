@@ -1146,6 +1146,7 @@ GET /shopify/v1/api/full/{product_id}
         "variant_ids": []
       }
     ],
+    "sellPoints": [],
     "created_at": "2024-01-02T13:30:59.000000Z",
     "updated_at": "2024-01-02T13:30:59.000000Z"
   },
