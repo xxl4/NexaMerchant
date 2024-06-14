@@ -1,0 +1,9 @@
+<?php
+
+use Illuminate\Support\Facades\Route;
+
+Route::group(['middleware' => ['admin','admin_option_log'], 'prefix' => config('app.admin_url')], function () {
+    Route::prefix('{{NAME}}')->group(function () {
+
+    }
+}

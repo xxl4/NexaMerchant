@@ -44,6 +44,8 @@ class Create extends Command
         'src/Models',
         'src/Repositories',
         'src/Routes',
+        'src/Routes/web.php',
+        'src/Routes/api.php',
         'tests',
         'docs',
         'REAME.md',
@@ -52,7 +54,7 @@ class Create extends Command
 
     public function handle()
     {
-        //$name = $this->argument('name');
+
         $name = $this->ask('Please Input your Apps Name?');
         $this->info("Creating app: $name");
         $base_dir = config("apps.base_dir");
@@ -68,7 +70,6 @@ class Create extends Command
             return false;
         }
 
-        
 
         if(!$this->checkOnelineAppName($name)) {
             $this->error("App $name is not valid");
@@ -141,6 +142,12 @@ class Create extends Command
             break;
             case 'src/Config/acl.php':
                 $content = file_get_contents(__DIR__.'/stubs/config.acl.php.stub');
+            break;
+            case 'src/Routes/web.php':
+                $content = file_get_contents(__DIR__.'/stubs/routes.web.php.stub');
+            break;
+            case 'src/Routes/api.php':
+                $content = file_get_contents(__DIR__.'/stubs/routes.api.php.stub');
             break;
             default:
             break;
