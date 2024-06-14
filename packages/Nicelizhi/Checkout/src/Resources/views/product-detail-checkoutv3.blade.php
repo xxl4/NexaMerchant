@@ -4894,9 +4894,7 @@
 
     function getOrderMsg() {
       let hour = getRandomIntInclusive(1, 24)
-      console.log(hour, 'xx小时');
       let number = getRandomIntInclusive(5, 50)
-      console.log(number, 'xx件');
       $('#order-msg-hour').text(hour)
       $('#order-msg-number').text(number)
     }
