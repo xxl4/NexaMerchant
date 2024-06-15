@@ -2569,11 +2569,11 @@
         var selectList = ''
         for (var arri = 0; arri < attrList.length; arri++) {
           var optionList = `<option value="" selected disabled>` + attrList[arri].label + `</option>`
-          if (arri == 0) {
+          // if (arri == 0) {
             for (var attj = 0; attj < attrList[arri].options.length; attj++) {
               optionList += `<option value="` + attrList[arri].options[attj].label + `">` + attrList[arri].options[attj].label + `</option>`
             }
-          }
+          // }
           selectList += `<select class="in-se" id="in-se` + arri + `" onchange="seInput(value)">` + optionList + `</select>`
         }
         // $('.buy-loading').hide()
@@ -3089,7 +3089,7 @@
       if (!errIsShow) {
         textList += `<li>@lang('checkout::app.v2.Please select product information!')</li>`
       }
-      if (!airwallexArr) {
+      if (!airwallexArror) {
         textList += `<li>` + airwallexArr.errText + `</li>`
       }
       if (billingErr !== '') {
@@ -3562,14 +3562,14 @@
       if (parId == 'select4-item4') {
         getSku(itemId, 3, value)
       }
-      if (itemId == 'in-se0' && data.attr.attributes.length > 1) {
-        let nextOption = getNextOptions(value)
-        $(event.target).siblings('#in-se1').empty()
-        $(event.target).siblings('#in-se1').append(nextOption)
-        let lastChar = parId.substring(parId.length - 1);
-        console.log(lastChar);
-        getSku('in-se1', Number(lastChar) - 1, '')
-      }
+      // if (itemId == 'in-se0' && data.attr.attributes.length > 1) {
+      //   let nextOption = getNextOptions(value)
+      //   $(event.target).siblings('#in-se1').empty()
+      //   $(event.target).siblings('#in-se1').append(nextOption)
+      //   let lastChar = parId.substring(parId.length - 1);
+      //   console.log(lastChar);
+      //   getSku('in-se1', Number(lastChar) - 1, '')
+      // }
       getSkuListInfo();
       var skuAll = $(event.target).parent().parent().parent()
       var list = []
