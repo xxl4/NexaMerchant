@@ -5007,11 +5007,11 @@
     }
     window.onload = function() {
       var width = $(window).innerWidth()
+      $('body').css('height', height)
       if (width > 767) {
         var height = $('.checkout-section').height()
         console.log(height, 'height===');
         $('.left-sec').css('height', height)
-        $('body').css('height', height)
       }
     }
     $('.fieldToggle').click(function() {
