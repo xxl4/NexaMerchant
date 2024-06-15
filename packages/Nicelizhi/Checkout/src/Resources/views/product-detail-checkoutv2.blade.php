@@ -3098,7 +3098,23 @@
       $('.dialog-error').show()
       $('.dialog-error .dialog-box ul').append(textList)
     }
-
+    function getAttrId(productL,obj){
+      let objKey = Object.keys(obj)
+      if (productL.attr_id !== '') {
+        for (const key in obj) {
+          if (key == productL.attr_id) {
+          productL.variant_id = obj[key][0]
+          productL.product_sku = obj[key][1]
+          }else {
+            productL.variant_id = ''
+            productL.product_sku = ''
+          }
+        }
+      }else{
+        productL.variant_id = ''
+        productL.product_sku = ''
+      }
+    }
     function getVSID(obj, value = '1') {
       if (value == '') {
         productL1.product_sku = ''
@@ -3106,25 +3122,29 @@
         productL3.product_sku = ''
         productL4.product_sku = ''
       }
-      for (const key in obj) {
-        if (key == productL1.attr_id) {
-          console.log(obj[key][0], 'obj[key][0]');
-          productL1.variant_id = obj[key][0]
-          productL1.product_sku = obj[key][1]
-        }
-        if (key == productL2.attr_id) {
-          productL2.variant_id = obj[key][0]
-          productL2.product_sku = obj[key][1]
-        }
-        if (key == productL3.attr_id) {
-          productL3.variant_id = obj[key][0]
-          productL3.product_sku = obj[key][1]
-        }
-        if (key == productL4.attr_id) {
-          productL4.variant_id = obj[key][0]
-          productL4.product_sku = obj[key][1]
-        }
-      }
+      getAttrId(productL1,obj)
+      getAttrId(productL2,obj)
+      getAttrId(productL3,obj)
+      getAttrId(productL4,obj)
+      // for (const key in obj) {
+      //   if (key == productL1.attr_id) {
+      //     console.log(obj[key][0], 'obj[key][0]');
+      //     productL1.variant_id = obj[key][0]
+      //     productL1.product_sku = obj[key][1]
+      //   }
+      //   if (key == productL2.attr_id) {
+      //     productL2.variant_id = obj[key][0]
+      //     productL2.product_sku = obj[key][1]
+      //   }
+      //   if (key == productL3.attr_id) {
+      //     productL3.variant_id = obj[key][0]
+      //     productL3.product_sku = obj[key][1]
+      //   }
+      //   if (key == productL4.attr_id) {
+      //     productL4.variant_id = obj[key][0]
+      //     productL4.product_sku = obj[key][1]
+      //   }
+      // }
     }
 
     function getSkuListInfo() {
