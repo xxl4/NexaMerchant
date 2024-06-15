@@ -1109,6 +1109,7 @@
   <style>
     html {
       scroll-behavior: smooth;
+      overflow-x: hidden;
     }
 
     .input-box {
@@ -1387,7 +1388,7 @@
       position: -webkit-sticky;
       position: sticky;
       top: 0;
-      z-index: 99999;
+      z-index: 100;
     }
 
     .herder-content {
