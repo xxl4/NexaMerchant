@@ -1317,6 +1317,10 @@
       border-radius: 4px;
     }
 
+    .in-se {
+      font-size: 14px;
+    }
+
     .in-se option[disabled][selected] {
       display: none;
     }
