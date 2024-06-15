@@ -3103,8 +3103,9 @@
       if (productL.attr_id !== '') {
         for (const key in obj) {
           if (key == productL.attr_id) {
-          productL.variant_id = obj[key][0]
-          productL.product_sku = obj[key][1]
+            productL.variant_id = obj[key][0]
+            productL.product_sku = obj[key][1]
+            break;
           }else {
             productL.variant_id = ''
             productL.product_sku = ''
