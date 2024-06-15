@@ -1384,6 +1384,7 @@
       height: 55px;
       background-color: #fff;
       border-bottom: 1px solid #f2f2f2;
+      position: -webkit-sticky;
       position: sticky;
       top: 0;
       z-index: 99999;
