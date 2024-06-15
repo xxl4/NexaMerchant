@@ -3089,7 +3089,7 @@
       if (!errIsShow) {
         textList += `<li>@lang('checkout::app.v2.Please select product information!')</li>`
       }
-      if (!airwallexArr) {
+      if (!airwallexArror) {
         textList += `<li>` + airwallexArr.errText + `</li>`
       }
       if (billingErr !== '') {
