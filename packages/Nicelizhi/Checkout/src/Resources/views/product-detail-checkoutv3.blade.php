@@ -1388,7 +1388,7 @@
       position: -webkit-sticky;
       position: sticky;
       top: 0;
-      z-index: 100;
+      z-index: 9999999;
     }
 
     .herder-content {
