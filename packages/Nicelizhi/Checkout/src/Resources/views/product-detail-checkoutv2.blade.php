@@ -3099,6 +3099,11 @@
       $('.dialog-error .dialog-box ul').append(textList)
     }
     function getAttrId(productL,obj){
+      if (typeof(obj) == 'undefined') {
+        productL.variant_id = ''
+        productL.product_sku = ''
+        return
+      }
       let objKey = Object.keys(obj)
       if (productL.attr_id !== '') {
         for (const key in obj) {
