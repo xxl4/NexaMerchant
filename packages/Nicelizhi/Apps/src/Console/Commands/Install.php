@@ -7,6 +7,14 @@ class Install extends CommandInterface
 
     protected $description = 'Install an app';
 
+    public function getAppVer() {
+        return config("apps.ver");
+    }
+
+    public function getAppName() {
+        return config("apps.name");
+    }
+
     public function handle()
     {
         $name = $this->argument('name');

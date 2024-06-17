@@ -60,11 +60,17 @@ class Create extends CommandInterface
         'composer.json'
     ];
 
+    public function getAppVer() {
+        return config("apps.ver");
+    }
+
+    public function getAppName() {
+        return config("apps.name");
+    } 
+
     public function handle()
     {
 
-        
-    
         $name = $this->ask('Please Input your Apps Name?');
         $this->info("Creating app: $name");
         

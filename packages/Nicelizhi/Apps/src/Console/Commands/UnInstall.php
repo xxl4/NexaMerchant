@@ -8,6 +8,14 @@ class UnInstall extends CommandInterface
 
     protected $description = 'Uninstall an app';
 
+    public function getAppVer() {
+        return config("apps.ver");
+    }
+
+    public function getAppName() {
+        return config("apps.name");
+    }
+
     public function handle()
     {
         $name = $this->argument('name');
