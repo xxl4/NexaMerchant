@@ -3613,11 +3613,11 @@
         return !updateNext.includes(element)
       })
       console.log(noInArray, 'noInArray');
-      noInArray.sort((a, b) => {
-        a.num - b.num
+      noInArray.sort(function(a, b) {
+        return a.num - b.num
       })
-      updateNext.sort((a, b) => {
-        a.num - b.num
+      updateNext.sort(function(a, b) {
+        return a.num - b.num
       })
       let nextOption = `<option value="" selected disabled>` + data.attr.attributes[1].label + `</option>`
       for (let i = 0; i < updateNext.length; i++) {

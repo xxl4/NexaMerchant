@@ -3018,23 +3018,26 @@
       sku: phpsku,
       sellPoints: JSON.parse(phpsellPoints)
     }
-    // data.attr.attributes[0].options[0].sku[24] = {
-    //   1661: [3066, 3067, 3068]
-    // }
-    // data.attr.attributes[0].attr_sort = {
-    //   '1944': '0',
-    //   '1953': '1',
-    //   '1424': '2'
-    // }
-    // data.attr.attributes[1].attr_sort = {
-    //   '1662': '0',
-    //   '1665': '1',
-    //   '1664': '2',
-    //   '1661': '3',
-    //   '1663': '4',
-    //   '1666': '5',
-    //   '1667': '6',
-    // }
+    data.attr.attributes[0].options[0].sku[24] = {
+      1667: [3066, 3067, 3068],
+      1665: [3066, 3067, 3068],
+      1661: [3066, 3067, 3068],
+
+    }
+    data.attr.attributes[0].attr_sort = {
+      '1944': '0',
+      '1953': '1',
+      '1424': '2'
+    }
+    data.attr.attributes[1].attr_sort = {
+      '1662': '0',
+      '1665': '1',
+      '1664': '2',
+      '1661': '3',
+      '1663': '4',
+      '1666': '5',
+      '1667': '6',
+    }
     console.log(data, 'phpdata');
     $(function() {
       getShopify()
@@ -4145,11 +4148,17 @@
         return !updateNext.includes(element)
       })
       console.log(noInArray, 'noInArray');
-      noInArray.sort((a, b) => {
-        a.num - b.num
+      // noInArray.forEach(function(item) {
+      //   item.num = parseInt(item.num, 10);
+      // })
+      // updateNext.forEach(function(item) {
+      //   item.num = parseInt(item.num, 10);
+      // })
+      noInArray.sort(function(a, b) {
+        return a.num - b.num
       })
-      updateNext.sort((a, b) => {
-        a.num - b.num
+      updateNext.sort(function(a, b) {
+        return a.num - b.num
       })
       let nextOption = `<option value="" selected disabled>` + data.attr.attributes[1].label + `</option>`
       for (let i = 0; i < updateNext.length; i++) {
