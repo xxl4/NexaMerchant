@@ -3021,6 +3021,20 @@
     // data.attr.attributes[0].options[0].sku[24] = {
     //   1661: [3066, 3067, 3068]
     // }
+    // data.attr.attributes[0].attr_sort = {
+    //   '1944': '0',
+    //   '1953': '1',
+    //   '1424': '2'
+    // }
+    // data.attr.attributes[1].attr_sort = {
+    //   '1662': '0',
+    //   '1665': '1',
+    //   '1664': '2',
+    //   '1661': '3',
+    //   '1663': '4',
+    //   '1666': '5',
+    //   '1667': '6',
+    // }
     console.log(data, 'phpdata');
     $(function() {
       getShopify()
@@ -3075,6 +3089,23 @@
       $('#pr-price1').text(discount1)
       $('#pr-price2').text("(" + data.package_products[1].tip1 + ")")
       if (attrList.length > 0) {
+        attrList.forEach(function(item) {
+          let sortedObj = sortObjectByValue(item.attr_sort);
+          let keysIterator = sortedObj.keys();
+          let keysList = Array.from(keysIterator);
+          console.log(sortedObj, 'sortedObj====');
+          // let keysList = Object.keys(sortedObj)
+          console.log(keysList, 'keysList===');
+          keysList.forEach(function(keyItem) {
+            item.options.forEach(function(opItem, index) {
+              if (opItem.id == keyItem) {
+                item.options.splice(index, 1)
+                item.options.push(opItem)
+              }
+            })
+          })
+        })
+
         var selectList = ''
         for (var arri = 0; arri < attrList.length; arri++) {
           var optionList = `<option value="" selected disabled>` + attrList[arri].label + `</option>`
@@ -3328,6 +3359,18 @@
       // })
 
     })
+
+    function sortObjectByValue(obj) {
+      let entries = Object.entries(obj);
+      entries.sort((a, b) => a[1] - b[1]);
+      // let sortedObj = {};
+      let map = new Map();
+      entries.forEach(([key, value]) => {
+        map.set(key, value);
+        // sortedObj[key] = value;
+      });
+      return map;
+    }
 
     function getbillingAddress() {
       var billingText = ''

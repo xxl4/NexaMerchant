@@ -35,5 +35,22 @@ class AppsServiceProvider extends ServiceProvider
     public function register()
     {
         //
+        $this->regsiteCommands();
+        $this->registeConfig();
+    }
+
+    public function registeConfig() {
+        $this->mergeConfigFrom(
+            __DIR__.'/../Config/apps.php', 'apps'
+        );
+    }
+
+    public function regsiteCommands()
+    {
+        $this->commands([
+            \Nicelizhi\Apps\Console\Commands\Install::class,
+            \Nicelizhi\Apps\Console\Commands\UnInstall::class,
+            \Nicelizhi\Apps\Console\Commands\Create::class,
+        ]);
     }
 }

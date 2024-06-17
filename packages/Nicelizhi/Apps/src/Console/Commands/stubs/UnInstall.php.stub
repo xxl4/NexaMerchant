@@ -1,0 +1,20 @@
+<?php
+namespace NexaMerchant\{{NAME}}\Console\Commands;
+
+use Illuminate\Console\Command;
+
+class UnInstall extends Command 
+{
+    protected $signature = '{{NAME}}:uninstall';
+
+    protected $description = 'Uninstall {{NAME}} an app';
+
+    public function handle()
+    {
+        if (!$this->confirm('Do you wish to continue?')) {
+            // ...
+            $this->error("App {{NAME}} UnInstall cannelled");
+            return false;
+        }
+    }
+}

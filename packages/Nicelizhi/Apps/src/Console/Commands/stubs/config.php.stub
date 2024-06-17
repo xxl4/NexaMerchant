@@ -1,0 +1,6 @@
+<?php
+return [
+    'name' => '{{NAME}}',
+    'version' => '1.0.0',
+    'versionNum' => '100',
+];
