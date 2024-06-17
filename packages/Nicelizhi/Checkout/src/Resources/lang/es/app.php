@@ -52,7 +52,7 @@ return [
     'Please insert a valid postal code!' => '¡Por favor inserte un código postal válido!',
     'Please select your country!' => '¡Por favor seleccione su país!',
     'Please select your state!' => '¡Seleccione su estado!',
-    'Please select product information!' => '¡Por favor seleccione información del producto!',
+    'Please select product information!' => '¡Por favor seleccione un producto o está agotado!',
     'Select State' => 'Seleccione estado',
     'select country' => 'seleccionar país',
     'Add a house number if you have one' => 'Agregue un número de casa si tiene uno',
