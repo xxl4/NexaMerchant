@@ -1,9 +1,17 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use NexaMerchant\{{NAME}}\Http\Controllers\Web\ExampleController;
 
-Route::group(['middleware' => ['admin','admin_option_log'], 'prefix' => config('app.admin_url')], function () {
+Route::group(['middleware' => ['locale', 'theme', 'currency']], function () {
+
     Route::prefix('{{NAME}}')->group(function () {
 
-    }
-}
+        Route::controller(ExampleController::class)->prefix('example')->group(function () {
+
+            Route::post('.', 'demo')->name('{{NAME}}.web.example.demo');
+
+        });
+
+    });
+});

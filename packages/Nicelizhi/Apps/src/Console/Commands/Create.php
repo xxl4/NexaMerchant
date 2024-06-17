@@ -30,9 +30,13 @@ class Create extends Command
         'src/Http/Controllers',
         'src/Http/Controllers/Api',
         'src/Http/Controllers/Api/Controller.php',
+        'src/Http/Controllers/Api/ExampleController.php',
         'src/Http/Controllers/Web',
         'src/Http/Controllers/Web/Controller.php',
+        'src/Http/Controllers/Web/ExampleController.php',
         'src/Http/Controllers/Admin',
+        'src/Http/Controllers/Admin/Controller.php',
+        'src/Http/Controllers/Admin/ExampleController.php',
         'src/Console/Commands',
         'src/Console/Commands/Install.php',
         'src/Console/Commands/UnInstall.php',
@@ -46,6 +50,7 @@ class Create extends Command
         'src/Routes',
         'src/Routes/web.php',
         'src/Routes/api.php',
+        'src/Routes/admin.php',
         'tests',
         'docs',
         'REAME.md',
@@ -128,6 +133,9 @@ class Create extends Command
             case 'src/Http/Controllers/Web/Controller.php':
                 $content = file_get_contents(__DIR__.'/stubs/Controller.php.stub');
             break;
+            case 'src/Http/Controllers/Admin/Controller.php':
+                $content = file_get_contents(__DIR__.'/stubs/Controller.php.admin.stub');
+            break;
             case 'src/Http/Controllers/Api/Controller.php':
                 $content = file_get_contents(__DIR__.'/stubs/Controller.api.php.stub');
             break;
@@ -148,6 +156,18 @@ class Create extends Command
             break;
             case 'src/Routes/api.php':
                 $content = file_get_contents(__DIR__.'/stubs/routes.api.php.stub');
+            break;
+            case 'src/Routes/admin.php':
+                $content = file_get_contents(__DIR__.'/stubs/routes.admin.php.stub');
+            break;
+            case 'src/Http/Controllers/Api/ExampleController.php':
+                $content = file_get_contents(__DIR__.'/stubs/ExampleController.php.api.stub');
+            break;
+            case 'src/Http/Controllers/Web/ExampleController.php':
+                $content = file_get_contents(__DIR__.'/stubs/ExampleController.php.web.stub');
+            break;
+            case 'src/Http/Controllers/Admin/ExampleController.php':
+                $content = file_get_contents(__DIR__.'/stubs/ExampleController.php.admin.stub');
             break;
             default:
             break;

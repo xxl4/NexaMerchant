@@ -1,4 +1,13 @@
 <?php
 return [
-    
+    /**
+     * {{NAME}} Dashboard.
+     */
+    [
+        'key'        => '{{NAME}}-demo',
+        'name'       => '{{NAME}}::app.{{NAME}}.demo',
+        'route'      => '{{NAME}}.admin.example.demo',
+        'sort'       => 1,
+        'icon'       => 'icon-dashboard',
+    ]
 ];
