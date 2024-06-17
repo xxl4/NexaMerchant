@@ -250,6 +250,12 @@ return [
         // log reader
         Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class,
 
+		//APPS
+
+
+
+
+
     ])->toArray(),
 
     /*
