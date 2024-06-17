@@ -2581,6 +2581,24 @@
       $('#cb-buy-each3').text(data.package_products[2].new_price_format)
       $('#cb-buy-each4').text(data.package_products[3].new_price_format)
       if (attrList.length > 0) {
+
+        attrList.forEach(function(item) {
+          let sortedObj = sortObjectByValue(item.attr_sort);
+          let keysIterator = sortedObj.keys();
+          let keysList = Array.from(keysIterator);
+          console.log(sortedObj, 'sortedObj====');
+          // let keysList = Object.keys(sortedObj)
+          console.log(keysList, 'keysList===');
+          keysList.forEach(function(keyItem) {
+            item.options.forEach(function(opItem, index) {
+              if (opItem.id == keyItem) {
+                item.options.splice(index, 1)
+                item.options.push(opItem)
+              }
+            })
+          })
+        })
+
         var selectList = ''
         for (var arri = 0; arri < attrList.length; arri++) {
           var optionList = `<option value="" selected disabled>` + attrList[arri].label + `</option>`

@@ -3086,7 +3086,11 @@
       $('#pr-price2').text("(" + data.package_products[1].tip1 + ")")
       if (attrList.length > 0) {
         attrList.forEach(function(item) {
-          let keysList = Object.keys(item.attr_sort)
+          let sortedObj = sortObjectByValue(item.attr_sort);
+          let keysIterator = sortedObj.keys();
+          let keysList = Array.from(keysIterator);
+          console.log(sortedObj, 'sortedObj====');
+          // let keysList = Object.keys(sortedObj)
           console.log(keysList, 'keysList===');
           keysList.forEach(function(keyItem) {
             item.options.forEach(function(opItem, index) {
@@ -3351,6 +3355,18 @@
       // })
 
     })
+
+    function sortObjectByValue(obj) {
+      let entries = Object.entries(obj);
+      entries.sort((a, b) => a[1] - b[1]);
+      // let sortedObj = {};
+      let map = new Map();
+      entries.forEach(([key, value]) => {
+        map.set(key, value);
+        // sortedObj[key] = value;
+      });
+      return map;
+    }
 
     function getbillingAddress() {
       var billingText = ''
