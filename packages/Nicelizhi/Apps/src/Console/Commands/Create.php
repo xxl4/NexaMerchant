@@ -23,6 +23,9 @@ class Create extends Command
         'src/Dtabase/Seeds',
         'src/Resources',
         'src/Resources/views',
+        'src/Resources/views/demo.blade.php',
+        'src/Resources/views/Admin',
+        'src/Resources/views/Admin/demo.blade.php',
         'src/Resources/lang',
         'src/Http',
         'src/Http/Middleware',
@@ -91,7 +94,7 @@ class Create extends Command
             return false;
         }
 
-        array_push($this->dirList, 'src/Providers/'.$name.'Provider.php');
+        array_push($this->dirList, 'src/Providers/'.$name.'ServiceProvider.php');
         array_push($this->dirList, 'src/Config/'.$name.'.php');
 
         foreach($this->dirList as $d) {
@@ -139,7 +142,7 @@ class Create extends Command
             case 'src/Http/Controllers/Api/Controller.php':
                 $content = file_get_contents(__DIR__.'/stubs/Controller.api.php.stub');
             break;
-            case 'src/Providers/'.$this->AppName.'Provider.php':
+            case 'src/Providers/'.$this->AppName.'ServiceProvider.php':
                 $content = file_get_contents(__DIR__.'/stubs/Provider.php.stub');
             break;
             case 'src/Config/'.$this->AppName.'.php':
@@ -169,6 +172,14 @@ class Create extends Command
             case 'src/Http/Controllers/Admin/ExampleController.php':
                 $content = file_get_contents(__DIR__.'/stubs/ExampleController.php.admin.stub');
             break;
+
+            case 'src/Resources/views/demo.blade.php':
+                $content = file_get_contents(__DIR__.'/stubs/demo.blade.php.stub');
+            break;
+            case 'src/Resources/views/admin/demo.blade.php':
+                $content = file_get_contents(__DIR__.'/stubs/demo.blade.php.stub');
+            break;
+
             default:
             break;
         }
