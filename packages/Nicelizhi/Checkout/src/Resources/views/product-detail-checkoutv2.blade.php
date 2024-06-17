@@ -1053,6 +1053,20 @@
       display: none;
     }
 
+    option[disabled] {
+      color: gray;
+      background-color: lightgray;
+    }
+
+    select {
+      -webkit-appearance: none;
+      /* remove the strong OSX influence from Webkit */
+    }
+
+    .border-red {
+      border: red solid 3px;
+    }
+
     .input-box {
       width: 100%;
       /* font-family: var(--); */
@@ -1315,6 +1329,11 @@
       font-size: 12px;
       padding: 5px;
       border-radius: 4px;
+    }
+
+    .in-se {
+      font-size: 14px;
+      padding: 2px 0 2px 4px;
     }
 
     .in-se option[disabled][selected] {
@@ -2565,10 +2584,11 @@
         var selectList = ''
         for (var arri = 0; arri < attrList.length; arri++) {
           var optionList = `<option value="" selected disabled>` + attrList[arri].label + `</option>`
-
+          // if (arri == 0) {
           for (var attj = 0; attj < attrList[arri].options.length; attj++) {
             optionList += `<option value="` + attrList[arri].options[attj].label + `">` + attrList[arri].options[attj].label + `</option>`
           }
+          // }
           selectList += `<select class="in-se" id="in-se` + arri + `" onchange="seInput(value)">` + optionList + `</select>`
         }
         // $('.buy-loading').hide()
@@ -3084,7 +3104,7 @@
       if (!errIsShow) {
         textList += `<li>@lang('checkout::app.v2.Please select product information!')</li>`
       }
-      if (!airwallexArr) {
+      if (!airwallexArror) {
         textList += `<li>` + airwallexArr.errText + `</li>`
       }
       if (billingErr !== '') {
@@ -3094,26 +3114,60 @@
       $('.dialog-error .dialog-box ul').append(textList)
     }
 
-    function getVSID(obj) {
-      for (const key in obj) {
-        if (key == productL1.attr_id) {
-          console.log(obj[key][0], 'obj[key][0]');
-          productL1.variant_id = obj[key][0]
-          productL1.product_sku = obj[key][1]
-        }
-        if (key == productL2.attr_id) {
-          productL2.variant_id = obj[key][0]
-          productL2.product_sku = obj[key][1]
-        }
-        if (key == productL3.attr_id) {
-          productL3.variant_id = obj[key][0]
-          productL3.product_sku = obj[key][1]
-        }
-        if (key == productL4.attr_id) {
-          productL4.variant_id = obj[key][0]
-          productL4.product_sku = obj[key][1]
-        }
+    function getAttrId(productL, obj) {
+      if (typeof(obj) == 'undefined') {
+        productL.variant_id = ''
+        productL.product_sku = ''
+        return
       }
+      let objKey = Object.keys(obj)
+      if (productL.attr_id !== '') {
+        for (const key in obj) {
+          if (key == productL.attr_id) {
+            productL.variant_id = obj[key][0]
+            productL.product_sku = obj[key][1]
+            break;
+          } else {
+            productL.variant_id = ''
+            productL.product_sku = ''
+          }
+        }
+      } else {
+        productL.variant_id = ''
+        productL.product_sku = ''
+      }
+    }
+
+    function getVSID(obj, value = '1') {
+      if (value == '') {
+        productL1.product_sku = ''
+        productL2.product_sku = ''
+        productL3.product_sku = ''
+        productL4.product_sku = ''
+      }
+      getAttrId(productL1, obj)
+      getAttrId(productL2, obj)
+      getAttrId(productL3, obj)
+      getAttrId(productL4, obj)
+      // for (const key in obj) {
+      //   if (key == productL1.attr_id) {
+      //     console.log(obj[key][0], 'obj[key][0]');
+      //     productL1.variant_id = obj[key][0]
+      //     productL1.product_sku = obj[key][1]
+      //   }
+      //   if (key == productL2.attr_id) {
+      //     productL2.variant_id = obj[key][0]
+      //     productL2.product_sku = obj[key][1]
+      //   }
+      //   if (key == productL3.attr_id) {
+      //     productL3.variant_id = obj[key][0]
+      //     productL3.product_sku = obj[key][1]
+      //   }
+      //   if (key == productL4.attr_id) {
+      //     productL4.variant_id = obj[key][0]
+      //     productL4.product_sku = obj[key][1]
+      //   }
+      // }
     }
 
     function getSkuListInfo() {
@@ -3454,6 +3508,11 @@
           })
       }
     })
+    $(document).ready(function() {
+      $('#mySelect option[disabled]').each(function() {
+        $(this).css('background-color', 'lightgray');
+      });
+    });
 
     function getSku(id, n, value) {
       var nList = []
@@ -3482,11 +3541,61 @@
             params.products[n].img = finUrl
           }
           aList = params.products[n].attr_id.split(',')
-          aList[i] = data.attr.attributes[i].id + '_' + aid
+          if (value !== '') {
+            aList[i] = data.attr.attributes[i].id + '_' + aid
+          } else {
+            aList[i] = ''
+          }
           params.products[n].attr_id = aList.join(',')
         }
       }
-      getVSID(data.attr.index2)
+      getVSID(data.attr.index2, value)
+    }
+
+    function getNextOptions(value) {
+      let attribute = data.attr.attributes[0],
+        nextList = data.attr.attributes[1],
+        nextId = data.attr.attributes[1].id,
+        skuList = '',
+        keys = [],
+        updateNext = [],
+        change = false
+      console.log(attribute, value);
+      attribute.options.forEach(function(item) {
+        if (item.label == value) {
+          skuList = item.sku
+        }
+      })
+      console.log(skuList, 'skuList', skuList[nextId]);
+      if (skuList !== '' && Object.keys(skuList[nextId]).length !== 0) {
+        keys = Object.keys(skuList[nextId])
+        keys.forEach(function(item) {
+          nextList.options.forEach(function(nextItem) {
+            if (item == nextItem.id) {
+              updateNext.push(nextItem)
+            }
+          })
+        })
+      }
+      const noInArray = nextList.options.filter(function(element) {
+        return !updateNext.includes(element)
+      })
+      console.log(noInArray, 'noInArray');
+      let nextOption = `<option value="" selected disabled>` + data.attr.attributes[1].label + `</option>`
+      for (let i = 0; i < updateNext.length; i++) {
+        nextOption += `<option onchange="seInput(value)" value="` + updateNext[i].label + `">` + updateNext[i].label + `</option>`
+      }
+      if (noInArray.length > 0) {
+        change = true
+        for (let i = 0; i < noInArray.length; i++) {
+          nextOption += `<option onchange="seInput(value)" disabled value="` + noInArray[i].label + `">` + noInArray[i].label + `</option>`
+        }
+      }
+      console.log(keys, updateNext, nextOption, 'keys');
+      return {
+        nextOption,
+        change
+      }
     }
 
     function listEach(list) {
@@ -3497,6 +3606,10 @@
     }
 
     function seInput(value) {
+      if (value == null) {
+        value = ''
+      }
+      $(event.target).removeClass('border-red')
       var parId = $(event.target).parent().attr('id')
       var itemId = $(event.target).attr('id')
       var aid = ''
@@ -3511,6 +3624,21 @@
       }
       if (parId == 'select4-item4') {
         getSku(itemId, 3, value)
+      }
+      if (itemId == 'in-se0' && data.attr.attributes.length == 2) {
+        let returnParams = getNextOptions(value)
+        console.log(returnParams, 'returnParams=======');
+        // $(event.target).siblings('#in-se1').empty()
+        if (returnParams.change) {
+          $(event.target).siblings('#in-se1').html(returnParams.nextOption)
+          $(event.target).siblings('#in-se1').addClass('border-red')
+          let lastChar = parId.substring(parId.length - 1);
+          console.log(lastChar);
+          getSku('in-se1', Number(lastChar) - 1, '')
+        } else {
+          $(event.target).siblings('#in-se1').removeClass('border-red')
+          $(event.target).siblings('#in-se1').children().slice(1).removeAttr('disabled')
+        }
       }
       getSkuListInfo();
       var skuAll = $(event.target).parent().parent().parent()

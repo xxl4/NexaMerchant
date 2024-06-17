@@ -70,7 +70,7 @@ return [
     'Please insert a valid postal code!' => 'Geben Sie bitte eine gültige Postleitzahl ein!',
     'Please select your country!' => 'Bitte wählen Sie Ihr Land aus!',
     'Please select your state!' => 'Bitte wählen Sie Ihr Bundesland aus!',
-    'Please select product information!' => 'Bitte wählen Sie Produktinformationen aus',
+    'Please select product information!' => 'Bitte wählen Sie ein Produkt aus, sonst ist es nicht vorrätig!',
     'Select State' => 'Staat wählen',
     'select country' => 'Wähle ein Land',
     'Add a house number if you have one' => 'Fügen Sie eine Hausnummer hinzu, falls Sie eine haben',
