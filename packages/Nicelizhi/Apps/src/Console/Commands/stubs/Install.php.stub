@@ -7,10 +7,15 @@ class Install extends Command
 {
     protected $signature = '{{NAME}}:install';
 
-    protected $description = 'Install an app';
+    protected $description = 'Install {{NAME}} an app';
 
     public function handle()
     {
         $this->info("Install app: {{NAME}}");
+        if (!$this->confirm('Do you wish to continue?')) {
+            // ...
+            $this->error("App {{NAME}} Install cannelled");
+            return false;
+        }
     }
 }
