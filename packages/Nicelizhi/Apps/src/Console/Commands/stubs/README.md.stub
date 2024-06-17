@@ -1,1 +1,14 @@
 # NexaMerchant/{{NAME}}
+
+# How to Install
+
+
+```
+Nicelizhi\{{NAME}}\Providers\{{NAME}}ServiceProvider::class,
+```
+Add it to config/app.php $providers
+
+# How to Publish
+
+```
+```
