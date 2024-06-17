@@ -23,7 +23,6 @@ class {{NAME}}ServiceProvider extends ServiceProvider
     {
         Route::middleware('web')->group(__DIR__ . '/../Routes/web.php');
         Route::middleware('api')->group(__DIR__ . '/../Routes/api.php');
-        Route::middleware('admin')->group(__DIR__ . '/../Routes/admin.php');
 
         $this->loadTranslationsFrom(__DIR__ . '/../Resources/lang', '{{NAME}}');
 

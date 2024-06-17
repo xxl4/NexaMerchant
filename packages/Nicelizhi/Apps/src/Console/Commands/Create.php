@@ -176,7 +176,7 @@ class Create extends Command
             case 'src/Resources/views/demo.blade.php':
                 $content = file_get_contents(__DIR__.'/stubs/demo.blade.php.stub');
             break;
-            case 'src/Resources/views/admin/demo.blade.php':
+            case 'src/Resources/views/Admin/demo.blade.php':
                 $content = file_get_contents(__DIR__.'/stubs/demo.blade.php.stub');
             break;
 
