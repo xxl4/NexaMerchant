@@ -65,7 +65,8 @@ class CheckoutV2Controller extends Controller{
      */
     public function detail($slug, Request $request) {
         $slugOrPath = $slug;
-        $cache_key = "product_url_".$slugOrPath;
+        $currency = core()->getCurrentCurrencyCode();
+        $cache_key = "product_url_".$slugOrPath."_".$currency;
         $product = Cache::get($cache_key);
         if(empty($product)) {
             $product = $this->productRepository->findBySlug($slugOrPath);
