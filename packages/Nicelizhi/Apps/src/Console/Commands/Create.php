@@ -63,6 +63,8 @@ class Create extends Command
     public function handle()
     {
 
+        
+    
         $name = $this->ask('Please Input your Apps Name?');
         $this->info("Creating app: $name");
         $base_dir = config("apps.base_dir");
@@ -105,6 +107,26 @@ class Create extends Command
             }
 
         }
+
+        
+        // add data to composer json
+        $composer_josn = file_get_contents("composer.json");
+        $composer_object = json_decode($composer_josn, true);
+        $composer_object['autoload']['psr-4']["NexaMerchant\\$name\\"] = "packages/Apps/".$name."/src";
+        $composer_josn = json_encode($composer_object, JSON_PRETTY_PRINT);
+        file_put_contents("composer.json", $composer_josn);
+        
+        // add data to config/app.php providers
+        $app_file = file_get_contents("config/app.php");
+        $app_file = str_replace("//APPS", "NexaMerchant\\".$name."\\Providers\\".$name."ServiceProvider::class, \n\t\t\t//APPS\n", $app_file);
+        file_put_contents("config/app.php", $app_file);
+
+        // composer dump autoload
+        exec('composer dump-autoload');
+
+
+        
+
 
 
 
