@@ -2581,8 +2581,8 @@
       $('#cb-buy-each3').text(data.package_products[2].new_price_format)
       $('#cb-buy-each4').text(data.package_products[3].new_price_format)
       if (attrList.length > 0) {
-        let num = 0
         attrList.forEach(function(item) {
+          let num = 0
           let sortedObj = sortObjectByValue(item.attr_sort);
           let keysIterator = sortedObj.keys();
           let keysList = Array.from(keysIterator);
