@@ -13,6 +13,7 @@ use Webkul\Shop\Http\Middleware\Theme;
 
 class {{NAME}}ServiceProvider extends ServiceProvider
 {
+    private $version = null;
     /**
      * Bootstrap services.
      *
