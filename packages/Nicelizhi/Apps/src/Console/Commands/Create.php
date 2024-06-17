@@ -1,10 +1,10 @@
 <?php
 namespace Nicelizhi\Apps\Console\Commands;
 
-use Illuminate\Console\Command;
+
 use Illuminate\Support\Facades\Storage;
 
-class Create extends Command 
+class Create extends CommandInterface
 {
     protected $signature = 'apps:create';
 
@@ -67,12 +67,8 @@ class Create extends Command
     
         $name = $this->ask('Please Input your Apps Name?');
         $this->info("Creating app: $name");
-        $base_dir = config("apps.base_dir");
-        $name = trim($name);
-
-        $name = ucfirst($name);
-
-        $dir = base_path().$base_dir.'/'.$name;
+        
+        $dir = $this->getBaseDir($name);
 
         if (!$this->confirm('Do you wish to continue?')) {
             // ...
