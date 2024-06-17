@@ -101,6 +101,7 @@
             "Nicelizhi\\Lp\\": "packages/Nicelizhi/Lp/src",
             "Nicelizhi\\Binom\\": "packages/Nicelizhi/Binom/src",
             "Nicelizhi\\Comments\\": "packages/Nicelizhi/Comments/src",
+            "Nicelizhi\\Apps\\": "packages/Nicelizhi/Apps/src",
             "Webkul\\User\\": "packages/Webkul/User/src"
         }
     },
