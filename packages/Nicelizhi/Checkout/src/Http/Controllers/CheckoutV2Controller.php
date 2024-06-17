@@ -65,7 +65,8 @@ class CheckoutV2Controller extends Controller{
      */
     public function detail($slug, Request $request) {
         $slugOrPath = $slug;
-        $cache_key = "product_url_".$slugOrPath;
+        $currency = core()->getCurrentCurrencyCode();
+        $cache_key = "product_url_".$slugOrPath."_".$currency;
         $product = Cache::get($cache_key);
         if(empty($product)) {
             $product = $this->productRepository->findBySlug($slugOrPath);
@@ -115,9 +116,8 @@ class CheckoutV2Controller extends Controller{
     }
 
     public function ProductDetail($slug) {
-
-
-        $data = Cache::get($this->checkout_v2_cache_key.$slug);
+        $currency = core()->getCurrentCurrencyCode();
+        $data = Cache::get($this->checkout_v2_cache_key.$slug.'_'.$currency);
         $env = config("app.env");
         // when the env is pord use cache
         if(empty($data)) {
