@@ -39,7 +39,7 @@
     }
 
     .border-red {
-      border: red solid 1px;
+      border: red solid 3px;
     }
 
     #i71q {
@@ -1164,6 +1164,16 @@
       font-size: 12px;
       padding: 5px;
       border-radius: 4px;
+    }
+
+    select {
+      -webkit-appearance: none;
+      /* remove the strong OSX influence from Webkit */
+    }
+
+    .in-se {
+      font-size: 14px;
+      padding: 2px 0 2px 4px;
     }
 
     /* .input-box .input-item:placeholder-shown+span {
@@ -3004,6 +3014,9 @@
       sku: phpsku,
       sellPoints: JSON.parse(phpsellPoints)
     }
+    // data.attr.attributes[0].options[0].sku[24] = {
+    //   1661: [3066, 3067, 3068]
+    // }
     console.log(data, 'phpdata');
     $(function() {
       getShopify()

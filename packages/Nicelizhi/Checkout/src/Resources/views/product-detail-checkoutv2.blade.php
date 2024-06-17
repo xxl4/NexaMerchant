@@ -1064,7 +1064,7 @@
     }
 
     .border-red {
-      border: red solid 1px;
+      border: red solid 3px;
     }
 
     .input-box {
@@ -1333,6 +1333,7 @@
 
     .in-se {
       font-size: 14px;
+      padding: 2px 0 2px 4px;
     }
 
     .in-se option[disabled][selected] {
