@@ -1,0 +1,16 @@
+<?php
+
+use Illuminate\Support\Facades\Route;
+use NexaMerchant\{{NAME}}\Http\Controllers\Api\ExampleController;
+
+Route::group(['middleware' => ['api'], 'prefix' => 'api'], function () {
+     Route::prefix('{{NAME}}')->group(function () {
+
+        Route::controller(ExampleController::class)->prefix('example')->group(function () {
+
+            Route::get('demo', 'demo')->name('{{NAME}}.api.example.demo');
+
+        });
+
+     });
+});

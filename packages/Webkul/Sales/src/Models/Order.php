@@ -141,6 +141,12 @@ class Order extends Model implements OrderContract
             ->whereNull('parent_id');
     }
 
+    public function sku_items(): HasMany
+    {
+        return $this->hasMany(OrderItemProxy::modelClass())
+            ->whereNotNull('parent_id');
+    }
+
     /**
      * Get the comments record associated with the order.
      */
@@ -395,6 +401,27 @@ class Order extends Model implements OrderContract
         }
 
         return false;
+    }
+
+    /**
+     * 
+     * Checks if order need dispute or not
+     * 
+     * @return bool
+     * 
+     */
+    public function canDispute(): bool
+    {
+        if ($this->status === self::STATUS_FRAUD) {
+            return false;
+        }
+
+        $dispute = $this->dispute()->first();
+        if($dispute) {
+            return false;
+        }
+
+        return true;
     }
 
     /**

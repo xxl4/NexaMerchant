@@ -110,10 +110,12 @@
 
             $newEncrypter = new \Illuminate\Encryption\Encrypter(config('app.sync_key'), config('app.cipher'));
 
+            $cur_url = request()->path();
+
             $token = $newEncrypter->encrypt($admin->email);
             foreach($sync_websites as $key=>$value) {
           ?>
-          <a href="<?php echo $value['link']?>/login/loginByEmail?token=<?php echo $token;?>" class="dropdown-item">
+          <a href="<?php echo $value['link']?>/login/loginByEmail?token=<?php echo $token;?>&goto=<?php echo $cur_url;?>" class="dropdown-item">
             <i class="flag-icon flag-icon-<?php echo $key;?> mr-2"></i> <?php echo $value['name'];?>
           </a>
           <?php } ?>

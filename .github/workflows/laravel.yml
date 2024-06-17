@@ -10,6 +10,7 @@ on:
       - 'README.md'
       - .github/**
       - docs/**
+      - 'Dockerfile'
   pull_request:
     branches:
       - 'main'
@@ -17,6 +18,7 @@ on:
       - 'main_us'
     paths-ignore:
       - 'README.md'
+      - 'Dockerfile'
       - .github/**
       - docs/**
 jobs:
@@ -93,12 +95,20 @@ jobs:
         script: |
           cd ${{ secrets.WWW_DIR }} && sudo git pull
           sudo -u www composer dump-autoload
+          sudo -u www vendor/bin/pest
+          cd storage && sudo chmod -R 777 *
           cd ${{ secrets.WWW_DIR_2 }} && sudo git pull
           sudo -u www composer dump-autoload
+          sudo -u www vendor/bin/pest
+          cd storage && sudo chmod -R 777 *
           cd ${{ secrets.WWW_DIR_3 }} && sudo git pull
           sudo -u www composer dump-autoload
+          sudo -u www vendor/bin/pest
+          cd storage && sudo chmod -R 777 *
           cd ${{ secrets.WWW_DIR_4 }} && sudo git pull
           sudo -u www composer dump-autoload
+          sudo -u www vendor/bin/pest
+          cd storage && sudo chmod -R 777 *
     - name: Sync to Server 2 and Do it
       uses: appleboy/ssh-action@master
       env:
@@ -111,3 +121,5 @@ jobs:
         script: |
           cd ${{ secrets.WWW_DIR_US }} && git pull
           sudo -u www composer dump-autoload
+          sudo -u www vendor/bin/pest
+          cd storage && sudo chmod -R 777 *

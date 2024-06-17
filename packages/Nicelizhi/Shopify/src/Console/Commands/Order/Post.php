@@ -12,6 +12,8 @@ use Nicelizhi\Shopify\Models\ShopifyStore;
 use Webkul\Sales\Models\Order;
 use Illuminate\Http\Client\RequestException;
 use GuzzleHttp\Exception\ClientException;
+use Webkul\Customer\Repositories\CustomerRepository;
+use Illuminate\Support\Facades\Event;
 
 class Post extends Command
 {
@@ -32,6 +34,8 @@ class Post extends Command
     private $shopify_store_id = null;
     private $lang = null;
 
+    private $customerRepository = null;
+
     //protected ShopifyOrder $ShopifyOrder,
     //protected ShopifyStore $ShopifyStore,
 
@@ -46,7 +50,9 @@ class Post extends Command
     {
         $this->ShopifyOrder = new ShopifyOrder();
         $this->ShopifyStore = new ShopifyStore();
+        $this->customerRepository = app(CustomerRepository::class);
         $this->Order = new Order();
+
 
         $this->shopify_store_id = config('shopify.shopify_store_id');
         $this->lang = config('shopify.store_lang');
@@ -167,6 +173,8 @@ class Post extends Command
 
         
 
+        
+
         //var_dump($order);exit;
 
         $postOrder = [];
@@ -222,6 +230,26 @@ class Post extends Command
             "zip" => $billing_address->postcode
         ];
         $postOrder['billing_address'] = $billing_address;
+
+        // create user
+        $customer = $this->customerRepository->findOneByField('email', $shipping_address->email);
+        if(is_null($customer)) {
+            $customer = $this->customerRepository->findOneByField('phone', $shipping_address->phone);
+            if(is_null($customer)) {
+
+                $data = [];
+                $data['email'] = $shipping_address->email;
+                $data['customer_group_id'] = 2;
+                $data['first_name'] = $shipping_address->first_name;
+                $data['last_name'] = $shipping_address->last_name;
+                $data['gender'] = $shipping_address->gender;
+                $data['phone'] = $shipping_address->phone;
+
+                //var_dump($data);
+    
+                $this->createCuster($data);
+            }
+        }
         
 
         $shipping_address = [
@@ -548,6 +576,8 @@ class Post extends Command
             $res = $this->get_content($url);
             Log::info("post to bm 2 url ".$url." res ".json_encode($res));
 
+            
+
         }
     }
 
@@ -558,6 +588,19 @@ class Post extends Command
         $data = curl_exec($ch);
         curl_close($ch);
         return $data;
+    }
+
+    public function createCuster($data) {
+        $password = rand(100000, 10000000);
+        Event::dispatch('customer.registration.before');
+
+        $data = array_merge($data, [
+            'password'    => bcrypt($password),
+            'is_verified' => 1,
+            'subscribed_to_news_letter' => 1,
+        ]);
+
+        $this->customerRepository->create($data);
     }
     
 }

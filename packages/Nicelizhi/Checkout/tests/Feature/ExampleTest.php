@@ -4,3 +4,15 @@ test('test checkout successful response', function() {
 
     $response->assertStatus(200);
 });
+
+test('test checkout v2', function() {
+    $response = $this->get('/checkout/v2/8395243356390');
+
+    $response->assertStatus(200);
+});
+
+test('test checkout v3', function() {
+    $response = $this->get('/checkout/v3/8395243356390');
+
+    $response->assertStatus(200);
+});

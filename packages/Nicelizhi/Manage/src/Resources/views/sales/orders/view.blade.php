@@ -234,20 +234,14 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($order->items as $item)
+                                        @foreach ($order->sku_items as $item)
                                         <tr>
                                             <td>
 
 
-                                            <?php 
-                                            
-                                            //var_dump($item);exit;
-                                            
-                                            ?>
-
-                                                @if(!empty($item->product))
+                                                @if($item->product?->base_image_url)
                                                 <img
-                                            class="" height="200px"
+                                                class="" height="200px"
                                             src="{{ $item->product?->base_image_url }}"
                                                 @else
                                                 <img src="{{ bagisto_asset('images/product-placeholders/front.svg') }}">
@@ -261,11 +255,7 @@
                                                 'qty'    => $item->qty_ordered,
                                                 ])</td>
                                             <td>
-                                                @if (isset($item->additional['attributes']))
-                                                    @foreach ($item->additional['attributes'] as $attribute)
-                                                        {{ $attribute['attribute_name'] }} : {{ $attribute['option_label'] }}
-                                                    @endforeach
-                                                @endif
+                                                {{ $item->sku }}
 
                                             </td>
                                             <td>{{ core()->formatBasePrice($item->base_total + $item->base_tax_amount - $item->base_discount_amount) }}</td>
