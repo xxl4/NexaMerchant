@@ -1,11 +1,15 @@
 <!DOCTYPE html>
-<html lang="{{ app()->getLocale() }}">
+<html lang="{{ app()->getLocale() }}" dir="{{ core()->getCurrentLocale()->direction }}">
 
 <head>
   <title></title>
   <link rel="icon prefetch" id="favicon-icon" href="/checkout/v2/images/favicon_de.png" type="image/png" sizes="16x16" />
   <meta charset="utf-8" />
   <meta name="description" content="Fur Sweep Collar" />
+  <meta name="csrf-token" content="{{ csrf_token() }}">
+  <meta name="base-url" content="{{ url()->to('/') }}">
+  <meta name="currency-code" content="{{ core()->getCurrentCurrencyCode() }}">
+  <meta http-equiv="content-language" content="{{ app()->getLocale() }}">
   <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <meta http-equiv="content-type" content="text/html;charset=utf-8" />
