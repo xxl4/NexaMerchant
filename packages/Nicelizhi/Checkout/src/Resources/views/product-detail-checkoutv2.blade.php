@@ -2855,6 +2855,18 @@
 
     })
 
+    function sortObjectByValue(obj) {
+      let entries = Object.entries(obj);
+      entries.sort((a, b) => a[1] - b[1]);
+      // let sortedObj = {};
+      let map = new Map();
+      entries.forEach(([key, value]) => {
+        map.set(key, value);
+        // sortedObj[key] = value;
+      });
+      return map;
+    }
+
     function getbillingAddress() {
       var billingText = ''
       if ($('input[name=hobby]').is(":checked")) {
