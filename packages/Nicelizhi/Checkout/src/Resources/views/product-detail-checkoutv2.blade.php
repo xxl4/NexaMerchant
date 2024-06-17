@@ -2581,8 +2581,8 @@
       $('#cb-buy-each3').text(data.package_products[2].new_price_format)
       $('#cb-buy-each4').text(data.package_products[3].new_price_format)
       if (attrList.length > 0) {
-
         attrList.forEach(function(item) {
+          let num = 0
           let sortedObj = sortObjectByValue(item.attr_sort);
           let keysIterator = sortedObj.keys();
           let keysList = Array.from(keysIterator);
@@ -2592,7 +2592,9 @@
           keysList.forEach(function(keyItem) {
             item.options.forEach(function(opItem, index) {
               if (opItem.id == keyItem) {
+                num++
                 item.options.splice(index, 1)
+                opItem.num = num
                 item.options.push(opItem)
               }
             })
@@ -3611,6 +3613,12 @@
         return !updateNext.includes(element)
       })
       console.log(noInArray, 'noInArray');
+      noInArray.sort((a, b) => {
+        a.num - b.num
+      })
+      updateNext.sort((a, b) => {
+        a.num - b.num
+      })
       let nextOption = `<option value="" selected disabled>` + data.attr.attributes[1].label + `</option>`
       for (let i = 0; i < updateNext.length; i++) {
         nextOption += `<option onchange="seInput(value)" value="` + updateNext[i].label + `">` + updateNext[i].label + `</option>`
