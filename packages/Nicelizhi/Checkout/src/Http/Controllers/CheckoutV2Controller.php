@@ -115,9 +115,8 @@ class CheckoutV2Controller extends Controller{
     }
 
     public function ProductDetail($slug) {
-
-
-        $data = Cache::get($this->checkout_v2_cache_key.$slug);
+        $currency = core()->getCurrentCurrencyCode();
+        $data = Cache::get($this->checkout_v2_cache_key.$slug.'_'.$currency);
         $env = config("app.env");
         // when the env is pord use cache
         if(empty($data)) {
