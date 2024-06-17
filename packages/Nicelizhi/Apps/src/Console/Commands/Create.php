@@ -118,7 +118,7 @@ class Create extends Command
         
         // add data to config/app.php providers
         $app_file = file_get_contents("config/app.php");
-        $app_file = str_replace("//APPS", "NexaMerchant\\".$name."\\Providers\\".$name."ServiceProvider::class, \n\t\t\t//APPS\n", $app_file);
+        $app_file = str_replace("//APPS", "NexaMerchant\\".$name."\\Providers\\".$name."ServiceProvider::class, \n\t\t//APPS\n", $app_file);
         file_put_contents("config/app.php", $app_file);
 
         // composer dump autoload
