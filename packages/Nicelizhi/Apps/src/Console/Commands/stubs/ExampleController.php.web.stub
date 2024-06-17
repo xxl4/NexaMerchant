@@ -11,6 +11,6 @@ class ExampleController extends Controller
         $data = [];
         $data['code'] = 200;
         $data['message'] = "Demo";
-        return view('{{NAME}}::demo', compact("data));
+        return view('{{NAME}}::demo', compact("data"));
     }
 }

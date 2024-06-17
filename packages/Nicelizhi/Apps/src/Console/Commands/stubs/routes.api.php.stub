@@ -8,7 +8,7 @@ Route::group(['middleware' => ['api'], 'prefix' => 'api'], function () {
 
         Route::controller(ExampleController::class)->prefix('example')->group(function () {
 
-            Route::post('.', 'demo')->name('{{NAME}}.api.example.demo');
+            Route::post('demo', 'demo')->name('{{NAME}}.api.example.demo');
 
         });
 

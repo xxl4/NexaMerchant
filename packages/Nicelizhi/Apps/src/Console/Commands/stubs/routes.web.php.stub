@@ -9,7 +9,7 @@ Route::group(['middleware' => ['locale', 'theme', 'currency']], function () {
 
         Route::controller(ExampleController::class)->prefix('example')->group(function () {
 
-            Route::post('.', 'demo')->name('{{NAME}}.web.example.demo');
+            Route::post('demo', 'demo')->name('{{NAME}}.web.example.demo');
 
         });
 
