@@ -1058,6 +1058,11 @@
       background-color: lightgray;
     }
 
+    select {
+      -webkit-appearance: none;
+      /* remove the strong OSX influence from Webkit */
+    }
+
     .border-red {
       border: red solid 1px;
     }
