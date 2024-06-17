@@ -1,13 +1,21 @@
 <?php
 namespace NexaMerchant\{{NAME}}\Console\Commands;
 
-use Illuminate\Console\Command;
+use Nicelizhi\Apps\Console\Commands\CommandInterface;
 
-class UnInstall extends Command 
+class UnInstall extends CommandInterface 
 {
     protected $signature = '{{NAME}}:uninstall';
 
     protected $description = 'Uninstall {{NAME}} an app';
+
+    public function getAppVer() {
+        return config("{{NAME}}.ver");
+    }
+
+    public function getAppName() {
+        return config("{{NAME}}.name");
+    }
 
     public function handle()
     {
