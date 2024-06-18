@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string("description")->nullable()->comment("description");
             $table->string("version")->comment("version");
             $table->string("author")->nullable()->comment("author");
-            $table->string("email")->nullable()->comment("email");
+            $table->char("email", 50)->nullable()->comment("email");
             $table->string("url")->nullable()->comment("url");
             $table->string("icon")->nullable()->comment("icon");
             $table->enum("status",['enable','apply','disable'])->default("apply")->comment("status");
