@@ -2,11 +2,12 @@
     "name": "Nicelizhi/Apps",
     "default-branch": true,
     "license": "MIT",
+    "type": "library",
     "description" : "Apps",
     "keywords": ["laravel", "apps"],
     "authors": [
         {
-            "name": "Steven",
+            "name": "Steve",
             "email": "nice.lizhi@gmail.com"
         }
     ],
