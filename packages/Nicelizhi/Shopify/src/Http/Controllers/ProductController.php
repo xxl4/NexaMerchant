@@ -584,4 +584,18 @@ class ProductController extends Controller
 
         return view("shopify::products.".$act_type.".sell-points-v2", compact("product", "product_id", "act_type","sell_points"));
     }
+
+
+    // clean cache
+    public function cleanCache($product_id) {
+
+        $product = $this->productRepository->findBySlug($product_id);
+        if(is_null($product)) {
+            echo "not found it, you don't clean it cache";
+            return ;
+        }
+        \Nicelizhi\Shopify\Helpers\Utils::clearCache($product->id, $product_id);
+
+        echo "Clean Cache Success";
+    }
 }

@@ -158,8 +158,7 @@ final class Utils {
             Cache::pull("product_attributes_".$pid);
             Cache::pull("product_sku_size_".$pid);
             Cache::pull("product_sku_".$pid);
-            Cache::pull("product_sku_".$pid);
-            Cache::pull("product_sku_".$pid);
+            Cache::pull("product_comment_".$pid); // product comment
             Cache::pull("product_ext_".$pid."_4_EUR");
             Cache::pull("product_ext_".$pid."_4_USD");
             Cache::pull("product_ext_".$pid."_4_AUD");
@@ -169,6 +168,8 @@ final class Utils {
             Cache::pull("checkout_v2_cache_".$shopify_id);
             Cache::pull("checkout_v1_cache_".$shopify_id);
             Cache::pull("checkout_v2_".$shopify_id);
+            Cache::pull("shopify_images_".$shopify_id);
+            Cache::pull("shopify_full_".$shopify_id);
         }
     }
 
