@@ -100,15 +100,16 @@ class CheckoutV3Controller extends Controller{
         //$comments = $redis->hgetall($this->cache_prefix_key."product_comments_".$product['id']);
 
 
-        $comments = Cache::remember('product_review'.$product['id'], 36000, function ($product) {
-            $comments = $product->reviews->where('status', 'approved')->take(10);
-            $comments = $comments->map(function($comments) {
-                $comments->customer = $comments->customer;
-                $comments->images;
-                return $comments;
-            });
-            return $comments;
-        });
+        // $comments = Cache::remember('product_review'.$product['id'], 36000, function ($product) {
+        //     $comments = $product->reviews->where('status', 'approved')->take(10);
+        //     $comments = $comments->map(function($comments) {
+        //         $comments->customer = $comments->customer;
+        //         $comments->images;
+        //         return $comments;
+        //     });
+        //     return $comments;
+        // });
+        $comments = [];
 
         //var_dump($comments);exit;
 
