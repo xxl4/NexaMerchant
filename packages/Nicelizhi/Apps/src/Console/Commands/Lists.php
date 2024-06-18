@@ -39,7 +39,7 @@ class Lists extends CommandInterface
 
         $this->info("Response: ".$response->getStatusCode());
 
-        var_dump($response->getBody());
+        var_dump($response->getBody()->getContents());
 
 
         
