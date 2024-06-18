@@ -471,15 +471,6 @@ class ProductController extends Controller
 
         Log::info("address" . json_encode($addressData));
 
-        //var_dump($addressData);exit;
-
-
-        //return response()->json($addressData);
-
-        //var_dump($addressData);exit;
-
-
-        //Cart::saveCustomerAddress($addressData);
 
         if (
             Cart::hasError()
@@ -558,15 +549,13 @@ class ProductController extends Controller
             $data['order'] = $order;
             if ($order) {
                 $orderId = $order->id;
-                // if($payment_method_input=="airwallex_google") {
-                //     $transactionManager = $this->airwallex->createPaymentAuthen($cart, $order->id);
-                // }elseif($payment_method_input=="airwallex_apple") {
-                //     $transactionManager = $this->airwallex->createPaymentAuthen($cart, $order->id);
-                // } else {
-                //     $transactionManager = $this->airwallex->createPaymentOrder($cart, $order->id);
-                // }
+
 
                 $transactionManager = $this->airwallex->createPaymentOrder($cart, $order->id);
+                
+                if(!isset($transactionManager->client_secret)) {
+                    response()->json(['error' => $transactionManager->body->message,'code'=>'203'], 400);
+                }
                 
                 Log::info("airwallex-".$order->id."--".json_encode($transactionManager));
                 $data['client_secret'] = $transactionManager->client_secret;
