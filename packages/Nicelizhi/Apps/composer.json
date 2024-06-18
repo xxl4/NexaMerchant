@@ -1,14 +1,20 @@
 {
     "name": "Nicelizhi/Apps",
+    "default-branch": true,
     "license": "MIT",
     "description" : "Apps",
+    "keywords": ["laravel", "apps"],
     "authors": [
         {
             "name": "Steven",
             "email": "nice.lizhi@gmail.com"
         }
     ],
-    "require": {},
+    "require": {
+        "php": "^8.1",
+        "ext-curl": "*",
+        "guzzlehttp/guzzle": "^7.0.1"
+    },
     "autoload": {
         "psr-4": {
             "Nicelizhi\\Apps\\": "src/"
@@ -22,5 +28,12 @@
             "aliases": {}
         }
     },
-    "minimum-stability": "dev"
+    "minimum-stability": "stable",
+    "prefer-stable": true,
+    "support": {
+        "issues": "https://github.com/NexaMerchant/apps/issues",
+        "forum": "https:\/\/github.com\/xxl4\/NexaMerchant\/discussions",
+        "source": "https://github.com/NexaMerchant/apps",
+        "docs": "https:\/\/nexa-merchant.vercel.app"
+    }
 }
