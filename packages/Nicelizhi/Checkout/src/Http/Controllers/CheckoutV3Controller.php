@@ -99,13 +99,20 @@ class CheckoutV3Controller extends Controller{
         ksort($faqItems);
         //$comments = $redis->hgetall($this->cache_prefix_key."product_comments_".$product['id']);
 
-        $comments = $product->reviews->where('status', 'approved')->take(10);
 
-        $comments = $comments->map(function($comments) {
-            $comments->customer = $comments->customer;
-            $comments->images;
-            return $comments;
-        });
+        // $comments = Cache::remember('product_comment_'.$product['id'], 3600, function () {
+        //     $comments = $product->reviews->where('status', 'approved')->take(10);
+
+        //     $comments = $comments->map(function($comments) {
+        //         $comments->customer = $comments->customer;
+        //         $comments->images;
+        //         return $comments;
+        //     });
+        //     return $comments
+        // });
+
+       
+        $comments = [];
 
         //var_dump($comments);exit;
 
