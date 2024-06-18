@@ -18,6 +18,7 @@ use Webkul\Sales\Repositories\ShipmentRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Cache;
 
 class WebhooksController extends Controller
 {
@@ -421,6 +422,9 @@ class WebhooksController extends Controller
         $product->images = $req['images'];
 
         $product->save();
+
+        Cache::pull("shopify_images_".$product_id); // delete the cache
+        Cache::pull("shopify_full_".$product_id); // delete the cache
 
         return true;
     }
