@@ -51,6 +51,8 @@ class AppsServiceProvider extends ServiceProvider
             \Nicelizhi\Apps\Console\Commands\Install::class,
             \Nicelizhi\Apps\Console\Commands\UnInstall::class,
             \Nicelizhi\Apps\Console\Commands\Create::class,
+            \Nicelizhi\Apps\Console\Commands\Lists::class,
+            \Nicelizhi\Apps\Console\Commands\Search::class,
         ]);
     }
 }

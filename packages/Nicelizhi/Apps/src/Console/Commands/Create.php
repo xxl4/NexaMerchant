@@ -14,7 +14,6 @@ class Create extends CommandInterface
 
     protected $dirList = [
         'src',
-        'src/Controllers',
         'src/Config',
         'src/Config/menu.php',
         'src/Config/acl.php',
