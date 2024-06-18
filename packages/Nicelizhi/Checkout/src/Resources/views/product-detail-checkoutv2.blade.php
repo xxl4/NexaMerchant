@@ -2581,6 +2581,26 @@
       $('#cb-buy-each3').text(data.package_products[2].new_price_format)
       $('#cb-buy-each4').text(data.package_products[3].new_price_format)
       if (attrList.length > 0) {
+        attrList.forEach(function(item) {
+          let num = 0
+          let sortedObj = sortObjectByValue(item.attr_sort);
+          let keysIterator = sortedObj.keys();
+          let keysList = Array.from(keysIterator);
+          console.log(sortedObj, 'sortedObj====');
+          // let keysList = Object.keys(sortedObj)
+          console.log(keysList, 'keysList===');
+          keysList.forEach(function(keyItem) {
+            item.options.forEach(function(opItem, index) {
+              if (opItem.id == keyItem) {
+                num++
+                item.options.splice(index, 1)
+                opItem.num = num
+                item.options.push(opItem)
+              }
+            })
+          })
+        })
+
         var selectList = ''
         for (var arri = 0; arri < attrList.length; arri++) {
           var optionList = `<option value="" selected disabled>` + attrList[arri].label + `</option>`
@@ -2836,6 +2856,18 @@
       // })
 
     })
+
+    function sortObjectByValue(obj) {
+      let entries = Object.entries(obj);
+      entries.sort((a, b) => a[1] - b[1]);
+      // let sortedObj = {};
+      let map = new Map();
+      entries.forEach(([key, value]) => {
+        map.set(key, value);
+        // sortedObj[key] = value;
+      });
+      return map;
+    }
 
     function getbillingAddress() {
       var billingText = ''
@@ -3581,6 +3613,12 @@
         return !updateNext.includes(element)
       })
       console.log(noInArray, 'noInArray');
+      noInArray.sort(function(a, b) {
+        return a.num - b.num
+      })
+      updateNext.sort(function(a, b) {
+        return a.num - b.num
+      })
       let nextOption = `<option value="" selected disabled>` + data.attr.attributes[1].label + `</option>`
       for (let i = 0; i < updateNext.length; i++) {
         nextOption += `<option onchange="seInput(value)" value="` + updateNext[i].label + `">` + updateNext[i].label + `</option>`
@@ -3947,7 +3985,7 @@
             });
           } else {
             $('#loading').hide();
-            alert(data.error)
+            alert(res.error)
           }
         })
         .catch(function(err) {
@@ -4038,7 +4076,7 @@
         })
         .catch(function(err) {
           $('#loading').hide();
-          console.log(err, 'err==');
+          console.log(res, 'err==');
         })
     }
   </script>
@@ -5102,7 +5140,7 @@
             console.log('else====');
             $('#loading').hide();
             var pay_error = data.error;
-
+            alert(res.error)
             if (pay_error && pay_error.length) {
               $('#checkout-error').html(pay_error.join('<br />') + '<br /><br />');
               $('#checkout-error').show();

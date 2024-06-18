@@ -4,6 +4,7 @@ namespace NexaMerchant\{{NAME}}\Console\Commands;
 use Nicelizhi\Apps\Console\Commands\CommandInterface;
 
 class UnInstall extends CommandInterface 
+
 {
     protected $signature = '{{NAME}}:uninstall';
 

@@ -1,7 +1,9 @@
 <?php
 namespace Nicelizhi\Apps\Console\Commands;
 
+
 class Install extends CommandInterface 
+
 {
     protected $signature = 'apps:install {name}';
 
@@ -32,5 +34,6 @@ class Install extends CommandInterface
         
         $dir = $this->getBaseDir($name);
         $this->info($dir);
+
     }
 }

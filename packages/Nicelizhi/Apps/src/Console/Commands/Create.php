@@ -1,7 +1,6 @@
 <?php
 namespace Nicelizhi\Apps\Console\Commands;
 
-
 use Illuminate\Support\Facades\Storage;
 
 class Create extends CommandInterface
@@ -74,6 +73,7 @@ class Create extends CommandInterface
         $this->info("Creating app: $name");
         
         $dir = $this->getBaseDir($name);
+
 
         if (!$this->confirm('Do you wish to continue?')) {
             // ...
