@@ -96,13 +96,15 @@ class CheckoutV2Controller extends Controller{
         ksort($faqItems);
         //$comments = $redis->hgetall($this->cache_prefix_key."product_comments_".$product['id']);
 
-        $comments = $product->reviews->where('status', 'approved')->take(10);
+        // $comments = $product->reviews->where('status', 'approved')->take(10);
 
-        $comments = $comments->map(function($comments) {
-            $comments->customer = $comments->customer;
-            $comments->images;
-            return $comments;
-        });
+        // $comments = $comments->map(function($comments) {
+        //     $comments->customer = $comments->customer;
+        //     $comments->images;
+        //     return $comments;
+        // });
+
+        $comments = [];
 
         $default_country = config('onebuy.default_country');
         $payments = config('onebuy.payments'); // config the payments status
