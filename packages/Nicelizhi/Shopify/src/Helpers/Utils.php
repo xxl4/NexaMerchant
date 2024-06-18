@@ -170,6 +170,13 @@ final class Utils {
             Cache::pull("checkout_v2_".$shopify_id);
             Cache::pull("shopify_images_".$shopify_id);
             Cache::pull("shopify_full_".$shopify_id);
+
+            Cache::pull("product_url_".$shopify_id."_USD");
+            Cache::pull("product_url_".$shopify_id."_AUD");
+            Cache::pull("product_url_".$shopify_id."_EUR");
+            Cache::pull("checkout_v2_".$shopify_id."_USD");
+            Cache::pull("checkout_v2_".$shopify_id."_AUD");
+            Cache::pull("checkout_v2_".$shopify_id."_EUR");
         }
     }
 
