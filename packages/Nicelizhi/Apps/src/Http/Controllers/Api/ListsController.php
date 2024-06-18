@@ -29,22 +29,10 @@ class ListsController extends Controller
     }
 
     public function apps() {
+        $items = \Nicelizhi\Apps\Models\App::where("status","enable")->get();
         return response()->json([
             'data' => [
-                'apps' => [
-                    [
-                        'name' => 'App 1',
-                        'description' => 'This is app 1',
-                    ],
-                    [
-                        'name' => 'App 2',
-                        'description' => 'This is app 2',
-                    ],
-                    [
-                        'name' => 'App 3',
-                        'description' => 'This is app 3',
-                    ],
-                ]
+                'apps' => $items
             ]
         ]);
     }
