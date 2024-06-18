@@ -107,17 +107,17 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Tests\\": "tests\/",
-            "Webkul\\DataGrid\\Tests\\": "packages\/Webkul\/DataGrid\/tests",
-            "Webkul\\Shop\\Tests\\": "packages\/Webkul\/Shop\/tests",
-            "Nicelizhi\\Checkout\\Tests\\": "packages\/Nicelizhi\/Checkout\/tests",
-            "Nicelizhi\\Binom\\Tests\\": "packages\/Nicelizhi\/Binom\/tests",
-            "Nicelizhi\\Shopify\\Tests\\": "packages\/Nicelizhi\/Shopify\/tests",
-            "Nicelizhi\\Maange\\Tests\\": "packages\/Nicelizhi\/Mange\/tests",
-            "Nicelizhi\\OneBuy\\Tests\\": "packages\/Nicelizhi\/OneBuy\/tests",
-            "Nicelizhi\\Lp\\Tests\\": "packages\/Nicelizhi\/Lp\/tests",
-            "Nicelizhi\\Comments\\Tests\\": "packages\/Nicelizhi\/Comments\/tests",
-            "Nicelizhi\\ShopLine\\Tests\\": "packages\/Nicelizhi\/ShopLine\/tests"
+            "Tests\\": "tests/",
+            "Webkul\\DataGrid\\Tests\\": "packages/Webkul/DataGrid/tests",
+            "Webkul\\Shop\\Tests\\": "packages/Webkul/Shop/tests",
+            "Nicelizhi\\Checkout\\Tests\\": "packages/Nicelizhi/Checkout/tests",
+            "Nicelizhi\\Binom\\Tests\\": "packages/Nicelizhi/Binom/tests",
+            "Nicelizhi\\Shopify\\Tests\\": "packages/Nicelizhi/Shopify/tests",
+            "Nicelizhi\\Maange\\Tests\\": "packages/Nicelizhi/Mange/tests",
+            "Nicelizhi\\OneBuy\\Tests\\": "packages/Nicelizhi/OneBuy/tests",
+            "Nicelizhi\\Lp\\Tests\\": "packages/Nicelizhi/Lp/tests",
+            "Nicelizhi\\Comments\\Tests\\": "packages/Nicelizhi/Comments/tests",
+            "Nicelizhi\\ShopLine\\Tests\\": "packages/Nicelizhi/ShopLine/tests"
         }
     },
     "scripts": {

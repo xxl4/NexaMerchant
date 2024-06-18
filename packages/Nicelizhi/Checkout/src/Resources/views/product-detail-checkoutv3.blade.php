@@ -1,11 +1,15 @@
 <!DOCTYPE html>
-<html lang="{{ app()->getLocale() }}">
+<html lang="{{ app()->getLocale() }}" dir="{{ core()->getCurrentLocale()->direction }}">
 
 <head>
   <title></title>
   <link rel="icon prefetch" id="favicon-icon" href="/checkout/v2/images/favicon_de.png" type="image/png" sizes="16x16" />
   <meta charset="utf-8" />
   <meta name="description" content="Fur Sweep Collar" />
+  <meta name="csrf-token" content="{{ csrf_token() }}">
+  <meta name="base-url" content="{{ url()->to('/') }}">
+  <meta name="currency-code" content="{{ core()->getCurrentCurrencyCode() }}">
+  <meta http-equiv="content-language" content="{{ app()->getLocale() }}">
   <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <meta http-equiv="content-type" content="text/html;charset=utf-8" />
@@ -3015,7 +3019,24 @@
       sellPoints: JSON.parse(phpsellPoints)
     }
     // data.attr.attributes[0].options[0].sku[24] = {
-    //   1661: [3066, 3067, 3068]
+    //   1667: [3066, 3067, 3068],
+    //   1665: [3066, 3067, 3068],
+    //   1661: [3066, 3067, 3068],
+
+    // }
+    // data.attr.attributes[0].attr_sort = {
+    //   '1944': '0',
+    //   '1953': '1',
+    //   '1424': '2'
+    // }
+    // data.attr.attributes[1].attr_sort = {
+    //   '1662': '0',
+    //   '1665': '1',
+    //   '1664': '2',
+    //   '1661': '3',
+    //   '1663': '4',
+    //   '1666': '5',
+    //   '1667': '6',
     // }
     console.log(data, 'phpdata');
     $(function() {
@@ -3071,6 +3092,26 @@
       $('#pr-price1').text(discount1)
       $('#pr-price2').text("(" + data.package_products[1].tip1 + ")")
       if (attrList.length > 0) {
+        attrList.forEach(function(item) {
+          let num = 0
+          let sortedObj = sortObjectByValue(item.attr_sort);
+          let keysIterator = sortedObj.keys();
+          let keysList = Array.from(keysIterator);
+          console.log(sortedObj, 'sortedObj====');
+          // let keysList = Object.keys(sortedObj)
+          console.log(keysList, 'keysList===');
+          keysList.forEach(function(keyItem) {
+            item.options.forEach(function(opItem, index) {
+              if (opItem.id == keyItem) {
+                num++
+                item.options.splice(index, 1)
+                opItem.num = num
+                item.options.push(opItem)
+              }
+            })
+          })
+        })
+
         var selectList = ''
         for (var arri = 0; arri < attrList.length; arri++) {
           var optionList = `<option value="" selected disabled>` + attrList[arri].label + `</option>`
@@ -3324,6 +3365,18 @@
       // })
 
     })
+
+    function sortObjectByValue(obj) {
+      let entries = Object.entries(obj);
+      entries.sort((a, b) => a[1] - b[1]);
+      // let sortedObj = {};
+      let map = new Map();
+      entries.forEach(([key, value]) => {
+        map.set(key, value);
+        // sortedObj[key] = value;
+      });
+      return map;
+    }
 
     function getbillingAddress() {
       var billingText = ''
@@ -4095,6 +4148,18 @@
         return !updateNext.includes(element)
       })
       console.log(noInArray, 'noInArray');
+      // noInArray.forEach(function(item) {
+      //   item.num = parseInt(item.num, 10);
+      // })
+      // updateNext.forEach(function(item) {
+      //   item.num = parseInt(item.num, 10);
+      // })
+      noInArray.sort(function(a, b) {
+        return a.num - b.num
+      })
+      updateNext.sort(function(a, b) {
+        return a.num - b.num
+      })
       let nextOption = `<option value="" selected disabled>` + data.attr.attributes[1].label + `</option>`
       for (let i = 0; i < updateNext.length; i++) {
         nextOption += `<option onchange="seInput(value)" value="` + updateNext[i].label + `">` + updateNext[i].label + `</option>`
@@ -4513,7 +4578,7 @@
             });
           } else {
             $('#loading').hide();
-            alert(data.error)
+            alert(res.error)
           }
         })
         .catch(function(err) {
@@ -4599,7 +4664,7 @@
             });
           } else {
             $('#loading').hide();
-            alert(data.error)
+            alert(res.error)
           }
         })
         .catch(function(err) {
@@ -5752,7 +5817,7 @@
             console.log('else====');
             $('#loading').hide();
             var pay_error = data.error;
-
+            alert(res.error)
             if (pay_error && pay_error.length) {
               $('#checkout-error').html(pay_error.join('<br />') + '<br /><br />');
               $('#checkout-error').show();
