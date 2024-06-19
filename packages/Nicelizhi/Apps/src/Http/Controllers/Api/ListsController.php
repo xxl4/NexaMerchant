@@ -8,29 +8,13 @@ class ListsController extends Controller
 {
     
     public function plugins() {
-        return response()->json([
-            'data' => [
-                'plugins' => [
-                    [
-                        'name' => 'Plugin 1',
-                        'description' => 'This is plugin 1',
-                    ],
-                    [
-                        'name' => 'Plugin 2',
-                        'description' => 'This is plugin 2',
-                    ],
-                    [
-                        'name' => 'Plugin 3',
-                        'description' => 'This is plugin 3',
-                    ],
-                ]
-            ]
-        ]);
+        
     }
 
-    public function apps() {
+    public function apps(Request $request) {
         $items = \Nicelizhi\Apps\Models\App::where("status","enable")->get();
         $total = $items->count();
+        new \Illuminate\Encryption\Encrypter(config('apps.sync_key'), config('apps.cipher'));
         return response()->json([
             'data' => [
                 'apps' => $items,

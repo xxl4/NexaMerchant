@@ -26,6 +26,8 @@ class AppsServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__.'/../Config/apps.php' => config_path('apps.php'),
         ]);
+
+        $this->app->register(EventServiceProvider::class);
     }
 
     /**
