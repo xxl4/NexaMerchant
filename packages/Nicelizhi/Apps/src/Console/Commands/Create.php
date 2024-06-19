@@ -10,6 +10,7 @@ class Create extends CommandInterface
     protected $description = 'Create a new app';
 
     protected $AppName = null;
+    protected $AppNameLower = null;
 
     protected $dirList = [
         'src',
@@ -88,6 +89,7 @@ class Create extends CommandInterface
         }
 
         $this->AppName = $name;
+        $this->AppNameLower = strtolower($name);
 
         if (!is_dir($dir)) {
             mkdir($dir, 0777, true);
@@ -208,6 +210,7 @@ class Create extends CommandInterface
         }
 
         $content = str_replace('{{NAME}}', $this->AppName, $content);
+        $content = str_replace('{{name}}', $this->AppNameLower, $content);
 
 
 
