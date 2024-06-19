@@ -13,6 +13,7 @@ class AppsServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->loadRoutesFrom(__DIR__.'/../Routes/web.php');
+        $this->loadRoutesFrom(__DIR__.'/../Routes/api.php');
         $this->loadViewsFrom(__DIR__.'/../Resources/views', 'apps');
         $this->loadMigrationsFrom(__DIR__.'/../Database/Migrations');
         $this->loadTranslationsFrom(__DIR__.'/../Resources/lang', 'apps');
@@ -51,6 +52,8 @@ class AppsServiceProvider extends ServiceProvider
             \Nicelizhi\Apps\Console\Commands\Install::class,
             \Nicelizhi\Apps\Console\Commands\UnInstall::class,
             \Nicelizhi\Apps\Console\Commands\Create::class,
+            \Nicelizhi\Apps\Console\Commands\Lists::class,
+            \Nicelizhi\Apps\Console\Commands\Search::class,
         ]);
     }
 }

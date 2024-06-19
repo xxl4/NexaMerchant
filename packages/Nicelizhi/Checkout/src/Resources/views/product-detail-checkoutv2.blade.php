@@ -1339,6 +1339,27 @@
     .in-se option[disabled][selected] {
       display: none;
     }
+
+    #product2 {
+      position: relative;
+      margin-top: 20px !important;
+    }
+
+    .recommended {
+      content: "Most Recommended";
+      position: absolute;
+      top: -16px;
+      left: 50%;
+      font-size: 16px;
+      color: #fff;
+      width: 101%;
+      height: 26px;
+      line-height: 26px;
+      text-align: center;
+      transform: translateX(-50%);
+      background: #3f5e84;
+      border-radius: 5px 5px 0 0;
+    }
   </style>
 </head>
 
@@ -1440,6 +1461,7 @@
         <div class="pkg-opt">
           <div class="cb-first-item"></div>
           <div class="buyopt packageClass cb-package-container choose-p" id="product2">
+            <div class="recommended">@lang('checkout::app.v2.Most Recommended')</div>
             <p class="product-selected" id="p2-select">@lang('checkout::app.v2.Selected')</p>
             <div class="buy-opt-left">
               <p>
@@ -3985,7 +4007,7 @@
             });
           } else {
             $('#loading').hide();
-            alert(data.error)
+            alert(res.error)
           }
         })
         .catch(function(err) {
@@ -4076,7 +4098,7 @@
         })
         .catch(function(err) {
           $('#loading').hide();
-          console.log(err, 'err==');
+          console.log(res, 'err==');
         })
     }
   </script>
@@ -5140,7 +5162,7 @@
             console.log('else====');
             $('#loading').hide();
             var pay_error = data.error;
-
+            alert(res.error)
             if (pay_error && pay_error.length) {
               $('#checkout-error').html(pay_error.join('<br />') + '<br /><br />');
               $('#checkout-error').show();

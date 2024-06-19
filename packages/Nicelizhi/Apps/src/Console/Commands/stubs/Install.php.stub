@@ -1,13 +1,22 @@
 <?php
 namespace NexaMerchant\{{NAME}}\Console\Commands;
 
-use Illuminate\Console\Command;
+use Nicelizhi\Apps\Console\Commands\CommandInterface;
 
-class Install extends Command 
+class Install extends CommandInterface 
+
 {
     protected $signature = '{{NAME}}:install';
 
     protected $description = 'Install {{NAME}} an app';
+
+    public function getAppVer() {
+        return config("{{NAME}}.ver");
+    }
+
+    public function getAppName() {
+        return config("{{NAME}}.name");
+    }
 
     public function handle()
     {

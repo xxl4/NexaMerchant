@@ -78,7 +78,8 @@ return [
     'Express checkout' => 'Paiement express',
     'edit' => 'modifier',
     'complete_secure_purchase' => 'Payez maintenant',
-    'Selected' => 'Choisi'
+    'Selected' => 'Choisi',
+    'Most Recommended' => 'Le plus recommandé'
   ],
   'v3' => [
     '30-Day Return' => '30 jours de retour',
