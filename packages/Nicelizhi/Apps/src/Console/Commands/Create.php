@@ -55,7 +55,7 @@ class Create extends CommandInterface
         'src/Routes/admin.php',
         'tests',
         'docs',
-        'REAME.md',
+        'README.md',
         'composer.json'
     ];
 
@@ -143,7 +143,7 @@ class Create extends CommandInterface
             case 'composer.json':
                 $content = file_get_contents(__DIR__.'/stubs/composer.json.stub');
             break;
-            case 'REAME.md':
+            case 'README.md':
                 $content = file_get_contents(__DIR__.'/stubs/README.md.stub');
             break;
             case 'src/Console/Commands/Install.php':
