@@ -78,7 +78,8 @@ return [
     'Express checkout' => 'Express-Kaufabwicklung',
     'edit' => 'bearbeiten',
     'complete_secure_purchase' => 'Zahlen Sie jetzt',
-    'Selected' => 'Ausgewählt'
+    'Selected' => 'Ausgewählt',
+    'Most Recommended' => 'Most Recommended'
   ],
   'v3' => [
     '30-Day Return' => '30 Tage Rückgaberecht',

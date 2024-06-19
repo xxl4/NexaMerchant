@@ -59,7 +59,8 @@ return [
     'Express checkout' => 'chequeo rápido',
     'edit' => 'editar',
     'complete_secure_purchase' => 'Pagar ahora',
-    'Selected' => 'Seleccionado'
+    'Selected' => 'Seleccionado',
+    'Most Recommended' => 'Más recomendado'
   ],
   'v3' => [
     '30-Day Return' => '30 días de devolución',
