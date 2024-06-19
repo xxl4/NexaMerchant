@@ -68,8 +68,6 @@ class Lists extends CommandInterface
         //     $this->info("App Require Laravel: ".$app->require_laravel);
         //     $this->info("App Require MySQL: ".$app->require_mysql);
         // }
-
-
-        
+      
     }
 }
