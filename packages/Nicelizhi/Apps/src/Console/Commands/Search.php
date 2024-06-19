@@ -1,12 +1,11 @@
 <?php
 namespace Nicelizhi\Apps\Console\Commands;
 
-
-class UnInstall extends CommandInterface
+class Search extends CommandInterface 
 {
-    protected $signature = 'apps:uninstall {name}';
+    protected $signature = 'apps:search {name}';
 
-    protected $description = 'Uninstall an app';
+    protected $description = 'list an app';
 
     public function getAppVer() {
         return config("apps.ver");
@@ -19,18 +18,19 @@ class UnInstall extends CommandInterface
     public function handle()
     {
         $name = $this->argument('name');
-
         if(empty($name)) {
             $this->error("App name is required!");
             return false;
         }
-
-        $this->info("Uninstall app: $name");
+        $this->info("Install app: $name");
 
         if (!$this->confirm('Do you wish to continue?')) {
             // ...
-            $this->error("App $name Uninstall cannelled!");
+            $this->error("App $name Install cannelled!");
             return false;
         }
+        
+        $dir = $this->getBaseDir($name);
+        $this->info($dir);
     }
 }

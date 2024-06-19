@@ -1,10 +1,9 @@
 <?php
 namespace Nicelizhi\Apps\Console\Commands;
 
-use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Storage;
 
-class Create extends Command 
+class Create extends CommandInterface
 {
     protected $signature = 'apps:create';
 
@@ -14,7 +13,6 @@ class Create extends Command
 
     protected $dirList = [
         'src',
-        'src/Controllers',
         'src/Config',
         'src/Config/menu.php',
         'src/Config/acl.php',
@@ -60,19 +58,22 @@ class Create extends Command
         'composer.json'
     ];
 
+    public function getAppVer() {
+        return config("apps.ver");
+    }
+
+    public function getAppName() {
+        return config("apps.name");
+    } 
+
     public function handle()
     {
 
-        
-    
         $name = $this->ask('Please Input your Apps Name?');
         $this->info("Creating app: $name");
-        $base_dir = config("apps.base_dir");
-        $name = trim($name);
+        
+        $dir = $this->getBaseDir($name);
 
-        $name = ucfirst($name);
-
-        $dir = base_path().$base_dir.'/'.$name;
 
         if (!$this->confirm('Do you wish to continue?')) {
             // ...
