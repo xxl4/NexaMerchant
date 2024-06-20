@@ -1,8 +1,8 @@
 # Description: Dockerfile for NexaMerchant
 FROM php:8.1.29-apache
 
+
 RUN apt-get update && apt-get install -y \
-    git \
     unzip \
     libzip-dev \
     libicu-dev \
@@ -48,7 +48,7 @@ RUN apt-get update && apt-get install -y \
 
 
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg --with-webp
-RUN docker-php-ext-install pdo_mysql mbstring zip exif pcntl bcmath gd intl opcache calendar
+RUN docker-php-ext-install pdo_mysql mbstring zip exif pcntl bcmath gd intl opcache calendar sodium
 
 
 RUN pecl install redis \

@@ -28,8 +28,6 @@ class HomeController extends Controller
     {
         visitor()->visit();
 
-        return '';
-
         $customizations = $this->themeCustomizationRepository->orderBy('sort_order')->findWhere([
             'status'     => self::STATUS,
             'channel_id' => core()->getCurrentChannel()->id

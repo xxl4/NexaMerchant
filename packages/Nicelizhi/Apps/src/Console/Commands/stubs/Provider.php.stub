@@ -87,7 +87,8 @@ class {{NAME}}ServiceProvider extends ServiceProvider
     {
         if ($this->app->runningInConsole()) {
             $this->commands([
-
+                \NexaMerchant\{{NAME}}\Console\Commands\Install::class,
+                \NexaMerchant\{{NAME}}\Console\Commands\UnInstall::class,
             ]);
         }
     }

@@ -3,11 +3,11 @@
 use Illuminate\Support\Facades\Route;
 use NexaMerchant\{{NAME}}\Http\Controllers\Web\ExampleController;
 
-Route::group(['middleware' => ['locale', 'theme', 'currency'], 'prefix'=>'{{NAME}}'], function () {
+Route::group(['middleware' => ['locale', 'theme', 'currency'], 'prefix'=>'{{name}}'], function () {
 
     Route::controller(ExampleController::class)->prefix('example')->group(function () {
 
-        Route::get('demo', 'demo')->name('{{NAME}}.web.example.demo');
+        Route::get('demo', 'demo')->name('{{name}}.web.example.demo');
 
     });
 
