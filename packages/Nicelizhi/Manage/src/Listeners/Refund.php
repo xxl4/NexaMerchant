@@ -41,6 +41,10 @@ class Refund extends Base
     {
         $order = $refund->order;
 
+        if($refund->is_refund_money == 0) {
+            return;
+        }
+
         if ($order->payment->method === 'paypal_smart_button') {
             /* getting smart button instance */
             $smartButton = new SmartButton;
