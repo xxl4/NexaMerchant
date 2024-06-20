@@ -437,7 +437,7 @@ class Order extends Model implements OrderContract
 
         $dispute = $this->dispute()->first();
         if($dispute) {
-            return false;
+            if($dispute->status !="RESOLVED") return false;
         }
 
         $pendingInvoice = $this->invoices->where('state', 'pending')
