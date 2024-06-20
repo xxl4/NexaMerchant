@@ -249,9 +249,12 @@ return [
 
         // log reader
         Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class,
-
-		//NexaMerchant\Apis\Providers\ApisServiceProvider::class, 
+		
 		//APPS
+
+
+
+
 
 
 
