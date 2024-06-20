@@ -90,13 +90,13 @@ class Remove extends CommandInterface
             return false;
         }
 
-        $this->AppName = $name;
+        $this->AppName = $this->ucfirstAppName($name); //source name
         $this->AppNameLower = strtolower($name);
 
         if (is_dir($dir)) {
             //mkdir($dir, 0777, true);
             //rmdir($dir); // delete the directory
-            $this->deleteDirectory($dir);
+            ////$this->deleteDirectory($dir);
             //$this->info("App $name created successfully");
         } else {
             $this->error("App $name don't exists");
@@ -109,8 +109,11 @@ class Remove extends CommandInterface
         // add data to composer json
         $composer_josn = file_get_contents("composer.json");
         $composer_object = json_decode($composer_josn, true);
-        
-        unset($composer_object['autoload']['psr-4']["NexaMerchant\\$name\\"]); //delete the data
+        //var_dump($composer_josn);
+        unset($composer_object['autoload']['psr-4']["NexaMerchant\\".$this->AppName."\\"]); //delete the data
+        //var_dump($composer_object['autoload']['psr-4']);
+        //var_dump($composer_object['autoload']['psr-4']["NexaMerchant\\".$this->AppName."\\"]);
+        //var_dump($composer_josn);exit;
         $composer_josn = json_encode($composer_object, JSON_PRETTY_PRINT);
        
         file_put_contents("composer.json", $composer_josn);
@@ -118,7 +121,9 @@ class Remove extends CommandInterface
         // add data to config/app.php providers
         $app_file = file_get_contents("config/app.php");
         //var_dump($app_file);
-        $app_file = str_replace("NexaMerchant\\".$name."\\Providers\\".$name."ServiceProvider::class, \n", "", $app_file);
+        $app_file = str_replace("NexaMerchant\\".$this->AppName."\\Providers\\".$this->AppName."ServiceProvider::class,", "", $app_file);
+        //var_dump("NexaMerchant\\".$this->AppName."\\Providers\\".$this->AppName."ServiceProvider::class, \n");
+        //var_dump($app_file);exit;
 
     
         file_put_contents("config/app.php", $app_file);
