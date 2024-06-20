@@ -80,7 +80,7 @@ return [
     'edit' => 'Edit',
     'complete_secure_purchase' => 'Pay Now',
     'Selected' => 'Selected',
-    'Most Recommended' => 'Am meisten empfohlen'
+    'Most Recommended' => 'Most Recommended'
   ],
   'v3' => [
     '30-Day Return' => '30-Day Return',
