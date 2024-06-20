@@ -26,6 +26,8 @@ class AppsServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__.'/../Config/apps.php' => config_path('apps.php'),
         ]);
+
+        $this->app->register(EventServiceProvider::class);
     }
 
     /**
@@ -52,6 +54,7 @@ class AppsServiceProvider extends ServiceProvider
             \Nicelizhi\Apps\Console\Commands\Install::class,
             \Nicelizhi\Apps\Console\Commands\UnInstall::class,
             \Nicelizhi\Apps\Console\Commands\Create::class,
+            \Nicelizhi\Apps\Console\Commands\Remove::class,
             \Nicelizhi\Apps\Console\Commands\Lists::class,
             \Nicelizhi\Apps\Console\Commands\Search::class,
         ]);

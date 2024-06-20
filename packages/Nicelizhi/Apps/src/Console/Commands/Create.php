@@ -10,6 +10,7 @@ class Create extends CommandInterface
     protected $description = 'Create a new app';
 
     protected $AppName = null;
+    protected $AppNameLower = null;
 
     protected $dirList = [
         'src',
@@ -54,7 +55,7 @@ class Create extends CommandInterface
         'src/Routes/admin.php',
         'tests',
         'docs',
-        'REAME.md',
+        'README.md',
         'composer.json'
     ];
 
@@ -88,6 +89,7 @@ class Create extends CommandInterface
         }
 
         $this->AppName = $name;
+        $this->AppNameLower = strtolower($name);
 
         if (!is_dir($dir)) {
             mkdir($dir, 0777, true);
@@ -113,13 +115,13 @@ class Create extends CommandInterface
         // add data to composer json
         $composer_josn = file_get_contents("composer.json");
         $composer_object = json_decode($composer_josn, true);
-        $composer_object['autoload']['psr-4']["NexaMerchant\\$name\\"] = "packages/Apps/".$name."/src";
+        $composer_object['autoload']['psr-4']["NexaMerchant\\$this->AppName\\"] = "packages/Apps/".$this->AppName."/src";
         $composer_josn = json_encode($composer_object, JSON_PRETTY_PRINT);
         file_put_contents("composer.json", $composer_josn);
         
         // add data to config/app.php providers
         $app_file = file_get_contents("config/app.php");
-        $app_file = str_replace("//APPS", "NexaMerchant\\".$name."\\Providers\\".$name."ServiceProvider::class, \n\t\t//APPS\n", $app_file);
+        $app_file = str_replace("//APPS", "NexaMerchant\\".$this->AppName."\\Providers\\".$this->AppName."ServiceProvider::class, \n\t\t//APPS\n", $app_file);
         file_put_contents("config/app.php", $app_file);
 
         // composer dump autoload
@@ -141,7 +143,7 @@ class Create extends CommandInterface
             case 'composer.json':
                 $content = file_get_contents(__DIR__.'/stubs/composer.json.stub');
             break;
-            case 'REAME.md':
+            case 'README.md':
                 $content = file_get_contents(__DIR__.'/stubs/README.md.stub');
             break;
             case 'src/Console/Commands/Install.php':
@@ -208,6 +210,7 @@ class Create extends CommandInterface
         }
 
         $content = str_replace('{{NAME}}', $this->AppName, $content);
+        $content = str_replace('{{name}}', $this->AppNameLower, $content);
 
 
 

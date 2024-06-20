@@ -4,11 +4,11 @@ use Illuminate\Support\Facades\Route;
 use NexaMerchant\{{NAME}}\Http\Controllers\Admin\ExampleController;
 
 Route::group(['middleware' => ['admin','admin_option_log'], 'prefix' => config('app.admin_url')], function () {
-    Route::prefix('{{NAME}}')->group(function () {
+    Route::prefix('{{name}}')->group(function () {
 
         Route::controller(ExampleController::class)->prefix('example')->group(function () {
 
-            Route::get('demo', 'demo')->name('{{NAME}}.admin.example.demo');
+            Route::get('demo', 'demo')->name('{{name}}.admin.example.demo');
 
         });
 

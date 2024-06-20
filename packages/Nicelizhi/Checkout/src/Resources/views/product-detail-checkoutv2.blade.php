@@ -4012,7 +4012,7 @@
             });
           } else {
             $('#loading').hide();
-            alert(res.error)
+            alert(data.error)
           }
         })
         .catch(function(err) {
@@ -4103,7 +4103,7 @@
         })
         .catch(function(err) {
           $('#loading').hide();
-          console.log(res, 'err==');
+          console.log(err, 'err==');
         })
     }
   </script>
@@ -5167,7 +5167,7 @@
             console.log('else====');
             $('#loading').hide();
             var pay_error = data.error;
-            alert(res.error)
+
             if (pay_error && pay_error.length) {
               $('#checkout-error').html(pay_error.join('<br />') + '<br /><br />');
               $('#checkout-error').show();

@@ -1,5 +1,5 @@
 {
-    "name": "NexaMerchant/{{NAME}}",
+    "name": "nexa-merchant/{{name}}",
     "license": "MIT",
     "description" : "Apps",
     "authors": [

@@ -15,4 +15,10 @@ abstract class CommandInterface extends Command
         $dir = base_path().$base_dir.'/'.$name;
         return $dir;
     }
+
+    public function ucfirstAppName($name) {
+        $name = trim($name);
+        $name = ucfirst($name);
+        return $name;
+    }
 }
