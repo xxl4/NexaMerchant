@@ -3759,7 +3759,12 @@
       for (let i = 0; i < skuData.length; i++) {
         var description = skuData[i].description.slice(2)
         var attributeName = skuData[i].attribute_name.split(',').join(' / ')
+        console.log(skuData[i].img, 'skuData[i].img');
         var skuImgUrl = skuData[i].img
+        if (skuData[i].img == '') {
+          console.log(data.package_products[0].image, 'image2');
+          skuImgUrl = data.package_products[0].image
+        }
         skuList += `<div class="sku-item-info">
                 <img src="` + skuImgUrl + `" alt="" onclick="skuImgPreview(event)" style="width: 64px;height:64px" />
                 <div class="sku-content">
