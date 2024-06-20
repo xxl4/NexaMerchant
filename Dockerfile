@@ -78,7 +78,6 @@ COPY . ./
 
 RUN ls -la
 
-
 RUN a2dissite 000-default.conf
 COPY docker/.configs/apache.conf /etc/apache2/sites-available/vhost.conf
 RUN a2ensite vhost.conf
