@@ -1,0 +1,18 @@
+
+CMD=php
+TEST=./vendor/bin/pest
+# application name
+PROJECT:=NexaMerchant
+# application version
+VERSION := 2.0.0
+# application url
+URL := https://github.com/xxl4/NexaMerchant
+
+.PHONY: build
+
+build:
+	docker build -t $(PROJECT):$(VERSION) .
+
+# build go application
+build-docker:
+	docker build -t $(PROJECT):$(VERSION) .
