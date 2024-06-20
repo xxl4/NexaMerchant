@@ -54,6 +54,10 @@ RUN apt-get install -y --no-install-recommends libsodium-dev
 RUN docker-php-ext-enable sodium || echo "Sodium extension not found"
 RUN php -m | grep sodium || echo "Sodium extension is not enabled"
 
+RUN apt-get install -y --no-install-recommends libsodium-dev
+RUN docker-php-ext-enable sodium || echo "Sodium extension not found"
+RUN php -m | grep sodium || echo "Sodium extension is not enabled"
+
 
 RUN pecl install redis \
     && docker-php-ext-enable redis
