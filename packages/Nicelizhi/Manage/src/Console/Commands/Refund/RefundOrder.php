@@ -16,7 +16,7 @@ class RefundOrder extends Command {
      *
      * @var string
      */
-    protected $signature = 'manage:refund:order {--refund_id}';
+    protected $signature = 'manage:refund:order {refund_id}';
 
     protected $refund_id;
 
@@ -41,7 +41,12 @@ class RefundOrder extends Command {
      */
     public function handle()
     {
-        $this->refund_id = $this->option("refund_id");
+        $this->refund_id = $this->argument("refund_id");
+        $this->info("refund id ". $this->refund_id );
         $refund = $this->refundRepository->findOrFail($this->refund_id);
+
+        $refundEvent = new \Nicelizhi\Manage\Listeners\Refund();
+        
+        $refundEvent->refundOrder($refund);
     }
 }
