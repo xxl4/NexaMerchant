@@ -54,8 +54,11 @@ class Create extends CommandInterface
         'src/Routes/api.php',
         'src/Routes/admin.php',
         'tests',
+        'tests/bootstrap.php',
+        'tests/TestCase.php',
         'docs',
         'README.md',
+        'phpunit.xml',
         'composer.json'
     ];
 
@@ -125,12 +128,9 @@ class Create extends CommandInterface
         file_put_contents("config/app.php", $app_file);
 
         // composer dump autoload
-        exec('composer dump-autoload');
+        $result = shell_exec('composer dump-autoload -vvvvv');
 
-
-        
-
-
+        $this->error($result);
 
 
         $this->info("App $name created successfully");
@@ -203,6 +203,15 @@ class Create extends CommandInterface
             break;
             case 'src/Resources/views/Admin/demo.blade.php':
                 $content = file_get_contents(__DIR__.'/stubs/demo.blade.php.stub');
+            break;
+            case 'phpunit.xml':
+                $content = file_get_contents(__DIR__.'/stubs/phpunit.xml.stub');
+            break;
+            case 'tests/bootstrap.php':
+                $content = file_get_contents(__DIR__.'/stubs/bootstrap.php.stub');
+            break;
+            case 'tests/TestCase.php':
+                $content = file_get_contents(__DIR__.'/stubs/TestCase.php.stub');
             break;
 
             default:
