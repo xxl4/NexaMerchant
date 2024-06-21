@@ -90,6 +90,7 @@ class ProductController extends Controller
 
         if(!empty($refer)) { 
             $request->session()->put('refer', $refer);
+            $request->session()->put('refer_'.$slug, $refer);
         }else{
             $refer = $request->session()->get('refer');
         }
