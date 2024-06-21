@@ -54,7 +54,6 @@ RUN docker-php-ext-install pdo_mysql mbstring zip exif pcntl bcmath gd intl opca
 RUN pecl install redis \
     && docker-php-ext-enable redis
 
-
 COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
 
 
