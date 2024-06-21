@@ -6,7 +6,6 @@ use Nicelizhi\Manage\Http\Controllers\Controller;
 use Webkul\Sales\Repositories\OrderRepository;
 use Webkul\Sales\Repositories\OrderItemRepository;
 use Webkul\Sales\Repositories\RefundRepository;
-use Nicelizhi\Manage\DataGrids\Sales\OrderRefundDataGrid;
 use Nicelizhi\Manage\Helpers\SSP;
 use Illuminate\Support\Facades\Log;
 
@@ -103,6 +102,8 @@ class RefundController extends Controller
 
         $data = request()->all();
 
+        Log::info("refund data".json_encode($data));
+
         if (! $data['refund']['shipping']) {
             $data['refund']['shipping'] = 0;
         }
@@ -125,6 +126,8 @@ class RefundController extends Controller
             //$refundAmount = $data['refund']['custom_refund_amount'];
             //$refundAmount2 = $totals['grand_total']['price'] - $totals['shipping']['price'] + $data['refund']['shipping'] + $data['refund']['adjustment_refund'] - $data['refund']['adjustment_fee'];
         }
+
+        $data['refund']['is_refund_money'] = 1;
 
         $refundAmount = $totals['grand_total']['price'] - $totals['shipping']['price'] + $data['refund']['shipping'] + $data['refund']['adjustment_refund'] - $data['refund']['adjustment_fee'];
         
