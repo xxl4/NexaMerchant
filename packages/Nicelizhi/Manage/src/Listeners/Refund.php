@@ -41,6 +41,8 @@ class Refund extends Base
     {
         $order = $refund->order;
 
+        Log::info("refund captureID". json_encode($refund));
+
         if($refund->is_refund_money == "0") {
 
             Artisan::queue("shopify:refund:post", ['--order_id'=>$order->id,'--refund_id'=> $refund->id])->onConnection('redis')->onQueue('shopify-refund'); // add shopify refund queue
