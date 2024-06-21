@@ -50,7 +50,6 @@ class Refund extends Base
             return;
         }
 
-        exit;
 
         if ($order->payment->method === 'paypal_smart_button') {
             /* getting smart button instance */
