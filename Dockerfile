@@ -50,13 +50,6 @@ RUN apt-get update && apt-get install -y \
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg --with-webp
 RUN docker-php-ext-install pdo_mysql mbstring zip exif pcntl bcmath gd intl opcache calendar
 
-RUN apt-get install -y --no-install-recommends libsodium-dev
-RUN docker-php-ext-enable sodium || echo "Sodium extension not found"
-RUN php -m | grep sodium || echo "Sodium extension is not enabled"
-
-RUN apt-get install -y --no-install-recommends libsodium-dev
-RUN docker-php-ext-enable sodium || echo "Sodium extension not found"
-RUN php -m | grep sodium || echo "Sodium extension is not enabled"
 
 
 RUN pecl install redis \
