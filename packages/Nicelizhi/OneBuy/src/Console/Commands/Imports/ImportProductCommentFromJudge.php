@@ -98,7 +98,7 @@ class ImportProductCommentFromJudge extends Command
 
         for($i=1; $i<=$pages; $i++) {
             $this->info($i." page start ");
-            echo $this->prod_id.$i."\r\n";
+            echo $this->prod_id.'--'.$i."\r\n";
             $this->GetFromComments($i, $client);
             //exit;
         }
