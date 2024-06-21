@@ -54,6 +54,7 @@ class SmartButtonWebhookController extends Controller
 
         if($dispute->status=='RESOLVED' && !empty($order_id)) {
             // create a refund
+            //check the order can refund
             
 
 
