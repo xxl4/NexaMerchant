@@ -50,15 +50,16 @@ class SmartButtonWebhookController extends Controller
         }
 
         $dispute->order_id = $order_id;
-
-        //var_dump($dispute);exit;
-
         $dispute->save();
 
-        //var_dump($dispute);
+        if($dispute->status=='RESOLVED' && !empty($order_id)) {
+            // create a refund
+            
 
 
 
-        //Log::info("dispute--".json_encode($data));
+        }
+
+        
     }
 }
