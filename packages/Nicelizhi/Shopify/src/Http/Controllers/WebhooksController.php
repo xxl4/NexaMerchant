@@ -269,17 +269,12 @@ class WebhooksController extends Controller
 
         $products = $order->items;
 
-        //var_dump($products);
 
         $line_items = [];
 
         foreach($products as $key=>$product) {
             $sku = $product['additional'];
-
-            //var_dump($sku);
-
             $skuInfo = explode('-', $sku['product_sku']);
-            //var_dump($skuInfo);
             if(!isset($skuInfo[1])) {
                 $this->error("have error");
                 return false;
@@ -299,16 +294,13 @@ class WebhooksController extends Controller
 
         //var_dump($line_items);exit;
 
-        // 获取已经发货的数据内容
+        
         $shipment_items = [];
         foreach($req['line_items'] as $key=>$line_item) {
-            //var_dump($line_item['variant_id'],$line_item['quantity'], $line_items[$line_item['variant_id']]);
             if(isset($line_items[$line_item['variant_id']])) {
                 if($line_items[$line_item['variant_id']]['quantity']==$line_item['quantity']) {
                     $shipment_item = [];
                     $shipment_items[$line_items[$line_item['variant_id']]['order_item_id']][1] = $line_item['quantity'];
-                    //array_push($shipment_items, $shipment_item);
-                    //$shipment_items[] = $shipment_item;
                 }
             }
         }
@@ -316,21 +308,15 @@ class WebhooksController extends Controller
         //var_dump($shipment_items);exit;
 
         $shipment['items'] = $shipment_items;
-        //var_dump($line_items, $shipment_items, $shipment);
 
         $data = [];
-        //$data['shipment']
         $data['shipment'] = $shipment;
 
-        //var_dump($data);exit;
 
         $response = $this->shipmentRepository->create(array_merge($data, [
             'order_id' => $shopifyNewOrder->order_id,
         ]));
         
-        
-        
-
     }
 
     public function fulfillments_update(Request $request) {
