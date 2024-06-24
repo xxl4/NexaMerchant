@@ -3011,6 +3011,7 @@
       reviewsToggle = true,
       countryOptions = '',
       countriesList = '',
+      swiperImgList = [],
       phppackage_products = <?php echo json_encode($data['package_products']); ?>,
 
       phpads = '<?php echo json_encode($data['ads']); ?>',
@@ -4204,6 +4205,39 @@
       }
     }
 
+    function swiperTo(value) {
+      let swiperToId = ''
+      let variantId = ''
+      data.attr.attributes.forEach(function(item) {
+        if (item.id == "23") {
+          item.options.forEach(function(opItem) {
+            if (opItem.label == value) {
+              swiperToId = opItem.products[0]
+            }
+          })
+
+        }
+      })
+      for (const key in data.attr.index) {
+        if (Object.hasOwnProperty.call(data.attr.index, key)) {
+          if (key == swiperToId) {
+            variantId = data.attr.index[key].sku.split('-')[1]
+          }
+        }
+      }
+      if (swiperImgList.length > 0) {
+        swiperImgList.forEach(function(item, index) {
+          if (item.variant_ids.includes(variantId)) {
+            console.log(item, 'swiperto========');
+            galleryThumbs.slideTo(index)
+            mySwiper.slideTo(index)
+          }
+        })
+      }
+
+      console.log(swiperToId, 'swiperToId', '===variantId===', variantId);
+    }
+
     function seInput(value) {
       if (value == null) {
         value = ''
@@ -4223,6 +4257,9 @@
       }
       if (parId == 'select4-item4') {
         getSku(itemId, 3, value)
+      }
+      if (itemId == 'in-se0') {
+        swiperTo(value)
       }
       if (itemId == 'in-se0' && data.attr.attributes.length == 2) {
         let returnParams = getNextOptions(value)
@@ -5215,6 +5252,7 @@
           if (res.data.code !== 200) {
             return
           }
+          swiperImgList = res.data.data.images
           var img = res.data.data.images
           var imgListLength = img.length
           var imglen = Math.floor(imgListLength / 3)
@@ -5252,6 +5290,14 @@
             `</div>
 				</div>`
           $('.sw-box').append(gallery, thumbs)
+          var galleryThumbs = new Swiper(
+            '#thumbs', {
+              slidesPerView: 5,
+              spaceBetween: 5,
+              watchSlidesVisibility: true,
+              loop: true,
+            }
+          )
 
           var mySwiper = new Swiper('#gallery', {
             direction: 'horizontal',
@@ -5263,13 +5309,7 @@
             //prevEl: '.swiper-button-prev',
             //},
             thumbs: {
-              swiper: {
-                el: '#thumbs',
-                slidesPerView: 5,
-                spaceBetween: 5,
-                watchSlidesVisibility: true,
-                loop: true,
-              },
+              swiper: galleryThumbs,
               allowTouchMove: true,
               slideThumbActiveClass: 'my-slide-thumb-active',
             },
