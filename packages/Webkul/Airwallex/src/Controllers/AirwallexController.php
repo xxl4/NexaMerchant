@@ -7,7 +7,7 @@ use Nicelizhi\Airwallex\Payment\Airwallex;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Log;
-
+use Webkul\Sales\Repositories\RefundRepository;
 use Webkul\Sales\Repositories\InvoiceRepository;
 use Webkul\Sales\Repositories\OrderRepository;
 use Webkul\Sales\Repositories\OrderTransactionRepository;
@@ -55,6 +55,7 @@ class AirwallexController extends Controller
         protected OrderRepository $orderRepository,
         protected OrderTransactionRepository $orderTransactionRepository,
         protected WebHook $webhookhelp,
+        protected RefundRepository $refundRepository,
         protected Airwallex $airwallex
     ) {
     }
@@ -230,7 +231,7 @@ class AirwallexController extends Controller
                 $webhookhelp->payment_dispute_requires_response();
                 break;
             case 'payment_dispute.accepted': // You have accepted the Pre-chargeback / chargeback / Pre-arbitration request
-                $webhookhelp->payment_dispute_accepted();
+                $webhookhelp->payment_dispute_accepted($this->orderRepository, $this->refundRepository);
                 break;
             case 'payment_dispute.reversed': // Issuing bank has reversed the dispute event, you do not have to respond to the dispute event anymore.
                 $webhookhelp->payment_dispute_reversed();
