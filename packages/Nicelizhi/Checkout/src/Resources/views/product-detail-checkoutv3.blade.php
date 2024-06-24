@@ -3012,6 +3012,8 @@
       countryOptions = '',
       countriesList = '',
       swiperImgList = [],
+      galleryThumbs,
+      mySwiper,
       phppackage_products = <?php echo json_encode($data['package_products']); ?>,
 
       phpads = '<?php echo json_encode($data['ads']); ?>',
@@ -4227,7 +4229,7 @@
       }
       if (swiperImgList.length > 0) {
         swiperImgList.forEach(function(item, index) {
-          if (item.variant_ids.includes(variantId)) {
+          if (item.variant_ids.includes(Number(variantId))) {
             console.log(item, 'swiperto========');
             galleryThumbs.slideTo(index)
             mySwiper.slideTo(index)
@@ -5290,7 +5292,7 @@
             `</div>
 				</div>`
           $('.sw-box').append(gallery, thumbs)
-          var galleryThumbs = new Swiper(
+          galleryThumbs = new Swiper(
             '#thumbs', {
               slidesPerView: 5,
               spaceBetween: 5,
@@ -5299,7 +5301,7 @@
             }
           )
 
-          var mySwiper = new Swiper('#gallery', {
+          mySwiper = new Swiper('#gallery', {
             direction: 'horizontal',
             loop: true,
             autoplay: true,
