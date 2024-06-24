@@ -129,6 +129,7 @@ class WebHook {
         $dispute->save();
 
         $order = $orderRepository->findOrFail($merchant_order_id);
+
         if (! $order->canRefund()) {
 
             return false;
@@ -164,9 +165,9 @@ class WebHook {
        $refud['refund']['is_refund_money'] = 0;
        $refud['refund']['adjustment_refund'] = 0;
        $refud['refund']['adjustment_fee'] = 0;
-       $refud['refund']['custom_refund_amount'] = $data['resource']['refund_details']['allowed_refund_amount']['value'];
+       $refud['refund']['custom_refund_amount'] = $this->data['data']['object']['amount'];
 
-       $refud['refund']['comment'] = $data['resource']['reason'];
+       $refud['refund']['comment'] = $this->data['data']['object']['reason']['type'];
 
        if(!empty($refud['refund']['custom_refund_amount'])) {
            $refundAmount = $totals['grand_total']['price'] - $totals['shipping']['price'] + $refud['refund']['shipping'] + $refud['refund']['adjustment_refund'] - $refud['refund']['adjustment_fee'];
