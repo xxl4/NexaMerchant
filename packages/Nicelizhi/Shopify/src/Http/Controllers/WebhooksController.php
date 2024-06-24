@@ -252,7 +252,6 @@ class WebhooksController extends Controller
             return false;
         }
 
-
         $order = $this->orderRepository->findOrFail($shopifyNewOrder->order_id);
 
         if (!$order->canShip()) {
