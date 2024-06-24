@@ -4205,7 +4205,7 @@
       }
     }
 
-    function swiperTo() {
+    function swiperTo(value) {
       let swiperToId = ''
       let variantId = ''
       data.attr.attributes.forEach(function(item) {
@@ -4228,6 +4228,7 @@
       if (swiperImgList.length > 0) {
         swiperImgList.forEach(function(item, index) {
           if (item.variant_ids.includes(variantId)) {
+            console.log(item, 'swiperto========');
             galleryThumbs.slideTo(index)
             mySwiper.slideTo(index)
           }
@@ -4258,7 +4259,7 @@
         getSku(itemId, 3, value)
       }
       if (itemId == 'in-se0') {
-        swiperTo()
+        swiperTo(value)
       }
       if (itemId == 'in-se0' && data.attr.attributes.length == 2) {
         let returnParams = getNextOptions(value)
