@@ -59,6 +59,8 @@ class SmartButtonWebhookController extends Controller
         $dispute->save();
 
         if($dispute->status=='RESOLVED' && !empty($order_id)) {
+
+            if($data['resource']['dispute_outcome']['outcome_code']!='RESOLVED_BUYER_FAVOUR') return false; 
             // create a refund
             //check the order can refund
             $order = $this->orderRepository->findOrFail($order_id);
