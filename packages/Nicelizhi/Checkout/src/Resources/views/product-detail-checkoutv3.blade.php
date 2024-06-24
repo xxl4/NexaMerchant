@@ -4227,7 +4227,7 @@
       }
       if (swiperImgList.length > 0) {
         swiperImgList.forEach(function(item, index) {
-          if (item.variant_ids.includes(variantId)) {
+          if (item.variant_ids.includes(Number(variantId))) {
             console.log(item, 'swiperto========');
             galleryThumbs.slideTo(index)
             mySwiper.slideTo(index)
