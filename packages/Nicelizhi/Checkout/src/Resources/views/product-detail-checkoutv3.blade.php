@@ -3012,6 +3012,8 @@
       countryOptions = '',
       countriesList = '',
       swiperImgList = [],
+      galleryThumbs,
+      mySwiper,
       phppackage_products = <?php echo json_encode($data['package_products']); ?>,
 
       phpads = '<?php echo json_encode($data['ads']); ?>',
@@ -5290,7 +5292,7 @@
             `</div>
 				</div>`
           $('.sw-box').append(gallery, thumbs)
-          var galleryThumbs = new Swiper(
+          galleryThumbs = new Swiper(
             '#thumbs', {
               slidesPerView: 5,
               spaceBetween: 5,
@@ -5299,7 +5301,7 @@
             }
           )
 
-          var mySwiper = new Swiper('#gallery', {
+          mySwiper = new Swiper('#gallery', {
             direction: 'horizontal',
             loop: true,
             autoplay: true,
