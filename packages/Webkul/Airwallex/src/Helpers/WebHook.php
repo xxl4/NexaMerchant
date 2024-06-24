@@ -128,7 +128,7 @@ class WebHook {
         $dispute->json = json_encode($this->data);
         $dispute->save();
 
-        $order = $orderRepository->findOrFail($order_id);
+        $order = $orderRepository->findOrFail($merchant_order_id);
         if (! $order->canRefund()) {
 
             return false;
@@ -156,7 +156,7 @@ class WebHook {
 
        $refud['refund']['items'] =  $refundData;
 
-       $totals = $refundRepository->getOrderItemsRefundSummary($refud['refund']['items'], $order_id);
+       $totals = $refundRepository->getOrderItemsRefundSummary($refud['refund']['items'], $merchant_order_id);
 
        //var_dump($totals);exit;
 
@@ -173,7 +173,7 @@ class WebHook {
            $refud['refund']['adjustment_fee'] = abs($refud['refund']['custom_refund_amount'] - $refundAmount);
        }
 
-       $refundRepository->create(array_merge($refud, ['order_id' => $order_id]));
+       $refundRepository->create(array_merge($refud, ['order_id' => $merchant_order_id]));
         
     }
 
