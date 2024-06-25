@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Cache;
 use Nicelizhi\Shopify\Models\ShopifyOrder;
 use Nicelizhi\Shopify\Models\ShopifyStore;
 use Webkul\Sales\Models\Order;
+use Webkul\Sales\Models\Shipment;
 use Illuminate\Http\Client\RequestException;
 use GuzzleHttp\Exception\ClientException;
 
@@ -32,6 +33,10 @@ class Create extends Command
     private $shopify_store_id = null;
     private $lang = null;
     private $data = null;
+    private $Order = null;
+    private $ShopifyOrder = null;
+    private $ShopifyStore = null;
+    private $shipment = null;
 
     //protected ShopifyOrder $ShopifyOrder,
     //protected ShopifyStore $ShopifyStore,
@@ -48,6 +53,7 @@ class Create extends Command
         $this->ShopifyOrder = new ShopifyOrder();
         $this->ShopifyStore = new ShopifyStore();
         $this->Order = new Order();
+        $this->shipment = new Shipment();
 
         $this->shopify_store_id = config('shopify.shopify_store_id');
         
@@ -76,8 +82,8 @@ class Create extends Command
             return false;
         }
 
-        $order_id = $this->option("order_id");
-        $data = $this->options("data");
+        $shopify_order_id = $this->option("order_id");
+        $req = $this->options("data");
 
         $shopifyNewOrder = $this->ShopifyOrder->where([
             'shopify_store_id' => $this->shopify_store_id,
@@ -89,7 +95,7 @@ class Create extends Command
             return false;
         }
 
-        $order = $this->orderRepository->findOrFail($shopifyNewOrder->order_id);
+        $order = $this->Order->findOrFail($shopifyNewOrder->order_id);
 
         if (!$order->canShip()) {
             Log::error("fulfillments_create cannot ship ".$shopify_order_id);
@@ -149,7 +155,7 @@ class Create extends Command
         $data['shipment'] = $shipment;
 
 
-        $response = $this->shipmentRepository->create(array_merge($data, [
+        $response = $this->shipment->create(array_merge($data, [
             'order_id' => $shopifyNewOrder->order_id,
         ]));
 
