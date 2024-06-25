@@ -83,7 +83,6 @@ class Get extends Command
 
         var_dump($response);
 
-        var_dump($accesstoken);exit;
 
 
         // https://developer.paypal.com/docs/api/webhooks/v1/#webhooks_post
