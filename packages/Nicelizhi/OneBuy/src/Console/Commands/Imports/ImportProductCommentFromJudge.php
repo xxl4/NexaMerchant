@@ -91,14 +91,14 @@ class ImportProductCommentFromJudge extends Command
         // //var_dump($body['count']);exit;
 
         // $count = $body['count'];
-        $count = 1000;
+        $count = 300;
         $pages = ceil($count / $this->num);
 
         $client = new Client();
 
         for($i=1; $i<=$pages; $i++) {
             $this->info($i." page start ");
-            echo $i."\r\n";
+            echo $this->prod_id.'--'.$i."\r\n";
             $this->GetFromComments($i, $client);
             //exit;
         }
