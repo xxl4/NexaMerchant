@@ -76,7 +76,7 @@ RUN a2ensite vhost.conf
 
 
 # COPY composer.json composer.json
-RUN composer install --no-interaction --prefer-dist --optimize-autoloader
+RUN composer update --no-interaction --prefer-dist --optimize-autoloader
 
 
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
