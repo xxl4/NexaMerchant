@@ -56,8 +56,12 @@ class ApiController extends Controller
      */
 
     public function ShopifyImages($product_id) {
-
-        $shopifyProductImages = \Nicelizhi\Shopify\Models\ShopifyProduct::where("product_id", $product_id)->select(['images'])->first();
+        $shopifyProductImages = Cache::get("shopify_images_".$product_id);
+        if(empty($shopifyProductImages)) {
+            $shopifyProductImages = \Nicelizhi\Shopify\Models\ShopifyProduct::where("product_id", $product_id)->select(['images'])->first();
+            Cache::set("shopify_images_".$product_id, $shopifyProductImages);
+        }
+        
         if(is_null($shopifyProductImages)) {
             return response()->json([
                 "code" => 404,
@@ -83,7 +87,12 @@ class ApiController extends Controller
      */
 
     public function ShopifyFull($product_id) {
-        $shopifyProduct = \Nicelizhi\Shopify\Models\ShopifyProduct::where("product_id", $product_id)->first();
+        $shopifyProduct = Cache::get("shopify_full_".$product_id);
+        if(empty($shopifyProduct)) {
+            $shopifyProduct = \Nicelizhi\Shopify\Models\ShopifyProduct::where("product_id", $product_id)->first();
+            Cache::set("shopify_full_".$product_id, $shopifyProduct);
+        }
+        
         if(is_null($shopifyProduct)) {
             return response()->json([
                 "code" => 404,

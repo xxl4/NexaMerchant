@@ -54,8 +54,10 @@ class Create extends CommandInterface
         'src/Routes/api.php',
         'src/Routes/admin.php',
         'tests',
+        'tests/bootstrap.php',
         'docs',
         'README.md',
+        'phpunit.xml',
         'composer.json'
     ];
 
@@ -203,6 +205,12 @@ class Create extends CommandInterface
             break;
             case 'src/Resources/views/Admin/demo.blade.php':
                 $content = file_get_contents(__DIR__.'/stubs/demo.blade.php.stub');
+            break;
+            case 'phpunit.xml':
+                $content = file_get_contents(__DIR__.'/stubs/phpunit.xml.stub');
+            break;
+            case 'tests/bootstrap.php':
+                $content = file_get_contents(__DIR__.'/stubs/bootstrap.php.stub');
             break;
 
             default:
