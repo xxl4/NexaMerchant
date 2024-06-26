@@ -84,7 +84,6 @@ class Create extends CommandInterface
             return false;
         }
 
-
         if(!$this->checkOnelineAppName($name)) {
             $this->error("App $name is not valid");
             return false;
@@ -98,7 +97,11 @@ class Create extends CommandInterface
             //$this->info("App $name created successfully");
         } else {
             $this->error("App $name already exists");
-            return false;
+            if (!$this->confirm('Do you wish to continue?')) {
+                // ...
+                $this->error("App $name cannelled");
+                return false;
+            }
         }
 
         array_push($this->dirList, 'src/Providers/'.$name.'ServiceProvider.php');
