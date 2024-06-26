@@ -121,7 +121,22 @@ class SmartButtonWebhookController extends Controller
         }
 
         echo "success";
+    }
 
-        
+    /**
+     * 
+     * 
+     * 
+     */
+    public function invoicing(Request $request) {
+
+    }
+    /**
+     *  Payment Subscriptions info
+     * 
+     * 
+     */
+    public function subscriptions(Request $request) {
+
     }
 }
