@@ -2863,7 +2863,7 @@
       enable_csrf_token: true,
     }
   </script>
-  <script type="text/javascript">
+  <!-- <script type="text/javascript">
     app_lang = {
       error_messages: {
         zip_invalid: 'Please enter a valid zip code!',
@@ -2888,7 +2888,7 @@
         generic_error: 'Something went wrong with the request, Please try again.',
       },
     }
-  </script>
+  </script> -->
   <script type="text/javascript">
     var cbUtilConfig = {
       disable_non_english_char_input: false
@@ -2904,7 +2904,8 @@
       enable_us_statecode_validation: true,
     }
   </script>
-  <script src="/checkout/v2/js/jquery-3.0.0.min.js"></script>
+  <!-- <script src="/checkout/v2/js/jquery-3.0.0.min.js"></script> -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/jquery-colorbox@1.6.4/jquery.colorbox.min.js"></script>
 
@@ -5137,74 +5138,16 @@
 
     });
   </script>
-  <!-- <script src="/checkout/v2/js/codebase.min.js" type="text/javascript"></script> -->
-  <!-- <script src="/checkout/v2/js/sticky-prospect-script.min.js"></script> -->
-  <!-- <script src="/checkout/v2/js/custom-extra.js"></script> -->
-  <!-- <script async defer src="js/js"></script> -->
   <script>
     var restricted_countries = 'US,CA'
   </script>
-  <script src="/checkout/v2/js/address-auto-complete.min.js"></script>
+  <!-- <script src="/checkout/v2/js/address-auto-complete.min.js"></script> -->
   <script type="text/javascript" src="/checkout/v2/js/slick.min.js"></script>
   <script type="text/javascript" src="/checkout/v2/js/bookmarkscroll.js"></script>
   <script type="text/javascript" src="/checkout/v2/js/jquery.sticky.js"></script>
   <script type="text/javascript" src="/checkout/v2/js/slick-cust.js"></script>
-  <!-- <script type="text/javascript" src="/checkout/v2/js/popup.js"></script> -->
-  <!-- <script type="text/javascript" src="js/checkout.js"></script> -->
 
   <script>
-    function getRandomIntInclusive(min, max) {
-      min = Math.ceil(min);
-      max = Math.floor(max);
-      return Math.floor(Math.random() * (max - min + 1)) + min;
-    }
-
-    function getOrderMsg() {
-      let hour = getRandomIntInclusive(1, 24)
-      let number = getRandomIntInclusive(5, 50)
-      $('#order-msg-hour').text(hour)
-      $('#order-msg-number').text(number)
-    }
-
-    function getDateAfterNDays(n) {
-      let currentDate = new Date();
-
-      currentDate.setDate(currentDate.getDate() + n);
-
-      return currentDate;
-    }
-
-    function formatDate(date) {
-      let month = String(date.getMonth() + 1).padStart(2, '0');
-      let day = String(date.getDate()).padStart(2, '0');
-      return `${month}/${day}`;
-    }
-
-    function getshippingMsg() {
-      let date1 = formatDate(getDateAfterNDays(5))
-      let date2 = formatDate(getDateAfterNDays(7))
-      $('#shipping-date1').text(date1)
-      $('#shipping-date2').text(date2)
-    }
-
-    function getUserView() {
-      let viewNum = getRandomIntInclusive(1, 99)
-      $('.user-view-num').text(viewNum)
-    }
-    getshippingMsg();
-    getOrderMsg();
-    setInterval(function() {
-      getUserView()
-    }, 5000);
-    // $(function() {
-    //   var width = $(window).innerWidth()
-    //   if (width > 767) {
-    //     var height = $('.checkout-section').height()
-    //     console.log(height, 'height===');
-    //     $('.left-sec').css('height', height)
-    //     $('body').css('height', height)
-    //   }
-    // })
     function heightChange() {
       var width = $(window).innerWidth()
       $('body').css('height', height)
@@ -5640,42 +5583,6 @@
       })
     }
 
-    function onCardTokenized(event) {
-      $('#loading').hide();
-      if (event.token) {
-        createOrder(event.token);
-      } else {
-        $('#checkout-card-error').show();
-        document.querySelector(".checkout-content").style.display = "block";
-        document.querySelector(".checkout-block").scrollIntoView({
-          behavior: "smooth"
-        })
-      }
-    }
-
-
-
-    function postOrderPayFailed(pay_type) {
-      var order_id = localStorage.getItem('order_id');
-      if (order_id) {
-        var url = '/order/pay/fail_notice';
-        var params = {
-          id: order_id,
-          pay_type: pay_type,
-        };
-        fetch(url, {
-          body: JSON.stringify(params),
-          method: 'POST',
-          headers: {
-            'content-type': 'application/json'
-          },
-        })
-      }
-    }
-    $(".email").on("focus", function() {
-      //console.log("email focus");
-    });
-
     function checkout() {
       sendInitiateCheckoutEvent();
       var pay_type = 'worldpay';
@@ -5899,301 +5806,6 @@
         })
     }
 
-    // function createGooglePay() {
-
-    // }
-
-    function getPhonePrefix() {
-      return '';
-      var country = $("#country-select").val();
-
-      for (var i = 0; i < window.countries.length; i++) {
-        if (window.countries[i].countryCode == country) {
-          return window.countries[i].phonePrefix;
-        }
-      }
-
-      return '';
-    }
-
-    function checkoutProducts(params) {
-      console.log(params);
-      return false;
-      var products = params.products;
-      for (var i = 0; i < products.length; i++) {
-        if (!products[i].product_sku) {
-          return ["Attribute cannot be empty, please select your product"]
-        }
-      }
-
-      try {
-        if (isProductSoldOut && isProductSoldOut()) {
-          return ["Sorry, the Attributes you selected is sold out, please select again"]
-        }
-      } catch (err) {
-
-      }
-
-      return false;
-    }
-
-    function checkoutAmount(params) {
-      let product_amount = 0;
-      for (let i = 0; i < params.products.length; i++) {
-        let product = params.products[i];
-        product_amount += product.amount * 1;
-      }
-
-      var params_amount = params.amount;
-
-      if (params_amount != product_amount) {
-        return ["The actual quantity of the product does not match the selected quantity, please re-select the quantity and attributes of the product."];
-      }
-
-      return false;
-    }
-
-    function clearError() {
-      $('.shipping-info-item input, .shipping-info-item select').each(function() {
-        $(this).removeClass('shipping-info-input-error');
-        $(this).parent().find('.shipping-info-error').hide();
-      })
-    }
-
-    function checkoutName(input) {
-      var name = $(input).val();
-      name = name.replace(/\，|\,|\—|\-|\.|\。|[0-9]/g, '');
-      $(input).val(name);
-    }
-
-    function checkoutCity(input) {
-      var city = $(input).val();
-      city = city.replace(/\，|\,|\—|\-|\.|\。|[0-9]/g, '');
-      $(input).val(city);
-    }
-
-    function checkOrderParams(params, is_chain_payment, cancel_check_scroll) {
-      clearError();
-      var has_error = false;
-      var error_log = [],
-        show_error = [];
-      if (!params.first_name) {
-        has_error = true;
-        showError('first_name-error', "This field is required.");
-        error_log.push('first_name is empty');
-      }
-      if (!params.second_name) {
-        has_error = true;
-        showError('last_name-error', "This field is required.");
-        error_log.push('second_name is empty');
-      }
-      if (!params.email) {
-        has_error = true;
-        showError('email-error', "This field is required.");
-        error_log.push('email is empty');
-      }
-
-      var email_format = /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)+$/
-      if (!email_format.test(params.email)) {
-        has_error = true;
-        showError('email-error', "Please enter a valid email address.");
-        error_log.push('email is Invaild');
-      }
-
-      if (!params.phone_full) {
-        has_error = true;
-        showError('phone_number-error', "This field is required.");
-        error_log.push('phone_full is empty');
-      }
-
-      // var phone_format = /^[0-9\+\-\(\)\s]+$/;
-      // if(!phone_format.test(params.phone_full)){
-      //     has_error = true;
-      //     showError('phone_number-error',  "Please enter valid phoneNumber");
-      //     error_log.push('phone_full is Invaild');
-      // }
-
-      if (!params.country) {
-        has_error = true;
-        showError('country-error', "This field is required.");
-        error_log.push('country is empty');
-      }
-      if (!params.city) {
-        has_error = true;
-        showError('city-error', "This field is required.");
-        error_log.push('city is empty');
-      }
-      if (window.states) {
-        if (!params.province) {
-          has_error = true;
-          showError('state-error', "This field is required.");
-          error_log.push('province is empty');
-        }
-      }
-      if (!params.address) {
-        has_error = true;
-        showError('address-error', "This field is required.");
-        error_log.push('address is empty');
-      }
-      if (!params.code) {
-        has_error = true;
-        showError('zip_code-error', "This field is required.");
-        error_log.push('code is empty');
-      }
-
-      var code_format = new RegExp(getCountriesField('codeFormat'));
-      if (code_format && !code_format.test(params.code)) {
-        has_error = true;
-        showError('zip_code-error', "Please enter valid zip/postcode ");
-        error_log.push('code is invaild');
-      }
-
-      // do the bill address info
-      if (params.shipping_address == "other") {
-        if (!params.bill_first_name) {
-          has_error = true;
-          showError('first_name-error', "This field is required.");
-          error_log.push('Bill first_name is empty');
-        }
-        if (!params.bill_second_name) {
-          has_error = true;
-          showError('last_name-error', "This field is required.");
-          error_log.push('Bill second_name is empty');
-        }
-        if (!params.bill_country) {
-          has_error = true;
-          showError('bill-country-error', "This field is required.");
-          error_log.push('Bill country is empty');
-        }
-        if (!params.bill_city) {
-          has_error = true;
-          showError('bill-city-error', "This field is required.");
-          error_log.push('Bill city is empty');
-        }
-        if (window.bill_states) {
-          if (!params.province) {
-            has_error = true;
-            showError('bill-state-error', "This field is required.");
-            error_log.push('Bill province is empty');
-          }
-        }
-        if (!params.bill_address) {
-          has_error = true;
-          showError('bill-address-error', "This field is required.");
-          error_log.push('Bill address is empty');
-        }
-        if (!params.bill_code) {
-          has_error = true;
-          showError('bill-zip_code-error', "This field is required.");
-          error_log.push('Bill code is empty');
-        }
-      }
-
-      if (has_error) {
-        show_error.push("Your Info is invaild");
-        if (!cancel_check_scroll) {
-          document.querySelector(".shipping-tip").scrollIntoView({
-            behavior: "smooth"
-          })
-        }
-      }
-
-      if ((params.payment_method == 'checkout' && !Frames.isCardValid()) || (params.payment_method == 'stripe' && !(window.card_number_vaild && window.card_expriy_vaild && window.card_cvc_vaild)) || (params.payment_method == 'wintopay' && !cc_form_obj.isValid())) {
-        has_error = true;
-        error_log.push('card is invaild');
-        show_error.push("Your Card Info is invaild");
-        $('#checkout-card-error').show();
-        document.querySelector(".checkout-content").style.display = "block";
-        if (!cancel_check_scroll) {
-          document.querySelector(".checkout-block").scrollIntoView({
-            behavior: "smooth"
-          })
-        }
-      }
-
-      if (has_error) {
-        error_log.push({
-          params: params
-        });
-        //fetchCheckoutError(error_log);
-      }
-
-      return has_error && show_error
-    }
-
-    function showError(id, error_log) {
-      $('#' + id).html(error_log);
-      $('#' + id).show();
-      $('#' + id).parent().find('input').addClass("shipping-info-input-error");
-    }
-
-    function getSubmitProducts(total, amount) {
-      var unit_price = (total / amount).toFixed(4);
-
-      var skus = [];
-      var attribute_item = $('.attribute-select .attribute-item');
-      var sku_maps = getSKuMaps();
-
-      // console.log("sku maps");
-      // console.log(sku_maps);
-
-      // console.log("attribute_item");
-      // console.log(attribute_item);
-      // console.log("attribute_item");
-
-      for (var i = 0; i < attribute_item.length; i++) {
-        var sku_key_arr = [];
-        var img_key = '';
-        var attribute_select = $(attribute_item[i]).find('.attribute_select');
-        for (var j = 0; j < attribute_select.length; j++) {
-          sku_key_arr.push($(attribute_select[j]).val());
-          if ($(attribute_select[j]).data('has-img')) {
-            img_key = $(attribute_select[j]).val();
-          }
-        }
-
-        var sku = {};
-        if (sku_maps[sku_key_arr.join('_')]) {
-          sku = JSON.parse(JSON.stringify(sku_maps[sku_key_arr.join('_')]));
-        }
-        sku['img'] = getAttributeImg(img_key);
-        skus.push(sku);
-      }
-
-      console.log("product skus");
-      console.log(skus);
-
-      var products = [],
-        product_sku_map = {};
-
-      for (var m = 0; m < skus.length; m++) {
-        console.log("skus length" + skus.length);
-        if (product_sku_map[skus[m].sku_id]) {
-          products[product_sku_map[skus[m].sku_id] - 1].amount++;
-        } else {
-          if (skus[m].sku_id == "" || skus[m].sku_id == null || skus[m].sku_id == undefined) {
-            alert("please select product color and size");
-            return false;
-          }
-          var sku = {
-            img: skus[m].img,
-            price: unit_price,
-            amount: 1,
-            description: skus[m].name,
-            product_id: '3167',
-            product_sku: skus[m].sku_code,
-            variant_id: skus[m].sku_id,
-            attribute_name: skus[m].attribute_name,
-            attr_id: skus[m].attr_id
-          };
-          products.push(sku);
-          product_sku_map[skus[m].sku_id] = products.length;
-        }
-      }
-
-      return products
-    }
-
     function turnByCreatA(link, order_id) {
       var a = document.createElement("a");
       a.href = link;
@@ -6243,18 +5855,6 @@
       if (window.event && window.event.returnValue) {
         window.event.returnValue = false;
       }
-    }
-
-    function getCountriesField(field) {
-      var country = $("#country-select").val();
-
-      for (var i = 0; i < window.countries.length; i++) {
-        if (window.countries[i].countryCode == country) {
-          return window.countries[i][field];
-        }
-      }
-
-      return '';
     }
 
     window.onpageshow = function() {
