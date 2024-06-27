@@ -242,7 +242,10 @@ class WebhooksController extends Controller
         $req = $request->all();
         $shopify_order_id = $req['order_id'];
 
-        return Artisan::queue("shopify:fulfillments:create", ['--order_id'=>$shopify_order_id,'--data'=> $req])->onConnection('redis')->onQueue('shopify-fulfillments'); // add shopify fulfillments queue
+        
+
+        Artisan::queue("shopify:fulfillments:create", ['--order_id'=>$shopify_order_id,'--data'=> $req])->onConnection('redis')->onQueue('shopify-fulfillments'); // add shopify fulfillments queue
+        return true;
 
         $shopifyNewOrder = $this->ShopifyOrder->where([
             'shopify_store_id' => $this->shopify_store_id,
