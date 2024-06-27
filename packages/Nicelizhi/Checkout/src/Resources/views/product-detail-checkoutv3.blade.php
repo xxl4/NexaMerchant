@@ -1754,7 +1754,7 @@
   <div class="header-container">
     <div class="container">
       <div class="herder-content">
-        <img src="" style="height: 50px;" />
+        <img src="" style="height: 50px;" loading="lazy" alt="" />
         <div class="top-left-button">
           <!-- <p class="header-text-hide">@lang('checkout::app.v3.Description')</p> -->
           <a class="header-text-hide" onclick="reviewToggle()" id="header-text" href="#shopify-title-item1">@lang('checkout::app.v3.Reviews')</a>
@@ -1767,32 +1767,12 @@
   </div>
   <div class="checkout-section">
     <div class="container">
-      <!-- <p class="prod-name forMob" style="color: #444444 !important;"></p>
-      <p class="str-rvw forMob go-rew"><svg width="98px" height="16px" viewBox="0 0 512 96" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-          Generator: Sketch 53.2 (72643) - https://sketchapp.com -->
-      <!-- <g id="Trustpilot_ratings_5star-RGB" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-            <g fill-rule="nonzero">
-              <rect id="Rectangle-path" fill="#00B67A" x="0" y="0" width="96" height="96"></rect>
-              <rect id="Rectangle-path" fill="#00B67A" x="104" y="0" width="96" height="96"></rect>
-              <rect id="Rectangle-path" fill="#00B67A" x="208" y="0" width="96" height="96"></rect>
-              <rect id="Rectangle-path" fill="#00B67A" x="312" y="0" width="96" height="96"></rect>
-              <rect id="Rectangle-path" fill="#00B67A" x="416" y="0" width="96" height="96"></rect>
-              <path d="M48,64.7 L62.6,61 L68.7,79.8 L48,64.7 Z M81.6,40.4 L55.9,40.4 L48,16.2 L40.1,40.4 L14.4,40.4 L35.2,55.4 L27.3,79.6 L48.1,64.6 L60.9,55.4 L81.6,40.4 L81.6,40.4 L81.6,40.4 L81.6,40.4 Z" id="Shape" fill="#FFFFFF"></path>
-              <path d="M152,64.7 L166.6,61 L172.7,79.8 L152,64.7 Z M185.6,40.4 L159.9,40.4 L152,16.2 L144.1,40.4 L118.4,40.4 L139.2,55.4 L131.3,79.6 L152.1,64.6 L164.9,55.4 L185.6,40.4 L185.6,40.4 L185.6,40.4 L185.6,40.4 Z" id="Shape" fill="#FFFFFF"></path>
-              <path d="M256,64.7 L270.6,61 L276.7,79.8 L256,64.7 Z M289.6,40.4 L263.9,40.4 L256,16.2 L248.1,40.4 L222.4,40.4 L243.2,55.4 L235.3,79.6 L256.1,64.6 L268.9,55.4 L289.6,40.4 L289.6,40.4 L289.6,40.4 L289.6,40.4 Z" id="Shape" fill="#FFFFFF"></path>
-              <path d="M360,64.7 L374.6,61 L380.7,79.8 L360,64.7 Z M393.6,40.4 L367.9,40.4 L360,16.2 L352.1,40.4 L326.4,40.4 L347.2,55.4 L339.3,79.6 L360.1,64.6 L372.9,55.4 L393.6,40.4 L393.6,40.4 L393.6,40.4 L393.6,40.4 Z" id="Shape" fill="#FFFFFF"></path>
-              <path d="M464,64.7 L478.6,61 L484.7,79.8 L464,64.7 Z M497.6,40.4 L471.9,40.4 L464,16.2 L456.1,40.4 L430.4,40.4 L451.2,55.4 L443.3,79.6 L464.1,64.6 L476.9,55.4 L497.6,40.4 L497.6,40.4 L497.6,40.4 L497.6,40.4 Z" id="Shape" fill="#FFFFFF"></path>
-            </g>
-          </g> -->
-      <!-- </svg>@lang('checkout::app.v2.12,421 Verified Customer Reviews')</p> -->
       <div class="left-sec">
         <div id="sticky" style="position:sticky;top: 55px;">
           <div class="vehicle-detail-banner banner-content clearfix">
             <div class="banner-slider">
               <div class="slider-banner-image1">
                 <div class="sw-box">
-                  <!-- <div class="swiper-button-prev"></div>
-                  <div class="swiper-button-next"></div> -->
                 </div>
               </div>
             </div>
@@ -1828,7 +1808,6 @@
       <div class="right-sec">
         <p class="prod-name hide-mob"></p>
         <p class="str-rvw hide-mob go-rew" onclick="reviewToggle()"><svg width="98px" height="16px" viewBox="0 0 512 96" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-            <!-- Generator: Sketch 53.2 (72643) - https://sketchapp.com -->
             <g id="Trustpilot_ratings_5star-RGB" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
               <g fill-rule="nonzero">
                 <rect id="Rectangle-path" fill="#00B67A" x="0" y="0" width="96" height="96"></rect>
@@ -1847,7 +1826,7 @@
         </p>
         <div class="header-middle">
           <p class="text-Schritt-top">@lang('checkout::app.v2.You Can See By')</p>
-          <img src="" alt="">
+          <img src="" loading="lazy" alt="" />
         </div>
         <div class="fl mt10">
 
@@ -1901,15 +1880,14 @@
 
         <div class="payment-icon-box">
           <div class="payment-top">
-            <img src="/checkout/v2/images/secure-checkout.png" alt="">
+            <img src="/checkout/v2/images/secure-checkout.png" loading="lazy" alt="">
             <p>@lang('checkout::app.v3.Secure Checkout')</p>
           </div>
-          <img src="/checkout/v2/images/payment6.svg" alt="">
-          <!-- <img width="20" src="/checkout/v2/images/payment7.svg" alt=""> -->
-          <img src="/checkout/v2/images/payment2.svg" alt="">
-          <img src="/checkout/v2/images/payment3.svg" alt="">
-          <img src="/checkout/v2/images/payment4.svg" alt="">
-          <img src="/checkout/v2/images/payment5.svg" alt="">
+          <img src="/checkout/v2/images/payment6.svg" loading="lazy" alt="">
+          <img src="/checkout/v2/images/payment2.svg" loading="lazy" alt="">
+          <img src="/checkout/v2/images/payment3.svg" loading="lazy" alt="">
+          <img src="/checkout/v2/images/payment4.svg" loading="lazy" alt="">
+          <img src="/checkout/v2/images/payment5.svg" loading="lazy" alt="">
         </div>
 
         <div class="shopify-title fl">
@@ -1924,10 +1902,6 @@
         </div>
         <div class="shopify-container fl"></div>
         <div id="iduzu" class="section" style="width: 100%;float: right;margin-bottom:10px; display: flex;">
-
-          <!-- <p class="container_title" onclick="reviewToggle()">
-           @lang('onebuy::app.product.order.What customers are saying about')
-          </p> -->
         </div>
         <!-- review -->
         <div class="section" id="reviews-box" style="width: 100%;float: right; display:none">
@@ -1942,13 +1916,13 @@
                   <i class="flag-icon-size flag-icon flag-icon-<?php echo strtolower($default_country); ?> mr-2"></i>
                 </div>
                 <div>
-                  <img class="mb1 mr2" width="14px" src="/checkout/onebuy/images/icon_gou.svg" />
+                  <img class="mb1 mr2" width="14px" src="/checkout/onebuy/images/icon_gou.svg" loading="lazy" alt="" />
                   <span style="width: 100%; font-size:12px; color: #444444">@lang('onebuy::app.product.order.Verified')</span>
                 </div>
               </div>
               <div>
                 <div style="text-align: start; width: 100%;">
-                  <img width="110px" src="/checkout/onebuy/images/stars-5.svg" alt="" />
+                  <img width="110px" src="/checkout/onebuy/images/stars-5.svg" loading="lazy" alt="" />
                 </div>
                 <div class="cardtext" style="text-align: start;"><?php echo $comment->comment; ?></div>
 
@@ -1964,7 +1938,7 @@
                 ?>
 
                     <a href="javascript:;" onclick="reviewImgPreview('<?php echo $image->url; ?>')">
-                      <img style="width: 30%; max-height:120px;object-fit:contain" src="<?php echo $image->url; ?>" alt="" />
+                      <img style="width: 30%; max-height:120px;object-fit:contain" src="<?php echo $image->url; ?>" loading="lazy" alt="" />
                     </a>
 
                 <?php }
@@ -2004,15 +1978,6 @@
             </div>
           </div>
           <div class="buy-select buy-relative" id="buy-select2">
-
-            <!-- <div class="buy-loading">
-              <div style="position: absolute; top: -5px; left: -10px; width: 110%; height: 110%; z-index: 100000; background:#fff;" id="loading-box" class="flex-center">
-                <div class="buy-box">
-                  <div class="loader loader-01"></div>
-                </div>
-              </div>
-            </div> -->
-
             <div class="buy-se-box">
               <div class="se-box" id="select2-item1">
                 <p class="se-title">@lang('checkout::app.v2.item')1</p>
@@ -2045,15 +2010,6 @@
           </div>
           <div class="buy-select buy-relative" id="buy-select1">
             <div class="buy-se-box">
-
-              <!-- <div class="buy-loading">
-                <div style="position: absolute; top: -5px; left: -10px; width: 110%; height: 120%; z-index: 100000; background:#fff;" id="loading-box" class="flex-center">
-                  <div class="buy-box">
-                    <div class="loader loader-01"></div>
-                  </div>
-                </div>
-              </div> -->
-
               <div class="se-box" id="select1-item1">
                 <p class="se-title">@lang('checkout::app.v2.item')1</p>
               </div>
@@ -2078,15 +2034,6 @@
             </div>
           </div>
           <div class="buy-select buy-relative" id="buy-select3">
-
-            <!-- <div class="buy-loading">
-              <div style="position: absolute; top: -5px; left: -10px; width: 110%; height: 110%; z-index: 100000; background:#fff;" id="loading-box" class="flex-center">
-                <div class="buy-box">
-                  <div class="loader loader-01"></div>
-                </div>
-              </div>
-            </div> -->
-
             <div class="buy-se-box">
               <div class="se-box" id="select3-item1">
                 <p class="se-title">@lang('checkout::app.v2.item')1</p>
@@ -2121,14 +2068,6 @@
             </div>
           </div>
           <div class="buy-select buy-relative" id="buy-select4">
-            <!-- <div class="buy-loading">
-              <div style="position: absolute; top: -5px; left: -10px; width: 110%; height: 110%; z-index: 100000; background:#fff;" id="loading-box" class="flex-center">
-                <div class="buy-box">
-                  <div class="loader loader-01"></div>
-                </div>
-              </div>
-            </div> -->
-
             <div class="buy-se-box">
               <div class="se-box" id="select4-item1">
                 <p class="se-title">@lang('checkout::app.v2.item')1</p>
@@ -2194,10 +2133,6 @@
             <p class="bdr-line"></p>
             <div class="payment-flds-box">
               <p class="pkg-hdng"><span class="pkg-step">@lang('checkout::app.v2.Step')3:</span> @lang('checkout::app.v2.Enter your shipping information')</p>
-              <!-- <div class="frm-flds fl">
-                <label for="address" class="fl-label">Shipping Address</label>
-                <input type="text" name="shippingAddress1" class="input-flds required cb-remove-class frmField" placeholder="Your Address" data-error-message="Please enter your address!" id="shipAddress" />
-              </div> -->
               <p class="email-warn" style="margin-top: 15px;">@lang('checkout::app.v2.Add a house number if you have one')</p>
               <div class="fl input-box">
                 <label>
@@ -2205,10 +2140,6 @@
                   <span class="input-span">@lang('checkout::app.v2.Address')</span>
                 </label>
               </div>
-              <!-- <div class="frm-flds fl">
-                <label for="city" class="fl-label">Your City</label>
-                <input type="text" name="shippingCity" class="input-flds required cb-remove-class frmField" placeholder="Your City" data-error-message="Please enter your city!" />
-              </div> -->
               <div class="fl input-box">
                 <label>
                   <input onblur="inputBlur(event)" class="input-item" name="shippingCity" id="shipAddress" type="text" placeholder="" required="" />
@@ -2220,38 +2151,18 @@
                 <select name="shippingCountry" type="text" placeholder="@lang('checkout::app.v2.Country')" class="selcet-fld required cb-remove-class frmField" data-selected="US" data-error-message="Please select your country!">
                 </select>
               </div>
-              <!-- <div class="fl input-box">
-                <label>
-                  <select class="input-item" name="shippingCountry" type="text" placeholder="" required="">
-                  </select>
-                  <span>@lang('checkout::app.v2.Country')</span>
-                </label>
-              </div> -->
               <div class="frm-flds fl" style="margin-top: 20px;">
                 <label for="state" class="fl-label"></label>
                 <select type="text" name="shippingState" placeholder="@lang('checkout::app.v2.State')" class="selcet-fld required cb-remove-class frmField" id="shippingStateSelect" data-error-message="Please select your state!" data-selected="">
                   <option value=""></option>
                 </select>
               </div>
-              <!-- <div class="fl input-box">
-                <label>
-                  <select class="input-item" name="shippingState" id="shippingStateSelect" type="text" placeholder="" required="">
-                  </select>
-                  <span>@lang('checkout::app.v2.State')</span>
-                </label>
-              </div> -->
-              <!-- <div class="frm-flds fl">
-                <label for="zip" class="fl-label">Zip Code</label>
-                <input type="tel" name="shippingZip" id="zip" class="input-flds required cb-remove-class frmField" placeholder="Zip Code" data-error-message="Please enter a valid zip code!" />
-              </div> -->
               <div class="fl input-box" style="margin-top: 20px;">
                 <label>
                   <input onblur="inputBlur(event)" class="input-item" name="shippingZip" id="zip" type="tel" placeholder="" required="" />
                   <span class="input-span">@lang('checkout::app.v2.Zip Code')</span>
                 </label>
               </div>
-              <!--   <a href="javascript:void(0)" class="continue-order addon_btn"
-                        onclick="javascript:bookmarkscroll.scrollTo('wrnty')">Select Addon</a>-->
             </div>
             <p class="bdr-line hide-mob"></p>
             <p class="pkg-hdng"><span class="pkg-step">@lang('checkout::app.v2.Step')4:</span> @lang('checkout::app.v2.Enter your payment information')</p>
@@ -2280,7 +2191,7 @@
                                   <input class="form-check-input" name="airwallex-klarna" type="radio" value="airwallex-klarna" id="airwallex-klarna" <?php if ($payments_default == 'airwallex-klarna') echo 'checked'; ?> name="payment_method">
                                   <label class="form-check-label" for="airwallex-klarna" style="float: right;min-width: 95%;">
                                     <span style="font-family: var(--title-family);">@lang('onebuy::app.product.payment.klarna.title')</span>
-                                    <div style="float: right;min-width: 200px;display: inline;text-align: right;"><img src="/checkout/v1/app/desktop/images/Klarna.png" style="max-height:24px" /></div>
+                                    <div style="float: right;min-width: 200px;display: inline;text-align: right;"><img src="/checkout/v1/app/desktop/images/Klarna.png" style="max-height:24px" loading="lazy" alt="" /></div>
                                   </label>
                                 </div>
                               </div>
@@ -2305,7 +2216,7 @@
                                   <input class="form-check-input" type="radio" value="paypal_standard" id="payal_standard" <?php if ($payments_default == 'payal_standard') echo 'checked'; ?> name="payment_method">
                                   <label class="form-check-label" for="payal_standard" style="float: right;min-width: 95%;">
                                     <span style="font-family: var(--title-family);">@lang('onebuy::app.product.payment.paypal.title') </span>
-                                    <div style="float: right;min-width: 200px;display: inline;text-align: right;"><img src="/checkout/v1/app/desktop/images/paypal.png" style="max-height:24px" /></div>
+                                    <div style="float: right;min-width: 200px;display: inline;text-align: right;"><img src="/checkout/v1/app/desktop/images/paypal.png" style="max-height:24px" loading="lazy" alt="" /></div>
                                   </label>
                                 </div>
                               </div>
@@ -2329,10 +2240,10 @@
                                   <label class="form-check-label" for="payment_method_airwallex" style="float: right;min-width: 95%;">
                                     <span style="font-family: var(--title-family);">@lang('onebuy::app.product.payment.creditCard.title')</span>
                                     <div class="text-right" style="min-width:190px; display: inline;float: right;">
-                                      <img src="https://cdn.shopify.com/shopifycloud/checkout-web/assets/0169695890db3db16bfe.svg" />
-                                      <img src="https://cdn.shopify.com/shopifycloud/checkout-web/assets/ae9ceec48b1dc489596c.svg" />
-                                      <img src="https://cdn.shopify.com/shopifycloud/checkout-web/assets/f11b90c2972f3811f2d5.svg" />
-                                      <img src="https://cdn.shopify.com/shopifycloud/checkout-web/assets/37fc65d0d7ac30da3b0c.svg" />
+                                      <img src="https://cdn.shopify.com/shopifycloud/checkout-web/assets/0169695890db3db16bfe.svg" loading="lazy" alt="" />
+                                      <img src="https://cdn.shopify.com/shopifycloud/checkout-web/assets/ae9ceec48b1dc489596c.svg" loading="lazy" alt="" />
+                                      <img src="https://cdn.shopify.com/shopifycloud/checkout-web/assets/f11b90c2972f3811f2d5.svg" loading="lazy" alt="" />
+                                      <img src="https://cdn.shopify.com/shopifycloud/checkout-web/assets/37fc65d0d7ac30da3b0c.svg" loading="lazy" alt="" />
                                     </div>
 
                                   </label>
@@ -2362,7 +2273,6 @@
                                   line-height: 1.25;padding: 1rem 0.75rem "></div>
                               </div>
                               <div style='margin-top:10px'>
-                                <!-- <div>@lang('onebuy::app.product.payment.creditCard.Expiry')</div> -->
                                 <div id="cardExpiry" style="
                                   border: 1px solid rgba(105, 105, 105, 0.397);
                                   border-radius: 10px;
@@ -2487,7 +2397,7 @@
                                   <input class="form-check-input" type="radio" onchange="gooleOrAppleChange()" value="airwallex_google" id="airwallex_google" name="payment_method">
                                   <label class="form-check-label" for="airwallex_google" style="float: right;min-width: 95%;">
                                     <span style="font-family: var(--title-family);line-height:40px">GooglePay </span>
-                                    <div style="float: right;min-width: 200px;display: inline;text-align: right;"><img src="/checkout/v2/images/googlePay.png" style="max-height:40px" /></div>
+                                    <div style="float: right;min-width: 200px;display: inline;text-align: right;"><img src="/checkout/v2/images/googlePay.png" style="max-height:40px" loading="lazy" alt="" /></div>
                                   </label>
                                 </div>
                               </div>
@@ -2510,7 +2420,7 @@
                                   <input class="form-check-input" onchange="gooleOrAppleChange()" type="radio" value="airwallex_apple" id="airwallex_apple" name="payment_method">
                                   <label class="form-check-label" for="airwallex_apple" style="float: right;min-width: 95%;">
                                     <span style="font-family: var(--title-family);line-height:40px">ApplePay</span>
-                                    <div style="float: right;min-width: 200px;display: inline;text-align: right;"><img src="/checkout/v2/images/applePay.png" style="max-height:40px" /></div>
+                                    <div style="float: right;min-width: 200px;display: inline;text-align: right;"><img src="/checkout/v2/images/applePay.png" style="max-height:40px" loading="lazy" alt="" /></div>
                                   </label>
                                 </div>
                               </div>
@@ -2617,7 +2527,7 @@
     </div>
     <br /><br />
     <div class="dmca_logo">
-      <img src="/checkout/v2/images/1662477222-dmca.webp" alt="DMCA.com Protection Status" />
+      <img src="/checkout/v2/images/1662477222-dmca.webp" loading="lazy" alt="DMCA.com Protection Status" />
     </div>
   </div>
   <div class="dialog-error">
@@ -2629,15 +2539,14 @@
   </div>
   <div class="sku-preview-img-box" onclick="imgBoxClose()">
     <div class="sku-preview-img">
-      <img src="/checkout/v2/images/dmca_protected_sml_120n.png" alt="" />
+      <img src="/checkout/v2/images/dmca_protected_sml_120n.png" loading="lazy" alt="" />
     </div>
   </div>
   <div class="size-chart-img-box" onclick="sizeChartBoxClose()">
     <div class="size-chart-img">
-      <img src="" alt="" />
+      <img src="" loading="lazy" alt="" />
     </div>
   </div>
-  <!-- End of Discount POp up-->
 
   <script>
     var app_current_step = {
@@ -2650,7 +2559,6 @@
     }
     var app_query_params = []
   </script>
-  <!-- <script type="text/javascript" src="/checkout/v2/js/math.js"></script> -->
   <script type="text/javascript">
     AJAX_PATH = 'ajax.php/'
     app_config = {
@@ -2863,32 +2771,6 @@
       enable_csrf_token: true,
     }
   </script>
-  <!-- <script type="text/javascript">
-    app_lang = {
-      error_messages: {
-        zip_invalid: 'Please enter a valid zip code!',
-        email_invalid: 'Please enter a valid email id!',
-        cc_invalid: 'Please enter a valid credit card number!',
-        cvv_invalid: 'Please enter a valid CVV code!',
-        card_expired: 'Card seems to have expired already!',
-        card_expire_soon: 'Your credit card is about to expire, please update your card information.',
-        common_error: 'Oops! Something went wrong! Can you please retry?',
-        not_checked: 'Please check the agreement box in order to proceed.',
-        ca_zip_invalid: 'Invalid Canada state code',
-        xv_invalid_shipping: 'Your shipping address could not be verified',
-        xv_email: 'Your email address could not be verified',
-        xv_phone: 'Your phone number could not be verified',
-      },
-      exceptions: {
-        config_error: 'General config error',
-        config_file_missing: 'General config error',
-        invalid_array: 'Argument is not a valid array',
-        empty_prospect_id: 'Prospect ID is empty or invalid',
-        curl_error: 'Something went wrong with the request, Please try again.',
-        generic_error: 'Something went wrong with the request, Please try again.',
-      },
-    }
-  </script> -->
   <script type="text/javascript">
     var cbUtilConfig = {
       disable_non_english_char_input: false
@@ -3083,12 +2965,6 @@
         var favicon = '/checkout/v2/images/favicon.png'
         $('#favicon-icon').attr('href', favicon)
       }
-      // var dataUrl = '/api/onebuy/product/detail/' + getProductId + '?currency=' + currency
-      // axios
-      //   .get(dataUrl)
-      //   .then(function(res) {
-      //     console.log(new Date().getTime(), '开始');
-      //     data = res.data
       payTypeShow = data.payments
       var attrList = data.attr.attributes
       paypal_pay_acc = data.paypal_client_id
@@ -3189,15 +3065,11 @@
       paypalId = data.paypal_client_id
       productsObj.amount = '1'
       productsObj.description = data.package_products[0].name
-      // productsObj.product_id = data.product.id
       productsObj.product_id = '<?php echo $data['product']['id']; ?>'
       console.log(productsObj.product_id, 'productsObj.product_id');
-      // productsObj.product_sku = data.sku
-      // productsObj.img = data.product.base_image.large_image_url
       productsObj.img = '<?php echo @$data['product']['base_image']['large_image_url']; ?>'
       console.log(productsObj.img, 'productsObj.img ');
       productsObj.price = data.package_products[0].tip2
-      // productsObj.variant_id =
       console.log(data, 'data=====')
       productL1 = JSON.parse(JSON.stringify(productsObj))
       productL2 = JSON.parse(JSON.stringify(productsObj))
@@ -3385,11 +3257,6 @@
       document.body.appendChild(script)
       console.log(new Date().getTime(), '结束');
 
-      // })
-      // .catch(function(error) {
-      //   console.error(error, 'err')
-      // })
-
     })
 
     function sortObjectByValue(obj) {
@@ -3451,7 +3318,7 @@
         $.each(sellObj, function(key, value) {
           if (value) {
             descriptionContent += `<div class="three-description-item">
-            <img src="/checkout/v2/images/1673346232-mainpage.png" alt="">
+            <img src="/checkout/v2/images/1673346232-mainpage.png" loading="lazy" alt="">
             <p class="three-description-text"> ` + value + `</p></div>`
           }
         })
@@ -3494,10 +3361,6 @@
       // }
 
     }
-
-    // function textColorChange(event) {
-    //   $(event.target).css("color", 'blue')
-    // }
 
     function getShopify() {
       const shopifyUrl = '/shopify/v1/api/full/{{ $slug }}'
@@ -3770,7 +3633,7 @@
           skuImgUrl = data.package_products[0].image
         }
         skuList += `<div class="sku-item-info">
-                <img src="` + skuImgUrl + `" alt="" onclick="skuImgPreview(event)" style="width: 64px;height:64px" />
+                <img src="` + skuImgUrl + `"  onclick="skuImgPreview(event)" style="width: 64px;height:64px" loading="lazy" alt=""/>
                 <div class="sku-content">
                   <p class="sku-item-title">` + description + `</p>
                   <span class="sku-item-text">` + attributeName + `</span>
@@ -5148,6 +5011,48 @@
   <script type="text/javascript" src="/checkout/v2/js/slick-cust.js"></script>
 
   <script>
+    function getRandomIntInclusive(min, max) {
+      min = Math.ceil(min);
+      max = Math.floor(max);
+      return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
+    function getOrderMsg() {
+      let hour = getRandomIntInclusive(1, 24)
+      let number = getRandomIntInclusive(5, 50)
+      $('#order-msg-hour').text(hour)
+      $('#order-msg-number').text(number)
+    }
+
+    function getDateAfterNDays(n) {
+      let currentDate = new Date();
+      currentDate.setDate(currentDate.getDate() + n);
+      return currentDate;
+    }
+
+    function formatDate(date) {
+      let month = String(date.getMonth() + 1).padStart(2, '0');
+      let day = String(date.getDate()).padStart(2, '0');
+      return `${month}/${day}`;
+    }
+
+    function getshippingMsg() {
+      let date1 = formatDate(getDateAfterNDays(5))
+      let date2 = formatDate(getDateAfterNDays(7))
+      $('#shipping-date1').text(date1)
+      $('#shipping-date2').text(date2)
+    }
+
+    function getUserView() {
+      let viewNum = getRandomIntInclusive(1, 99)
+      $('.user-view-num').text(viewNum)
+    }
+    getshippingMsg();
+    getOrderMsg();
+    setInterval(function() {
+      getUserView()
+    }, 5000);
+
     function heightChange() {
       var width = $(window).innerWidth()
       $('body').css('height', height)
@@ -5202,27 +5107,9 @@
           var img = res.data.data.images
           var imgListLength = img.length
           var imglen = Math.floor(imgListLength / 3)
-          // if (imglen > 3) {
-          //   imglen = 3;
-          // }
           for (var i = 0; i < img.length; i++) {
-            swiperList += `<div class="swiper-slide"><img src="${img[i].src}" ></div>`
+            swiperList += `<div class="swiper-slide"><img src="${img[i].src}" loading="lazy" alt=""></div>`
           }
-          // for (var imgi = 0; imgi < imglen; imgi++) {
-          //   var i1 = 0 + imgi * 3,
-          //     i2 = 1 + imgi * 3,
-          //     i3 = 2 + imgi * 3
-          //   showimg += `<div class="grid-cell gallery-item grid-col-span-1">
-          //     <img src="` + img[i1].src + `" alt="">
-          //   </div>
-          //   <div class="grid-cell gallery-item grid-col-span-2">
-          //     <img src="` + img[i2].src + `" alt="">
-          //   </div>
-          //   <div class="grid-cell gallery-item grid-col-span-2">
-          //     <img src="` + img[i3].src + `" alt="">
-          //   </div>`
-          // }
-          // $('.grid-container').append(showimg)
           var gallery =
             `<div class="swiper-container" style="width:100%" id="gallery">
 					<div class="swiper-wrapper">` +
@@ -5250,10 +5137,6 @@
             loop: true,
             autoplay: true,
             allowTouchMove: true,
-            //navigation: {
-            //nextEl: '.swiper-button-next',
-            //prevEl: '.swiper-button-prev',
-            //},
             thumbs: {
               swiper: galleryThumbs,
               allowTouchMove: true,
