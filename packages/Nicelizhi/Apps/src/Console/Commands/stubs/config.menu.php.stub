@@ -1,10 +1,18 @@
 <?php
+/**
+ * 
+ * This file is auto generate by Nicelizhi\Apps\Commands\Create
+ * @author Steve
+ * @date {{DATE}}
+ * @link https://github.com/xxxl4
+ * 
+ */
 return [
     /**
      * {{NAME}} Dashboard.
      */
     [
-        'key'        => '{{NAME}}-demo',
+        'key'        => '{{NAME}}',
         'name'       => '{{NAME}}::app.{{NAME}}.demo',
         'route'      => '{{NAME}}.admin.example.demo',
         'sort'       => 1,
