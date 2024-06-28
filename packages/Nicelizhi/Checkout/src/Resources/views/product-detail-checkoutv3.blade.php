@@ -1612,9 +1612,6 @@
       font-size: 13px !important;
       color: var(--text-color) !important;
       font-family: var(--text-family) !important;
-      max-height: 0;
-      transition: max-height 0.5s ease;
-
     }
 
 
