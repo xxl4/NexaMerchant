@@ -1770,7 +1770,7 @@
           <div class="vehicle-detail-banner banner-content clearfix">
             <div class="banner-slider">
               <div class="slider-banner-image1">
-                <div class="sw-box" style="display: none;">
+                <div class="sw-box">
                 </div>
               </div>
             </div>
