@@ -1,5 +1,12 @@
 <?php
-
+/**
+ * 
+ * This file is auto generate by Nicelizhi\Apps\Commands\Create
+ * @author Steve
+ * @date {{DATE}}
+ * @link https://github.com/xxxl4
+ * 
+ */
 use Illuminate\Support\Facades\Route;
 use NexaMerchant\{{NAME}}\Http\Controllers\Admin\ExampleController;
 
