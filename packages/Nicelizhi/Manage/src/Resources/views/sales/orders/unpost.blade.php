@@ -27,10 +27,7 @@
                           <th>Status</th>
                           <th>Client</th>
                           <th>base_grand_total</th>
-                          <th>Transaction Id</th>
-                          <th>Payment Method</th>
                           <th>shipping_method</th>
-                          <th>track_number</th>
                           <th>created_at</th>
                           <th>Options</th>
                         </tr>
@@ -101,15 +98,9 @@
           {
             data: 'base_grand_total'
           },{
-            data: 'transaction_id'
-          },{
-            data: 'method'
-          },{
             data: 'shipping_method'
           },
-          {
-            data: 'track_number'
-          },
+      
           {
             data: 'created_at'
           }
