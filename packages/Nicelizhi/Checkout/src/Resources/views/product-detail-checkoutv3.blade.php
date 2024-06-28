@@ -5004,7 +5004,6 @@
   <script type="text/javascript" src="/checkout/v2/js/slick.min.js"></script>
   <script type="text/javascript" src="/checkout/v2/js/bookmarkscroll.js?v=1"></script>
   <!-- <script type="text/javascript" src="/checkout/v2/js/jquery.sticky.js"></script> -->
-
   <script>
     function getRandomIntInclusive(min, max) {
       min = Math.ceil(min);
