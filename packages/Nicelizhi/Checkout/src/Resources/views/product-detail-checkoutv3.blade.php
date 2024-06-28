@@ -1612,7 +1612,11 @@
       font-size: 13px !important;
       color: var(--text-color) !important;
       font-family: var(--text-family) !important;
+      max-height: 0;
+      transition: max-height 0.5s ease;
+
     }
+
 
     .header-middle {
       width: 100%;
@@ -1733,20 +1737,17 @@
     <!-- Start VWO SmartCode -->
     <!-- <script src="/checkout/v2/js/51174.js"></script> -->
     <!-- End VWO SmartCode -->
-    <link rel="stylesheet prefetch" href="/checkout/v2/css/app2.css?v=4" />
-    <link type="text/css" href="/checkout/v2/css/custom-extra.css" rel="stylesheet" />
+    <link rel="stylesheet prefetch" href="/checkout/v2/css/app2.css?v=5" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/5.0.4/css/swiper.css" />
-    <link type="text/css" href="/checkout/v2/css/repeated-order-confirmation.min.css" rel="stylesheet" />
-    <link type="text/css" href="/checkout/v2/css/repeated-order-confirmation-additional.css" rel="stylesheet" />
-    <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/checkout.css?v=9" />
+    <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/checkout.css?v=10" />
     <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/bootstrap.min.css" />
     <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/slick.min.css" />
-    <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/upsell-new-02.css?v=5" />
-    <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/extra-style.css" />
-    <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/fonts.css" />
-    <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/custom.css" />
-    <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/bottom-popup.css" />
-    <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/new_addon.css" />
+    <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/upsell-new-02.css?v=6" />
+    <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/extra-style.css?v=1" />
+    <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/fonts.css?v=1" />
+    <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/custom.css?v=1" />
+    <!-- <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/bottom-popup.css" /> -->
+    <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/new_addon.css?v=1" />
     <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/all.min.css" />
     <span id="builderCssToken"> </span>
   </page-builder-block>
@@ -2949,12 +2950,10 @@
     console.log(data, 'phpdata');
     $(function() {
       getShopify()
-      console.log(logoImg, 'logoImg');
       $('.header-container img').attr('src', logoImg)
       if (countries1 == 'fr' || countries1 == 'es') {
         $('.header-middle').hide()
       } else {
-        console.log(schrittImg, 'schrittImg');
         $('.header-middle').show()
         $('.header-middle img').attr('src', schrittImg)
       }
@@ -2969,7 +2968,6 @@
       var attrList = data.attr.attributes
       paypal_pay_acc = data.paypal_client_id
       var paymentsDefault = data.payments_default
-      console.log(paymentsDefault, data.ads.pc.img, 'paymentsDefault=====');
       getDescriptionItem(data)
       $('#p-name2').text(data.package_products[0].name)
       $('#p-name1').text(data.package_products[1].name)
@@ -3128,6 +3126,7 @@
       params.products.push(productL1, productL2)
       getSkuListInfo();
       $('.prod-name').text('<?php echo addslashes($data['product']['name']); ?>')
+      console.log('<?php echo addslashes($data['product']['name']); ?>', '123');
       $('title').html('<?php echo addslashes($data['product']['name']); ?>')
       $('#buy-select1, #buy-select3, #buy-select4').hide()
       $('#footer-top-text').append(data.brand)
@@ -3253,7 +3252,7 @@
         paypal_pay_acc +
         '&components=buttons,messages,funding-eligibility&currency=' +
         currency
-      script.async = 1
+      script.async = true
       document.body.appendChild(script)
       console.log(new Date().getTime(), '结束');
 
@@ -3370,7 +3369,7 @@
         .then(function(res) {
           console.log(res, 'getShopify===res');
           let bodyHtml = res.data.data.body_html
-          $('.shopify-container').html(bodyHtml)
+          $('.shopify-container').html(bodyHtml).fadeIn(500);
         })
         .catch(function(err) {
           console.log(err, 'getShopify===err');
@@ -5006,10 +5005,8 @@
   </script>
   <!-- <script src="/checkout/v2/js/address-auto-complete.min.js"></script> -->
   <script type="text/javascript" src="/checkout/v2/js/slick.min.js"></script>
-  <script type="text/javascript" src="/checkout/v2/js/bookmarkscroll.js"></script>
-  <script type="text/javascript" src="/checkout/v2/js/jquery.sticky.js"></script>
-  <script type="text/javascript" src="/checkout/v2/js/slick-cust.js"></script>
-
+  <script type="text/javascript" src="/checkout/v2/js/bookmarkscroll.js?v=1"></script>
+  <!-- <script type="text/javascript" src="/checkout/v2/js/jquery.sticky.js"></script> -->
   <script>
     function getRandomIntInclusive(min, max) {
       min = Math.ceil(min);
@@ -5122,7 +5119,7 @@
             swiperList +
             `</div>
 				</div>`
-          $('.sw-box').append(gallery, thumbs)
+          $('.sw-box').html(gallery, thumbs).fadeIn(500);
           galleryThumbs = new Swiper(
             '#thumbs', {
               slidesPerView: 5,

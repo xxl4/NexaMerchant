@@ -238,7 +238,6 @@ class WebhooksController extends Controller
 
     public function fulfillments_create(Request $request) {
         //Log::info("fulfillments_create ".json_encode($request->all()));
-
         $req = $request->all();
         $shopify_order_id = $req['order_id'];
 
