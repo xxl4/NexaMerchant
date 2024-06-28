@@ -5116,7 +5116,7 @@
             swiperList +
             `</div>
 				</div>`
-          $('.sw-box').html(gallery, thumbs).fadeIn(500);
+          $('.sw-box').html(gallery, thumbs);
           galleryThumbs = new Swiper(
             '#thumbs', {
               slidesPerView: 5,
