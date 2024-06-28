@@ -3,7 +3,7 @@
 
 <head>
   <title></title>
-  <link rel="icon prefetch" id="favicon-icon" href="/checkout/v2/images/favicon_de.png" type="image/png" sizes="16x16" />
+  <link rel="icon prefetch" id="favicon-icon" href="/checkout/v2/images/favicon_de.webp" type="image/png" sizes="16x16" />
   <meta charset="utf-8" />
   <meta name="description" content="Fur Sweep Collar" />
   <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" />
@@ -1285,7 +1285,7 @@
       text-align: center;
       width: 100%;
       height: 48px;
-      background: #000 url('/checkout/v2/images/googlePay.png') no-repeat 100%/contain;
+      background: #000 url('/checkout/v2/images/googlePay.webp') no-repeat 100%/contain;
       background-position: center;
       border-radius: 4px;
     }
@@ -1295,7 +1295,7 @@
       text-align: center;
       width: 100%;
       height: 48px;
-      background: #000 url('/checkout/v2/images/applePay.png') no-repeat 100%/contain;
+      background: #000 url('/checkout/v2/images/applePay.webp') no-repeat 100%/contain;
       background-position: center;
       border-radius: 4px;
     }
@@ -1366,10 +1366,7 @@
 <body>
   <page-builder-block>
     <link rel="stylesheet prefetch" href="/checkout/v2/css/app2.css?v=4" />
-    <link type="text/css" href="/checkout/v2/css/custom-extra.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/5.0.4/css/swiper.css" />
-    <link type="text/css" href="/checkout/v2/css/repeated-order-confirmation.min.css" rel="stylesheet" />
-    <link type="text/css" href="/checkout/v2/css/repeated-order-confirmation-additional.css" rel="stylesheet" />
     <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/checkout.css?v=8" />
     <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/bootstrap.min.css" />
     <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/slick.min.css" />
@@ -1973,7 +1970,7 @@
                                   <input class="form-check-input" type="radio" onchange="gooleOrAppleChange()" value="airwallex_google" id="airwallex_google" name="payment_method">
                                   <label class="form-check-label" for="airwallex_google" style="float: right;min-width: 95%;">
                                     <span style="font-family: var(--title-family);line-height:40px">GooglePay </span>
-                                    <div style="float: right;min-width: 200px;display: inline;text-align: right;"><img src="/checkout/v2/images/googlePay.png" style="max-height:40px" /></div>
+                                    <div style="float: right;min-width: 200px;display: inline;text-align: right;"><img src="/checkout/v2/images/googlePay.webp" style="max-height:40px" /></div>
                                   </label>
                                 </div>
                               </div>
@@ -1996,7 +1993,7 @@
                                   <input class="form-check-input" onchange="gooleOrAppleChange()" type="radio" value="airwallex_apple" id="airwallex_apple" name="payment_method">
                                   <label class="form-check-label" for="airwallex_apple" style="float: right;min-width: 95%;">
                                     <span style="font-family: var(--title-family);line-height:40px">ApplePay</span>
-                                    <div style="float: right;min-width: 200px;display: inline;text-align: right;"><img src="/checkout/v2/images/applePay.png" style="max-height:40px" /></div>
+                                    <div style="float: right;min-width: 200px;display: inline;text-align: right;"><img src="/checkout/v2/images/applePay.webp" style="max-height:40px" /></div>
                                   </label>
                                 </div>
                               </div>
@@ -2521,7 +2518,7 @@
         complete: false
       },
       skuErr = false,
-      logoImg = "/checkout/v2/images/logo_" + countries1 + ".png",
+      logoImg = "/checkout/v2/images/logo_" + countries1 + ".webp",
       schrittImg = "/checkout/v2/images/1701506369_" + countries1 + ".webp",
       googlerOrApple = '',
       googleShow = false,
@@ -2572,7 +2569,7 @@
         $('.terms-block-last').show()
       }
       if (countries1 == 'us' || countries1 == 'gb') {
-        var favicon = '/checkout/v2/images/favicon.png'
+        var favicon = '/checkout/v2/images/favicon.webp'
         $('#favicon-icon').attr('href', favicon)
       }
       // var dataUrl = '/api/onebuy/product/detail/' + getProductId + '?currency=' + currency
@@ -4494,7 +4491,6 @@
   <script type="text/javascript" src="/checkout/v2/js/slick.min.js"></script>
   <script type="text/javascript" src="/checkout/v2/js/bookmarkscroll.js"></script>
   <script type="text/javascript" src="/checkout/v2/js/jquery.sticky.js"></script>
-  <script type="text/javascript" src="/checkout/v2/js/slick-cust.js"></script>
   <script type="text/javascript" src="/checkout/v2/js/popup.js"></script>
 
   <script>

@@ -440,7 +440,6 @@ class Order extends Model implements OrderContract
             $payment = $this->payment()->first();
             if($dispute->status !="RESOLVED" && $payment->method=='paypal_smart_button') return false;
             if($dispute->status !="ACCEPTED" && $payment->method=='airwallex') return false;
-
         }
 
         $pendingInvoice = $this->invoices->where('state', 'pending')
