@@ -239,8 +239,9 @@ class WebhooksController extends Controller
     public function fulfillments_create(Request $request) {
         //Log::info("fulfillments_create ".json_encode($request->all()));
         $req = $request->all();
-
         $shopify_order_id = $req['order_id'];
+
+        return Artisan::queue("shopify:fulfillments:create", ['--order_id'=>$shopify_order_id,'--data'=> $req])->onConnection('redis')->onQueue('shopify-fulfillments'); // add shopify fulfillments queue
 
         $shopifyNewOrder = $this->ShopifyOrder->where([
             'shopify_store_id' => $this->shopify_store_id,
@@ -256,7 +257,6 @@ class WebhooksController extends Controller
 
         if (!$order->canShip()) {
             Log::error("fulfillments_create cannot ship ".$shopify_order_id);
-            
             return false;
         }
 

@@ -1,13 +1,22 @@
 <?php
 namespace Nicelizhi\Airwallex\Helpers;
 
+use Webkul\Checkout\Facades\Cart;
+use Webkul\Sales\Repositories\InvoiceRepository;
+use Webkul\Sales\Repositories\OrderRepository;
+use Webkul\Sales\Repositories\OrderItemRepository;
+use Webkul\Sales\Repositories\RefundRepository;
+use Webkul\Sales\Repositories\OrderTransactionRepository;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Http\Request;
 
 class WebHook {
 
     private $name = null;
     private $data = null;
 
-    public function __construct() {
+    public function __construct(
+    ) {
     }
 
     public function init($name, $data){
@@ -93,7 +102,8 @@ class WebHook {
     }   
 
 
-    public function payment_dispute_accepted() {
+    // payment_dispute_accepted
+    public function payment_dispute_accepted($orderRepository, $refundRepository) {
         $dispute = \Webkul\Sales\Models\OrderDispute::where('dispute_id', $this->data['data']['object']['id'])->first();
         if(is_null($dispute)) $dispute = $dispute = new \Webkul\Sales\Models\OrderDispute();
 
@@ -117,6 +127,55 @@ class WebHook {
         $dispute->order_id = $merchant_order_id;
         $dispute->json = json_encode($this->data);
         $dispute->save();
+
+        $order = $orderRepository->findOrFail($merchant_order_id);
+
+        if (! $order->canRefund()) {
+
+            return false;
+        }
+
+        $refud = [];
+        // 0: not refund money, 1: refund money
+
+
+       $refundData= [];
+
+       $params = [];
+
+       $order_items = $order->items;
+
+       //var_dump($order_items);
+
+
+
+       foreach ($order_items as $order_item) {
+           $refundData[$order_item->id] = $order_item->qty_ordered;
+       }
+
+       
+
+       $refud['refund']['items'] =  $refundData;
+
+       $totals = $refundRepository->getOrderItemsRefundSummary($refud['refund']['items'], $merchant_order_id);
+
+       //var_dump($totals);exit;
+
+       $refud['refund']['shipping'] = 9.99;
+       $refud['refund']['is_refund_money'] = 0;
+       $refud['refund']['adjustment_refund'] = 0;
+       $refud['refund']['adjustment_fee'] = 0;
+       $refud['refund']['custom_refund_amount'] = $this->data['data']['object']['amount'];
+
+       $refud['refund']['comment'] = $this->data['data']['object']['reason']['type'];
+
+       if(!empty($refud['refund']['custom_refund_amount'])) {
+           $refundAmount = $totals['grand_total']['price'] - $totals['shipping']['price'] + $refud['refund']['shipping'] + $refud['refund']['adjustment_refund'] - $refud['refund']['adjustment_fee'];
+           $refud['refund']['adjustment_fee'] = abs($refud['refund']['custom_refund_amount'] - $refundAmount);
+       }
+
+       $refundRepository->create(array_merge($refud, ['order_id' => $merchant_order_id]));
+        
     }
 
 }
