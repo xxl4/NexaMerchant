@@ -1366,10 +1366,7 @@
 <body>
   <page-builder-block>
     <link rel="stylesheet prefetch" href="/checkout/v2/css/app2.css?v=4" />
-    <link type="text/css" href="/checkout/v2/css/custom-extra.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/5.0.4/css/swiper.css" />
-    <link type="text/css" href="/checkout/v2/css/repeated-order-confirmation.min.css" rel="stylesheet" />
-    <link type="text/css" href="/checkout/v2/css/repeated-order-confirmation-additional.css" rel="stylesheet" />
     <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/checkout.css?v=8" />
     <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/bootstrap.min.css" />
     <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/slick.min.css" />
@@ -4494,7 +4491,6 @@
   <script type="text/javascript" src="/checkout/v2/js/slick.min.js"></script>
   <script type="text/javascript" src="/checkout/v2/js/bookmarkscroll.js"></script>
   <script type="text/javascript" src="/checkout/v2/js/jquery.sticky.js"></script>
-  <script type="text/javascript" src="/checkout/v2/js/slick-cust.js"></script>
   <script type="text/javascript" src="/checkout/v2/js/popup.js"></script>
 
   <script>
