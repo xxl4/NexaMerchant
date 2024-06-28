@@ -81,12 +81,12 @@
           <div class="vehicle-detail-banner banner-content clearfix">
             <div class="banner-slider">
               <div class="slider-banner-image1">
-                <div class="sw-box" style="display: none;">
+                <div class="sw-box">
                 </div>
               </div>
             </div>
           </div>
-          <div class="Schritt-top-box">
+          <div class=" Schritt-top-box">
             <div class="description-img-box">
               <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M24 24C19.5817 28.4183 12.4183 28.4183 8 24C3.58172 19.5817 3.58172 12.4183 8 8C12.4183 3.58172 19.5817 3.58172 24 8" stroke="#4A4A4A" stroke-width="2.5" stroke-linecap="round" />
@@ -3427,7 +3427,7 @@
             swiperList +
             `</div>
 				</div>`
-          $('.sw-box').html(gallery, thumbs).fadeIn(500);
+          $('.sw-box').append(gallery, thumbs);
           galleryThumbs = new Swiper(
             '#thumbs', {
               slidesPerView: 5,
