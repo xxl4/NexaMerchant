@@ -46,10 +46,8 @@ RUN apt-get update && apt-get install -y \
     libxpm-dev \
     libwebp-dev
 
-
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg --with-webp
 RUN docker-php-ext-install pdo_mysql mbstring zip exif pcntl bcmath gd intl opcache calendar
-
 
 
 RUN pecl install redis \
@@ -76,7 +74,7 @@ RUN a2ensite vhost.conf
 
 
 # COPY composer.json composer.json
-RUN composer install --no-interaction --prefer-dist --optimize-autoloader
+RUN composer update --no-interaction --prefer-dist --optimize-autoloader
 
 
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
