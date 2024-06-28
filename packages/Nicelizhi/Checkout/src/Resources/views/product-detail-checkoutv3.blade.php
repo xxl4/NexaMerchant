@@ -5116,7 +5116,7 @@
             swiperList +
             `</div>
 				</div>`
-          $('.sw-box').apend(gallery, thumbs);
+          $('.sw-box').append(gallery, thumbs);
           galleryThumbs = new Swiper(
             '#thumbs', {
               slidesPerView: 5,
