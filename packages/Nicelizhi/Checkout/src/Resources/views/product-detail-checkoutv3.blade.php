@@ -1770,7 +1770,7 @@
           <div class="vehicle-detail-banner banner-content clearfix">
             <div class="banner-slider">
               <div class="slider-banner-image1">
-                <div class="sw-box">
+                <div class="sw-box" style="display: none;">
                 </div>
               </div>
             </div>
@@ -1898,7 +1898,7 @@
             </p>
           </div>
         </div>
-        <div class="shopify-container fl"></div>
+        <div class="shopify-container fl" style="display:none"></div>
         <div id="iduzu" class="section" style="width: 100%;float: right;margin-bottom:10px; display: flex;">
         </div>
         <!-- review -->
