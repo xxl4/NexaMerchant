@@ -54,6 +54,12 @@ class Refund extends Base
             /* getting smart button instance */
             $smartButton = new SmartButton;
 
+            if($order->payment->version !='0') {
+                $smartButton->setClientId(config("website.paypal.v".$order->payment->version.".client_id"));
+                $smartButton->setClientSecret(config("website.paypal.v".$order->payment->version.".client_secret"));
+            }
+
+
             /* getting paypal oder id */
             $paypalOrderID = $order->payment->additional['orderID'];
 
@@ -73,7 +79,7 @@ class Refund extends Base
             }catch (Exception $e) {
                 var_dump($e->getMessage());
                 //exit;
-                \Nicelizhi\Shopify\Helpers\Utils::send($e->getMessage());
+                \Nicelizhi\Shopify\Helpers\Utils::send($e->getMessage());   
             } finally  {
                 //echo " Error plese check the log ";exit;
             }
