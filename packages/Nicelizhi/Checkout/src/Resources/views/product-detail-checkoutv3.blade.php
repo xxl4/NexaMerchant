@@ -23,11 +23,73 @@
   <meta property="og:image:height" content="630" />
   <meta property="og:image" content="/offer/1/app/desktop/images/thumb.png" />
   <meta name="color-scheme" content="light only" />
+  <link rel="stylesheet" href="/checkout/v2/css/v3.css">
+  <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/checkout.css?v=10" />
   <link rel="prefetch" href="checkout/v2/images/favicon_de.webp">
   <link rel="prefetch" href="checkout/v2/images/favicon.webp">
   <link rel="prefetch" href="checkout/v2/images/googlePay.webp">
   <link rel="prefetch" href="checkout/v2/images/applePay.webp">
   <link rel="prefetch" href="checkout/v2/images/logo_{{ app()->getLocale() }}.webp">
+  <!-- <link href="https://cdn.jsdelivr.net/npm/flag-icon-css@4.1.7/css/flag-icons.min.css" rel="stylesheet" /> -->
+  <!-- <link href="https://cdn.jsdelivr.net/npm/jquery-colorbox@1.6.4/example1/colorbox.min.css" rel="stylesheet" /> -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icon-css@4.1.7/css/flag-icons.min.css" media="none" onload="if(media!='all')media='all'">
+  <noscript>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icon-css@4.1.7/css/flag-icons.min.css">
+  </noscript>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-colorbox@1.6.4/example1/colorbox.min.css" media="none" onload="if(media!='all')media='all'">
+  <noscript>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-colorbox@1.6.4/example1/colorbox.min.css">
+  </noscript>
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/5.0.4/css/swiper.css" /> -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/5.0.4/css/swiper.css" media="none" onload="if(media!='all')media='all'">
+  <noscript>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/5.0.4/css/swiper.css">
+  </noscript>
+  <!-- <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/slick.min.css" /> -->
+  <link rel="stylesheet" href="/checkout/v2/css/slick.min.css" media="none" onload="if(media!='all')media='all'">
+  <noscript>
+    <link rel="stylesheet" href="/checkout/v2/css/slick.min.css">
+  </noscript>
+  <!-- <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/upsell-new-02.css?v=6" /> -->
+  <link rel="stylesheet" href="/checkout/v2/css/upsell-new-02.css?v=6" media="none" onload="if(media!='all')media='all'">
+  <noscript>
+    <link rel="stylesheet" href="/checkout/v2/css/upsell-new-02.css?v=6">
+  </noscript>
+  <!-- <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/extra-style.css?v=1" /> -->
+  <link rel="stylesheet" href="/checkout/v2/css/extra-style.css?v=1" media="none" onload="if(media!='all')media='all'">
+  <noscript>
+    <link rel="stylesheet" href="/checkout/v2/css/extra-style.css?v=1">
+  </noscript>
+  <!-- <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/fonts.css?v=1" /> -->
+  <link rel="stylesheet" href="/checkout/v2/css/fonts.css?v=1" media="none" onload="if(media!='all')media='all'">
+  <noscript>
+    <link rel="stylesheet" href="/checkout/v2/css/fonts.css?v=1">
+  </noscript>
+  <!-- <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/custom.css?v=1" /> -->
+  <link rel="stylesheet" href="/checkout/v2/css/custom.css?v=1" media="none" onload="if(media!='all')media='all'">
+  <noscript>
+    <link rel="stylesheet" href="/checkout/v2/css/custom.css?v=1">
+  </noscript>
+  <!-- <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/new_addon.css?v=1" /> -->
+  <link rel="stylesheet" href="/checkout/v2/css/new_addon.css?v=1" media="none" onload="if(media!='all')media='all'">
+  <noscript>
+    <link rel="stylesheet" href="/checkout/v2/css/new_addon.css?v=1">
+  </noscript>
+  <!-- <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/all.min.css" /> -->
+  <link rel="stylesheet" href="/checkout/v2/css/all.min.css" media="none" onload="if(media!='all')media='all'">
+  <noscript>
+    <link rel="stylesheet" href="/checkout/v2/css/all.min.css">
+  </noscript>
+  <!-- <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/bootstrap.min.css" /> -->
+  <link rel="stylesheet" href="/checkout/v2/css/bootstrap.min.css" media="none" onload="if(media!='all')media='all'">
+  <noscript>
+    <link rel="stylesheet" href="/checkout/v2/css/bootstrap.min.css">
+  </noscript>
+  <!-- <link rel="stylesheet prefetch" href="/checkout/v2/css/app2.css?v=5" /> -->
+  <link rel="stylesheet" href="/checkout/v2/css/app2.css?v=5" media="none" onload="if(media!='all')media='all'">
+  <noscript>
+    <link rel="stylesheet" href="/checkout/v2/css/app2.css?v=5">
+  </noscript>
   <style>
     img {
       aspect-ratio: attr(width)/attr(height);
@@ -90,35 +152,6 @@
 </head>
 
 <body>
-  <!-- <link href="https://cdn.jsdelivr.net/npm/flag-icon-css@4.1.7/css/flag-icons.min.css" rel="stylesheet" /> -->
-  <!-- <link href="https://cdn.jsdelivr.net/npm/jquery-colorbox@1.6.4/example1/colorbox.min.css" rel="stylesheet" /> -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icon-css@4.1.7/css/flag-icons.min.css" media="none" onload="if(media!='all')media='all'">
-  <noscript>
-    <link rel="stylesheet" href="styles.css">
-  </noscript>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-colorbox@1.6.4/example1/colorbox.min.css" media="none" onload="if(media!='all')media='all'">
-  <noscript>
-    <link rel="stylesheet" href="styles.css">
-  </noscript>
-  <page-builder-block>
-    <!-- Start VWO SmartCode -->
-    <!-- <script src="/checkout/v2/js/51174.js"></script> -->
-    <!-- End VWO SmartCode -->
-    <link rel="stylesheet" href="/checkout/v2/css/v3.css">
-    <link rel="stylesheet prefetch" href="/checkout/v2/css/app2.css?v=5" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/5.0.4/css/swiper.css" />
-    <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/checkout.css?v=10" />
-    <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/bootstrap.min.css" />
-    <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/slick.min.css" />
-    <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/upsell-new-02.css?v=6" />
-    <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/extra-style.css?v=1" />
-    <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/fonts.css?v=1" />
-    <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/custom.css?v=1" />
-    <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/new_addon.css?v=1" />
-    <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/all.min.css" />
-    <span id="builderCssToken"> </span>
-  </page-builder-block>
-
   <div class="header-container">
     <div class="container">
       <div class="herder-content">
