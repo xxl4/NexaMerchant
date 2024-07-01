@@ -63,7 +63,7 @@
   <div class="header-container">
     <div class="container">
       <div class="herder-content">
-        <img src="" style="height: 50px;" loading="lazy" alt="" />
+        <img src="" style="height: 50px;" alt="" />
         <div class="top-left-button">
           <!-- <p class="header-text-hide">@lang('checkout::app.v3.Description')</p> -->
           <a class="header-text-hide" onclick="reviewToggle()" id="header-text" href="#shopify-title-item1">@lang('checkout::app.v3.Reviews')</a>
@@ -209,7 +209,7 @@
             </p>
           </div>
         </div>
-        <div class="shopify-container fl" style="display:none"></div>
+        <div class="shopify-container fl" style="display: none;"></div>
         <div id="iduzu" class="section" style="width: 100%;float: right;margin-bottom:10px; display: flex;">
         </div>
         <!-- review -->
