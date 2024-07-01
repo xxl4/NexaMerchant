@@ -960,6 +960,7 @@
     }
     var app_query_params = []
   </script>
+  <script src="/checkout/v3/js/main.js"></script>
   <script type="text/javascript">
     AJAX_PATH = 'ajax.php/'
     app_config = {
