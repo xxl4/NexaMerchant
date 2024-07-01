@@ -33,7 +33,9 @@
       aspect-ratio: attr(width)/attr(height);
     }
 
-
+    .sw-box {
+      height: 48.33333vw;
+    }
 
     .shopify-container {
       width: 100%;
@@ -58,15 +60,9 @@
       }
     }
 
-    @media(max-width:1200px) {
+    @media (min-width: 768px) and (max-width: 1200px) {
       .sw-box {
         height: 610px;
-      }
-    }
-
-    @media(min-width:1200px) {
-      .sw-box {
-        height: 48.33333vw;
       }
     }
 
