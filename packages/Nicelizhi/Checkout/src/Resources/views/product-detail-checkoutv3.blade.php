@@ -35,11 +35,12 @@
 
     .sw-box {
       height: 48.33333vw;
+      max-height: 660px;
     }
 
     .shopify-container {
       width: 100%;
-      height: 200px;
+      height: 1000px;
       background-color: #e0e0e0;
       animation: pulse 1.5s infinite;
     }
@@ -3464,7 +3465,7 @@
           var imgListLength = img.length
           var imglen = Math.floor(imgListLength / 3)
           for (var i = 0; i < img.length; i++) {
-            swiperList += `<div class="swiper-slide"><img src="${img[i].src}" width="500" height="500" loading="lazy" alt=""></div>`
+            swiperList += `<div class="swiper-slide"><img src="${img[i].src}" width="705" height="705" loading="lazy" alt=""></div>`
           }
           var gallery =
             `<div class="swiper-container" style="width:100%" id="gallery">
