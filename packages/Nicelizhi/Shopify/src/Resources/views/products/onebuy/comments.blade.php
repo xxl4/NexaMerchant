@@ -81,6 +81,7 @@
                         <th>Title</th>
                         <th>Content</th>
                         <th>Status</th>
+                        <th>Sort</th>
                         <th>Create Date</th>
                         <th>Rank</th>
                         <th>Images</th>
@@ -95,6 +96,7 @@
                             echo "<td>".$comment->title."</td>";
                             echo "<td>".$comment->comment."</td>";
                             echo "<td>".$comment->status."</td>";
+                            echo "<td><input type='number' class='update_comment_sort input' comment_id='".$comment->id."' value='".$comment->sort."'></td>";
                             echo "<td>".$comment->created_at."</td>";
                             echo "<td>".$comment->rating."</td>";
                             
@@ -125,6 +127,30 @@
 
 <script>
     $(document).ready(function() {
+        $('.update_comment_sort').keydown(function(event) {
+            if(event.keyCode == 13) {
+                var comment_id = $(this).attr("comment_id");
+                var sort = $(this).val();
+                console.log(comment_id);
+                console.log(sort);
+
+                // comment sort update
+                
+                $.ajax({
+                    url: "{{ route('admin.shopify.products.comments.sort') }}?comment_id="+comment_id+"&sort="+sort,
+                    type: 'GET',
+                    success: function(data) {
+                        alert(data.message);
+                        //alert('Sync Comment From Shopify, will cost a few minutes, please wait for');
+                    }
+                });
+
+
+
+            }
+        });
+
+
         $('.manual-sync-comment').click(function() {
             var force = 0;
             if($("#force").is(':checked'))
