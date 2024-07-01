@@ -26,6 +26,8 @@ class Create extends CommandInterface
         'src/Resources/views/Admin',
         'src/Resources/views/Admin/demo.blade.php',
         'src/Resources/lang',
+        'src/Resources/lang/en',
+        'src/Resources/lang/en/app.php',
         'src/Http',
         'src/Http/Middleware',
         'src/Http/Requests',
@@ -84,7 +86,6 @@ class Create extends CommandInterface
             return false;
         }
 
-
         if(!$this->checkOnelineAppName($name)) {
             $this->error("App $name is not valid");
             return false;
@@ -98,7 +99,11 @@ class Create extends CommandInterface
             //$this->info("App $name created successfully");
         } else {
             $this->error("App $name already exists");
-            return false;
+            if (!$this->confirm('Do you wish to continue?')) {
+                // ...
+                $this->error("App $name cannelled");
+                return false;
+            }
         }
 
         array_push($this->dirList, 'src/Providers/'.$name.'ServiceProvider.php');
@@ -212,6 +217,9 @@ class Create extends CommandInterface
             case 'tests/bootstrap.php':
                 $content = file_get_contents(__DIR__.'/stubs/bootstrap.php.stub');
             break;
+            case 'src/Resources/lang/en/app.php':
+                $content = file_get_contents(__DIR__.'/stubs/app.lang.php.stub');
+            break;
 
             default:
             break;
@@ -219,6 +227,7 @@ class Create extends CommandInterface
 
         $content = str_replace('{{NAME}}', $this->AppName, $content);
         $content = str_replace('{{name}}', $this->AppNameLower, $content);
+        $content = str_replace('{{DATE}}', date("Y-m-d H:i:s"), $content);
 
 
 
