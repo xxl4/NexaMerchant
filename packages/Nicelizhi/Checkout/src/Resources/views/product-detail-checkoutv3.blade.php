@@ -46,6 +46,7 @@
 
     .shopify-content {
       width: 100%;
+      float: left;
     }
 
     @media(max-width:600px) {
@@ -62,7 +63,7 @@
 
     @media (min-width: 768px) and (max-width: 1028px) {
       .sw-box {
-        height: 610px;
+        height: 510px;
       }
     }
 
