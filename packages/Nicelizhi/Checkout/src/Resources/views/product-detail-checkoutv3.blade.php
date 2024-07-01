@@ -28,6 +28,65 @@
   <link rel="prefetch" href="checkout/v2/images/googlePay.webp">
   <link rel="prefetch" href="checkout/v2/images/applePay.webp">
   <link rel="prefetch" href="checkout/v2/images/logo_{{ app()->getLocale() }}.webp">
+  <style>
+    img {
+      aspect-ratio: attr(width)/attr(height);
+    }
+
+    .sw-box {
+      height: 48.33333vw;
+    }
+
+    .shopify-container {
+      width: 100%;
+      height: 1000px;
+      background-color: #e0e0e0;
+      animation: pulse 1.5s infinite;
+    }
+
+    .shopify-content {
+      width: 100%;
+      float: left;
+    }
+
+    @media(max-width:600px) {
+      .sw-box {
+        height: 110vw;
+      }
+    }
+
+    @media(min-width:600px) and (max-width:768px) {
+      .sw-box {
+        height: 660px;
+      }
+    }
+
+    @media (min-width: 768px) and (max-width: 1028px) {
+      .sw-box {
+        height: 510px;
+      }
+    }
+
+    @media (min-width: 1020px) and (max-width: 1200px) {
+      .sw-box {
+        height: 610px;
+      }
+    }
+
+    @keyframes pulse {
+      0% {
+        background-color: #e0e0e0;
+      }
+
+      50% {
+        background-color: #f0f0f0;
+      }
+
+      100% {
+        background-color: #e0e0e0;
+      }
+    }
+  </style>
 </head>
 
 <body>
@@ -63,7 +122,7 @@
   <div class="header-container">
     <div class="container">
       <div class="herder-content">
-        <img src="" style="height: 50px;" loading="lazy" alt="" />
+        <img src="" width="100" height="50" alt="" />
         <div class="top-left-button">
           <!-- <p class="header-text-hide">@lang('checkout::app.v3.Description')</p> -->
           <a class="header-text-hide" onclick="reviewToggle()" id="header-text" href="#shopify-title-item1">@lang('checkout::app.v3.Reviews')</a>
@@ -81,7 +140,7 @@
           <div class="vehicle-detail-banner banner-content clearfix">
             <div class="banner-slider">
               <div class="slider-banner-image1">
-                <div class="sw-box">
+                <div class="sw-box" style="width:100%;">
                 </div>
               </div>
             </div>
@@ -135,7 +194,7 @@
         </p>
         <div class="header-middle">
           <p class="text-Schritt-top">@lang('checkout::app.v2.You Can See By')</p>
-          <img src="" loading="lazy" alt="" />
+          <img src="" width="460" height="48" alt="" />
         </div>
         <div class="fl mt10">
 
@@ -189,14 +248,14 @@
 
         <div class="payment-icon-box">
           <div class="payment-top">
-            <img src="/checkout/v2/images/secure-checkout.png" loading="lazy" alt="">
+            <img src="/checkout/v2/images/secure-checkout.png" width="14" height="14" alt="">
             <p>@lang('checkout::app.v3.Secure Checkout')</p>
           </div>
-          <img src="/checkout/v2/images/payment6.svg" loading="lazy" alt="">
-          <img src="/checkout/v2/images/payment2.svg" loading="lazy" alt="">
-          <img src="/checkout/v2/images/payment3.svg" loading="lazy" alt="">
-          <img src="/checkout/v2/images/payment4.svg" loading="lazy" alt="">
-          <img src="/checkout/v2/images/payment5.svg" loading="lazy" alt="">
+          <img src="/checkout/v2/images/payment6.svg" width="40" height="10" alt="">
+          <img src="/checkout/v2/images/payment2.svg" width="40" height="31" alt="">
+          <img src="/checkout/v2/images/payment3.svg" width="78" height="25" alt="">
+          <img src="/checkout/v2/images/payment4.svg" width="78" height="19" alt="">
+          <img src="/checkout/v2/images/payment5.svg" width="78" height="26" alt="">
         </div>
 
         <div class="shopify-title fl">
@@ -209,7 +268,7 @@
             </p>
           </div>
         </div>
-        <div class="shopify-container fl" style="display:none"></div>
+        <div class="shopify-container fl"></div>
         <div id="iduzu" class="section" style="width: 100%;float: right;margin-bottom:10px; display: flex;">
         </div>
         <!-- review -->
@@ -500,7 +559,7 @@
                                   <input class="form-check-input" name="airwallex-klarna" type="radio" value="airwallex-klarna" id="airwallex-klarna" <?php if ($payments_default == 'airwallex-klarna') echo 'checked'; ?> name="payment_method">
                                   <label class="form-check-label" for="airwallex-klarna" style="float: right;min-width: 95%;">
                                     <span style="font-family: var(--title-family);">@lang('onebuy::app.product.payment.klarna.title')</span>
-                                    <div style="float: right;min-width: 200px;display: inline;text-align: right;"><img src="/checkout/v1/app/desktop/images/Klarna.png" style="max-height:24px" loading="lazy" alt="" /></div>
+                                    <div style="float: right;min-width: 200px;display: inline;text-align: right;"><img src="/checkout/v1/app/desktop/images/Klarna.png" width="84" height="24" loading="lazy" alt="" /></div>
                                   </label>
                                 </div>
                               </div>
@@ -525,7 +584,7 @@
                                   <input class="form-check-input" type="radio" value="paypal_standard" id="payal_standard" <?php if ($payments_default == 'payal_standard') echo 'checked'; ?> name="payment_method">
                                   <label class="form-check-label" for="payal_standard" style="float: right;min-width: 95%;">
                                     <span style="font-family: var(--title-family);">@lang('onebuy::app.product.payment.paypal.title') </span>
-                                    <div style="float: right;min-width: 200px;display: inline;text-align: right;"><img src="/checkout/v1/app/desktop/images/paypal.png" style="max-height:24px" loading="lazy" alt="" /></div>
+                                    <div style="float: right;min-width: 200px;display: inline;text-align: right;"><img src="/checkout/v1/app/desktop/images/paypal.png" width="84" height="24" loading="lazy" alt="" /></div>
                                   </label>
                                 </div>
                               </div>
@@ -549,10 +608,10 @@
                                   <label class="form-check-label" for="payment_method_airwallex" style="float: right;min-width: 95%;">
                                     <span style="font-family: var(--title-family);">@lang('onebuy::app.product.payment.creditCard.title')</span>
                                     <div class="text-right" style="min-width:190px; display: inline;float: right;">
-                                      <img src="https://cdn.shopify.com/shopifycloud/checkout-web/assets/0169695890db3db16bfe.svg" loading="lazy" alt="" />
-                                      <img src="https://cdn.shopify.com/shopifycloud/checkout-web/assets/ae9ceec48b1dc489596c.svg" loading="lazy" alt="" />
-                                      <img src="https://cdn.shopify.com/shopifycloud/checkout-web/assets/f11b90c2972f3811f2d5.svg" loading="lazy" alt="" />
-                                      <img src="https://cdn.shopify.com/shopifycloud/checkout-web/assets/37fc65d0d7ac30da3b0c.svg" loading="lazy" alt="" />
+                                      <img width="38" height="24" src="https://cdn.shopify.com/shopifycloud/checkout-web/assets/0169695890db3db16bfe.svg" loading="lazy" alt="" />
+                                      <img width="38" height="24" src="https://cdn.shopify.com/shopifycloud/checkout-web/assets/ae9ceec48b1dc489596c.svg" loading="lazy" alt="" />
+                                      <img width="38" height="24" src="https://cdn.shopify.com/shopifycloud/checkout-web/assets/f11b90c2972f3811f2d5.svg" loading="lazy" alt="" />
+                                      <img width="38" height="24" src="https://cdn.shopify.com/shopifycloud/checkout-web/assets/37fc65d0d7ac30da3b0c.svg" loading="lazy" alt="" />
                                     </div>
 
                                   </label>
@@ -706,7 +765,7 @@
                                   <input class="form-check-input" type="radio" onchange="gooleOrAppleChange()" value="airwallex_google" id="airwallex_google" name="payment_method">
                                   <label class="form-check-label" for="airwallex_google" style="float: right;min-width: 95%;">
                                     <span style="font-family: var(--title-family);line-height:40px">GooglePay </span>
-                                    <div style="float: right;min-width: 200px;display: inline;text-align: right;"><img src="/checkout/v2/images/googlePay.webp" style="max-height:40px" loading="lazy" alt="" /></div>
+                                    <div style="float: right;min-width: 200px;display: inline;text-align: right;"><img src="/checkout/v2/images/googlePay.webp" width="64" height="40" style="max-height:40px" loading="lazy" alt="" /></div>
                                   </label>
                                 </div>
                               </div>
@@ -729,7 +788,7 @@
                                   <input class="form-check-input" onchange="gooleOrAppleChange()" type="radio" value="airwallex_apple" id="airwallex_apple" name="payment_method">
                                   <label class="form-check-label" for="airwallex_apple" style="float: right;min-width: 95%;">
                                     <span style="font-family: var(--title-family);line-height:40px">ApplePay</span>
-                                    <div style="float: right;min-width: 200px;display: inline;text-align: right;"><img src="/checkout/v2/images/applePay.webp" style="max-height:40px" loading="lazy" alt="" /></div>
+                                    <div style="float: right;min-width: 200px;display: inline;text-align: right;"><img src="/checkout/v2/images/applePay.webp" width="64" height="40" style="max-height:40px" loading="lazy" alt="" /></div>
                                   </label>
                                 </div>
                               </div>
@@ -836,7 +895,7 @@
     </div>
     <br /><br />
     <div class="dmca_logo">
-      <img src="/checkout/v2/images/1662477222-dmca.webp" loading="lazy" alt="DMCA.com Protection Status" />
+      <img src="/checkout/v2/images/1662477222-dmca.webp" width="150" height="30" loading="lazy" alt="DMCA.com Protection Status" />
     </div>
   </div>
   <div class="dialog-error">
@@ -1098,7 +1157,7 @@
   <!-- <script src="/checkout/v2/js/jquery-3.0.0.min.js"></script> -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-  <script async src="https://cdn.jsdelivr.net/npm/jquery-colorbox@1.6.4/jquery.colorbox.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery-colorbox@1.6.4/jquery.colorbox.min.js"></script>
 
   <script>
     $(document).ready(function() {
@@ -1625,7 +1684,7 @@
         $.each(sellObj, function(key, value) {
           if (value) {
             descriptionContent += `<div class="three-description-item">
-            <img src="/checkout/v2/images/1673346232-mainpage.webp" loading="lazy" alt="">
+            <img src="/checkout/v2/images/1673346232-mainpage.webp" width="30" height="30" loading="lazy" alt="">
             <p class="three-description-text"> ` + value + `</p></div>`
           }
         })
@@ -1633,7 +1692,7 @@
       $('.three-description-box').append(descriptionContent)
     }
     $('#shopify-title-item1').click(function() {
-      $(".shopify-container").show()
+      $(".shopify-content").show()
       $('#reviews-box').hide()
       $('#shopify-title-item1').addClass('bor-bom-3')
       $('#shopify-title-item2').removeClass('bor-bom-3')
@@ -1653,7 +1712,7 @@
       $('#shopify-title-item2').addClass('bor-bom-3')
       console.log($('#shopify-title-item2'), '#shopify-title-item2');
       $('#shopify-title-item1').removeClass('bor-bom-3')
-      $(".shopify-container").hide()
+      $(".shopify-content").hide()
       $('#reviews-box').show()
       console.log('reviewTogglereviewToggle');
       // $("#reviews-box").slideToggle();
@@ -1675,9 +1734,14 @@
       axios
         .get(shopifyUrl)
         .then(function(res) {
-          console.log(res, 'getShopify===res');
-          let bodyHtml = res.data.data.body_html
-          $('.shopify-container').html(bodyHtml).fadeIn(500);
+          const bodyHtml = res.data.data.body_html
+          const skeleton = document.querySelector('.shopify-container');
+          const content = document.createElement('div');
+          content.classList.add('shopify-content');
+          content.innerHTML = bodyHtml;
+          skeleton.replaceWith(content);
+          // console.log(res, 'getShopify===res');
+          // $('.shopify-container').html(bodyHtml);
         })
         .catch(function(err) {
           console.log(err, 'getShopify===err');
@@ -3413,7 +3477,7 @@
           var imgListLength = img.length
           var imglen = Math.floor(imgListLength / 3)
           for (var i = 0; i < img.length; i++) {
-            swiperList += `<div class="swiper-slide"><img src="${img[i].src}" loading="lazy" alt=""></div>`
+            swiperList += `<div class="swiper-slide"><img src="${img[i].src}" width="705" height="705" alt=""></div>`
           }
           var gallery =
             `<div class="swiper-container" style="width:100%" id="gallery">
