@@ -1145,7 +1145,7 @@
   <!-- <script src="/checkout/v2/js/jquery-3.0.0.min.js"></script> -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-  <script async src="https://cdn.jsdelivr.net/npm/jquery-colorbox@1.6.4/jquery.colorbox.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery-colorbox@1.6.4/jquery.colorbox.min.js"></script>
 
   <script>
     $(document).ready(function() {
@@ -1680,7 +1680,7 @@
       $('.three-description-box').append(descriptionContent)
     }
     $('#shopify-title-item1').click(function() {
-      $(".shopify-container").show()
+      $(".shopify-content").show()
       $('#reviews-box').hide()
       $('#shopify-title-item1').addClass('bor-bom-3')
       $('#shopify-title-item2').removeClass('bor-bom-3')
@@ -1700,7 +1700,7 @@
       $('#shopify-title-item2').addClass('bor-bom-3')
       console.log($('#shopify-title-item2'), '#shopify-title-item2');
       $('#shopify-title-item1').removeClass('bor-bom-3')
-      $(".shopify-container").hide()
+      $(".shopify-content").hide()
       $('#reviews-box').show()
       console.log('reviewTogglereviewToggle');
       // $("#reviews-box").slideToggle();
@@ -3465,7 +3465,7 @@
           var imgListLength = img.length
           var imglen = Math.floor(imgListLength / 3)
           for (var i = 0; i < img.length; i++) {
-            swiperList += `<div class="swiper-slide"><img src="${img[i].src}" width="705" height="705" loading="lazy" alt=""></div>`
+            swiperList += `<div class="swiper-slide"><img src="${img[i].src}" width="705" height="705" alt=""></div>`
           }
           var gallery =
             `<div class="swiper-container" style="width:100%" id="gallery">
