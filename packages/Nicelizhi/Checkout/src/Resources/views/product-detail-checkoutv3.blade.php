@@ -32,6 +32,47 @@
     img {
       aspect-ratio: attr(width)/attr(height);
     }
+
+    .sw-box {
+      height: 48.33333vw;
+    }
+
+    .shopify-container {
+      width: 100%;
+      height: 200px;
+      background-color: #e0e0e0;
+      animation: pulse 1.5s infinite;
+    }
+
+    .shopify-content {
+      width: 100%;
+    }
+
+    @media(max-width:600px) {
+      .sw-box {
+        height: 110vw;
+      }
+    }
+
+    @media(max-width:768px) {
+      .sw-box {
+        height: 660px;
+      }
+    }
+
+    @keyframes pulse {
+      0% {
+        background-color: #e0e0e0;
+      }
+
+      50% {
+        background-color: #f0f0f0;
+      }
+
+      100% {
+        background-color: #e0e0e0;
+      }
+    }
   </style>
 </head>
 
@@ -86,7 +127,7 @@
           <div class="vehicle-detail-banner banner-content clearfix">
             <div class="banner-slider">
               <div class="slider-banner-image1">
-                <div class="sw-box">
+                <div class="sw-box" style="width:100%;">
                 </div>
               </div>
             </div>
@@ -214,7 +255,7 @@
             </p>
           </div>
         </div>
-        <div class="shopify-container fl" style="display: none;"></div>
+        <div class="shopify-container fl"></div>
         <div id="iduzu" class="section" style="width: 100%;float: right;margin-bottom:10px; display: flex;">
         </div>
         <!-- review -->
@@ -1680,9 +1721,14 @@
       axios
         .get(shopifyUrl)
         .then(function(res) {
-          console.log(res, 'getShopify===res');
-          let bodyHtml = res.data.data.body_html
-          $('.shopify-container').html(bodyHtml).fadeIn(500);
+          const bodyHtml = res.data.data.body_html
+          const skeleton = document.querySelector('.shopify-container');
+          const content = document.createElement('div');
+          content.classList.add('shopify-content');
+          content.innerHTML = bodyHtml;
+          skeleton.replaceWith(content);
+          // console.log(res, 'getShopify===res');
+          // $('.shopify-container').html(bodyHtml);
         })
         .catch(function(err) {
           console.log(err, 'getShopify===err');
