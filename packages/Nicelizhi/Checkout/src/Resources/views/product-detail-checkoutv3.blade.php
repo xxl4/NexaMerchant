@@ -1125,6 +1125,11 @@
       overflow-x: hidden;
     }
 
+    img {
+      width: 100%;
+      height: auto;
+    }
+
     .input-box {
       width: 100%;
       /* font-family: var(--); */
@@ -1752,7 +1757,7 @@
   <div class="header-container">
     <div class="container">
       <div class="herder-content">
-        <img src="" style="height: 50px;" loading="lazy" alt="" />
+        <img src="" style="height: 50px;" alt="" />
         <div class="top-left-button">
           <!-- <p class="header-text-hide">@lang('checkout::app.v3.Description')</p> -->
           <a class="header-text-hide" onclick="reviewToggle()" id="header-text" href="#shopify-title-item1">@lang('checkout::app.v3.Reviews')</a>
