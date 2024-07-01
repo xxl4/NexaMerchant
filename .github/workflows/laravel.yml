@@ -86,6 +86,8 @@ jobs:
       run: unzip db.zip -d ./
     - name: mysql import
       run: mysql -u root -ppassword -h mysql test < db.sql
+    - name: migrate
+      run: php artisan migrate
     - name: Tests
       run: ./vendor/bin/pest
     - name: Sync to Server 1 and Do it
