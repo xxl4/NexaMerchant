@@ -54,13 +54,19 @@
       }
     }
 
-    @media(max-width:768px) {
+    @media(min-width:600px) and (max-width:768px) {
       .sw-box {
         height: 660px;
       }
     }
 
-    @media (min-width: 768px) and (max-width: 1200px) {
+    @media (min-width: 768px) and (max-width: 1028px) {
+      .sw-box {
+        height: 610px;
+      }
+    }
+
+    @media (min-width: 1020px) and (max-width: 1200px) {
       .sw-box {
         height: 610px;
       }
