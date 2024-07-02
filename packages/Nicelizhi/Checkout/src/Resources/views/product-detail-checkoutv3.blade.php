@@ -3406,31 +3406,52 @@
     document.addEventListener('DOMContentLoaded', function() {
       const button1 = document.querySelector('.btn-fixed');
       const button2 = document.getElementById('comn-btn2');
+      const pkgopt = document.querySelector('.pkg-opt');
+      const swbox = document.querySelector('.Schritt-top-box');
       const isMobile = window.innerWidth <= 768;
-      window.addEventListener('scroll', function() {
-        if (isMobile) {
-          showButton1IfScrolled();
+
+      // IntersectionObserver 观察器
+      const observer = new IntersectionObserver((entries) => {
+        let isButton2Visible = false;
+        let isButton3Visible = false;
+        let isButton4Visible = false;
+        entries.forEach(entry => {
+          if (entry.target === button2) {
+            isButton2Visible = entry.isIntersecting;
+          }
+          if (entry.target === pkgopt) {
+            isButton3Visible = entry.isIntersecting;
+          }
+          if (entry.target === swbox) {
+            isButton4Visible = entry.isIntersecting;
+          }
+        });
+
+
+        if (isButton4Visible || isButton2Visible || isButton3Visible) {
+          button1.style.display = 'none';
+        } else if (isMobile) {
+          button1.style.display = 'block';
         }
+      }, {
+        threshold: 0.5
       });
 
-      function showButton1IfScrolled() {
-        const scrollHeight = window.scrollY || document.documentElement.scrollTop;
-        if (scrollHeight > 500) {
-          const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-              if (entry.target === button2) {
-                if (entry.isIntersecting) {
-                  button1.style.display = 'none';
-                } else {
-                  button1.style.display = 'block';
-                }
-              }
-            });
-          }, {
-            threshold: 0.5
-          });
-          observer.observe(button2);
+      observer.observe(button2);
+      observer.observe(pkgopt);
+      observer.observe(swbox);
+      updateButton1Visibility();
+
+
+      function updateButton1Visibility() {
+        const rect2 = button2.getBoundingClientRect();
+        const rect3 = pkgopt.getBoundingClientRect();
+        const rect4 = swbox.getBoundingClientRect();
+        if (!rect2.height && !rect3.height && !rect4.height) {
+
+          button1.style.display = 'block';
         } else {
+
           button1.style.display = 'none';
         }
       }
