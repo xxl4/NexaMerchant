@@ -1,9 +1,6 @@
-// const shopifyUrl = '/shopify/v1/api/full/' + getProductId;
-// const swiperUrl = '/shopify/v1/api/images/' + getProductId;
-// const reviewsrUrl = '/api/reviews?product_id=' + getProductId;
-const shopifyUrl = '/shopify/v1/api/full/8924785377562';
-const swiperUrl = '/shopify/v1/api/images/8924785377562';
-const reviewsrUrl = '/api/reviews?product_id=8924785377562';
+const shopifyUrl = '/shopify/v1/api/full/' + getProductId;
+const swiperUrl = '/shopify/v1/api/images/' + getProductId;
+const reviewsrUrl = '/api/reviews?product_id=' + getProductId;
 if (window.Worker) {
   const worker = new Worker('worker.js');
   const urlObj = {
