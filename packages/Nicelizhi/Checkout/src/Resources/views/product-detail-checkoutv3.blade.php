@@ -166,6 +166,11 @@
       height: auto;
     }
 
+    .header-middle {
+      display: flex;
+      flex-direction: column;
+    }
+
     @media(max-width:600px) {
       .sw-box {
         height: 110vw;
@@ -1368,7 +1373,7 @@
     console.log(data, 'phpdata');
   </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/5.0.4/js/swiper.js"></script>
-  <script src="/checkout/v3/js/main.js?v=4"></script>
+  <script src="/checkout/v3/js/main.js?v=5"></script>
   <script>
     $(function() {
       $('.header-container img').attr('src', logoImg)
