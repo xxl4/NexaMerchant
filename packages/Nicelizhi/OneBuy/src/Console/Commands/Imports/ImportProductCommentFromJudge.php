@@ -209,6 +209,7 @@ class ImportProductCommentFromJudge extends Command
                         if($item['published']==true) $data['status'] = "approved";
                         if($item['reviewer']['name']=='Anonymous') $data['status'] = "pending";
                         if($item['rating'] < 5) $data['status'] = "pending";
+                        $data['status'] = "pending"; // default 
 
                         if(!empty($this->prod_id)) {
                             if($item['product_external_id']== $this->prod_id ) {
