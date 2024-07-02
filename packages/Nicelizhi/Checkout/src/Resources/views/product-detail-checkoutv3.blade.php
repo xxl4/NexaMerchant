@@ -86,9 +86,9 @@
     <link rel="stylesheet" href="/checkout/v2/css/bootstrap.min.css?v=1">
   </noscript>
   <!-- <link rel="stylesheet prefetch" href="/checkout/v2/css/app2.css?v=5" /> -->
-  <link rel="stylesheet" href="/checkout/v2/css/app2.css?v=5" media="none" onload="if(media!='all')media='all'">
+  <link rel="stylesheet" href="/checkout/v2/css/app2.css?v=6" media="none" onload="if(media!='all')media='all'">
   <noscript>
-    <link rel="stylesheet" href="/checkout/v2/css/app2.css?v=5">
+    <link rel="stylesheet" href="/checkout/v2/css/app2.css?v=6">
   </noscript>
   <style>
     img {
@@ -109,6 +109,31 @@
     .shopify-content {
       width: 100%;
       float: left;
+    }
+
+    .pagination {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 20px;
+    }
+
+    .pagination button {
+      background-color: #1773B0;
+    }
+
+    .pagination button,
+    .pagination input {
+      margin: 0 5px;
+      padding: 5px 10px;
+      cursor: pointer;
+      border-radius: 4px;
+      font-size: 12px;
+    }
+
+    .pagination input {
+      width: 60px;
+      text-align: center;
     }
 
     @media(max-width:600px) {
@@ -155,7 +180,7 @@
   <div class="header-container">
     <div class="container">
       <div class="herder-content">
-        <img src="" width="100" height="50" alt="" />
+        <img src="/checkout/v2/images/logo_de.webp" width="100" height="50" alt="" />
         <div class="top-left-button">
           <!-- <p class="header-text-hide">@lang('checkout::app.v3.Description')</p> -->
           <a class="header-text-hide" onclick="reviewToggle()" id="header-text" href="#shopify-title-item1">@lang('checkout::app.v3.Reviews')</a>
@@ -227,7 +252,7 @@
         </p>
         <div class="header-middle">
           <p class="text-Schritt-top">@lang('checkout::app.v2.You Can See By')</p>
-          <img src="" width="460" height="48" alt="" />
+          <img src="/checkout/v2/images/1701506369_de.webp" width="460" height="48" alt="" />
         </div>
         <div class="fl mt10">
 
@@ -306,42 +331,15 @@
         </div>
         <!-- review -->
         <div class="section" id="reviews-box" style="width: 100%;float: right; display:none">
-          <?php foreach ($comments as $key => $comment) {
-            $comment = json_decode($comment); //var_dump($comment);exit; 
-          ?>
-            <div class="comment-card" style="background-color: #F4F4F4">
-              <div style="display: flex">
-                <div class="mr4" style="font-size: 14px;margin-top: 3px;color: #444444; ">
-                  <?php echo $comment->name; ?>
-                  <i class="flag-icon-size flag-icon flag-icon-<?php echo strtolower($default_country); ?> mr-2"></i>
-                </div>
-                <div>
-                  <img class="mb1 mr2" width="14px" src="/checkout/onebuy/images/icon_gou.svg" loading="lazy" alt="" />
-                  <span style="width: 100%; font-size:12px; color: #444444">@lang('onebuy::app.product.order.Verified')</span>
-                </div>
-              </div>
-              <div>
-                <div style="text-align: start; width: 100%;">
-                  <img width="110px" src="/checkout/onebuy/images/stars-5.svg" loading="lazy" alt="" />
-                </div>
-                <div class="cardtext" style="text-align: start;"><?php echo $comment->comment; ?></div>
-                <?php
-                if (!empty($comment->images)) {
+          <div class="reviews-content"></div>
+          <div class="pagination">
+            <button id="prev-page">@lang('checkout::app.v3.Prev')</button>
+            <span id="page-info"></span>
+            <button id="next-page">@lang('checkout::app.v3.Next')</button>
+            <input type="number" id="page-input" min="1" value="1">
+            <button id="jump-page">@lang('checkout::app.v3.Jump')</button>
+          </div>
 
-                  // var_dump($comment->images);
-                  foreach ($comment->images as $key => $image) {
-                    //var_dump($image);
-                ?>
-                    <a href="javascript:;" onclick="reviewImgPreview('<?php echo $image->url; ?>')">
-                      <img style="width: 30%; max-height:120px;object-fit:contain" src="<?php echo $image->url; ?>" loading="lazy" alt="" />
-                    </a>
-
-                <?php }
-                } ?>
-
-              </div>
-            </div>
-          <?php } ?>
         </div>
         <p class="pkg-hdng" id="pkg-hdng1" style="border-top: 1px solid #ccc; padding-top: 10px">
           <span class="pkg-step">
@@ -1273,6 +1271,8 @@
       productL4 = {},
       getProductId = '{{ $slug }}',
       countries1 = '<?php echo strtolower($default_country); ?>',
+      reviewErrMsg = "@lang('checkout::app.v3.Please enter a valid page number')",
+      reviewLang = "@lang('onebuy::app.product.order.Verified')",
       paypal_pay_acc = '',
       area = '{{ app()->getLocale() }}',
       currencySymbol = '{{ core()->currencySymbol(core()->getBaseCurrencyCode()) }}',

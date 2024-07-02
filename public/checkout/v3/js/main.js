@@ -1,13 +1,15 @@
+// const shopifyUrl = '/shopify/v1/api/full/' + getProductId;
+// const swiperUrl = '/shopify/v1/api/images/' + getProductId;
+// const reviewsrUrl = '/api/reviews?product_id=' + getProductId;
+const shopifyUrl = '/shopify/v1/api/full/8924785377562';
+const swiperUrl = '/shopify/v1/api/images/8924785377562';
+const reviewsrUrl = '/api/reviews?product_id=8924785377562';
 if (window.Worker) {
   const worker = new Worker('worker.js');
-
-  const shopifyUrl = '/shopify/v1/api/full/' + getProductId;
-  const swiperUrl = '/shopify/v1/api/images/' + getProductId;
-  // const shopifyUrl = '/shopify/v1/api/full/8924785377562';
-  // const swiperUrl = '/shopify/v1/api/images/8924785377562';
   const urlObj = {
     shopifyUrl: shopifyUrl,
     swiperUrl: swiperUrl,
+    reviewsrUrl: reviewsrUrl,
   };
   console.log(urlObj, 'urlObj');
   worker.postMessage({ cmd: 'fetchData', url: urlObj });
@@ -15,9 +17,10 @@ if (window.Worker) {
   worker.addEventListener('message', (e) => {
     const data = e.data;
     if (data.cmd === 'fetchComplete') {
-      const { shopifyData, swiperData } = data.workerData;
+      const { shopifyData, swiperData, reviewsrData } = data.workerData;
       swiperDom(swiperData);
       shopifyDom(shopifyData);
+      reviewDom(reviewsrData);
     } else if (data.cmd === 'fetchError') {
       console.error('Error fetching data:', data.error);
     }
@@ -75,3 +78,117 @@ function shopifyDom(data) {
   content.innerHTML = bodyHtml;
   skeleton.replaceWith(content);
 }
+const prevPageBtn = document.getElementById('prev-page');
+const nextPageBtn = document.getElementById('next-page');
+const pageInfo = document.getElementById('page-info');
+const pageInput = document.getElementById('page-input');
+const jumpPageBtn = document.getElementById('jump-page');
+
+let currentPage = 1;
+let total = 0;
+function reviewDom(data) {
+  console.log(data, 'reviewDom');
+  let reviewsDom = '';
+  for (const key in data.reviews) {
+    if (Object.hasOwnProperty.call(data.reviews, key)) {
+      let reviewsImg = '';
+      if (data.reviews[key].images.length > 0) {
+        data.reviews[key].images.forEach((element) => {
+          reviewsImg +=
+            `
+        <a href="javascript:;" onclick="reviewImgPreview(` +
+            element.url +
+            `)">
+          <img style="width: 30%; max-height:120px;object-fit:contain" src="` +
+            element.url +
+            `" loading="lazy" alt="" />
+        </a>
+        `;
+        });
+      } else {
+        reviewsImg = '';
+      }
+      reviewsDom +=
+        `
+      <div class="comment-card" style="background-color: #F4F4F4">
+    <div style="display: flex">
+      <div class="mr4" style="font-size: 14px;margin-top: 3px;color: #444444; ">
+        ${data.reviews[key].name}
+        <i class="flag-icon-size flag-icon flag-icon-` +
+        countries1 +
+        ` mr-2"></i>
+      </div>
+      <div style="margin-top:2px">
+        <img style="margin-left:5px" class="mb1 mr2" width="14px" src="/checkout/onebuy/images/icon_gou.svg" loading="lazy" alt="" />
+        <span style="width: 100%; font-size:12px; color: #444444">` +
+        reviewLang +
+        `</span>
+      </div>
+    </div>
+    <div>
+      <div style="text-align: start; width: 100%;">
+        <img width="110px" src="/checkout/onebuy/images/stars-5.svg" loading="lazy" alt="" />
+      </div>
+      <div class="cardtext" style="text-align: start;">` +
+        data.reviews[key].comment +
+        `</div>
+      ${reviewsImg}
+    </div>
+  </div>
+      `;
+    }
+  }
+  $('.reviews-content').html(reviewsDom);
+  total = data.total;
+  const totalNum = Math.ceil(total / 10);
+  pageInfo.textContent = `${currentPage} / ${totalNum}`;
+  $('#page-input').attr('max', totalNum);
+}
+async function getReviews(page) {
+  page = page - 1;
+  const url = reviewsrUrl + '&page=' + page;
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
+    console.log(data, '===============getReviewsData==============');
+    if (data.code == 200) {
+      return data.data;
+    }
+  } catch (error) {
+    console.log(error.message, 'getReviewsData ==== err');
+  }
+}
+function updatePaginationInfo(total) {
+  pageInfo.textContent = `${currentPage} / ${Math.ceil(total / 10)}`;
+}
+
+async function handlePageChange(page) {
+  const data = await getReviews(page);
+  console.log(data, 'handlePageChange');
+  reviewDom(data);
+  // fetchComments(page).then((data) => {
+  currentPage = page;
+  updatePaginationInfo(data.total);
+  prevPageBtn.disabled = currentPage === 1;
+  nextPageBtn.disabled = currentPage === Math.ceil(total / 10);
+  // });
+}
+prevPageBtn.addEventListener('click', () => {
+  if (currentPage > 1) {
+    handlePageChange(currentPage - 1);
+  }
+});
+
+nextPageBtn.addEventListener('click', () => {
+  handlePageChange(currentPage + 1);
+});
+
+jumpPageBtn.addEventListener('click', () => {
+  const page = parseInt(pageInput.value, 10);
+  console.log(page, 'page');
+  if (isNaN(page) || page < 1 || page > Math.ceil(total / 10)) {
+    alert(reviewErrMsg);
+    return;
+  }
+  handlePageChange(page);
+});

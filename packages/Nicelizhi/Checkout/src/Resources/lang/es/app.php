@@ -74,6 +74,10 @@ return [
     'hours' => 'horas',
     'Estimated Delivery between' => 'Entrega estimada entre',
     'and' => 'y',
-    'People Looking For This Product' => 'Personas que buscan este producto'
+    'People Looking For This Product' => 'Personas que buscan este producto',
+    'Prev' => 'Anterior',
+    'Next' => 'Siguiente',
+    'Jump' => 'Saltar',
+    'Please enter a valid page number' => 'Por favor, introduzca un número de página válido'
   ]
 ];
