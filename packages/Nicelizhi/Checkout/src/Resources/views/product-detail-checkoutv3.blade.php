@@ -1328,29 +1328,8 @@
       sku: phpsku,
       sellPoints: JSON.parse(phpsellPoints)
     }
-    // data.attr.attributes[0].options[0].sku[24] = {
-    //   1667: [3066, 3067, 3068],
-    //   1665: [3066, 3067, 3068],
-    //   1661: [3066, 3067, 3068],
-
-    // }
-    // data.attr.attributes[0].attr_sort = {
-    //   '1944': '0',
-    //   '1953': '1',
-    //   '1424': '2'
-    // }
-    // data.attr.attributes[1].attr_sort = {
-    //   '1662': '0',
-    //   '1665': '1',
-    //   '1664': '2',
-    //   '1661': '3',
-    //   '1663': '4',
-    //   '1666': '5',
-    //   '1667': '6',
-    // }
     console.log(data, 'phpdata');
     $(function() {
-      getShopify()
       $('.header-container img').attr('src', logoImg)
       if (countries1 == 'fr' || countries1 == 'es') {
         $('.header-middle').hide()
@@ -1399,7 +1378,6 @@
           let keysIterator = sortedObj.keys();
           let keysList = Array.from(keysIterator);
           console.log(sortedObj, 'sortedObj====');
-          // let keysList = Object.keys(sortedObj)
           console.log(keysList, 'keysList===');
           keysList.forEach(function(keyItem) {
             item.options.forEach(function(opItem, index) {
@@ -1416,18 +1394,14 @@
         var selectList = ''
         for (var arri = 0; arri < attrList.length; arri++) {
           var optionList = `<option value="" selected disabled>` + attrList[arri].label + `</option>`
-          // if (arri == 0) {
           for (var attj = 0; attj < attrList[arri].options.length; attj++) {
             optionList += `<option value="` + attrList[arri].options[attj].label + `">` + attrList[arri].options[attj].label + `</option>`
-            // }
           }
           selectList += `<select class="in-se" id="in-se` + arri + `" onchange="seInput(value)">` + optionList + `</select>`
         }
-        // $('.buy-loading').hide()
         $('.se-box').append(selectList)
         $('#buy-select2').show()
       } else {
-        // $('.buy-loading').hide()
         $('.buy-select').hide()
         $('#p2-select').show()
         $('#product2').addClass('background-green')
@@ -1499,7 +1473,6 @@
           name1List.push(name1)
           name2 = $('#select2-item2').children('select').eq(m).val()
           name2List.push(name2)
-          // productL1.attribute_name = v1+ ',' +v2
           for (var inm = 0; inm < data.attr.attributes[m].options.length; inm++) {
             var mid = data.attr.attributes[m].id
             if (data.attr.attributes[m].options[inm].label == name1) {
@@ -1576,7 +1549,6 @@
         $('#google-pay-box').hide()
       }
       if (payTypeShow.airwallex_appley == '0' || googlerOrApple !== 'apple') {
-        // if (payTypeShow.airwallex_appley == '0') {
         $('#apple-pay-box').hide()
       }
       if (paymentsDefault == 'airwallex_klarna') {
@@ -1642,7 +1614,6 @@
           }
         }
       } else {
-        // 其他浏览器
         script.onload = function() {
           creatPaypalCardButton()
         }
@@ -1662,11 +1633,9 @@
     function sortObjectByValue(obj) {
       let entries = Object.entries(obj);
       entries.sort((a, b) => a[1] - b[1]);
-      // let sortedObj = {};
       let map = new Map();
       entries.forEach(([key, value]) => {
         map.set(key, value);
-        // sortedObj[key] = value;
       });
       return map;
     }
@@ -1730,56 +1699,13 @@
       $('#reviews-box').hide()
       $('#shopify-title-item1').addClass('bor-bom-3')
       $('#shopify-title-item2').removeClass('bor-bom-3')
-      // slideToggle();
-      // if (shopifyToggle) {
-      //   shopifyToggle = false
-      //   $('#svg-down').show()
-      //   $('#svg-up').hide()
-      // } else {
-      //   shopifyToggle = true
-      //   $('#svg-down').hide()
-      //   $('#svg-up').show()
-      // }
     })
 
     function reviewToggle() {
       $('#shopify-title-item2').addClass('bor-bom-3')
-      console.log($('#shopify-title-item2'), '#shopify-title-item2');
       $('#shopify-title-item1').removeClass('bor-bom-3')
       $(".shopify-content").hide()
       $('#reviews-box').show()
-      console.log('reviewTogglereviewToggle');
-      // $("#reviews-box").slideToggle();
-      // if (reviewsToggle) {
-      //   reviewsToggle = false
-      //   $('#review-down').show()
-      //   $('#review-up').hide()
-      // } else {
-      //   reviewsToggle = true
-      //   $('#review-down').hide()
-      //   $('#review-up').show()
-      // }
-
-    }
-
-    function getShopify() {
-      const shopifyUrl = '/shopify/v1/api/full/{{ $slug }}'
-      // const shopifyUrl = 'http://127.0.0.1:8000/shopify/v1/api/full/8398348714214 '
-      axios
-        .get(shopifyUrl)
-        .then(function(res) {
-          const bodyHtml = res.data.data.body_html
-          const skeleton = document.querySelector('.shopify-container');
-          const content = document.createElement('div');
-          content.classList.add('shopify-content');
-          content.innerHTML = bodyHtml;
-          skeleton.replaceWith(content);
-          // console.log(res, 'getShopify===res');
-          // $('.shopify-container').html(bodyHtml);
-        })
-        .catch(function(err) {
-          console.log(err, 'getShopify===err');
-        })
     }
 
     function billingAddress() {
@@ -1804,7 +1730,6 @@
                 }
                 $('select[name="billingState"]').empty()
                 $('select[name="billingState"]').append(optionList)
-                // $('select[name="billingState"]').val(stateList[0].StateCode)
               }
             })
         }
@@ -1830,7 +1755,6 @@
               }
               $('select[name="billingState"]').empty()
               $('select[name="billingState"]').append(optionList)
-              // $('select[name="billingState"]').val(stateList[0].StateCode)
             }
 
           })
@@ -2004,24 +1928,6 @@
       getAttrId(productL2, obj)
       getAttrId(productL3, obj)
       getAttrId(productL4, obj)
-      // for (const key in obj) {
-      //   if (key == productL1.attr_id) {
-      //     productL1.variant_id = obj[key][0]
-      //     productL1.product_sku = obj[key][1]
-      //   }
-      //   if (key == productL2.attr_id) {
-      //     productL2.variant_id = obj[key][0]
-      //     productL2.product_sku = obj[key][1]
-      //   }
-      //   if (key == productL3.attr_id) {
-      //     productL3.variant_id = obj[key][0]
-      //     productL3.product_sku = obj[key][1]
-      //   }
-      //   if (key == productL4.attr_id) {
-      //     productL4.variant_id = obj[key][0]
-      //     productL4.product_sku = obj[key][1]
-      //   }
-      // }
     }
 
     function getSkuListInfo() {
@@ -2081,7 +1987,6 @@
     }
 
     function paramsProductsinit(list) {
-      // console.log(list, 'paramsProductsinit')
       for (var listi = 0; listi < list.length; listi++) {
         if (listi == list.length - 1) {
           break;
@@ -2124,7 +2029,6 @@
       productsObj.description = data.package_products[num1].name
       productsObj.product_id = '<?php echo $data['product']['id']; ?>'
       productsObj.price = data.package_products[num1].tip2
-      // productsObj.product_sku = data.sku
       productsObj.img = '<?php echo @$data['product']['base_image']['large_image_url']; ?>'
       productL1 = JSON.parse(JSON.stringify(productsObj))
       productL2 = JSON.parse(JSON.stringify(productsObj))
@@ -2150,7 +2054,6 @@
           name2List.push(name2)
           name3 = $('#select2-item2').children('select').eq(m).val()
           name2List.push(name2)
-          // productL1.attribute_name = v1+ ',' +v2
           for (var inm = 0; inm < data.attr.attributes[m].options.length; inm++) {
             var mid = data.attr.attributes[m].id
             if (data.attr.attributes[m].options[inm].label == name1) {
@@ -2169,7 +2072,6 @@
           name2List.push(name2)
           name3 = $('#select3-item3').children('select').eq(m).val()
           name3List.push(name3)
-          // productL1.attribute_name = v1+ ',' +v2
           for (var inm = 0; inm < data.attr.attributes[m].options.length; inm++) {
             var mid = data.attr.attributes[m].id
             if (data.attr.attributes[m].options[inm].label == name1) {
@@ -2193,7 +2095,6 @@
           name3List.push(name3)
           name4 = $('#select4-item4').children('select').eq(m).val()
           name4List.push(name4)
-          // productL1.attribute_name = v1+ ',' +v2
           for (var inm = 0; inm < data.attr.attributes[m].options.length; inm++) {
             var mid = data.attr.attributes[m].id
             if (data.attr.attributes[m].options[inm].label == name1) {
@@ -2447,12 +2348,6 @@
         return !updateNext.includes(element)
       })
       console.log(noInArray, 'noInArray');
-      // noInArray.forEach(function(item) {
-      //   item.num = parseInt(item.num, 10);
-      // })
-      // updateNext.forEach(function(item) {
-      //   item.num = parseInt(item.num, 10);
-      // })
       noInArray.sort(function(a, b) {
         return a.num - b.num
       })
@@ -2536,7 +2431,6 @@
       if (itemId == 'in-se0' && data.attr.attributes.length == 2) {
         let returnParams = getNextOptions(value)
         console.log(returnParams, 'returnParams=======');
-        // $(event.target).siblings('#in-se1').empty()
         if (returnParams.change) {
           $(event.target).siblings('#in-se1').html(returnParams.nextOption)
           $(event.target).siblings('#in-se1').addClass('border-red')
@@ -2724,9 +2618,6 @@
     $('#complete-btn-id').click(function() {
       $('#loading').show()
       window.is_airwallex = true
-      // if (countries1 == 'de') {
-      //   $('choose-billing-box').show
-      // }
       params.first_name = $('input[name="firstName"]').val()
       params.second_name = $('input[name="lastName"]').val()
       params.email = $('input[name="email"]').val()
@@ -2761,13 +2652,6 @@
       }
       console.log(params, 'airwallexparams')
       createOrder('', '', 'airwallex')
-
-      // axios.post(postUrl).then(function(res) {
-      //     console.log(res, '===res')
-      //   })
-      //   .catch(function(err) {
-      //     console.log(err, 'err==')
-      //   })
     })
 
     function skuIsScelect() {
@@ -2952,16 +2836,8 @@
                 value: res.order.base_grand_total,
                 currency: res.currency,
               },
-              // shippingAddressRequired: true,
-              // billingAddressParameters: {
-              //   format: 'FULL',
-              //   phoneNumberRequired: true
-              // },
-              // billingAddressRequired: true,
-              // countryCode: res.country,
               countryCode: 'HK',
               origin: window.location.origin,
-              // autoCapture: true,
               merchantInfo: {
                 merchantName: 'Airwallex',
               },
@@ -3162,21 +3038,6 @@
           },
 
           onInit(data, actions) {
-
-            // Disable the buttons
-            // actions.disable();
-
-            // Listen for changes to the checkbox
-            // document.querySelector('#check').addEventListener('change', function(event) {
-            //     // Enable or disable the button when it is checked or unchecked
-            //     if (event.target.checked)  {
-            //     actions.enable();
-            //     } else  {
-            //     actions.disable();
-            //     }
-            // });
-            // var params = getOrderParams('paypal_stand');
-
             var can_paypal = 0;
             var email_can = 0;
             var first_name_can = 0;
@@ -3185,8 +3046,6 @@
             var address_can = 0;
             var city_can = 0;
             var zip_code_can = 0;
-
-
 
             $(".email").on('change', function() {
               var value = $(".email").val();
@@ -3490,67 +3349,10 @@
         )
       }
     })
-  </script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/5.0.4/js/swiper.js"></script>
-  <script>
+
     function closeDialog() {
       $('.dialog-error').hide()
     }
-    $(function() {
-      var url = '/shopify/v1/api/images/' + getProductId
-      axios
-        .get(url)
-        .then(function(res) {
-          var swiperList = ''
-          var showimg = ''
-          if (res.data.code !== 200) {
-            return
-          }
-          swiperImgList = res.data.data.images
-          var img = res.data.data.images
-          var imgListLength = img.length
-          var imglen = Math.floor(imgListLength / 3)
-          for (var i = 0; i < img.length; i++) {
-            swiperList += `<div class="swiper-slide"><img src="${img[i].src}" width="705" height="705" alt=""></div>`
-          }
-          var gallery =
-            `<div class="swiper-container" style="width:100%" id="gallery">
-					<div class="swiper-wrapper">` +
-            swiperList +
-            `</div>
-				</div>`
-          var thumbs =
-            `<div class="swiper-container" id="thumbs">
-					<div class="swiper-wrapper">` +
-            swiperList +
-            `</div>
-				</div>`
-          $('.sw-box').append(gallery, thumbs);
-          galleryThumbs = new Swiper(
-            '#thumbs', {
-              slidesPerView: 5,
-              spaceBetween: 5,
-              watchSlidesVisibility: true,
-              loop: true,
-            }
-          )
-
-          mySwiper = new Swiper('#gallery', {
-            direction: 'horizontal',
-            loop: true,
-            autoplay: true,
-            allowTouchMove: true,
-            thumbs: {
-              swiper: galleryThumbs,
-              allowTouchMove: true,
-              slideThumbActiveClass: 'my-slide-thumb-active',
-            },
-          })
-        })
-        .catch(function(error) {
-          console.error(error, 'getswiper err')
-        })
-    })
     $(document).ready(function() {
       $(".faq_view").click(function() {
         $("#collapseContent").slideToggle();
@@ -3560,6 +3362,29 @@
     function payAfterSubmit() {
       $('#pay-after-submit-error').hide()
     }
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/5.0.4/js/swiper.js"></script>
+  <script>
+    galleryThumbs = new Swiper(
+      '#thumbs', {
+        slidesPerView: 5,
+        spaceBetween: 5,
+        watchSlidesVisibility: true,
+        loop: true,
+      }
+    )
+
+    mySwiper = new Swiper('#gallery', {
+      direction: 'horizontal',
+      loop: true,
+      autoplay: true,
+      allowTouchMove: true,
+      thumbs: {
+        swiper: galleryThumbs,
+        allowTouchMove: true,
+        slideThumbActiveClass: 'my-slide-thumb-active',
+      },
+    })
   </script>
   <?php if (@$data['env'] == 'demo') { ?>
     <script src="https://checkout-demo.airwallex.com/assets/elements.bundle.min.js"></script>
@@ -3917,18 +3742,6 @@
           $('#checkout-error').html(error);
           $('#checkout-error').show();
         });
-        // createOrder('', 'stripe_charge_token', 'stripe');
-        // stripe.createToken(cardNumber).then(function(result) {
-        //     if (result.error) {
-        //         // Inform the customer that there was an error.
-        //         $('#checkout-error').html(result.error.message+'<br /><br />');
-        //         $('#checkout-error').show();
-        //         $('#loading').hide();
-        //     } else {
-        //         // Send the token to your server.
-        //         createOrder(result.token.id, 'stripe_charge_token', 'stripe');
-        //     }
-        // });
       }
     }
 

@@ -2,21 +2,57 @@ if (window.Worker) {
   const worker = new Worker('worker.js');
 
   // const shopifyUrl = '/shopify/v1/api/full/{{ $slug }}';
+  // const swiperUrl = '/shopify/v1/api/images/'+ getProductId;
   const shopifyUrl = '/shopify/v1/api/full/8924785377562';
-  worker.postMessage({ cmd: 'fetchData', url: shopifyUrl });
+  const swiperUrl = '/shopify/v1/api/images/8924785377562';
+  const urlObj = {
+    shopifyUrl: shopifyUrl,
+    swiperUrl: swiperUrl,
+  };
+  worker.postMessage({ cmd: 'fetchData', url: urlObj });
 
   worker.addEventListener('message', (e) => {
     const data = e.data;
     if (data.cmd === 'fetchComplete') {
-      console.log('Data fetched:', data.data);
-      document.getElementById('result').textContent = JSON.stringify(data.data, null, 2);
+      const { shopifyData, swiperData } = data.workerData;
+      swiperDom(swiperData);
+      shopifyDom(shopifyData);
     } else if (data.cmd === 'fetchError') {
       console.error('Error fetching data:', data.error);
-      document.getElementById('result').textContent = 'Error: ' + data.error;
     }
   });
 } else {
-  console.log('您的浏览器不支持 Web Workers.');
+  console.log('Your browser does not support Web Workers.');
 }
 
-// http://127.0.0.1:8000/api/reviews?product_id=8924785377562
+function swiperDom(data) {
+  console.log(data, '====swiperDom');
+  var swiperList = '';
+  swiperImgList = data.images;
+  var img = data.images;
+  for (var i = 0; i < img.length; i++) {
+    swiperList += `<div class="swiper-slide"><img src="${img[i].src}" width="705" height="705" alt=""></div>`;
+  }
+  var gallery =
+    `<div class="swiper-container" style="width:100%" id="gallery">
+  				<div class="swiper-wrapper">` +
+    swiperList +
+    `</div>
+  			</div>`;
+  var thumbs =
+    `<div class="swiper-container" id="thumbs">
+  				<div class="swiper-wrapper">` +
+    swiperList +
+    `</div>
+  			</div>`;
+  $('.sw-box').append(gallery, thumbs);
+}
+function shopifyDom(data) {
+  console.log(data, '=====shopifyDom');
+  const bodyHtml = data.body_html;
+  const skeleton = document.querySelector('.shopify-container');
+  const content = document.createElement('div');
+  content.classList.add('shopify-content');
+  content.innerHTML = bodyHtml;
+  skeleton.replaceWith(content);
+}
