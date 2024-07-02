@@ -66,7 +66,7 @@ class ApiController extends Controller {
 
         $reviewHelper = app('Webkul\Product\Helpers\Review');
 
-        $reviews = Cache::get("product_comment_".$product['id']);
+        $reviews = Cache::get("product_comment_".$product['id']."_".$page."_".$per_page);
 
         if(empty($reviews)) {
             $reviews = \Webkul\Product\Models\ProductReview::where("status","approved")->where("product_id", $product['id'])->orderBy("sort","desc")->skip($page*$per_page)->take($per_page)->get();
@@ -77,7 +77,7 @@ class ApiController extends Controller {
                 return $review;
             });
 
-            Cache::set("product_comment_".$product['id'], $reviews, 36000);
+            Cache::set("product_comment_".$product['id']."_".$page."_".$per_page, $reviews, 36000);
         }
 
         //$reviews = $product->reviews->where('status', 'approved')->skip($page*$per_page)->take($per_page);
