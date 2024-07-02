@@ -77,9 +77,12 @@ class Get extends Command
         $client = $smartButton->client();
 
 
-        //$accesstoken = $smartButton->getAccessToken();
+        $accesstoken = $smartButton->getAccessToken();
 
-        $accesstoken = "A21AAJXACJFuRThfaLmcO00Ib_egGuzkKDXKi0xaLS6T0SkbzMv5AZ0ftaQDUugmYVtgc2TuhsFNODLwzzHXZ3ZgRm1zPjKeA";
+        $response = $smartButton->WebhookList();
+
+        var_dump($response);
+
 
 
         // https://developer.paypal.com/docs/api/webhooks/v1/#webhooks_post

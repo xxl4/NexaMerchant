@@ -233,4 +233,22 @@ class SmartButton extends Paypal
 
         $this->clientSecret = $this->getConfigData('client_secret') ?: '';
     }
+
+    /**
+     * 
+     * Set ClientID
+     * @return void
+     */
+    public function setClientId($clientId) {
+        $this->clientId = $clientId;
+    }
+
+    /**
+     * 
+     * Set ClientSecret
+     * @return void
+     */
+    public function setClientSecret($clientSecret) {
+        $this->clientSecret = $clientSecret;
+    }
 }

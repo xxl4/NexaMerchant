@@ -85,6 +85,7 @@ it('can create a paypal order', function () {
 
     // 201 http created
     $response = $this->post('/onebuy/order/addr/after',$data);
+    var_dump($response);
     $response->assertStatus(200);
 
 });

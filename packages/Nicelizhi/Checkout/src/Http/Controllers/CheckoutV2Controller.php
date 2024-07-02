@@ -85,6 +85,7 @@ class CheckoutV2Controller extends Controller{
 
         if(!empty($refer)) { 
             $request->session()->put('refer', $refer);
+            $request->session()->put('refer_'.$slug, $refer);
         }else{
             $refer = $request->session()->get('refer');
         }
@@ -96,13 +97,37 @@ class CheckoutV2Controller extends Controller{
         ksort($faqItems);
         //$comments = $redis->hgetall($this->cache_prefix_key."product_comments_".$product['id']);
 
-        $comments = $product->reviews->where('status', 'approved')->take(10);
+        $comments = Cache::get("product_comment_".$product['id']);
+        if(empty($comments)) {
 
-        $comments = $comments->map(function($comments) {
-            $comments->customer = $comments->customer;
-            $comments->images;
-            return $comments;
-        });
+            $comments = \Webkul\Product\Models\ProductReview::where("status","approved")->where("product_id", $product['id'])->orderBy("sort","desc")->limit(10)->get();
+
+            $comments = $comments->map(function($comments) {
+                $comments->customer = $comments->customer;
+                $comments->images;
+                return $comments;
+            });
+
+            //var_dump($comments);
+            Cache::set("product_comment_".$product['id'], $comments, 36000);
+
+
+        }
+
+
+       // $comments = Cache::remember('product_review'.$product['id'], 36000, function ($product) {
+        //     $comments = $product->reviews->where('status', 'approved')->take(10);
+        //     $comments = $comments->map(function($comments) {
+        //         $comments->customer = $comments->customer;
+        //         $comments->images;
+        //         return $comments;
+        //     });
+        //     return $comments;
+        // });
+        //$comments = [];
+        
+
+        //$comments = [];
 
         $default_country = config('onebuy.default_country');
         $payments = config('onebuy.payments'); // config the payments status

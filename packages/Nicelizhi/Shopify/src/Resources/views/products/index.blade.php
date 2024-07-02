@@ -28,6 +28,7 @@
                           <th>Title</th>
                           <th>handle</th>
                           <th>Status</th>
+                          <th>Clean Cache</th>
                           <th>Checkout</th>
                           <th>Checkout V2</th>
                           <th>Checkout V3</th>
@@ -95,7 +96,14 @@
           ,
           {
             data: 'status'
-          },{
+          },
+          {
+            data: 'product_id',
+            render: function(data, type, row, meta) {
+              return '<a href="./products/clean-cache/'+data+'" class="btn btn-danger btn-sm" target="_blank">Clean Cache</a>';
+            }
+          },
+          {
             data: 'product_id',
             render: function(data, type, row, meta) {
               return '<a href="./products/checkout-url-get/'+data+'/onebuy" target="_blank" class="btn btn-primary btn-sm">Checkout URl</a>';

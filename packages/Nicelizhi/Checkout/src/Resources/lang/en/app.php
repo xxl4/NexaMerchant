@@ -79,7 +79,8 @@ return [
     'Express checkout' => 'Express checkout',
     'edit' => 'Edit',
     'complete_secure_purchase' => 'Pay Now',
-    'Selected' => 'Selected'
+    'Selected' => 'Selected',
+    'Most Recommended' => 'Most Recommended'
   ],
   'v3' => [
     '30-Day Return' => '30-Day Return',

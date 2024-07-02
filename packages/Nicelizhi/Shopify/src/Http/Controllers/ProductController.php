@@ -230,7 +230,9 @@ class ProductController extends Controller
         $comments = $redis->hgetall($comment_list_key);
 
         //$reviews = $product->reviews->where('status', 'approved');
-        $reviews = $product->reviews;
+        //$reviews = $product->reviews;
+
+        $reviews = \Webkul\Product\Models\ProductReview::where("status","approved")->where("product_id", $product->id)->orderBy("sort","desc")->limit(100)->get();
 
         $reviews = $reviews->map(function($review) {
             $review->customer = $review->customer;
@@ -243,6 +245,33 @@ class ProductController extends Controller
         
 
         return view("shopify::products.".$act_type.".comments",compact("comments","reviews","product","product_id", "act_type", "act_prod_type"));
+
+    }
+
+    /**
+     * 
+     * Product Reviews Sort
+     * 
+     * @return void
+     */
+    public function commentSort(Request $request) {
+        $comment_id = $request->input("comment_id");
+        $sort = $request->input("sort");
+
+        Event::dispatch('customer.review.update.before', $comment_id);
+
+        $review = $this->productReviewRepository->update(['sort'=> $sort], $comment_id);
+
+        Event::dispatch('customer.review.update.after', $review);
+
+        //clean the cache
+
+        return response()->json([
+            'message' => "Update Success,if you want to see the last version, you should clean the comment cache",
+            'comment_id' => $comment_id
+        ]);
+
+
 
     }
 
@@ -583,5 +612,19 @@ class ProductController extends Controller
         }
 
         return view("shopify::products.".$act_type.".sell-points-v2", compact("product", "product_id", "act_type","sell_points"));
+    }
+
+
+    // clean cache
+    public function cleanCache($product_id) {
+
+        $product = $this->productRepository->findBySlug($product_id);
+        if(is_null($product)) {
+            echo "not found it, you don't clean it cache";
+            return ;
+        }
+        \Nicelizhi\Shopify\Helpers\Utils::clearCache($product->id, $product_id);
+
+        echo "Clean Cache Success";
     }
 }

@@ -21,6 +21,7 @@ class ProductReview extends Model implements ProductReviewContract
         'title',
         'rating',
         'status',
+        'sort',
         'product_id',
         'customer_id',
         'name',
