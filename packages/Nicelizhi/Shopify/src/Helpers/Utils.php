@@ -159,6 +159,7 @@ final class Utils {
             Cache::pull("product_sku_size_".$pid);
             Cache::pull("product_sku_".$pid);
             Cache::pull("product_comment_".$pid); // product comment
+            Cache::pull("product_ext_".$pid."_0_10");
             Cache::pull("product_ext_".$pid."_1_10");
             Cache::pull("product_ext_".$pid."_2_10");
             Cache::pull("product_ext_".$pid."_3_10");
