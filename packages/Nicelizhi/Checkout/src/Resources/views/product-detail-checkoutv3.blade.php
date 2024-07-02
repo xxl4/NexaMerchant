@@ -309,7 +309,6 @@
           <?php foreach ($comments as $key => $comment) {
             $comment = json_decode($comment); //var_dump($comment);exit; 
           ?>
-
             <div class="comment-card" style="background-color: #F4F4F4">
               <div style="display: flex">
                 <div class="mr4" style="font-size: 14px;margin-top: 3px;color: #444444; ">
@@ -326,18 +325,13 @@
                   <img width="110px" src="/checkout/onebuy/images/stars-5.svg" loading="lazy" alt="" />
                 </div>
                 <div class="cardtext" style="text-align: start;"><?php echo $comment->comment; ?></div>
-
-
                 <?php
-
-
                 if (!empty($comment->images)) {
 
                   // var_dump($comment->images);
                   foreach ($comment->images as $key => $image) {
                     //var_dump($image);
                 ?>
-
                     <a href="javascript:;" onclick="reviewImgPreview('<?php echo $image->url; ?>')">
                       <img style="width: 30%; max-height:120px;object-fit:contain" src="<?php echo $image->url; ?>" loading="lazy" alt="" />
                     </a>
@@ -1330,7 +1324,7 @@
     console.log(data, 'phpdata');
   </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/5.0.4/js/swiper.js"></script>
-  <script src="/checkout/v3/js/main.js?v=1"></script>
+  <script src="/checkout/v3/js/main.js?v=2"></script>
   <script>
     $(function() {
       $('.header-container img').attr('src', logoImg)
