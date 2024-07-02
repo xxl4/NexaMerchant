@@ -960,8 +960,6 @@
     }
     var app_query_params = []
   </script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/5.0.4/js/swiper.js"></script>
-  <script src="/checkout/v3/js/main.js?v=1"></script>
   <script type="text/javascript">
     AJAX_PATH = 'ajax.php/'
     app_config = {
@@ -1330,7 +1328,10 @@
       sellPoints: JSON.parse(phpsellPoints)
     }
     console.log(data, 'phpdata');
-
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/5.0.4/js/swiper.js"></script>
+  <script src="/checkout/v3/js/main.js?v=1"></script>
+  <script>
     $(function() {
       $('.header-container img').attr('src', logoImg)
       if (countries1 == 'fr' || countries1 == 'es') {
