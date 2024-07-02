@@ -4,20 +4,16 @@ namespace Nicelizhi\Shopify\Http\Controllers;
 
 use Nicelizhi\Shopify\Models\ShopifyProduct;
 use Nicelizhi\Manage\Helpers\SSP;
-use Webkul\Attribute\Models\AttributeOptionTranslation;
-use Webkul\Attribute\Models\AttributeOption;
 use Webkul\Product\Repositories\ProductRepository;
 use Webkul\Product\Repositories\ProductAttributeValueRepository;
 use Illuminate\Support\Facades\Artisan;
 use Nicelizhi\Shopify\Models\ShopifyStore;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Http\Request;
-use Illuminate\Http\UploadedFile;
 use Webkul\Product\Models\ProductAttributeValue;
 use Webkul\Product\Models\ProductFlat;
 use Illuminate\Support\Facades\Redis;
 use Maatwebsite\Excel\Facades\Excel;
-use Webkul\CatalogRule\Listeners\Product;
 use Webkul\Product\Repositories\ProductReviewRepository;
 use Illuminate\Support\Facades\Event;
 
@@ -232,7 +228,7 @@ class ProductController extends Controller
         //$reviews = $product->reviews->where('status', 'approved');
         //$reviews = $product->reviews;
 
-        $reviews = \Webkul\Product\Models\ProductReview::where("status","approved")->where("product_id", $product->id)->orderBy("sort","desc")->limit(100)->get();
+        $reviews = \Webkul\Product\Models\ProductReview::where("product_id", $product->id)->orderBy("sort","desc")->limit(1000)->get();
 
         $reviews = $reviews->map(function($review) {
             $review->customer = $review->customer;
@@ -273,6 +269,31 @@ class ProductController extends Controller
 
 
 
+    }
+
+    /**
+     * 
+     * Comments Update Status
+     * 
+     * @return void
+     * 
+     */
+    public function commentsUpdateStatus() {
+        $comment_ids = request()->input("comment_ids");
+        $status = request()->input("status");
+
+        $comments = $this->productReviewRepository->findWhereIn("id",$comment_ids);
+        foreach($comments as $comment) {
+            Event::dispatch('customer.review.update.before', $comment->id);
+            $comment->update(['status'=> $status]);
+            Event::dispatch('customer.review.update.after', $comment);
+        }
+
+
+        return response()->json([
+            'message' => "success",
+            'comment_id' => $comment_ids
+        ]);
     }
 
     /**

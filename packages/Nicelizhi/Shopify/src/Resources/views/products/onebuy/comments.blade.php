@@ -73,9 +73,14 @@
                     ?>
             </table> --}}
             <h3>From Shopify Comments</h3>
+            <span>
+                <button class="btn update_approved btn-success" >Update Approved</button>
+                <button class="btn btn-primary update_pending">Update Pending</button>
+            </span>
             <table class="table table-bordered table-striped">
                 <thead>
                     <tr>
+                        <th><input type="checkbox" id="select-all"></th>
                         <th>ID</th>
                         <th>Name</th>
                         <th>Title</th>
@@ -91,6 +96,7 @@
                     <?php
                         foreach($reviews as $key => $comment) {
                             echo "<tr>";
+                            echo "<td><input type='checkbox' name='comment_ids[]' value='".$comment->id."'></td>";
                             echo "<td>".$comment->id."</td>";
                             echo "<td>".$comment->name."</td>";
                             echo "<td>".$comment->title."</td>";
@@ -127,6 +133,72 @@
 
 <script>
     $(document).ready(function() {
+
+        $("#select-all").click(function(){
+            // 获取全选复选框的当前状态
+            var is_checked = $(this).prop("checked");
+            // 将所有的复选框设置为与全选复选框相同的状态
+            $("input[name='comment_ids[]']").prop("checked", is_checked);
+        });
+
+        $(".update_approved").click(function(){
+            var comment_ids = [];
+            $("input[name='comment_ids[]']:checked").each(function(){
+                comment_ids.push($(this).val());
+            });
+
+            if (comment_ids.length === 0) {
+                 console.log("Array is empty!") 
+                 alert("Please select comments to update");
+                 return;
+            }
+
+            console.log(comment_ids);
+
+            $.ajax({
+                url: "{{ route('admin.shopify.products.comments.update_status') }}",
+                type: 'POST',
+                data: {
+                    _token: "{{ csrf_token() }}",
+                    comment_ids: comment_ids,
+                    status: 'approved'
+                },
+                success: function(data) {
+                    alert(data.message);
+                    window.location.reload();
+                }
+            });
+        });
+
+        $(".update_pending").click(function(){
+            var comment_ids = [];
+            $("input[name='comment_ids[]']:checked").each(function(){
+                comment_ids.push($(this).val());
+            });
+
+            if (comment_ids.length === 0) {
+                 console.log("Array is empty!") 
+                 alert("Please select comments to update");
+                 return;
+            }
+
+            console.log(comment_ids);
+
+            $.ajax({
+                url: "{{ route('admin.shopify.products.comments.update_status') }}",
+                type: 'POST',
+                data: {
+                    _token: "{{ csrf_token() }}",
+                    comment_ids: comment_ids,
+                    status: 'pending'
+                },
+                success: function(data) {
+                    alert(data.message);
+                    window.location.reload();
+                }
+            });
+        });
+
         $('.update_comment_sort').keydown(function(event) {
             if(event.keyCode == 13) {
                 var comment_id = $(this).attr("comment_id");
