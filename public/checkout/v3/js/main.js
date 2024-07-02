@@ -1,10 +1,10 @@
 if (window.Worker) {
   const worker = new Worker('worker.js');
 
-  // const shopifyUrl = '/shopify/v1/api/full/{{ $slug }}';
-  // const swiperUrl = '/shopify/v1/api/images/'+ getProductId;
-  const shopifyUrl = '/shopify/v1/api/full/8924785377562';
-  const swiperUrl = '/shopify/v1/api/images/8924785377562';
+  const shopifyUrl = '/shopify/v1/api/full/{{ $slug }}';
+  const swiperUrl = '/shopify/v1/api/images/' + getProductId;
+  // const shopifyUrl = '/shopify/v1/api/full/8924785377562';
+  // const swiperUrl = '/shopify/v1/api/images/8924785377562';
   const urlObj = {
     shopifyUrl: shopifyUrl,
     swiperUrl: swiperUrl,
@@ -31,7 +31,7 @@ function swiperDom(data) {
   swiperImgList = data.images;
   var img = data.images;
   for (var i = 0; i < img.length; i++) {
-    swiperList += `<div class="swiper-slide"><img src="${img[i].src}" width="705" height="705" alt=""></div>`;
+    swiperList += `<div class="swiper-slide"><img src="${img[i].src}" width="705" height="705" loading="lazy" alt=""></div>`;
   }
   var gallery =
     `<div class="swiper-container" style="width:100%" id="gallery">

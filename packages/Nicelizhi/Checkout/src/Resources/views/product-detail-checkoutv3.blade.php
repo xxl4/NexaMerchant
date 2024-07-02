@@ -961,7 +961,7 @@
     var app_query_params = []
   </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/5.0.4/js/swiper.js"></script>
-  <script src="/checkout/v3/js/main.js"></script>
+  <script src="/checkout/v3/js/main.js?v=1"></script>
   <script type="text/javascript">
     AJAX_PATH = 'ajax.php/'
     app_config = {
