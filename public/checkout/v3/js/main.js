@@ -1,7 +1,7 @@
 if (window.Worker) {
   const worker = new Worker('worker.js');
 
-  const shopifyUrl = '/shopify/v1/api/full/{{ $slug }}';
+  const shopifyUrl = '/shopify/v1/api/full/' + getProductId;
   const swiperUrl = '/shopify/v1/api/images/' + getProductId;
   // const shopifyUrl = '/shopify/v1/api/full/8924785377562';
   // const swiperUrl = '/shopify/v1/api/images/8924785377562';
@@ -9,6 +9,7 @@ if (window.Worker) {
     shopifyUrl: shopifyUrl,
     swiperUrl: swiperUrl,
   };
+  console.log(urlObj, 'urlObj');
   worker.postMessage({ cmd: 'fetchData', url: urlObj });
 
   worker.addEventListener('message', (e) => {
