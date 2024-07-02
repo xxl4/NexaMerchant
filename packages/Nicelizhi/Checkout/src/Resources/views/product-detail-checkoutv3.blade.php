@@ -81,9 +81,9 @@
     <link rel="stylesheet" href="/checkout/v2/css/all.min.css">
   </noscript>
   <!-- <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/bootstrap.min.css" /> -->
-  <link rel="stylesheet" href="/checkout/v2/css/bootstrap.min.css" media="none" onload="if(media!='all')media='all'">
+  <link rel="stylesheet" href="/checkout/v2/css/bootstrap.min.css?v=1" media="none" onload="if(media!='all')media='all'">
   <noscript>
-    <link rel="stylesheet" href="/checkout/v2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/checkout/v2/css/bootstrap.min.css?v=1">
   </noscript>
   <!-- <link rel="stylesheet prefetch" href="/checkout/v2/css/app2.css?v=5" /> -->
   <link rel="stylesheet" href="/checkout/v2/css/app2.css?v=5" media="none" onload="if(media!='all')media='all'">
@@ -960,6 +960,7 @@
     }
     var app_query_params = []
   </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/5.0.4/js/swiper.js"></script>
   <script src="/checkout/v3/js/main.js"></script>
   <script type="text/javascript">
     AJAX_PATH = 'ajax.php/'
@@ -1329,6 +1330,7 @@
       sellPoints: JSON.parse(phpsellPoints)
     }
     console.log(data, 'phpdata');
+
     $(function() {
       $('.header-container img').attr('src', logoImg)
       if (countries1 == 'fr' || countries1 == 'es') {
@@ -3363,28 +3365,8 @@
       $('#pay-after-submit-error').hide()
     }
   </script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/5.0.4/js/swiper.js"></script>
   <script>
-    galleryThumbs = new Swiper(
-      '#thumbs', {
-        slidesPerView: 5,
-        spaceBetween: 5,
-        watchSlidesVisibility: true,
-        loop: true,
-      }
-    )
 
-    mySwiper = new Swiper('#gallery', {
-      direction: 'horizontal',
-      loop: true,
-      autoplay: true,
-      allowTouchMove: true,
-      thumbs: {
-        swiper: galleryThumbs,
-        allowTouchMove: true,
-        slideThumbActiveClass: 'my-slide-thumb-active',
-      },
-    })
   </script>
   <?php if (@$data['env'] == 'demo') { ?>
     <script src="https://checkout-demo.airwallex.com/assets/elements.bundle.min.js"></script>

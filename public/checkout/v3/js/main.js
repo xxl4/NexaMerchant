@@ -46,6 +46,24 @@ function swiperDom(data) {
     `</div>
   			</div>`;
   $('.sw-box').append(gallery, thumbs);
+  galleryThumbs = new Swiper('#thumbs', {
+    slidesPerView: 5,
+    spaceBetween: 5,
+    watchSlidesVisibility: true,
+    loop: true,
+  });
+
+  mySwiper = new Swiper('#gallery', {
+    direction: 'horizontal',
+    loop: true,
+    autoplay: true,
+    allowTouchMove: true,
+    thumbs: {
+      swiper: galleryThumbs,
+      allowTouchMove: true,
+      slideThumbActiveClass: 'my-slide-thumb-active',
+    },
+  });
 }
 function shopifyDom(data) {
   console.log(data, '=====shopifyDom');
