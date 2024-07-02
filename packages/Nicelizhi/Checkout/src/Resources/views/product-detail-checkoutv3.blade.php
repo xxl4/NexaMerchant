@@ -92,7 +92,8 @@
   </noscript>
   <style>
     img {
-      aspect-ratio: attr(width)/attr(height);
+      /* aspect-ratio: attr(width)/attr(height); */
+      object-fit: contain;
     }
 
     .sw-box {
@@ -136,6 +137,35 @@
       text-align: center;
     }
 
+    .btn-fixed {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: rgba(0, 0, 0, 0.6);
+      display: none;
+      transition: opacity 0.3s ease;
+    }
+
+    #btn-bx {
+      padding: 0 0 10px 0;
+    }
+
+    #comn-btn1 {
+      font-size: 18px;
+      line-height: 26px;
+      font-weight: 800;
+      border-radius: 8px;
+      background: #1773b0;
+      letter-spacing: .8px;
+      animation: 2s infinite bounce, 3s infinite shadow-pulse;
+      outline: 0;
+      text-decoration: none;
+      height: auto;
+    }
+
     @media(max-width:600px) {
       .sw-box {
         height: 110vw;
@@ -171,6 +201,16 @@
 
       100% {
         background-color: #e0e0e0;
+      }
+    }
+
+    @media(max-width:768px) {
+      .top-left-button {
+        display: none;
+      }
+
+      .herder-content {
+        justify-content: center;
       }
     }
   </style>
@@ -271,7 +311,7 @@
 
 
         <div class="btn-bx">
-          <a href="#product2" class="comn-btn">@lang('checkout::app.v3.Buy Now')</a>
+          <a href="#product2" class="comn-btn" id="comn-btn2">@lang('checkout::app.v3.Buy Now')</a>
         </div>
         <div class="fl mt10">
           <div class="order-msg mb10">
@@ -332,7 +372,7 @@
         <!-- review -->
         <div class="section" id="reviews-box" style="width: 100%;float: right; display:none">
           <div class="reviews-content"></div>
-          <div class="pagination">
+          <div class="pagination" style="display: none;">
             <button id="prev-page">@lang('checkout::app.v3.Prev')</button>
             <span id="page-info"></span>
             <button id="next-page">@lang('checkout::app.v3.Next')</button>
@@ -904,7 +944,11 @@
     </div>
   </div>
   <div class="clearall"></div>
-
+  <div class="btn-fixed">
+    <div class="btn-bx" id="btn-bx">
+      <a href="#product2" class="comn-btn" id="comn-btn1">@lang('checkout::app.v3.Buy Now')</a>
+    </div>
+  </div>
   <div class="footer-box">
     <p style="font-weight: 700" id="footer-top-text">© 2024 </p>
     <br class="br" />
@@ -3359,6 +3403,38 @@
     function payAfterSubmit() {
       $('#pay-after-submit-error').hide()
     }
+    document.addEventListener('DOMContentLoaded', function() {
+      const button1 = document.querySelector('.btn-fixed');
+      const button2 = document.getElementById('comn-btn2');
+      const isMobile = window.innerWidth <= 768;
+      window.addEventListener('scroll', function() {
+        if (isMobile) {
+          showButton1IfScrolled();
+        }
+      });
+
+      function showButton1IfScrolled() {
+        const scrollHeight = window.scrollY || document.documentElement.scrollTop;
+        if (scrollHeight > 500) {
+          const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+              if (entry.target === button2) {
+                if (entry.isIntersecting) {
+                  button1.style.display = 'none';
+                } else {
+                  button1.style.display = 'block';
+                }
+              }
+            });
+          }, {
+            threshold: 0.5
+          });
+          observer.observe(button2);
+        } else {
+          button1.style.display = 'none';
+        }
+      }
+    });
   </script>
   <script>
 

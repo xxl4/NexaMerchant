@@ -136,6 +136,9 @@ function reviewDom(data) {
     }
   }
   $('.reviews-content').html(reviewsDom);
+  if (reviewsDom !== '') {
+    $('.pagination').show()
+  }
   total = data.total;
   const totalNum = Math.ceil(total / 10);
   pageInfo.textContent = `${currentPage} / ${totalNum}`;
