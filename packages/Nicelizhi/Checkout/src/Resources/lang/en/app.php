@@ -94,6 +94,10 @@ return [
     'hours' => 'hours',
     'Estimated Delivery between' => 'Estimated Delivery Between',
     'and' => 'and',
-    'People Looking For This Product' => 'People Looking for This Product'
+    'People Looking For This Product' => 'People Looking for This Product',
+    'Prev' => 'Prev',
+    'Next' => 'Next',
+    'Jump' => 'Jump',
+    'Please enter a valid page number' => 'Please enter a valid page number'
   ]
 ];

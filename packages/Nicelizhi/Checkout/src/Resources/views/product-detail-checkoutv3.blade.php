@@ -25,11 +25,11 @@
   <meta name="color-scheme" content="light only" />
   <link rel="stylesheet" href="/checkout/v2/css/v3.css">
   <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/checkout.css?v=10" />
-  <link rel="prefetch" href="checkout/v2/images/favicon_de.webp">
-  <link rel="prefetch" href="checkout/v2/images/favicon.webp">
-  <link rel="prefetch" href="checkout/v2/images/googlePay.webp">
-  <link rel="prefetch" href="checkout/v2/images/applePay.webp">
-  <link rel="prefetch" href="checkout/v2/images/logo_{{ app()->getLocale() }}.webp">
+  <link rel="prefetch" href="/checkout/v2/images/favicon_de.webp">
+  <link rel="prefetch" href="/checkout/v2/images/favicon.webp">
+  <link rel="prefetch" href="/checkout/v2/images/googlePay.webp">
+  <link rel="prefetch" href="/checkout/v2/images/applePay.webp">
+  <link rel="prefetch" href="/checkout/v2/images/logo_{{ app()->getLocale() }}.webp">
   <!-- <link href="https://cdn.jsdelivr.net/npm/flag-icon-css@4.1.7/css/flag-icons.min.css" rel="stylesheet" /> -->
   <!-- <link href="https://cdn.jsdelivr.net/npm/jquery-colorbox@1.6.4/example1/colorbox.min.css" rel="stylesheet" /> -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icon-css@4.1.7/css/flag-icons.min.css" media="none" onload="if(media!='all')media='all'">
@@ -86,13 +86,14 @@
     <link rel="stylesheet" href="/checkout/v2/css/bootstrap.min.css?v=1">
   </noscript>
   <!-- <link rel="stylesheet prefetch" href="/checkout/v2/css/app2.css?v=5" /> -->
-  <link rel="stylesheet" href="/checkout/v2/css/app2.css?v=5" media="none" onload="if(media!='all')media='all'">
+  <link rel="stylesheet" href="/checkout/v2/css/app2.css?v=6" media="none" onload="if(media!='all')media='all'">
   <noscript>
-    <link rel="stylesheet" href="/checkout/v2/css/app2.css?v=5">
+    <link rel="stylesheet" href="/checkout/v2/css/app2.css?v=6">
   </noscript>
   <style>
     img {
-      aspect-ratio: attr(width)/attr(height);
+      /* aspect-ratio: attr(width)/attr(height); */
+      object-fit: contain;
     }
 
     .sw-box {
@@ -109,6 +110,60 @@
     .shopify-content {
       width: 100%;
       float: left;
+    }
+
+    .pagination {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 20px;
+    }
+
+    .pagination button {
+      background-color: #1773B0;
+    }
+
+    .pagination button,
+    .pagination input {
+      margin: 0 5px;
+      padding: 5px 10px;
+      cursor: pointer;
+      border-radius: 4px;
+      font-size: 12px;
+    }
+
+    .pagination input {
+      width: 60px;
+      text-align: center;
+    }
+
+    .btn-fixed {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: rgba(0, 0, 0, 0.6);
+      display: none;
+      transition: opacity 0.3s ease;
+    }
+
+    #btn-bx {
+      padding: 0 0 10px 0;
+    }
+
+    #comn-btn1 {
+      font-size: 18px;
+      line-height: 26px;
+      font-weight: 800;
+      border-radius: 8px;
+      background: #1773b0;
+      letter-spacing: .8px;
+      animation: 2s infinite bounce, 3s infinite shadow-pulse;
+      outline: 0;
+      text-decoration: none;
+      height: auto;
     }
 
     @media(max-width:600px) {
@@ -148,6 +203,16 @@
         background-color: #e0e0e0;
       }
     }
+
+    @media(max-width:768px) {
+      .top-left-button {
+        display: none;
+      }
+
+      .herder-content {
+        justify-content: center;
+      }
+    }
   </style>
 </head>
 
@@ -155,7 +220,7 @@
   <div class="header-container">
     <div class="container">
       <div class="herder-content">
-        <img src="" width="100" height="50" alt="" />
+        <img src="/checkout/v2/images/logo_de.webp" width="100" height="50" alt="" />
         <div class="top-left-button">
           <!-- <p class="header-text-hide">@lang('checkout::app.v3.Description')</p> -->
           <a class="header-text-hide" onclick="reviewToggle()" id="header-text" href="#shopify-title-item1">@lang('checkout::app.v3.Reviews')</a>
@@ -227,7 +292,7 @@
         </p>
         <div class="header-middle">
           <p class="text-Schritt-top">@lang('checkout::app.v2.You Can See By')</p>
-          <img src="" width="460" height="48" alt="" />
+          <img src="/checkout/v2/images/1701506369_de.webp" width="460" height="48" alt="" />
         </div>
         <div class="fl mt10">
 
@@ -246,7 +311,7 @@
 
 
         <div class="btn-bx">
-          <a href="#product2" class="comn-btn">@lang('checkout::app.v3.Buy Now')</a>
+          <a href="#product2" class="comn-btn" id="comn-btn2">@lang('checkout::app.v3.Buy Now')</a>
         </div>
         <div class="fl mt10">
           <div class="order-msg mb10">
@@ -306,42 +371,15 @@
         </div>
         <!-- review -->
         <div class="section" id="reviews-box" style="width: 100%;float: right; display:none">
-          <?php foreach ($comments as $key => $comment) {
-            $comment = json_decode($comment); //var_dump($comment);exit; 
-          ?>
-            <div class="comment-card" style="background-color: #F4F4F4">
-              <div style="display: flex">
-                <div class="mr4" style="font-size: 14px;margin-top: 3px;color: #444444; ">
-                  <?php echo $comment->name; ?>
-                  <i class="flag-icon-size flag-icon flag-icon-<?php echo strtolower($default_country); ?> mr-2"></i>
-                </div>
-                <div>
-                  <img class="mb1 mr2" width="14px" src="/checkout/onebuy/images/icon_gou.svg" loading="lazy" alt="" />
-                  <span style="width: 100%; font-size:12px; color: #444444">@lang('onebuy::app.product.order.Verified')</span>
-                </div>
-              </div>
-              <div>
-                <div style="text-align: start; width: 100%;">
-                  <img width="110px" src="/checkout/onebuy/images/stars-5.svg" loading="lazy" alt="" />
-                </div>
-                <div class="cardtext" style="text-align: start;"><?php echo $comment->comment; ?></div>
-                <?php
-                if (!empty($comment->images)) {
+          <div class="reviews-content"></div>
+          <div class="pagination" style="display: none;">
+            <button id="prev-page">@lang('checkout::app.v3.Prev')</button>
+            <span id="page-info"></span>
+            <button id="next-page">@lang('checkout::app.v3.Next')</button>
+            <input type="number" id="page-input" min="1" value="1">
+            <button id="jump-page">@lang('checkout::app.v3.Jump')</button>
+          </div>
 
-                  // var_dump($comment->images);
-                  foreach ($comment->images as $key => $image) {
-                    //var_dump($image);
-                ?>
-                    <a href="javascript:;" onclick="reviewImgPreview('<?php echo $image->url; ?>')">
-                      <img style="width: 30%; max-height:120px;object-fit:contain" src="<?php echo $image->url; ?>" loading="lazy" alt="" />
-                    </a>
-
-                <?php }
-                } ?>
-
-              </div>
-            </div>
-          <?php } ?>
         </div>
         <p class="pkg-hdng" id="pkg-hdng1" style="border-top: 1px solid #ccc; padding-top: 10px">
           <span class="pkg-step">
@@ -906,7 +944,11 @@
     </div>
   </div>
   <div class="clearall"></div>
-
+  <div class="btn-fixed">
+    <div class="btn-bx" id="btn-bx">
+      <a href="#product2" class="comn-btn" id="comn-btn1">@lang('checkout::app.v3.Buy Now')</a>
+    </div>
+  </div>
   <div class="footer-box">
     <p style="font-weight: 700" id="footer-top-text">© 2024 </p>
     <br class="br" />
@@ -1273,6 +1315,8 @@
       productL4 = {},
       getProductId = '{{ $slug }}',
       countries1 = '<?php echo strtolower($default_country); ?>',
+      reviewErrMsg = "@lang('checkout::app.v3.Please enter a valid page number')",
+      reviewLang = "@lang('onebuy::app.product.order.Verified')",
       paypal_pay_acc = '',
       area = '{{ app()->getLocale() }}',
       currencySymbol = '{{ core()->currencySymbol(core()->getBaseCurrencyCode()) }}',
@@ -3359,6 +3403,59 @@
     function payAfterSubmit() {
       $('#pay-after-submit-error').hide()
     }
+    document.addEventListener('DOMContentLoaded', function() {
+      const button1 = document.querySelector('.btn-fixed');
+      const button2 = document.getElementById('comn-btn2');
+      const pkgopt = document.querySelector('.pkg-opt');
+      const swbox = document.querySelector('.Schritt-top-box');
+      const isMobile = window.innerWidth <= 768;
+
+      // IntersectionObserver 观察器
+      const observer = new IntersectionObserver((entries) => {
+        let isButton2Visible = false;
+        let isButton3Visible = false;
+        let isButton4Visible = false;
+        entries.forEach(entry => {
+          if (entry.target === button2) {
+            isButton2Visible = entry.isIntersecting;
+          }
+          if (entry.target === pkgopt) {
+            isButton3Visible = entry.isIntersecting;
+          }
+          if (entry.target === swbox) {
+            isButton4Visible = entry.isIntersecting;
+          }
+        });
+
+
+        if (isButton4Visible || isButton2Visible || isButton3Visible) {
+          button1.style.display = 'none';
+        } else if (isMobile) {
+          button1.style.display = 'block';
+        }
+      }, {
+        threshold: 0.5
+      });
+
+      observer.observe(button2);
+      observer.observe(pkgopt);
+      observer.observe(swbox);
+      updateButton1Visibility();
+
+
+      function updateButton1Visibility() {
+        const rect2 = button2.getBoundingClientRect();
+        const rect3 = pkgopt.getBoundingClientRect();
+        const rect4 = swbox.getBoundingClientRect();
+        if (!rect2.height && !rect3.height && !rect4.height) {
+
+          button1.style.display = 'block';
+        } else {
+
+          button1.style.display = 'none';
+        }
+      }
+    });
   </script>
   <script>
 
