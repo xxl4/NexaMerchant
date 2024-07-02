@@ -25,11 +25,11 @@
   <meta name="color-scheme" content="light only" />
   <link rel="stylesheet" href="/checkout/v2/css/v3.css">
   <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/checkout.css?v=10" />
-  <link rel="prefetch" href="checkout/v2/images/favicon_de.webp">
-  <link rel="prefetch" href="checkout/v2/images/favicon.webp">
-  <link rel="prefetch" href="checkout/v2/images/googlePay.webp">
-  <link rel="prefetch" href="checkout/v2/images/applePay.webp">
-  <link rel="prefetch" href="checkout/v2/images/logo_{{ app()->getLocale() }}.webp">
+  <link rel="prefetch" href="/checkout/v2/images/favicon_de.webp">
+  <link rel="prefetch" href="/checkout/v2/images/favicon.webp">
+  <link rel="prefetch" href="/checkout/v2/images/googlePay.webp">
+  <link rel="prefetch" href="/checkout/v2/images/applePay.webp">
+  <link rel="prefetch" href="/checkout/v2/images/logo_{{ app()->getLocale() }}.webp">
   <!-- <link href="https://cdn.jsdelivr.net/npm/flag-icon-css@4.1.7/css/flag-icons.min.css" rel="stylesheet" /> -->
   <!-- <link href="https://cdn.jsdelivr.net/npm/jquery-colorbox@1.6.4/example1/colorbox.min.css" rel="stylesheet" /> -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icon-css@4.1.7/css/flag-icons.min.css" media="none" onload="if(media!='all')media='all'">
