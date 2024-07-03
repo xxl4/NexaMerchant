@@ -183,6 +183,7 @@
       font-size: 24px;
       color: #1773B0;
       cursor: pointer;
+      z-index: 999;
       transition: all 0.2s;
     }
 
@@ -209,6 +210,7 @@
       flex-direction: column;
       justify-content: flex-start;
       align-items: flex-end;
+      z-index: 999;
       transition: all 0.2s;
     }
 
