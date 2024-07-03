@@ -2051,7 +2051,7 @@
         console.log(lastChar, 'lastChar');
         let previewDom = ''
         skuData.forEach((item) => {
-          previewDom += `'<img src= "` + item.img + `" alt= ''/>`
+          previewDom += `<img src= "` + item.img + `" alt= ''/>`
         })
         console.log(previewDom, 'previewDom======');
         const imageArea = $('#imageArea');
