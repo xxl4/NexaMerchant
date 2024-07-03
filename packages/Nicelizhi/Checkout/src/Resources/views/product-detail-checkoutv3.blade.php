@@ -171,6 +171,43 @@
       flex-direction: column;
     }
 
+    .image-area {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 200px;
+      height: 100%;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-end;
+    }
+
+    .image-area img {
+      position: relative;
+      width: 200px;
+      height: 200px;
+      transition: all 1s;
+      margin-bottom: 10px;
+    }
+
+    .image-area img.active {
+      right: 0;
+    }
+
+    .image-area img.fixed {
+      width: 100px;
+      height: 100px;
+      transition: all 1s;
+    }
+
+    .image-area img.enlarged {
+      width: 200px;
+      height: 200px;
+      transition: all 1s;
+    }
+
     @media(max-width:600px) {
       .sw-box {
         height: 110vw;
@@ -954,6 +991,9 @@
       <a href="#product2" class="comn-btn" id="comn-btn1">@lang('checkout::app.v3.Buy Now')</a>
     </div>
   </div>
+
+  <!-- <div class="image-area" id="imageArea"></div> -->
+
   <div class="footer-box">
     <p style="font-weight: 700" id="footer-top-text">© 2024 </p>
     <br class="br" />
@@ -1373,7 +1413,7 @@
     console.log(data, 'phpdata');
   </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/5.0.4/js/swiper.js"></script>
-  <script src="/checkout/v3/js/main.js?v=5"></script>
+  <script src="/checkout/v3/js/main.js?v=6"></script>
   <script>
     $(function() {
       $('.header-container img').attr('src', logoImg)
@@ -1976,10 +2016,31 @@
       getAttrId(productL4, obj)
     }
 
+    // function showImage(color, index) {
+    //   if (!color) return;
+
+    //   const imageArea = $('#imageArea');
+    //   const img = $('<img />').attr('src', colors[color]).addClass('active');
+
+    //   img.on('transitionend', function() {
+    //     setTimeout(() => {
+    //       img.removeClass('active').addClass('fixed');
+    //       img.on('click', function() {
+    //         $(this).toggleClass('enlarged');
+    //       });
+    //     }, 1000);
+    //   });
+
+    //   imageArea.append(img);
+    // }
+
     function getSkuListInfo() {
       $('.sku-info').empty()
       var skuData = params.products
       var skuList = ''
+
+      // showImage('khaki', 1)
+      // console.log(skuData, 'skuData======');
       for (let i = 0; i < skuData.length; i++) {
         var description = skuData[i].description.slice(2)
         var attributeName = skuData[i].attribute_name.split(',').join(' / ')
@@ -2010,11 +2071,6 @@
       var imgUrl = $(event.target).attr('src')
       $('.sku-preview-img-box').show()
       $('.sku-preview-img img').attr('src', imgUrl)
-    }
-
-    function reviewImgPreview(imgUrl) {
-      $('.size-chart-img-box').show()
-      $('.size-chart-img img').attr('src', imgUrl)
     }
 
     function sizeCharImgPreview() {

@@ -85,6 +85,10 @@ const jumpPageBtn = document.getElementById('jump-page');
 
 let currentPage = 1;
 let total = 0;
+function reviewImgPreview(imgUrl) {
+  $('.size-chart-img-box').show();
+  $('.size-chart-img img').attr('src', imgUrl);
+}
 function reviewDom(data) {
   console.log(data, 'reviewDom');
   let reviewsDom = '';
