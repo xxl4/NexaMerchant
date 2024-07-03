@@ -1360,6 +1360,18 @@
       background: #3f5e84;
       border-radius: 5px 5px 0 0;
     }
+
+    @media(max-width:768px) {
+      #mobile-banner {
+        display: block !important;
+      }
+    }
+
+    @media(min-width:768px) {
+      #pc-banner {
+        display: block !important;
+      }
+    }
   </style>
 </head>
 
@@ -1383,8 +1395,8 @@
   <script type="text/javascript" src="/checkout/v2/js/everflow.js"></script>
   <!-- END MVMT EVERFLOW CHECKOUT PAGEVIEW PIXEL -->
   <div id="">
-    <img class="w-100 d-none d-md-block" id="pc-banner" src="" />
-    <img class="w-100 d-block d-md-none" id="mobile-banner" src="" />
+    <img class="w-100 d-none d-md-block" id="pc-banner" style="display: none;" src="" />
+    <img class="w-100 d-block d-md-none" id="mobile-banner" style="display: none;" src="" />
   </div>
   <div class="topStrip" style="text-align: center;">
     <div class="container-xxl">

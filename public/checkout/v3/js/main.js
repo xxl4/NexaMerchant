@@ -86,6 +86,7 @@ const jumpPageBtn = document.getElementById('jump-page');
 let currentPage = 1;
 let total = 0;
 function reviewImgPreview(imgUrl) {
+  console.log(imgUrl, 'imgUrl');
   $('.size-chart-img-box').show();
   $('.size-chart-img img').attr('src', imgUrl);
 }
@@ -99,13 +100,11 @@ function reviewDom(data) {
         data.reviews[key].images.forEach((element) => {
           reviewsImg +=
             `
-        <a href="javascript:void(0)" onclick="reviewImgPreview(` +
+          <img style="width: 30%;  max-height:120px;object-fit:contain" onclick="reviewImgPreview("` +
             element.url +
-            `)">
-          <img style="width: 30%; max-height:120px;object-fit:contain" src="` +
+            `") src="` +
             element.url +
             `" loading="lazy" alt="" />
-        </a>
         `;
         });
       } else {
