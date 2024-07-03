@@ -183,6 +183,7 @@
       font-size: 24px;
       color: #1773B0;
       cursor: pointer;
+      z-index: 999;
       transition: all 0.2s;
     }
 
@@ -209,6 +210,7 @@
       flex-direction: column;
       justify-content: flex-start;
       align-items: flex-end;
+      z-index: 999;
       transition: all 0.2s;
     }
 
@@ -1443,7 +1445,7 @@
     console.log(data, 'phpdata');
   </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/5.0.4/js/swiper.js"></script>
-  <script src="/checkout/v3/js/main.js?v=7"></script>
+  <script src="/checkout/v3/js/main.js?v=8"></script>
   <script>
     $(function() {
       if (countries1 == 'fr' || countries1 == 'es') {
