@@ -173,11 +173,11 @@
 
     .image-area {
       position: fixed;
-      top: 0;
+      top: 20%;
       right: 0;
-      width: 200px;
-      height: 100%;
-      overflow: hidden;
+      /* width: 100px;
+      height: 100px;
+      border: 1px solid red; */
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
@@ -186,25 +186,24 @@
 
     .image-area img {
       position: relative;
-      width: 200px;
-      height: 200px;
+      right: 0;
+      width: 50px;
       transition: all 1s;
       margin-bottom: 10px;
     }
 
     .image-area img.active {
       right: 0;
+      width: 200px;
     }
 
     .image-area img.fixed {
-      width: 100px;
-      height: 100px;
+      width: 50px;
       transition: all 1s;
     }
 
     .image-area img.enlarged {
       width: 200px;
-      height: 200px;
       transition: all 1s;
     }
 
@@ -992,7 +991,7 @@
     </div>
   </div>
 
-  <!-- <div class="image-area" id="imageArea"></div> -->
+  <div class="image-area" id="imageArea"></div>
 
   <div class="footer-box">
     <p style="font-weight: 700" id="footer-top-text">© 2024 </p>
@@ -1413,7 +1412,7 @@
     console.log(data, 'phpdata');
   </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/5.0.4/js/swiper.js"></script>
-  <script src="/checkout/v3/js/main.js?v=6"></script>
+  <script src="/checkout/v3/js/main.js?v=7"></script>
   <script>
     $(function() {
       $('.header-container img').attr('src', logoImg)
@@ -2016,31 +2015,50 @@
       getAttrId(productL4, obj)
     }
 
-    // function showImage(color, index) {
-    //   if (!color) return;
+    function showImage(index) {
+      const img = $('#imageArea').children().eq(index)
+      const imgAttr = img.attr('src')
+      console.log(imgAttr, 'imgAttr');
+      if (imgAttr !== '') {
+        img.addClass('active');
+      }
+      // const img = $('<img />').attr('src', colors[color]).addClass('active');
+      setTimeout(() => {
+        img.removeClass('active').addClass('fixed');
+      }, 1000)
+      $('#imageArea img').on('click', function() {
+        $(this).addClass('enlarged');
+        setTimeout(() => {
+          img.removeClass('enlarged')
+        }, 1000)
+      });
+      $('#imageArea img').on('transitionend', function() {
+        setTimeout(() => {
+          console.log(12333333333);
+          img.removeClass('active').addClass('fixed');
+        }, 1000);
+      });
+    }
 
-    //   const imageArea = $('#imageArea');
-    //   const img = $('<img />').attr('src', colors[color]).addClass('active');
-
-    //   img.on('transitionend', function() {
-    //     setTimeout(() => {
-    //       img.removeClass('active').addClass('fixed');
-    //       img.on('click', function() {
-    //         $(this).toggleClass('enlarged');
-    //       });
-    //     }, 1000);
-    //   });
-
-    //   imageArea.append(img);
-    // }
-
-    function getSkuListInfo() {
+    function getSkuListInfo(id = '') {
       $('.sku-info').empty()
       var skuData = params.products
       var skuList = ''
-
-      // showImage('khaki', 1)
-      // console.log(skuData, 'skuData======');
+      const isMobile = window.innerWidth <= 768;
+      if (id !== '' && isMobile) {
+        console.log(id, 'id========');
+        const lastChar = id.charAt(id.length - 1) - 1
+        console.log(lastChar, 'lastChar');
+        skuData[0].img = '/checkout/v2/images/logo_de.webp'
+        let previewDom = ''
+        skuData.forEach((item) => {
+          previewDom += `'<img src= "` + item.img + `" alt= ''/>`
+        })
+        console.log(previewDom, 'previewDom======');
+        const imageArea = $('#imageArea');
+        imageArea.html(previewDom)
+        showImage(lastChar)
+      }
       for (let i = 0; i < skuData.length; i++) {
         var description = skuData[i].description.slice(2)
         var attributeName = skuData[i].attribute_name.split(',').join(' / ')
@@ -2514,6 +2532,7 @@
       $(event.target).removeClass('border-red')
       var parId = $(event.target).parent().attr('id')
       var itemId = $(event.target).attr('id')
+      console.log(parId, itemId, 'itemId');
       var aid = ''
       if (parId == 'select1-item1' || parId == 'select2-item1' || parId == 'select3-item1' || parId == 'select4-item1') {
         getSku(itemId, 0, value)
@@ -2544,7 +2563,7 @@
           $(event.target).siblings('#in-se1').children().slice(1).removeAttr('disabled')
         }
       }
-      getSkuListInfo();
+      getSkuListInfo(parId);
       var skuAll = $(event.target).parent().parent().parent()
       var list = []
       skuAll.find('select').each(function() {
