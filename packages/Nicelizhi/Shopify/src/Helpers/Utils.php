@@ -159,13 +159,13 @@ final class Utils {
             Cache::pull("product_sku_size_".$pid);
             Cache::pull("product_sku_".$pid);
             Cache::pull("product_comment_".$pid); // product comment
-            Cache::pull("product_ext_".$pid."_0_10");
-            Cache::pull("product_ext_".$pid."_1_10");
-            Cache::pull("product_ext_".$pid."_2_10");
-            Cache::pull("product_ext_".$pid."_3_10");
-            Cache::pull("product_ext_".$pid."_4_10");
-            Cache::pull("product_ext_".$pid."_5_10");
-            Cache::pull("product_ext_".$pid."_6_10");
+            Cache::pull("product_comment_".$pid."_0_10");
+            Cache::pull("product_comment_".$pid."_1_10");
+            Cache::pull("product_comment_".$pid."_2_10");
+            Cache::pull("product_comment_".$pid."_3_10");
+            Cache::pull("product_comment_".$pid."_4_10");
+            Cache::pull("product_comment_".$pid."_5_10");
+            Cache::pull("product_comment_".$pid."_6_10");
             Cache::pull("product_ext_".$pid."_4_EUR");
             Cache::pull("product_ext_".$pid."_4_USD");
             Cache::pull("product_ext_".$pid."_4_AUD");
