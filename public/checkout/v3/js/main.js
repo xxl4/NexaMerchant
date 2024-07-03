@@ -102,7 +102,7 @@ function reviewDom(data) {
             `
           <img style="width: 30%;  max-height:120px;object-fit:contain" onclick="reviewImgPreview("` +
             element.url +
-            `") src="` +
+            `")" src="` +
             element.url +
             `" loading="lazy" alt="" />
         `;
