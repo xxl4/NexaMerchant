@@ -2078,6 +2078,7 @@
     function shopIcon() {
       if (isMobile) {
         $('.icon-container').addClass('icon-fixed')
+        $('.icon-container').removeClass('icon-toggle')
         $('.image-area').html('')
       }
     }
@@ -2093,7 +2094,7 @@
       var skuList = ''
       if (id !== '' && isMobile) {
         console.log(id, 'id========');
-        skuData[0].img = '/checkout/v2/images/logo_de.webp'
+        // skuData[0].img = '/checkout/v2/images/logo_de.webp'
         const lastChar = id.charAt(id.length - 1) - 1
         console.log(lastChar, 'lastChar');
         let previewDom = ''
