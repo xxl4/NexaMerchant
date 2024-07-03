@@ -2029,7 +2029,7 @@
       $('#imageArea img').on('click', function() {
         $(this).addClass('enlarged');
         setTimeout(() => {
-          img.removeClass('enlarged')
+          $(this).removeClass('enlarged')
         }, 1000)
       });
       $('#imageArea img').on('transitionend', function() {
@@ -2049,7 +2049,6 @@
         console.log(id, 'id========');
         const lastChar = id.charAt(id.length - 1) - 1
         console.log(lastChar, 'lastChar');
-        skuData[0].img = '/checkout/v2/images/logo_de.webp'
         let previewDom = ''
         skuData.forEach((item) => {
           previewDom += `'<img src= "` + item.img + `" alt= ''/>`
