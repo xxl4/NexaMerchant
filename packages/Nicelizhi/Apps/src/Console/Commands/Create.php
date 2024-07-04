@@ -60,7 +60,6 @@ class Create extends CommandInterface
         'docs',
         'README.md',
         'phpunit.xml',
-        'composer.json'
     ];
 
     public function getAppVer() {
