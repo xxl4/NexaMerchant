@@ -240,7 +240,7 @@ class AirwallexController extends Controller
                 $webhookhelp->payment_dispute_won();
                 break;
             case 'payment_dispute.lost': //You have lost the chargeback / Pre-arbitration, no further action needed from your side.
-                $webhookhelp->payment_dispute_lost();
+                $webhookhelp->payment_dispute_lost($this->orderRepository, $this->refundRepository);
                 break;
         }
     }

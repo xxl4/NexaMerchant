@@ -1,8 +1,7 @@
 const shopifyUrl = '/shopify/v1/api/full/' + getProductId;
 const swiperUrl = '/shopify/v1/api/images/' + getProductId;
-// const reviewsrUrl = '/api/reviews?product_id=' + getProductId;
-const reviewsrUrl = '/api/reviews?product_id=8924785377562';
-
+const reviewsrUrl = '/api/reviews?product_id=' + getProductId;
+// const reviewsrUrl = '/api/reviews?product_id=8924785377562';
 if (window.Worker) {
   const worker = new Worker('worker.js?v=1');
   const urlObj = {
@@ -85,6 +84,11 @@ const jumpPageBtn = document.getElementById('jump-page');
 
 let currentPage = 1;
 let total = 0;
+function reviewImgPreview(imgUrl) {
+  console.log(imgUrl, 'imgUrl');
+  $('.size-chart-img-box').show();
+  $('.size-chart-img img').attr('src', imgUrl);
+}
 function reviewDom(data) {
   console.log(data, 'reviewDom');
   let reviewsDom = '';
@@ -95,13 +99,9 @@ function reviewDom(data) {
         data.reviews[key].images.forEach((element) => {
           reviewsImg +=
             `
-        <a href="javascript:void(0)" onclick="reviewImgPreview(` +
-            element.url +
-            `)">
-          <img style="width: 30%; max-height:120px;object-fit:contain" src="` +
+          <img style="width: 30%;  max-height:120px;object-fit:contain" onclick="reviewImgPreview(${element.url})" src="` +
             element.url +
             `" loading="lazy" alt="" />
-        </a>
         `;
         });
       } else {

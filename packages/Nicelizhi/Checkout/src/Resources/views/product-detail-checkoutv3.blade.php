@@ -90,6 +90,11 @@
   <noscript>
     <link rel="stylesheet" href="/checkout/v2/css/app2.css?v=6">
   </noscript>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" media="none" onload="if(media!='all')media='all'">
+  <noscript>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+  </noscript>
   <style>
     img {
       /* aspect-ratio: attr(width)/attr(height); */
@@ -171,6 +176,68 @@
       flex-direction: column;
     }
 
+    .icon-container {
+      position: fixed;
+      top: 15%;
+      right: -30px;
+      font-size: 24px;
+      color: #1773B0;
+      cursor: pointer;
+      z-index: 999;
+      transition: all 0.2s;
+    }
+
+    .icon-fixed {
+      right: 8px;
+    }
+
+    .icon-toggle {
+      transform: scale(1.5);
+    }
+
+    .image-toggle {
+      right: -200px !important;
+    }
+
+    .image-area {
+      position: fixed;
+      top: 20%;
+      right: 0;
+      /* width: 100px;
+      height: 100px;
+      border: 1px solid red; */
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-end;
+      z-index: 999;
+      transition: all 0.2s;
+    }
+
+    .image-area img {
+      position: relative;
+      right: 0;
+      width: 50px;
+      transition: all 1s;
+      margin-bottom: 10px;
+      border-radius: 5px;
+    }
+
+    .image-area img.active {
+      right: 0;
+      width: 200px;
+    }
+
+    .image-area img.fixed {
+      width: 50px;
+      transition: all 1s;
+    }
+
+    .image-area img.enlarged {
+      width: 200px;
+      transition: all 1s;
+    }
+
     @media(max-width:600px) {
       .sw-box {
         height: 110vw;
@@ -225,7 +292,7 @@
   <div class="header-container">
     <div class="container">
       <div class="herder-content">
-        <img src="/checkout/v2/images/logo_de.webp" width="100" height="50" alt="" />
+        <img src="/checkout/v2/images/logo_<?php echo strtolower($default_country); ?>.webp" width="100" height="50" alt="" />
         <div class="top-left-button">
           <!-- <p class="header-text-hide">@lang('checkout::app.v3.Description')</p> -->
           <a class="header-text-hide" onclick="reviewToggle()" id="header-text" href="#shopify-title-item1">@lang('checkout::app.v3.Reviews')</a>
@@ -297,7 +364,7 @@
         </p>
         <div class="header-middle">
           <p class="text-Schritt-top">@lang('checkout::app.v2.You Can See By')</p>
-          <img src="/checkout/v2/images/1701506369_de.webp" width="460" height="48" alt="" />
+          <img src="" width="0" height="48" alt="" />
         </div>
         <div class="fl mt10">
 
@@ -954,6 +1021,11 @@
       <a href="#product2" class="comn-btn" id="comn-btn1">@lang('checkout::app.v3.Buy Now')</a>
     </div>
   </div>
+  <div class="icon-container" onclick="iconToggle()">
+    <i class="fa-solid fa-cart-shopping"></i>
+  </div>
+  <div class="image-area" id="imageArea"></div>
+
   <div class="footer-box">
     <p style="font-weight: 700" id="footer-top-text">© 2024 </p>
     <br class="br" />
@@ -1270,6 +1342,7 @@
   </script>
 
   <script>
+    var isMobile = window.innerWidth <= 768;
     var orderObj = {},
       params = {
         first_name: "",
@@ -1324,12 +1397,11 @@
       reviewLang = "@lang('onebuy::app.product.order.Verified')",
       paypal_pay_acc = '',
       area = '{{ app()->getLocale() }}',
-      currencySymbol = '{{ core()->currencySymbol(core()->getBaseCurrencyCode()) }}',
+      currencySymbol = '{{ core()->currencySymbol(core()->getCurrentCurrencyCode()) }}',
       airwallexArr = {
         complete: false
       },
       skuErr = false,
-      logoImg = "/checkout/v2/images/logo_" + countries1 + ".webp",
       schrittImg = "/checkout/v2/images/1701506369_" + countries1 + ".webp",
       googlerOrApple = '',
       googleShow = false,
@@ -1373,15 +1445,17 @@
     console.log(data, 'phpdata');
   </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/5.0.4/js/swiper.js"></script>
-  <script src="/checkout/v3/js/main.js?v=5"></script>
+  <script src="/checkout/v3/js/main.js?v=9"></script>
   <script>
     $(function() {
-      $('.header-container img').attr('src', logoImg)
       if (countries1 == 'fr' || countries1 == 'es') {
         $('.header-middle').hide()
       } else {
         $('.header-middle').show()
-        $('.header-middle img').attr('src', schrittImg)
+        $('.header-middle img').attr({
+          'src': schrittImg,
+          'width': '460'
+        })
       }
       if (countries1 == 'de' || countries1 == 'fr') {
         $('.terms-block-last').show()
@@ -1411,7 +1485,7 @@
       $('#cb-buy-each1').text(data.package_products[1].new_price_format)
       $('#cb-buy-each3').text(data.package_products[2].new_price_format)
       $('#cb-buy-each4').text(data.package_products[3].new_price_format)
-      let discount1 = Number(data.package_products[0].old_price) - Number(data.package_products[0].new_price)
+      let discount1 = Number(data.package_products[1].old_price) - Number(data.package_products[1].new_price)
       discount1 = currencySymbol + discount1.toFixed(2)
       $('.pr-price-single > :eq(0)').text(data.package_products[1].old_price_format)
       $('.pr-price-single > :eq(1)').text(data.package_products[1].new_price_format)
@@ -1976,10 +2050,64 @@
       getAttrId(productL4, obj)
     }
 
-    function getSkuListInfo() {
+    function showImage(index) {
+      const img = $('#imageArea').children().eq(index)
+      const imgAttr = img.attr('src')
+      console.log(imgAttr, 'imgAttr');
+      if (imgAttr !== '') {
+        $('.image-area').removeClass('image-toggle')
+        $('.icon-container').addClass('icon-toggle icon-fixed')
+        img.addClass('active');
+      }
+      // const img = $('<img />').attr('src', colors[color]).addClass('active');
+      setTimeout(() => {
+        img.removeClass('active').addClass('fixed');
+      }, 1000)
+      $('#imageArea img').on('click', function() {
+        $(this).addClass('enlarged');
+        setTimeout(() => {
+          $(this).removeClass('enlarged')
+        }, 1000)
+      });
+      $('#imageArea img').on('transitionend', function() {
+        setTimeout(() => {
+          console.log(12333333333);
+          img.removeClass('active').addClass('fixed');
+        }, 1000);
+      });
+    }
+
+    function shopIcon() {
+      if (isMobile) {
+        $('.icon-container').addClass('icon-fixed')
+        $('.icon-container').removeClass('icon-toggle')
+        $('.image-area').html('')
+      }
+    }
+
+    function iconToggle() {
+      $('.icon-container').toggleClass('icon-toggle')
+      $('.image-area').toggleClass('image-toggle')
+    }
+
+    function getSkuListInfo(id = '') {
       $('.sku-info').empty()
       var skuData = params.products
       var skuList = ''
+      if (id !== '' && isMobile) {
+        console.log(id, 'id========');
+        // skuData[0].img = '/checkout/v2/images/logo_de.webp'
+        const lastChar = id.charAt(id.length - 1) - 1
+        console.log(lastChar, 'lastChar');
+        let previewDom = ''
+        skuData.forEach((item) => {
+          previewDom += `<img src= "` + item.img + `" alt= ''/>`
+        })
+        console.log(previewDom, 'previewDom======');
+        const imageArea = $('#imageArea');
+        imageArea.html(previewDom)
+        showImage(lastChar)
+      }
       for (let i = 0; i < skuData.length; i++) {
         var description = skuData[i].description.slice(2)
         var attributeName = skuData[i].attribute_name.split(',').join(' / ')
@@ -2010,11 +2138,6 @@
       var imgUrl = $(event.target).attr('src')
       $('.sku-preview-img-box').show()
       $('.sku-preview-img img').attr('src', imgUrl)
-    }
-
-    function reviewImgPreview(imgUrl) {
-      $('.size-chart-img-box').show()
-      $('.size-chart-img img').attr('src', imgUrl)
     }
 
     function sizeCharImgPreview() {
@@ -2458,6 +2581,7 @@
       $(event.target).removeClass('border-red')
       var parId = $(event.target).parent().attr('id')
       var itemId = $(event.target).attr('id')
+      console.log(parId, itemId, 'itemId');
       var aid = ''
       if (parId == 'select1-item1' || parId == 'select2-item1' || parId == 'select3-item1' || parId == 'select4-item1') {
         getSku(itemId, 0, value)
@@ -2488,7 +2612,7 @@
           $(event.target).siblings('#in-se1').children().slice(1).removeAttr('disabled')
         }
       }
-      getSkuListInfo();
+      getSkuListInfo(parId);
       var skuAll = $(event.target).parent().parent().parent()
       var list = []
       skuAll.find('select').each(function() {
@@ -2513,6 +2637,7 @@
       $('#buy-select4').hide()
       if (data.attr.attributes.length > 0) {
         $('#buy-select1').show()
+        shopIcon()
       } else {
         $('#buy-select1').hide()
         list.removeClass('background-green')
@@ -2553,6 +2678,7 @@
       $('#buy-select4').hide()
       if (data.attr.attributes.length > 0) {
         $('#buy-select2').show()
+        shopIcon()
       } else {
         $('#buy-select2').hide()
         list.removeClass('background-green')
@@ -2591,6 +2717,7 @@
       $('#buy-select4').hide()
       if (data.attr.attributes.length > 0) {
         $('#buy-select3').show()
+        shopIcon()
       } else {
         $('#buy-select3').hide()
         list.removeClass('background-green')
@@ -2631,6 +2758,7 @@
       $('#buy-select1').hide()
       if (data.attr.attributes.length > 0) {
         $('#buy-select4').show()
+        shopIcon()
       } else {
         $('#buy-select4').hide()
         list.removeClass('background-green')
@@ -3413,7 +3541,6 @@
       const button2 = document.getElementById('comn-btn2');
       const pkgopt = document.querySelector('.pkg-opt');
       const swbox = document.querySelector('.Schritt-top-box');
-      const isMobile = window.innerWidth <= 768;
 
       // IntersectionObserver 观察器
       const observer = new IntersectionObserver((entries) => {
