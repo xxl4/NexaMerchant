@@ -184,7 +184,7 @@
 
     .icon-container {
       position: fixed;
-      top: 15%;
+      top: 12%;
       right: -30px;
       font-size: 24px;
       color: #1773B0;
@@ -647,13 +647,13 @@
               <p class="email-warn" style="margin-top: 15px;">@lang('checkout::app.v2.Add a house number if you have one')</p>
               <div class="fl input-box">
                 <label>
-                  <input onblur="inputBlur(event)" class="input-item" name="shippingAddress1" id="shipAddress" type="text" placeholder="" required="" />
+                  <input onblur="inputBlur(event)" class="input-item" name="shippingAddress1" type="text" placeholder="" required="" />
                   <span class="input-span">@lang('checkout::app.v2.Address')</span>
                 </label>
               </div>
               <div class="fl input-box">
                 <label>
-                  <input onblur="inputBlur(event)" class="input-item" name="shippingCity" id="shipAddress" type="text" placeholder="" required="" />
+                  <input onblur="inputBlur(event)" class="input-item" name="shippingCity" type="text" placeholder="" required="" />
                   <span class="input-span">@lang('checkout::app.v2.City')</span>
                 </label>
               </div>
@@ -1451,7 +1451,7 @@
     console.log(data, 'phpdata');
   </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/5.0.4/js/swiper.js"></script>
-  <script src="/checkout/v3/js/main.js?v=10"></script>
+  <script src="/checkout/v3/js/main.js?v=11"></script>
   <script>
     $(function() {
       if (countries1 == 'fr' || countries1 == 'es') {
