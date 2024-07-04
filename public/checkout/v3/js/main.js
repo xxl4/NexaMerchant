@@ -1,7 +1,7 @@
 const shopifyUrl = '/shopify/v1/api/full/' + getProductId;
 const swiperUrl = '/shopify/v1/api/images/' + getProductId;
-// const reviewsrUrl = '/api/reviews?product_id=' + getProductId;
-const reviewsrUrl = '/api/reviews?product_id=8924785377562';
+const reviewsrUrl = '/api/reviews?product_id=' + getProductId;
+// const reviewsrUrl = '/api/reviews?product_id=8924785377562';
 
 if (window.Worker) {
   const worker = new Worker('worker.js?v=1');
@@ -100,9 +100,7 @@ function reviewDom(data) {
         data.reviews[key].images.forEach((element) => {
           reviewsImg +=
             `
-          <img style="width: 30%;  max-height:120px;object-fit:contain" onclick="reviewImgPreview("` +
-            element.url +
-            `")" src="` +
+          <img style="width: 30%;  max-height:120px;object-fit:contain" onclick="reviewImgPreview(${element.url})" src="` +
             element.url +
             `" loading="lazy" alt="" />
         `;
