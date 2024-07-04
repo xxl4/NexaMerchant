@@ -4602,7 +4602,6 @@
             `</div>
 				</div>`
           $('.sw-box').append(gallery, thumbs)
-
           var mySwiper = new Swiper('#gallery', {
             direction: 'horizontal',
             loop: true,
