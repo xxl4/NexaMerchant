@@ -19,6 +19,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Cache;
+use Carbon\Carbon;
 
 class WebhooksController extends Controller
 {
@@ -244,7 +245,7 @@ class WebhooksController extends Controller
 
         
 
-        Artisan::queue("shopify:fulfillments:create", ['--order_id'=>$shopify_order_id,'--data'=> $req])->onConnection('redis')->onQueue('shopify-fulfillments'); // add shopify fulfillments queue
+        Artisan::queue("shopify:fulfillments:create", ['--order_id'=>$shopify_order_id,'--data'=> $req])->onConnection('redis')->onQueue('shopify-fulfillments')->delay(Carbon::now()->addMinutes(60)); // add shopify fulfillments queue
         return true;
 
         $shopifyNewOrder = $this->ShopifyOrder->where([
