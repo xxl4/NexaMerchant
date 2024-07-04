@@ -1397,7 +1397,7 @@
       reviewLang = "@lang('onebuy::app.product.order.Verified')",
       paypal_pay_acc = '',
       area = '{{ app()->getLocale() }}',
-      currencySymbol = '{{ core()->currencySymbol(core()->getBaseCurrencyCode()) }}',
+      currencySymbol = '{{ core()->currencySymbol(core()->getCurrentCurrencyCode()) }}',
       airwallexArr = {
         complete: false
       },
@@ -1445,7 +1445,7 @@
     console.log(data, 'phpdata');
   </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/5.0.4/js/swiper.js"></script>
-  <script src="/checkout/v3/js/main.js?v=8"></script>
+  <script src="/checkout/v3/js/main.js?v=9"></script>
   <script>
     $(function() {
       if (countries1 == 'fr' || countries1 == 'es') {
