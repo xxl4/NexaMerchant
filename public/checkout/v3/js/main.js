@@ -2,7 +2,6 @@ const shopifyUrl = '/shopify/v1/api/full/' + getProductId;
 const swiperUrl = '/shopify/v1/api/images/' + getProductId;
 const reviewsrUrl = '/api/reviews?product_id=' + getProductId;
 // const reviewsrUrl = '/api/reviews?product_id=8924785377562';
-
 if (window.Worker) {
   const worker = new Worker('worker.js?v=1');
   const urlObj = {

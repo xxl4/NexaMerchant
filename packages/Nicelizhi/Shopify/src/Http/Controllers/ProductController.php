@@ -4,20 +4,16 @@ namespace Nicelizhi\Shopify\Http\Controllers;
 
 use Nicelizhi\Shopify\Models\ShopifyProduct;
 use Nicelizhi\Manage\Helpers\SSP;
-use Webkul\Attribute\Models\AttributeOptionTranslation;
-use Webkul\Attribute\Models\AttributeOption;
 use Webkul\Product\Repositories\ProductRepository;
 use Webkul\Product\Repositories\ProductAttributeValueRepository;
 use Illuminate\Support\Facades\Artisan;
 use Nicelizhi\Shopify\Models\ShopifyStore;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Http\Request;
-use Illuminate\Http\UploadedFile;
 use Webkul\Product\Models\ProductAttributeValue;
 use Webkul\Product\Models\ProductFlat;
 use Illuminate\Support\Facades\Redis;
 use Maatwebsite\Excel\Facades\Excel;
-use Webkul\CatalogRule\Listeners\Product;
 use Webkul\Product\Repositories\ProductReviewRepository;
 use Illuminate\Support\Facades\Event;
 
@@ -230,7 +226,9 @@ class ProductController extends Controller
         $comments = $redis->hgetall($comment_list_key);
 
         //$reviews = $product->reviews->where('status', 'approved');
-        $reviews = $product->reviews;
+        //$reviews = $product->reviews;
+
+        $reviews = \Webkul\Product\Models\ProductReview::where("product_id", $product->id)->orderBy("sort","desc")->limit(1000)->get();
 
         $reviews = $reviews->map(function($review) {
             $review->customer = $review->customer;
@@ -244,6 +242,58 @@ class ProductController extends Controller
 
         return view("shopify::products.".$act_type.".comments",compact("comments","reviews","product","product_id", "act_type", "act_prod_type"));
 
+    }
+
+    /**
+     * 
+     * Product Reviews Sort
+     * 
+     * @return void
+     */
+    public function commentSort(Request $request) {
+        $comment_id = $request->input("comment_id");
+        $sort = $request->input("sort");
+
+        Event::dispatch('customer.review.update.before', $comment_id);
+
+        $review = $this->productReviewRepository->update(['sort'=> $sort], $comment_id);
+
+        Event::dispatch('customer.review.update.after', $review);
+
+        //clean the cache
+
+        return response()->json([
+            'message' => "Update Success,if you want to see the last version, you should clean the comment cache",
+            'comment_id' => $comment_id
+        ]);
+
+
+
+    }
+
+    /**
+     * 
+     * Comments Update Status
+     * 
+     * @return void
+     * 
+     */
+    public function commentsUpdateStatus() {
+        $comment_ids = request()->input("comment_ids");
+        $status = request()->input("status");
+
+        $comments = $this->productReviewRepository->findWhereIn("id",$comment_ids);
+        foreach($comments as $comment) {
+            Event::dispatch('customer.review.update.before', $comment->id);
+            $comment->update(['status'=> $status]);
+            Event::dispatch('customer.review.update.after', $comment);
+        }
+
+
+        return response()->json([
+            'message' => "success",
+            'comment_id' => $comment_ids
+        ]);
     }
 
     /**

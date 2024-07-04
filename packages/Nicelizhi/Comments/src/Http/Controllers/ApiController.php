@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Response;
 use Illuminate\Http\Request;
 use Webkul\Product\Repositories\ProductRepository;
+use Illuminate\Support\Facades\Cache;
 
 class ApiController extends Controller {
 
@@ -65,13 +66,23 @@ class ApiController extends Controller {
 
         $reviewHelper = app('Webkul\Product\Helpers\Review');
 
-        $reviews = $product->reviews->where('status', 'approved')->skip($page*$per_page)->take($per_page);
+        $reviews = Cache::get("product_comment_".$product['id']."_".$page."_".$per_page);
 
-        $reviews = $reviews->map(function($review) {
-            $review->customer = $review->customer;
-            $review->images;
-            return $review;
-        });
+        if(empty($reviews)) {
+            $reviews = \Webkul\Product\Models\ProductReview::where("status","approved")->where("product_id", $product['id'])->orderBy("sort","desc")->skip($page*$per_page)->take($per_page)->get();
+
+            $reviews = $reviews->map(function($review) {
+                $review->customer = $review->customer;
+                $review->images;
+                return $review;
+            });
+
+            Cache::set("product_comment_".$product['id']."_".$page."_".$per_page, $reviews, 36000);
+        }
+
+        //$reviews = $product->reviews->where('status', 'approved')->skip($page*$per_page)->take($per_page);
+
+        
 
 
         $data = [];

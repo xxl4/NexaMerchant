@@ -20,11 +20,14 @@ Route::group(['middleware' => ['admin','admin_option_log'], 'prefix' => config('
             Route::any('images/{product_id}/{act_type}', 'images')->name('admin.shopify.products.images');
             Route::get("comments/manual/{product_id}", 'commentsManual')->name("admin.shopify.products.comments.manual");
             Route::get('comments/delete', 'commentDelete')->name('admin.shopify.products.comments.delete');
+            Route::get('comments/sort', 'commentSort')->name('admin.shopify.products.comments.sort');
             Route::any('comments/{product_id}/{act_type}', 'comments')->name('admin.shopify.products.comments');
+            Route::post('comments/update_status', 'commentsUpdateStatus')->name('admin.shopify.products.comments.update_status');
             
             Route::any('info/{product_id}/{act_type}', 'info')->name('admin.shopify.products.info');
             Route::any('sell-points/{product_id}/{act_type}', 'sellPoints')->name('admin.shopify.products.sell-points');
             Route::get('clean-cache/{product_id}', 'cleanCache')->name('admin.shopify.products.clean-cache');
+            
             
 
 

@@ -100,7 +100,7 @@ class CheckoutV2Controller extends Controller{
         $comments = Cache::get("product_comment_".$product['id']);
         if(empty($comments)) {
 
-            $comments = \Webkul\Product\Models\ProductReview::where("status","approved")->where("product_id", $product['id'])->orderBy("id","desc")->limit(10)->get();
+            $comments = \Webkul\Product\Models\ProductReview::where("status","approved")->where("product_id", $product['id'])->orderBy("sort","desc")->limit(10)->get();
 
             $comments = $comments->map(function($comments) {
                 $comments->customer = $comments->customer;

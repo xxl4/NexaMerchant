@@ -13,8 +13,8 @@ return [
      */
     [
         'key'        => '{{NAME}}',
-        'name'       => '{{NAME}}::app.{{NAME}}.demo',
-        'route'      => '{{NAME}}.admin.example.demo',
+        'name'       => '{{name}}::app.{{name}}.demo',
+        'route'      => '{{name}}.admin.example.demo',
         'sort'       => 1,
         'icon'       => 'icon-dashboard',
     ]

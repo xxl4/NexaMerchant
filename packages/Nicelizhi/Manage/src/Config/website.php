@@ -21,5 +21,12 @@ return [
             'name' => 'France',
             'link' => env('SYNC_FR'),
         ],
-    ]
+    ],
+    'paypal' => [
+        'v1' => [
+            'client_id' => env('PAYPAL_CLIENT_ID_V1'),
+            'client_secret' => env('PAYPAL_CLIENT_SECRET_V1'),
+            'mode' => env('PAYPAL_MODE_V1'),
+        ],
+    ],
 ];
