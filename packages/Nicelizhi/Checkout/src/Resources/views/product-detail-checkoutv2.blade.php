@@ -2525,7 +2525,7 @@
       countries1 = '<?php echo strtolower($default_country); ?>',
       paypal_pay_acc = '',
       area = '{{ app()->getLocale() }}',
-      currencySymbol = '{{ core()->currencySymbol(core()->getBaseCurrencyCode()) }}',
+      currencySymbol = '{{ core()->currencySymbol(core()->getCurrentCurrencyCode()) }}',
       airwallexArr = {
         complete: false
       },

@@ -1,7 +1,7 @@
+// getProductId = '8924785377562';
 const shopifyUrl = '/shopify/v1/api/full/' + getProductId;
 const swiperUrl = '/shopify/v1/api/images/' + getProductId;
 const reviewsrUrl = '/api/reviews?product_id=' + getProductId;
-// const reviewsrUrl = '/api/reviews?product_id=8924785377562';
 if (window.Worker) {
   const worker = new Worker('worker.js?v=1');
   const urlObj = {
@@ -33,7 +33,7 @@ function swiperDom(data) {
   swiperImgList = data.images;
   var img = data.images;
   for (var i = 0; i < img.length; i++) {
-    swiperList += `<div class="swiper-slide"><img src="${img[i].src}" width="705" height="705" loading="lazy" alt=""></div>`;
+    swiperList += `<div class="swiper-slide"><img src="${img[i].src}" width="100%" height="100%" loading="lazy" alt=""></div>`;
   }
   var gallery =
     `<div class="swiper-container" style="width:100%" id="gallery">
@@ -47,7 +47,7 @@ function swiperDom(data) {
     swiperList +
     `</div>
   			</div>`;
-  $('.sw-box').append(gallery, thumbs);
+  $('.sw-box').replaceWith(gallery, thumbs);
   galleryThumbs = new Swiper('#thumbs', {
     slidesPerView: 5,
     spaceBetween: 5,
@@ -99,7 +99,7 @@ function reviewDom(data) {
         data.reviews[key].images.forEach((element) => {
           reviewsImg +=
             `
-          <img style="width: 30%;  max-height:120px;object-fit:contain" onclick="reviewImgPreview(${element.url})" src="` +
+          <img style="width: 30%;  max-height:120px;object-fit:contain" onclick="reviewImgPreview('${element.url}')" src="` +
             element.url +
             `" loading="lazy" alt="" />
         `;
@@ -173,6 +173,9 @@ async function handlePageChange(page) {
   updatePaginationInfo(data.total);
   prevPageBtn.disabled = currentPage === 1;
   nextPageBtn.disabled = currentPage === Math.ceil(total / 10);
+  console.log(Math.ceil(total / 10));
+  console.log(nextPageBtn.disabled, 'nextPageBtn.disabled');
+
   // });
 }
 prevPageBtn.addEventListener('click', () => {
