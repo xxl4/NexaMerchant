@@ -2056,7 +2056,7 @@
       console.log(imgAttr, 'imgAttr');
       if (imgAttr !== '') {
         $('.image-area').removeClass('image-toggle')
-        $('.icon-container').addClass('icon-toggle')
+        $('.icon-container').addClass('icon-toggle icon-fixed')
         img.addClass('active');
       }
       // const img = $('<img />').attr('src', colors[color]).addClass('active');
