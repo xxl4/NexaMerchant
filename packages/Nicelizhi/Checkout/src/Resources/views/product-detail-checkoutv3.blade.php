@@ -1485,7 +1485,7 @@
       $('#cb-buy-each1').text(data.package_products[1].new_price_format)
       $('#cb-buy-each3').text(data.package_products[2].new_price_format)
       $('#cb-buy-each4').text(data.package_products[3].new_price_format)
-      let discount1 = Number(data.package_products[0].old_price) - Number(data.package_products[0].new_price)
+      let discount1 = Number(data.package_products[1].old_price) - Number(data.package_products[1].new_price)
       discount1 = currencySymbol + discount1.toFixed(2)
       $('.pr-price-single > :eq(0)').text(data.package_products[1].old_price_format)
       $('.pr-price-single > :eq(1)').text(data.package_products[1].new_price_format)
