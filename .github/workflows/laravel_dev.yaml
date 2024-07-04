@@ -2,14 +2,14 @@ name: Dev
 
 on:
   push:
-    branches: [ "develop","package_admin_dev" ]
+    branches: ['develop', 'package_admin_dev']
     paths-ignore:
       - 'README.md'
       - .github/**
       - docs/**
       - 'Dockerfile'
   pull_request:
-    branches: [ "develop","package_admin_dev" ]
+    branches: ['develop', 'package_admin_dev']
     paths-ignore:
       - 'README.md'
       - .github/**
@@ -42,55 +42,55 @@ jobs:
           --health-retries 5
 
     steps:
-    - name: Setup PHP
-      uses: shivammathur/setup-php@v2
-      with:
-        php-version: 8.1
-        tools: composer:v2
-        coverage: xdebug
-    - uses: actions/checkout@v3
-    - name: Copy .env
-      run: php -r "file_exists('.env') || copy('.env.example', '.env');"
-    - name: composer update
-      run: composer update
-    - name: Directory Permissions
-      run: chmod -R 777 storage bootstrap/cache
-    - name: Generate key
-      run: php artisan key:generate
-    - name: Create Database
-      run: |
-        mkdir -p database
-        touch database/database.sqlite
-    - name: Execute tests (Unit and Feature tests) via pest
-      env:
-        DB_CONNECTION: mysql
-        DB_HOST: mysql
-        DB_PORT: 3306
-        DB_DATABASE: test
-        DB_USERNAME: root
-        DB_PASSWORD: password
-      run: php artisan migrate && php artisan db:seed
-    - name: Download init db
-      run: sudo apt-get install wget && sudo apt-get install unzip && wget -c ${{secrets.INIT_DB_URL }}?v=${{ github.sha }} -O db.zip
-    - name: unzip
-      run: unzip db.zip -d ./
-    - name: mysql import
-      run: mysql -u root -ppassword -h mysql test < db.sql
-    - name: route list
-      run: php artisan route:list
-    - name: Tests
-      run: ./vendor/bin/pest
-    - name: Sync to Server 1 and Do it
-      uses: appleboy/ssh-action@master
-      env:
-        GITHUB_SHA_X: ${GITHUB_SHA}
-      with:
-        host: ${{ secrets.SSH_HOST }}  
-        username: ${{ secrets.SSH_USERNAME }}
-        key: ${{ secrets.DEPLOY_KEY }}
-        port: ${{secrets.SSH_PORT }}
-        script: |
-          cd ${{ secrets.WWW_DEV_DIR }} && sudo git pull
-          sudo -u root composer update
-          sudo -u root php artisan migrate
-          sudo -u root vendor/bin/pest
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.1
+          tools: composer:v2
+          coverage: xdebug
+      - uses: actions/checkout@v3
+      - name: Copy .env
+        run: php -r "file_exists('.env') || copy('.env.example', '.env');"
+      - name: composer update
+        run: composer update
+      - name: Directory Permissions
+        run: chmod -R 777 storage bootstrap/cache
+      - name: Generate key
+        run: php artisan key:generate
+      - name: Create Database
+        run: |
+          mkdir -p database
+          touch database/database.sqlite
+      - name: Execute tests (Unit and Feature tests) via pest
+        env:
+          DB_CONNECTION: mysql
+          DB_HOST: mysql
+          DB_PORT: 3306
+          DB_DATABASE: test
+          DB_USERNAME: root
+          DB_PASSWORD: password
+        run: php artisan migrate && php artisan db:seed
+      - name: Download init db
+        run: sudo apt-get install wget && sudo apt-get install unzip && wget -c ${{secrets.INIT_DB_URL }}?v=${{ github.sha }} -O db.zip
+      - name: unzip
+        run: unzip db.zip -d ./
+      - name: mysql import
+        run: mysql -u root -ppassword -h mysql test < db.sql
+      - name: route list
+        run: php artisan route:list
+      # - name: Tests
+      #   run: ./vendor/bin/pest
+      - name: Sync to Server 1 and Do it
+        uses: appleboy/ssh-action@master
+        env:
+          GITHUB_SHA_X: ${GITHUB_SHA}
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.DEPLOY_KEY }}
+          port: ${{secrets.SSH_PORT }}
+          script: |
+            cd ${{ secrets.WWW_DEV_DIR }} && sudo git pull
+            sudo -u root composer update
+            sudo -u root php artisan migrate
+            sudo -u root vendor/bin/pest

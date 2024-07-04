@@ -23,7 +23,7 @@
   <meta property="og:image:height" content="630" />
   <meta property="og:image" content="/offer/1/app/desktop/images/thumb.png" />
   <meta name="color-scheme" content="light only" />
-  <link rel="stylesheet" href="/checkout/v2/css/v3.css">
+  <link rel="stylesheet" href="/checkout/v2/css/v3.css?v=1">
   <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/checkout.css?v=10" />
   <link rel="prefetch" href="/checkout/v2/images/favicon_de.webp">
   <link rel="prefetch" href="/checkout/v2/images/favicon.webp">
@@ -101,8 +101,14 @@
       object-fit: contain;
     }
 
-    .sw-box {
+    /* .sw-box {
       height: 48.33333vw;
+    } */
+    .sw-box {
+      width: 100%;
+      height: 500px;
+      background-color: #e0e0e0;
+      animation: pulse 1.5s infinite;
     }
 
     .shopify-container {
@@ -238,7 +244,7 @@
       transition: all 1s;
     }
 
-    @media(max-width:600px) {
+    /* @media(max-width:600px) {
       .sw-box {
         height: 110vw;
       }
@@ -260,7 +266,7 @@
       .sw-box {
         height: 610px;
       }
-    }
+    } */
 
     @keyframes pulse {
       0% {
@@ -1445,7 +1451,7 @@
     console.log(data, 'phpdata');
   </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/5.0.4/js/swiper.js"></script>
-  <script src="/checkout/v3/js/main.js?v=9"></script>
+  <script src="/checkout/v3/js/main.js?v=10"></script>
   <script>
     $(function() {
       if (countries1 == 'fr' || countries1 == 'es') {
@@ -2059,19 +2065,14 @@
         $('.icon-container').addClass('icon-toggle icon-fixed')
         img.addClass('active');
       }
-      // const img = $('<img />').attr('src', colors[color]).addClass('active');
       setTimeout(() => {
         img.removeClass('active').addClass('fixed');
       }, 1000)
       $('#imageArea img').on('click', function() {
-        $(this).addClass('enlarged');
-        setTimeout(() => {
-          $(this).removeClass('enlarged')
-        }, 1000)
+        $(this).toggleClass('enlarged');
       });
       $('#imageArea img').on('transitionend', function() {
         setTimeout(() => {
-          console.log(12333333333);
           img.removeClass('active').addClass('fixed');
         }, 1000);
       });
@@ -2089,6 +2090,31 @@
       $('.icon-container').toggleClass('icon-toggle')
       $('.image-area').toggleClass('image-toggle')
     }
+
+    function imgRemove() {
+      $('#imageArea img').removeClass('enlarged');
+    }
+    $(document).ready(function() {
+      $(document).on('click', function(event) {
+        var clickedElement = $(event.target);
+        if (!clickedElement.closest('#imageArea img').length) {
+          $('#imageArea img').removeClass('enlarged');
+        }
+
+      });
+    });
+
+    function throttle(fn, wait) {
+      var time = Date.now();
+      return function() {
+        if ((time + wait - Date.now()) < 0) {
+          fn();
+          time = Date.now();
+        }
+      }
+    }
+
+    window.addEventListener('scroll', throttle(imgRemove, 1000));
 
     function getSkuListInfo(id = '') {
       $('.sku-info').empty()
