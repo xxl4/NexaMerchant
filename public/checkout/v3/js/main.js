@@ -33,7 +33,7 @@ function swiperDom(data) {
   swiperImgList = data.images;
   var img = data.images;
   for (var i = 0; i < img.length; i++) {
-    swiperList += `<div class="swiper-slide"><img src="${img[i].src}" width="100%" height="100%" loading="lazy" alt=""></div>`;
+    swiperList += `<div class="swiper-slide"><img src="${img[i].src}" width="750" height="750" loading="lazy" alt=""></div>`;
   }
   var gallery =
     `<div class="swiper-container" style="width:100%" id="gallery">
