@@ -57,7 +57,7 @@ class WebHook {
             return false;
         }
 
-        $refud = [];
+        $refund = [];
         // 0: not refund money, 1: refund money
 
 
@@ -69,34 +69,34 @@ class WebHook {
 
        //var_dump($order_items);
 
-
-
        foreach ($order_items as $order_item) {
            $refundData[$order_item->id] = $order_item->qty_ordered;
        }
 
-       
 
-       $refud['refund']['items'] =  $refundData;
+       $refund['refund']['items'] =  $refundData;
 
-       $totals = $refundRepository->getOrderItemsRefundSummary($refud['refund']['items'], $merchant_order_id);
-
+       $totals = $refundRepository->getOrderItemsRefundSummary([$refund['refund']['items']], $merchant_order_id);
+       //$totals = $refundRepository->getOrderItemsRefundSummary([], $merchant_order_id);
+       //var_dump($totals);exit;
        //var_dump($totals);exit;
 
-       $refud['refund']['shipping'] = 9.99;
-       $refud['refund']['is_refund_money'] = 0;
-       $refud['refund']['adjustment_refund'] = 0;
-       $refud['refund']['adjustment_fee'] = 0;
-       $refud['refund']['custom_refund_amount'] = $this->data['data']['object']['amount'];
+       $refund['refund']['shipping'] = 9.99;
+       $refund['refund']['is_refund_money'] = 0;
+       $refund['refund']['adjustment_refund'] = 0;
+       $refund['refund']['adjustment_fee'] = 0;
+       $refund['refund']['custom_refund_amount'] = $this->data['data']['object']['amount'];
 
-       $refud['refund']['comment'] = $this->data['data']['object']['reason']['type'];
+       $refund['refund']['comment'] = $this->data['data']['object']['reason']['type'];
 
-       if(!empty($refud['refund']['custom_refund_amount'])) {
-           $refundAmount = $totals['grand_total']['price'] - $totals['shipping']['price'] + $refud['refund']['shipping'] + $refud['refund']['adjustment_refund'] - $refud['refund']['adjustment_fee'];
-           $refud['refund']['adjustment_fee'] = abs($refud['refund']['custom_refund_amount'] - $refundAmount);
+       if(!empty($refund['refund']['custom_refund_amount'])) {
+           $refundAmount = $totals['grand_total']['price'] - $totals['shipping']['price'] + $refund['refund']['shipping'] + $refund['refund']['adjustment_refund'] - $refund['refund']['adjustment_fee'];
+           $refund['refund']['adjustment_fee'] = abs($refund['refund']['custom_refund_amount'] - $refundAmount);
        }
 
-       $refundRepository->create(array_merge($refud, ['order_id' => $merchant_order_id]));
+       //var_dump($refund);exit;
+
+       $refundRepository->create(array_merge($refund, ['order_id' => $merchant_order_id]));
     }
 
     public function payment_dispute_won() {
