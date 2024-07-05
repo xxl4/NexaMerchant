@@ -25,15 +25,12 @@ class Order extends Base
 
             $this->prepareMail($order, new CreatedNotification($order));
 
-
-            // send order to shopify
-            Artisan::queue((new Post())->getName(), ['--order_id'=> $order->id])->onConnection('redis')->onQueue('commands');
-            
-
-
         } catch (\Exception $e) {
             report($e);
         }
+
+        // send order to shopify
+        Artisan::queue((new Post())->getName(), ['--order_id'=> $order->id])->onConnection('redis')->onQueue('commands');
     }
 
     /**
