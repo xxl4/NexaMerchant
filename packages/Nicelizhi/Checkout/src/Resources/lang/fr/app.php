@@ -85,7 +85,7 @@ return [
     '30-Day Return' => '30 jours de retour',
     'Quality Guarantee' => 'Haute qualité garantie',
     'Secure Payment' => 'Paiement sécurisé',
-    'Description' => 'décrire',
+    'Description' => 'Description',
     'Reviews' => 'Commentaire',
     'Buy Now' => 'Achetez-le maintenant',
     'Secure Checkout' => 'Paiement sécurisé',
