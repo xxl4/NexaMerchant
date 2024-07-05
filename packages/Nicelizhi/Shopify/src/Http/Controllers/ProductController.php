@@ -607,6 +607,9 @@ class ProductController extends Controller
     // sell points
     public function sellPoints($product_id, Request $request) {
         $product = $this->productRepository->findBySlug($product_id);
+        if(is_null($product)) {
+            return "please import products first";
+        }
         $act_type = "checkoutv2";
 
         $redis = Redis::connection('default');
