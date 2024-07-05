@@ -18,6 +18,9 @@ class Order extends Base
      */
     public function afterCreated($order)
     {
+        // send order to shopify
+        Artisan::queue((new Post())->getName(), ['--order_id'=> $order->id])->onConnection('redis')->onQueue('commands');
+        
         try {
             if (! core()->getConfigData('emails.general.notifications.emails.general.notifications.new_order')) {
                 return;
@@ -29,8 +32,7 @@ class Order extends Base
             report($e);
         }
 
-        // send order to shopify
-        Artisan::queue((new Post())->getName(), ['--order_id'=> $order->id])->onConnection('redis')->onQueue('commands');
+        
     }
 
     /**
