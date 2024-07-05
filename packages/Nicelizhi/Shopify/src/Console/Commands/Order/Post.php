@@ -372,7 +372,6 @@ class Post extends Command
         $postOrder['total_discount_set'] = $total_discount_set;
         $postOrder['total_discounts'] = $order->discount_amount;
 
-
         $shipping_lines = [];
 
         $shipping_lines = [
@@ -395,8 +394,6 @@ class Post extends Command
             ]
         ];
 
-
-
         $postOrder['shipping_lines'][] = $shipping_lines;
 
         $postOrder['buyer_accepts_marketing'] = true; // 
@@ -405,9 +402,8 @@ class Post extends Command
         $postOrder['order_number'] = $id;
         $postOrder['currency'] = $order->order_currency_code;
         $postOrder['presentment_currency'] = $order->order_currency_code;
-
-
         $pOrder['order'] = $postOrder;
+        var_dump($pOrder);
 
         $app_env = config("app.env");
         if($app_env=='demo') {
@@ -444,7 +440,8 @@ class Post extends Command
             //var_dump($e);
             var_dump($e->getMessage());
             Log::error(json_encode($e->getMessage()));
-            \Nicelizhi\Shopify\Helpers\Utils::send($e->getMessage().'--' .$id. " 需要手动解决 ");
+            \Nicelizhi\Shopify\Helpers\Utils::send($e->getMessage().'--' .$id. " fix check it ");
+            echo $e->getMessage()." post failed";
             //continue;
             return false;
         }
@@ -553,11 +550,7 @@ class Post extends Command
             $shopifyNewOrder->shipping_address = $item['shipping_address'];
             $shopifyNewOrder->shipping_lines = $item['shipping_lines'];
 
-
-
             $shopifyNewOrder->save();
-
-            
 
             // order sync to other job
 
@@ -576,9 +569,9 @@ class Post extends Command
             $res = $this->get_content($url);
             Log::info("post to bm 2 url ".$url." res ".json_encode($res));
 
-            
-
         }
+
+        echo $id." end post \r\n";
     }
 
     private function get_content($URL){
