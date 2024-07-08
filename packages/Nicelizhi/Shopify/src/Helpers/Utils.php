@@ -55,6 +55,7 @@ final class Utils {
             if(strpos($option['name'], "Length") !==false) $attr_id = 24;
             if(strpos($option['name'], "größe") !==false) $attr_id = 24;
             if(strpos($option['name'], "taille") !==false) $attr_id = 24;
+            if(strpos($option['name'], "tamaño") !==false) $attr_id = 24;
 
             if(strpos($option['name'], "Color") !==false) $attr_id = 23;
             if(strpos($option['name'], "color") !==false) $attr_id = 23;
