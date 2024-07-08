@@ -235,6 +235,8 @@ class Get extends Command
                 if(strpos($option['name'], "尺码") !==false) $attr_id = 24;
                 if(strpos($option['name'], "Length") !==false) $attr_id = 24;
                 if(strpos($option['name'], "größe") !==false) $attr_id = 24;
+                if(strpos($option['name'], "tamaño") !==false) $attr_id = 24;
+                
                 if(strpos($option['name'], "Color") !==false) $attr_id = 23;
                 if(strpos($option['name'], "color") !==false) $attr_id = 23;
                 if(strpos($option['name'], "Couleur") !==false) $attr_id = 23;
