@@ -23,7 +23,7 @@
   <meta property="og:image:height" content="630" />
   <meta property="og:image" content="/offer/1/app/desktop/images/thumb.png" />
   <meta name="color-scheme" content="light only" />
-  <link rel="stylesheet" href="/checkout/v2/css/v3.css?v=1">
+  <link rel="stylesheet" href="/checkout/v2/css/v3.css?v=2">
   <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/checkout.css?v=10" />
   <link rel="prefetch" href="/checkout/v2/images/favicon_de.webp">
   <link rel="prefetch" href="/checkout/v2/images/favicon.webp">
@@ -110,6 +110,28 @@
       background-color: #e0e0e0;
       animation: pulse 1.5s infinite;
     }
+
+    .share-item {
+      margin-right: 5px;
+    }
+
+    /* .share-icons {
+      display: flex;
+      gap: 10px;
+    }
+
+    .share-icons a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .share-icons i {
+      font-size: 24px;
+    } */
+
+    /* .share-item {
+      margin-right: 5px;
+    } */
 
     .shopify-container {
       width: 100%;
@@ -419,6 +441,14 @@
             <span style="color:#1773B0">-</span>
             <strong id="shipping-date2" style="color:#1773B0"></strong>
           </div>
+          <div class="share-icons">
+            <span class="share-item">@lang('checkout::app.v3.Share'):</span>
+            <a class="share-item" href="javascript:void(0)" onclick="shareOnFacebook()" title="Share on Facebook"><i class="fab fa-facebook"></i></a>
+            <a class="share-item" href="javascript:void(0)" onclick="shareOnLinkedIn()" title="Share on LinkedIn"><i class="fab fa-linkedin"></i></a>
+            <a class="share-item" href="javascript:void(0)" onclick="shareOnTwitter()" title="Share on Twitter"><i class="fab fa-twitter"></i></a>
+            <a class="share-item" href="javascript:void(0)" onclick="shareByEmail()" title="Share by Email"><i class="fas fa-envelope"></i></a>
+            <a class="share-item" href="javascript:void(0)" onclick="shareOnPinterest()" title="Share on Pinterest"><i class="fab fa-pinterest"></i></a>
+          </div>
         </div>
 
 
@@ -644,12 +674,12 @@
             <p class="bdr-line"></p>
             <div class="payment-flds-box">
               <p class="pkg-hdng"><span class="pkg-step">@lang('checkout::app.v2.Step')3:</span> @lang('checkout::app.v2.Enter your shipping information')</p>
-              <p class="email-warn" style="margin-top: 15px;">@lang('checkout::app.v2.Add a house number if you have one')</p>
-              <div class="fl input-box">
+              <div class="fl input-box" style="margin-top: 15px;">
                 <label>
-                  <input onblur="inputBlur(event)" class="input-item" name="shippingAddress1" type="text" placeholder="" required="" />
+                  <input onblur="inputBlur(event)" oninput="addressChange(event)" class="input-item" name="shippingAddress1" type="text" placeholder="" required="" />
                   <span class="input-span">@lang('checkout::app.v2.Address')</span>
                 </label>
+                <p class="email-warn" style="margin-top: -8px; display:none;">@lang('checkout::app.v2.Add a house number if you have one')</p>
               </div>
               <div class="fl input-box">
                 <label>
@@ -662,13 +692,13 @@
                 <select name="shippingCountry" type="text" placeholder="@lang('checkout::app.v2.Country')" class="selcet-fld required cb-remove-class frmField" data-selected="US" data-error-message="Please select your country!">
                 </select>
               </div>
-              <div class="frm-flds fl" style="margin-top: 20px;">
+              <div class="frm-flds fl" style="margin-top: 10px;">
                 <label for="state" class="fl-label"></label>
                 <select type="text" name="shippingState" placeholder="@lang('checkout::app.v2.State')" class="selcet-fld required cb-remove-class frmField" id="shippingStateSelect" data-error-message="Please select your state!" data-selected="">
                   <option value=""></option>
                 </select>
               </div>
-              <div class="fl input-box" style="margin-top: 20px;">
+              <div class="fl input-box" style="margin-top: 10px;">
                 <label>
                   <input onblur="inputBlur(event)" class="input-item" name="shippingZip" id="zip" type="tel" placeholder="" required="" />
                   <span class="input-span">@lang('checkout::app.v2.Zip Code')</span>
@@ -1451,7 +1481,7 @@
     console.log(data, 'phpdata');
   </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/5.0.4/js/swiper.js"></script>
-  <script src="/checkout/v3/js/main.js?v=11"></script>
+  <script src="/checkout/v3/js/main.js?v=13"></script>
   <script>
     $(function() {
       if (countries1 == 'fr' || countries1 == 'es') {
@@ -1896,6 +1926,18 @@
       } else {
         $(event.target).next().removeClass('input-focus')
       }
+    }
+
+    function addressChange(event) {
+      console.log(event.target.value, 'event.target.value');
+      const hasNumber = /\d/.test(event.target.value);
+      console.log(hasNumber, 'hasNumber');
+      if (hasNumber) {
+        $('.email-warn').hide()
+      } else {
+        $('.email-warn').show()
+      }
+
     }
 
     function inputBlur(event) {
@@ -3500,7 +3542,7 @@
 
     function getshippingMsg() {
       let date1 = formatDate(getDateAfterNDays(5))
-      let date2 = formatDate(getDateAfterNDays(7))
+      let date2 = formatDate(getDateAfterNDays(8))
       $('#shipping-date1').text(date1)
       $('#shipping-date2').text(date2)
     }

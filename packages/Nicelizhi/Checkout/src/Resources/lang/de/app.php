@@ -48,7 +48,7 @@ return [
     'Discount' => 'Rabatt',
     'Shipping' => 'Versand',
     'Shipping Method' => 'Transportzeit',
-    'USPS Express' => '5-7 Tage',
+    'USPS Express' => '5-8 Tage',
     "Today's Total" => "Gesamt",
     'price' => 'Preis',
     '2024 Alle Rechte vorbehalten' => '2024 Alle Rechte vorbehalten',
@@ -97,6 +97,7 @@ return [
     'Prev' => 'Zurück',
     'Next' => 'Weiter',
     'Jump' => 'Springen',
-    'Please enter a valid page number' => 'Bitte geben Sie eine gültige Seitennummer ein'
+    'Please enter a valid page number' => 'Bitte geben Sie eine gültige Seitennummer ein',
+    'Share' => 'Teilen'
   ]
 ];
