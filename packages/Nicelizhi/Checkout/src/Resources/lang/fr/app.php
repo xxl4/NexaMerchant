@@ -49,7 +49,7 @@ return [
     'Discount' => 'Rabais',
     'Shipping' => 'Expédition',
     'Shipping Method' => 'Mode de livraison',
-    'USPS Express' => '5-7 jours',
+    'USPS Express' => '5-8 jours',
     "Today's Total" => "Total du jour",
     'price' => 'prix',
     '2024 Alle Rechte vorbehalten' => '2024 Tous droits réservés',

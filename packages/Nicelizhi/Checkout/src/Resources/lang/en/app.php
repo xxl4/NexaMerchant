@@ -49,7 +49,7 @@ return [
     'Discount' => 'Discount',
     'Shipping' => 'Shipping',
     'Shipping Method' => 'Shipping Method',
-    'USPS Express' => '5-7 Days',
+    'USPS Express' => '5-8 Days',
     "Today's Total" => "Total",
     'price' => 'price',
     '2024 Alle Rechte vorbehalten' => '2024 Alle Rechte vorbehalten',

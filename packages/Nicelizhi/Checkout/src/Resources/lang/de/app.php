@@ -48,7 +48,7 @@ return [
     'Discount' => 'Rabatt',
     'Shipping' => 'Versand',
     'Shipping Method' => 'Transportzeit',
-    'USPS Express' => '5-7 Tage',
+    'USPS Express' => '5-8 Tage',
     "Today's Total" => "Gesamt",
     'price' => 'Preis',
     '2024 Alle Rechte vorbehalten' => '2024 Alle Rechte vorbehalten',

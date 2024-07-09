@@ -1275,9 +1275,11 @@
     }
 
     .email-warn {
-      color: red;
+      color: var(--text-color);
+      display: none;
       font-size: 13px;
       margin-left: 8px;
+      margin: -8px 0 10px 0;
     }
 
     .pay-button {
@@ -1691,12 +1693,13 @@
                 <label for="address" class="fl-label">Shipping Address</label>
                 <input type="text" name="shippingAddress1" class="input-flds required cb-remove-class frmField" placeholder="Your Address" data-error-message="Please enter your address!" id="shipAddress" />
               </div> -->
-              <p class="email-warn" style="margin-top: 15px;">@lang('checkout::app.v2.Add a house number if you have one')</p>
               <div class="fl input-box">
                 <label>
-                  <input onblur="inputBlur(event)" class="input-item" name="shippingAddress1" id="shipAddress" type="text" placeholder="" required="" />
+                  <input onblur="inputBlur(event)" oninput="addressChange(event)" class="input-item" name="shippingAddress1" id="shipAddress" type="text" placeholder="" required="" />
                   <span class="input-span">@lang('checkout::app.v2.Address')</span>
                 </label>
+                <p class="email-warn">@lang('checkout::app.v2.Add a house number if you have one')</p>
+
               </div>
               <!-- <div class="frm-flds fl">
                 <label for="city" class="fl-label">Your City</label>
@@ -1720,7 +1723,7 @@
                   <span>@lang('checkout::app.v2.Country')</span>
                 </label>
               </div> -->
-              <div class="frm-flds fl" style="margin-top: 20px;">
+              <div class="frm-flds fl" style="margin-top: 10px;">
                 <label for="state" class="fl-label"></label>
                 <select type="text" name="shippingState" placeholder="@lang('checkout::app.v2.State')" class="selcet-fld required cb-remove-class frmField" id="shippingStateSelect" data-error-message="Please select your state!" data-selected="">
                   <option value=""></option>
@@ -1737,7 +1740,7 @@
                 <label for="zip" class="fl-label">Zip Code</label>
                 <input type="tel" name="shippingZip" id="zip" class="input-flds required cb-remove-class frmField" placeholder="Zip Code" data-error-message="Please enter a valid zip code!" />
               </div> -->
-              <div class="fl input-box" style="margin-top: 20px;">
+              <div class="fl input-box" style="margin-top: 10px;">
                 <label>
                   <input onblur="inputBlur(event)" class="input-item" name="shippingZip" id="zip" type="tel" placeholder="" required="" />
                   <span class="input-span">@lang('checkout::app.v2.Zip Code')</span>
@@ -3000,6 +3003,18 @@
       } else {
         $(event.target).next().removeClass('input-focus')
       }
+    }
+
+    function addressChange(event) {
+      console.log(event.target.value, 'event.target.value');
+      const hasNumber = /\d/.test(event.target.value);
+      console.log(hasNumber, 'hasNumber');
+      if (hasNumber) {
+        $('.email-warn').hide()
+      } else {
+        $('.email-warn').show()
+      }
+
     }
 
     function inputBlur(event) {
