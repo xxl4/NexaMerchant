@@ -78,6 +78,7 @@ return [
     'Prev' => 'Anterior',
     'Next' => 'Siguiente',
     'Jump' => 'Saltar',
-    'Please enter a valid page number' => 'Por favor, introduzca un número de página válido'
+    'Please enter a valid page number' => 'Por favor, introduzca un número de página válido',
+    'Share' => 'Compartir'
   ]
 ];

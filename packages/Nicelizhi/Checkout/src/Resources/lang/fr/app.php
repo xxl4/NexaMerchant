@@ -97,6 +97,7 @@ return [
     'Prev' => 'Précédent',
     'Next' => 'Suivant',
     'Jump' => 'Sauter',
-    'Please enter a valid page number' => 'Veuillez entrer un numéro de page valide'
+    'Please enter a valid page number' => 'Veuillez entrer un numéro de page valide',
+    'Share' => 'Partager'
   ]
 ];

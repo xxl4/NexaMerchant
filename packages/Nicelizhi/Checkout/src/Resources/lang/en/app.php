@@ -98,6 +98,7 @@ return [
     'Prev' => 'Prev',
     'Next' => 'Next',
     'Jump' => 'Jump',
-    'Please enter a valid page number' => 'Please enter a valid page number'
+    'Please enter a valid page number' => 'Please enter a valid page number',
+    'Share' => 'Share'
   ]
 ];

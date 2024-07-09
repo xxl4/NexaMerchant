@@ -23,7 +23,7 @@
   <meta property="og:image:height" content="630" />
   <meta property="og:image" content="/offer/1/app/desktop/images/thumb.png" />
   <meta name="color-scheme" content="light only" />
-  <link rel="stylesheet" href="/checkout/v2/css/v3.css?v=1">
+  <link rel="stylesheet" href="/checkout/v2/css/v3.css?v=2">
   <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/checkout.css?v=10" />
   <link rel="prefetch" href="/checkout/v2/images/favicon_de.webp">
   <link rel="prefetch" href="/checkout/v2/images/favicon.webp">
@@ -442,7 +442,7 @@
             <strong id="shipping-date2" style="color:#1773B0"></strong>
           </div>
           <div class="share-icons">
-            <span class="share-item">share:</span>
+            <span class="share-item">@lang('checkout::app.v3.Share'):</span>
             <a class="share-item" href="javascript:void(0)" onclick="shareOnFacebook()" title="Share on Facebook"><i class="fab fa-facebook"></i></a>
             <a class="share-item" href="javascript:void(0)" onclick="shareOnLinkedIn()" title="Share on LinkedIn"><i class="fab fa-linkedin"></i></a>
             <a class="share-item" href="javascript:void(0)" onclick="shareOnTwitter()" title="Share on Twitter"><i class="fab fa-twitter"></i></a>
@@ -1479,17 +1479,9 @@
       sellPoints: JSON.parse(phpsellPoints)
     }
     console.log(data, 'phpdata');
-    data.sellPoints = {
-      "1": "Relieves Foot and Back Pain",
-      "2": "Shock Absorption and Arch Support",
-      "3": "Recommended by Orthopedists",
-      "4": "Optimal Comfort – All Day Long",
-      "5": "Discover Natural Freedom of Movement"
-    }
   </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/5.0.4/js/swiper.js"></script>
-  <script src="/checkout/v3/js/main.js?v=11"></script>
-  <script src="/checkout/v3/js/share.js"></script>
+  <script src="/checkout/v3/js/main.js?v=13"></script>
   <script>
     $(function() {
       if (countries1 == 'fr' || countries1 == 'es') {
