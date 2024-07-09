@@ -2,6 +2,7 @@
 const shopifyUrl = '/shopify/v1/api/full/' + getProductId;
 const swiperUrl = '/shopify/v1/api/images/' + getProductId;
 const reviewsrUrl = '/api/reviews?product_id=' + getProductId;
+let image = '';
 if (window.Worker) {
   const worker = new Worker('worker.js?v=1');
   const urlObj = {
@@ -32,6 +33,7 @@ function swiperDom(data) {
   var swiperList = '';
   swiperImgList = data.images;
   var img = data.images;
+  image = img[0].src;
   for (var i = 0; i < img.length; i++) {
     swiperList += `<div class="swiper-slide"><img src="${img[i].src}" width="750" height="750" loading="lazy" alt=""></div>`;
   }
@@ -197,3 +199,59 @@ jumpPageBtn.addEventListener('click', () => {
   }
   handlePageChange(page);
 });
+
+console.log(data.sellPoints, 'data.sellPoints===========');
+let description = '';
+for (const key in data.sellPoints) {
+  if (Object.hasOwnProperty.call(data.sellPoints, key)) {
+    description += `${key}.${data.sellPoints[key]}`;
+  }
+}
+console.log(description);
+
+function shareOnFacebook() {
+  const url = window.location.href;
+  console.log(url, '====url');
+  const title = document.getElementsByClassName('prod-name').innerText;
+  console.log(title, '====title====');
+  const shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}&title=${encodeURIComponent(title)}&description=${encodeURIComponent(
+    description
+  )}&picture=${encodeURIComponent(image)}`;
+  window.open(shareUrl, '_blank');
+}
+
+function shareOnLinkedIn() {
+  const url = window.location.href;
+  const title = document.getElementsByClassName('prod-name').innerText;
+  console.log(title, '====title====');
+  const shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}&title=${encodeURIComponent(
+    title
+  )}&summary=${encodeURIComponent(description)}`;
+  window.open(shareUrl, '_blank');
+}
+
+function shareOnTwitter() {
+  const url = window.location.href;
+  const title = document.getElementsByClassName('prod-name').innerText;
+  console.log(title, '====title====');
+  const shareUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(title)}`;
+  window.open(shareUrl, '_blank');
+}
+
+function shareByEmail() {
+  const url = window.location.href;
+  const title = document.getElementsByClassName('prod-name').innerText;
+  console.log(title, '====title====');
+  const subject = `Check out this product: ${title}`;
+  const body = `I found this amazing product:\n\n${title}\n\n${description}\n\n${url}`;
+  const shareUrl = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  window.location.href = shareUrl;
+}
+
+function shareOnPinterest() {
+  const url = window.location.href;
+  const shareUrl = `https://pinterest.com/pin/create/button/?url=${encodeURIComponent(url)}&media=${encodeURIComponent(image)}&description=${encodeURIComponent(
+    description
+  )}`;
+  window.open(shareUrl, '_blank');
+}

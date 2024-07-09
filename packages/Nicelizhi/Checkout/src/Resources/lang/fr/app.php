@@ -49,7 +49,7 @@ return [
     'Discount' => 'Rabais',
     'Shipping' => 'Expédition',
     'Shipping Method' => 'Mode de livraison',
-    'USPS Express' => '5-7 jours',
+    'USPS Express' => '5-8 jours',
     "Today's Total" => "Total du jour",
     'price' => 'prix',
     '2024 Alle Rechte vorbehalten' => '2024 Tous droits réservés',
@@ -85,7 +85,7 @@ return [
     '30-Day Return' => '30 jours de retour',
     'Quality Guarantee' => 'Haute qualité garantie',
     'Secure Payment' => 'Paiement sécurisé',
-    'Description' => 'décrire',
+    'Description' => 'Description',
     'Reviews' => 'Commentaire',
     'Buy Now' => 'Achetez-le maintenant',
     'Secure Checkout' => 'Paiement sécurisé',
@@ -97,6 +97,7 @@ return [
     'Prev' => 'Précédent',
     'Next' => 'Suivant',
     'Jump' => 'Sauter',
-    'Please enter a valid page number' => 'Veuillez entrer un numéro de page valide'
+    'Please enter a valid page number' => 'Veuillez entrer un numéro de page valide',
+    'Share' => 'Partager'
   ]
 ];

@@ -106,7 +106,7 @@
           {
             data: 'product_id',
             render: function(data, type, row, meta) {
-              return '<a href="./products/checkout-url-get/'+data+'/onebuy" target="_blank" class="btn btn-primary btn-sm">Checkout URl</a>';
+              return '<a href="./products/checkout-url-get/'+data+'/onebuy" target="_blank" class="btn btn-primary btn-sm">Checkout V1</a>';
             }
           }
           ,{
@@ -136,7 +136,7 @@
             [20, 50, 100],
             [20, 50, 100]
         ],
-        order: [[7, 'desc']],
+        order: [[8, 'desc']],
         processing: true,
         serverSide: true,
         

@@ -55,6 +55,7 @@ final class Utils {
             if(strpos($option['name'], "Length") !==false) $attr_id = 24;
             if(strpos($option['name'], "größe") !==false) $attr_id = 24;
             if(strpos($option['name'], "taille") !==false) $attr_id = 24;
+            if(strpos($option['name'], "tamaño") !==false) $attr_id = 24;
 
             if(strpos($option['name'], "Color") !==false) $attr_id = 23;
             if(strpos($option['name'], "color") !==false) $attr_id = 23;
@@ -169,6 +170,7 @@ final class Utils {
             Cache::pull("product_ext_".$pid."_4_EUR");
             Cache::pull("product_ext_".$pid."_4_USD");
             Cache::pull("product_ext_".$pid."_4_AUD");
+            Cache::pull("product_ext_".$pid."_4_GBP");
         }
         if($shopify_id!=0) {
             Cache::pull("product_url_".$shopify_id);

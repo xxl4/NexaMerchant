@@ -828,7 +828,8 @@ class ProductController extends Controller
             $addressData = [];
             $addressData['billing'] = [];
             $address1 = [];
-            array_push($address1, $input['address']->address_line_1);
+            $address_line_2 = isset($input['address']->address_line_2) ? $input['address']->address_line_2 : "";
+            array_push($address1, $input['address']->address_line_1. $address_line_2);
             $addressData['billing']['city'] = isset($input['address']->admin_area_2) ? $input['address']->admin_area_2 : "";
             $addressData['billing']['country'] = $input['address']->country_code;
             $addressData['billing']['email'] = $payer['email_address'];

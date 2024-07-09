@@ -235,6 +235,8 @@ class Get extends Command
                 if(strpos($option['name'], "尺码") !==false) $attr_id = 24;
                 if(strpos($option['name'], "Length") !==false) $attr_id = 24;
                 if(strpos($option['name'], "größe") !==false) $attr_id = 24;
+                if(strpos($option['name'], "tamaño") !==false) $attr_id = 24;
+
                 if(strpos($option['name'], "Color") !==false) $attr_id = 23;
                 if(strpos($option['name'], "color") !==false) $attr_id = 23;
                 if(strpos($option['name'], "Couleur") !==false) $attr_id = 23;
@@ -558,24 +560,12 @@ class Get extends Command
             \Nicelizhi\Shopify\Helpers\Utils::clearCache($id, $item['product_id']); // clear cache
 
             //send message to wecome
-            \Nicelizhi\Shopify\Helpers\Utils::send($item['product_id']. " sync done, please check it ");
+            \Nicelizhi\Shopify\Helpers\Utils::send(config("app.name").' '.$item['product_id']. " sync done, please check it ");
 
             // exit;
 
 
             sleep(1);
-            //var_dump($product);exit;
-            
-
-            //var_dump($product);exit;
-
-            // add product_attr
-
-
-            // add product_images
-            // add product_sku
-
-
 
         }
 
