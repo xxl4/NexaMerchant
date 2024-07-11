@@ -419,7 +419,7 @@ class Post extends Command
             $crm_channel = config('onebuy.crm_channel');
 
             
-            $url = "https://crm.heomai.com/api/offers/callBack?refer=".$cnv_id[1]."&revenue=".$order->grand_total."&currency_code=".$order->order_currency_code."&channel_id=".$crm_channel."&q_ty=".$q_ty;
+            $url = "https://crm.heomai.com/api/offers/callBack?refer=".$cnv_id[1]."&revenue=".$order->grand_total."&currency_code=".$order->order_currency_code."&channel_id=".$crm_channel."&q_ty=".$q_ty."&email=".$shipping_address->email;
             $res = $this->get_content($url);
             Log::info("post to bm 2 url ".$url." res ".json_encode($res));
             return true;
@@ -556,26 +556,11 @@ class Post extends Command
 
             $cnv_id = explode('-',$orderPayment['method_title']);
 
-            $url = "https://track.heomai2021.com/click.php?cnv_id=".$cnv_id[1]."&event3=1";
-            $res = $this->get_content($url);
-            Log::info("post to bm url first ".$url." res ".json_encode($res));
-            $url = "https://track.heomai2021.com/click.php?cnv_id=".$cnv_id[1]."&payout=".$order->grand_total."&cnv_status=approved&event3=1";
-            $res = $this->get_content($url);
-            Log::info("post to bm url ".$url." res ".json_encode($res));
-
-            $url = "https://binom.heomai.com/click.php?cnv_id=".$cnv_id[1]."&event3=1";
-            $res = $this->get_content($url);
-            Log::info("post to bm url first ".$url." res ".json_encode($res));
-            $url = "https://binom.heomai.com/click.php?cnv_id=".$cnv_id[1]."&payout=".$order->grand_total."&cnv_status=approved&event3=1";
-            $res = $this->get_content($url);
-            Log::info("post to bm url ".$url." res ".json_encode($res));
-
-
 
             $crm_channel = config('onebuy.crm_channel');
 
             
-            $url = "https://crm.heomai.com/api/offers/callBack?refer=".$cnv_id[1]."&revenue=".$order->grand_total."&currency_code=".$order->order_currency_code."&channel_id=".$crm_channel."&q_ty=".$q_ty;
+            $url = "https://crm.heomai.com/api/offers/callBack?refer=".$cnv_id[1]."&revenue=".$order->grand_total."&currency_code=".$order->order_currency_code."&channel_id=".$crm_channel."&q_ty=".$q_ty."&email=".$shipping_address->email;
             $res = $this->get_content($url);
             Log::info("post to bm 2 url ".$url." res ".json_encode($res));
 
