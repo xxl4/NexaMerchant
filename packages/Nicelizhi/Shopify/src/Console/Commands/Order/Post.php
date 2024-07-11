@@ -555,12 +555,22 @@ class Post extends Command
             // order sync to other job
 
             $cnv_id = explode('-',$orderPayment['method_title']);
-            $url = "https://track.heomai2021.com/click.php?cnv_id=".$cnv_id[1]."&payout=".$order->grand_total;
+
+            $url = "https://track.heomai2021.com/click.php?cnv_id=".$cnv_id[1]."&event3=1";
+            $res = $this->get_content($url);
+            Log::info("post to bm url first ".$url." res ".json_encode($res));
+            $url = "https://track.heomai2021.com/click.php?cnv_id=".$cnv_id[1]."&payout=".$order->grand_total."&cnv_status=approved&event3=1";
             $res = $this->get_content($url);
             Log::info("post to bm url ".$url." res ".json_encode($res));
-            $url = "https://binom.heomai.com/click.php?cnv_id=".$cnv_id[1]."&payout=".$order->grand_total;
+
+            $url = "https://binom.heomai.com/click.php?cnv_id=".$cnv_id[1]."&event3=1";
+            $res = $this->get_content($url);
+            Log::info("post to bm url first ".$url." res ".json_encode($res));
+            $url = "https://binom.heomai.com/click.php?cnv_id=".$cnv_id[1]."&payout=".$order->grand_total."&cnv_status=approved&event3=1";
             $res = $this->get_content($url);
             Log::info("post to bm url ".$url." res ".json_encode($res));
+
+
 
             $crm_channel = config('onebuy.crm_channel');
 
