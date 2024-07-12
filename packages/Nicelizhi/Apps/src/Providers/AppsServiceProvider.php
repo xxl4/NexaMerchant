@@ -46,6 +46,11 @@ class AppsServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(
             __DIR__.'/../Config/apps.php', 'apps'
         );
+
+        $this->mergeConfigFrom(
+            __DIR__.'/../Config/system.php', 'core'
+        );
+
     }
 
     public function regsiteCommands()
