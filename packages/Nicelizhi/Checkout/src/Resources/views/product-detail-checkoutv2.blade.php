@@ -2779,7 +2779,7 @@
           appleShow = true
         }
       }
-      if (data.ads.size.img = '') {
+      if (data.ads.size.img == '') {
         $('#size-chart').hide()
       } else {
         $('#size-chart').show()
