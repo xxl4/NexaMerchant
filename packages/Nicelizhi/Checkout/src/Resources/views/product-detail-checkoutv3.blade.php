@@ -1561,7 +1561,6 @@
         $('.buy-select').hide()
         $('#p2-select').show()
         $('#product2').addClass('background-green')
-        initProuctData(0, '2')
       }
       var nprice = currencySymbol + data.package_products[0].new_price.toFixed(2)
       $('#summary-total1').text(nprice)
@@ -1656,6 +1655,12 @@
       params.products = []
       params.products.push(productL1, productL2)
       getSkuListInfo();
+      if (data.attr.attributes.length == 0) {
+        params.products.forEach(function(item) {
+          item.product_sku = data.sku
+          item.variant_id = ''
+        })
+      }
       $('.prod-name').text('<?php echo addslashes($data['product']['name']); ?>')
       console.log('<?php echo addslashes($data['product']['name']); ?>', '123');
       $('title').html('<?php echo addslashes($data['product']['name']); ?>')
