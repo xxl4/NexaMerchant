@@ -1561,6 +1561,7 @@
         $('.buy-select').hide()
         $('#p2-select').show()
         $('#product2').addClass('background-green')
+        initProuctData(0, '2')
       }
       var nprice = currencySymbol + data.package_products[0].new_price.toFixed(2)
       $('#summary-total1').text(nprice)
