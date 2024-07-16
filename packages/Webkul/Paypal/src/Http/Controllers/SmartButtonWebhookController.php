@@ -120,6 +120,78 @@ class SmartButtonWebhookController extends Controller
 
         }
 
+        if($dispute->status=='UNDER_REVIEW' && !empty($order_id)) {
+
+            if($data['resource']['adjudications'][0]['type']!='RECOVER_FROM_SELLER') {
+                var_dump($data['resource']['adjudications'][0]['type']);
+                return false;
+            }
+
+            $order = $this->orderRepository->findOrFail($order_id);
+            //var_dump($order);
+            // if (! $order->canRefund()) {
+            //     var_dump("can not refund");
+            //     return false;
+            // }
+
+
+            $refud = [];
+            // 0: not refund money, 1: refund money
+
+
+           $refundData= [];
+
+           $params = [];
+
+           $order_items = $order->items;
+
+           //var_dump($order_items);
+
+
+
+           foreach ($order_items as $order_item) {
+               $refundData[$order_item->id] = $order_item->qty_ordered;
+           }
+
+           
+
+           $refud['refund']['items'] =  $refundData;
+
+           $totals = $this->refundRepository->getOrderItemsRefundSummary($refud['refund']['items'], $order_id);
+
+           $refund_total = 0.00;
+           foreach($data['resource']['money_movements'] as $money_movement) {
+                if($money_movement['affected_party']=='SELLER')
+               $refund_total += $money_movement['amount']['value'];
+           }
+
+           //var_dump($totals);exit;
+
+           $refud['refund']['shipping'] = 9.99;
+           $refud['refund']['is_refund_money'] = 0;
+           $refud['refund']['adjustment_refund'] = 0;
+           $refud['refund']['adjustment_fee'] = 0;
+           $refud['refund']['custom_refund_amount'] = '0.00';
+
+           $refud['refund']['comment'] = $data['resource']['reason']."-UNDER_REVIEW-". $refund_total;
+
+           if(!empty($refud['refund']['custom_refund_amount'])) {
+               $refundAmount = $totals['grand_total']['price'] - $totals['shipping']['price'] + $refud['refund']['shipping'] + $refud['refund']['adjustment_refund'] - $refud['refund']['adjustment_fee'];
+               $refud['refund']['adjustment_fee'] = abs($refud['refund']['custom_refund_amount'] - $refundAmount);
+           }
+
+           
+           //var_dump($refud);exit;
+           
+
+
+
+
+           $this->refundRepository->create(array_merge($refud, ['order_id' => $order_id]));
+
+
+        }
+
         echo "success";
     }
 
