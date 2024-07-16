@@ -58,6 +58,7 @@ class Create extends CommandInterface
         'tests',
         'tests/bootstrap.php',
         'docs',
+        'composer.json',
         'README.md',
         'phpunit.xml',
     ];
