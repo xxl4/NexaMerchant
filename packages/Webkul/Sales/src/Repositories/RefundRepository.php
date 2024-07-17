@@ -81,6 +81,11 @@ class RefundRepository extends Repository
 
                 $orderItem = $this->orderItemRepository->find($itemId);
 
+                if(is_null($orderItem)) {
+                    Log::error("order id ".$itemId." not found the items id");
+                    return false;
+                }
+
                 if ($qty > $orderItem->qty_to_refund) {
                     $qty = $orderItem->qty_to_refund;
                 }
