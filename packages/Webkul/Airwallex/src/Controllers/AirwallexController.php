@@ -86,9 +86,10 @@ class AirwallexController extends Controller
                 
                 if ($status === 'SUCCEEDED' && $input['name']==='payment_intent.succeeded') {
                    // $amount = $transactionData->data->object->amount;
-                    $amount = $input['data']['object']['amount'] * 100;
+                    $amount = round($input['data']['object']['amount'] * 100);
                     $orderAmount = round($order->base_grand_total * 100);
-                    if ($amount === $orderAmount) { // 核对价格是否一样的情况。
+                    //var_dump($amount, $orderAmount);
+                    if ($amount == $orderAmount) { // check if the amount is matched
                         if ($order->status === 'pending') {
                             $order->status = 'processing';
                             $order->save();
@@ -126,6 +127,9 @@ class AirwallexController extends Controller
                             ),
                         ]);
 
+                    }else{
+                        Log::info("airwallex notification received for order id:" . $transactionId . " amount not matched");
+                        return response("Order not found ".$amount."---".$orderAmount, 400);
                     }
                 } else {
                     $this->webhookProcess($input['name'], $input); // process other webhook events
