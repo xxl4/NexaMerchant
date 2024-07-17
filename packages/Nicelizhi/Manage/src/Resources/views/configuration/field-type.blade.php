@@ -184,7 +184,7 @@
                 $selectedOption = core()->getConfigData($nameKey, $currentChannel->code, $currentLocale->code) ?? ($field['default_value'] ?? '');
             @endphp
 
-            <!-- Hidden Fild for unseleted Switch button -->
+            {{-- <!-- Hidden Fild for unseleted Switch button -->
             <x-admin::form.control-group.control
                 type="hidden"
                 :name="$name"
@@ -201,7 +201,8 @@
                 :label="trans($field['title'])"
                 :checked="(bool) $selectedOption"
             >
-            </x-admin::form.control-group.control>
+            </x-admin::form.control-group.control> --}}
+            <input type="checkbox" name="{{ $name }}" value="1" value="{{ $selectedOption}}" checked="{{ $selectedOption }}" id="{{ $name }}">
 
         @elseif ($field['type'] == 'image')
 

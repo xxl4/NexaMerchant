@@ -60,7 +60,7 @@
         </div>
     </script>
 
-    <script type="module">
+    {{-- <script type="module">
         app.component('v-dropdown', {
             template: '#v-dropdown-template',
 
@@ -151,5 +151,5 @@
                 },
             },
         });
-    </script>
+    </script> --}}
 @endPushOnce
