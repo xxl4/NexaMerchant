@@ -54,6 +54,7 @@ class OrderController extends Controller
                 array( 'db' => '`o`.`base_grand_total`',  'dt' => 'base_grand_total', 'field'=>'base_grand_total', 'formatter' => function($d, $row) {
                     return core()->currency($d);
                 }),
+                array( 'db' => '`t`.`captures_id`',   'dt' => 'captures_id', 'field'=>'captures_id' ),
                 array( 'db' => '`t`.`transaction_id`',   'dt' => 'transaction_id', 'field'=>'transaction_id' ),
                 array( 'db' => '`p`.`method_title`',   'dt' => 'method_title', 'field'=>'method_title' ),
                 array( 'db' => '`p`.`method`',   'dt' => 'method', 'field'=>'method' ),
