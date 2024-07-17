@@ -122,6 +122,10 @@ class SmartButtonWebhookController extends Controller
 
         if($dispute->status=='UNDER_REVIEW' && !empty($order_id)) {
 
+            if(!isset($data['resource']['adjudications'][0]['type'])) {
+                //var_dump($data['resource']['adjudications'][0]['type']);
+                return false;
+            }
             if($data['resource']['adjudications'][0]['type']!='RECOVER_FROM_SELLER') {
                 var_dump($data['resource']['adjudications'][0]['type']);
                 return false;
