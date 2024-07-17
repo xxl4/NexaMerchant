@@ -6,6 +6,7 @@ use Illuminate\Container\Container;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Event;
 use Webkul\Core\Eloquent\Repository;
+use Illuminate\Support\Facades\Log;
 
 class RefundRepository extends Repository
 {
@@ -229,6 +230,10 @@ class RefundRepository extends Repository
             }
 
             $orderItem = $this->orderItemRepository->find($orderItemId);
+            if(is_null($orderItem)) {
+                Log::error("order id ".$orderItemId." not found the items id");
+                return false;
+            }
 
             if ($qty > $orderItem->qty_to_refund) {
                 return false;
