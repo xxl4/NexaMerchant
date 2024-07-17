@@ -127,6 +127,7 @@ class AirwallexController extends Controller
                             'payment_method' => $invoice->order->payment->method,
                             'order_id'       => $order->id,
                             'invoice_id'     => $invoice->id,
+                            'captures_id'    => $input['data']['object']['id'],
                             'data'           => json_encode(
                                 $input
                             ),
