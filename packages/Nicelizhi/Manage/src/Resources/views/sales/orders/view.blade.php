@@ -234,6 +234,11 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        <?php
+                                        if($order->sku_items->isEmpty()){
+                                            $order->sku_items = $order->items;
+                                        }
+                                        ?>
                                         @foreach ($order->sku_items as $item)
                                         <tr>
                                             <td>
@@ -261,6 +266,7 @@
                                             <td>{{ core()->formatBasePrice($item->base_total + $item->base_tax_amount - $item->base_discount_amount) }}</td>
                                         </tr>
                                         @endforeach
+
                                     </tbody>
                                 </table>
                             </div>

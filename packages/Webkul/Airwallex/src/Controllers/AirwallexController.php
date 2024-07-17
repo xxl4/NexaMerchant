@@ -81,14 +81,20 @@ class AirwallexController extends Controller
             $this->order = $order;
 
             if ($order) {
-                Log::info("airwallex notification received for order id:" . $transactionId);            
+                Log::info("airwallex notification received for order id:" . $transactionId);    
+                
+                if($order->status!=='pending') {
+                    return response('Order already processed', 200);
+                }
+                
                 $status = $input['data']['object']['status'];
                 
                 if ($status === 'SUCCEEDED' && $input['name']==='payment_intent.succeeded') {
                    // $amount = $transactionData->data->object->amount;
-                    $amount = $input['data']['object']['amount'] * 100;
+                    $amount = round($input['data']['object']['amount'] * 100);
                     $orderAmount = round($order->base_grand_total * 100);
-                    if ($amount === $orderAmount) { // 核对价格是否一样的情况。
+                    //var_dump($amount, $orderAmount);
+                    if ($amount === $orderAmount) { // check if the amount is matched
                         if ($order->status === 'pending') {
                             $order->status = 'processing';
                             $order->save();
@@ -121,11 +127,15 @@ class AirwallexController extends Controller
                             'payment_method' => $invoice->order->payment->method,
                             'order_id'       => $order->id,
                             'invoice_id'     => $invoice->id,
+                            'captures_id'    => $input['data']['object']['id'],
                             'data'           => json_encode(
                                 $input
                             ),
                         ]);
 
+                    }else{
+                        Log::info("airwallex notification received for order id:" . $transactionId . " amount not matched");
+                        return response("Order not found ".$amount."---".$orderAmount, 400);
                     }
                 } else {
                     $this->webhookProcess($input['name'], $input); // process other webhook events
