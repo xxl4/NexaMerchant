@@ -145,7 +145,9 @@ class ImportOrderCustomer extends Command {
         }
         $shopify = $shopifyStore->toArray();
 
-        $file = storage_path("app/public/customers/customers_export_1.csv");
+        $this->customerRepository = app(CustomerRepository::class);
+
+        $file = storage_path("app/public/customers/customers_export_4.csv");
         $file = fopen($file, "r");
         $i = 0;
         while(! feof($file))
@@ -156,21 +158,28 @@ class ImportOrderCustomer extends Command {
                 var_dump($data);
                 continue;
             }
-            $i++;
+            
             //var_dump($data);
+            if(empty($data[2])) {
+                continue;
+            }
 
             $customer = $this->customerRepository->findOneByField('email', $data[2]);
             if($customer) {
                 continue;
             }
 
+            $i++;
+
+            $this->error("email import ". $data[2]);
+
             $customerData = [];
             $customerData['email'] = trim($data[2]);
-            $customerData['customer_group_id'] = 4;
+            $customerData['customer_group_id'] = 1;
             $customerData['first_name'] = trim($data[0]);
             $customerData['last_name'] = trim($data[1]);
             $customerData['gender'] = "";
-            $customerData['phone'] = trim($data[13]);
+            
 
            $this->createCuster($customerData);
         
@@ -180,15 +189,23 @@ class ImportOrderCustomer extends Command {
             $customerData['Province'] = trim($data[8]);
             $customerData['country'] = trim($data[10]);
             $customerData['postcode'] = trim($data[12]);
+            $customerData['phone'] = trim($data[13]);
             
 
             //var_dump($customerData);exit;
 
 
-            $this->postCustomer($customerData, $customerData['email']);
+            $this->postCustomer($customerData, $customerData['email'], $shopify);
 
-            exit; 
+            $time = rand(0, 9);
+
+            sleep($time);
+
+            //if($i > 1000) exit;
+
+            //exit; 
         }
+        echo "done\r\n";
     }
 
     public function createCuster($data) {
@@ -211,7 +228,7 @@ class ImportOrderCustomer extends Command {
      * @param array $shopify
      * 
      */
-    public function postCustomer($data, $email) {
+    public function postCustomer($data, $email, $shopify) {
         $ShopifyCustomer = $this->ShopifyCustomer->where([
             'email' => $email
         ])->first();
@@ -253,7 +270,7 @@ class ImportOrderCustomer extends Command {
         ];
         $pOrder['customer'] = $customer;
 
-        var_dump($pOrder);exit;
+        //var_dump($pOrder);
 
 
         try {
@@ -269,8 +286,8 @@ class ImportOrderCustomer extends Command {
         }catch(ClientException $e) {
             //var_dump($e);
             var_dump($e->getMessage());
-            Log::error(json_encode($e->getMessage()));
-            Log::error(json_encode($pOrder));
+            // Log::error(json_encode($e->getMessage()));
+            // Log::error(json_encode($pOrder));
             //\Nicelizhi\Shopify\Helpers\Utils::send($e->getMessage().'--' .$id. " 需要手动解决 ");
             //continue;
             //return false;
