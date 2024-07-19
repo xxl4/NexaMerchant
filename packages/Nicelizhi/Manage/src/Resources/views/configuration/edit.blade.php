@@ -52,7 +52,10 @@
 
                             
                             {{-- Configuration form fields --}}
-    
+    <x-admin::form 
+    action="" 
+    enctype="multipart/form-data"
+>
     {{-- Save Inventory --}}
     <div class="flex gap-[16px] justify-between items-center mt-[14px] max-sm:flex-wrap">
         <p class="text-[20px] text-gray-800 dark:text-white font-bold">
@@ -168,6 +171,7 @@
             @endforeach
         </div>
     @endif
+</x-admin::form>
 
 
 

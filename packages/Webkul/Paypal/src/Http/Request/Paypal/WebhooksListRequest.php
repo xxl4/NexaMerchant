@@ -8,7 +8,7 @@ class WebhooksListRequest extends HttpRequest
 {
     public function __construct()
     {
-        parent::__construct("/v1/notifications/webhooks", "GET");
+        parent::__construct("/v2/notifications/webhooks", "GET");
         $this->headers["Content-Type"] = "application/json";
     }
 }
