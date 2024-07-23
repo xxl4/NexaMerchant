@@ -998,15 +998,15 @@
           </div>
           <div class="order-summary-item">
             <div>@lang('checkout::app.v2.Subtotal'):</div>
-            <div id="summary-total1"></div>
+            <div id="summary-total1" style="font-weight:bold;"></div>
           </div>
           <div class="order-summary-item">
             <div>@lang('checkout::app.v2.Discount'):</div>
-            <div id="summary-total2" style="color: red;"></div>
+            <div id="summary-total2" style="color: red; font-weight:bold;"></div>
           </div>
           <div class="order-summary-item">
             <div>@lang('checkout::app.v2.Shipping'):</div>
-            <div id="summary-total3"></div>
+            <div id="summary-total3" style="font-weight:bold;"></div>
           </div>
           <!-- <div class="order-summary-item">
             <div>@lang('checkout::app.v2.Shipping Method'):</div>
