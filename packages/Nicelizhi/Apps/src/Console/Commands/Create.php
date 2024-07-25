@@ -135,11 +135,6 @@ class Create extends CommandInterface
         exec('composer dump-autoload');
 
 
-        
-
-
-
-
         $this->info("App $name created successfully");
         
     }

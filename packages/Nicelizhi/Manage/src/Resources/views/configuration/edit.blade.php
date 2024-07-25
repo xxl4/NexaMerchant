@@ -33,7 +33,10 @@
             </div>
         </div>
     </section>
-    <form enctype="multipart/form-data" action="">
+    <x-admin::form 
+        action="" 
+        enctype="multipart/form-data"
+    >
     <section class="content">
         <div class="container-fluid">
             <div class="row">
@@ -173,6 +176,7 @@
 
 
 
+
                         
 
 
@@ -185,7 +189,7 @@
             </div>
         </div>
     </section>
-    </form>
+</x-admin::form>
 
 
 

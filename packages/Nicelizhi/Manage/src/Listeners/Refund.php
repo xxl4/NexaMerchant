@@ -64,9 +64,15 @@ class Refund extends Base
             $paypalOrderID = $order->payment->additional['orderID'];
 
             /* getting capture id by paypal order id */
-            $captureID = $smartButton->getCaptureId($paypalOrderID);
+            try {
+                $captureID = $smartButton->getCaptureId($paypalOrderID);
+            }catch (Exception $e) {
+                Log::error($paypalOrderID."--refund captureID". json_encode($e->getMessage()));
+                \Nicelizhi\Shopify\Helpers\Utils::send($e->getMessage());
+            } 
+            //$captureID = $smartButton->getCaptureId($paypalOrderID);
 
-            Log::info("refund captureID". json_encode($captureID));
+            //Log::info("refund captureID". json_encode($captureID));
 
             /* now refunding order on the basis of capture id and refund data */
             try {
