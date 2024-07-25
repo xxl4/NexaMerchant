@@ -213,6 +213,8 @@ class Airwallex extends Payment
     
         $buildRequestBody = $this->buildCreateCustomerData($cart, $orderId);
 
+        //var_dump($buildRequestBody);
+
         $transactionManager = $sdk->createCustomer(json_encode($buildRequestBody, JSON_OBJECT_AS_ARRAY | JSON_UNESCAPED_UNICODE));
     
         return $transactionManager;
@@ -229,13 +231,25 @@ class Airwallex extends Payment
             $customer->first_name = $cart->billing_address->first_name;
             $customer->last_name = $cart->billing_address->last_name;
             $customer->email = $cart->billing_address->email;
+            //$customer->phone = $cart->billing_address->phone;
             $customer->password = bcrypt("123456");
-            $customer->channel_id = 1;
-            $customer->is_verified = 1;
+            //$customer->channel_id = 1;
+            $customer->status = 1;
             $customer->save();
         }
 
-        $address = $cart->billing_address;
+        /**
+         * 
+         * 
+         * 
+         * 
+         */
+        $address = [];
+        $address['city'] = $cart->billing_address->city;
+        $address['country_code'] = $cart->billing_address->country;
+        $address['postcode'] = $cart->billing_address->postcode;
+        $address['state'] = $cart->billing_address->city;
+        $address['street'] = $cart->billing_address->address1;
         $data['address'] = $address;
         $data['email'] = $cart->billing_address->email;
         $data['first_name'] = $cart->billing_address->first_name;
