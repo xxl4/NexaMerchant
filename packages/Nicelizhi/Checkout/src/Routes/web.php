@@ -11,6 +11,11 @@ require 'checkoutv1.php';
 require 'checkoutv2.php';
 
 /**
- * Store checkoutv2
+ * Store checkoutv3
  */
 require 'checkoutv3.php';
+
+/**
+ * Store checkoutv4
+ */
+require 'checkoutv4.php';
