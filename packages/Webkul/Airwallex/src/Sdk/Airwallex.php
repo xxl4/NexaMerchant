@@ -195,6 +195,29 @@ class Airwallex {
     }
 
     /**
+     * 
+     * @link https://www.airwallex.com/docs/api#/Payment_Acceptance/Customers/_api_v1_pa_customers_create/post
+     * @description create customer
+     * @param array $data
+     * @return array
+     * @author Steve
+     * 
+     */
+    public function createCustomer($data) {
+        $response = $this->client->request('POST', "/api/v1/pa/customers/create", [ 
+            'headers' => [
+                 'Accept' => 'application/json', 
+                 'content-type' => 'application/json',
+                 'Authorization' => "Basic ".$this->clientId, 
+            ],
+            'json' => $data,
+            'debug' => true
+        ]);
+        $body = $response->getBody();
+        var_dump($body, $data);
+    }
+
+    /**
      * @link https://www.airwallex.com/docs/api#/Getting_Started
      * 
      */
