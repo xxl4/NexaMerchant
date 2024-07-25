@@ -203,6 +203,55 @@ class Airwallex extends Payment
 
     /**
      * 
+     * create customer
+     * 
+     * 
+     */
+    public function createCustomer($cart, $orderId) {
+            
+        $sdk = new AirwallexSdk($this->paymentConfig, $this->productionMode);
+    
+        $buildRequestBody = $this->buildCreateCustomerData($cart, $orderId);
+
+        $transactionManager = $sdk->createCustomer(json_encode($buildRequestBody, JSON_OBJECT_AS_ARRAY | JSON_UNESCAPED_UNICODE));
+    
+        return $transactionManager;
+    }
+
+    public function buildCreateCustomerData($cart, $orderId) {
+
+        $data = [];
+
+        //search email from customer table
+        $customer = \Webkul\Customer\Models\Customer::where('email', $cart->billing_address->email)->first();
+        if(is_null($customer)) {
+            $customer = new \Webkul\Customer\Models\Customer();
+            $customer->first_name = $cart->billing_address->first_name;
+            $customer->last_name = $cart->billing_address->last_name;
+            $customer->email = $cart->billing_address->email;
+            $customer->password = bcrypt("123456");
+            $customer->channel_id = 1;
+            $customer->is_verified = 1;
+            $customer->save();
+        }
+
+        $address = $cart->billing_address;
+        $data['address'] = $address;
+        $data['email'] = $cart->billing_address->email;
+        $data['first_name'] = $cart->billing_address->first_name;
+        $data['last_name'] = $cart->billing_address->last_name;
+        $data['phone_number'] = $cart->billing_address->phone;
+        $data['merchant_customer_id'] = $customer->id;
+        $data['request_id'] = $customer->id.'_'.$orderId."_".time();
+        $data['metadata']['id'] = $customer->id;
+
+        return $data;
+
+
+    }
+
+    /**
+     * 
      * create payment authen
      * @https://www.airwallex.com/docs/payments__global__apple-pay__embedded-elements
      * 

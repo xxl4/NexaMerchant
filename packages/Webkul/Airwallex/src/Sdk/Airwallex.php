@@ -180,7 +180,7 @@ class Airwallex {
             'debug' => true
         ]);
         $body = $response->getBody();
-        var_dump($body, $data, $token);
+        return $body;
     }
 
     public function CheckPaymentStatus() {
@@ -216,7 +216,7 @@ class Airwallex {
             'debug' => true
         ]);
         $body = $response->getBody();
-        var_dump($body, $data);
+        return $body;
     }
 
     /**
