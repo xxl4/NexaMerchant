@@ -99,6 +99,8 @@ class Airwallex {
 
         $url = $this->host."/api/v1/pa/payment_intents/create";
 
+        //Log::info("airwallex post data ".json_encode($data));
+
         $result = $this->http_curl($url, 'xml', $data, 6, FALSE, '',$header);
 
         if($result['code']=='201') return json_decode($result['body']);

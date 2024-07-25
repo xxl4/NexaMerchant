@@ -998,20 +998,20 @@
           </div>
           <div class="order-summary-item">
             <div>@lang('checkout::app.v2.Subtotal'):</div>
-            <div id="summary-total1" style="color: red;"></div>
+            <div id="summary-total1" style="font-weight:bold;"></div>
           </div>
           <div class="order-summary-item">
             <div>@lang('checkout::app.v2.Discount'):</div>
-            <div id="summary-total2"></div>
+            <div id="summary-total2" style="color: red; font-weight:bold;"></div>
           </div>
           <div class="order-summary-item">
             <div>@lang('checkout::app.v2.Shipping'):</div>
-            <div id="summary-total3" style="color: red;"></div>
+            <div id="summary-total3" style="font-weight:bold;"></div>
           </div>
-          <div class="order-summary-item">
+          <!-- <div class="order-summary-item">
             <div>@lang('checkout::app.v2.Shipping Method'):</div>
             <div>@lang('checkout::app.v2.USPS Express')</div>
-          </div>
+          </div> -->
           <div class="order-summary-total">
             <div><strong>@lang("checkout::app.v2.Today's Total"):</strong></div>
             <div>
@@ -1562,13 +1562,12 @@
         $('#p2-select').show()
         $('#product2').addClass('background-green')
       }
-      var nprice = currencySymbol + data.package_products[0].new_price.toFixed(2)
-      $('#summary-total1').text(nprice)
+      $('#summary-total1').text(data.package_products[0].old_price_format)
       var shippingFee = currencySymbol + data.package_products[0].shipping_fee
       $('#summary-total3').text(shippingFee)
 
       var discount = Number(data.package_products[0].old_price) - Number(data.package_products[0].new_price)
-      discount = currencySymbol + discount.toFixed(2)
+      discount = "-" + currencySymbol + discount.toFixed(2)
       $('#summary-total2').text(discount)
       var total = Number(data.package_products[0].new_price) + Number(data.package_products[0].shipping_fee)
       total = currencySymbol + total.toFixed(2)
@@ -2202,7 +2201,6 @@
                     onclick="javascript:bookmarkscroll.scrollTo('product2')"
                     >@lang('checkout::app.v2.edit')</a> 
                 </div>
-                <div class="sku-price">` + skuData[i].price + `</div>
               </div>`
       }
       $('.sku-info').append(skuList)
@@ -2718,14 +2716,13 @@
         $('#product1').addClass('background-green')
       }
       $('#product1').addClass('choose-p')
-      var nprice = currencySymbol + data.package_products[1].new_price.toFixed(2)
-      $('#summary-total1').text(nprice)
+      $('#summary-total1').text(data.package_products[1].old_price_format)
       var shippingFee = currencySymbol + data.package_products[1].shipping_fee
       $('#summary-total3').text(shippingFee)
       console.log(data, 'data');
       var discount = Number(data.package_products[1].old_price) - Number(data.package_products[1].new_price)
       console.log(discount, 'discount');
-      discount = currencySymbol + discount.toFixed(2)
+      discount = "-" + currencySymbol + discount.toFixed(2)
       $('#summary-total2').text(discount)
       var total = Number(data.package_products[1].new_price) + Number(data.package_products[1].shipping_fee)
       total = currencySymbol + total.toFixed(2)
@@ -2759,13 +2756,12 @@
         $('#product2').addClass('background-green')
       }
       $('#product2').addClass('choose-p')
-      var nprice = currencySymbol + data.package_products[0].new_price.toFixed(2)
-      $('#summary-total1').text(nprice)
+      $('#summary-total1').text(data.package_products[0].old_price_format)
       var shippingFee = currencySymbol + data.package_products[0].shipping_fee
       $('#summary-total3').text(shippingFee)
 
       var discount = Number(data.package_products[0].old_price) - Number(data.package_products[0].new_price)
-      discount = currencySymbol + discount.toFixed(2)
+      discount = "-" + currencySymbol + discount.toFixed(2)
       $('#summary-total2').text(discount)
       var total = Number(data.package_products[0].new_price) + Number(data.package_products[0].shipping_fee)
       total = currencySymbol + total.toFixed(2)
@@ -2799,13 +2795,12 @@
       }
 
       $('#product3').addClass('choose-p')
-      var nprice = currencySymbol + data.package_products[2].new_price.toFixed(2)
-      $('#summary-total1').text(nprice)
+      $('#summary-total1').text(data.package_products[2].old_price_format)
       var shippingFee = currencySymbol + data.package_products[2].shipping_fee
       $('#summary-total3').text(shippingFee)
 
       var discount = Number(data.package_products[2].old_price) - Number(data.package_products[2].new_price)
-      discount = currencySymbol + discount.toFixed(2)
+      discount = "-" + currencySymbol + discount.toFixed(2)
       $('#summary-total2').text(discount)
       var total = Number(data.package_products[2].new_price) + Number(data.package_products[2].shipping_fee)
       total = currencySymbol + total.toFixed(2)
@@ -2839,13 +2834,12 @@
         $('#product4').addClass('background-green')
       }
       $('#product4').addClass('choose-p')
-      var nprice = currencySymbol + data.package_products[3].new_price.toFixed(2)
-      $('#summary-total1').text(nprice)
+      $('#summary-total1').text(data.package_products[3].old_price_format)
       var shippingFee = currencySymbol + data.package_products[3].shipping_fee
       $('#summary-total3').text(shippingFee)
 
       var discount = Number(data.package_products[3].old_price) - Number(data.package_products[3].new_price)
-      discount = currencySymbol + discount.toFixed(2)
+      discount = "-" + currencySymbol + discount.toFixed(2)
       $('#summary-total2').text(discount)
       var total = Number(data.package_products[3].new_price) + Number(data.package_products[3].shipping_fee)
       total = currencySymbol + total.toFixed(2)

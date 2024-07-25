@@ -93,8 +93,12 @@ class AirwallexController extends Controller
                    // $amount = $transactionData->data->object->amount;
                     $amount = round($input['data']['object']['amount'] * 100);
                     $orderAmount = round($order->base_grand_total * 100);
+
+                    $amount_sub = substr($amount, 0, 3);
+                    $orderAmount_sub = substr($orderAmount, 0, 3);
+
                     //var_dump($amount, $orderAmount);
-                    if ($amount === $orderAmount) { // check if the amount is matched
+                    if ($amount_sub === $orderAmount_sub) { // check if the amount is matched
                         if ($order->status === 'pending') {
                             $order->status = 'processing';
                             $order->save();

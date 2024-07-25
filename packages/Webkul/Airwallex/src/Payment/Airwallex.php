@@ -299,6 +299,7 @@ class Airwallex extends Payment
         $data = [];
         $amount = (float) $cart->sub_total + $cart->tax_total + ($cart->selected_shipping_rate ? $cart->selected_shipping_rate->price : 0) - $cart->discount_amount;
         $data['amount'] = round($amount, 2, PHP_ROUND_HALF_UP);
+        $data['amount'] = $cart->grand_total;
         $data['currency'] = $cart->cart_currency_code;
         $customer = [];
         $address['city'] = $cart->billing_address->city;

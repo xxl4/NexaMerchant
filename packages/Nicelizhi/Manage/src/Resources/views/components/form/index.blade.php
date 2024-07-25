@@ -3,9 +3,9 @@
     the ajaxified form or some customized slot form.
 --}}
 @if ($attributes->has('as'))
-    <v-form {{ $attributes }}>
+    <form {{ $attributes }}>
         {{ $slot }}
-    </v-form>
+    </form>
 
 {{--
     Otherwise, a traditional form will be provided with a minimal
@@ -20,7 +20,7 @@
         $method = strtoupper($method);
     @endphp
 
-    <v-form
+    <form
         method="{{ $method === 'GET' ? 'GET' : 'POST' }}"
         :initial-errors="{{ json_encode($errors->getMessages()) }}"
         v-slot="{ meta, errors, setValues }"
@@ -35,5 +35,5 @@
         @endif
 
         {{ $slot }}
-    </v-form>
+    </form>
 @endif

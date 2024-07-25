@@ -82,7 +82,7 @@ class CheckoutV1Controller extends Controller{
             abort(404);
         }
 
-        visitor()->visit($product);
+        //visitor()->visit($product);
 
         //
         //$package_products = [];
