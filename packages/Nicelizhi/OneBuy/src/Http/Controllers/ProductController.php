@@ -527,10 +527,10 @@ class ProductController extends Controller
 
         }
 
-        // 获取支付信息
+        // 
         
         if($payment_method=='airwallex') {
-            //处理支付方式
+            //
             $payment = [];
             $payment['description'] = $payment_method."-".$refer;
             $payment['method'] = $payment_method;
@@ -548,14 +548,24 @@ class ProductController extends Controller
                 ], Response::HTTP_FORBIDDEN);
             }
 
-            // 生成订单，
+            // 
             Cart::collectTotals();
             $this->validateOrder();
             $cart = Cart::getCart();
+
+            // when enable the upselling and can config the upselling rule for carts products
+            if(config("Upselling.enable")) {
+               
+                $upselling = app('NexaMerchant\Upselling\Upselling');
+                $upselling->applyUpselling($cart);
+            }
+
+
+
             $order = $this->orderRepository->create(Cart::prepareDataForOrder());
             // Cart::deActivateCart();
             // Cart::activateCartIfSessionHasDeactivatedCartId();
-            // 跳转到支付
+            // 
             $data['result'] = 200;
             $data['order'] = $order;
             if ($order) {
@@ -563,6 +573,7 @@ class ProductController extends Controller
 
 
                 $transactionManager = $this->airwallex->createPaymentOrder($cart, $order->id);
+                $airwallex_customer = $this->airwallex->createCustomer($cart, $order->id);
                 
                 if(!isset($transactionManager->client_secret)) {
                     response()->json(['error' => $transactionManager->body->message,'code'=>'203'], 400);
@@ -572,6 +583,8 @@ class ProductController extends Controller
                 $data['client_secret'] = $transactionManager->client_secret;
                 $data['payment_intent_id'] = $transactionManager->id;
                 $data['currency'] = $transactionManager->currency;
+                $data['transaction'] = $transactionManager;
+                $data['customer'] = $airwallex_customer;
                 $data['country'] = $input['country'];
                 $data['billing'] = $addressData['billing'];
             }
@@ -747,6 +760,11 @@ class ProductController extends Controller
         $payment['method_title'] = "PayPal Smart Button-".$refer;
         $payment['sort'] = "1";
         // Cart::savePaymentMethod($payment);
+
+        if(config("Upselling.enable")) {
+            $upselling = app('NexaMerchant\Upselling\Upselling');
+            $upselling->applyUpselling($cart);
+        }
 
         if (
             Cart::hasError()
