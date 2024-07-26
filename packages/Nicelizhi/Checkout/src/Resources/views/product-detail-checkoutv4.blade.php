@@ -4060,7 +4060,7 @@
           crmTrack('add_pay')
           var data = res;
           console.log(data);
-          return false;
+          //return false;
           if (data.result === 200) {
 
             var order_info = data.order;
@@ -4090,6 +4090,7 @@
               document.cookie = "voluum_payout=" + order_info.grand_total + order_info.order_currency_code + "; path=/";
               document.cookie = "order_id=" + order_info.id + "; path=/";
               localStorage.setItem("order_id", order_info.id);
+              
               localStorage.setItem("order_params", JSON.stringify(params));
 
               url = "/onebuy/order/confirm?currency={{ core()->getCurrentCurrencyCode() }}&_token={{ csrf_token() }}&payment_intent_id=" + data.payment_intent_id + "&order_id=" + data.order.id;
@@ -4119,6 +4120,7 @@
             document.cookie = "voluum_payout=" + order_info.grand_total + order_info.order_currency_code + "; path=/";
             document.cookie = "order_id=" + order_info.id + "; path=/";
             localStorage.setItem("order_id", order_info.id);
+            localStorage.setItem("cus_id", data.customer.id);
             localStorage.setItem("order_params", JSON.stringify(params));
 
 
@@ -4131,7 +4133,7 @@
               Airwallex.confirmPaymentIntent({
                 element: cardNumber,
                 id: data.payment_intent_id,
-                customer_id: data.customer_id,
+                customer_id: data.customer.id,
                 client_secret: data.client_secret,
                 next_triggered_by: "customer",
                 payment_method: {
