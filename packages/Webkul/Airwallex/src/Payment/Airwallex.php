@@ -255,7 +255,7 @@ class Airwallex extends Payment
         $data['first_name'] = $cart->billing_address->first_name;
         $data['last_name'] = $cart->billing_address->last_name;
         $data['phone_number'] = $cart->billing_address->phone;
-        $data['merchant_customer_id'] = $customer->id;
+        $data['merchant_customer_id'] = $customer->id.'_'.$orderId;
         $data['request_id'] = $customer->id.'_'.$orderId."_".time();
         $data['metadata']['id'] = $customer->id;
 
