@@ -12,6 +12,7 @@ use PayPalCheckoutSdk\Payments\CapturesRefundRequest;
 use PayPalCheckoutSdk\Core\AccessTokenRequest;
 use Webkul\Paypal\Http\Request\Paypal\WebhooksListRequest;
 use Webkul\Paypal\Http\Request\Paypal\CreateWebookRequest;
+use Webkul\Paypal\Http\Request\Paypal\AuthIDTokenRequest;
 use Illuminate\Support\Facades\Log;
 
 class SmartButton extends Paypal
@@ -154,6 +155,14 @@ class SmartButton extends Paypal
      */
     public function getAccessToken(){
         $request = new AccessTokenRequest($this->environment());
+        $request->headers['PayPal-Partner-Attribution-Id'] = $this->paypalPartnerAttributionId;
+
+        return $this->client()->execute($request);
+    }
+
+
+    public function getIDAccessToken(){
+        $request = new AuthIDTokenRequest($this->environment());
         $request->headers['PayPal-Partner-Attribution-Id'] = $this->paypalPartnerAttributionId;
 
         return $this->client()->execute($request);
