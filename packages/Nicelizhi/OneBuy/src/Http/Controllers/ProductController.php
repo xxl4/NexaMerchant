@@ -553,14 +553,12 @@ class ProductController extends Controller
             $this->validateOrder();
             $cart = Cart::getCart();
 
-            // when enable the upselling and can config the upselling rule for carts products
+            // when enable the upselling and can config the upselling rule for carts
             if(config("Upselling.enable")) {
                
                 $upselling = app('NexaMerchant\Upselling\Upselling');
                 $upselling->applyUpselling($cart);
             }
-
-
 
             $order = $this->orderRepository->create(Cart::prepareDataForOrder());
             // Cart::deActivateCart();
