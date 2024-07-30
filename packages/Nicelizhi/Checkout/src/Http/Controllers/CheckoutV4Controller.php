@@ -140,8 +140,9 @@ class CheckoutV4Controller extends Controller{
             var_dump($paypal_id_token);
             
             $paypal_id_token = $paypal_id_token->result->id_token;
+            $paypal_access_token = $paypal_id_token->result->access_token;
             $request->session()->put('paypal_id_token', $paypal_id_token);
-            $request->session()->put('paypal_access_token', $paypal_id_token->result->access_token);
+            $request->session()->put('paypal_access_token', $paypal_access_token);
         }
 
         //var_dump($paypal_id_token);exit;
