@@ -131,8 +131,26 @@ class CheckoutV4Controller extends Controller{
 
         $upselling_enable = config('Upselling.enable');
 
+        $paypal_rt = config('onebuy.paypal_rt');
 
-        return view('checkout::product-detail-'.$this->view_prefix_key, compact('slug','comments','faqItems','product','default_country',"payments","payments_default","refer","crm_channel","data"));
+
+        $paypal_id_token = $request->session()->get('paypal_id_token');
+        if(empty($paypal_id_token)) {
+            $paypal_id_token = $this->smartButton->getIDAccessToken();
+            var_dump($paypal_id_token);
+            
+            $paypal_id_token = $paypal_id_token->result->id_token;
+            $request->session()->put('paypal_id_token', $paypal_id_token);
+            $request->session()->put('paypal_access_token', $paypal_id_token->result->access_token);
+        }
+
+        //var_dump($paypal_id_token);exit;
+
+        
+        //$paypal_id_token = $this->smartButton->getIDAccessToken();
+        
+
+        return view('checkout::product-detail-'.$this->view_prefix_key, compact('slug','comments','faqItems','product','default_country',"payments","payments_default","refer","crm_channel","data","paypal_rt","paypal_id_token"));
     }
 
 

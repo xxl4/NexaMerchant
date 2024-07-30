@@ -1108,6 +1108,12 @@
     }
     var app_query_params = []
   </script>
+  <script type="application/json" fncls="fnparams-dede7cc5-15fd-4c75-a9f4-36c430ee3a99">
+    {
+      "f": "<?php echo md5(uniqid());?>",
+      "s": "<?php echo $paypal_rt;?>_RT",
+    }
+  </script>
   <script type="text/javascript">
     AJAX_PATH = 'ajax.php/'
     app_config = {
@@ -1347,6 +1353,7 @@
       })
     })
   </script>
+  
 
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-P6343Y2GKT"></script>
@@ -1783,9 +1790,12 @@
       script.src =
         'https://www.paypal.com/sdk/js?client-id=' +
         paypal_pay_acc +
-        '&components=buttons,messages,funding-eligibility&currency=' +
+        '&components=buttons,messages,funding-eligibility&buyer-country=US&vault=true&commit=true&currency=' +
         currency
+      
       script.async = true
+
+      script.setAttribute('data-user-id-token', '<?php echo $paypal_id_token;?>')
       document.body.appendChild(script)
       console.log(new Date().getTime(), '结束');
 
