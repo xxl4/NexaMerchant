@@ -739,6 +739,7 @@ class ProductController extends Controller
         $shippingMethod = "flatrate_flatrate";
         // Cart::saveShippingMethod($shippingMethod);
 
+
         if (
             Cart::hasError()
             || ! $shippingMethod
@@ -782,7 +783,7 @@ class ProductController extends Controller
             $data['result'] = 200;
             return response()->json($order);
         } catch (\Exception $e) {
-            return response()->json(json_decode($e->getMessage()), 400);
+            return response()->json($e->getMessage(), 400);
         }
 
         // return response()->json($order);
@@ -1006,6 +1007,22 @@ class ProductController extends Controller
                 //'shipping_preference' => 'NO_SHIPPING',
                 'shipping_preference' => 'GET_FROM_FILE', // 用户选择自己的地址内容
             ],
+
+            "payment_source" => [
+                "paypal" => [
+                    "attributes" => [
+                        "vault" => [
+                            "store_in_vault" => "ON_SUCCESS",
+                            "usage_type" => "MERCHANT",
+                            "customer_type" => "CONSUMER"
+                        ]
+                    ],
+                    "experience_context" => [
+                        "return_url" => route("checkout.v4.product.page", ["slug" => "8987102380314"]),
+                        'cancel_url' => route("checkout.v4.product.page",["slug"=>"8987102380314"]),
+                    ]
+                ]
+            ],
             
 
             'purchase_units' => [
@@ -1073,6 +1090,7 @@ class ProductController extends Controller
             ]);
             */
         }
+
 
         return $data;
     }

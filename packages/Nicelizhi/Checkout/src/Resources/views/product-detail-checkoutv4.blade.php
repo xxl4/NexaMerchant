@@ -3429,7 +3429,7 @@
             }).then(function(res) {
               //$('#loading').hide();
               var data = res;
-              if (data.statusCode === 201) {
+              if (data.statusCode === 201 || data.statusCode === 200) {
                 var order_info = data.result;
                 //console.log(order_info);
                 //console.log(order_info.purchase_units[0].amount);
@@ -3828,7 +3828,7 @@
                   //$('#loading').hide();
                   var data = res
                   //console.log(data)
-                  if (data.statusCode === 201) {
+                  if (data.statusCode === 201 || data.statusCode === 200) {
                     var order_info = data.result
                     //console.log(order_info);
                     //console.log(order_info.purchase_units[0].amount);
