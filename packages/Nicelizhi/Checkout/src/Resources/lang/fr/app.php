@@ -49,7 +49,7 @@ return [
     'Discount' => 'Rabais',
     'Shipping' => 'Expédition',
     'Shipping Method' => 'Mode de livraison',
-    'USPS Express' => '5-7 jours',
+    'USPS Express' => '5-8 jours',
     "Today's Total" => "Total du jour",
     'price' => 'prix',
     '2024 Alle Rechte vorbehalten' => '2024 Tous droits réservés',
@@ -71,20 +71,21 @@ return [
     'Please insert a valid postal code!' => 'Veuillez insérer un code postal valide!',
     'Please select your country!' => "S'il vous plaît sélectionnez votre pays!",
     'Please select your state!' => 'Veuillez sélectionner votre état!',
-    'Please select product information!' => 'Veuillez sélectionner les informations sur le produit!',
+    'Please select product information!' => 'Veuillez sélectionner un produit ou il est en rupture de stock !',
     'Select State' => "Sélectionnez l'état",
     'select country' => 'Choisissez un pays',
     'Add a house number if you have one' => 'Ajoutez un numéro de maison si vous en avez un',
     'Express checkout' => 'Paiement express',
     'edit' => 'modifier',
     'complete_secure_purchase' => 'Payez maintenant',
-    'Selected' => 'Choisi'
+    'Selected' => 'Choisi',
+    'Most Recommended' => 'Le plus recommandé'
   ],
   'v3' => [
     '30-Day Return' => '30 jours de retour',
     'Quality Guarantee' => 'Haute qualité garantie',
     'Secure Payment' => 'Paiement sécurisé',
-    'Description' => 'décrire',
+    'Description' => 'Description',
     'Reviews' => 'Commentaire',
     'Buy Now' => 'Achetez-le maintenant',
     'Secure Checkout' => 'Paiement sécurisé',
@@ -92,6 +93,11 @@ return [
     'hours' => 'heures',
     'Estimated Delivery between' => 'Livraison estimée entre',
     'and' => 'et',
-    'People Looking For This Product' => 'Personnes recherchant ce produit'
+    'People Looking For This Product' => 'Personnes recherchant ce produit',
+    'Prev' => 'Précédent',
+    'Next' => 'Suivant',
+    'Jump' => 'Sauter',
+    'Please enter a valid page number' => 'Veuillez entrer un numéro de page valide',
+    'Share' => 'Partager'
   ]
 ];

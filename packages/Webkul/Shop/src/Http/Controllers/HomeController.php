@@ -26,9 +26,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        visitor()->visit();
-
         return '';
+        visitor()->visit();
 
         $customizations = $this->themeCustomizationRepository->orderBy('sort_order')->findWhere([
             'status'     => self::STATUS,

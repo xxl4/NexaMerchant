@@ -41,17 +41,38 @@ class Refund extends Base
     {
         $order = $refund->order;
 
+        Log::info("refund captureID". json_encode($refund));
+
+        if($refund->is_refund_money == "0") {
+
+            Artisan::queue("shopify:refund:post", ['--order_id'=>$order->id,'--refund_id'=> $refund->id])->onConnection('redis')->onQueue('shopify-refund'); // add shopify refund queue
+
+            return;
+        }
+
         if ($order->payment->method === 'paypal_smart_button') {
             /* getting smart button instance */
             $smartButton = new SmartButton;
+
+            if($order->payment->version !='0') {
+                $smartButton->setClientId(config("website.paypal.v".$order->payment->version.".client_id"));
+                $smartButton->setClientSecret(config("website.paypal.v".$order->payment->version.".client_secret"));
+            }
+
 
             /* getting paypal oder id */
             $paypalOrderID = $order->payment->additional['orderID'];
 
             /* getting capture id by paypal order id */
-            $captureID = $smartButton->getCaptureId($paypalOrderID);
+            try {
+                $captureID = $smartButton->getCaptureId($paypalOrderID);
+            }catch (Exception $e) {
+                Log::error($paypalOrderID."--refund captureID". json_encode($e->getMessage()));
+                \Nicelizhi\Shopify\Helpers\Utils::send($e->getMessage());
+            } 
+            //$captureID = $smartButton->getCaptureId($paypalOrderID);
 
-            Log::info("refund captureID". json_encode($captureID));
+            //Log::info("refund captureID". json_encode($captureID));
 
             /* now refunding order on the basis of capture id and refund data */
             try {
@@ -64,7 +85,7 @@ class Refund extends Base
             }catch (Exception $e) {
                 var_dump($e->getMessage());
                 //exit;
-                \Nicelizhi\Shopify\Helpers\Utils::send($e->getMessage());
+                \Nicelizhi\Shopify\Helpers\Utils::send($e->getMessage());   
             } finally  {
                 //echo " Error plese check the log ";exit;
             }

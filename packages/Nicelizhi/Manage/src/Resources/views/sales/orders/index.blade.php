@@ -123,7 +123,11 @@
               {
                 data: 'base_grand_total'
               },{
-                data: 'transaction_id'
+                data: 'captures_id',
+                render: function(data, type, row, meta) {
+                  if(row['method']=='airwallex') return row['transaction_id'];
+                  return data;
+                }
               },{
                 data: 'method_title'
               }

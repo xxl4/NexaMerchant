@@ -48,7 +48,7 @@ return [
     'Discount' => 'Rabatt',
     'Shipping' => 'Versand',
     'Shipping Method' => 'Transportzeit',
-    'USPS Express' => '5-7 Tage',
+    'USPS Express' => '5-8 Tage',
     "Today's Total" => "Gesamt",
     'price' => 'Preis',
     '2024 Alle Rechte vorbehalten' => '2024 Alle Rechte vorbehalten',
@@ -70,7 +70,7 @@ return [
     'Please insert a valid postal code!' => 'Geben Sie bitte eine gültige Postleitzahl ein!',
     'Please select your country!' => 'Bitte wählen Sie Ihr Land aus!',
     'Please select your state!' => 'Bitte wählen Sie Ihr Bundesland aus!',
-    'Please select product information!' => 'Bitte wählen Sie Produktinformationen aus',
+    'Please select product information!' => 'Bitte wählen Sie ein Produkt aus, sonst ist es nicht vorrätig!',
     'Select State' => 'Staat wählen',
     'select country' => 'Wähle ein Land',
     'Add a house number if you have one' => 'Fügen Sie eine Hausnummer hinzu, falls Sie eine haben',
@@ -78,7 +78,8 @@ return [
     'Express checkout' => 'Express-Kaufabwicklung',
     'edit' => 'bearbeiten',
     'complete_secure_purchase' => 'Zahlen Sie jetzt',
-    'Selected' => 'Ausgewählt'
+    'Selected' => 'Ausgewählt',
+    'Most Recommended' => 'Am meisten empfohlen'
   ],
   'v3' => [
     '30-Day Return' => '30 Tage Rückgaberecht',
@@ -92,6 +93,11 @@ return [
     'hours' => 'Std.',
     'Estimated Delivery between' => 'Geschätzte Lieferung zwischen',
     'and' => 'Und',
-    'People Looking For This Product' => 'Personen, die nach diesem Produkt suchen'
+    'People Looking For This Product' => 'Personen, die nach diesem Produkt suchen',
+    'Prev' => 'Zurück',
+    'Next' => 'Weiter',
+    'Jump' => 'Springen',
+    'Please enter a valid page number' => 'Bitte geben Sie eine gültige Seitennummer ein',
+    'Share' => 'Teilen'
   ]
 ];

@@ -54,6 +54,7 @@ class OrderController extends Controller
                 array( 'db' => '`o`.`base_grand_total`',  'dt' => 'base_grand_total', 'field'=>'base_grand_total', 'formatter' => function($d, $row) {
                     return core()->currency($d);
                 }),
+                array( 'db' => '`t`.`captures_id`',   'dt' => 'captures_id', 'field'=>'captures_id' ),
                 array( 'db' => '`t`.`transaction_id`',   'dt' => 'transaction_id', 'field'=>'transaction_id' ),
                 array( 'db' => '`p`.`method_title`',   'dt' => 'method_title', 'field'=>'method_title' ),
                 array( 'db' => '`p`.`method`',   'dt' => 'method', 'field'=>'method' ),
@@ -140,17 +141,14 @@ class OrderController extends Controller
                 array( 'db' => '`o`.`base_grand_total`',  'dt' => 'base_grand_total', 'field'=>'base_grand_total', 'formatter' => function($d, $row) {
                     return core()->currency($d);
                 }),
-                array( 'db' => '`t`.`transaction_id`',   'dt' => 'transaction_id', 'field'=>'transaction_id' ),
-                array( 'db' => '`p`.`method`',   'dt' => 'method', 'field'=>'method' ),
                 array( 'db' => '`o`.`created_at`',   'dt' => 'created_at', 'field'=>'created_at' ),
                 array( 'db' => '`o`.`shipping_method`',   'dt' => 'shipping_method', 'field'=>'shipping_method' ),
-                array( 'db' => '`s`.`track_number`',   'dt' => 'track_number', 'field'=>'track_number' ),
                 array( 'db' => '`o`.`id`',   'dt' => 'oid', 'field'=>'id' )
             );
             // SQL server connection information
             $sql_details = [];
 
-            $joinQuery = " FROM `{$table}` AS `o`  LEFT JOIN `{$table_pre}order_transactions` AS t ON (`t`.`order_id` = `o`.`id`) LEFT JOIN `{$table_pre}order_payment` AS p ON (`p`.`order_id` = `o`.`id`) LEFT JOIN `{$table_pre}shipments` AS s on (`s`.`order_id` = `o`.`id`) LEFT join ba_shopify_orders as so on o.id=so.order_id WHERE o.status in('processing','completed') and so.order_id is null  ";
+            $joinQuery = " FROM `{$table}` AS `o` LEFT join ba_shopify_orders as so on o.id=so.order_id WHERE o.status in('processing','completed') and so.order_id is null  ";
             $extraCondition = "";
             //$extraCondition = "`a`.`address_type`='cart_shipping'";
 

@@ -7,7 +7,7 @@ use Nicelizhi\Airwallex\Payment\Airwallex;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Log;
-
+use Webkul\Sales\Repositories\RefundRepository;
 use Webkul\Sales\Repositories\InvoiceRepository;
 use Webkul\Sales\Repositories\OrderRepository;
 use Webkul\Sales\Repositories\OrderTransactionRepository;
@@ -55,6 +55,7 @@ class AirwallexController extends Controller
         protected OrderRepository $orderRepository,
         protected OrderTransactionRepository $orderTransactionRepository,
         protected WebHook $webhookhelp,
+        protected RefundRepository $refundRepository,
         protected Airwallex $airwallex
     ) {
     }
@@ -80,14 +81,27 @@ class AirwallexController extends Controller
             $this->order = $order;
 
             if ($order) {
-                Log::info("airwallex notification received for order id:" . $transactionId);            
+                Log::info("airwallex notification received for order id:" . $transactionId);    
+                
+                
+                
                 $status = $input['data']['object']['status'];
                 
                 if ($status === 'SUCCEEDED' && $input['name']==='payment_intent.succeeded') {
+
+                    if($order->status!=='pending') {
+                        return response('Order already processed', 200);
+                    }
+
                    // $amount = $transactionData->data->object->amount;
-                    $amount = $input['data']['object']['amount'] * 100;
+                    $amount = round($input['data']['object']['amount'] * 100);
                     $orderAmount = round($order->base_grand_total * 100);
-                    if ($amount === $orderAmount) { // 核对价格是否一样的情况。
+
+                    $amount_sub = substr($amount, 0, 3);
+                    $orderAmount_sub = substr($orderAmount, 0, 3);
+
+                    //var_dump($amount, $orderAmount);
+                    if ($amount_sub === $orderAmount_sub) { // check if the amount is matched
                         if ($order->status === 'pending') {
                             $order->status = 'processing';
                             $order->save();
@@ -120,11 +134,15 @@ class AirwallexController extends Controller
                             'payment_method' => $invoice->order->payment->method,
                             'order_id'       => $order->id,
                             'invoice_id'     => $invoice->id,
+                            'captures_id'    => $input['data']['object']['id'],
                             'data'           => json_encode(
                                 $input
                             ),
                         ]);
 
+                    }else{
+                        Log::info("airwallex notification received for order id:" . $transactionId . " amount not matched");
+                        return response("Order not found ".$amount."---".$orderAmount, 400);
                     }
                 } else {
                     $this->webhookProcess($input['name'], $input); // process other webhook events
@@ -230,7 +248,7 @@ class AirwallexController extends Controller
                 $webhookhelp->payment_dispute_requires_response();
                 break;
             case 'payment_dispute.accepted': // You have accepted the Pre-chargeback / chargeback / Pre-arbitration request
-                $webhookhelp->payment_dispute_accepted();
+                $webhookhelp->payment_dispute_accepted($this->orderRepository, $this->refundRepository);
                 break;
             case 'payment_dispute.reversed': // Issuing bank has reversed the dispute event, you do not have to respond to the dispute event anymore.
                 $webhookhelp->payment_dispute_reversed();
@@ -239,7 +257,7 @@ class AirwallexController extends Controller
                 $webhookhelp->payment_dispute_won();
                 break;
             case 'payment_dispute.lost': //You have lost the chargeback / Pre-arbitration, no further action needed from your side.
-                $webhookhelp->payment_dispute_lost();
+                $webhookhelp->payment_dispute_lost($this->orderRepository, $this->refundRepository);
                 break;
         }
     }

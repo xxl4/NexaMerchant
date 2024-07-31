@@ -1,11 +1,15 @@
 <!DOCTYPE html>
-<html lang="{{ app()->getLocale() }}">
+<html lang="{{ app()->getLocale() }}" dir="{{ core()->getCurrentLocale()->direction }}">
 
 <head>
   <title></title>
-  <link rel="icon prefetch" id="favicon-icon" href="/checkout/v2/images/favicon_de.png" type="image/png" sizes="16x16" />
+  <link rel="icon prefetch" id="favicon-icon" href="/checkout/v2/images/favicon_de.webp" type="image/png" sizes="16x16" />
   <meta charset="utf-8" />
   <meta name="description" content="Fur Sweep Collar" />
+  <meta name="csrf-token" content="{{ csrf_token() }}">
+  <meta name="base-url" content="{{ url()->to('/') }}">
+  <meta name="currency-code" content="{{ core()->getCurrentCurrencyCode() }}">
+  <meta http-equiv="content-language" content="{{ app()->getLocale() }}">
   <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <meta http-equiv="content-type" content="text/html;charset=utf-8" />
@@ -19,1696 +23,304 @@
   <meta property="og:image:height" content="630" />
   <meta property="og:image" content="/offer/1/app/desktop/images/thumb.png" />
   <meta name="color-scheme" content="light only" />
-  <link href="https://cdn.jsdelivr.net/npm/flag-icon-css@4.1.7/css/flag-icons.min.css" rel="stylesheet" />
-  <link href="https://cdn.jsdelivr.net/npm/jquery-colorbox@1.6.4/example1/colorbox.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="/checkout/v2/css/v3.css?v=2">
+  <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/checkout.css?v=10" />
+  <link rel="prefetch" href="/checkout/v2/images/favicon_de.webp">
+  <link rel="prefetch" href="/checkout/v2/images/favicon.webp">
+  <link rel="prefetch" href="/checkout/v2/images/googlePay.webp">
+  <link rel="prefetch" href="/checkout/v2/images/applePay.webp">
+  <link rel="prefetch" href="/checkout/v2/images/logo_{{ app()->getLocale() }}.webp">
+  <!-- <link href="https://cdn.jsdelivr.net/npm/flag-icon-css@4.1.7/css/flag-icons.min.css" rel="stylesheet" /> -->
+  <!-- <link href="https://cdn.jsdelivr.net/npm/jquery-colorbox@1.6.4/example1/colorbox.min.css" rel="stylesheet" /> -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icon-css@4.1.7/css/flag-icons.min.css" media="none" onload="if(media!='all')media='all'">
+  <noscript>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icon-css@4.1.7/css/flag-icons.min.css">
+  </noscript>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-colorbox@1.6.4/example1/colorbox.min.css" media="none" onload="if(media!='all')media='all'">
+  <noscript>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-colorbox@1.6.4/example1/colorbox.min.css">
+  </noscript>
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/5.0.4/css/swiper.css" /> -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/5.0.4/css/swiper.css" media="none" onload="if(media!='all')media='all'">
+  <noscript>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/5.0.4/css/swiper.css">
+  </noscript>
+  <!-- <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/slick.min.css" /> -->
+  <link rel="stylesheet" href="/checkout/v2/css/slick.min.css" media="none" onload="if(media!='all')media='all'">
+  <noscript>
+    <link rel="stylesheet" href="/checkout/v2/css/slick.min.css">
+  </noscript>
+  <!-- <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/upsell-new-02.css?v=6" /> -->
+  <link rel="stylesheet" href="/checkout/v2/css/upsell-new-02.css?v=6" media="none" onload="if(media!='all')media='all'">
+  <noscript>
+    <link rel="stylesheet" href="/checkout/v2/css/upsell-new-02.css?v=6">
+  </noscript>
+  <!-- <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/extra-style.css?v=1" /> -->
+  <link rel="stylesheet" href="/checkout/v2/css/extra-style.css?v=1" media="none" onload="if(media!='all')media='all'">
+  <noscript>
+    <link rel="stylesheet" href="/checkout/v2/css/extra-style.css?v=1">
+  </noscript>
+  <!-- <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/fonts.css?v=1" /> -->
+  <link rel="stylesheet" href="/checkout/v2/css/fonts.css?v=1" media="none" onload="if(media!='all')media='all'">
+  <noscript>
+    <link rel="stylesheet" href="/checkout/v2/css/fonts.css?v=1">
+  </noscript>
+  <!-- <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/custom.css?v=1" /> -->
+  <link rel="stylesheet" href="/checkout/v2/css/custom.css?v=1" media="none" onload="if(media!='all')media='all'">
+  <noscript>
+    <link rel="stylesheet" href="/checkout/v2/css/custom.css?v=1">
+  </noscript>
+  <!-- <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/new_addon.css?v=1" /> -->
+  <link rel="stylesheet" href="/checkout/v2/css/new_addon.css?v=1" media="none" onload="if(media!='all')media='all'">
+  <noscript>
+    <link rel="stylesheet" href="/checkout/v2/css/new_addon.css?v=1">
+  </noscript>
+  <!-- <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/all.min.css" /> -->
+  <link rel="stylesheet" href="/checkout/v2/css/all.min.css" media="none" onload="if(media!='all')media='all'">
+  <noscript>
+    <link rel="stylesheet" href="/checkout/v2/css/all.min.css">
+  </noscript>
+  <!-- <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/bootstrap.min.css" /> -->
+  <link rel="stylesheet" href="/checkout/v2/css/bootstrap.min.css?v=1" media="none" onload="if(media!='all')media='all'">
+  <noscript>
+    <link rel="stylesheet" href="/checkout/v2/css/bootstrap.min.css?v=1">
+  </noscript>
+  <!-- <link rel="stylesheet prefetch" href="/checkout/v2/css/app2.css?v=5" /> -->
+  <link rel="stylesheet" href="/checkout/v2/css/app2.css?v=6" media="none" onload="if(media!='all')media='all'">
+  <noscript>
+    <link rel="stylesheet" href="/checkout/v2/css/app2.css?v=6">
+  </noscript>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" media="none" onload="if(media!='all')media='all'">
+  <noscript>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+  </noscript>
   <style>
-    @media only screen and (max-width: 600px) {}
-
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
-      font-weight: 700;
-    }
-
-    #i71q {
-      position: fixed;
-      top: 0;
-      z-index: 20;
-    }
-
-    #swiper1 {
-      width: 100%;
-      /* height: auto; */
-    }
-
-    #swiper2 {
-      width: 100%;
-      height: 1305px;
-    }
-
-    .swiper-slide {
-      padding: 0 10px;
-    }
-
-    .mb1 {
-      margin-bottom: 1px;
-    }
-
-    .cardimage {
-      text-align: start;
-      width: 100%;
-      padding: 10px 15px;
-      border-bottom: 1px solid #f7f3f3;
-    }
-
-    #comment-img2 {
-      width: 100%;
-    }
-
-    .cardtext {
-      width: 100%;
-      /* height: 140px; */
-      /* padding: 0 15px; */
-      margin: 6px 0;
-      overflow-y: auto;
-      font-size: 13px;
-      color: #444444;
-    }
-
-    #seeFaqBtn {
-      padding: 20px 20px 20px 0;
-      font-size: 17px;
-      font-weight: bold;
-      color: #444444
-    }
-
-    #seeFaqBtn span {
-      cursor: pointer;
-      text-decoration: underline;
-    }
-
-    /* 初始状态下隐藏内容 */
-    #collapseContent {
-      display: none;
-      /* background-color: rgb(213, 218, 203); */
-    }
-
-    #faq-question {
-      width: 100%;
-      text-decoration: none;
-    }
-
-    .panel-group {
-      margin-bottom: 20px;
-    }
-
-    .panel {
-      margin-bottom: 20px;
-      background-color: #fff;
-      border: 1px solid transparent;
-      border-radius: 4px;
-      -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
-      box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
-    }
-
-    .panel-group .panel {
-      margin-bottom: 0;
-      border-radius: 4px;
-    }
-
-    .panel-default {
-      border-color: #ddd;
-    }
-
-    .panel-default>.panel-heading {
-      color: var(--text-color);
-      font-weight: 500;
-      background-color: #F0F5FF;
-      border-color: #ddd;
-    }
-
-    .panel-group .panel-heading {
-      border-bottom: 0;
-    }
-
-    .panel-heading {
-      padding: 10px 15px;
-      border-bottom: 1px solid transparent;
-      border-top-left-radius: 3px;
-      border-top-right-radius: 3px;
-    }
-
-    .panel-default>.panel-heading+.panel-collapse>.panel-body {
-      font-size: 13px;
-      border-top-color: #ddd;
-      color: var(--text-color);
-    }
-
-    .panel-group .panel-heading+.panel-collapse>.list-group,
-    .panel-group .panel-heading+.panel-collapse>.panel-body {
-      border-top: 1px solid #ddd;
-    }
-
-    .panel-body {
-      padding: 15px;
-      background-color: #F4F4F4;
-    }
-  </style>
-  <style>
-    .section {
-      box-sizing: border-box;
-    }
-
-    .i1takkh {
-      margin-left: 10px;
-      text-align: center;
-      display: inline-block;
-      text-decoration-line: none;
-      text-decoration-thickness: initial;
-      text-decoration-style: initial;
-      text-decoration-color: initial;
-      font-size: 16px;
-      color: rgb(255, 255, 255);
-      box-shadow: rgba(0, 0, 0, 0.35) 0px 2px 4px 0px;
-      border-bottom-width: 4px;
-      border-bottom-style: none;
-      border-bottom-color: rgb(2, 131, 50);
-      padding-top: 10px;
-      padding-right: 10px;
-      padding-bottom: 10px;
-      padding-left: 10px;
-      font-weight: 700;
-      background-image: -webkit-linear-gradient(180deg,
-          rgb(62, 186, 235) 0%,
-          rgb(66, 187, 217) 16.129%,
-          rgb(69, 188, 206) 34.2742%,
-          rgb(69, 191, 180) 75%,
-          rgb(69, 191, 180) 100%);
-      background-repeat-x: repeat;
-      background-repeat-y: repeat;
-      background-position-x: 0px;
-      background-position-y: 0px;
-      background-attachment: scroll;
-      background-size: 100%;
-      font-family: var(--text-family);
-    }
-
-    .main {
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
-    }
-
-    .three-points {
-      display: flex;
-      flex-direction: column;
-      padding-top: 34px;
-      padding-bottom: 34px;
-      justify-content: space-around;
-      -webkit-box-align: center;
-      align-items: center;
-    }
-
-    .three-points-image {
-      width: 60px;
-      height: 60px;
-      max-width: none;
-    }
-
-    .three-points-text {
-      color: rgb(0, 48, 87);
-      font-size: 16px;
-      line-height: 20px;
-      text-align: center;
-    }
-
-    .wrapper {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .container-product {
-      text-align: center;
-      margin-top: 0px;
-      margin-right: auto;
-      margin-bottom: 22px;
-      margin-left: auto;
-      max-width: 75%;
-    }
-
-    /* .container_title {
-      margin-top: 10px;
-      font-size: 16px;
-      color: #fff; 
-    font-weight: 500;
-    width: 100%;
-    transition: all .2s ease-in-out;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    padding-left: 4px;
-    height: 35px;
-    font-family: var(--text-family);
-    }*/
-    .three_main {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-top: 0px;
-      margin-right: 0px;
-      margin-bottom: 20px;
-      margin-left: 0px;
-    }
-
-    .three_con {
-      flex-grow: 1;
-      flex-shrink: 1;
-      flex-basis: 0%;
-    }
-
-    .three_title {
-      margin-top: 0px;
-      margin-right: 0px;
-      margin-bottom: 20px;
-      margin-left: 0px;
-      letter-spacing: -0.3px;
-      font-size: 22px;
-      line-height: 33px;
-    }
-
-    .three_text {
-      font-size: 16px;
-      color: rgb(0, 0, 0);
-      line-height: 23px;
-      font-family: var(--text-family);
-    }
-
-    .three_img {
-      flex-grow: 1;
-      flex-shrink: 1;
-      flex-basis: 0%;
-    }
-
-    .three_img img {
-      max-width: 80%;
-    }
-
-    /* .icon_icon__ECGRl {
-      padding-bottom: 2px;
-    } */
-
-    .grade-top {
-      display: flex;
-      align-items: center;
-    }
-
-    .grade-text {
-      margin-right: 6px;
-    }
-
-    .grade-text2 {
-      margin-left: 6px;
-      margin-top: 4px;
-    }
-
-    .grade-text3 {
-      font-weight: 400;
-    }
-
-    .speak {
-      display: flex;
-      justify-content: space-between;
-    }
-
-    .speak_l {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .border_b {
-      width: 1.5em;
-      height: 1.5em;
-      border: 1px solid #696a6a;
-      border-radius: 4px;
-    }
-
-    .left_text {
-      font-weight: 400;
-      margin-left: 8px;
-    }
-
-    .stars_n {
-      display: flex;
-    }
-
-    .stars_l {
-      display: flex;
-      margin-top: 12px;
-    }
-
-    .r--title-average {
-      color: rgb(51, 51, 51);
-      font-size: 1.0833em;
-      width: 100%;
-      display: inline-block;
-      line-height: 1.16;
-      text-align: center;
-    }
-
-    .r--stars_average {
-      line-height: 1.32;
-      font-size: 3em;
-      color: rgb(51, 51, 51);
-      font-weight: 700;
-      text-align: center;
-    }
-
-    .speak_r {
-      flex-grow: 1;
-      flex-shrink: 1;
-      flex-basis: 0%;
-      display: flex;
-    }
-
-    .itnysh {
-      flex-grow: 1;
-      flex-shrink: 0;
-      flex-basis: 0px;
-      display: flex;
-      flex-direction: column;
-      align-items: stretch;
-      padding-top: 5px;
-      padding-right: 0px;
-      padding-bottom: 5px;
-      padding-left: 0px;
-      margin-top: 0px;
-      margin-right: 10px;
-      margin-bottom: 0px;
-      margin-left: 10px;
-    }
-
-    .iakor7 {
-      background-color: rgb(245, 245, 245);
-      border-top-left-radius: 4px;
-      border-top-right-radius: 4px;
-      border-bottom-right-radius: 4px;
-      border-bottom-left-radius: 4px;
-      box-shadow: rgba(0, 0, 0, 0.21) 0px 1px 3px 0px inset;
-      min-height: 12px;
-      margin-top: 0px;
-      margin-right: 0px;
-      margin-bottom: 25px;
-      margin-left: 0px;
-    }
-
-    .islybo {
-      background-color: rgb(245, 245, 245);
-      border-top-left-radius: 4px;
-      border-top-right-radius: 4px;
-      border-bottom-right-radius: 4px;
-      border-bottom-left-radius: 4px;
-      box-shadow: rgba(0, 0, 0, 0.21) 0px 1px 3px 0px inset;
-      min-height: 12px;
-      margin-top: 0px;
-      margin-right: 0px;
-      margin-bottom: 25px;
-      margin-left: 0px;
-    }
-
-    .ig637l {
-      max-width: 86.2%;
-      min-height: 12px;
-      border-top-left-radius: 4px;
-      border-top-right-radius: 0px;
-      border-bottom-right-radius: 0px;
-      border-bottom-left-radius: 4px;
-      line-height: 1.467em;
-      background-color: rgb(253, 188, 0);
-    }
-
-    .bg-green {
-      background-color: rgb(7, 238, 65) !important;
-    }
-
-    .bg-blue {
-      background-color: #d8e4fa !important;
-    }
-
-    .i55eho {
-      border-top-left-radius: 4px;
-      border-top-right-radius: 4px;
-      border-bottom-right-radius: 4px;
-      border-bottom-left-radius: 4px;
-      box-shadow: rgba(0, 0, 0, 0.21) 0px 1px 3px 0px inset;
-      margin-top: 0px;
-      margin-right: 0px;
-      margin-bottom: 25px;
-      margin-left: 0px;
-      background-color: rgb(245, 245, 245);
-      min-height: 12px;
-    }
-
-    .islybo {
-      border-top-left-radius: 4px;
-      border-top-right-radius: 4px;
-      border-bottom-right-radius: 4px;
-      border-bottom-left-radius: 4px;
-      box-shadow: rgba(0, 0, 0, 0.21) 0px 1px 3px 0px inset;
-      margin-top: 0px;
-      margin-right: 0px;
-      margin-bottom: 25px;
-      margin-left: 0px;
-      background-color: rgb(245, 245, 245);
-      min-height: 12px;
-    }
-
-    .i9r4tj {
-      border-top-left-radius: 4px;
-      border-top-right-radius: 4px;
-      border-bottom-right-radius: 4px;
-      border-bottom-left-radius: 4px;
-      box-shadow: rgba(0, 0, 0, 0.21) 0px 1px 3px 0px inset;
-      margin-top: 0px;
-      margin-right: 0px;
-      margin-bottom: 25px;
-      margin-left: 0px;
-      background-color: rgb(245, 245, 245);
-      min-height: 12px;
-    }
-
-    .i20q32 {
-      border-top-left-radius: 4px;
-      border-top-right-radius: 4px;
-      border-bottom-right-radius: 4px;
-      border-bottom-left-radius: 4px;
-      box-shadow: rgba(0, 0, 0, 0.21) 0px 1px 3px 0px inset;
-      margin-top: 0px;
-      margin-right: 0px;
-      margin-bottom: 25px;
-      margin-left: 0px;
-      background-color: rgb(245, 245, 245);
-      min-height: 12px;
-    }
-
-    .icdfoq {
-      max-width: 13.8%;
-      min-height: 12px;
-      border-top-left-radius: 4px;
-      border-top-right-radius: 0px;
-      border-bottom-right-radius: 0px;
-      border-bottom-left-radius: 4px;
-      line-height: 1.467px;
-      background-color: rgb(253, 188, 0);
-    }
-
-    .i9r4tj {
-      margin-top: 0px;
-      margin-right: 0px;
-      margin-bottom: 0px;
-      margin-left: 0px;
-    }
-
-    .i10l46 {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .count-percent {
-      border-top-left-radius: 3px;
-      border-top-right-radius: 3px;
-      border-bottom-right-radius: 3px;
-      border-bottom-left-radius: 3px;
-      border-top-width: 1px;
-      border-right-width: 1px;
-      border-bottom-width: 1px;
-      border-left-width: 1px;
-      border-top-style: solid;
-      border-right-style: solid;
-      border-bottom-style: solid;
-      border-left-style: solid;
-      border-top-color: rgb(226, 226, 226);
-      border-right-color: rgb(226, 226, 226);
-      border-bottom-color: rgb(226, 226, 226);
-      border-left-color: rgb(226, 226, 226);
-      border-image-source: initial;
-      border-image-slice: initial;
-      border-image-width: initial;
-      border-image-outset: initial;
-      border-image-repeat: initial;
-      display: inline-block;
-      padding-top: 2px;
-      padding-right: 0px;
-      padding-bottom: 2px;
-      padding-left: 0px;
-      line-height: 1;
-      font-weight: 700;
-      width: 3.5em;
-      text-align: center;
-      white-space-collapse: collapse;
-      text-wrap: nowrap;
-      margin-bottom: 16px;
-    }
-
-    .ixjwih {
-      display: block;
-      color: rgb(255, 255, 255);
-      text-decoration-line: none;
-      text-decoration-thickness: initial;
-      text-decoration-style: initial;
-      text-decoration-color: initial;
-      max-width: 600px;
-      margin-top: 40px;
-      margin-right: auto;
-      margin-bottom: 40px;
-      margin-left: auto;
-    }
-
-    .i6csw4 {
-      text-align: center;
-      padding-top: 18px;
-      padding-right: 5px;
-      padding-bottom: 18px;
-      padding-left: 15px;
-      font-size: 18px;
-      font-family: var(--text-family);
-      font-weight: 700;
-      line-height: 28px;
-      letter-spacing: 0.42px;
-      background-image: -webkit-linear-gradient(180deg,
-          rgb(62, 186, 235) 0%,
-          rgb(66, 187, 217) 19.7581%,
-          rgb(69, 188, 206) 36.2903%,
-          rgb(69, 191, 180) 81.4516%,
-          rgb(69, 191, 180) 100%);
-      background-repeat-x: repeat;
-      background-repeat-y: repeat;
-      background-position-x: 0px;
-      background-position-y: 0px;
-      background-attachment: scroll;
-      background-size: 100%;
-      box-shadow: rgba(0, 0, 0, 0.24) -2px 6px 16px 0px;
-    }
-
-    .content_speak {
-      display: flex;
-      padding-top: 30px;
-      padding-right: 0px;
-      padding-bottom: 30px;
-      padding-left: 0px;
-    }
-
-    .cont_left {
-      width: 23%;
-      display: flex;
-    }
-
-    .con_autor {
-      width: 35px;
-      height: 35px;
-      background-image: initial;
-      background-position-x: initial;
-      background-position-y: initial;
-      background-size: initial;
-      background-repeat-x: initial;
-      background-repeat-y: initial;
-      background-attachment: initial;
-      background-origin: initial;
-      background-clip: initial;
-      background-color: rgb(46, 162, 219);
-      color: rgb(255, 255, 255);
-      border-top-left-radius: 50%;
-      border-top-right-radius: 50%;
-      border-bottom-right-radius: 50%;
-      border-bottom-left-radius: 50%;
-      text-align: center;
-      text-transform: uppercase;
-      font-weight: normal;
-      line-height: 35px;
-      margin-right: 9px;
-    }
-
-    .r--text-limit {
-      font-size: 12px;
-      color: rgb(60, 60, 60);
-      margin-top: 0px;
-      margin-right: 0px;
-      margin-bottom: 0px;
-      margin-left: 0px;
-    }
-
-    .country {
-      max-width: 16px;
-      margin: 0 6px 2px 6px;
-    }
-
-    .cont_right {
-      width: 77%;
-      border-bottom-width: 1px;
-      border-bottom-style: solid;
-      border-bottom-color: rgb(242, 242, 242);
-      padding-bottom: 20px;
-    }
-
-    .r--title-review {
-      font-weight: 700;
-      font-size: 13px;
-    }
-
-    .inam9w {
-      bottom: 0px;
-      width: 100%;
-      top: inherit;
-      background-color: rgba(0, 0, 0, 0.8);
-      padding-top: 8px;
-      padding-right: 0px;
-      padding-bottom: 8px;
-      padding-left: 0px;
-      display: none;
-      position: fixed;
-      z-index: 10;
-      text-align: center;
-    }
-
-    .iv2aey {
-      display: block;
-      max-width: 85%;
-      position: static;
-      margin-top: 0px;
-      margin-right: auto;
-      margin-bottom: 0px;
-      margin-left: auto;
-      border-top-left-radius: 7px;
-      border-top-right-radius: 7px;
-      border-bottom-right-radius: 7px;
-      border-bottom-left-radius: 7px;
-      color: rgb(255, 255, 255);
-      text-decoration-line: none;
-      text-decoration-thickness: initial;
-      text-decoration-style: initial;
-      text-decoration-color: initial;
-    }
-
-    .iiu39j {
-      text-align: center;
-      padding-top: 18px;
-      padding-right: 15px;
-      padding-bottom: 18px;
-      padding-left: 15px;
-      font-size: 18px;
-      font-weight: 700;
-      line-height: 28px;
-      background-image: -webkit-linear-gradient(180deg,
-          rgb(62, 186, 235) 0%,
-          rgb(66, 187, 217) 19.7581%,
-          rgb(69, 188, 206) 36.2903%,
-          rgb(69, 191, 180) 81.4516%,
-          rgb(69, 191, 180) 100%);
-      background-repeat-x: repeat;
-      background-repeat-y: repeat;
-      background-position-x: 0px;
-      background-position-y: 0px;
-      background-attachment: scroll;
-      background-size: 100%;
-      box-shadow: rgba(0, 0, 0, 0.24) -2px 6px 16px 0px;
-      border-top-left-radius: 7px;
-      border-top-right-radius: 7px;
-      border-bottom-right-radius: 7px;
-      border-bottom-left-radius: 7px;
-      font-family: var(--text-family);
-      letter-spacing: normal;
-      color: rgb(255, 255, 255);
-    }
-
-    .footer-box {
-      background-color: #F5F5F5;
-      padding: 60px 30px 60px 30px;
-      margin-top: 10px;
-      margin-right: 0px;
-      margin-left: 0px;
-      text-align: center;
-      color: #333;
-      font-size: 12px;
-    }
-
-    .footer-box a {
-      text-decoration-line: none;
-      text-decoration-thickness: initial;
-      text-decoration-style: initial;
-      text-decoration-color: initial;
-      color: rgb(0, 48, 87);
-      margin-right: 10px;
-      cursor: pointer;
-    }
-
-    #i71q {
-      display: none;
-    }
-
-    #iu8zsl {
-      letter-spacing: -0.3px;
-    }
-
-    #inr3q {
-      margin-top: 0px;
-      margin-right: 0px;
-      margin-bottom: 0px;
-      margin-left: 12px;
-    }
-
-    #i2uiej #ica65 {
-      letter-spacing: -0.3px;
-    }
-
-    .comment-card {
-      margin-bottom: 20px;
-      border: 1px solid rgba(221, 221, 216, 0.5);
-      padding: 16px;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-
-    /* 预览图 */
-    .preview-img {
-      display: none;
-      text-align: center;
-      width: 100%;
-      height: 100%;
-      position: fixed;
-      left: 0;
-      top: 0;
-      z-index: 100;
-      background: url('../images/fancybox_overlay.png');
-    }
-
-    /* 容器 */
-    .preview-img .container {
-      max-width: 90%;
-      position: absolute;
-      padding: 15px;
-      background-color: #f9f9f9;
-      border-radius: 5px;
-    }
-
-    /* 大图显示 */
-    .preview-img .container img {
-      max-width: 100%;
-      background-size: contain/cover;
-    }
-
-    /* 关闭按钮 */
-    .preview-img .container a {
-      display: inline-block;
-      width: 36px;
-      height: 36px;
-      text-decoration: none;
-      position: absolute;
-      right: -18px;
-      top: -18px;
-      background: url('../images/fancybox_sprite.png') no-repeat;
-    }
-
-    @media (max-width: 768px) {
-      .three_main {
-        flex-direction: column;
-      }
-
-      /* .speak {
-          flex-direction: column;
-        } */
-      .content_speak {
-        flex-direction: column;
-      }
-
-      .iadfoy {
-        flex-direction: column;
-      }
-
-      .igv912 {
-        display: none;
-      }
-
-      .inam9w {
-        display: block;
-      }
-
-      /* .speak_r {
-          margin-top: 10px;
-          margin-right: 0px;
-          margin-bottom: 10px;
-          margin-left: 0px;
-        } */
-      .three_img img {
-        max-width: 100%;
-      }
-
-      .cont_left {
-        width: 100%;
-      }
-
-      .cont_right {
-        width: 100%;
-      }
-
-      .mb-order-1 {
-        order: 1;
-      }
-
-      .average-star-image {
-        text-align: center;
-      }
-    }
-
-    @media (max-width: 1120px) {
-      .Schritt-top-box {
-        height: 85px !important;
-      }
-    }
-
-    @media (max-width: 480px) {
-      #iwni3 {
-        width: 100px;
-      }
-
-      #i71q {
-        display: none;
-      }
-
-      /* .faq-content {
-        padding: 0 15px;
-      } */
-
-      .footer-box {
-        padding: 20px 30px 20px 30px;
-        /* margin-bottom: 30px; */
-      }
-
-      .br {
-        display: none;
-      }
-
-      .ajax {
-        display: inline-block;
-        margin-bottom: 10px;
-      }
-
-      .i1takkh {
-        font-size: 12px;
-      }
-
-      #ilvo {
-        margin-top: 7px;
-      }
-    }
-  </style>
-  <style>
-    /* #gallery img {
-      height: 460px;
-      object-fit: contain;
-    } */
-
-    #thumbs {
-      height: 140px;
-    }
-
-    #thumbs .swiper-slide {
-      height: 150px;
-    }
-
-    #thumbs img {
-      height: 150px;
+    img {
+      /* aspect-ratio: attr(width)/attr(height); */
       object-fit: contain;
     }
 
-    .slider-banner-image {
-      height: 460px !important;
-      position: relative;
+    /* .sw-box {
+      height: 48.33333vw;
+    } */
+    .sw-box {
+      width: 100%;
+      height: 500px;
+      background-color: #e0e0e0;
+      animation: pulse 1.5s infinite;
     }
 
-    #thumbs img {
-      opacity: 0.4;
+    .share-item {
+      margin-right: 5px;
     }
 
-    .my-slide-thumb-active img {
-      opacity: 1 !important;
+    /* .share-icons {
+      display: flex;
+      gap: 10px;
     }
 
-    @media (max-width: 780px) {
-      .header-container {
-        height: 50px !important;
-      }
-
-      .prod-name {
-        margin-top: 15px !important;
-      }
-
-      .herder-content {
-        height: 50px !important;
-      }
-
-      .Schritt-top-box {
-        height: 80px;
-        padding: 5px 0 8px 0;
-      }
-
-      .top-left-button-box {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 14px;
-        /* width: 130px; */
-        height: 25px;
-        margin-left: 10px;
-        border-radius: 6px;
-      }
-
-      .header-container img {
-        max-height: 35px;
-      }
-
-      .item-text {
-        font-size: 13px;
-      }
-
-      .header-text-hide {
-        display: none;
-      }
-
-      #header-text:hover {
-        color: #1773B0;
-      }
-
-      .top-left-button {
-        justify-content: end !important;
-      }
-
-      /* .grid-container {
-        display: none !important;
-      } */
-
-      .sku-preview-img img {
-        width: 80%;
-      }
-
-      /* .banner-content {
-        display: block !important;
-      } */
-
-      .prd-det-disc {
-        display: block !important;
-        height: 80px;
-        opacity: 0;
-      }
-
-      .dialog-box {
-        width: 95%;
-      }
-
-      .left-sec {
-        height: auto !important;
-      }
-
-      /* 
-      #gallery img {
-        height: 320px;
-        object-fit: contain;
-      } */
-
-      #thumbs {
-        height: 80px;
-      }
-
-      #thumbs .swiper-slide {
-        height: 80px;
-      }
-
-      #thumbs img {
-        height: 80px;
-        object-fit: contain;
-      }
-
-      .slider-banner-image {
-        height: 400px !important;
-        position: relative;
-      }
-
-      .chk-header {
-        display: none;
-      }
-    }
-
-    .flex-center {
-      display: inline-flex;
-      flex-flow: row nowrap;
-      align-items: center;
-      justify-content: center;
-    }
-
-    #loading {
-      display: none;
-    }
-
-    .box {
-      display: inline-block;
-      font-size: 30px;
-      color: rgb(102, 101, 109);
-      padding: 1em;
-      margin-bottom: 30px;
-      vertical-align: top;
-      -webkit-transition: .3s color, .3s border;
-      transition: .3s color, .3s border;
-      text-align: center;
-    }
-
-    [class*="loader-"] {
-      display: inline-block;
-      width: 1em;
-      height: 1em;
+    .share-icons a {
+      text-decoration: none;
       color: inherit;
-      vertical-align: middle;
-      pointer-events: none;
     }
 
-    .loader-01 {
-      border: .2em dotted currentcolor;
-      border-radius: 50%;
-      -webkit-animation: 1s loader-01 linear infinite;
-      animation: 1s loader-01 linear infinite;
-    }
-
-    .item-text {
-      font-size: 13px;
-    }
-
-    @-webkit-keyframes loader-01 {
-      0% {
-        -webkit-transform: rotate(0deg);
-        transform: rotate(0deg);
-      }
-
-      100% {
-        -webkit-transform: rotate(360deg);
-        transform: rotate(360deg);
-      }
-    }
-
-    @keyframes loader-01 {
-      0% {
-        -webkit-transform: rotate(0deg);
-        transform: rotate(0deg);
-      }
-
-      100% {
-        -webkit-transform: rotate(360deg);
-        transform: rotate(360deg);
-      }
-    }
-  </style>
-  <style>
-    html {
-      scroll-behavior: smooth;
-    }
-
-    .input-box {
-      width: 100%;
-      /* font-family: var(--); */
-      /* height: 32px !important; */
-    }
-
-    .background-green {
-      background-color: #E0FDBA !important;
-    }
-
-    .input-box label {
-      width: 100%;
-      position: relative;
-      margin-bottom: 10px;
-    }
-
-    .input-box .input-item {
-      width: 100%;
-      padding: 20px 05px 05px 10px;
-      outline: 0;
-      border: 1px solid rgba(105, 105, 105, 0.397);
-      border-radius: 10px;
-    }
-
-    .input-box .input-item+span {
-      position: absolute;
-      left: 10px;
-      top: 15.5px;
-      font-size: 14px;
-      cursor: text;
-      transition: 0.3s ease;
-    }
-
-    .product-selected {
-      display: none;
-      position: absolute;
-      bottom: 8px;
-      right: 21%;
-      color: #fff;
-      background: #1773B0;
-      font-size: 12px;
-      padding: 5px;
-      border-radius: 4px;
-    }
-
-    /* .input-box .input-item:placeholder-shown+span {
-      top: 15.5px;
-      font-size: 14px;
+    .share-icons i {
+      font-size: 24px;
     } */
 
-    .input-focus {
-      top: 0 !important;
-      font-size: 14px;
-    }
-
-    .input-box .input-item:focus+span {
-      color: #00bfff;
-      top: 0px;
-      font-size: 0.7em;
-      font-weight: 600;
-    }
-
-    .paypal-button.paypal-button-color-gold,
-    .paypal-button-row.paypal-button-color-gold .menu-button {
-      background: rgb(23, 115, 176) !important;
-    }
-
-    .sku-info {
-      width: 100%;
-      font-family: var(--text-family);
-    }
-
-    .sku-info>.sku-item-info {
-      /* border-bottom: 1px solid #e0e0e0; */
-      margin-top: 10px;
-    }
-
-    .sku-item-info {
-      display: flex;
-      width: 100%;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .sku-item-title {
-      font-size: 14px;
-      font-weight: normal;
-    }
-
-    .sku-content {
-      width: 100%;
-      padding-left: 14px;
-    }
-
-    .sku-item-text {
-      font-size: 12px;
-      font-weight: normal;
-      color: #666666;
-    }
-
-    .sku-price {
-      font-size: 13px;
-      color: red;
-      font-weight: normal;
-    }
-
-    .buy-relative {
-      position: relative;
-    }
-
-    .buy-box {
-      display: inline-block;
-      font-size: 30px;
-      color: rgb(102, 101, 109);
-      padding: 1em;
-      vertical-align: top;
-      -webkit-transition: .3s color, .3s border;
-      transition: .3s color, .3s border;
-      text-align: center;
-    }
-
-    #cb-buy-each2 {
-      color: red;
-    }
-
-    .size-chart-img {
-      width: 100%;
-      height: 100%;
-      /* background-color: #f5f5f5; */
-      /* opacity: 0.3; */
-      position: fixed;
-      top: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: rgba(0, 0, 0, 0.6);
-      z-index: 9999;
-    }
-
-    .size-chart-img img {
-      max-height: 60%;
-      max-width: 100%;
-    }
-
-    /* .sku-preview-img img {
-      width: 300px;
+    /* .share-item {
+      margin-right: 5px;
     } */
-    .size-chart-img-box {
-      display: none;
-    }
-
-    .sku-preview-img {
-      width: 100%;
-      height: 100%;
-      /* background-color: #f5f5f5; */
-      /* opacity: 0.3; */
-      position: fixed;
-      top: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 9999;
-    }
-
-    .sku-preview-img img {
-      width: 300px;
-    }
-
-    .sku-preview-img-box {
-      display: none;
-    }
-
-    .swiper-slide {
-      padding: 0 !important;
-    }
-
-    .cb-reg-price {
-      font-size: 14px;
-    }
-
-    .font-weight-bold {
-      color: red
-    }
-
-    .p-off {
-      font-size: 13px;
-      color: red
-    }
-
-    .input-span {
-      color: var(--text-color);
-    }
-
-    .text-Schritt-top {
-      font-size: 13px;
-      margin: 10px 0 8px 0;
-      float: left;
-      color: #444444
-    }
-
-    .Schritt-top-box {
-      width: 100%;
-      padding: 5px 0 10px 0;
-      display: flex;
-      background-color: #F4F4F4;
-    }
-
-    .button-top {
-      float: left;
-      margin-top: 10px;
-      margin-left: 50%;
-      transform: translateX(-50%);
-      text-align: center;
-      font-weight: bold;
-      color: var(--text-color);
-    }
-
-    .flag-icon-size {
-      font-size: 10px;
-    }
-
-    .email-warn {
-      color: red;
-      font-size: 13px;
-      margin-left: 8px;
-    }
-
-    .pay-button {
-      display: none;
-      text-align: center;
-      margin-top: 12px;
-      width: 100%;
-      height: 48px;
-      background: #000 url('/checkout/v2/images/googlePay.png') no-repeat 100%/contain;
-      background-position: center;
-      border-radius: 4px;
-    }
-
-    .appalpay-button {
-      display: none;
-      text-align: center;
-      margin-top: 12px;
-      width: 100%;
-      height: 48px;
-      background: #000 url('/checkout/v2/images/applePay.png') no-repeat 100%/contain;
-      background-position: center;
-      border-radius: 4px;
-    }
-
-    .button-opacity {
-      opacity: 0.5;
-    }
-
-    .choose-billing-box {
-      display: none;
-      margin: 15px 5px 0;
-      font-size: 13px;
-      font-family: var(--text-family);
-      color: var(--text-color);
-    }
-
-    .billing-input-box {
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .header-container {
-      width: 100%;
-      height: 55px;
-      background-color: #fff;
-      border-bottom: 1px solid #f2f2f2;
-      position: sticky;
-      top: 0;
-      z-index: 99999;
-    }
-
-    .herder-content {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .top-left-button {
-      display: flex;
-      font-size: 14px;
-      color: var(--text-color);
-      /* width: 200px; */
-      align-items: center;
-      justify-content: space-around;
-      height: 55px;
-    }
-
-    .top-left-button-box {
-      padding: 8px;
-      background-color: #1773B0;
-      border-radius: 6px;
-      font-weight: 600;
-      margin-left: 10px;
-    }
-
-    .shopify-title {
-      margin-top: 10px;
-      font-size: 16px;
-      /* color: #fff; */
-      font-weight: 500;
-      width: 100%;
-      transition: all .2s ease-in-out;
-      /* background: #F4F4F4; */
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      padding-left: 4px;
-      height: 35px;
-    }
-
-    .shopify-title-item {
-      width: 50%;
-      display: flex;
-      justify-content: center;
-      border-bottom: 1px solid #dedede;
-    }
-
-    /* .shopify-title p {
-      border-bottom: 3px solid #dedede;
-    } */
-
-    .description-img-box {
-      height: 100%;
-      max-height: 48px;
-      flex: 1;
-      /* display: flex;
-      justify-content: center;
-      align-items: center;
-      
-      flex-direction: column; */
-    }
-
-    .iten-text {
-      font-size: 13px;
-      color: var(--text-color);
-    }
-
-    .description-img-box img {
-      object-fit: contain;
-    }
-
-    .payment-icon-box {
-      position: relative;
-      border: 1px solid #ddcccc;
-      height: 50px;
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-top: 25px;
-      float: left;
-      padding: 0 5px;
-    }
-
-    .payment-icon-box img {
-      width: 78px;
-    }
-
-    .payment-icon-box>img:nth-child(1) {
-      width: 70px;
-    }
-
-    .payment-icon-box>img:nth-child(3) {
-      width: 40px;
-    }
-
-    .payment-icon-box>img:nth-child(2) {
-      width: 40px;
-    }
-
-    .three-description-box {
-      width: 100%;
-      float: left;
-      margin-top: 15px;
-    }
-
-    .three-description-item {
-      margin-top: 10px;
-      display: flex;
-      align-items: center;
-    }
-
-    .three-description-item img {
-      width: 30px;
-    }
-
-    .three-description-text {
-      font-size: 13px;
-      font-family: var(--text-family);
-      color: var(--text-color);
-      padding-left: 10px;
-    }
-
-    .btn-bx {
-      display: inline-block;
-      vertical-align: top;
-      width: 100%;
-      text-align: center;
-      float: left;
-      margin-top: 15px;
-    }
-
-    .comn-btn {
-      width: 100%;
-      height: 45px;
-      font-size: 22px;
-      line-height: 43px;
-      font-weight: 800;
-      color: #fff;
-      border-radius: 8px;
-      background: #1773B0;
-      display: inline-block;
-      vertical-align: top;
-      letter-spacing: 0.8px;
-      animation: bounce 2s ease infinite, shadow-pulse 3s infinite;
-    }
-
-    .comn-btn:hover {
-      color: #fff;
-    }
-
-    .comn-btn {
-      outline: none;
-      color: #fff;
-      text-decoration: none;
-    }
-
-    .bor-bom-3 {
-      border-bottom: 3px solid #1773B0;
-    }
-
-    .ml5 {
-      margin-left: 5px;
-    }
-
-    .payment-top {
-      align-items: center;
-      display: flex;
-      justify-content: center;
-      position: absolute;
-      top: -14px;
-      background: #fff;
-      padding: 0 8px;
-      transform: translateX(-50%);
-      left: 50%;
-    }
-
-    .payment-top img {
-      width: 14px;
-      height: 14px;
-    }
-
-    .buy-select {
-      display: none;
-    }
-
-    .payment-top p {
-      margin-left: 4px;
-      font-size: 14px;
-      color: var(--text-color);
-      font-family: var(--text-family);
-    }
 
     .shopify-container {
       width: 100%;
-      text-align: left !important;
-      font-size: 13px !important;
-      color: var(--text-color) !important;
-      font-family: var(--text-family) !important;
+      height: 1000px;
+      background-color: #e0e0e0;
+      animation: pulse 1.5s infinite;
+    }
+
+    .shopify-content {
+      width: 100%;
+      float: left;
+    }
+
+    .pagination {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 20px;
+    }
+
+    .pagination button {
+      background-color: #1773B0;
+    }
+
+    .pagination button,
+    .pagination input {
+      margin: 0 5px;
+      padding: 5px 10px;
+      cursor: pointer;
+      border-radius: 4px;
+      font-size: 12px;
+    }
+
+    .pagination input {
+      width: 60px;
+      text-align: center;
+    }
+
+    .btn-fixed {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: rgba(0, 0, 0, 0.6);
+      display: none;
+      transition: opacity 0.3s ease;
+    }
+
+    #btn-bx {
+      padding: 0 0 10px 0;
+    }
+
+    #comn-btn1 {
+      font-size: 18px;
+      line-height: 26px;
+      font-weight: 800;
+      border-radius: 8px;
+      background: #1773b0;
+      letter-spacing: .8px;
+      animation: 2s infinite bounce, 3s infinite shadow-pulse;
+      outline: 0;
+      text-decoration: none;
+      height: auto;
     }
 
     .header-middle {
-      width: 100%;
-      padding: 10px 0;
-    }
-
-    .shopify-container p {
-      margin: 8px 0;
-    }
-
-    @keyframes bounce {
-
-      0%,
-      20%,
-      50%,
-      80%,
-      100% {
-        transform: translateY(0);
-      }
-
-      40% {
-        transform: translateY(-10px);
-      }
-
-      60% {
-        transform: translateY(-5px);
-      }
-    }
-
-    @media (min-width: 1200px) {
-      .container {
-        max-width: 80% !important;
-      }
-    }
-
-    .order-msg {
       display: flex;
-      align-items: center;
-      color: var(--text-color);
-      font-family: var(--text-family);
-      font-size: 14px;
+      flex-direction: column;
     }
 
-    .pr-price-single {
+    .icon-container {
+      position: fixed;
+      top: 12%;
+      right: -30px;
+      font-size: 24px;
+      color: #1773B0;
+      cursor: pointer;
+      z-index: 999;
+      transition: all 0.2s;
+    }
+
+    .icon-fixed {
+      right: 8px;
+    }
+
+    .icon-toggle {
+      transform: scale(1.5);
+    }
+
+    .image-toggle {
+      right: -200px !important;
+    }
+
+    .image-area {
+      position: fixed;
+      top: 20%;
+      right: 0;
+      /* width: 100px;
+      height: 100px;
+      border: 1px solid red; */
       display: flex;
-      align-items: center;
-      color: var(--text-color);
-      font-family: var(--text-family);
-      font-size: 14px;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-end;
+      z-index: 999;
+      transition: all 0.2s;
     }
 
-    .shippingMsg {
-      color: var(--text-color);
-      font-family: var(--text-family);
-      font-size: 14px;
-    }
-
-    .user-view {
-      color: var(--text-color);
-      font-family: var(--text-family);
-      font-size: 14px;
-    }
-
-    .pr-price-single>p:nth-child(1) {
-      font-size: 14px;
-      margin-right: 8px;
-      color: #090a0a;
-      text-decoration: line-through;
-    }
-
-    .mb10 {
+    .image-area img {
+      position: relative;
+      right: 0;
+      width: 50px;
+      transition: all 1s;
       margin-bottom: 10px;
+      border-radius: 5px;
     }
 
-    .mt10 {
-      margin-top: 10px;
+    .image-area img.active {
+      right: 0;
+      width: 200px;
     }
 
-    .pr-price-single>p:nth-child(2) {
-      font-size: 16px;
-      font-weight: 700;
-      line-height: 1;
-      margin-right: 10px;
-      color: #e95144;
+    .image-area img.fixed {
+      width: 50px;
+      transition: all 1s;
     }
 
-    .pr-price-single>p:nth-child(3) {
-      letter-spacing: normal;
-      color: #e95144;
-      border-bottom: 1px solid #e95144;
+    .image-area img.enlarged {
+      width: 200px;
+      transition: all 1s;
+    }
+
+    /* @media(max-width:600px) {
+      .sw-box {
+        height: 110vw;
+      }
+    }
+
+    @media(min-width:600px) and (max-width:768px) {
+      .sw-box {
+        height: 660px;
+      }
+    }
+
+    @media (min-width: 768px) and (max-width: 1028px) {
+      .sw-box {
+        height: 510px;
+      }
+    }
+
+    @media (min-width: 1020px) and (max-width: 1200px) {
+      .sw-box {
+        height: 610px;
+      }
+    } */
+
+    @keyframes pulse {
+      0% {
+        background-color: #e0e0e0;
+      }
+
+      50% {
+        background-color: #f0f0f0;
+      }
+
+      100% {
+        background-color: #e0e0e0;
+      }
+    }
+
+    @media(max-width:768px) {
+      .top-left-button {
+        display: none;
+      }
+
+      .herder-content {
+        justify-content: center;
+      }
     }
   </style>
 </head>
 
 <body>
-  <page-builder-block>
-    <!-- Start VWO SmartCode -->
-    <!-- <script src="/checkout/v2/js/51174.js"></script> -->
-    <!-- End VWO SmartCode -->
-    <link rel="stylesheet prefetch" href="/checkout/v2/css/app2.css?v=4" />
-    <link type="text/css" href="/checkout/v2/css/custom-extra.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/5.0.4/css/swiper.css" />
-    <link type="text/css" href="/checkout/v2/css/repeated-order-confirmation.min.css" rel="stylesheet" />
-    <link type="text/css" href="/checkout/v2/css/repeated-order-confirmation-additional.css" rel="stylesheet" />
-    <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/checkout.css?v=9" />
-    <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/bootstrap.min.css" />
-    <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/slick.min.css" />
-    <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/upsell-new-02.css?v=5" />
-    <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/extra-style.css" />
-    <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/fonts.css" />
-    <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/custom.css" />
-    <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/bottom-popup.css" />
-    <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/new_addon.css" />
-    <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/all.min.css" />
-    <span id="builderCssToken"> </span>
-  </page-builder-block>
-
   <div class="header-container">
     <div class="container">
       <div class="herder-content">
-        <img src="" style="height: 50px;" />
+        <img src="/checkout/v2/images/logo_<?php echo strtolower($default_country); ?>.webp" width="100" height="50" alt="" />
         <div class="top-left-button">
           <!-- <p class="header-text-hide">@lang('checkout::app.v3.Description')</p> -->
           <a class="header-text-hide" onclick="reviewToggle()" id="header-text" href="#shopify-title-item1">@lang('checkout::app.v3.Reviews')</a>
@@ -1721,37 +333,17 @@
   </div>
   <div class="checkout-section">
     <div class="container">
-      <!-- <p class="prod-name forMob" style="color: #444444 !important;"></p>
-      <p class="str-rvw forMob go-rew"><svg width="98px" height="16px" viewBox="0 0 512 96" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-          Generator: Sketch 53.2 (72643) - https://sketchapp.com -->
-      <!-- <g id="Trustpilot_ratings_5star-RGB" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-            <g fill-rule="nonzero">
-              <rect id="Rectangle-path" fill="#00B67A" x="0" y="0" width="96" height="96"></rect>
-              <rect id="Rectangle-path" fill="#00B67A" x="104" y="0" width="96" height="96"></rect>
-              <rect id="Rectangle-path" fill="#00B67A" x="208" y="0" width="96" height="96"></rect>
-              <rect id="Rectangle-path" fill="#00B67A" x="312" y="0" width="96" height="96"></rect>
-              <rect id="Rectangle-path" fill="#00B67A" x="416" y="0" width="96" height="96"></rect>
-              <path d="M48,64.7 L62.6,61 L68.7,79.8 L48,64.7 Z M81.6,40.4 L55.9,40.4 L48,16.2 L40.1,40.4 L14.4,40.4 L35.2,55.4 L27.3,79.6 L48.1,64.6 L60.9,55.4 L81.6,40.4 L81.6,40.4 L81.6,40.4 L81.6,40.4 Z" id="Shape" fill="#FFFFFF"></path>
-              <path d="M152,64.7 L166.6,61 L172.7,79.8 L152,64.7 Z M185.6,40.4 L159.9,40.4 L152,16.2 L144.1,40.4 L118.4,40.4 L139.2,55.4 L131.3,79.6 L152.1,64.6 L164.9,55.4 L185.6,40.4 L185.6,40.4 L185.6,40.4 L185.6,40.4 Z" id="Shape" fill="#FFFFFF"></path>
-              <path d="M256,64.7 L270.6,61 L276.7,79.8 L256,64.7 Z M289.6,40.4 L263.9,40.4 L256,16.2 L248.1,40.4 L222.4,40.4 L243.2,55.4 L235.3,79.6 L256.1,64.6 L268.9,55.4 L289.6,40.4 L289.6,40.4 L289.6,40.4 L289.6,40.4 Z" id="Shape" fill="#FFFFFF"></path>
-              <path d="M360,64.7 L374.6,61 L380.7,79.8 L360,64.7 Z M393.6,40.4 L367.9,40.4 L360,16.2 L352.1,40.4 L326.4,40.4 L347.2,55.4 L339.3,79.6 L360.1,64.6 L372.9,55.4 L393.6,40.4 L393.6,40.4 L393.6,40.4 L393.6,40.4 Z" id="Shape" fill="#FFFFFF"></path>
-              <path d="M464,64.7 L478.6,61 L484.7,79.8 L464,64.7 Z M497.6,40.4 L471.9,40.4 L464,16.2 L456.1,40.4 L430.4,40.4 L451.2,55.4 L443.3,79.6 L464.1,64.6 L476.9,55.4 L497.6,40.4 L497.6,40.4 L497.6,40.4 L497.6,40.4 Z" id="Shape" fill="#FFFFFF"></path>
-            </g>
-          </g> -->
-      <!-- </svg>@lang('checkout::app.v2.12,421 Verified Customer Reviews')</p> -->
       <div class="left-sec">
         <div id="sticky" style="position:sticky;top: 55px;">
           <div class="vehicle-detail-banner banner-content clearfix">
             <div class="banner-slider">
               <div class="slider-banner-image1">
-                <div class="sw-box">
-                  <!-- <div class="swiper-button-prev"></div>
-                  <div class="swiper-button-next"></div> -->
+                <div class="sw-box" style="width:100%;">
                 </div>
               </div>
             </div>
           </div>
-          <div class="Schritt-top-box">
+          <div class=" Schritt-top-box">
             <div class="description-img-box">
               <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M24 24C19.5817 28.4183 12.4183 28.4183 8 24C3.58172 19.5817 3.58172 12.4183 8 8C12.4183 3.58172 19.5817 3.58172 24 8" stroke="#4A4A4A" stroke-width="2.5" stroke-linecap="round" />
@@ -1782,7 +374,6 @@
       <div class="right-sec">
         <p class="prod-name hide-mob"></p>
         <p class="str-rvw hide-mob go-rew" onclick="reviewToggle()"><svg width="98px" height="16px" viewBox="0 0 512 96" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-            <!-- Generator: Sketch 53.2 (72643) - https://sketchapp.com -->
             <g id="Trustpilot_ratings_5star-RGB" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
               <g fill-rule="nonzero">
                 <rect id="Rectangle-path" fill="#00B67A" x="0" y="0" width="96" height="96"></rect>
@@ -1801,7 +392,7 @@
         </p>
         <div class="header-middle">
           <p class="text-Schritt-top">@lang('checkout::app.v2.You Can See By')</p>
-          <img src="" alt="">
+          <img src="" width="0" height="48" alt="" />
         </div>
         <div class="fl mt10">
 
@@ -1820,50 +411,57 @@
 
 
         <div class="btn-bx">
-          <a href="#product2" class="comn-btn">@lang('checkout::app.v3.Buy Now')</a>
+          <a href="#product2" class="comn-btn" id="comn-btn2">@lang('checkout::app.v3.Buy Now')</a>
         </div>
         <div class="fl mt10">
           <div class="order-msg mb10">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-fire" viewBox="0 0 16 16">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#1773B0" class="bi bi-fire" viewBox="0 0 16 16">
               <path d="M8 16c3.314 0 6-2 6-5.5 0-1.5-.5-4-2.5-6 .25 1.5-1.25 2-1.25 2C11 4 9 .5 6 0c.357 2 .5 4-2 6-1.25 1-2 2.729-2 4.5C2 14 4.686 16 8 16Zm0-1c-1.657 0-3-1-3-2.75 0-.75.25-2 1.25-3C6.125 10 7 10.5 7 10.5c-.375-1.25.5-3.25 2-3.5-.179 1-.25 2 1 3 .625.5 1 1.364 1 2.25C11 14 9.657 15 8 15Z" />
             </svg>
-            <strong id="order-msg-number" style="margin-left: 5px;"></strong>
+            <strong id="order-msg-number" style="margin-left: 8px;"></strong>
             <span class="ml5"> @lang('checkout::app.v3.sold in last') &nbsp;</span>
             <strong id="order-msg-hour"></strong>
             <span>&nbsp;@lang('checkout::app.v3.hours')</span>
           </div>
           <div class="user-view mb10">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#1773B0" class="bi bi-eye-fill" viewBox="0 0 16 16">
               <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z" />
               <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z" />
             </svg>
-            <strong class="user-view-num"></strong>
+            <strong class="user-view-num" style="margin-left: 5px;"></strong>
             <span>@lang('checkout::app.v3.People Looking For This Product')</span>
           </div>
           <div class="shippingMsg mt10 mb10">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#1773B0" class="bi bi-clock" viewBox="0 0 16 16">
               <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z" />
               <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z" />
             </svg>
-            <span>@lang('checkout::app.v3.Estimated Delivery between')</span>
-            <strong id="shipping-date1"></strong>
-            <span>-</span>
-            <strong id="shipping-date2"></strong>
+            <span style="margin-left: 5px;">@lang('checkout::app.v3.Estimated Delivery between')</span>
+            <strong id="shipping-date1" style="color:#1773B0"></strong>
+            <span style="color:#1773B0">-</span>
+            <strong id="shipping-date2" style="color:#1773B0"></strong>
+          </div>
+          <div class="share-icons">
+            <span class="share-item">@lang('checkout::app.v3.Share'):</span>
+            <a class="share-item" href="javascript:void(0)" onclick="shareOnFacebook()" title="Share on Facebook"><i class="fab fa-facebook"></i></a>
+            <a class="share-item" href="javascript:void(0)" onclick="shareOnLinkedIn()" title="Share on LinkedIn"><i class="fab fa-linkedin"></i></a>
+            <a class="share-item" href="javascript:void(0)" onclick="shareOnTwitter()" title="Share on Twitter"><i class="fab fa-twitter"></i></a>
+            <a class="share-item" href="javascript:void(0)" onclick="shareByEmail()" title="Share by Email"><i class="fas fa-envelope"></i></a>
+            <a class="share-item" href="javascript:void(0)" onclick="shareOnPinterest()" title="Share on Pinterest"><i class="fab fa-pinterest"></i></a>
           </div>
         </div>
 
 
         <div class="payment-icon-box">
           <div class="payment-top">
-            <img src="/checkout/v2/images/secure-checkout.png" alt="">
+            <img src="/checkout/v2/images/secure-checkout.png" width="14" height="14" alt="">
             <p>@lang('checkout::app.v3.Secure Checkout')</p>
           </div>
-          <img src="/checkout/v2/images/payment6.svg" alt="">
-          <!-- <img width="20" src="/checkout/v2/images/payment7.svg" alt=""> -->
-          <img src="/checkout/v2/images/payment2.svg" alt="">
-          <img src="/checkout/v2/images/payment3.svg" alt="">
-          <img src="/checkout/v2/images/payment4.svg" alt="">
-          <img src="/checkout/v2/images/payment5.svg" alt="">
+          <img src="/checkout/v2/images/payment6.svg" width="40" height="10" alt="">
+          <img src="/checkout/v2/images/payment2.svg" width="40" height="31" alt="">
+          <img src="/checkout/v2/images/payment3.svg" width="78" height="25" alt="">
+          <img src="/checkout/v2/images/payment4.svg" width="78" height="19" alt="">
+          <img src="/checkout/v2/images/payment5.svg" width="78" height="26" alt="">
         </div>
 
         <div class="shopify-title fl">
@@ -1878,55 +476,18 @@
         </div>
         <div class="shopify-container fl"></div>
         <div id="iduzu" class="section" style="width: 100%;float: right;margin-bottom:10px; display: flex;">
-
-          <!-- <p class="container_title" onclick="reviewToggle()">
-           @lang('onebuy::app.product.order.What customers are saying about')
-          </p> -->
         </div>
         <!-- review -->
         <div class="section" id="reviews-box" style="width: 100%;float: right; display:none">
-          <?php foreach ($comments as $key => $comment) {
-            $comment = json_decode($comment); //var_dump($comment);exit; 
-          ?>
+          <div class="reviews-content"></div>
+          <div class="pagination" style="display: none;">
+            <button id="prev-page">@lang('checkout::app.v3.Prev')</button>
+            <span id="page-info"></span>
+            <button id="next-page">@lang('checkout::app.v3.Next')</button>
+            <input type="number" id="page-input" min="1" value="1">
+            <button id="jump-page">@lang('checkout::app.v3.Jump')</button>
+          </div>
 
-            <div class="comment-card" style="background-color: #F4F4F4">
-              <div style="display: flex">
-                <div class="mr4" style="font-size: 14px;margin-top: 3px;color: #444444; ">
-                  <?php echo $comment->name; ?>
-                  <i class="flag-icon-size flag-icon flag-icon-<?php echo strtolower($default_country); ?> mr-2"></i>
-                </div>
-                <div>
-                  <img class="mb1 mr2" width="14px" src="/checkout/onebuy/images/icon_gou.svg" />
-                  <span style="width: 100%; font-size:12px; color: #444444">@lang('onebuy::app.product.order.Verified')</span>
-                </div>
-              </div>
-              <div>
-                <div style="text-align: start; width: 100%;">
-                  <img width="110px" src="/checkout/onebuy/images/stars-5.svg" alt="" />
-                </div>
-                <div class="cardtext" style="text-align: start;"><?php echo $comment->comment; ?></div>
-
-
-                <?php
-
-
-                if (!empty($comment->images)) {
-
-                  // var_dump($comment->images);
-                  foreach ($comment->images as $key => $image) {
-                    //var_dump($image);
-                ?>
-
-                    <a href="javascript:;" onclick="reviewImgPreview('<?php echo $image->url; ?>')">
-                      <img style="width: 30%; max-height:120px;object-fit:contain" src="<?php echo $image->url; ?>" alt="" />
-                    </a>
-
-                <?php }
-                } ?>
-
-              </div>
-            </div>
-          <?php } ?>
         </div>
         <p class="pkg-hdng" id="pkg-hdng1" style="border-top: 1px solid #ccc; padding-top: 10px">
           <span class="pkg-step">
@@ -1940,6 +501,7 @@
         <div class="pkg-opt">
           <div class="cb-first-item"></div>
           <div class="buyopt packageClass cb-package-container choose-p" id="product2">
+            <div class="recommended">@lang('checkout::app.v2.Most Recommended')</div>
             <p class="product-selected" id="p2-select">@lang('checkout::app.v2.Selected')</p>
             <div class="buy-opt-left">
               <p>
@@ -1957,15 +519,6 @@
             </div>
           </div>
           <div class="buy-select buy-relative" id="buy-select2">
-
-            <!-- <div class="buy-loading">
-              <div style="position: absolute; top: -5px; left: -10px; width: 110%; height: 110%; z-index: 100000; background:#fff;" id="loading-box" class="flex-center">
-                <div class="buy-box">
-                  <div class="loader loader-01"></div>
-                </div>
-              </div>
-            </div> -->
-
             <div class="buy-se-box">
               <div class="se-box" id="select2-item1">
                 <p class="se-title">@lang('checkout::app.v2.item')1</p>
@@ -1998,15 +551,6 @@
           </div>
           <div class="buy-select buy-relative" id="buy-select1">
             <div class="buy-se-box">
-
-              <!-- <div class="buy-loading">
-                <div style="position: absolute; top: -5px; left: -10px; width: 110%; height: 120%; z-index: 100000; background:#fff;" id="loading-box" class="flex-center">
-                  <div class="buy-box">
-                    <div class="loader loader-01"></div>
-                  </div>
-                </div>
-              </div> -->
-
               <div class="se-box" id="select1-item1">
                 <p class="se-title">@lang('checkout::app.v2.item')1</p>
               </div>
@@ -2031,15 +575,6 @@
             </div>
           </div>
           <div class="buy-select buy-relative" id="buy-select3">
-
-            <!-- <div class="buy-loading">
-              <div style="position: absolute; top: -5px; left: -10px; width: 110%; height: 110%; z-index: 100000; background:#fff;" id="loading-box" class="flex-center">
-                <div class="buy-box">
-                  <div class="loader loader-01"></div>
-                </div>
-              </div>
-            </div> -->
-
             <div class="buy-se-box">
               <div class="se-box" id="select3-item1">
                 <p class="se-title">@lang('checkout::app.v2.item')1</p>
@@ -2074,14 +609,6 @@
             </div>
           </div>
           <div class="buy-select buy-relative" id="buy-select4">
-            <!-- <div class="buy-loading">
-              <div style="position: absolute; top: -5px; left: -10px; width: 110%; height: 110%; z-index: 100000; background:#fff;" id="loading-box" class="flex-center">
-                <div class="buy-box">
-                  <div class="loader loader-01"></div>
-                </div>
-              </div>
-            </div> -->
-
             <div class="buy-se-box">
               <div class="se-box" id="select4-item1">
                 <p class="se-title">@lang('checkout::app.v2.item')1</p>
@@ -2147,24 +674,16 @@
             <p class="bdr-line"></p>
             <div class="payment-flds-box">
               <p class="pkg-hdng"><span class="pkg-step">@lang('checkout::app.v2.Step')3:</span> @lang('checkout::app.v2.Enter your shipping information')</p>
-              <!-- <div class="frm-flds fl">
-                <label for="address" class="fl-label">Shipping Address</label>
-                <input type="text" name="shippingAddress1" class="input-flds required cb-remove-class frmField" placeholder="Your Address" data-error-message="Please enter your address!" id="shipAddress" />
-              </div> -->
-              <p class="email-warn" style="margin-top: 15px;">@lang('checkout::app.v2.Add a house number if you have one')</p>
-              <div class="fl input-box">
+              <div class="fl input-box" style="margin-top: 15px;">
                 <label>
-                  <input onblur="inputBlur(event)" class="input-item" name="shippingAddress1" id="shipAddress" type="text" placeholder="" required="" />
+                  <input onblur="inputBlur(event)" oninput="addressChange(event)" class="input-item" name="shippingAddress1" type="text" placeholder="" required="" />
                   <span class="input-span">@lang('checkout::app.v2.Address')</span>
                 </label>
+                <p class="email-warn" style="margin-top: -8px; display:none;">@lang('checkout::app.v2.Add a house number if you have one')</p>
               </div>
-              <!-- <div class="frm-flds fl">
-                <label for="city" class="fl-label">Your City</label>
-                <input type="text" name="shippingCity" class="input-flds required cb-remove-class frmField" placeholder="Your City" data-error-message="Please enter your city!" />
-              </div> -->
               <div class="fl input-box">
                 <label>
-                  <input onblur="inputBlur(event)" class="input-item" name="shippingCity" id="shipAddress" type="text" placeholder="" required="" />
+                  <input onblur="inputBlur(event)" class="input-item" name="shippingCity" type="text" placeholder="" required="" />
                   <span class="input-span">@lang('checkout::app.v2.City')</span>
                 </label>
               </div>
@@ -2173,38 +692,18 @@
                 <select name="shippingCountry" type="text" placeholder="@lang('checkout::app.v2.Country')" class="selcet-fld required cb-remove-class frmField" data-selected="US" data-error-message="Please select your country!">
                 </select>
               </div>
-              <!-- <div class="fl input-box">
-                <label>
-                  <select class="input-item" name="shippingCountry" type="text" placeholder="" required="">
-                  </select>
-                  <span>@lang('checkout::app.v2.Country')</span>
-                </label>
-              </div> -->
-              <div class="frm-flds fl" style="margin-top: 20px;">
+              <div class="frm-flds fl" style="margin-top: 10px;">
                 <label for="state" class="fl-label"></label>
                 <select type="text" name="shippingState" placeholder="@lang('checkout::app.v2.State')" class="selcet-fld required cb-remove-class frmField" id="shippingStateSelect" data-error-message="Please select your state!" data-selected="">
                   <option value=""></option>
                 </select>
               </div>
-              <!-- <div class="fl input-box">
-                <label>
-                  <select class="input-item" name="shippingState" id="shippingStateSelect" type="text" placeholder="" required="">
-                  </select>
-                  <span>@lang('checkout::app.v2.State')</span>
-                </label>
-              </div> -->
-              <!-- <div class="frm-flds fl">
-                <label for="zip" class="fl-label">Zip Code</label>
-                <input type="tel" name="shippingZip" id="zip" class="input-flds required cb-remove-class frmField" placeholder="Zip Code" data-error-message="Please enter a valid zip code!" />
-              </div> -->
-              <div class="fl input-box" style="margin-top: 20px;">
+              <div class="fl input-box" style="margin-top: 10px;">
                 <label>
                   <input onblur="inputBlur(event)" class="input-item" name="shippingZip" id="zip" type="tel" placeholder="" required="" />
                   <span class="input-span">@lang('checkout::app.v2.Zip Code')</span>
                 </label>
               </div>
-              <!--   <a href="javascript:void(0)" class="continue-order addon_btn"
-                        onclick="javascript:bookmarkscroll.scrollTo('wrnty')">Select Addon</a>-->
             </div>
             <p class="bdr-line hide-mob"></p>
             <p class="pkg-hdng"><span class="pkg-step">@lang('checkout::app.v2.Step')4:</span> @lang('checkout::app.v2.Enter your payment information')</p>
@@ -2233,7 +732,7 @@
                                   <input class="form-check-input" name="airwallex-klarna" type="radio" value="airwallex-klarna" id="airwallex-klarna" <?php if ($payments_default == 'airwallex-klarna') echo 'checked'; ?> name="payment_method">
                                   <label class="form-check-label" for="airwallex-klarna" style="float: right;min-width: 95%;">
                                     <span style="font-family: var(--title-family);">@lang('onebuy::app.product.payment.klarna.title')</span>
-                                    <div style="float: right;min-width: 200px;display: inline;text-align: right;"><img src="/checkout/v1/app/desktop/images/Klarna.png" style="max-height:24px" /></div>
+                                    <div style="float: right;min-width: 200px;display: inline;text-align: right;"><img src="/checkout/v1/app/desktop/images/Klarna.png" width="84" height="24" loading="lazy" alt="" /></div>
                                   </label>
                                 </div>
                               </div>
@@ -2258,7 +757,7 @@
                                   <input class="form-check-input" type="radio" value="paypal_standard" id="payal_standard" <?php if ($payments_default == 'payal_standard') echo 'checked'; ?> name="payment_method">
                                   <label class="form-check-label" for="payal_standard" style="float: right;min-width: 95%;">
                                     <span style="font-family: var(--title-family);">@lang('onebuy::app.product.payment.paypal.title') </span>
-                                    <div style="float: right;min-width: 200px;display: inline;text-align: right;"><img src="/checkout/v1/app/desktop/images/paypal.png" style="max-height:24px" /></div>
+                                    <div style="float: right;min-width: 200px;display: inline;text-align: right;"><img src="/checkout/v1/app/desktop/images/paypal.png" width="84" height="24" loading="lazy" alt="" /></div>
                                   </label>
                                 </div>
                               </div>
@@ -2282,10 +781,10 @@
                                   <label class="form-check-label" for="payment_method_airwallex" style="float: right;min-width: 95%;">
                                     <span style="font-family: var(--title-family);">@lang('onebuy::app.product.payment.creditCard.title')</span>
                                     <div class="text-right" style="min-width:190px; display: inline;float: right;">
-                                      <img src="https://cdn.shopify.com/shopifycloud/checkout-web/assets/0169695890db3db16bfe.svg" />
-                                      <img src="https://cdn.shopify.com/shopifycloud/checkout-web/assets/ae9ceec48b1dc489596c.svg" />
-                                      <img src="https://cdn.shopify.com/shopifycloud/checkout-web/assets/f11b90c2972f3811f2d5.svg" />
-                                      <img src="https://cdn.shopify.com/shopifycloud/checkout-web/assets/37fc65d0d7ac30da3b0c.svg" />
+                                      <img width="38" height="24" src="https://cdn.shopify.com/shopifycloud/checkout-web/assets/0169695890db3db16bfe.svg" loading="lazy" alt="" />
+                                      <img width="38" height="24" src="https://cdn.shopify.com/shopifycloud/checkout-web/assets/ae9ceec48b1dc489596c.svg" loading="lazy" alt="" />
+                                      <img width="38" height="24" src="https://cdn.shopify.com/shopifycloud/checkout-web/assets/f11b90c2972f3811f2d5.svg" loading="lazy" alt="" />
+                                      <img width="38" height="24" src="https://cdn.shopify.com/shopifycloud/checkout-web/assets/37fc65d0d7ac30da3b0c.svg" loading="lazy" alt="" />
                                     </div>
 
                                   </label>
@@ -2315,7 +814,6 @@
                                   line-height: 1.25;padding: 1rem 0.75rem "></div>
                               </div>
                               <div style='margin-top:10px'>
-                                <!-- <div>@lang('onebuy::app.product.payment.creditCard.Expiry')</div> -->
                                 <div id="cardExpiry" style="
                                   border: 1px solid rgba(105, 105, 105, 0.397);
                                   border-radius: 10px;
@@ -2440,7 +938,7 @@
                                   <input class="form-check-input" type="radio" onchange="gooleOrAppleChange()" value="airwallex_google" id="airwallex_google" name="payment_method">
                                   <label class="form-check-label" for="airwallex_google" style="float: right;min-width: 95%;">
                                     <span style="font-family: var(--title-family);line-height:40px">GooglePay </span>
-                                    <div style="float: right;min-width: 200px;display: inline;text-align: right;"><img src="/checkout/v2/images/googlePay.png" style="max-height:40px" /></div>
+                                    <div style="float: right;min-width: 200px;display: inline;text-align: right;"><img src="/checkout/v2/images/googlePay.webp" width="64" height="40" style="max-height:40px" loading="lazy" alt="" /></div>
                                   </label>
                                 </div>
                               </div>
@@ -2463,7 +961,7 @@
                                   <input class="form-check-input" onchange="gooleOrAppleChange()" type="radio" value="airwallex_apple" id="airwallex_apple" name="payment_method">
                                   <label class="form-check-label" for="airwallex_apple" style="float: right;min-width: 95%;">
                                     <span style="font-family: var(--title-family);line-height:40px">ApplePay</span>
-                                    <div style="float: right;min-width: 200px;display: inline;text-align: right;"><img src="/checkout/v2/images/applePay.png" style="max-height:40px" /></div>
+                                    <div style="float: right;min-width: 200px;display: inline;text-align: right;"><img src="/checkout/v2/images/applePay.webp" width="64" height="40" style="max-height:40px" loading="lazy" alt="" /></div>
                                   </label>
                                 </div>
                               </div>
@@ -2500,20 +998,20 @@
           </div>
           <div class="order-summary-item">
             <div>@lang('checkout::app.v2.Subtotal'):</div>
-            <div id="summary-total1" style="color: red;"></div>
+            <div id="summary-total1" style="font-weight:bold;"></div>
           </div>
           <div class="order-summary-item">
             <div>@lang('checkout::app.v2.Discount'):</div>
-            <div id="summary-total2"></div>
+            <div id="summary-total2" style="color: red; font-weight:bold;"></div>
           </div>
           <div class="order-summary-item">
             <div>@lang('checkout::app.v2.Shipping'):</div>
-            <div id="summary-total3" style="color: red;"></div>
+            <div id="summary-total3" style="font-weight:bold;"></div>
           </div>
-          <div class="order-summary-item">
+          <!-- <div class="order-summary-item">
             <div>@lang('checkout::app.v2.Shipping Method'):</div>
             <div>@lang('checkout::app.v2.USPS Express')</div>
-          </div>
+          </div> -->
           <div class="order-summary-total">
             <div><strong>@lang("checkout::app.v2.Today's Total"):</strong></div>
             <div>
@@ -2554,6 +1052,15 @@
     </div>
   </div>
   <div class="clearall"></div>
+  <div class="btn-fixed">
+    <div class="btn-bx" id="btn-bx">
+      <a href="#product2" class="comn-btn" id="comn-btn1">@lang('checkout::app.v3.Buy Now')</a>
+    </div>
+  </div>
+  <div class="icon-container" onclick="iconToggle()">
+    <i class="fa-solid fa-cart-shopping"></i>
+  </div>
+  <div class="image-area" id="imageArea"></div>
 
   <div class="footer-box">
     <p style="font-weight: 700" id="footer-top-text">© 2024 </p>
@@ -2570,7 +1077,7 @@
     </div>
     <br /><br />
     <div class="dmca_logo">
-      <img src="/checkout/v2/images/1662477222-dmca.webp" alt="DMCA.com Protection Status" />
+      <img src="/checkout/v2/images/1662477222-dmca.webp" width="150" height="30" loading="lazy" alt="DMCA.com Protection Status" />
     </div>
   </div>
   <div class="dialog-error">
@@ -2582,15 +1089,14 @@
   </div>
   <div class="sku-preview-img-box" onclick="imgBoxClose()">
     <div class="sku-preview-img">
-      <img src="/checkout/v2/images/dmca_protected_sml_120n.png" alt="" />
+      <img src="/checkout/v2/images/dmca_protected_sml_120n.png" loading="lazy" alt="" />
     </div>
   </div>
   <div class="size-chart-img-box" onclick="sizeChartBoxClose()">
     <div class="size-chart-img">
-      <img src="" alt="" />
+      <img src="" loading="lazy" alt="" />
     </div>
   </div>
-  <!-- End of Discount POp up-->
 
   <script>
     var app_current_step = {
@@ -2603,7 +1109,6 @@
     }
     var app_query_params = []
   </script>
-  <!-- <script type="text/javascript" src="/checkout/v2/js/math.js"></script> -->
   <script type="text/javascript">
     AJAX_PATH = 'ajax.php/'
     app_config = {
@@ -2817,32 +1322,6 @@
     }
   </script>
   <script type="text/javascript">
-    app_lang = {
-      error_messages: {
-        zip_invalid: 'Please enter a valid zip code!',
-        email_invalid: 'Please enter a valid email id!',
-        cc_invalid: 'Please enter a valid credit card number!',
-        cvv_invalid: 'Please enter a valid CVV code!',
-        card_expired: 'Card seems to have expired already!',
-        card_expire_soon: 'Your credit card is about to expire, please update your card information.',
-        common_error: 'Oops! Something went wrong! Can you please retry?',
-        not_checked: 'Please check the agreement box in order to proceed.',
-        ca_zip_invalid: 'Invalid Canada state code',
-        xv_invalid_shipping: 'Your shipping address could not be verified',
-        xv_email: 'Your email address could not be verified',
-        xv_phone: 'Your phone number could not be verified',
-      },
-      exceptions: {
-        config_error: 'General config error',
-        config_file_missing: 'General config error',
-        invalid_array: 'Argument is not a valid array',
-        empty_prospect_id: 'Prospect ID is empty or invalid',
-        curl_error: 'Something went wrong with the request, Please try again.',
-        generic_error: 'Something went wrong with the request, Please try again.',
-      },
-    }
-  </script>
-  <script type="text/javascript">
     var cbUtilConfig = {
       disable_non_english_char_input: false
     }
@@ -2857,7 +1336,8 @@
       enable_us_statecode_validation: true,
     }
   </script>
-  <script src="/checkout/v2/js/jquery-3.0.0.min.js"></script>
+  <!-- <script src="/checkout/v2/js/jquery-3.0.0.min.js"></script> -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/jquery-colorbox@1.6.4/jquery.colorbox.min.js"></script>
 
@@ -2898,6 +1378,7 @@
   </script>
 
   <script>
+    var isMobile = window.innerWidth <= 768;
     var orderObj = {},
       params = {
         first_name: "",
@@ -2948,14 +1429,15 @@
       productL4 = {},
       getProductId = '{{ $slug }}',
       countries1 = '<?php echo strtolower($default_country); ?>',
+      reviewErrMsg = "@lang('checkout::app.v3.Please enter a valid page number')",
+      reviewLang = "@lang('onebuy::app.product.order.Verified')",
       paypal_pay_acc = '',
       area = '{{ app()->getLocale() }}',
-      currencySymbol = '{{ core()->currencySymbol(core()->getBaseCurrencyCode()) }}',
+      currencySymbol = '{{ core()->currencySymbol(core()->getCurrentCurrencyCode()) }}',
       airwallexArr = {
         complete: false
       },
       skuErr = false,
-      logoImg = "/checkout/v2/images/logo_" + countries1 + ".png",
       schrittImg = "/checkout/v2/images/1701506369_" + countries1 + ".webp",
       googlerOrApple = '',
       googleShow = false,
@@ -2964,6 +1446,9 @@
       reviewsToggle = true,
       countryOptions = '',
       countriesList = '',
+      swiperImgList = [],
+      galleryThumbs,
+      mySwiper,
       phppackage_products = <?php echo json_encode($data['package_products']); ?>,
 
       phpads = '<?php echo json_encode($data['ads']); ?>',
@@ -2994,35 +1479,31 @@
       sellPoints: JSON.parse(phpsellPoints)
     }
     console.log(data, 'phpdata');
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/5.0.4/js/swiper.js"></script>
+  <script src="/checkout/v3/js/main.js?v=13"></script>
+  <script>
     $(function() {
-      getShopify()
-      console.log(logoImg, 'logoImg');
-      $('.header-container img').attr('src', logoImg)
       if (countries1 == 'fr' || countries1 == 'es') {
         $('.header-middle').hide()
       } else {
-        console.log(schrittImg, 'schrittImg');
         $('.header-middle').show()
-        $('.header-middle img').attr('src', schrittImg)
+        $('.header-middle img').attr({
+          'src': schrittImg,
+          'width': '460'
+        })
       }
       if (countries1 == 'de' || countries1 == 'fr') {
         $('.terms-block-last').show()
       }
       if (countries1 == 'us' || countries1 == 'gb') {
-        var favicon = '/checkout/v2/images/favicon.png'
+        var favicon = '/checkout/v2/images/favicon.webp'
         $('#favicon-icon').attr('href', favicon)
       }
-      // var dataUrl = '/api/onebuy/product/detail/' + getProductId + '?currency=' + currency
-      // axios
-      //   .get(dataUrl)
-      //   .then(function(res) {
-      //     console.log(new Date().getTime(), '开始');
-      //     data = res.data
       payTypeShow = data.payments
       var attrList = data.attr.attributes
       paypal_pay_acc = data.paypal_client_id
       var paymentsDefault = data.payments_default
-      console.log(paymentsDefault, data.ads.pc.img, 'paymentsDefault=====');
       getDescriptionItem(data)
       $('#p-name2').text(data.package_products[0].name)
       $('#p-name1').text(data.package_products[1].name)
@@ -3040,13 +1521,32 @@
       $('#cb-buy-each1').text(data.package_products[1].new_price_format)
       $('#cb-buy-each3').text(data.package_products[2].new_price_format)
       $('#cb-buy-each4').text(data.package_products[3].new_price_format)
-      let discount1 = Number(data.package_products[0].old_price) - Number(data.package_products[0].new_price)
+      let discount1 = Number(data.package_products[1].old_price) - Number(data.package_products[1].new_price)
       discount1 = currencySymbol + discount1.toFixed(2)
       $('.pr-price-single > :eq(0)').text(data.package_products[1].old_price_format)
       $('.pr-price-single > :eq(1)').text(data.package_products[1].new_price_format)
       $('#pr-price1').text(discount1)
       $('#pr-price2').text("(" + data.package_products[1].tip1 + ")")
       if (attrList.length > 0) {
+        attrList.forEach(function(item) {
+          let num = 0
+          let sortedObj = sortObjectByValue(item.attr_sort);
+          let keysIterator = sortedObj.keys();
+          let keysList = Array.from(keysIterator);
+          console.log(sortedObj, 'sortedObj====');
+          console.log(keysList, 'keysList===');
+          keysList.forEach(function(keyItem) {
+            item.options.forEach(function(opItem, index) {
+              if (opItem.id == keyItem) {
+                num++
+                item.options.splice(index, 1)
+                opItem.num = num
+                item.options.push(opItem)
+              }
+            })
+          })
+        })
+
         var selectList = ''
         for (var arri = 0; arri < attrList.length; arri++) {
           var optionList = `<option value="" selected disabled>` + attrList[arri].label + `</option>`
@@ -3055,22 +1555,19 @@
           }
           selectList += `<select class="in-se" id="in-se` + arri + `" onchange="seInput(value)">` + optionList + `</select>`
         }
-        // $('.buy-loading').hide()
         $('.se-box').append(selectList)
         $('#buy-select2').show()
       } else {
-        // $('.buy-loading').hide()
         $('.buy-select').hide()
         $('#p2-select').show()
         $('#product2').addClass('background-green')
       }
-      var nprice = currencySymbol + data.package_products[0].new_price.toFixed(2)
-      $('#summary-total1').text(nprice)
+      $('#summary-total1').text(data.package_products[0].old_price_format)
       var shippingFee = currencySymbol + data.package_products[0].shipping_fee
       $('#summary-total3').text(shippingFee)
 
       var discount = Number(data.package_products[0].old_price) - Number(data.package_products[0].new_price)
-      discount = currencySymbol + discount.toFixed(2)
+      discount = "-" + currencySymbol + discount.toFixed(2)
       $('#summary-total2').text(discount)
       var total = Number(data.package_products[0].new_price) + Number(data.package_products[0].shipping_fee)
       total = currencySymbol + total.toFixed(2)
@@ -3096,15 +1593,11 @@
       paypalId = data.paypal_client_id
       productsObj.amount = '1'
       productsObj.description = data.package_products[0].name
-      // productsObj.product_id = data.product.id
       productsObj.product_id = '<?php echo $data['product']['id']; ?>'
       console.log(productsObj.product_id, 'productsObj.product_id');
-      // productsObj.product_sku = data.sku
-      // productsObj.img = data.product.base_image.large_image_url
       productsObj.img = '<?php echo @$data['product']['base_image']['large_image_url']; ?>'
       console.log(productsObj.img, 'productsObj.img ');
       productsObj.price = data.package_products[0].tip2
-      // productsObj.variant_id =
       console.log(data, 'data=====')
       productL1 = JSON.parse(JSON.stringify(productsObj))
       productL2 = JSON.parse(JSON.stringify(productsObj))
@@ -3135,7 +1628,6 @@
           name1List.push(name1)
           name2 = $('#select2-item2').children('select').eq(m).val()
           name2List.push(name2)
-          // productL1.attribute_name = v1+ ',' +v2
           for (var inm = 0; inm < data.attr.attributes[m].options.length; inm++) {
             var mid = data.attr.attributes[m].id
             if (data.attr.attributes[m].options[inm].label == name1) {
@@ -3162,7 +1654,14 @@
       params.products = []
       params.products.push(productL1, productL2)
       getSkuListInfo();
+      if (data.attr.attributes.length == 0) {
+        params.products.forEach(function(item) {
+          item.product_sku = data.sku
+          item.variant_id = ''
+        })
+      }
       $('.prod-name').text('<?php echo addslashes($data['product']['name']); ?>')
+      console.log('<?php echo addslashes($data['product']['name']); ?>', '123');
       $('title').html('<?php echo addslashes($data['product']['name']); ?>')
       $('#buy-select1, #buy-select3, #buy-select4').hide()
       $('#footer-top-text').append(data.brand)
@@ -3211,7 +1710,6 @@
         $('#google-pay-box').hide()
       }
       if (payTypeShow.airwallex_appley == '0' || googlerOrApple !== 'apple') {
-        // if (payTypeShow.airwallex_appley == '0') {
         $('#apple-pay-box').hide()
       }
       if (paymentsDefault == 'airwallex_klarna') {
@@ -3277,7 +1775,6 @@
           }
         }
       } else {
-        // 其他浏览器
         script.onload = function() {
           creatPaypalCardButton()
         }
@@ -3288,16 +1785,21 @@
         paypal_pay_acc +
         '&components=buttons,messages,funding-eligibility&currency=' +
         currency
-      script.async = 1
+      script.async = true
       document.body.appendChild(script)
       console.log(new Date().getTime(), '结束');
 
-      // })
-      // .catch(function(error) {
-      //   console.error(error, 'err')
-      // })
-
     })
+
+    function sortObjectByValue(obj) {
+      let entries = Object.entries(obj);
+      entries.sort((a, b) => a[1] - b[1]);
+      let map = new Map();
+      entries.forEach(([key, value]) => {
+        map.set(key, value);
+      });
+      return map;
+    }
 
     function getbillingAddress() {
       var billingText = ''
@@ -3346,7 +1848,7 @@
         $.each(sellObj, function(key, value) {
           if (value) {
             descriptionContent += `<div class="three-description-item">
-            <img src="/checkout/v2/images/1673346232-mainpage.png" alt="">
+            <img src="/checkout/v2/images/1673346232-mainpage.webp" width="30" height="30" loading="lazy" alt="">
             <p class="three-description-text"> ` + value + `</p></div>`
           }
         })
@@ -3354,59 +1856,17 @@
       $('.three-description-box').append(descriptionContent)
     }
     $('#shopify-title-item1').click(function() {
-      $(".shopify-container").show()
+      $(".shopify-content").show()
       $('#reviews-box').hide()
       $('#shopify-title-item1').addClass('bor-bom-3')
       $('#shopify-title-item2').removeClass('bor-bom-3')
-      // slideToggle();
-      // if (shopifyToggle) {
-      //   shopifyToggle = false
-      //   $('#svg-down').show()
-      //   $('#svg-up').hide()
-      // } else {
-      //   shopifyToggle = true
-      //   $('#svg-down').hide()
-      //   $('#svg-up').show()
-      // }
     })
 
     function reviewToggle() {
       $('#shopify-title-item2').addClass('bor-bom-3')
-      console.log($('#shopify-title-item2'), '#shopify-title-item2');
       $('#shopify-title-item1').removeClass('bor-bom-3')
-      $(".shopify-container").hide()
+      $(".shopify-content").hide()
       $('#reviews-box').show()
-      console.log('reviewTogglereviewToggle');
-      // $("#reviews-box").slideToggle();
-      // if (reviewsToggle) {
-      //   reviewsToggle = false
-      //   $('#review-down').show()
-      //   $('#review-up').hide()
-      // } else {
-      //   reviewsToggle = true
-      //   $('#review-down').hide()
-      //   $('#review-up').show()
-      // }
-
-    }
-
-    // function textColorChange(event) {
-    //   $(event.target).css("color", 'blue')
-    // }
-
-    function getShopify() {
-      const shopifyUrl = '/shopify/v1/api/full/{{ $slug }}'
-      // const shopifyUrl = 'http://127.0.0.1:8000/shopify/v1/api/full/8398348714214 '
-      axios
-        .get(shopifyUrl)
-        .then(function(res) {
-          console.log(res, 'getShopify===res');
-          let bodyHtml = res.data.data.body_html
-          $('.shopify-container').html(bodyHtml)
-        })
-        .catch(function(err) {
-          console.log(err, 'getShopify===err');
-        })
     }
 
     function billingAddress() {
@@ -3431,7 +1891,6 @@
                 }
                 $('select[name="billingState"]').empty()
                 $('select[name="billingState"]').append(optionList)
-                // $('select[name="billingState"]').val(stateList[0].StateCode)
               }
             })
         }
@@ -3457,7 +1916,6 @@
               }
               $('select[name="billingState"]').empty()
               $('select[name="billingState"]').append(optionList)
-              // $('select[name="billingState"]').val(stateList[0].StateCode)
             }
 
           })
@@ -3473,6 +1931,18 @@
       } else {
         $(event.target).next().removeClass('input-focus')
       }
+    }
+
+    function addressChange(event) {
+      console.log(event.target.value, 'event.target.value');
+      const hasNumber = /\d/.test(event.target.value);
+      console.log(hasNumber, 'hasNumber');
+      if (hasNumber) {
+        $('.email-warn').hide()
+      } else {
+        $('.email-warn').show()
+      }
+
     }
 
     function inputBlur(event) {
@@ -3586,7 +2056,7 @@
       if (!errIsShow) {
         textList += `<li>@lang('checkout::app.v2.Please select product information!')</li>`
       }
-      if (!airwallexArr) {
+      if (!airwallexArror) {
         textList += `<li>` + airwallexArr.errText + `</li>`
       }
       if (billingErr !== '') {
@@ -3596,38 +2066,132 @@
       $('.dialog-error .dialog-box ul').append(textList)
     }
 
-    function getVSID(obj) {
-      for (const key in obj) {
-        if (key == productL1.attr_id) {
-          console.log(obj[key][0], 'obj[key][0]');
-          productL1.variant_id = obj[key][0]
-          productL1.product_sku = obj[key][1]
+    function getAttrId(productL, obj) {
+      if (typeof(obj) == 'undefined') {
+        productL.variant_id = ''
+        productL.product_sku = ''
+        return
+      }
+      let objKey = Object.keys(obj)
+      if (productL.attr_id !== '') {
+        for (const key in obj) {
+          if (key == productL.attr_id) {
+            productL.variant_id = obj[key][0]
+            productL.product_sku = obj[key][1]
+            break;
+          } else {
+            productL.variant_id = ''
+            productL.product_sku = ''
+          }
         }
-        if (key == productL2.attr_id) {
-          productL2.variant_id = obj[key][0]
-          productL2.product_sku = obj[key][1]
+      } else {
+        productL.variant_id = ''
+        productL.product_sku = ''
+      }
+    }
+
+    function getVSID(obj, value = '1') {
+      if (value == '') {
+        productL1.product_sku = ''
+        productL2.product_sku = ''
+        productL3.product_sku = ''
+        productL4.product_sku = ''
+      }
+      getAttrId(productL1, obj)
+      getAttrId(productL2, obj)
+      getAttrId(productL3, obj)
+      getAttrId(productL4, obj)
+    }
+
+    function showImage(index) {
+      const img = $('#imageArea').children().eq(index)
+      const imgAttr = img.attr('src')
+      console.log(imgAttr, 'imgAttr');
+      if (imgAttr !== '') {
+        $('.image-area').removeClass('image-toggle')
+        $('.icon-container').addClass('icon-toggle icon-fixed')
+        img.addClass('active');
+      }
+      setTimeout(() => {
+        img.removeClass('active').addClass('fixed');
+      }, 1000)
+      $('#imageArea img').on('click', function() {
+        $(this).toggleClass('enlarged');
+      });
+      $('#imageArea img').on('transitionend', function() {
+        setTimeout(() => {
+          img.removeClass('active').addClass('fixed');
+        }, 1000);
+      });
+    }
+
+    function shopIcon() {
+      if (isMobile) {
+        $('.icon-container').addClass('icon-fixed')
+        $('.icon-container').removeClass('icon-toggle')
+        $('.image-area').html('')
+      }
+    }
+
+    function iconToggle() {
+      $('.icon-container').toggleClass('icon-toggle')
+      $('.image-area').toggleClass('image-toggle')
+    }
+
+    function imgRemove() {
+      $('#imageArea img').removeClass('enlarged');
+    }
+    $(document).ready(function() {
+      $(document).on('click', function(event) {
+        var clickedElement = $(event.target);
+        if (!clickedElement.closest('#imageArea img').length) {
+          $('#imageArea img').removeClass('enlarged');
         }
-        if (key == productL3.attr_id) {
-          productL3.variant_id = obj[key][0]
-          productL3.product_sku = obj[key][1]
-        }
-        if (key == productL4.attr_id) {
-          productL4.variant_id = obj[key][0]
-          productL4.product_sku = obj[key][1]
+
+      });
+    });
+
+    function throttle(fn, wait) {
+      var time = Date.now();
+      return function() {
+        if ((time + wait - Date.now()) < 0) {
+          fn();
+          time = Date.now();
         }
       }
     }
 
-    function getSkuListInfo() {
+    window.addEventListener('scroll', throttle(imgRemove, 1000));
+
+    function getSkuListInfo(id = '') {
       $('.sku-info').empty()
       var skuData = params.products
       var skuList = ''
+      if (id !== '' && isMobile) {
+        console.log(id, 'id========');
+        // skuData[0].img = '/checkout/v2/images/logo_de.webp'
+        const lastChar = id.charAt(id.length - 1) - 1
+        console.log(lastChar, 'lastChar');
+        let previewDom = ''
+        skuData.forEach((item) => {
+          previewDom += `<img src= "` + item.img + `" alt= ''/>`
+        })
+        console.log(previewDom, 'previewDom======');
+        const imageArea = $('#imageArea');
+        imageArea.html(previewDom)
+        showImage(lastChar)
+      }
       for (let i = 0; i < skuData.length; i++) {
         var description = skuData[i].description.slice(2)
         var attributeName = skuData[i].attribute_name.split(',').join(' / ')
+        console.log(skuData[i].img, 'skuData[i].img');
         var skuImgUrl = skuData[i].img
+        if (skuData[i].img == '') {
+          console.log(data.package_products[0].image, 'image2');
+          skuImgUrl = data.package_products[0].image
+        }
         skuList += `<div class="sku-item-info">
-                <img src="` + skuImgUrl + `" alt="" onclick="skuImgPreview(event)" style="width: 64px;height:64px" />
+                <img src="` + skuImgUrl + `"  onclick="skuImgPreview(event)" style="width: 64px;height:64px" loading="lazy" alt=""/>
                 <div class="sku-content">
                   <p class="sku-item-title">` + description + `</p>
                   <span class="sku-item-text">` + attributeName + `</span>
@@ -3637,7 +2201,6 @@
                     onclick="javascript:bookmarkscroll.scrollTo('product2')"
                     >@lang('checkout::app.v2.edit')</a> 
                 </div>
-                <div class="sku-price">` + skuData[i].price + `</div>
               </div>`
       }
       $('.sku-info').append(skuList)
@@ -3647,11 +2210,6 @@
       var imgUrl = $(event.target).attr('src')
       $('.sku-preview-img-box').show()
       $('.sku-preview-img img').attr('src', imgUrl)
-    }
-
-    function reviewImgPreview(imgUrl) {
-      $('.size-chart-img-box').show()
-      $('.size-chart-img img').attr('src', imgUrl)
     }
 
     function sizeCharImgPreview() {
@@ -3670,7 +2228,6 @@
     }
 
     function paramsProductsinit(list) {
-      // console.log(list, 'paramsProductsinit')
       for (var listi = 0; listi < list.length; listi++) {
         if (listi == list.length - 1) {
           break;
@@ -3713,7 +2270,6 @@
       productsObj.description = data.package_products[num1].name
       productsObj.product_id = '<?php echo $data['product']['id']; ?>'
       productsObj.price = data.package_products[num1].tip2
-      // productsObj.product_sku = data.sku
       productsObj.img = '<?php echo @$data['product']['base_image']['large_image_url']; ?>'
       productL1 = JSON.parse(JSON.stringify(productsObj))
       productL2 = JSON.parse(JSON.stringify(productsObj))
@@ -3739,7 +2295,6 @@
           name2List.push(name2)
           name3 = $('#select2-item2').children('select').eq(m).val()
           name2List.push(name2)
-          // productL1.attribute_name = v1+ ',' +v2
           for (var inm = 0; inm < data.attr.attributes[m].options.length; inm++) {
             var mid = data.attr.attributes[m].id
             if (data.attr.attributes[m].options[inm].label == name1) {
@@ -3758,7 +2313,6 @@
           name2List.push(name2)
           name3 = $('#select3-item3').children('select').eq(m).val()
           name3List.push(name3)
-          // productL1.attribute_name = v1+ ',' +v2
           for (var inm = 0; inm < data.attr.attributes[m].options.length; inm++) {
             var mid = data.attr.attributes[m].id
             if (data.attr.attributes[m].options[inm].label == name1) {
@@ -3782,7 +2336,6 @@
           name3List.push(name3)
           name4 = $('#select4-item4').children('select').eq(m).val()
           name4List.push(name4)
-          // productL1.attribute_name = v1+ ',' +v2
           for (var inm = 0; inm < data.attr.attributes[m].options.length; inm++) {
             var mid = data.attr.attributes[m].id
             if (data.attr.attributes[m].options[inm].label == name1) {
@@ -3956,6 +2509,11 @@
           })
       }
     })
+    $(document).ready(function() {
+      $('#mySelect option[disabled]').each(function() {
+        $(this).css('background-color', 'lightgray');
+      });
+    });
 
     function getSku(id, n, value) {
       var nList = []
@@ -3984,11 +2542,16 @@
             params.products[n].img = finUrl
           }
           aList = params.products[n].attr_id.split(',')
-          aList[i] = data.attr.attributes[i].id + '_' + aid
+          if (value !== '') {
+            aList[i] = data.attr.attributes[i].id + '_' + aid
+
+          } else {
+            aList[i] = ''
+          }
           params.products[n].attr_id = aList.join(',')
         }
       }
-      getVSID(data.attr.index2)
+      getVSID(data.attr.index2, value)
     }
 
     function listEach(list) {
@@ -3997,9 +2560,100 @@
       })
     }
 
+    function getNextOptions(value) {
+      let attribute = data.attr.attributes[0],
+        nextList = data.attr.attributes[1],
+        nextId = data.attr.attributes[1].id,
+        skuList = '',
+        keys = [],
+        updateNext = [],
+        change = false
+      console.log(attribute, value);
+      attribute.options.forEach(function(item) {
+        if (item.label == value) {
+          skuList = item.sku
+        }
+      })
+      console.log(skuList, 'skuList', skuList[nextId]);
+      if (skuList !== '' && Object.keys(skuList[nextId]).length !== 0) {
+        keys = Object.keys(skuList[nextId])
+        keys.forEach(function(item) {
+          nextList.options.forEach(function(nextItem) {
+            if (item == nextItem.id) {
+              updateNext.push(nextItem)
+            }
+          })
+        })
+      }
+      const noInArray = nextList.options.filter(function(element) {
+        return !updateNext.includes(element)
+      })
+      console.log(noInArray, 'noInArray');
+      noInArray.sort(function(a, b) {
+        return a.num - b.num
+      })
+      updateNext.sort(function(a, b) {
+        return a.num - b.num
+      })
+      let nextOption = `<option value="" selected disabled>` + data.attr.attributes[1].label + `</option>`
+      for (let i = 0; i < updateNext.length; i++) {
+        nextOption += `<option onchange="seInput(value)" value="` + updateNext[i].label + `">` + updateNext[i].label + `</option>`
+      }
+      if (noInArray.length > 0) {
+        change = true
+        for (let i = 0; i < noInArray.length; i++) {
+          nextOption += `<option onchange="seInput(value)" disabled value="` + noInArray[i].label + `">` + noInArray[i].label + `</option>`
+        }
+      }
+      console.log(keys, updateNext, nextOption, 'keys');
+      return {
+        nextOption,
+        change
+      }
+    }
+
+    function swiperTo(value) {
+      let swiperToId = ''
+      let variantId = ''
+      data.attr.attributes.forEach(function(item) {
+        if (item.id == "23") {
+          item.options.forEach(function(opItem) {
+            if (opItem.label == value) {
+              swiperToId = opItem.products[0]
+            }
+          })
+
+        }
+      })
+      for (const key in data.attr.index) {
+        if (Object.hasOwnProperty.call(data.attr.index, key)) {
+          if (key == swiperToId) {
+            variantId = data.attr.index[key].sku.split('-')[1]
+          }
+        }
+      }
+      if (swiperImgList.length > 0) {
+        swiperImgList.forEach(function(item, index) {
+          if (item.variant_ids.includes(Number(variantId))) {
+            console.log(item, 'swiperto========', index);
+            index = index + 1
+            galleryThumbs.slideTo(index)
+            mySwiper.slideTo(index)
+          }
+        })
+      }
+
+      console.log(swiperToId, 'swiperToId', '===variantId===', variantId);
+    }
+
     function seInput(value) {
+      if (value == null) {
+        value = ''
+      }
+      $(event.target).removeClass('border-red')
       var parId = $(event.target).parent().attr('id')
       var itemId = $(event.target).attr('id')
+      console.log(parId, itemId, 'itemId');
       var aid = ''
       if (parId == 'select1-item1' || parId == 'select2-item1' || parId == 'select3-item1' || parId == 'select4-item1') {
         getSku(itemId, 0, value)
@@ -4013,7 +2667,24 @@
       if (parId == 'select4-item4') {
         getSku(itemId, 3, value)
       }
-      getSkuListInfo();
+      if (itemId == 'in-se0') {
+        swiperTo(value)
+      }
+      if (itemId == 'in-se0' && data.attr.attributes.length == 2) {
+        let returnParams = getNextOptions(value)
+        console.log(returnParams, 'returnParams=======');
+        if (returnParams.change) {
+          $(event.target).siblings('#in-se1').html(returnParams.nextOption)
+          $(event.target).siblings('#in-se1').addClass('border-red')
+          let lastChar = parId.substring(parId.length - 1);
+          console.log(lastChar);
+          getSku('in-se1', Number(lastChar) - 1, '')
+        } else {
+          $(event.target).siblings('#in-se1').removeClass('border-red')
+          $(event.target).siblings('#in-se1').children().slice(1).removeAttr('disabled')
+        }
+      }
+      getSkuListInfo(parId);
       var skuAll = $(event.target).parent().parent().parent()
       var list = []
       skuAll.find('select').each(function() {
@@ -4038,20 +2709,20 @@
       $('#buy-select4').hide()
       if (data.attr.attributes.length > 0) {
         $('#buy-select1').show()
+        shopIcon()
       } else {
         $('#buy-select1').hide()
         list.removeClass('background-green')
         $('#product1').addClass('background-green')
       }
       $('#product1').addClass('choose-p')
-      var nprice = currencySymbol + data.package_products[1].new_price.toFixed(2)
-      $('#summary-total1').text(nprice)
+      $('#summary-total1').text(data.package_products[1].old_price_format)
       var shippingFee = currencySymbol + data.package_products[1].shipping_fee
       $('#summary-total3').text(shippingFee)
       console.log(data, 'data');
       var discount = Number(data.package_products[1].old_price) - Number(data.package_products[1].new_price)
       console.log(discount, 'discount');
-      discount = currencySymbol + discount.toFixed(2)
+      discount = "-" + currencySymbol + discount.toFixed(2)
       $('#summary-total2').text(discount)
       var total = Number(data.package_products[1].new_price) + Number(data.package_products[1].shipping_fee)
       total = currencySymbol + total.toFixed(2)
@@ -4078,19 +2749,19 @@
       $('#buy-select4').hide()
       if (data.attr.attributes.length > 0) {
         $('#buy-select2').show()
+        shopIcon()
       } else {
         $('#buy-select2').hide()
         list.removeClass('background-green')
         $('#product2').addClass('background-green')
       }
       $('#product2').addClass('choose-p')
-      var nprice = currencySymbol + data.package_products[0].new_price.toFixed(2)
-      $('#summary-total1').text(nprice)
+      $('#summary-total1').text(data.package_products[0].old_price_format)
       var shippingFee = currencySymbol + data.package_products[0].shipping_fee
       $('#summary-total3').text(shippingFee)
 
       var discount = Number(data.package_products[0].old_price) - Number(data.package_products[0].new_price)
-      discount = currencySymbol + discount.toFixed(2)
+      discount = "-" + currencySymbol + discount.toFixed(2)
       $('#summary-total2').text(discount)
       var total = Number(data.package_products[0].new_price) + Number(data.package_products[0].shipping_fee)
       total = currencySymbol + total.toFixed(2)
@@ -4116,6 +2787,7 @@
       $('#buy-select4').hide()
       if (data.attr.attributes.length > 0) {
         $('#buy-select3').show()
+        shopIcon()
       } else {
         $('#buy-select3').hide()
         list.removeClass('background-green')
@@ -4123,13 +2795,12 @@
       }
 
       $('#product3').addClass('choose-p')
-      var nprice = currencySymbol + data.package_products[2].new_price.toFixed(2)
-      $('#summary-total1').text(nprice)
+      $('#summary-total1').text(data.package_products[2].old_price_format)
       var shippingFee = currencySymbol + data.package_products[2].shipping_fee
       $('#summary-total3').text(shippingFee)
 
       var discount = Number(data.package_products[2].old_price) - Number(data.package_products[2].new_price)
-      discount = currencySymbol + discount.toFixed(2)
+      discount = "-" + currencySymbol + discount.toFixed(2)
       $('#summary-total2').text(discount)
       var total = Number(data.package_products[2].new_price) + Number(data.package_products[2].shipping_fee)
       total = currencySymbol + total.toFixed(2)
@@ -4156,19 +2827,19 @@
       $('#buy-select1').hide()
       if (data.attr.attributes.length > 0) {
         $('#buy-select4').show()
+        shopIcon()
       } else {
         $('#buy-select4').hide()
         list.removeClass('background-green')
         $('#product4').addClass('background-green')
       }
       $('#product4').addClass('choose-p')
-      var nprice = currencySymbol + data.package_products[3].new_price.toFixed(2)
-      $('#summary-total1').text(nprice)
+      $('#summary-total1').text(data.package_products[3].old_price_format)
       var shippingFee = currencySymbol + data.package_products[3].shipping_fee
       $('#summary-total3').text(shippingFee)
 
       var discount = Number(data.package_products[3].old_price) - Number(data.package_products[3].new_price)
-      discount = currencySymbol + discount.toFixed(2)
+      discount = "-" + currencySymbol + discount.toFixed(2)
       $('#summary-total2').text(discount)
       var total = Number(data.package_products[3].new_price) + Number(data.package_products[3].shipping_fee)
       total = currencySymbol + total.toFixed(2)
@@ -4189,9 +2860,6 @@
     $('#complete-btn-id').click(function() {
       $('#loading').show()
       window.is_airwallex = true
-      // if (countries1 == 'de') {
-      //   $('choose-billing-box').show
-      // }
       params.first_name = $('input[name="firstName"]').val()
       params.second_name = $('input[name="lastName"]').val()
       params.email = $('input[name="email"]').val()
@@ -4226,13 +2894,6 @@
       }
       console.log(params, 'airwallexparams')
       createOrder('', '', 'airwallex')
-
-      // axios.post(postUrl).then(function(res) {
-      //     console.log(res, '===res')
-      //   })
-      //   .catch(function(err) {
-      //     console.log(err, 'err==')
-      //   })
     })
 
     function skuIsScelect() {
@@ -4379,7 +3040,7 @@
             });
           } else {
             $('#loading').hide();
-            alert(data.error)
+            alert(res.error)
           }
         })
         .catch(function(err) {
@@ -4417,16 +3078,8 @@
                 value: res.order.base_grand_total,
                 currency: res.currency,
               },
-              // shippingAddressRequired: true,
-              // billingAddressParameters: {
-              //   format: 'FULL',
-              //   phoneNumberRequired: true
-              // },
-              // billingAddressRequired: true,
-              // countryCode: res.country,
               countryCode: 'HK',
               origin: window.location.origin,
-              // autoCapture: true,
               merchantInfo: {
                 merchantName: 'Airwallex',
               },
@@ -4465,7 +3118,7 @@
             });
           } else {
             $('#loading').hide();
-            alert(data.error)
+            alert(res.error)
           }
         })
         .catch(function(err) {
@@ -4627,21 +3280,6 @@
           },
 
           onInit(data, actions) {
-
-            // Disable the buttons
-            // actions.disable();
-
-            // Listen for changes to the checkbox
-            // document.querySelector('#check').addEventListener('change', function(event) {
-            //     // Enable or disable the button when it is checked or unchecked
-            //     if (event.target.checked)  {
-            //     actions.enable();
-            //     } else  {
-            //     actions.disable();
-            //     }
-            // });
-            // var params = getOrderParams('paypal_stand');
-
             var can_paypal = 0;
             var email_can = 0;
             var first_name_can = 0;
@@ -4650,8 +3288,6 @@
             var address_can = 0;
             var city_can = 0;
             var zip_code_can = 0;
-
-
 
             $(".email").on('change', function() {
               var value = $(".email").val();
@@ -4871,21 +3507,13 @@
 
     });
   </script>
-  <!-- <script src="/checkout/v2/js/codebase.min.js" type="text/javascript"></script> -->
-  <!-- <script src="/checkout/v2/js/sticky-prospect-script.min.js"></script> -->
-  <!-- <script src="/checkout/v2/js/custom-extra.js"></script> -->
-  <!-- <script async defer src="js/js"></script> -->
   <script>
     var restricted_countries = 'US,CA'
   </script>
-  <script src="/checkout/v2/js/address-auto-complete.min.js"></script>
-  <script type="text/javascript" src="/checkout/v2/js/slick.min.js"></script>
-  <script type="text/javascript" src="/checkout/v2/js/bookmarkscroll.js"></script>
-  <script type="text/javascript" src="/checkout/v2/js/jquery.sticky.js"></script>
-  <script type="text/javascript" src="/checkout/v2/js/slick-cust.js"></script>
-  <!-- <script type="text/javascript" src="/checkout/v2/js/popup.js"></script> -->
-  <!-- <script type="text/javascript" src="js/checkout.js"></script> -->
-
+  <!-- <script src="/checkout/v2/js/address-auto-complete.min.js"></script> -->
+  <script async type="text/javascript" src="/checkout/v2/js/slick.min.js"></script>
+  <script async type="text/javascript" src="/checkout/v2/js/bookmarkscroll.js?v=1"></script>
+  <!-- <script type="text/javascript" src="/checkout/v2/js/jquery.sticky.js"></script> -->
   <script>
     function getRandomIntInclusive(min, max) {
       min = Math.ceil(min);
@@ -4895,33 +3523,26 @@
 
     function getOrderMsg() {
       let hour = getRandomIntInclusive(1, 24)
-      console.log(hour, 'xx小时');
-      let number = getRandomIntInclusive(10, 200)
-      console.log(number, 'xx件');
+      let number = getRandomIntInclusive(5, 50)
       $('#order-msg-hour').text(hour)
       $('#order-msg-number').text(number)
     }
 
     function getDateAfterNDays(n) {
-      // 创建一个包含当前日期和时间的 Date 对象
       let currentDate = new Date();
-
-      // 添加 n 天
       currentDate.setDate(currentDate.getDate() + n);
-
-      // 返回新的日期
       return currentDate;
     }
 
     function formatDate(date) {
-      let month = String(date.getMonth() + 1).padStart(2, '0'); // 月份从0开始，所以需要加1
+      let month = String(date.getMonth() + 1).padStart(2, '0');
       let day = String(date.getDate()).padStart(2, '0');
       return `${month}/${day}`;
     }
 
     function getshippingMsg() {
       let date1 = formatDate(getDateAfterNDays(5))
-      let date2 = formatDate(getDateAfterNDays(7))
+      let date2 = formatDate(getDateAfterNDays(8))
       $('#shipping-date1').text(date1)
       $('#shipping-date2').text(date2)
     }
@@ -4934,32 +3555,24 @@
     getOrderMsg();
     setInterval(function() {
       getUserView()
-    }, 3000);
-    // $(function() {
-    //   var width = $(window).innerWidth()
-    //   if (width > 767) {
-    //     var height = $('.checkout-section').height()
-    //     console.log(height, 'height===');
-    //     $('.left-sec').css('height', height)
-    //     $('body').css('height', height)
-    //   }
-    // })
+    }, 5000);
+
     function heightChange() {
       var width = $(window).innerWidth()
+      $('body').css('height', height)
       if (width > 767) {
         var height = $('.checkout-section').height()
         console.log(height, 'height===');
         $('.left-sec').css('height', height)
-        $('body').css('height', height)
       }
     }
     window.onload = function() {
       var width = $(window).innerWidth()
+      var height = $('.checkout-section').height()
+      $('body').css('height', height)
       if (width > 767) {
-        var height = $('.checkout-section').height()
         console.log(height, 'height===');
         $('.left-sec').css('height', height)
-        $('body').css('height', height)
       }
     }
     $('.fieldToggle').click(function() {
@@ -4978,86 +3591,10 @@
         )
       }
     })
-  </script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/5.0.4/js/swiper.js"></script>
-  <script>
+
     function closeDialog() {
       $('.dialog-error').hide()
     }
-    $(function() {
-      var url = '/shopify/v1/api/images/' + getProductId
-      axios
-        .get(url)
-        .then(function(res) {
-          var swiperList = ''
-          var showimg = ''
-          if (res.data.code !== 200) {
-            return
-          }
-          var img = res.data.data.images
-          var imgListLength = img.length
-          var imglen = Math.floor(imgListLength / 3)
-          // if (imglen > 3) {
-          //   imglen = 3;
-          // }
-          for (var i = 0; i < img.length; i++) {
-            swiperList += `<div class="swiper-slide"><img src="${img[i].src}" ></div>`
-          }
-          // for (var imgi = 0; imgi < imglen; imgi++) {
-          //   var i1 = 0 + imgi * 3,
-          //     i2 = 1 + imgi * 3,
-          //     i3 = 2 + imgi * 3
-          //   showimg += `<div class="grid-cell gallery-item grid-col-span-1">
-          //     <img src="` + img[i1].src + `" alt="">
-          //   </div>
-          //   <div class="grid-cell gallery-item grid-col-span-2">
-          //     <img src="` + img[i2].src + `" alt="">
-          //   </div>
-          //   <div class="grid-cell gallery-item grid-col-span-2">
-          //     <img src="` + img[i3].src + `" alt="">
-          //   </div>`
-          // }
-          // $('.grid-container').append(showimg)
-          var gallery =
-            `<div class="swiper-container" style="width:100%" id="gallery">
-					<div class="swiper-wrapper">` +
-            swiperList +
-            `</div>
-				</div>`
-          var thumbs =
-            `<div class="swiper-container" id="thumbs">
-					<div class="swiper-wrapper">` +
-            swiperList +
-            `</div>
-				</div>`
-          $('.sw-box').append(gallery, thumbs)
-
-          var mySwiper = new Swiper('#gallery', {
-            direction: 'horizontal',
-            loop: true,
-            autoplay: true,
-            allowTouchMove: true,
-            //navigation: {
-            //nextEl: '.swiper-button-next',
-            //prevEl: '.swiper-button-prev',
-            //},
-            thumbs: {
-              swiper: {
-                el: '#thumbs',
-                slidesPerView: 5,
-                spaceBetween: 5,
-                watchSlidesVisibility: true,
-                loop: true,
-              },
-              allowTouchMove: true,
-              slideThumbActiveClass: 'my-slide-thumb-active',
-            },
-          })
-        })
-        .catch(function(error) {
-          console.error(error, 'getswiper err')
-        })
-    })
     $(document).ready(function() {
       $(".faq_view").click(function() {
         $("#collapseContent").slideToggle();
@@ -5067,6 +3604,61 @@
     function payAfterSubmit() {
       $('#pay-after-submit-error').hide()
     }
+    document.addEventListener('DOMContentLoaded', function() {
+      const button1 = document.querySelector('.btn-fixed');
+      const button2 = document.getElementById('comn-btn2');
+      const pkgopt = document.querySelector('.pkg-opt');
+      const swbox = document.querySelector('.Schritt-top-box');
+
+      // IntersectionObserver 观察器
+      const observer = new IntersectionObserver((entries) => {
+        let isButton2Visible = false;
+        let isButton3Visible = false;
+        let isButton4Visible = false;
+        entries.forEach(entry => {
+          if (entry.target === button2) {
+            isButton2Visible = entry.isIntersecting;
+          }
+          if (entry.target === pkgopt) {
+            isButton3Visible = entry.isIntersecting;
+          }
+          if (entry.target === swbox) {
+            isButton4Visible = entry.isIntersecting;
+          }
+        });
+
+
+        if (isButton4Visible || isButton2Visible || isButton3Visible) {
+          button1.style.display = 'none';
+        } else if (isMobile) {
+          button1.style.display = 'block';
+        }
+      }, {
+        threshold: 0.5
+      });
+
+      observer.observe(button2);
+      observer.observe(pkgopt);
+      observer.observe(swbox);
+      updateButton1Visibility();
+
+
+      function updateButton1Visibility() {
+        const rect2 = button2.getBoundingClientRect();
+        const rect3 = pkgopt.getBoundingClientRect();
+        const rect4 = swbox.getBoundingClientRect();
+        if (!rect2.height && !rect3.height && !rect4.height) {
+
+          button1.style.display = 'block';
+        } else {
+
+          button1.style.display = 'none';
+        }
+      }
+    });
+  </script>
+  <script>
+
   </script>
   <?php if (@$data['env'] == 'demo') { ?>
     <script src="https://checkout-demo.airwallex.com/assets/elements.bundle.min.js"></script>
@@ -5376,42 +3968,6 @@
       })
     }
 
-    function onCardTokenized(event) {
-      $('#loading').hide();
-      if (event.token) {
-        createOrder(event.token);
-      } else {
-        $('#checkout-card-error').show();
-        document.querySelector(".checkout-content").style.display = "block";
-        document.querySelector(".checkout-block").scrollIntoView({
-          behavior: "smooth"
-        })
-      }
-    }
-
-
-
-    function postOrderPayFailed(pay_type) {
-      var order_id = localStorage.getItem('order_id');
-      if (order_id) {
-        var url = '/order/pay/fail_notice';
-        var params = {
-          id: order_id,
-          pay_type: pay_type,
-        };
-        fetch(url, {
-          body: JSON.stringify(params),
-          method: 'POST',
-          headers: {
-            'content-type': 'application/json'
-          },
-        })
-      }
-    }
-    $(".email").on("focus", function() {
-      //console.log("email focus");
-    });
-
     function checkout() {
       sendInitiateCheckoutEvent();
       var pay_type = 'worldpay';
@@ -5460,18 +4016,6 @@
           $('#checkout-error').html(error);
           $('#checkout-error').show();
         });
-        // createOrder('', 'stripe_charge_token', 'stripe');
-        // stripe.createToken(cardNumber).then(function(result) {
-        //     if (result.error) {
-        //         // Inform the customer that there was an error.
-        //         $('#checkout-error').html(result.error.message+'<br /><br />');
-        //         $('#checkout-error').show();
-        //         $('#loading').hide();
-        //     } else {
-        //         // Send the token to your server.
-        //         createOrder(result.token.id, 'stripe_charge_token', 'stripe');
-        //     }
-        // });
       }
     }
 
@@ -5623,7 +4167,7 @@
             console.log('else====');
             $('#loading').hide();
             var pay_error = data.error;
-
+            alert(res.error)
             if (pay_error && pay_error.length) {
               $('#checkout-error').html(pay_error.join('<br />') + '<br /><br />');
               $('#checkout-error').show();
@@ -5633,301 +4177,6 @@
         .catch(function(err) {
           $('#loading').hide();
         })
-    }
-
-    // function createGooglePay() {
-
-    // }
-
-    function getPhonePrefix() {
-      return '';
-      var country = $("#country-select").val();
-
-      for (var i = 0; i < window.countries.length; i++) {
-        if (window.countries[i].countryCode == country) {
-          return window.countries[i].phonePrefix;
-        }
-      }
-
-      return '';
-    }
-
-    function checkoutProducts(params) {
-      console.log(params);
-      return false;
-      var products = params.products;
-      for (var i = 0; i < products.length; i++) {
-        if (!products[i].product_sku) {
-          return ["Attribute cannot be empty, please select your product"]
-        }
-      }
-
-      try {
-        if (isProductSoldOut && isProductSoldOut()) {
-          return ["Sorry, the Attributes you selected is sold out, please select again"]
-        }
-      } catch (err) {
-
-      }
-
-      return false;
-    }
-
-    function checkoutAmount(params) {
-      let product_amount = 0;
-      for (let i = 0; i < params.products.length; i++) {
-        let product = params.products[i];
-        product_amount += product.amount * 1;
-      }
-
-      var params_amount = params.amount;
-
-      if (params_amount != product_amount) {
-        return ["The actual quantity of the product does not match the selected quantity, please re-select the quantity and attributes of the product."];
-      }
-
-      return false;
-    }
-
-    function clearError() {
-      $('.shipping-info-item input, .shipping-info-item select').each(function() {
-        $(this).removeClass('shipping-info-input-error');
-        $(this).parent().find('.shipping-info-error').hide();
-      })
-    }
-
-    function checkoutName(input) {
-      var name = $(input).val();
-      name = name.replace(/\，|\,|\—|\-|\.|\。|[0-9]/g, '');
-      $(input).val(name);
-    }
-
-    function checkoutCity(input) {
-      var city = $(input).val();
-      city = city.replace(/\，|\,|\—|\-|\.|\。|[0-9]/g, '');
-      $(input).val(city);
-    }
-
-    function checkOrderParams(params, is_chain_payment, cancel_check_scroll) {
-      clearError();
-      var has_error = false;
-      var error_log = [],
-        show_error = [];
-      if (!params.first_name) {
-        has_error = true;
-        showError('first_name-error', "This field is required.");
-        error_log.push('first_name is empty');
-      }
-      if (!params.second_name) {
-        has_error = true;
-        showError('last_name-error', "This field is required.");
-        error_log.push('second_name is empty');
-      }
-      if (!params.email) {
-        has_error = true;
-        showError('email-error', "This field is required.");
-        error_log.push('email is empty');
-      }
-
-      var email_format = /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)+$/
-      if (!email_format.test(params.email)) {
-        has_error = true;
-        showError('email-error', "Please enter a valid email address.");
-        error_log.push('email is Invaild');
-      }
-
-      if (!params.phone_full) {
-        has_error = true;
-        showError('phone_number-error', "This field is required.");
-        error_log.push('phone_full is empty');
-      }
-
-      // var phone_format = /^[0-9\+\-\(\)\s]+$/;
-      // if(!phone_format.test(params.phone_full)){
-      //     has_error = true;
-      //     showError('phone_number-error',  "Please enter valid phoneNumber");
-      //     error_log.push('phone_full is Invaild');
-      // }
-
-      if (!params.country) {
-        has_error = true;
-        showError('country-error', "This field is required.");
-        error_log.push('country is empty');
-      }
-      if (!params.city) {
-        has_error = true;
-        showError('city-error', "This field is required.");
-        error_log.push('city is empty');
-      }
-      if (window.states) {
-        if (!params.province) {
-          has_error = true;
-          showError('state-error', "This field is required.");
-          error_log.push('province is empty');
-        }
-      }
-      if (!params.address) {
-        has_error = true;
-        showError('address-error', "This field is required.");
-        error_log.push('address is empty');
-      }
-      if (!params.code) {
-        has_error = true;
-        showError('zip_code-error', "This field is required.");
-        error_log.push('code is empty');
-      }
-
-      var code_format = new RegExp(getCountriesField('codeFormat'));
-      if (code_format && !code_format.test(params.code)) {
-        has_error = true;
-        showError('zip_code-error', "Please enter valid zip/postcode ");
-        error_log.push('code is invaild');
-      }
-
-      // do the bill address info
-      if (params.shipping_address == "other") {
-        if (!params.bill_first_name) {
-          has_error = true;
-          showError('first_name-error', "This field is required.");
-          error_log.push('Bill first_name is empty');
-        }
-        if (!params.bill_second_name) {
-          has_error = true;
-          showError('last_name-error', "This field is required.");
-          error_log.push('Bill second_name is empty');
-        }
-        if (!params.bill_country) {
-          has_error = true;
-          showError('bill-country-error', "This field is required.");
-          error_log.push('Bill country is empty');
-        }
-        if (!params.bill_city) {
-          has_error = true;
-          showError('bill-city-error', "This field is required.");
-          error_log.push('Bill city is empty');
-        }
-        if (window.bill_states) {
-          if (!params.province) {
-            has_error = true;
-            showError('bill-state-error', "This field is required.");
-            error_log.push('Bill province is empty');
-          }
-        }
-        if (!params.bill_address) {
-          has_error = true;
-          showError('bill-address-error', "This field is required.");
-          error_log.push('Bill address is empty');
-        }
-        if (!params.bill_code) {
-          has_error = true;
-          showError('bill-zip_code-error', "This field is required.");
-          error_log.push('Bill code is empty');
-        }
-      }
-
-      if (has_error) {
-        show_error.push("Your Info is invaild");
-        if (!cancel_check_scroll) {
-          document.querySelector(".shipping-tip").scrollIntoView({
-            behavior: "smooth"
-          })
-        }
-      }
-
-      if ((params.payment_method == 'checkout' && !Frames.isCardValid()) || (params.payment_method == 'stripe' && !(window.card_number_vaild && window.card_expriy_vaild && window.card_cvc_vaild)) || (params.payment_method == 'wintopay' && !cc_form_obj.isValid())) {
-        has_error = true;
-        error_log.push('card is invaild');
-        show_error.push("Your Card Info is invaild");
-        $('#checkout-card-error').show();
-        document.querySelector(".checkout-content").style.display = "block";
-        if (!cancel_check_scroll) {
-          document.querySelector(".checkout-block").scrollIntoView({
-            behavior: "smooth"
-          })
-        }
-      }
-
-      if (has_error) {
-        error_log.push({
-          params: params
-        });
-        //fetchCheckoutError(error_log);
-      }
-
-      return has_error && show_error
-    }
-
-    function showError(id, error_log) {
-      $('#' + id).html(error_log);
-      $('#' + id).show();
-      $('#' + id).parent().find('input').addClass("shipping-info-input-error");
-    }
-
-    function getSubmitProducts(total, amount) {
-      var unit_price = (total / amount).toFixed(4);
-
-      var skus = [];
-      var attribute_item = $('.attribute-select .attribute-item');
-      var sku_maps = getSKuMaps();
-
-      // console.log("sku maps");
-      // console.log(sku_maps);
-
-      // console.log("attribute_item");
-      // console.log(attribute_item);
-      // console.log("attribute_item");
-
-      for (var i = 0; i < attribute_item.length; i++) {
-        var sku_key_arr = [];
-        var img_key = '';
-        var attribute_select = $(attribute_item[i]).find('.attribute_select');
-        for (var j = 0; j < attribute_select.length; j++) {
-          sku_key_arr.push($(attribute_select[j]).val());
-          if ($(attribute_select[j]).data('has-img')) {
-            img_key = $(attribute_select[j]).val();
-          }
-        }
-
-        var sku = {};
-        if (sku_maps[sku_key_arr.join('_')]) {
-          sku = JSON.parse(JSON.stringify(sku_maps[sku_key_arr.join('_')]));
-        }
-        sku['img'] = getAttributeImg(img_key);
-        skus.push(sku);
-      }
-
-      console.log("product skus");
-      console.log(skus);
-
-      var products = [],
-        product_sku_map = {};
-
-      for (var m = 0; m < skus.length; m++) {
-        console.log("skus length" + skus.length);
-        if (product_sku_map[skus[m].sku_id]) {
-          products[product_sku_map[skus[m].sku_id] - 1].amount++;
-        } else {
-          if (skus[m].sku_id == "" || skus[m].sku_id == null || skus[m].sku_id == undefined) {
-            alert("please select product color and size");
-            return false;
-          }
-          var sku = {
-            img: skus[m].img,
-            price: unit_price,
-            amount: 1,
-            description: skus[m].name,
-            product_id: '3167',
-            product_sku: skus[m].sku_code,
-            variant_id: skus[m].sku_id,
-            attribute_name: skus[m].attribute_name,
-            attr_id: skus[m].attr_id
-          };
-          products.push(sku);
-          product_sku_map[skus[m].sku_id] = products.length;
-        }
-      }
-
-      return products
     }
 
     function turnByCreatA(link, order_id) {
@@ -5979,18 +4228,6 @@
       if (window.event && window.event.returnValue) {
         window.event.returnValue = false;
       }
-    }
-
-    function getCountriesField(field) {
-      var country = $("#country-select").val();
-
-      for (var i = 0; i < window.countries.length; i++) {
-        if (window.countries[i].countryCode == country) {
-          return window.countries[i][field];
-        }
-      }
-
-      return '';
     }
 
     window.onpageshow = function() {

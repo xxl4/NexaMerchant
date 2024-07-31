@@ -372,7 +372,6 @@ class Post extends Command
         $postOrder['total_discount_set'] = $total_discount_set;
         $postOrder['total_discounts'] = $order->discount_amount;
 
-
         $shipping_lines = [];
 
         $shipping_lines = [
@@ -395,8 +394,6 @@ class Post extends Command
             ]
         ];
 
-
-
         $postOrder['shipping_lines'][] = $shipping_lines;
 
         $postOrder['buyer_accepts_marketing'] = true; // 
@@ -405,9 +402,8 @@ class Post extends Command
         $postOrder['order_number'] = $id;
         $postOrder['currency'] = $order->order_currency_code;
         $postOrder['presentment_currency'] = $order->order_currency_code;
-
-
         $pOrder['order'] = $postOrder;
+        var_dump($pOrder);
 
         $app_env = config("app.env");
         if($app_env=='demo') {
@@ -423,7 +419,7 @@ class Post extends Command
             $crm_channel = config('onebuy.crm_channel');
 
             
-            $url = "https://crm.heomai.com/api/offers/callBack?refer=".$cnv_id[1]."&revenue=".$order->grand_total."&currency_code=".$order->order_currency_code."&channel_id=".$crm_channel."&q_ty=".$q_ty;
+            $url = "https://crm.heomai.com/api/offers/callBack?refer=".$cnv_id[1]."&revenue=".$order->grand_total."&currency_code=".$order->order_currency_code."&channel_id=".$crm_channel."&q_ty=".$q_ty."&email=".$shipping_address->email;
             $res = $this->get_content($url);
             Log::info("post to bm 2 url ".$url." res ".json_encode($res));
             return true;
@@ -444,7 +440,8 @@ class Post extends Command
             //var_dump($e);
             var_dump($e->getMessage());
             Log::error(json_encode($e->getMessage()));
-            \Nicelizhi\Shopify\Helpers\Utils::send($e->getMessage().'--' .$id. " 需要手动解决 ");
+            \Nicelizhi\Shopify\Helpers\Utils::send($e->getMessage().'--' .$id. " fix check it ");
+            echo $e->getMessage()." post failed";
             //continue;
             return false;
         }
@@ -553,32 +550,23 @@ class Post extends Command
             $shopifyNewOrder->shipping_address = $item['shipping_address'];
             $shopifyNewOrder->shipping_lines = $item['shipping_lines'];
 
-
-
             $shopifyNewOrder->save();
-
-            
 
             // order sync to other job
 
             $cnv_id = explode('-',$orderPayment['method_title']);
-            $url = "https://track.heomai2021.com/click.php?cnv_id=".$cnv_id[1]."&payout=".$order->grand_total;
-            $res = $this->get_content($url);
-            Log::info("post to bm url ".$url." res ".json_encode($res));
-            $url = "https://binom.heomai.com/click.php?cnv_id=".$cnv_id[1]."&payout=".$order->grand_total;
-            $res = $this->get_content($url);
-            Log::info("post to bm url ".$url." res ".json_encode($res));
+
 
             $crm_channel = config('onebuy.crm_channel');
 
             
-            $url = "https://crm.heomai.com/api/offers/callBack?refer=".$cnv_id[1]."&revenue=".$order->grand_total."&currency_code=".$order->order_currency_code."&channel_id=".$crm_channel."&q_ty=".$q_ty;
+            $url = "https://crm.heomai.com/api/offers/callBack?refer=".$cnv_id[1]."&revenue=".$order->grand_total."&currency_code=".$order->order_currency_code."&channel_id=".$crm_channel."&q_ty=".$q_ty."&email=".$item['email'];
             $res = $this->get_content($url);
             Log::info("post to bm 2 url ".$url." res ".json_encode($res));
 
-            
-
         }
+
+        echo $id." end post \r\n";
     }
 
     private function get_content($URL){

@@ -186,6 +186,7 @@ class ManageServiceProvider extends ServiceProvider
             $this->commands([
                 \Nicelizhi\Manage\Console\Commands\Customers\ImportOrderCustomer::class,
                 \Nicelizhi\Manage\Console\Commands\Paypal\PaypalCoverOrderIDToTranslationID::class,
+                \Nicelizhi\Manage\Console\Commands\Refund\RefundOrder::class,
             ]);
         }
     }

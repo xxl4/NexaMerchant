@@ -74,7 +74,7 @@ class ProductV2Controller extends Controller
             abort(404);
         }
 
-        visitor()->visit($product);
+        //visitor()->visit($product);
 
         $refer = $request->input("refer");
 

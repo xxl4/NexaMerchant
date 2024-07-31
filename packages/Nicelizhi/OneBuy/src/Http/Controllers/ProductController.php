@@ -90,6 +90,7 @@ class ProductController extends Controller
 
         if(!empty($refer)) { 
             $request->session()->put('refer', $refer);
+            $request->session()->put('refer_'.$slug, $refer);
         }else{
             $refer = $request->session()->get('refer');
         }
@@ -361,6 +362,16 @@ class ProductController extends Controller
         $refer = $request->session()->get('refer');
         Log::info("refer checkout v1 ".$refer);
 
+        $last_order_id = $request->session()->get('last_order_id'); // check the laster order id
+        //$last_order_id = "ddddd";
+        $force = $request->input("force");
+
+        Log::info("last order id " . $last_order_id);
+
+        if(!empty($last_order_id) && $force !="1") {
+            return response()->json(['error' => 'You Have already placed order, if you want to place another order please confirm your order','code'=>'202'], 400);
+        }
+
         
         $products = $request->input("products");
         if(empty($products)) {
@@ -471,15 +482,6 @@ class ProductController extends Controller
 
         Log::info("address" . json_encode($addressData));
 
-        //var_dump($addressData);exit;
-
-
-        //return response()->json($addressData);
-
-        //var_dump($addressData);exit;
-
-
-        //Cart::saveCustomerAddress($addressData);
 
         if (
             Cart::hasError()
@@ -508,6 +510,8 @@ class ProductController extends Controller
         }
 
         Cart::collectTotals();
+
+        $payment_method = "airwallex";
 
         if($payment_method_input=="airwallex_klarna") $payment_method = "airwallex";
         if($payment_method_input=="airwallex_dropin") $payment_method = "airwallex";
@@ -556,15 +560,13 @@ class ProductController extends Controller
             $data['order'] = $order;
             if ($order) {
                 $orderId = $order->id;
-                // if($payment_method_input=="airwallex_google") {
-                //     $transactionManager = $this->airwallex->createPaymentAuthen($cart, $order->id);
-                // }elseif($payment_method_input=="airwallex_apple") {
-                //     $transactionManager = $this->airwallex->createPaymentAuthen($cart, $order->id);
-                // } else {
-                //     $transactionManager = $this->airwallex->createPaymentOrder($cart, $order->id);
-                // }
+
 
                 $transactionManager = $this->airwallex->createPaymentOrder($cart, $order->id);
+                
+                if(!isset($transactionManager->client_secret)) {
+                    response()->json(['error' => $transactionManager->body->message,'code'=>'203'], 400);
+                }
                 
                 Log::info("airwallex-".$order->id."--".json_encode($transactionManager));
                 $data['client_secret'] = $transactionManager->client_secret;
@@ -790,6 +792,8 @@ class ProductController extends Controller
         
         $transactionManager = $this->airwallex->confirmPayment($payment_intent_id, $order);
 
+        $request->session()->put('last_order_id', $order_id);
+
         $data = [];
         $data['payment'] = $transactionManager;
         $data['code'] = 200;
@@ -836,7 +840,8 @@ class ProductController extends Controller
             $addressData = [];
             $addressData['billing'] = [];
             $address1 = [];
-            array_push($address1, $input['address']->address_line_1);
+            $address_line_2 = isset($input['address']->address_line_2) ? $input['address']->address_line_2 : "";
+            array_push($address1, $input['address']->address_line_1. $address_line_2);
             $addressData['billing']['city'] = isset($input['address']->admin_area_2) ? $input['address']->admin_area_2 : "";
             $addressData['billing']['country'] = $input['address']->country_code;
             $addressData['billing']['email'] = $payer['email_address'];

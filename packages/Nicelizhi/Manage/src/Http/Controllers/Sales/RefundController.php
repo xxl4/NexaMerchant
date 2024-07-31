@@ -6,7 +6,6 @@ use Nicelizhi\Manage\Http\Controllers\Controller;
 use Webkul\Sales\Repositories\OrderRepository;
 use Webkul\Sales\Repositories\OrderItemRepository;
 use Webkul\Sales\Repositories\RefundRepository;
-use Nicelizhi\Manage\DataGrids\Sales\OrderRefundDataGrid;
 use Nicelizhi\Manage\Helpers\SSP;
 use Illuminate\Support\Facades\Log;
 
@@ -49,6 +48,7 @@ class RefundController extends Controller
                 array( 'db' => '`r`.`state`',   'dt' => 'state', 'field'=>'state' ),
                 array( 'db' => '`r`.`grand_total`',   'dt' => 'grand_total', 'field'=>'grand_total' ),
                 array( 'db' => '`r`.`comment`',   'dt' => 'comment', 'field'=>'comment' ),
+                array( 'db' => '`r`.`is_refund_money`',   'dt' => 'is_refund_money', 'field'=>'is_refund_money' ),
                 array( 'db' => '`r`.`created_at`',   'dt' => 'created_at', 'field'=>'created_at' ),
             );
             // SQL server connection information
@@ -102,6 +102,8 @@ class RefundController extends Controller
 
         $data = request()->all();
 
+        Log::info("refund data".json_encode($data));
+
         if (! $data['refund']['shipping']) {
             $data['refund']['shipping'] = 0;
         }
@@ -124,6 +126,8 @@ class RefundController extends Controller
             //$refundAmount = $data['refund']['custom_refund_amount'];
             //$refundAmount2 = $totals['grand_total']['price'] - $totals['shipping']['price'] + $data['refund']['shipping'] + $data['refund']['adjustment_refund'] - $data['refund']['adjustment_fee'];
         }
+
+        $data['refund']['is_refund_money'] = 1;
 
         $refundAmount = $totals['grand_total']['price'] - $totals['shipping']['price'] + $data['refund']['shipping'] + $data['refund']['adjustment_refund'] - $data['refund']['adjustment_fee'];
         

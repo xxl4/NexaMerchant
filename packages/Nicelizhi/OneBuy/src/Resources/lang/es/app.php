@@ -3,7 +3,7 @@ return [
   'product' => [
     'Savings' => 'Savings',
     'piece' => 'piece',
-    'brand' => 'YooJe',
+    'brand' => 'Wmcer',
     'Size Chart' => 'Size Chart',
     'payment' => [
       'creditCard' => [
