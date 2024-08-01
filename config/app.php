@@ -255,7 +255,7 @@ return [
 
 
         NexaMerchant\Apis\Providers\ApisServiceProvider::class,
-        NexaMerchant\Upselling\Providers\UpsellingServiceProvider::class,
+        //NexaMerchant\Upselling\Providers\UpsellingServiceProvider::class,
 
 
 
