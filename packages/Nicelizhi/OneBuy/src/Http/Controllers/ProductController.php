@@ -1001,30 +1001,17 @@ class ProductController extends Controller
 
         $billingAddressLines = $this->getAddressLines($cart->billing_address->address1);
 
+        $data = [];
+
+
+
         $data = [
             'intent' => 'CAPTURE',
             'application_context' => [
                 //'shipping_preference' => 'NO_SHIPPING',
                 'shipping_preference' => 'GET_FROM_FILE', // 用户选择自己的地址内容
             ],
-
-            "payment_source" => [
-                "paypal" => [
-                    "attributes" => [
-                        "vault" => [
-                            "store_in_vault" => "ON_SUCCESS",
-                            "usage_type" => "MERCHANT",
-                            "customer_type" => "CONSUMER"
-                        ]
-                    ],
-                    "experience_context" => [
-                        "return_url" => route("checkout.v4.product.page", ["slug" => "8987102380314"]),
-                        'cancel_url' => route("checkout.v4.product.page",["slug"=>"8987102380314"]),
-                    ]
-                ]
-            ],
-            
-
+        
             'purchase_units' => [
                 [
                     'amount'   => [
@@ -1089,6 +1076,27 @@ class ProductController extends Controller
                 ],
             ]);
             */
+        }
+        $input['payment_vault'] = isset($input['payment_vault']) ? $input['payment_vault'] : "0";
+        if($input['payment_vault']=='1') {
+             // for vault
+             
+                $data["payment_source"] = [
+                    "paypal" => [
+                        "attributes" => [
+                            "vault" => [
+                                "store_in_vault" => "ON_SUCCESS",
+                                "usage_type" => "MERCHANT",
+                                "customer_type" => "CONSUMER"
+                            ]
+                        ],
+                        "experience_context" => [
+                            "return_url" => route("checkout.v4.product.page", ["slug" => "8987102380314"]),
+                            'cancel_url' => route("checkout.v4.product.page",["slug"=>"8987102380314"]),
+                        ]
+                    ]
+                ];
+             //array_push($data, $paypal_vault); // add to the end of the array
         }
 
 
