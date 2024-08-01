@@ -41,6 +41,7 @@
         "maatwebsite/excel": "^3.1.46",
         "nexa-merchant/apis": "dev-main",
         "nexa-merchant/apps": "1.0.0",
+        "nexa-merchant/Upselling": "dev-main",
         "paypal/paypal-checkout-sdk": "1.0.2",
         "predis/predis": "^2.2",
         "prettus/l5-repository": "^2.6",
