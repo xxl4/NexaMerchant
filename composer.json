@@ -39,7 +39,8 @@
         "laravel/tinker": "^2.0",
         "laravel/ui": "^4.0",
         "maatwebsite/excel": "^3.1.46",
-        "nexa-merchant/apis": "1.0.6",
+        "nexa-merchant/apis": "dev-main",
+        "nexa-merchant/apps": "dev-main",
         "paypal/paypal-checkout-sdk": "1.0.2",
         "predis/predis": "^2.2",
         "prettus/l5-repository": "^2.6",
@@ -102,9 +103,11 @@
             "Nicelizhi\\Lp\\": "packages\/Nicelizhi\/Lp\/src",
             "Nicelizhi\\Binom\\": "packages\/Nicelizhi\/Binom\/src",
             "Nicelizhi\\Comments\\": "packages\/Nicelizhi\/Comments\/src",
-            "Nicelizhi\\Apps\\": "packages\/Nicelizhi\/Apps\/src",
             "Webkul\\User\\": "packages\/Webkul\/User\/src",
-            "NexaMerchant\\Webhooks\\": "packages\/Apps\/Webhooks\/src"
+            "NexaMerchant\\Webhooks\\": "packages\/Apps\/Webhooks\/src",
+            "NexaMerchant\\Upselling\\": "packages\/Apps\/Upselling\/src",
+            "NexaMerchant\\Paypal\\": "packages\/Apps\/Paypal\/src",
+            "NexaMerchant\\Apps\\": "packages\/Apps\/Apps\/src"
         }
     },
     "autoload-dev": {
