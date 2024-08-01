@@ -249,8 +249,8 @@ return [
         // log reader
         Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class,
 		
-		NexaMerchant\Paypal\Providers\PaypalServiceProvider::class, 
-		NexaMerchant\Apps\Providers\AppsServiceProvider::class, 
+		// NexaMerchant\Paypal\Providers\PaypalServiceProvider::class, 
+		// NexaMerchant\Apps\Providers\AppsServiceProvider::class, 
 		//APPS
 
 
