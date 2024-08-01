@@ -136,8 +136,6 @@ class CheckoutV4Controller extends Controller{
 
         $paypal_id_token = $request->session()->get('paypal_id_token');
         if(empty($paypal_id_token)) {
-            $paypal_id_token = $this->smartButton->getIDAccessToken();
-
             $paypal_access_token = $paypal_id_token->result->access_token;
             $paypal_id_token = $paypal_id_token->result->id_token;
             
