@@ -1342,7 +1342,7 @@ class ProductController extends Controller
 
         $shopify_store_id = config('shopify.shopify_store_id');
 
-        $products = \Nicelizhi\Shopify\Models\ShopifyProduct::where("shopify_store_id",$shopify_store_id)->where("status", "active")->select(['title','handle',"variants","images"])->limit(3)->get();
+        $products = \Nicelizhi\Shopify\Models\ShopifyProduct::where("shopify_store_id",$shopify_store_id)->where("status", "active")->select(['product_id','title','handle',"variants","images"])->limit(3)->get();
 
         $recommended_info = [];
 
@@ -1360,6 +1360,7 @@ class ProductController extends Controller
             $recommended_info[$key] = [
                 "title" => $product->title,
                 "handle" => $product->handle,
+                "product_id" => $product->product_id,
                 "discount_price" => $variants[0]['price'],
                 "origin_price" => $variants[0]['compare_at_price'],
                 "image_url" => $images[0]['src'],
