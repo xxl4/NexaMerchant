@@ -186,11 +186,11 @@ class Airwallex extends Payment
      * 
      * 
      */
-    public function createPaymentOrder($cart, $orderId) {
+    public function createPaymentOrder($cart, $orderId, $customer_id=null) {
 
       $sdk = new AirwallexSdk($this->paymentConfig, $this->productionMode);
 
-      $buildRequestBody = $this->buildCreateOrderData($cart, $orderId);
+      $buildRequestBody = $this->buildCreateOrderData($cart, $orderId, $customer_id);
       //var_dump($buildRequestBody);
       $transactionManager = $sdk->CreatePayment(json_encode($buildRequestBody, JSON_OBJECT_AS_ARRAY | JSON_UNESCAPED_UNICODE));
 
@@ -356,7 +356,7 @@ class Airwallex extends Payment
      * 
      * 
      */
-    public function buildCreateOrderData($cart, $orderId) {
+    public function buildCreateOrderData($cart, $orderId, $customer_id=null) {
         //$cart = Cart::getCart();
 
         $data = [];
@@ -422,6 +422,7 @@ class Airwallex extends Payment
         $order['type'] = "Online Mobile Phone Purchases";
         $data['order'] = $order;
         $data['return_url'] = route('airwallex.payment.success');
+        $data['customer_id'] = $customer_id;
 
 
         
