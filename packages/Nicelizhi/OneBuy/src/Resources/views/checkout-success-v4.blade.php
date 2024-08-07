@@ -937,12 +937,213 @@
               </div>
               </div> -->
             </div> 
-            
+            <!-- <div>
+              <div id="cardNumber" class="form-floating input-group has-icon-left" style="
+                border: 1px solid rgba(105, 105, 105, 0.397);
+                border-radius: 10px;
+                color: #222;
+                height: 32px;
+                line-height: 22px;
+                width: 100%;
+                font-size: 14px;
+                padding: 3px 8px;
+                outline: 0;
+                font-family: var(--title-family), sans-serif;
+                font-weight: 400;
+                box-sizing: border-box;
+                background-color: #fff;
+                -webkit-box-sizing: border-box;height: calc(3.5rem + 2px);
+                line-height: 1.25;padding: 1rem 0.75rem "></div>
+            </div>
+            <div style='margin-top:10px'>
+              <div id="cardExpiry" style="
+                border: 1px solid rgba(105, 105, 105, 0.397);
+                border-radius: 10px;
+                color: #222;
+                height: 32px;
+                line-height: 22px;
+                width: 100%;
+                font-size: 14px;
+                padding: 3px 8px;
+                outline: 0;
+                font-family: var(--title-family), sans-serif;
+                font-weight: 400;
+                box-sizing: border-box;
+                background-color: #fff;
+                -webkit-box-sizing: border-box;height: calc(3.5rem + 2px);
+                line-height: 1.25;padding: 1rem 0.75rem "></div>
+            </div>
+            <div style='margin-top:10px'>
+              <div id="cardCvc" style="
+                border: 1px solid rgba(105, 105, 105, 0.397);
+                border-radius: 10px;
+                color: #222;
+                height: 32px;
+                line-height: 22px;
+                width: 100%;
+                font-size: 14px;
+                padding: 3px 8px;
+                outline: 0;
+                font-family: var(--title-family), sans-serif;
+                font-weight: 400;
+                box-sizing: border-box;
+                background-color: #fff;
+                -webkit-box-sizing: border-box;height: calc(3.5rem + 2px);
+                line-height: 1.25;padding: 1rem 0.75rem "></div>
+            </div> -->
+            <div class="payment-form">
+        <h1>Kreditkarte</h1>
+        <div class="form-group input-icon">
+            <!-- <i class="fas fa-credit-card"></i> -->
+            <div>
+              <div id="cardNumber" class="form-floating input-group has-icon-left" style="
+                border: 1px solid rgba(105, 105, 105, 0.397);
+                border-radius: 10px;
+                color: #222;
+                height: 32px;
+                line-height: 22px;
+                width: 100%;
+                font-size: 14px;
+                padding: 3px 8px;
+                outline: 0;
+                font-family: var(--title-family), sans-serif;
+                font-weight: 400;
+                box-sizing: border-box;
+                background-color: #fff;
+                -webkit-box-sizing: border-box;height: calc(3.5rem + 2px);
+                line-height: 1.25;padding: 1rem 0.75rem "></div>
+            </div>
+                              
+                              
+        </div>
+        <div class="form-group">
+            <div style='margin-top:10px'>
+              <div id="expiry" style="
+                border: 1px solid rgba(105, 105, 105, 0.397);
+                border-radius: 10px;
+                color: #222;
+                height: 32px;
+                line-height: 22px;
+                width: 100%;
+                font-size: 14px;
+                padding: 3px 8px;
+                outline: 0;
+                font-family: var(--title-family), sans-serif;
+                font-weight: 400;
+                box-sizing: border-box;
+                background-color: #fff;
+                -webkit-box-sizing: border-box;height: calc(3.5rem + 2px);
+                line-height: 1.25;padding: 1rem 0.75rem "></div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div style='margin-top:10px'>
+              <div id="cvc" style="
+                border: 1px solid rgba(105, 105, 105, 0.397);
+                border-radius: 10px;
+                color: #222;
+                height: 32px;
+                line-height: 22px;
+                width: 100%;
+                font-size: 14px;
+                padding: 3px 8px;
+                outline: 0;
+                font-family: var(--title-family), sans-serif;
+                font-weight: 400;
+                box-sizing: border-box;
+                background-color: #fff;
+                -webkit-box-sizing: border-box;height: calc(3.5rem + 2px);
+                line-height: 1.25;padding: 1rem 0.75rem "></div>
+            </div>
+        </div>
+        <!-- <div class="form-group">
+            <input type="text" id="cardHolderName" placeholder="持卡人姓名">
+        </div>
+        <div class="form-group">
+            <input type="email" id="email" placeholder="邮箱">
+        </div> -->
+        <button class="submit-btn" id="payButton">立即支付</button>
+        <div class="card-icons">
+        <img width="38" height="24" src="https://cdn.shopify.com/shopifycloud/checkout-web/assets/0169695890db3db16bfe.svg" loading="lazy" alt="" />
+            <img width="38" height="24" src="https://cdn.shopify.com/shopifycloud/checkout-web/assets/ae9ceec48b1dc489596c.svg" loading="lazy" alt="" />
+            <img width="38" height="24" src="https://cdn.shopify.com/shopifycloud/checkout-web/assets/f11b90c2972f3811f2d5.svg" loading="lazy" alt="" />
+            <img width="38" height="24" src="https://cdn.shopify.com/shopifycloud/checkout-web/assets/37fc65d0d7ac30da3b0c.svg" loading="lazy" alt="" />
+        </div>
+    </div>
           </div>
       </div>
   </div>
 </div>
 <style>
+        .payment-form {
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            /* max-width: 400px; */
+            width: 100%;
+        }
+        .payment-form h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        .form-group .input-icon {
+            position: relative;
+        }
+        .form-group .input-icon input {
+            padding-left: 40px;
+        }
+        .form-group .input-icon i {
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #9c27b0;
+        }
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+        }
+        .checkbox-group input {
+            margin-right: 10px;
+        }
+        .submit-btn {
+            width: 100%;
+            padding: 10px;
+            background-color: #8e24aa;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .submit-btn:hover {
+            background-color: #7b1fa2;
+        }
+        .card-icons {
+            margin-top: 15px;
+            display: flex;
+            justify-content: flex-end;
+        }
+        .card-icons img {
+            margin-left: 10px;
+        }
   .drawer-title {
     font-size: 18px;
     color: #444444;
@@ -951,17 +1152,17 @@
     margin: 10px 0 -20px;
   }
   .counter {
-            display: flex;
-            align-items: center;
-        }
-        .counter button {
-            width: 30px;
-            height: 30px;
-        }
-        .counter input {
-            width: 50px;
-            text-align: center;
-        }
+      display: flex;
+      align-items: center;
+  }
+  .counter button {
+      width: 30px;
+      height: 30px;
+  }
+  .counter input {
+      width: 50px;
+      text-align: center;
+  }
   .size-label {
     display: block;
     text-transform: uppercase;
