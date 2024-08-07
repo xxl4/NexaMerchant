@@ -3771,6 +3771,9 @@
              *
              */
             onApprove: function(data, actions) {
+              console.log("on approve ")
+              console.log(data);
+              
               //console.log("on app rove");
               if (!data.orderID) {
                 throw new Error('orderid is not exisit')
@@ -3835,8 +3838,8 @@
                   //console.log(res);
 
                   if (res.success == true) {
-                    window.location.href =
-                      '/onebuy/checkout/v2/success/' +
+                    //window.location.href =
+                      '/onebuy/checkout/v4/success/' +
                       localStorage.getItem('order_id')
                     return true
                     //actions.redirect('/checkout/v1/success/'+localStorage.getItem('order_id'));
