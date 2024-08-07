@@ -572,7 +572,7 @@ class ProductController extends Controller
 
                 $cus_id = isset($input['cus_id']) ? trim($input['cus_id']) : null;
                 $transactionManager = $this->airwallex->createPaymentOrder($cart, $order->id, $cus_id);
-                
+                $airwallex_customer = [];
                 if(is_null($cus_id)) $airwallex_customer = $this->airwallex->createCustomer($cart, $order->id);
                 
                 
