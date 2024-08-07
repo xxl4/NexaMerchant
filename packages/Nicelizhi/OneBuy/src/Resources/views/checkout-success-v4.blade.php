@@ -929,13 +929,13 @@
 
             <!-- paypal button -->
             <div>
-              <div id="complete-btn-id"></div>
-              <div class="choose-billing-box">
+              <div style="margin: 10px;" id="complete-btn-id"></div>
+              <!-- <div class="choose-billing-box">
                 <div style="display: flex;align-items: center;">
                 <input type="checkbox" name="hobby" value="music" onchange="billingAddress()">
                 <p style="margin-left: 5px;">Use differce address for billing</p>
               </div>
-              </div>
+              </div> -->
             </div> 
             
           </div>
@@ -1047,9 +1047,9 @@
       });
     <?php } ?>
   </script>
+  @include("onebuy::checkout-params ")
   <script>
-    var productParams = {};
-    var currency = '{{ core()->getCurrentCurrencyCode() }}';
+
     $(function() {
       
 
@@ -1117,13 +1117,16 @@
               let id = $(this).data('id')
               let title = $(this).data('title')
               $('.drawer-title').text(title)
+              productParams.products[0].description = title;
               // let url = `api/onebuy/product/detail/${id}?currency=EUR`
-              let url = `http://127.0.0.1:8000/api/onebuy/product/detail/8398348714214?currency=EUR`
+              let url = `http://127.0.0.1:8000/api/onebuy/product/detail/8924785377562?currency=EUR`
               let response = await fetch(url);
               if (!response.ok) {
                   throw new Error('Network response was not ok');
               }
               let data = await response.json();
+              productData = data;
+              paypal_pay_acc = data.paypal_client_id;
               paypalInit();
               getShopCard(data);
               console.log(data, 'data===')
@@ -1137,191 +1140,25 @@
           })
       }
     }
-    function paypalInit() {
-      const payment_vault =  localStorage.getItem('payment_vault');
-      console.log(payment_vault, 'payment_vault')
-      const existingScript = document.querySelector('script[src*="paypal.com/sdk/js"]');
-      if (existingScript) {
-          existingScript.remove();
-      }
 
-      // Create new script element
-      const script = document.createElement('script');
-      script.type = 'text/javascript';
-      script.async = true;
-
-      if (!isEmpty(payment_vault) && payment_vault == 1) {
-          payment_vault2 = 1;
-          script.src = `https://www.paypal.com/sdk/js?client-id=${paypal_pay_acc}&components=buttons,messages,funding-eligibility&buyer-country=US&vault=true&commit=true&currency=${currency}`;
-          script.setAttribute('data-user-id-token', '<?php echo $paypal_id_token;?>');
-      } else {
-          payment_vault2 = 0;
-          script.src = `https://www.paypal.com/sdk/js?client-id=${paypal_pay_acc}&components=buttons,messages,funding-eligibility&currency=${currency}`;
-      }
-      if (script.readyState) {
-        // IE
-        script.onreadystatechange = function() {
-          if (
-            script.readyState === 'loaded' ||
-            script.readyState === 'complete'
-          ) {
-            script.onreadystatechange = null
-            creatPaypalCardButton()
-          }
-        }
-      } else {
-        script.onload = function() {
-          creatPaypalCardButton()
-        }
-      }
-      document.body.appendChild(script);
-    }
-    function creatPaypalCardButton() {
-      paypal.Buttons({
-        style: {
-          layout: 'horizontal',
-          tagline: false,
-          height: 55
-        },
-
-        onInit(data, actions) {
-
-        },
-        onError(err) {
-          $('#loading').hide();
-          console.log("paypal " + JSON.stringify(err));
-        },
-        onCancel: function(data) {
-          $('#loading').hide();
-        },
-        onClick() {
-        },
-        // Call your server to set up the transaction
-        createOrder: function(data, actions) {
-          getParams('paypal_stand')
-          var errIsShow = skuIsScelect()
-          console.log(params, '==========2', data);
-          var emailErr = validateEmail($('input[name="email"]').val())
-          console.log(emailErr, 'emailErr');
-          var errorShow = $('input[name="firstName"]').val() && $('input[name="lastName"]').val() && $('input[name="email"]').val() &&
-            $('input[name="phone"]').val() &&
-            $('input[name="shippingAddress1"]').val() && $('input[name="shippingCity"]').val() && $('input[name="shippingZip"]').val() && $('select[name="shippingCountry"]').val() && $('select[name="shippingState"]').val() && errIsShow && emailErr
-          console.log(errorShow, 'errorShowpaypal====')
-          if (!errorShow) {
-            errDialogShow(errIsShow, emailErr)
-            $('#loading').hide()
-            return
-          }
-          $('#loading').show();
-          crmTrack('add_pay')
-          // var params = getOrderParams('paypal_stand');
-          var url = '/onebuy/order/addr/after?currency={{ core()->getCurrentCurrencyCode() }}&_token={{ csrf_token() }}&time=' + new Date().getTime() + "&force=" + localStorage.getItem("force");
-          return fetch(url, {
-            body: JSON.stringify(params),
-            method: 'POST',
-            headers: {
-              'content-type': 'application/json'
-            }
-          }).then(function(res) {
-            return res.json();
-          }).then(function(res) {
-            //$('#loading').hide();
-            var data = res;
-            if (data.statusCode === 201) {
-              var order_info = data.result;
-              //console.log(order_info);
-              //console.log(order_info.purchase_units[0].amount);
-              document.cookie = "voluum_payout=" + order_info.purchase_units[0].amount.value + order_info.purchase_units[0].amount.currency_code + "; path=/";
-              document.cookie = "order_id=" + order_info.id + "; path=/";
-              localStorage.setItem("order_id", order_info.id);
-              localStorage.setItem("order_params", JSON.stringify(params));
-
-              return order_info.id;
-            } else {
-              if (data.code == '202') {
-                if (confirm(data.error) == true) {
-                  localStorage.setItem("force", 1);
-                }
-              }
-
-              // var pay_error = JSON.parse(data.error);
-              var pay_error_message = pay_error.details;
-
-              if (pay_error_message && pay_error_message.length) {
-                var show_pay_error_message_arr = [];
-
-                for (var pay_error_message_i = 0; pay_error_message_i < pay_error_message.length; pay_error_message_i++) {
-                  show_pay_error_message_arr.push("Field:" + pay_error_message[pay_error_message_i].field + "<br /> Value" + pay_error_message[pay_error_message_i].value + '. <br />' + pay_error_message[pay_error_message_i].description + '<br /><br />')
-                }
-
-                $('#checkout-error').html(show_pay_error_message_arr.join(''));
-                $('#checkout-error').show();
-              }
-            }
-
-
-          });
-        },
-
-        // Call your server to finalize the transaction
-        // onApprove: function(data, actions) {
-        //   // var orderData = {
-        //   //   paymentID: data.orderID,
-        //   //   orderID: data.orderID,
-        //   // };
-        //   // var paypalParams = {
-        //   //   first_name: $('input[name="firstName"]').val(),
-        //   //   second_name: $('input[name="lastName"]').val(),
-        //   //   email: $('input[name="email"]').val(),
-        //   //   phone_full: $('input[name="phone"]').val(),
-        //   //   address: $('input[name="shippingAddress1"]').val(),
-        //   //   city: $('input[name="shippingCity"]').val(),
-        //   //   country: $('select[name="shippingCountry"]').val(),
-        //   //   province: $('select[name="shippingState"]').val(),
-        //   //   code: $('input[name="shippingZip"]').val(),
-        //   //   payment_method: 'paypal_stand'
-        //   // }
-        //   // var request_params = {
-        //   //   client_secret: data.orderID,
-        //   //   id: localStorage.getItem('order_id'),
-        //   //   orderData: orderData,
-        //   //   data: data,
-        //   //   params: paypalParams
-        //   // }
-        //   // console.log(request_params, '===request_params===');
-        //   var url = "/onebuy/order/status?_token={{ csrf_token() }}&currency={{ core()->getCurrentCurrencyCode() }}";
-        //   return fetch(url, {
-        //     method: 'post',
-        //     body: JSON.stringify(request_params),
-        //     headers: {
-        //       'content-type': 'application/json'
-        //     },
-        //   }).then(function(res) {
-        //     return res.json();
-        //   }).then(function(res) {
-        //     $('#loading').hide();
-        //     if (res.success == true) {
-        //       window.location.href = '/onebuy/checkout/v2/success/' + localStorage.getItem('order_id');
-        //       return true;
-        //     }
-        //     if (res.error == 'INSTRUMENT_DECLINED') {
-        //     }
-        //   });
-        // }
-      }).render('#complete-btn-id');
-    }
     function getShopCard(productData) {
       console.log(data, '==product==data==')
+      productParams.amount = $('#quantity').val();
+      productParams.products[0].amount = $('#quantity').val();
       if (!isEmpty(productData.attr.attributes)) {
         skuInfo(productData.attr)
       }
     }
     function skuInfo(data) {
+      console.log(data,'data===1')
       let skuData = data.attributes;
       let imgData = data.variant_images;
       skuData.forEach(item => {
         // color
         if (item.id == 23) {
+          $('.color-img-sku').text(item.options[0].label);
+          colorId = item.id + '_' + item.options[0].id;
+          colorAttr = item.options[0].label;
           let colorDom = ``;
           $('.color-content').show()
           console.log(item, 'item222')
@@ -1348,6 +1185,9 @@
         // size
         if (item.id == 24) {
           let sizeDom = ``;
+          sizeId = item.id + '_' + item.options[0].id;
+          sizeAttr = item.options[0].label;
+          $('.size-img-sku').text(item.options[0].label);
           $('.size-content').show()
           let sizeOption = item.options;
           let text = item.label + ': ';
@@ -1372,12 +1212,16 @@
         var currentValue = parseInt($('#quantity').val(), 10);
         if (currentValue > 1) {
             $('#quantity').val(currentValue - 1);
+            productParams.amount = $('#quantity').val();
+            productParams.products[0].amount = $('#quantity').val();
         }
     });
 
     $('#increase').click(function() {
         var currentValue = parseInt($('#quantity').val(), 10);
         $('#quantity').val(currentValue + 1);
+        productParams.amount = $('#quantity').val();
+        productParams.products[0].amount = $('#quantity').val();
     });
     function sizeSelect(radio) {
       console.log(radio.value);
