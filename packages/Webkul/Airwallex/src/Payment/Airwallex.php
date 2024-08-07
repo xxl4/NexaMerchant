@@ -383,7 +383,7 @@ class Airwallex extends Payment
         $customer['last_name'] = $cart->billing_address->last_name;
         //$customer['merchant_customer_id'] = "string";
         $customer['phone_number'] = $cart->billing_address->phone;
-        $data['customer'] = $customer;
+        //$data['customer'] = $customer;
         $data['merchant_order_id'] = "orderid_".$orderId;
         $metadata['order_id'] = $orderId;
         $data['metadata'] = $metadata;
@@ -416,13 +416,40 @@ class Airwallex extends Payment
         $shipping['address'] = $address;
         $shipping['first_name'] = $cart->billing_address->first_name;
         $shipping['last_name'] = $cart->billing_address->last_name;
+        $shipping['last_name'] = $cart->billing_address->last_name;
+        $shipping['country_code'] = $cart->billing_address->country;
         //$customer['merchant_customer_id'] = "string";
         $shipping['phone_number'] = $cart->billing_address->phone;
         $order['shipping'] = $shipping;
         $order['type'] = "Online Mobile Phone Purchases";
         $data['order'] = $order;
         $data['return_url'] = route('airwallex.payment.success');
-        $data['customer_id'] = $customer_id;
+        //$data['customer_id'] = $customer_id;
+        if($customer_id) {
+            $data['customer_id'] = $customer_id;
+            
+
+        }else{
+            $data['customer'] = [];
+
+            $customer_address = [];
+            $customer_address['city'] = $cart->billing_address->city;
+            $customer_address['country_code'] = $cart->billing_address->country;
+            $customer_address['postcode'] = $cart->billing_address->postcode;
+            $customer_address['state'] = $cart->billing_address->city;
+            $customer_address['street'] = $cart->billing_address->address1;
+            $customer_data['address'] = $customer_address;
+            $customer_data['email'] = $cart->billing_address->email;
+            $customer_data['first_name'] = $cart->billing_address->first_name;
+            $customer_data['last_name'] = $cart->billing_address->last_name;
+            $customer_data['phone_number'] = $cart->billing_address->phone;
+
+            $data['customer'] = $customer_data;
+        }
+
+        //var_dump($data);
+
+        //var_dump($data);exit;
 
 
         
