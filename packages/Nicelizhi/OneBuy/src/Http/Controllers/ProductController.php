@@ -1247,6 +1247,59 @@ class ProductController extends Controller
         return view('onebuy::checkout-success', compact('product','fb_ids','ob_adv_id'));
     }
 
+    public function checkout_success_v4($order_id, Request $request) {
+        $order = [];
+
+        $orderTrans = $this->orderTransactionRepository->where('transaction_id', $order_id)->select(['order_id'])->first();
+        if(!is_null($orderTrans)) {
+            $order = $this->orderRepository->findOrFail($orderTrans->order_id);
+        }else{
+            $order = $this->orderRepository->findOrFail($order_id);
+        }
+        
+
+        $fb_ids = config('onebuy.fb_ids');
+        $ob_adv_id = config('onebuy.ob_adv_id');
+        $crm_channel = config('onebuy.crm_channel');
+        $refer = $request->session()->get('refer');
+        $gtag = config('onebuy.gtag');
+
+        $quora_adv_id = config('onebuy.quora_adv_id');
+
+        $countries = config("countries");
+
+        $default_country = config('onebuy.default_country');
+        $order_pre = config('shopify.order_pre');
+
+        $recommend_products = [];
+
+        $paypal_id_token = $request->session()->get('paypal_id_token');
+        if(empty($paypal_id_token)) {
+            $paypal_id_token = $this->smartButton->getIDAccessToken();
+            $paypal_access_token = $paypal_id_token->result->access_token;
+            $paypal_id_token = $paypal_id_token->result->id_token;
+
+            
+            
+            $request->session()->put('paypal_id_token', $paypal_id_token);
+            $request->session()->put('paypal_access_token', $paypal_access_token);
+        }
+
+        return view('onebuy::checkout-success-v4', compact('order',
+            "fb_ids",
+            "ob_adv_id",
+            "crm_channel",
+            "refer",
+            "gtag",
+            "quora_adv_id",
+            "countries",
+            "default_country",
+            "order_pre",
+            "paypal_id_token",
+            "recommend_products"
+        ));
+    }
+
     public function checkout_success_v2($order_id, Request $request) {
         $order = [];
 
