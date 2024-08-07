@@ -570,8 +570,11 @@ class ProductController extends Controller
                 $orderId = $order->id;
 
 
-                $transactionManager = $this->airwallex->createPaymentOrder($cart, $order->id);
-                $airwallex_customer = $this->airwallex->createCustomer($cart, $order->id);
+                $cus_id = isset($input['cus_id']) ? trim($input['cus_id']) : null;
+                $transactionManager = $this->airwallex->createPaymentOrder($cart, $order->id, $cus_id);
+                $airwallex_customer = [];
+                if(is_null($cus_id)) $airwallex_customer = $this->airwallex->createCustomer($cart, $order->id);
+                
                 
                 if(!isset($transactionManager->client_secret)) {
                     response()->json(['error' => $transactionManager->body->message,'code'=>'203'], 400);
@@ -924,6 +927,8 @@ class ProductController extends Controller
 
             $this->smartButton->captureOrder(request()->input('orderData.orderID'));
 
+            //$this->smartButton->AuthorizeOrder(request()->input('orderData.orderID'));
+
             $request->session()->put('last_order_id', request()->input('orderData.orderID'));
 
             return $this->saveOrder();
@@ -1007,10 +1012,10 @@ class ProductController extends Controller
 
         $data = [
             'intent' => 'CAPTURE',
-            'application_context' => [
-                //'shipping_preference' => 'NO_SHIPPING',
-                'shipping_preference' => 'GET_FROM_FILE', // 用户选择自己的地址内容
-            ],
+            // 'application_context' => [
+            //     //'shipping_preference' => 'NO_SHIPPING',
+            //     'shipping_preference' => 'GET_FROM_FILE', // 用户选择自己的地址内容
+            // ],
         
             'purchase_units' => [
                 [
@@ -1087,7 +1092,6 @@ class ProductController extends Controller
                             "vault" => [
                                 "store_in_vault" => "ON_SUCCESS",
                                 "usage_type" => "MERCHANT",
-                                "customer_type" => "CONSUMER"
                             ]
                         ],
                         "experience_context" => [
@@ -1099,6 +1103,7 @@ class ProductController extends Controller
              //array_push($data, $paypal_vault); // add to the end of the array
         }
 
+        Log::info("post to paypal data ". json_encode($data));
 
         return $data;
     }
@@ -1274,6 +1279,10 @@ class ProductController extends Controller
         $recommend_products = [];
 
         $paypal_id_token = $request->session()->get('paypal_id_token');
+        $paypal_access_token = $request->session()->get('paypal_access_token');
+
+        //var_dump($paypal_access_token, $paypal_id_token);
+
         if(empty($paypal_id_token)) {
             $paypal_id_token = $this->smartButton->getIDAccessToken();
             $paypal_access_token = $paypal_id_token->result->access_token;
