@@ -387,7 +387,30 @@
     .recommend-price>span:first-child {
       text-decoration: line-through;
     }
+    .drawer {
+        position: fixed;
+        top: 0;
+        right: -500px; /* Start off-screen */
+        width: 500px;
+        height: 100%;
+        background-color: #f8f9fa;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        transition: right 0.3s ease; /* Transition effect */
+        z-index: 1050; /* Make sure it's on top of other content */
+    }
+    @media(max-width:768px){
+      .drawer {
+        right: -300px;
+        width: 300px;
+    }
+    }
+    .drawer-content {
+        padding: 20px;
+    }
 
+    .drawer.open {
+        right: 0; /* Slide in */
+    }
     /* recommend end */
   </style>
   <?php if (!empty($quora_adv_id)) { ?>
@@ -587,12 +610,10 @@
   ?>
   <script>
     function purchase(value) {
-      console.log("purchase " + (value * 1).toFixed(2));
       fbq('track', 'Purchase', {
         currency: "EUR",
         value: (value * 1).toFixed(2)
       });
-      console.log("purchase " + (value * 1).toFixed(2));
       <?php if (!empty($ob_adv_id)) { ?>
         obApi('track', 'Purchase');
       <?php } ?>
@@ -862,11 +883,146 @@
       <div class="recommend-item-box">
       </div>
     </div>
+    <!-- <button class="btn btn-primary" id="openDrawer">Open Drawer</button> -->
 
     <div class="solid-line"></div>
   </div>
+  <!-- Drawer -->
+  <div class="drawer" id="drawer">
+      <div class="drawer-content">
+          <button class="btn btn-danger" id="closeDrawer">Close</button>
+          <div class="drawer-title"></div>
+          <div class="mt-5">
+            <!-- color -->
+            <div class="color-content" style="display: none;">
+              <p style="margin-bottom: 5px;"><span id="sku-color"></span><span class="color-img-sku"></span></p>
+              <div class="color-img-box">
+                <!-- <div class="color-img-item">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="item" id="item1" value="1">
+                        <label class="form-check-label" for="item1">
+                            <img src="https://via.placeholder.com/50/FF0000/FFFFFF?text=1" alt="Item 1">
+                        </label>
+                    </div>
+                </div> -->
+              </div>
+            </div>
+            <!-- size -->
+            <div class="size-content" style="display: none;">
+              <p style="margin-bottom: 5px;"><span id="sku-size"></span><span class="size-img-sku"></span></p>
+              <div class="size-img-box">  
+              <!-- <div class="size-img-item">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="color" onchange="sizeSelect(this)" id="${cItem.id}" value="${cItem.label}">
+                        <label class="form-check-label size-label" for="${cItem.id}">
+                            
+                        </label>
+                    </div>
+                </div> -->
+                </div>
+            </div>
+            <div class="counter mt-4">
+                <button id="decrease"  class="btn btn-secondary">-</button>
+                <input id="quantity" type="text" value="1" readonly class="form-control mx-2">
+                <button id="increase" class="btn btn-secondary">+</button>
+            </div>
 
-
+            <!-- paypal button -->
+            <div>
+              <div id="complete-btn-id"></div>
+              <div class="choose-billing-box">
+                <div style="display: flex;align-items: center;">
+                <input type="checkbox" name="hobby" value="music" onchange="billingAddress()">
+                <p style="margin-left: 5px;">Use differce address for billing</p>
+              </div>
+              </div>
+            </div> 
+            
+          </div>
+      </div>
+  </div>
+</div>
+<style>
+  .drawer-title {
+    font-size: 18px;
+    color: #444444;
+    text-transform: capitalize;
+    font-weight: 500;
+    margin: 10px 0 -20px;
+  }
+  .counter {
+            display: flex;
+            align-items: center;
+        }
+        .counter button {
+            width: 30px;
+            height: 30px;
+        }
+        .counter input {
+            width: 50px;
+            text-align: center;
+        }
+  .size-label {
+    display: block;
+    text-transform: uppercase;
+    font-weight: 500;
+    min-width: 34px;
+    min-height: 32px;
+    width: auto;
+    line-height: 30px;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    color: #333;
+    font-size: 13px;
+    margin: 0;
+    overflow: hidden;
+    text-align: center;
+    background-color: #f5f5f5;
+    padding: 0 10px;
+    box-shadow: 0 0 0 1px #ddd;
+  }
+  .color-img-box {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .size-input:checked + .size-label {
+    border: 1px solid #000000;
+    background: #000;
+    color: #fff;
+  }
+  .size-img-box {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .form-check{
+    padding: 0!important;
+  }
+  .form-check-input {
+      display: none;
+  }
+  .form-check-label {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      border: 1px solid #ddd;
+      border-radius: 0.375rem;
+      /* padding: 5px; */
+      margin-bottom: 10px;
+      background-color: #fff;
+  }
+  .form-check-label img {
+      width: 50px; /* Adjust image size as needed */
+      height: auto;
+  }
+  .form-check-input:checked + .form-check-label {
+      border-color: #000000;
+  }
+  .form-check-input:focus + .form-check-label {
+      box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.25);
+  }
+</style>
   <footer class="main__footer" role="contentinfo">
     @include('onebuy::footer-container-'.strtolower($default_country))
   </footer>
@@ -892,15 +1048,19 @@
     <?php } ?>
   </script>
   <script>
+    var productParams = {};
+    var currency = '{{ core()->getCurrentCurrencyCode() }}';
     $(function() {
-      console.log(<?php echo json_encode($line_items); ?>, '$line_items');
-      console.log('<?php echo json_encode($products); ?>', 'products');
-      console.log(<?php echo $order; ?>, '$order');
-      console.log('<?php echo $order->shipping_address; ?>', '$$order->shipping_address');
-      console.log('<?php echo $order->billing_address; ?>', '$$order->billing_address');
-    })
+      
 
-    function getRecommended(path) {
+    })
+    $(document).mouseup(function(e) {
+        const drawer = $('#drawer');
+        if (!drawer.is(e.target) && drawer.has(e.target).length === 0) {
+            drawer.removeClass('open');
+        }
+    });
+    async function getRecommended(path) {
       var checkout_path = ''
       var path_f = path.split('/onebuy/')[1]
       if (path_f.indexOf('?') != -1) {
@@ -938,10 +1098,11 @@
               }
 
               console.log(item, 'key');
+              // <a href="` + url + `" target="_blank" rel="noopener noreferrer">` + item.title + `</a>
               recommendDom += `<div class="recommend-item">
                 <img class="recommend-img" src=" ` + item.image_url + `" alt="">
                 <p class="recommend-subtitle mt10">
-                  <a href="` + url + `" target="_blank" rel="noopener noreferrer">` + item.title + `</a>
+                  <a href="javascript:void(0)" data-id="${item.product_id}" data-title="${item.title}" class="openDrawer" rel="noopener noreferrer">` + item.title + `</a>
                 </p>
                 <div class="recommend-price mt10">
                   <span>{{ core()->currencySymbol(core()->getBaseCurrencyCode()) }}` + item.origin_price + `</span>
@@ -950,12 +1111,309 @@
               </div>`
             }
             $('.recommend-item-box').append(recommendDom)
+            $('.openDrawer').click(async function() {
+              $('#drawer').addClass('open');
+              console.log($(this).data('id'))
+              let id = $(this).data('id')
+              let title = $(this).data('title')
+              $('.drawer-title').text(title)
+              // let url = `api/onebuy/product/detail/${id}?currency=EUR`
+              let url = `http://127.0.0.1:8000/api/onebuy/product/detail/8398348714214?currency=EUR`
+              let response = await fetch(url);
+              if (!response.ok) {
+                  throw new Error('Network response was not ok');
+              }
+              let data = await response.json();
+              paypalInit();
+              getShopCard(data);
+              console.log(data, 'data===')
+            });
+
+            $('#closeDrawer').click(function() {
+                $('#drawer').removeClass('open');
+            });
           }).catch(function(err) {
             console.log(err, 'getRecommended====err');
           })
       }
     }
+    function paypalInit() {
+      const payment_vault =  localStorage.getItem('payment_vault');
+      console.log(payment_vault, 'payment_vault')
+      const existingScript = document.querySelector('script[src*="paypal.com/sdk/js"]');
+      if (existingScript) {
+          existingScript.remove();
+      }
 
+      // Create new script element
+      const script = document.createElement('script');
+      script.type = 'text/javascript';
+      script.async = true;
+
+      if (!isEmpty(payment_vault) && payment_vault == 1) {
+          payment_vault2 = 1;
+          script.src = `https://www.paypal.com/sdk/js?client-id=${paypal_pay_acc}&components=buttons,messages,funding-eligibility&buyer-country=US&vault=true&commit=true&currency=${currency}`;
+          script.setAttribute('data-user-id-token', '<?php echo $paypal_id_token;?>');
+      } else {
+          payment_vault2 = 0;
+          script.src = `https://www.paypal.com/sdk/js?client-id=${paypal_pay_acc}&components=buttons,messages,funding-eligibility&currency=${currency}`;
+      }
+      if (script.readyState) {
+        // IE
+        script.onreadystatechange = function() {
+          if (
+            script.readyState === 'loaded' ||
+            script.readyState === 'complete'
+          ) {
+            script.onreadystatechange = null
+            creatPaypalCardButton()
+          }
+        }
+      } else {
+        script.onload = function() {
+          creatPaypalCardButton()
+        }
+      }
+      document.body.appendChild(script);
+    }
+    function creatPaypalCardButton() {
+      paypal.Buttons({
+        style: {
+          layout: 'horizontal',
+          tagline: false,
+          height: 55
+        },
+
+        onInit(data, actions) {
+
+        },
+        onError(err) {
+          $('#loading').hide();
+          console.log("paypal " + JSON.stringify(err));
+        },
+        onCancel: function(data) {
+          $('#loading').hide();
+        },
+        onClick() {
+        },
+        // Call your server to set up the transaction
+        createOrder: function(data, actions) {
+          getParams('paypal_stand')
+          var errIsShow = skuIsScelect()
+          console.log(params, '==========2', data);
+          var emailErr = validateEmail($('input[name="email"]').val())
+          console.log(emailErr, 'emailErr');
+          var errorShow = $('input[name="firstName"]').val() && $('input[name="lastName"]').val() && $('input[name="email"]').val() &&
+            $('input[name="phone"]').val() &&
+            $('input[name="shippingAddress1"]').val() && $('input[name="shippingCity"]').val() && $('input[name="shippingZip"]').val() && $('select[name="shippingCountry"]').val() && $('select[name="shippingState"]').val() && errIsShow && emailErr
+          console.log(errorShow, 'errorShowpaypal====')
+          if (!errorShow) {
+            errDialogShow(errIsShow, emailErr)
+            $('#loading').hide()
+            return
+          }
+          $('#loading').show();
+          crmTrack('add_pay')
+          // var params = getOrderParams('paypal_stand');
+          var url = '/onebuy/order/addr/after?currency={{ core()->getCurrentCurrencyCode() }}&_token={{ csrf_token() }}&time=' + new Date().getTime() + "&force=" + localStorage.getItem("force");
+          return fetch(url, {
+            body: JSON.stringify(params),
+            method: 'POST',
+            headers: {
+              'content-type': 'application/json'
+            }
+          }).then(function(res) {
+            return res.json();
+          }).then(function(res) {
+            //$('#loading').hide();
+            var data = res;
+            if (data.statusCode === 201) {
+              var order_info = data.result;
+              //console.log(order_info);
+              //console.log(order_info.purchase_units[0].amount);
+              document.cookie = "voluum_payout=" + order_info.purchase_units[0].amount.value + order_info.purchase_units[0].amount.currency_code + "; path=/";
+              document.cookie = "order_id=" + order_info.id + "; path=/";
+              localStorage.setItem("order_id", order_info.id);
+              localStorage.setItem("order_params", JSON.stringify(params));
+
+              return order_info.id;
+            } else {
+              if (data.code == '202') {
+                if (confirm(data.error) == true) {
+                  localStorage.setItem("force", 1);
+                }
+              }
+
+              // var pay_error = JSON.parse(data.error);
+              var pay_error_message = pay_error.details;
+
+              if (pay_error_message && pay_error_message.length) {
+                var show_pay_error_message_arr = [];
+
+                for (var pay_error_message_i = 0; pay_error_message_i < pay_error_message.length; pay_error_message_i++) {
+                  show_pay_error_message_arr.push("Field:" + pay_error_message[pay_error_message_i].field + "<br /> Value" + pay_error_message[pay_error_message_i].value + '. <br />' + pay_error_message[pay_error_message_i].description + '<br /><br />')
+                }
+
+                $('#checkout-error').html(show_pay_error_message_arr.join(''));
+                $('#checkout-error').show();
+              }
+            }
+
+
+          });
+        },
+
+        // Call your server to finalize the transaction
+        // onApprove: function(data, actions) {
+        //   // var orderData = {
+        //   //   paymentID: data.orderID,
+        //   //   orderID: data.orderID,
+        //   // };
+        //   // var paypalParams = {
+        //   //   first_name: $('input[name="firstName"]').val(),
+        //   //   second_name: $('input[name="lastName"]').val(),
+        //   //   email: $('input[name="email"]').val(),
+        //   //   phone_full: $('input[name="phone"]').val(),
+        //   //   address: $('input[name="shippingAddress1"]').val(),
+        //   //   city: $('input[name="shippingCity"]').val(),
+        //   //   country: $('select[name="shippingCountry"]').val(),
+        //   //   province: $('select[name="shippingState"]').val(),
+        //   //   code: $('input[name="shippingZip"]').val(),
+        //   //   payment_method: 'paypal_stand'
+        //   // }
+        //   // var request_params = {
+        //   //   client_secret: data.orderID,
+        //   //   id: localStorage.getItem('order_id'),
+        //   //   orderData: orderData,
+        //   //   data: data,
+        //   //   params: paypalParams
+        //   // }
+        //   // console.log(request_params, '===request_params===');
+        //   var url = "/onebuy/order/status?_token={{ csrf_token() }}&currency={{ core()->getCurrentCurrencyCode() }}";
+        //   return fetch(url, {
+        //     method: 'post',
+        //     body: JSON.stringify(request_params),
+        //     headers: {
+        //       'content-type': 'application/json'
+        //     },
+        //   }).then(function(res) {
+        //     return res.json();
+        //   }).then(function(res) {
+        //     $('#loading').hide();
+        //     if (res.success == true) {
+        //       window.location.href = '/onebuy/checkout/v2/success/' + localStorage.getItem('order_id');
+        //       return true;
+        //     }
+        //     if (res.error == 'INSTRUMENT_DECLINED') {
+        //     }
+        //   });
+        // }
+      }).render('#complete-btn-id');
+    }
+    function getShopCard(productData) {
+      console.log(data, '==product==data==')
+      if (!isEmpty(productData.attr.attributes)) {
+        skuInfo(productData.attr)
+      }
+    }
+    function skuInfo(data) {
+      let skuData = data.attributes;
+      let imgData = data.variant_images;
+      skuData.forEach(item => {
+        // color
+        if (item.id == 23) {
+          let colorDom = ``;
+          $('.color-content').show()
+          console.log(item, 'item222')
+          let colorOption = item.options;
+          let text = item.label + ': ';
+          $('#sku-color').text(text)
+          colorOption.forEach((cItem,index) => {
+            cItem.img = imgData[cItem.products[0]][0].large_image_url;
+            console.log(cItem.img, 'imgData[cItem.products[0]]')
+            const isChecked = index === 0 ? 'checked' : '';
+            colorDom += `
+              <div class="color-img-item">
+                  <div class="form-check">
+                      <input class="form-check-input" type="radio" name="color" onchange="colorSelect(this)" id="${cItem.id}" value="${cItem.label}" ${isChecked}>
+                      <label class="form-check-label" for="${cItem.id}">
+                          <img src="${cItem.img}" alt="${cItem.label}">
+                      </label>
+                  </div>
+              </div>
+            `
+          })
+          $('.color-img-box').html(colorDom);
+        }
+        // size
+        if (item.id == 24) {
+          let sizeDom = ``;
+          $('.size-content').show()
+          let sizeOption = item.options;
+          let text = item.label + ': ';
+          $('#sku-size').text(text);
+          sizeOption.forEach((sItem,index) => {
+            const isChecked = index === 0 ? 'checked' : '';
+            sizeDom += `<div class="size-img-item">
+                <div class="form-check">
+                    <input class="form-check-input size-input" type="radio" name="size" onchange="sizeSelect(this)" id="${sItem.id}" value="${sItem.label}" ${isChecked}>
+                    <label class="form-check-label size-label" for="${sItem.id}">
+                      ${sItem.label}
+                    </label>
+                </div>
+              </div>`
+          })
+          $('.size-img-box').html(sizeDom);
+        }
+        console.log(item,'item')
+      });
+    }
+    $('#decrease').click(function() {
+        var currentValue = parseInt($('#quantity').val(), 10);
+        if (currentValue > 1) {
+            $('#quantity').val(currentValue - 1);
+        }
+    });
+
+    $('#increase').click(function() {
+        var currentValue = parseInt($('#quantity').val(), 10);
+        $('#quantity').val(currentValue + 1);
+    });
+    function sizeSelect(radio) {
+      console.log(radio.value);
+      $('.size-img-sku').text(radio.value);
+    }
+    function colorSelect(radio) {
+      console.log(radio.value);
+      $('.color-img-sku').text(radio.value);
+    }
+    function isEmpty(value) {
+      if (value == null) return true;
+
+      if (typeof value === 'string' && value.trim() === '') return true;
+
+      if (Array.isArray(value) && value.length === 0) return true;
+
+      if (typeof value === 'object' && Object.keys(value).length === 0 && value.constructor === Object) return true;
+
+      return false;
+    }
+    function crmTrack(type) {
+      console.log(type, 'crmTrack')
+      var postParams = {
+        channel_id: "<?php echo $crm_channel; ?>",
+        token: "<?php echo $refer; ?>",
+        type: type
+      };
+      console.log(JSON.stringify(postParams), 'JSON.stringify(postParams)==')
+      fetch('https://crm.heomai.com/api/user/action', {
+        body: JSON.stringify(postParams),
+        method: 'POST',
+        headers: {
+          'content-type': 'application/json'
+        },
+      })
+    }
     function initDomData() {
       let orderPre = '<?php echo $order_pre; ?>',
         payment = '<?php echo $payment; ?>',
@@ -1012,7 +1470,6 @@
         paypal_request += Object.keys(paypal_request_params)[i] + '=' + paypal_request_params[Object.keys(paypal_request_params)[i]] + '&';
       }
       paypal_request = paypal_request.substr(0, paypal_request.length - 1);
-      console.log(paypal_request);
 
       var paypal_status_url = '/pay/order/status?' + paypal_request
       fetch(paypal_status_url, {
@@ -1061,9 +1518,6 @@
     }
 
     function getFormatPrice(price, price_template) {
-      console.log("get formate price fun");
-      console.log(price);
-      console.log(price_template)
       var price_prefix = '';
       if (price * 1 < 0) {
         price = Math.abs(price);
@@ -1084,11 +1538,8 @@
       //var_dump($shipping_address);
       ?>
 
-      console.log(order_param);
 
       data = input.data;
-      console.log("pushare " + order_param.grand_total);
-      console.log("pushare " + order_param.grand_total);
       purchase(order_param.grand_total);
       //purchase(null);
       console.log(data)
@@ -1100,7 +1551,6 @@
       setProductHtml();
       showPaySuccess();
       console.log("getRecommendedData");
-      console.log(order_param.items[0].sku);
       getRecommended("/onebuy/v4/" + order_param.items[0].sku);
     }
 

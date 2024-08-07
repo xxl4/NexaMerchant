@@ -631,6 +631,12 @@
           </div>
           <p class="button-top">@lang('checkout::app.v2.Express checkout')</p>
           <div class="zoom-fade submit-button fl" id="payment-button" style="text-align: center;margin-top: 12px; width:100%;height:73px;"></div>
+          <div style="float:left;">
+              <div style="display: flex;align-items: center;">
+                <input type="checkbox" name="payment_vault" value="1" checked onchange="paymentVault(this)">
+                <p style="margin-left: 5px;">Save my card for future payments</p>
+              </div>
+            </div>
           <div id="loading">
             <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 100000; background:#ddd;opacity: 0.3;" id="loading-box" class="flex-center">
               <div class="box">
@@ -848,6 +854,10 @@
                                   -webkit-box-sizing: border-box;height: calc(3.5rem + 2px);
                                   line-height: 1.25;padding: 1rem 0.75rem "></div>
                               </div>
+                              <div style="display: flex;align-items: center;margin:10px 0 0 5px">
+                                <input type="checkbox" name="payment_vault" value="1" checked onchange="airwallexVault(this)">
+                                <p style="margin-left: 5px;">Save my card for future payments</p>
+                              </div>
                               <div class="choose-billing-box">
                                 <div style="display: flex;align-items: center;">
                                   <input type="checkbox" name="hobby" value="music" onchange="billingAddress()">
@@ -982,6 +992,13 @@
 
           </div>
           <div class="complete-btn" id="complete-btn-id"></div>
+          <div id="payment_vault2" style="display:none">
+              <div style="display: flex;align-items: center;">
+                <input type="checkbox" name="payment_vault2" value="1" checked onchange="paymentVault2(this)">
+                <p style="margin-left: 5px;">Save my card for future payments</p>
+              </div>
+            </div>
+          <div id="complete-btn-id"></div>
           <div id='paypal-button'></div>
           <div class="zoom-fade submit-button button-opacity pay-button fl" id="googlePayButton" onclick="googleOrAppleCheck()"></div>
           <div class="zoom-fade submit-button button-opacity appalpay-button fl" id="applePayButton" onclick="googleOrAppleCheck()"></div>
@@ -1466,7 +1483,9 @@
       phppayments_default = '<?php echo $data['payments_default']; ?>',
       phppaypal_client_id = '<?php echo $data['paypal_client_id']; ?>',
       phpsku = '<?php echo $data['sku']; ?>',
-      phpsellPoints = '<?php echo addslashes(json_encode($data['sellPoints'])); ?>'
+      phpsellPoints = '<?php echo addslashes(json_encode($data['sellPoints'])); ?>',
+      payment_vault = 1,
+      payment_vault2 = 1
     phppackage_products.forEach(function(index, item) {
       JSON.parse(item)
     })
@@ -1506,6 +1525,7 @@
         var favicon = '/checkout/v2/images/favicon.webp'
         $('#favicon-icon').attr('href', favicon)
       }
+      localStorage.setItem("airwallex_vault", 1);
       payTypeShow = data.payments
       var attrList = data.attr.attributes
       paypal_pay_acc = data.paypal_client_id
@@ -1800,7 +1820,93 @@
       console.log(new Date().getTime(), '结束');
 
     })
+    function paymentVault(radio) {
+      // Remove existing PayPal script if it exists
+      const existingScript = document.querySelector('script[src*="paypal.com/sdk/js"]');
+      if (existingScript) {
+          existingScript.remove();
+      }
 
+      // Create new script element
+      const script = document.createElement('script');
+      script.type = 'text/javascript';
+      script.async = true;
+
+      if (radio.checked) {
+          payment_vault = 1;
+          script.src = `https://www.paypal.com/sdk/js?client-id=${paypal_pay_acc}&components=buttons,messages,funding-eligibility&buyer-country=US&vault=true&commit=true&currency=${currency}`;
+          script.setAttribute('data-user-id-token', '<?php echo $paypal_id_token;?>');
+      } else {
+          payment_vault = 0;
+          script.src = `https://www.paypal.com/sdk/js?client-id=${paypal_pay_acc}&components=buttons,messages,funding-eligibility&currency=${currency}`;
+      }
+      if (script.readyState) {
+        // IE
+        script.onreadystatechange = function() {
+          if (
+            script.readyState === 'loaded' ||
+            script.readyState === 'complete'
+          ) {
+            script.onreadystatechange = null
+            creatPaypalCardButton()
+          }
+        }
+      } else {
+        script.onload = function() {
+          creatPaypalCardButton()
+        }
+      }
+      document.body.appendChild(script);
+     
+
+    }
+    function paymentVault2(radio) {
+      // Remove existing PayPal script if it exists
+      const existingScript = document.querySelector('script[src*="paypal.com/sdk/js"]');
+      if (existingScript) {
+          existingScript.remove();
+      }
+
+      // Create new script element
+      const script = document.createElement('script');
+      script.type = 'text/javascript';
+      script.async = true;
+
+      if (radio.checked) {
+          payment_vault2 = 1;
+          script.src = `https://www.paypal.com/sdk/js?client-id=${paypal_pay_acc}&components=buttons,messages,funding-eligibility&buyer-country=US&vault=true&commit=true&currency=${currency}`;
+          script.setAttribute('data-user-id-token', '<?php echo $paypal_id_token;?>');
+      } else {
+          payment_vault2 = 0;
+          script.src = `https://www.paypal.com/sdk/js?client-id=${paypal_pay_acc}&components=buttons,messages,funding-eligibility&currency=${currency}`;
+      }
+      if (script.readyState) {
+        // IE
+        script.onreadystatechange = function() {
+          if (
+            script.readyState === 'loaded' ||
+            script.readyState === 'complete'
+          ) {
+            script.onreadystatechange = null
+            creatPaypalCardButton2()
+          }
+        }
+      } else {
+        script.onload = function() {
+          creatPaypalCardButton2()
+        }
+      }
+      document.body.appendChild(script);
+     
+
+    }
+    function airwallexVault(radio) {
+      if (radio.checked) {
+        localStorage.setItem("airwallex_vault", 1);
+      } else {
+        localStorage.setItem("airwallex_vault", 0);
+      }
+    }
     function sortObjectByValue(obj) {
       let entries = Object.entries(obj);
       entries.sort((a, b) => a[1] - b[1]);
@@ -3171,6 +3277,7 @@
         $("#collapseFive").hide();
         $("#complete-btn-id").hide();
         $('.pay-button').show()
+        $('#payment_vault2').hide();
 
       })
 
@@ -3187,6 +3294,7 @@
         $("#collapseFive").show();
         $("#complete-btn-id").hide();
         $('.appalpay-button').show()
+        $('#payment_vault2').hide();
       })
 
       $("#payment_method_airwallex").on("click", function() {
@@ -3205,6 +3313,7 @@
         $("#airwallex_dropin_collapse").hide();
         $('.appalpay-button').hide()
         $('.pay-button').hide()
+        $('#payment_vault2').hide();
 
         $("#headingOne1").addClass("action");
         $("#headingThree2").removeClass("action");
@@ -3237,7 +3346,7 @@
         $("#airwallex_dropin_collapse").hide();
         $('.appalpay-button').hide()
         $('.pay-button').hide()
-
+        $('#payment_vault2').hide();
         $("#headingThree2").addClass("action");
         $("#headingOne1").removeClass("action");
         $("#headingOne2").removeClass("action");
@@ -3282,241 +3391,13 @@
           background: "none",
           padding: '0'
         });
+        $('#payment_vault2').show();
         console.log(params, '==========1');
         //payment-button
         $("#complete-btn-id").empty();;
         // var paramsinfo = params
         // console.log(paramsinfo, 'paramsinfo');
-        paypal.Buttons({
-          style: {
-            layout: 'horizontal',
-            tagline: false,
-            height: 55
-          },
-
-          onInit(data, actions) {
-            var can_paypal = 0;
-            var email_can = 0;
-            var first_name_can = 0;
-            var last_name_can = 0;
-            var phone_number_can = 0;
-            var address_can = 0;
-            var city_can = 0;
-            var zip_code_can = 0;
-
-            $(".email").on('change', function() {
-              var value = $(".email").val();
-              if (value.length > 0) email_can = 1;
-              console.log(value);
-              if (!params.error) {
-                actions.enable();
-              }
-            });
-
-            $(".first_name").on('change', function() {
-              var value = $(".first_name").val();
-              if (value.length > 0) first_name_can = 1;
-              console.log(value);
-              if (!params.error) {
-                actions.enable();
-              }
-            });
-
-            $(".last_name").on('change', function() {
-              var value = $(".last_name").val();
-              if (value.length > 0) last_name_can = 1;
-              console.log(value);
-              if (!params.error) {
-                actions.enable();
-              }
-            });
-            $(".phone_number").on('change', function() {
-              var value = $(".phone_number").val();
-              if (value.length > 0) phone_number_can = 1;
-              console.log(value);
-              if (!params.error) {
-                actions.enable();
-              }
-            });
-            $(".address").on('change', function() {
-              var value = $(".address").val();
-              if (value.length > 0) address_can = 1;
-              console.log(value);
-              if (!params.error) {
-                actions.enable();
-              }
-            });
-            $(".city").on('change', function() {
-              var value = $(".city").val();
-              if (value.length > 0) city_can = 1;
-              console.log(value);
-              if (!params.error) {
-                actions.enable();
-              }
-            });
-            $(".zip_code").on('change', function() {
-              var value = $(".zip_code").val();
-              if (value.length > 0) zip_code_can = 1;
-              console.log(value);
-              if (!params.error) {
-                actions.enable();
-              }
-            });
-
-            $("#state-select").on('change', function() {
-              if (!params.error) {
-                actions.enable();
-              }
-            })
-
-
-
-            if (params.error) {
-              //$('#checkout-error').html(params.error.join('<br />'));
-              //$('#checkout-error').show();
-              actions.disable();
-              //throw new Error('Verification failed');
-            } else {
-              actions.enable();
-            }
-          },
-          onError(err) {
-            $('#loading').hide();
-            console.log("paypal " + JSON.stringify(err));
-          },
-          onCancel: function(data) {
-            $('#loading').hide();
-          },
-          onClick() {
-            // var params = getOrderParams('paypal_stand');
-            // console.log("on click " + JSON.parse(params));
-            console.log(params, 'paypalparams');
-            if (params.error) {
-              $('#checkout-error').html(params.error.join('<br />'));
-              $('#checkout-error').show();
-            }
-
-          },
-
-          // Call your server to set up the transaction
-          createOrder: function(data, actions) {
-            getParams('paypal_stand')
-            var errIsShow = skuIsScelect()
-            console.log(params, '==========2', data);
-            var emailErr = validateEmail($('input[name="email"]').val())
-            console.log(emailErr, 'emailErr');
-            var errorShow = $('input[name="firstName"]').val() && $('input[name="lastName"]').val() && $('input[name="email"]').val() &&
-              $('input[name="phone"]').val() &&
-              $('input[name="shippingAddress1"]').val() && $('input[name="shippingCity"]').val() && $('input[name="shippingZip"]').val() && $('select[name="shippingCountry"]').val() && $('select[name="shippingState"]').val() && errIsShow && emailErr
-            console.log(errorShow, 'errorShowpaypal====')
-            if (!errorShow) {
-              errDialogShow(errIsShow, emailErr)
-              $('#loading').hide()
-              return
-            }
-            $('#loading').show();
-            crmTrack('add_pay')
-            // var params = getOrderParams('paypal_stand');
-            var url = '/onebuy/order/addr/after?currency={{ core()->getCurrentCurrencyCode() }}&_token={{ csrf_token() }}&time=' + new Date().getTime() + "&force=" + localStorage.getItem("force");
-            return fetch(url, {
-              body: JSON.stringify(params),
-              method: 'POST',
-              headers: {
-                'content-type': 'application/json'
-              }
-            }).then(function(res) {
-              return res.json();
-            }).then(function(res) {
-              //$('#loading').hide();
-              var data = res;
-              if (data.statusCode === 201 || data.statusCode === 200) {
-                var order_info = data.result;
-                //console.log(order_info);
-                //console.log(order_info.purchase_units[0].amount);
-                document.cookie = "voluum_payout=" + order_info.purchase_units[0].amount.value + order_info.purchase_units[0].amount.currency_code + "; path=/";
-                document.cookie = "order_id=" + order_info.id + "; path=/";
-                localStorage.setItem("order_id", order_info.id);
-                localStorage.setItem("order_params", JSON.stringify(params));
-
-                return order_info.id;
-              } else {
-                if (data.code == '202') {
-                  if (confirm(data.error) == true) {
-                    localStorage.setItem("force", 1);
-                  }
-                }
-
-                // var pay_error = JSON.parse(data.error);
-                var pay_error_message = pay_error.details;
-
-                if (pay_error_message && pay_error_message.length) {
-                  var show_pay_error_message_arr = [];
-
-                  for (var pay_error_message_i = 0; pay_error_message_i < pay_error_message.length; pay_error_message_i++) {
-                    show_pay_error_message_arr.push("Field:" + pay_error_message[pay_error_message_i].field + "<br /> Value" + pay_error_message[pay_error_message_i].value + '. <br />' + pay_error_message[pay_error_message_i].description + '<br /><br />')
-                  }
-
-                  $('#checkout-error').html(show_pay_error_message_arr.join(''));
-                  $('#checkout-error').show();
-                }
-              }
-
-
-            });
-          },
-
-          // Call your server to finalize the transaction
-          onApprove: function(data, actions) {
-            var orderData = {
-              paymentID: data.orderID,
-              orderID: data.orderID,
-            };
-            var paypalParams = {
-              first_name: $('input[name="firstName"]').val(),
-              second_name: $('input[name="lastName"]').val(),
-              email: $('input[name="email"]').val(),
-              phone_full: $('input[name="phone"]').val(),
-              address: $('input[name="shippingAddress1"]').val(),
-              city: $('input[name="shippingCity"]').val(),
-              country: $('select[name="shippingCountry"]').val(),
-              province: $('select[name="shippingState"]').val(),
-              code: $('input[name="shippingZip"]').val(),
-              payment_method: 'paypal_stand'
-            }
-            var request_params = {
-              client_secret: data.orderID,
-              id: localStorage.getItem('order_id'),
-              orderData: orderData,
-              data: data,
-              params: paypalParams
-            }
-            console.log(request_params, '===request_params===');
-            var url = "/onebuy/order/status?_token={{ csrf_token() }}&currency={{ core()->getCurrentCurrencyCode() }}";
-            return fetch(url, {
-              method: 'post',
-              body: JSON.stringify(request_params),
-              headers: {
-                'content-type': 'application/json'
-              },
-            }).then(function(res) {
-              return res.json();
-            }).then(function(res) {
-              $('#loading').hide();
-              if (res.success == true) {
-                //Goto('/checkout/v1/success/'+localStorage.getItem('order_id'));
-                window.location.href = '/onebuy/checkout/v2/success/' + localStorage.getItem('order_id');
-                return true;
-                //actions.redirect('/checkout/v1/success/'+localStorage.getItem('order_id'));
-              }
-              if (res.error == 'INSTRUMENT_DECLINED') {
-
-                $('#checkout-error').html("The instrument presented  was either declined by the processor or bank, or it can't be used for this payment.<br><br> Please confirm your account or bank card has sufficient balance, and try again.");
-                $('#checkout-error').show();
-              }
-            });
-          }
-        }).render('#complete-btn-id');
-
+        creatPaypalCardButton2();
       });
 
 
@@ -3814,6 +3695,8 @@
                 localStorage.getItem('force')
               $('#' + (error_id || 'paypal-error')).hide()
               params.payment_method = 'paypal'
+              params.payment_vault = payment_vault == 1 ? 1 : 0;
+              localStorage.setItem("payment_vault", params.payment_vault);
               return fetch(url, {
                   body: JSON.stringify(params),
                   method: 'POST',
@@ -3982,7 +3865,239 @@
         // .render('#' + (render_id || 'paypal-card-submit'));
       })
     }
+    function creatPaypalCardButton2() {
+      paypal.Buttons({
+          style: {
+            layout: 'horizontal',
+            tagline: false,
+            height: 55
+          },
 
+          onInit(data, actions) {
+            var can_paypal = 0;
+            var email_can = 0;
+            var first_name_can = 0;
+            var last_name_can = 0;
+            var phone_number_can = 0;
+            var address_can = 0;
+            var city_can = 0;
+            var zip_code_can = 0;
+
+            $(".email").on('change', function() {
+              var value = $(".email").val();
+              if (value.length > 0) email_can = 1;
+              console.log(value);
+              if (!params.error) {
+                actions.enable();
+              }
+            });
+
+            $(".first_name").on('change', function() {
+              var value = $(".first_name").val();
+              if (value.length > 0) first_name_can = 1;
+              console.log(value);
+              if (!params.error) {
+                actions.enable();
+              }
+            });
+
+            $(".last_name").on('change', function() {
+              var value = $(".last_name").val();
+              if (value.length > 0) last_name_can = 1;
+              console.log(value);
+              if (!params.error) {
+                actions.enable();
+              }
+            });
+            $(".phone_number").on('change', function() {
+              var value = $(".phone_number").val();
+              if (value.length > 0) phone_number_can = 1;
+              console.log(value);
+              if (!params.error) {
+                actions.enable();
+              }
+            });
+            $(".address").on('change', function() {
+              var value = $(".address").val();
+              if (value.length > 0) address_can = 1;
+              console.log(value);
+              if (!params.error) {
+                actions.enable();
+              }
+            });
+            $(".city").on('change', function() {
+              var value = $(".city").val();
+              if (value.length > 0) city_can = 1;
+              console.log(value);
+              if (!params.error) {
+                actions.enable();
+              }
+            });
+            $(".zip_code").on('change', function() {
+              var value = $(".zip_code").val();
+              if (value.length > 0) zip_code_can = 1;
+              console.log(value);
+              if (!params.error) {
+                actions.enable();
+              }
+            });
+
+            $("#state-select").on('change', function() {
+              if (!params.error) {
+                actions.enable();
+              }
+            })
+
+
+
+            if (params.error) {
+              //$('#checkout-error').html(params.error.join('<br />'));
+              //$('#checkout-error').show();
+              actions.disable();
+              //throw new Error('Verification failed');
+            } else {
+              actions.enable();
+            }
+          },
+          onError(err) {
+            $('#loading').hide();
+            console.log("paypal " + JSON.stringify(err));
+          },
+          onCancel: function(data) {
+            $('#loading').hide();
+          },
+          onClick() {
+            // var params = getOrderParams('paypal_stand');
+            // console.log("on click " + JSON.parse(params));
+            console.log(params, 'paypalparams');
+            if (params.error) {
+              $('#checkout-error').html(params.error.join('<br />'));
+              $('#checkout-error').show();
+            }
+
+          },
+
+          // Call your server to set up the transaction
+          createOrder: function(data, actions) {
+            getParams('paypal_stand')
+            var errIsShow = skuIsScelect()
+            console.log(params, '==========2', data);
+            params.payment_vault = payment_vault2 == 1 ? 1 : 0;
+            localStorage.setItem("payment_vault", params.payment_vault);
+            var emailErr = validateEmail($('input[name="email"]').val())
+            console.log(emailErr, 'emailErr');
+            var errorShow = $('input[name="firstName"]').val() && $('input[name="lastName"]').val() && $('input[name="email"]').val() &&
+              $('input[name="phone"]').val() &&
+              $('input[name="shippingAddress1"]').val() && $('input[name="shippingCity"]').val() && $('input[name="shippingZip"]').val() && $('select[name="shippingCountry"]').val() && $('select[name="shippingState"]').val() && errIsShow && emailErr
+            console.log(errorShow, 'errorShowpaypal====')
+            if (!errorShow) {
+              errDialogShow(errIsShow, emailErr)
+              $('#loading').hide()
+              return
+            }
+            $('#loading').show();
+            crmTrack('add_pay')
+            // var params = getOrderParams('paypal_stand');
+            var url = '/onebuy/order/addr/after?currency={{ core()->getCurrentCurrencyCode() }}&_token={{ csrf_token() }}&time=' + new Date().getTime() + "&force=" + localStorage.getItem("force");
+            return fetch(url, {
+              body: JSON.stringify(params),
+              method: 'POST',
+              headers: {
+                'content-type': 'application/json'
+              }
+            }).then(function(res) {
+              return res.json();
+            }).then(function(res) {
+              //$('#loading').hide();
+              var data = res;
+              if (data.statusCode === 201 || data.statusCode === 200) {
+                var order_info = data.result;
+                //console.log(order_info);
+                //console.log(order_info.purchase_units[0].amount);
+                document.cookie = "voluum_payout=" + order_info.purchase_units[0].amount.value + order_info.purchase_units[0].amount.currency_code + "; path=/";
+                document.cookie = "order_id=" + order_info.id + "; path=/";
+                localStorage.setItem("order_id", order_info.id);
+                localStorage.setItem("order_params", JSON.stringify(params));
+
+                return order_info.id;
+              } else {
+                if (data.code == '202') {
+                  if (confirm(data.error) == true) {
+                    localStorage.setItem("force", 1);
+                  }
+                }
+
+                // var pay_error = JSON.parse(data.error);
+                var pay_error_message = pay_error.details;
+
+                if (pay_error_message && pay_error_message.length) {
+                  var show_pay_error_message_arr = [];
+
+                  for (var pay_error_message_i = 0; pay_error_message_i < pay_error_message.length; pay_error_message_i++) {
+                    show_pay_error_message_arr.push("Field:" + pay_error_message[pay_error_message_i].field + "<br /> Value" + pay_error_message[pay_error_message_i].value + '. <br />' + pay_error_message[pay_error_message_i].description + '<br /><br />')
+                  }
+
+                  $('#checkout-error').html(show_pay_error_message_arr.join(''));
+                  $('#checkout-error').show();
+                }
+              }
+
+
+            });
+          },
+
+          // Call your server to finalize the transaction
+          onApprove: function(data, actions) {
+            var orderData = {
+              paymentID: data.orderID,
+              orderID: data.orderID,
+            };
+            var paypalParams = {
+              first_name: $('input[name="firstName"]').val(),
+              second_name: $('input[name="lastName"]').val(),
+              email: $('input[name="email"]').val(),
+              phone_full: $('input[name="phone"]').val(),
+              address: $('input[name="shippingAddress1"]').val(),
+              city: $('input[name="shippingCity"]').val(),
+              country: $('select[name="shippingCountry"]').val(),
+              province: $('select[name="shippingState"]').val(),
+              code: $('input[name="shippingZip"]').val(),
+              payment_method: 'paypal_stand'
+            }
+            var request_params = {
+              client_secret: data.orderID,
+              id: localStorage.getItem('order_id'),
+              orderData: orderData,
+              data: data,
+              params: paypalParams
+            }
+            console.log(request_params, '===request_params===');
+            var url = "/onebuy/order/status?_token={{ csrf_token() }}&currency={{ core()->getCurrentCurrencyCode() }}";
+            return fetch(url, {
+              method: 'post',
+              body: JSON.stringify(request_params),
+              headers: {
+                'content-type': 'application/json'
+              },
+            }).then(function(res) {
+              return res.json();
+            }).then(function(res) {
+              $('#loading').hide();
+              if (res.success == true) {
+                //Goto('/checkout/v1/success/'+localStorage.getItem('order_id'));
+                window.location.href = '/onebuy/checkout/v2/success/' + localStorage.getItem('order_id');
+                return true;
+                //actions.redirect('/checkout/v1/success/'+localStorage.getItem('order_id'));
+              }
+              if (res.error == 'INSTRUMENT_DECLINED') {
+
+                $('#checkout-error').html("The instrument presented  was either declined by the processor or bank, or it can't be used for this payment.<br><br> Please confirm your account or bank card has sufficient balance, and try again.");
+                $('#checkout-error').show();
+              }
+            });
+          }
+        }).render('#complete-btn-id');
+    }
     function checkout() {
       sendInitiateCheckoutEvent();
       var pay_type = 'worldpay';
@@ -4050,7 +4165,7 @@
       //console.log(JSON.stringify(params));
       //return false;
 
-      var url = '/onebuy/order/add/sync?currency={{ core()->getCurrentCurrencyCode() }}&_token={{ csrf_token() }}&time=' + new Date().getTime();
+      var url = '/onebuy/order/add/sync?currency={{ core()->getCurrentCurrencyCode() }}&_token={{ csrf_token() }}&time=' + new Date().getTime()+ "&force=" + localStorage.getItem("force");;
 
       if (pay_type == "payoneer" || pay_type == 'pacypay') {
         url = '/order/add/async?time=' + new Date().getTime();
