@@ -3149,7 +3149,7 @@
               */
               // window.alert(event.detail);
               console.log(event.detail, event, 'applePay ===  success');
-              window.location.href = "/onebuy/checkout/v2/success/" + orderId;
+              window.location.href = "/onebuy/checkout/v4/success/" + orderId;
             });
             domApplePay.addEventListener('onError', (event) => {
               crmTrack('add_pay')
@@ -3225,7 +3225,7 @@
               // window.alert(event.detail);
               // console.log(event.detail);
               console.log(event.detail, event, 'googlePay ===  success');
-              window.location.href = "/onebuy/checkout/v2/success/" + orderId;
+              window.location.href = "/onebuy/checkout/v4/success/" + orderId;
             });
             domGooglePay.addEventListener('onError', (event) => {
               crmTrack('add_pay')
@@ -3771,6 +3771,9 @@
              *
              */
             onApprove: function(data, actions) {
+              console.log("on approve ")
+              console.log(data);
+              
               //console.log("on app rove");
               if (!data.orderID) {
                 throw new Error('orderid is not exisit')
@@ -3835,8 +3838,8 @@
                   //console.log(res);
 
                   if (res.success == true) {
-                    window.location.href =
-                      '/onebuy/checkout/v2/success/' +
+                    //window.location.href =
+                      '/onebuy/checkout/v4/success/' +
                       localStorage.getItem('order_id')
                     return true
                     //actions.redirect('/checkout/v1/success/'+localStorage.getItem('order_id'));
@@ -4085,7 +4088,7 @@
               $('#loading').hide();
               if (res.success == true) {
                 //Goto('/checkout/v1/success/'+localStorage.getItem('order_id'));
-                window.location.href = '/onebuy/checkout/v2/success/' + localStorage.getItem('order_id');
+                window.location.href = '/onebuy/checkout/v4/success/' + localStorage.getItem('order_id');
                 return true;
                 //actions.redirect('/checkout/v1/success/'+localStorage.getItem('order_id'));
               }
@@ -4255,12 +4258,15 @@
                 behavior: "smooth"
               })
 
-              Airwallex.confirmPaymentIntent({
+
+              //Airwallex.confirmPaymentIntent({
+              Airwallex.createPaymentConsent({
                 element: cardNumber,
                 id: data.payment_intent_id,
                 customer_id: data.customer.id,
-                client_secret: data.client_secret,
-                next_triggered_by: "customer",
+                client_secret: data.customer_client_secret.client_secret,
+                next_triggered_by: 'customer',
+                currency: data.currency,
                 payment_method: {
                   billing: {
                     email: data.billing.email,
@@ -4280,23 +4286,19 @@
 
               }).then((response) => {
 
-                $('#loading').hide();
+                  $('#loading').hide();
 
-                window.location.href = "/onebuy/checkout/v2/success/" + data.order.id;
-                return false;
+                  console.log('createPaymentConsent airwallex===111=' + JSON.stringify(response));
 
-              }).catch((response) => {
-                $('#loading').hide();
-                console.log("catch");
-                console.log(JSON.stringify(response))
+                  window.alert(" then " + JSON.stringify(response));
 
-                alert(response.message)
-                $('#checkout-error').html(response.message + '<br /><br />');
-                $('#checkout-error').show();
-
-                return false;
+                  window.location.href = "/onebuy/checkout/v4/success/" + data.order.id;
+                  return false;
 
               });
+
+              console.log('createPaymentConsent airwallex====' + json.stringify(response));
+
             }
           } else {
             console.log('else====');

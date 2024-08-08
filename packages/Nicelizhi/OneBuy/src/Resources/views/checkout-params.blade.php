@@ -84,11 +84,16 @@
                 // behavior: "smooth"
                 // })
                 const airwallex_vault = localStorage.getItem("airwallex_vault");
+
+                customer_id = localStorage.getItem('cus_id') ? localStorage.getItem('cus_id') : '';
+                console.log(customer_id, 'airwallex_vault customer id ==')
+
+
                 if (!isEmpty(airwallex_vault) && airwallex_vault == 1) {
                     console.log(airwallex_vault, 'customerId==')
                     Airwallex.createPaymentConsent({
                         intent_id: data.payment_intent_id, // intent id(Optional)
-                        customer_id: localStorage.getItem('cus_id') ? localStorage.getItem('cus_id') : '', // customer id
+                        customer_id: customer_id , // customer id
                         client_secret: data.client_secret, // client secret
                         currency: '{{ core()->getCurrentCurrencyCode() }}', // currency
                         element: cardNumber, // either the card element or card number element depends on the element you integrate,
