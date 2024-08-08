@@ -40,7 +40,7 @@
         "laravel/ui": "^4.0",
         "maatwebsite/excel": "^3.1.46",
         "nexa-merchant/apis": "1.0.8",
-        "nexa-merchant/apps": "1.0.1",
+        "nexa-merchant/apps": "1.0.0",
         "nexa-merchant/upselling": "dev-main",
         "paypal/paypal-checkout-sdk": "1.0.2",
         "predis/predis": "^2.2",
