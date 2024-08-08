@@ -91,12 +91,12 @@
 
                 if (!isEmpty(airwallex_vault) && airwallex_vault == 1) {
                     console.log(airwallex_vault, 'customerId==')
-                    Airwallex.createPaymentConsent({
+                    Airwallex.confirmPaymentIntent({
                         intent_id: data.payment_intent_id, // intent id(Optional)
                         customer_id: customer_id , // customer id
                         client_secret: data.client_secret, // client secret
                         currency: '{{ core()->getCurrentCurrencyCode() }}', // currency
-                        element: cardNumber, // either the card element or card number element depends on the element you integrate,
+                        element: cvc, // either the card element or card number element depends on the element you integrate,
                         next_triggered_by: 'customer' // 'merchant' for MIT and 'customer' for CIT
                     }).then((response) => {
                         // STEP #6b: Listen to the request response
