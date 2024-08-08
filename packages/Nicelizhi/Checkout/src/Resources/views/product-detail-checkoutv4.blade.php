@@ -3677,6 +3677,7 @@
 
             // Call your server to set up the transaction
             createOrder: function(data, actions) {
+              console.log(data, 'paypal create order ==========');
               var errIsShow = skuIsScelect()
               if (!errIsShow) {
                 $('.dialog-error .dialog-box ul').empty()
@@ -3710,9 +3711,11 @@
                 .then(function(res) {
                   //$('#loading').hide();
                   var data = res
-                  //console.log(data)
+                  console.log(data, "paypal create order data")
                   if (data.statusCode === 201 || data.statusCode === 200) {
+
                     var order_info = data.result
+                    return order_info.id
                     //console.log(order_info);
                     //console.log(order_info.purchase_units[0].amount);
                     document.cookie =
