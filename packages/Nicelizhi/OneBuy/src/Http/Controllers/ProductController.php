@@ -1109,6 +1109,7 @@ class ProductController extends Controller
                             "vault" => [
                                 "store_in_vault" => "ON_SUCCESS",
                                 "usage_type" => "MERCHANT",
+                                "customer_type" => "CONSUMER"
                             ]
                         ],
                         "experience_context" => [
