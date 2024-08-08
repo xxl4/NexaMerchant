@@ -109,6 +109,24 @@ class Airwallex {
 
     }
 
+    public function createCustomerClientSecret($customer_id) {
+        $header= array(
+                'Content-Type: application/json; charset=utf-8',
+                'Authorization: ' ."Bearer ".$this->token
+        );
+        //$url = $this->host."/api/v1/pa/payment_methods/create_customer_client_secret";
+        $url = $this->host."/api/v1/pa/customers/".$customer_id."/generate_client_secret";
+
+        $data = [];
+
+        $result = $this->http_curl($url, '', $data, 6, FALSE, '', $header);
+
+        if($result['code']=='200') return json_decode($result['body']);
+
+        return $result;
+
+    }
+
     /***
      * 
      * @ create refund order
