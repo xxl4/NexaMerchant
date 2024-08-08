@@ -326,7 +326,7 @@ class Airwallex extends Payment
       $klarna['billing'] = $billing;
 
 
-      $payment_method['klarna'] = $klarna;
+      $payment_method['card'] = $klarna;
       $buildRequestBody['payment_method'] = $payment_method;
       $buildRequestBody['request_id'] = $order->id."_".time();
 
@@ -341,7 +341,7 @@ class Airwallex extends Payment
 
       
 
-      //var_dump($order, $buildRequestBody);exit;
+     // var_dump($order, $buildRequestBody);exit;
       //var_dump($buildRequestBody);
       $transactionManager = $sdk->confirm($payment_intents_id, json_encode($buildRequestBody, JSON_OBJECT_AS_ARRAY | JSON_UNESCAPED_UNICODE));
 
