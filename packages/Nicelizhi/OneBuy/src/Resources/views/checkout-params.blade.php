@@ -98,6 +98,7 @@
 
                 customer_id = localStorage.getItem('cus_id') ? localStorage.getItem('cus_id') : '';
                 console.log(customer_id, 'airwallex_vault customer id ==')
+                payment_consent_id = localStorage.getItem('payment_consent_id') ? localStorage.getItem('payment_consent_id') : '';
 
                 // const aUrl = "/onebuy/order/confirm?currency={{ core()->getCurrentCurrencyCode() }}&_token={{ csrf_token() }}&payment_intent_id=" + data.payment_intent_id + "&order_id=" + data.order.id + "&cus_id=" + customer_id;
                 // let aResponse = await fetch(aUrl);
@@ -108,12 +109,16 @@
                 // console.log(aData, 'aData==')
                 if (!isEmpty(airwallex_vault) && airwallex_vault == 1) {
                     console.log(airwallex_vault, 'customerId==')
+                    console.log("payment_consents", payment_consent_id)
+                    console.log("customer_id", customer_id)
+                    console.log("data.payment_intent_id", data.payment_intent_id)
+                    console.log("data.client_secret", data.client_secret)
                     Airwallex.confirmPaymentIntent({
                         id: data.payment_intent_id, // intent id(Optional)
                         client_secret: data.client_secret, // client secret
                         // currency: '{{ core()->getCurrentCurrencyCode() }}', // currency
                         element: cvc, // either the card element or card number element depends on the element you integrate,
-                        payment_consent_id: data.payment_consent_id // 'merchant' for MIT and 'customer' for CIT
+                        payment_consent_id: payment_consent_id // 'merchant' for MIT and 'customer' for CIT
                     }).then((response) => {
                         // STEP #6b: Listen to the request response
                         /* handle create consent response in your business flow */
@@ -122,12 +127,6 @@
 
                         window.location.href = "/onebuy/checkout/v2/success/" + data.order.id;
                         return false;
-                    }).catch((response) => {
-                      $('#loading').hide();
-                      console.log("catch");
-                      console.log(JSON.stringify(response))
-
-                      alert(response.message)
                     });
                 } else {
                     console.log(2222)
