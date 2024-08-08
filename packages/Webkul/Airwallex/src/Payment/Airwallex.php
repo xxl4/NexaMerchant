@@ -220,6 +220,16 @@ class Airwallex extends Payment
         return $transactionManager;
     }
 
+    public function createCustomerClientSecret($customer_id) {
+        $sdk = new AirwallexSdk($this->paymentConfig, $this->productionMode);
+        // $buildRequestBody = [];
+        // $buildRequestBody['customer_id'] = $customer_id;
+        // $buildRequestBody['request_id'] = $customer_id."_".time();
+        $transactionManager = $sdk->createCustomerClientSecret($customer_id);
+        
+        return $transactionManager;
+    }
+
     public function buildCreateCustomerData($cart, $orderId) {
 
         $data = [];
