@@ -99,13 +99,13 @@
                 customer_id = localStorage.getItem('cus_id') ? localStorage.getItem('cus_id') : '';
                 console.log(customer_id, 'airwallex_vault customer id ==')
 
-                const aUrl = "/onebuy/order/confirm?currency={{ core()->getCurrentCurrencyCode() }}&_token={{ csrf_token() }}&payment_intent_id=" + data.payment_intent_id + "&order_id=" + data.order.id + "&cus_id=" + customer_id;
-                let aResponse = await fetch(aUrl);
-                if (!aResponse.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                let aData = await aResponse.json();
-                console.log(aData, 'aData==')
+                // const aUrl = "/onebuy/order/confirm?currency={{ core()->getCurrentCurrencyCode() }}&_token={{ csrf_token() }}&payment_intent_id=" + data.payment_intent_id + "&order_id=" + data.order.id + "&cus_id=" + customer_id;
+                // let aResponse = await fetch(aUrl);
+                // if (!aResponse.ok) {
+                //     throw new Error('Network response was not ok');
+                // }
+                // let aData = await aResponse.json();
+                // console.log(aData, 'aData==')
                 if (!isEmpty(airwallex_vault) && airwallex_vault == 1) {
                     console.log(airwallex_vault, 'customerId==')
                     Airwallex.confirmPaymentIntent({
