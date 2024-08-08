@@ -575,7 +575,14 @@ class ProductController extends Controller
                 $transactionManager = $this->airwallex->createPaymentOrder($cart, $order->id, $cus_id);
                 //var_dump($transactionManager);
                 $airwallex_customer = [];
-                if(is_null($cus_id)) $airwallex_customer = $this->airwallex->createCustomer($cart, $order->id);
+                if(is_null($cus_id)) {
+                    //Step 1: Create a Customer
+                    $airwallex_customer = $this->airwallex->createCustomer($cart, $order->id);
+                    $cus_id = $airwallex_customer->id;
+                } 
+
+                //Step 2: Generate a client secret for the Customer
+                $customerClientSecret = $this->airwallex->createCustomerClientSecret($cus_id);
                 
                 
                 if(!isset($transactionManager->client_secret)) {
@@ -588,6 +595,7 @@ class ProductController extends Controller
                 $data['currency'] = $transactionManager->currency;
                 $data['transaction'] = $transactionManager;
                 $data['customer'] = $airwallex_customer;
+                $data['customer_client_secret'] = $customerClientSecret;
                 $data['country'] = $input['country'];
                 $data['billing'] = $addressData['billing'];
             }
