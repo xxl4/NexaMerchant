@@ -3149,7 +3149,7 @@
               */
               // window.alert(event.detail);
               console.log(event.detail, event, 'applePay ===  success');
-              window.location.href = "/onebuy/checkout/v2/success/" + orderId;
+              window.location.href = "/onebuy/checkout/v4/success/" + orderId;
             });
             domApplePay.addEventListener('onError', (event) => {
               crmTrack('add_pay')
@@ -3225,7 +3225,7 @@
               // window.alert(event.detail);
               // console.log(event.detail);
               console.log(event.detail, event, 'googlePay ===  success');
-              window.location.href = "/onebuy/checkout/v2/success/" + orderId;
+              window.location.href = "/onebuy/checkout/v4/success/" + orderId;
             });
             domGooglePay.addEventListener('onError', (event) => {
               crmTrack('add_pay')
@@ -4088,7 +4088,7 @@
               $('#loading').hide();
               if (res.success == true) {
                 //Goto('/checkout/v1/success/'+localStorage.getItem('order_id'));
-                window.location.href = '/onebuy/checkout/v2/success/' + localStorage.getItem('order_id');
+                window.location.href = '/onebuy/checkout/v4/success/' + localStorage.getItem('order_id');
                 return true;
                 //actions.redirect('/checkout/v1/success/'+localStorage.getItem('order_id'));
               }
@@ -4285,7 +4285,7 @@
 
                 $('#loading').hide();
 
-                window.location.href = "/onebuy/checkout/v2/success/" + data.order.id;
+                window.location.href = "/onebuy/checkout/v4/success/" + data.order.id;
                 return false;
 
               }).catch((response) => {
