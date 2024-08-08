@@ -811,6 +811,7 @@ class ProductController extends Controller
     public function confirm(Request $request) {
         $payment_intent_id = $request->input("payment_intent_id");
         $order_id = $request->input("order_id");
+        $cus_id = $request->input("cus_id");
 
         $order = $this->orderRepository->find($order_id);
         
@@ -820,7 +821,7 @@ class ProductController extends Controller
             ], 404);
         }
         
-        $transactionManager = $this->airwallex->confirmPayment($payment_intent_id, $order);
+        $transactionManager = $this->airwallex->confirmPayment($payment_intent_id, $order, $cus_id);
 
         $request->session()->put('last_order_id', $order_id);
 
