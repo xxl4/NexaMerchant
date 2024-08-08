@@ -296,11 +296,11 @@ class Airwallex extends Payment
       return $transactionManager;
     }
 
-    public function confirmPayment($payment_intents_id, $order) {
+    public function confirmPayment($payment_intents_id, $order, $customer_id=null) {
       $sdk = new AirwallexSdk($this->paymentConfig, $this->productionMode);
       $buildRequestBody = [];
       $payment_method = [];
-      $payment_method['type'] = "klarna";
+      $payment_method['type'] = "card";
 
       $shipping_address = $order->billing_address;
       //var_dump($shipping_address);
@@ -334,6 +334,10 @@ class Airwallex extends Payment
       $payment_method_options = [];
       $payment_method_options["klarna"]["auto_capture"] = true;
       $buildRequestBody['payment_method_options'] = $payment_method_options;
+
+      if($customer_id) {
+        $buildRequestBody['customer_id'] = $customer_id;
+    }
 
       
 
