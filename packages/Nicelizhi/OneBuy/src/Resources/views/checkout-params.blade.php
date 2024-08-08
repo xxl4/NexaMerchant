@@ -76,7 +76,7 @@
                 document.cookie = "voluum_payout=" + order_info.grand_total + order_info.order_currency_code + "; path=/";
                 document.cookie = "order_id=" + order_info.id + "; path=/";
                 localStorage.setItem("order_id", order_info.id);
-                localStorage.setItem("cus_id", data.customer.id);
+                // localStorage.setItem("cus_id", data.customer.id);
                 localStorage.setItem("order_params", JSON.stringify(productParams));
 
                 console.log(data, 'data===window.is_airwallex');
