@@ -4259,14 +4259,20 @@
               })
 
 
+              console.log('createPaymentConsent airwallex===' + JSON.stringify(data));
+
+
+
               //Airwallex.confirmPaymentIntent({
               Airwallex.createPaymentConsent({
                 element: cardNumber,
-                id: data.payment_intent_id,
+                intent_id: data.payment_intent_id,
                 customer_id: data.customer.id,
-                client_secret: data.customer_client_secret.client_secret,
+                //client_secret: data.customer_client_secret.client_secret,
+                client_secret: data.client_secret,
                 next_triggered_by: 'customer',
                 currency: data.currency,
+                requires_cvc: true,
                 payment_method: {
                   billing: {
                     email: data.billing.email,
@@ -4290,7 +4296,10 @@
 
                   console.log('createPaymentConsent airwallex===111=' + JSON.stringify(response));
 
-                  window.alert(" then " + JSON.stringify(response));
+                  //window.alert(" then " + JSON.stringify(response));
+
+                  localStorage.setItem("airwallex_response", JSON.stringify(response));
+                  localStorage.setItem("payment_consent_id", response.payment_consent_id);
 
                   window.location.href = "/onebuy/checkout/v4/success/" + data.order.id;
                   return false;
