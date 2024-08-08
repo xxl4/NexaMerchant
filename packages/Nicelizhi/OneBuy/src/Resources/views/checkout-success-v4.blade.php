@@ -997,6 +997,7 @@
             <!-- <i class="fas fa-credit-card"></i> -->
             <div>
               <div id="cardNumber" class="form-floating input-group has-icon-left" style="
+                display: none;
                 border: 1px solid rgba(105, 105, 105, 0.397);
                 border-radius: 10px;
                 color: #222;
@@ -1019,6 +1020,7 @@
         <div class="form-group">
             <div style='margin-top:10px'>
               <div id="expiry" style="
+                display:none;
                 border: 1px solid rgba(105, 105, 105, 0.397);
                 border-radius: 10px;
                 color: #222;
@@ -1248,7 +1250,7 @@
       });
     <?php } ?>
   </script>
-  @include("onebuy::checkout-params ")
+  @include("onebuy::checkout-params")
   <script>
 
     $(function() {
@@ -1432,17 +1434,17 @@
       console.log(radio.value);
       $('.color-img-sku').text(radio.value);
     }
-    function isEmpty(value) {
-      if (value == null) return true;
+    // function isEmpty(value) {
+    //   if (value == null) return true;
 
-      if (typeof value === 'string' && value.trim() === '') return true;
+    //   if (typeof value === 'string' && value.trim() === '') return true;
 
-      if (Array.isArray(value) && value.length === 0) return true;
+    //   if (Array.isArray(value) && value.length === 0) return true;
 
-      if (typeof value === 'object' && Object.keys(value).length === 0 && value.constructor === Object) return true;
+    //   if (typeof value === 'object' && Object.keys(value).length === 0 && value.constructor === Object) return true;
 
-      return false;
-    }
+    //   return false;
+    // }
     function crmTrack(type) {
       console.log(type, 'crmTrack')
       var postParams = {

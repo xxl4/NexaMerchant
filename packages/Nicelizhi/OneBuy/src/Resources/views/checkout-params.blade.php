@@ -1,44 +1,56 @@
 <script src="https://checkout-demo.airwallex.com/assets/elements.bundle.min.js"></script>
 <!-- <script src="https://checkout.airwallex.com/assets/elements.bundle.min.js"></script> -->
 <script>
+  var airwallex_vault = localStorage.getItem("airwallex_vault");
       // STEP #2: Initialize the Airwallex global context for event communication
       Airwallex.init({
         env: 'demo', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
         origin: window.location.origin, // Setup your event target to receive the browser events message
         // components: ['cardNumber', 'expiry', 'cvc']
       });
+    const cardCvc = Airwallex.createElement('cvc');
+    if (!isEmpty(airwallex_vault) && airwallex_vault == 1) {
+      
+    }else {
+      $('#expiry').show();
+      $('#cardNumber').show();
       const cardNumber = Airwallex.createElement('cardNumber', {
       allowedCardNetworks: ['visa', 'maestro', 'mastercard', 'amex', 'unionpay', 'jcb']
     });
-    const cardExpiry = Airwallex.createElement('expiry');
-    const cardCvc = Airwallex.createElement('cvc');
+      const cardExpiry = Airwallex.createElement('expiry');
+      const domcardNumber = cardNumber.mount('cardNumber');
+      const domcardExpiry = cardExpiry.mount('expiry');
+      // STEP #8: Add an event listener to listen to the changes in each of the input fields
+      domcardNumber.addEventListener('onChange', (event) => {
+        console.log(event.detail)
+        console.log(event.detail.complete)
+      });
 
-    const domcardNumber = cardNumber.mount('cardNumber');
-    const domcardExpiry = cardExpiry.mount('expiry');
-    const domcardCvv = cardCvc.mount('cvc');
+      domcardExpiry.addEventListener('onChange', (event) => {
 
-    domcardNumber.addEventListener('onReady', (event) => {
+        console.log(event.detail)
+        console.log(event.detail.complete)
+      });
+    }
+
+
+    
+    const cvc = cardCvc.mount('cvc');
+
+    
+
+    // domcardNumber.addEventListener('onReady', (event) => {
       /*
       ... Handle event
       */
       //window.alert(event.detail);
       // console.log(event.detail);
-    });
+    // });
 
-    // STEP #8: Add an event listener to listen to the changes in each of the input fields
-    domcardNumber.addEventListener('onChange', (event) => {
-      console.log(event.detail)
-      console.log(event.detail.complete)
-    });
 
-    domcardExpiry.addEventListener('onChange', (event) => {
-
-      console.log(event.detail)
-      console.log(event.detail.complete)
-    });
 
     //id_cvc
-    domcardCvv.addEventListener('onChange', (event) => {
+    cvc.addEventListener('onChange', (event) => {
       console.log(event.detail)
       console.log(event.detail.complete)
     });
@@ -65,7 +77,7 @@
         .then(function(res) {
             return res.json()
         })
-        .then(function(res) {
+        .then(async function(res) {
             crmTrack('add_pay')
             var data = res;
             console.log(data);
@@ -83,25 +95,39 @@
                 // document.querySelector(".submit-button").scrollIntoView({
                 // behavior: "smooth"
                 // })
-                const airwallex_vault = localStorage.getItem("airwallex_vault");
 
                 customer_id = localStorage.getItem('cus_id') ? localStorage.getItem('cus_id') : '';
                 console.log(customer_id, 'airwallex_vault customer id ==')
 
-
+                const aUrl = "/onebuy/order/confirm?currency={{ core()->getCurrentCurrencyCode() }}&_token={{ csrf_token() }}&payment_intent_id=" + data.payment_intent_id + "&order_id=" + data.order.id + "&cus_id=" + customer_id;
+                let aResponse = await fetch(aUrl);
+                if (!aResponse.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                let aData = await aResponse.json();
+                console.log(aData, 'aData==')
                 if (!isEmpty(airwallex_vault) && airwallex_vault == 1) {
                     console.log(airwallex_vault, 'customerId==')
                     Airwallex.confirmPaymentIntent({
-                        intent_id: data.payment_intent_id, // intent id(Optional)
-                        customer_id: customer_id , // customer id
+                        id: data.payment_intent_id, // intent id(Optional)
                         client_secret: data.client_secret, // client secret
-                        currency: '{{ core()->getCurrentCurrencyCode() }}', // currency
+                        // currency: '{{ core()->getCurrentCurrencyCode() }}', // currency
                         element: cvc, // either the card element or card number element depends on the element you integrate,
-                        next_triggered_by: 'customer' // 'merchant' for MIT and 'customer' for CIT
+                        payment_consent_id: data.payment_consent_id // 'merchant' for MIT and 'customer' for CIT
                     }).then((response) => {
                         // STEP #6b: Listen to the request response
                         /* handle create consent response in your business flow */
                         window.alert(JSON.stringify(response));
+                        $('#loading').hide();
+
+                        window.location.href = "/onebuy/checkout/v2/success/" + data.order.id;
+                        return false;
+                    }).catch((response) => {
+                      $('#loading').hide();
+                      console.log("catch");
+                      console.log(JSON.stringify(response))
+
+                      alert(response.message)
                     });
                 } else {
                     console.log(2222)
@@ -162,6 +188,18 @@
             $('#loading').hide();
         })
         }
+
+        function isEmpty(value) {
+      if (value == null) return true;
+
+      if (typeof value === 'string' && value.trim() === '') return true;
+
+      if (Array.isArray(value) && value.length === 0) return true;
+
+      if (typeof value === 'object' && Object.keys(value).length === 0 && value.constructor === Object) return true;
+
+      return false;
+    }
 </script>
 
 <script>
