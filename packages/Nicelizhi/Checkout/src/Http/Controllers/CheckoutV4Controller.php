@@ -146,13 +146,15 @@ class CheckoutV4Controller extends Controller{
             $request->session()->put('paypal_access_token', $paypal_access_token);
         }
 
+        $paypal_vault = $request->session()->get('paypal_vault'); // get the paypal vault
+
         //var_dump($paypal_id_token);exit;
 
         
         //$paypal_id_token = $this->smartButton->getIDAccessToken();
         
 
-        return view('checkout::product-detail-'.$this->view_prefix_key, compact('slug','comments','faqItems','product','default_country',"payments","payments_default","refer","crm_channel","data","paypal_rt","paypal_id_token"));
+        return view('checkout::product-detail-'.$this->view_prefix_key, compact('slug','comments','faqItems','product','default_country',"payments","payments_default","refer","crm_channel","data","paypal_rt","paypal_id_token","paypal_vault"));
     }
 
 
