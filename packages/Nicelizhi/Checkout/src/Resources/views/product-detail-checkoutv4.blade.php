@@ -3774,6 +3774,12 @@
              *
              */
             onApprove: function(data, actions) {
+
+              actions.order.get().then(function(details) {
+                console.log(details, 'paypal get details');
+              })
+
+
               console.log("on approve ")
               console.log(data);
               
