@@ -1039,24 +1039,10 @@
             </div>
         </div>
         <div class="form-group">
-            <div style='margin-top:10px'>
-              <div id="cvc" style="
-                border: 1px solid rgba(105, 105, 105, 0.397);
-                border-radius: 10px;
-                color: #222;
-                height: 32px;
-                line-height: 22px;
-                width: 100%;
-                font-size: 14px;
-                padding: 3px 8px;
-                outline: 0;
-                font-family: var(--title-family), sans-serif;
-                font-weight: 400;
-                box-sizing: border-box;
-                background-color: #fff;
-                -webkit-box-sizing: border-box;height: calc(3.5rem + 2px);
-                line-height: 1.25;padding: 1rem 0.75rem "></div>
-            </div>
+          <div style="{containerStyle}">
+            <div>Cvc</div>
+            <div id="cvc"></div>
+          </div>
         </div>
         <!-- <div class="form-group">
             <input type="text" id="cardHolderName" placeholder="持卡人姓名">
