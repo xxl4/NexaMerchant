@@ -24,6 +24,7 @@ use Illuminate\Support\Facades\Redis;
 use Webkul\CMS\Repositories\CmsRepository;
 use Webkul\CartRule\Repositories\CartRuleCouponRepository;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Session;
 use Webkul\Sales\Repositories\OrderTransactionRepository;
 
 
@@ -1100,26 +1101,62 @@ class ProductController extends Controller
             */
         }
         $input['payment_vault'] = isset($input['payment_vault']) ? $input['payment_vault'] : "0";
+        $paypal_vault = Session::get('paypal_vault');
         if($input['payment_vault']=='1') {
              // for vault
-             
-                $data["payment_source"] = [
-                    "paypal" => [
-                        "attributes" => [
-                            "vault" => [
-                                "store_in_vault" => "ON_SUCCESS",
-                                "usage_type" => "MERCHANT",
-                                "customer_type" => "CONSUMER"
+                if(empty($paypal_vault)) {
+                    $data["payment_source"] = [
+                        "paypal" => [
+                            "attributes" => [
+                                "vault" => [
+                                    "store_in_vault" => "ON_SUCCESS",
+                                    "usage_type" => "MERCHANT",
+                                    "customer_type" => "CONSUMER"
+                                ]
+                            ],
+                            "experience_context" => [
+                                "return_url" => route("checkout.v4.product.page", ["slug" => "8987102380314"]),
+                                'cancel_url' => route("checkout.v4.product.page",["slug"=>"8987102380314"]),
                             ]
-                        ],
-                        "experience_context" => [
-                            "return_url" => route("checkout.v4.product.page", ["slug" => "8987102380314"]),
-                            'cancel_url' => route("checkout.v4.product.page",["slug"=>"8987102380314"]),
                         ]
-                    ]
-                ];
-             //array_push($data, $paypal_vault); // add to the end of the array
+                    ];
+                }else{
+                    $data["payment_source"] = [
+                        "paypal" => [
+                            "vault_id" => $paypal_vault['id'],
+                            "experience_context" => [
+                                "return_url" => route("checkout.v4.product.page", ["slug" => "8987102380314"]),
+                                'cancel_url' => route("checkout.v4.product.page",["slug"=>"8987102380314"]),
+                            ]
+                        ]
+                    ];
+                }
+                // $data["payment_source"] = [
+                //     "paypal" => [
+                //         "attributes" => [
+                //             "vault" => [
+                //                 "store_in_vault" => "ON_SUCCESS",
+                //                 "usage_type" => "MERCHANT",
+                //                 "customer_type" => "CONSUMER"
+                //             ]
+                //         ],
+                //         "experience_context" => [
+                //             "return_url" => route("checkout.v4.product.page", ["slug" => "8987102380314"]),
+                //             'cancel_url' => route("checkout.v4.product.page",["slug"=>"8987102380314"]),
+                //         ]
+                //     ]
+                // ];
+
+
+             
         }
+
+        
+
+        // if(!empty($paypal_vault)) {
+        //     Log::info("paypal vault ". json_encode($paypal_vault));
+        //     $data["payment_source"]["paypal"]["vault_id"] = $paypal_vault['id'];
+        // }
 
         Log::info("post to paypal data ". json_encode($data));
 
