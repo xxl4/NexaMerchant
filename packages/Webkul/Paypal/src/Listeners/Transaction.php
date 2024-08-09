@@ -38,6 +38,13 @@ class Transaction
                 Log::info('Paypal Smart Transaction Details: ' . json_encode($transactionDetails));
                 if(isset($transactionDetails['result']['purchase_units'][0]['payments']['captures'][0]['id'])) Log::info('Paypal Smart Transaction ID'. $transactionDetails['result']['purchase_units'][0]['payments']['captures'][0]['id']);
 
+
+                // save transaction vault
+                if(isset($transactionDetails['result']['payment_source']['paypal']['attributes']['vault'])) {
+                    session()->put('paypal_vault', $transactionDetails['result']['payment_source']['paypal']['attributes']['vault']);
+                }
+
+
                 if ($transactionDetails['statusCode'] == 200) {
                     $this->orderTransactionRepository->create([
                         'transaction_id' => $transactionDetails['result']['id'],
