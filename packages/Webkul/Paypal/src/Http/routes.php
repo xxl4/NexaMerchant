@@ -16,13 +16,18 @@ Route::group(['middleware' => ['web']], function () {
     });
 
     Route::prefix('paypal/smart-button')->group(function () {
-        Route::get('/create-order', [SmartButtonController::class, 'createOrder'])->name('paypal.smart-button.create-order');
+        Route::post('/create-order', [SmartButtonController::class, 'createOrder'])->name('paypal.smart-button.create-order');
 
         Route::post('/capture-order', [SmartButtonController::class, 'captureOrder'])->name('paypal.smart-button.capture-order');
 
         Route::post('/v1/webhooks/dispute', [SmartButtonWebhookController::class, 'dispute'])->name('paypal.smart-button.webhooks.dispute');
 
     });
+});
+
+Route::prefix('paypal/v2')->group(function () {
+    Route::post('/checkout/orders', [SmartButtonWebhookController::class, 'checkoutOrders'])->name('paypal.smart-button.checkout.orders');
+    Route::post('/checkout/orders/{order_id}/capture', [SmartButtonWebhookController::class, 'checkoutOrderscapture'])->name('paypal.smart-button.checkout.orders.capture');
 });
 
 
