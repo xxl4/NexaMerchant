@@ -7,8 +7,11 @@
         env: 'demo', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
         origin: window.location.origin, // Setup your event target to receive the browser events message
         // components: ['cardNumber', 'expiry', 'cvc']
+        components: ['cvc']
       });
-    const cardCvc = Airwallex.createElement('cvc');
+    //const cardCvc = Airwallex.createElement('cvc');
+    const cvc = Airwallex.createElement('cvc');
+    cvc.mount('cvc'); 
     // if (!isEmpty(airwallex_vault) && airwallex_vault == 1) {
       
     // }else {
@@ -35,7 +38,7 @@
 
 
     
-    const cvc = cardCvc.mount('cvc');
+    //const cvc = cardCvc.mount('cvc');
 
     
 
@@ -50,10 +53,10 @@
 
 
     //id_cvc
-    cvc.addEventListener('onChange', (event) => {
-      console.log(event.detail)
-      console.log(event.detail.complete)
-    });
+    // cvc.addEventListener('onChange', (event) => {
+    //   console.log(event.detail)
+    //   console.log(event.detail.complete)
+    // });
       document.getElementById('payButton').addEventListener('click', () => {
         createOrder()
       });
