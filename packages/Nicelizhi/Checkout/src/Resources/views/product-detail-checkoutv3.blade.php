@@ -1109,6 +1109,12 @@
     }
     var app_query_params = []
   </script>
+    <script type="application/json" fncls="fnparams-dede7cc5-15fd-4c75-a9f4-36c430ee3a99">
+    {
+      "f": "<?php echo md5(uniqid());?>",
+      "s": "HEOMAI_EFPTK2PBPE2PY_RT",
+    }
+  </script>
   <script type="text/javascript">
     AJAX_PATH = 'ajax.php/'
     app_config = {
@@ -1350,7 +1356,7 @@
   </script>
 
   <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-P6343Y2GKT"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=<?php echo $gtag;?>"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
 
@@ -1359,7 +1365,7 @@
     }
     gtag('js', new Date());
 
-    gtag('config', 'G-P6343Y2GKT', {
+    gtag('config', '<?php echo $gtag;?>', {
       "debug_mode": true
     });
   </script>
