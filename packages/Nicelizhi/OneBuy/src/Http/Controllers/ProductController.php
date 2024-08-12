@@ -1115,8 +1115,8 @@ class ProductController extends Controller
                                 ]
                             ],
                             "experience_context" => [
-                                "return_url" => route("checkout.v4.product.page", ["slug" => "8987102380314"]),
-                                'cancel_url' => route("checkout.v4.product.page",["slug"=>"8987102380314"]),
+                                "return_url" => $input['payment_return_url'],
+                                'cancel_url' => $input['payment_cancel_url'],
                             ]
                         ]
                     ];
@@ -1125,8 +1125,8 @@ class ProductController extends Controller
                         "paypal" => [
                             "vault_id" => $paypal_vault['id'],
                             "experience_context" => [
-                                "return_url" => route("checkout.v4.product.page", ["slug" => "8987102380314"]),
-                                'cancel_url' => route("checkout.v4.product.page",["slug"=>"8987102380314"]),
+                                "return_url" => $input['payment_return_url'],
+                                'cancel_url' => $input['payment_cancel_url'],
                             ]
                         ]
                     ];
