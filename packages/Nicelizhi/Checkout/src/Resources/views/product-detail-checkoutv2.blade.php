@@ -2450,7 +2450,7 @@
   </script>
 
   <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-P6343Y2GKT"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=<?php echo $gtag;?>"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
 
@@ -2459,7 +2459,7 @@
     }
     gtag('js', new Date());
 
-    gtag('config', 'G-P6343Y2GKT', {
+    gtag('config', '<?php echo $gtag;?>', {
       "debug_mode": true
     });
   </script>
