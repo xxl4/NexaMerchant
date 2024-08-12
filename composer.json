@@ -39,7 +39,7 @@
         "laravel/tinker": "^2.0",
         "laravel/ui": "^4.0",
         "maatwebsite/excel": "^3.1.46",
-        "nexa-merchant/apis": "1.0.6",
+        "nexa-merchant/apis": "1.0.8",
         "paypal/paypal-checkout-sdk": "1.0.2",
         "predis/predis": "^2.2",
         "prettus/l5-repository": "^2.6",
