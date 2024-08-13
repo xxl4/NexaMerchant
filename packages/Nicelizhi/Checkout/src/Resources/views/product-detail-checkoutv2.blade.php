@@ -4423,6 +4423,8 @@
               var data = res;
               if (data.statusCode === 201) {
                 var order_info = data.result;
+                localStorage.setItem('order_id', order_info.id)
+                return order_info.id
                 //console.log(order_info);
                 //console.log(order_info.purchase_units[0].amount);
                 document.cookie = "voluum_payout=" + order_info.purchase_units[0].amount.value + order_info.purchase_units[0].amount.currency_code + "; path=/";
@@ -4803,6 +4805,8 @@
                   //console.log(data)
                   if (data.statusCode === 201) {
                     var order_info = data.result
+                    localStorage.setItem('order_id', order_info.id)
+                    return order_info.id
                     //console.log(order_info);
                     //console.log(order_info.purchase_units[0].amount);
                     document.cookie =
