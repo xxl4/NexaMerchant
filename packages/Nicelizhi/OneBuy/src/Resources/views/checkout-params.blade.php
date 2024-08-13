@@ -10,10 +10,10 @@
       });
     //const cardCvc = Airwallex.createElement('cvc');
     
-    if (!isEmpty(airwallex_vault) && airwallex_vault == 1) {
+    <?php if($airwallex_vault==1) { ?>
       const cvc = Airwallex.createElement('cvc');
       cvc.mount('cvc'); 
-    } else {
+    <?php }else {?>
       $('#expiry').show();
       $('#cardNumber').show();
       const cardNumber = Airwallex.createElement('cardNumber', {
@@ -24,7 +24,7 @@
       cvc.mount('cvc'); 
       cardNumber.mount('cardNumber');
       cardExpiry.mount('expiry');
-    }
+    <?php } ?>
 
       document.getElementById('payButton').addEventListener('click', () => {
         createOrder()
@@ -72,7 +72,8 @@
                 // }
                 // let aData = await aResponse.json();
                 // console.log(aData, 'aData==')
-                if (!isEmpty(airwallex_vault) && airwallex_vault == 1) {
+                <?php if($airwallex_vault==1) { ?>
+
                     console.log(airwallex_vault, 'customerId==')
                     console.log("payment_consents", payment_consent_id)
                     console.log("customer_id", customer_id)
@@ -92,7 +93,9 @@
                         // window.location.href = "/onebuy/checkout/v4/success/" + data.order.id;
                         return false;
                     });
-                } else {
+
+                <?php }else { ?>
+
                     console.log(2222)
                     Airwallex.confirmPaymentIntent({
                     element: cardNumber,
@@ -132,8 +135,12 @@
 
                 return false;
 
-                });    
-            }
+                });   
+
+
+                
+                
+                <?php } ?>
                 
                 
             } else {
