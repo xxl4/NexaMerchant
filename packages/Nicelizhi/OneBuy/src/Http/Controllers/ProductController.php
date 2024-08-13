@@ -352,7 +352,7 @@ class ProductController extends Controller
 
     }
 
-    // 完成订单生成动作
+    // airwallex
     public function order_add_sync(Request $request) {
         //var_dump($request->all());
 
@@ -373,6 +373,9 @@ class ProductController extends Controller
             return response()->json(['error' => 'You Have already placed order, if you want to place another order please confirm your order','code'=>'202'], 400);
         }
 
+
+        $payment_airwallex_vault = isset($input['payment_airwallex_vault']) ? $input['payment_airwallex_vault'] : 0;
+        $request->session()->put('payment_airwallex_vault', $payment_airwallex_vault);
         
         $products = $request->input("products");
         if(empty($products)) {
@@ -682,6 +685,9 @@ class ProductController extends Controller
 
         $refer = $request->session()->get('refer');
 
+        $payment_paypal_vault = isset($input['payment_paypal_vault']) ? $input['payment_paypal_vault'] : 0;
+        $request->session()->put('payment_paypal_vault', $payment_paypal_vault);
+
         $products = $request->input("products");
         Log::info("products". json_encode($products));
         if(empty($products)) {
@@ -741,6 +747,8 @@ class ProductController extends Controller
         $addressData['shipping']['address1'] = implode(PHP_EOL, $addressData['shipping']['address1']);
 
         Log::info("paypal pay ".$refer.'--'.json_encode($addressData));
+
+
 
 
         if (
@@ -1376,6 +1384,10 @@ class ProductController extends Controller
             $request->session()->put('paypal_access_token', $paypal_access_token);
         }
 
+        $payment_airwallex_vault = $request->session()->get('payment_airwallex_vault');
+
+        $payment_paypal_vault = $request->session()->get('payment_paypal_vault');
+
         return view('onebuy::checkout-success-v4', compact('order',
             "fb_ids",
             "ob_adv_id",
@@ -1387,6 +1399,8 @@ class ProductController extends Controller
             "default_country",
             "order_pre",
             "paypal_id_token",
+            "payment_airwallex_vault",
+            "payment_paypal_vault",
             "recommend_products"
         ));
     }
