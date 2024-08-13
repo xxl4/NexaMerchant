@@ -950,7 +950,7 @@ class ProductController extends Controller
 
             $request->session()->put('last_order_id', request()->input('orderData.orderID'));
 
-            return $this->saveOrder();
+            return $this->saveOrder($order);
         } catch (\Exception $e) {
             Log::info("paypal pay exception". json_encode($e->getMessage()));
             return response()->json($e->getMessage());
@@ -964,7 +964,7 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    protected function saveOrder()
+    protected function saveOrder($order=null)
     {
         if (Cart::hasError()) {
             return response()->json(['redirect_url' => route('shop.checkout.cart.index')], 403);
@@ -987,6 +987,12 @@ class ProductController extends Controller
 
             session()->flash('order', $order);
 
+            if(!is_null($order)) {
+                return response()->json([
+                    'success' => true,
+                    'order'   => $order,
+                ]);
+            }
             return response()->json([
                 'success' => true,
             ]);
