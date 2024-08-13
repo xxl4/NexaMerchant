@@ -888,6 +888,17 @@ class ProductController extends Controller
                 $addressData['billing']['postcode'] = $params['code'];
 
                 $addressData['shipping']['address1'] = $address1;
+
+                if (
+                    Cart::hasError()
+                    || ! Cart::saveCustomerAddress($addressData)
+                ) {
+                    return new JsonResource([
+                        'redirect' => true,
+                        'data'     => route('shop.checkout.cart.index'),
+                    ]);
+                }
+
             }else{
 
                 $order = (array)$order;
@@ -926,32 +937,30 @@ class ProductController extends Controller
                 array_push($address1, "");
                 $addressData['shipping']['address1'] = $address1;
 
+                $addressData['billing']['address1'] = implode(PHP_EOL, $addressData['billing']['address1']);
+
+                $addressData['shipping']['address1'] = implode(PHP_EOL, $addressData['shipping']['address1']);
+
+                if (
+                    Cart::hasError()
+                    || ! Cart::saveCustomerAddress($addressData)
+                ) {
+                    return new JsonResource([
+                        'redirect' => true,
+                        'data'     => route('shop.checkout.cart.index'),
+                    ]);
+                }
+    
+                $this->smartButton->captureOrder(request()->input('orderData.orderID'));
+    
+                //$this->smartButton->AuthorizeOrder(request()->input('orderData.orderID'));
+    
+                $request->session()->put('last_order_id', request()->input('orderData.orderID'));
+
             }
 
-            $addressData['billing']['address1'] = implode(PHP_EOL, $addressData['billing']['address1']);
-
-            $addressData['shipping']['address1'] = implode(PHP_EOL, $addressData['shipping']['address1']);
-
-            
-            
 
             //Log::info("address data-".$refer.'--'.json_encode($addressData));
-
-            if (
-                Cart::hasError()
-                || ! Cart::saveCustomerAddress($addressData)
-            ) {
-                return new JsonResource([
-                    'redirect' => true,
-                    'data'     => route('shop.checkout.cart.index'),
-                ]);
-            }
-
-            $this->smartButton->captureOrder(request()->input('orderData.orderID'));
-
-            //$this->smartButton->AuthorizeOrder(request()->input('orderData.orderID'));
-
-            $request->session()->put('last_order_id', request()->input('orderData.orderID'));
 
             return $this->saveOrder();
         } catch (\Exception $e) {

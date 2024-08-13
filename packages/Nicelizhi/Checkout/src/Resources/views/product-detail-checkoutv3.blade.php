@@ -1478,7 +1478,6 @@
       sku: phpsku,
       sellPoints: JSON.parse(phpsellPoints)
     }
-    console.log(data, 'phpdata');
   </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/5.0.4/js/swiper.js"></script>
   <script src="/checkout/v3/js/main.js?v=13"></script>
@@ -1533,8 +1532,6 @@
           let sortedObj = sortObjectByValue(item.attr_sort);
           let keysIterator = sortedObj.keys();
           let keysList = Array.from(keysIterator);
-          console.log(sortedObj, 'sortedObj====');
-          console.log(keysList, 'keysList===');
           keysList.forEach(function(keyItem) {
             item.options.forEach(function(opItem, index) {
               if (opItem.id == keyItem) {
@@ -1585,7 +1582,6 @@
       var productsObj = {}
       var midList = []
       attLength = data.attr.attributes.length
-      console.log(attLength, 'attLength')
       params.product_delivery = data.package_products[0].shipping_fee
       params.total = Number(data.package_products[0].new_price) + Number(data.package_products[0].shipping_fee)
       params.amount = '2'
@@ -1594,11 +1590,8 @@
       productsObj.amount = '1'
       productsObj.description = data.package_products[0].name
       productsObj.product_id = '<?php echo $data['product']['id']; ?>'
-      console.log(productsObj.product_id, 'productsObj.product_id');
       productsObj.img = '<?php echo @$data['product']['base_image']['large_image_url']; ?>'
-      console.log(productsObj.img, 'productsObj.img ');
       productsObj.price = data.package_products[0].tip2
-      console.log(data, 'data=====')
       productL1 = JSON.parse(JSON.stringify(productsObj))
       productL2 = JSON.parse(JSON.stringify(productsObj))
       productL3 = JSON.parse(JSON.stringify(productsObj))
@@ -1637,7 +1630,6 @@
               v2List.push(mid + '_' + data.attr.attributes[m].options[inm].id)
             }
           }
-          console.log(v1List, v2List, 'v1List')
         }
         if (params.amount == '3') {}
         if (params.amount == '4') {}
@@ -1661,22 +1653,18 @@
         })
       }
       $('.prod-name').text('<?php echo addslashes($data['product']['name']); ?>')
-      console.log('<?php echo addslashes($data['product']['name']); ?>', '123');
       $('title').html('<?php echo addslashes($data['product']['name']); ?>')
       $('#buy-select1, #buy-select3, #buy-select4').hide()
       $('#footer-top-text').append(data.brand)
       var isPc = IsPC()
-      console.log(isPc, 'ispc');
       if (countries1 == 'us') {
         $('.choose-billing-box').show()
         if (isPc) {
           let isMac = /macintosh|mac os x/i.test(navigator.userAgent);
-          console.log(isMac, 'isMac');
           googlerOrApple = isMac ? 'apple' : 'google'
 
         } else {
           let type = getMobileOperatingSystem()
-          console.log(type, 'type');
           googlerOrApple = type == 'iOS' ? 'apple' : 'google'
         }
         if (googlerOrApple == 'google' && payTypeShow.airwallex_google == 1) {
@@ -1706,14 +1694,12 @@
         $('#airwallex-dropin-box').hide()
       }
       if (payTypeShow.airwallex_google == '0' || googlerOrApple !== 'google') {
-        console.log('googleshow');
         $('#google-pay-box').hide()
       }
       if (payTypeShow.airwallex_appley == '0' || googlerOrApple !== 'apple') {
         $('#apple-pay-box').hide()
       }
       if (paymentsDefault == 'airwallex_klarna') {
-        console.log(paymentsDefault, 'kelala');
         $('#airwallex-klarna').prop('checked', true);
         $('#payal_standard').prop('checked', false);
         $('#payment_method_airwallex').prop('checked', false);
@@ -1742,7 +1728,6 @@
         $('#payal_standard').prop('checked', false);
         $('#payment_method_airwallex').prop('checked', true);
         $("#complete-btn-id").show();
-        console.log("click headingOne ");
         $("#collapseOne").show();
         $("#collapseTwo").hide();
         $("#collapseThree").hide();
@@ -1787,7 +1772,6 @@
         currency
       script.async = true
       document.body.appendChild(script)
-      console.log(new Date().getTime(), '结束');
 
     })
 
@@ -1804,7 +1788,6 @@
     function getbillingAddress() {
       var billingText = ''
       if ($('input[name=hobby]').is(":checked")) {
-        console.log('is(":checked")')
         params.bill_first_name = $('input[name="billingFirstName"]').val()
         params.bill_second_name = $('input[name="billingLastName"]').val()
         params.bill_country = $('select[name="billingCountry"]').val()
@@ -1839,7 +1822,6 @@
     }
 
     function getDescriptionItem(data) {
-      console.log(data, 'getDescriptionItem');
       let descriptionContent = ''
       if (!data.sellPoints) {
         $('.three-description-box').hide()
@@ -1872,7 +1854,6 @@
     function billingAddress() {
       if ($('input[name=hobby]').is(":checked")) {
         $('.billing-content').show()
-        console.log(countryOptions, countriesList[0], 'countriesList[0]countriesList[0]countriesList[0]');
         if (countryOptions !== '' && countriesList[0]?.countryCode !== '') {
 
           $('select[name="billingCountry"]').append(countryOptions)
@@ -1883,7 +1864,6 @@
             .get(countryUrl)
             .then(function(res) {
               if (res.data[0].CountryCode) {
-                console.log(res, 'rrrrrrrssssssss')
                 var stateList = res.data
                 var optionList = `<option value="" selected disabled>@lang('checkout::app.v2.Select State')</option>`
                 for (var resj = 0; resj < stateList.length; resj++) {
@@ -1903,7 +1883,6 @@
     $('select[name="billingCountry"]').change(function() {
       if ($(this).val()) {
         var countryClick = $(this).val().toLowerCase()
-        console.log(countryClick, params.country, 'countryClick')
         var countryUrl = '/template-common/checkout1/state/' + countryClick + '_' + area + '.json'
         axios
           .get(countryUrl)
@@ -1934,9 +1913,7 @@
     }
 
     function addressChange(event) {
-      console.log(event.target.value, 'event.target.value');
       const hasNumber = /\d/.test(event.target.value);
-      console.log(hasNumber, 'hasNumber');
       if (hasNumber) {
         $('.email-warn').hide()
       } else {
@@ -1946,7 +1923,6 @@
     }
 
     function inputBlur(event) {
-      console.log(event.target, 'event.target')
       if ($(event.target).val() !== '') {
         $(event.target).next().addClass('input-focus')
       } else {
@@ -2002,13 +1978,11 @@
     }
 
     function crmTrack(type) {
-      console.log(type, 'crmTrack')
       var postParams = {
         channel_id: "<?php echo $crm_channel; ?>",
         token: "<?php echo $refer; ?>",
         type: type
       };
-      console.log(JSON.stringify(postParams), 'JSON.stringify(postParams)==')
       fetch('https://crm.heomai.com/api/user/action', {
         body: JSON.stringify(postParams),
         method: 'POST',
@@ -2106,7 +2080,6 @@
     function showImage(index) {
       const img = $('#imageArea').children().eq(index)
       const imgAttr = img.attr('src')
-      console.log(imgAttr, 'imgAttr');
       if (imgAttr !== '') {
         $('.image-area').removeClass('image-toggle')
         $('.icon-container').addClass('icon-toggle icon-fixed')
@@ -2168,15 +2141,12 @@
       var skuData = params.products
       var skuList = ''
       if (id !== '' && isMobile) {
-        console.log(id, 'id========');
         // skuData[0].img = '/checkout/v2/images/logo_de.webp'
         const lastChar = id.charAt(id.length - 1) - 1
-        console.log(lastChar, 'lastChar');
         let previewDom = ''
         skuData.forEach((item) => {
           previewDom += `<img src= "` + item.img + `" alt= ''/>`
         })
-        console.log(previewDom, 'previewDom======');
         const imageArea = $('#imageArea');
         imageArea.html(previewDom)
         showImage(lastChar)
@@ -2184,10 +2154,8 @@
       for (let i = 0; i < skuData.length; i++) {
         var description = skuData[i].description.slice(2)
         var attributeName = skuData[i].attribute_name.split(',').join(' / ')
-        console.log(skuData[i].img, 'skuData[i].img');
         var skuImgUrl = skuData[i].img
         if (skuData[i].img == '') {
-          console.log(data.package_products[0].image, 'image2');
           skuImgUrl = data.package_products[0].image
         }
         skuList += `<div class="sku-item-info">
@@ -2214,7 +2182,6 @@
 
     function sizeCharImgPreview() {
       var imgUrl = data.ads.size.img
-      console.log(imgUrl, 'sizeCharImgPreview')
       $('.size-chart-img-box').show()
       $('.size-chart-img img').attr('src', imgUrl)
     }
@@ -2240,7 +2207,6 @@
         }
       }
       params.products = list
-      console.log(params.products, 'params.products')
     }
 
     function initProuctData(num1, num2) {
@@ -2304,7 +2270,6 @@
               v2List.push(mid + '_' + data.attr.attributes[m].options[inm].id)
             }
           }
-          console.log(v1List, v2List, 'v1List')
         }
         if (params.amount == '3') {
           name1 = $('#select3-item1').children('select').eq(m).val()
@@ -2325,7 +2290,6 @@
               v3List.push(mid + '_' + data.attr.attributes[m].options[inm].id)
             }
           }
-          console.log(v1List, v2List, 'v1List')
         }
         if (params.amount == '4') {
           name1 = $('#select4-item1').children('select').eq(m).val()
@@ -2351,7 +2315,6 @@
               v4List.push(mid + '_' + data.attr.attributes[m].options[inm].id)
             }
           }
-          console.log(v1List, v2List, 'v1List')
         }
       }
       if (num2 == '1') {
@@ -2437,7 +2400,6 @@
         .get(countriesUrl)
         .then(function(res) {
           if (res.data[0].countryCode) {
-            console.log(res, '===recountries1res===')
             app_config.allowed_country_codes = []
             countriesList = res.data
             countryOptions = `<option value="" disabled>@lang('checkout::app.v2.select country')</option>`
@@ -2450,7 +2412,6 @@
             $('select[name="shippingCountry"]').val(countriesList[0].countryCode)
           }
           var cval = $('select[name="shippingCountry"]').val()
-          console.log(cval, 'cval===')
           if (cval) {
             cval = cval.toLowerCase()
             var countryUrl = '/template-common/checkout1/state/' + cval + '_' + area + '.json'
@@ -2458,7 +2419,6 @@
               .get(countryUrl)
               .then(function(res) {
                 if (res.data[0].CountryCode) {
-                  console.log(res, 'rrrrrrrssssssss')
                   var stateList = res.data
                   var optionList = `<option value="" selected disabled>@lang('checkout::app.v2.Select State')</option>`
                   for (var resj = 0; resj < stateList.length; resj++) {
@@ -2478,21 +2438,17 @@
     })
 
     $('select[name="shippingState"]').change(function() {
-      console.log($(this).val(), 'shippingState')
       params.province = $(this).val()
     })
     $('select[name="shippingCountry"]').change(function() {
-      console.log($(this).val())
       params.country = $(this).val()
       if ($(this).val()) {
         var countryClick = $(this).val().toLowerCase()
-        console.log(countryClick, params.country, 'countryClick')
         var countryUrl = '/template-common/checkout1/state/' + countryClick + '_' + area + '.json'
         axios
           .get(countryUrl)
           .then(function(res) {
             if (res.data[0].CountryCode) {
-              console.log(res, 'rererererere')
               var stateList = res.data
               var optionList = `<option value="" selected disabled>@lang('checkout::app.v2.Select State')</option>`
               for (var resj = 0; resj < stateList.length; resj++) {
@@ -2568,13 +2524,11 @@
         keys = [],
         updateNext = [],
         change = false
-      console.log(attribute, value);
       attribute.options.forEach(function(item) {
         if (item.label == value) {
           skuList = item.sku
         }
       })
-      console.log(skuList, 'skuList', skuList[nextId]);
       if (skuList !== '' && Object.keys(skuList[nextId]).length !== 0) {
         keys = Object.keys(skuList[nextId])
         keys.forEach(function(item) {
@@ -2588,7 +2542,6 @@
       const noInArray = nextList.options.filter(function(element) {
         return !updateNext.includes(element)
       })
-      console.log(noInArray, 'noInArray');
       noInArray.sort(function(a, b) {
         return a.num - b.num
       })
@@ -2605,7 +2558,6 @@
           nextOption += `<option onchange="seInput(value)" disabled value="` + noInArray[i].label + `">` + noInArray[i].label + `</option>`
         }
       }
-      console.log(keys, updateNext, nextOption, 'keys');
       return {
         nextOption,
         change
@@ -2635,7 +2587,6 @@
       if (swiperImgList.length > 0) {
         swiperImgList.forEach(function(item, index) {
           if (item.variant_ids.includes(Number(variantId))) {
-            console.log(item, 'swiperto========', index);
             index = index + 1
             galleryThumbs.slideTo(index)
             mySwiper.slideTo(index)
@@ -2643,7 +2594,6 @@
         })
       }
 
-      console.log(swiperToId, 'swiperToId', '===variantId===', variantId);
     }
 
     function seInput(value) {
@@ -2653,7 +2603,6 @@
       $(event.target).removeClass('border-red')
       var parId = $(event.target).parent().attr('id')
       var itemId = $(event.target).attr('id')
-      console.log(parId, itemId, 'itemId');
       var aid = ''
       if (parId == 'select1-item1' || parId == 'select2-item1' || parId == 'select3-item1' || parId == 'select4-item1') {
         getSku(itemId, 0, value)
@@ -2672,12 +2621,10 @@
       }
       if (itemId == 'in-se0' && data.attr.attributes.length == 2) {
         let returnParams = getNextOptions(value)
-        console.log(returnParams, 'returnParams=======');
         if (returnParams.change) {
           $(event.target).siblings('#in-se1').html(returnParams.nextOption)
           $(event.target).siblings('#in-se1').addClass('border-red')
           let lastChar = parId.substring(parId.length - 1);
-          console.log(lastChar);
           getSku('in-se1', Number(lastChar) - 1, '')
         } else {
           $(event.target).siblings('#in-se1').removeClass('border-red')
@@ -2692,11 +2639,9 @@
       })
       var isCrmTrack = listEach(list)
       if (isCrmTrack) {
-        console.log(isCrmTrack);
         crmTrack('add_cart')
         createdButton()
       }
-      console.log(params.products, '===params====')
     }
     $('#product1').click(function(e) {
       $('.pay-button').addClass('button-opacity')
@@ -2719,9 +2664,7 @@
       $('#summary-total1').text(data.package_products[1].old_price_format)
       var shippingFee = currencySymbol + data.package_products[1].shipping_fee
       $('#summary-total3').text(shippingFee)
-      console.log(data, 'data');
       var discount = Number(data.package_products[1].old_price) - Number(data.package_products[1].new_price)
-      console.log(discount, 'discount');
       discount = "-" + currencySymbol + discount.toFixed(2)
       $('#summary-total2').text(discount)
       var total = Number(data.package_products[1].new_price) + Number(data.package_products[1].shipping_fee)
@@ -2731,7 +2674,6 @@
       $('#product-number').text('number: 1')
       $('#product-price').text(data.package_products[1].tip2)
       initProuctData(1, '1')
-      console.log(data.attr.attributes, 'data.attr');
       if (data.attr.attributes.length == 0) {
         $('#p1-select').show()
         $('#p2-select').hide()
@@ -2872,10 +2814,7 @@
       var billingErr = getbillingAddress()
       var errIsShow = skuIsScelect()
       var emailErr = validateEmail($('input[name="email"]').val())
-      console.log(emailErr, 'emailErr');
       var errorShow = params.first_name && params.second_name && params.email && params.phone_full && params.address && params.city && params.code && params.country && params.province && errIsShow && airwallexArr.complete && emailErr
-      console.log(airwallexArr, 'airwallexArr');
-      console.log(errorShow, 'errorShow')
       if (!errorShow || billingErr !== '') {
         errDialogShow(errIsShow, emailErr, billingErr, airwallexArr.complete)
         $('#loading').hide()
@@ -2885,14 +2824,11 @@
       var klarnaSelected = $("#airwallex-klarna").is(":checked");
       var airwallexSelected = $("#payment_method_airwallex").is(":checked");
       if (klarnaSelected) {
-        console.log('klarna')
         params.payment_method = 'airwallex_klarna'
       }
       if (airwallexSelected) {
-        console.log('airwallex')
         params.payment_method = 'airwallex'
       }
-      console.log(params, 'airwallexparams')
       createOrder('', '', 'airwallex')
     })
 
@@ -2929,10 +2865,8 @@
       var paramsNotEmpty = paramsIsEmpty()
       var googleSelected = $("#airwallex_google").is(":checked");
       var appleSelected = $("#airwallex_apple").is(":checked");
-      console.log(googleSelected, appleSelected, paramsNotEmpty, 'paramsNotEmpty=====');
       if (countries1 == 'us') {
         if (googlerOrApple == 'google' && googleShow && googleSelected && paramsNotEmpty) {
-          console.log('googleShow');
           params.first_name = $('input[name="firstName"]').val()
           params.second_name = $('input[name="lastName"]').val()
           params.email = $('input[name="email"]').val()
@@ -2945,7 +2879,6 @@
           createGoogleButton(params)
         }
         if (googlerOrApple == 'apple' && appleShow && appleSelected && paramsNotEmpty) {
-          console.log('appleShow');
           params.first_name = $('input[name="firstName"]').val()
           params.second_name = $('input[name="lastName"]').val()
           params.email = $('input[name="email"]').val()
@@ -2964,7 +2897,6 @@
       var paramsNotEmpty = paramsIsEmpty()
       if (!paramsNotEmpty) {
         var errIsShow = skuIsScelect()
-        console.log(params, '==========2', data);
         var emailErr = validateEmail($('input[name="email"]').val())
         errDialogShow(errIsShow, emailErr)
       }
@@ -2972,7 +2904,6 @@
 
     function paramsIsEmpty() {
       var errIsShow = skuIsScelect()
-      console.log(params, '==========2', data);
       var emailErr = validateEmail($('input[name="email"]').val())
       var errorShow = $('input[name="firstName"]').val() && $('input[name="lastName"]').val() && $('input[name="email"]').val() &&
         $('input[name="phone"]').val() &&
@@ -2982,7 +2913,6 @@
 
     function createApplePayButton(params) {
       $('#loading').show();
-      console.log(params, 'applepay');
       var payUrl = '/onebuy/order/add/sync?currency={{ core()->getCurrentCurrencyCode() }}&_token={{ csrf_token() }}&time=' + new Date().getTime();
       params.payment_method = 'airwallex_apple'
       fetch(payUrl, {
@@ -2996,7 +2926,6 @@
           return res.json()
         })
         .then(function(res) {
-          console.log(res, 'applePayres==');
           var orderId = res.order.id
           if (res.result === 200) {
             const applePayElement = Airwallex.createElement('applePayButton', {
@@ -3051,7 +2980,6 @@
 
     function createGoogleButton(params) {
       $('#loading').show();
-      console.log(params, 'googlepay');
       var payUrl = '/onebuy/order/add/sync?currency={{ core()->getCurrentCurrencyCode() }}&_token={{ csrf_token() }}&time=' + new Date().getTime();
       // airwallex_apple
       // airwallex_google
@@ -3067,7 +2995,6 @@
           return res.json()
         })
         .then(function(res) {
-          console.log(res, 'googleres==');
           var orderId = res.order.id
           if (res.result === 200) {
 
@@ -3093,17 +3020,13 @@
                 ... Handle event
               */
               // window.alert(event.detail);
-              console.log(event.detail, event, 'googlePay ===  ready');
             });
-            console.log("onSuccess");
             domGooglePay.addEventListener('onSuccess', (event) => {
               crmTrack('add_pay')
               /*
                 ... Handle event on success
               */
               // window.alert(event.detail);
-              // console.log(event.detail);
-              console.log(event.detail, event, 'googlePay ===  success');
               window.location.href = "/onebuy/checkout/v2/success/" + orderId;
             });
             domGooglePay.addEventListener('onError', (event) => {
@@ -3139,7 +3062,6 @@
       params.province = $('select[name="shippingState"]').val()
       params.code = $('input[name="shippingZip"]').val()
       params.payment_method = methods
-      console.log(params, '++++++params++++');
     }
     $(function() {
 
@@ -3181,7 +3103,6 @@
         $('#airwallex_apple').prop('checked', false);
         $('#airwallex_google').prop('checked', false)
         $("#complete-btn-id").show();
-        console.log("click headingOne ");
         $("#collapseOne").show();
         $("#collapseTwo").hide();
         $("#collapseThree").hide();
@@ -3267,11 +3188,9 @@
           background: "none",
           padding: '0'
         });
-        console.log(params, '==========1');
         //payment-button
         $("#complete-btn-id").empty();;
         // var paramsinfo = params
-        // console.log(paramsinfo, 'paramsinfo');
         paypal.Buttons({
           style: {
             layout: 'horizontal',
@@ -3292,7 +3211,6 @@
             $(".email").on('change', function() {
               var value = $(".email").val();
               if (value.length > 0) email_can = 1;
-              console.log(value);
               if (!params.error) {
                 actions.enable();
               }
@@ -3301,7 +3219,6 @@
             $(".first_name").on('change', function() {
               var value = $(".first_name").val();
               if (value.length > 0) first_name_can = 1;
-              console.log(value);
               if (!params.error) {
                 actions.enable();
               }
@@ -3310,7 +3227,6 @@
             $(".last_name").on('change', function() {
               var value = $(".last_name").val();
               if (value.length > 0) last_name_can = 1;
-              console.log(value);
               if (!params.error) {
                 actions.enable();
               }
@@ -3318,7 +3234,6 @@
             $(".phone_number").on('change', function() {
               var value = $(".phone_number").val();
               if (value.length > 0) phone_number_can = 1;
-              console.log(value);
               if (!params.error) {
                 actions.enable();
               }
@@ -3326,7 +3241,6 @@
             $(".address").on('change', function() {
               var value = $(".address").val();
               if (value.length > 0) address_can = 1;
-              console.log(value);
               if (!params.error) {
                 actions.enable();
               }
@@ -3334,7 +3248,6 @@
             $(".city").on('change', function() {
               var value = $(".city").val();
               if (value.length > 0) city_can = 1;
-              console.log(value);
               if (!params.error) {
                 actions.enable();
               }
@@ -3342,7 +3255,6 @@
             $(".zip_code").on('change', function() {
               var value = $(".zip_code").val();
               if (value.length > 0) zip_code_can = 1;
-              console.log(value);
               if (!params.error) {
                 actions.enable();
               }
@@ -3374,8 +3286,6 @@
           },
           onClick() {
             // var params = getOrderParams('paypal_stand');
-            // console.log("on click " + JSON.parse(params));
-            console.log(params, 'paypalparams');
             if (params.error) {
               $('#checkout-error').html(params.error.join('<br />'));
               $('#checkout-error').show();
@@ -3387,13 +3297,10 @@
           createOrder: function(data, actions) {
             getParams('paypal_stand')
             var errIsShow = skuIsScelect()
-            console.log(params, '==========2', data);
             var emailErr = validateEmail($('input[name="email"]').val())
-            console.log(emailErr, 'emailErr');
             var errorShow = $('input[name="firstName"]').val() && $('input[name="lastName"]').val() && $('input[name="email"]').val() &&
               $('input[name="phone"]').val() &&
               $('input[name="shippingAddress1"]').val() && $('input[name="shippingCity"]').val() && $('input[name="shippingZip"]').val() && $('select[name="shippingCountry"]').val() && $('select[name="shippingState"]').val() && errIsShow && emailErr
-            console.log(errorShow, 'errorShowpaypal====')
             if (!errorShow) {
               errDialogShow(errIsShow, emailErr)
               $('#loading').hide()
@@ -3416,8 +3323,6 @@
               var data = res;
               if (data.statusCode === 201) {
                 var order_info = data.result;
-                //console.log(order_info);
-                //console.log(order_info.purchase_units[0].amount);
                 document.cookie = "voluum_payout=" + order_info.purchase_units[0].amount.value + order_info.purchase_units[0].amount.currency_code + "; path=/";
                 document.cookie = "order_id=" + order_info.id + "; path=/";
                 localStorage.setItem("order_id", order_info.id);
@@ -3475,7 +3380,6 @@
               data: data,
               params: paypalParams
             }
-            console.log(request_params, '===request_params===');
             var url = "/onebuy/order/status?_token={{ csrf_token() }}&currency={{ core()->getCurrentCurrencyCode() }}";
             return fetch(url, {
               method: 'post',
@@ -3562,7 +3466,6 @@
       $('body').css('height', height)
       if (width > 767) {
         var height = $('.checkout-section').height()
-        console.log(height, 'height===');
         $('.left-sec').css('height', height)
       }
     }
@@ -3571,7 +3474,6 @@
       var height = $('.checkout-section').height()
       $('body').css('height', height)
       if (width > 767) {
-        console.log(height, 'height===');
         $('.left-sec').css('height', height)
       }
     }
@@ -3688,7 +3590,6 @@
       ... Handle event
       */
       //window.alert(event.detail);
-      // console.log(event.detail);
     });
 
     // STEP #8: Add an event listener to listen to the changes in each of the input fields
@@ -3698,7 +3599,6 @@
       */
       //window.alert(event.detail);
       console.log(event.detail)
-      //console.log(JSON.stringify(event));
       console.log(event.detail.complete)
       if (event.detail.complete == true) {
         airwallexArr.complete = true
@@ -3720,7 +3620,6 @@
       */
       //window.alert(event.detail);
       console.log(event.detail)
-      //console.log(JSON.stringify(event));
       console.log(event.detail.complete)
       $("#id_expiry").val(event.detail.complete);
 
@@ -3791,7 +3690,6 @@
                 return;
               }
               crmTrack('add_pay')
-              console.log(data, '==========');
               var url =
                 '/onebuy/order/addr/after?currency={{ core()->getCurrentCurrencyCode() }}&_token={{ csrf_token() }}&time=' +
                 new Date().getTime() +
@@ -3812,11 +3710,8 @@
                 .then(function(res) {
                   //$('#loading').hide();
                   var data = res
-                  //console.log(data)
                   if (data.statusCode === 201) {
                     var order_info = data.result
-                    //console.log(order_info);
-                    //console.log(order_info.purchase_units[0].amount);
                     document.cookie =
                       'voluum_payout=' +
                       order_info.purchase_units[0].amount.value +
@@ -3896,7 +3791,6 @@
                   '&'
               }
               request = request.substr(0, request.length - 1)
-              //console.log(request);
 
               var url =
                 '/onebuy/order/status?_token={{ csrf_token() }}&currency={{ core()->getCurrentCurrencyCode() }}'
@@ -3934,7 +3828,6 @@
                     return alert(msg) // Show a failure message (try to avoid alerts in production environments)
                   }
 
-                  //console.log(res);
 
                   if (res.success == true) {
                     window.location.href =
@@ -4032,15 +3925,12 @@
       }
 
       params['pay_type'] = pay_type;
-      //console.log(JSON.stringify(params));
-      //return false;
 
       var url = '/onebuy/order/add/sync?currency={{ core()->getCurrentCurrencyCode() }}&_token={{ csrf_token() }}&time=' + new Date().getTime();
 
       if (pay_type == "payoneer" || pay_type == 'pacypay') {
         url = '/order/add/async?time=' + new Date().getTime();
       }
-      console.log(params, '===params====')
       fetch(url, {
           body: JSON.stringify(params),
           method: 'POST',
@@ -4054,17 +3944,12 @@
         .then(function(res) {
           crmTrack('add_pay')
           var data = res;
-          //console.log(data);
           if (data.result === 200) {
 
             var order_info = data.order;
 
-            //console.log(order_info);
-            //console.log(window.is_airwallex_klarna);
-
             if (window.is_paypal_standard) {
               var paypal_form = '<form action="' + data.pay_url + '" method="post" style="display:none" >';
-              //console.log(data.form);
               $.each(data.form, function(k, v) {
 
                 if (k == 'cancel_return') v = window.location.href;
@@ -4074,7 +3959,6 @@
               });
               // 
               paypal_form += '</form>';
-              //console.log(paypal_form);
               $(paypal_form).appendTo('body').submit();
               return false;
             }
@@ -4097,10 +3981,6 @@
                 })
                 .then(function(res) {
 
-                  //console.log(res);
-
-                  //console.log(res.payment.next_action.url);
-
                   Goto(res.payment.next_action.url);
 
                 });
@@ -4117,7 +3997,6 @@
 
 
             if (window.is_airwallex) {
-              console.log(data, 'data===window.is_airwallex');
               document.querySelector(".submit-button").scrollIntoView({
                 behavior: "smooth"
               })
@@ -4152,8 +4031,6 @@
 
               }).catch((response) => {
                 $('#loading').hide();
-                console.log("catch");
-                console.log(JSON.stringify(response))
 
                 alert(response.message)
                 $('#checkout-error').html(response.message + '<br /><br />');
@@ -4164,7 +4041,6 @@
               });
             }
           } else {
-            console.log('else====');
             $('#loading').hide();
             var pay_error = data.error;
             alert(res.error)
