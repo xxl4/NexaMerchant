@@ -11,33 +11,18 @@
     //const cardCvc = Airwallex.createElement('cvc');
     const cvc = Airwallex.createElement('cvc');
     cvc.mount('cvc'); 
-    // if (!isEmpty(airwallex_vault) && airwallex_vault == 1) {
+    if (!isEmpty(airwallex_vault) && airwallex_vault == 1) {
       
-    // }else {
-    //   $('#expiry').show();
-    //   $('#cardNumber').show();
-    //   const cardNumber = Airwallex.createElement('cardNumber', {
-    //   allowedCardNetworks: ['visa', 'maestro', 'mastercard', 'amex', 'unionpay', 'jcb']
-    // });
-    //   const cardExpiry = Airwallex.createElement('expiry');
-    //   const domcardNumber = cardNumber.mount('cardNumber');
-    //   const domcardExpiry = cardExpiry.mount('expiry');
-    //   // STEP #8: Add an event listener to listen to the changes in each of the input fields
-    //   domcardNumber.addEventListener('onChange', (event) => {
-    //     console.log(event.detail)
-    //     console.log(event.detail.complete)
-    //   });
-
-    //   domcardExpiry.addEventListener('onChange', (event) => {
-
-    //     console.log(event.detail)
-    //     console.log(event.detail.complete)
-    //   });
-    // }
-
-
-    
-    //const cvc = cardCvc.mount('cvc');
+    } else {
+      $('#expiry').show();
+      $('#cardNumber').show();
+      const cardNumber = Airwallex.createElement('cardNumber', {
+        allowedCardNetworks: ['visa', 'maestro', 'mastercard', 'amex', 'unionpay', 'jcb']
+      });
+      const cardExpiry = Airwallex.createElement('expiry');
+      const domcardNumber = cardNumber.mount('cardNumber');
+      const domcardExpiry = cardExpiry.mount('expiry');
+    }
 
       document.getElementById('payButton').addEventListener('click', () => {
         createOrder()
@@ -70,16 +55,9 @@
             if (data.result === 200) {
 
                 var order_info = data.order;
-                document.cookie = "voluum_payout=" + order_info.grand_total + order_info.order_currency_code + "; path=/";
-                document.cookie = "order_id=" + order_info.id + "; path=/";
                 localStorage.setItem("order_id", order_info.id);
-                // localStorage.setItem("cus_id", data.customer.id);
-                localStorage.setItem("order_params", JSON.stringify(productParams));
 
                 console.log(data, 'data===window.is_airwallex');
-                // document.querySelector(".submit-button").scrollIntoView({
-                // behavior: "smooth"
-                // })
 
                 customer_id = localStorage.getItem('cus_id') ? localStorage.getItem('cus_id') : '';
                 console.log(customer_id, 'airwallex_vault customer id ==')
@@ -107,53 +85,52 @@
                     }).then((response) => {
                         // STEP #6b: Listen to the request response
                         /* handle create consent response in your business flow */
-                        window.alert(JSON.stringify(response));
                         $('#loading').hide();
 
-                        window.location.href = "/onebuy/checkout/v4/success/" + data.order.id;
+                        // window.location.href = "/onebuy/checkout/v4/success/" + data.order.id;
                         return false;
                     });
                 } else {
-                //     console.log(2222)
-                //     Airwallex.confirmPaymentIntent({
-                //     element: cardNumber,
-                //     id: data.payment_intent_id,
-                //     customer_id: data.customer.id,
-                //     client_secret: data.client_secret,
-                //     next_triggered_by: "customer",
-                //     payment_method: {
-                //         billing: {
-                //         email: data.billing.email,
-                //         first_name: data.billing.first_name,
-                //         last_name: data.billing.last_name,
-                //         // date_of_birth: '1990-01-01',
-                //         // phone_number: '13999999999',
-                //         address: {
-                //             city: data.billing.city,
-                //             country_code: data.billing.country,
-                //             postcode: data.billing.postcode,
-                //             state: data.billing.state,
-                //             street: data.billing.address1
-                //         }
-                //         }
-                //     }
-                // }).then((response) => {
+                    console.log(2222)
+                    Airwallex.confirmPaymentIntent({
+                    element: cardNumber,
+                    id: data.payment_intent_id,
+                    customer_id: data.customer.id,
+                    client_secret: data.client_secret,
+                    next_triggered_by: "customer",
+                    payment_method: {
+                        billing: {
+                        email: data.billing.email,
+                        first_name: data.billing.first_name,
+                        last_name: data.billing.last_name,
+                        // date_of_birth: '1990-01-01',
+                        // phone_number: '13999999999',
+                        address: {
+                            city: data.billing.city,
+                            country_code: data.billing.country,
+                            postcode: data.billing.postcode,
+                            state: data.billing.state,
+                            street: data.billing.address1
+                        }
+                        }
+                    }
+                }).then((response) => {
 
-                // $('#loading').hide();
+                $('#loading').hide();
 
-                // window.location.href = "/onebuy/checkout/v2/success/" + data.order.id;
-                // return false;
+                window.location.href = "/onebuy/checkout/v2/success/" + data.order.id;
+                return false;
 
-                // }).catch((response) => {
-                // $('#loading').hide();
-                // console.log("catch");
-                // console.log(JSON.stringify(response))
+                }).catch((response) => {
+                $('#loading').hide();
+                console.log("catch");
+                console.log(JSON.stringify(response))
 
-                // alert(response.message)
+                alert(response.message)
 
-                // return false;
+                return false;
 
-                // });    
+                });    
             }
                 
                 

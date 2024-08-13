@@ -887,6 +887,12 @@ class ProductController extends Controller
                 $addressData['billing']['state'] = $params['province'];
                 $addressData['billing']['postcode'] = $params['code'];
 
+                $addressData['shipping'] = [];
+                $addressData['shipping']['isSaved'] = false;
+                $address1 = [];
+                array_push($address1, "");
+                $addressData['shipping']['address1'] = $address1;
+
                 $addressData['
                 ']['address1'] = $address1;
 

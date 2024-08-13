@@ -1448,11 +1448,6 @@
       })
     }
 
-    <?php 
-    var_dump($order->id);
-    
-    ?>
-
     function initDomData() {
       let orderPre = '<?php echo $order_pre; ?>',
         payment = '<?php echo $payment; ?>',
