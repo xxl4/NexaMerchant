@@ -855,6 +855,7 @@ class ProductController extends Controller
 
         try {
             $order = $this->smartButton->getOrder(request()->input('orderData.orderID'));
+
             // return response()->json($order);
             
 
@@ -1030,10 +1031,10 @@ class ProductController extends Controller
 
         $data = [
             'intent' => 'CAPTURE',
-            // 'application_context' => [
-            //     //'shipping_preference' => 'NO_SHIPPING',
-            //     'shipping_preference' => 'GET_FROM_FILE', // 用户选择自己的地址内容
-            // ],
+            'application_context' => [
+                //'shipping_preference' => 'NO_SHIPPING',
+                'shipping_preference' => 'GET_FROM_FILE', // 用户选择自己的地址内容
+            ],
         
             'purchase_units' => [
                 [
