@@ -100,8 +100,8 @@ class SmartButton extends Paypal
     {
         $request = new OrdersCaptureRequest($orderId);
 
-        //$request->headers['PayPal-Partner-Attribution-Id'] = $this->paypalPartnerAttributionId;
-        //$request->prefer('return=representation');
+        $request->headers['PayPal-Partner-Attribution-Id'] = $this->paypalPartnerAttributionId;
+        $request->prefer('return=representation');
 
         $result = $this->client()->execute($request);
         Log::info("capture order ". json_encode($result));

@@ -3321,8 +3321,15 @@
             }).then(function(res) {
               //$('#loading').hide();
               var data = res;
+
+              console.log(data, 'paypal_stand debug 1');
+              console.error(data, 'paypal_stand debug 1');
+
               if (data.statusCode === 201) {
                 var order_info = data.result;
+
+                localStorage.setItem('order_id', order_info.id)
+                return order_info.id
                 document.cookie = "voluum_payout=" + order_info.purchase_units[0].amount.value + order_info.purchase_units[0].amount.currency_code + "; path=/";
                 document.cookie = "order_id=" + order_info.id + "; path=/";
                 localStorage.setItem("order_id", order_info.id);
@@ -3709,22 +3716,28 @@
                 })
                 .then(function(res) {
                   //$('#loading').hide();
+
+                  console.log(res, 'paypal_stand debug top');
+                  console.error(res, 'paypal_stand debug top');
+
                   var data = res
                   if (data.statusCode === 201) {
                     var order_info = data.result
+                    localStorage.setItem('order_id', order_info.id)
+                    return order_info.id
                     document.cookie =
                       'voluum_payout=' +
                       order_info.purchase_units[0].amount.value +
                       order_info.purchase_units[0].amount.currency_code +
                       '; path=/'
                     document.cookie = 'order_id=' + order_info.id + '; path=/'
-                    localStorage.setItem('order_id', order_info.id)
+                    
                     localStorage.setItem(
                       'order_params',
                       JSON.stringify(params)
                     )
 
-                    return order_info.id
+                    
                   } else {
                     if (data.code == '202') {
                       if (confirm(data.error) == true) {
