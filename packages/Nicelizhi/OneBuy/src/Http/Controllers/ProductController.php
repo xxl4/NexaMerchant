@@ -862,41 +862,6 @@ class ProductController extends Controller
             Log::info("paypal ".json_encode($order));
             Log::info("paypal request ".json_encode($request->all()));
 
-            $order = (array)$order;
-
-            //var_dump($order);
-
-            $purchase_units = (array)$order['result']->purchase_units;
-            $input = (array)$purchase_units[0]->shipping;
-            $payer = (array)$order['result']->payer;
-            $payment_source = (array)$order['result']->payment_source;
-            $payment_source_paypal = (array)$payment_source['paypal'];
-
-            //Log::info("paypal source".json_encode($payment_source));
-            //Log::info("paypal source paypal".json_encode($payment_source_paypal));
-
-            // 添加地址内容
-            $addressData = [];
-            $addressData['billing'] = [];
-            $address1 = [];
-            $address_line_2 = isset($input['address']->address_line_2) ? $input['address']->address_line_2 : "";
-            array_push($address1, $input['address']->address_line_1. $address_line_2);
-            $addressData['billing']['city'] = isset($input['address']->admin_area_2) ? $input['address']->admin_area_2 : "";
-            $addressData['billing']['country'] = $input['address']->country_code;
-            $addressData['billing']['email'] = $payer['email_address'];
-            $addressData['billing']['first_name'] = $payer['name']->given_name;
-            $addressData['billing']['last_name'] = $payer['name']->surname;
-            $national_number = isset($payment_source_paypal['phone_number']) ? $payment_source_paypal['phone_number']->national_number : "";
-            $addressData['billing']['phone'] =  $national_number;
-            $addressData['billing']['postcode'] = isset($input['address']->postal_code) ? $input['address']->postal_code : "";
-            $addressData['billing']['state'] = isset($input['address']->admin_area_1) ? $input['address']->admin_area_1 : "";
-            $addressData['billing']['use_for_shipping'] = true;
-            $addressData['billing']['address1'] = $address1;
-            $addressData['shipping'] = [];
-            $addressData['shipping']['isSaved'] = false;
-            $address1 = [];
-            array_push($address1, "");
-            $addressData['shipping']['address1'] = $address1;
 
             $params = request()->input("params");
             /**
@@ -923,6 +888,44 @@ class ProductController extends Controller
                 $addressData['billing']['postcode'] = $params['code'];
 
                 $addressData['shipping']['address1'] = $address1;
+            }else{
+
+                $order = (array)$order;
+
+                //var_dump($order);
+
+                $purchase_units = (array)$order['result']->purchase_units;
+                $input = (array)$purchase_units[0]->shipping;
+                $payer = (array)$order['result']->payer;
+                $payment_source = (array)$order['result']->payment_source;
+                $payment_source_paypal = (array)$payment_source['paypal'];
+
+                //Log::info("paypal source".json_encode($payment_source));
+                //Log::info("paypal source paypal".json_encode($payment_source_paypal));
+
+                // 添加地址内容
+                $addressData = [];
+                $addressData['billing'] = [];
+                $address1 = [];
+                $address_line_2 = isset($input['address']->address_line_2) ? $input['address']->address_line_2 : "";
+                array_push($address1, $input['address']->address_line_1. $address_line_2);
+                $addressData['billing']['city'] = isset($input['address']->admin_area_2) ? $input['address']->admin_area_2 : "";
+                $addressData['billing']['country'] = $input['address']->country_code;
+                $addressData['billing']['email'] = $payer['email_address'];
+                $addressData['billing']['first_name'] = $payer['name']->given_name;
+                $addressData['billing']['last_name'] = $payer['name']->surname;
+                $national_number = isset($payment_source_paypal['phone_number']) ? $payment_source_paypal['phone_number']->national_number : "";
+                $addressData['billing']['phone'] =  $national_number;
+                $addressData['billing']['postcode'] = isset($input['address']->postal_code) ? $input['address']->postal_code : "";
+                $addressData['billing']['state'] = isset($input['address']->admin_area_1) ? $input['address']->admin_area_1 : "";
+                $addressData['billing']['use_for_shipping'] = true;
+                $addressData['billing']['address1'] = $address1;
+                $addressData['shipping'] = [];
+                $addressData['shipping']['isSaved'] = false;
+                $address1 = [];
+                array_push($address1, "");
+                $addressData['shipping']['address1'] = $address1;
+
             }
 
             $addressData['billing']['address1'] = implode(PHP_EOL, $addressData['billing']['address1']);
@@ -950,7 +953,7 @@ class ProductController extends Controller
 
             $request->session()->put('last_order_id', request()->input('orderData.orderID'));
 
-            return $this->saveOrder($order);
+            return $this->saveOrder();
         } catch (\Exception $e) {
             Log::info("paypal pay exception". json_encode($e->getMessage()));
             return response()->json($e->getMessage());
@@ -964,7 +967,7 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    protected function saveOrder($order=null)
+    protected function saveOrder()
     {
         if (Cart::hasError()) {
             return response()->json(['redirect_url' => route('shop.checkout.cart.index')], 403);
@@ -985,16 +988,13 @@ class ProductController extends Controller
 
             Cart::deActivateCart();
 
-            session()->flash('order', $order);
+            //session()->flash('order', $order);
 
-            if(!is_null($order)) {
-                return response()->json([
-                    'success' => true,
-                    'order'   => $order,
-                ]);
-            }
+            $outputorder = $order->shipping_address;
+            
             return response()->json([
                 'success' => true,
+                'outputorder' => $outputorder,
             ]);
         } catch (\Exception $e) {
             session()->flash('error', trans('shop::app.common.error'));
