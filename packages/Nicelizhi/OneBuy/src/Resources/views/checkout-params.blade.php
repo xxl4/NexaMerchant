@@ -10,7 +10,7 @@
       });
     //const cardCvc = Airwallex.createElement('cvc');
     
-    <?php if($airwallex_vault==1) { ?>
+    <?php if($payment_airwallex_vault==1) { ?>
       const cvc = Airwallex.createElement('cvc');
       cvc.mount('cvc'); 
     <?php }else {?>
@@ -72,7 +72,7 @@
                 // }
                 // let aData = await aResponse.json();
                 // console.log(aData, 'aData==')
-                <?php if($airwallex_vault==1) { ?>
+                <?php if($payment_airwallex_vault==1) { ?>
 
                     console.log(airwallex_vault, 'customerId==')
                     console.log("payment_consents", payment_consent_id)
