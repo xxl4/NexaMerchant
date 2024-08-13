@@ -6,13 +6,13 @@
       Airwallex.init({
         env: 'demo', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
         origin: window.location.origin, // Setup your event target to receive the browser events message
-        components: ['cvc']
+        // components: ['cvc']
       });
     //const cardCvc = Airwallex.createElement('cvc');
-    const cvc = Airwallex.createElement('cvc');
-    cvc.mount('cvc'); 
+    
     if (!isEmpty(airwallex_vault) && airwallex_vault == 1) {
-      
+      const cvc = Airwallex.createElement('cvc');
+      cvc.mount('cvc'); 
     } else {
       $('#expiry').show();
       $('#cardNumber').show();
@@ -20,8 +20,10 @@
         allowedCardNetworks: ['visa', 'maestro', 'mastercard', 'amex', 'unionpay', 'jcb']
       });
       const cardExpiry = Airwallex.createElement('expiry');
-      const domcardNumber = cardNumber.mount('cardNumber');
-      const domcardExpiry = cardExpiry.mount('expiry');
+      const cvc = Airwallex.createElement('cvc');
+      cvc.mount('cvc'); 
+      cardNumber.mount('cardNumber');
+      cardExpiry.mount('expiry');
     }
 
       document.getElementById('payButton').addEventListener('click', () => {
@@ -31,7 +33,7 @@
       function createOrder() {
         paramsInit()
         productParams.pay_type = 'airwallex';
-        productParams.cus_id = localStorage.getItem('cus_id') ? localStorage.getItem('cus_id') : '';
+        // productParams.cus_id = localStorage.getItem('cus_id') ? localStorage.getItem('cus_id') : '';
 
         //console.log(JSON.stringify(productParams));
         //return false;
@@ -95,9 +97,9 @@
                     Airwallex.confirmPaymentIntent({
                     element: cardNumber,
                     id: data.payment_intent_id,
-                    customer_id: data.customer.id,
+                    // customer_id: data.customer.id,
                     client_secret: data.client_secret,
-                    next_triggered_by: "customer",
+                    // next_triggered_by: "customer",
                     payment_method: {
                         billing: {
                         email: data.billing.email,
