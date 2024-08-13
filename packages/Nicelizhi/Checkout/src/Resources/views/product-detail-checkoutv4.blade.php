@@ -3080,6 +3080,8 @@
               */
               // window.alert(event.detail);
               console.log(event.detail, event, 'applePay ===  success');
+              localStorage.setItem("airwallex_vault", 0);
+              localStorage.setItem('payment_vault', 0);
               window.location.href = "/onebuy/checkout/v4/success/" + orderId;
             });
             domApplePay.addEventListener('onError', (event) => {
@@ -3154,6 +3156,8 @@
               // window.alert(event.detail);
               // console.log(event.detail);
               console.log(event.detail, event, 'googlePay ===  success');
+              localStorage.setItem("airwallex_vault", 0);
+              localStorage.setItem('payment_vault', 0);
               window.location.href = "/onebuy/checkout/v4/success/" + orderId;
             });
             domGooglePay.addEventListener('onError', (event) => {
@@ -3617,8 +3621,9 @@
       }).then(function(res) {
         $('#loading').hide();
         if (res.success == true) {
-          // window.location.href = '/onebuy/checkout/v4/success/' + localStorage.getItem('order_id');
-          // return true;
+          localStorage.setItem("airwallex_vault", 0);
+          window.location.href = '/onebuy/checkout/v4/success/' + localStorage.getItem('order_id');
+          return true;
         }
         if (res.error == 'INSTRUMENT_DECLINED') {
         }
@@ -3820,9 +3825,10 @@
                   //console.log(res);
 
                   if (res.success == true) {
-                    // window.location.href =
-                    //   '/onebuy/checkout/v4/success/' +
-                    //   localStorage.getItem('order_id')
+                    localStorage.setItem("airwallex_vault", 0);
+                    window.location.href =
+                      '/onebuy/checkout/v4/success/' +
+                      localStorage.getItem('order_id')
                     return true
                     //actions.redirect('/checkout/v1/success/'+localStorage.getItem('order_id'));
                   }
@@ -4066,6 +4072,7 @@
               localStorage.setItem('outputorder', JSON.stringify(res.outputorder))
               if (res.success == true) {
                 //Goto('/checkout/v1/success/'+localStorage.getItem('order_id'));
+                localStorage.setItem("airwallex_vault", 0);
                 window.location.href = '/onebuy/checkout/v4/success/' + localStorage.getItem('order_id');
                 return true;
                 //actions.redirect('/checkout/v1/success/'+localStorage.getItem('order_id'));
@@ -4277,7 +4284,7 @@
 
                   localStorage.setItem("airwallex_response", JSON.stringify(response));
                   localStorage.setItem("payment_consent_id", response.payment_consent_id);
-
+                  localStorage.setItem('payment_vault', 0);
                   window.location.href = "/onebuy/checkout/v4/success/" + data.order.id;
                   return false;
 

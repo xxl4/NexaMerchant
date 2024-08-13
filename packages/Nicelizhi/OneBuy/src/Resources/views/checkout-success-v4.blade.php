@@ -1215,7 +1215,7 @@
   <footer class="main__footer" role="contentinfo">
     @include('onebuy::footer-container-'.strtolower($default_country))
   </footer>
-
+  @include("onebuy::checkout-params")
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=<?php echo $gtag; ?>"></script>
   <script>
@@ -1236,7 +1236,6 @@
       });
     <?php } ?>
   </script>
-  @include("onebuy::checkout-params")
   <script>
 
     $(function() {
@@ -1306,6 +1305,7 @@
               let id = $(this).data('id')
               let title = $(this).data('title')
               $('.drawer-title').text(title)
+              console.log(productParams, 'productParams')
               productParams.products[0].description = title;
               // let url = `api/onebuy/product/detail/${id}?currency=EUR`
               let url = `/api/onebuy/product/detail/8987102380314?currency=EUR`
@@ -1447,13 +1447,20 @@
         },
       })
     }
+
+    <?php 
+    var_dump($order->id);
+    
+    ?>
+
     function initDomData() {
       let orderPre = '<?php echo $order_pre; ?>',
         payment = '<?php echo $payment; ?>',
         titleId = '<?php echo $order->id; ?>',
         headerTitle = orderPre + '#' + titleId,
         updatedTime = '<?php echo $order->updated_at; ?>',
-        shippingAddress = JSON.parse('<?php echo $order->shipping_address; ?>')
+        shippingAddress = '<?php echo addslashes(json_encode($order->shipping_address)); ?>';
+      shippingAddress = JSON.parse(shippingAddress)
       console.log(shippingAddress, 'shippingAddress');
       $('.header-left-time span').append(payment.split(' ')[0])
       $('.header-left-text-title').append(headerTitle)

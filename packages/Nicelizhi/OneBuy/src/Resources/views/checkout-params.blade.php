@@ -6,7 +6,6 @@
       Airwallex.init({
         env: 'demo', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
         origin: window.location.origin, // Setup your event target to receive the browser events message
-        // components: ['cardNumber', 'expiry', 'cvc']
         components: ['cvc']
       });
     //const cardCvc = Airwallex.createElement('cvc');
@@ -40,23 +39,6 @@
     
     //const cvc = cardCvc.mount('cvc');
 
-    
-
-    // domcardNumber.addEventListener('onReady', (event) => {
-      /*
-      ... Handle event
-      */
-      //window.alert(event.detail);
-      // console.log(event.detail);
-    // });
-
-
-
-    //id_cvc
-    // cvc.addEventListener('onChange', (event) => {
-    //   console.log(event.detail)
-    //   console.log(event.detail.complete)
-    // });
       document.getElementById('payButton').addEventListener('click', () => {
         createOrder()
       });
@@ -128,7 +110,7 @@
                         window.alert(JSON.stringify(response));
                         $('#loading').hide();
 
-                        window.location.href = "/onebuy/checkout/v2/success/" + data.order.id;
+                        window.location.href = "/onebuy/checkout/v4/success/" + data.order.id;
                         return false;
                     });
                 } else {
@@ -205,7 +187,9 @@
 </script>
 
 <script>
-    var shippingAddress = JSON.parse('<?php echo $order->shipping_address; ?>');
+    var shippingAddress = '<?php echo addslashes(json_encode($order->shipping_address)); ?>';
+    shippingAddress = JSON.parse(shippingAddress)
+    console.log(shippingAddress, 'shippingAddress=')
     var productData = {}
     var productParams = {
         first_name: "",
@@ -280,11 +264,9 @@
       script.async = true;
 
       if (!isEmpty(payment_vault) && payment_vault == 1) {
-        //   payment_vault2 = 1;
           script.src = `https://www.paypal.com/sdk/js?client-id=${paypal_pay_acc}&components=buttons,messages,funding-eligibility&buyer-country=US&vault=true&commit=true&currency=${currency}`;
           script.setAttribute('data-user-id-token', '<?php echo $paypal_id_token;?>');
       } else {
-        //   payment_vault2 = 0;
         console.log(222222)
           script.src = `https://www.paypal.com/sdk/js?client-id=${paypal_pay_acc}&components=buttons,messages,funding-eligibility&currency=${currency}`;
       }
@@ -329,7 +311,7 @@
           productParams.payment_method = 'paypal'
         //   productParams.payment_vault = localStorage.getItem('payment_vault') ? JSON.parse(localStorage.getItem('payment_vault')) : 0;
         // productParams.payment_vault = 1;
-        paramsInit()
+          paramsInit()
           crmTrack('add_pay')
           var url = '/onebuy/order/addr/after?currency={{ core()->getCurrentCurrencyCode() }}&_token={{ csrf_token() }}&time=' + new Date().getTime() + "&force=" + localStorage.getItem("force");
           return fetch(url, {
@@ -346,12 +328,11 @@
             console.log(data, 'data')
             if (data.statusCode === 201) {
               let order_info = data.result;
-              //console.log(order_info);
-              //console.log(order_info.purchase_units[0].amount);
-              document.cookie = "voluum_payout=" + order_info.purchase_units[0].amount.value + order_info.purchase_units[0].amount.currency_code + "; path=/";
-              document.cookie = "order_id=" + order_info.id + "; path=/";
               localStorage.setItem("order_id", order_info.id);
-              localStorage.setItem("order_params", JSON.stringify(productParams));
+              if (order_info.status === "COMPLETED") {
+                gotoSuccess(data);
+                return
+              }
               return order_info.id;
             } else {
               if (data.code == '202') {
@@ -367,24 +348,28 @@
 
         // Call your server to finalize the transaction
         onApprove: function(data, actions) {
-          var orderData = {
-            paymentID: data.orderID,
-            orderID: data.orderID,
+          gotoSuccess(data)
+        }
+      }).render('#complete-btn-id');
+    }
+    function gotoSuccess(data) {
+      var orderData = {
+            paymentID: localStorage.getItem('order_id'),
+            orderID: localStorage.getItem('order_id'),
           };
           var paypalParams = {
-            first_name: '',
-            second_name: '',
-            email: '',
-            phone_full: '',
-            address: '',
-            city: '',
-            country: '',
-            province: '',
-            code: '',
-            payment_method: 'paypal_stand'
+            first_name: shippingAddress.first_name || '',
+            second_name: shippingAddress.last_name || '',
+            email: shippingAddress.email || '',
+            phone_full: shippingAddress.phone || '',
+            address: shippingAddress.address1 || '',
+            city: shippingAddress.city || '',
+            country: shippingAddress.country || '',
+            province: shippingAddress.state || '',
+            code: shippingAddress.postcode || ''
           }
           var request_params = {
-            client_secret: data.orderID,
+            client_secret: localStorage.getItem('order_id'),
             id: localStorage.getItem('order_id'),
             orderData: orderData,
             data: data,
@@ -409,8 +394,6 @@
             if (res.error == 'INSTRUMENT_DECLINED') {
             }
           });
-        }
-      }).render('#complete-btn-id');
     }
     function paramsInit() {
         let attr_id = '';

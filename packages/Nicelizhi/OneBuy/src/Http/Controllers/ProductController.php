@@ -887,7 +887,12 @@ class ProductController extends Controller
                 $addressData['billing']['state'] = $params['province'];
                 $addressData['billing']['postcode'] = $params['code'];
 
-                $addressData['shipping']['address1'] = $address1;
+                $addressData['
+                ']['address1'] = $address1;
+
+                $addressData['billing']['address1'] = implode(PHP_EOL, $addressData['billing']['address1']);
+
+                $addressData['shipping']['address1'] = implode(PHP_EOL, $addressData['shipping']['address1']);
 
                 if (
                     Cart::hasError()
