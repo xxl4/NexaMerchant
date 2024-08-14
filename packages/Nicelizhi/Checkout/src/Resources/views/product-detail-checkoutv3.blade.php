@@ -3916,7 +3916,7 @@
         }
         createOrder('', '', 'stripe_local');
         $('.pay-after-submit-button').hide();
-      } else {
+      } else {  
         stripeCreateOrderBefore(createOrder, params, function(error) {
           $('#loading').hide();
           $('#checkout-error').html(error);
@@ -3939,7 +3939,7 @@
 
       params['pay_type'] = pay_type;
 
-      var url = '/onebuy/order/add/sync?currency={{ core()->getCurrentCurrencyCode() }}&_token={{ csrf_token() }}&time=' + new Date().getTime();
+      var url = '/onebuy/order/add/sync?currency={{ core()->getCurrentCurrencyCode() }}&_token={{ csrf_token() }}&time=' + new Date().getTime() + "&force=" + localStorage.getItem("force");;
 
       if (pay_type == "payoneer" || pay_type == 'pacypay') {
         url = '/order/add/async?time=' + new Date().getTime();
