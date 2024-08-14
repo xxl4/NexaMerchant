@@ -1010,7 +1010,7 @@
         <div class="form-group">
             <input type="email" id="email" placeholder="邮箱">
         </div> -->
-        <button class="submit-btn" id="payButton">立即支付</button>
+        <button class="submit-btn" id="payButton">Pay Now</button>
         <div class="card-icons">
         <img width="38" height="24" src="https://cdn.shopify.com/shopifycloud/checkout-web/assets/0169695890db3db16bfe.svg" loading="lazy" alt="" />
             <img width="38" height="24" src="https://cdn.shopify.com/shopifycloud/checkout-web/assets/ae9ceec48b1dc489596c.svg" loading="lazy" alt="" />
