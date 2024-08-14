@@ -245,13 +245,17 @@ return [
         Nicelizhi\Checkout\Providers\CheckoutServiceProvider::class,
         Nicelizhi\Lp\Providers\LpServiceProvider::class,
         Nicelizhi\Comments\Providers\CommentsServiceProvider::class,
-        Nicelizhi\Apps\Providers\AppsServiceProvider::class,
 
         // log reader
         Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class,
 		
+		// NexaMerchant\Paypal\Providers\PaypalServiceProvider::class, 
+		// NexaMerchant\Apps\Providers\AppsServiceProvider::class, 
 		//APPS
 
+
+        NexaMerchant\Apis\Providers\ApisServiceProvider::class,
+        //NexaMerchant\Upselling\Providers\UpsellingServiceProvider::class,
 
 
 

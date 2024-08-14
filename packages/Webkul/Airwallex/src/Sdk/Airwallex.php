@@ -109,6 +109,24 @@ class Airwallex {
 
     }
 
+    public function createCustomerClientSecret($customer_id) {
+        $header= array(
+                'Content-Type: application/json; charset=utf-8',
+                'Authorization: ' ."Bearer ".$this->token
+        );
+        //$url = $this->host."/api/v1/pa/payment_methods/create_customer_client_secret";
+        $url = $this->host."/api/v1/pa/customers/".$customer_id."/generate_client_secret";
+
+        $data = [];
+
+        $result = $this->http_curl($url, '', $data, 6, FALSE, '', $header);
+
+        if($result['code']=='200') return json_decode($result['body']);
+
+        return $result;
+
+    }
+
     /***
      * 
      * @ create refund order
@@ -180,7 +198,7 @@ class Airwallex {
             'debug' => true
         ]);
         $body = $response->getBody();
-        var_dump($body, $data, $token);
+        return $body;
     }
 
     public function CheckPaymentStatus() {
@@ -194,6 +212,74 @@ class Airwallex {
 
     public function GetBalances() {
 
+    }
+
+    /**
+     * 
+     * @link https://www.airwallex.com/docs/api#/Payment_Acceptance/Customers/_api_v1_pa_customers_create/post
+     * @description create customer
+     * @param string $data
+     * @return array
+     * @author Steve
+     * 
+     */
+    public function createCustomer($data) {
+        // $response = $this->client->request('POST', "/api/v1/pa/customers/create", [ 
+        //     'headers' => [
+        //          'Accept' => 'application/json', 
+        //          'content-type' => 'application/json',
+        //          'Authorization' => "Basic ".$this->clientId, 
+        //     ],
+        //     'json' => $data,
+        //     'debug' => true
+        // ]);
+        // $body = $response->getBody();
+        // var_dump($body);
+        // return $body;
+
+        $header= array(
+                'Content-Type: application/json; charset=utf-8',
+                'Content-Length: ' . strlen($data),
+                'Authorization: ' ."Bearer ".$this->token
+        );
+
+        $url = $this->host."/api/v1/pa/customers/create";
+
+        $result = $this->http_curl($url, 'xml', $data, 6, FALSE, '',$header);
+
+        //var_dump($result);
+
+        if($result['code']=='201') return json_decode($result['body']);
+
+        return $result;
+
+    }
+
+
+    /**
+     * 
+     * @link https://www.airwallex.com/docs/api/Supporting_Services/Reference_Data/api#/Payment_Acceptance/Customers/
+     * @description get customer
+     * @param string $customer_id
+     * @return array
+     * 
+     */
+    public function CustomerList($data) {
+        $header= array(
+                'Content-Type: application/json; charset=utf-8',
+                'Content-Length: ' . strlen($data),
+                'Authorization: ' ."Bearer ".$this->token
+        );
+
+        $url = $this->host."/api/v1/pa/customers";
+
+        $result = $this->http_curl($url, 'xml', $data, 6, FALSE, '',$header);
+
+        //var_dump($result);
+
+        if($result['code']=='201') return json_decode($result['body']);
+
+        return $result;
     }
 
     /**

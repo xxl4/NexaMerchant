@@ -186,11 +186,11 @@ class Airwallex extends Payment
      * 
      * 
      */
-    public function createPaymentOrder($cart, $orderId) {
+    public function createPaymentOrder($cart, $orderId, $customer_id=null) {
 
       $sdk = new AirwallexSdk($this->paymentConfig, $this->productionMode);
 
-      $buildRequestBody = $this->buildCreateOrderData($cart, $orderId);
+      $buildRequestBody = $this->buildCreateOrderData($cart, $orderId, $customer_id);
       //var_dump($buildRequestBody);
       $transactionManager = $sdk->CreatePayment(json_encode($buildRequestBody, JSON_OBJECT_AS_ARRAY | JSON_UNESCAPED_UNICODE));
 
@@ -199,6 +199,79 @@ class Airwallex extends Payment
       //var_dump($transactionManager);
 
       return $transactionManager;
+    }
+
+    /**
+     * 
+     * create customer
+     * 
+     * 
+     */
+    public function createCustomer($cart, $orderId) {
+            
+        $sdk = new AirwallexSdk($this->paymentConfig, $this->productionMode);
+    
+        $buildRequestBody = $this->buildCreateCustomerData($cart, $orderId);
+
+        //var_dump($buildRequestBody);
+
+        $transactionManager = $sdk->createCustomer(json_encode($buildRequestBody, JSON_OBJECT_AS_ARRAY | JSON_UNESCAPED_UNICODE));
+    
+        return $transactionManager;
+    }
+
+    public function createCustomerClientSecret($customer_id) {
+        $sdk = new AirwallexSdk($this->paymentConfig, $this->productionMode);
+        // $buildRequestBody = [];
+        // $buildRequestBody['customer_id'] = $customer_id;
+        // $buildRequestBody['request_id'] = $customer_id."_".time();
+        $transactionManager = $sdk->createCustomerClientSecret($customer_id);
+        
+        return $transactionManager;
+    }
+
+    public function buildCreateCustomerData($cart, $orderId) {
+
+        $data = [];
+
+        //search email from customer table
+        $customer = \Webkul\Customer\Models\Customer::where('email', $cart->billing_address->email)->first();
+        if(is_null($customer)) {
+            $customer = new \Webkul\Customer\Models\Customer();
+            $customer->first_name = $cart->billing_address->first_name;
+            $customer->last_name = $cart->billing_address->last_name;
+            $customer->email = $cart->billing_address->email;
+            //$customer->phone = $cart->billing_address->phone;
+            $customer->password = bcrypt("123456");
+            //$customer->channel_id = 1;
+            $customer->status = 1;
+            $customer->save();
+        }
+
+        /**
+         * 
+         * 
+         * 
+         * 
+         */
+        $address = [];
+        $address['city'] = $cart->billing_address->city;
+        $address['country_code'] = $cart->billing_address->country;
+        $address['postcode'] = $cart->billing_address->postcode;
+        $address['state'] = $cart->billing_address->city;
+        $address['street'] = $cart->billing_address->address1;
+        $data['address'] = $address;
+        $data['email'] = $cart->billing_address->email;
+        $data['first_name'] = $cart->billing_address->first_name;
+        $data['last_name'] = $cart->billing_address->last_name;
+        $data['phone_number'] = $cart->billing_address->phone;
+        $data['merchant_customer_id'] = $customer->id.'_'.$orderId;
+        $data['request_id'] = $customer->id.'_'.$orderId."_".time();
+        $data['metadata']['id'] = $customer->id;
+
+        return $data;
+
+
     }
 
     /**
@@ -223,11 +296,11 @@ class Airwallex extends Payment
       return $transactionManager;
     }
 
-    public function confirmPayment($payment_intents_id, $order) {
+    public function confirmPayment($payment_intents_id, $order, $customer_id=null) {
       $sdk = new AirwallexSdk($this->paymentConfig, $this->productionMode);
       $buildRequestBody = [];
       $payment_method = [];
-      $payment_method['type'] = "klarna";
+      $payment_method['type'] = "card";
 
       $shipping_address = $order->billing_address;
       //var_dump($shipping_address);
@@ -253,7 +326,7 @@ class Airwallex extends Payment
       $klarna['billing'] = $billing;
 
 
-      $payment_method['klarna'] = $klarna;
+      $payment_method['card'] = $klarna;
       $buildRequestBody['payment_method'] = $payment_method;
       $buildRequestBody['request_id'] = $order->id."_".time();
 
@@ -262,9 +335,13 @@ class Airwallex extends Payment
       $payment_method_options["klarna"]["auto_capture"] = true;
       $buildRequestBody['payment_method_options'] = $payment_method_options;
 
+      if($customer_id) {
+        $buildRequestBody['customer_id'] = $customer_id;
+    }
+
       
 
-      //var_dump($order, $buildRequestBody);exit;
+     // var_dump($order, $buildRequestBody);exit;
       //var_dump($buildRequestBody);
       $transactionManager = $sdk->confirm($payment_intents_id, json_encode($buildRequestBody, JSON_OBJECT_AS_ARRAY | JSON_UNESCAPED_UNICODE));
 
@@ -293,7 +370,7 @@ class Airwallex extends Payment
      * 
      * 
      */
-    public function buildCreateOrderData($cart, $orderId) {
+    public function buildCreateOrderData($cart, $orderId, $customer_id=null) {
         //$cart = Cart::getCart();
 
         $data = [];
@@ -320,7 +397,7 @@ class Airwallex extends Payment
         $customer['last_name'] = $cart->billing_address->last_name;
         //$customer['merchant_customer_id'] = "string";
         $customer['phone_number'] = $cart->billing_address->phone;
-        $data['customer'] = $customer;
+        //$data['customer'] = $customer;
         $data['merchant_order_id'] = "orderid_".$orderId;
         $metadata['order_id'] = $orderId;
         $data['metadata'] = $metadata;
@@ -353,15 +430,47 @@ class Airwallex extends Payment
         $shipping['address'] = $address;
         $shipping['first_name'] = $cart->billing_address->first_name;
         $shipping['last_name'] = $cart->billing_address->last_name;
+        $shipping['last_name'] = $cart->billing_address->last_name;
+        $shipping['country_code'] = $cart->billing_address->country;
         //$customer['merchant_customer_id'] = "string";
         $shipping['phone_number'] = $cart->billing_address->phone;
         $order['shipping'] = $shipping;
         $order['type'] = "Online Mobile Phone Purchases";
         $data['order'] = $order;
         $data['return_url'] = route('airwallex.payment.success');
+        //$data['customer_id'] = $customer_id;
+        if($customer_id) {
+            $data['customer_id'] = $customer_id;
+            
+
+        }else{
+            $data['customer'] = [];
+
+            $customer_address = [];
+            $customer_address['city'] = $cart->billing_address->city;
+            $customer_address['country_code'] = $cart->billing_address->country;
+            $customer_address['postcode'] = $cart->billing_address->postcode;
+            $customer_address['state'] = $cart->billing_address->city;
+            $customer_address['street'] = $cart->billing_address->address1;
+            $customer_data['address'] = $customer_address;
+            $customer_data['email'] = $cart->billing_address->email;
+            $customer_data['first_name'] = $cart->billing_address->first_name;
+            $customer_data['last_name'] = $cart->billing_address->last_name;
+            $customer_data['phone_number'] = $cart->billing_address->phone;
+
+            $data['customer'] = $customer_data;
+        }
+
+        //var_dump($data);
+
+        //var_dump($data);exit;
+
+
+        
+
+
         return $data;
 
-       
     }
 
 

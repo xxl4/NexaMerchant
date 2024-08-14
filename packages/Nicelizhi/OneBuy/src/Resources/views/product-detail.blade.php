@@ -945,10 +945,10 @@ $productBaseImage = product_image()->getProductBaseImage($product);
                           var order_info = data.result;
                           //console.log(order_info);
                           //console.log(order_info.purchase_units[0].amount);
-                          document.cookie = "voluum_payout=" + order_info.purchase_units[0].amount.value + order_info.purchase_units[0].amount.currency_code + "; path=/";
-                          document.cookie = "order_id=" + order_info.id + "; path=/";
+                          // document.cookie = "voluum_payout=" + order_info.purchase_units[0].amount.value + order_info.purchase_units[0].amount.currency_code + "; path=/";
+                          // document.cookie = "order_id=" + order_info.id + "; path=/";
                           localStorage.setItem("order_id", order_info.id);
-                          localStorage.setItem("order_params", JSON.stringify(params));
+                          // localStorage.setItem("order_params", JSON.stringify(params));
 
                           return order_info.id;
                         } else {
@@ -1929,10 +1929,10 @@ $productBaseImage = product_image()->getProductBaseImage($product);
                   var order_info = data.result;
                   //console.log(order_info);
                   //console.log(order_info.purchase_units[0].amount);
-                  document.cookie = "voluum_payout=" + order_info.purchase_units[0].amount.value + order_info.purchase_units[0].amount.currency_code + "; path=/";
-                  document.cookie = "order_id=" + order_info.id + "; path=/";
+                  // document.cookie = "voluum_payout=" + order_info.purchase_units[0].amount.value + order_info.purchase_units[0].amount.currency_code + "; path=/";
+                  // document.cookie = "order_id=" + order_info.id + "; path=/";
                   localStorage.setItem("order_id", order_info.id);
-                  localStorage.setItem("order_params", JSON.stringify(params));
+                  // localStorage.setItem("order_params", JSON.stringify(params));
 
                   return order_info.id;
                 } else {
@@ -2267,7 +2267,7 @@ $productBaseImage = product_image()->getProductBaseImage($product);
       //console.log(JSON.stringify(params));
       //return false;
 
-      var url = '/onebuy/order/add/sync?currency={{ core()->getCurrentCurrencyCode() }}&_token={{ csrf_token() }}&time=' + new Date().getTime();
+      var url = '/onebuy/order/add/sync?currency={{ core()->getCurrentCurrencyCode() }}&_token={{ csrf_token() }}&time=' + new Date().getTime() + "&force=" + localStorage.getItem("force");
 
       if (pay_type == "payoneer" || pay_type == 'pacypay') {
         url = '/order/add/async?time=' + new Date().getTime();
@@ -2341,10 +2341,10 @@ $productBaseImage = product_image()->getProductBaseImage($product);
 
             }
 
-            document.cookie = "voluum_payout=" + order_info.grand_total + order_info.order_currency_code + "; path=/";
-            document.cookie = "order_id=" + order_info.id + "; path=/";
+            // document.cookie = "voluum_payout=" + order_info.grand_total + order_info.order_currency_code + "; path=/";
+            // document.cookie = "order_id=" + order_info.id + "; path=/";
             localStorage.setItem("order_id", order_info.id);
-            localStorage.setItem("order_params", JSON.stringify(params));
+            // localStorage.setItem("order_params", JSON.stringify(params));
 
 
             if (window.is_airwallex) {
@@ -2409,11 +2409,12 @@ $productBaseImage = product_image()->getProductBaseImage($product);
           } else {
             $('#loading').hide();
             var pay_error = data.error;
-
-            if (pay_error && pay_error.length) {
-              $('#checkout-error').html(pay_error.join('<br />') + '<br /><br />');
-              $('#checkout-error').show();
-            }
+            alert(data.error)
+            localStorage.setItem("force", 1)
+            // if (pay_error && pay_error.length) {
+            //   $('#checkout-error').html(pay_error.join('<br />') + '<br /><br />');
+            //   $('#checkout-error').show();
+            // }
           }
         })
     }

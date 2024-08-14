@@ -24,6 +24,7 @@ use Illuminate\Support\Facades\Redis;
 use Webkul\CMS\Repositories\CmsRepository;
 use Webkul\CartRule\Repositories\CartRuleCouponRepository;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Session;
 use Webkul\Sales\Repositories\OrderTransactionRepository;
 
 
@@ -351,7 +352,7 @@ class ProductController extends Controller
 
     }
 
-    // 完成订单生成动作
+    // airwallex
     public function order_add_sync(Request $request) {
         //var_dump($request->all());
 
@@ -372,6 +373,9 @@ class ProductController extends Controller
             return response()->json(['error' => 'You Have already placed order, if you want to place another order please confirm your order','code'=>'202'], 400);
         }
 
+
+        $payment_airwallex_vault = isset($input['payment_airwallex_vault']) ? $input['payment_airwallex_vault'] : 0;
+        $request->session()->put('payment_airwallex_vault', $payment_airwallex_vault);
         
         $products = $request->input("products");
         if(empty($products)) {
@@ -527,10 +531,10 @@ class ProductController extends Controller
 
         }
 
-        // 获取支付信息
+        // 
         
         if($payment_method=='airwallex') {
-            //处理支付方式
+            //
             $payment = [];
             $payment['description'] = $payment_method."-".$refer;
             $payment['method'] = $payment_method;
@@ -548,21 +552,48 @@ class ProductController extends Controller
                 ], Response::HTTP_FORBIDDEN);
             }
 
-            // 生成订单，
+            // 
             Cart::collectTotals();
             $this->validateOrder();
             $cart = Cart::getCart();
+
+            // when enable the upselling and can config the upselling rule for carts
+            if(config("Upselling.enable")) {
+               
+                $upselling = app('NexaMerchant\Upselling\Upselling');
+                $upselling->applyUpselling($cart);
+            }
+
             $order = $this->orderRepository->create(Cart::prepareDataForOrder());
             // Cart::deActivateCart();
             // Cart::activateCartIfSessionHasDeactivatedCartId();
-            // 跳转到支付
+            // 
             $data['result'] = 200;
             $data['order'] = $order;
             if ($order) {
                 $orderId = $order->id;
 
+                //customer id
+                $cus_id = isset($input['cus_id']) ? trim($input['cus_id']) : null;
 
-                $transactionManager = $this->airwallex->createPaymentOrder($cart, $order->id);
+                $airwallex_customer = [];
+                if(is_null($cus_id)) {
+                    //Step 1: Create a Customer
+                    $airwallex_customer = $this->airwallex->createCustomer($cart, $order->id);
+                    $cus_id = $airwallex_customer->id;
+                }else{
+                    $airwallex_customer['id'] = $cus_id;
+                }
+
+                //create a airwallex payment order
+                $transactionManager = $this->airwallex->createPaymentOrder($cart, $order->id, $cus_id);
+                //var_dump($transactionManager);
+                
+                
+
+                //Step 2: Generate a client secret for the Customer
+                $customerClientSecret = $this->airwallex->createCustomerClientSecret($cus_id);
+                
                 
                 if(!isset($transactionManager->client_secret)) {
                     response()->json(['error' => $transactionManager->body->message,'code'=>'203'], 400);
@@ -572,6 +603,9 @@ class ProductController extends Controller
                 $data['client_secret'] = $transactionManager->client_secret;
                 $data['payment_intent_id'] = $transactionManager->id;
                 $data['currency'] = $transactionManager->currency;
+                $data['transaction'] = $transactionManager;
+                $data['customer'] = $airwallex_customer;
+                $data['customer_client_secret'] = $customerClientSecret;
                 $data['country'] = $input['country'];
                 $data['billing'] = $addressData['billing'];
             }
@@ -651,6 +685,9 @@ class ProductController extends Controller
 
         $refer = $request->session()->get('refer');
 
+        $payment_paypal_vault = isset($input['payment_paypal_vault']) ? $input['payment_paypal_vault'] : 0;
+        $request->session()->put('payment_paypal_vault', $payment_paypal_vault);
+
         $products = $request->input("products");
         Log::info("products". json_encode($products));
         if(empty($products)) {
@@ -712,6 +749,8 @@ class ProductController extends Controller
         Log::info("paypal pay ".$refer.'--'.json_encode($addressData));
 
 
+
+
         if (
             Cart::hasError()
             || ! Cart::saveCustomerAddress($addressData)
@@ -727,6 +766,7 @@ class ProductController extends Controller
         $shippingMethod = "free_free"; // 包邮
         $shippingMethod = "flatrate_flatrate";
         // Cart::saveShippingMethod($shippingMethod);
+
 
         if (
             Cart::hasError()
@@ -748,6 +788,11 @@ class ProductController extends Controller
         $payment['sort'] = "1";
         // Cart::savePaymentMethod($payment);
 
+        if(config("Upselling.enable")) {
+            $upselling = app('NexaMerchant\Upselling\Upselling');
+            $upselling->applyUpselling($cart);
+        }
+
         if (
             Cart::hasError()
             || ! $payment
@@ -766,7 +811,7 @@ class ProductController extends Controller
             $data['result'] = 200;
             return response()->json($order);
         } catch (\Exception $e) {
-            return response()->json(json_decode($e->getMessage()), 400);
+            return response()->json($e->getMessage(), 400);
         }
 
         // return response()->json($order);
@@ -781,6 +826,7 @@ class ProductController extends Controller
     public function confirm(Request $request) {
         $payment_intent_id = $request->input("payment_intent_id");
         $order_id = $request->input("order_id");
+        $cus_id = $request->input("cus_id");
 
         $order = $this->orderRepository->find($order_id);
         
@@ -790,7 +836,7 @@ class ProductController extends Controller
             ], 404);
         }
         
-        $transactionManager = $this->airwallex->confirmPayment($payment_intent_id, $order);
+        $transactionManager = $this->airwallex->confirmPayment($payment_intent_id, $order, $cus_id);
 
         $request->session()->put('last_order_id', $order_id);
 
@@ -817,59 +863,19 @@ class ProductController extends Controller
 
         try {
             $order = $this->smartButton->getOrder(request()->input('orderData.orderID'));
+
             // return response()->json($order);
             
-
             Log::info("paypal ".json_encode($order));
             Log::info("paypal request ".json_encode($request->all()));
 
-            $order = (array)$order;
-
-            //var_dump($order);
-
-            $purchase_units = (array)$order['result']->purchase_units;
-            $input = (array)$purchase_units[0]->shipping;
-            $payer = (array)$order['result']->payer;
-            $payment_source = (array)$order['result']->payment_source;
-            $payment_source_paypal = (array)$payment_source['paypal'];
-
-            //Log::info("paypal source".json_encode($payment_source));
-            //Log::info("paypal source paypal".json_encode($payment_source_paypal));
-
-            // 添加地址内容
-            $addressData = [];
-            $addressData['billing'] = [];
-            $address1 = [];
-            $address_line_2 = isset($input['address']->address_line_2) ? $input['address']->address_line_2 : "";
-            array_push($address1, $input['address']->address_line_1. $address_line_2);
-            $addressData['billing']['city'] = isset($input['address']->admin_area_2) ? $input['address']->admin_area_2 : "";
-            $addressData['billing']['country'] = $input['address']->country_code;
-            $addressData['billing']['email'] = $payer['email_address'];
-            $addressData['billing']['first_name'] = $payer['name']->given_name;
-            $addressData['billing']['last_name'] = $payer['name']->surname;
-            $national_number = isset($payment_source_paypal['phone_number']) ? $payment_source_paypal['phone_number']->national_number : "";
-            $addressData['billing']['phone'] =  $national_number;
-            $addressData['billing']['postcode'] = isset($input['address']->postal_code) ? $input['address']->postal_code : "";
-            $addressData['billing']['state'] = isset($input['address']->admin_area_1) ? $input['address']->admin_area_1 : "";
-            $addressData['billing']['use_for_shipping'] = true;
-            $addressData['billing']['address1'] = $address1;
-            $addressData['shipping'] = [];
-            $addressData['shipping']['isSaved'] = false;
-            $address1 = [];
-            array_push($address1, "");
-            $addressData['shipping']['address1'] = $address1;
-
             $params = request()->input("params");
-            /**
-             * 
-             * 
-             * 
-             * 
-             */
             if(!empty($params)) {
 
+                $addressData = [];
+                $addressData['billing'] = [];
                 $address1 = [];
-               array_push($address1, $params['address']);
+                array_push($address1, $params['address']);
 
                 $addressData['billing']['city'] = $params['city'];
                 $addressData['billing']['email'] = $params['email'];
@@ -883,31 +889,94 @@ class ProductController extends Controller
                 $addressData['billing']['state'] = $params['province'];
                 $addressData['billing']['postcode'] = $params['code'];
 
+                //$addressData['shipping'] = [];
+                $addressData['shipping']['isSaved'] = false;
+                //$address1 = [];
+                //array_push($address1, "");
                 $addressData['shipping']['address1'] = $address1;
+
+                $addressData['billing']['address1'] = implode(PHP_EOL, $addressData['billing']['address1']);
+
+                $addressData['shipping']['address1'] = implode(PHP_EOL, $addressData['shipping']['address1']);
+                if(!isset($addressData['shipping']['email'])) {
+                    $addressData['shipping'] = $addressData['billing'];
+                }
+                
+
+                Log::error("paypal pay address ".$refer.'--'.json_encode($addressData));
+
+                if (
+                    Cart::hasError()
+                    || ! Cart::saveCustomerAddress($addressData)
+                ) {
+                    return new JsonResource([
+                        'redirect' => true,
+                        'data'     => route('shop.checkout.cart.index'),
+                    ]);
+                }
+
+            }else{
+
+                $order = (array)$order;
+
+                //var_dump($order);
+
+                $purchase_units = (array)$order['result']->purchase_units;
+                $input = (array)$purchase_units[0]->shipping;
+                $payer = (array)$order['result']->payer;
+                $payment_source = (array)$order['result']->payment_source;
+                $payment_source_paypal = (array)$payment_source['paypal'];
+
+                //Log::info("paypal source".json_encode($payment_source));
+                //Log::info("paypal source paypal".json_encode($payment_source_paypal));
+
+                // 添加地址内容
+                $addressData = [];
+                $addressData['billing'] = [];
+                $address1 = [];
+                $address_line_2 = isset($input['address']->address_line_2) ? $input['address']->address_line_2 : "";
+                array_push($address1, $input['address']->address_line_1. $address_line_2);
+                $addressData['billing']['city'] = isset($input['address']->admin_area_2) ? $input['address']->admin_area_2 : "";
+                $addressData['billing']['country'] = $input['address']->country_code;
+                $addressData['billing']['email'] = $payer['email_address'];
+                $addressData['billing']['first_name'] = $payer['name']->given_name;
+                $addressData['billing']['last_name'] = $payer['name']->surname;
+                $national_number = isset($payment_source_paypal['phone_number']) ? $payment_source_paypal['phone_number']->national_number : "";
+                $addressData['billing']['phone'] =  $national_number;
+                $addressData['billing']['postcode'] = isset($input['address']->postal_code) ? $input['address']->postal_code : "";
+                $addressData['billing']['state'] = isset($input['address']->admin_area_1) ? $input['address']->admin_area_1 : "";
+                $addressData['billing']['use_for_shipping'] = true;
+                $addressData['billing']['address1'] = $address1;
+                $addressData['shipping'] = [];
+                $addressData['shipping']['isSaved'] = false;
+                $address1 = [];
+                array_push($address1, "");
+                $addressData['shipping']['address1'] = $address1;
+
+                $addressData['billing']['address1'] = implode(PHP_EOL, $addressData['billing']['address1']);
+
+                $addressData['shipping']['address1'] = implode(PHP_EOL, $addressData['shipping']['address1']);
+
+                if (
+                    Cart::hasError()
+                    || ! Cart::saveCustomerAddress($addressData)
+                ) {
+                    return new JsonResource([
+                        'redirect' => true,
+                        'data'     => route('shop.checkout.cart.index'),
+                    ]);
+                }
+    
+                $this->smartButton->captureOrder(request()->input('orderData.orderID'));
+    
+                //$this->smartButton->AuthorizeOrder(request()->input('orderData.orderID'));
+    
+                $request->session()->put('last_order_id', request()->input('orderData.orderID'));
+
             }
 
-            $addressData['billing']['address1'] = implode(PHP_EOL, $addressData['billing']['address1']);
-
-            $addressData['shipping']['address1'] = implode(PHP_EOL, $addressData['shipping']['address1']);
-
-            
-            
 
             //Log::info("address data-".$refer.'--'.json_encode($addressData));
-
-            if (
-                Cart::hasError()
-                || ! Cart::saveCustomerAddress($addressData)
-            ) {
-                return new JsonResource([
-                    'redirect' => true,
-                    'data'     => route('shop.checkout.cart.index'),
-                ]);
-            }
-
-            $this->smartButton->captureOrder(request()->input('orderData.orderID'));
-
-            $request->session()->put('last_order_id', request()->input('orderData.orderID'));
 
             return $this->saveOrder();
         } catch (\Exception $e) {
@@ -944,10 +1013,13 @@ class ProductController extends Controller
 
             Cart::deActivateCart();
 
-            session()->flash('order', $order);
+            //session()->flash('order', $order);
 
+            $outputorder = $order->shipping_address;
+            
             return response()->json([
                 'success' => true,
+                'outputorder' => $outputorder,
             ]);
         } catch (\Exception $e) {
             session()->flash('error', trans('shop::app.common.error'));
@@ -984,14 +1056,17 @@ class ProductController extends Controller
 
         $billingAddressLines = $this->getAddressLines($cart->billing_address->address1);
 
+        $data = [];
+
+
+
         $data = [
             'intent' => 'CAPTURE',
             'application_context' => [
                 //'shipping_preference' => 'NO_SHIPPING',
                 'shipping_preference' => 'GET_FROM_FILE', // 用户选择自己的地址内容
             ],
-            
-
+        
             'purchase_units' => [
                 [
                     'amount'   => [
@@ -1057,6 +1132,65 @@ class ProductController extends Controller
             ]);
             */
         }
+        $input['payment_vault'] = isset($input['payment_vault']) ? $input['payment_vault'] : "0";
+        $paypal_vault = Session::get('paypal_vault');
+        if($input['payment_vault']=='1') {
+             // for vault
+                if(empty($paypal_vault)) {
+                    $data["payment_source"] = [
+                        "paypal" => [
+                            "attributes" => [
+                                "vault" => [
+                                    "store_in_vault" => "ON_SUCCESS",
+                                    "usage_type" => "MERCHANT",
+                                    "customer_type" => "CONSUMER"
+                                ]
+                            ],
+                            "experience_context" => [
+                                "return_url" => $input['payment_return_url'],
+                                'cancel_url' => $input['payment_cancel_url'],
+                            ]
+                        ]
+                    ];
+                }else{
+                    $data["payment_source"] = [
+                        "paypal" => [
+                            "vault_id" => $paypal_vault['id'],
+                            "experience_context" => [
+                                "return_url" => $input['payment_return_url'],
+                                'cancel_url' => $input['payment_cancel_url'],
+                            ]
+                        ]
+                    ];
+                }
+                // $data["payment_source"] = [
+                //     "paypal" => [
+                //         "attributes" => [
+                //             "vault" => [
+                //                 "store_in_vault" => "ON_SUCCESS",
+                //                 "usage_type" => "MERCHANT",
+                //                 "customer_type" => "CONSUMER"
+                //             ]
+                //         ],
+                //         "experience_context" => [
+                //             "return_url" => route("checkout.v4.product.page", ["slug" => "8987102380314"]),
+                //             'cancel_url' => route("checkout.v4.product.page",["slug"=>"8987102380314"]),
+                //         ]
+                //     ]
+                // ];
+
+
+             
+        }
+
+        
+
+        // if(!empty($paypal_vault)) {
+        //     Log::info("paypal vault ". json_encode($paypal_vault));
+        //     $data["payment_source"]["paypal"]["vault_id"] = $paypal_vault['id'];
+        // }
+
+        Log::info("post to paypal data ". json_encode($data));
 
         return $data;
     }
@@ -1205,6 +1339,69 @@ class ProductController extends Controller
         return view('onebuy::checkout-success', compact('product','fb_ids','ob_adv_id'));
     }
 
+    public function checkout_success_v4($order_id, Request $request) {
+        $order = [];
+
+        $orderTrans = $this->orderTransactionRepository->where('transaction_id', $order_id)->select(['order_id'])->first();
+        if(!is_null($orderTrans)) {
+            $order = $this->orderRepository->findOrFail($orderTrans->order_id);
+        }else{
+            $order = $this->orderRepository->findOrFail($order_id);
+        }
+        
+
+        $fb_ids = config('onebuy.fb_ids');
+        $ob_adv_id = config('onebuy.ob_adv_id');
+        $crm_channel = config('onebuy.crm_channel');
+        $refer = $request->session()->get('refer');
+        $gtag = config('onebuy.gtag');
+
+        $quora_adv_id = config('onebuy.quora_adv_id');
+
+        $countries = config("countries");
+
+        $default_country = config('onebuy.default_country');
+        $order_pre = config('shopify.order_pre');
+
+        $recommend_products = [];
+
+        $paypal_id_token = $request->session()->get('paypal_id_token');
+        $paypal_access_token = $request->session()->get('paypal_access_token');
+
+        //var_dump($paypal_access_token, $paypal_id_token);
+
+        if(empty($paypal_id_token)) {
+            $paypal_id_token = $this->smartButton->getIDAccessToken();
+            $paypal_access_token = $paypal_id_token->result->access_token;
+            $paypal_id_token = $paypal_id_token->result->id_token;
+
+            
+            
+            $request->session()->put('paypal_id_token', $paypal_id_token);
+            $request->session()->put('paypal_access_token', $paypal_access_token);
+        }
+
+        $payment_airwallex_vault = $request->session()->get('payment_airwallex_vault');
+
+        $payment_paypal_vault = $request->session()->get('payment_paypal_vault');
+
+        return view('onebuy::checkout-success-v4', compact('order',
+            "fb_ids",
+            "ob_adv_id",
+            "crm_channel",
+            "refer",
+            "gtag",
+            "quora_adv_id",
+            "countries",
+            "default_country",
+            "order_pre",
+            "paypal_id_token",
+            "payment_airwallex_vault",
+            "payment_paypal_vault",
+            "recommend_products"
+        ));
+    }
+
     public function checkout_success_v2($order_id, Request $request) {
         $order = [];
 
@@ -1308,7 +1505,7 @@ class ProductController extends Controller
 
         $shopify_store_id = config('shopify.shopify_store_id');
 
-        $products = \Nicelizhi\Shopify\Models\ShopifyProduct::where("shopify_store_id",$shopify_store_id)->where("status", "active")->select(['title','handle',"variants","images"])->limit(3)->get();
+        $products = \Nicelizhi\Shopify\Models\ShopifyProduct::where("shopify_store_id",$shopify_store_id)->where("status", "active")->select(['product_id','title','handle',"variants","images"])->limit(3)->get();
 
         $recommended_info = [];
 
@@ -1326,6 +1523,7 @@ class ProductController extends Controller
             $recommended_info[$key] = [
                 "title" => $product->title,
                 "handle" => $product->handle,
+                "product_id" => $product->product_id,
                 "discount_price" => $variants[0]['price'],
                 "origin_price" => $variants[0]['compare_at_price'],
                 "image_url" => $images[0]['src'],
