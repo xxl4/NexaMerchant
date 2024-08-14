@@ -1505,7 +1505,7 @@ class ProductController extends Controller
 
         $shopify_store_id = config('shopify.shopify_store_id');
 
-        $products = \Nicelizhi\Shopify\Models\ShopifyProduct::where("shopify_store_id",$shopify_store_id)->where("status", "active")->select(['product_id','title','handle',"variants","images"])->limit(3)->get();
+        $products = \Nicelizhi\Shopify\Models\ShopifyProduct::where("shopify_store_id",$shopify_store_id)->where("status", "active")->select(['product_id','title','handle',"variants","images"])->limit(10)->get();
 
         $recommended_info = [];
 
@@ -1516,9 +1516,22 @@ class ProductController extends Controller
             Cache::put("shopify_store_".$shopify_store_id, $shopifyStore, 3600);
         }
 
+        $i = 0;
+        $max = 3;
         foreach($products as $key=> $product) {
             $images = $product->images;
             $variants = $product->variants;
+
+            $online = \Webkul\Product\Models\Product::where("sku", $product->product_id)->first();
+            if(is_null($online)) {
+                continue;
+            }
+
+            if($i>=$max) {
+                break;
+            }
+
+            $i++;
 
             $recommended_info[$key] = [
                 "title" => $product->title,
