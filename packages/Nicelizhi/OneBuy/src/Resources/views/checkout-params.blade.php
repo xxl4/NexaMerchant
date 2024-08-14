@@ -1,178 +1,6 @@
 <script src="https://checkout-demo.airwallex.com/assets/elements.bundle.min.js"></script>
 <!-- <script src="https://checkout.airwallex.com/assets/elements.bundle.min.js"></script> -->
 <script>
-  var airwallex_vault = localStorage.getItem("airwallex_vault");
-      // STEP #2: Initialize the Airwallex global context for event communication
-      Airwallex.init({
-        env: 'demo', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
-        origin: window.location.origin, // Setup your event target to receive the browser events message
-        // components: ['cvc']
-      });
-    //const cardCvc = Airwallex.createElement('cvc');
-    
-    <?php if($payment_airwallex_vault==1) { ?>
-      const cvc = Airwallex.createElement('cvc');
-      cvc.mount('cvc'); 
-    <?php }else {?>
-      $('#expiry').show();
-      $('#cardNumber').show();
-      const cardNumber = Airwallex.createElement('cardNumber', {
-        allowedCardNetworks: ['visa', 'maestro', 'mastercard', 'amex', 'unionpay', 'jcb']
-      });
-      const cardExpiry = Airwallex.createElement('expiry');
-      const cvc = Airwallex.createElement('cvc');
-      cvc.mount('cvc'); 
-      cardNumber.mount('cardNumber');
-      cardExpiry.mount('expiry');
-    <?php } ?>
-
-      document.getElementById('payButton').addEventListener('click', () => {
-        createOrder()
-      });
-
-      function createOrder() {
-        paramsInit()
-        productParams.pay_type = 'airwallex';
-        // productParams.cus_id = localStorage.getItem('cus_id') ? localStorage.getItem('cus_id') : '';
-
-        //console.log(JSON.stringify(productParams));
-        //return false;
-        var url = '/onebuy/order/add/sync?currency={{ core()->getCurrentCurrencyCode() }}&_token={{ csrf_token() }}&time=' + new Date().getTime()+ "&force=" + localStorage.getItem("force");;
-
-        fetch(url, {
-            body: JSON.stringify(productParams),
-            method: 'POST',
-            headers: {
-            'content-type': 'application/json'
-            },
-        })
-        .then(function(res) {
-            return res.json()
-        })
-        .then(async function(res) {
-            crmTrack('add_pay')
-            var data = res;
-            console.log(data);
-            //return false;
-            if (data.result === 200) {
-
-                var order_info = data.order;
-                localStorage.setItem("order_id", order_info.id);
-
-                console.log(data, 'data===window.is_airwallex');
-
-                customer_id = localStorage.getItem('cus_id') ? localStorage.getItem('cus_id') : '';
-                console.log(customer_id, 'airwallex_vault customer id ==')
-                payment_consent_id = localStorage.getItem('payment_consent_id') ? localStorage.getItem('payment_consent_id') : '';
-
-                // const aUrl = "/onebuy/order/confirm?currency={{ core()->getCurrentCurrencyCode() }}&_token={{ csrf_token() }}&payment_intent_id=" + data.payment_intent_id + "&order_id=" + data.order.id + "&cus_id=" + customer_id;
-                // let aResponse = await fetch(aUrl);
-                // if (!aResponse.ok) {
-                //     throw new Error('Network response was not ok');
-                // }
-                // let aData = await aResponse.json();
-                // console.log(aData, 'aData==')
-                <?php if($payment_airwallex_vault==1) { ?>
-
-                    console.log(airwallex_vault, 'customerId==')
-                    console.log("payment_consents", payment_consent_id)
-                    console.log("customer_id", customer_id)
-                    console.log("data.payment_intent_id", data.payment_intent_id)
-                    console.log("data.client_secret", data.client_secret)
-                    Airwallex.confirmPaymentIntent({
-                        id: data.payment_intent_id, // intent id(Optional)
-                        client_secret: data.client_secret, // client secret
-                        // currency: '{{ core()->getCurrentCurrencyCode() }}', // currency
-                        element: cvc, // either the card element or card number element depends on the element you integrate,
-                        payment_consent_id: payment_consent_id // 'merchant' for MIT and 'customer' for CIT
-                    }).then((response) => {
-                        // STEP #6b: Listen to the request response
-                        /* handle create consent response in your business flow */
-                        $('#loading').hide();
-
-                        // window.location.href = "/onebuy/checkout/v4/success/" + data.order.id;
-                        return false;
-                    });
-
-                <?php }else { ?>
-
-                    console.log(2222)
-                    Airwallex.confirmPaymentIntent({
-                    element: cardNumber,
-                    id: data.payment_intent_id,
-                    // customer_id: data.customer.id,
-                    client_secret: data.client_secret,
-                    // next_triggered_by: "customer",
-                    payment_method: {
-                        billing: {
-                        email: data.billing.email,
-                        first_name: data.billing.first_name,
-                        last_name: data.billing.last_name,
-                        // date_of_birth: '1990-01-01',
-                        // phone_number: '13999999999',
-                        address: {
-                            city: data.billing.city,
-                            country_code: data.billing.country,
-                            postcode: data.billing.postcode,
-                            state: data.billing.state,
-                            street: data.billing.address1
-                        }
-                        }
-                    }
-                }).then((response) => {
-
-                $('#loading').hide();
-
-                window.location.href = "/onebuy/checkout/v2/success/" + data.order.id;
-                return false;
-
-                }).catch((response) => {
-                $('#loading').hide();
-                console.log("catch");
-                console.log(JSON.stringify(response))
-
-                alert(response.message)
-
-                return false;
-
-                });   
-
-
-                
-                
-                <?php } ?>
-                
-                
-            } else {
-                console.log('else====');
-                $('#loading').hide();
-                var pay_error = data.error;
-                alert(res.error)
-                if (pay_error && pay_error.length) {
-                    $('#checkout-error').html(pay_error.join('<br />') + '<br /><br />');
-                    $('#checkout-error').show();
-                }
-            }
-        })
-        .catch(function(err) {
-            $('#loading').hide();
-        })
-        }
-
-        function isEmpty(value) {
-      if (value == null) return true;
-
-      if (typeof value === 'string' && value.trim() === '') return true;
-
-      if (Array.isArray(value) && value.length === 0) return true;
-
-      if (typeof value === 'object' && Object.keys(value).length === 0 && value.constructor === Object) return true;
-
-      return false;
-    }
-</script>
-
-<script>
     var shippingAddress = '<?php echo addslashes(json_encode($order->shipping_address)); ?>';
     shippingAddress = JSON.parse(shippingAddress)
     console.log(shippingAddress, 'shippingAddress=')
@@ -398,6 +226,9 @@
         }
         productParams.products[0].attr_id = attr_id;
         productParams.products[0].attribute_name = attribute_name;
+        productParams.payment_vault = '<?php echo $payment_paypal_vault;?>'
+        productParams.payment_airwallex_vault = '<?php echo $payment_airwallex_vault;?>'
+        productParams.payment_paypal_vault = '<?php echo $payment_paypal_vault;?>'
         if (!isEmpty(attr_id)) {
             const index2 = productData.attr.index2;
             for (const key in index2) {
@@ -431,4 +262,174 @@
         productParams.products[0].product_id = productData.product.id; 
         console.log(productParams, 'productParams')
     }
+</script>
+
+<script>
+  console.log(<?php echo $payment_airwallex_vault; ?>,<?php echo $payment_paypal_vault; ?>,'payment_airwallex_vault==')
+      // STEP #2: Initialize the Airwallex global context for event communication
+      Airwallex.init({
+        env: 'demo', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
+        origin: window.location.origin, // Setup your event target to receive the browser events message
+        // components: ['cvc']
+      });
+    //const cardCvc = Airwallex.createElement('cvc');
+    
+    <?php if($payment_airwallex_vault==1) { ?>
+      const cvc = Airwallex.createElement('cvc');
+      cvc.mount('cvc'); 
+    <?php }else {?>
+      $('#expiry').show();
+      $('#cardNumber').show();
+      const cardNumber = Airwallex.createElement('cardNumber', {
+        allowedCardNetworks: ['visa', 'maestro', 'mastercard', 'amex', 'unionpay', 'jcb']
+      });
+      const cardExpiry = Airwallex.createElement('expiry');
+      const cvc = Airwallex.createElement('cvc');
+      cvc.mount('cvc'); 
+      cardNumber.mount('cardNumber');
+      cardExpiry.mount('expiry');
+    <?php } ?>
+
+      document.getElementById('payButton').addEventListener('click', () => {
+        createOrder()
+      });
+
+      function createOrder() {
+        paramsInit()
+        productParams.pay_type = 'airwallex';
+        <?php if($payment_airwallex_vault==1) { ?>
+          productParams.cus_id = localStorage.getItem('cus_id') ? localStorage.getItem('cus_id') : '';
+        <?php } ?>
+
+        //console.log(JSON.stringify(productParams));
+        //return false;
+        var url = '/onebuy/order/add/sync?currency={{ core()->getCurrentCurrencyCode() }}&_token={{ csrf_token() }}&time=' + new Date().getTime()+ "&force=" + localStorage.getItem("force");;
+
+        fetch(url, {
+            body: JSON.stringify(productParams),
+            method: 'POST',
+            headers: {
+            'content-type': 'application/json'
+            },
+        })
+        .then(function(res) {
+            return res.json()
+        })
+        .then(async function(res) {
+            crmTrack('add_pay')
+            var data = res;
+            console.log(data);
+            //return false;
+            if (data.result === 200) {
+
+                var order_info = data.order;
+                localStorage.setItem("order_id", order_info.id);
+
+                console.log(data, 'data===window.is_airwallex');
+
+                customer_id = localStorage.getItem('cus_id') ? localStorage.getItem('cus_id') : '';
+                payment_consent_id = localStorage.getItem('payment_consent_id') ? localStorage.getItem('payment_consent_id') : '';
+
+                // const aUrl = "/onebuy/order/confirm?currency={{ core()->getCurrentCurrencyCode() }}&_token={{ csrf_token() }}&payment_intent_id=" + data.payment_intent_id + "&order_id=" + data.order.id + "&cus_id=" + customer_id;
+                // let aResponse = await fetch(aUrl);
+                // if (!aResponse.ok) {
+                //     throw new Error('Network response was not ok');
+                // }
+                // let aData = await aResponse.json();
+                // console.log(aData, 'aData==')
+                console.log(<?php echo $payment_airwallex_vault; ?>, 'payment_airwallex_vault==')
+                <?php if($payment_airwallex_vault==1) { ?>
+
+                    console.log(<?php echo $payment_airwallex_vault; ?>, 'payment_airwallex_vault==')
+                    Airwallex.confirmPaymentIntent({
+                        id: data.payment_intent_id, // intent id(Optional)
+                        client_secret: data.client_secret, // client secret
+                        // currency: '{{ core()->getCurrentCurrencyCode() }}', // currency
+                        element: cvc, // either the card element or card number element depends on the element you integrate,
+                        payment_consent_id: payment_consent_id // 'merchant' for MIT and 'customer' for CIT
+                    }).then((response) => {
+                        // STEP #6b: Listen to the request response
+                        /* handle create consent response in your business flow */
+                        $('#loading').hide();
+
+                        window.location.href = "/onebuy/checkout/v4/success/" + data.order.id;
+                        return false;
+                    });
+
+                <?php }else { ?>
+
+                    console.log(2222)
+                    Airwallex.confirmPaymentIntent({
+                    element: cardNumber,
+                    id: data.payment_intent_id,
+                    // customer_id: data.customer.id,
+                    client_secret: data.client_secret,
+                    // next_triggered_by: "customer",
+                    payment_method: {
+                        billing: {
+                        email: data.billing.email,
+                        first_name: data.billing.first_name,
+                        last_name: data.billing.last_name,
+                        // date_of_birth: '1990-01-01',
+                        // phone_number: '13999999999',
+                        address: {
+                            city: data.billing.city,
+                            country_code: data.billing.country,
+                            postcode: data.billing.postcode,
+                            state: data.billing.state,
+                            street: data.billing.address1
+                        }
+                        }
+                    }
+                }).then((response) => {
+
+                $('#loading').hide();
+
+                window.location.href = "/onebuy/checkout/v2/success/" + data.order.id;
+                return false;
+
+                }).catch((response) => {
+                $('#loading').hide();
+                console.log("catch");
+                console.log(JSON.stringify(response))
+
+                alert(response.message)
+
+                return false;
+
+                });   
+
+
+                
+                
+                <?php } ?>
+                
+                
+            } else {
+                console.log('else====');
+                $('#loading').hide();
+                var pay_error = data.error;
+                alert(res.error)
+                if (pay_error && pay_error.length) {
+                    $('#checkout-error').html(pay_error.join('<br />') + '<br /><br />');
+                    $('#checkout-error').show();
+                }
+            }
+        })
+        .catch(function(err) {
+            $('#loading').hide();
+        })
+        }
+
+        function isEmpty(value) {
+          if (value == null) return true;
+
+          if (typeof value === 'string' && value.trim() === '') return true;
+
+          if (Array.isArray(value) && value.length === 0) return true;
+
+          if (typeof value === 'object' && Object.keys(value).length === 0 && value.constructor === Object) return true;
+
+          return false;
+        }
 </script>

@@ -1485,7 +1485,8 @@
       phpsku = '<?php echo $data['sku']; ?>',
       phpsellPoints = '<?php echo addslashes(json_encode($data['sellPoints'])); ?>',
       payment_vault = 1,
-      payment_vault2 = 1
+      payment_vault2 = 1,
+      airwallex_vault = 1;
     phppackage_products.forEach(function(index, item) {
       JSON.parse(item)
     })
@@ -1526,7 +1527,8 @@
         var favicon = '/checkout/v2/images/favicon.webp'
         $('#favicon-icon').attr('href', favicon)
       }
-      localStorage.setItem("airwallex_vault", 1);
+      airwallex_vault = 1;
+      payment_vault = 1;
       payTypeShow = data.payments
       var attrList = data.attr.attributes
       paypal_pay_acc = data.paypal_client_id
@@ -1888,9 +1890,9 @@
     }
     function airwallexVault(radio) {
       if (radio.checked) {
-        localStorage.setItem("airwallex_vault", 1);
+        airwallex_vault = 1;
       } else {
-        localStorage.setItem("airwallex_vault", 0);
+        airwallex_vault = 0;
       }
     }
     function sortObjectByValue(obj) {
@@ -3080,8 +3082,6 @@
               */
               // window.alert(event.detail);
               console.log(event.detail, event, 'applePay ===  success');
-              localStorage.setItem("airwallex_vault", 0);
-              localStorage.setItem('payment_vault', 0);
               window.location.href = "/onebuy/checkout/v4/success/" + orderId;
             });
             domApplePay.addEventListener('onError', (event) => {
@@ -3156,8 +3156,6 @@
               // window.alert(event.detail);
               // console.log(event.detail);
               console.log(event.detail, event, 'googlePay ===  success');
-              localStorage.setItem("airwallex_vault", 0);
-              localStorage.setItem('payment_vault', 0);
               window.location.href = "/onebuy/checkout/v4/success/" + orderId;
             });
             domGooglePay.addEventListener('onError', (event) => {
@@ -3621,7 +3619,6 @@
       }).then(function(res) {
         $('#loading').hide();
         if (res.success == true) {
-          localStorage.setItem("airwallex_vault", 0);
           window.location.href = '/onebuy/checkout/v4/success/' + localStorage.getItem('order_id');
           return true;
         }
@@ -3671,6 +3668,8 @@
               $('#' + (error_id || 'paypal-error')).hide()
               params.payment_method = 'paypal'
               params.payment_vault = payment_vault == 1 ? 1 : 0;
+              params.payment_paypal_vault = payment_vault == 1 ? 1 : 0;
+              params.payment_airwallex_vault = 0;
               localStorage.setItem("payment_vault", params.payment_vault);
               return fetch(url, {
                   body: JSON.stringify(params),
@@ -3825,7 +3824,6 @@
                   //console.log(res);
 
                   if (res.success == true) {
-                    localStorage.setItem("airwallex_vault", 0);
                     window.location.href =
                       '/onebuy/checkout/v4/success/' +
                       localStorage.getItem('order_id')
@@ -3965,7 +3963,9 @@
           createOrder: function(data, actions) {
             getParams('paypal_stand')
             var errIsShow = skuIsScelect()
-            params.payment_vault = payment_vault2 == 1 ? 1 : 0;
+            params.payment_vault = payment_vault == 1 ? 1 : 0;
+            params.payment_paypal_vault = payment_vault == 1 ? 1 : 0;
+            params.payment_airwallex_vault = 0;
             localStorage.setItem("payment_vault", params.payment_vault);
             var emailErr = validateEmail($('input[name="email"]').val())
             console.log(emailErr, 'emailErr');
@@ -4072,7 +4072,6 @@
               localStorage.setItem('outputorder', JSON.stringify(res.outputorder))
               if (res.success == true) {
                 //Goto('/checkout/v1/success/'+localStorage.getItem('order_id'));
-                localStorage.setItem("airwallex_vault", 0);
                 window.location.href = '/onebuy/checkout/v4/success/' + localStorage.getItem('order_id');
                 return true;
                 //actions.redirect('/checkout/v1/success/'+localStorage.getItem('order_id'));
@@ -4157,6 +4156,8 @@
       if (pay_type == "payoneer" || pay_type == 'pacypay') {
         url = '/order/add/async?time=' + new Date().getTime();
       }
+      params.payment_paypal_vault = 0;
+      params.payment_airwallex_vault = 1;
       console.log(params, '===params====')
       fetch(url, {
           body: JSON.stringify(params),
