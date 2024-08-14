@@ -82,11 +82,7 @@ class AirwallexController extends Controller
 
             if ($order) {
                 Log::info("airwallex notification received for order id:" . $transactionId);    
-                
-                
-                
                 $status = $input['data']['object']['status'];
-                
                 if ($status === 'SUCCEEDED' && $input['name']==='payment_intent.succeeded') {
 
                     if($order->status!=='pending') {
