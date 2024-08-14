@@ -187,7 +187,7 @@
             id: localStorage.getItem('order_id'),
             orderData: orderData,
             data: data,
-            productParams: paypalParams
+            params: paypalParams
           }
           console.log(request_params, '===request_params===');
           var url = "/onebuy/order/status?_token={{ csrf_token() }}&currency={{ core()->getCurrentCurrencyCode() }}";
@@ -265,7 +265,7 @@
 </script>
 
 <script>
-  console.log(<?php echo $payment_airwallex_vault; ?>,<?php echo $payment_paypal_vault; ?>,'payment_airwallex_vault==')
+  console.log('<?php echo $payment_airwallex_vault; ?>','<?php echo $payment_paypal_vault; ?>','payment_airwallex_vault==')
       // STEP #2: Initialize the Airwallex global context for event communication
       Airwallex.init({
         env: 'demo', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
@@ -337,10 +337,8 @@
                 // }
                 // let aData = await aResponse.json();
                 // console.log(aData, 'aData==')
-                console.log(<?php echo $payment_airwallex_vault; ?>, 'payment_airwallex_vault==')
                 <?php if($payment_airwallex_vault==1) { ?>
 
-                    console.log(<?php echo $payment_airwallex_vault; ?>, 'payment_airwallex_vault==')
                     Airwallex.confirmPaymentIntent({
                         id: data.payment_intent_id, // intent id(Optional)
                         client_secret: data.client_secret, // client secret

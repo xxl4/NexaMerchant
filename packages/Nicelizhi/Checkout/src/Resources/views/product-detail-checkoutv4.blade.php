@@ -1508,7 +1508,7 @@
     params.payment_cancel_url = window.location.href;
   </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/5.0.4/js/swiper.js"></script>
-  <script src="/checkout/v3/js/main.js?v=13"></script>
+  <script src="/checkout/v4/js/main.js?v=13"></script>
   <script>
     $(function() {
       if (countries1 == 'fr' || countries1 == 'es') {
