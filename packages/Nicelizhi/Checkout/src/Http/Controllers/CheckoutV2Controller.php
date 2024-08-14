@@ -135,9 +135,11 @@ class CheckoutV2Controller extends Controller{
 
         $crm_channel = config('onebuy.crm_channel');
 
+        $gtag = config('onebuy.gtag');
+
         $data = $this->ProductDetail($slug);
 
-        return view('checkout::product-detail-'.$this->view_prefix_key, compact('slug','comments','faqItems','product','default_country',"payments","payments_default","refer","crm_channel", "data"));
+        return view('checkout::product-detail-'.$this->view_prefix_key, compact('slug','comments','faqItems','product','default_country',"payments","payments_default","refer","crm_channel", "data", "gtag"));
     }
 
     public function ProductDetail($slug) {

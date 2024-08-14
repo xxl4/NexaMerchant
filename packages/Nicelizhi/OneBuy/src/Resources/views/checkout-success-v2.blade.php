@@ -870,7 +870,9 @@
   <footer class="main__footer" role="contentinfo">
     @include('onebuy::footer-container-'.strtolower($default_country))
   </footer>
-
+  <?php if($default_country=='US') {?>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-16498281514"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'AW-16498281514'); </script>
+  <?php } ?>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=<?php echo $gtag; ?>"></script>
   <script>
