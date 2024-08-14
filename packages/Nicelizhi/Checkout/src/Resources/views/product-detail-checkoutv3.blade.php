@@ -4044,8 +4044,9 @@
 
               }).catch((response) => {
                 $('#loading').hide();
-
+                console.log(1)
                 alert(response.message)
+                localStorage.setItem("force", 1);
                 $('#checkout-error').html(response.message + '<br /><br />');
                 $('#checkout-error').show();
 
@@ -4056,7 +4057,9 @@
           } else {
             $('#loading').hide();
             var pay_error = data.error;
+            console.log(2)
             alert(res.error)
+            localStorage.setItem("force", 1);
             if (pay_error && pay_error.length) {
               $('#checkout-error').html(pay_error.join('<br />') + '<br /><br />');
               $('#checkout-error').show();
