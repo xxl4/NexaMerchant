@@ -32,15 +32,26 @@
 <link href="https://cdn.jsdelivr.net/npm/jquery-colorbox@1.6.4/example1/colorbox.min.css" rel="stylesheet">
 <!-- Facebook Pixel Code -->
 <script>
-  !function(f,b,e,v,n,t,s)
-  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-  n.queue=[];t=b.createElement(e);t.async=!0;
-  t.src=v;s=b.getElementsByTagName(e)[0];
-  s.parentNode.insertBefore(t,s)}(window, document,'script',
-  'https://connect.facebook.net/en_US/fbevents.js');
-  fbq('init', '844340774106979');
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '410784348009950');
+    fbq('init', '946596946391407');
+    fbq('init', '1481572959432110');
+  </script>
+  <noscript>
+    <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=410784348009950&ev=PageView&noscript=1"/>
+    <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=946596946391407&ev=PageView&noscript=1"/>
+    <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1481572959432110&ev=PageView&noscript=1"/>
+  </noscript>
+  <!-- End Facebook Pixel Code -->
+    <!-- Facebook Pixel Code -->
+<script>
   fbq('track', 'PageView');
   fbq('track', 'ViewContent');
 </script>
@@ -1762,7 +1773,8 @@ function GotoNotRequest(url) {
                                     //var info = res.info;
                                     //if(info.pay_status) {
                                         //Goto('/template-common/en/thankyou1/?id='+localStorage.getItem('order_id')+'&client_secret='+data.orderID);
-                                        Goto('/onebuy/checkout/success?id='+localStorage.getItem('order_id'));
+                                        //Goto('/onebuy/checkout/success?id='+localStorage.getItem('order_id'));
+                                        Goto('/checkout/v1/success/'+localStorage.getItem('order_id'));
                                     //}
                                 }
                                 if(res.error == 'INSTRUMENT_DECLINED') {
@@ -1990,7 +2002,7 @@ function GotoNotRequest(url) {
                         $.each(data.form, function(k, v) {
 
                             if(k=='cancel_return') v = window.location.href;
-                            //if(k=='return') v = "<?php echo route('onebuy.checkout.success')?>";
+                            
                             /// do stuff
                             paypal_form +='<input type="hidden" name="'+k+'" value="'+v+'">';
                         });

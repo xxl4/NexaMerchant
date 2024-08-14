@@ -31,12 +31,15 @@ class Currency
                 core()->setCurrentCurrency($currencyCode);
 
                 session()->put('currency', $currencyCode);
+                //Log::info("GET currency ". $currencyCode);
             }
         } else {
             if ($currencyCode = session()->get('currency')) {
                 core()->setCurrentCurrency($currencyCode);
+                //Log::info("SESSION currency ". $currencyCode);
             } else {
                 core()->setCurrentCurrency(core()->getChannelBaseCurrencyCode());
+                //Log::info("DEFAULT currency ". core()->getChannelBaseCurrencyCode());
             }
         }
 

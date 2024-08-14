@@ -1,6 +1,6 @@
 <div class="footer-container">
 <div class="copyright-block">
-©2016- Hatme
+©2016-<?php echo date("Y");?> @lang("onebuy::app.product.brand")
 </div>
 <style>
     .phone-block {
@@ -22,26 +22,26 @@
 </style>
 <script>
 			$(document).ready(function(){
-				$(".ajax").colorbox();
+				$(".ajax").colorbox({width:"90%"});
 			});
 		</script>
 <div class="phone-block">
      </div>
     <div class="terms-block">
-            <a class='ajax' href="/onebuy/page/shipping-policy?locale={{ app()->getLocale() }}" target="_blank">
+            <a class='ajax' href="/onebuy/page/shipping-policy?locale=<?php echo strtolower($default_country);?>" target="_blank">
          @lang('onebuy::app.product.footer.Shipping Delivery') </a>
-            <a class='ajax' href="/onebuy/page/refund-policy?locale={{ app()->getLocale() }}" target="_blank">
+            <a class='ajax' href="/onebuy/page/refund-policy?locale=<?php echo strtolower($default_country);?>" target="_blank">
          @lang('onebuy::app.product.footer.Refund policy')  </a>
-            <a class='ajax' href="/onebuy/page/about-us?locale={{ app()->getLocale() }}" target="_blank" >
+            <a class='ajax' href="/onebuy/page/about-us?locale=<?php echo strtolower($default_country);?>" target="_blank" >
          @lang('onebuy::app.product.footer.About US')</a>
-            <a class='ajax' href="/onebuy/page/privacy-policy?locale={{ app()->getLocale() }}" target="_blank" >
+            <a class='ajax' href="/onebuy/page/privacy-policy?locale=<?php echo strtolower($default_country);?>" target="_blank" >
          @lang('onebuy::app.product.footer.Privacy Policy') </a>
-            <a class='ajax' href="/onebuy/page/contact-us?locale={{ app()->getLocale() }}" target="_blank">
+            <a class='ajax' href="/onebuy/page/contact-us?locale=<?php echo strtolower($default_country);?>" target="_blank">
          @lang('onebuy::app.product.footer.Contact Us')  </a>
-            <a class='ajax' href="/onebuy/page/Impressum?locale={{ app()->getLocale() }}" target="_blank" >Impressum</a>
+            <a class='ajax' href="/onebuy/page/Impressum?locale=<?php echo strtolower($default_country);?>" target="_blank" >Impressum</a>
     </div>
     <div class="dmca_logo">
-      <a href="//www.dmca.com/Protection/Status.aspx?ID=12ec7509-f986-41d6-81e0-78ae55efbf30" title="DMCA.com Protection Status" class="dmca-badge" target="_blank"> <img src ="https://images.dmca.com/Badges/dmca_protected_sml_120n.png?ID=12ec7509-f986-41d6-81e0-78ae55efbf30"  alt="DMCA.com Protection Status" /></a>  <script src="https://images.dmca.com/Badges/DMCABadgeHelper.min.js"> </script>
+      <img src ="https://img.funnelish.com/3947/36340/1662477222-dmca.png"  alt="DMCA.com Protection Status" />
     </div>
 
     

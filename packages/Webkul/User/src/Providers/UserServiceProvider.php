@@ -6,7 +6,9 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Routing\Router;
 use Webkul\User\Bouncer;
+use Webkul\User\BouncerManage;
 use Webkul\User\Facades\Bouncer as BouncerFacade;
+use Webkul\User\Facades\BouncerManage as BouncerManageFacade;
 use Webkul\User\Http\Middleware\Bouncer as BouncerMiddleware;
 
 class UserServiceProvider extends ServiceProvider
@@ -47,6 +49,11 @@ class UserServiceProvider extends ServiceProvider
 
         $this->app->singleton('bouncer', function () {
             return new Bouncer();
+        });
+
+        $loader->alias('BouncerManage', BouncerManageFacade::class);
+        $this->app->singleton('bouncer_manage', function () {
+            return new BouncerManage();
         });
     }
 }

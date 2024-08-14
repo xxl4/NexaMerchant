@@ -14,7 +14,7 @@ class Review
      */
     public function getReviews($product)
     {
-        return $product->reviews()->where('status', 'approved');
+        return $product->reviews->where('status', 'approved');
     }
 
     /**

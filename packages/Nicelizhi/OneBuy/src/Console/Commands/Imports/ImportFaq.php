@@ -15,14 +15,14 @@ class ImportFaq extends Command
      *
      * @var string
      */
-    protected $signature = 'onebuy:import:faq';
+    protected $signature = 'onebuy:import:faq {--force=}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'import faq';
+    protected $description = 'import faq {--force=}';
 
     /**
      * Create a new command instance.
@@ -34,6 +34,8 @@ class ImportFaq extends Command
         parent::__construct();
     }
 
+    private $cache_key = "faq";
+
     /**
      * Execute the console command.
      *
@@ -42,6 +44,19 @@ class ImportFaq extends Command
     public function handle()
     {
         $redis = Redis::connection('default');
+
+        $force = $this->option("force");
+
+        if($redis->exists($this->cache_key)) {
+            
+            if($force==true) {
+                $redis->del($this->cache_key);
+            }else{
+                $this->error($this->cache_key." is online");
+                return false;
+            }
+           
+        }
 
         $faq_file = storage_path("imports/")."faq.xlsx";
         if(!file_exists($faq_file)) {

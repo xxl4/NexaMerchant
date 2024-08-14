@@ -34,7 +34,7 @@
   t.src=v;s=b.getElementsByTagName(e)[0];
   s.parentNode.insertBefore(t,s)}(window, document,'script',
   'https://connect.facebook.net/en_US/fbevents.js');
-  fbq('init', '844340774106979');
+  fbq('init', '410784348009950');
   fbq('track', 'PageView');
   fbq('track', 'ViewContent');
 </script>
@@ -300,6 +300,10 @@
 <body>
 <div class="smb-body">
 <div class="header-container">
+<div class="header-container-title">
+<div class="header-container-title-content tc select_quantity_block"></div>
+<div class="header-img header-en-img"></div>
+</div>
 <div class="header-container-bg"></div>
 <style>
     .header-container-bg {
@@ -2177,7 +2181,7 @@ function GotoNotRequest(url) {
                         $.each(data.form, function(k, v) {
 
                             if(k=='cancel_return') v = window.location.href;
-                            //if(k=='return') v = "<?php echo route('onebuy.checkout.success')?>";
+                            
                             /// do stuff
                             paypal_form +='<input type="hidden" name="'+k+'" value="'+v+'">';
                         });

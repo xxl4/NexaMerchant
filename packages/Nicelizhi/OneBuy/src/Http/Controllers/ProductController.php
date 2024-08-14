@@ -22,6 +22,10 @@ use Illuminate\Support\Facades\Cache;
 use Webkul\Payment\Facades\Payment;
 use Illuminate\Support\Facades\Redis;
 use Webkul\CMS\Repositories\CmsRepository;
+use Webkul\CartRule\Repositories\CartRuleCouponRepository;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Session;
+use Webkul\Sales\Repositories\OrderTransactionRepository;
 
 
 class ProductController extends Controller
@@ -47,6 +51,8 @@ class ProductController extends Controller
         protected InvoiceRepository $invoiceRepository,
         protected Airwallex $airwallex,
         protected CmsRepository $cmsRepository,
+        protected CartRuleCouponRepository $cartRuleCouponRepository,
+        protected OrderTransactionRepository $orderTransactionRepository,
         protected ThemeCustomizationRepository $themeCustomizationRepository
     )
     {
@@ -60,10 +66,15 @@ class ProductController extends Controller
      * @return \Illuminate\View\View|\Exception
      */
     public function detail($slug, Request $request) {
-        \Debugbar::disable(); /* 开启后容易出现前端JS报错的情况 */
+        //\Debugbar::disable(); /* 开启后容易出现前端JS报错的情况 */
         
         $slugOrPath = $slug;
-        $product = $this->productRepository->findBySlug($slugOrPath);
+        $cache_key = "product_url_".$slugOrPath;
+        $product = Cache::get($cache_key);
+        if(empty($product)) {
+            $product = $this->productRepository->findBySlug($slugOrPath);
+            Cache::put($cache_key, $product);
+        }
 
         if (
             ! $product
@@ -74,25 +85,24 @@ class ProductController extends Controller
             abort(404);
         }
 
-        visitor()->visit($product);
+        //visitor()->visit($product);
 
         $refer = $request->input("refer");
 
         if(!empty($refer)) { 
             $request->session()->put('refer', $refer);
+            $request->session()->put('refer_'.$slug, $refer);
         }else{
             $refer = $request->session()->get('refer');
         }
 
-        
-
-        //var_dump($product);exit;
-
         // 四个商品的价格情况
         $package_products = [];
         $productBaseImage = product_image()->getProductBaseImage($product);
-        $package_products = $this->makeProducts($product, [2,1,3,4]);
+        $package_products = \Nicelizhi\OneBuy\Helpers\Utils::makeProducts($product, [2,1,3,4]);
 
+        // 获取 faq 数据
+        $redis = Redis::connection('default');
 
         // skus 数据
         $skus = [];
@@ -133,11 +143,13 @@ class ProductController extends Controller
                 $sku['sku_code'] = $sku_code;
                 $sku['sku_id'] = $sku_id;
     
+                // banner pic big url (pc)
                 $colorAttribute = $this->productAttributeValueRepository->findOneWhere([
                     'product_id'   => $sku_id,
                     'attribute_id' => 23,
                 ]);
     
+                // banner pic mobile url
                 $sizeAttribute = $this->productAttributeValueRepository->findOneWhere([
                     'product_id'   => $sku_id,
                     'attribute_id' => 24,
@@ -146,8 +158,6 @@ class ProductController extends Controller
                 $SizeattributeOptions = $attributeOptionRepository->findOneWhere(['id'=>$sizeAttribute['integer_value']]);
                 $ColorattributeOptions = $attributeOptionRepository->findOneWhere(['id'=>$colorAttribute['integer_value']]);
                 
-    
-               // $attribute_name = $ColorattributeOptions->admin_name.",".$SizeattributeOptions->admin_name;
                 $attribute_name = $SizeattributeOptions->admin_name.",".$ColorattributeOptions->admin_name;
     
                 $sku['attribute_name'] = $attribute_name;
@@ -161,9 +171,9 @@ class ProductController extends Controller
                 
                 $skus[] = $sku;
             }
-            Cache::put($cache_key, json_encode($skus), 36000);
-            Cache::put($size_cache_key, json_encode($qty_items_size), 36000);
-            Cache::put($color_cache_key, json_encode($qty_items_color), 36000);
+            Cache::put($cache_key, json_encode($skus));
+            Cache::put($size_cache_key, json_encode($qty_items_size));
+            Cache::put($color_cache_key, json_encode($qty_items_color));
         }else {
             $skus = json_decode($skus, JSON_OBJECT_AS_ARRAY);
         }
@@ -173,24 +183,10 @@ class ProductController extends Controller
         $cache_key = "product_attributes_".$product->id;
         $product_attributes = Cache::get($cache_key);
 
-        $cache_key_1 = "product_category_".$product->id;
-        $product_category = Cache::get($cache_key_1);
-        if(empty($product_category)) {
-            $categories = $product->categories;
-            if(isset($categories[0])) {
-                $product_category_id = intval($categories[0]->id);
-            }else{
-                $product_category_id = 9;
-            }
-            
-            Cache::put($cache_key_1, $product_category_id, 36000);
-        }else{
-            //$product_category = json_decode($product_category);
-            //var_dump($product_category);exit;
-            $product_category_id = intval($product_category);
-        }
 
+        //$product_attributes = [];
         if(empty($product_attributes)) {
+        //if(true) {
 
             $productViewHelper = new \Webkul\Product\Helpers\ConfigurableOption();
             $attributes = $productViewHelper->getConfigurationConfig($product);
@@ -200,45 +196,60 @@ class ProductController extends Controller
                 'product_id'   => $product->id,
                 'attribute_id' => 32,
             ]);
-            
-
-            //var_dump($customAttributeValues);exit;
 
             //获取到他底部的商品内容
         // $attributes = $this->productRepository->getSuperAttributes($product);
+            
+
             foreach($attributes['attributes'] as $key=>$attribute) {
+
+                $product_attr_sort_cache_key = "product_attr_sort_".$attribute['id']."_".$product->id;
+                $product_attr_sort = $redis->hgetall($product_attr_sort_cache_key); // get sku sort
+
+                //var_dump($attribute);
                 $attribute['name'] = $attribute['code'];
                 $options = [];
                 foreach($attribute['options'] as $kk=>$option) {
-
-                    // 获取商品图片内容
+                    // 
                     $is_sold_out = false;
                     if($attribute['id']==23) {
                         $new_id = $option['products'][0];
                         $new_product = $this->productRepository->find($new_id);
                         $NewproductBaseImage = product_image()->getProductBaseImage($new_product);
-                        $option['image'] = @$NewproductBaseImage['medium_image_url'];
+                        $option['image'] = @$NewproductBaseImage['large_image_url'];
+                        $option['big_image'] = @$NewproductBaseImage['large_image_url'];
                         
                     }else{
-                        $option['image'] = $productBaseImage['medium_image_url'];
-                        
+                        $option['image'] = $productBaseImage['large_image_url'];
+                        $option['large_image'] = @$productBaseImage['large_image_url'];
                     }
 
                     // 判断是否有对应的尺码内容
-
-                    
                     
                     $option['is_sold_out'] = $is_sold_out;
                     $option['name'] = $option['label'];
                     unset($option['admin_name']);
-                    $options[] = $option;
-                    //var_dump($option);
+
+                    if(!empty($product_attr_sort)) {
+                        $sort = isset($product_attr_sort[$option['id']]) ? intval($product_attr_sort[$option['id']]) : 4 ;
+                        $option['sort'] = $sort;
+                        $options[$sort] = $option;
+                    }else{
+                        $options[] = $option;
+                    }
+                    //var_dump($options);
                 }
+
+                //var_dump($options);
+                //array_multisort($options,)
+                //var_dump($options);
+                ksort($options);
+                //var_dump($options);exit;
 
                 $tip = "";
                 $tip_img = "";
                 if($attribute['id']==24) {
-                    $tip = "Size Chart";
+                    $tip = trans('onebuy::app.product.Size Chart');
                     if(isset($productSizeImage->text_value)) $tip_img = $productSizeImage->text_value;
                     if(empty($tip_img)) $tip = "";
                 }
@@ -249,18 +260,19 @@ class ProductController extends Controller
                 unset($attribute['translations']); //去掉多余的数据内容
                 //var_dump($options);
                 $attribute['options'] = $options;
-                $attribute['image'] = $productBaseImage['medium_image_url'];
+                $attribute['image'] = $productBaseImage['large_image_url'];
+                $attribute['large_image'] = $productBaseImage['large_image_url'];
+                
                 $product_attributes[] = $attribute;
             }
 
-            Cache::put($cache_key, json_encode($product_attributes), 36000);
+            Cache::put($cache_key, json_encode($product_attributes));
 
         }else{
             $product_attributes = json_decode($product_attributes, JSON_OBJECT_AS_ARRAY);
         }
 
         rsort($product_attributes);
-
         //商品的背景图片获取
 
         $productBgAttribute = $this->productAttributeValueRepository->findOneWhere([
@@ -279,16 +291,31 @@ class ProductController extends Controller
 
         //var_dump($productBgAttribute);
 
-        // 获取 faq 数据
-        $redis = Redis::connection('default');
+        
         $faqItems = $redis->hgetall($this->faq_cache_key);
-        
         ksort($faqItems);
-
-        $comments = $redis->hgetall($this->cache_prefix_key."product_comments_".$product['id']);
-
+        // $comments = $redis->hgetall($this->cache_prefix_key."product_comments_".$product['id']);
         
-        //获取 paypal smart key
+        $comments = $product->reviews->where('status', 'approved')->take(10);
+
+        $comments = $comments->map(function($comments) {
+            $comments->customer = $comments->customer;
+            $comments->images;
+            return $comments;
+        });
+        //Log::info($product['id'].'--'.json_encode($comments));
+        //Log::info($product['id'].'--'.count($comments));
+        if(count($comments)==0) {
+            //Log::info($product['id'].'--'.$this->cache_prefix_key."product_comments_".$product['id']);
+            $comments = $redis->hgetall($this->cache_prefix_key."product_comments_".$product['id']);
+            foreach($comments as $key=>$comment) {
+                $comment = json_decode($comment);
+                $comment->comment = $comment->content;
+                $comments[$key] = $comment;
+            }
+            //var_dump($comments);
+        }
+
         $paypal_client_id = core()->getConfigData('sales.payment_methods.paypal_smart_button.client_id');
 
 
@@ -302,14 +329,22 @@ class ProductController extends Controller
         $payments = config('onebuy.payments'); // config the payments status
 
         $payments_default = config('onebuy.payments_default');
+        $brand = config('onebuy.brand');
 
-        //var_dump($default_country);exit;
+        $gtag = config('onebuy.gtag');
 
-        return view('onebuy::product-detail', compact('app_env','product','package_products', 'product_attributes', 'skus','productBgAttribute','productBgAttribute_mobile','faqItems','comments','paypal_client_id','default_country','airwallex_method','payments','payments_default'));
+        $fb_ids = config('onebuy.fb_ids');
+        $ob_adv_id = config('onebuy.ob_adv_id');
+
+        $crm_channel = config('onebuy.crm_channel');
+
+        $quora_adv_id = config('onebuy.quora_adv_id');
+
+        return view('onebuy::product-detail', compact('gtag','app_env','product','package_products', 'product_attributes', 'skus','productBgAttribute','productBgAttribute_mobile','faqItems','comments','paypal_client_id','default_country','airwallex_method','payments','payments_default','brand','fb_ids','ob_adv_id','crm_channel','refer','quora_adv_id'));
     }
 
     public function cms($slug, Request $request) {
-        \Debugbar::disable(); /* 开启后容易出现前端JS报错的情况 */
+       // \Debugbar::disable(); /* 开启后容易出现前端JS报错的情况 */
 
         $page = $this->cmsRepository->findByUrlKeyOrFail($slug);
         
@@ -317,31 +352,54 @@ class ProductController extends Controller
 
     }
 
-    // 完成订单生成动作
+    // airwallex
     public function order_add_sync(Request $request) {
         //var_dump($request->all());
 
-        $payment_method = $request->input('payment_method');
+        $payment_method_input = $request->input('payment_method');
 
         $input = $request->all();
 
         $refer = $request->session()->get('refer');
         Log::info("refer checkout v1 ".$refer);
 
+        $last_order_id = $request->session()->get('last_order_id'); // check the laster order id
+        //$last_order_id = "ddddd";
+        $force = $request->input("force");
+
+        Log::info("last order id " . $last_order_id);
+
+        if(!empty($last_order_id) && $force !="1") {
+            return response()->json(['error' => 'You Have already placed order, if you want to place another order please confirm your order','code'=>'202'], 400);
+        }
+
+
+        $payment_airwallex_vault = isset($input['payment_airwallex_vault']) ? $input['payment_airwallex_vault'] : 0;
+        $request->session()->put('payment_airwallex_vault', $payment_airwallex_vault);
         
         $products = $request->input("products");
+        if(empty($products)) {
+            return response()->json(['error' => 'No product found in cart','code'=>'202'], 400);
+        }
         // 添加到购物车
         Cart::deActivateCart();
         foreach($products as $key=>$product) {
             //var_dump($product);
             $product['quantity'] = $product['amount'];
-            $product['selected_configurable_option'] = $product['variant_id'];
-            $attr_ids = explode(',', $product['attr_id']);
-            foreach($attr_ids as $key=>$attr_id) {
-                $attr = explode('_', $attr_id);
-                $super_attribute[$attr[0]] = $attr[1];
+            if(!isset($product['variant_id'])) {
+                return response()->json(['error' => 'No product found in cart','code'=>'202'], 400);
             }
-            $product['super_attribute'] = $super_attribute;
+            $product['selected_configurable_option'] = $product['variant_id'];
+            
+            if(!empty($product['attr_id'])) {
+                $attr_ids = explode(',', $product['attr_id']);
+                foreach($attr_ids as $key=>$attr_id) {
+                    $attr = explode('_', $attr_id);
+                    $super_attribute[$attr[0]] = $attr[1];
+                }
+    
+                $product['super_attribute'] = $super_attribute;
+            }
             //Log::info("add product into cart ". json_encode($product));
             $cart = Cart::addProduct($product['product_id'], $product);
 
@@ -357,6 +415,8 @@ class ProductController extends Controller
         }
         // 添加地址内容
         $addressData = [];
+
+
         $addressData['billing'] = [];
         $address1 = [];
         array_push($address1, $input['address']);
@@ -365,30 +425,67 @@ class ProductController extends Controller
         $addressData['billing']['email'] = $input['email'];
         $addressData['billing']['first_name'] = $input['first_name'];
         $addressData['billing']['last_name'] = $input['second_name'];
-        //undefined+
         $input['phone_full'] = str_replace('undefined+','', $input['phone_full']);
         $addressData['billing']['phone'] = $input['phone_full'];
         $addressData['billing']['postcode'] = $input['code'];
         $addressData['billing']['state'] = $input['province'];
         $addressData['billing']['use_for_shipping'] = true;
         $addressData['billing']['address1'] = $address1;
-        $addressData['shipping'] = [];
-        $addressData['shipping']['isSaved'] = false;
-        $address1 = [];
-        array_push($address1, "");
-        $addressData['shipping']['address1'] = $address1;
 
         $addressData['billing']['address1'] = implode(PHP_EOL, $addressData['billing']['address1']);
 
+        $shipping = [];
+        $address1 = [];
+        array_push($address1, $input['address']);
+        $shipping['city'] = $input['city'];
+        $shipping['country'] = $input['country'];
+        $shipping['email'] = $input['email'];
+        $shipping['first_name'] = $input['first_name'];
+        $shipping['last_name'] = $input['second_name'];
+        //undefined+
+        $input['phone_full'] = str_replace('undefined+','', $input['phone_full']);
+        $shipping['phone'] = $input['phone_full'];
+        $shipping['postcode'] = $input['code'];
+        $shipping['state'] = $input['province'];
+        $shipping['use_for_shipping'] = true;
+        $shipping['address1'] = $address1;
+        $shipping['address1'] = implode(PHP_EOL, $shipping['address1']);
+        
+        
+        $addressData['shipping'] = $shipping;
+        $addressData['shipping']['isSaved'] = false;
+        $address1 = [];
+        array_push($address1, $input['address']);
+        $addressData['shipping']['address1'] = $address1;
         $addressData['shipping']['address1'] = implode(PHP_EOL, $addressData['shipping']['address1']);
 
+        // customer bill address info
+        if(@$input['shipping_address']=="other") {
+            $address1 = [];
+            array_push($address1, $input['bill_address']);
+            $billing = [];
+            $billing['city'] = $input['bill_city'];
+            $billing['country'] = $input['bill_country'];
+            $billing['email'] = $input['email'];
+            $billing['first_name'] = $input['bill_first_name'];
+            $billing['last_name'] = $input['bill_second_name'];
+            //undefined+
+            $input['phone_full'] = str_replace('undefined+','', $input['phone_full']);
+            $billing['phone'] = $input['phone_full'];
+            $billing['postcode'] = $input['bill_code'];
+            $billing['state'] = $input['bill_province'];
+            //$billing['use_for_shipping'] = true;
+            $billing['address1'] = $address1;
+            $billing['address1'] = implode(PHP_EOL, $billing['address1']);
 
-        //return response()->json($addressData);
+           // $billing['address1'] = implode(PHP_EOL, $billing['address1']);
 
-        //var_dump($addressData);exit;
+            $addressData['billing'] = $billing;
+        }
 
 
-        //Cart::saveCustomerAddress($addressData);
+        Log::info("address" . json_encode($addressData));
+
 
         if (
             Cart::hasError()
@@ -418,13 +515,26 @@ class ProductController extends Controller
 
         Cart::collectTotals();
 
-        if($payment_method=="airwallex_klarna") $payment_method = "airwallex";
-        if($payment_method=="airwallex_dropin") $payment_method = "airwallex";
+        $payment_method = "airwallex";
 
-        // 获取支付信息
+        if($payment_method_input=="airwallex_klarna") $payment_method = "airwallex";
+        if($payment_method_input=="airwallex_dropin") $payment_method = "airwallex";
+        if($payment_method_input=="airwallex_google") $payment_method = "airwallex";
+        if($payment_method_input=="airwallex_apple") $payment_method = "airwallex";
+        if($payment_method_input=="airwallex") $payment_method = "airwallex";
+
+        if($payment_method=="airwallex_google") {
+
+        }
+
+        if($payment_method=="airwallex_apple") {
+
+        }
+
+        // 
         
         if($payment_method=='airwallex') {
-            //处理支付方式
+            //
             $payment = [];
             $payment['description'] = $payment_method."-".$refer;
             $payment['method'] = $payment_method;
@@ -442,24 +552,62 @@ class ProductController extends Controller
                 ], Response::HTTP_FORBIDDEN);
             }
 
-            // 生成订单，
+            // 
             Cart::collectTotals();
             $this->validateOrder();
             $cart = Cart::getCart();
+
+            // when enable the upselling and can config the upselling rule for carts
+            if(config("Upselling.enable")) {
+               
+                $upselling = app('NexaMerchant\Upselling\Upselling');
+                $upselling->applyUpselling($cart);
+            }
+
             $order = $this->orderRepository->create(Cart::prepareDataForOrder());
-            //Cart::deActivateCart();
-            //Cart::activateCartIfSessionHasDeactivatedCartId();
-            // 跳转到支付
+            // Cart::deActivateCart();
+            // Cart::activateCartIfSessionHasDeactivatedCartId();
+            // 
             $data['result'] = 200;
             $data['order'] = $order;
             if ($order) {
                 $orderId = $order->id;
-                $transactionManager = $this->airwallex->createPaymentOrder($cart, $order->id);
 
+                //customer id
+                $cus_id = isset($input['cus_id']) ? trim($input['cus_id']) : null;
+
+                $airwallex_customer = [];
+                if(is_null($cus_id)) {
+                    //Step 1: Create a Customer
+                    $airwallex_customer = $this->airwallex->createCustomer($cart, $order->id);
+                    $cus_id = $airwallex_customer->id;
+                }else{
+                    $airwallex_customer['id'] = $cus_id;
+                }
+
+                //create a airwallex payment order
+                $transactionManager = $this->airwallex->createPaymentOrder($cart, $order->id, $cus_id);
+                //var_dump($transactionManager);
+                
+                
+
+                //Step 2: Generate a client secret for the Customer
+                $customerClientSecret = $this->airwallex->createCustomerClientSecret($cus_id);
+                
+                
+                if(!isset($transactionManager->client_secret)) {
+                    response()->json(['error' => $transactionManager->body->message,'code'=>'203'], 400);
+                }
+                
+                Log::info("airwallex-".$order->id."--".json_encode($transactionManager));
                 $data['client_secret'] = $transactionManager->client_secret;
                 $data['payment_intent_id'] = $transactionManager->id;
                 $data['currency'] = $transactionManager->currency;
+                $data['transaction'] = $transactionManager;
+                $data['customer'] = $airwallex_customer;
+                $data['customer_client_secret'] = $customerClientSecret;
                 $data['country'] = $input['country'];
+                $data['billing'] = $addressData['billing'];
             }
 
             return response()->json($data);
@@ -490,7 +638,8 @@ class ProductController extends Controller
 
             $cart = Cart::getCart();
 
-            $order = $this->orderRepository->create(Cart::prepareDataForOrder());
+            //$order = $this->orderRepository->create(Cart::prepareDataForOrder()); //todo
+
 
             if ($redirectUrl = Payment::getRedirectUrl($cart)) {
                 $paypalStandard = app('Webkul\Paypal\Payment\Standard');
@@ -502,21 +651,12 @@ class ProductController extends Controller
                 $data['pay_url'] =  $paypalStandard->getPaypalUrl();
                 $data['result'] = 200;
                 return response()->json($data);
+            }else{
+                $data = [];
+                $data['result'] = 400;
+                $data['message'] = $redirectUrl;
+                return response()->json($data);
             }
-
-            // $order = $this->orderRepository->create(Cart::prepareDataForOrder());
-
-            // Cart::deActivateCart();
-
-            // Cart::activateCartIfSessionHasDeactivatedCartId();
-
-            // session()->flash('order', $order);
-
-            // return new JsonResource([
-            //     'success'       => true,
-            //     'redirect'     => true,
-            //     'redirect_url' => route('shop.checkout.onepage.success'),
-            // ]);
         }
         
         // 商品更新到购物车中。http://45.79.79.208:8002/api/checkout/cart
@@ -533,26 +673,43 @@ class ProductController extends Controller
     public function order_addr_after(Request $request) {
         $input = $request->all();
 
-        Log::info("order addr after ".json_encode($input));
+        $last_order_id = $request->session()->get('last_order_id'); // check the laster order id
+        //$last_order_id = "ddddd";
+        $force = $request->input("force");
+
+        Log::info("last order id " . $last_order_id);
+
+        if(!empty($last_order_id) && $force !="1") {
+            return response()->json(['error' => 'You Have already placed order, if you want to place another order please confirm your order','code'=>'202'], 400);
+        }
 
         $refer = $request->session()->get('refer');
-        Log::info("refer checkout v1 ".$refer);
+
+        $payment_paypal_vault = isset($input['payment_paypal_vault']) ? $input['payment_paypal_vault'] : 0;
+        $request->session()->put('payment_paypal_vault', $payment_paypal_vault);
 
         $products = $request->input("products");
+        Log::info("products". json_encode($products));
+        if(empty($products)) {
+            return response()->json(['error' => 'No product found in cart','code'=>'202'], 400);
+        }
         // 添加到购物车
         Cart::deActivateCart();
         foreach($products as $key=>$product) {
             //var_dump($product);
             $product['quantity'] = $product['amount'];
             $product['selected_configurable_option'] = $product['variant_id'];
-            $attr_ids = explode(',', $product['attr_id']);
-            foreach($attr_ids as $key=>$attr_id) {
-                $attr = explode('_', $attr_id);
-                $super_attribute[$attr[0]] = $attr[1];
+            if(!empty($product['attr_id'])) {
+                $attr_ids = explode(',', $product['attr_id']);
+                foreach($attr_ids as $key=>$attr_id) {
+                    $attr = explode('_', $attr_id);
+                    $super_attribute[$attr[0]] = $attr[1];
+                }
+    
+                $product['super_attribute'] = $super_attribute;
             }
-
-            $product['super_attribute'] = $super_attribute;
-            Log::info("add product into cart ". json_encode($product));
+            
+            //Log::info("add product into cart ". json_encode($product));
             $cart = Cart::addProduct($product['product_id'], $product);
             if (
                 is_array($cart)
@@ -592,6 +749,8 @@ class ProductController extends Controller
         Log::info("paypal pay ".$refer.'--'.json_encode($addressData));
 
 
+
+
         if (
             Cart::hasError()
             || ! Cart::saveCustomerAddress($addressData)
@@ -607,6 +766,7 @@ class ProductController extends Controller
         $shippingMethod = "free_free"; // 包邮
         $shippingMethod = "flatrate_flatrate";
         // Cart::saveShippingMethod($shippingMethod);
+
 
         if (
             Cart::hasError()
@@ -628,6 +788,11 @@ class ProductController extends Controller
         $payment['sort'] = "1";
         // Cart::savePaymentMethod($payment);
 
+        if(config("Upselling.enable")) {
+            $upselling = app('NexaMerchant\Upselling\Upselling');
+            $upselling->applyUpselling($cart);
+        }
+
         if (
             Cart::hasError()
             || ! $payment
@@ -638,30 +803,15 @@ class ProductController extends Controller
             ], Response::HTTP_FORBIDDEN);
         }
 
-
-        /*
-        Cart::collectTotals();
-
-        $this->validateOrder();
-
-        $cart = Cart::getCart();
-
-        $order = $this->orderRepository->create(Cart::prepareDataForOrder());
-
-        Cart::deActivateCart();
-
-        Cart::activateCartIfSessionHasDeactivatedCartId();
-        */
-
         try {
-            $order = $this->smartButton->createOrder($this->buildRequestBody());
+            $order = $this->smartButton->createOrder($this->buildRequestBody($input));
             $data = [];
             $data['order'] = $order;
             $data['code'] = 200;
             $data['result'] = 200;
             return response()->json($order);
         } catch (\Exception $e) {
-            return response()->json(json_decode($e->getMessage()), 400);
+            return response()->json($e->getMessage(), 400);
         }
 
         // return response()->json($order);
@@ -676,10 +826,19 @@ class ProductController extends Controller
     public function confirm(Request $request) {
         $payment_intent_id = $request->input("payment_intent_id");
         $order_id = $request->input("order_id");
+        $cus_id = $request->input("cus_id");
 
         $order = $this->orderRepository->find($order_id);
         
-        $transactionManager = $this->airwallex->confirmPayment($payment_intent_id, $order);
+        if(is_null($order)) {
+            return response()->json([
+                "message" => "Order not found"
+            ], 404);
+        }
+        
+        $transactionManager = $this->airwallex->confirmPayment($payment_intent_id, $order, $cus_id);
+
+        $request->session()->put('last_order_id', $order_id);
 
         $data = [];
         $data['payment'] = $transactionManager;
@@ -694,6 +853,7 @@ class ProductController extends Controller
     /**
      * 
      * 订单状态查询
+     * paypal 订单生成
      * 
      */
     public function order_status(Request $request) {
@@ -703,66 +863,124 @@ class ProductController extends Controller
 
         try {
             $order = $this->smartButton->getOrder(request()->input('orderData.orderID'));
+
             // return response()->json($order);
             
-
             Log::info("paypal ".json_encode($order));
             Log::info("paypal request ".json_encode($request->all()));
 
-            $order = (array)$order;
+            $params = request()->input("params");
+            if(!empty($params)) {
 
-            //var_dump($order);
+                $addressData = [];
+                $addressData['billing'] = [];
+                $address1 = [];
+                array_push($address1, $params['address']);
 
-            $purchase_units = (array)$order['result']->purchase_units;
-            $input = (array)$purchase_units[0]->shipping;
-            $payer = (array)$order['result']->payer;
-            $payment_source = (array)$order['result']->payment_source;
-            $payment_source_paypal = (array)$payment_source['paypal'];
+                $addressData['billing']['city'] = $params['city'];
+                $addressData['billing']['email'] = $params['email'];
+                $addressData['billing']['country'] = $params['country'];
+                $addressData['billing']['first_name'] = $params['first_name'];
+                $addressData['billing']['last_name'] = $params['second_name'];
+                $addressData['billing']['phone'] = $params['phone_full'];
+                $addressData['billing']['phone'] = $params['phone_full'];
+                $addressData['billing']['address1'] = $address1;
+                
+                $addressData['billing']['state'] = $params['province'];
+                $addressData['billing']['postcode'] = $params['code'];
 
-            Log::info("paypal source".json_encode($payment_source));
-            Log::info("paypal source paypal".json_encode($payment_source_paypal));
+                //$addressData['shipping'] = [];
+                $addressData['shipping']['isSaved'] = false;
+                //$address1 = [];
+                //array_push($address1, "");
+                $addressData['shipping']['address1'] = $address1;
 
-            // 添加地址内容
-            $addressData = [];
-            $addressData['billing'] = [];
-            $address1 = [];
-            array_push($address1, $input['address']->address_line_1);
-            $addressData['billing']['city'] = isset($input['address']->admin_area_1) ? $input['address']->admin_area_1 : "";
-            $addressData['billing']['country'] = $input['address']->country_code;
-            $addressData['billing']['email'] = $payer['email_address'];
-            $addressData['billing']['first_name'] = $payer['name']->given_name;
-            $addressData['billing']['last_name'] = $payer['name']->surname;
-            $national_number = isset($payment_source_paypal['phone_number']) ? $payment_source_paypal['phone_number']->national_number : "";
-            $addressData['billing']['phone'] =  $national_number;
-            $addressData['billing']['postcode'] = isset($input['address']->postal_code) ? $input['address']->postal_code : "";
-            $addressData['billing']['state'] = isset($input['address']->admin_area_2) ? $input['address']->admin_area_2 : "";
-            $addressData['billing']['use_for_shipping'] = true;
-            $addressData['billing']['address1'] = $address1;
-            $addressData['shipping'] = [];
-            $addressData['shipping']['isSaved'] = false;
-            $address1 = [];
-            array_push($address1, "");
-            $addressData['shipping']['address1'] = $address1;
+                $addressData['billing']['address1'] = implode(PHP_EOL, $addressData['billing']['address1']);
 
-            $addressData['billing']['address1'] = implode(PHP_EOL, $addressData['billing']['address1']);
+                $addressData['shipping']['address1'] = implode(PHP_EOL, $addressData['shipping']['address1']);
+                if(!isset($addressData['shipping']['email'])) {
+                    $addressData['shipping'] = $addressData['billing'];
+                }
+                
 
-            $addressData['shipping']['address1'] = implode(PHP_EOL, $addressData['shipping']['address1']);
+                Log::error("paypal pay address ".$refer.'--'.json_encode($addressData));
 
-            Log::info("address data-".$refer.'--'.json_encode($addressData));
+                if (
+                    Cart::hasError()
+                    || ! Cart::saveCustomerAddress($addressData)
+                ) {
+                    return new JsonResource([
+                        'redirect' => true,
+                        'data'     => route('shop.checkout.cart.index'),
+                    ]);
+                }
 
-            if (
-                Cart::hasError()
-                || ! Cart::saveCustomerAddress($addressData)
-            ) {
-                return new JsonResource([
-                    'redirect' => true,
-                    'data'     => route('shop.checkout.cart.index'),
-                ]);
+            }else{
+
+                $order = (array)$order;
+
+                //var_dump($order);
+
+                $purchase_units = (array)$order['result']->purchase_units;
+                $input = (array)$purchase_units[0]->shipping;
+                $payer = (array)$order['result']->payer;
+                $payment_source = (array)$order['result']->payment_source;
+                $payment_source_paypal = (array)$payment_source['paypal'];
+
+                //Log::info("paypal source".json_encode($payment_source));
+                //Log::info("paypal source paypal".json_encode($payment_source_paypal));
+
+                // 添加地址内容
+                $addressData = [];
+                $addressData['billing'] = [];
+                $address1 = [];
+                $address_line_2 = isset($input['address']->address_line_2) ? $input['address']->address_line_2 : "";
+                array_push($address1, $input['address']->address_line_1. $address_line_2);
+                $addressData['billing']['city'] = isset($input['address']->admin_area_2) ? $input['address']->admin_area_2 : "";
+                $addressData['billing']['country'] = $input['address']->country_code;
+                $addressData['billing']['email'] = $payer['email_address'];
+                $addressData['billing']['first_name'] = $payer['name']->given_name;
+                $addressData['billing']['last_name'] = $payer['name']->surname;
+                $national_number = isset($payment_source_paypal['phone_number']) ? $payment_source_paypal['phone_number']->national_number : "";
+                $addressData['billing']['phone'] =  $national_number;
+                $addressData['billing']['postcode'] = isset($input['address']->postal_code) ? $input['address']->postal_code : "";
+                $addressData['billing']['state'] = isset($input['address']->admin_area_1) ? $input['address']->admin_area_1 : "";
+                $addressData['billing']['use_for_shipping'] = true;
+                $addressData['billing']['address1'] = $address1;
+                $addressData['shipping'] = [];
+                $addressData['shipping']['isSaved'] = false;
+                $address1 = [];
+                array_push($address1, "");
+                $addressData['shipping']['address1'] = $address1;
+
+                $addressData['billing']['address1'] = implode(PHP_EOL, $addressData['billing']['address1']);
+
+                $addressData['shipping']['address1'] = implode(PHP_EOL, $addressData['shipping']['address1']);
+
+                if (
+                    Cart::hasError()
+                    || ! Cart::saveCustomerAddress($addressData)
+                ) {
+                    return new JsonResource([
+                        'redirect' => true,
+                        'data'     => route('shop.checkout.cart.index'),
+                    ]);
+                }
+    
+                $this->smartButton->captureOrder(request()->input('orderData.orderID'));
+    
+                //$this->smartButton->AuthorizeOrder(request()->input('orderData.orderID'));
+    
+                $request->session()->put('last_order_id', request()->input('orderData.orderID'));
+
             }
 
-            $this->smartButton->captureOrder(request()->input('orderData.orderID'));
+
+            //Log::info("address data-".$refer.'--'.json_encode($addressData));
+
             return $this->saveOrder();
         } catch (\Exception $e) {
+            Log::info("paypal pay exception". json_encode($e->getMessage()));
             return response()->json($e->getMessage());
             return response()->json(json_decode($e->getMessage()), 400);
         }
@@ -795,10 +1013,13 @@ class ProductController extends Controller
 
             Cart::deActivateCart();
 
-            session()->flash('order', $order);
+            //session()->flash('order', $order);
 
+            $outputorder = $order->shipping_address;
+            
             return response()->json([
                 'success' => true,
+                'outputorder' => $outputorder,
             ]);
         } catch (\Exception $e) {
             session()->flash('error', trans('shop::app.common.error'));
@@ -824,11 +1045,20 @@ class ProductController extends Controller
         return $invoiceData;
     }
 
-    protected function buildRequestBody()
+    /**
+     * 
+     * @link https://developer.paypal.com/docs/multiparty/checkout/save-payment-methods/during-purchase/js-sdk/paypal/
+     * 
+     */
+    protected function buildRequestBody($input)
     {
         $cart = Cart::getCart();
 
         $billingAddressLines = $this->getAddressLines($cart->billing_address->address1);
+
+        $data = [];
+
+
 
         $data = [
             'intent' => 'CAPTURE',
@@ -836,7 +1066,7 @@ class ProductController extends Controller
                 //'shipping_preference' => 'NO_SHIPPING',
                 'shipping_preference' => 'GET_FROM_FILE', // 用户选择自己的地址内容
             ],
-
+        
             'purchase_units' => [
                 [
                     'amount'   => [
@@ -902,6 +1132,65 @@ class ProductController extends Controller
             ]);
             */
         }
+        $input['payment_vault'] = isset($input['payment_vault']) ? $input['payment_vault'] : "0";
+        $paypal_vault = Session::get('paypal_vault');
+        if($input['payment_vault']=='1') {
+             // for vault
+                if(empty($paypal_vault)) {
+                    $data["payment_source"] = [
+                        "paypal" => [
+                            "attributes" => [
+                                "vault" => [
+                                    "store_in_vault" => "ON_SUCCESS",
+                                    "usage_type" => "MERCHANT",
+                                    "customer_type" => "CONSUMER"
+                                ]
+                            ],
+                            "experience_context" => [
+                                "return_url" => $input['payment_return_url'],
+                                'cancel_url' => $input['payment_cancel_url'],
+                            ]
+                        ]
+                    ];
+                }else{
+                    $data["payment_source"] = [
+                        "paypal" => [
+                            "vault_id" => $paypal_vault['id'],
+                            "experience_context" => [
+                                "return_url" => $input['payment_return_url'],
+                                'cancel_url' => $input['payment_cancel_url'],
+                            ]
+                        ]
+                    ];
+                }
+                // $data["payment_source"] = [
+                //     "paypal" => [
+                //         "attributes" => [
+                //             "vault" => [
+                //                 "store_in_vault" => "ON_SUCCESS",
+                //                 "usage_type" => "MERCHANT",
+                //                 "customer_type" => "CONSUMER"
+                //             ]
+                //         ],
+                //         "experience_context" => [
+                //             "return_url" => route("checkout.v4.product.page", ["slug" => "8987102380314"]),
+                //             'cancel_url' => route("checkout.v4.product.page",["slug"=>"8987102380314"]),
+                //         ]
+                //     ]
+                // ];
+
+
+             
+        }
+
+        
+
+        // if(!empty($paypal_vault)) {
+        //     Log::info("paypal vault ". json_encode($paypal_vault));
+        //     $data["payment_source"]["paypal"]["vault_id"] = $paypal_vault['id'];
+        // }
+
+        Log::info("post to paypal data ". json_encode($data));
 
         return $data;
     }
@@ -951,141 +1240,6 @@ class ProductController extends Controller
         }
 
         return $addressLines;
-    }
-
-    /**
-     * 
-     * generation products for page
-     * @param product
-     * @param array nums
-     * 
-     */
-
-    private function makeProducts($product, $nums = array()) {
-
-        //var_dump($product->id);exit;
-        $cache_key = "product_ext_".$product->id."_".count($nums);
-        $package_products = Cache::get($cache_key);
-        
-        if(true) {
-        //if(empty($package_products)) {
-        //if($package_products) {
-            $package_products = [];
-            $productBaseImage = product_image()->getProductBaseImage($product);
-    
-            //source price
-    
-            $productBgAttribute_price = $this->productAttributeValueRepository->findOneWhere([
-                'product_id'   => $product->id,
-                'attribute_id' => 31,
-            ]);
-            $source_price = 0;
-            if(!is_null($productBgAttribute_price)) $source_price = $productBgAttribute_price->float_value;
-            if(empty($source_price)) {
-                return abort(404);
-            }
-    
-            foreach($nums as $key=>$i) {
-                
-                $package_product = [];
-                $package_product['id'] = $i;
-                $package_product['name'] = $i."x " . $product->name;
-                $package_product['image'] = $productBaseImage['medium_image_url'];
-                $package_product['amount'] = $i;
-                //$package_product['old_price'] = $productPrice['regular']['price'] * $i;
-                $price = $this->getCartProductPrice($product,$product->id, $i);
-                $package_product['old_price'] = round($source_price * $i, 2); 
-                $package_product['old_price_format'] = core()->currency($package_product['old_price']); 
-                //$package_product['new_price'] = "3.23" * $i;
-                if ($i==2) $discount = 0.8;
-                if ($i==3) $discount = 0.7;
-                if ($i==4) $discount = 0.6;
-                if ($i==1) $discount = 1;
-                $package_product['new_price'] = $this->getCartProductPrice($product,$product->id, $i) * $discount;
-                $package_product['new_price_format'] = core()->currency($package_product['new_price']) ;
-                $tip1_price = (1 - round(($package_product['new_price'] / $package_product['old_price']), 2)) * 100;
-                $package_product['tip1'] = $tip1_price."% Savings";
-                $tip2_price = round($package_product['new_price'] / $i, 2);
-                $package_product['tip2'] = core()->currency($tip2_price)."/piece";
-                $package_product['shipping_fee'] = 9.99;
-                $popup_info['name'] = null;
-                $popup_info['old_price'] = null;
-                $popup_info['new_price'] = null;
-                $popup_info['img'] = null;
-                $package_product['popup_info'] = $popup_info;
-                $package_products[] = $package_product;
-            }
-
-            Cache::put($cache_key, json_encode($package_products), 36000);
-            //var_dump("hello");
-            return $package_products;
-        }
-        
-        return json_decode($package_products, JSON_OBJECT_AS_ARRAY);
-    }
-
-    /**
-     * 
-     * 
-     * 计算商品在具体的数量的时候的价格，主要是考虑到会有购物车折扣的情况下
-     * 
-     * @param int $product_id
-     * @param int $qty
-     * 
-     * @return float price
-     * 
-     */
-    private function getCartProductPrice($product, $product_id, $qty) {
-        //清空购车动作
-        Cart::deActivateCart();
-        //添加对应的商品到购物车中
-
-        $variant = $product->getTypeInstance()->getDefaultVariant();
-
-        //$product_variant = $this->productRepository->where("parent_id", $product->id)->get();
-
-        $productViewHelper = new \Webkul\Product\Helpers\ConfigurableOption();
-
-        $attributes = $productViewHelper->getConfigurationConfig($product);
-
-        //var_dump($attributes);exit;
-
-
-        $AddcartProduct = [];
-        
-        $AddcartProduct['quantity'] = $qty;
-        
-        foreach($attributes['attributes'] as $key=>$attribute) {
-            $super_attribute[$attribute['id']] = $attribute['options'][0]['id'];
-            $product_variant_id = $attribute['options'][0]['products'][0];
-        }
-
-        $AddcartProduct['selected_configurable_option'] = $product_variant_id;
-        $AddcartProduct['super_attribute'] = $super_attribute;
-        //var_dump($super_attribute);exit;
-
-        //var_dump($AddcartProduct);exit;
-        // $attr_ids = explode(',', $product['attr_id']);
-        // foreach($attr_ids as $key=>$attr_id) {
-        //     $attr = explode('_', $attr_id);
-        //     $super_attribute[$attr[0]] = $attr[1];
-        // }
-
-        //$AddcartProduct['super_attribute'] = $super_attribute;
-        //var_dump($AddcartProduct);exit;
-        
-        $cart = Cart::addProduct($product['product_id'], $AddcartProduct);
-
-        //获取购车中商品价格返回
-        $cart = Cart::getCart();
-
-        //var_dump($cart); exit;
-
-        //清空购车动作
-        Cart::deActivateCart();
-
-        return $cart->grand_total;
-
     }
 
     /**
@@ -1143,9 +1297,187 @@ class ProductController extends Controller
      */
 
     public function checkout_success(Request $request) {
-        \Debugbar::disable(); /* 开启后容易出现前端JS报错的情况 */
-        $product = [];
-        return view('onebuy::checkout-success', compact('product'));
+        
+
+        $order = [];
+
+        // check the payment info
+        $order_id = $request->input('id');
+
+        $orderTrans = $this->orderTransactionRepository->where('transaction_id', $order_id)->select(['order_id'])->first();
+        if(!is_null($orderTrans)) {
+            $order = $this->orderRepository->findOrFail($orderTrans->order_id);
+        }else{
+            $order = $this->orderRepository->findOrFail($order_id);
+        }
+        
+
+        $fb_ids = config('onebuy.fb_ids');
+        $ob_adv_id = config('onebuy.ob_adv_id');
+        $crm_channel = config('onebuy.crm_channel');
+        $refer = $request->session()->get('refer');
+        $gtag = config('onebuy.gtag');
+
+        $quora_adv_id = config('onebuy.quora_adv_id');
+
+        $countries = config("countries");
+
+        $default_country = config('onebuy.default_country');
+
+        return view('onebuy::checkout-success', compact('order',
+            "fb_ids",
+            "ob_adv_id",
+            "crm_channel",
+            "refer",
+            "gtag",
+            "quora_adv_id",
+            "countries",
+            "default_country"
+        ));
+
+
+        return view('onebuy::checkout-success', compact('product','fb_ids','ob_adv_id'));
+    }
+
+    public function checkout_success_v4($order_id, Request $request) {
+        $order = [];
+
+        $orderTrans = $this->orderTransactionRepository->where('transaction_id', $order_id)->select(['order_id'])->first();
+        if(!is_null($orderTrans)) {
+            $order = $this->orderRepository->findOrFail($orderTrans->order_id);
+        }else{
+            $order = $this->orderRepository->findOrFail($order_id);
+        }
+        
+
+        $fb_ids = config('onebuy.fb_ids');
+        $ob_adv_id = config('onebuy.ob_adv_id');
+        $crm_channel = config('onebuy.crm_channel');
+        $refer = $request->session()->get('refer');
+        $gtag = config('onebuy.gtag');
+
+        $quora_adv_id = config('onebuy.quora_adv_id');
+
+        $countries = config("countries");
+
+        $default_country = config('onebuy.default_country');
+        $order_pre = config('shopify.order_pre');
+
+        $recommend_products = [];
+
+        $paypal_id_token = $request->session()->get('paypal_id_token');
+        $paypal_access_token = $request->session()->get('paypal_access_token');
+
+        //var_dump($paypal_access_token, $paypal_id_token);
+
+        if(empty($paypal_id_token)) {
+            $paypal_id_token = $this->smartButton->getIDAccessToken();
+            $paypal_access_token = $paypal_id_token->result->access_token;
+            $paypal_id_token = $paypal_id_token->result->id_token;
+
+            
+            
+            $request->session()->put('paypal_id_token', $paypal_id_token);
+            $request->session()->put('paypal_access_token', $paypal_access_token);
+        }
+
+        $payment_airwallex_vault = $request->session()->get('payment_airwallex_vault');
+
+        $payment_paypal_vault = $request->session()->get('payment_paypal_vault');
+
+        return view('onebuy::checkout-success-v4', compact('order',
+            "fb_ids",
+            "ob_adv_id",
+            "crm_channel",
+            "refer",
+            "gtag",
+            "quora_adv_id",
+            "countries",
+            "default_country",
+            "order_pre",
+            "paypal_id_token",
+            "payment_airwallex_vault",
+            "payment_paypal_vault",
+            "recommend_products"
+        ));
+    }
+
+    public function checkout_success_v2($order_id, Request $request) {
+        $order = [];
+
+        $orderTrans = $this->orderTransactionRepository->where('transaction_id', $order_id)->select(['order_id'])->first();
+        if(!is_null($orderTrans)) {
+            $order = $this->orderRepository->findOrFail($orderTrans->order_id);
+        }else{
+            $order = $this->orderRepository->findOrFail($order_id);
+        }
+        
+
+        $fb_ids = config('onebuy.fb_ids');
+        $ob_adv_id = config('onebuy.ob_adv_id');
+        $crm_channel = config('onebuy.crm_channel');
+        $refer = $request->session()->get('refer');
+        $gtag = config('onebuy.gtag');
+
+        $quora_adv_id = config('onebuy.quora_adv_id');
+
+        $countries = config("countries");
+
+        $default_country = config('onebuy.default_country');
+        $order_pre = config('shopify.order_pre');
+
+        $recommend_products = [];
+
+        return view('onebuy::checkout-success-v2', compact('order',
+            "fb_ids",
+            "ob_adv_id",
+            "crm_channel",
+            "refer",
+            "gtag",
+            "quora_adv_id",
+            "countries",
+            "default_country",
+            "order_pre",
+            "recommend_products"
+        ));
+    }
+
+    public function checkout_success_v1($order_id, Request $request) {
+        $order = [];
+
+        $orderTrans = $this->orderTransactionRepository->where('transaction_id', $order_id)->select(['order_id'])->first();
+        if(!is_null($orderTrans)) {
+            $order = $this->orderRepository->findOrFail($orderTrans->order_id);
+        }else{
+            $order = $this->orderRepository->findOrFail($order_id);
+        }
+        
+
+        $fb_ids = config('onebuy.fb_ids');
+        $ob_adv_id = config('onebuy.ob_adv_id');
+        $crm_channel = config('onebuy.crm_channel');
+        $refer = $request->session()->get('refer');
+        $gtag = config('onebuy.gtag');
+
+        $quora_adv_id = config('onebuy.quora_adv_id');
+
+        $countries = config("countries");
+
+        $default_country = config('onebuy.default_country');
+
+        $recommend_products = [];
+
+        return view('onebuy::checkout-success-v1', compact('order',
+            "fb_ids",
+            "ob_adv_id",
+            "crm_channel",
+            "refer",
+            "gtag",
+            "quora_adv_id",
+            "countries",
+            "default_country",
+            "recommend_products"
+        ));
     }
 
     public function order_query(Request $request) {
@@ -1168,11 +1500,45 @@ class ProductController extends Controller
     public function recommended_query(Request $request) {
 
         $checkout_path = $request->input("checkout_path");
+
+        //select four recommended products
+
+        $shopify_store_id = config('shopify.shopify_store_id');
+
+        $products = \Nicelizhi\Shopify\Models\ShopifyProduct::where("shopify_store_id",$shopify_store_id)->where("status", "active")->select(['product_id','title','handle',"variants","images"])->limit(3)->get();
+
         $recommended_info = [];
+
+        $shopifyStore = Cache::get("shopify_store_".$shopify_store_id);
+
+        if(empty($shopifyStore)){
+            $shopifyStore = \Nicelizhi\Shopify\Models\ShopifyStore::where('shopify_store_id', $shopify_store_id)->first();
+            Cache::put("shopify_store_".$shopify_store_id, $shopifyStore, 3600);
+        }
+
+        foreach($products as $key=> $product) {
+            $images = $product->images;
+            $variants = $product->variants;
+
+            $recommended_info[$key] = [
+                "title" => $product->title,
+                "handle" => $product->handle,
+                "product_id" => $product->product_id,
+                "discount_price" => $variants[0]['price'],
+                "origin_price" => $variants[0]['compare_at_price'],
+                "image_url" => $images[0]['src'],
+                "url" => $shopifyStore->shopify_app_host_name . "/products/" . $product->handle
+            ];
+        }
+ 
+
+
+        
         return new JsonResource([
             'checkout_path' => $checkout_path,
             'recommended_info' => $recommended_info,
-            'recommended_info_title' => 'recommended_info_title'
+            'currency_symbol' => core()->getCurrentCurrencyCode(),
+            'recommended_info_title' => __('onebuy::app.You may also like')
         ]);
 
     }

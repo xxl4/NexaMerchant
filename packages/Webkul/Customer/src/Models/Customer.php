@@ -17,10 +17,11 @@ use Webkul\Product\Models\ProductReviewProxy;
 use Webkul\Sales\Models\OrderProxy;
 use Webkul\Customer\Models\CustomerNoteProxy;
 use Webkul\Sales\Models\InvoiceProxy;
+use Laravel\Sanctum\HasApiTokens;
 
 class Customer extends Authenticatable implements CustomerContract
 {
-    use HasFactory, Notifiable, Visitor;
+    use HasApiTokens,HasFactory, Notifiable, Visitor;
 
     /**
      * The table associated with the model.
@@ -66,6 +67,8 @@ class Customer extends Authenticatable implements CustomerContract
      * @var array
      */
     protected $hidden = [
+        'email',
+        'phone',
         'password',
         'api_token',
         'remember_token',

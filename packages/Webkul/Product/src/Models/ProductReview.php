@@ -16,10 +16,12 @@ class ProductReview extends Model implements ProductReviewContract
     use HasFactory;
 
     protected $fillable = [
+        'id',
         'comment',
         'title',
         'rating',
         'status',
+        'sort',
         'product_id',
         'customer_id',
         'name',

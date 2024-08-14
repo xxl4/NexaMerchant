@@ -8,9 +8,9 @@ use Illuminate\Support\Facades\Log;
 
 use Webkul\Sales\Repositories\OrderRepository;
 use Webkul\Sales\Repositories\OrderCommentRepository;
-use Webkul\Admin\DataGrids\Sales\OrderDataGrid;
 use Webkul\Sales\Repositories\ShipmentRepository;
 use Webkul\Sales\Repositories\OrderItemRepository;
+use Illuminate\Support\Facades\Cache;
 
 
 use Nicelizhi\Shopify\Models\ShopifyOrder;
@@ -24,7 +24,7 @@ class Get extends Command
      *
      * @var string
      */
-    protected $signature = 'shopify:order:get {--shopify_store_id=} {--force=}';
+    protected $signature = 'shopify:order:get {--shopify_store_id=} {--force=} {--ids=}';
 
     /**
      * The console command description.
@@ -50,8 +50,6 @@ class Get extends Command
         protected OrderCommentRepository $orderCommentRepository
     )
     {
-        $this->shopify_store_id = "wmshoe";
-        $this->shopify_store_id = "hatmeo";
         $this->shopify_store_id = config('shopify.shopify_store_id');
         $this->lang = config('shopify.store_lang');
         parent::__construct();
@@ -64,10 +62,14 @@ class Get extends Command
      */
     public function handle()
     {
-
+        
         $shopify_store_id = $this->option('shopify_store_id');
         $force = $this->option('force');
         if(!empty($shopify_store_id)) $this->shopify_store_id = $shopify_store_id;
+
+        Log::info($this->shopify_store_id." start sync orders");
+
+        $ids = $this->option('ids');
 
         if ($force) {
 
@@ -75,7 +77,14 @@ class Get extends Command
 
             $client = new Client();
 
-            $shopifyStore = $this->ShopifyStore->where('shopify_store_id', $this->shopify_store_id)->first();
+            $shopifyStore = Cache::get("shopify_store_".$this->shopify_store_id);
+
+            if(empty($shopifyStore)){
+                $shopifyStore = $this->ShopifyStore->where('shopify_store_id', $this->shopify_store_id)->first();
+                Cache::put("shopify_store_".$this->shopify_store_id, $shopifyStore, 3600);
+            }
+
+            
 
             if(is_null($shopifyStore)) {
                 $this->error("no store");
@@ -87,11 +96,28 @@ class Get extends Command
              * @link https://shopify.dev/docs/api/admin-rest/2023-10/resources/order#get-orders?status=any
              * 
              */
-            $processed_at_min = date("c", strtotime("-1 week"));
+            $processed_at_min = date("c", strtotime("-2 week"));
+            $processed_at_min = date("c", strtotime("-2 days"));
+            //$processed_at_max = date("c", strtotime("-2 days"));
+            //$processed_at_max = date("c", strtotime("-1 days"));
             $processed_at_max = date("c");
+            //$processed_at_max = date("c", strtotime("-1 week"));
+
+            //$processed_at_min = "2024-01-15T10:47:09+08:00";
+            //$processed_at_max = "2024-02-18T10:47:09+08:00";
+
             $this->info("processed at min ". $processed_at_min);
+            $this->info("processed at max ". $processed_at_max);
+
+            $url = "";
+
+            if(!empty($ids)) {
+                $url.="&ids=".$ids;
+            }
+
             // 5585627676902
-            $base_url = $shopify['shopify_app_host_name'].'/admin/api/2023-10/orders.json?status=any&processed_at_min='.$processed_at_min.'&processed_at_max='.$processed_at_max.'&limit=250';
+            $base_url = $shopify['shopify_app_host_name'].'/admin/api/2023-10/orders.json?status=any&fulfillment_status=shipped&updated_at_min='.$processed_at_min.'&updated_at_max='.$processed_at_max.'&limit=250'.$url;
+            $this->error("base url ". $base_url);
             //$base_url = $shopify['shopify_app_host_name'].'/admin/api/2023-10/orders.json?fulfillment_status=unshipped&limit=250';
             //$base_url = $shopify['shopify_app_host_name'].'/admin/api/2023-10/orders.json?ids=5585627676902';
             $response = $client->get($base_url, [
@@ -111,11 +137,14 @@ class Get extends Command
             foreach($body['orders'] as $key=>$item) {
 
                 $this->info("sync...-".$i."-".$item['id']);
+
+                //var_dump($item);
                 
                 $shopifyNewOrder = $this->ShopifyOrder->where([
                     'shopify_store_id' => $this->shopify_store_id,
                     'shopify_order_id' => $item['id']
                 ])->first();
+                
                 if(is_null($shopifyNewOrder)) {
                     $shopifyNewOrder = new \Nicelizhi\Shopify\Models\ShopifyOrder();
                     $shopifyNewOrder->order_id = 0;
@@ -135,7 +164,7 @@ class Get extends Command
                 $shopifyNewOrder->checkout_token = $item['checkout_token'];
                 $shopifyNewOrder->client_details = $item['client_details'];
                 $shopifyNewOrder->closed_at = $item['closed_at'];
-                $shopifyNewOrder->company = $item['company'];
+                $shopifyNewOrder->company = @$item['company'];
                 $shopifyNewOrder->confirmation_number = $item['confirmation_number'];
                 $shopifyNewOrder->confirmed = $item['confirmed'];
                 $shopifyNewOrder->contact_email = $item['contact_email'];
@@ -211,26 +240,24 @@ class Get extends Command
                 $shopifyNewOrder->shipping_address = $item['shipping_address'];
                 $shopifyNewOrder->shipping_lines = $item['shipping_lines'];
 
-                //var_dump($shopifyNewOrder);exit;
-
-                //var_dump($shopifyNewOrder);
-
-
                 $shopifyNewOrder->save();
 
 
-                // sync to local software
                 if($item['fulfillment_status']=='fulfilled' && $shopifyNewOrder->order_id!=0) {
-
-
-                    //var_dump($item['fulfillments']);
-                    //var_dump($shopifyNewOrder->order_id);
 
                     $orderId = $shopifyNewOrder->order_id;
                     $this->info("shipping order id ". $orderId);
                     $order = $this->orderRepository->findOrFail($orderId);
+                    //var_dump($order);
                     if (!$order->canShip()) {
                         $this->error($orderId.'---'.trans('admin::app.sales.shipments.create.order-error'));
+                        $shipments = $this->shipmentRepository->where('order_id', $order->id)->first();
+                        
+                        if (isset($shipments) && $order->status=="processing") {
+                            echo "completed \r\n";
+                            $this->orderRepository->updateOrderStatus($order, 'completed');
+                        } 
+
                         $i++;
                         continue;
                     }
@@ -266,7 +293,7 @@ class Get extends Command
             
                         $skuInfo = explode('-', $sku['product_sku']);
                         if(!isset($skuInfo[1])) {
-                            $this->error("have error" . $id);
+                            $this->error("have error" . $item['id']);
                             return false;
                         }
             
@@ -306,17 +333,12 @@ class Get extends Command
                     $data = [];
                     //$data['shipment']
                     $data['shipment'] = $shipment;
-                    //var_dump($data, $orderId);
-
-                    //var_dump($data, $orderId, $item['fulfillments'][0]['line_items']); exit;
 
                     $response = $this->shipmentRepository->create(array_merge($data, [
                         'order_id' => $orderId,
                     ]));
 
-                    //var_dump($response);
-
-                    //exit;
+                    
 
 
 
@@ -330,81 +352,10 @@ class Get extends Command
                     $this->error($orderId. " cancel ". $result);
                 }
 
+                sleep(2);
+
                 $i++;
-            }
-
-
-
-
-
-            
+            }            
         }
-    }
-
-    /**
-     * Checks if requested quantity available or not.
-     *
-     * @param  array  $data
-     * @return bool
-     */
-    public function isInventoryValidate(&$data)
-    {
-        if (!isset($data['shipment']['items'])) {
-            return;
-        }
-
-        $valid = false;
-
-        $inventorySourceId = $data['shipment']['source'];
-
-        foreach ($data['shipment']['items'] as $itemId => $inventorySource) {
-            $qty = $inventorySource[$inventorySourceId];
-
-            if ((int) $qty) {
-                $orderItem = $this->orderItemRepository->find($itemId);
-
-                if ($orderItem->qty_to_ship < $qty) {
-                    return false;
-                }
-
-                if ($orderItem->getTypeInstance()->isComposite()) {
-                    foreach ($orderItem->children as $child) {
-                        if (!$child->qty_ordered) {
-                            continue;
-                        }
-
-                        $finalQty = ($child->qty_ordered / $orderItem->qty_ordered) * $qty;
-
-                        $availableQty = $child->product->inventories()
-                            ->where('inventory_source_id', $inventorySourceId)
-                            ->sum('qty');
-
-                        if (
-                            $child->qty_to_ship < $finalQty
-                            || $availableQty < $finalQty
-                        ) {
-                            return false;
-                        }
-                    }
-                } else {
-                    $availableQty = $orderItem->product->inventories()
-                        ->where('inventory_source_id', $inventorySourceId)
-                        ->sum('qty');
-
-                    if (
-                        $orderItem->qty_to_ship < $qty
-                        || $availableQty < $qty
-                    ) {
-                        return false;
-                    }
-                }
-
-                $valid = true;
-            } else {
-                unset($data['shipment']['items'][$itemId]);
-            }
-        }
-
-        return $valid;
     }
 }

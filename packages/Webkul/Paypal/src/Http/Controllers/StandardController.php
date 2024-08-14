@@ -70,7 +70,7 @@ class StandardController extends Controller
      */
     public function ipn()
     {
-        Log::info('paypal st ipn--'.json_encode(request()->all()));
+        Log::info('paypal st ipn--'.json_encode(request()->all())); 
 
         $this->ipnHelper->processIpn(request()->all());
     }
