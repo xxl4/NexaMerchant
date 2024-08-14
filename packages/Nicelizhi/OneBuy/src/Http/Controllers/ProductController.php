@@ -901,9 +901,6 @@ class ProductController extends Controller
                 array_push($address1, "");
                 $addressData['shipping']['address1'] = $address1;
 
-                $addressData['
-                ']['address1'] = $address1;
-
                 $addressData['billing']['address1'] = implode(PHP_EOL, $addressData['billing']['address1']);
 
                 $addressData['shipping']['address1'] = implode(PHP_EOL, $addressData['shipping']['address1']);
