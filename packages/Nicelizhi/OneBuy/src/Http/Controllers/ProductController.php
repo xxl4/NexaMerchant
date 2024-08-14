@@ -866,22 +866,16 @@ class ProductController extends Controller
 
             // return response()->json($order);
             
-
             Log::info("paypal ".json_encode($order));
             Log::info("paypal request ".json_encode($request->all()));
 
-
             $params = request()->input("params");
-            /**
-             * 
-             * 
-             * 
-             * 
-             */
             if(!empty($params)) {
 
+                $addressData = [];
+                $addressData['billing'] = [];
                 $address1 = [];
-               array_push($address1, $params['address']);
+                array_push($address1, $params['address']);
 
                 $addressData['billing']['city'] = $params['city'];
                 $addressData['billing']['email'] = $params['email'];
@@ -895,15 +889,21 @@ class ProductController extends Controller
                 $addressData['billing']['state'] = $params['province'];
                 $addressData['billing']['postcode'] = $params['code'];
 
-                $addressData['shipping'] = [];
+                //$addressData['shipping'] = [];
                 $addressData['shipping']['isSaved'] = false;
-                $address1 = [];
-                array_push($address1, "");
+                //$address1 = [];
+                //array_push($address1, "");
                 $addressData['shipping']['address1'] = $address1;
 
                 $addressData['billing']['address1'] = implode(PHP_EOL, $addressData['billing']['address1']);
 
                 $addressData['shipping']['address1'] = implode(PHP_EOL, $addressData['shipping']['address1']);
+                if(!isset($addressData['shipping']['email'])) {
+                    $addressData['shipping'] = $addressData['billing'];
+                }
+                
+
+                Log::error("paypal pay address ".$refer.'--'.json_encode($addressData));
 
                 if (
                     Cart::hasError()
