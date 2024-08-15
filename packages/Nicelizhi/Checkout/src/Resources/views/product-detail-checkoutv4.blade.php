@@ -3633,6 +3633,8 @@
         }
         if (res.error == 'INSTRUMENT_DECLINED') {
         }
+      }).catch(function(res){
+        $('#loading').hide();
       });
     }
     function creatPaypalCardButton() {
@@ -3712,6 +3714,7 @@
                     //   JSON.stringify(params)
                     // )
                     if (order_info.status === "COMPLETED") {
+                      $('#loading').show();
                       gotoSuccess(data);
                       return
                     }
@@ -3759,7 +3762,7 @@
              *
              */
             onApprove: function(data, actions) {
-
+              $('#loading').show();
               // actions.order.get().then(function(details) {
               //   console.log(details, 'paypal get details');
               // })
@@ -3847,6 +3850,8 @@
                     )
                     $('#' + (error_id || 'paypal-error')).show()
                   }
+                }).catch(function(res) {
+                  $('#loading').hide();
                 })
             },
 
@@ -4013,6 +4018,7 @@
                 localStorage.setItem("order_id", order_info.id);
                 // localStorage.setItem("order_params", JSON.stringify(params));
                 if (order_info.status === "COMPLETED") {
+                  $('#loading').show();
                   gotoSuccess(data, true);
                   return
                 }
@@ -4045,6 +4051,7 @@
 
           // Call your server to finalize the transaction
           onApprove: function(data, actions) {
+            $('#loading').show();
             var orderData = {
               paymentID: data.orderID,
               orderID: data.orderID,
@@ -4094,6 +4101,8 @@
                 $('#checkout-error').html("The instrument presented  was either declined by the processor or bank, or it can't be used for this payment.<br><br> Please confirm your account or bank card has sufficient balance, and try again.");
                 $('#checkout-error').show();
               }
+            }).catch(function(res){
+              $('#loading').hide();
             });
           }
         }).render('#complete-btn-id');

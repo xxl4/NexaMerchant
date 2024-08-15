@@ -102,6 +102,8 @@
                   alert(pay_error_message)
                 }
           }
+        }).catch(function(res) {
+          $('#loading').hide();
         });
       },
 
@@ -113,6 +115,7 @@
   }
 
   function gotoSuccess(data) {
+    $('#loading').show();
     var orderData = {
       paymentID: localStorage.getItem('order_id'),
       orderID: localStorage.getItem('order_id'),
@@ -153,6 +156,8 @@
         return true;
       }
       if (res.error == 'INSTRUMENT_DECLINED') {}
+    }).catch(function(res) {
+      $('#loading').hide();
     });
   }
 
@@ -215,6 +220,8 @@
                   alert(pay_error_message)
                 }
           }
+        }).catch(function(res) {
+          $('#loading').hide();
         });
       },
 
