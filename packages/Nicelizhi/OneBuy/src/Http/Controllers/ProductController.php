@@ -1385,6 +1385,8 @@ class ProductController extends Controller
 
         $payment_paypal_vault = $request->session()->get('payment_paypal_vault');
 
+        $paypal_pay_acc = core()->getConfigData('sales.payment_methods.paypal_smart_button.client_id');
+
         return view('onebuy::checkout-success-v4', compact('order',
             "fb_ids",
             "ob_adv_id",
@@ -1396,6 +1398,7 @@ class ProductController extends Controller
             "default_country",
             "order_pre",
             "paypal_id_token",
+            "paypal_pay_acc",
             "payment_airwallex_vault",
             "payment_paypal_vault",
             "recommend_products"
