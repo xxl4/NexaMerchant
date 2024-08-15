@@ -1802,7 +1802,7 @@
       script.src =
         'https://www.paypal.com/sdk/js?client-id=' +
         paypal_pay_acc +
-        '&components=buttons,messages,funding-eligibility&buyer-country=US&vault=true&commit=true&currency=' +
+        '&components=buttons,messages,funding-eligibility&vault=true&commit=true&currency=' +
         currency
       
       script.async = true
@@ -1825,7 +1825,7 @@
 
       if (radio.checked) {
           payment_vault = 1;
-          script.src = `https://www.paypal.com/sdk/js?client-id=${paypal_pay_acc}&components=buttons,messages,funding-eligibility&buyer-country=US&vault=true&commit=true&currency=${currency}`;
+          script.src = `https://www.paypal.com/sdk/js?client-id=${paypal_pay_acc}&components=buttons,messages,funding-eligibility&vault=true&commit=true&currency=${currency}`;
           script.setAttribute('data-user-id-token', '<?php echo $paypal_id_token;?>');
       } else {
           payment_vault = 0;
@@ -1865,7 +1865,7 @@
 
       if (radio.checked) {
           payment_vault2 = 1;
-          script.src = `https://www.paypal.com/sdk/js?client-id=${paypal_pay_acc}&components=buttons,messages,funding-eligibility&buyer-country=US&vault=true&commit=true&currency=${currency}`;
+          script.src = `https://www.paypal.com/sdk/js?client-id=${paypal_pay_acc}&components=buttons,messages,funding-eligibility&vault=true&commit=true&currency=${currency}`;
           script.setAttribute('data-user-id-token', '<?php echo $paypal_id_token;?>');
       } else {
           payment_vault2 = 0;
