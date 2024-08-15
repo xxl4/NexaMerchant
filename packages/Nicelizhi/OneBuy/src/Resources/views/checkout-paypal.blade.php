@@ -12,7 +12,7 @@
 
     const paypalAcc = '<?php echo $paypal_pay_acc; ?>';
     <?php if ($payment_airwallex_vault == 1) { ?>
-      script.src = `https://www.paypal.com/sdk/js?client-id=${paypalAcc}&components=buttons,messages,funding-eligibility&buyer-country=US&vault=true&commit=true&currency=${currency}`;
+      script.src = `https://www.paypal.com/sdk/js?client-id=${paypalAcc}&components=buttons,messages,funding-eligibility&vault=true&commit=true&currency=${currency}`;
       script.setAttribute('data-user-id-token', '<?php echo $paypal_id_token; ?>');
     <?php } else { ?>
       script.src = `https://www.paypal.com/sdk/js?client-id=${paypalAcc}&components=buttons,messages,funding-eligibility&currency=${currency}`;
