@@ -1646,7 +1646,6 @@
               $('.drawer-title').text(title)
               productList[0].description = title;
               let url = `/api/onebuy/product/detail/${id}?currency=EUR`
-              // let url = `/api/onebuy/product/detail/8987102380314?currency=EUR`
               let response = await fetch(url);
               if (!response.ok) {
                 throw new Error('Network response was not ok');

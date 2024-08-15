@@ -218,6 +218,13 @@
                             alert("@lang('onebuy::app.v4.Payment successful')");
                             window.location.href = "/onebuy/checkout/v4/success/" + data.order.id;
                             return false;
+                        }).catch((response) => {
+                            $('#loading').hide();
+
+                            alert(response.message)
+
+                            return false;
+
                         });
 
                     <?php } else { ?>
