@@ -103,7 +103,7 @@
     /* .sw-box {
       height: 48.33333vw;
     } */
-    .sw-box {
+    .sw-box { 
       width: 100%;
       height: 500px;
       background-color: #e0e0e0;
@@ -634,7 +634,7 @@
           <div style="float:left;">
               <div style="display: flex;align-items: center;">
                 <input type="checkbox" name="payment_vault" value="1" checked onchange="paymentVault(this)">
-                <p style="margin-left: 5px;">Save my card for future payments</p>
+                <p style="margin-left: 5px;">@lang('checkout::app.v4.Save my card for future payments')</p>
               </div>
             </div>
           <div id="loading">
@@ -856,7 +856,7 @@
                               </div>
                               <div style="display: flex;align-items: center;margin:10px 0 0 5px">
                                 <input type="checkbox" name="payment_vault" value="1" checked onchange="airwallexVault(this)">
-                                <p style="margin-left: 5px;">Save my card for future payments</p>
+                                <p style="margin-left: 5px;">@lang('checkout::app.v4.Save my card for future payments')</p>
                               </div>
                               <div class="choose-billing-box">
                                 <div style="display: flex;align-items: center;">
@@ -995,7 +995,7 @@
           <div id="payment_vault2" style="display:none">
               <div style="display: flex;align-items: center;">
                 <input type="checkbox" name="payment_vault2" value="1" checked onchange="paymentVault2(this)">
-                <p style="margin-left: 5px;">Save my card for future payments</p>
+                <p style="margin-left: 5px;">@lang('checkout::app.v4.Save my card for future payments')</p>
               </div>
             </div>
           <div id="complete-btn-id"></div>
@@ -1401,6 +1401,7 @@
   </script>
 
   <script>
+
     var isMobile = window.innerWidth <= 768;
     var orderObj = {},
       params = {
@@ -1511,6 +1512,7 @@
   <script src="/checkout/v4/js/main.js?v=13"></script>
   <script>
     $(function() {
+
       if (countries1 == 'fr' || countries1 == 'es') {
         $('.header-middle').hide()
       } else {
@@ -1610,6 +1612,7 @@
         $('.cardPayOpt').hide()
         $('.credit-card').hide()
       }
+      var dataOrderId = ''
       var productsObj = {}
       var midList = []
       attLength = data.attr.attributes.length
@@ -3082,6 +3085,8 @@
               */
               // window.alert(event.detail);
               console.log(event.detail, event, 'applePay ===  success');
+              localStorage.setItem('from', 'checkout');
+              alert("@lang('checkout::app.v4.Payment successful')");
               window.location.href = "/onebuy/checkout/v4/success/" + orderId;
             });
             domApplePay.addEventListener('onError', (event) => {
@@ -3156,6 +3161,8 @@
               // window.alert(event.detail);
               // console.log(event.detail);
               console.log(event.detail, event, 'googlePay ===  success');
+              localStorage.setItem('from', 'checkout');
+              alert("@lang('checkout::app.v4.Payment successful')");
               window.location.href = "/onebuy/checkout/v4/success/" + orderId;
             });
             domGooglePay.addEventListener('onError', (event) => {
@@ -3619,6 +3626,8 @@
       }).then(function(res) {
         $('#loading').hide();
         if (res.success == true) {
+          localStorage.setItem('from', 'checkout');
+          alert("@lang('checkout::app.v4.Payment successful')");
           window.location.href = '/onebuy/checkout/v4/success/' + localStorage.getItem('order_id');
           return true;
         }
@@ -3824,6 +3833,8 @@
                   //console.log(res);
 
                   if (res.success == true) {
+                    localStorage.setItem('from', 'checkout');
+                    alert("@lang('checkout::app.v4.Payment successful')");
                     window.location.href =
                       '/onebuy/checkout/v4/success/' +
                       localStorage.getItem('order_id')
@@ -4072,6 +4083,8 @@
               localStorage.setItem('outputorder', JSON.stringify(res.outputorder))
               if (res.success == true) {
                 //Goto('/checkout/v1/success/'+localStorage.getItem('order_id'));
+                localStorage.setItem('from', 'checkout');
+                alert("@lang('checkout::app.v4.Payment successful')");
                 window.location.href = '/onebuy/checkout/v4/success/' + localStorage.getItem('order_id');
                 return true;
                 //actions.redirect('/checkout/v1/success/'+localStorage.getItem('order_id'));
@@ -4242,12 +4255,7 @@
               document.querySelector(".submit-button").scrollIntoView({
                 behavior: "smooth"
               })
-
-
               console.log('createPaymentConsent airwallex===' + JSON.stringify(data));
-
-
-
               //Airwallex.confirmPaymentIntent({
               Airwallex.createPaymentConsent({
                 element: cardNumber,
@@ -4286,10 +4294,19 @@
                   localStorage.setItem("airwallex_response", JSON.stringify(response));
                   localStorage.setItem("payment_consent_id", response.payment_consent_id);
                   localStorage.setItem('payment_vault', 0);
+                  localStorage.setItem('from', 'checkout');
+                  alert("@lang('checkout::app.v4.Payment successful')");
+                  
                   window.location.href = "/onebuy/checkout/v4/success/" + data.order.id;
                   return false;
 
-              });
+              }).catch((response) => {
+                $('#loading').hide();
+                alert(response.message)
+
+                return false;
+
+              });;
 
               console.log('createPaymentConsent airwallex====' + json.stringify(response));
 
