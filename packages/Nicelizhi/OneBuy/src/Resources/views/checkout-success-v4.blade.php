@@ -139,9 +139,9 @@
         height: 100px;
       }
 
-      .recommend-item-box {
+      /* .recommend-item-box {
         grid-template-columns: repeat(3, 1fr);
-      }
+      } */
 
       .order-summary {
         position: sticky;
@@ -165,9 +165,9 @@
         height: 80px;
       }
 
-      .recommend-item-box {
+      /* .recommend-item-box {
         grid-template-columns: repeat(1, 1fr);
-      }
+      } */
     }
 
     .grid-row {
@@ -200,6 +200,34 @@
       border-radius: 4px;
       color: #1773B0;
       font-weight: bold;
+    }
+
+    .btn-home {
+      background-color: #007bff;
+      color: #fff;
+      font-weight: bold;
+      padding: 15px 30px;
+      border-radius: 5px;
+      margin-right: 20px;
+    }
+
+    .btn-buy-again {
+      background-color: #ffc107;
+      color: #212529;
+      font-weight: bold;
+      padding: 15px 30px;
+      border-radius: 5px;
+      margin-left: 20px;
+      font-size: 18px;
+    }
+
+    .btn:hover {
+      opacity: 0.9;
+    }
+
+    .button-container {
+      text-align: center;
+      margin-top: 50px;
     }
 
     /* header end*/
@@ -373,12 +401,12 @@
       font-size: 14px;
     }
 
-    .recommend-item-box {
+    /* .recommend-item-box {
       display: grid;
       gap: 20px;
       margin-top: 10px;
       padding: 10px;
-    }
+    } */
 
     .recommend-img {
       width: 100%;
@@ -387,31 +415,88 @@
     .recommend-price>span:first-child {
       text-decoration: line-through;
     }
+
     .drawer {
-        position: fixed;
-        top: 0;
-        right: -500px; /* Start off-screen */
-        width: 500px;
-        height: 100%;
-        background-color: #f8f9fa;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-        transition: right 0.3s ease; /* Transition effect */
-        z-index: 1050; /* Make sure it's on top of other content */
+      position: fixed;
+      top: 0;
+      right: -500px;
+      /* Start off-screen */
+      width: 500px;
+      height: 100%;
+      background-color: #f8f9fa;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      transition: right 0.3s ease;
+      /* Transition effect */
+      z-index: 1050;
+      /* Make sure it's on top of other content */
     }
-    @media(max-width:768px){
+
+    @media(max-width:768px) {
       .drawer {
         right: -300px;
         width: 300px;
+      }
     }
-    }
+
     .drawer-content {
-        padding: 20px;
+      padding: 20px;
     }
 
     .drawer.open {
-        right: 0; /* Slide in */
+      right: 0;
+      /* Slide in */
     }
+
     /* recommend end */
+    .thankYou {
+      font-size: 28px;
+      font-weight: bold;
+      text-align: center;
+      margin-top: 15px;
+    }
+
+    /* loading */
+    #loading {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 9999;
+    }
+
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .spinner {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border: 4px solid #f3f3f3;
+      border-radius: 50%;
+      border-top: 4px solid #3498db;
+      width: 40px;
+      height: 40px;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
   </style>
   <?php if (!empty($quora_adv_id)) { ?>
 
@@ -575,7 +660,6 @@
       return null;
     }
   </script>
-
   <?php
   $payment = $order->payment->created_at;
 
@@ -688,16 +772,295 @@
     //fbq('track', 'Purchase');
   </script>
   <link rel="stylesheet" href="https://lander.heomai.com/template-common/checkout1/css/font-awesome.min.css">
+  <?php if ($app_env == 'demo') { ?>
+    <script src="https://checkout-demo.airwallex.com/assets/elements.bundle.min.js"></script>
+  <?php } else { ?>
+    <script src="https://checkout.airwallex.com/assets/elements.bundle.min.js"></script>
+  <?php } ?>
 </head>
 
 <body>
+  <script>
+    // var billing_address = '<?php echo addslashes(json_encode($order->billing_address)); ?>'
+    // var shipping_address = '<?php echo addslashes(json_encode($order->shipping_address)); ?>'
+    var productItems = '<?php echo addslashes(json_encode($order->items)); ?>'
+    // billing_address = JSON.parse(billing_address)
+    // shipping_address = JSON.parse(shipping_address)
+    productItems = JSON.parse(productItems)
+    var airwallexChange = '1';
+    var shippingAddress = '<?php echo addslashes(json_encode($order->shipping_address)); ?>';
+    shippingAddress = JSON.parse(shippingAddress)
+    console.log(shippingAddress, 'shippingAddress22')
+    var productData = {}
+    var productParams = {
+      first_name: "",
+      second_name: "",
+      email: "",
+      phone_full: "",
+      country: "",
+      city: "",
+      province: "",
+      address: "",
+      code: "",
+      product_delivery: "",
+      currency: "",
+      coupon_code: "",
+      product_price: "",
+      total: null,
+      amount: "",
+      payment_return_url: "",
+      payment_cancel_url: "",
+      phone_prefix: "",
+      payment_method: "",
+      products: [],
+      logo_image: "",
+      brand: "",
+      description: "",
+      shopify_store_name: "",
+      produt_amount_base: "",
+      domain_name: "",
+      price_template: "",
+      omnisend: "",
+      payment_account: "",
+      shipping_address: "",
+      bill_first_name: "",
+      bill_second_name: "",
+      bill_country: null,
+      bill_city: "",
+      bill_province: null,
+      bill_address: "",
+      bill_code: "",
+      error: null,
+      payment_vault: null
+    };
+    var productList = [{
+      amount: "",
+      description: "",
+      product_id: "",
+      price: "",
+      img: "",
+      attr_id: "",
+      attribute_name: "",
+      variant_id: null,
+      product_sku: ""
+    }];
+    var colorId = '';
+    var sizeId = '';
+    var colorAttr = '';
+    var sizeAttr = '';
+    var currency = '{{ core()->getCurrentCurrencyCode() }}';
+    var paypal_pay_acc = '';
+
+    function isEmpty(value) {
+      if (value == null) return true;
+
+      if (typeof value === 'string' && value.trim() === '') return true;
+
+      if (Array.isArray(value) && value.length === 0) return true;
+
+      if (typeof value === 'object' && Object.keys(value).length === 0 && value.constructor === Object) return true;
+
+      return false;
+    }
+
+    function paramsInit() {
+      let attr_id = '';
+      let attribute_name = ''
+      if (!isEmpty(colorId)) {
+        attr_id = colorId
+        if (!isEmpty(sizeId)) {
+          attr_id = colorId + ',' + sizeId;
+        }
+      }
+      if (!isEmpty(colorAttr)) {
+        attribute_name = colorAttr;
+        if (!isEmpty(sizeAttr)) {
+          attribute_name = colorAttr + ',' + sizeAttr;
+        }
+      }
+      productList[0].attr_id = attr_id;
+      productList[0].attribute_name = attribute_name;
+      productParams.payment_vault = '<?php echo $payment_paypal_vault; ?>'
+      productParams.payment_airwallex_vault = '<?php echo $payment_airwallex_vault; ?>'
+      productParams.payment_paypal_vault = '<?php echo $payment_paypal_vault; ?>'
+      if (!isEmpty(attr_id)) {
+        const index2 = productData.attr.index2;
+        for (const key in index2) {
+          if (Object.prototype.hasOwnProperty.call(index2, key)) {
+            if (key == attr_id) {
+              productList[0].variant_id = index2[key][0];
+              productList[0].product_sku = index2[key][1];
+            }
+
+          }
+        }
+      } else {
+        productList[0].product_sku = productData.sku;
+      }
+      productParams.address = shippingAddress.address1;
+      productParams.first_name = shippingAddress.first_name;
+      productParams.second_name = shippingAddress.last_name;
+      productParams.phone_full = shippingAddress.phone;
+      productParams.email = shippingAddress.email;
+      productParams.city = shippingAddress.city;
+      productParams.country = shippingAddress.country;
+      productParams.province = shippingAddress.state;
+      productParams.code = shippingAddress.postcode;
+      productParams.bill_address = '<?php echo $order->billing_address->address1; ?>';
+      productParams.bill_city = '<?php echo $order->billing_address->city; ?>';
+      productParams.bill_code = '<?php echo $order->billing_address->postcode; ?>';
+      productParams.bill_country = '<?php echo $order->billing_address->country; ?>';
+      productParams.bill_first_name = '<?php echo $order->billing_address->first_name; ?>';
+      productParams.bill_province = '<?php echo $order->billing_address->state; ?>';
+      productParams.bill_second_name = '<?php echo $order->billing_address->last_name; ?>';
+      productList[0].product_id = productData.product.id;
+      productParams.products = productList;
+      console.log(productParams, 'productParams')
+    }
+
+    function paramsInit2() {
+      const additionalItems = productItems.reduce((prev, cur) => {
+        prev.push(cur.additional)
+        return prev
+      }, [])
+      console.log(additionalItems, 'additionalItems')
+      productParams.products = additionalItems;
+      productParams.payment_vault = '<?php echo $payment_paypal_vault; ?>'
+      productParams.payment_airwallex_vault = '<?php echo $payment_airwallex_vault; ?>'
+      productParams.payment_paypal_vault = '<?php echo $payment_paypal_vault; ?>'
+      productParams.address = shippingAddress.address1;
+      productParams.first_name = shippingAddress.first_name;
+      productParams.second_name = shippingAddress.last_name;
+      productParams.phone_full = shippingAddress.phone;
+      productParams.email = shippingAddress.email;
+      productParams.city = shippingAddress.city;
+      productParams.country = shippingAddress.country;
+      productParams.province = shippingAddress.state;
+      productParams.code = shippingAddress.postcode;
+      productParams.bill_address = '<?php echo $order->billing_address->address1; ?>';
+      productParams.bill_city = '<?php echo $order->billing_address->city; ?>';
+      productParams.bill_code = '<?php echo $order->billing_address->postcode; ?>';
+      productParams.bill_country = '<?php echo $order->billing_address->country; ?>';
+      productParams.bill_first_name = '<?php echo $order->billing_address->first_name; ?>';
+      productParams.bill_province = '<?php echo $order->billing_address->state; ?>';
+      productParams.bill_second_name = '<?php echo $order->billing_address->last_name; ?>';
+      console.log(productParams, 'productParams')
+    }
+  </script>
   <div class="container">
     <!-- header banner -->
     <div class="header-banner">
     </div>
+    <p class="thankYou">@lang('onebuy::app.v4.Thank You for Your Purchase!')</p>
     <!-- herder start-->
     <header class="flex-between">
-      <div class="header-left">
+      <!-- <div class="button-container"> -->
+      <div class="herder-back" onclick="goBack()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
+        </svg>
+      </div>
+      <!-- <button type="button" class="btn btn-home" onclick="goBack()">Return to Homepage</button> -->
+      <button type="button" class="btn btn-buy-again" id="buttonRight" onclick="rightButton()" data-toggle="modal" data-target="#exampleModal">@lang('onebuy::app.v4.Buy again at half price')</button>
+
+      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">@lang('onebuy::app.v4.Order now and enjoy half price discount')</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+
+              <div>
+                <div style="margin: 10px;" id="complete-btn-id2"></div>
+              </div>
+              <div class="payment-form" id="payment-form2">
+                <h1>@lang('onebuy::app.v4.Credit card')</h1>
+                <div class="form-group input-icon">
+                  <div>
+                    <div id="cardNumber2" class="form-floating input-group has-icon-left" style="
+                      display: none;
+                      border: 1px solid rgba(105, 105, 105, 0.397);
+                      border-radius: 10px;
+                      color: #222;
+                      height: 32px;
+                      line-height: 22px;
+                      width: 100%;
+                      font-size: 14px;
+                      padding: 3px 8px;
+                      outline: 0;
+                      font-family: var(--title-family), sans-serif;
+                      font-weight: 400;
+                      box-sizing: border-box;
+                      background-color: #fff;
+                      -webkit-box-sizing: border-box;height: calc(3.5rem + 2px);
+                      line-height: 1.25;padding: 1rem 0.75rem "></div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div style='margin-top:10px'>
+                    <div id="expiry2" style="
+                      display:none;
+                      border: 1px solid rgba(105, 105, 105, 0.397);
+                      border-radius: 10px;
+                      color: #222;
+                      height: 32px;
+                      line-height: 22px;
+                      width: 100%;
+                      font-size: 14px;
+                      padding: 3px 8px;
+                      outline: 0;
+                      font-family: var(--title-family), sans-serif;
+                      font-weight: 400;
+                      box-sizing: border-box;
+                      background-color: #fff;
+                      -webkit-box-sizing: border-box;height: calc(3.5rem + 2px);
+                      line-height: 1.25;padding: 1rem 0.75rem "></div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div style='margin-top:10px'>
+                    <div id="cvc2" style="
+                    border: 1px solid rgba(105, 105, 105, 0.397);
+                    border-radius: 10px;
+                    color: #222;
+                    height: 32px;
+                    line-height: 22px;
+                    width: 100%;
+                    font-size: 14px;
+                    padding: 3px 8px;
+                    outline: 0;
+                    font-family: var(--title-family), sans-serif;
+                    font-weight: 400;
+                    box-sizing: border-box;
+                    background-color: #fff;
+                    -webkit-box-sizing: border-box;height: calc(3.5rem + 2px);
+                    line-height: 1.25;padding: 1rem 0.75rem "></div>
+                  </div>
+                </div>
+                <button class="submit-btn" id="payButton2">@lang('onebuy::app.v4.Pay Now')</button>
+                <div class="card-icons">
+                  <img width="38" height="24" src="https://cdn.shopify.com/shopifycloud/checkout-web/assets/0169695890db3db16bfe.svg" loading="lazy" alt="" />
+                  <img width="38" height="24" src="https://cdn.shopify.com/shopifycloud/checkout-web/assets/ae9ceec48b1dc489596c.svg" loading="lazy" alt="" />
+                  <img width="38" height="24" src="https://cdn.shopify.com/shopifycloud/checkout-web/assets/f11b90c2972f3811f2d5.svg" loading="lazy" alt="" />
+                  <img width="38" height="24" src="https://cdn.shopify.com/shopifycloud/checkout-web/assets/37fc65d0d7ac30da3b0c.svg" loading="lazy" alt="" />
+                </div>
+              </div>
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">@lang('onebuy::app.v4.Close')</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- </div> -->
+
+      <!-- <div class="header-left">
         <div class="herder-back" onclick="goBack()">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
             <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
@@ -708,7 +1071,7 @@
           <p class="header-left-time"><span></span> @lang('onebuy::app.v2.success.confirm')</p>
         </div>
       </div>
-      <div class="header-right" onclick="goBack()">@lang('onebuy::app.v2.success.Buy Again')</div>
+      <div class="header-right" onclick="goBack()">@lang('onebuy::app.v2.success.Buy Again')</div> -->
     </header>
     <!-- header end-->
     <div class="w100 mt20">
@@ -722,7 +1085,7 @@
           <!-- login end-->
 
           <!-- second content start-->
-          <div class="second-content box mt20">
+          <!-- <div class="second-content box mt20">
             <div>
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle" viewBox="0 0 16 16">
                 <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
@@ -739,7 +1102,7 @@
               <p>@lang('onebuy::app.v2.success.We have received your order')</p>
             </div>
 
-          </div>
+          </div> -->
           <!-- second content end-->
 
           <!-- order details start -->
@@ -791,10 +1154,6 @@
                   </div>
                 </div>
 
-                <!-- <div class="order-details-item mt10">
-                  <div class="order-details-subtitle">邮寄方式</div>
-
-                </div> -->
 
               </div>
               <div class="order-details-right">
@@ -883,275 +1242,275 @@
       <div class="recommend-item-box">
       </div>
     </div>
-    <!-- <button class="btn btn-primary" id="openDrawer">Open Drawer</button> -->
-
     <div class="solid-line"></div>
   </div>
   <!-- Drawer -->
   <div class="drawer" id="drawer">
-      <div class="drawer-content">
-          <button class="btn btn-danger" id="closeDrawer">Close</button>
-          <div class="drawer-title"></div>
-          <div class="mt-5">
-            <!-- color -->
-            <div class="color-content" style="display: none;">
-              <p style="margin-bottom: 5px;"><span id="sku-color"></span><span class="color-img-sku"></span></p>
-              <div class="color-img-box">
-                <!-- <div class="color-img-item">
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="item" id="item1" value="1">
-                        <label class="form-check-label" for="item1">
-                            <img src="https://via.placeholder.com/50/FF0000/FFFFFF?text=1" alt="Item 1">
-                        </label>
-                    </div>
-                </div> -->
-              </div>
-            </div>
-            <!-- size -->
-            <div class="size-content" style="display: none;">
-              <p style="margin-bottom: 5px;"><span id="sku-size"></span><span class="size-img-sku"></span></p>
-              <div class="size-img-box">  
-              <!-- <div class="size-img-item">
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="color" onchange="sizeSelect(this)" id="${cItem.id}" value="${cItem.label}">
-                        <label class="form-check-label size-label" for="${cItem.id}">
-                            
-                        </label>
-                    </div>
-                </div> -->
-                </div>
-            </div>
-            <div class="counter mt-4">
-                <button id="decrease"  class="btn btn-secondary">-</button>
-                <input id="quantity" type="text" value="1" readonly class="form-control mx-2">
-                <button id="increase" class="btn btn-secondary">+</button>
-            </div>
+    <div class="drawer-content">
+      <button class="btn btn-danger" id="closeDrawer">@lang('onebuy::app.v4.Close')</button>
+      <div class="drawer-title"></div>
+      <div class="mt-5">
+        <!-- color -->
+        <div class="color-content" style="display: none;">
+          <p style="margin-bottom: 5px;"><span id="sku-color"></span><span class="color-img-sku"></span></p>
+          <div class="color-img-box">
 
-            <!-- paypal button -->
-            <div>
-              <div style="margin: 10px;" id="complete-btn-id"></div>
-              <!-- <div class="choose-billing-box">
-                <div style="display: flex;align-items: center;">
-                <input type="checkbox" name="hobby" value="music" onchange="billingAddress()">
-                <p style="margin-left: 5px;">Use differce address for billing</p>
-              </div>
-              </div> -->
-            </div> 
-            <div class="payment-form">
-        <h1>Kreditkarte</h1>
-        <div class="form-group input-icon">
-            <!-- <i class="fas fa-credit-card"></i> -->
+          </div>
+        </div>
+        <!-- size -->
+        <div class="size-content" style="display: none;">
+          <p style="margin-bottom: 5px;"><span id="sku-size"></span><span class="size-img-sku"></span></p>
+          <div class="size-img-box">
+
+          </div>
+        </div>
+        <div class="counter mt-4">
+          <button id="decrease" class="btn btn-secondary">-</button>
+          <input id="quantity" type="text" value="1" readonly class="form-control mx-2">
+          <button id="increase" class="btn btn-secondary">+</button>
+        </div>
+
+        <!-- paypal button -->
+        <div>
+          <div style="margin: 10px;" id="complete-btn-id"></div>
+        </div>
+        <div class="payment-form" id="payment-form1">
+          <h1>@lang('onebuy::app.v4.Credit card')</h1>
+          <div class="form-group input-icon">
             <div>
               <div id="cardNumber" class="form-floating input-group has-icon-left" style="
-                display: none;
-                border: 1px solid rgba(105, 105, 105, 0.397);
-                border-radius: 10px;
-                color: #222;
-                height: 32px;
-                line-height: 22px;
-                width: 100%;
-                font-size: 14px;
-                padding: 3px 8px;
-                outline: 0;
-                font-family: var(--title-family), sans-serif;
-                font-weight: 400;
-                box-sizing: border-box;
-                background-color: #fff;
-                -webkit-box-sizing: border-box;height: calc(3.5rem + 2px);
-                line-height: 1.25;padding: 1rem 0.75rem "></div>
+                      display: none;
+                      border: 1px solid rgba(105, 105, 105, 0.397);
+                      border-radius: 10px;
+                      color: #222;
+                      height: 32px;
+                      line-height: 22px;
+                      width: 100%;
+                      font-size: 14px;
+                      padding: 3px 8px;
+                      outline: 0;
+                      font-family: var(--title-family), sans-serif;
+                      font-weight: 400;
+                      box-sizing: border-box;
+                      background-color: #fff;
+                      -webkit-box-sizing: border-box;height: calc(3.5rem + 2px);
+                      line-height: 1.25;padding: 1rem 0.75rem "></div>
             </div>
-                              
-                              
-        </div>
-        <div class="form-group">
+          </div>
+          <div class="form-group">
             <div style='margin-top:10px'>
               <div id="expiry" style="
-                display:none;
-                border: 1px solid rgba(105, 105, 105, 0.397);
-                border-radius: 10px;
-                color: #222;
-                height: 32px;
-                line-height: 22px;
-                width: 100%;
-                font-size: 14px;
-                padding: 3px 8px;
-                outline: 0;
-                font-family: var(--title-family), sans-serif;
-                font-weight: 400;
-                box-sizing: border-box;
-                background-color: #fff;
-                -webkit-box-sizing: border-box;height: calc(3.5rem + 2px);
-                line-height: 1.25;padding: 1rem 0.75rem "></div>
+                      display:none;
+                      border: 1px solid rgba(105, 105, 105, 0.397);
+                      border-radius: 10px;
+                      color: #222;
+                      height: 32px;
+                      line-height: 22px;
+                      width: 100%;
+                      font-size: 14px;
+                      padding: 3px 8px;
+                      outline: 0;
+                      font-family: var(--title-family), sans-serif;
+                      font-weight: 400;
+                      box-sizing: border-box;
+                      background-color: #fff;
+                      -webkit-box-sizing: border-box;height: calc(3.5rem + 2px);
+                      line-height: 1.25;padding: 1rem 0.75rem "></div>
             </div>
-        </div>
-        <div class="form-group">
-        <div style='margin-top:10px'>
+          </div>
+          <div class="form-group">
+            <div style='margin-top:10px'>
               <div id="cvc" style="
-                border: 1px solid rgba(105, 105, 105, 0.397);
-                border-radius: 10px;
-                color: #222;
-                height: 32px;
-                line-height: 22px;
-                width: 100%;
-                font-size: 14px;
-                padding: 3px 8px;
-                outline: 0;
-                font-family: var(--title-family), sans-serif;
-                font-weight: 400;
-                box-sizing: border-box;
-                background-color: #fff;
-                -webkit-box-sizing: border-box;height: calc(3.5rem + 2px);
-                line-height: 1.25;padding: 1rem 0.75rem "></div>
+                    border: 1px solid rgba(105, 105, 105, 0.397);
+                    border-radius: 10px;
+                    color: #222;
+                    height: 32px;
+                    line-height: 22px;
+                    width: 100%;
+                    font-size: 14px;
+                    padding: 3px 8px;
+                    outline: 0;
+                    font-family: var(--title-family), sans-serif;
+                    font-weight: 400;
+                    box-sizing: border-box;
+                    background-color: #fff;
+                    -webkit-box-sizing: border-box;height: calc(3.5rem + 2px);
+                    line-height: 1.25;padding: 1rem 0.75rem "></div>
             </div>
-        </div>
-        <!-- <div class="form-group">
-            <input type="text" id="cardHolderName" placeholder="持卡人姓名">
-        </div>
-        <div class="form-group">
-            <input type="email" id="email" placeholder="邮箱">
-        </div> -->
-        <button class="submit-btn" id="payButton">Pay Now</button>
-        <div class="card-icons">
-        <img width="38" height="24" src="https://cdn.shopify.com/shopifycloud/checkout-web/assets/0169695890db3db16bfe.svg" loading="lazy" alt="" />
+          </div>
+          <button class="submit-btn" id="payButton">@lang('onebuy::app.v4.Pay Now')</button>
+          <div class="card-icons">
+            <img width="38" height="24" src="https://cdn.shopify.com/shopifycloud/checkout-web/assets/0169695890db3db16bfe.svg" loading="lazy" alt="" />
             <img width="38" height="24" src="https://cdn.shopify.com/shopifycloud/checkout-web/assets/ae9ceec48b1dc489596c.svg" loading="lazy" alt="" />
             <img width="38" height="24" src="https://cdn.shopify.com/shopifycloud/checkout-web/assets/f11b90c2972f3811f2d5.svg" loading="lazy" alt="" />
             <img width="38" height="24" src="https://cdn.shopify.com/shopifycloud/checkout-web/assets/37fc65d0d7ac30da3b0c.svg" loading="lazy" alt="" />
-        </div>
-    </div>
           </div>
+        </div>
+
       </div>
+    </div>
   </div>
-</div>
-<style>
-        .payment-form {
-            background: #ffffff;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            /* max-width: 400px; */
-            width: 100%;
-        }
-        .payment-form h1 {
-            font-size: 24px;
-            margin-bottom: 20px;
-            color: #333;
-        }
-        .form-group {
-            margin-bottom: 15px;
-        }
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            color: #333;
-        }
-        .form-group input {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-sizing: border-box;
-        }
-        .form-group .input-icon {
-            position: relative;
-        }
-        .form-group .input-icon input {
-            padding-left: 40px;
-        }
-        .form-group .input-icon i {
-            position: absolute;
-            left: 10px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #9c27b0;
-        }
-        .checkbox-group {
-            display: flex;
-            align-items: center;
-        }
-        .checkbox-group input {
-            margin-right: 10px;
-        }
-        .submit-btn {
-            width: 100%;
-            padding: 10px;
-            background-color: #8e24aa;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-            cursor: pointer;
-        }
-        .submit-btn:hover {
-            background-color: #7b1fa2;
-        }
-        .card-icons {
-            margin-top: 15px;
-            display: flex;
-            justify-content: flex-end;
-        }
-        .card-icons img {
-            margin-left: 10px;
-        }
-  .drawer-title {
-    font-size: 18px;
-    color: #444444;
-    text-transform: capitalize;
-    font-weight: 500;
-    margin: 10px 0 -20px;
-  }
-  .counter {
+
+  <div id="loading">
+    <div class="overlay"></div>
+    <div class="spinner"></div>
+  </div>
+
+  </div>
+  <style>
+    .payment-form {
+      background: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      /* max-width: 400px; */
+      width: 100%;
+    }
+
+    .payment-form h1 {
+      font-size: 24px;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+      color: #333;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+
+    .form-group .input-icon {
+      position: relative;
+    }
+
+    .form-group .input-icon input {
+      padding-left: 40px;
+    }
+
+    .form-group .input-icon i {
+      position: absolute;
+      left: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #9c27b0;
+    }
+
+    .checkbox-group {
       display: flex;
       align-items: center;
-  }
-  .counter button {
+    }
+
+    .checkbox-group input {
+      margin-right: 10px;
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 10px;
+      background-color: #8e24aa;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .submit-btn:hover {
+      background-color: #7b1fa2;
+    }
+
+    .card-icons {
+      margin-top: 15px;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .card-icons img {
+      margin-left: 10px;
+    }
+
+    .drawer-title {
+      font-size: 18px;
+      color: #444444;
+      text-transform: capitalize;
+      font-weight: 500;
+      margin: 10px 0 -20px;
+    }
+
+    .counter {
+      display: flex;
+      align-items: center;
+    }
+
+    .counter button {
       width: 30px;
       height: 30px;
-  }
-  .counter input {
+    }
+
+    .counter input {
       width: 50px;
       text-align: center;
-  }
-  .size-label {
-    display: block;
-    text-transform: uppercase;
-    font-weight: 500;
-    min-width: 34px;
-    min-height: 32px;
-    width: auto;
-    line-height: 30px;
-    border: 1px solid transparent;
-    border-radius: 5px;
-    color: #333;
-    font-size: 13px;
-    margin: 0;
-    overflow: hidden;
-    text-align: center;
-    background-color: #f5f5f5;
-    padding: 0 10px;
-    box-shadow: 0 0 0 1px #ddd;
-  }
-  .color-img-box {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-  }
-  .size-input:checked + .size-label {
-    border: 1px solid #000000;
-    background: #000;
-    color: #fff;
-  }
-  .size-img-box {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-  }
-  .form-check{
-    padding: 0!important;
-  }
-  .form-check-input {
+    }
+
+    .size-label {
+      display: block;
+      text-transform: uppercase;
+      font-weight: 500;
+      min-width: 34px;
+      min-height: 32px;
+      width: auto;
+      line-height: 30px;
+      border: 1px solid transparent;
+      border-radius: 5px;
+      color: #333;
+      font-size: 13px;
+      margin: 0;
+      overflow: hidden;
+      text-align: center;
+      background-color: #f5f5f5;
+      padding: 0 10px;
+      box-shadow: 0 0 0 1px #ddd;
+    }
+
+    .color-img-box {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .size-input:checked+.size-label {
+      border: 1px solid #000000;
+      background: #000;
+      color: #fff;
+    }
+
+    .size-img-box {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .form-check {
+      padding: 0 !important;
+    }
+
+    .form-check-input {
       display: none;
-  }
-  .form-check-label {
+    }
+
+    .form-check-label {
       display: flex;
       align-items: center;
       cursor: pointer;
@@ -1160,22 +1519,27 @@
       /* padding: 5px; */
       margin-bottom: 10px;
       background-color: #fff;
-  }
-  .form-check-label img {
-      width: 50px; /* Adjust image size as needed */
+    }
+
+    .form-check-label img {
+      width: 50px;
+      /* Adjust image size as needed */
       height: auto;
-  }
-  .form-check-input:checked + .form-check-label {
+    }
+
+    .form-check-input:checked+.form-check-label {
       border-color: #000000;
-  }
-  .form-check-input:focus + .form-check-label {
+    }
+
+    .form-check-input:focus+.form-check-label {
       box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.25);
-  }
-</style>
+    }
+  </style>
   <footer class="main__footer" role="contentinfo">
     @include('onebuy::footer-container-'.strtolower($default_country))
   </footer>
-  @include("onebuy::checkout-params")
+  @include("onebuy::checkout-airwallex")
+  @include("onebuy::checkout-paypal")
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=<?php echo $gtag; ?>"></script>
   <script>
@@ -1197,16 +1561,18 @@
     <?php } ?>
   </script>
   <script>
-
     $(function() {
-      
-
+      const from = localStorage.getItem('from');
+      if (!isEmpty(from) && from == 'success') {
+        $('#buttonRight').hide()
+      }
     })
     $(document).mouseup(function(e) {
-        const drawer = $('#drawer');
-        if (!drawer.is(e.target) && drawer.has(e.target).length === 0) {
-            drawer.removeClass('open');
-        }
+      const drawer = $('#drawer');
+      if (!drawer.is(e.target) && drawer.has(e.target).length === 0) {
+        airwallexChange = '1';
+        drawer.removeClass('open');
+      }
     });
     async function getRecommended(path) {
       var checkout_path = ''
@@ -1227,9 +1593,7 @@
             return data.json()
           })
           .then(function(data) {
-            console.log(data, 'getRecommendedData==222')
             const recommendData = data.data.recommended_info
-            console.log(recommendData, 'recommendData');
             $('.recommend-title').text(data.data.recommended_info_title)
             let recommendDom = ''
             let url = ''
@@ -1245,44 +1609,60 @@
                 url = item.url + '?' + recommend_source_page
               }
 
-              console.log(item, 'key');
               // <a href="` + url + `" target="_blank" rel="noopener noreferrer">` + item.title + `</a>
-              recommendDom += `<div class="recommend-item">
-                <img class="recommend-img" src=" ` + item.image_url + `" alt="">
-                <p class="recommend-subtitle mt10">
-                  <a href="javascript:void(0)" data-id="${item.product_id}" data-title="${item.title}" class="openDrawer" rel="noopener noreferrer">` + item.title + `</a>
-                </p>
-                <div class="recommend-price mt10">
-                  <span>{{ core()->currencySymbol(core()->getBaseCurrencyCode()) }}` + item.origin_price + `</span>
-                  <span class="ml5">{{ core()->currencySymbol(core()->getBaseCurrencyCode()) }}` + item.discount_price + `</span>
+              // recommendDom += `<div class="recommend-item">
+              //   <img class="recommend-img" src=" ` + item.image_url + `" alt="">
+              //   <p class="recommend-subtitle mt10">
+              //     <a href="javascript:void(0)" data-id="${item.product_id}" data-title="${item.title}" class="openDrawer" rel="noopener noreferrer">` + item.title + `</a>
+              //   </p>
+              //   <div class="recommend-price mt10">
+              //     <span>{{ core()->currencySymbol(core()->getBaseCurrencyCode()) }}` + item.origin_price + `</span>
+              //     <span class="ml5">{{ core()->currencySymbol(core()->getBaseCurrencyCode()) }}` + item.discount_price + `</span>
+              //   </div>
+              // </div>`
+              recommendDom += `
+              <div class="row mb-3 align-items-center mt-4">
+                <div class="col-auto">
+                    <img width="100" height="100" src="` + item.image_url + `" alt="Product Image" class="img-fluid rounded-sm">
                 </div>
-              </div>`
+                <div class="col">
+                    <p class="fw-bold mb-1">${item.title}</p>
+                    
+                </div>
+                <div class="col-auto text-end" style="font-size:14px;">
+                    <span class="d-block text-danger fs-5">{{ core()->currencySymbol(core()->getBaseCurrencyCode()) }}` + item.origin_price + `</span>
+                    <button data-id="${item.product_id}" data-title="${item.title}" class="mt-2 btn btn-success openDrawer">Buy at 50% Off</button>
+                </div>
+              </div>
+              `
             }
             $('.recommend-item-box').append(recommendDom)
             $('.openDrawer').click(async function() {
+              $("#loading").show();
+              airwallexChange = '2';
               $('#drawer').addClass('open');
-              console.log($(this).data('id'))
               let id = $(this).data('id')
               let title = $(this).data('title')
               $('.drawer-title').text(title)
-              console.log(productParams, 'productParams')
-              productParams.products[0].description = title;
+              productList[0].description = title;
               let url = `/api/onebuy/product/detail/${id}?currency=EUR`
-              // let url = `/api/onebuy/product/detail/8987102380314?currency=EUR`
               let response = await fetch(url);
               if (!response.ok) {
-                  throw new Error('Network response was not ok');
+                throw new Error('Network response was not ok');
               }
               let data = await response.json();
               productData = data;
               paypal_pay_acc = data.paypal_client_id;
+              createAirwallex2()
               paypalInit();
               getShopCard(data);
+              // $("#loading").hide();
               console.log(data, 'data===')
             });
 
             $('#closeDrawer').click(function() {
-                $('#drawer').removeClass('open');
+              airwallexChange = '1';
+              $('#drawer').removeClass('open');
             });
           }).catch(function(err) {
             console.log(err, 'getRecommended====err');
@@ -1290,16 +1670,22 @@
       }
     }
 
+    function rightButton() {
+      $('#loading').show();
+      paypalInit()
+      createAirwallex1()
+    }
+
     function getShopCard(productData) {
-      console.log(data, '==product==data==')
+      console.log(productData, '==product==data==')
       productParams.amount = $('#quantity').val();
-      productParams.products[0].amount = $('#quantity').val();
+      productList[0].amount = $('#quantity').val();
       if (!isEmpty(productData.attr.attributes)) {
         skuInfo(productData.attr)
       }
     }
+
     function skuInfo(data) {
-      console.log(data,'data===1')
       let skuData = data.attributes;
       let imgData = data.variant_images;
       skuData.forEach(item => {
@@ -1310,13 +1696,11 @@
           colorAttr = item.options[0].label;
           let colorDom = ``;
           $('.color-content').show()
-          console.log(item, 'item222')
           let colorOption = item.options;
           let text = item.label + ': ';
           $('#sku-color').text(text)
-          colorOption.forEach((cItem,index) => {
+          colorOption.forEach((cItem, index) => {
             cItem.img = imgData[cItem.products[0]][0].large_image_url;
-            console.log(cItem.img, 'imgData[cItem.products[0]]')
             const isChecked = index === 0 ? 'checked' : '';
             colorDom += `
               <div class="color-img-item">
@@ -1341,7 +1725,7 @@
           let sizeOption = item.options;
           let text = item.label + ': ';
           $('#sku-size').text(text);
-          sizeOption.forEach((sItem,index) => {
+          sizeOption.forEach((sItem, index) => {
             const isChecked = index === 0 ? 'checked' : '';
             sizeDom += `<div class="size-img-item">
                 <div class="form-check">
@@ -1354,30 +1738,29 @@
           })
           $('.size-img-box').html(sizeDom);
         }
-        console.log(item,'item')
       });
     }
     $('#decrease').click(function() {
-        var currentValue = parseInt($('#quantity').val(), 10);
-        if (currentValue > 1) {
-            $('#quantity').val(currentValue - 1);
-            productParams.amount = $('#quantity').val();
-            productParams.products[0].amount = $('#quantity').val();
-        }
+      var currentValue = parseInt($('#quantity').val(), 10);
+      if (currentValue > 1) {
+        $('#quantity').val(currentValue - 1);
+        productParams.amount = $('#quantity').val();
+        productList[0].amount = $('#quantity').val();
+      }
     });
 
     $('#increase').click(function() {
-        var currentValue = parseInt($('#quantity').val(), 10);
-        $('#quantity').val(currentValue + 1);
-        productParams.amount = $('#quantity').val();
-        productParams.products[0].amount = $('#quantity').val();
+      var currentValue = parseInt($('#quantity').val(), 10);
+      $('#quantity').val(currentValue + 1);
+      productParams.amount = $('#quantity').val();
+      productList[0].amount = $('#quantity').val();
     });
+
     function sizeSelect(radio) {
-      console.log(radio.value);
       $('.size-img-sku').text(radio.value);
     }
+
     function colorSelect(radio) {
-      console.log(radio.value);
       $('.color-img-sku').text(radio.value);
     }
     // function isEmpty(value) {
@@ -1392,13 +1775,11 @@
     //   return false;
     // }
     function crmTrack(type) {
-      console.log(type, 'crmTrack')
       var postParams = {
         channel_id: "<?php echo $crm_channel; ?>",
         token: "<?php echo $refer; ?>",
         type: type
       };
-      console.log(JSON.stringify(postParams), 'JSON.stringify(postParams)==')
       fetch('https://crm.heomai.com/api/user/action', {
         body: JSON.stringify(postParams),
         method: 'POST',
@@ -1416,9 +1797,8 @@
         updatedTime = '<?php echo $order->updated_at; ?>',
         shippingAddress = '<?php echo addslashes(json_encode($order->shipping_address)); ?>';
       shippingAddress = JSON.parse(shippingAddress)
-      console.log(shippingAddress, 'shippingAddress');
       $('.header-left-time span').append(payment.split(' ')[0])
-      $('.header-left-text-title').append(headerTitle)
+      // $('.header-left-text-title').append(headerTitle)
       $('.second-content-text > :eq(1)').append(updatedTime.split(' ')[0])
       $('.order-details-firstname').text(shippingAddress.first_name)
       $('.order-details-lastname').text(shippingAddress.last_name)
@@ -1440,9 +1820,6 @@
       order_params['info']['_id'] = {};
       order_params['info']['_id']['$oid'] = getCookie('order_id');
 
-      console.log('cookie');
-
-      console.log(order_params);
       // sendPurchaseEvent(order_params);
     }
 
@@ -1530,22 +1907,18 @@
 
       <?php
       $shipping_address = $order->shipping_address;
-      //var_dump($shipping_address);
       ?>
 
 
       data = input.data;
       purchase(order_param.grand_total);
       //purchase(null);
-      console.log(data)
       if (!getCookie('voluum_payout') || getCookie('order_id') != getQueryString('id')) {
-        console.log('data');
         //sendPurchaseEvent(data);
       }
       // setProductHtml(order_param.products, order_param.produt_amount_base);
       setProductHtml();
       showPaySuccess();
-      console.log("getRecommendedData");
       getRecommended("/onebuy/v4/" + order_param.items[0].sku);
     }
 

@@ -1,5 +1,5 @@
 {
-    "name": "xxl4\/nexamerchant",
+    "name": "nexa-merchant/merchant",
     "type": "project",
     "description": "Laravel Free E-Commerce",
     "keywords": [
@@ -39,7 +39,7 @@
         "laravel/tinker": "^2.0",
         "laravel/ui": "^4.0",
         "maatwebsite/excel": "^3.1.46",
-        "nexa-merchant/apis": "1.0.8",
+        "nexa-merchant/apis": "1.1.1",
         "nexa-merchant/apps": "1.0.0",
         "nexa-merchant/upselling": "^1.0",
         "paypal/paypal-checkout-sdk": "1.0.2",

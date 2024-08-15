@@ -99,5 +99,9 @@ return [
     'Jump' => 'Sauter',
     'Please enter a valid page number' => 'Veuillez entrer un numéro de page valide',
     'Share' => 'Partager'
+  ],
+  'v4' => [
+    'Save my card for future payments' => 'Enregistrer ma carte pour les paiements futurs',
+    'Payment successful' => 'Paiement réussi'
   ]
 ];

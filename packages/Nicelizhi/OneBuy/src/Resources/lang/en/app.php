@@ -129,5 +129,15 @@ return [
       'Shipping' => 'Shipping',
       'Total' => 'Total'
     ]
+  ],
+  'v4' => [
+    'Save my card for future payments' => 'Save my card for future payments',
+    'Payment successful' => 'Payment successful',
+    'Thank You for Your Purchase!' => 'Thank You for Your Purchase!',
+    'Buy again at half price' => 'Buy again at half price',
+    'Order now and enjoy half price discount' => 'Order now and enjoy half price discount',
+    'Credit card' => 'Credit card',
+    'Pay Now' => 'Pay Now',
+    'Close' => 'Close',
   ]
 ];

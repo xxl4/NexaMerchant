@@ -49,6 +49,11 @@ class OrderDispute extends Model implements OrderDisputeContract {
         'updated_at',
     ];
 
+    public function getDatetimeAttribute($value) {
+        return \Carbon\Carbon::parse($value)->format('Y-m-d H:i:s');
+        return $this->created_at->format('Y-m-d H:i:s');
+    }
+
     /**
      * Create a new factory instance for the model.
      *

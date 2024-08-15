@@ -4050,7 +4050,6 @@
 
               }).catch((response) => {
                 $('#loading').hide();
-                console.log(1)
                 alert(response.message)
                 localStorage.setItem("force", 1);
                 $('#checkout-error').html(response.message + '<br /><br />');

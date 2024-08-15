@@ -115,5 +115,15 @@ return [
       'Shipping' => 'Transport',
       'Total' => 'gesamt'
     ]
+  ],
+  'v4' => [
+    'Save my card for future payments' => 'Meine Karte für zukünftige Zahlungen speichern',
+    'Payment successful' => 'Zahlung erfolgreich',
+    'Thank You for Your Purchase!' => 'Danke für Ihren Einkauf!',
+    'Buy again at half price' => 'Nochmals kaufen zum halben Preis',
+    'Order now and enjoy half price discount' => 'Jetzt bestellen und den halben Preisnachlass genießen',
+    'Credit card' => 'Kreditkarte',
+    'Pay Now' => 'Jetzt bezahlen',
+    'Close' => 'Schließen',
   ]
 ];
