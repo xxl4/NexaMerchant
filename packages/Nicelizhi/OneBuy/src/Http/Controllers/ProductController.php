@@ -1360,6 +1360,8 @@ class ProductController extends Controller
 
         $countries = config("countries");
 
+        $app_env = config("app.env");
+
         $default_country = config('onebuy.default_country');
         $order_pre = config('shopify.order_pre');
 
@@ -1396,6 +1398,7 @@ class ProductController extends Controller
             "quora_adv_id",
             "countries",
             "default_country",
+            "app_env",
             "order_pre",
             "paypal_id_token",
             "paypal_pay_acc",
