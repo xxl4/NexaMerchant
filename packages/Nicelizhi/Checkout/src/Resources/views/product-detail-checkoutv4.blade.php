@@ -103,7 +103,8 @@
     /* .sw-box {
       height: 48.33333vw;
     } */
-    .sw-box { 
+    
+    .sw-box {
       width: 100%;
       height: 500px;
       background-color: #e0e0e0;
@@ -1401,7 +1402,6 @@
   </script>
 
   <script>
-
     var isMobile = window.innerWidth <= 768;
     var orderObj = {},
       params = {
@@ -1512,7 +1512,6 @@
   <script src="/checkout/v4/js/main.js?v=13"></script>
   <script>
     $(function() {
-
       if (countries1 == 'fr' || countries1 == 'es') {
         $('.header-middle').hide()
       } else {
@@ -1612,7 +1611,7 @@
         $('.cardPayOpt').hide()
         $('.credit-card').hide()
       }
-      var dataOrderId = ''
+
       var productsObj = {}
       var midList = []
       attLength = data.attr.attributes.length
@@ -3161,6 +3160,7 @@
               // window.alert(event.detail);
               // console.log(event.detail);
               console.log(event.detail, event, 'googlePay ===  success');
+
               localStorage.setItem('from', 'checkout');
               alert("@lang('checkout::app.v4.Payment successful')");
               window.location.href = "/onebuy/checkout/v4/success/" + orderId;
@@ -3626,6 +3626,7 @@
       }).then(function(res) {
         $('#loading').hide();
         if (res.success == true) {
+
           localStorage.setItem('from', 'checkout');
           alert("@lang('checkout::app.v4.Payment successful')");
           window.location.href = '/onebuy/checkout/v4/success/' + localStorage.getItem('order_id');
@@ -3633,8 +3634,10 @@
         }
         if (res.error == 'INSTRUMENT_DECLINED') {
         }
+
       }).catch(function(res){
         $('#loading').hide();
+
       });
     }
     function creatPaypalCardButton() {
@@ -3762,6 +3765,7 @@
              *
              */
             onApprove: function(data, actions) {
+
               $('#loading').show();
               // actions.order.get().then(function(details) {
               //   console.log(details, 'paypal get details');
@@ -3836,8 +3840,10 @@
                   //console.log(res);
 
                   if (res.success == true) {
+
                     localStorage.setItem('from', 'checkout');
                     alert("@lang('checkout::app.v4.Payment successful')");
+
                     window.location.href =
                       '/onebuy/checkout/v4/success/' +
                       localStorage.getItem('order_id')
@@ -3850,8 +3856,10 @@
                     )
                     $('#' + (error_id || 'paypal-error')).show()
                   }
+
                 }).catch(function(res) {
                   $('#loading').hide();
+
                 })
             },
 
@@ -4018,7 +4026,9 @@
                 localStorage.setItem("order_id", order_info.id);
                 // localStorage.setItem("order_params", JSON.stringify(params));
                 if (order_info.status === "COMPLETED") {
+
                   $('#loading').show();
+
                   gotoSuccess(data, true);
                   return
                 }
@@ -4090,6 +4100,7 @@
               localStorage.setItem('outputorder', JSON.stringify(res.outputorder))
               if (res.success == true) {
                 //Goto('/checkout/v1/success/'+localStorage.getItem('order_id'));
+
                 localStorage.setItem('from', 'checkout');
                 alert("@lang('checkout::app.v4.Payment successful')");
                 window.location.href = '/onebuy/checkout/v4/success/' + localStorage.getItem('order_id');
@@ -4101,6 +4112,7 @@
                 $('#checkout-error').html("The instrument presented  was either declined by the processor or bank, or it can't be used for this payment.<br><br> Please confirm your account or bank card has sufficient balance, and try again.");
                 $('#checkout-error').show();
               }
+
             }).catch(function(res){
               $('#loading').hide();
             });
@@ -4264,7 +4276,7 @@
               document.querySelector(".submit-button").scrollIntoView({
                 behavior: "smooth"
               })
-              console.log('createPaymentConsent airwallex===' + JSON.stringify(data));
+
               //Airwallex.confirmPaymentIntent({
               Airwallex.createPaymentConsent({
                 element: cardNumber,
@@ -4303,6 +4315,7 @@
                   localStorage.setItem("airwallex_response", JSON.stringify(response));
                   localStorage.setItem("payment_consent_id", response.payment_consent_id);
                   localStorage.setItem('payment_vault', 0);
+
                   localStorage.setItem('from', 'checkout');
                   alert("@lang('checkout::app.v4.Payment successful')");
                   
@@ -4316,6 +4329,7 @@
                 return false;
 
               });;
+
 
               console.log('createPaymentConsent airwallex====' + json.stringify(response));
 
