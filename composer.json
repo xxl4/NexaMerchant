@@ -1,5 +1,5 @@
 {
-    "name": "nexa-merchant\core",
+    "name": "nexa-merchant/core",
     "type": "project",
     "description": "Laravel Free E-Commerce",
     "keywords": [
