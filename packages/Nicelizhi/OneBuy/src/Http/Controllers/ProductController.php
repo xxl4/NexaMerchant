@@ -1360,6 +1360,9 @@ class ProductController extends Controller
 
         $countries = config("countries");
 
+
+        $app_env = config("app.env");
+
         $default_country = config('onebuy.default_country');
         $order_pre = config('shopify.order_pre');
 
@@ -1385,6 +1388,12 @@ class ProductController extends Controller
 
         $payment_paypal_vault = $request->session()->get('payment_paypal_vault');
 
+
+        $paypal_pay_acc = core()->getConfigData('sales.payment_methods.paypal_smart_button.client_id');
+        $app_env = config("app.env");
+
+
+
         return view('onebuy::checkout-success-v4', compact('order',
             "fb_ids",
             "ob_adv_id",
@@ -1394,8 +1403,10 @@ class ProductController extends Controller
             "quora_adv_id",
             "countries",
             "default_country",
+            "app_env",
             "order_pre",
             "paypal_id_token",
+            "paypal_pay_acc",
             "payment_airwallex_vault",
             "payment_paypal_vault",
             "recommend_products"
@@ -1505,7 +1516,9 @@ class ProductController extends Controller
 
         $shopify_store_id = config('shopify.shopify_store_id');
 
-        $products = \Nicelizhi\Shopify\Models\ShopifyProduct::where("shopify_store_id",$shopify_store_id)->where("status", "active")->select(['product_id','title','handle',"variants","images"])->limit(3)->get();
+
+        $products = \Nicelizhi\Shopify\Models\ShopifyProduct::where("shopify_store_id",$shopify_store_id)->where("status", "active")->select(['product_id','title','handle',"variants","images"])->limit(10)->get();
+
 
         $recommended_info = [];
 
@@ -1516,9 +1529,22 @@ class ProductController extends Controller
             Cache::put("shopify_store_".$shopify_store_id, $shopifyStore, 3600);
         }
 
+        $i = 0;
+        $max = 3;
         foreach($products as $key=> $product) {
             $images = $product->images;
             $variants = $product->variants;
+
+            $online = \Webkul\Product\Models\Product::where("sku", $product->product_id)->first();
+            if(is_null($online)) {
+                continue;
+            }
+
+            if($i>=$max) {
+                break;
+            }
+
+            $i++;
 
             $recommended_info[$key] = [
                 "title" => $product->title,

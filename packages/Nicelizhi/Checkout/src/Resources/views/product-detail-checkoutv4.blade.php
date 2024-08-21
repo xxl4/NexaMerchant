@@ -103,6 +103,7 @@
     /* .sw-box {
       height: 48.33333vw;
     } */
+    
     .sw-box {
       width: 100%;
       height: 500px;
@@ -634,7 +635,7 @@
           <div style="float:left;">
               <div style="display: flex;align-items: center;">
                 <input type="checkbox" name="payment_vault" value="1" checked onchange="paymentVault(this)">
-                <p style="margin-left: 5px;">Save my card for future payments</p>
+                <p style="margin-left: 5px;">@lang('checkout::app.v4.Save my card for future payments')</p>
               </div>
             </div>
           <div id="loading">
@@ -856,7 +857,7 @@
                               </div>
                               <div style="display: flex;align-items: center;margin:10px 0 0 5px">
                                 <input type="checkbox" name="payment_vault" value="1" checked onchange="airwallexVault(this)">
-                                <p style="margin-left: 5px;">Save my card for future payments</p>
+                                <p style="margin-left: 5px;">@lang('checkout::app.v4.Save my card for future payments')</p>
                               </div>
                               <div class="choose-billing-box">
                                 <div style="display: flex;align-items: center;">
@@ -995,7 +996,7 @@
           <div id="payment_vault2" style="display:none">
               <div style="display: flex;align-items: center;">
                 <input type="checkbox" name="payment_vault2" value="1" checked onchange="paymentVault2(this)">
-                <p style="margin-left: 5px;">Save my card for future payments</p>
+                <p style="margin-left: 5px;">@lang('checkout::app.v4.Save my card for future payments')</p>
               </div>
             </div>
           <div id="complete-btn-id"></div>
@@ -1610,6 +1611,7 @@
         $('.cardPayOpt').hide()
         $('.credit-card').hide()
       }
+
       var productsObj = {}
       var midList = []
       attLength = data.attr.attributes.length
@@ -1799,7 +1801,7 @@
       script.src =
         'https://www.paypal.com/sdk/js?client-id=' +
         paypal_pay_acc +
-        '&components=buttons,messages,funding-eligibility&buyer-country=US&vault=true&commit=true&currency=' +
+        '&components=buttons,messages,funding-eligibility&vault=true&commit=true&currency=' +
         currency
       
       script.async = true
@@ -1822,7 +1824,7 @@
 
       if (radio.checked) {
           payment_vault = 1;
-          script.src = `https://www.paypal.com/sdk/js?client-id=${paypal_pay_acc}&components=buttons,messages,funding-eligibility&buyer-country=US&vault=true&commit=true&currency=${currency}`;
+          script.src = `https://www.paypal.com/sdk/js?client-id=${paypal_pay_acc}&components=buttons,messages,funding-eligibility&vault=true&commit=true&currency=${currency}`;
           script.setAttribute('data-user-id-token', '<?php echo $paypal_id_token;?>');
       } else {
           payment_vault = 0;
@@ -1862,7 +1864,7 @@
 
       if (radio.checked) {
           payment_vault2 = 1;
-          script.src = `https://www.paypal.com/sdk/js?client-id=${paypal_pay_acc}&components=buttons,messages,funding-eligibility&buyer-country=US&vault=true&commit=true&currency=${currency}`;
+          script.src = `https://www.paypal.com/sdk/js?client-id=${paypal_pay_acc}&components=buttons,messages,funding-eligibility&vault=true&commit=true&currency=${currency}`;
           script.setAttribute('data-user-id-token', '<?php echo $paypal_id_token;?>');
       } else {
           payment_vault2 = 0;
@@ -3082,6 +3084,8 @@
               */
               // window.alert(event.detail);
               console.log(event.detail, event, 'applePay ===  success');
+              localStorage.setItem('from', 'checkout');
+              alert("@lang('checkout::app.v4.Payment successful')");
               window.location.href = "/onebuy/checkout/v4/success/" + orderId;
             });
             domApplePay.addEventListener('onError', (event) => {
@@ -3156,6 +3160,9 @@
               // window.alert(event.detail);
               // console.log(event.detail);
               console.log(event.detail, event, 'googlePay ===  success');
+
+              localStorage.setItem('from', 'checkout');
+              alert("@lang('checkout::app.v4.Payment successful')");
               window.location.href = "/onebuy/checkout/v4/success/" + orderId;
             });
             domGooglePay.addEventListener('onError', (event) => {
@@ -3619,11 +3626,18 @@
       }).then(function(res) {
         $('#loading').hide();
         if (res.success == true) {
+
+          localStorage.setItem('from', 'checkout');
+          alert("@lang('checkout::app.v4.Payment successful')");
           window.location.href = '/onebuy/checkout/v4/success/' + localStorage.getItem('order_id');
           return true;
         }
         if (res.error == 'INSTRUMENT_DECLINED') {
         }
+
+      }).catch(function(res){
+        $('#loading').hide();
+
       });
     }
     function creatPaypalCardButton() {
@@ -3703,6 +3717,7 @@
                     //   JSON.stringify(params)
                     // )
                     if (order_info.status === "COMPLETED") {
+                      $('#loading').show();
                       gotoSuccess(data);
                       return
                     }
@@ -3751,6 +3766,7 @@
              */
             onApprove: function(data, actions) {
 
+              $('#loading').show();
               // actions.order.get().then(function(details) {
               //   console.log(details, 'paypal get details');
               // })
@@ -3824,6 +3840,10 @@
                   //console.log(res);
 
                   if (res.success == true) {
+
+                    localStorage.setItem('from', 'checkout');
+                    alert("@lang('checkout::app.v4.Payment successful')");
+
                     window.location.href =
                       '/onebuy/checkout/v4/success/' +
                       localStorage.getItem('order_id')
@@ -3836,6 +3856,10 @@
                     )
                     $('#' + (error_id || 'paypal-error')).show()
                   }
+
+                }).catch(function(res) {
+                  $('#loading').hide();
+
                 })
             },
 
@@ -4002,6 +4026,9 @@
                 localStorage.setItem("order_id", order_info.id);
                 // localStorage.setItem("order_params", JSON.stringify(params));
                 if (order_info.status === "COMPLETED") {
+
+                  $('#loading').show();
+
                   gotoSuccess(data, true);
                   return
                 }
@@ -4034,6 +4061,7 @@
 
           // Call your server to finalize the transaction
           onApprove: function(data, actions) {
+            $('#loading').show();
             var orderData = {
               paymentID: data.orderID,
               orderID: data.orderID,
@@ -4072,6 +4100,9 @@
               localStorage.setItem('outputorder', JSON.stringify(res.outputorder))
               if (res.success == true) {
                 //Goto('/checkout/v1/success/'+localStorage.getItem('order_id'));
+
+                localStorage.setItem('from', 'checkout');
+                alert("@lang('checkout::app.v4.Payment successful')");
                 window.location.href = '/onebuy/checkout/v4/success/' + localStorage.getItem('order_id');
                 return true;
                 //actions.redirect('/checkout/v1/success/'+localStorage.getItem('order_id'));
@@ -4081,6 +4112,9 @@
                 $('#checkout-error').html("The instrument presented  was either declined by the processor or bank, or it can't be used for this payment.<br><br> Please confirm your account or bank card has sufficient balance, and try again.");
                 $('#checkout-error').show();
               }
+
+            }).catch(function(res){
+              $('#loading').hide();
             });
           }
         }).render('#complete-btn-id');
@@ -4243,11 +4277,6 @@
                 behavior: "smooth"
               })
 
-
-              console.log('createPaymentConsent airwallex===' + JSON.stringify(data));
-
-
-
               //Airwallex.confirmPaymentIntent({
               Airwallex.createPaymentConsent({
                 element: cardNumber,
@@ -4286,10 +4315,21 @@
                   localStorage.setItem("airwallex_response", JSON.stringify(response));
                   localStorage.setItem("payment_consent_id", response.payment_consent_id);
                   localStorage.setItem('payment_vault', 0);
+
+                  localStorage.setItem('from', 'checkout');
+                  alert("@lang('checkout::app.v4.Payment successful')");
+                  
                   window.location.href = "/onebuy/checkout/v4/success/" + data.order.id;
                   return false;
 
-              });
+              }).catch((response) => {
+                $('#loading').hide();
+                alert(response.message)
+
+                return false;
+
+              });;
+
 
               console.log('createPaymentConsent airwallex====' + json.stringify(response));
 

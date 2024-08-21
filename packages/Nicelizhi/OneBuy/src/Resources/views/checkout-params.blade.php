@@ -268,7 +268,7 @@
   console.log('<?php echo $payment_airwallex_vault; ?>','<?php echo $payment_paypal_vault; ?>','payment_airwallex_vault==')
       // STEP #2: Initialize the Airwallex global context for event communication
       Airwallex.init({
-        env: 'demo', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
+        env: '<?php echo $app_env; ?>', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
         origin: window.location.origin, // Setup your event target to receive the browser events message
         // components: ['cvc']
       });
