@@ -1594,6 +1594,7 @@
           })
           .then(function(data) {
             const recommendData = data.data.recommended_info
+            console.log(recommendData, 'recommendData==')
             $('.recommend-title').text(data.data.recommended_info_title)
             let recommendDom = ''
             let url = ''
@@ -1630,7 +1631,7 @@
                     
                 </div>
                 <div class="col-auto text-end" style="font-size:14px;">
-                    <span class="d-block text-danger fs-5">{{ core()->currencySymbol(core()->getBaseCurrencyCode()) }}` + item.origin_price + `</span>
+                    <span class="d-block text-danger fs-5">{{ core()->currencySymbol(core()->getBaseCurrencyCode()) }}` + item.discount_price + `</span>
                     <button data-id="${item.product_id}" data-title="${item.title}" class="mt-2 btn btn-success openDrawer">Buy at 50% Off</button>
                 </div>
               </div>
@@ -1645,7 +1646,7 @@
               let title = $(this).data('title')
               $('.drawer-title').text(title)
               productList[0].description = title;
-              let url = `/api/onebuy/product/detail/${id}?currency=EUR`
+              let url = `/api/onebuy/product/detail/${id}?currency={{ core()->getCurrentCurrencyCode() }}`
               let response = await fetch(url);
               if (!response.ok) {
                 throw new Error('Network response was not ok');
