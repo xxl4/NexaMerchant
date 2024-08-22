@@ -1,12 +1,45 @@
 {
-    "name": "nexa-merchant/merchant",
+    "name": "nexa-merchant/core",
     "type": "project",
     "description": "Laravel Free E-Commerce",
     "keywords": [
         "framework",
         "laravel",
-        "ecommerce"
+        "ecommerce",
+        "shop",
+        "ecommerce-platform",
+        "ecommerce-solution",
+        "ecommerce-framework",
+        "ecommerce-cms",
+        "ecommerce-website",
+        "ecommerce-store",
+        "ecommerce-shopping-cart",
+        "ecommerce-shopping-platform",
+        "ecommerce-shopping-solution",
+        "ecommerce-shopping-framework",
+        "ecommerce-shopping-cms",
+        "ecommerce-shopping-website",
+        "ecommerce-shopping-store",
+        "ecommerce-shopping-cart-platform",
+        "ecommerce-shopping-cart-solution",
+        "ecommerce-shopping-cart-framework",
+        "ecommerce-shopping-cart-cms",
+        "ecommerce-shopping-cart-website",
+        "ecommerce-shopping-cart-store",
+        "ecommerce-shopping-cart-cms",
+        "ecommerce-shopping-cart-website",
+        "ecommerce-shopping-cart-store"
     ],
+    "suggest": {
+        "ext-calendar": "Required for calendar",
+        "ext-curl": "Required for curl",
+        "ext-intl": "Required for intl",
+        "ext-mbstring": "Required for mbstring",
+        "ext-openssl": "Required for openssl",
+        "ext-pdo": "Required for pdo",
+        "ext-pdo_mysql": "Required for pdo_mysql",
+        "ext-tokenizer": "Required for tokenizer"
+    },
     "license": "MIT",
     "require": {
         "php": "^8.1",
@@ -108,7 +141,8 @@
             "NexaMerchant\\Webhooks\\": "packages\/Apps\/Webhooks\/src",
             "NexaMerchant\\Upselling\\": "packages\/Apps\/Upselling\/src",
             "NexaMerchant\\Paypal\\": "packages\/Apps\/Paypal\/src",
-            "NexaMerchant\\Apps\\": "packages\/Apps\/Apps\/src"
+            "NexaMerchant\\Apps\\": "packages\/Apps\/Apps\/src",
+            "NexaMerchant\\Cms\\": "packages\/Apps\/Cms\/src"
         }
     },
     "autoload-dev": {
