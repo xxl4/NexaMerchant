@@ -580,6 +580,9 @@ class ProductController extends Controller
                 if(is_null($cus_id)) {
                     //Step 1: Create a Customer
                     $airwallex_customer = $this->airwallex->createCustomer($cart, $order->id);
+                    if(!isset($airwallex_customer->id)) {
+                        return response()->json(['error' => $airwallex_customer->body->message,'code'=>'203'], 400);
+                    }
                     $cus_id = $airwallex_customer->id;
                 }else{
                     $airwallex_customer['id'] = $cus_id;
