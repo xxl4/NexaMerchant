@@ -2525,6 +2525,7 @@
         airwallexArr = {
           complete: false
         },
+        reviewLang = "@lang('onebuy::app.product.order.Verified')",
         skuErr = false,
         logoImg = "/checkout/v2/images/logo_" + countries1 + ".webp",
         schrittImg = "/checkout/v2/images/1701506369_" + countries1 + ".webp",
