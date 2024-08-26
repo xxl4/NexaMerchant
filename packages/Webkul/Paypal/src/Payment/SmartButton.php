@@ -12,7 +12,9 @@ use PayPalCheckoutSdk\Payments\CapturesRefundRequest;
 use PayPalCheckoutSdk\Core\AccessTokenRequest;
 use Webkul\Paypal\Http\Request\Paypal\WebhooksListRequest;
 use Webkul\Paypal\Http\Request\Paypal\CreateWebookRequest;
+use Webkul\Paypal\Http\Request\Paypal\AuthIDTokenRequest;
 use Illuminate\Support\Facades\Log;
+use Webkul\Paypal\Http\Request\Paypal\AuthorizeRequest;
 
 class SmartButton extends Paypal
 {
@@ -74,11 +76,18 @@ class SmartButton extends Paypal
     public function createOrder($body)
     {
         $request = new OrdersCreateRequest;
-        $request->headers['PayPal-Partner-Attribution-Id'] = $this->paypalPartnerAttributionId;
-        $request->prefer('return=representation');
+        //$request->headers['PayPal-Partner-Attribution-Id'] = $this->paypalPartnerAttributionId;
+        $request->headers['PayPal-Request-Id'] = time();
+        //$request->prefer('return=representation');
         $request->body = $body;
 
-        return $this->client()->execute($request);
+        Log::info("create order request ". json_encode($request));
+
+        $result = $this->client()->execute($request);
+
+        Log::info("create order result ". json_encode($result));
+
+        return $result;
     }
 
     /**
@@ -94,7 +103,8 @@ class SmartButton extends Paypal
         $request->headers['PayPal-Partner-Attribution-Id'] = $this->paypalPartnerAttributionId;
         $request->prefer('return=representation');
 
-        $this->client()->execute($request);
+        $result = $this->client()->execute($request);
+        Log::info("capture order ". json_encode($result));
     }
 
     /**
@@ -148,12 +158,44 @@ class SmartButton extends Paypal
     }
 
     /**
+     * 
+     * authorize orders
+     * 
+     */
+    public function AuthorizeOrder($captureId) {
+        $request = new AuthorizeRequest($captureId);
+
+        $request->headers['PayPal-Partner-Attribution-Id'] = $this->paypalPartnerAttributionId;
+        //$request->body = $body;
+
+        Log::info("AuthorizeOrder " . json_encode($request));
+        
+        $result = $this->client()->execute($request);
+
+        Log::info("AuthorizeOrder result " . json_encode($result));
+
+        return $result;
+
+    }
+
+   
+    
+
+    /**
      * Return paypal access token
      *
      * @return string
      */
     public function getAccessToken(){
         $request = new AccessTokenRequest($this->environment());
+        $request->headers['PayPal-Partner-Attribution-Id'] = $this->paypalPartnerAttributionId;
+
+        return $this->client()->execute($request);
+    }
+
+
+    public function getIDAccessToken(){
+        $request = new AuthIDTokenRequest($this->environment());
         $request->headers['PayPal-Partner-Attribution-Id'] = $this->paypalPartnerAttributionId;
 
         return $this->client()->execute($request);

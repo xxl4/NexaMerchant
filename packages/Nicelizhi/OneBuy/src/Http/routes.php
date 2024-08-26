@@ -46,6 +46,7 @@ Route::group(['middleware' => ['locale', 'theme', 'currency','web']], function (
     Route::get('onebuy/checkout/success', [ProductController::class, "checkout_success"])->name('onebuy.checkout.success');
     Route::get('onebuy/checkout/v1/success/{id}', [ProductController::class, "checkout_success_v1"])->name('onebuy.checkout.success.v1');
     Route::get('onebuy/checkout/v2/success/{id}', [ProductController::class, "checkout_success_v2"])->name('onebuy.checkout.success.v2');
+    Route::get('onebuy/checkout/v4/success/{id}', [ProductController::class, "checkout_success_v4"])->name('onebuy.checkout.success.v4');
 
     Route::get('onebuy/order/query', [ProductController::class, "order_query"])->name('onebuy.order.query');
     Route::get('onebuy/recommended/query', [ProductController::class, "recommended_query"])->name('onebuy.recommended.query');

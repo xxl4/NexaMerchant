@@ -28,6 +28,25 @@ class SmartButtonWebhookController extends Controller
     ) {
     }
 
+    public function checkoutOrders(Request $request)
+    {
+        $result = $this->smartButton->createOrder($request->all());
+
+
+        Log::info("checkoutOrders--".json_encode($request->all()));
+
+        var_dump($result);
+    }
+
+    public function checkoutOrderscapture($order_id, Request $request)
+    {
+        $result = $this->smartButton->captureOrder($order_id);
+
+        Log::info("checkoutOrderscapture--".json_encode($request->all()));
+
+        var_dump($result);
+    }
+
     public function dispute(Request $request) {
         Log::info("dispute--".json_encode($request->all()));
         $data = $request->all();

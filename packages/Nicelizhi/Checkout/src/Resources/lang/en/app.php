@@ -100,5 +100,9 @@ return [
     'Jump' => 'Jump',
     'Please enter a valid page number' => 'Please enter a valid page number',
     'Share' => 'Share'
+  ],
+  'v4' => [
+    'Save my card for future payments' => 'Save my card for future payments',
+    'Payment successful' => 'Payment successful'
   ]
 ];

@@ -99,5 +99,9 @@ return [
     'Jump' => 'Springen',
     'Please enter a valid page number' => 'Bitte geben Sie eine gültige Seitennummer ein',
     'Share' => 'Teilen'
+  ],
+  'v4' => [
+    'Save my card for future payments' => 'Meine Karte für zukünftige Zahlungen speichern',
+    'Payment successful' => 'Zahlung erfolgreich'
   ]
 ];

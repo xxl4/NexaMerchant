@@ -80,5 +80,9 @@ return [
     'Jump' => 'Saltar',
     'Please enter a valid page number' => 'Por favor, introduzca un número de página válido',
     'Share' => 'Compartir'
+  ],
+  'v4' => [
+    'Save my card for future payments' => 'Guardar mi tarjeta para futuros pagos',
+    'Payment successful' => 'Pago exitoso'
   ]
 ];

@@ -163,6 +163,31 @@
     }
   </style>
   <style>
+    .pagination {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 20px;
+    }
+
+    .pagination button {
+      background-color: #1773B0;
+    }
+
+    .pagination button,
+    .pagination input {
+      margin: 0 5px;
+      padding: 5px 10px;
+      cursor: pointer;
+      border-radius: 4px;
+      font-size: 12px;
+    }
+
+    .pagination input {
+      width: 60px;
+      text-align: center;
+    }
+
     .section {
       box-sizing: border-box;
     }
@@ -2070,7 +2095,7 @@
           <h3 class="container_title">@lang('onebuy::app.product.order.What customers are saying about')</h3>
         </div>
         <!-- review -->
-        <div class="section" style="width: 100%;float: right;">
+        <!-- <div class="section" style="width: 100%;float: right;">
           <?php foreach ($comments as $key => $comment) {
             $comment = json_decode($comment); //var_dump($comment);exit; 
           ?>
@@ -2112,6 +2137,18 @@
               </div>
             </div>
           <?php } ?>
+        </div> -->
+
+        <div class="section" id="reviews-box" style="width: 100%;float: right;">
+          <div class="reviews-content"></div>
+          <div class="pagination" style="display: none;">
+            <button id="prev-page" type="button">@lang('checkout::app.v3.Prev')</button>
+            <span id="page-info"></span>
+            <button id="next-page" type="button">@lang('checkout::app.v3.Next')</button>
+            <input type="number" id="page-input" min="1" value="1">
+            <button id="jump-page" type="button">@lang('checkout::app.v3.Jump')</button>
+          </div>
+
         </div>
         <div class="faq-content" style="width: 100%;float: right;">
           <div id="seeFaqBtn">
@@ -2450,7 +2487,7 @@
   </script>
 
   <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=<?php echo $gtag;?>"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=<?php echo $gtag; ?>"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
 
@@ -2459,7 +2496,7 @@
     }
     gtag('js', new Date());
 
-    gtag('config', '<?php echo $gtag;?>', {
+    gtag('config', '<?php echo $gtag; ?>', {
       "debug_mode": true
     });
   </script>
@@ -2532,6 +2569,7 @@
       airwallexArr = {
         complete: false
       },
+      reviewLang = "@lang('onebuy::app.product.order.Verified')",
       skuErr = false,
       logoImg = "/checkout/v2/images/logo_" + countries1 + ".webp",
       schrittImg = "/checkout/v2/images/1701506369_" + countries1 + ".webp",
@@ -2564,19 +2602,13 @@
       payments: JSON.parse(phppayments),
       payments_default: phppayments_default,
       paypal_client_id: phppaypal_client_id,
-      // product: JSON.parse(phpproduct),
       sku: phpsku,
     }
-    console.log(data, 'phpdata');
-    // console.log(phpData1, 'package_products ======');
     $(function() {
-      // console.log(phpData, 'php======== data======');
-      console.log(logoImg, 'logoImg');
       $('.logo_wrap_dist img').attr('src', logoImg)
       if (countries1 == 'fr' || countries1 == 'es') {
         $('.Schritt-top-box').hide()
       } else {
-        console.log(schrittImg, 'schrittImg');
         $('.Schritt-top-box').show()
         $('.Schritt-top-box img').attr('src', schrittImg)
       }
@@ -2596,7 +2628,6 @@
       var attrList = data.attr.attributes
       paypal_pay_acc = data.paypal_client_id
       var paymentsDefault = data.payments_default
-      console.log(paymentsDefault, data.ads.pc.img, 'paymentsDefault=====');
 
       $('#p-name2').text(data.package_products[0].name)
       $('#p-name1').text(data.package_products[1].name)
@@ -2620,9 +2651,6 @@
           let sortedObj = sortObjectByValue(item.attr_sort);
           let keysIterator = sortedObj.keys();
           let keysList = Array.from(keysIterator);
-          console.log(sortedObj, 'sortedObj====');
-          // let keysList = Object.keys(sortedObj)
-          console.log(keysList, 'keysList===');
           keysList.forEach(function(keyItem) {
             item.options.forEach(function(opItem, index) {
               if (opItem.id == keyItem) {
@@ -2677,7 +2705,6 @@
       var productsObj = {}
       var midList = []
       attLength = data.attr.attributes.length
-      console.log(attLength, 'attLength')
       params.product_delivery = data.package_products[0].shipping_fee
       params.total = Number(data.package_products[0].new_price) + Number(data.package_products[0].shipping_fee)
       params.amount = '2'
@@ -2685,16 +2712,9 @@
       paypalId = data.paypal_client_id
       productsObj.amount = '1'
       productsObj.description = data.package_products[0].name
-      // productsObj.product_id = data.product.id
       productsObj.product_id = '<?php echo $data['product']['id']; ?>'
-      console.log(productsObj.product_id, 'productsObj.product_id');
-      // productsObj.product_sku = data.sku
-      // productsObj.img = data.product.base_image.large_image_url
       productsObj.img = '<?php echo @$data['product']['base_image']['large_image_url']; ?>'
-      console.log(productsObj.img, 'productsObj.img ');
       productsObj.price = data.package_products[0].tip2
-      // productsObj.variant_id =
-      console.log(data, 'data=====')
       productL1 = JSON.parse(JSON.stringify(productsObj))
       productL2 = JSON.parse(JSON.stringify(productsObj))
       productL3 = JSON.parse(JSON.stringify(productsObj))
@@ -2734,7 +2754,6 @@
               v2List.push(mid + '_' + data.attr.attributes[m].options[inm].id)
             }
           }
-          console.log(v1List, v2List, 'v1List')
         }
         if (params.amount == '3') {}
         if (params.amount == '4') {}
@@ -2764,17 +2783,14 @@
       $('#buy-select1, #buy-select3, #buy-select4').hide()
       $('#footer-top-text').append(data.brand)
       var isPc = IsPC()
-      console.log(isPc, 'ispc');
       if (countries1 == 'us') {
         $('.choose-billing-box').show()
         if (isPc) {
           let isMac = /macintosh|mac os x/i.test(navigator.userAgent);
-          console.log(isMac, 'isMac');
           googlerOrApple = isMac ? 'apple' : 'google'
 
         } else {
           let type = getMobileOperatingSystem()
-          console.log(type, 'type');
           googlerOrApple = type == 'iOS' ? 'apple' : 'google'
         }
         if (googlerOrApple == 'google' && payTypeShow.airwallex_google == 1) {
@@ -2811,7 +2827,6 @@
         $('#apple-pay-box').hide()
       }
       if (paymentsDefault == 'airwallex_klarna') {
-        console.log(paymentsDefault, 'kelala');
         $('#airwallex-klarna').prop('checked', true);
         $('#payal_standard').prop('checked', false);
         $('#payment_method_airwallex').prop('checked', false);
@@ -2843,7 +2858,6 @@
         $('#payal_standard').prop('checked', false);
         $('#payment_method_airwallex').prop('checked', true);
         $("#complete-btn-id").show();
-        console.log("click headingOne ");
         $("#collapseOne").show();
         $("#collapseTwo").hide();
         $("#collapseThree").hide();
@@ -2889,10 +2903,6 @@
         currency
       script.async = 1
       document.body.appendChild(script)
-      // })
-      // .catch(function(error) {
-      //   console.error(error, 'err')
-      // })
 
     })
 
@@ -2911,7 +2921,6 @@
     function getbillingAddress() {
       var billingText = ''
       if ($('input[name=hobby]').is(":checked")) {
-        console.log('is(":checked")')
         params.bill_first_name = $('input[name="billingFirstName"]').val()
         params.bill_second_name = $('input[name="billingLastName"]').val()
         params.bill_country = $('select[name="billingCountry"]').val()
@@ -2948,7 +2957,6 @@
     function billingAddress() {
       if ($('input[name=hobby]').is(":checked")) {
         $('.billing-content').show()
-        console.log(countryOptions, countriesList[0], 'countriesList[0]countriesList[0]countriesList[0]');
         if (countryOptions !== '' && countriesList[0]?.countryCode !== '') {
 
           $('select[name="billingCountry"]').append(countryOptions)
@@ -2959,7 +2967,6 @@
             .get(countryUrl)
             .then(function(res) {
               if (res.data[0].CountryCode) {
-                console.log(res, 'rrrrrrrssssssss')
                 var stateList = res.data
                 var optionList = `<option value="" selected disabled>@lang('checkout::app.v2.Select State')</option>`
                 for (var resj = 0; resj < stateList.length; resj++) {
@@ -2979,7 +2986,6 @@
     $('select[name="billingCountry"]').change(function() {
       if ($(this).val()) {
         var countryClick = $(this).val().toLowerCase()
-        console.log(countryClick, params.country, 'countryClick')
         var countryUrl = '/template-common/checkout1/state/' + countryClick + '_' + area + '.json'
         axios
           .get(countryUrl)
@@ -3011,9 +3017,7 @@
     }
 
     function addressChange(event) {
-      console.log(event.target.value, 'event.target.value');
       const hasNumber = /\d/.test(event.target.value);
-      console.log(hasNumber, 'hasNumber');
       if (hasNumber) {
         $('.email-warn').hide()
       } else {
@@ -3023,7 +3027,6 @@
     }
 
     function inputBlur(event) {
-      console.log(event.target, 'event.target')
       if ($(event.target).val() !== '') {
         $(event.target).next().addClass('input-focus')
       } else {
@@ -3049,10 +3052,8 @@
       var paramsNotEmpty = paramsIsEmpty()
       var googleSelected = $("#airwallex_google").is(":checked");
       var appleSelected = $("#airwallex_apple").is(":checked");
-      console.log(googleSelected, appleSelected, paramsNotEmpty, 'paramsNotEmpty=====');
       if (countries1 == 'us') {
         if (googlerOrApple == 'google' && googleShow && googleSelected && paramsNotEmpty) {
-          console.log('googleShow');
           params.first_name = $('input[name="firstName"]').val()
           params.second_name = $('input[name="lastName"]').val()
           params.email = $('input[name="email"]').val()
@@ -3065,7 +3066,6 @@
           createGoogleButton(params)
         }
         if (googlerOrApple == 'apple' && appleShow && appleSelected && paramsNotEmpty) {
-          console.log('appleShow');
           params.first_name = $('input[name="firstName"]').val()
           params.second_name = $('input[name="lastName"]').val()
           params.email = $('input[name="email"]').val()
@@ -3084,7 +3084,6 @@
       var paramsNotEmpty = paramsIsEmpty()
       if (!paramsNotEmpty) {
         var errIsShow = skuIsScelect()
-        console.log(params, '==========2', data);
         var emailErr = validateEmail($('input[name="email"]').val())
         errDialogShow(errIsShow, emailErr)
       }
@@ -3133,13 +3132,11 @@
     }
 
     function crmTrack(type) {
-      console.log(type, 'crmTrack')
       var postParams = {
         channel_id: "<?php echo $crm_channel; ?>",
         token: "<?php echo $refer; ?>",
         type: type
       };
-      console.log(JSON.stringify(postParams), 'JSON.stringify(postParams)==')
       fetch('https://crm.heomai.com/api/user/action', {
         body: JSON.stringify(postParams),
         method: 'POST',
@@ -3232,25 +3229,6 @@
       getAttrId(productL2, obj)
       getAttrId(productL3, obj)
       getAttrId(productL4, obj)
-      // for (const key in obj) {
-      //   if (key == productL1.attr_id) {
-      //     console.log(obj[key][0], 'obj[key][0]');
-      //     productL1.variant_id = obj[key][0]
-      //     productL1.product_sku = obj[key][1]
-      //   }
-      //   if (key == productL2.attr_id) {
-      //     productL2.variant_id = obj[key][0]
-      //     productL2.product_sku = obj[key][1]
-      //   }
-      //   if (key == productL3.attr_id) {
-      //     productL3.variant_id = obj[key][0]
-      //     productL3.product_sku = obj[key][1]
-      //   }
-      //   if (key == productL4.attr_id) {
-      //     productL4.variant_id = obj[key][0]
-      //     productL4.product_sku = obj[key][1]
-      //   }
-      // }
     }
 
     function getSkuListInfo() {
@@ -3260,10 +3238,8 @@
       for (let i = 0; i < skuData.length; i++) {
         var description = skuData[i].description.slice(2)
         var attributeName = skuData[i].attribute_name.split(',').join(' / ')
-        console.log(skuData[i].img, 'skuData[i].img');
         var skuImgUrl = skuData[i].img
         if (skuData[i].img == '') {
-          console.log(data.package_products[0].image, 'image2');
           skuImgUrl = data.package_products[0].image
         }
         skuList += `<div class="sku-item-info">
@@ -3295,7 +3271,6 @@
 
     function sizeCharImgPreview() {
       var imgUrl = data.ads.size.img
-      console.log(imgUrl, 'sizeCharImgPreview')
       $('.size-chart-img-box').show()
       $('.size-chart-img img').attr('src', imgUrl)
     }
@@ -3309,7 +3284,6 @@
     }
 
     function paramsProductsinit(list) {
-      // console.log(list, 'paramsProductsinit')
       for (var listi = 0; listi < list.length; listi++) {
         if (listi == list.length - 1) {
           break;
@@ -3322,7 +3296,6 @@
         }
       }
       params.products = list
-      console.log(params.products, 'params.products')
     }
 
     function initProuctData(num1, num2) {
@@ -3388,7 +3361,6 @@
               v2List.push(mid + '_' + data.attr.attributes[m].options[inm].id)
             }
           }
-          console.log(v1List, v2List, 'v1List')
         }
         if (params.amount == '3') {
           name1 = $('#select3-item1').children('select').eq(m).val()
@@ -3410,7 +3382,6 @@
               v3List.push(mid + '_' + data.attr.attributes[m].options[inm].id)
             }
           }
-          console.log(v1List, v2List, 'v1List')
         }
         if (params.amount == '4') {
           name1 = $('#select4-item1').children('select').eq(m).val()
@@ -3437,7 +3408,6 @@
               v4List.push(mid + '_' + data.attr.attributes[m].options[inm].id)
             }
           }
-          console.log(v1List, v2List, 'v1List')
         }
       }
       if (num2 == '1') {
@@ -3523,7 +3493,6 @@
         .get(countriesUrl)
         .then(function(res) {
           if (res.data[0].countryCode) {
-            console.log(res, '===recountries1res===')
             app_config.allowed_country_codes = []
             countriesList = res.data
             countryOptions = `<option value="" disabled>@lang('checkout::app.v2.select country')</option>`
@@ -3536,7 +3505,6 @@
             $('select[name="shippingCountry"]').val(countriesList[0].countryCode)
           }
           var cval = $('select[name="shippingCountry"]').val()
-          console.log(cval, 'cval===')
           if (cval) {
             cval = cval.toLowerCase()
             var countryUrl = '/template-common/checkout1/state/' + cval + '_' + area + '.json'
@@ -3544,7 +3512,6 @@
               .get(countryUrl)
               .then(function(res) {
                 if (res.data[0].CountryCode) {
-                  console.log(res, 'rrrrrrrssssssss')
                   var stateList = res.data
                   var optionList = `<option value="" selected disabled>@lang('checkout::app.v2.Select State')</option>`
                   for (var resj = 0; resj < stateList.length; resj++) {
@@ -3564,21 +3531,17 @@
     })
 
     $('select[name="shippingState"]').change(function() {
-      console.log($(this).val(), 'shippingState')
       params.province = $(this).val()
     })
     $('select[name="shippingCountry"]').change(function() {
-      console.log($(this).val())
       params.country = $(this).val()
       if ($(this).val()) {
         var countryClick = $(this).val().toLowerCase()
-        console.log(countryClick, params.country, 'countryClick')
         var countryUrl = '/template-common/checkout1/state/' + countryClick + '_' + area + '.json'
         axios
           .get(countryUrl)
           .then(function(res) {
             if (res.data[0].CountryCode) {
-              console.log(res, 'rererererere')
               var stateList = res.data
               var optionList = `<option value="" selected disabled>@lang('checkout::app.v2.Select State')</option>`
               for (var resj = 0; resj < stateList.length; resj++) {
@@ -3647,13 +3610,11 @@
         keys = [],
         updateNext = [],
         change = false
-      console.log(attribute, value);
       attribute.options.forEach(function(item) {
         if (item.label == value) {
           skuList = item.sku
         }
       })
-      console.log(skuList, 'skuList', skuList[nextId]);
       if (skuList !== '' && Object.keys(skuList[nextId]).length !== 0) {
         keys = Object.keys(skuList[nextId])
         keys.forEach(function(item) {
@@ -3667,7 +3628,6 @@
       const noInArray = nextList.options.filter(function(element) {
         return !updateNext.includes(element)
       })
-      console.log(noInArray, 'noInArray');
       noInArray.sort(function(a, b) {
         return a.num - b.num
       })
@@ -3684,15 +3644,154 @@
           nextOption += `<option onchange="seInput(value)" disabled value="` + noInArray[i].label + `">` + noInArray[i].label + `</option>`
         }
       }
-      console.log(keys, updateNext, nextOption, 'keys');
       return {
         nextOption,
         change
       }
     }
 
+    function reviewImgPreview(imgUrl) {
+      console.log(imgUrl, 'imgUrl');
+      $('.size-chart-img-box').show();
+      $('.size-chart-img img').attr('src', imgUrl);
+    }
+    // reviews
+
+    const prevPageBtn = document.getElementById('prev-page');
+    const nextPageBtn = document.getElementById('next-page');
+    const pageInfo = document.getElementById('page-info');
+    const pageInput = document.getElementById('page-input');
+    const jumpPageBtn = document.getElementById('jump-page');
+
+    let currentPage = 1;
+    let total = 0;
+    const reviewsrUrl = '/api/reviews?product_id=' + getProductId;
+    async function getReviewsData(url) {
+      try {
+        const response = await fetch(url);
+        const data = await response.json();
+        reviewDom(data.data)
+        console.log(data, '===============getReviewsData==============');
+        if (data.code == 200) {
+          return data.data;
+        }
+      } catch (error) {
+        console.log(error.message, 'getReviewsData ==== err');
+      }
+    }
+    getReviewsData(reviewsrUrl);
+
+    function reviewDom(data) {
+      console.log(data, 'reviewDom');
+      let reviewsDom = '';
+      for (const key in data.reviews) {
+        if (Object.hasOwnProperty.call(data.reviews, key)) {
+          let reviewsImg = '';
+          if (data.reviews[key].images.length > 0) {
+            data.reviews[key].images.forEach((element) => {
+              reviewsImg +=
+                `
+          <img style="width: 30%;  max-height:120px;object-fit:contain" onclick="reviewImgPreview('${element.url}')" src="` +
+                element.url +
+                `" loading="lazy" alt="" />
+        `;
+            });
+          } else {
+            reviewsImg = '';
+          }
+          reviewsDom +=
+            `
+      <div class="comment-card" style="background-color: #F4F4F4">
+    <div style="display: flex">
+      <div class="mr4" style="font-size: 14px;margin-top: 3px;color: #444444; ">
+        ${data.reviews[key].name}
+        <i class="flag-icon-size flag-icon flag-icon-` +
+            countries1 +
+            ` mr-2"></i>
+      </div>
+      <div style="margin-top:2px">
+        <img style="margin-left:5px" class="mb1 mr2" width="14px" src="/checkout/onebuy/images/icon_gou.svg" loading="lazy" alt="" />
+        <span style="width: 100%; font-size:12px; color: #444444">` +
+            reviewLang +
+            `</span>
+      </div>
+    </div>
+    <div>
+      <div style="text-align: start; width: 100%;">
+        <img width="110px" src="/checkout/onebuy/images/stars-5.svg" loading="lazy" alt="" />
+      </div>
+      <div class="cardtext" style="text-align: start;">` +
+            data.reviews[key].comment +
+            `</div>
+      ${reviewsImg}
+    </div>
+  </div>
+      `;
+        }
+      }
+      $('.reviews-content').html(reviewsDom);
+      if (reviewsDom !== '') {
+        $('.pagination').show();
+      }
+      total = data.total;
+      const totalNum = Math.ceil(total / 10);
+      pageInfo.textContent = `${currentPage} / ${totalNum}`;
+      $('#page-input').attr('max', totalNum);
+    }
+    async function getReviews(page) {
+      page = page - 1;
+      const url = reviewsrUrl + '&page=' + page;
+      try {
+        const response = await fetch(url);
+        const data = await response.json();
+        console.log(data, '===============getReviewsData==============');
+        if (data.code == 200) {
+          return data.data;
+        }
+      } catch (error) {
+        console.log(error.message, 'getReviewsData ==== err');
+      }
+    }
+
+    function updatePaginationInfo(total) {
+      pageInfo.textContent = `${currentPage} / ${Math.ceil(total / 10)}`;
+    }
+
+    async function handlePageChange(page) {
+      const data = await getReviews(page);
+      console.log(data, 'handlePageChange');
+      reviewDom(data);
+      // fetchComments(page).then((data) => {
+      currentPage = page;
+      updatePaginationInfo(data.total);
+      prevPageBtn.disabled = currentPage === 1;
+      nextPageBtn.disabled = currentPage === Math.ceil(total / 10);
+      console.log(Math.ceil(total / 10));
+      console.log(nextPageBtn.disabled, 'nextPageBtn.disabled');
+
+      // });
+    }
+    prevPageBtn.addEventListener('click', () => {
+      if (currentPage > 1) {
+        handlePageChange(currentPage - 1);
+      }
+    });
+
+    nextPageBtn.addEventListener('click', () => {
+      handlePageChange(currentPage + 1);
+    });
+
+    jumpPageBtn.addEventListener('click', () => {
+      const page = parseInt(pageInput.value, 10);
+      console.log(page, 'page');
+      if (isNaN(page) || page < 1 || page > Math.ceil(total / 10)) {
+        alert(reviewErrMsg);
+        return;
+      }
+      handlePageChange(page);
+    });
+
     function listEach(list) {
-      console.log(list, 'listeach');
       return list.every(function(item) {
         return item !== '' && item !== null
       })
@@ -3720,13 +3819,10 @@
       }
       if (itemId == 'in-se0' && data.attr.attributes.length == 2) {
         let returnParams = getNextOptions(value)
-        console.log(returnParams, 'returnParams=======');
-        // $(event.target).siblings('#in-se1').empty()
         if (returnParams.change) {
           $(event.target).siblings('#in-se1').html(returnParams.nextOption)
           $(event.target).siblings('#in-se1').addClass('border-red')
           let lastChar = parId.substring(parId.length - 1);
-          console.log(lastChar);
           getSku('in-se1', Number(lastChar) - 1, '')
         } else {
           $(event.target).siblings('#in-se1').removeClass('border-red')
@@ -3744,7 +3840,6 @@
         crmTrack('add_cart')
         createdButton()
       }
-      console.log(params.products, '===params====')
     }
     $('#product1').click(function(e) {
       $('.pay-button').addClass('button-opacity')
@@ -3777,7 +3872,6 @@
       $('#product-number').text('number: 1')
       $('#product-price').text(data.package_products[1].tip2)
       initProuctData(1, '1')
-      console.log(data.attr.attributes, 'data.attr');
       if (data.attr.attributes.length == 0) {
         $('#p1-select').show()
         $('#p2-select').hide()
@@ -3916,15 +4010,10 @@
       params.country = $('select[name="shippingCountry"]').val()
       params.province = $('select[name="shippingState"]').val()
       var billingErr = getbillingAddress()
-      console.log(params, 'billing');
       var errIsShow = skuIsScelect()
       var emailErr = validateEmail($('input[name="email"]').val())
-      console.log(emailErr, 'emailErr');
       var errorShow = params.first_name && params.second_name && params.email && params.phone_full && params.address && params.city && params.code && params.country && params.province && errIsShow && airwallexArr.complete && emailErr
-      console.log(airwallexArr, 'airwallexArr');
-      console.log(errorShow, 'errorShow')
       if (!errorShow || billingErr !== '') {
-        console.log(billingErr, 'billingErr');
         errDialogShow(errIsShow, emailErr, billingErr, airwallexArr.complete)
         $('#loading').hide()
         return
@@ -3933,14 +4022,11 @@
       var klarnaSelected = $("#airwallex-klarna").is(":checked");
       var airwallexSelected = $("#payment_method_airwallex").is(":checked");
       if (klarnaSelected) {
-        console.log('klarna')
         params.payment_method = 'airwallex_klarna'
       }
       if (airwallexSelected) {
-        console.log('airwallex')
         params.payment_method = 'airwallex'
       }
-      console.log(params, 'airwallexparams')
       createOrder('', '', 'airwallex')
 
     })
@@ -3968,7 +4054,6 @@
 
     function paramsIsEmpty() {
       var errIsShow = skuIsScelect()
-      console.log(params, '==========2', data);
       var emailErr = validateEmail($('input[name="email"]').val())
       var errorShow = $('input[name="firstName"]').val() && $('input[name="lastName"]').val() && $('input[name="email"]').val() &&
         $('input[name="phone"]').val() &&
@@ -3978,7 +4063,6 @@
 
     function createApplePayButton(params) {
       $('#loading').show();
-      console.log(params, 'applepay');
       var payUrl = '/onebuy/order/add/sync?currency={{ core()->getCurrentCurrencyCode() }}&_token={{ csrf_token() }}&time=' + new Date().getTime();
       params.payment_method = 'airwallex_apple'
       fetch(payUrl, {
@@ -3992,7 +4076,6 @@
           return res.json()
         })
         .then(function(res) {
-          console.log(res, 'applePayres==');
           var orderId = res.order.id
           if (res.result === 200) {
             const applePayElement = Airwallex.createElement('applePayButton', {
@@ -4047,7 +4130,6 @@
 
     function createGoogleButton(params) {
       $('#loading').show();
-      console.log(params, 'googlepay');
       var payUrl = '/onebuy/order/add/sync?currency={{ core()->getCurrentCurrencyCode() }}&_token={{ csrf_token() }}&time=' + new Date().getTime();
       // airwallex_apple
       // airwallex_google
@@ -4063,7 +4145,6 @@
           return res.json()
         })
         .then(function(res) {
-          console.log(res, 'googleres==');
           var orderId = res.order.id
           if (res.result === 200) {
 
@@ -4097,7 +4178,6 @@
                 ... Handle event
               */
               // window.alert(event.detail);
-              console.log(event.detail, event, 'googlePay ===  ready');
             });
             console.log("onSuccess");
             domGooglePay.addEventListener('onSuccess', (event) => {
@@ -4106,8 +4186,6 @@
                 ... Handle event on success
               */
               // window.alert(event.detail);
-              // console.log(event.detail);
-              console.log(event.detail, event, 'googlePay ===  success');
               window.location.href = "/onebuy/checkout/v2/success/" + orderId;
             });
             domGooglePay.addEventListener('onError', (event) => {
@@ -4143,7 +4221,6 @@
       params.province = $('select[name="shippingState"]').val()
       params.code = $('input[name="shippingZip"]').val()
       params.payment_method = methods
-      console.log(params, '++++++params++++');
     }
     $(function() {
 
@@ -4185,7 +4262,6 @@
         $('#airwallex_apple').prop('checked', false);
         $('#airwallex_google').prop('checked', false)
         $("#complete-btn-id").show();
-        console.log("click headingOne ");
         $("#collapseOne").show();
         $("#collapseTwo").hide();
         $("#collapseThree").hide();
@@ -4271,11 +4347,9 @@
           background: "none",
           padding: '0'
         });
-        console.log(params, '==========1');
         //payment-button
         $("#complete-btn-id").empty();;
         // var paramsinfo = params
-        // console.log(paramsinfo, 'paramsinfo');
         paypal.Buttons({
           style: {
             layout: 'horizontal',
@@ -4299,7 +4373,6 @@
             $(".email").on('change', function() {
               var value = $(".email").val();
               if (value.length > 0) email_can = 1;
-              console.log(value);
               if (!params.error) {
                 actions.enable();
               }
@@ -4308,7 +4381,6 @@
             $(".first_name").on('change', function() {
               var value = $(".first_name").val();
               if (value.length > 0) first_name_can = 1;
-              console.log(value);
               if (!params.error) {
                 actions.enable();
               }
@@ -4317,7 +4389,6 @@
             $(".last_name").on('change', function() {
               var value = $(".last_name").val();
               if (value.length > 0) last_name_can = 1;
-              console.log(value);
               if (!params.error) {
                 actions.enable();
               }
@@ -4325,7 +4396,6 @@
             $(".phone_number").on('change', function() {
               var value = $(".phone_number").val();
               if (value.length > 0) phone_number_can = 1;
-              console.log(value);
               if (!params.error) {
                 actions.enable();
               }
@@ -4333,7 +4403,6 @@
             $(".address").on('change', function() {
               var value = $(".address").val();
               if (value.length > 0) address_can = 1;
-              console.log(value);
               if (!params.error) {
                 actions.enable();
               }
@@ -4341,7 +4410,6 @@
             $(".city").on('change', function() {
               var value = $(".city").val();
               if (value.length > 0) city_can = 1;
-              console.log(value);
               if (!params.error) {
                 actions.enable();
               }
@@ -4349,7 +4417,6 @@
             $(".zip_code").on('change', function() {
               var value = $(".zip_code").val();
               if (value.length > 0) zip_code_can = 1;
-              console.log(value);
               if (!params.error) {
                 actions.enable();
               }
@@ -4374,15 +4441,12 @@
           },
           onError(err) {
             $('#loading').hide();
-            console.log("paypal " + JSON.stringify(err));
           },
           onCancel: function(data) {
             $('#loading').hide();
           },
           onClick() {
             // var params = getOrderParams('paypal_stand');
-            // console.log("on click " + JSON.parse(params));
-            console.log(params, 'paypalparams');
             if (params.error) {
               $('#checkout-error').html(params.error.join('<br />'));
               $('#checkout-error').show();
@@ -4394,13 +4458,10 @@
           createOrder: function(data, actions) {
             getParams('paypal_stand')
             var errIsShow = skuIsScelect()
-            console.log(params, '==========2', data);
             var emailErr = validateEmail($('input[name="email"]').val())
-            console.log(emailErr, 'emailErr');
             var errorShow = $('input[name="firstName"]').val() && $('input[name="lastName"]').val() && $('input[name="email"]').val() &&
               $('input[name="phone"]').val() &&
               $('input[name="shippingAddress1"]').val() && $('input[name="shippingCity"]').val() && $('input[name="shippingZip"]').val() && $('select[name="shippingCountry"]').val() && $('select[name="shippingState"]').val() && errIsShow && emailErr
-            console.log(errorShow, 'errorShowpaypal====')
             if (!errorShow) {
               errDialogShow(errIsShow, emailErr)
               $('#loading').hide()
@@ -4423,8 +4484,8 @@
               var data = res;
               if (data.statusCode === 201) {
                 var order_info = data.result;
-                //console.log(order_info);
-                //console.log(order_info.purchase_units[0].amount);
+                localStorage.setItem('order_id', order_info.id)
+                return order_info.id
                 document.cookie = "voluum_payout=" + order_info.purchase_units[0].amount.value + order_info.purchase_units[0].amount.currency_code + "; path=/";
                 document.cookie = "order_id=" + order_info.id + "; path=/";
                 localStorage.setItem("order_id", order_info.id);
@@ -4482,7 +4543,6 @@
               data: data,
               params: paypalParams
             }
-            console.log(request_params, '===request_params===');
             var url = "/onebuy/order/status?_token={{ csrf_token() }}&currency={{ core()->getCurrentCurrencyCode() }}";
             return fetch(url, {
               method: 'post',
@@ -4543,7 +4603,6 @@
       var width = $(window).innerWidth()
       if (width > 767) {
         var height = $('.checkout-section').height()
-        console.log(height, 'height===');
         $('.left-sec').css('height', height)
       }
     })
@@ -4676,7 +4735,6 @@
       ... Handle event
       */
       //window.alert(event.detail);
-      // console.log(event.detail);
     });
 
     // STEP #8: Add an event listener to listen to the changes in each of the input fields
@@ -4684,9 +4742,7 @@
       /*
       ... Handle event
       */
-      //window.alert(event.detail);
       console.log(event.detail)
-      //console.log(JSON.stringify(event));
       console.log(event.detail.complete)
       if (event.detail.complete == true) {
         airwallexArr.complete = true
@@ -4706,9 +4762,7 @@
       /*
       ... Handle event
       */
-      //window.alert(event.detail);
       console.log(event.detail)
-      //console.log(JSON.stringify(event));
       console.log(event.detail.complete)
       $("#id_expiry").val(event.detail.complete);
 
@@ -4728,11 +4782,8 @@
       /*
       ... Handle event
       */
-      //window.alert(event.detail);
       console.log(event.detail)
-      //console.log(JSON.stringify(event));
       console.log(event.detail.complete)
-      //$("#id_cvc").val(event.detail.complete);
 
       if (event.detail.complete == true) {
         $("#id_cvc").val(event.detail.complete);
@@ -4779,7 +4830,6 @@
                 return;
               }
               crmTrack('add_pay')
-              console.log(data, '==========');
               var url =
                 '/onebuy/order/addr/after?currency={{ core()->getCurrentCurrencyCode() }}&_token={{ csrf_token() }}&time=' +
                 new Date().getTime() +
@@ -4800,11 +4850,10 @@
                 .then(function(res) {
                   //$('#loading').hide();
                   var data = res
-                  //console.log(data)
                   if (data.statusCode === 201) {
                     var order_info = data.result
-                    //console.log(order_info);
-                    //console.log(order_info.purchase_units[0].amount);
+                    localStorage.setItem('order_id', order_info.id)
+                    return order_info.id
                     document.cookie =
                       'voluum_payout=' +
                       order_info.purchase_units[0].amount.value +
@@ -4861,7 +4910,6 @@
              *
              */
             onApprove: function(data, actions) {
-              //console.log("on app rove");
               if (!data.orderID) {
                 throw new Error('orderid is not exisit')
               }
@@ -4884,7 +4932,6 @@
                   '&'
               }
               request = request.substr(0, request.length - 1)
-              //console.log(request);
 
               var url =
                 '/onebuy/order/status?_token={{ csrf_token() }}&currency={{ core()->getCurrentCurrencyCode() }}'
@@ -4921,7 +4968,6 @@
                     return alert(msg) // Show a failure message (try to avoid alerts in production environments)
                   }
 
-                  //console.log(res);
 
                   if (res.success == true) {
                     window.location.href =
@@ -4986,9 +5032,7 @@
         })
       }
     }
-    $(".email").on("focus", function() {
-      //console.log("email focus");
-    });
+    $(".email").on("focus", function() {});
 
     function checkout() {
       sendInitiateCheckoutEvent();
@@ -5054,15 +5098,13 @@
       }
 
       params['pay_type'] = pay_type;
-      //console.log(JSON.stringify(params));
       //return false;
 
-      var url = '/onebuy/order/add/sync?currency={{ core()->getCurrentCurrencyCode() }}&_token={{ csrf_token() }}&time=' + new Date().getTime();
+      var url = '/onebuy/order/add/sync?currency={{ core()->getCurrentCurrencyCode() }}&_token={{ csrf_token() }}&time=' + new Date().getTime() + "&force=" + localStorage.getItem("force");
 
       if (pay_type == "payoneer" || pay_type == 'pacypay') {
         url = '/order/add/async?time=' + new Date().getTime();
       }
-      console.log(params, '===params====')
       fetch(url, {
           body: JSON.stringify(params),
           method: 'POST',
@@ -5076,17 +5118,12 @@
         .then(function(res) {
           crmTrack('add_pay')
           var data = res;
-          //console.log(data);
           if (data.result === 200) {
 
             var order_info = data.order;
 
-            //console.log(order_info);
-            //console.log(window.is_airwallex_klarna);
-
             if (window.is_paypal_standard) {
               var paypal_form = '<form action="' + data.pay_url + '" method="post" style="display:none" >';
-              //console.log(data.form);
               $.each(data.form, function(k, v) {
 
                 if (k == 'cancel_return') v = window.location.href;
@@ -5096,7 +5133,6 @@
               });
               // 
               paypal_form += '</form>';
-              //console.log(paypal_form);
               $(paypal_form).appendTo('body').submit();
               return false;
             }
@@ -5118,10 +5154,6 @@
                   return res.json()
                 })
                 .then(function(res) {
-
-                  //console.log(res);
-
-                  //console.log(res.payment.next_action.url);
 
                   Goto(res.payment.next_action.url);
 
@@ -5174,8 +5206,6 @@
 
               }).catch((response) => {
                 $('#loading').hide();
-                console.log("catch");
-                console.log(JSON.stringify(response))
 
                 alert(response.message)
                 $('#checkout-error').html(response.message + '<br /><br />');
@@ -5186,7 +5216,6 @@
               });
             }
           } else {
-            console.log('else====');
             $('#loading').hide();
             var pay_error = data.error;
 
@@ -5215,7 +5244,6 @@
     }
 
     function checkoutProducts(params) {
-      console.log(params);
       return false;
       var products = params.products;
       for (var i = 0; i < products.length; i++) {
@@ -5432,13 +5460,6 @@
       var attribute_item = $('.attribute-select .attribute-item');
       var sku_maps = getSKuMaps();
 
-      // console.log("sku maps");
-      // console.log(sku_maps);
-
-      // console.log("attribute_item");
-      // console.log(attribute_item);
-      // console.log("attribute_item");
-
       for (var i = 0; i < attribute_item.length; i++) {
         var sku_key_arr = [];
         var img_key = '';
@@ -5458,14 +5479,10 @@
         skus.push(sku);
       }
 
-      console.log("product skus");
-      console.log(skus);
-
       var products = [],
         product_sku_map = {};
 
       for (var m = 0; m < skus.length; m++) {
-        console.log("skus length" + skus.length);
         if (product_sku_map[skus[m].sku_id]) {
           products[product_sku_map[skus[m].sku_id] - 1].amount++;
         } else {

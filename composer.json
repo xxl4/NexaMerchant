@@ -1,12 +1,45 @@
 {
-    "name": "xxl4\/nexamerchant",
+    "name": "nexa-merchant/core",
     "type": "project",
     "description": "Laravel Free E-Commerce",
     "keywords": [
         "framework",
         "laravel",
-        "ecommerce"
+        "ecommerce",
+        "shop",
+        "ecommerce-platform",
+        "ecommerce-solution",
+        "ecommerce-framework",
+        "ecommerce-cms",
+        "ecommerce-website",
+        "ecommerce-store",
+        "ecommerce-shopping-cart",
+        "ecommerce-shopping-platform",
+        "ecommerce-shopping-solution",
+        "ecommerce-shopping-framework",
+        "ecommerce-shopping-cms",
+        "ecommerce-shopping-website",
+        "ecommerce-shopping-store",
+        "ecommerce-shopping-cart-platform",
+        "ecommerce-shopping-cart-solution",
+        "ecommerce-shopping-cart-framework",
+        "ecommerce-shopping-cart-cms",
+        "ecommerce-shopping-cart-website",
+        "ecommerce-shopping-cart-store",
+        "ecommerce-shopping-cart-cms",
+        "ecommerce-shopping-cart-website",
+        "ecommerce-shopping-cart-store"
     ],
+    "suggest": {
+        "ext-calendar": "Required for calendar",
+        "ext-curl": "Required for curl",
+        "ext-intl": "Required for intl",
+        "ext-mbstring": "Required for mbstring",
+        "ext-openssl": "Required for openssl",
+        "ext-pdo": "Required for pdo",
+        "ext-pdo_mysql": "Required for pdo_mysql",
+        "ext-tokenizer": "Required for tokenizer"
+    },
     "license": "MIT",
     "require": {
         "php": "^8.1",
@@ -39,7 +72,9 @@
         "laravel/tinker": "^2.0",
         "laravel/ui": "^4.0",
         "maatwebsite/excel": "^3.1.46",
-        "nexa-merchant/apis": "1.0.8",
+        "nexa-merchant/apis": "1.1.1",
+        "nexa-merchant/apps": "1.0.0",
+        "nexa-merchant/upselling": "^1.0",
         "paypal/paypal-checkout-sdk": "1.0.2",
         "predis/predis": "^2.2",
         "prettus/l5-repository": "^2.6",
@@ -102,9 +137,12 @@
             "Nicelizhi\\Lp\\": "packages\/Nicelizhi\/Lp\/src",
             "Nicelizhi\\Binom\\": "packages\/Nicelizhi\/Binom\/src",
             "Nicelizhi\\Comments\\": "packages\/Nicelizhi\/Comments\/src",
-            "Nicelizhi\\Apps\\": "packages\/Nicelizhi\/Apps\/src",
             "Webkul\\User\\": "packages\/Webkul\/User\/src",
-            "NexaMerchant\\Webhooks\\": "packages\/Apps\/Webhooks\/src"
+            "NexaMerchant\\Webhooks\\": "packages\/Apps\/Webhooks\/src",
+            "NexaMerchant\\Upselling\\": "packages\/Apps\/Upselling\/src",
+            "NexaMerchant\\Paypal\\": "packages\/Apps\/Paypal\/src",
+            "NexaMerchant\\Apps\\": "packages\/Apps\/Apps\/src",
+            "NexaMerchant\\Cms\\": "packages\/Apps\/Cms\/src"
         }
     },
     "autoload-dev": {
