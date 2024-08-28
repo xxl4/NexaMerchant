@@ -91,7 +91,7 @@ class AirwallexController extends Controller
 
                    // $amount = $transactionData->data->object->amount;
                     $amount = round($input['data']['object']['amount'] * 100);
-                    $orderAmount = round($order->base_grand_total * 100);
+                    $orderAmount = round($order->grand_total * 100);
 
                     $amount_sub = substr($amount, 0, 3);
                     $orderAmount_sub = substr($orderAmount, 0, 3);
@@ -138,6 +138,10 @@ class AirwallexController extends Controller
 
                     }else{
                         Log::info("airwallex notification received for order id:" . $transactionId . " amount not matched");
+
+                        //send message to wecome
+                        \Nicelizhi\Shopify\Helpers\Utils::send(config("app.name").' '.$transactionId. " order the price is not match, please check it ");
+
                         return response("Order not found ".$amount."---".$orderAmount, 400);
                     }
                 } else {
