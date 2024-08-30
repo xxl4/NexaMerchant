@@ -867,6 +867,9 @@ class ProductController extends Controller
         try {
             $order = $this->smartButton->getOrder(request()->input('orderData.orderID'));
 
+            // paypal caputre order
+            //$this->smartButton->captureOrder(request()->input('orderData.orderID'));
+
             // return response()->json($order);
             
             Log::info("paypal ".json_encode($order));
@@ -917,6 +920,12 @@ class ProductController extends Controller
                         'data'     => route('shop.checkout.cart.index'),
                     ]);
                 }
+
+                $this->smartButton->captureOrder(request()->input('orderData.orderID'));
+    
+                //$this->smartButton->AuthorizeOrder(request()->input('orderData.orderID'));
+    
+                $request->session()->put('last_order_id', request()->input('orderData.orderID'));
 
             }else{
 
