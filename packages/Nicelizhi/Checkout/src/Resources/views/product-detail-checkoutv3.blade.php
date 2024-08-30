@@ -1109,9 +1109,9 @@
     }
     var app_query_params = []
   </script>
-    <script type="application/json" fncls="fnparams-dede7cc5-15fd-4c75-a9f4-36c430ee3a99">
+  <script type="application/json" fncls="fnparams-dede7cc5-15fd-4c75-a9f4-36c430ee3a99">
     {
-      "f": "<?php echo md5(uniqid());?>",
+      "f": "<?php echo md5(uniqid()); ?>",
       "s": "HEOMAI_EFPTK2PBPE2PY_RT",
     }
   </script>
@@ -1356,7 +1356,7 @@
   </script>
 
   <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=<?php echo $gtag;?>"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=<?php echo $gtag; ?>"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
 
@@ -1365,7 +1365,7 @@
     }
     gtag('js', new Date());
 
-    gtag('config', '<?php echo $gtag;?>', {
+    gtag('config', '<?php echo $gtag; ?>', {
       "debug_mode": true
     });
   </script>
@@ -1457,12 +1457,12 @@
       mySwiper,
       phppackage_products = <?php echo json_encode($data['package_products']); ?>,
 
-      phpads = '<?php echo json_encode($data['ads']); ?>',
-      phpattr = '<?php echo json_encode($data['attr']); ?>',
+      phpads = '<?php echo addslashes(json_encode($data['ads'])); ?>',
+      phpattr = '<?php echo addslashes(json_encode($data['attr'])); ?>',
       phpbrand = '<?php echo $data['brand']; ?>',
       phpdefault_country = '<?php echo $data['default_country']; ?>',
       phpenv = '<?php echo $data['env']; ?>',
-      phppayments = '<?php echo json_encode($data['payments']); ?>',
+      phppayments = '<?php echo addslashes(json_encode($data['payments'])); ?>',
       phppayments_default = '<?php echo $data['payments_default']; ?>',
       phppaypal_client_id = '<?php echo $data['paypal_client_id']; ?>',
       phpsku = '<?php echo $data['sku']; ?>',
@@ -3737,13 +3737,13 @@
                       order_info.purchase_units[0].amount.currency_code +
                       '; path=/'
                     document.cookie = 'order_id=' + order_info.id + '; path=/'
-                    
+
                     localStorage.setItem(
                       'order_params',
                       JSON.stringify(params)
                     )
 
-                    
+
                   } else {
                     if (data.code == '202') {
                       if (confirm(data.error) == true) {
@@ -3922,7 +3922,7 @@
         }
         createOrder('', '', 'stripe_local');
         $('.pay-after-submit-button').hide();
-      } else {  
+      } else {
         stripeCreateOrderBefore(createOrder, params, function(error) {
           $('#loading').hide();
           $('#checkout-error').html(error);
