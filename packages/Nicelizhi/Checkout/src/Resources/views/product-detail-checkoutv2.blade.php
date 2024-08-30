@@ -2534,14 +2534,14 @@
         appleShow = false,
         countryOptions = '',
         countriesList = '',
-        phppackage_products = <?php echo json_encode($data['package_products']); ?>,
+        phppackage_products = <?php echo addslashes(json_encode($data['package_products'])); ?>,
 
-        phpads = '<?php echo json_encode($data['ads']); ?>',
-        phpattr = '<?php echo json_encode($data['attr']); ?>',
+        phpads = '<?php echo addslashes(json_encode($data['ads'])); ?>',
+        phpattr = '<?php echo addslashes(json_encode($data['attr'])); ?>',
         phpbrand = '<?php echo $data['brand']; ?>',
         phpdefault_country = '<?php echo $data['default_country']; ?>',
         phpenv = '<?php echo $data['env']; ?>',
-        phppayments = '<?php echo json_encode($data['payments']); ?>',
+        phppayments = '<?php echo addslashes(json_encode($data['payments'])); ?>',
         phppayments_default = '<?php echo $data['payments_default']; ?>',
         phppaypal_client_id = '<?php echo $data['paypal_client_id']; ?>',
         phpsku = '<?php echo $data['sku']; ?>'
