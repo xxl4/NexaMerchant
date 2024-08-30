@@ -1473,7 +1473,7 @@
       swiperImgList = [],
       galleryThumbs,
       mySwiper,
-      phppackage_products = <?php echo addslashes(json_encode($data['package_products'])); ?>,
+      phppackage_products = <?php echo json_encode($data['package_products']); ?>,
 
       phpads = '<?php echo addslashes(json_encode($data['ads'])); ?>',
       phpattr = '<?php echo addslashes(json_encode($data['attr'])); ?>',
