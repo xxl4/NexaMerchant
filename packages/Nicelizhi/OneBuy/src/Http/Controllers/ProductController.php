@@ -870,6 +870,8 @@ class ProductController extends Controller
             // paypal caputre order
             //$this->smartButton->captureOrder(request()->input('orderData.orderID'));
 
+            // var_dump($order);
+            // var_dump($order['result']);
             // return response()->json($order);
             
             Log::info("paypal ".json_encode($order));
@@ -921,7 +923,12 @@ class ProductController extends Controller
                     ]);
                 }
 
-                $this->smartButton->captureOrder(request()->input('orderData.orderID'));
+                // if the status not eq completed, then capture the order
+
+                if($order->result->status != "COMPLETED") {
+                    $this->smartButton->captureOrder(request()->input('orderData.orderID'));
+                }
+                //$this->smartButton->captureOrder(request()->input('orderData.orderID'));
     
                 //$this->smartButton->AuthorizeOrder(request()->input('orderData.orderID'));
     
@@ -979,7 +986,9 @@ class ProductController extends Controller
                     ]);
                 }
     
-                $this->smartButton->captureOrder(request()->input('orderData.orderID'));
+                if($order['result']->status != "COMPLETED") {
+                    $this->smartButton->captureOrder(request()->input('orderData.orderID'));
+                }
     
                 //$this->smartButton->AuthorizeOrder(request()->input('orderData.orderID'));
     
