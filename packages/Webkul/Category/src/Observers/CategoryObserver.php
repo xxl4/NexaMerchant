@@ -4,7 +4,6 @@ namespace Webkul\Category\Observers;
 
 use Illuminate\Support\Facades\Storage;
 use Webkul\Category\Models\Category;
-use Carbon\Carbon;
 
 class CategoryObserver
 {
@@ -16,7 +15,7 @@ class CategoryObserver
      */
     public function deleted($category)
     {
-        Storage::deleteDirectory('category/' . $category->id);
+        Storage::deleteDirectory('category/'.$category->id);
     }
 
     /**

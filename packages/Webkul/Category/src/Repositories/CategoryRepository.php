@@ -3,9 +3,8 @@
 namespace Webkul\Category\Repositories;
 
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Str;
 use Intervention\Image\ImageManager;
 use Webkul\Category\Contracts\Category;
 use Webkul\Category\Models\CategoryTranslationProxy;
@@ -29,16 +28,17 @@ class CategoryRepository extends Repository
     public function getAll(array $params = [])
     {
         $queryBuilder = $this->query()
+            ->select('categories.*')
             ->leftJoin('category_translations', 'category_translations.category_id', '=', 'categories.id');
 
         foreach ($params as $key => $value) {
             switch ($key) {
                 case 'name':
-                    $queryBuilder->where('category_translations.name', 'like', '%' . urldecode($value) . '%');
+                    $queryBuilder->where('category_translations.name', 'like', '%'.urldecode($value).'%');
 
                     break;
                 case 'description':
-                    $queryBuilder->where('category_translations.description', 'like', '%' . urldecode($value) . '%');
+                    $queryBuilder->where('category_translations.description', 'like', '%'.urldecode($value).'%');
 
                     break;
                 case 'status':
@@ -90,7 +90,7 @@ class CategoryRepository extends Repository
         $category = $this->model->create($data);
 
         $this->uploadImages($data, $category);
-        
+
         $this->uploadImages($data, $category, 'banner_path');
 
         if (isset($data['attributes'])) {
@@ -107,7 +107,7 @@ class CategoryRepository extends Repository
      * @param  string  $attribute
      * @return \Webkul\Category\Contracts\Category
      */
-    public function update(array $data, $id, $attribute = 'id')
+    public function update(array $data, $id)
     {
         $category = $this->find($id);
 
@@ -228,16 +228,6 @@ class CategoryRepository extends Repository
     }
 
     /**
-     * Find by path.
-     *
-     * @return \Webkul\Category\Contracts\Category
-     */
-    public function findByPath(string $urlPath)
-    {
-        return $this->model->whereTranslation('url_path', $urlPath)->first();
-    }
-
-    /**
      * Upload category's images.
      *
      * @param  array  $data
@@ -249,19 +239,18 @@ class CategoryRepository extends Repository
     {
         if (isset($data[$type])) {
             foreach ($data[$type] as $imageId => $image) {
-                $file = $type . '.' . $imageId;
-                $dir = 'category/' . $category->id;
+                $file = $type.'.'.$imageId;
 
                 if (request()->hasFile($file)) {
                     if ($category->{$type}) {
                         Storage::delete($category->{$type});
                     }
 
-                    $manager = new ImageManager();
+                    $manager = new ImageManager;
 
                     $image = $manager->make(request()->file($file))->encode('webp');
 
-                    $category->{$type} = 'category/' . $category->id . '/' . Str::random(40) . '.webp';
+                    $category->{$type} = 'category/'.$category->id.'/'.Str::random(40).'.webp';
 
                     Storage::put($category->{$type}, $image);
 
