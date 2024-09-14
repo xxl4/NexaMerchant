@@ -17,29 +17,23 @@ class CartRuleCouponRepository extends Repository
 
     /**
      * Specify Model class name
-     *
-     * @return string
      */
-    function model(): string
+    public function model(): string
     {
         return 'Webkul\CartRule\Contracts\CartRuleCoupon';
     }
 
     /**
      * Creates coupons for cart rule
-     *
-     * @param  array  $data
-     * @param  int  $cartRuleId
-     * @return void
      */
-    public function generateCoupons($data, $cartRuleId)
+    public function generateCoupons(array $data, int $cartRuleId): void
     {
         $cartRule = app('Webkul\CartRule\Repositories\CartRuleRepository')->findOrFail($cartRuleId);
 
         for ($i = 0; $i < $data['coupon_qty']; $i++) {
             parent::create([
                 'cart_rule_id'       => $cartRuleId,
-                'code'               => $data['code_prefix'] . $this->getRandomString($data['code_format'], $data['code_length']) . $data['code_suffix'],
+                'code'               => $data['code_prefix'].$this->getRandomString($data['code_format'], $data['code_length']).$data['code_suffix'],
                 'usage_limit'        => $cartRule->uses_per_coupon ?? 0,
                 'usage_per_customer' => $cartRule->usage_per_customer ?? 0,
                 'is_primary'         => 0,
@@ -50,12 +44,8 @@ class CartRuleCouponRepository extends Repository
 
     /**
      * Creates coupons for cart rule
-     *
-     * @param  string  $format
-     * @param  int  $length
-     * @return string
      */
-    public function getRandomString($format, $length)
+    public function getRandomString(string $format, int $length): string
     {
         $couponCode = '';
 

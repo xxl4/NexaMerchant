@@ -4,10 +4,10 @@ namespace Webkul\CartRule\Repositories;
 
 use Illuminate\Container\Container;
 use Illuminate\Support\Facades\DB;
-use Webkul\Core\Eloquent\Repository;
 use Webkul\Attribute\Repositories\AttributeFamilyRepository;
 use Webkul\Attribute\Repositories\AttributeRepository;
 use Webkul\Category\Repositories\CategoryRepository;
+use Webkul\Core\Eloquent\Repository;
 use Webkul\Core\Repositories\CountryRepository;
 use Webkul\Core\Repositories\CountryStateRepository;
 use Webkul\Tax\Repositories\TaxCategoryRepository;
@@ -17,14 +17,6 @@ class CartRuleRepository extends Repository
     /**
      * Create a new repository instance.
      *
-     * @param  \Webkul\Attribute\Repositories\AttributeFamilyRepository  $attributeFamilyRepository
-     * @param  \Webkul\Attribute\Repositories\AttributeRepository  $attributeRepository
-     * @param  \Webkul\Category\Repositories\CategoryRepository  $categoryRepository
-     * @param  \Webkul\CartRule\Repositories\CartRuleCouponRepository  $cartRuleCouponRepository
-     * @param  \Webkul\Tax\Repositories\TaxCategoryRepository  $taxCategoryRepository
-     * @param  \Webkul\Core\Repositories\CountryRepository  $countryRepository
-     * @param  \Webkul\Core\Repositories\CountryStateRepository  $countryStateRepository
-     * @param  \Illuminate\Container\Container  $container
      * @return void
      */
     public function __construct(
@@ -36,15 +28,12 @@ class CartRuleRepository extends Repository
         protected CountryRepository $countryRepository,
         protected CountryStateRepository $countryStateRepository,
         Container $container
-    )
-    {
+    ) {
         parent::__construct($container);
     }
 
     /**
      * Specify Model class name
-     *
-     * @return string
      */
     public function model(): string
     {
@@ -52,14 +41,13 @@ class CartRuleRepository extends Repository
     }
 
     /**
-     * @param  array  $data
      * @return \Webkul\CartRule\Contracts\CartRule
      */
     public function create(array $data)
     {
-        $data['starts_from'] = $data['starts_from'] ? $data['starts_from'] : null;
-    
-        $data['ends_till'] = $data['ends_till'] ? $data['ends_till'] : null;
+        $data['starts_from'] = $data['starts_from'] ?: null;
+
+        $data['ends_till'] = $data['ends_till'] ?: null;
 
         $data['status'] = isset($data['status']);
 
@@ -79,7 +67,7 @@ class CartRuleRepository extends Repository
                 'usage_limit'        => $data['uses_per_coupon'] ?? 0,
                 'usage_per_customer' => $data['usage_per_customer'] ?? 0,
                 'is_primary'         => 1,
-                'expired_at'         => $data['ends_till'] ?: null,
+                'expired_at'         => $data['ends_till'] ?? null,
             ]);
         }
 
@@ -87,12 +75,10 @@ class CartRuleRepository extends Repository
     }
 
     /**
-     * @param  array  $data
      * @param  int  $id
-     * @param  string  $attribute
      * @return \Webkul\CartRule\Contracts\CartRule
      */
-    public function update(array $data, $id, $attribute = 'id')
+    public function update(array $data, $id)
     {
         $data = array_merge($data, [
             'starts_from' => $data['starts_from'] ?: null,
@@ -103,13 +89,15 @@ class CartRuleRepository extends Repository
 
         $cartRule = $this->find($id);
 
-        parent::update($data, $id, $attribute);
+        parent::update($data, $id);
 
         $cartRule->channels()->sync($data['channels']);
 
         $cartRule->customer_groups()->sync($data['customer_groups']);
 
-        if ($data['coupon_type']) {
+        if (! $data['coupon_type']) {
+            $cartRuleCoupon = $this->cartRuleCouponRepository->deleteWhere(['is_primary' => 1, 'cart_rule_id' => $cartRule->id]);
+        } else {
             if (! $data['use_auto_generation']) {
                 $cartRuleCoupon = $this->cartRuleCouponRepository->findOneWhere([
                     'is_primary'   => 1,
@@ -121,7 +109,7 @@ class CartRuleRepository extends Repository
                         'code'               => $data['coupon_code'],
                         'usage_limit'        => $data['uses_per_coupon'] ?? 0,
                         'usage_per_customer' => $data['usage_per_customer'] ?? 0,
-                        'expired_at'         => $data['ends_till'] ?: null,
+                        'expired_at'         => $data['ends_till'] ?? null,
                     ], $cartRuleCoupon->id);
                 } else {
                     $this->cartRuleCouponRepository->create([
@@ -130,7 +118,7 @@ class CartRuleRepository extends Repository
                         'usage_limit'        => $data['uses_per_coupon'] ?? 0,
                         'usage_per_customer' => $data['usage_per_customer'] ?? 0,
                         'is_primary'         => 1,
-                        'expired_at'         => $data['ends_till'] ?: null,
+                        'expired_at'         => $data['ends_till'] ?? null,
                     ]);
                 }
             } else {
@@ -142,11 +130,9 @@ class CartRuleRepository extends Repository
                 $this->cartRuleCouponRepository->where('cart_rule_id', $cartRule->id)->update([
                     'usage_limit'        => $data['uses_per_coupon'] ?? 0,
                     'usage_per_customer' => $data['usage_per_customer'] ?? 0,
-                    'expired_at'         => $data['ends_till'] ?: null,
+                    'expired_at'         => $data['ends_till'] ?? null,
                 ]);
             }
-        } else {
-            $cartRuleCoupon = $this->cartRuleCouponRepository->deleteWhere(['is_primary' => 1, 'cart_rule_id' => $cartRule->id]);
         }
 
         return $cartRule;
@@ -256,11 +242,11 @@ class CartRuleRepository extends Repository
         $tempAttributes = $this->attributeRepository->with([
             'translations',
             'options',
-            'options.translations'
+            'options.translations',
         ])->findWhereNotIn('type', [
             'textarea',
             'image',
-            'file'
+            'file',
         ]);
 
         foreach ($tempAttributes as $attribute) {
@@ -279,21 +265,21 @@ class CartRuleRepository extends Repository
             }
 
             $attributes[2]['children'][] = [
-                'key'     => 'product|' . $attribute->code,
+                'key'     => 'product|'.$attribute->code,
                 'type'    => $attribute->type,
                 'label'   => $attribute->name,
                 'options' => $options,
             ];
 
             $attributes[2]['children'][] = [
-                'key'     => 'product|children::' . $attribute->code,
+                'key'     => 'product|children::'.$attribute->code,
                 'type'    => $attribute->type,
                 'label'   => trans('admin::app.marketing.promotions.cart-rules.create.attribute-name-children-only', ['attribute_name' => $attribute->name]),
                 'options' => $options,
             ];
 
             $attributes[2]['children'][] = [
-                'key'     => 'product|parent::' . $attribute->code,
+                'key'     => 'product|parent::'.$attribute->code,
                 'type'    => $attribute->type,
                 'label'   => trans('admin::app.marketing.promotions.cart-rules.create.attribute-name-parent-only', ['attribute_name' => $attribute->name]),
                 'options' => $options,

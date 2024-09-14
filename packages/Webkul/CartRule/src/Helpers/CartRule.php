@@ -2,17 +2,17 @@
 
 namespace Webkul\CartRule\Helpers;
 
-use Illuminate\Database\Eloquent\Builder;
 use Carbon\Carbon;
-use Webkul\Customer\Repositories\CustomerRepository;
-use Webkul\Checkout\Repositories\CartRepository;
-use Webkul\CartRule\Repositories\CartRuleRepository;
+use Illuminate\Database\Eloquent\Builder;
 use Webkul\CartRule\Repositories\CartRuleCouponRepository;
-use Webkul\CartRule\Repositories\CartRuleCustomerRepository;
 use Webkul\CartRule\Repositories\CartRuleCouponUsageRepository;
-use Webkul\Rule\Helpers\Validator;
+use Webkul\CartRule\Repositories\CartRuleCustomerRepository;
+use Webkul\CartRule\Repositories\CartRuleRepository;
 use Webkul\Checkout\Facades\Cart;
 use Webkul\Checkout\Models\CartItem;
+use Webkul\Checkout\Repositories\CartRepository;
+use Webkul\Customer\Repositories\CustomerRepository;
+use Webkul\Rule\Helpers\Validator;
 
 class CartRule
 {
@@ -34,13 +34,6 @@ class CartRule
     /**
      * Create a new helper instance.
      *
-     * @param  \Webkul\Customer\Repositories\CustomerRepository  $customerRepository
-     * @param  \Webkul\Checkout\Repositories\CartRepository  $cartRepository
-     * @param  \Webkul\CartRule\Repositories\CartRuleRepository  $cartRuleRepository
-     * @param  \Webkul\CartRule\Repositories\CartRuleCouponRepository  $cartRuleCouponRepository
-     * @param  \Webkul\CartRule\Repositories\CartRuleCustomerRepository  $cartRuleCustomerRepository
-     * @param  \Webkul\CartRule\Repositories\CartRuleCouponUsageRepository  $cartRuleCouponUsageRepository
-     * @param  \Webkul\Rule\Helpers\Validator  $validator
      *
      * @return void
      */
@@ -52,9 +45,7 @@ class CartRule
         protected CartRuleCustomerRepository $cartRuleCustomerRepository,
         protected CartRuleCouponUsageRepository $cartRuleCouponUsageRepository,
         protected Validator $validator
-    )
-    {
-    }
+    ) {}
 
     /**
      * Collect discount on cart
@@ -132,7 +123,6 @@ class CartRule
      * Check if cart rule can be applied
      *
      * @param  \Webkul\CartRule\Contracts\CartRule  $rule
-     * @return bool
      */
     public function canProcessRule($rule): bool
     {
@@ -197,9 +187,6 @@ class CartRule
 
     /**
      * Cart item discount calculation process
-     *
-     * @param  \Webkul\Checkout\Models\CartItem  $item
-     * @return array
      */
     public function process(CartItem $item): array
     {
@@ -230,9 +217,9 @@ class CartRule
                 case 'by_percent':
                     $rulePercent = min(100, $rule->discount_amount);
 
-                    $discountAmount = ($quantity * $item->price + $item->tax_amount - $item->discount_amount) * ($rulePercent / 100);
+                    $discountAmount = ($quantity * $item->price - $item->discount_amount) * ($rulePercent / 100);
 
-                    $baseDiscountAmount = ($quantity * $item->base_price + $item->base_tax_amount - $item->base_discount_amount) * ($rulePercent / 100);
+                    $baseDiscountAmount = ($quantity * $item->base_price - $item->base_discount_amount) * ($rulePercent / 100);
 
                     if (
                         ! $rule->discount_quantity
@@ -298,11 +285,11 @@ class CartRule
 
             $item->discount_amount = min(
                 $item->discount_amount + $discountAmount,
-                $item->price * $quantity + $item->tax_amount
+                $item->price * $quantity
             );
             $item->base_discount_amount = min(
                 $item->base_discount_amount + $baseDiscountAmount,
-                $item->base_price * $quantity + $item->base_tax_amount
+                $item->base_price * $quantity
             );
 
             $appliedRuleIds[$rule->id] = $rule->id;
@@ -439,7 +426,11 @@ class CartRule
 
                 $selectedShipping->price = 0;
 
+                $selectedShipping->price_incl_tax = 0;
+
                 $selectedShipping->base_price = 0;
+
+                $selectedShipping->base_price_incl_tax = 0;
 
                 $selectedShipping->save();
 
@@ -457,10 +448,10 @@ class CartRule
 
         $cartAppliedCartRuleIds = array_unique($cartAppliedCartRuleIds);
 
-        $this->cart->applied_cart_rule_ids = join(',', $cartAppliedCartRuleIds);
+        $this->cart->applied_cart_rule_ids = implode(',', $cartAppliedCartRuleIds);
 
         $this->cart = $this->cartRepository->update([
-            'applied_cart_rule_ids' => join(',', $cartAppliedCartRuleIds),
+            'applied_cart_rule_ids' => implode(',', $cartAppliedCartRuleIds),
         ], $this->cart->id);
     }
 
@@ -503,8 +494,6 @@ class CartRule
 
     /**
      * Check if coupon code is applied or not
-     *
-     * @return bool
      */
     public function checkCouponCode(): bool
     {
@@ -575,11 +564,9 @@ class CartRule
 
     /**
      * Check if cart rules are available or not for current customer group and channel
-     * 
-     * @return boolean
      */
     public function haveCartRules(): bool
     {
-        return (boolean) $this->getCartRuleQuery()->count();
+        return (bool) $this->getCartRuleQuery()->count();
     }
 }

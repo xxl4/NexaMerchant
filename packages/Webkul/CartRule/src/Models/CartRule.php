@@ -3,10 +3,10 @@
 namespace Webkul\CartRule\Models;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Database\Eloquent\Model;
-use Webkul\Core\Database\Factories\CartRuleFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 use Webkul\CartRule\Contracts\CartRule as CartRuleContract;
+use Webkul\Core\Database\Factories\CartRuleFactory;
 use Webkul\Core\Models\ChannelProxy;
 use Webkul\Customer\Models\CustomerGroupProxy;
 
@@ -14,6 +14,11 @@ class CartRule extends Model implements CartRuleContract
 {
     use HasFactory;
 
+    /**
+     * Add fillable property to the model.
+     *
+     * @var array
+     */
     protected $fillable = [
         'name',
         'description',
@@ -39,14 +44,17 @@ class CartRule extends Model implements CartRuleContract
         'sort_order',
     ];
 
+    /**
+     * Cast the conditions to the array.
+     *
+     * @var array
+     */
     protected $casts = [
         'conditions' => 'array',
     ];
 
     /**
      * Get the channels that owns the cart rule.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function cart_rule_channels(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
@@ -54,8 +62,6 @@ class CartRule extends Model implements CartRuleContract
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-     *
      * @deprecated laravel standard should be used
      */
     public function channels(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
@@ -65,8 +71,6 @@ class CartRule extends Model implements CartRuleContract
 
     /**
      * Get the customer groups that owns the cart rule.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function cart_rule_customer_groups(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
@@ -74,8 +78,6 @@ class CartRule extends Model implements CartRuleContract
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-     *
      * @deprecated laravel standard should be used
      */
     public function customer_groups(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
@@ -85,8 +87,6 @@ class CartRule extends Model implements CartRuleContract
 
     /**
      * Get the coupons that owns the cart rule.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
     public function cart_rule_coupon(): \Illuminate\Database\Eloquent\Relations\HasOne
     {
@@ -94,8 +94,6 @@ class CartRule extends Model implements CartRuleContract
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
-     *
      * @deprecated laravel standard should be used
      */
     public function coupons(): \Illuminate\Database\Eloquent\Relations\HasOne
@@ -105,8 +103,6 @@ class CartRule extends Model implements CartRuleContract
 
     /**
      * Get primary coupon code for cart rule.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
     public function coupon_code(): \Illuminate\Database\Eloquent\Relations\HasOne
     {
@@ -131,8 +127,6 @@ class CartRule extends Model implements CartRuleContract
 
     /**
      * Create a new factory instance for the model.
-     *
-     * @return Factory
      */
     protected static function newFactory(): Factory
     {
