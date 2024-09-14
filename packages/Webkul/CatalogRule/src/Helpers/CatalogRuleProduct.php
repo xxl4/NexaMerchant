@@ -4,8 +4,8 @@ namespace Webkul\CatalogRule\Helpers;
 
 use Carbon\Carbon;
 use Webkul\Attribute\Repositories\AttributeRepository;
-use Webkul\Product\Repositories\ProductRepository;
 use Webkul\CatalogRule\Repositories\CatalogRuleProductRepository;
+use Webkul\Product\Repositories\ProductRepository;
 use Webkul\Rule\Helpers\Validator;
 
 class CatalogRuleProduct
@@ -13,10 +13,6 @@ class CatalogRuleProduct
     /**
      * Create a new helper instance.
      *
-     * @param  \Webkul\Attribute\Repositories\AttributeRepository  $attributeRepository
-     * @param  \Webkul\Product\Repositories\ProductRepository  $productRepository
-     * @param  \Webkul\CatalogRule\Repositories\CatalogRuleProductRepository  $catalogRuleProductRepository
-     * @param  \Webkul\Rule\Helpers\Validator  $validator
      * @return void
      */
     public function __construct(
@@ -24,15 +20,13 @@ class CatalogRuleProduct
         protected ProductRepository $productRepository,
         protected CatalogRuleProductRepository $catalogRuleProductRepository,
         protected Validator $validator
-    )
-    {
-    }
+    ) {}
 
     /**
      * Collect discount on cart
      *
-     * @param \Webkul\CatalogRule\Contracts\CatalogRule  $rule
-     * @param int  $batchCount
+     * @param  \Webkul\CatalogRule\Contracts\CatalogRule  $rule
+     * @param  int  $batchCount
      * @return void
      */
     public function insertRuleProduct($rule, $batchCount = 1000, $product = null)
@@ -45,9 +39,9 @@ class CatalogRuleProduct
 
         $rows = [];
 
-        $startsFrom = $rule->starts_from ? Carbon::createFromTimeString($rule->starts_from . ' 00:00:01') : null;
+        $startsFrom = $rule->starts_from ? Carbon::createFromTimeString($rule->starts_from.' 00:00:01') : null;
 
-        $endsTill = $rule->ends_till ? Carbon::createFromTimeString($rule->ends_till . ' 23:59:59') : null;
+        $endsTill = $rule->ends_till ? Carbon::createFromTimeString($rule->ends_till.' 23:59:59') : null;
 
         $channelIds = $rule->channels->pluck('id');
 
@@ -120,7 +114,7 @@ class CatalogRuleProduct
      */
     public function getMatchingProductIds($rule, $product = null)
     {
-        $products = $this->productRepository->scopeQuery(function($query) use($rule, $product) {
+        $products = $this->productRepository->scopeQuery(function ($query) use ($rule, $product) {
             $query = $query->addSelect('products.*');
 
             if ($product) {
@@ -141,7 +135,7 @@ class CatalogRuleProduct
                 ) {
                     continue;
                 }
-                
+
                 $appliedAttributes[] = $condition['attribute'];
 
                 $chunks = explode('|', $condition['attribute']);
@@ -179,7 +173,7 @@ class CatalogRuleProduct
      */
     public function getCatalogRuleProducts($product = null)
     {
-        $ruleProducts = $this->catalogRuleProductRepository->scopeQuery(function($query) use($product) {
+        $ruleProducts = $this->catalogRuleProductRepository->scopeQuery(function ($query) use ($product) {
             $query = $query->distinct()
                 ->select('catalog_rule_products.*')
                 ->leftJoin('products', 'catalog_rule_products.product_id', '=', 'products.id')
@@ -194,7 +188,7 @@ class CatalogRuleProduct
             if (! $product) {
                 return $query;
             }
-            
+
             if (! $product->getTypeInstance()->priceRuleCanBeApplied()) {
                 return $query;
             }
@@ -210,12 +204,12 @@ class CatalogRuleProduct
 
         return $ruleProducts;
     }
-    
+
     /**
      * Add product attribute condition to query
      *
      * @param  string  $attributeCode
-     * @param \Illuminate\Database\Eloquent\Builder  $query
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function addAttributeToSelect($attributeCode, $query)
@@ -226,15 +220,15 @@ class CatalogRuleProduct
             return $query;
         }
 
-        $query->leftJoin('product_attribute_values as ' . 'pav_' . $attribute->code, function($qb) use($attribute) {
-            $qb->where('pav_' . $attribute->code . '.channel', $attribute->value_per_channel ? core()->getDefaultChannelCode() : null)
-                ->where('pav_' . $attribute->code . '.locale', $attribute->value_per_locale ? app()->getLocale() : null);
-            
-            $qb->on('products.id', 'pav_' . $attribute->code . '.product_id')
-               ->where('pav_' . $attribute->code . '.attribute_id', $attribute->id);
+        $query->leftJoin('product_attribute_values as '.'pav_'.$attribute->code, function ($qb) use ($attribute) {
+            $qb->where('pav_'.$attribute->code.'.channel', $attribute->value_per_channel ? core()->getDefaultChannelCode() : null)
+                ->where('pav_'.$attribute->code.'.locale', $attribute->value_per_locale ? app()->getLocale() : null);
+
+            $qb->on('products.id', 'pav_'.$attribute->code.'.product_id')
+                ->where('pav_'.$attribute->code.'.attribute_id', $attribute->id);
         });
 
-        $query->addSelect('pav_' . $attribute->code . '.' . $attribute->column_name . ' as ' . $attribute->code);
+        $query->addSelect('pav_'.$attribute->code.'.'.$attribute->column_name.' as '.$attribute->code);
 
         return $query;
     }

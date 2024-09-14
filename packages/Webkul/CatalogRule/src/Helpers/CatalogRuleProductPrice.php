@@ -10,16 +10,12 @@ class CatalogRuleProductPrice
     /**
      * Create a new helper instance.
      *
-     * @param  \Webkul\Attribute\Repositories\CatalogRuleProductPriceRepository  $catalogRuleProductPriceRepository
-     * @param  \Webkul\CatalogRule\Helpers\CatalogRuleProduct  $catalogRuleProductHelper
      * @return void
      */
     public function __construct(
         protected CatalogRuleProductPriceRepository $catalogRuleProductPriceRepository,
         protected CatalogRuleProduct $catalogRuleProductHelper
-    )
-    {
-    }
+    ) {}
 
     /**
      * Collect discount on cart
@@ -43,7 +39,7 @@ class CatalogRuleProductPrice
         $catalogRuleProducts = $this->catalogRuleProductHelper->getCatalogRuleProducts($product);
 
         foreach ($catalogRuleProducts as $row) {
-            $productKey = $row->product_id . '-' . $row->channel_id . '-' . $row->customer_group_id;
+            $productKey = $row->product_id.'-'.$row->channel_id.'-'.$row->customer_group_id;
 
             if (
                 $previousKey
@@ -69,7 +65,7 @@ class CatalogRuleProductPrice
                         || $date <= $row->ends_till
                     )
                 ) {
-                    $priceKey = $date->getTimestamp() . '-' . $productKey;
+                    $priceKey = $date->getTimestamp().'-'.$productKey;
 
                     if (isset($endRuleFlags[$priceKey])) {
                         continue;
@@ -154,7 +150,7 @@ class CatalogRuleProductPrice
             $this->catalogRuleProductPriceRepository->whereIn('product_id', $productIds)->delete();
         } else {
             $this->catalogRuleProductPriceRepository->deleteWhere([
-                ['product_id', 'like', '%%']
+                ['product_id', 'like', '%%'],
             ]);
         }
     }

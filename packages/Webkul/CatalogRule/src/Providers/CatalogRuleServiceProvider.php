@@ -14,7 +14,7 @@ class CatalogRuleServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
+        $this->loadMigrationsFrom(__DIR__.'/../Database/Migrations');
 
         $this->app->register(EventServiceProvider::class);
     }
@@ -30,7 +30,7 @@ class CatalogRuleServiceProvider extends ServiceProvider
     }
 
     /**
-     * Register the console commands of this package
+     * Register the console commands of this package.
      */
     protected function registerCommands()
     {

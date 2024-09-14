@@ -10,18 +10,13 @@ class CatalogRuleIndex
     /**
      * Create a new helper instance.
      *
-     * @param  \Webkul\CatalogRule\Repositories\CatalogRuleRepository  $catalogRuleRepository
-     * @param  \Webkul\CatalogRuleProduct\Helpers\CatalogRuleProduct  $catalogRuleProductHelper
-     * @param  \Webkul\CatalogRuleProduct\Helpers\CatalogRuleProductPrice  $catalogRuleProductPriceHelper
      * @return void
      */
     public function __construct(
         protected CatalogRuleRepository $catalogRuleRepository,
         protected CatalogRuleProduct $catalogRuleProductHelper,
         protected CatalogRuleProductPrice $catalogRuleProductPriceHelper
-    )
-    {
-    }
+    ) {}
 
     /**
      * Full re-index
@@ -53,18 +48,18 @@ class CatalogRuleIndex
     {
         $this->cleanRuleIndices($rule);
 
-        $startsFrom = $rule->starts_from ? Carbon::createFromTimeString($rule->starts_from . ' 00:00:01') : null;
+        $startsFrom = $rule->starts_from ? Carbon::createFromTimeString($rule->starts_from.' 00:00:01') : null;
 
-        $endsTill = $rule->ends_till ? Carbon::createFromTimeString($rule->ends_till . ' 23:59:59') : null;
+        $endsTill = $rule->ends_till ? Carbon::createFromTimeString($rule->ends_till.' 23:59:59') : null;
 
         if (
             (
                 ! $startsFrom
-                || $rule->starts_from <= Carbon::now()
+                || $startsFrom <= Carbon::now()
             )
             && (
                 ! $endsTill
-                || $rule->ends_till >= Carbon::now()
+                || $endsTill >= Carbon::now()
             )
         ) {
             $this->catalogRuleProductHelper->insertRuleProduct($rule);
@@ -135,16 +130,16 @@ class CatalogRuleIndex
      */
     public function getCatalogRules()
     {
-        $catalogRules = $this->catalogRuleRepository->scopeQuery(function($query) {
+        $catalogRules = $this->catalogRuleRepository->scopeQuery(function ($query) {
             return $query->where(function ($query1) {
                 $query1->where('catalog_rules.starts_from', '<=', Carbon::now()->format('Y-m-d'))
                     ->orWhereNull('catalog_rules.starts_from');
             })
-            ->where(function ($query2) {
-                $query2->where('catalog_rules.ends_till', '>=', Carbon::now()->format('Y-m-d'))
-                    ->orWhereNull('catalog_rules.ends_till');
-            })
-            ->orderBy('sort_order', 'asc');
+                ->where(function ($query2) {
+                    $query2->where('catalog_rules.ends_till', '>=', Carbon::now()->format('Y-m-d'))
+                        ->orWhereNull('catalog_rules.ends_till');
+                })
+                ->orderBy('sort_order', 'asc');
         })->findWhere(['status' => 1]);
 
         return $catalogRules;
