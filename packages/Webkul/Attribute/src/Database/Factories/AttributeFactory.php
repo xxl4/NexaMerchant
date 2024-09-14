@@ -30,8 +30,6 @@ class AttributeFactory extends Factory
 
     /**
      * Define the model's default state.
-     *
-     * @return array
      */
     public function definition(): array
     {
@@ -51,7 +49,7 @@ class AttributeFactory extends Factory
 
         return [
             'admin_name'          => $this->faker->word,
-            'code'                => $this->faker->word,
+            'code'                => $this->faker->regexify('/^[a-zA-Z]+[a-zA-Z0-9_]+$/'),
             'type'                => array_rand($types),
             'validation'          => '',
             'position'            => $this->faker->randomDigit,

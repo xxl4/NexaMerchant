@@ -3,11 +3,11 @@
 namespace Webkul\Attribute\Models;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Webkul\Core\Eloquent\TranslatableModel;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Webkul\Attribute\Database\Factories\AttributeOptionFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Webkul\Attribute\Contracts\AttributeOption as AttributeOptionContract;
+use Webkul\Attribute\Database\Factories\AttributeOptionFactory;
+use Webkul\Core\Eloquent\TranslatableModel;
 
 class AttributeOption extends TranslatableModel implements AttributeOptionContract
 {
@@ -50,7 +50,7 @@ class AttributeOption extends TranslatableModel implements AttributeOptionContra
             $this->swatch_value
             && $this->attribute->swatch_type == 'image'
         ) {
-            return url('cache/small/' . $this->swatch_value);
+            return url('cache/small/'.$this->swatch_value);
         }
 
         return null;
@@ -66,8 +66,6 @@ class AttributeOption extends TranslatableModel implements AttributeOptionContra
 
     /**
      * Create a new factory instance for the model
-     *
-     * @return Factory
      */
     protected static function newFactory(): Factory
     {

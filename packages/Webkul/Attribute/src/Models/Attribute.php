@@ -4,11 +4,11 @@ namespace Webkul\Attribute\Models;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Webkul\Core\Eloquent\TranslatableModel;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Webkul\Attribute\Database\Factories\AttributeFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Webkul\Attribute\Contracts\Attribute as AttributeContract;
+use Webkul\Attribute\Database\Factories\AttributeFactory;
+use Webkul\Core\Eloquent\TranslatableModel;
 
 class Attribute extends TranslatableModel implements AttributeContract
 {
@@ -66,25 +66,12 @@ class Attribute extends TranslatableModel implements AttributeContract
 
     /**
      * Scope a query to only include popular users.
-     *
-     * @param  \Illuminate\Database\Eloquent\Builder  $query
-     * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeFilterableAttributes(Builder $query): Builder
     {
         return $query->where('is_filterable', 1)
             ->where('swatch_type', '<>', 'image')
             ->orderBy('position');
-    }
-
-    /**
-     * Create a new factory instance for the model
-     *
-     * @return Factory
-     */
-    protected static function newFactory(): Factory
-    {
-        return AttributeFactory::new();
     }
 
     /**
@@ -105,7 +92,7 @@ class Attribute extends TranslatableModel implements AttributeContract
     protected function getValidationsAttribute()
     {
         $validations = [];
-        
+
         if ($this->is_required) {
             $validations[] = 'required: true';
         }
@@ -118,7 +105,7 @@ class Attribute extends TranslatableModel implements AttributeContract
             $retVal = core()->getConfigData('catalog.products.attribute.file_attribute_upload_size') ?? '2048';
 
             if ($retVal) {
-                $validations[] = 'size:' . $retVal;
+                $validations[] = 'size:'.$retVal;
             }
         }
 
@@ -126,18 +113,26 @@ class Attribute extends TranslatableModel implements AttributeContract
             $retVal = core()->getConfigData('catalog.products.attribute.image_attribute_upload_size') ?? '2048';
 
             if ($retVal) {
-                $validations[] = 'size:' . $retVal . ', mimes: ["image/bmp", "image/jpeg", "image/jpg", "image/png", "image/webp"]';
+                $validations[] = 'size:'.$retVal.', mimes: ["image/bmp", "image/jpeg", "image/jpg", "image/png", "image/webp"]';
             }
         }
 
         if ($this->validation == 'regex') {
-            $validations[] = 'regex: ' . $this->regex;
+            $validations[] = 'regex: '.$this->regex;
         } elseif ($this->validation) {
-            $validations[] = $this->validation . ': true';
+            $validations[] = $this->validation.': true';
         }
 
-        $validations = '{ '. implode(', ', array_filter($validations)) . ' }';
+        $validations = '{ '.implode(', ', array_filter($validations)).' }';
 
         return $validations;
+    }
+
+    /**
+     * Create a new factory instance for the model
+     */
+    protected static function newFactory(): Factory
+    {
+        return AttributeFactory::new();
     }
 }

@@ -5,40 +5,31 @@ namespace Webkul\Attribute\Repositories;
 use Illuminate\Container\Container;
 use Illuminate\Support\Str;
 use Webkul\Core\Eloquent\Repository;
-use Webkul\Attribute\Repositories\AttributeRepository;
-use Webkul\Attribute\Repositories\AttributeGroupRepository;
 
 class AttributeFamilyRepository extends Repository
 {
     /**
      * Create a new repository instance.
      *
-     * @param  \Webkul\Attribute\Repositories\AttributeRepository  $attributeRepository
-     * @param  \Webkul\Attribute\Repositories\AttributeGroupRepository  $attributeGroupRepository
-     * @param  \Illuminate\Container\Container  $container
      * @return void
      */
     public function __construct(
         protected AttributeRepository $attributeRepository,
         protected AttributeGroupRepository $attributeGroupRepository,
         Container $container
-    )
-    {
+    ) {
         parent::__construct($container);
     }
 
     /**
      * Specify Model class name
-     *
-     * @return string
      */
-    function model(): string
+    public function model(): string
     {
         return 'Webkul\Attribute\Contracts\AttributeFamily';
     }
 
     /**
-     * @param  array  $data
      * @return \Webkul\Attribute\Contracts\AttributeFamily
      */
     public function create(array $data)
@@ -57,11 +48,9 @@ class AttributeFamilyRepository extends Repository
             $attributeGroup = $family->attribute_groups()->create($group);
 
             foreach ($customAttributes as $key => $attribute) {
-                if (isset($attribute['id'])) {
-                    $attributeModel = $this->attributeRepository->find($attribute['id']);
-                } else {
-                    $attributeModel = $this->attributeRepository->findOneByField('code', $attribute['code']);
-                }
+                $attributeModel = isset($attribute['id'])
+                    ? $this->attributeRepository->find($attribute['id'])
+                    : $this->attributeRepository->findOneByField('code', $attribute['code']);
 
                 $attributeGroup->custom_attributes()->save($attributeModel, ['position' => $key + 1]);
             }
@@ -71,14 +60,12 @@ class AttributeFamilyRepository extends Repository
     }
 
     /**
-     * @param  array  $data
      * @param  int  $id
-     * @param  string  $attribute
      * @return \Webkul\Attribute\Contracts\AttributeFamily
      */
-    public function update(array $data, $id, $attribute = "id")
+    public function update(array $data, $id)
     {
-        $family = parent::update($data, $id, $attribute);
+        $family = parent::update($data, $id);
 
         $previousAttributeGroupIds = $family->attribute_groups()->pluck('id');
 
@@ -147,7 +134,7 @@ class AttributeFamilyRepository extends Repository
         foreach ($attributeFamilies as $key => $attributeFamily) {
             if (
                 $attributeFamily->name != null
-                || $attributeFamily->name != ""
+                || $attributeFamily->name != ''
             ) {
                 $trimmed[$key] = [
                     'id'   => $attributeFamily->id,
@@ -166,6 +153,7 @@ class AttributeFamilyRepository extends Repository
     public function getComparableAttributesBelongsToFamily()
     {
         return $this->attributeRepository
+            ->with(['options', 'options.translations'])
             ->join('attribute_group_mappings', 'attribute_group_mappings.attribute_id', '=', 'attributes.id')
             ->select('attributes.*')
             ->where('attributes.is_comparable', 1)
