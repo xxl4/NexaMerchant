@@ -24,7 +24,7 @@
   <meta property="og:image" content="/offer/1/app/desktop/images/thumb.png" />
   <meta name="color-scheme" content="light only" />
   <link rel="stylesheet" href="/checkout/v2/css/v3.css?v=2">
-  <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/checkout.css?v=10" />
+  <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/checkout.css?v=11" />
   <link rel="prefetch" href="/checkout/v2/images/favicon_de.webp">
   <link rel="prefetch" href="/checkout/v2/images/favicon.webp">
   <link rel="prefetch" href="/checkout/v2/images/googlePay.webp">
@@ -143,6 +143,16 @@
     .shopify-content {
       width: 100%;
       float: left;
+    }
+
+    .shopify-content img {
+      width: 100% !important;
+      margin: 0 auto;
+      height: auto;
+    }
+
+    .prod-name {
+      word-wrap: break-word;
     }
 
     .pagination {
@@ -335,7 +345,7 @@
     <div class="container">
       <div class="left-sec">
         <div id="sticky" style="position:sticky;top: 55px;">
-          <div class="vehicle-detail-banner banner-content clearfix">
+          <div class="clearfix vehicle-detail-banner banner-content">
             <div class="banner-slider">
               <div class="slider-banner-image1">
                 <div class="sw-box" style="width:100%;">
