@@ -5,7 +5,6 @@
   <title></title>
   <link rel="icon prefetch" id="favicon-icon" href="/checkout/v2/images/favicon_de.webp" type="image/png" sizes="16x16" />
   <meta charset="utf-8" />
-  <meta name="description" content="Fur Sweep Collar" />
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <meta name="base-url" content="{{ url()->to('/') }}">
   <meta name="currency-code" content="{{ core()->getCurrentCurrencyCode() }}">
@@ -17,8 +16,6 @@
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   <meta name="HandheldFriendly" content="true" />
-  <meta property="og:title" content="Fur Sweep Collar" />
-  <meta property="og:description" content="Fur Sweep Collar" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="og:image" content="/offer/1/app/desktop/images/thumb.png" />
@@ -95,6 +92,15 @@
   <noscript>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
   </noscript>
+
+  <!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-W6QBK3Q9');</script>
+<!-- End Google Tag Manager -->
+
   <style>
     img {
       /* aspect-ratio: attr(width)/attr(height); */
@@ -1355,20 +1361,7 @@
     })
   </script>
 
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=<?php echo $gtag; ?>"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-
-    function gtag() {
-      dataLayer.push(arguments);
-    }
-    gtag('js', new Date());
-
-    gtag('config', '<?php echo $gtag; ?>', {
-      "debug_mode": true
-    });
-  </script>
+  
 
   <script type="text/javascript">
     (function(c, l, a, r, i, t, y) {
