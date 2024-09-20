@@ -1406,7 +1406,7 @@
   <page-builder-block>
     <link rel="stylesheet prefetch" href="/checkout/v2/css/app2.css?v=4" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/5.0.4/css/swiper.css" />
-    <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/checkout.css?v=8" />
+    <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/checkout.css?v=11" />
     <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/bootstrap.min.css" />
     <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/slick.min.css" />
     <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/upsell-new-02.css?v=4" />
@@ -1446,7 +1446,7 @@
     <div class="container">
       <div class="left-sec">
         <div id="sticky" style="position:sticky;top: 0;">
-          <div style="display: none;" class="vehicle-detail-banner banner-content clearfix">
+          <div style="display: none;" class="clearfix vehicle-detail-banner banner-content">
             <div class="banner-slider">
               <div class="slider-banner-image1">
                 <div class="sw-box">
