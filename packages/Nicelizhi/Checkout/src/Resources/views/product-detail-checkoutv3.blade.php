@@ -21,7 +21,7 @@
   <meta property="og:image" content="/offer/1/app/desktop/images/thumb.png" />
   <meta name="color-scheme" content="light only" />
   <link rel="stylesheet" href="/checkout/v2/css/v3.css?v=2">
-  <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/checkout.css?v=10" />
+  <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/checkout.css?v=12" />
   <link rel="prefetch" href="/checkout/v2/images/favicon_de.webp">
   <link rel="prefetch" href="/checkout/v2/images/favicon.webp">
   <link rel="prefetch" href="/checkout/v2/images/googlePay.webp">
@@ -94,12 +94,23 @@
   </noscript>
 
   <!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-W6QBK3Q9');</script>
-<!-- End Google Tag Manager -->
+  <script>
+    (function(w, d, s, l, i) {
+      w[l] = w[l] || [];
+      w[l].push({
+        'gtm.start': new Date().getTime(),
+        event: 'gtm.js'
+      });
+      var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s),
+        dl = l != 'dataLayer' ? '&l=' + l : '';
+      j.async = true;
+      j.src =
+        'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+      f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-W6QBK3Q9');
+  </script>
+  <!-- End Google Tag Manager -->
 
   <style>
     img {
@@ -149,6 +160,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .shopify-content {
       width: 100%;
       float: left;
+    }
+
+    .shopify-content img {
+      width: 100% !important;
+      margin: 0 auto;
+      height: auto;
+    }
+
+    .prod-name {
+      word-wrap: break-word;
     }
 
     .pagination {
@@ -341,7 +362,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <div class="container">
       <div class="left-sec">
         <div id="sticky" style="position:sticky;top: 55px;">
-          <div class="vehicle-detail-banner banner-content clearfix">
+          <div class="clearfix vehicle-detail-banner banner-content">
             <div class="banner-slider">
               <div class="slider-banner-image1">
                 <div class="sw-box" style="width:100%;">
@@ -1361,7 +1382,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     })
   </script>
 
-  
+
 
   <script type="text/javascript">
     (function(c, l, a, r, i, t, y) {
