@@ -79,8 +79,11 @@ class Post extends Command
         $shopify = $shopifyStore->toArray();
 
     
+        // before 24 hours orders and pending
+        
+        $lists = Order::where(['status'=>'pending'])->where('created_at', '>=', date("Y-m-d H:i:s", strtotime("-1 day")))->orderBy("updated_at", "desc")->select(['id','customer_email'])->limit(100)->get();
 
-        $lists = Order::where(['status'=>'pending'])->orderBy("updated_at", "desc")->select(['id','customer_email'])->limit(100)->get();
+        //$lists = Order::where(['status'=>'pending'])->orderBy("updated_at", "desc")->select(['id','customer_email'])->limit(100)->get();
         foreach($lists as $key=>$item) {
             $this->postCustomer($item->id,$item->customer_email, $shopify);
         }
