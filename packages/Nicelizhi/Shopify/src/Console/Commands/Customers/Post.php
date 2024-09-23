@@ -79,10 +79,27 @@ class Post extends Command
         $shopify = $shopifyStore->toArray();
 
     
-
-        $lists = Order::where(['status'=>'pending'])->orderBy("updated_at", "desc")->select(['id','customer_email'])->limit(100)->get();
+        // base use created at before 1 day
+        $lists = Order::where(['status'=>'pending'])->where("created_at", "<=", date("Y-m-d H:i:s", strtotime("-1 day")))->orderBy("updated_at", "desc")->select(['id','customer_email','created_at'])->limit(500)->get();
+        //$lists = Order::where(['status'=>'pending'])->where("created", "<=", )->orderBy("updated_at", "desc")->select(['id','customer_email'])->limit(100)->get();
         foreach($lists as $key=>$item) {
+            //var_dump($item);exit;
+
+            //check the email is have
+            $checkEmail = Redis::get("shopify_customer_".$item->customer_email);
+            if($checkEmail) {
+                $this->error($item->customer_email." is have");
+                continue;
+            }
+
             $this->postCustomer($item->id,$item->customer_email, $shopify);
+
+
+            //mark the email is have into redis
+
+            Redis::set("shopify_customer_".$item->customer_email, 1, 3600*24);
+
+            //var_dump($item);exit;
         }
 
         Artisan::call("shopify:customers:get", ["--force"=> true]);
@@ -141,10 +158,6 @@ class Post extends Command
             if(!isset($sku['attribute_name'])) continue;
             $note .= $sku['product_sku'].$sku['attribute_name']."\r\n";
         }
-
-        //var_dump($note);exit;
-
-        //var_dump($products);exit;
 
         $customer = [];
         $customer = [
