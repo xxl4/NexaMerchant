@@ -1122,7 +1122,7 @@
   <script type="application/json" fncls="fnparams-dede7cc5-15fd-4c75-a9f4-36c430ee3a99">
     {
       "f": "<?php echo md5(uniqid()); ?>",
-      "s": "HEOMAI_EFPTK2PBPE2PY_RT",
+      "s": "<?php echo $paypal_rt; ?>",
     }
   </script>
   <script type="text/javascript">
