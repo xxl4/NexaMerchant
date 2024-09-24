@@ -49,7 +49,8 @@ class ImportOrderCustomer extends Command {
     public function handle()
     {
 
-        $this->importCsvData();
+        //$this->importCsvData();
+        $this->importCsvDataV2();
         return true;
 
 
@@ -200,10 +201,96 @@ class ImportOrderCustomer extends Command {
             $time = rand(0, 9);
 
             sleep($time);
+        }
+        echo "done\r\n";
+    }
 
-            //if($i > 1000) exit;
+    public function importCsvDataV2() {
+        $this->shopify_store_id = "e3e914"; //
+        $this->shopify_store_id = "wmbraau"; //
+        $shopifyStore = Cache::get("shopify_store_".$this->shopify_store_id);
+        //var_dump($shopifyStore);
 
-            //exit; 
+        if(empty($shopifyStore)){
+            $shopifyStore = $this->ShopifyStore->where('shopify_store_id', $this->shopify_store_id)->first();
+            Cache::put("shopify_store_".$this->shopify_store_id, $shopifyStore, 3600);
+        }
+        if(is_null($shopifyStore)) {
+            $this->error("no store");
+            return false;
+        }
+        $shopify = $shopifyStore->toArray();
+
+        $this->customerRepository = app(CustomerRepository::class);
+
+        $file = storage_path("app/public/customers/customers_export.csv");
+        $file = fopen($file, "r");
+        $i = 0;
+        while(! feof($file))
+        {
+            $data = fgetcsv($file);
+            if($i == 0) {
+                $i++;
+                var_dump($data);
+                continue;
+            }
+            
+            //var_dump($data);
+            if(empty($data[2])) {
+                continue;
+            }
+
+            foreach($data as $key=>$da) {
+                $data[$key] = str_replace("'","", $da);
+            }
+
+           
+
+            $i++;
+
+            $this->error("email import ". $data[3]);
+
+            $customerData = [];
+
+            $customer = $this->customerRepository->findOneByField('email', $data[3]);
+            if(!$customer) {
+                //continue;
+                $customerData['email'] = trim($data[3]);
+                $customerData['customer_group_id'] = 1;
+                $customerData['first_name'] = trim($data[1]);
+                $customerData['last_name'] = trim($data[2]);
+                $customerData['gender'] = "";
+                $this->createCuster($customerData);
+
+            }else{
+                $customerData['email'] = trim($data[3]);
+                $customerData['customer_group_id'] = 1;
+                $customerData['first_name'] = trim($data[1]);
+                $customerData['last_name'] = trim($data[2]);
+                $customerData['gender'] = "";
+            }
+
+            
+            
+        
+            $customerData['address1'] = trim($data[6]);
+            $customerData['address2'] = trim($data[7]);
+            $customerData['city'] = trim($data[8]);
+            $customerData['Province'] = trim($data[9]);
+            $customerData['country'] = trim($data[10]);
+            $customerData['postcode'] = trim($data[12]);
+            $customerData['phone'] = trim($data[13]);
+            
+
+            //var_dump($customerData);exit;
+
+
+            $this->postCustomer($customerData, $customerData['email'], $shopify);
+
+            $time = rand(0, 9);
+
+            sleep($time);
+            //exit;
         }
         echo "done\r\n";
     }

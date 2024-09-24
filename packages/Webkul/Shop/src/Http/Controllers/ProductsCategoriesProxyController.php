@@ -78,7 +78,7 @@ class ProductsCategoriesProxyController extends Controller
             abort(404);
         }
 
-        visitor()->visit($product);
+        //visitor()->visit($product);
 
         return view('shop::products.view', compact('product'));
     }

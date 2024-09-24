@@ -565,7 +565,8 @@ class ProductController extends Controller
                 $transactionManager = $this->airwallex->createPaymentOrder($cart, $order->id);
                 
                 if(!isset($transactionManager->client_secret)) {
-                    response()->json(['error' => $transactionManager->body->message,'code'=>'203'], 400);
+                    Log::info("airwallex-".$order->id."--".json_encode($transactionManager));
+                    response()->json(['error' => 'airwallex error','code'=>'203'], 400);
                 }
                 
                 Log::info("airwallex-".$order->id."--".json_encode($transactionManager));
