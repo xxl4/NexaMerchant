@@ -125,5 +125,8 @@ return [
     'Credit card' => 'Tarjeta de crédito',
     'Pay Now' => 'Pagar ahora',
     'Close' => 'Cerca',
+    'tip1' => '(1). Por nuestra gran gracia, hemos preparado una oferta especial para usted! Puede comprar el producto original por',
+    'tip2' => 'sin ingresar la información de la tarjeta de crédito!',
+    'tip3' => '(2). El pedido a mitad de precio es una oferta especial para nuestros afortunados clientes; nos disculpamos, pero no podemos aceptar solicitudes de reembolso para el primer pedido mientras permitamos a los usuarios mantener el pedido a mitad de precio.'
   ]
 ];
