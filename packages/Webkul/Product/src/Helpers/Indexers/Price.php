@@ -4,8 +4,8 @@ namespace Webkul\Product\Helpers\Indexers;
 
 use Illuminate\Support\Carbon;
 use Webkul\Customer\Repositories\CustomerGroupRepository;
-use Webkul\Product\Repositories\ProductRepository;
 use Webkul\Product\Repositories\ProductPriceIndexRepository;
+use Webkul\Product\Repositories\ProductRepository;
 
 class Price extends AbstractIndexer
 {
@@ -13,6 +13,13 @@ class Price extends AbstractIndexer
      * @var int
      */
     private $batchSize;
+
+    /**
+     * Channels
+     *
+     * @var array
+     */
+    protected $channels;
 
     /**
      * Customer Groups
@@ -24,17 +31,13 @@ class Price extends AbstractIndexer
     /**
      * Create a new indexer instance.
      *
-     * @param  \Webkul\Customer\Repositories\CustomerGroupRepository  $customerGroupRepository
-     * @param  \Webkul\Product\Repositories\ProductRepository  $productRepository
-     * @param  \Webkul\Product\Repositories\ProductPriceIndexRepository  $productPriceIndexRepository
      * @return void
      */
     public function __construct(
         protected CustomerGroupRepository $customerGroupRepository,
         protected ProductRepository $productRepository,
         protected ProductPriceIndexRepository $productPriceIndexRepository
-    )
-    {
+    ) {
         $this->batchSize = self::BATCH_SIZE;
     }
 
@@ -49,23 +52,27 @@ class Price extends AbstractIndexer
             $paginator = $this->productRepository
                 ->with([
                     'variants',
+                    'attribute_family',
                     'attribute_values',
+                    'variants.attribute_family',
                     'variants.attribute_values',
                     'price_indices',
+                    'inventory_indices',
                     'variants.price_indices',
+                    'variants.inventory_indices',
                     'customer_group_prices',
                     'variants.customer_group_prices',
                     'catalog_rule_prices',
                     'variants.catalog_rule_prices',
                 ])
                 ->cursorPaginate($this->batchSize);
- 
+
             $this->reindexBatch($paginator->items());
- 
+
             if (! $cursor = $paginator->nextCursor()) {
                 break;
             }
- 
+
             request()->query->add(['cursor' => $cursor->encode()]);
         }
 
@@ -81,13 +88,16 @@ class Price extends AbstractIndexer
     {
         while (true) {
             $paginator = $this->productRepository
+                ->distinct()
                 ->select('products.*')
                 ->with([
                     'variants',
                     'attribute_values',
                     'variants.attribute_values',
                     'price_indices',
+                    'inventory_indices',
                     'variants.price_indices',
+                    'variants.inventory_indices',
                     'customer_group_prices',
                     'variants.customer_group_prices',
                     'catalog_rule_prices',
@@ -101,24 +111,26 @@ class Price extends AbstractIndexer
                     $join->on('products.id', '=', 'special_price_to_pav.product_id')
                         ->where('special_price_to_pav.attribute_id', self::SPECIAL_PRICE_TO_ATTRIBUTE_ID);
                 })
-                ->where(function($query) {
+                ->leftJoin('catalog_rule_product_prices', 'products.id', '=', 'catalog_rule_product_prices.product_id')
+                ->where(function ($query) {
                     return $query->orWhere('special_price_from_pav.date_value', Carbon::now()->format('Y-m-d'))
-                        ->orWhere('special_price_to_pav.date_value', Carbon::now()->subDays(1)->format('Y-m-d'));
+                        ->orWhere('special_price_to_pav.date_value', Carbon::now()->subDays(1)->format('Y-m-d'))
+                        ->orWhere('catalog_rule_product_prices.rule_date', Carbon::now()->subDays(1)->format('Y-m-d'));
                 })
                 ->cursorPaginate($this->batchSize);
- 
+
             $this->reindexBatch($paginator->items());
- 
+
             if (! $cursor = $paginator->nextCursor()) {
                 break;
             }
- 
+
             request()->query->add(['cursor' => $cursor->encode()]);
         }
 
         request()->query->remove('cursor');
     }
-    
+
     /**
      * Reindex products by batch size
      *
@@ -132,29 +144,35 @@ class Price extends AbstractIndexer
             $indexer = $this->getTypeIndexer($product)
                 ->setProduct($product);
 
-            foreach ($this->getCustomerGroups() as $customerGroup) {
-                $customerGroupIndex = $product->price_indices
-                    ->where('customer_group_id', $customerGroup->id)
-                    ->where('product_id', $product->id)
-                    ->first();
+            foreach ($this->getChannels() as $channel) {
+                foreach ($this->getCustomerGroups() as $customerGroup) {
+                    $customerGroupIndex = $product->price_indices
+                        ->where('channel_id', $channel->id)
+                        ->where('customer_group_id', $customerGroup->id)
+                        ->where('product_id', $product->id)
+                        ->first();
 
-                $newIndex = $indexer->setCustomerGroup($customerGroup)->getIndices();
+                    $newIndex = $indexer
+                        ->setChannel($channel)
+                        ->setCustomerGroup($customerGroup)
+                        ->getIndices();
 
-                if ($customerGroupIndex) {
-                    $oldIndex = collect($customerGroupIndex->toArray())
-                        ->except('id', 'created_at', 'updated_at')
-                        ->toArray();
+                    if ($customerGroupIndex) {
+                        $oldIndex = collect($customerGroupIndex->toArray())
+                            ->except('id', 'created_at', 'updated_at')
+                            ->toArray();
 
-                    $isIndexChanged = $this->isIndexChanged(
-                        $oldIndex,
-                        $newIndex
-                    );
+                        $isIndexChanged = $this->isIndexChanged(
+                            $oldIndex,
+                            $newIndex
+                        );
 
-                    if ($isIndexChanged) {
-                        $this->productPriceIndexRepository->update($newIndex, $customerGroupIndex->id);
+                        if ($isIndexChanged) {
+                            $this->productPriceIndexRepository->update($newIndex, $customerGroupIndex->id);
+                        }
+                    } else {
+                        $newIndices[] = $newIndex;
                     }
-                } else {
-                    $newIndices[] = $newIndex;
                 }
             }
         }
@@ -165,11 +183,11 @@ class Price extends AbstractIndexer
     /**
      * Check if index value changed
      *
-     * @return boolean
+     * @return bool
      */
     public function isIndexChanged($oldIndex, $newIndex)
     {
-        return (boolean) count(array_diff_assoc($oldIndex, $newIndex));
+        return (bool) count(array_diff_assoc($oldIndex, $newIndex));
     }
 
     /**
@@ -187,7 +205,21 @@ class Price extends AbstractIndexer
 
         return $typeIndexers[$product->type] = $product->getTypeInstance()->getPriceIndexer();
     }
-    
+
+    /**
+     * Returns all customer groups
+     *
+     * @return Collection
+     */
+    public function getChannels()
+    {
+        if ($this->channels) {
+            return $this->channels;
+        }
+
+        return $this->channels = core()->getAllChannels();
+    }
+
     /**
      * Returns all customer groups
      *

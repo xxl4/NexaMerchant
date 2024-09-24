@@ -2,35 +2,44 @@
 
 namespace Webkul\Shop\Mail\Order;
 
-use Illuminate\Bus\Queueable;
-use Illuminate\Mail\Mailable;
-use Illuminate\Queue\SerializesModels;
-use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Mail\Mailables\Address;
+use Illuminate\Mail\Mailables\Content;
+use Illuminate\Mail\Mailables\Envelope;
+use Webkul\Sales\Contracts\Refund;
+use Webkul\Shop\Mail\Mailable;
 
 class RefundedNotification extends Mailable
 {
-    use Queueable, SerializesModels;
-
     /**
      * Create a new message instance.
      *
-     * @param  \Webkul\Sales\Contracts\Refund  $refund
      * @return void
      */
-    public function __construct(public $refund)
+    public function __construct(public Refund $refund) {}
+
+    /**
+     * Get the message envelope.
+     */
+    public function envelope(): Envelope
     {
+        return new Envelope(
+            to: [
+                new Address(
+                    $this->refund->order->customer_email,
+                    $this->refund->order->customer_full_name
+                ),
+            ],
+            subject: trans('shop::app.emails.orders.refunded.subject'),
+        );
     }
 
     /**
-     * Build the message.
-     *
-     * @return $this
+     * Get the message content definition.
      */
-    public function build()
+    public function content(): Content
     {
-        return $this->from(core()->getSenderEmailDetails()['email'], core()->getSenderEmailDetails()['name'])
-            ->to($this->refund->order->customer_email, $this->refund->order->customer_full_name)
-            ->subject(trans('shop::app.emails.orders.refunded.subject'))
-            ->view('shop::emails.orders.refunded');
+        return new Content(
+            view: 'shop::emails.orders.refunded',
+        );
     }
 }

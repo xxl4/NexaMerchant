@@ -3,7 +3,6 @@
 namespace Webkul\User\Http\Middleware;
 
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Event;
 
 class Bouncer
 {
@@ -11,7 +10,6 @@ class Bouncer
      * Handle an incoming request.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
      * @param  string|null  $guard
      * @return mixed
      */
@@ -20,8 +18,6 @@ class Bouncer
         if (! auth()->guard($guard)->check()) {
             return redirect()->route('admin.session.create');
         }
-
-        Event::dispatch('bagisto.updates.check');
 
         /**
          * If user status is changed by admin. Then session should be
@@ -82,14 +78,10 @@ class Bouncer
      */
     public function checkIfAuthorized()
     {
-        $acl = app('acl');
+        $roles = acl()->getRoles();
 
-        if (! $acl) {
-            return;
-        }
-
-        if (isset($acl->roles[Route::currentRouteName()])) {
-            bouncer()->allow($acl->roles[Route::currentRouteName()]);
+        if (isset($roles[Route::currentRouteName()])) {
+            bouncer()->allow($roles[Route::currentRouteName()]);
         }
     }
 }

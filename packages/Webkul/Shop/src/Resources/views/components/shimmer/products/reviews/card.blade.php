@@ -1,38 +1,31 @@
 @props(['count' => 0])
 
 @for ($i = 0;  $i < $count; $i++)
-    <div class="flex gap-[20px] p-[25px] border border-[#e5e5e5] rounded-[12px] max-sm:flex-wrap">
-        <div class="min-h-[100px] min-w-[100px] max-sm:hidden">
-            <div class="shimmer w-[100px] h-[100px] rounded-[12px]"></div>
-        </div>
+    <div class="rounded-xl border border-zinc-200 p-6">
+        <div class="flex gap-5">
+            <div class="shimmer h-[100px] w-[100px] rounded-xl"></div>
 
-        <div class="">
-            <div class="flex justify-between">
-                <p class="shimmer w-[90px] h-[30px]"></p>
-                
-                <div class="flex items-center gap-[6px]">
-                    <span class="shimmer w-[24px] h-[24px]"></span>
-                    <span class="shimmer w-[24px] h-[24px]"></span>
-                    <span class="shimmer w-[24px] h-[24px]"></span>
-                    <span class="shimmer w-[24px] h-[24px]"></span>
-                    <span class="shimmer w-[24px] h-[24px]"></span>
+            <div class="flex flex-col gap-0.5">
+                <p class="shimmer h-7 w-40"></p
+>
+                <p class="shimmer mb-2 h-4 w-40"></p>
+
+                <div class="flex items-center gap-0.5">
+                    <span class="shimmer h-[30px] w-[30px]"></span>
+                    <span class="shimmer h-[30px] w-[30px]"></span>
+                    <span class="shimmer h-[30px] w-[30px]"></span>
+                    <span class="shimmer h-[30px] w-[30px]"></span>
+                    <span class="shimmer h-[30px] w-[30px]"></span>
                 </div>
             </div>
+        </div>
 
-            <p class="shimmer mt-[10px] w-[130px] h-[21px]"></p>
+        <div class="mt-3 flex flex-col gap-4">
+            <div class="shimmer h-6 w-[250px]"></div>
 
-            <div class="grid gap-[6px] mt-[20px] ">
-                <p class="shimmer w-[130px] h-[21px]"></p>
-                <p class="shimmer w-[130px] h-[21px]"></p>
-            </div>
-
-            <div class="flex gap-2 flex-wrap mt-[10px]">
-                <span class="shimmer rounded-[12px] w-[48px] h-[48px]"></span>
-                <span class="shimmer rounded-[12px] w-[48px] h-[48px]"></span>
-                <span class="shimmer rounded-[12px] w-[48px] h-[48px]"></span>
-                <span class="shimmer rounded-[12px] w-[48px] h-[48px]"></span>
-                <span class="shimmer rounded-[12px] w-[48px] h-[48px]"></span>
-                <span class="shimmer rounded-[12px] w-[48px] h-[48px]"></span>
+            <div class="flex flex-col gap-0.5">
+                <p class="shimmer h-6 w-[500px]"></p>
+                <p class="shimmer h-6 w-[300px]"></p>
             </div>
         </div>
     </div>

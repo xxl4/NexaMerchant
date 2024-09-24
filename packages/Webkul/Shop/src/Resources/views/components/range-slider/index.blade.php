@@ -1,37 +1,39 @@
 <v-range-slider {{ $attributes }}></v-range-slider>
 
 @pushOnce('scripts')
-    <script type="text/x-template" id="v-range-slider-template">
+    <script
+        type="text/x-template"
+        id="v-range-slider-template"
+    >
         <div>
-            <div class="flex items-center gap-[15px]">
-                <p class="text-[14px]">
+            <div class="flex items-center gap-4">
+                <p class="text-base max-sm:text-sm">
                     @lang('shop::app.components.range-slider.range')
                 </p>
 
-                <p
-                    class="text-[14px] font-semibold"
-                    v-text="rangeText"
-                >
+                <p class="text-base font-semibold max-sm:text-sm">
+                    @{{ rangeText }}
                 </p>
             </div>
 
-            <div class="flex relative justify-center items-center p-2 h-20 w-full mx-auto">
-                <div class="relative w-full h-[4px] bg-gray-200 rounded-2xl">
+            <div class="relative mx-auto flex h-20 w-full items-center justify-center p-2">
+                <div class="relative h-1 w-full rounded-2xl bg-gray-200">
                     <div
                         ref="progress"
-                        class="absolute left-1/4 right-0 h-full bg-navyBlue rounded-xl"
+                        class="absolute left-1/4 right-0 h-full rounded-xl bg-navyBlue"
                     >
                     </div>
 
                     <span>
                         <input
+                            :step="allowedMaxRange - Math.floor(allowedMaxRange) > 0 ? 0.01 : 1"
                             ref="minRange"
                             type="range"
                             :value="minRange"
-                            class="absolute w-full h-[4px] appearance-none pointer-events-none bg-transparent outline-none cursor-pointer [&::-webkit-slider-thumb]:pointer-events-auto [&::-webkit-slider-thumb]:bg-white [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:h-[18px] [&::-webkit-slider-thumb]:w-[18px] [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:ring-navyBlue [&::-webkit-slider-thumb]:ring [&::-moz-range-thumb]:pointer-events-auto [&::-moz-range-thumb]:bg-white [&::-moz-range-thumb]:appearance-none [&::-moz-range-thumb]:h-[18px] [&::-moz-range-thumb]:w-[18px] [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:ring-navyBlue [&::-moz-range-thumb]:ring [&::-ms-thumb]:pointer-events-auto [&::-ms-thumb]:bg-white [&::-ms-thumb]:appearance-none [&::-ms-thumb]:h-[18px] [&::-ms-thumb]:w-[18px] [&::-ms-thumb]:rounded-full [&::-ms-thumb]:ring-navyBlue [&::-ms-thumb]:ring"
+                            class="pointer-events-none absolute h-1 w-full cursor-pointer appearance-none bg-transparent outline-none [&::-moz-range-thumb]:pointer-events-auto [&::-moz-range-thumb]:h-[18px] [&::-moz-range-thumb]:w-[18px] [&::-moz-range-thumb]:appearance-none [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:bg-white [&::-moz-range-thumb]:ring [&::-moz-range-thumb]:ring-navyBlue [&::-ms-thumb]:pointer-events-auto [&::-ms-thumb]:h-[18px] [&::-ms-thumb]:w-[18px] [&::-ms-thumb]:appearance-none [&::-ms-thumb]:rounded-full [&::-ms-thumb]:bg-white [&::-ms-thumb]:ring [&::-ms-thumb]:ring-navyBlue [&::-webkit-slider-thumb]:pointer-events-auto [&::-webkit-slider-thumb]:h-[18px] [&::-webkit-slider-thumb]:w-[18px] [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-white [&::-webkit-slider-thumb]:ring [&::-webkit-slider-thumb]:ring-navyBlue"
                             :min="allowedMinRange"
                             :max="allowedMaxRange"
-                            aria-label="Min Range"
+                            aria-label="@lang('shop::app.components.range-slider.min-range')"
                             @input="handle('min')"
                             @change="change"
                         >
@@ -39,13 +41,14 @@
 
                     <span>
                         <input
+                            :step="allowedMaxRange - Math.floor(allowedMaxRange) > 0 ? 0.01 : 1"
                             ref="maxRange"
                             type="range"
                             :value="maxRange"
-                            class="absolute w-full h-[4px] appearance-none pointer-events-none bg-transparent outline-none cursor-pointer [&::-webkit-slider-thumb]:pointer-events-auto [&::-webkit-slider-thumb]:bg-white [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:h-[18px] [&::-webkit-slider-thumb]:w-[18px] [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:ring-navyBlue [&::-webkit-slider-thumb]:ring [&::-moz-range-thumb]:pointer-events-auto [&::-moz-range-thumb]:bg-white [&::-moz-range-thumb]:appearance-none [&::-moz-range-thumb]:h-[18px] [&::-moz-range-thumb]:w-[18px] [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:ring-navyBlue [&::-moz-range-thumb]:ring [&::-ms-thumb]:pointer-events-auto [&::-ms-thumb]:bg-white [&::-ms-thumb]:appearance-none [&::-ms-thumb]:h-[18px] [&::-ms-thumb]:w-[18px] [&::-ms-thumb]:rounded-full [&::-ms-thumb]:ring-navyBlue [&::-ms-thumb]:ring"
+                            class="pointer-events-none absolute h-1 w-full cursor-pointer appearance-none bg-transparent outline-none [&::-moz-range-thumb]:pointer-events-auto [&::-moz-range-thumb]:h-[18px] [&::-moz-range-thumb]:w-[18px] [&::-moz-range-thumb]:appearance-none [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:bg-white [&::-moz-range-thumb]:ring [&::-moz-range-thumb]:ring-navyBlue [&::-ms-thumb]:pointer-events-auto [&::-ms-thumb]:h-[18px] [&::-ms-thumb]:w-[18px] [&::-ms-thumb]:appearance-none [&::-ms-thumb]:rounded-full [&::-ms-thumb]:bg-white [&::-ms-thumb]:ring [&::-ms-thumb]:ring-navyBlue [&::-webkit-slider-thumb]:pointer-events-auto [&::-webkit-slider-thumb]:h-[18px] [&::-webkit-slider-thumb]:w-[18px] [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-white [&::-webkit-slider-thumb]:ring [&::-webkit-slider-thumb]:ring-navyBlue"
                             :min="allowedMinRange"
                             :max="allowedMaxRange"
-                            aria-label="Max Range"
+                            aria-label="@lang('shop::app.components.range-slider.max-range')"
                             @input="handle('max')"
                             @change="change"
                         >
@@ -69,17 +72,17 @@
 
             data() {
                 return {
-                    gap: 0.1,
+                    gap: this.defaultAllowedMaxRange * 0.10,
 
                     supportedTypes: ['integer', 'float', 'price'],
 
-                    allowedMinRange: parseInt(this.defaultAllowedMinRange ?? 0),
+                    allowedMinRange: parseFloat(this.defaultAllowedMinRange ?? 0),
 
-                    allowedMaxRange: parseInt(this.defaultAllowedMaxRange ?? 100),
+                    allowedMaxRange: parseFloat(this.defaultAllowedMaxRange ?? 100),
 
-                    minRange: parseInt(this.defaultMinRange ?? 0),
+                    minRange: parseFloat(this.defaultMinRange ?? 0),
 
-                    maxRange: parseInt(this.defaultMaxRange ?? 100),
+                    maxRange: parseFloat(this.defaultMaxRange ?? 100),
                 };
             },
 
@@ -149,9 +152,9 @@
                 },
 
                 handle(rangeType) {
-                    this.minRange = parseInt(this.$refs.minRange.value);
+                    this.minRange = parseFloat(this.$refs.minRange.value);
 
-                    this.maxRange = parseInt(this.$refs.maxRange.value);
+                    this.maxRange = parseFloat(this.$refs.maxRange.value);
 
                     if (this.maxRange - this.minRange < this.gap) {
                         if (rangeType === 'min') {
@@ -165,9 +168,11 @@
                 },
 
                 handleProgressBar() {
-                    this.$refs.progress.style.left = (this.minRange / this.allowedMaxRange) * 100 + '%';
+                    const direction = document.dir == 'ltr' ? 'left' : 'right';
 
-                    this.$refs.progress.style.right = 100 - (this.maxRange / this.allowedMaxRange) * 100 + '%';
+                    this.$refs.progress.style[direction] = (this.minRange / this.allowedMaxRange) * 100 + '%';
+
+                    this.$refs.progress.style[direction == 'left' ? 'right' : 'left'] = 100 - (this.maxRange / this.allowedMaxRange) * 100 + '%';
                 },
 
                 change() {

@@ -3,9 +3,9 @@
 namespace Webkul\Product\Helpers\Indexers\Price;
 
 use Illuminate\Support\Carbon;
+use Webkul\CatalogRule\Repositories\CatalogRuleProductPriceRepository;
 use Webkul\Customer\Repositories\CustomerRepository;
 use Webkul\Product\Repositories\ProductCustomerGroupPriceRepository;
-use Webkul\CatalogRule\Repositories\CatalogRuleProductPriceRepository;
 
 abstract class AbstractType
 {
@@ -17,6 +17,13 @@ abstract class AbstractType
     protected $product;
 
     /**
+     * Channel instance.
+     *
+     * @var \Webkul\Core\Contracts\Channel
+     */
+    protected $channel;
+
+    /**
      * Customer Group instance.
      *
      * @var \Webkul\Customer\Contracts\CustomerGroup
@@ -26,18 +33,13 @@ abstract class AbstractType
     /**
      * Create a new command instance.
      *
-     * @param  \Webkul\Customer\Repositories\CustomerRepository  $customerRepository
-     * @param  \Webkul\Product\Repositories\ProductCustomerGroupPriceRepository  $productCustomerGroupPriceRepository
-     * @param  \Webkul\CatalogRule\Repositories\CatalogRuleProductPriceRepository  $catalogRuleProductPriceRepository
      * @return void
      */
     public function __construct(
         protected CustomerRepository $customerRepository,
         protected ProductCustomerGroupPriceRepository $productCustomerGroupPriceRepository,
         protected CatalogRuleProductPriceRepository $catalogRuleProductPriceRepository
-    )
-    {
-    }
+    ) {}
 
     /**
      * Set current product
@@ -48,6 +50,19 @@ abstract class AbstractType
     public function setProduct($product)
     {
         $this->product = $product;
+
+        return $this;
+    }
+
+    /**
+     * Set channel
+     *
+     * @param  \Webkul\Core\Contracts\Channel  $channel
+     * @return \Webkul\Product\Helpers\Indexers\Price\AbstractPriceIndex
+     */
+    public function setChannel($channel)
+    {
+        $this->channel = $channel;
 
         return $this;
     }
@@ -78,6 +93,7 @@ abstract class AbstractType
             'max_price'         => $minPrice ?? 0,
             'regular_max_price' => $this->product->price ?? 0,
             'product_id'        => $this->product->id,
+            'channel_id'        => $this->channel->id,
             'customer_group_id' => $this->customerGroup->id,
         ];
     }
@@ -85,7 +101,7 @@ abstract class AbstractType
     /**
      * Get product minimal price.
      *
-     * @param  integer  $qty
+     * @param  int  $qty
      * @return float
      */
     public function getMinimalPrice($qty = null)
@@ -140,7 +156,7 @@ abstract class AbstractType
     /**
      * Get product group price.
      *
-     * @param  integer  $qty
+     * @param  int  $qty
      * @return float
      */
     public function getCustomerGroupPrice($qty)
@@ -203,7 +219,7 @@ abstract class AbstractType
     {
         return $this->product->catalog_rule_prices
             ->where('customer_group_id', $this->customerGroup->id)
-            ->where('channel_id', core()->getCurrentChannel()->id)
+            ->where('channel_id', $this->channel->id)
             ->where('rule_date', Carbon::now()->format('Y-m-d'))
             ->first();
     }

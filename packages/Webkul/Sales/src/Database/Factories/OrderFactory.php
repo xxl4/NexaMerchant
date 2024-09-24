@@ -2,11 +2,11 @@
 
 namespace Webkul\Sales\Database\Factories;
 
+use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\DB;
 use Webkul\Core\Models\Channel;
 use Webkul\Customer\Models\Customer;
 use Webkul\Sales\Models\Order;
-use Illuminate\Database\Eloquent\Factories\Factory;
 
 class OrderFactory extends Factory
 {
@@ -18,6 +18,8 @@ class OrderFactory extends Factory
     protected $model = Order::class;
 
     /**
+     * States.
+     *
      * @var string[]
      */
     protected $states = [
@@ -28,8 +30,6 @@ class OrderFactory extends Factory
 
     /**
      * Define the model's default state.
-     *
-     * @return array
      */
     public function definition(): array
     {
@@ -38,36 +38,29 @@ class OrderFactory extends Factory
             ->select('id')
             ->first()->id ?? 0;
 
-
-        $customer = Customer::factory()->create();
-
         return [
             'increment_id'              => $lastOrder + 1,
             'status'                    => 'pending',
             'channel_name'              => 'Default',
             'is_guest'                  => 0,
-            'customer_id'               => $customer->id,
-            'customer_email'            => $customer->email,
-            'customer_first_name'       => $customer->first_name,
-            'customer_last_name'        => $customer->last_name,
             'is_gift'                   => 0,
             'total_item_count'          => 1,
             'total_qty_ordered'         => 1,
-            'base_currency_code'        => 'EUR',
-            'channel_currency_code'     => 'EUR',
-            'order_currency_code'       => 'EUR',
-            'grand_total'               => 0.0000,
-            'base_grand_total'          => 0.0000,
-            'grand_total_invoiced'      => 0.0000,
-            'base_grand_total_invoiced' => 0.0000,
-            'grand_total_refunded'      => 0.0000,
+            'base_currency_code'        => 'USD',
+            'channel_currency_code'     => 'USD',
+            'order_currency_code'       => 'USD',
+            'grand_total'               => $grandTotal = rand(0, 9999),
+            'base_grand_total'          => $grandTotal,
+            'grand_total_invoiced'      => $grandTotal,
+            'base_grand_total_invoiced' => $grandTotal,
+            'grand_total_refunded'      => $grandTotal,
+            'sub_total'                 => $grandTotal,
+            'base_sub_total'            => $grandTotal,
+            'sub_total_invoiced'        => $grandTotal,
+            'base_sub_total_invoiced'   => $grandTotal,
+            'sub_total_refunded'        => $grandTotal,
+            'base_sub_total_refunded'   => $grandTotal,
             'base_grand_total_refunded' => 0.0000,
-            'sub_total'                 => 0.0000,
-            'base_sub_total'            => 0.0000,
-            'sub_total_invoiced'        => 0.0000,
-            'base_sub_total_invoiced'   => 0.0000,
-            'sub_total_refunded'        => 0.0000,
-            'base_sub_total_refunded'   => 0.0000,
             'customer_type'             => Customer::class,
             'channel_id'                => 1,
             'channel_type'              => Channel::class,
@@ -77,27 +70,36 @@ class OrderFactory extends Factory
         ];
     }
 
+    /**
+     * Pending state.
+     */
     public function pending(): OrderFactory
     {
-        return $this->state(function (array $attributes) {
+        return $this->state(function () {
             return [
                 'status' => 'pending',
             ];
         });
     }
 
+    /**
+     * Completed state.
+     */
     public function completed(): OrderFactory
     {
-        return $this->state(function (array $attributes) {
+        return $this->state(function () {
             return [
                 'status' => 'completed',
             ];
         });
     }
 
+    /**
+     * Closed state.
+     */
     public function closed(): OrderFactory
     {
-        return $this->state(function (array $attributes) {
+        return $this->state(function () {
             return [
                 'status' => 'closed',
             ];

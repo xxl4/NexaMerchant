@@ -25,25 +25,15 @@ class Simple extends AbstractType
             return false;
         }
 
-        if (
-            is_callable(config('products.isSaleable'))
-            && call_user_func(config('products.isSaleable'), $this->product) === false
-        ) {
-            return false;
-        }
-
         return $this->haveSufficientQuantity(1);
     }
 
     /**
      * Have sufficient quantity.
-     *
-     * @param  int  $qty
-     * @return bool
      */
     public function haveSufficientQuantity(int $qty): bool
     {
-        if (! $this->product->manage_stock){
+        if (! $this->product->manage_stock) {
             return true;
         }
 

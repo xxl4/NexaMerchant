@@ -2,10 +2,10 @@
 
 namespace Webkul\Shipping\Providers;
 
-use Illuminate\Support\ServiceProvider;
 use Illuminate\Foundation\AliasLoader;
-use Webkul\Shipping\Shipping;
+use Illuminate\Support\ServiceProvider;
 use Webkul\Shipping\Facades\Shipping as ShippingFacade;
+use Webkul\Shipping\Shipping;
 
 class ShippingServiceProvider extends ServiceProvider
 {
@@ -16,9 +16,9 @@ class ShippingServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        include __DIR__ . '/../Http/helpers.php';
+        include __DIR__.'/../Http/helpers.php';
     }
-    
+
     /**
      * Register services.
      *
@@ -42,10 +42,10 @@ class ShippingServiceProvider extends ServiceProvider
         $loader->alias('shipping', ShippingFacade::class);
 
         $this->app->singleton('shipping', function () {
-            return new Shipping();
+            return new Shipping;
         });
     }
-    
+
     /**
      * Register package config.
      *
@@ -54,7 +54,7 @@ class ShippingServiceProvider extends ServiceProvider
     protected function registerConfig()
     {
         $this->mergeConfigFrom(
-            dirname(__DIR__) . '/Config/carriers.php', 'carriers'
+            dirname(__DIR__).'/Config/carriers.php', 'carriers'
         );
     }
 }

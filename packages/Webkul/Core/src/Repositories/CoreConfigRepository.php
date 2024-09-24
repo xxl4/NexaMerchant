@@ -2,20 +2,17 @@
 
 namespace Webkul\Core\Repositories;
 
+use Illuminate\Support\Arr;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Storage;
-use Webkul\Core\Contracts\CoreConfig;
+use Illuminate\Support\Str;
 use Webkul\Core\Eloquent\Repository;
-use Webkul\Core\Traits\CoreConfigField;
 
 class CoreConfigRepository extends Repository
 {
-    use CoreConfigField;
-
     /**
      * Specify model class name.
-     *
-     * @return string
      */
     public function model(): string
     {
@@ -25,7 +22,6 @@ class CoreConfigRepository extends Repository
     /**
      * Create.
      *
-     * @param  array  $data
      * @return \Webkul\Core\Contracts\CoreConfig
      */
     public function create(array $data)
@@ -54,7 +50,7 @@ class CoreConfigRepository extends Repository
                 $localeBased = ! empty($field['locale_based']);
 
                 if (
-                    getType($value) == 'array'
+                    gettype($value) == 'array'
                     && ! isset($value['delete'])
                 ) {
                     $value = implode(',', $value);
@@ -122,9 +118,82 @@ class CoreConfigRepository extends Repository
     }
 
     /**
+     * Get the configuration title.
+     */
+    protected function getTranslatedTitle(mixed $configuration): string
+    {
+        if (
+            method_exists($configuration, 'getTitle')
+            && ! is_null($configuration->getTitle())
+        ) {
+            return trans($configuration->getTitle());
+        }
+
+        if (
+            method_exists($configuration, 'getName')
+            && ! is_null($configuration->getName())
+        ) {
+            return trans($configuration->getName());
+        }
+
+        return '';
+    }
+
+    /**
+     * Get children and fields.
+     */
+    protected function getChildrenAndFields(mixed $configuration, string $searchTerm, array $path, array &$results): void
+    {
+        if (
+            method_exists($configuration, 'getChildren')
+            || method_exists($configuration, 'getFields')
+        ) {
+            $children = $configuration->haveChildren()
+                ? $configuration->getChildren()
+                : $configuration->getFields();
+
+            $tempPath = array_merge($path, [[
+                'key'   => $configuration->getKey() ?? null,
+                'title' => $this->getTranslatedTitle($configuration),
+            ]]);
+
+            $results = array_merge($results, $this->search($children, $searchTerm, $tempPath));
+        }
+    }
+
+    /**
+     * Search configuration.
+     *
+     * @param  array  $items
+     */
+    public function search(Collection $items, string $searchTerm, array $path = []): array
+    {
+        $results = [];
+
+        foreach ($items as $configuration) {
+            $title = $this->getTranslatedTitle($configuration);
+
+            if (
+                stripos($title, $searchTerm) !== false
+                && count($path)
+            ) {
+                $queryParam = $path[1]['key'] ?? $configuration->getKey();
+
+                $results[] = [
+                    'title' => implode(' > ', [...Arr::pluck($path, 'title'), $title]),
+                    'url'   => route('admin.configuration.index', Str::replace('.', '/', $queryParam)),
+                ];
+            }
+
+            $this->getChildrenAndFields($configuration, $searchTerm, $path, $results);
+        }
+
+        return $results;
+    }
+
+    /**
      * Recursive array.
      *
-     * @param  array  $formData
      * @param  string  $method
      * @return array
      */
@@ -135,7 +204,7 @@ class CoreConfigRepository extends Repository
         static $recursiveArrayData = [];
 
         foreach ($formData as $form => $formValue) {
-            $value = $method . '.' . $form;
+            $value = $method.'.'.$form;
 
             if (is_array($formValue)) {
                 $dim = $this->countDim($formValue);
@@ -155,7 +224,7 @@ class CoreConfigRepository extends Repository
                 $recursiveArrayData[$key] = $value;
             } else {
                 foreach ($value as $key1 => $val) {
-                    $recursiveArrayData[$key . '.' . $key1] = $val;
+                    $recursiveArrayData[$key.'.'.$key1] = $val;
                 }
             }
         }

@@ -2,32 +2,30 @@
 
 namespace Webkul\Shop\Http\Controllers\Customer;
 
+use Cookie;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
-use Cookie;
-use Webkul\Shop\Http\Controllers\Controller;
-use Webkul\Customer\Repositories\CustomerRepository;
-use Webkul\Customer\Repositories\CustomerGroupRepository;
 use Webkul\Core\Repositories\SubscribersListRepository;
+use Webkul\Customer\Repositories\CustomerGroupRepository;
+use Webkul\Customer\Repositories\CustomerRepository;
+use Webkul\Shop\Http\Controllers\Controller;
 use Webkul\Shop\Http\Requests\Customer\RegistrationRequest;
 use Webkul\Shop\Mail\Customer\EmailVerificationNotification;
+use Webkul\Shop\Mail\Customer\RegistrationNotification;
 
 class RegistrationController extends Controller
 {
     /**
      * Create a new controller instance.
      *
-     * @param  \Webkul\Customer\Repositories\CustomerRepository  $customer
      * @return void
      */
     public function __construct(
         protected CustomerRepository $customerRepository,
         protected CustomerGroupRepository $customerGroupRepository,
         protected SubscribersListRepository $subscriptionRepository
-    )
-    {
-    }
+    ) {}
 
     /**
      * Opens up the user's sign up form.
@@ -46,7 +44,9 @@ class RegistrationController extends Controller
      */
     public function store(RegistrationRequest $registrationRequest)
     {
-        $data = array_merge(request()->only([
+        $customerGroup = core()->getConfigData('customer.settings.create_new_account_options.default_group');
+
+        $data = array_merge($registrationRequest->only([
             'first_name',
             'last_name',
             'email',
@@ -56,9 +56,10 @@ class RegistrationController extends Controller
             'password'                  => bcrypt(request()->input('password')),
             'api_token'                 => Str::random(80),
             'is_verified'               => ! core()->getConfigData('customer.settings.email.verification'),
-            'customer_group_id'         => $this->customerGroupRepository->findOneWhere(['code' => 'general'])->id,
+            'customer_group_id'         => $this->customerGroupRepository->findOneWhere(['code' => $customerGroup])->id,
+            'channel_id'                => core()->getCurrentChannel()->id,
             'token'                     => md5(uniqid(rand(), true)),
-            'subscribed_to_news_letter' => request()->input('is_subscribed') ?? 0,
+            'subscribed_to_news_letter' => (bool) request()->input('is_subscribed'),
         ]);
 
         Event::dispatch('customer.registration.before');
@@ -111,8 +112,12 @@ class RegistrationController extends Controller
         if ($customer) {
             $this->customerRepository->update([
                 'is_verified' => 1,
-                'token'       => NULL,
+                'token'       => null,
             ], $customer->id);
+
+            if ((bool) core()->getConfigData('emails.general.notifications.emails.general.notifications.registration')) {
+                Mail::queue(new RegistrationNotification($customer));
+            }
 
             $this->customerRepository->syncNewRegisteredCustomerInformation($customer);
 

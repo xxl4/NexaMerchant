@@ -1,59 +1,61 @@
-<div class="max-w-full h-max sticky top-[30px] w-[442px] pl-[30px] max-lg:w-auto max-lg:max-w-[442px] max-lg:pl-0 ">
-    <h2 class="shimmer w-[50%] h-[39px]"></h2>
-    <div class="grid border-b-[1px] border-[#E9E9E9] mt-[40px] max-sm:mt-[20px]">
+<div class="sticky top-8 h-max w-[442px] max-w-full max-lg:w-auto max-lg:max-w-[442px] max-sm:relative max-sm:top-4 ltr:pl-8 max-lg:ltr:pl-0 rtl:pr-8 max-lg:rtl:pr-0">
+    <h2 class="shimmer h-8 w-2/4"></h2>
+    <div class="mt-10 grid border-b border-zinc-200 max-sm:mt-5">
 
-        {{-- single card --}}
-        <div class="flex gap-x-[15px] pb-[20px]">
-            <div class="shimmer w-[90px] h-[90px] rounded-md"></div>
+        <!-- single card -->
+        <div class="flex gap-x-4 pb-5">
+            <div class="shimmer h-[90px] w-[90px] rounded-md"></div>
 
             <div>
-                <p class="shimmer w-[180px] h-[24px]"></p>
-                <p class="shimmer w-[80px] h-[27px] mt-[10px]"></p>
+                <p class="shimmer h-6 w-[180px]"></p>
+                <p class="shimmer mt-2.5 h-7 w-20"></p>
             </div>
         </div>
 
-        {{-- single card --}}
-        <div class="flex gap-x-[15px] pb-[20px]">
-            <div class="shimmer w-[90px] h-[90px] rounded-md"></div>
+        <!-- single card -->
+        <div class="flex gap-x-4 pb-5">
+            <div class="shimmer h-[90px] w-[90px] rounded-md"></div>
 
             <div>
-                <p class="shimmer w-[180px] h-[24px]"></p>
-                <p class="shimmer w-[80px] h-[27px] mt-[10px]"></p>
+                <p class="shimmer h-6 w-[180px]"></p>
+                <p class="shimmer mt-2.5 h-7 w-20"></p>
             </div>
         </div>
 
-        {{-- single card --}}
-        <div class="flex gap-x-[15px] pb-[20px]">
-            <div class="shimmer w-[90px] h-[90px] rounded-md"></div>
+        <!-- single card -->
+        <div class="flex gap-x-4 pb-5">
+            <div class="shimmer h-[90px] w-[90px] rounded-md"></div>
 
             <div>
-                <p class="shimmer w-[180px] h-[24px]"></p>
-                <p class="shimmer w-[80px] h-[27px] mt-[10px]"></p>
+                <p class="shimmer h-6 w-[180px]"></p>
+                <p class="shimmer mt-2.5 h-7 w-20"></p>
             </div>
         </div>
     </div>
 
-    <div class="grid gap-[15px] mt-[25px] mb-[30px]">
-        <div class="flex text-right justify-between">
-            <p class="shimmer w-[20%] h-[24px]"></p>
-            <p class="shimmer w-[25%] h-[24px]"></p>
+    <!-- Price Summary -->
+    <div class="mb-8 mt-6 grid gap-4">
+        <div class="flex justify-between text-right">
+            <p class="shimmer h-6 w-1/5"></p>
+            <p class="shimmer h-6 w-1/4"></p>
         </div>
         
-        <div class="flex text-right justify-between">
-            <p class="shimmer w-[20%] h-[24px]"></p>
-            <p class="shimmer w-[15%] h-[24px]"></p>
+        <div class="flex justify-between text-right">
+            <p class="shimmer h-6 w-1/5"></p>
+            <p class="shimmer h-6 w-[15%]"></p>
         </div>
 
-        <div class="flex text-right justify-between">
-            <p class="shimmer w-[25%] h-[24px]"></p>
-            <p class="shimmer w-[35%] h-[24px]"></p>
+        <div class="flex justify-between text-right">
+            <p class="shimmer h-6 w-1/4"></p>
+            <p class="shimmer h-6 w-[35%]"></p>
         </div>
 
-        <div class="flex text-right justify-between">
-            <p class="shimmer w-[35%] h-[24px]"></p>
-            <p class="shimmer w-[30%] h-[38px]"></p>
+        <div class="flex justify-between text-right">
+            <p class="shimmer h-6 w-[35%]"></p>
+            <p class="shimmer h-[38px] w-[30%]"></p>
         </div>
     </div>
 
-    <div class="shimmer w-[50%] h-[46px] rounded-[18px] max-sm:mb-[40px]"></div>
+    <!-- Proceed to checkout button -->
+    <div class="shimmer h-[46px] w-2/4 rounded-2xl max-sm:mb-10 max-sm:hidden"></div>
 </div>

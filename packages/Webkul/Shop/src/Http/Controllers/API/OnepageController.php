@@ -2,15 +2,16 @@
 
 namespace Webkul\Shop\Http\Controllers\API;
 
-use Illuminate\Http\Response;
 use Illuminate\Http\Resources\Json\JsonResource;
-use Webkul\Sales\Repositories\OrderRepository;
-use Webkul\Customer\Repositories\CustomerRepository;
+use Illuminate\Http\Response;
 use Webkul\Checkout\Facades\Cart;
+use Webkul\Customer\Repositories\CustomerRepository;
 use Webkul\Payment\Facades\Payment;
+use Webkul\Sales\Repositories\OrderRepository;
+use Webkul\Sales\Transformers\OrderResource;
 use Webkul\Shipping\Facades\Shipping;
+use Webkul\Shop\Http\Requests\CartAddressRequest;
 use Webkul\Shop\Http\Resources\CartResource;
-use Webkul\Shop\Http\Requests\Customer\CustomerAddressForm;
 
 class OnepageController extends APIController
 {
@@ -22,12 +23,10 @@ class OnepageController extends APIController
     public function __construct(
         protected OrderRepository $orderRepository,
         protected CustomerRepository $customerRepository
-    )
-    {
-    }
+    ) {}
 
     /**
-     * Return order short summary.
+     * Return cart summary.
      */
     public function summary(): JsonResource
     {
@@ -37,11 +36,11 @@ class OnepageController extends APIController
     }
 
     /**
-     * Store customer address.
+     * Store address.
      */
-    public function storeAddress(CustomerAddressForm $request): JsonResource
+    public function storeAddress(CartAddressRequest $cartAddressRequest): JsonResource
     {
-        $data = $request->all();
+        $params = $cartAddressRequest->all();
 
         if (
             ! auth()->guard('customer')->check()
@@ -53,19 +52,14 @@ class OnepageController extends APIController
             ]);
         }
 
-        $data['billing']['address1'] = implode(PHP_EOL, $data['billing']['address1']);
-
-        $data['shipping']['address1'] = implode(PHP_EOL, $data['shipping']['address1']);
-
-        if (
-            Cart::hasError()
-            || ! Cart::saveCustomerAddress($data)
-        ) {
+        if (Cart::hasError()) {
             return new JsonResource([
-                'redirect' => true,
-                'data'     => route('shop.checkout.cart.index'),
+                'redirect'     => true,
+                'redirect_url' => route('shop.checkout.cart.index'),
             ]);
         }
+
+        Cart::saveAddresses($params);
 
         $cart = Cart::getCart();
 
@@ -74,8 +68,8 @@ class OnepageController extends APIController
         if ($cart->haveStockableItems()) {
             if (! $rates = Shipping::collectRates()) {
                 return new JsonResource([
-                    'redirect' => true,
-                    'data'     => route('shop.checkout.cart.index'),
+                    'redirect'     => true,
+                    'redirect_url' => route('shop.checkout.cart.index'),
                 ]);
             }
 
@@ -98,12 +92,14 @@ class OnepageController extends APIController
      */
     public function storeShippingMethod()
     {
-        $shippingMethod = request()->get('shipping_method');
+        $validatedData = $this->validate(request(), [
+            'shipping_method' => 'required',
+        ]);
 
         if (
             Cart::hasError()
-            || ! $shippingMethod
-            || ! Cart::saveShippingMethod($shippingMethod)
+            || ! $validatedData['shipping_method']
+            || ! Cart::saveShippingMethod($validatedData['shipping_method'])
         ) {
             return response()->json([
                 'redirect_url' => route('shop.checkout.cart.index'),
@@ -122,12 +118,14 @@ class OnepageController extends APIController
      */
     public function storePaymentMethod()
     {
-        $payment = request()->get('payment');
+        $validatedData = $this->validate(request(), [
+            'payment' => 'required',
+        ]);
 
         if (
             Cart::hasError()
-            || ! $payment
-            || ! Cart::savePaymentMethod($payment)
+            || ! $validatedData['payment']
+            || ! Cart::savePaymentMethod($validatedData['payment'])
         ) {
             return response()->json([
                 'redirect_url' => route('shop.checkout.cart.index'),
@@ -146,7 +144,7 @@ class OnepageController extends APIController
     /**
      * Store order
      */
-    public function storeOrder(): JsonResource
+    public function storeOrder()
     {
         if (Cart::hasError()) {
             return new JsonResource([
@@ -157,7 +155,13 @@ class OnepageController extends APIController
 
         Cart::collectTotals();
 
-        $this->validateOrder();
+        try {
+            $this->validateOrder();
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => $e->getMessage(),
+            ], 500);
+        }
 
         $cart = Cart::getCart();
 
@@ -168,38 +172,17 @@ class OnepageController extends APIController
             ]);
         }
 
-        $order = $this->orderRepository->create(Cart::prepareDataForOrder());
+        $data = (new OrderResource($cart))->jsonSerialize();
+
+        $order = $this->orderRepository->create($data);
 
         Cart::deActivateCart();
 
-        Cart::activateCartIfSessionHasDeactivatedCartId();
-
-        session()->flash('order', $order);
+        session()->flash('order_id', $order->id);
 
         return new JsonResource([
             'redirect'     => true,
             'redirect_url' => route('shop.checkout.onepage.success'),
-        ]);
-    }
-
-    /**
-     * Check for minimum order.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function checkMinimumOrder()
-    {
-        $minimumOrderAmount = (float) core()->getConfigData('sales.order_settings.minimum_order.minimum_order_amount') ?: 0;
-
-        $status = Cart::checkMinimumOrder();
-
-        return response()->json([
-            'status'  => ! $status ? false : true,
-            'message' => ! $status
-                ? trans('shop::app.checkout.cart.minimum-order-message', [
-                    'amount' => core()->currency($minimumOrderAmount),
-                ])
-                : 'Success',
         ]);
     }
 
@@ -228,16 +211,16 @@ class OnepageController extends APIController
             throw new \Exception(trans('shop::app.checkout.cart.inactive-account-message'));
         }
 
-        if (! $cart->checkMinimumOrder()) {
+        if (! Cart::haveMinimumOrderAmount()) {
             throw new \Exception(trans('shop::app.checkout.cart.minimum-order-message', ['amount' => core()->currency($minimumOrderAmount)]));
         }
 
         if ($cart->haveStockableItems() && ! $cart->shipping_address) {
-            throw new \Exception(trans('shop::app.checkout.cart.check-shipping-address'));
+            throw new \Exception(trans('shop::app.checkout.onepage.address.check-shipping-address'));
         }
 
         if (! $cart->billing_address) {
-            throw new \Exception(trans('shop::app.checkout.cart.check-billing-address'));
+            throw new \Exception(trans('shop::app.checkout.onepage.address.check-billing-address'));
         }
 
         if (

@@ -33,7 +33,7 @@
 
                     {{ $shipment->order->shipping_address->name }}<br/>
                     
-                    {{ $shipment->order->shipping_address->address1 }}<br/>
+                    {{ $shipment->order->shipping_address->address }}<br/>
                     
                     {{ $shipment->order->shipping_address->postcode . " " . $shipment->order->shipping_address->city }}<br/>
                     
@@ -52,22 +52,33 @@
                     {{ $shipment->order->shipping_title }}
                 </div>
 
+
+                <div style="font-size: 16px; color: #384860;">
+                    <div>
+                        <span>
+                            @lang('shop::app.emails.orders.carrier') : 
+                        </span>
+                        
+                        {{ $shipment->carrier_title }}
+                    </div>
+
+                    <div>
+                        <span>
+                            @lang('shop::app.emails.orders.tracking-number', ['tracking_number' =>  $shipment->track_number])
+                        </span>
+                    </div>
+                </div>
+
                 @php $additionalDetails = \Webkul\Payment\Payment::getAdditionalDetails($shipment->order->payment->method); @endphp
 
                 @if (! empty($additionalDetails))
                     <div style="font-size: 16px; color: #384860;">
                         <div>
-                            <span>
-                                @lang('shop::app.emails.orders.carrier') : 
-                            </span>
-                            
-                            {{ $shipment->carrier_title }}
+                            <span>{{ $additionalDetails->title }} : </span>
                         </div>
 
                         <div>
-                            <span>
-                                @lang('shop::app.emails.orders.tracking-number', ['tracking_number' =>  $shipment->track_number])
-                            </span>
+                            <span>{{ $additionalDetails->value }} </span>
                         </div>
                     </div>
                 @endif
@@ -85,7 +96,7 @@
 
                     {{ $shipment->order->billing_address->name }}<br/>
                     
-                    {{ $shipment->order->billing_address->address1 }}<br/>
+                    {{ $shipment->order->billing_address->address }}<br/>
                     
                     {{ $shipment->order->billing_address->postcode . " " . $shipment->order->billing_address->city }}<br/>
                     
@@ -122,8 +133,10 @@
 
             <tbody style="font-size: 16px;font-weight: 400;color: #384860;">
                 @foreach ($shipment->items as $item)
-                    <tr>
-                        <td style="text-align: left;padding: 15px">{{ $item->getTypeInstance()->getOrderedItem($item)->sku }}</td>
+                    <tr style="vertical-align: text-top;">
+                        <td style="text-align: left;padding: 15px">
+                            {{ $item->sku }}
+                        </td>
 
                         <td style="text-align: left;padding: 15px">
                             {{ $item->name }}
@@ -139,71 +152,30 @@
                             @endif
                         </td>
 
-                        <td style="text-align: left;padding: 15px">{{ core()->formatPrice($item->price, $shipment->order_currency_code) }}
+                        <td style="display: flex;flex-direction: column;text-align: left;padding: 15px">
+                            @if (core()->getConfigData('sales.taxes.sales.display_prices') == 'including_tax')
+                                {{ core()->formatPrice($item->price_incl_tax, $shipment->order->order_currency_code) }}
+                            @elseif (core()->getConfigData('sales.taxes.sales.display_prices') == 'both')
+                                {{ core()->formatPrice($item->price_incl_tax, $shipment->order->order_currency_code) }}
+
+                                <span style="font-size: 12px; white-space: nowrap">
+                                    @lang('shop::app.emails.orders.excl-tax')
+
+                                    <span style="font-weight: 600">
+                                        {{ core()->formatPrice($item->price, $shipment->order->order_currency_code) }}
+                                    </span>
+                                </span>
+                            @else
+                                {{ core()->formatPrice($item->price, $shipment->order->order_currency_code) }}
+                            @endif
                         </td>
 
-                        <td style="text-align: left;padding: 15px">{{ $item->qty }}</td>
+                        <td style="text-align: left;padding: 15px">
+                            {{ $item->qty }}
+                        </td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
-    </div>
-
-    <div style="display: grid;justify-content: end;font-size: 16px;color: #384860;line-height: 30px;padding-top: 20px;padding-bottom: 20px;">
-        <div style="display: grid;gap: 100px;grid-template-columns: repeat(2, minmax(0, 1fr));">
-            <span>
-                @lang('shop::app.emails.orders.subtotal')
-            </span>
-
-            <span style="text-align: right;">
-                {{ core()->formatPrice($shipment->sub_total, $shipment->order_currency_code) }}
-            </span>
-        </div>
-
-        @if ($shipment->order->shipping_address)
-            <div style="display: grid;gap: 100px;grid-template-columns: repeat(2, minmax(0, 1fr));">
-                <span>
-                    @lang('shop::app.emails.orders.shipping-handling')
-                </span>
-
-                <span style="text-align: right;">
-                    {{ core()->formatPrice($shipment->shipping_amount, $shipment->order_currency_code) }}
-                </span>
-            </div>
-        @endif
-
-        @foreach (Webkul\Tax\Helpers\Tax::getTaxRatesWithAmount($shipment->order, false) as $taxRate => $taxAmount )
-            <div style="display: grid;gap: 100px;grid-template-columns: repeat(2, minmax(0, 1fr));">
-                <span>
-                    @lang('shop::app.emails.orders.tax') {{ $taxRate }} %
-                </span>
-
-                <span style="text-align: right;">
-                    {{ core()->formatPrice($shipment->tax_amount, $shipment->order_currency_code) }}
-                </span>
-            </div>
-        @endforeach
-
-        @if ($shipment->discount_amount > 0)
-            <div style="display: grid;gap: 100px;grid-template-columns: repeat(2, minmax(0, 1fr));">
-                <span>
-                    @lang('shop::app.emails.orders.discount')
-                </span>
-
-                <span style="text-align: right;">
-                    {{ core()->formatPrice($shipment->discount_amount, $shipment->order_currency_code) }}
-                </span>
-            </div>
-        @endif
-
-        <div style="display: grid;gap: 100px;grid-template-columns: repeat(2, minmax(0, 1fr));font-weight: bold">
-            <span>
-                @lang('shop::app.emails.orders.grand-total')
-            </span>
-
-            <span style="text-align: right;">
-                {{ core()->formatPrice($shipment->grand_total, $shipment->order_currency_code) }}
-            </span>
-        </div>
     </div>
 @endcomponent

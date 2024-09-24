@@ -1,155 +1,110 @@
 <x-shop::layouts.account>
-    {{-- Page Title --}}
+    <!-- Page Title -->
     <x-slot:title>
         @lang('shop::app.customers.account.downloadable-products.name')
     </x-slot>
 
-    {{-- Breadcrumbs --}}
-    @section('breadcrumbs')
-        <x-shop::breadcrumbs name="downloadable-products"></x-shop::breadcrumbs>
-    @endSection
+    <!-- Breadcrumbs -->
+    @if ((core()->getConfigData('general.general.breadcrumbs.shop')))
+        @section('breadcrumbs')
+            <x-shop::breadcrumbs name="downloadable-products" />
+        @endSection
+    @endif
 
-    <div class="flex-auto">
-        <div class="max-md:max-w-full">
-            <h2 class="text-[26px] font-medium">
+    <div class="max-md:hidden">
+        <x-shop::layouts.account.navigation />
+    </div>
+
+    <div class="mx-4 flex-auto max-md:mx-6 max-sm:mx-4">
+        <div class="mb-8 flex items-center max-md:mb-5">
+            <!-- Back Button -->
+            <a
+                class="grid md:hidden"
+                href="{{ route('shop.customers.account.index') }}"
+            >
+                <span class="icon-arrow-left rtl:icon-arrow-right text-2xl"></span>
+            </a>
+
+            <h2 class="text-2xl font-medium max-md:text-xl max-sm:text-base ltr:ml-2.5 md:ltr:ml-0 rtl:mr-2.5 md:rtl:mr-0">
                 @lang('shop::app.customers.account.downloadable-products.name')
             </h2>
-
-            {!! view_render_event('bagisto.shop.customers.account.downloadable_products.list.before') !!}
-
-            @if (! $downloadableLinkPurchased->isEmpty())
-                {{-- Downloadable Products Information --}}
-                <div class="relative overflow-x-auto border border-b-0  rounded-[12px] mt-[30px]">
-                    <table class="w-full text-sm text-left">
-                        <thead class="border-b-[1px] border-[#E9E9E9] text-[14px] text-black bg-[#F5F5F5]">
-                            <tr>
-                                <th
-                                    scope="col"
-                                    class="px-6 py-[16px] font-medium"
-                                >
-                                    @lang('shop::app.customers.account.downloadable-products.orderId')
-                                </th>
-
-                                <th
-                                    scope="col"
-                                    class="px-6 py-[16px] font-medium"
-                                >
-                                    @lang('shop::app.customers.account.downloadable-products.title')
-                                </th>
-
-                                <th
-                                    scope="col"
-                                    class="px-6 py-[16px] font-medium"
-                                >
-                                    @lang('shop::app.customers.account.downloadable-products.date')
-                                </th>
-
-                                <th
-                                    scope="col"
-                                    class="px-6 py-[16px] font-medium"
-                                >
-                                    @lang('shop::app.customers.account.downloadable-products.status')
-                                </th>
-
-                                <th
-                                    scope="col"
-                                    class="px-6 py-[16px] font-medium"
-                                >
-                                    @lang('shop::app.customers.account.downloadable-products.remaining-downloads')
-                                </th>
-                            </tr>
-                        </thead>
-
-                        <tbody>
-                            @foreach ($downloadableLinkPurchased as $item)
-                                <tr class="bg-white border-b">
-                                    <th 
-                                        scope="row" 
-                                        class="px-6 py-[16px] whitespace-nowrap text-blackfont-medium  first:rounded-bl-[12px]"
-                                    >
-                                        {{ $item->order_id }}
-                                    </th>
-
-                                    <td 
-                                        class="px-6 py-[16px] text-black font-medium"
-                                    >
-                                        @if ($item->status == 'available')
-                                            <a  
-                                                class="text-blue-600"
-                                                href="{{ route('shop.customers.account.downloadable_products.download', $item->id) }}" 
-                                                target="_blank"
-                                            >
-                                                {{ $item->product_name }}
-                                            </a>
-                                        @else 
-                                            {{ $item->product_name }}
-                                        @endif
-                                    </td>
-
-                                    <td class="px-6 py-[16px] text-black font-medium">
-                                        {{ $item->created_at }}
-                                    </td>
-
-                                    <td 
-                                        class="px-6 py-[16px] text-black font-medium"
-                                    > 
-                                        @switch($item->status)
-                                            @case('completed')
-
-                                                <span class="px-[10px] py-[4px] rounded-[12px] bg-[#5BA34B] text-white text-[12px]">
-                                                    {{ $item->status }}
-                                                </span>
-                                                @break
-
-                                            @case('pending')
-
-                                                <span class="px-[10px] py-[4px] rounded-[12px] bg-[#FDB60C] text-white text-[12px]">
-                                                    {{ $item->status }}
-                                                </span>
-                                                @break
-
-                                            @case('available')
-                                                <span class=" px-[10px] py-[4px] rounded-[12px] bg-[#5BA34B] text-white text-[12px]">
-                                                    {{ $item->status }}
-                                                </span>
-                                                @break
-                                        @endswitch
-                                    </td>
-
-                                    <td 
-                                        class="px-6 py-[16px] text-black font-medium last:rounded-br-[12px]"
-                                    > 
-                                        {{ $item->download_bought }} - {{ $item->download_used }}
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
-
-                <p class="text-[14px] text-right font-medium mt-[20px]"> 
-                    {{ $downloadableLinkPurchased->count() }}
-                    
-                    @lang('shop::app.customers.account.downloadable-products.records-found')
-                </p>
-            @else
-                {{-- Downloadable Empty page --}}
-                <div class="grid items-center justify-items-center place-content-center w-[100%]] m-auto h-[476px] text-center">
-                    <img
-                        src="{{ bagisto_asset('images/empty-dwn-product.png')}}"
-                        class=""
-                        alt=""
-                        title=""
-                    >
-
-                    <p class="text-[20px]">
-                        @lang('shop::app.customers.account.downloadable-products.empty-product')
-                    </p>
-                </div>
-            @endif
-
-            {!! view_render_event('bagisto.shop.customers.account.downloadable_products.list.after') !!}
-
         </div>
+
+        {!! view_render_event('bagisto.shop.customers.account.downloadable_products.list.before') !!}
+
+            <!-- For Desktop View -->
+        <div class="max-md:hidden">
+            <x-shop::datagrid :src="route('shop.customers.account.downloadable_products.index')" />
+        </div>
+
+        <!-- For Mobile View -->
+        <div class="hidden max-md:block">
+            <x-shop::datagrid :src="route('shop.customers.account.downloadable_products.index')">
+                <!-- Datagrid Header -->
+                <template #header="{
+                    isLoading,
+                    available,
+                    applied,
+                    selectAll,
+                    sort,
+                    performAction
+                }">
+                    <div class="hidden"></div>
+                </template>
+
+                <template #body="{
+                    isLoading,
+                    available,
+                    applied,
+                    selectAll,
+                    sort,
+                    performAction
+                }">
+                    <template v-if="isLoading">
+                        <x-shop::shimmer.datagrid.table.body />
+                    </template>
+
+                    <template v-else>
+                        <div class="grid gap-4">
+                            <template
+                                v-for="record in available.records"
+                                v-if="available.records.length"
+                            >
+                                <div class="grid w-full gap-2.5 rounded-md border p-4 transition-all">
+                                    <div class="flex justify-between">
+                                        <div class="text-sm font-semibold">
+                                            <p>@lang('shop::app.customers.account.downloadable-products.orderId'): #@{{ record.increment_id }}</p>
+
+                                            <p class="text-xs font-normal text-neutral-500">
+                                                @{{ record.created_at }}
+                                            </p>
+                                        </div>
+
+                                        <p v-html="record.status"></p>
+                                    </div>
+            
+                                    <div class="text-xs font-normal">
+                                        <p
+                                            class="text-sm font-semibold text-blue-600"
+                                            v-html="record.product_name"
+                                        >
+                                        </p>
+
+                                        <p><span class="text-neutral-500">@lang('Remaining Downloads'):</span> <span class="font-medium">@{{ record.remaining_downloads }}</span></p>
+                                    </div>
+                                </div>
+                            </template>
+
+                            <template v-else>
+                                @{{ available.records.length }} @lang('shop::app.customers.account.downloadable-products.records-found')
+                            </template>
+                        </div>
+                    </template>
+                </template>
+            </x-shop::datagrid>
+        </div>
+
+        {!! view_render_event('bagisto.shop.customers.account.downloadable_products.list.after') !!}
+
     </div>
 </x-shop::layouts.account>

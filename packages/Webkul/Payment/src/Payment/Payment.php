@@ -2,22 +2,21 @@
 
 namespace Webkul\Payment\Payment;
 
-use Illuminate\Support\Facades\Config;
 use Webkul\Checkout\Facades\Cart;
 
 abstract class Payment
 {
     /**
-     * Cart object
+     * Cart.
      *
-     * @var Cart
+     * @var \Webkul\Checkout\Contracts\Cart
      */
     protected $cart;
 
     /**
-     * Checks if payment method is available
+     * Checks if payment method is available.
      *
-     * @return array
+     * @return bool
      */
     public function isAvailable()
     {
@@ -25,9 +24,9 @@ abstract class Payment
     }
 
     /**
-     * Returns payment method code
+     * Get payment method code.
      *
-     * @return array
+     * @return string
      */
     public function getCode()
     {
@@ -39,9 +38,9 @@ abstract class Payment
     }
 
     /**
-     * Returns payment method title
+     * Get payment method title.
      *
-     * @return array
+     * @return string
      */
     public function getTitle()
     {
@@ -49,9 +48,9 @@ abstract class Payment
     }
 
     /**
-     * Returns payment method description
+     * Get payment method description.
      *
-     * @return array
+     * @return string
      */
     public function getDescription()
     {
@@ -59,21 +58,35 @@ abstract class Payment
     }
 
     /**
-     * Retrieve information from payment configuration
+     * Get payment method image.
+     *
+     * @return string
+     */
+    public function getImage()
+    {
+        return $this->getConfigData('image');
+    }
+
+    /**
+     * Retrieve information from payment configuration.
      *
      * @param  string  $field
-     * @param  int|string|null  $channelId
      * @return mixed
      */
     public function getConfigData($field)
     {
-        return core()->getConfigData('sales.payment_methods.' . $this->getCode() . '.' . $field);
+        return core()->getConfigData('sales.payment_methods.'.$this->getCode().'.'.$field);
     }
 
+    /**
+     * Abstract method to get the redirect URL.
+     *
+     * @return string The redirect URL.
+     */
     abstract public function getRedirectUrl();
 
     /**
-     * Assign cart
+     * Set cart.
      *
      * @var void
      */
@@ -85,9 +98,9 @@ abstract class Payment
     }
 
     /**
-     * Returns cart insrance
+     * Get cart.
      *
-     * @var mixed
+     * @return \Webkul\Checkout\Contracts\Cart
      */
     public function getCart()
     {
@@ -99,9 +112,9 @@ abstract class Payment
     }
 
     /**
-     * Return paypal redirect url
+     * Return paypal redirect url.
      *
-     * @var Collection
+     * @var \Illuminate\Database\Eloquent\Collection
      */
     public function getCartItems()
     {
@@ -113,9 +126,9 @@ abstract class Payment
     }
 
     /**
-     * Returns payment method sort order
+     * Get payment method sort order.
      *
-     * @return int
+     * @return string
      */
     public function getSortOrder()
     {
@@ -123,7 +136,7 @@ abstract class Payment
     }
 
     /**
-     * Returns payment method additional information
+     * Get payment method additional information.
      *
      * @return array
      */
@@ -134,7 +147,7 @@ abstract class Payment
         }
 
         return [
-            'title' => trans('admin::app.configuration.instructions'),
+            'title' => trans('admin::app.configuration.index.sales.payment-methods.instructions'),
             'value' => $this->getConfigData('instructions'),
         ];
     }

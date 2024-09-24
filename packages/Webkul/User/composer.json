@@ -19,8 +19,7 @@
                 "Webkul\\User\\Providers\\UserServiceProvider"
             ],
             "aliases": {
-                "Bouncer": "Webkul\\User\\Facades\\Bouncer",
-                "BouncerManage": "Webkul\\User\\Facades\\BouncerManage"
+                "Bouncer": "Webkul\\User\\Facades\\Bouncer"
             }
         }
     },

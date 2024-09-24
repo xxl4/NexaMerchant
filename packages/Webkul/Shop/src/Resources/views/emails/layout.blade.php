@@ -12,7 +12,7 @@
     <body style="font-family: inter;">
         <div style="max-width: 640px; margin-left: auto; margin-right: auto;">
             <div style="padding: 30px;">
-                {{-- Email Header --}}
+                <!-- Email Header -->
                 <div style="margin-bottom: 65px;">
                     <a href="{{ route('shop.home.index') }}">
                         @if ($logo = core()->getCurrentChannel()->logo_url)
@@ -33,14 +33,14 @@
                     </a>
                 </div>
 
-                {{-- Email Content --}}
+                <!-- Email Content -->
                 {{ $slot }}
 
-                {{-- Email Footer --}}
+                <!-- Email Footer -->
                 <p style="font-size: 16px;color: #202B3C;line-height: 24px;">
                     @lang('shop::app.emails.thanks', [
-                        'link' => 'mailto:customer@hatmeo.com',
-                        'email' => 'customer@hatmeo.com',
+                        'link' => 'mailto:' . core()->getContactEmailDetails()['email'],
+                        'email' => core()->getContactEmailDetails()['email'],
                         'style' => 'color: #2969FF;'
                     ])
                 </p>

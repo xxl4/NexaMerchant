@@ -9,16 +9,13 @@ class ProductCustomerGroupPriceRepository extends Repository
 {
     /**
      * Specify Model class name.
-     *
-     * @return string
      */
-    function model(): string
+    public function model(): string
     {
         return 'Webkul\Product\Contracts\ProductCustomerGroupPrice';
     }
 
     /**
-     * @param  array  $data
      * @param  \Webkul\Product\Contracts\Product  $product
      * @return void
      */
@@ -29,6 +26,12 @@ class ProductCustomerGroupPriceRepository extends Repository
         if (isset($data['customer_group_prices'])) {
             foreach ($data['customer_group_prices'] as $customerGroupPriceId => $row) {
                 $row['customer_group_id'] = $row['customer_group_id'] == '' ? null : $row['customer_group_id'];
+
+                $row['unique_id'] = implode('|', array_filter([
+                    $row['qty'],
+                    $product->id,
+                    $row['customer_group_id'],
+                ]));
 
                 if (Str::contains($customerGroupPriceId, 'price_')) {
                     $this->create(array_merge([

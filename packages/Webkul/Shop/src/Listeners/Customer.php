@@ -3,11 +3,11 @@
 namespace Webkul\Shop\Listeners;
 
 use Illuminate\Support\Facades\Mail;
-use Webkul\Shop\Mail\Customer\RegistrationNotification;
 use Webkul\Shop\Mail\Customer\EmailVerificationNotification;
-use Webkul\Shop\Mail\Customer\UpdatePasswordNotification;
 use Webkul\Shop\Mail\Customer\NoteNotification;
+use Webkul\Shop\Mail\Customer\RegistrationNotification;
 use Webkul\Shop\Mail\Customer\SubscriptionNotification;
+use Webkul\Shop\Mail\Customer\UpdatePasswordNotification;
 
 class Customer extends Base
 {
@@ -28,7 +28,7 @@ class Customer extends Base
                 Mail::queue(new EmailVerificationNotification($customer));
             } catch (\Exception $e) {
                 \Log::info('EmailVerificationNotification Error');
-                
+
                 report($e);
             }
 
@@ -84,12 +84,12 @@ class Customer extends Base
      */
     public function afterNoteCreated($note)
     {
-        if (! request()->has('customer_notified')) {
+        if (! $note->customer_notified) {
             return;
         }
 
         try {
-            Mail::send(new NoteNotification($note, request()->input('note', 'email')));
+            Mail::queue(new NoteNotification($note));
         } catch (\Exception $e) {
             session()->flash('warning', $e->getMessage());
         }

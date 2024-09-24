@@ -7,12 +7,11 @@ use Closure;
 class Theme
 {
     /**
-    * Handle an incoming request.
-    *
-    * @param  \Illuminate\Http\Request  $request
-    * @param  \Closure  $next
-    * @return mixed
-    */
+     * Handle an incoming request.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return mixed
+     */
     public function handle($request, Closure $next)
     {
         $themes = app('themes');
@@ -25,10 +24,10 @@ class Theme
             if ($themes->exists($channelThemeCode)) {
                 $themes->set($channelThemeCode);
             } else {
-                $themes->set(config('themes.default'));
+                $themes->set(config('themes.shop-default'));
             }
         } else {
-            $themes->set(config('themes.default'));
+            $themes->set(config('themes.shop-default'));
         }
 
         return $next($request);

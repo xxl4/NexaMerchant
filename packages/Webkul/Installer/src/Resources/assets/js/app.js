@@ -1,7 +1,7 @@
 /**
  * This will track all the images and fonts for publishing.
  */
-import.meta.glob(["../images/**", "../fonts/**"]);
+import.meta.glob(["../images/installer/**", "../fonts/**"]);
 
 /**
  * Main vue bundler.
@@ -15,14 +15,12 @@ import { createApp } from "vue/dist/vue.esm-bundler";
 import { configure, defineRule } from "vee-validate";
 import { localize } from "@vee-validate/i18n";
 import en from "@vee-validate/i18n/dist/locale/en.json";
-import * as AllRules from '@vee-validate/rules';
+import { all } from '@vee-validate/rules';
 
 /**
  * Registration of all global validators.
  */
-Object.keys(AllRules).forEach(rule => {
-    defineRule(rule, AllRules[rule]);
-});
+Object.entries(all).forEach(([name, rule]) => defineRule(name, rule));
 
 
 defineRule("", () => true);

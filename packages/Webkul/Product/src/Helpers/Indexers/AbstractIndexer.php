@@ -19,7 +19,6 @@ abstract class AbstractIndexer
      */
     protected const SPECIAL_PRICE_TO_ATTRIBUTE_ID = 15;
 
-
     abstract public function reindexBatch(array $products);
 
     /**
@@ -27,9 +26,7 @@ abstract class AbstractIndexer
      *
      * @return void
      */
-    public function reindexFull()
-    {
-    }
+    public function reindexFull() {}
 
     /**
      * Reindex necessary products

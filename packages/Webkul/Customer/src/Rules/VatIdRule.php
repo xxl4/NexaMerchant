@@ -3,13 +3,11 @@
 namespace Webkul\Customer\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
-use Webkul\Customer\Rules\VatValidator;
 
 /**
  * Class VatIdRule
  *
  * @see https://laravel.com/docs/5.8/validation#using-rule-objects
- * @package App\Rules
  */
 class VatIdRule implements Rule
 {
@@ -17,6 +15,7 @@ class VatIdRule implements Rule
      * Determine if the validation rule passes.
      *
      * The rules are borrowed from:
+     *
      * @see https://raw.githubusercontent.com/danielebarbaro/laravel-vat-eu-validator/master/src/VatValidator.php
      *
      * @param  string  $attribute
@@ -25,7 +24,7 @@ class VatIdRule implements Rule
      */
     public function passes($attribute, $value)
     {
-        $validator = new VatValidator();
+        $validator = new VatValidator;
 
         return empty($value) || $validator->validate($value);
     }

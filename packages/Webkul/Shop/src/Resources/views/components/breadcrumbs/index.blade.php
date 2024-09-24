@@ -3,8 +3,8 @@
     'entity' => null,
 ])
 
-<div class="flex justify-start mt-[30px] max-lg:hidden">
-    <div class="flex gap-x-[14px] items-center">        
+<div class="mt-[34px] flex justify-start max-lg:hidden">
+    <div class="flex items-center gap-x-3.5">        
         {{ Breadcrumbs::view('shop::partials.breadcrumbs', $name, $entity) }}
     </div>
 </div>

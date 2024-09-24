@@ -3,20 +3,23 @@
     :key='flash.uid'
     :flash="flash"
     @onRemove="remove($event)"
-></v-flash-item>
+/>
 
 @pushOnce('scripts')
-    <script type="text/x-template" id="v-flash-item-template">
+    <script
+        type="text/x-template"
+        id="v-flash-item-template"
+    >
         <div
-            class="flex gap-[46px] justify-between w-max max-w-[408px] px-[20px] py-[12px] rounded-[8px]"
+            class="flex w-max max-w-[408px] justify-between gap-12 rounded-lg px-5 py-3 max-sm:max-w-80 max-sm:items-center max-sm:gap-2 max-sm:p-3"
             :style="typeStyles[flash.type]['container']"
         >
             <p
-                class="text-[14px] flex break-all"
+                class="flex items-center break-words text-sm"
                 :style="typeStyles[flash.type]['message']"
             >
                 <span
-                    class="icon-toast-done mr-[10px] text-[24px]"
+                    class="icon-toast-done text-2xl ltr:mr-2.5 rtl:ml-2.5"
                     :class="iconClasses[flash.type]"
                     :style="typeStyles[flash.type]['icon']"
                 ></span>
@@ -25,7 +28,7 @@
             </p>
 
 			<span
-                class="icon-cancel max-h-[16px] max-w-[16px] cursor-pointer"
+                class="icon-cancel max-h-4 max-w-4 cursor-pointer"
                 :style="typeStyles[flash.type]['icon']"
                 @click="remove"
             ></span>

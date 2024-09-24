@@ -1,19 +1,19 @@
 <?php
- 
+
 namespace Webkul\Product\Jobs;
- 
+
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Webkul\Product\Helpers\Indexers\Price as PriceIndexer;
 use Webkul\Product\Repositories\ProductRepository;
-use  Webkul\Product\Helpers\Indexers\Price as PriceIndexer;
- 
+
 class UpdateCreatePriceIndex implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
- 
+
     /**
      * Create a new job instance.
      *
@@ -24,7 +24,7 @@ class UpdateCreatePriceIndex implements ShouldQueue
     {
         $this->productIds = $productIds;
     }
- 
+
     /**
      * Execute the job.
      *
@@ -32,6 +32,10 @@ class UpdateCreatePriceIndex implements ShouldQueue
      */
     public function handle()
     {
+        if (! count($this->productIds)) {
+            return;
+        }
+
         $ids = implode(',', $this->productIds);
 
         $products = app(ProductRepository::class)

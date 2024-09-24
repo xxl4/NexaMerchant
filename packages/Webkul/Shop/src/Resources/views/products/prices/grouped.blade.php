@@ -1,7 +1,7 @@
-<p class="text-[14px] text-[#6E6E6E]">
+<p class="price-label text-sm text-zinc-500 max-sm:leading-4">
     @lang('shop::app.products.prices.grouped.starting-at')
 </p>
 
-<p class="font-semibold">
+<p class="font-semibold max-sm:leading-4">
     {{ $prices['final']['formatted_price'] }}
 </p>

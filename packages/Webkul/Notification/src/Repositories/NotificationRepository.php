@@ -2,28 +2,23 @@
 
 namespace Webkul\Notification\Repositories;
 
-use Webkul\Core\Eloquent\Repository;
 use Illuminate\Support\Facades\DB;
+use Webkul\Core\Eloquent\Repository;
 
 class NotificationRepository extends Repository
 {
     /**
      * Specify Model class name
-     *
-     * @return string
      */
-    function model(): string
+    public function model(): string
     {
         return 'Webkul\Notification\Contracts\Notification';
     }
 
     /**
-     * Return Filtered Notification resources
-     *
-     * @param  array  $params
-     * @return array
+     * Return Filtered Notification resources.
      */
-    public function getParamsData($params)
+    public function getParamsData(array $params): array
     {
         $query = $this->model->with('order');
 
@@ -50,13 +45,12 @@ class NotificationRepository extends Repository
     }
 
     /**
-     * Return Notification resources
+     * Return Notification resources.
      *
      * @return array
      */
-    public function getAll()
+    public function getAll(array $params = [])
     {
-
         $query = $this->model->with('order');
 
         $notifications = $query->latest()->paginate($params['limit'] ?? 10);

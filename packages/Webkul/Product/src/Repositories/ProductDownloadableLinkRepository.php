@@ -10,8 +10,6 @@ class ProductDownloadableLinkRepository extends Repository
 {
     /**
      * Specify model class name.
-     *
-     * @return string
      */
     public function model(): string
     {
@@ -22,7 +20,7 @@ class ProductDownloadableLinkRepository extends Repository
      * Upload.
      *
      * @param  array  $data
-     * @param  integer $productId
+     * @param  int  $productId
      * @return array
      */
     public function upload($data, $productId)
@@ -33,9 +31,9 @@ class ProductDownloadableLinkRepository extends Repository
             }
 
             return [
-                $type           => $path = request()->file($type)->store('product_downloadable_links/' . $productId, 'private'),
-                $type . '_name' => $file->getClientOriginalName(),
-                $type . '_url'  => Storage::url($path),
+                $type           => $path = request()->file($type)->store('product_downloadable_links/'.$productId, 'private'),
+                $type.'_name'   => $file->getClientOriginalName(),
+                $type.'_url'    => Storage::url($path),
             ];
         }
 
@@ -45,7 +43,6 @@ class ProductDownloadableLinkRepository extends Repository
     /**
      * Save links.
      *
-     * @param  array  $data
      * @param  \Webkul\Product\Models\Product  $product
      * @return void
      */

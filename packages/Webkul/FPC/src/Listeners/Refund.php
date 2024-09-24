@@ -15,13 +15,13 @@ class Refund extends Product
     public function afterCreate($refund)
     {
         foreach ($refund->items as $item) {
-            if(!is_null($item->product)) { // when the product has deleted, and need to check it todo
-                $urls = $this->getForgettableUrls($item->product);
-
-                ResponseCache::forget($urls);
+            if (! $item->product) {
+                continue;
             }
-            
+
+            $urls = $this->getForgettableUrls($item->product);
+
+            ResponseCache::forget($urls);
         }
-        ResponseCache::clear();
     }
 }

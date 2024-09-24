@@ -4,34 +4,26 @@ namespace Webkul\SocialLogin\Repositories;
 
 use Illuminate\Container\Container;
 use Webkul\Core\Eloquent\Repository;
-use Webkul\Customer\Repositories\CustomerRepository;
 use Webkul\Customer\Repositories\CustomerGroupRepository;
+use Webkul\Customer\Repositories\CustomerRepository;
 
 class CustomerSocialAccountRepository extends Repository
 {
     /**
      * Create a new repository instance.
      *
-     * @param  \Webkul\Customer\Repositories\CustomerRepository  $customerRepository
-     * @param  \Webkul\Customer\Repositories\CustomerGroupRepository  $customerGroupRepository
-     * @param  \Illuminate\Container\Container  $container
      * @return void
      */
     public function __construct(
         protected CustomerRepository $customerRepository,
         protected CustomerGroupRepository $customerGroupRepository,
         Container $container
-    )
-    {
-        $this->_config = request('_config');
-
+    ) {
         parent::__construct($container);
     }
 
     /**
-     * Specify Model class name
-     *
-     * @return string
+     * Specify Model class name.
      */
     public function model(): string
     {
@@ -49,12 +41,12 @@ class CustomerSocialAccountRepository extends Repository
             'provider_name' => $provider,
             'provider_id'   => $providerUser->getId(),
         ]);
-  
+
         if ($account) {
             return $account->customer;
         } else {
             $customer = $providerUser->getEmail() ? $this->customerRepository->findOneByField('email', $providerUser->getEmail()) : null;
- 
+
             if (! $customer) {
                 $names = $this->getFirstLastName($providerUser->getName());
 
@@ -64,16 +56,16 @@ class CustomerSocialAccountRepository extends Repository
                     'last_name'         => $names['last_name'],
                     'status'            => 1,
                     'is_verified'       => ! core()->getConfigData('customer.settings.email.verification'),
-                    'customer_group_id' => $this->customerGroupRepository->findOneWhere(['code' => 'general'])->id
+                    'customer_group_id' => $this->customerGroupRepository->findOneWhere(['code' => 'general'])->id,
                 ]);
             }
- 
+
             $this->create([
                 'customer_id'   => $customer->id,
                 'provider_id'   => $providerUser->getId(),
                 'provider_name' => $provider,
             ]);
- 
+
             return $customer;
         }
     }
@@ -90,7 +82,7 @@ class CustomerSocialAccountRepository extends Repository
 
         $lastName = (strpos($name, ' ') === false) ? '' : preg_replace('#.*\s([\w-]*)$#', '$1', $name);
 
-        $firstName = trim( preg_replace('#' . $lastName . '#', '', $name) );
+        $firstName = trim(preg_replace('#'.$lastName.'#', '', $name));
 
         return [
             'first_name' => $firstName,

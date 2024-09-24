@@ -11,12 +11,13 @@ class DataGridServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        include __DIR__.'/../Http/helpers.php';
+
+        $this->loadMigrationsFrom(__DIR__.'/../Database/Migrations');
     }
 
     /**
      * Register any application services.
      */
-    public function register(): void
-    {
-    }
+    public function register(): void {}
 }

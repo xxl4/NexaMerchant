@@ -14,7 +14,7 @@ class Review
      */
     public function getReviews($product)
     {
-        return $product->reviews->where('status', 'approved');
+        return $product->reviews()->where('status', 'approved');
     }
 
     /**
@@ -48,6 +48,19 @@ class Review
     public function getTotalRating($product)
     {
         return $product->reviews->where('status', 'approved')->sum('rating');
+    }
+
+    /**
+     * Returns the total active feedback of the product
+     *
+     * @param  \Webkul\Product\Contracts\Product  $product
+     * @return int
+     */
+    public function getTotalFeedback($product)
+    {
+        return core()->getConfigData('catalog.products.review.summary') == 'star_counts'
+            ? $this->getTotalRating($product)
+            : $this->getTotalReviews($product);
     }
 
     /**

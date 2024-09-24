@@ -15,24 +15,18 @@ class OrderRepository extends Repository
     /**
      * Create a new repository instance.
      *
-     * @param  \Webkul\Sales\Repositories\OrderItemRepository  $orderItemRepository
-     * @param  \Webkul\Sales\Repositories\DownloadableLinkPurchasedRepository  $downloadableLinkPurchasedRepository
-     * @param  \Illuminate\Container\Container  $container
      * @return void
      */
     public function __construct(
         protected OrderItemRepository $orderItemRepository,
         protected DownloadableLinkPurchasedRepository $downloadableLinkPurchasedRepository,
         Container $container
-    )
-    {
+    ) {
         parent::__construct($container);
     }
 
     /**
      * Specify model class name.
-     *
-     * @return string
      */
     public function model(): string
     {
@@ -51,21 +45,6 @@ class OrderRepository extends Repository
         try {
             Event::dispatch('checkout.order.save.before', [$data]);
 
-            if (! empty($data['customer'])) {
-                $data['customer_id'] = $data['customer']->id;
-                $data['customer_type'] = get_class($data['customer']);
-            } else {
-                unset($data['customer']);
-            }
-
-            if (! empty($data['channel'])) {
-                $data['channel_id'] = $data['channel']->id;
-                $data['channel_type'] = get_class($data['channel']);
-                $data['channel_name'] = $data['channel']->name;
-            } else {
-                unset($data['channel']);
-            }
-
             $data['status'] = 'pending';
 
             $order = $this->model->create(array_merge($data, ['increment_id' => $this->generateIncrementId()]));
@@ -73,12 +52,8 @@ class OrderRepository extends Repository
             $order->payment()->create($data['payment']);
 
             if (isset($data['shipping_address'])) {
-                unset($data['shipping_address']['customer_id']);
-
                 $order->addresses()->create($data['shipping_address']);
             }
-
-            unset($data['billing_address']['customer_id']);
 
             $order->addresses()->create($data['billing_address']);
 
@@ -107,7 +82,7 @@ class OrderRepository extends Repository
 
             /* storing log for errors */
             Log::error(
-                'OrderRepository:createOrderIfNotThenRetry: ' . $e->getMessage(),
+                'OrderRepository:createOrderIfNotThenRetry: '.$e->getMessage(),
                 ['data' => $data]
             );
 
@@ -124,7 +99,6 @@ class OrderRepository extends Repository
     /**
      * Create order.
      *
-     * @param  array  $data
      * @return \Webkul\Sales\Contracts\Order
      */
     public function create(array $data)
@@ -136,7 +110,7 @@ class OrderRepository extends Repository
      * Cancel order. This method should be independent as admin also can cancel the order.
      *
      * @param  \Webkul\Sales\Models\Order|int  $orderOrId
-     * @return \Webkul\Sales\Contracts\Order
+     * @return bool
      */
     public function cancel($orderOrId)
     {
@@ -209,7 +183,7 @@ class OrderRepository extends Repository
      * Is order in completed state.
      *
      * @param  \Webkul\Sales\Contracts\Order  $order
-     * @return void
+     * @return bool
      */
     public function isInCompletedState($order)
     {
@@ -255,7 +229,7 @@ class OrderRepository extends Repository
      * Is order in cancelled state.
      *
      * @param  \Webkul\Sales\Contracts\Order  $order
-     * @return void
+     * @return bool
      */
     public function isInCanceledState($order)
     {
@@ -272,8 +246,8 @@ class OrderRepository extends Repository
     /**
      * Is order in closed state.
      *
-     * @param mixed $order
-     * @return void
+     * @param  mixed  $order
+     * @return bool
      */
     public function isInClosedState($order)
     {
@@ -292,7 +266,7 @@ class OrderRepository extends Repository
      * Update order status.
      *
      * @param  \Webkul\Sales\Contracts\Order  $order
-     * @param  string $orderState
+     * @param  string  $orderState
      * @return void
      */
     public function updateOrderStatus($order, $orderState = null)
@@ -302,7 +276,7 @@ class OrderRepository extends Repository
         if (! empty($orderState)) {
             $status = $orderState;
         } else {
-            $status = "processing";
+            $status = 'processing';
 
             if ($this->isInCompletedState($order)) {
                 $status = 'completed';

@@ -1,4 +1,4 @@
-{{-- SEO Meta Content --}}
+<!-- SEO Meta Content -->
 @push('meta')
     <meta name="description" content="@lang('shop::app.compare.title')"/>
 
@@ -6,130 +6,157 @@
 @endPush
 
 <x-shop::layouts>
-    {{-- Page Title --}}
+    <!-- Page Title -->
     <x-slot:title>
         @lang('shop::app.compare.title')
-    </x-slot:title>
+    </x-slot>
 
-    {{-- Breadcrumb --}}
-    <div class="flex justify-center mt-[20px] max-lg:hidden">
-		<div class="flex gap-x-[10px] items-center">
-            <x-shop::breadcrumbs name="compare"></x-shop::breadcrumbs>
-		</div>
-	</div>
+    <!-- Breadcrumb -->
+    @if ((core()->getConfigData('general.general.breadcrumbs.shop')))
+        <div class="mt-5 flex justify-center max-lg:hidden">
+            {!! view_render_event('bagisto.shop.customers.account.compare.breadcrumbs.before') !!}
 
-    {{-- Compare Component --}}
-    <div class="container px-[60px] max-lg:px-[30px] max-sm:px-[15px] mt-[30px]">
+            <div class="flex items-center gap-x-2.5">
+                <x-shop::breadcrumbs name="compare" />
+            </div>
+
+            {!! view_render_event('bagisto.shop.customers.account.compare.breadcrumbs.after') !!}
+        </div>
+    @endif
+
+    <!-- Compare Component -->
+    <div class="container mt-8 px-[60px] max-lg:px-8 max-md:mt-7 max-md:px-0">
         <v-compare>
-            <!---- Shimmer Effect -->
-            <x-shop::shimmer.compare
-                :attributeCount="count($comparableAttributes)"
-            >
-            </x-shop::shimmer.compare>
+            <!-- Shimmer Effect -->
+            <x-shop::shimmer.compare :attributeCount="count($comparableAttributes)" />
         </v-compare>
     </div>
 
     @pushOnce('scripts')
-        <script type="text/x-template" id="v-compare-template">
+        <script
+            type="text/x-template"
+            id="v-compare-template"
+        >
             <div>
-
-                {!! view_render_event('bagisto.shop.customers.account.compare.view.before') !!}
+                {!! view_render_event('bagisto.shop.customers.account.compare.before') !!}
 
                 <div v-if="! isLoading">
-                    <div class="flex justify-between items-center">
-                        <h2 class="text-[26px] font-medium">
+                    <div class="flex items-center justify-between max-md:px-4">
+
+                        {!! view_render_event('bagisto.shop.customers.account.compare.title.before') !!}
+
+                        <h1 class="text-2xl font-medium max-sm:text-base">
                             @lang('shop::app.compare.title')
-                        </h2>
+                        </h1>
+
+                        {!! view_render_event('bagisto.shop.customers.account.compare.title.after') !!}
+
+                        {!! view_render_event('bagisto.shop.customers.account.compare.remove_all.before') !!}
 
                         <div
-                            class="secondary-button flex gap-x-[10px] items-center py-[12px] px-[20px] border-[#E9E9E9] font-normal whitespace-nowrap"
+                            class="secondary-button flex items-center gap-x-2.5 whitespace-nowrap border-zinc-200 px-5 py-3 font-normal max-md:rounded-lg max-md:px-3 max-md:text-xs max-sm:py-1.5"
                             v-if="items.length"
                             @click="removeAll"
                         >
-                            <span class="icon-bin text-[24px]"></span>
+                            <span class="icon-bin text-2xl max-md:hidden"></span>
+
                             @lang('shop::app.compare.delete-all')
                         </div>
+
+                        {!! view_render_event('bagisto.shop.customers.account.compare.remove_all.after') !!}
                     </div>
 
                     <div
-                        class="grid mt-[60px] overflow-auto journal-scroll"
+                        class="journal-scroll scrollbar-width-hidden mt-16 grid overflow-auto max-md:mt-7"
                         v-if="items.length"
                     >
                         <template v-for="attribute in comparableAttributes">
-                            <!---- Product Card -->
+                            <!-- Product Card -->
                             <div
-                                class="flex items-center max-w-full border-b-[1px] border-[#E9E9E9]"
+                                class="flex max-w-full items-center border-b border-zinc-200"
                                 v-if="attribute.code == 'product'"
                             >
-                                <div class="min-w-[304px] max-w-full max-sm:hidden">
-                                    <p class="text-[14px] font-medium">
+                                {!! view_render_event('bagisto.shop.customers.account.compare.attribute_name.before') !!}
+
+                                <div class="min-w-[304px] max-w-full max-md:grid max-md:h-full max-md:min-w-40 max-md:items-center max-md:bg-gray-200 max-sm:min-w-[110px]">
+                                    <p class="text-sm font-medium max-md:pl-4">
                                         @{{ attribute.name ?? attribute.admin_name }}
                                     </p>
                                 </div>
-                                <div class="flex gap-[12px] border-l-[1px] border-[#E9E9E9] max-sm:border-0">
+
+                                {!! view_render_event('bagisto.shop.customers.account.compare.attribute_name.after') !!}
+
+                                <div class="flex gap-3 border-zinc-200 max-md:gap-0 max-md:border-0 ltr:border-l-[1px] rtl:border-r-[1px]">
                                     <div
-                                        class="relative group"
+                                        class="relative w-[311px] max-w-[311px] px-5 max-md:w-60 max-md:px-2.5 max-sm:w-[190px]"
                                         v-for="product in items"
                                     >
                                         <span
-                                            class="hidden absolute top-[60px] right-[20px] justify-center items-center w-[30px] h-[30px] rounded-md bg-white cursor-pointer icon-cancel text-[25px] group-hover:flex group-hover:z-[1] transition-all duration-300"
+                                            class="icon-cancel absolute top-5 z-[1] flex h-[30px] w-[30px] cursor-pointer items-center justify-center rounded-md border border-zinc-200 bg-white text-2xl max-md:top-10 max-md:h-6 max-md:w-6 max-md:rounded-full max-md:text-sm ltr:right-10 max-md:ltr:right-4 rtl:left-10 max-md:rtl:left-4"
                                             @click="remove(product.id)"
                                         ></span>
 
-                                        <x-shop::products.card class="min-w-[311px] max-w-[311px] pt-0 pr-0 p-[20px] max-sm:pl-0"></x-shop::products.card>
+                                        <x-shop::products.card class="[&_span.icon-compare]:hidden" />
                                     </div>
                                 </div>
                             </div>
 
-                            <!---- Comparable Attributes -->
+                            {!! view_render_event('bagisto.shop.customers.account.compare.comparable_attribute.before') !!}
+
+                            <!-- Comparable Attributes -->
                             <div
-                                class="flex items-center max-w-full border-b-[1px] border-[#E9E9E9] last:border-none"
+                                class="flex max-w-full items-center border-b border-zinc-200"
                                 v-else
                             >
-                                <div class="min-w-[304px] max-w-full max-sm:hidden">
-                                    <p class="text-[14px] font-medium">
+                                <div class="min-w-[304px] max-w-full max-md:grid max-md:h-full max-md:min-w-40 max-md:items-center max-md:bg-gray-200 max-sm:min-w-[110px]">
+                                    <p class="text-sm font-medium max-md:pl-4">
                                         @{{ attribute.name ?? attribute.admin_name }}
                                     </p>
                                 </div>
 
-                                <div class="flex gap-[12px] border-l-[1px] border-[#E9E9E9] max-sm:border-0">
+                                <div class="flex gap-3 border-zinc-200 max-md:gap-0 max-md:border-0 ltr:border-l-[1px] rtl:border-r-[1px]">
                                     <div
-                                        class="w-[311px] max-w-[311px] pr-0 p-[20px] max-sm:pl-0"
+                                        class="w-[311px] max-w-[311px] p-5 max-md:w-60 max-md:px-2.5 max-sm:w-[190px]"
                                         v-for="(product, index) in items"
                                     >
-                                        <p class="hidden mb-[5px] text-[14px] font-medium max-sm:block">
-                                            @{{ attribute.name ?? attribute.admin_name }} :
-                                        </p>
-
-                                        <p class="text-[14px]">
-                                            @{{ product[attribute.code] ?? 'N/A' }}
+                                        <p
+                                            class="break-all text-sm"
+                                            v-html="product[attribute.code] ?? 'N/A'"
+                                        >
                                         </p>
                                     </div>
                                 </div>
                             </div>
+
+                            {!! view_render_event('bagisto.shop.customers.account.compare.comparable_attribute.after') !!}
                         </template>
                     </div>
 
                     <div
-                        class="grid items-center justify-items-center place-content-center w-[100%] m-auto h-[476px] text-center"
+                        class="m-auto grid w-full place-content-center items-center justify-items-center py-32 text-center"
                         v-else
                     >
-                        <img src="{{ bagisto_asset('images/thank-you.png') }}"/>
+                        <img
+                            class="max-sm:h-[100px] max-sm:w-[100px]"
+                            src="{{ bagisto_asset('images/thank-you.png') }}"
+                            alt="@lang('shop::app.compare.empty-text')"
+                        />
                         
-                        <p class="text-[20px]">@lang('shop::app.compare.empty-text')</p>
+                        <p
+                            class="text-xl max-sm:text-sm"
+                            role="heading"
+                        >
+                            @lang('shop::app.compare.empty-text')
+                        </p>
                     </div>
                 </div>
 
                 <div v-else>
                     <!---- Shimmer Effect -->
-                    <x-shop::shimmer.compare
-                        :attributeCount="count($comparableAttributes)"
-                    >
-                    </x-shop::shimmer.compare>
+                    <x-shop::shimmer.compare :attributeCount="count($comparableAttributes)" />
                 </div>
 
-                {!! view_render_event('bagisto.shop.customers.account.compare.view.after') !!}
-
+                {!! view_render_event('bagisto.shop.customers.account.compare.after') !!}
             </div>
         </script>
 

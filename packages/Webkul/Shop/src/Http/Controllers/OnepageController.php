@@ -4,6 +4,8 @@ namespace Webkul\Shop\Http\Controllers;
 
 use Illuminate\Support\Facades\Event;
 use Webkul\Checkout\Facades\Cart;
+use Webkul\MagicAI\Facades\MagicAI;
+use Webkul\Sales\Repositories\OrderRepository;
 
 class OnepageController extends Controller
 {
@@ -14,6 +16,10 @@ class OnepageController extends Controller
      */
     public function index()
     {
+        if (! core()->getConfigData('sales.checkout.shopping_cart.cart_page')) {
+            abort(404);
+        }
+
         Event::dispatch('checkout.load.index');
 
         /**
@@ -21,7 +27,7 @@ class OnepageController extends Controller
          */
         if (
             ! auth()->guard('customer')->check()
-            && ! core()->getConfigData('catalog.products.guest_checkout.allow_guest_checkout')
+            && ! core()->getConfigData('sales.checkout.shopping_cart.allow_guest_checkout')
         ) {
             return redirect()->route('shop.customer.session.index');
         }
@@ -58,20 +64,7 @@ class OnepageController extends Controller
             return redirect()->route('shop.customer.session.index');
         }
 
-        /**
-         * If cart minimum order amount is not satisfied then redirect back to the cart page
-         */
-        $minimumOrderAmount = (float) core()->getConfigData('sales.order_settings.minimum_order.minimum_order_amount') ?: 0;
-
-        if (! $cart->checkMinimumOrder()) {
-            session()->flash('warning', trans('shop::app.checkout.cart.minimum-order-message', [
-                'amount' => core()->currency($minimumOrderAmount)
-            ]));
-
-            return redirect()->back();
-        }
-
-        return view('shop::checkout.onepage.index');
+        return view('shop::checkout.onepage.index', compact('cart'));
     }
 
     /**
@@ -79,12 +72,60 @@ class OnepageController extends Controller
      *
      * @return \Illuminate\View\View|\Illuminate\Http\RedirectResponse
      */
-    public function success()
+    public function success(OrderRepository $orderRepository)
     {
-        if (! $order = session('order')) {
+        if (! $order = $orderRepository->find(session('order_id'))) {
             return redirect()->route('shop.checkout.cart.index');
         }
 
+        if (
+            core()->getConfigData('general.magic_ai.settings.enabled')
+            && core()->getConfigData('general.magic_ai.checkout_message.enabled')
+            && ! empty(core()->getConfigData('general.magic_ai.checkout_message.prompt'))
+        ) {
+
+            try {
+                $model = core()->getConfigData('general.magic_ai.checkout_message.model');
+
+                $response = MagicAI::setModel($model)
+                    ->setTemperature(0)
+                    ->setPrompt($this->getCheckoutPrompt($order))
+                    ->ask();
+
+                $order->checkout_message = $response;
+            } catch (\Exception $e) {
+            }
+        }
+
         return view('shop::checkout.success', compact('order'));
+    }
+
+    /**
+     * Order success page.
+     *
+     * @param  \Webkul\Sales\Contracts\Order  $order
+     * @return string
+     */
+    public function getCheckoutPrompt($order)
+    {
+        $prompt = core()->getConfigData('general.magic_ai.checkout_message.prompt');
+
+        $products = '';
+
+        foreach ($order->items as $item) {
+            $products .= "Name: $item->name\n";
+            $products .= "Qty: $item->qty_ordered\n";
+            $products .= 'Price: '.core()->formatPrice($item->total)."\n\n";
+        }
+
+        $prompt .= "\n\nProduct Details:\n $products";
+
+        $prompt .= "Customer Details:\n $order->customer_full_name \n\n";
+
+        $prompt .= "Current Locale:\n ".core()->getCurrentLocale()->name."\n\n";
+
+        $prompt .= "Store Name:\n".core()->getCurrentChannel()->name;
+
+        return $prompt;
     }
 }

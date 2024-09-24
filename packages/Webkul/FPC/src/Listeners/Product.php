@@ -3,27 +3,22 @@
 namespace Webkul\FPC\Listeners;
 
 use Spatie\ResponseCache\Facades\ResponseCache;
-use Webkul\Product\Repositories\ProductRepository;
 use Webkul\Product\Repositories\ProductBundleOptionProductRepository;
 use Webkul\Product\Repositories\ProductGroupedProductRepository;
+use Webkul\Product\Repositories\ProductRepository;
 
 class Product
 {
     /**
      * Create a new listener instance.
      *
-     * @param  \Webkul\Product\Repositories\ProductRepository  $productRepository
-     * @param  \Webkul\Product\Repositories\ProductBundleOptionProductRepository  $productBundleOptionProductRepository
-     * @param  \Webkul\Product\Repositories\ProductGroupedProductRepository  $productGroupedProductRepository
      * @return void
      */
     public function __construct(
         protected ProductRepository $productRepository,
         protected ProductBundleOptionProductRepository $productBundleOptionProductRepository,
         protected ProductGroupedProductRepository $productGroupedProductRepository
-    )
-    {
-    }
+    ) {}
 
     /**
      * Update or create product page cache
@@ -41,7 +36,7 @@ class Product
     /**
      * Delete product page c
      *
-     * @param  integer  $productId
+     * @param  int  $productId
      * @return void
      */
     public function beforeDelete($productId)
@@ -49,7 +44,7 @@ class Product
         $product = $this->productRepository->find($productId);
 
         $urls = $this->getForgettableUrls($product);
-        
+
         ResponseCache::forget($urls);
     }
 
@@ -66,7 +61,7 @@ class Product
         $products = $this->getAllRelatedProducts($product);
 
         foreach ($products as $product) {
-            $urls[] = '/' . $product->url_key;
+            $urls[] = '/'.$product->url_key;
         }
 
         return $urls;

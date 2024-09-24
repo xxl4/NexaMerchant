@@ -1,4 +1,4 @@
-{{-- SEO Meta Content --}}
+<!-- SEO Meta Content -->
 @push('meta')
     <meta name="description" content="@lang('shop::app.customers.forgot-password.title')"/>
 
@@ -10,66 +10,68 @@
     :has-feature="false"
     :has-footer="false"
 >
-    {{-- Page Title --}}
+    <!-- Page Title -->
     <x-slot:title>
         @lang('shop::app.customers.forgot-password.title')
     </x-slot>
 
-    <div class="container mt-20 max-1180:px-[20px]">
-        {{-- Company Logo --}}
-        <div class="flex gap-x-[54px] items-center max-[1180px]:gap-x-[35px]">
+    <div class="container mt-20 max-1180:px-5 max-md:mt-12">
+        {!! view_render_event('bagisto.shop.customers.forget_password.logo.before') !!}
+
+        <!-- Company Logo -->
+        <div class="flex items-center gap-x-14 max-[1180px]:gap-x-9">
             <a
                 href="{{ route('shop.home.index') }}"
                 class="m-[0_auto_20px_auto]"
-                aria-label="Bagisto "
+                aria-label="@lang('shop::app.customers.forgot-password.bagisto')"
             >
                 <img
-                    src="{{ bagisto_asset('images/logo.svg') }}"
-                    alt="Bagisto "
+                    src="{{ core()->getCurrentChannel()->logo_url ?? bagisto_asset('images/logo.svg') }}"
+                    alt="{{ config('app.name') }}"
                     width="131"
                     height="29"
                 >
             </a>
         </div>
 
-        {{-- Form Container --}}
+        {!! view_render_event('bagisto.shop.customers.forget_password.logo.after') !!}
+
+        <!-- Form Container -->
         <div
-            class="w-full max-w-[870px] m-auto px-[90px] py-[60px] border border-[#E9E9E9] rounded-[12px] max-md:px-[30px] max-md:py-[30px]"
+            class="m-auto w-full max-w-[870px] rounded-xl border border-zinc-200 p-16 px-[90px] max-md:px-8 max-md:py-8 max-sm:border-none max-sm:p-0"
         >
-            <h1 class="text-[40px] font-dmserif max-sm:text-[25px]">
+            <h1 class="font-dmserif text-4xl max-md:text-3xl max-sm:text-xl">
                 @lang('shop::app.customers.forgot-password.title')
             </h1>
 
-            <p class="mt-[15px] text-[#6E6E6E] text-[20px] max-sm:text-[16px]">
+            <p class="mt-4 text-xl text-zinc-500 max-sm:mt-0 max-sm:text-sm">
                 @lang('shop::app.customers.forgot-password.forgot-password-text')
             </p>
 
             {!! view_render_event('bagisto.shop.customers.forget_password.before') !!}
 
-            <div class="mt-[60px] rounded max-sm:mt-[30px]">
+            <div class="mt-14 rounded max-sm:mt-8">
                 <x-shop::form :action="route('shop.customers.forgot_password.store')">
                     {!! view_render_event('bagisto.shop.customers.forget_password_form_controls.before') !!}
 
-                    <x-shop::form.control-group class="mb-4">
+                    <x-shop::form.control-group class="max-sm:mb-1.5">
                         <x-shop::form.control-group.label class="required">
                             @lang('shop::app.customers.login-form.email')
                         </x-shop::form.control-group.label>
 
                         <x-shop::form.control-group.control
                             type="email"
+                            class="px-6 py-4 max-sm:py-1.5"
                             name="email"
-                            class="!p-[20px_25px] rounded-lg"
-                            value=""
                             rules="required|email"
+                            value=""
                             :label="trans('shop::app.customers.login-form.email')"
                             placeholder="email@example.com"
-                        >
-                        </x-shop::form.control-group.control>
+                            :aria-label="trans('shop::app.customers.login-form.email')"
+                            aria-required="true"
+                        />
 
-                        <x-shop::form.control-group.error
-                            control-name="email"
-                        >
-                        </x-shop::form.control-group.error>
+                        <x-shop::form.control-group.error control-name="email" />
                     </x-shop::form.control-group>
 
                     {!! view_render_event('bagisto.shop.customers.forget_password_form_controls.email.after') !!}
@@ -80,16 +82,17 @@
 
                     </div>
 
-                    <div class="flex gap-[36px] flex-wrap mt-[30px] items-center">
+                    <!-- Submit Button -->
+                    <div class="mt-8 flex flex-wrap items-center gap-9 max-sm:mt-0 max-sm:justify-center max-sm:text-center">
                         <button
-                            class="primary-button block w-full max-w-[374px] m-0 ml-[0px] mx-auto px-[43px] py-[16px] rounded-[18px] text-[16px] text-center"
+                            class="primary-button m-0 mx-auto block w-full max-w-[374px] rounded-2xl px-11 py-4 text-center text-base max-md:max-w-full max-md:rounded-lg max-md:py-3 max-sm:py-1.5 max-sm:text-sm ltr:ml-0 rtl:mr-0"
                             type="submit"
                         >
                             @lang('shop::app.customers.forgot-password.submit')
                         </button>
                     </div>
 
-                    <p class="mt-[20px] text-[#6E6E6E] font-medium">
+                    <p class="mt-5 font-medium text-zinc-500 max-sm:text-center max-sm:text-sm">
                         @lang('shop::app.customers.forgot-password.back')
 
                         <a class="text-navyBlue"
@@ -99,13 +102,16 @@
                         </a>
                     </p>
 
-                    {!! view_render_event('bagisto.shop.customers.forget_password.after') !!}
+                    {!! view_render_event('bagisto.shop.customers.forget_password_form_controls.after') !!}
 
                 </x-shop::form>
             </div>
+
+            {!! view_render_event('bagisto.shop.customers.forget_password.after') !!}
+
         </div>
 
-        <p class="mt-[30px] mb-[15px] text-[#6E6E6E] text-xs text-center">
+        <p class="mb-4 mt-8 text-center text-xs text-zinc-500">
             @lang('shop::app.customers.forgot-password.footer', ['current_year'=> date('Y') ])
         </p>
     </div>

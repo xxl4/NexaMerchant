@@ -3,18 +3,24 @@
         $message = core()->getConfigData('catalog.products.social_share.share_message');
     @endphp
 
-    <div class="flex gap-[25px]">
+    <div class="flex gap-6">
         {!! view_render_event('bagisto.shop.products.view.share.before', ['product' => $product]) !!}
 
-        <div class="hidden gap-[10px] justify-center items-center max-md:flex cursor-pointer">
-            <span class="icon-share text-[24px]"></span>
-            <a href="intent://share/#Intent;action=android.intent.action.SEND;type=text/plain;S.android.intent.extra.TEXT={{ rawurlencode($product->name . ' ' . route('shop.product_or_category.index', [$product->url_key])) }};end">
+        <!-- For Mobile View -->
+        <div class="md:hidden flex gap-2.5 justify-center items-center max-sm:gap-1.5">
+            <span class="icon-share text-2xl"></span>
+
+            <span
+                class="max-sm:text-base cursor-pointer"
+                onclick="shareProduct()"
+            >
                 @lang('admin::app.configuration.index.catalog.products.social-share.share')
-            </a>
+            </span>
         </div>
 
+        <!-- For Desktop View -->
         <div class="max-md:hidden">
-            <ul class="flex gap-[15px]">
+            <ul class="flex gap-3">
                 @foreach(['facebook', 'twitter', 'instagram', 'pinterest', 'linkedin', 'whatsapp', 'email'] as $social)
                     @if (! core()->getConfigData('catalog.products.social_share.' . $social))
                         @continue
@@ -27,4 +33,24 @@
 
         {!! view_render_event('bagisto.shop.products.view.share.after', ['product' => $product]) !!}
     </div>
+
+    @push('scripts')
+        <script>
+            function shareProduct() {
+                let productName = "{{ $product->name }}";
+                let productUrl = "{{ route('shop.product_or_category.index', [$product->url_key]) }}";
+
+                if (navigator.share) {
+                    navigator.share({
+                        title: productName,
+                        text: productName + ' ' + productUrl,
+                        url: productUrl
+                    })
+                    .catch((error) => console.error('Error sharing:', error));
+                } else {
+                    alert('Your browser does not support sharing.');
+                }
+            }
+        </script>    
+    @endpush
 @endif

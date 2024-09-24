@@ -2,12 +2,9 @@
 
 namespace Webkul\Paypal\Helpers;
 
-use Illuminate\Support\Facades\Log;
 use Webkul\Paypal\Payment\Standard;
-use Webkul\Sales\Repositories\OrderRepository;
 use Webkul\Sales\Repositories\InvoiceRepository;
-use Webkul\Checkout\Facades\Cart;
-use Webkul\Checkout\Repositories\CartRepository;
+use Webkul\Sales\Repositories\OrderRepository;
 
 class Ipn
 {
@@ -24,22 +21,17 @@ class Ipn
      * @var \Webkul\Sales\Contracts\Order
      */
     protected $order;
+
     /**
      * Create a new helper instance.
      *
-     * @param  \Webkul\Sales\Repositories\OrderRepository  $orderRepository
-     * @param  \Webkul\Sales\Repositories\InvoiceRepository  $invoiceRepository
-     * @param  \Webkul\Paypal\Payment\Standard  $paypalStandard
      * @return void
      */
     public function __construct(
         protected Standard $paypalStandard,
         protected OrderRepository $orderRepository,
-        protected CartRepository $cartRepository,
         protected InvoiceRepository $invoiceRepository
-    )
-    {
-    }
+    ) {}
 
     /**
      * This function process the IPN sent from paypal end.
@@ -50,10 +42,6 @@ class Ipn
     public function processIpn($post)
     {
         $this->post = $post;
- 
-        Log::info("ipn post".json_encode($this->post));
-
-        if(empty($this->post)) return; //
 
         if (! $this->postBack()) {
             return;
@@ -62,7 +50,7 @@ class Ipn
         try {
             if (
                 isset($this->post['txn_type'])
-                && 'recurring_payment' == $this->post['txn_type']
+                && $this->post['txn_type'] == 'recurring_payment'
             ) {
 
             } else {
@@ -85,16 +73,6 @@ class Ipn
         if (empty($this->order)) {
             $this->order = $this->orderRepository->findOneByField(['cart_id' => $this->post['invoice']]);
         }
-        if(empty($this->order)) {
-            $cart = $this->cartRepository->findOneWhere([
-                'id'   => $this->post['invoice']
-            ]);
-            Cart::setCart($cart);
-
-            $this->orderRepository->create(Cart::prepareDataForOrder());
-
-            $this->order = $this->orderRepository->findOneByField(['cart_id' => $this->post['invoice']]);
-        }
     }
 
     /**
@@ -104,16 +82,14 @@ class Ipn
      */
     protected function processOrder()
     {
-        if(isset($this->post['payment_status'])) {
-            if ($this->post['payment_status'] == 'Completed') {
-                if ($this->post['mc_gross'] != $this->order->grand_total) {
-                    return;
-                } else {
-                    $this->orderRepository->update(['status' => 'processing'], $this->order->id);
-    
-                    if ($this->order->canInvoice()) {
-                        $invoice = $this->invoiceRepository->create($this->prepareInvoiceData());
-                    }
+        if ($this->post['payment_status'] == 'Completed') {
+            if ($this->post['mc_gross'] != $this->order->grand_total) {
+                return;
+            } else {
+                $this->orderRepository->update(['status' => 'processing'], $this->order->id);
+
+                if ($this->order->canInvoice()) {
+                    $invoice = $this->invoiceRepository->create($this->prepareInvoiceData());
                 }
             }
         }
@@ -148,10 +124,10 @@ class Ipn
 
         curl_setopt_array($request, [
             CURLOPT_URL            => $url,
-            CURLOPT_POST           => TRUE,
+            CURLOPT_POST           => true,
             CURLOPT_POSTFIELDS     => http_build_query(['cmd' => '_notify-validate'] + $this->post),
-            CURLOPT_RETURNTRANSFER => TRUE,
-            CURLOPT_HEADER         => FALSE,
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_HEADER         => false,
         ]);
 
         $response = curl_exec($request);

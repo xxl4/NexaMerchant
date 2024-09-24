@@ -4,18 +4,23 @@ namespace Webkul\Customer\Models;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Webkul\Core\Models\Address;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Webkul\Customer\Database\Factories\CustomerAddressFactory;
+use Webkul\Core\Models\Address;
 use Webkul\Customer\Contracts\CustomerAddress as CustomerAddressContract;
+use Webkul\Customer\Database\Factories\CustomerAddressFactory;
 
 class CustomerAddress extends Address implements CustomerAddressContract
 {
     use HasFactory;
 
+    /**
+     * Define the customer address type.
+     */
     public const ADDRESS_TYPE = 'customer';
 
     /**
+     * Define the attributes of the customer address model.
+     *
      * @var array default values
      */
     protected $attributes = [
@@ -24,8 +29,6 @@ class CustomerAddress extends Address implements CustomerAddressContract
 
     /**
      * The "booted" method of the model.
-     *
-     * @return void
      */
     protected static function boot(): void
     {
@@ -38,8 +41,6 @@ class CustomerAddress extends Address implements CustomerAddressContract
 
     /**
      * Create a new factory instance for the model
-     *
-     * @return Factory
      */
     protected static function newFactory(): Factory
     {

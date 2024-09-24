@@ -19,15 +19,22 @@ class CategoryResource extends JsonResource
             'parent_id'    => $this->parent_id,
             'name'         => $this->name,
             'slug'         => $this->slug,
-            'url_path'     => $this->url_path,
             'status'       => $this->status,
             'position'     => $this->position,
             'display_mode' => $this->display_mode,
             'description'  => $this->description,
-            'images'       => [
-                'banner_url' => $this->banner_url,
-                'logo_url'   => $this->logo_url,
-            ],
+            'logo'         => $this->when($this->logo_path, [
+                'small_image_url'    => url('cache/small/'.$this->logo_path),
+                'medium_image_url'   => url('cache/medium/'.$this->logo_path),
+                'large_image_url'    => url('cache/large/'.$this->logo_path),
+                'original_image_url' => url('cache/original/'.$this->logo_path),
+            ]),
+            'banner'       => $this->when($this->banner_path, [
+                'small_image_url'    => url('cache/small/'.$this->banner_path),
+                'medium_image_url'   => url('cache/medium/'.$this->banner_path),
+                'large_image_url'    => url('cache/large/'.$this->banner_path),
+                'original_image_url' => url('cache/original/'.$this->banner_path),
+            ]),
             'meta'         => [
                 'title'       => $this->meta_title,
                 'keywords'    => $this->meta_keywords,

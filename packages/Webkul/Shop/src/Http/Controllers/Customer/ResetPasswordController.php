@@ -8,8 +8,8 @@ use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Str;
-use Webkul\Shop\Http\Controllers\Controller;
 use Webkul\Customer\Repositories\CustomerRepository;
+use Webkul\Shop\Http\Controllers\Controller;
 
 class ResetPasswordController extends Controller
 {
@@ -18,12 +18,9 @@ class ResetPasswordController extends Controller
     /**
      * Create a new controller instance.
      *
-     * @param  \Webkul\Customer\Repositories\CustomerRepository  $customer
      * @return void
      */
-    public function __construct(protected CustomerRepository $customerRepository)
-    {
-    }
+    public function __construct(protected CustomerRepository $customerRepository) {}
 
     /**
      * Display the password reset view for the given token.

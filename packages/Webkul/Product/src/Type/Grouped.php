@@ -2,16 +2,16 @@
 
 namespace Webkul\Product\Type;
 
-use Webkul\Customer\Repositories\CustomerRepository;
 use Webkul\Attribute\Repositories\AttributeRepository;
-use Webkul\Product\Repositories\ProductRepository;
+use Webkul\Customer\Repositories\CustomerRepository;
+use Webkul\Product\Helpers\Indexers\Price\Grouped as GroupedIndexer;
 use Webkul\Product\Repositories\ProductAttributeValueRepository;
-use Webkul\Product\Repositories\ProductInventoryRepository;
-use Webkul\Product\Repositories\ProductImageRepository;
-use Webkul\Product\Repositories\ProductVideoRepository;
 use Webkul\Product\Repositories\ProductCustomerGroupPriceRepository;
 use Webkul\Product\Repositories\ProductGroupedProductRepository;
-use Webkul\Product\Helpers\Indexers\Price\Grouped as GroupedIndexer;
+use Webkul\Product\Repositories\ProductImageRepository;
+use Webkul\Product\Repositories\ProductInventoryRepository;
+use Webkul\Product\Repositories\ProductRepository;
+use Webkul\Product\Repositories\ProductVideoRepository;
 
 class Grouped extends AbstractType
 {
@@ -37,22 +37,20 @@ class Grouped extends AbstractType
     /**
      * Is a composite product type.
      *
-     * @var boolean
+     * @var bool
      */
     protected $isComposite = true;
 
     /**
+     * Product can be added to cart with options or not.
+     *
+     * @var bool
+     */
+    protected $canBeAddedToCartWithoutOptions = false;
+
+    /**
      * Create a new product type instance.
      *
-     * @param  \Webkul\Customer\Repositories\CustomerRepository  $customerRepository
-     * @param  \Webkul\Attribute\Repositories\AttributeRepository  $attributeRepository
-     * @param  \Webkul\Product\Repositories\ProductRepository  $productRepository
-     * @param  \Webkul\Product\Repositories\ProductAttributeValueRepository  $attributeValueRepository
-     * @param  \Webkul\Product\Repositories\ProductInventoryRepository  $productInventoryRepository
-     * @param  \Webkul\Product\Repositories\ProductImageRepository  $productImageRepository
-     * @param  \Webkul\Product\Repositories\ProductCustomerGroupPriceRepository  $productCustomerGroupPriceRepository
-     * @param  \Webkul\Product\Repositories\ProductGroupedProductRepository  $productGroupedProductRepository
-     * @param  \Webkul\Product\Repositories\ProductVideoRepository  $productVideoRepository
      * @return void
      */
     public function __construct(
@@ -65,8 +63,7 @@ class Grouped extends AbstractType
         ProductVideoRepository $productVideoRepository,
         ProductCustomerGroupPriceRepository $productCustomerGroupPriceRepository,
         protected ProductGroupedProductRepository $productGroupedProductRepository
-    )
-    {
+    ) {
         parent::__construct(
             $customerRepository,
             $attributeRepository,
@@ -82,16 +79,15 @@ class Grouped extends AbstractType
     /**
      * Update.
      *
-     * @param  array  $data
      * @param  int  $id
-     * @param  string  $attribute
+     * @param  array  $attributes
      * @return \Webkul\Product\Contracts\Product
      */
-    public function update(array $data, $id, $attribute = 'id')
+    public function update(array $data, $id, $attributes = [])
     {
-        $product = parent::update($data, $id, $attribute);
+        $product = parent::update($data, $id);
 
-        if (request()->route()?->getName() == 'admin.catalog.products.mass_update') {
+        if (! empty($attributes)) {
             return $product;
         }
 
@@ -163,9 +159,6 @@ class Grouped extends AbstractType
 
     /**
      * Is product have sufficient quantity.
-     *
-     * @param  int  $qty
-     * @return bool
      */
     public function haveSufficientQuantity(int $qty): bool
     {
@@ -195,7 +188,7 @@ class Grouped extends AbstractType
      * Add product. Returns error message if can't prepare product.
      *
      * @param  array  $data
-     * @return array
+     * @return array|string
      */
     public function prepareForCart($data)
     {
@@ -203,7 +196,7 @@ class Grouped extends AbstractType
             ! isset($data['qty'])
             || ! is_array($data['qty'])
         ) {
-            return trans('shop::app.checkout.cart.missing-options');
+            return trans('product::app.checkout.cart.missing-options');
         }
 
         $cartProductsList = [];
@@ -230,7 +223,7 @@ class Grouped extends AbstractType
         $products = array_merge(...$cartProductsList);
 
         if (! count($products)) {
-            return trans('shop::app.checkout.cart.integrity.qty-missing');
+            return trans('product::app.checkout.cart.integrity.qty-missing');
         }
 
         return $products;

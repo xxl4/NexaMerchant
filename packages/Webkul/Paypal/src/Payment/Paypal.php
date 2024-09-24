@@ -2,7 +2,7 @@
 
 namespace Webkul\Paypal\Payment;
 
-use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Storage;
 use Webkul\Payment\Payment\Payment;
 
 abstract class Paypal extends Payment
@@ -17,7 +17,7 @@ abstract class Paypal extends Payment
     {
         return sprintf('https://www.%spaypal.com/cgi-bin/webscr%s',
             $this->getConfigData('sandbox') ? 'sandbox.' : '',
-            $params ? '?' . http_build_query($params) : ''
+            $params ? '?'.http_build_query($params) : ''
         );
     }
 
@@ -61,7 +61,7 @@ abstract class Paypal extends Payment
             'last_name'        => $billingAddress->last_name,
             'zip'              => $billingAddress->postcode,
             'state'            => $billingAddress->state,
-            'address1'         => $billingAddress->address1,
+            'address'          => $billingAddress->address,
             'address_override' => 1,
         ]);
     }
@@ -78,9 +78,8 @@ abstract class Paypal extends Payment
 
     /**
      * Format a currency value according to paypal's api constraints
-     * 
-     * @param float|int $long
-     * @return float
+     *
+     * @param  float|int  $long
      */
     public function formatCurrencyValue($number): float
     {
@@ -89,15 +88,26 @@ abstract class Paypal extends Payment
 
     /**
      * Format phone field according to paypal's api constraints
-     * 
-     * Strips non-numbers characters like '+' or ' ' in 
+     *
+     * Strips non-numbers characters like '+' or ' ' in
      * inputs like "+54 11 3323 2323"
-     * 
-     * @param mixed $phone
-     * @return string
+     *
+     * @param  mixed  $phone
      */
     public function formatPhone($phone): string
     {
         return preg_replace('/[^0-9]/', '', (string) $phone);
+    }
+
+    /**
+     * Returns payment method image
+     *
+     * @return array
+     */
+    public function getImage()
+    {
+        $url = $this->getConfigData('image');
+
+        return $url ? Storage::url($url) : bagisto_asset('images/paypal.png', 'shop');
     }
 }

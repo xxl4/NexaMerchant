@@ -44,19 +44,11 @@ class Themes
      */
     public function __construct()
     {
-        if (! Str::contains(request()->url(), config('app.admin_url') . '/')) {
-            
+        if (! Str::contains(request()->url(), config('app.admin_url').'/')) {
             $this->defaultThemeCode = Config::get('themes.admin-default', null);
         } else {
-            $this->defaultThemeCode = Config::get('themes.default', null);
+            $this->defaultThemeCode = Config::get('themes.shop-default', null);
         }
-
-        if (!Str::contains(request()->url(), config('app.manage_url') . '/')) {
-            //var_dump("hello");
-            $this->defaultThemeCode = Config::get('themes.manage-default', null);
-        }
-
-        //var_dump($this->defaultThemeCode);
 
         $this->laravelViewsPath = Config::get('view.paths');
 
@@ -80,7 +72,7 @@ class Themes
      */
     public function getChannelThemes()
     {
-        $themes = config('themes.themes', []);
+        $themes = config('themes.shop', []);
 
         $channelThemes = [];
 
@@ -104,10 +96,9 @@ class Themes
     /**
      * Check if specified exists.
      *
-     * @param  string  $themeName
      * @return bool
      */
-    public function exists($themeName)
+    public function exists(string $themeName)
     {
         foreach ($this->themes as $theme) {
             if ($theme->code == $themeName) {
@@ -121,22 +112,17 @@ class Themes
     /**
      * Prepare all themes.
      *
-     * @return \Webkul\Theme\Theme
+     * @return void
      */
     public function loadThemes()
     {
         $parentThemes = [];
 
-        if (Str::contains(request()->url(), config('app.admin_url') . '/')) {
-            $themes = config('themes.admin-themes', []);
+        if (Str::contains(request()->url(), config('app.admin_url').'/')) {
+            $themes = config('themes.admin', []);
         } else {
-            $themes = config('themes.themes', []);
+            $themes = config('themes.shop', []);
         }
-        if (Str::contains(request()->url(), config('app.manage_url') . '/')) {
-            $themes = config('themes.manage-themes', []);
-        }
-
-        //var_dump($themes);
 
         foreach ($themes as $code => $data) {
             $this->themes[] = new Theme(
@@ -151,8 +137,6 @@ class Themes
                 $parentThemes[$code] = $data['parent'];
             }
         }
-
-        //var_dump($themes, $parentThemes, $this->themes);exit;
 
         foreach ($parentThemes as $childCode => $parentCode) {
             $child = $this->find($childCode);
@@ -170,10 +154,9 @@ class Themes
     /**
      * Enable theme.
      *
-     * @param  string  $themeName
      * @return \Webkul\Theme\Theme
      */
-    public function set($themeName)
+    public function set(string $themeName)
     {
         if ($this->exists($themeName)) {
             $theme = $this->find($themeName);
@@ -207,8 +190,7 @@ class Themes
      */
     public function current()
     {
-        //var_dump($this->activeTheme, $this->all());exit;
-        return $this->activeTheme ? $this->activeTheme : $this->all()[0];
+        return $this->activeTheme ?? null;
     }
 
     /**
@@ -218,16 +200,15 @@ class Themes
      */
     public function getName()
     {
-        return $this->current() ? $this->current()->name : '';
+        return $this->current()?->name ?? '';
     }
 
     /**
      * Find a theme by it's name.
      *
-     * @param  string  $themeName
      * @return \Webkul\Theme\Theme
      */
-    public function find($themeName)
+    public function find(string $themeName)
     {
         foreach ($this->themes as $theme) {
             if ($theme->code == $themeName) {
@@ -275,7 +256,7 @@ class Themes
             throw new ViterNotFound($namespace);
         }
 
-        $viteUrl = trim($viters[$namespace]['package_assets_directory'], '/') . '/' . $url;
+        $viteUrl = trim($viters[$namespace]['package_assets_directory'], '/').'/'.$url;
 
         return Vite::useHotFile($viters[$namespace]['hot_file'])
             ->useBuildDirectory($viters[$namespace]['build_directory'])

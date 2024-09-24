@@ -1,14 +1,15 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Webkul\Shop\Http\Controllers\API\CoreController;
+use Webkul\Shop\Http\Controllers\API\AddressController;
+use Webkul\Shop\Http\Controllers\API\CartController;
 use Webkul\Shop\Http\Controllers\API\CategoryController;
+use Webkul\Shop\Http\Controllers\API\CompareController;
+use Webkul\Shop\Http\Controllers\API\CoreController;
+use Webkul\Shop\Http\Controllers\API\CustomerController;
+use Webkul\Shop\Http\Controllers\API\OnepageController;
 use Webkul\Shop\Http\Controllers\API\ProductController;
 use Webkul\Shop\Http\Controllers\API\ReviewController;
-use Webkul\Shop\Http\Controllers\API\CompareController;
-use Webkul\Shop\Http\Controllers\API\CartController;
-use Webkul\Shop\Http\Controllers\API\OnepageController;
-use Webkul\Shop\Http\Controllers\API\AddressController;
 use Webkul\Shop\Http\Controllers\API\WishlistController;
 
 Route::group(['middleware' => ['locale', 'theme', 'currency'], 'prefix' => 'api'], function () {
@@ -40,6 +41,8 @@ Route::group(['middleware' => ['locale', 'theme', 'currency'], 'prefix' => 'api'
         Route::get('reviews', 'index')->name('shop.api.products.reviews.index');
 
         Route::post('review', 'store')->name('shop.api.products.reviews.store');
+
+        Route::get('reviews/{review_id}/translate', 'translate')->name('shop.api.products.reviews.translate');
     });
 
     Route::controller(CompareController::class)->prefix('compare-items')->group(function () {
@@ -67,7 +70,11 @@ Route::group(['middleware' => ['locale', 'theme', 'currency'], 'prefix' => 'api'
 
         Route::post('coupon', 'storeCoupon')->name('shop.api.checkout.cart.coupon.apply');
 
+        Route::post('estimate-shipping-methods', 'estimateShippingMethods')->name('shop.api.checkout.cart.estimate_shipping');
+
         Route::delete('coupon', 'destroyCoupon')->name('shop.api.checkout.cart.coupon.remove');
+
+        Route::get('cross-sell', 'crossSellProducts')->name('shop.api.checkout.cart.cross-sell.index');
     });
 
     Route::controller(OnepageController::class)->prefix('checkout/onepage')->group(function () {
@@ -80,15 +87,23 @@ Route::group(['middleware' => ['locale', 'theme', 'currency'], 'prefix' => 'api'
         Route::post('payment-methods', 'storePaymentMethod')->name('shop.checkout.onepage.payment_methods.store');
 
         Route::post('orders', 'storeOrder')->name('shop.checkout.onepage.orders.store');
+    });
 
-        Route::post('check-minimum-order', 'checkMinimumOrder')->name('shop.checkout.onepage.check_minimum_order');
+    /**
+     * Login routes.
+     */
+    Route::controller(CustomerController::class)->prefix('customer')->group(function () {
+        Route::post('login', 'login')->name('shop.api.customers.session.create');
     });
 
     Route::group(['middleware' => ['customer'], 'prefix' => 'customer'], function () {
-        Route::controller(AddressController::class)->prefix('addresses')->group(function () {
-            Route::get('', 'index')->name('api.shop.customers.account.addresses.index');
 
-            Route::post('', 'store')->name('api.shop.customers.account.addresses.store');
+        Route::controller(AddressController::class)->prefix('addresses')->group(function () {
+            Route::get('', 'index')->name('shop.api.customers.account.addresses.index');
+
+            Route::post('', 'store')->name('shop.api.customers.account.addresses.store');
+
+            Route::put('edit/{id?}', 'update')->name('shop.api.customers.account.addresses.update');
         });
 
         Route::controller(WishlistController::class)->prefix('wishlist')->group(function () {

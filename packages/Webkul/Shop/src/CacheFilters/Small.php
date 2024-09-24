@@ -3,15 +3,14 @@
 namespace Webkul\Shop\CacheFilters;
 
 use Illuminate\Support\Str;
-use Intervention\Image\Image;
 use Intervention\Image\Filters\FilterInterface;
+use Intervention\Image\Image;
 
 class Small implements FilterInterface
 {
     /**
      * Apply filter.
      *
-     * @param  \Intervention\Image\Image  $image
      * @return \Intervention\Image\Image
      */
     public function applyFilter(Image $image)
@@ -29,6 +28,10 @@ class Small implements FilterInterface
                 : 100;
 
             return $image->fit($width, $height);
+        } elseif (Str::contains(url()->current(), '/category')) {
+            return $image->fit(80, 80);
+        } elseif (Str::contains(url()->current(), '/attribute_option')) {
+            return $image->fit(60, 60);
         }
 
         /**

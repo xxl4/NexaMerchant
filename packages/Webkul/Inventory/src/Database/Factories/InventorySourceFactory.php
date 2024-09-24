@@ -2,8 +2,8 @@
 
 namespace Webkul\Inventory\Database\Factories;
 
-use Webkul\Inventory\Models\InventorySource;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Webkul\Inventory\Models\InventorySource;
 
 class InventorySourceFactory extends Factory
 {
@@ -16,18 +16,14 @@ class InventorySourceFactory extends Factory
 
     /**
      * Define the model's default state.
-     *
-     * @return array
      */
     public function definition(): array
     {
-        $now = date("Y-m-d H:i:s");
-        $code = $this->faker->unique()->word;
         return [
             'code'           => $this->faker->unique()->word,
-            'name'           => $code,
+            'name'           => $this->faker->unique()->word,
             'description'    => $this->faker->sentence,
-            'contact_name'   => $this->faker->name,
+            'contact_name'   => preg_replace('/[^a-zA-Z ]/', '', $this->faker->name()),
             'contact_email'  => $this->faker->safeEmail,
             'contact_number' => $this->faker->phoneNumber,
             'country'        => $this->faker->countryCode,
@@ -37,8 +33,8 @@ class InventorySourceFactory extends Factory
             'postcode'       => $this->faker->postcode,
             'priority'       => 0,
             'status'         => 1,
-            'created_at'     => $now,
-            'updated_at'     => $now,
+            'created_at'     => now(),
+            'updated_at'     => now(),
         ];
     }
 }

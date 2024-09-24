@@ -2,10 +2,9 @@
 
 namespace Webkul\Core\Database\Factories;
 
-use Illuminate\Support\Str;
-use Webkul\CartRule\Models\CartRule;
-use Webkul\CartRule\Models\CartRuleCoupon;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
+use Webkul\CartRule\Models\CartRuleCoupon;
 
 class CartRuleCouponFactory extends Factory
 {
@@ -18,8 +17,6 @@ class CartRuleCouponFactory extends Factory
 
     /**
      * Define the model's default state.
-     *
-     * @return array
      */
     public function definition(): array
     {
@@ -29,7 +26,6 @@ class CartRuleCouponFactory extends Factory
             'usage_per_customer' => 100,
             'type'               => 0,
             'is_primary'         => 1,
-            'cart_rule_id'       => CartRule::factory(),
         ];
     }
 }

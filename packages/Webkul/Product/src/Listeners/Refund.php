@@ -3,7 +3,6 @@
 namespace Webkul\Product\Listeners;
 
 use Webkul\Product\Jobs\UpdateCreateInventoryIndex as UpdateCreateInventoryIndexJob;
-use Illuminate\Support\Facades\Log;
 
 class Refund
 {
@@ -15,7 +14,6 @@ class Refund
      */
     public function afterCreate($refund)
     {
-        //Log::info("refund listeners " . json_encode($refund));
         $productIds = $refund->items
             ->pluck('product_id')
             ->toArray();

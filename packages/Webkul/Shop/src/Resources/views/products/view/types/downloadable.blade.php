@@ -2,17 +2,17 @@
     {!! view_render_event('bagisto.shop.products.view.downloadable.before', ['product' => $product]) !!}
 
     @if ($product->downloadable_samples->count())
-        <div class="sample-list mb-[25px] mt-[30px]">
-            <label class="mb-[15px] font-medium">
+        <div class="sample-list mb-6 mt-8">
+            <label class="mb-3 flex font-medium">
                 @lang('shop::app.products.view.type.downloadable.samples')
             </label>
 
             <ul>
                 @foreach ($product->downloadable_samples as $sample)
-                    <li class="mb-[5px]">
+                    <li class="mb-2">
                         <a 
                             href="{{ route('shop.downloadable.download_sample', ['type' => 'sample', 'id' => $sample->id]) }}" 
-                            class="text-[#0A49A7]"
+                            class="text-blue-700"
                             target="_blank"
                         >
                             {{ $sample->title }}
@@ -24,50 +24,50 @@
     @endif
 
     @if ($product->downloadable_links->count())
-        <label class="flex mt-[30px] mb-[15px] font-medium">
+        <label class="mb-4 mt-8 flex font-medium max-sm:mb-1.5 max-sm:mt-3">
             @lang('shop::app.products.view.type.downloadable.links')
         </label>
 
-        <div class="grid gap-[15px]">
+        <div class="grid gap-4 max-sm:gap-1">
             @foreach ($product->downloadable_links as $link)
-                <div class="select-none flex gap-x-[15px]">
-                    <div class="flex">
+                <div class="flex select-none items-center gap-x-4">
+                    <div class="flex items-center">
                         <v-field
                             type="checkbox"
                             name="links[]"
                             value="{{ $link->id }}"
                             id="{{ $link->id }}"
-                            class="hidden peer"
+                            class="peer hidden"
                             rules="required"
                             label="@lang('shop::app.products.view.type.downloadable.links')"
                         >
                         </v-field>
                         
                         <label
-                            class="icon-uncheck text-[24px] text-navyBlue peer-checked:icon-check-box peer-checked:text-navyBlue cursor-pointer"
+                            class="icon-uncheck peer-checked:icon-check-box cursor-pointer text-2xl text-navyBlue peer-checked:text-navyBlue"
                             for="{{ $link->id }}"
                         ></label>
                         
                         <label
                             for="{{ $link->id }}"
-                            class="ml-1 cursor-pointer"
+                            class="cursor-pointer max-sm:text-sm ltr:ml-1 rtl:mr-1"
                         >
                             {{ $link->title . ' + ' . core()->currency($link->price) }}
                         </label>
-
-                        @if (
-                            $link->sample_file
-                            || $link->sample_url
-                        )
-                            <a 
-                                href="{{ route('shop.downloadable.download_sample', ['type' => 'link', 'id' => $link->id]) }}"
-                                target="_blank"
-                                class="text-[#0A49A7] ml-2"
-                            >
-                                @lang('shop::app.products.view.type.downloadable.sample')
-                            </a>
-                        @endif
                     </div>
+
+                    @if (
+                        $link->sample_file
+                        || $link->sample_url
+                    )
+                        <a 
+                            href="{{ route('shop.downloadable.download_sample', ['type' => 'link', 'id' => $link->id]) }}"
+                            target="_blank"
+                            class="text-blue-700 max-sm:text-sm"
+                        >
+                            @lang('shop::app.products.view.type.downloadable.sample')
+                        </a>
+                    @endif
                 </div>
             @endforeach
 
@@ -75,10 +75,8 @@
                 name="links[]"
                 v-slot="{ message }"
             >
-                <p
-                    class="mt-1 text-red-500 text-xs italic"
-                    v-text="message"
-                >
+                <p class="text-xs italic text-red-500">
+                    @{{ message }}
                 </p>
             </v-error-message>
         </div>

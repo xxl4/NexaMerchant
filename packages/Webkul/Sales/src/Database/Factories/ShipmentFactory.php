@@ -2,10 +2,8 @@
 
 namespace Webkul\Sales\Database\Factories;
 
-use Webkul\Inventory\Models\InventorySource;
-use Webkul\Sales\Models\OrderAddress;
-use Webkul\Sales\Models\Shipment;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Webkul\Sales\Models\Shipment;
 
 class ShipmentFactory extends Factory
 {
@@ -18,19 +16,11 @@ class ShipmentFactory extends Factory
 
     /**
      * Define the model's default state.
-     *
-     * @return array
      */
     public function definition(): array
     {
-        $address = OrderAddress::factory()->create();
-
         return [
             'total_qty'           => $this->faker->numberBetween(1, 20),
-            'order_id'            => $address->order_id,
-            'order_address_id'    => $address->id,
-            'inventory_source_id' => InventorySource::factory(),
         ];
     }
 }
-

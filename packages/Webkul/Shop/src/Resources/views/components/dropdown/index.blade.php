@@ -11,7 +11,7 @@
 
     @isset($content)
         <template v-slot:content>
-            <div {{ $content->attributes->merge(['class' => 'p-[20px]']) }}>
+            <div {{ $content->attributes->merge(['class' => 'p-5']) }}>
                 {{ $content }}
             </div>
         </template>
@@ -19,7 +19,7 @@
 
     @isset($menu)
         <template v-slot:menu>
-            <ul {{ $menu->attributes->merge(['class' => 'py-[15px]']) }}>
+            <ul {{ $menu->attributes->merge(['class' => 'py-4']) }}>
                 {{ $menu }}
             </ul>
         </template>
@@ -27,7 +27,10 @@
 </v-dropdown>
 
 @pushOnce('scripts')
-    <script type="text/x-template" id="v-dropdown-template">
+    <script
+        type="text/x-template"
+        id="v-dropdown-template"
+    >
         <div>
             <div
                 class="select-none"
@@ -40,15 +43,15 @@
             <transition
                 tag="div"
                 name="dropdown"
-                enter-active-class="transition ease-out duration-100"
-                enter-from-class="transform opacity-0 scale-95"
-                enter-to-class="transform opacity-100 scale-100"
-                leave-active-class="transition ease-in duration-75"
-                leave-from-class="transform opacity-100 scale-100"
-                leave-to-class="transform opacity-0 scale-95"
+                enter-active-class="transition duration-100 ease-out"
+                enter-from-class="scale-95 transform opacity-0"
+                enter-to-class="scale-100 transform opacity-100"
+                leave-active-class="transition duration-75 ease-in"
+                leave-from-class="scale-100 transform opacity-100"
+                leave-to-class="scale-95 transform opacity-0"
             >
                 <div
-                    class="absolute w-max z-10 overflow-hidden bg-white shadow-[0px_10px_84px_rgba(0,0,0,0.1)] rounded-[20px]"
+                    class="absolute z-20 w-max overflow-hidden rounded-[20px] bg-white shadow-[0px_10px_84px_rgba(0,0,0,0.1)] max-md:rounded-lg"
                     :style="positionStyles"
                     v-show="isActive"
                 >

@@ -2,38 +2,16 @@
 
 namespace Webkul\Sales\Repositories;
 
-use Illuminate\Support\Facades\Log;
 use Webkul\Core\Eloquent\Repository;
-use Webkul\Sales\Contracts\OrderItem;
 
 class OrderItemRepository extends Repository
 {
     /**
      * Specify model class name.
-     *
-     * @return string
      */
     public function model(): string
     {
         return 'Webkul\Sales\Contracts\OrderItem';
-    }
-
-    /**
-     * Create.
-     *
-     * @param  array  $data
-     * @return \Webkul\Sales\Contracts\OrderItem
-     */
-    public function create(array $data)
-    {
-        if (! empty($data['product'])) {
-            $data['product_id'] = $data['product']->id;
-            $data['product_type'] = get_class($data['product']);
-
-            unset($data['product']);
-        }
-
-        return parent::create($data);
     }
 
     /**
@@ -160,7 +138,7 @@ class OrderItemRepository extends Repository
      */
     public function returnQtyToProductInventory($orderItem)
     {
-        if ($orderItem->product) {
+        if (! $orderItem->product) {
             return;
         }
 

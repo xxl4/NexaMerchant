@@ -13,9 +13,9 @@ class PaypalServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        include __DIR__ . '/../Http/routes.php';
+        include __DIR__.'/../Http/routes.php';
 
-        $this->loadViewsFrom(__DIR__ . '/../Resources/views', 'paypal');
+        $this->loadViewsFrom(__DIR__.'/../Resources/views', 'paypal');
 
         $this->app->register(EventServiceProvider::class);
     }
@@ -28,7 +28,6 @@ class PaypalServiceProvider extends ServiceProvider
     public function register()
     {
         $this->registerConfig();
-        $this->registerCommands();
     }
 
     /**
@@ -39,21 +38,7 @@ class PaypalServiceProvider extends ServiceProvider
     protected function registerConfig()
     {
         $this->mergeConfigFrom(
-            dirname(__DIR__) . '/Config/paymentmethods.php', 'payment_methods'
+            dirname(__DIR__).'/Config/paymentmethods.php', 'payment_methods'
         );
-    }
-
-    /**
-     * Register the console commands of this package.
-     *
-     * @return void
-     */
-    protected function registerCommands(): void
-    {
-        if ($this->app->runningInConsole()) {
-            $this->commands([
-                \Webkul\Paypal\Console\Commands\Webhooks\Get::class
-            ]);
-        }
     }
 }

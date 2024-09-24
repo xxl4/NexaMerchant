@@ -15,8 +15,11 @@
         >
         </script>
 
-        <script type="text/x-template" id="v-paypal-smart-button-template">
-            <div class="paypal-button-container"></div>
+        <script
+            type="text/x-template"
+            id="v-paypal-smart-button-template"
+        >
+            <div class="w-full paypal-button-container"></div>
         </script>
 
         <script type="module">
@@ -41,8 +44,8 @@
                     getOptions() {
                         let options = {
                             style: {
-                                layout:  'vertical',
-                                shape:   'rect',
+                                layout: 'vertical',
+                                shape: 'rect',
                             },
 
                             authorizationFailed: false,

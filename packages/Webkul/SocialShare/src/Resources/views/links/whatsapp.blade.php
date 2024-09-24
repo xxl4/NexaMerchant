@@ -9,13 +9,18 @@
 <v-whatsapp-share></v-whatsapp-share>
 
 @push('scripts')
-    <script type="text/x-template" id="v-whatsapp-share-template">
+    <script
+        type="text/x-template"
+        id="v-whatsapp-share-template"
+    >
         <li class="transition-all hover:opacity-[0.8]">
             <a 
                 :href="shareUrl" 
                 data-action="share/whatsapp/share" 
                 target="_blank"
                 aria-label="Whatsapp"
+                role="button"
+                tabindex="0"
             >
                 @include('social_share::icons.whatsapp')
             </a>

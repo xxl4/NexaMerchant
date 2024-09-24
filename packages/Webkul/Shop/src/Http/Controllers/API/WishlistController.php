@@ -6,8 +6,8 @@ use Cart;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Webkul\Customer\Repositories\WishlistRepository;
 use Webkul\Product\Repositories\ProductRepository;
-use Webkul\Shop\Http\Resources\WishlistResource;
 use Webkul\Shop\Http\Resources\CartResource;
+use Webkul\Shop\Http\Resources\WishlistResource;
 
 class WishlistController extends APIController
 {
@@ -19,9 +19,7 @@ class WishlistController extends APIController
     public function __construct(
         protected WishlistRepository $wishlistRepository,
         protected ProductRepository $productRepository
-    )
-    {
-    }
+    ) {}
 
     /**
      * Displays the listing resources if the customer has items on the wishlist.
@@ -45,6 +43,10 @@ class WishlistController extends APIController
      */
     public function store(): JsonResource
     {
+        $this->validate(request(), [
+            'product_id' => 'required|integer|exists:products,id',
+        ]);
+
         $product = $this->productRepository->find(request()->input('product_id'));
 
         if (! $product) {
@@ -94,7 +96,7 @@ class WishlistController extends APIController
         }
 
         try {
-            $result = Cart::moveToCart($wishlistItem);
+            $result = Cart::moveToCart($wishlistItem, request()->input('quantity'));
 
             if ($result) {
                 return new JsonResource([
@@ -129,7 +131,16 @@ class WishlistController extends APIController
      */
     public function destroy($id): JsonResource
     {
-        $this->wishlistRepository->delete($id);
+        $success = $this->wishlistRepository->deleteWhere([
+            'id'          => $id,
+            'customer_id' => auth()->guard('customer')->user()->id,
+        ]);
+
+        if (! $success) {
+            return new JsonResource([
+                'message' => trans('shop::app.customers.account.wishlist.remove-fail'),
+            ]);
+        }
 
         return new JsonResource([
             'data'    => WishlistResource::collection($this->wishlistRepository->get()),

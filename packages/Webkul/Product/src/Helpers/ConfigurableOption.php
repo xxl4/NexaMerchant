@@ -155,33 +155,18 @@ class ConfigurableOption
     {
         $attributeOptionsData = [];
 
-        
-
-        foreach ($attribute->options as $attributeOption) {
+        foreach ($attribute->options->sortBy('sort_order') as $attributeOption) {
             $optionId = $attributeOption->id;
 
             if (! isset($options[$attribute->id][$optionId])) {
                 continue;
             }
-            $attributeOptions = [];
-            $products = $options[$attribute->id][$optionId];
-            $index = $options['index'];
-            foreach ($products as $productId) {
-                foreach ($index[$productId] as $key => $value) {
-                    if ($key != $attribute->id) {
-                        $attributeOptions[$key][$value] = $value;
-                    }
-                }
-                //$attributeOptions[] = $index[$productId][$attribute->id];
-            }
-
 
             $attributeOptionsData[] = [
                 'id'           => $optionId,
                 'label'        => $attributeOption->label ? $attributeOption->label : $attributeOption->admin_name,
                 'swatch_value' => $attribute->swatch_type == 'image' ? $attributeOption->swatch_value_url : $attributeOption->swatch_value,
                 'products'     => $options[$attribute->id][$optionId],
-                'sku'          => $attributeOptions,
             ];
         }
 

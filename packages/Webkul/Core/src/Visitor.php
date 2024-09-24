@@ -11,28 +11,39 @@ class Visitor extends BaseVisitor
     /**
      * Create a visit log.
      *
-     * @param  \Illuminate\Database\Eloquent\Model  $model
      * @return void
      */
-    public function visit(Model $model = null)
+    public function visit(?Model $model = null)
     {
         foreach ($this->except as $path) {
             if ($this->request->is($path)) {
+                dd(1);
+
                 return;
             }
         }
-
         UpdateCreateVisitIndex::dispatch($model, $this->prepareLog());
     }
 
     /**
      * Retrieve request's url
-     *
-     * @return string
      */
-    public function url() : string
+    public function url(): string
     {
         return $this->request->url();
+    }
+
+    /**
+     * Prepare log's data.
+     *
+     *
+     * @throws \Exception
+     */
+    protected function prepareLog(): array
+    {
+        return array_merge(parent::prepareLog(), [
+            'channel_id' => core()->getCurrentChannel()->id,
+        ]);
     }
 
     /**

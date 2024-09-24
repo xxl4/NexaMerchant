@@ -2,11 +2,11 @@
 
 namespace Webkul\Product\Helpers\Indexers;
 
-use Illuminate\Support\Arr;
-use Elasticsearch as ElasticsearchClient;
+use Elastic\Elasticsearch\Exception\ClientResponseException;
+use Webkul\Attribute\Repositories\AttributeRepository;
+use Webkul\Core\Facades\ElasticSearch as ElasticSearchClient;
 use Webkul\Core\Repositories\ChannelRepository;
 use Webkul\Customer\Repositories\CustomerGroupRepository;
-use Webkul\Attribute\Repositories\AttributeRepository;
 use Webkul\Product\Repositories\ProductRepository;
 
 class ElasticSearch extends AbstractIndexer
@@ -61,10 +61,6 @@ class ElasticSearch extends AbstractIndexer
     /**
      * Create a new indexer instance.
      *
-     * @param  \Webkul\Core\Repositories\ChannelRepository  $channelRepository
-     * @param  \Webkul\Customer\Repositories\CustomerGroupRepository  $customerGroupRepository
-     * @param  \Webkul\Attribute\Repositories\AttributeRepository  $channelRepository
-     * @param  \Webkul\Product\Repositories\ProductRepository  $productRepository
      * @return void
      */
     public function __construct(
@@ -72,8 +68,7 @@ class ElasticSearch extends AbstractIndexer
         protected CustomerGroupRepository $customerGroupRepository,
         protected AttributeRepository $attributeRepository,
         protected ProductRepository $productRepository,
-    )
-    {
+    ) {
         $this->batchSize = self::BATCH_SIZE;
     }
 
@@ -127,41 +122,35 @@ class ElasticSearch extends AbstractIndexer
             $paginator = $this->productRepository
                 ->select('products.*')
                 ->with([
+                    'channels',
                     'categories',
                     'inventories',
                     'super_attributes',
                     'variants',
+                    'variants.channels',
+                    'attribute_family',
                     'attribute_values',
+                    'variants.attribute_family',
                     'variants.attribute_values',
                     'price_indices',
                     'variants.price_indices',
                     'inventory_indices',
                     'variants.inventory_indices',
                 ])
-                ->join('product_attribute_values as visible_individually_pav', function ($join) {
-                    $join->on('products.id', '=', 'visible_individually_pav.product_id')
-                        ->where('visible_individually_pav.attribute_id', 7)
-                        ->where('visible_individually_pav.boolean_value', 1);
-                })
-                ->join('product_attribute_values as status_pav', function ($join) {
-                    $join->on('products.id', '=', 'status_pav.product_id')
-                        ->where('status_pav.attribute_id', 8)
-                        ->where('status_pav.boolean_value', 1);
-                })
                 ->cursorPaginate($this->batchSize);
- 
+
             $this->reindexBatch($paginator->items());
- 
+
             if (! $cursor = $paginator->nextCursor()) {
                 break;
             }
- 
+
             request()->query->add(['cursor' => $cursor->encode()]);
         }
 
         request()->query->remove('cursor');
     }
-    
+
     /**
      * Reindex products by batch size
      *
@@ -184,20 +173,17 @@ class ElasticSearch extends AbstractIndexer
 
                     $indexName = $this->getIndexName();
 
-                    if (
-                        ! $this->product->status
-                        || ! $this->product->visible_individually
-                    ) {
-                        $removeIndices[$indexName][] = $product->id;
-                    } else {
+                    if (in_array($channel->id, $product->channels->pluck('id')->toArray())) {
                         $refreshIndices['body'][] = [
                             'index' => [
                                 '_index' => $indexName,
                                 '_id'    => $product->id,
                             ],
                         ];
-            
+
                         $refreshIndices['body'][] = $this->getIndices();
+                    } else {
+                        $removeIndices[$indexName][] = $product->id;
                     }
                 }
             }
@@ -226,10 +212,11 @@ class ElasticSearch extends AbstractIndexer
                     'index' => $indexName,
                     'id'    => $id,
                 ];
-    
+
                 try {
                     ElasticsearchClient::delete($params);
-                } catch(\Exception $e) {}
+                } catch (ClientResponseException $e) {
+                }
             }
         }
     }
@@ -241,7 +228,7 @@ class ElasticSearch extends AbstractIndexer
      */
     public function getIndexName()
     {
-        return 'products_' . $this->channel->code . '_' . $this->locale->code . '_index';
+        return 'products_'.$this->channel->code.'_'.$this->locale->code.'_index';
     }
 
     /**
@@ -251,13 +238,14 @@ class ElasticSearch extends AbstractIndexer
      */
     public function getIndices()
     {
-        $properties = [
-            'id'           => $this->product->id,
-            'type'         => $this->product->type,
-            'sku'          => $this->product->sku,
-            'category_ids' => $this->product->categories->pluck('id')->toArray(),
-            'created_at'   => $this->product->created_at,
-        ];
+        $properties = array_merge([
+            'id'                  => $this->product->id,
+            'type'                => $this->product->type,
+            'sku'                 => $this->product->sku,
+            'attribute_family_id' => $this->product->attribute_family_id,
+            'category_ids'        => $this->product->categories->pluck('id')->toArray(),
+            'created_at'          => $this->product->created_at,
+        ], $this->product->additional ?? []);
 
         $attributes = $this->getAttributes();
 
@@ -265,12 +253,15 @@ class ElasticSearch extends AbstractIndexer
             $attributeValue = $this->getAttributeValue($attribute);
 
             if ($attribute->code == 'price') {
+                $properties[$attribute->code] = (float) $attributeValue?->{$attribute->column_name};
+
                 foreach ($this->getCustomerGroups() as $customerGroup) {
                     if (! app()->runningInConsole()) {
                         $this->product->load('price_indices');
                     }
 
                     $priceIndex = $this->product->price_indices
+                        ->where('channel_id', $this->channel->id)
                         ->where('customer_group_id', $customerGroup->id)
                         ->first();
 
@@ -279,19 +270,19 @@ class ElasticSearch extends AbstractIndexer
                     } else {
                         $groupPrice = $this->product->getTypeInstance()->getMinimalPrice();
                     }
-                    
-                    $properties[$attribute->code . '_' . $customerGroup->id] = (float) $groupPrice;
+
+                    $properties[$attribute->code.'_'.$customerGroup->id] = (float) $groupPrice;
                 }
             } elseif ($attribute->type == 'boolean') {
                 $properties[$attribute->code] = intval($attributeValue?->{$attribute->column_name});
             } else {
-                $properties[$attribute->code] = $attributeValue?->{$attribute->column_name};
+                $properties[$attribute->code] = strip_tags($attributeValue?->{$attribute->column_name});
             }
         }
 
         foreach ($this->product->super_attributes as $attribute) {
             foreach ($this->product->variants as $variant) {
-                $properties['ca_' . $attribute->code][] = $variant->{$attribute->code};
+                $properties['ca_'.$attribute->code][] = $variant->{$attribute->code};
             }
         }
 
@@ -313,13 +304,15 @@ class ElasticSearch extends AbstractIndexer
             return $query->where(function ($qb) {
                 return $qb->orWhereIn('code', [
                     'name',
+                    'status',
+                    'visible_individually',
                     'new',
                     'featured',
                     'url_key',
                     'short_description',
                     'description',
                 ])
-                ->orWhere('is_filterable', 1);
+                    ->orWhere('is_filterable', 1);
             });
         })->get();
 
@@ -348,13 +341,15 @@ class ElasticSearch extends AbstractIndexer
             }
         } else {
             if ($attribute->value_per_locale) {
-                $attributeValues = $attributeValues->where('locale', $this->locale->code)->first();
+                $attributeValues = $attributeValues->where('locale', $this->locale->code);
+            } else {
+                $attributeValues = $attributeValues;
             }
         }
 
         return $attributeValues->first();
     }
-    
+
     /**
      * Returns all channels
      *
@@ -368,7 +363,7 @@ class ElasticSearch extends AbstractIndexer
 
         return $this->channels = $this->channelRepository->all();
     }
-    
+
     /**
      * Returns all customer groups
      *

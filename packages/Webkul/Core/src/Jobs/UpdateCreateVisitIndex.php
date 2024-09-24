@@ -1,20 +1,19 @@
 <?php
- 
+
 namespace Webkul\Core\Jobs;
- 
+
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Arr;
-use Carbon\Carbon;
 use Webkul\Core\Repositories\VisitRepository;
- 
+
 class UpdateCreateVisitIndex implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
- 
+
     /**
      * Create a new job instance.
      *
@@ -25,10 +24,8 @@ class UpdateCreateVisitIndex implements ShouldQueue
     public function __construct(
         protected $model,
         protected $log
-    )
-    {
-    }
- 
+    ) {}
+
     /**
      * Execute the job.
      *
@@ -44,14 +41,18 @@ class UpdateCreateVisitIndex implements ShouldQueue
             'ip',
             'visitor_id',
             'visitor_type',
+            'channel_id',
         ]))->latest()->first();
 
         if ($lastVisit?->created_at->isToday()) {
             return;
         }
 
-        if (null !== $this->model && method_exists($this->model, 'visitLogs')) {
-            $this->model->visitLogs()->create($this->log);
+        if ($this->model !== null && method_exists($this->model, 'visitLogs')) {
+            $visit = $this->model->visitLogs()->create($this->log);
+
+            $visit->channel_id = $this->log['channel_id'];
+            $visit->save();
         } else {
             $visitRepository->create($this->log);
         }

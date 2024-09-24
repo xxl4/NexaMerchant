@@ -1,30 +1,33 @@
 <v-image-search>
     <button
         type="button"
-        class="icon-camera flex items-center absolute top-[10px] ltr:right-[12px] rtl:left-[12px] pr-3 text-[22px]"
-        aria-label="Search"
+        class="icon-camera absolute top-3 flex items-center text-xl max-sm:top-2.5 ltr:right-3 ltr:pr-3 max-md:ltr:right-1.5 rtl:left-3 rtl:pl-3 max-md:rtl:left-1.5"
+        aria-label="@lang('shop::app.search.images.index.search')"
     >
     </button>
 </v-image-search>
 
 @pushOnce('scripts')
-    <script type="text/x-template" id="v-image-search-template">
+    <script
+        type="text/x-template"
+        id="v-image-search-template"
+    >
         <div>
             <label
-                class="icon-camera flex items-center absolute top-[10px] ltr:right-[12px] rtl:left-[12px] pr-3 text-[22px] cursor-pointer"
-                aria-label="Search"
-                for="v-image-search"
+                class="icon-camera absolute top-3 flex items-center text-xl max-sm:top-2.5 ltr:right-3 ltr:pr-3 max-md:ltr:right-1.5 rtl:left-3 rtl:pl-3 max-md:rtl:left-1.5"
+                aria-label="@lang('shop::app.search.images.index.search')"
+                :for="'v-image-search-' + $.uid"
                 v-if="! isSearching"
             >
             </label>
 
             <label
-                class="flex items-center absolute top-[10px] ltr:right-[12px] rtl:left-[12px] pr-3 text-[22px] cursor-pointer"
+                class="absolute top-2.5 flex cursor-pointer items-center text-xl ltr:right-3 ltr:pr-3 max-md:ltr:pr-1 rtl:left-3 rtl:pl-3 max-md:rtl:pl-1"
                 v-else
             >
                 <!-- Spinner -->
                 <svg
-                    class="animate-spin h-6 w-6 text-black"
+                    class="h-5 w-5 animate-spin text-black"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
@@ -52,7 +55,7 @@
                 type="file"
                 class="hidden"
                 ref="imageSearchInput"
-                id="v-image-search"
+                :id="'v-image-search-' + $.uid"
                 @change="loadLibrary()"
             />
 
@@ -148,7 +151,7 @@
                                                     }
                                                 });
                                             } catch (error) {
-                                                this.$emitter.emit('add-flash', { type: 'error', message: '@lang('shop::app.search.images.index.something-went-wrong')'});
+                                                this.$emitter.emit('add-flash', { type: 'error', message: "@lang('shop::app.search.images.index.something-went-wrong')"});
                                             }
 
                                             localStorage.searchedImageUrl = self.uploadedImageUrl;
@@ -165,17 +168,23 @@
                                         app();
                                     })
                                     .catch((error) => {
-                                        this.$emitter.emit('add-flash', { type: 'error', message: '@lang('shop::app.search.images.index.something-went-wrong')'});
+                                        this.$emitter.emit('add-flash', { type: 'error', message: "@lang('shop::app.search.images.index.something-went-wrong')"});
+
+                                        this.isSearching = false;
                                     });
                             } else {
                                 imageInput.value = '';
 
                                 this.$emitter.emit('add-flash', { type: 'error', message: '@lang('shop::app.search.images.index.size-limit-error')'});
+
+                                this.isSearching = false;
                             }
                         } else {
                             imageInput.value = '';
 
                             this.$emitter.emit('add-flash', { type: 'error', message: '@lang('shop::app.search.images.index.only-images-allowed')'});
+
+                            this.isSearching = false;
                         }
                     }
                 },

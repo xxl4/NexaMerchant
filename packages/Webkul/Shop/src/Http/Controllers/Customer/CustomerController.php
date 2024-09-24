@@ -5,10 +5,11 @@ namespace Webkul\Shop\Http\Controllers\Customer;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
-use Webkul\Shop\Http\Controllers\Controller;
+use Webkul\Core\Repositories\SubscribersListRepository;
 use Webkul\Customer\Repositories\CustomerRepository;
 use Webkul\Product\Repositories\ProductReviewRepository;
-use Webkul\Core\Repositories\SubscribersListRepository;
+use Webkul\Sales\Models\Order;
+use Webkul\Shop\Http\Controllers\Controller;
 use Webkul\Shop\Http\Requests\Customer\ProfileRequest;
 
 class CustomerController extends Controller
@@ -22,9 +23,7 @@ class CustomerController extends Controller
         protected CustomerRepository $customerRepository,
         protected ProductReviewRepository $productReviewRepository,
         protected SubscribersListRepository $subscriptionRepository
-    )
-    {
-    }
+    ) {}
 
     /**
      * Taking the customer to profile details page.
@@ -80,7 +79,7 @@ class CustomerController extends Controller
 
                 $data['password'] = bcrypt($data['new_password']);
             } else {
-                session()->flash('warning', trans('shop::app.customers.account.profile.unmatch'));
+                session()->flash('warning', trans('shop::app.customers.account.profile.index.unmatched'));
 
                 return redirect()->back();
             }
@@ -130,17 +129,16 @@ class CustomerController extends Controller
             } else {
                 if (isset($data['image'])) {
                     if (! empty($data['image'])) {
-                        Storage::delete((string)$customer->image);
+                        Storage::delete((string) $customer->image);
                     }
-                
+
                     $customer->image = null;
 
                     $customer->save();
                 }
             }
 
-
-            session()->flash('success', trans('shop::app.customers.account.profile.edit-success'));
+            session()->flash('success', trans('shop::app.customers.account.profile.index.edit-success'));
 
             return redirect()->route('shop.customers.account.profile.index');
         }
@@ -158,29 +156,32 @@ class CustomerController extends Controller
      */
     public function destroy()
     {
+        $this->validate(request(), [
+            'password' => 'required',
+        ]);
+
         $customerRepository = $this->customerRepository->findorFail(auth()->guard('customer')->user()->id);
 
         try {
             if (Hash::check(request()->input('password'), $customerRepository->password)) {
-
-                if ($customerRepository->orders->whereIn('status', ['pending', 'processing'])->first()) {
-                    session()->flash('error', trans('shop::app.customers.account.profile.order-pending'));
+                if ($customerRepository->orders->whereIn('status', [Order::STATUS_PENDING, Order::STATUS_PROCESSING])->first()) {
+                    session()->flash('error', trans('shop::app.customers.account.profile.index.order-pending'));
 
                     return redirect()->route('shop.customers.account.profile.index');
-                } else {
-                    $this->customerRepository->delete(auth()->guard('customer')->user()->id);
-
-                    session()->flash('success', trans('shop::app.customers.account.profile.delete-success'));
-
-                    return redirect()->route('shop.customer.session.index');
                 }
-            } else {
-                session()->flash('error', trans('shop::app.customers.account.profile.wrong-password'));
 
-                return redirect()->back();
+                $this->customerRepository->delete(auth()->guard('customer')->user()->id);
+
+                session()->flash('success', trans('shop::app.customers.account.profile.index.delete-success'));
+
+                return redirect()->route('shop.customer.session.index');
             }
+
+            session()->flash('error', trans('shop::app.customers.account.profile.index.wrong-password'));
+
+            return redirect()->back();
         } catch (\Exception $e) {
-            session()->flash('error', trans('shop::app.customers.account.profile.delete-failed'));
+            session()->flash('error', trans('shop::app.customers.account.profile.index.delete-failed'));
 
             return redirect()->route('shop.customers.account.profile.index');
         }
@@ -196,5 +197,15 @@ class CustomerController extends Controller
         $reviews = $this->productReviewRepository->getCustomerReview();
 
         return view('shop::customers.account.reviews.index', compact('reviews'));
+    }
+
+    /**
+     * Taking the customer to account details page.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function account()
+    {
+        return view('shop::customers.account.index');
     }
 }

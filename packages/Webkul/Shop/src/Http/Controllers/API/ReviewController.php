@@ -2,10 +2,12 @@
 
 namespace Webkul\Shop\Http\Controllers\API;
 
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Webkul\MagicAI\Facades\MagicAI;
 use Webkul\Product\Repositories\ProductRepository;
-use Webkul\Product\Repositories\ProductReviewRepository;
 use Webkul\Product\Repositories\ProductReviewAttachmentRepository;
+use Webkul\Product\Repositories\ProductReviewRepository;
 use Webkul\Shop\Http\Resources\ProductReviewResource;
 
 class ReviewController extends APIController
@@ -19,9 +21,7 @@ class ReviewController extends APIController
         protected ProductRepository $productRepository,
         protected ProductReviewRepository $productReviewRepository,
         protected ProductReviewAttachmentRepository $productReviewAttachmentRepository
-    )
-    {
-    }
+    ) {}
 
     /**
      * Using const variable for status
@@ -32,10 +32,8 @@ class ReviewController extends APIController
 
     /**
      * Product listings.
-     *
-     * @param  int  $id
      */
-    public function index($id): JsonResource
+    public function index(int $id): JsonResource
     {
         $product = $this->productRepository
             ->find($id)
@@ -48,10 +46,8 @@ class ReviewController extends APIController
 
     /**
      * Store a newly created resource in storage.
-     *
-     * @param  int  $id
      */
-    public function store($id): JsonResource
+    public function store(int $id): JsonResource
     {
         $this->validate(request(), [
             'title'         => 'required',
@@ -81,5 +77,42 @@ class ReviewController extends APIController
         return new JsonResource([
             'message' => trans('shop::app.products.view.reviews.success'),
         ]);
+    }
+
+    /**
+     * Translate the specified resource in storage.
+     */
+    public function translate(int $reviewId): JsonResponse
+    {
+        $review = $this->productReviewRepository->find($reviewId);
+
+        $currentLocale = core()->getCurrentLocale();
+
+        $prompt = "
+        Translate the following product review to $currentLocale->name. Ensure that the translation retains the sentiment and conveys the meaning accurately. If specific product-related terms or expressions are commonly used in the $currentLocale->name, please adapt accordingly.
+        ---
+
+        **Original Product Review:**
+        $review->comment
+
+        ---
+        Translation:
+        ";
+
+        try {
+            $model = core()->getConfigData('general.magic_ai.review_translation.model');
+
+            $response = MagicAI::setModel($model)
+                ->setPrompt($prompt)
+                ->ask();
+
+            return new JsonResponse([
+                'content' => $response,
+            ]);
+        } catch (\Exception $e) {
+            return new JsonResponse([
+                'message' => $e->getMessage(),
+            ], 500);
+        }
     }
 }

@@ -2,9 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Webkul\Paypal\Http\Controllers\SmartButtonController;
-use Webkul\Paypal\Http\Controllers\SmartButtonWebhookController;
 use Webkul\Paypal\Http\Controllers\StandardController;
-use Webkul\Paypal\Payment\SmartButton;
 
 Route::group(['middleware' => ['web']], function () {
     Route::prefix('paypal/standard')->group(function () {
@@ -19,16 +17,7 @@ Route::group(['middleware' => ['web']], function () {
         Route::get('/create-order', [SmartButtonController::class, 'createOrder'])->name('paypal.smart-button.create-order');
 
         Route::post('/capture-order', [SmartButtonController::class, 'captureOrder'])->name('paypal.smart-button.capture-order');
-
-        Route::post('/v1/webhooks/dispute', [SmartButtonWebhookController::class, 'dispute'])->name('paypal.smart-button.webhooks.dispute');
-
     });
-});
-
-
-Route::prefix('paypal/smart-button')->group(function () {
-    Route::post('/v1/webhooks/dispute', [SmartButtonWebhookController::class, 'dispute'])->name('paypal.smart-button.webhooks.dispute');
-
 });
 
 Route::post('paypal/standard/ipn', [StandardController::class, 'ipn'])

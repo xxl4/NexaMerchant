@@ -11,15 +11,14 @@ class CustomerServiceProvider extends ServiceProvider
      * Bootstrap application services.
      *
      * @param  \Illuminate\Routing\Router  $router
-     * @return void
      */
     public function boot(): void
     {
-        $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
+        $this->loadMigrationsFrom(__DIR__.'/../Database/Migrations');
 
-        $this->loadTranslationsFrom(__DIR__ . '/../Resources/lang', 'customer');
+        $this->loadTranslationsFrom(__DIR__.'/../Resources/lang', 'customer');
 
-        $this->loadViewsFrom(__DIR__ . '/../Resources/views', 'customer');
+        $this->loadViewsFrom(__DIR__.'/../Resources/views', 'customer');
 
         $this->app['validator']->extend('captcha', function ($attribute, $value, $parameters) {
             return $this->app['captcha']->validateResponse($value);
@@ -28,13 +27,11 @@ class CustomerServiceProvider extends ServiceProvider
 
     /**
      * Register services.
-     *
-     * @return void
      */
     public function register(): void
     {
         $this->app->singleton('captcha', function ($app) {
-            return new Captcha();
+            return new Captcha;
         });
     }
 }

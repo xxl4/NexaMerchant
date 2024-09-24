@@ -3,16 +3,20 @@
 namespace Webkul\Product\Console\Commands;
 
 use Illuminate\Console\Command;
-use Webkul\Product\Helpers\Indexers\{Inventory, Price, ElasticSearch};
+use Webkul\Product\Helpers\Indexers\ElasticSearch;
+use Webkul\Product\Helpers\Indexers\Flat;
+use Webkul\Product\Helpers\Indexers\Inventory;
+use Webkul\Product\Helpers\Indexers\Price;
 
 class Indexer extends Command
 {
     protected $indexers = [
         'inventory' => Inventory::class,
         'price'     => Price::class,
+        'flat'      => Flat::class,
         'elastic'   => ElasticSearch::class,
     ];
-    
+
     /**
      * The name and signature of the console command.
      *
@@ -34,9 +38,9 @@ class Indexer extends Command
      */
     public function handle()
     {
-        $start = microtime(TRUE);
-        
-        $indexerIds = ['inventory', 'price', 'elastic'];
+        $start = microtime(true);
+
+        $indexerIds = ['inventory', 'price', 'flat', 'elastic'];
 
         if (! empty($this->option('type'))) {
             $indexerIds = $this->option('type');
@@ -51,11 +55,11 @@ class Indexer extends Command
         foreach ($indexerIds as $indexerId) {
             if (
                 $indexerId == 'elastic'
-                && core()->getConfigData('catalog.products.storefront.search_mode') != 'elastic'
+                && core()->getConfigData('catalog.products.search.engine') != 'elastic'
             ) {
                 continue;
             }
-            
+
             $indexer = app($this->indexers[$indexerId]);
 
             if ($mode == 'full') {
@@ -67,8 +71,8 @@ class Indexer extends Command
             }
         }
 
-        $end = microtime(TRUE);
+        $end = microtime(true);
 
-        echo "The code took " . ($end - $start) . " seconds to complete.\n";
+        echo 'The code took '.($end - $start)." seconds to complete.\n";
     }
 }

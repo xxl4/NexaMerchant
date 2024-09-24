@@ -2,26 +2,22 @@
 
 namespace Webkul\Paypal\Http\Controllers;
 
-use Webkul\Paypal\Helpers\Ipn;
 use Webkul\Checkout\Facades\Cart;
+use Webkul\Paypal\Helpers\Ipn;
 use Webkul\Sales\Repositories\OrderRepository;
-use Illuminate\Support\Facades\Log;
+use Webkul\Sales\Transformers\OrderResource;
 
 class StandardController extends Controller
 {
     /**
      * Create a new controller instance.
      *
-     * @param  \Webkul\Attribute\Repositories\OrderRepository  $orderRepository
-     * @param  \Webkul\Paypal\Helpers\Ipn  $ipnHelper
      * @return void
      */
     public function __construct(
         protected OrderRepository $orderRepository,
         protected Ipn $ipnHelper
-    )
-    {
-    }
+    ) {}
 
     /**
      * Redirects to the paypal.
@@ -40,7 +36,7 @@ class StandardController extends Controller
      */
     public function cancel()
     {
-        session()->flash('error', trans('shop::app.checkout.cart.paypal-payment-canceled'));
+        session()->flash('error', trans('shop::app.checkout.cart.paypal-payment-cancelled'));
 
         return redirect()->route('shop.checkout.cart.index');
     }
@@ -52,13 +48,15 @@ class StandardController extends Controller
      */
     public function success()
     {
-        $order = $this->orderRepository->create(Cart::prepareDataForOrder());
+        $cart = Cart::getCart();
+
+        $data = (new OrderResource($cart))->jsonSerialize();
+
+        $order = $this->orderRepository->create($data);
 
         Cart::deActivateCart();
 
-        session()->flash('order', $order);
-
-        return redirect()->route("checkout.v1.product.success", $order->id);
+        session()->flash('order_id', $order->id);
 
         return redirect()->route('shop.checkout.onepage.success');
     }
@@ -70,8 +68,6 @@ class StandardController extends Controller
      */
     public function ipn()
     {
-        Log::info('paypal st ipn--'.json_encode(request()->all())); 
-
         $this->ipnHelper->processIpn(request()->all());
     }
 }

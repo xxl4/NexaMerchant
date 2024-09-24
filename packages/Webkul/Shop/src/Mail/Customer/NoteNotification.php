@@ -2,35 +2,41 @@
 
 namespace Webkul\Shop\Mail\Customer;
 
-use Illuminate\Bus\Queueable;
-use Illuminate\Mail\Mailable;
-use Illuminate\Queue\SerializesModels;
-use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Mail\Mailables\Address;
+use Illuminate\Mail\Mailables\Content;
+use Illuminate\Mail\Mailables\Envelope;
+use Webkul\Customer\Models\CustomerNote;
+use Webkul\Shop\Mail\Mailable;
 
 class NoteNotification extends Mailable
 {
-    use Queueable, SerializesModels;
-
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(public $customerNote)
+    public function __construct(public CustomerNote $customerNote) {}
+
+    /**
+     * Get the message envelope.
+     */
+    public function envelope(): Envelope
     {
+        return new Envelope(
+            to: [
+                new Address($this->customerNote->customer->email),
+            ],
+            subject: trans('shop::app.emails.orders.commented.subject'),
+        );
     }
 
     /**
-     * Build the message.
-     *
-     * @return $this
+     * Get the message content definition.
      */
-    public function build()
+    public function content(): Content
     {
-        return $this->from(core()->getSenderEmailDetails()['email'], core()->getSenderEmailDetails()['name'])
-            ->to($this->customerNote->customer->email)
-            ->subject(trans('shop::app.emails.orders.commented.subject'))
-            ->view('shop::emails.customers.commented')
-            ->with('customerNote', $this->customerNote);
+        return new Content(
+            view: 'shop::emails.customers.commented',
+        );
     }
 }

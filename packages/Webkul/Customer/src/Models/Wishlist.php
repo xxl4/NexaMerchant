@@ -4,10 +4,10 @@ namespace Webkul\Customer\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Webkul\Customer\Contracts\Wishlist as WishlistContract;
-use Webkul\Product\Models\ProductProxy;
 use Webkul\Core\Models\ChannelProxy;
-use Webkul\Customer\Models\CustomerProxy;
+use Webkul\Customer\Contracts\Wishlist as WishlistContract;
+use Webkul\Customer\Database\Factories\CustomerWishlistFactory;
+use Webkul\Product\Models\ProductProxy;
 
 class Wishlist extends Model implements WishlistContract
 {
@@ -77,6 +77,6 @@ class Wishlist extends Model implements WishlistContract
      */
     protected static function newFactory()
     {
-        return \Webkul\Customer\Database\Factories\CustomerWishlistFactory::new ();
+        return CustomerWishlistFactory::new();
     }
 }

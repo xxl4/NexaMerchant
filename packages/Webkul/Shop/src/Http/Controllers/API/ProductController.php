@@ -4,6 +4,7 @@ namespace Webkul\Shop\Http\Controllers\API;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 use Webkul\Category\Repositories\CategoryRepository;
+use Webkul\Marketing\Jobs\UpdateCreateSearchTerm as UpdateCreateSearchTermJob;
 use Webkul\Product\Repositories\ProductRepository;
 use Webkul\Shop\Http\Resources\ProductResource;
 
@@ -17,16 +18,41 @@ class ProductController extends APIController
     public function __construct(
         protected CategoryRepository $categoryRepository,
         protected ProductRepository $productRepository
-    )
-    {
-    }
+    ) {}
 
     /**
      * Product listings.
      */
     public function index(): JsonResource
     {
-        return ProductResource::collection($this->productRepository->getAll());
+        if (core()->getConfigData('catalog.products.search.engine') == 'elastic') {
+            $searchEngine = core()->getConfigData('catalog.products.search.storefront_mode');
+        }
+
+        $products = $this->productRepository
+            ->setSearchEngine($searchEngine ?? 'database')
+            ->getAll(array_merge(request()->query(), [
+                'channel_id'           => core()->getCurrentChannel()->id,
+                'status'               => 1,
+                'visible_individually' => 1,
+            ]));
+
+        if (! empty(request()->query('query'))) {
+            /**
+             * Update or create search term only if
+             * there is only one filter that is query param
+             */
+            if (count(request()->except(['mode', 'sort', 'limit'])) == 1) {
+                UpdateCreateSearchTermJob::dispatch([
+                    'term'       => request()->query('query'),
+                    'results'    => $products->total(),
+                    'channel_id' => core()->getCurrentChannel()->id,
+                    'locale'     => app()->getLocale(),
+                ]);
+            }
+        }
+
+        return ProductResource::collection($products);
     }
 
     /**
@@ -46,7 +72,7 @@ class ProductController extends APIController
     }
 
     /**
-     * Upsell product listings.
+     * Up-sell product listings.
      *
      * @param  int  $id
      */

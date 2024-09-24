@@ -8,12 +8,17 @@
 <v-twitter-share></v-twitter-share>
 
 @push('scripts')
-    <script type="text/x-template" id="v-twitter-share-template">
+    <script
+        type="text/x-template"
+        id="v-twitter-share-template"
+    >
         <li class="transition-all hover:opacity-[0.8]">
             <a 
-                href="#" 
+                :href="shareUrl" 
                 @click="openSharePopup"
                 aria-label="Twitter"
+                role="button"
+                tabindex="0"
             >
                 @include('social_share::icons.twitter')
             </a>
