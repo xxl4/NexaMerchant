@@ -10,14 +10,12 @@ class CheckoutServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap services.
-     *
-     * @return void
      */
     public function boot(): void
     {
-        include __DIR__ . '/../Http/helpers.php';
+        include __DIR__.'/../Http/helpers.php';
 
-        $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
+        $this->loadMigrationsFrom(__DIR__.'/../Database/Migrations');
 
         $this->app->register(EventServiceProvider::class);
 
@@ -26,8 +24,6 @@ class CheckoutServiceProvider extends ServiceProvider
 
     /**
      * Register services.
-     *
-     * @return void
      */
     public function register(): void
     {
@@ -36,8 +32,6 @@ class CheckoutServiceProvider extends ServiceProvider
 
     /**
      * Register cart as a singleton.
-     *
-     * @return void
      */
     protected function registerFacades(): void
     {
