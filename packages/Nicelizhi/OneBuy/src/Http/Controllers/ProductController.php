@@ -558,8 +558,9 @@ class ProductController extends Controller
             $cart = Cart::getCart();
 
             // when enable the upselling and can config the upselling rule for carts
-            if(config("Upselling.enable")) {
-               
+            $upselling_enable = $request->session()->get('upselling_enable');
+            if(config("Upselling.enable") && $upselling_enable) {
+                Log::info("upselling_enable". $upselling_enable);
                 $upselling = app('NexaMerchant\Upselling\Upselling');
                 $upselling->applyUpselling($cart);
             }
@@ -795,7 +796,9 @@ class ProductController extends Controller
         $payment['sort'] = "1";
         // Cart::savePaymentMethod($payment);
 
-        if(config("Upselling.enable")) {
+        $upselling_enable = $request->session()->get('upselling_enable');
+        if(config("Upselling.enable") && $upselling_enable) {
+            Log::info("upselling_enable". $upselling_enable);
             $upselling = app('NexaMerchant\Upselling\Upselling');
             $upselling->applyUpselling($cart);
         }
