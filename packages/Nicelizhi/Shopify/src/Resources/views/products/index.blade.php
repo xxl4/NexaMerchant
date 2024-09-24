@@ -32,6 +32,7 @@
                           <th>Checkout</th>
                           <th>Checkout V2</th>
                           <th>Checkout V3</th>
+                          <th>Upselling</th>
                           <th>updated at</th>
                           <th>Action</th>
                         </tr>
@@ -121,6 +122,12 @@
               return '<a href="/checkout/v3/'+data+'" target="_blank" class="btn btn-primary btn-sm">Checkout V3</a>';
             }
           }
+          ,{
+            data: 'product_id',
+            render: function(data, type, row, meta) {
+              return '<a href="/checkout/v4/'+data+'" target="_blank" class="btn btn-primary btn-sm">Upselling</a>';
+            }
+          }
           ,
           {
             data: 'updated_at'
@@ -136,7 +143,7 @@
             [20, 50, 100],
             [20, 50, 100]
         ],
-        order: [[8, 'desc']],
+        order: [[9, 'desc']],
         processing: true,
         serverSide: true,
         
