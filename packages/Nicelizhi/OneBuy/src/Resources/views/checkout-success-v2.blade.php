@@ -14,6 +14,26 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/jquery-colorbox@1.6.4/jquery.colorbox.min.js"></script>
   <link href="https://cdn.jsdelivr.net/npm/jquery-colorbox@1.6.4/example1/colorbox.min.css" rel="stylesheet">
+
+    <!-- Google Tag Manager -->
+    <script>
+    (function(w, d, s, l, i) {
+      w[l] = w[l] || [];
+      w[l].push({
+        'gtm.start': new Date().getTime(),
+        event: 'gtm.js'
+      });
+      var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s),
+        dl = l != 'dataLayer' ? '&l=' + l : '';
+      j.async = true;
+      j.src =
+        'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+      f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-W6QBK3Q9');
+  </script>
+  <!-- End Google Tag Manager -->
+
   <style>
     :root {
       --text-family: Poppins, sans-serif;
@@ -602,6 +622,20 @@
           value: (value * 1).toFixed(2)
         });
       <?php } ?>
+
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+      
+        eventType: 'conversion',
+        conversionClass: 'order',
+        conversionSubClass: 'purchase',
+        conversionId: '<?php echo $order->id; ?>',
+        offerIds: <?php echo json_encode($line_items); ?>,
+        conversionValue: (value * 1).toFixed(2),
+        conversionCurrency: '<?php echo $order->channel_currency_code; ?>',
+
+
+      });
 
 
 
