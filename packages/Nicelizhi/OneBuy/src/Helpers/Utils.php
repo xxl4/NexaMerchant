@@ -7,6 +7,7 @@ use Webkul\Product\Repositories\ProductAttributeValueRepository;
 use Webkul\Product\Models\ProductAttributeValue;
 use Illuminate\Support\Facades\Cache;
 use Webkul\Checkout\Facades\Cart;
+use Illuminate\Support\Facades\Log;
 
 final class Utils {
 
@@ -116,8 +117,15 @@ final class Utils {
 
         $attributes = $productViewHelper->getConfigurationConfig($product);
 
+        if($product_id)
+
         if($productType=="simple") {
 
+        }
+
+        if($product_id==3692) {
+            //Log::info($product_id."--". json_encode($attributes));
+            //exit;
         }
 
         if($productType=='configurable') {
@@ -125,8 +133,10 @@ final class Utils {
             $super_attribute = [];
             //var_dump($attributes);exit;
             foreach($attributes['attributes'] as $key=>$attribute) {
-                $super_attribute[$attribute['id']] = $attribute['options'][0]['id'];
-                $product_variant_id = $attribute['options'][0]['products'][0];
+                Log::info($product_id."--". json_encode($attribute));
+                if(!isset($attribute['options'][0]['id'])) continue;
+                $super_attribute[$attribute['id']] = isset($attribute['options'][0]['id']) ? $attribute['options'][0]['id'] : 0 ;
+                $product_variant_id = isset($attribute['options'][0]['products'][0]) ? $attribute['options'][0]['products'][0] : 0 ;
             }
     
             $AddcartProduct['selected_configurable_option'] = $product_variant_id;
@@ -134,6 +144,10 @@ final class Utils {
         }
         //var_dump($attributes);exit;
         //var_dump($product['product_id']);exit;
+        if($product_id==3692) {
+            //Log::info($product_id."--". json_encode($AddcartProduct));
+            //exit;
+        }
         $cart = Cart::addProduct($product['product_id'], $AddcartProduct);
         $cart = Cart::getCart();
         //清空购车动作

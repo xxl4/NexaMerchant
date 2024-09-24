@@ -27,6 +27,7 @@
                           <th>state</th>
                           <th>grand_total</th>
                           <th>comment</th>
+                          <th>is_refund_money</th>
                           <th>created_at</th>
                           <th>Options</th>
                         </tr>
@@ -93,7 +94,10 @@
           },
           {
             data: 'comment'
-          },
+          },{
+            data: 'is_refund_money'
+          }
+          ,
           {
             data: 'created_at'
           },{

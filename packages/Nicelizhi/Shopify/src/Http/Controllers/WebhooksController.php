@@ -18,6 +18,8 @@ use Webkul\Sales\Repositories\ShipmentRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Cache;
+use Carbon\Carbon;
 
 class WebhooksController extends Controller
 {
@@ -237,9 +239,14 @@ class WebhooksController extends Controller
 
     public function fulfillments_create(Request $request) {
         Log::info("fulfillments_create ".json_encode($request->all()));
-        $req = $request->all();
 
+        $req = $request->all();
         $shopify_order_id = $req['order_id'];
+
+        
+
+        Artisan::queue("shopify:fulfillments:create", ['--order_id'=>$shopify_order_id,'--data'=> $req])->onConnection('redis')->onQueue('shopify-fulfillments')->delay(Carbon::now()->addMinutes(60)); // add shopify fulfillments queue
+        return true;
 
         $shopifyNewOrder = $this->ShopifyOrder->where([
             'shopify_store_id' => $this->shopify_store_id,
@@ -251,12 +258,10 @@ class WebhooksController extends Controller
             return false;
         }
 
-
         $order = $this->orderRepository->findOrFail($shopifyNewOrder->order_id);
 
         if (!$order->canShip()) {
             Log::error("fulfillments_create cannot ship ".$shopify_order_id);
-            
             return false;
         }
 
@@ -269,17 +274,12 @@ class WebhooksController extends Controller
 
         $products = $order->items;
 
-        //var_dump($products);
 
         $line_items = [];
 
         foreach($products as $key=>$product) {
             $sku = $product['additional'];
-
-            //var_dump($sku);
-
             $skuInfo = explode('-', $sku['product_sku']);
-            //var_dump($skuInfo);
             if(!isset($skuInfo[1])) {
                 $this->error("have error");
                 return false;
@@ -299,16 +299,13 @@ class WebhooksController extends Controller
 
         //var_dump($line_items);exit;
 
-        // 获取已经发货的数据内容
+        
         $shipment_items = [];
         foreach($req['line_items'] as $key=>$line_item) {
-            //var_dump($line_item['variant_id'],$line_item['quantity'], $line_items[$line_item['variant_id']]);
             if(isset($line_items[$line_item['variant_id']])) {
                 if($line_items[$line_item['variant_id']]['quantity']==$line_item['quantity']) {
                     $shipment_item = [];
                     $shipment_items[$line_items[$line_item['variant_id']]['order_item_id']][1] = $line_item['quantity'];
-                    //array_push($shipment_items, $shipment_item);
-                    //$shipment_items[] = $shipment_item;
                 }
             }
         }
@@ -316,21 +313,15 @@ class WebhooksController extends Controller
         //var_dump($shipment_items);exit;
 
         $shipment['items'] = $shipment_items;
-        //var_dump($line_items, $shipment_items, $shipment);
 
         $data = [];
-        //$data['shipment']
         $data['shipment'] = $shipment;
 
-        //var_dump($data);exit;
 
         $response = $this->shipmentRepository->create(array_merge($data, [
             'order_id' => $shopifyNewOrder->order_id,
         ]));
         
-        
-        
-
     }
 
     public function fulfillments_update(Request $request) {
@@ -421,6 +412,9 @@ class WebhooksController extends Controller
         $product->images = $req['images'];
 
         $product->save();
+
+        Cache::pull("shopify_images_".$product_id); // delete the cache
+        Cache::pull("shopify_full_".$product_id); // delete the cache
 
         return true;
     }

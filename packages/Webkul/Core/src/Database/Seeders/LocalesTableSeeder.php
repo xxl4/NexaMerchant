@@ -57,7 +57,7 @@ class LocalesTableSeeder extends Seeder
             ], [
                 'id'        => 9,
                 'code'      => 'uk',
-                'name'      => 'Ukrainian',
+                'name'      => 'Britain',
                 'logo_path' => 'locales/uk.png',
             ],
         ]);

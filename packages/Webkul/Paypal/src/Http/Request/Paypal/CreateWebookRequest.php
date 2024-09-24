@@ -8,7 +8,7 @@ class CreateWebookRequest extends HttpRequest
 {
     public function __construct()
     {
-        parent::__construct("/v1/notifications/webhooks", "POST");
+        parent::__construct("/v2/notifications/webhooks", "POST");
         $this->headers["Content-Type"] = "application/json";
     }
 }

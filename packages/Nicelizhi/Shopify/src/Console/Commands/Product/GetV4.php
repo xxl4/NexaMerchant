@@ -553,7 +553,7 @@ class GetV4 extends Command
             \Nicelizhi\Shopify\Helpers\Utils::clearCache($id, $item['product_id']); // clear cache
 
             //send message to wecome
-            \Nicelizhi\Shopify\Helpers\Utils::send($item['product_id']. " sync done, please check it ");
+            \Nicelizhi\Shopify\Helpers\Utils::send(config("app.name").' '.$item['product_id']. " sync done, please check it ");
 
 
             sleep(1);

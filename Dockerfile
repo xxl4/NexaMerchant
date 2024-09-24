@@ -1,8 +1,8 @@
 # Description: Dockerfile for NexaMerchant
-FROM php:8.1-apache
+FROM php:8.1.29-apache
+
 
 RUN apt-get update && apt-get install -y \
-    git \
     unzip \
     libzip-dev \
     libicu-dev \
@@ -46,14 +46,12 @@ RUN apt-get update && apt-get install -y \
     libxpm-dev \
     libwebp-dev
 
-
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg --with-webp
-RUN docker-php-ext-install pdo_mysql mbstring zip exif pcntl bcmath gd intl opcache calendar
+RUN docker-php-ext-install pdo_mysql mbstring zip exif pcntl bcmath gd intl opcache calendar sodium
 
 
 RUN pecl install redis \
     && docker-php-ext-enable redis
-
 
 COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
 
@@ -70,14 +68,13 @@ COPY . ./
 
 RUN ls -la
 
-
 RUN a2dissite 000-default.conf
 COPY docker/.configs/apache.conf /etc/apache2/sites-available/vhost.conf
 RUN a2ensite vhost.conf
 
 
 # COPY composer.json composer.json
-RUN composer install --no-interaction --prefer-dist --optimize-autoloader
+RUN composer update --no-interaction --prefer-dist --optimize-autoloader
 
 
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*

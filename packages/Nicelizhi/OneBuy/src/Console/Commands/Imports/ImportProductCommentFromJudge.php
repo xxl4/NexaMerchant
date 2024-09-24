@@ -91,14 +91,14 @@ class ImportProductCommentFromJudge extends Command
         // //var_dump($body['count']);exit;
 
         // $count = $body['count'];
-        $count = 1000;
+        $count = 300;
         $pages = ceil($count / $this->num);
 
         $client = new Client();
 
         for($i=1; $i<=$pages; $i++) {
             $this->info($i." page start ");
-            echo $i."\r\n";
+            echo $this->prod_id.'--'.$i."\r\n";
             $this->GetFromComments($i, $client);
             //exit;
         }
@@ -145,7 +145,7 @@ class ImportProductCommentFromJudge extends Command
             if(!empty($this->prod_id)) {
                 if($item['product_external_id']!=$this->prod_id) continue;
             }
-            
+            var_dump($item);
             //if($item['reviewer']['name']=='Anonymous') continue;
             if($item['published']!=true) continue;
             //if($item['rating'] < 5) continue;
@@ -209,6 +209,7 @@ class ImportProductCommentFromJudge extends Command
                         if($item['published']==true) $data['status'] = "approved";
                         if($item['reviewer']['name']=='Anonymous') $data['status'] = "pending";
                         if($item['rating'] < 5) $data['status'] = "pending";
+                        $data['status'] = "pending"; // default 
 
                         if(!empty($this->prod_id)) {
                             if($item['product_external_id']== $this->prod_id ) {

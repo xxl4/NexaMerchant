@@ -6,6 +6,7 @@ use Illuminate\Container\Container;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Event;
 use Webkul\Core\Eloquent\Repository;
+use Illuminate\Support\Facades\Log;
 
 class RefundRepository extends Repository
 {
@@ -70,6 +71,7 @@ class RefundRepository extends Repository
                 'shipping_amount'        => core()->convertPrice($data['refund']['shipping'], $order->order_currency_code),
                 'base_shipping_amount'   => $data['refund']['shipping'],
                 'comment'                => $data['refund']['comment'], // add refund comments
+                'is_refund_money'      => isset($data['refund']['is_refund_money']) ? $data['refund']['is_refund_money'] : 1,
             ]);
 
             foreach ($data['refund']['items'] as $itemId => $qty) {
@@ -78,6 +80,11 @@ class RefundRepository extends Repository
                 }
 
                 $orderItem = $this->orderItemRepository->find($itemId);
+
+                if(is_null($orderItem)) {
+                    Log::error("order id ".$itemId." not found the items id");
+                    return false;
+                }
 
                 if ($qty > $orderItem->qty_to_refund) {
                     $qty = $orderItem->qty_to_refund;
@@ -228,6 +235,10 @@ class RefundRepository extends Repository
             }
 
             $orderItem = $this->orderItemRepository->find($orderItemId);
+            if(is_null($orderItem)) {
+                Log::error("order id ".$orderItemId." not found the items id");
+                return false;
+            }
 
             if ($qty > $orderItem->qty_to_refund) {
                 return false;

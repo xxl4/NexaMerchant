@@ -240,8 +240,8 @@ class GetV2 extends Command
             if(!empty($size)) $super_attributes['size'] = $size;
             
             $data['super_attributes'] = $super_attributes;
-
             //var_dump($data);exit;
+
             $method = "create";
 
             // check product info
@@ -355,7 +355,7 @@ class GetV2 extends Command
                 $newVariant['price'] = $newShopifyVarants[$newkey]['price'];
                 $newVariant['weight'] = 1000;
                 $newVariant['status'] = 1;
-                $newVariant['color'] = $variant['color'];
+                //$newVariant['color'] = $variant['color'];
                 $newVariant['size'] = $variant['size'];
                 $newVariant['inventories'][1] = 1000;
                 $categories[] = 5;
@@ -599,7 +599,7 @@ class GetV2 extends Command
             \Nicelizhi\Shopify\Helpers\Utils::clearCache($id, $item['product_id']); // clear cache
 
             //send message to wecome
-            \Nicelizhi\Shopify\Helpers\Utils::send($item['product_id']. " sync done, please check it ");
+            \Nicelizhi\Shopify\Helpers\Utils::send(config("app.name").' '.$item['product_id']. " sync done, please check it ");
 
 
             sleep(1);
