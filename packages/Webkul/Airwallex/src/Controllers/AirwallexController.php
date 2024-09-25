@@ -251,7 +251,7 @@ class AirwallexController extends Controller
                 $webhookhelp->payment_dispute_accepted($this->orderRepository, $this->refundRepository);
                 break;
             case 'payment_dispute.reversed': // Issuing bank has reversed the dispute event, you do not have to respond to the dispute event anymore.
-                $webhookhelp->payment_dispute_reversed();
+                $webhookhelp->payment_dispute_reversed($this->orderRepository, $this->refundRepository);
                 break;
             case 'payment_dispute.won': //You have won the chargeback / Pre-arbitration, no further action needed from your side.
                 $webhookhelp->payment_dispute_won();
