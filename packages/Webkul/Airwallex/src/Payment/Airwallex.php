@@ -268,6 +268,7 @@ class Airwallex extends Payment
         $data['merchant_customer_id'] = $customer->id.'_'.$orderId;
         $data['request_id'] = $customer->id.'_'.$orderId."_".time();
         $data['metadata']['id'] = $customer->id;
+        $data['metadata']['platform'] = "nexa-merchant";
 
         return $data;
 
@@ -400,6 +401,7 @@ class Airwallex extends Payment
         //$data['customer'] = $customer;
         $data['merchant_order_id'] = "orderid_".$orderId;
         $metadata['order_id'] = $orderId;
+        $metadata['platform'] = "nexa-merchant";
         $data['metadata'] = $metadata;
         $data['request_id'] = $orderId."_".time();
         $order = [];
