@@ -41,7 +41,7 @@ class Refund extends Base
     {
         $order = $refund->order;
 
-        Log::info("refund captureID". json_encode($refund));
+        //Log::info("refund captureID". json_encode($refund));
 
         if($refund->is_refund_money == "0") {
 
