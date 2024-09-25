@@ -165,7 +165,13 @@ class AirwallexController extends Controller
         } else if (isset($input['data']['object']['id'])) {
             // other webhook
 
-            Log::info("airwallex notification received for ".$input['name']." webhook id:" . $input['data']['object']['id']);
+            Log::info("airwallex notification received for  ".$input['name']." webhook id:" . $input['data']['object']['id']);
+
+            return response('OK', 200);
+        }else if(isset($input['data']['id'])) {
+            // other webhook
+
+            Log::info("airwallex notification received for data ".$input['name']." webhook id:" . $input['data']['id']);
 
             return response('OK', 200);
         }else {
