@@ -18,6 +18,7 @@ use Nicelizhi\Shopify\Models\ShopifyStore;
 use Nicelizhi\Shopify\Models\ShopifyCustomer;
 use Illuminate\Support\Facades\Artisan;
 use GuzzleHttp\Exception\ClientException;
+use Illuminate\Support\Facades\Redis;
 
 
 class Post extends Command
