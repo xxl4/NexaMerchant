@@ -71,7 +71,17 @@ class AirwallexController extends Controller
     {
         Log::info(json_encode($request->all())); // log body
         $input = $request->all();
+        // order webhook
         if (isset($input['data']['object']['merchant_order_id'])) {
+
+            // get order platform from metadata
+            $platform = isset($input['data']['object']['metadata']['platform']) ? $input['data']['object']['metadata']['platform'] : null;
+
+            if ($platform == 'shopify') {
+                return response('OK', 200);
+            }
+
+
             $orderId = $input['data']['object']['merchant_order_id'];
 
             $transactionId = str_replace("orderid_", "", $orderId);
@@ -152,7 +162,13 @@ class AirwallexController extends Controller
             } else {
                 return response('Order not found', 400);
             }
-        } else {
+        } else if (isset($input['data']['object']['id'])) {
+            // other webhook
+
+            Log::info("airwallex notification received for ".$input['name']." webhook id:" . $input['data']['object']['id']);
+
+            return response('OK', 200);
+        }else {
             return response('Invalid notification', 400);
         }
     }
