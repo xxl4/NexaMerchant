@@ -77,7 +77,7 @@ class AirwallexController extends Controller
             // get order platform from metadata
             $platform = isset($input['data']['object']['metadata']['platform']) ? $input['data']['object']['metadata']['platform'] : null;
 
-            if ($platform == 'shopify') {
+            if ($platform == 'SHOPIFY') {
                 return response('OK', 200);
             }
 
