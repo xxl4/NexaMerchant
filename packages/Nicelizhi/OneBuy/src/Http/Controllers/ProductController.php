@@ -1383,6 +1383,7 @@ class ProductController extends Controller
         $crm_channel = config('onebuy.crm_channel');
         $refer = $request->session()->get('refer');
         $gtag = config('onebuy.gtag');
+        $gtm = config('onebuy.gtm');
 
         $quora_adv_id = config('onebuy.quora_adv_id');
 
@@ -1428,6 +1429,7 @@ class ProductController extends Controller
             "crm_channel",
             "refer",
             "gtag",
+            'gtm',
             "quora_adv_id",
             "countries",
             "default_country",
@@ -1457,6 +1459,7 @@ class ProductController extends Controller
         $crm_channel = config('onebuy.crm_channel');
         $refer = $request->session()->get('refer');
         $gtag = config('onebuy.gtag');
+        $gtm = config('onebuy.gtm');
 
         $quora_adv_id = config('onebuy.quora_adv_id');
 
@@ -1473,6 +1476,7 @@ class ProductController extends Controller
             "crm_channel",
             "refer",
             "gtag",
+            'gtm',
             "quora_adv_id",
             "countries",
             "default_country",
@@ -1497,6 +1501,7 @@ class ProductController extends Controller
         $crm_channel = config('onebuy.crm_channel');
         $refer = $request->session()->get('refer');
         $gtag = config('onebuy.gtag');
+        $gtm = config('onebuy.gtm');
 
         $quora_adv_id = config('onebuy.quora_adv_id');
 
@@ -1512,6 +1517,7 @@ class ProductController extends Controller
             "crm_channel",
             "refer",
             "gtag",
+            'gtm',
             "quora_adv_id",
             "countries",
             "default_country",

@@ -30,7 +30,7 @@
       j.src =
         'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
       f.parentNode.insertBefore(j, f);
-    })(window, document, 'script', 'dataLayer', 'GTM-W6QBK3Q9');
+    })(window, document, 'script', 'dataLayer', '<?php echo $gtm;?>');
   </script>
   <!-- End Google Tag Manager -->
 
