@@ -78,7 +78,7 @@ class AirwallexController extends Controller
             $platform = isset($input['data']['object']['metadata']['platform']) ? $input['data']['object']['metadata']['platform'] : null;
 
             if ($platform == 'SHOPIFY') {
-                return response('OK', 200);
+                return response('shopify', 200);
             }
 
 
@@ -160,7 +160,10 @@ class AirwallexController extends Controller
                 
                 return response('OK', 200);
             } else {
-                return response('Order not found', 400);
+
+                Log::info("airwallex notification received for object ".$input['name']." webhook id:" . $input['data']['object']['id']);
+
+                return response('Order not found', 200);
             }
         } else if (isset($input['data']['object']['id'])) {
             // other webhook
