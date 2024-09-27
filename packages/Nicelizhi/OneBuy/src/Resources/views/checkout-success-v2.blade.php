@@ -929,11 +929,7 @@
   </script>
   <script>
     $(function() {
-      console.log(<?php echo json_encode($line_items); ?>, '$line_items');
-      console.log('<?php echo json_encode($products); ?>', 'products');
-      console.log(<?php echo $order; ?>, '$order');
-      console.log('<?php echo $order->shipping_address; ?>', '$$order->shipping_address');
-      console.log('<?php echo $order->billing_address; ?>', '$$order->billing_address');
+   
     })
 
     function getRecommended(path) {
