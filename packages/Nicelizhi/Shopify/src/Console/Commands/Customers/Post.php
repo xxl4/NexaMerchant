@@ -93,13 +93,19 @@ class Post extends Command
                 continue;
             }
 
-            $this->postCustomer($item->id,$item->customer_email, $shopify);
 
+            try {
 
+                $this->postCustomer($item->id,$item->customer_email, $shopify);
+
+                Redis::set("shopify_customer_".$item->customer_email, 1, 3600*24);
+
+            }catch(\Exception $e) {
+                var_dump($e->getMessage());
+                Log::error(json_encode($e->getMessage()));
+                Log::error(json_encode($item));
+            }
             //mark the email is have into redis
-
-            Redis::set("shopify_customer_".$item->customer_email, 1, 3600*24);
-
             //var_dump($item);exit;
         }
 
