@@ -101,6 +101,7 @@ class ProductController extends Controller
         $options = $item->options;
         $LocalOptions = \Nicelizhi\Shopify\Helpers\Utils::createOptions($options);
 
+
         $version = $LocalOptions['version'];
 
         Cache::put("onebuy_".$product_id, $version);
@@ -132,7 +133,7 @@ class ProductController extends Controller
 
     public function checkoutUrlGet($product_id) {
 
-          $product = $this->productRepository->findBySlug($product_id);
+        $product = $this->productRepository->findBySlug($product_id);
         
         $version = Cache::get("onebuy_".$product_id);
         if(empty($version)) {
