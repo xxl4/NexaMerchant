@@ -33,3 +33,5 @@ yarn-error.log
 /app/Providers/AppServiceProvider.php
 /storage/installed
 packages/Apps/
+*.log
+*.log.*
