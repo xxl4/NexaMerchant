@@ -10,6 +10,7 @@ return [
     'ob_adv_id' => env('OB_ADV_ID'),
     'quora_adv_id' => env('QUORA_ID'),
     'crm_channel' => env('CRM_CHANNEL'),
+    'crm_url' => env('CRM_URL',''),
     'paypal_rt' => env('ONEBUY_PAYPAL_RT'),
     'airwallex' => [
             'method' => [
