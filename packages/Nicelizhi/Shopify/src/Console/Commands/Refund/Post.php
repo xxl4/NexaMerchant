@@ -248,7 +248,9 @@ class Post extends Command
         //var_dump($response);
         //exit;
 
-        $url = "https://crm.heomai.com/api/order/refund?token=".$cnv_id[1]."&refund_amount=".$refundOrder->grand_total."&currency_code=".$refundOrder->order_currency_code."&channel_id=".$crm_channel."&q_ty=".$q_ty."&refund_id=".$refundOrder->id."&order_id=".$refundOrder->order_id;
+        $crm_url = config('onebuy.crm_url');
+
+        $url = $crm_url."/api/order/refund?token=".$cnv_id[1]."&refund_amount=".$refundOrder->grand_total."&currency_code=".$refundOrder->order_currency_code."&channel_id=".$crm_channel."&q_ty=".$q_ty."&refund_id=".$refundOrder->id."&order_id=".$refundOrder->order_id;
         echo $url."\r\n";
         $res = $this->get_content($url);
 

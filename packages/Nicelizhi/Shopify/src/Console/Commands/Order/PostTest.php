@@ -380,6 +380,8 @@ class PostTest extends Command
         var_dump($pOrder);
 
         $app_env = config("app.env");
+
+        $crm_url = config('onebuy.crm_url');
         if($app_env=='demo') {
 
             $cnv_id = explode('-',$orderPayment['method_title']);
@@ -388,7 +390,7 @@ class PostTest extends Command
             $crm_channel = config('onebuy.crm_channel');
 
             
-            $url = "https://crm.heomai.com/api/offers/callBack?refer=".$cnv_id[1]."&revenue=".$order->grand_total."&currency_code=".$order->order_currency_code."&channel_id=".$crm_channel."&q_ty=".$q_ty."&email=".$shipping_address->email;
+            $url = $crm_url."/api/offers/callBack?refer=".$cnv_id[1]."&revenue=".$order->grand_total."&currency_code=".$order->order_currency_code."&channel_id=".$crm_channel."&q_ty=".$q_ty."&email=".$shipping_address->email;
             $res = $this->get_content($url);
             Log::info("post to bm 2 url ".$url." res ".json_encode($res));
             return true;
@@ -529,7 +531,7 @@ class PostTest extends Command
             $crm_channel = config('onebuy.crm_channel');
 
             
-            $url = "https://crm.heomai.com/api/offers/callBack?refer=".$cnv_id[1]."&revenue=".$order->grand_total."&currency_code=".$order->order_currency_code."&channel_id=".$crm_channel."&q_ty=".$q_ty."&email=".$item['email'];
+            $url = $crm_url."/api/offers/callBack?refer=".$cnv_id[1]."&revenue=".$order->grand_total."&currency_code=".$order->order_currency_code."&channel_id=".$crm_channel."&q_ty=".$q_ty."&email=".$item['email'];
             $res = $this->get_content($url);
             Log::info("post to bm 2 url ".$url." res ".json_encode($res));
 
