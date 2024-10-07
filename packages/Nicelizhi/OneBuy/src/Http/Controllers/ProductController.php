@@ -582,7 +582,8 @@ class ProductController extends Controller
                     //Step 1: Create a Customer
                     $airwallex_customer = $this->airwallex->createCustomer($cart, $order->id);
                     if(!isset($airwallex_customer->id)) {
-                        return response()->json(['error' => $airwallex_customer->body->message,'code'=>'203'], 400);
+                        Log::info("airwallex-".$order->id."--".json_encode($airwallex_customer));
+                        return response()->json(['error' => 'create customer error','code'=>'203'], 400);
                     }
                     $cus_id = $airwallex_customer->id;
                 }else{
