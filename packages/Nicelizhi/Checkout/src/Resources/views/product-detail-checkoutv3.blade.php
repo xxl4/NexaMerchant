@@ -21,7 +21,7 @@
   <meta property="og:image" content="/offer/1/app/desktop/images/thumb.png" />
   <meta name="color-scheme" content="light only" />
   <link rel="stylesheet" href="/checkout/v2/css/v3.css?v=2">
-  <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/checkout.css?v=11" />
+  <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/checkout.css?v=12" />
   <link rel="prefetch" href="/checkout/v2/images/favicon_de.webp">
   <link rel="prefetch" href="/checkout/v2/images/favicon.webp">
   <link rel="prefetch" href="/checkout/v2/images/googlePay.webp">
