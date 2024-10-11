@@ -47,6 +47,7 @@ Route::group(['middleware' => ['api'], 'prefix' => 'shopify'], function () {
         Route::controller(ApiController::class)->prefix('api')->group(function () {
             Route::get('images/{product_id}', 'shopifyImages')->name('shopify.api.v1.shopify.images');
             Route::get('full/{product_id}', 'ShopifyFull')->name('shopify.api.v1.shopify.full');
+            Route::get('products/feeds', 'feeds')->name('shopify.api.v1.shopify.feeds');
             
         });
 

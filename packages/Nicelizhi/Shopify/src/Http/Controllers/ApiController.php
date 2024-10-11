@@ -25,6 +25,8 @@ use Webkul\CMS\Repositories\CmsRepository;
 use Webkul\CartRule\Repositories\CartRuleCouponRepository;
 use Illuminate\Http\Response;
 use Webkul\CartRule\Repositories\CartRuleRepository;
+use Nicelizhi\Shopify\Http\Responses\XmlResponse;
+
 
 
 class ApiController extends Controller
@@ -42,7 +44,7 @@ class ApiController extends Controller
     public function __construct(
     )
     {
-        
+        //XmlResponse::macro();
     }
 
     /**
@@ -107,6 +109,26 @@ class ApiController extends Controller
 
         return response()->json([
             'data' => $shopifyProduct,
+            'code' => 200,
+            'message' => 'success'
+        ], 200);
+    }
+
+    // generate the shopify product feeds
+    public function feeds() {
+        $shopifyProducts = \Nicelizhi\Shopify\Models\ShopifyProduct::where("status","active")->select(['product_id',"title","handle","variants","images"])->get()->toArray();;
+        $products = [];
+
+        foreach($shopifyProducts as $product) {
+            $product['url'] = "https://www.hatmeo.com/products/".$product['handle'];
+            $products[] = $product;
+        }
+        
+
+        //return response()->xml($shopifyProducts, $httpCode, $headers, $rootXmlTag);
+        
+        return response()->json([
+            'data' => $products,
             'code' => 200,
             'message' => 'success'
         ], 200);
