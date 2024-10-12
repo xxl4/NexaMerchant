@@ -218,6 +218,19 @@
       line-height: 26px;
       font-weight: 800;
       border-radius: 8px;
+      background: #f50505fa;
+      letter-spacing: .8px;
+      animation: 2s infinite bounce, 3s infinite shadow-pulse;
+      outline: 0;
+      text-decoration: none;
+      height: auto;
+    }
+
+    #comn-btn3 {
+      font-size: 18px;
+      line-height: 26px;
+      font-weight: 800;
+      border-radius: 8px;
       background: #1773b0;
       letter-spacing: .8px;
       animation: 2s infinite bounce, 3s infinite shadow-pulse;
@@ -1097,8 +1110,9 @@
   </div>
   <div class="clearall"></div>
   <div class="btn-fixed">
-    <div class="btn-bx" id="btn-bx">
+    <div class="btn-bx" id="btn-bx" style="display: flex; gap: 10px;">
       <a href="#product2" class="comn-btn" id="comn-btn1">@lang('checkout::app.v3.Buy Now')</a>
+      <a href="#shopify-title-item2" class="comn-btn" id="comn-btn3">@lang('checkout::app.v3.Buy Now')</a>
     </div>
   </div>
   <div class="icon-container" onclick="iconToggle()">
@@ -1517,7 +1531,7 @@
     }
   </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/5.0.4/js/swiper.js"></script>
-  <script src="/checkout/v3/js/main.js?v=13"></script>
+  <script src="/checkout/v3/js/main.js?v=15"></script>
   <script>
     $(function() {
       if (countries1 == 'fr' || countries1 == 'es') {
@@ -3506,6 +3520,7 @@
     }, 5000);
 
     function heightChange() {
+      console.log(222);
       var width = $(window).innerWidth()
       $('body').css('height', height)
       if (width > 767) {
@@ -3531,7 +3546,7 @@
     $(document).on('click', '.go-rew', async function(evt) {
       if (evt.which) {
         $('html,body').animate({
-            scrollTop: $('#shopify-title-item1').offset().top,
+            scrollTop: $('#shopify-title-item2').offset().top,
           },
           '2000'
         )
