@@ -331,7 +331,7 @@
         <img src="/checkout/v2/images/logo_<?php echo strtolower($default_country); ?>.webp" width="100" height="50" alt="" />
         <div class="top-left-button">
           <!-- <p class="header-text-hide">@lang('checkout::app.v3.Description')</p> -->
-          <a class="header-text-hide" onclick="reviewToggle()" id="header-text" href="#shopify-title-item1">@lang('checkout::app.v3.Reviews')</a>
+          <a class="header-text-hide" id="header-text" href="#shopify-title-item2">@lang('checkout::app.v3.Reviews')</a>
           <div class="top-left-button-box">
             <a style="color: #fff;" href="#pkg-hdng1">@lang('checkout::app.v3.Buy Now')</a>
           </div>
@@ -381,7 +381,7 @@
       </div>
       <div class="right-sec">
         <p class="prod-name hide-mob"></p>
-        <p class="str-rvw hide-mob go-rew" onclick="reviewToggle()"><svg width="98px" height="16px" viewBox="0 0 512 96" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <p class="str-rvw hide-mob go-rew"><svg width="98px" height="16px" viewBox="0 0 512 96" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
             <g id="Trustpilot_ratings_5star-RGB" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
               <g fill-rule="nonzero">
                 <rect id="Rectangle-path" fill="#00B67A" x="0" y="0" width="96" height="96"></rect>
@@ -473,20 +473,20 @@
         </div>
 
         <div class="shopify-title fl">
-          <div class="shopify-title-item bor-bom-3" id="shopify-title-item1">
+          <div class="shopify-title-item bor-bom-3" id="shopify-title-item1" style="width: 100%;">
             <p style="margin-left: 5px;">@lang('checkout::app.v3.Description')</p>
           </div>
-          <div class="shopify-title-item" id="shopify-title-item2">
-            <p class="container_title" onclick="reviewToggle()">
+          <!-- <div class="shopify-title-item" id="shopify-title-item2"> -->
+          <!-- <p class="container_title" onclick="reviewToggle()">
               @lang('onebuy::app.product.order.What customers are saying about')
-            </p>
-          </div>
+            </p> -->
+          <!-- </div> -->
         </div>
         <div class="shopify-container fl"></div>
         <div id="iduzu" class="section" style="width: 100%;float: right;margin-bottom:10px; display: flex;">
         </div>
         <!-- review -->
-        <div class="section" id="reviews-box" style="width: 100%;float: right; display:none">
+        <!-- <div class="section" id="reviews-box" style="width: 100%;float: right; display:none">
           <div class="reviews-content"></div>
           <div class="pagination" style="display: none;">
             <button id="prev-page">@lang('checkout::app.v3.Prev')</button>
@@ -496,7 +496,7 @@
             <button id="jump-page">@lang('checkout::app.v3.Jump')</button>
           </div>
 
-        </div>
+        </div> -->
         <p class="pkg-hdng" id="pkg-hdng1" style="border-top: 1px solid #ccc; padding-top: 10px">
           <span class="pkg-step">
             @lang('checkout::app.v2.Step')1:
@@ -1055,6 +1055,23 @@
               <?php } ?>
             </div>
           </div>
+        </div>
+        <!-- review -->
+        <div class="shopify-title-item bor-bom-3" id="shopify-title-item2" style="width: 100%; margin-bottom:5px">
+          <p class="container_title">
+            @lang('onebuy::app.product.order.What customers are saying about')
+          </p>
+        </div>
+        <div class="section" id="reviews-box" style="width: 100%;float: right; ">
+          <div class="reviews-content"></div>
+          <div class="pagination" style="display: none;">
+            <button id="prev-page">@lang('checkout::app.v3.Prev')</button>
+            <span id="page-info"></span>
+            <button id="next-page">@lang('checkout::app.v3.Next')</button>
+            <input type="number" id="page-input" min="1" value="1">
+            <button id="jump-page">@lang('checkout::app.v3.Jump')</button>
+          </div>
+
         </div>
       </div>
     </div>
