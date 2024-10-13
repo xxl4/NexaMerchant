@@ -1093,7 +1093,7 @@
   <div class="btn-fixed">
     <div class="btn-bx" id="btn-bx" style="display: flex; gap: 10px;">
       <a href="#product2" class="comn-btn" id="comn-btn1">@lang('checkout::app.v3.Buy Now')</a>
-      <a href="#shopify-title-item2" class="comn-btn" id="comn-btn3">@lang('checkout::app.v3.Buy Now')</a>
+      <a href="#shopify-title-item2" class="comn-btn" id="comn-btn3">@lang('checkout::app.v3.Reviews')</a>
     </div>
   </div>
   <div class="icon-container" onclick="iconToggle()">
