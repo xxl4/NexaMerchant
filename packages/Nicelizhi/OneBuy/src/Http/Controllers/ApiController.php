@@ -25,6 +25,7 @@ use Webkul\CMS\Repositories\CmsRepository;
 use Webkul\CartRule\Repositories\CartRuleCouponRepository;
 use Illuminate\Http\Response;
 use Webkul\CartRule\Repositories\CartRuleRepository;
+use \Webkul\Checkout\Repositories\CartRepository;
 
 
 class ApiController extends Controller
@@ -43,6 +44,7 @@ class ApiController extends Controller
      */
     public function __construct(
         protected SmartButton $smartButton,
+        protected CartRepository $cartRepository,
         protected CategoryRepository $categoryRepository,
         protected ProductRepository $productRepository,
         protected ProductAttributeValueRepository $productAttributeValueRepository,
@@ -64,6 +66,11 @@ class ApiController extends Controller
         $data = Cache::get($this->checkout_v2_cache_key.$slug);
         $env = config("app.env");
         // when the env is pord use cache
+
+        $paypal_id_token = $this->smartButton->getIDAccessToken();
+        $paypal_access_token = $paypal_id_token->result->access_token;
+        $paypal_id_token = $paypal_id_token->result->id_token;
+
         if(empty($data)) {
         //if(true) {
             $product = $this->productRepository->findBySlug($slug);
@@ -172,11 +179,23 @@ class ApiController extends Controller
 
             Cache::put($this->checkout_v2_cache_key.$slug, json_encode($data));
 
+            $data['paypal_id_token'] = $paypal_id_token;
+            $data['paypal_access_token'] = $paypal_access_token;
+
             return response()->json($data);
 
         }
 
-        return response()->json(json_decode($data));
+        
+        //json decode to array
+
+        $data = json_decode($data);
+        $data = (array)$data;
+        $data['paypal_id_token'] = $paypal_id_token;
+        $data['paypal_access_token'] = $paypal_access_token;
+        
+
+        return response()->json($data);
     }
 
     /**
@@ -188,6 +207,8 @@ class ApiController extends Controller
         //var_dump($request->all());
 
         $payment_method = $request->input('payment_method');
+
+        $payment_method_input = $request->input('payment_method');
 
         $input = $request->all();
 
@@ -302,10 +323,11 @@ class ApiController extends Controller
             || ! Cart::saveCustomerAddress($addressData)
         ) {
             return new JsonResource([
-                'redirect' => true,
-                'data'     => route('shop.checkout.cart.index'),
+                'redirect' => false,
+                'data'     => Cart::getCart(),
             ]);
         }
+
 
 
         //处理配送方式
@@ -325,8 +347,12 @@ class ApiController extends Controller
 
         Cart::collectTotals();
 
-        if($payment_method=="airwallex_klarna") $payment_method = "airwallex";
-        if($payment_method=="airwallex_dropin") $payment_method = "airwallex";
+
+        if($payment_method_input=="airwallex_klarna") $payment_method = "airwallex";
+        if($payment_method_input=="airwallex_dropin") $payment_method = "airwallex";
+        if($payment_method_input=="airwallex_google") $payment_method = "airwallex";
+        if($payment_method_input=="airwallex_apple") $payment_method = "airwallex";
+        if($payment_method_input=="airwallex") $payment_method = "airwallex";
 
         $couponCode = $input['coupon_code'];
         try {
@@ -351,13 +377,6 @@ class ApiController extends Controller
                     Cart::setCouponCode($couponCode);
                     //$this->validateOrder();
                     Cart::collectTotals();
-
-                    // if (Cart::getCart()->coupon_code != $couponCode) {
-                    //     return new JsonResource([
-                    //         'data'     => new CartResource(Cart::getCart()),
-                    //         'message'  => trans('shop::app.checkout.cart.coupon.success-apply'),
-                    //     ]);
-                    // }
                 }
             }
         } catch (\Exception $e) {
@@ -392,6 +411,14 @@ class ApiController extends Controller
             Cart::collectTotals();
             $this->validateOrder();
             $cart = Cart::getCart();
+
+            // when enable the upselling and can config the upselling rule for carts
+            if(config("Upselling.enable")) {
+               
+                $upselling = app('NexaMerchant\Upselling\Upselling');
+                $upselling->applyUpselling($cart);
+            }
+
             $order = $this->orderRepository->create(Cart::prepareDataForOrder());
             // Cart::deActivateCart();
             // Cart::activateCartIfSessionHasDeactivatedCartId();
@@ -400,11 +427,35 @@ class ApiController extends Controller
             $data['order'] = $order;
             if ($order) {
                 $orderId = $order->id;
+
+                //customer id
+                $cus_id = isset($input['cus_id']) ? trim($input['cus_id']) : null;
+
+                $airwallex_customer = [];
+                if(is_null($cus_id)) {
+                    //Step 1: Create a Customer
+                    $airwallex_customer = $this->airwallex->createCustomer($cart, $order->id);
+                    $cus_id = $airwallex_customer->id;
+                }else{
+                    $airwallex_customer['id'] = $cus_id;
+                }
+
+                //create a airwallex payment order
+                $transactionManager = $this->airwallex->createPaymentOrder($cart, $order->id, $cus_id);
+                //Step 2: Generate a client secret for the Customer
+                $customerClientSecret = $this->airwallex->createCustomerClientSecret($cus_id);
+                if(!isset($transactionManager->client_secret)) {
+                    response()->json(['error' => $transactionManager->body->message,'code'=>'203'], 400);
+                }
+
                 $transactionManager = $this->airwallex->createPaymentOrder($cart, $order->id);
                 Log::info("airwallex-".$order->id."--".json_encode($transactionManager));
                 $data['client_secret'] = $transactionManager->client_secret;
                 $data['payment_intent_id'] = $transactionManager->id;
                 $data['currency'] = $transactionManager->currency;
+                $data['transaction'] = $transactionManager;
+                $data['customer'] = $airwallex_customer;
+                $data['customer_client_secret'] = $customerClientSecret;
                 $data['country'] = $input['country'];
                 $data['billing'] = $addressData['billing'];
             }
@@ -630,7 +681,9 @@ class ApiController extends Controller
             $data['order'] = $order;
             $data['code'] = 200;
             $data['result'] = 200;
-            return response()->json($order);
+            $data['cart'] = Cart::getCart();
+            return response()->json($data);
+            //return response()->json($order);
         } catch (\Exception $e) {
             return response()->json(json_decode($e->getMessage()), 400);
         }
@@ -687,6 +740,16 @@ class ApiController extends Controller
 
         try {
             $order = $this->smartButton->getOrder(request()->input('orderData.orderID'));
+
+            $cartId = $request->input('orderData.cartId');
+
+            if(!empty($cartId)) {
+                
+                $cart = $this->cartRepository->find($cartId);
+                Cart::setCart($cart);
+                
+            }
+
             // return response()->json($order);
             
 
@@ -732,7 +795,7 @@ class ApiController extends Controller
 
             $addressData['shipping']['address1'] = implode(PHP_EOL, $addressData['shipping']['address1']);
 
-            //Log::info("address data-".$refer.'--'.json_encode($addressData));
+            Log::info("address data---".json_encode($addressData));
 
             if (
                 Cart::hasError()
@@ -740,15 +803,25 @@ class ApiController extends Controller
             ) {
                 return new JsonResource([
                     'redirect' => true,
-                    'data'     => route('shop.checkout.cart.index'),
+                    'data'     => Cart::getCart(),
                 ]);
             }
 
             $this->smartButton->captureOrder(request()->input('orderData.orderID'));
 
-            $request->session()->put('last_order_id', request()->input('orderData.orderID'));
+            $orderRes = $this->saveOrder();
 
-            return $this->saveOrder();
+            // get order transaction info
+            $order = $this->orderRepository->find($orderRes->id);
+
+            $data = [];
+            $data['order'] = $order;
+            $data['code'] = 200;
+            $data['result'] = 200;
+            $data['order_id'] = $orderRes->id;
+
+            return response()->json($data);
+
         } catch (\Exception $e) {
             Log::info("paypal pay exception". json_encode($e->getMessage()));
             return response()->json($e->getMessage());
@@ -823,7 +896,9 @@ class ApiController extends Controller
 
             Cart::deActivateCart();
 
-            session()->flash('order', $order);
+            return $order;
+
+            //session()->flash('order', $order);
 
             return response()->json([
                 'success' => true,
@@ -936,6 +1011,39 @@ class ApiController extends Controller
                 ],
             ]);
             */
+        }
+
+        $input['payment_vault'] = isset($input['payment_vault']) ? $input['payment_vault'] : "0";
+        $paypal_vault_id = isset($input['paypal_vault_id']) ? $input['paypal_vault_id'] : "";
+        if($input['payment_vault']=='1') {
+             // for vault
+                if(empty($paypal_vault_id)) {
+                    $data["payment_source"] = [
+                        "paypal" => [
+                            "attributes" => [
+                                "vault" => [
+                                    "store_in_vault" => "ON_SUCCESS",
+                                    "usage_type" => "MERCHANT",
+                                    "customer_type" => "CONSUMER"
+                                ]
+                            ],
+                            "experience_context" => [
+                                "return_url" => $input['payment_return_url'],
+                                'cancel_url' => $input['payment_cancel_url'],
+                            ]
+                        ]
+                    ];
+                }else{
+                    $data["payment_source"] = [
+                        "paypal" => [
+                            "vault_id" => $paypal_vault_id,
+                            "experience_context" => [
+                                "return_url" => $input['payment_return_url'],
+                                'cancel_url' => $input['payment_cancel_url'],
+                            ]
+                        ]
+                    ];
+                }             
         }
 
         return $data;
