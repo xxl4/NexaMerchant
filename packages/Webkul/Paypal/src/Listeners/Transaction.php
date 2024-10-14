@@ -40,8 +40,10 @@ class Transaction
 
 
                 // save transaction vault
+                $paypal_vault = [];
                 if(isset($transactionDetails['result']['payment_source']['paypal']['attributes']['vault'])) {
                     session()->put('paypal_vault', $transactionDetails['result']['payment_source']['paypal']['attributes']['vault']);
+                    $paypal_vault = $transactionDetails['result']['payment_source']['paypal']['attributes']['vault'];
                 }
 
 
@@ -58,7 +60,8 @@ class Transaction
                         'data'           => json_encode(
                             array_merge(
                                 $transactionDetails['result']['purchase_units'],
-                                $transactionDetails['result']['payer']
+                                $transactionDetails['result']['payer'],
+                                $paypal_vault
                             )
                         ),
                     ]);
