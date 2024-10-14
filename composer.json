@@ -55,7 +55,7 @@
         "barryvdh/laravel-dompdf": "^2.0.0",
         "cviebrock/laravel-elasticsearch": "^10.0",
         "diglactic/laravel-breadcrumbs": "^8.0",
-        "doctrine/dbal": "^3.0",
+        "doctrine/dbal": "^4.2",
         "dompdf/dompdf": "2.0.8",
         "enshrined/svg-sanitize": "^0.18.0",
         "guzzlehttp/guzzle": "^7.0.1",
