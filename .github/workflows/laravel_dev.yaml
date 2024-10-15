@@ -15,6 +15,13 @@ on:
       - .github/**
       - docs/**
       - 'Dockerfile'
+  delete:
+    branches: ['develop', 'package_admin_dev']
+    paths-ignore:
+      - 'README.md'
+      - .github/**
+      - docs/**
+      - 'Dockerfile'
 
 jobs:
   laravel-tests:
