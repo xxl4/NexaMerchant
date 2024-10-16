@@ -170,6 +170,10 @@ class GetV4 extends Command
      * 
      */
     public function syncProductToLocal($shopify_pro_id) {
+
+        $option1 = "color";
+        $option2 = "size";
+
         $items = \Nicelizhi\Shopify\Models\ShopifyProduct::where("shopify_store_id", $this->shopify_store_id)->where("product_id", $shopify_pro_id)->get();
         foreach($items as $key=>$item) {
             $this->info($item['product_id']);
@@ -197,6 +201,8 @@ class GetV4 extends Command
             $error = 0;
             $LocalOptions = [];
             $LocalOptions = \Nicelizhi\Shopify\Helpers\Utils::createOptions($options);
+
+           //var_dump($LocalOptions, $options);exit;
 
             $color = $LocalOptions['color'];
             $size = $LocalOptions['size'];
@@ -254,9 +260,6 @@ class GetV4 extends Command
             $variants = $variantCollection = $product->variants()->get()->toArray();
 
             //exit;
-            
-            //var_dump($product);exit;
-
             $updateData = [];
             $updateData['product_number'] = "";
             $updateData['name'] = $item['title'];
@@ -282,19 +285,25 @@ class GetV4 extends Command
 
             $variants = $variantCollection = $product->variants()->get()->toArray();
 
-            //var_dump(count($shopifyVariants));exit;
-
             $newShopifyVarants = [];
             $compare_at_price = '0.00';
             foreach($shopifyVariants as $sv => $shopifyVariant) {
                 //var_dump($shopifyVariant);
                 $newkey = $shopifyVariant['product_id'];
                 $color = AttributeOption::where("attribute_id", 23)->where("admin_name", $shopifyVariant['option1'])->first();
+                if(is_null($color)) {
+                    $option1 = "size";
+                    $color = AttributeOption::where("attribute_id", 23)->where("admin_name", $shopifyVariant['option2'])->first();
+                }
                 $size = AttributeOption::where("attribute_id", 24)->where("admin_name", $shopifyVariant['option2'])->first();
+                if(is_null($size)) {
+                    $option1 = "color";
+                    $size = AttributeOption::where("attribute_id", 24)->where("admin_name", $shopifyVariant['option1'])->first();
+                }
 
                 if(is_null($color) || is_null($size)) {
                     $this->info("error");
-                    var_dump($color, $size, $shopifyVariant);
+                    var_dump($color, $size, $shopifyVariant['option1'],$shopifyVariant['option2'], $shopifyVariant);
                     exit;
                 }
 
@@ -307,8 +316,8 @@ class GetV4 extends Command
                 $newShopifyVarant['title'] = $shopifyVariant['title'];
                 $newShopifyVarant['weight'] = $shopifyVariant['weight'];
                 $newShopifyVarant['sku'] = $shopifyVariant['sku'];
-                $newShopifyVarant['option1'] = $shopifyVariant['option1'];
-                $newShopifyVarant['option2'] = $shopifyVariant['option2'];
+                $newShopifyVarant['option1'] = $option1=="color" ?  $shopifyVariant['option1'] : $shopifyVariant['option2'];
+                $newShopifyVarant['option2'] = $option2=="size" ? $shopifyVariant['option2'] : $shopifyVariant['option1'];
                 $newShopifyVarant['image_src'] = $images_map[$shopifyVariant['image_id']];
                 $newShopifyVarants[$newkey] = $newShopifyVarant;
                 $compare_at_price = $shopifyVariant['compare_at_price'];
