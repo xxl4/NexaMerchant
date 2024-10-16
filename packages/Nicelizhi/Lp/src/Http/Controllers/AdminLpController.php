@@ -142,6 +142,7 @@ class AdminLpController extends Controller
         $model = \Nicelizhi\Lp\Models\Lp::where('id', $id)->first();
 
         $newModel = $model->replicate();
+
         $newModel->name = $model->name.'-'.time().'-copy';
         $newModel->slug = $model->slug.'-'.time().'-copy';
         $newModel->save();
