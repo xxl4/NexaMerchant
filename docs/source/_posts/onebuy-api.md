@@ -1306,6 +1306,8 @@ POST api/onebuy/order/add/sync?currency=EUR
 ## Input Params
 ```
 {
+  "refer": "default",
+  "return_insurance": 1,
   "first_name": "Anna",
   "second_name": "Freitag",
   "email": "customer@email.de",
@@ -1415,6 +1417,8 @@ POST api/onebuy/order/addr/after?currency=EUR
 ## Input Params
 ```
 {
+  "refer": "default",
+  "return_insurance": 1,
   "first_name": "Anna",
   "second_name": "Freitag",
   "email": "customer@email.de",
