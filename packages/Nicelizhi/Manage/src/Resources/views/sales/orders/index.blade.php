@@ -10,7 +10,7 @@
 
   <section class="content-header">
       <div class="container-fluid">
-          <div class="row mb-2">
+          <div class="mb-2 row">
               <div class="col-sm-6">
                   <h1> @lang('admin::app.sales.orders.index.title')</h1>
               </div>
@@ -44,6 +44,7 @@
                           <th>Client</th>
                           <th>order_currency_code</th>
                           <th>grand_total</th>
+                          <th>base_grand_total</th>
                           <th>base_grand_total</th>
                           <th>Transaction Id</th>
                           <th>method_title</th>
