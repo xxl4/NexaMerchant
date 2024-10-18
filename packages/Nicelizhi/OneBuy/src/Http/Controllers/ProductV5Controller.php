@@ -458,8 +458,8 @@ class ProductV5Controller extends Controller
         // airwallex customer id from redis
         $airwallex_customer_id = Redis::get("airwallex_customer_".$order->id);
 
-        $payment_return_url = "https://www.baidu.com";
-        $payment_cancel_url = "https://www.baidu.com";
+        $payment_return_url = config('app.url')."/onebuy/checkout/v5/success/".$order->id;
+        $payment_cancel_url = config('app.url')."/onebuy/checkout/v5/success/".$order->id;
 
 
 
