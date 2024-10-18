@@ -24,6 +24,7 @@ use Illuminate\Support\Facades\Redis;
 use Webkul\CMS\Repositories\CmsRepository;
 use Webkul\CartRule\Repositories\CartRuleCouponRepository;
 use Illuminate\Http\Response;
+use Nicelizhi\Airwallex\Core;
 use Webkul\CartRule\Repositories\CartRuleRepository;
 use \Webkul\Checkout\Repositories\CartRepository;
 
@@ -67,6 +68,13 @@ class ApiController extends Controller
 
         // currency by ip
         $currency = \Nicelizhi\OneBuy\Helpers\Utils::getCurrencyByCountry($ip_country);
+
+        $currency_get = $request->input('currency');
+        if(!empty($currency_get)) {
+            core()->setCurrentCurrency($currency_get);
+        }
+
+      
 
         //var_dump($currency);exit;
 
@@ -874,11 +882,11 @@ class ApiController extends Controller
         $input['return_insurance'] = isset($input['return_insurance']) ? $input['return_insurance'] : 0; 
         if($input['return_insurance']==1) {
 
-            Cart::addProduct(1, [
-                'quantity' => 1,
-                'product_sku' => '909001',
+            Cart::addProduct(6487, [
+                'quantity' =>1 ,
+                'product_sku' => '8868666671334-45435838038246',
                 'selected_configurable_option' => '',
-                'product_id' => 1,
+                'product_id' => 6487,
                 'variant_id' => ''
             ]);
 
