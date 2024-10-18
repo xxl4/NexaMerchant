@@ -6,6 +6,7 @@ on:
       - 'main'
       - 'main_de'
       - 'main_us'
+      - 'main_20241018'
     paths-ignore:
       - 'README.md'
       - .github/**
