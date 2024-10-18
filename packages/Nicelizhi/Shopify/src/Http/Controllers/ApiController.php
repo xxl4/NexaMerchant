@@ -25,12 +25,19 @@ use Webkul\CMS\Repositories\CmsRepository;
 use Webkul\CartRule\Repositories\CartRuleCouponRepository;
 use Illuminate\Http\Response;
 use Webkul\CartRule\Repositories\CartRuleRepository;
+use Nicelizhi\Shopify\Http\Responses\XmlResponse;
+use Nicelizhi\Shopify\Models\ShopifyStore;
+
 
 
 class ApiController extends Controller
 {
 
     private $faq_cache_key = "faq";
+
+    private $ShopifyStore;
+
+    private $shopify_store_id;
 
     /**
      * Create a new controller instance.
@@ -42,7 +49,10 @@ class ApiController extends Controller
     public function __construct(
     )
     {
-        
+        //XmlResponse::macro();
+        $this->ShopifyStore = new ShopifyStore();
+
+        $this->shopify_store_id = config('shopify.shopify_store_id');
     }
 
     /**
@@ -107,6 +117,37 @@ class ApiController extends Controller
 
         return response()->json([
             'data' => $shopifyProduct,
+            'code' => 200,
+            'message' => 'success'
+        ], 200);
+    }
+
+    // generate the shopify product feeds
+    public function feeds() {
+
+        // get default shopify
+
+        $shopifyStore = Cache::get("shopify_store_".$this->shopify_store_id);
+
+        if(empty($shopifyStore)){
+            $shopifyStore = $this->ShopifyStore->where('shopify_store_id', $this->shopify_store_id)->first();
+            Cache::put("shopify_store_".$this->shopify_store_id, $shopifyStore, 3600);
+        }
+
+
+        $shopifyProducts = \Nicelizhi\Shopify\Models\ShopifyProduct::where("status","active")->select(['product_id',"title","handle","variants","images"])->get()->toArray();;
+        $products = [];
+
+        foreach($shopifyProducts as $product) {
+            $product['url'] = $shopifyStore->shopify_app_host_name."/products/".$product['handle'];
+            $products[] = $product;
+        }
+        
+
+        //return response()->xml($shopifyProducts, $httpCode, $headers, $rootXmlTag);
+        
+        return response()->json([
+            'data' => $products,
             'code' => 200,
             'message' => 'success'
         ], 200);

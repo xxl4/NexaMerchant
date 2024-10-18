@@ -148,10 +148,10 @@ class CheckoutV4Controller extends Controller{
 
         $paypal_vault = $request->session()->get('paypal_vault'); // get the paypal vault
 
-        //var_dump($paypal_id_token);exit;
-
-        
-        //$paypal_id_token = $this->smartButton->getIDAccessToken();
+        // enable the upselling
+        if($upselling_enable) {
+            $request->session()->put('upselling_enable', $upselling_enable); // control the page enable the upselling
+        }
         
 
         return view('checkout::product-detail-'.$this->view_prefix_key, compact('slug','comments','faqItems','product','default_country',"payments","payments_default","refer","crm_channel","data","paypal_rt","paypal_id_token","paypal_vault"));

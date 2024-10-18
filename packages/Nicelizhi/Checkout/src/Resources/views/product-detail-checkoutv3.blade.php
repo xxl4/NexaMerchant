@@ -5,7 +5,6 @@
   <title></title>
   <link rel="icon prefetch" id="favicon-icon" href="/checkout/v2/images/favicon_de.webp" type="image/png" sizes="16x16" />
   <meta charset="utf-8" />
-  <meta name="description" content="Fur Sweep Collar" />
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <meta name="base-url" content="{{ url()->to('/') }}">
   <meta name="currency-code" content="{{ core()->getCurrentCurrencyCode() }}">
@@ -17,14 +16,12 @@
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   <meta name="HandheldFriendly" content="true" />
-  <meta property="og:title" content="Fur Sweep Collar" />
-  <meta property="og:description" content="Fur Sweep Collar" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="og:image" content="/offer/1/app/desktop/images/thumb.png" />
   <meta name="color-scheme" content="light only" />
   <link rel="stylesheet" href="/checkout/v2/css/v3.css?v=2">
-  <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/checkout.css?v=10" />
+  <link rel="stylesheet prefetch" type="text/css" href="/checkout/v2/css/checkout.css?v=12" />
   <link rel="prefetch" href="/checkout/v2/images/favicon_de.webp">
   <link rel="prefetch" href="/checkout/v2/images/favicon.webp">
   <link rel="prefetch" href="/checkout/v2/images/googlePay.webp">
@@ -95,6 +92,7 @@
   <noscript>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
   </noscript>
+
   <style>
     img {
       /* aspect-ratio: attr(width)/attr(height); */
@@ -143,6 +141,16 @@
     .shopify-content {
       width: 100%;
       float: left;
+    }
+
+    .shopify-content img {
+      width: 100% !important;
+      margin: 0 auto;
+      height: auto;
+    }
+
+    .prod-name {
+      word-wrap: break-word;
     }
 
     .pagination {
@@ -335,7 +343,7 @@
     <div class="container">
       <div class="left-sec">
         <div id="sticky" style="position:sticky;top: 55px;">
-          <div class="vehicle-detail-banner banner-content clearfix">
+          <div class="clearfix vehicle-detail-banner banner-content">
             <div class="banner-slider">
               <div class="slider-banner-image1">
                 <div class="sw-box" style="width:100%;">
@@ -1109,9 +1117,9 @@
     }
     var app_query_params = []
   </script>
-    <script type="application/json" fncls="fnparams-dede7cc5-15fd-4c75-a9f4-36c430ee3a99">
+  <script type="application/json" fncls="fnparams-dede7cc5-15fd-4c75-a9f4-36c430ee3a99">
     {
-      "f": "<?php echo md5(uniqid());?>",
+      "f": "<?php echo md5(uniqid()); ?>",
       "s": "HEOMAI_EFPTK2PBPE2PY_RT",
     }
   </script>
@@ -1355,20 +1363,7 @@
     })
   </script>
 
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=<?php echo $gtag;?>"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
 
-    function gtag() {
-      dataLayer.push(arguments);
-    }
-    gtag('js', new Date());
-
-    gtag('config', '<?php echo $gtag;?>', {
-      "debug_mode": true
-    });
-  </script>
 
   <script type="text/javascript">
     (function(c, l, a, r, i, t, y) {
@@ -1457,12 +1452,12 @@
       mySwiper,
       phppackage_products = <?php echo json_encode($data['package_products']); ?>,
 
-      phpads = '<?php echo json_encode($data['ads']); ?>',
-      phpattr = '<?php echo json_encode($data['attr']); ?>',
+      phpads = '<?php echo addslashes(json_encode($data['ads'])); ?>',
+      phpattr = '<?php echo addslashes(json_encode($data['attr'])); ?>',
       phpbrand = '<?php echo $data['brand']; ?>',
       phpdefault_country = '<?php echo $data['default_country']; ?>',
       phpenv = '<?php echo $data['env']; ?>',
-      phppayments = '<?php echo json_encode($data['payments']); ?>',
+      phppayments = '<?php echo addslashes(json_encode($data['payments'])); ?>',
       phppayments_default = '<?php echo $data['payments_default']; ?>',
       phppaypal_client_id = '<?php echo $data['paypal_client_id']; ?>',
       phpsku = '<?php echo $data['sku']; ?>',
@@ -3737,13 +3732,13 @@
                       order_info.purchase_units[0].amount.currency_code +
                       '; path=/'
                     document.cookie = 'order_id=' + order_info.id + '; path=/'
-                    
+
                     localStorage.setItem(
                       'order_params',
                       JSON.stringify(params)
                     )
 
-                    
+
                   } else {
                     if (data.code == '202') {
                       if (confirm(data.error) == true) {
@@ -3922,7 +3917,7 @@
         }
         createOrder('', '', 'stripe_local');
         $('.pay-after-submit-button').hide();
-      } else {  
+      } else {
         stripeCreateOrderBefore(createOrder, params, function(error) {
           $('#loading').hide();
           $('#checkout-error').html(error);

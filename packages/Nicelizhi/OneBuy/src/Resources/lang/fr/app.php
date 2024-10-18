@@ -125,5 +125,8 @@ return [
     'Credit card' => 'Carte de crédit',
     'Pay Now' => 'Payer maintenant',
     'Close' => 'Fermer',
+    'tip1' => "(1).Pour vous remercier de votre achat, nous avons préparé une offre spéciale rien que pour vous ! Vous pouvez acheter à nouveau l'article d'origine pour seulement",
+    'tip2' => 'sans avoir à saisir à nouveau vos informations de paiement!',
+    'tip3' => '(2). La commande à moitié prix est une offre spéciale pour nos clients chanceux ; nous nous excusons, mais nous ne pouvons pas accepter les demandes de remboursement pour la première commande tout en permettant aux utilisateurs de conserver la commande à moitié prix.',
   ]
 ];

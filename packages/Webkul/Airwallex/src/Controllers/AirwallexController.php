@@ -71,7 +71,17 @@ class AirwallexController extends Controller
     {
         Log::info(json_encode($request->all())); // log body
         $input = $request->all();
+        // order webhook
         if (isset($input['data']['object']['merchant_order_id'])) {
+
+            // get order platform from metadata
+            $platform = isset($input['data']['object']['metadata']['platform']) ? $input['data']['object']['metadata']['platform'] : null;
+
+            if ($platform == 'SHOPIFY') {
+                return response('shopify', 200);
+            }
+
+
             $orderId = $input['data']['object']['merchant_order_id'];
 
             $transactionId = str_replace("orderid_", "", $orderId);
@@ -91,7 +101,7 @@ class AirwallexController extends Controller
 
                    // $amount = $transactionData->data->object->amount;
                     $amount = round($input['data']['object']['amount'] * 100);
-                    $orderAmount = round($order->base_grand_total * 100);
+                    $orderAmount = round($order->grand_total * 100);
 
                     $amount_sub = substr($amount, 0, 3);
                     $orderAmount_sub = substr($orderAmount, 0, 3);
@@ -138,6 +148,10 @@ class AirwallexController extends Controller
 
                     }else{
                         Log::info("airwallex notification received for order id:" . $transactionId . " amount not matched");
+
+                        //send message to wecome
+                        \Nicelizhi\Shopify\Helpers\Utils::send(config("app.name").' '.$transactionId. " order the price is not match, please check it ");
+
                         return response("Order not found ".$amount."---".$orderAmount, 400);
                     }
                 } else {
@@ -146,9 +160,24 @@ class AirwallexController extends Controller
                 
                 return response('OK', 200);
             } else {
-                return response('Order not found', 400);
+
+                Log::info("airwallex notification received for object ".$input['name']." webhook id:" . $input['data']['object']['id']);
+
+                return response('Order not found', 200);
             }
-        } else {
+        } else if (isset($input['data']['object']['id'])) {
+            // other webhook
+
+            Log::info("airwallex notification received for object ".$input['name']." webhook id:" . $input['data']['object']['id']);
+
+            return response('OK', 200);
+        }else if(isset($input['data']['id'])) {
+            // other webhook
+
+            Log::info("airwallex notification received for data ".$input['name']." webhook id:" . $input['data']['id']);
+
+            return response('OK', 200);
+        }else {
             return response('Invalid notification', 400);
         }
     }
@@ -247,7 +276,7 @@ class AirwallexController extends Controller
                 $webhookhelp->payment_dispute_accepted($this->orderRepository, $this->refundRepository);
                 break;
             case 'payment_dispute.reversed': // Issuing bank has reversed the dispute event, you do not have to respond to the dispute event anymore.
-                $webhookhelp->payment_dispute_reversed();
+                $webhookhelp->payment_dispute_reversed($this->orderRepository, $this->refundRepository);
                 break;
             case 'payment_dispute.won': //You have won the chargeback / Pre-arbitration, no further action needed from your side.
                 $webhookhelp->payment_dispute_won();

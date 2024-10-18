@@ -26,7 +26,7 @@
         </div>
         <div class="form-group">
             <label for="html">Html</label>
-            <textarea id="html" name="html" class="form-control" rows="30" >
+            <textarea id="html" name="html" class="form-control" rows="60" >
                 <?php echo $page->html;?>
             </textarea>
         </div>
@@ -66,15 +66,79 @@
   <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
   
+      <!-- 引入 CodeMirror CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/codemirror.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/theme/material.min.css" rel="stylesheet">
+  <!-- 引入 CodeMirror JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/mode/xml/xml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/mode/htmlmixed/htmlmixed.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/addon/edit/closetag.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/addon/edit/matchbrackets.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/addon/hint/show-hint.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/addon/hint/html-hint.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/addon/display/autorefresh.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/addon/search/search.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/addon/search/searchcursor.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/addon/search/jump-to-line.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/addon/dialog/dialog.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/addon/dialog/dialog.min.css" rel="stylesheet">
+    
+    
+    <style>
+        .CodeMirror {
+            height: auto;
+        }
+    </style>  
 
  <script>
     $(function () {
       // Summernote
       <?php if($page->type=='customize') { ?>
         $('#html').summernote({
-            "height": 500
-        })
-      <?php } ?>
+            "height": 500,
+            "focus": true,
+            "toolbar": [
+                ['style', ['style']],
+                ['font', ['bold', 'italic', 'underline', 'clear']],
+                ['fontname', ['fontname']],
+                ['color', ['color']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['height', ['height']],
+                ['table', ['table']],
+                ['insert', ['link', 'picture', 'video']],
+                ['view', ['fullscreen', 'codeview', 'help']]
+            ]
+
+        });
+      <?php }else { ?>
+
+
+
+      var editor = CodeMirror.fromTextArea(document.getElementById("html"), {
+                mode: "htmlmixed",
+                theme: "material",
+                lineNumbers: true,
+                autoCloseTags: true,
+                matchBrackets: true,
+                historyEventDelay: 1000,
+                extraKeys: {
+                    "Ctrl-Space": "autocomplete",
+                    "Ctrl-F": "findPersistent", // 绑定 Ctrl-F 快捷键到搜索功能
+                    "Ctrl-G": "findNext", // 绑定 Ctrl-G 快捷键到查找下一个
+                    "Shift-Ctrl-G": "findPrev", // 绑定 Shift-Ctrl-G 快捷键到查找上一个
+                    "Ctrl-H": "replace", // 绑定 Ctrl-H 快捷键到替换
+                    "Shift-Ctrl-F": "replaceAll" // 绑定 Shift-Ctrl-F 快捷键到全部替换
+                },
+                autoRefresh: true
+                
+        });
+
+        // editor.on("change", function() {
+        //     editor.setSize(null, 5000);
+        // });
+
+        <?php } ?>
   
       
     })

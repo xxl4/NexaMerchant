@@ -15,21 +15,21 @@ use GuzzleHttp\Exception\ClientException;
 use Webkul\Customer\Repositories\CustomerRepository;
 use Illuminate\Support\Facades\Event;
 
-class Post extends Command
+class PostTest extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'shopify:order:post {--order_id=}';
+    protected $signature = 'shopify:order:post:test {--order_id=}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'create Order shopify:order:post';
+    protected $description = 'create Order shopify:order:post:test {--order_id=}';
 
     private $shopify_store_id = null;
     private $lang = null;
@@ -88,9 +88,6 @@ class Post extends Command
             $lists = [];
             //$lists = Order::where(['status'=>'processing'])->orderBy("updated_at", "desc")->select(['id'])->limit(100)->get();
         }
-        
-
-        //$this->checkLog();
 
         foreach($lists as $key=>$list) {
             $this->info("start post order " . $list->id);
@@ -102,29 +99,6 @@ class Post extends Command
 
         
     }
-
-    /**
-     * 
-     * check the today log file
-     * 
-     */
-
-     public function checkLog() {
-
-        //return false;
-       // use grep command to gerneter new log file
-
-       $yesterday = date("Y-m-d", strtotime('-1 days'));
-
-       $big_log_file = storage_path('logs/laravel-'.$yesterday.'.log');
-       $error_log_file = storage_path('logs/error-'.$yesterday.'.log');
-       echo $big_log_file."\r\n";
-       echo $error_log_file."\r\n";
-
-       if(!file_exists($error_log_file)) exec("cat ".$big_log_file." | grep SQLSTATE >".$error_log_file);
-       
-
-     }
 
     /**
      * 
@@ -405,9 +379,9 @@ class Post extends Command
         $pOrder['order'] = $postOrder;
         var_dump($pOrder);
 
-        $crm_url = config('onebuy.crm_url');
-
         $app_env = config("app.env");
+
+        $crm_url = config('onebuy.crm_url');
         if($app_env=='demo') {
 
             $cnv_id = explode('-',$orderPayment['method_title']);
@@ -557,7 +531,7 @@ class Post extends Command
             $crm_channel = config('onebuy.crm_channel');
 
             
-            $url = $crm_url."/api/offers/callBack?refer=".$cnv_id[1]."&revenue=".$order->grand_total."&currency_code=".$order->order_currency_code."&channel_id=".$crm_channel."&q_ty=".$q_ty."&email=".$item['email']."&order_id=".$id;
+            $url = $crm_url."/api/offers/callBack?refer=".$cnv_id[1]."&revenue=".$order->grand_total."&currency_code=".$order->order_currency_code."&channel_id=".$crm_channel."&q_ty=".$q_ty."&email=".$item['email'];
             $res = $this->get_content($url);
             Log::info("post to bm 2 url ".$url." res ".json_encode($res));
 

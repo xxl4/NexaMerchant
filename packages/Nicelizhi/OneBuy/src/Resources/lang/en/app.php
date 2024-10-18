@@ -139,5 +139,8 @@ return [
     'Credit card' => 'Credit card',
     'Pay Now' => 'Pay Now',
     'Close' => 'Close',
+    'tip1' => '(1).To thank you for your purchase, we have prepared a special offer just for you! You can purchase the original item again for only',
+    'tip2' => 'without needing to enter your payment information again!',
+    'tip3' => '(2).The half-price order is a special offer for our lucky customers; we apologize, but we cannot accept refund requests for the first order while allowing users to keep the half-price order.'
   ]
 ];

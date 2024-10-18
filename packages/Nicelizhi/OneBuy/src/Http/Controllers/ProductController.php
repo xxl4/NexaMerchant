@@ -558,8 +558,9 @@ class ProductController extends Controller
             $cart = Cart::getCart();
 
             // when enable the upselling and can config the upselling rule for carts
-            if(config("Upselling.enable")) {
-               
+            $upselling_enable = $request->session()->get('upselling_enable');
+            if(config("Upselling.enable") && $upselling_enable) {
+                Log::info("upselling_enable". $upselling_enable);
                 $upselling = app('NexaMerchant\Upselling\Upselling');
                 $upselling->applyUpselling($cart);
             }
@@ -580,6 +581,10 @@ class ProductController extends Controller
                 if(is_null($cus_id)) {
                     //Step 1: Create a Customer
                     $airwallex_customer = $this->airwallex->createCustomer($cart, $order->id);
+                    if(!isset($airwallex_customer->id)) {
+                        Log::info("airwallex-".$order->id."--".json_encode($airwallex_customer));
+                        return response()->json(['error' => 'create customer error','code'=>'203'], 400);
+                    }
                     $cus_id = $airwallex_customer->id;
                 }else{
                     $airwallex_customer['id'] = $cus_id;
@@ -587,6 +592,10 @@ class ProductController extends Controller
 
                 //create a airwallex payment order
                 $transactionManager = $this->airwallex->createPaymentOrder($cart, $order->id, $cus_id);
+
+                if(!isset($transactionManager->client_secret)) {
+                    response()->json(['error' => $transactionManager->body->message,'code'=>'203'], 400);
+                }
                 //var_dump($transactionManager);
                 
                 
@@ -788,7 +797,9 @@ class ProductController extends Controller
         $payment['sort'] = "1";
         // Cart::savePaymentMethod($payment);
 
-        if(config("Upselling.enable")) {
+        $upselling_enable = $request->session()->get('upselling_enable');
+        if(config("Upselling.enable") && $upselling_enable) {
+            Log::info("upselling_enable". $upselling_enable);
             $upselling = app('NexaMerchant\Upselling\Upselling');
             $upselling->applyUpselling($cart);
         }
@@ -864,6 +875,11 @@ class ProductController extends Controller
         try {
             $order = $this->smartButton->getOrder(request()->input('orderData.orderID'));
 
+            // paypal caputre order
+            //$this->smartButton->captureOrder(request()->input('orderData.orderID'));
+
+            // var_dump($order);
+            // var_dump($order['result']);
             // return response()->json($order);
             
             Log::info("paypal ".json_encode($order));
@@ -914,6 +930,17 @@ class ProductController extends Controller
                         'data'     => route('shop.checkout.cart.index'),
                     ]);
                 }
+
+                // if the status not eq completed, then capture the order
+
+                if($order->result->status != "COMPLETED") {
+                    $this->smartButton->captureOrder(request()->input('orderData.orderID'));
+                }
+                //$this->smartButton->captureOrder(request()->input('orderData.orderID'));
+    
+                //$this->smartButton->AuthorizeOrder(request()->input('orderData.orderID'));
+    
+                $request->session()->put('last_order_id', request()->input('orderData.orderID'));
 
             }else{
 
@@ -967,7 +994,9 @@ class ProductController extends Controller
                     ]);
                 }
     
-                $this->smartButton->captureOrder(request()->input('orderData.orderID'));
+                if($order['result']->status != "COMPLETED") {
+                    $this->smartButton->captureOrder(request()->input('orderData.orderID'));
+                }
     
                 //$this->smartButton->AuthorizeOrder(request()->input('orderData.orderID'));
     
@@ -1355,6 +1384,7 @@ class ProductController extends Controller
         $crm_channel = config('onebuy.crm_channel');
         $refer = $request->session()->get('refer');
         $gtag = config('onebuy.gtag');
+        $gtm = config('onebuy.gtm');
 
         $quora_adv_id = config('onebuy.quora_adv_id');
 
@@ -1400,6 +1430,7 @@ class ProductController extends Controller
             "crm_channel",
             "refer",
             "gtag",
+            'gtm',
             "quora_adv_id",
             "countries",
             "default_country",
@@ -1429,6 +1460,7 @@ class ProductController extends Controller
         $crm_channel = config('onebuy.crm_channel');
         $refer = $request->session()->get('refer');
         $gtag = config('onebuy.gtag');
+        $gtm = config('onebuy.gtm');
 
         $quora_adv_id = config('onebuy.quora_adv_id');
 
@@ -1445,6 +1477,7 @@ class ProductController extends Controller
             "crm_channel",
             "refer",
             "gtag",
+            'gtm',
             "quora_adv_id",
             "countries",
             "default_country",
@@ -1469,6 +1502,7 @@ class ProductController extends Controller
         $crm_channel = config('onebuy.crm_channel');
         $refer = $request->session()->get('refer');
         $gtag = config('onebuy.gtag');
+        $gtm = config('onebuy.gtm');
 
         $quora_adv_id = config('onebuy.quora_adv_id');
 
@@ -1484,6 +1518,7 @@ class ProductController extends Controller
             "crm_channel",
             "refer",
             "gtag",
+            'gtm',
             "quora_adv_id",
             "countries",
             "default_country",

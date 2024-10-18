@@ -186,7 +186,7 @@
                                 // var_dump($order->transactions[0]->data);
                                 if($order->payment->method=="paypal_smart_button") {
                                     $data = json_decode($order->transactions[0]->data, true);
-                                    $tran_id = $data[0]['payments']['captures']['0']['id'];
+                                    $tran_id = isset($data[0]['payments']['captures']['0']['id']) ? $data[0]['payments']['captures']['0']['id'] : "";
                                 }else{
                                     $tran_id = "";
                                 }

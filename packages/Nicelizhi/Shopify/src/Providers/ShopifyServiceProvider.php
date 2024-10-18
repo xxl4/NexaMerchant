@@ -96,6 +96,8 @@ class ShopifyServiceProvider extends ServiceProvider
                 \Nicelizhi\Shopify\Console\Commands\Order\Get::class,
                 \Nicelizhi\Shopify\Console\Commands\Order\GetShipping::class,
                 \Nicelizhi\Shopify\Console\Commands\Order\Post::class,
+                \Nicelizhi\Shopify\Console\Commands\Order\PostTest::class,
+
                 \Nicelizhi\Shopify\Console\Commands\Order\Create::class,
                 \Nicelizhi\Shopify\Console\Commands\Order\Put::class,
                 \Nicelizhi\Shopify\Console\Commands\Order\PostCannelOrder::class,

@@ -20,6 +20,25 @@
 <script src="https://cdn.jsdelivr.net/npm/jquery-colorbox@1.6.4/jquery.colorbox.min.js"></script>
         <link href="https://cdn.jsdelivr.net/npm/jquery-colorbox@1.6.4/example1/colorbox.min.css" rel="stylesheet">
 
+         <!-- Google Tag Manager -->
+    <script>
+    (function(w, d, s, l, i) {
+      w[l] = w[l] || [];
+      w[l].push({
+        'gtm.start': new Date().getTime(),
+        event: 'gtm.js'
+      });
+      var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s),
+        dl = l != 'dataLayer' ? '&l=' + l : '';
+      j.async = true;
+      j.src =
+        'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+      f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', '<?php echo $gtm;?>');
+  </script>
+  <!-- End Google Tag Manager -->
+
 <?php if(!empty($quora_adv_id)) { ?>
 
 <script>
@@ -209,6 +228,22 @@ obApi('track', 'PAGE_VIEW');
                 currency: "<?php echo $order->channel_currency_code;?>",
                 items: <?php echo json_encode($line_items);?>
             });
+
+
+            window.dataLayer = window.dataLayer || [];
+                window.dataLayer.push({
+                
+                    eventType: 'conversion',
+                    conversionClass: 'order',
+                    conversionSubClass: 'purchase',
+                    conversionId: '<?php echo $order->id; ?>',
+                    offerIds: <?php echo json_encode($line_items); ?>,
+                    conversionValue: (value * 1).toFixed(2),
+                    conversionCurrency: '<?php echo $order->channel_currency_code; ?>',
+
+
+            });
+
 
             // params = {
             //     "channel_id": "<?php echo $crm_channel;?>",
