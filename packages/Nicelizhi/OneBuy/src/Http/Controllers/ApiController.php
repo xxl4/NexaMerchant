@@ -61,9 +61,16 @@ class ApiController extends Controller
         
     }
 
-    public function productDetail($slug) {
+    public function productDetail($slug, Request $request) {
 
-        $data = Cache::get($this->checkout_v2_cache_key.$slug);
+        $ip_country = $request->server('HTTP_CF_IPCOUNTRY');
+
+        // currency by ip
+        $currency = \Nicelizhi\OneBuy\Helpers\Utils::getCurrencyByCountry($ip_country);
+
+        //var_dump($currency);exit;
+
+        $data = Cache::get($this->checkout_v2_cache_key.$slug.$ip_country.$currency);
         $env = config("app.env");
         // when the env is pord use cache
 
@@ -183,16 +190,23 @@ class ApiController extends Controller
             $data['countdown'] = $countdown;
 
             // ad_message
-            $data['ad_message']['text'] = "Buy 2 Get 1 Free";
+            $data['ad_message']['text'] = "";
             // $data['ad_message']['color'] = "#FF0000";
             // $data['ad_message']['bg_color'] = "#FFFF00";
             // $data['ad_message']['href'] = "https://www.google.com";
+
+            $data['ip_country'] = $ip_country;
+
+            $data['currency'] = $currency;
 
 
             Cache::put($this->checkout_v2_cache_key.$slug, json_encode($data));
 
             $data['paypal_id_token'] = $paypal_id_token;
             $data['paypal_access_token'] = $paypal_access_token;
+
+
+
 
             return response()->json($data);
 
@@ -251,6 +265,10 @@ class ApiController extends Controller
             }
 
         }
+
+        $this->returnInsurance($input, $cart);
+
+
         // 
         $addressData = [];
 
@@ -392,7 +410,6 @@ class ApiController extends Controller
         }
 
         // when enable the upselling and can config the upselling rule for carts
-
         if($payment_method=='airwallex') {
             //
             $payment = [];
@@ -462,6 +479,9 @@ class ApiController extends Controller
                 $data['customer_client_secret'] = $customerClientSecret;
                 $data['country'] = $input['country'];
                 $data['billing'] = $addressData['billing'];
+
+                // redis save the customer id from airwallex
+                Redis::set("airwallex_customer_".$order->id, $cus_id);
             }
 
             return response()->json($data);
@@ -491,6 +511,7 @@ class ApiController extends Controller
         Cart::deActivateCart();
         foreach($products as $key=>$product) {
             //var_dump($product);
+            if(!isset($product['amount'])) continue; // when the amount eq 0
             $product['quantity'] = $product['amount'];
             $product['selected_configurable_option'] = $product['variant_id'];
             if(!empty($product['attr_id'])) {
@@ -514,6 +535,8 @@ class ApiController extends Controller
                 ]);
             }
         }
+
+        $this->returnInsurance($input, $cart);
 
 
         $addressData = [];
@@ -620,6 +643,13 @@ class ApiController extends Controller
             ]))->response()->setStatusCode(Response::HTTP_INTERNAL_SERVER_ERROR);
         }
 
+        // when enable the upselling and can config the upselling rule for carts
+        if(config("Upselling.enable")) {
+               
+            $upselling = app('NexaMerchant\Upselling\Upselling');
+            $upselling->applyUpselling($cart);
+        }
+
 
         try {
             $order = $this->smartButton->createOrder($this->buildRequestBody($input));
@@ -687,6 +717,9 @@ class ApiController extends Controller
             $order = $this->smartButton->getOrder(request()->input('orderData.orderID'));
 
             $cartId = $request->input('orderData.cartId');
+            if(empty($cartId)) {
+                $cartId = $request->input('data.cart.id');
+            }
 
             if(!empty($cartId)) {
                 
@@ -833,6 +866,25 @@ class ApiController extends Controller
             return response()->json($e->getMessage());
             return response()->json(json_decode($e->getMessage()), 400);
         }
+    }
+
+
+    private function returnInsurance($input, $cart) {
+        // when return insurance eq 1 and auto add the insurance product into cart 
+        $input['return_insurance'] = isset($input['return_insurance']) ? $input['return_insurance'] : 0; 
+        if($input['return_insurance']==1) {
+
+            Cart::addProduct(1, [
+                'quantity' => 1,
+                'product_sku' => '909001',
+                'selected_configurable_option' => '',
+                'product_id' => 1,
+                'variant_id' => ''
+            ]);
+
+
+        }
+
     }
 
     /**
@@ -1051,6 +1103,8 @@ class ApiController extends Controller
                 }             
         }
 
+        //var_dump($data);exit;
+
         return $data;
     }
 
@@ -1065,6 +1119,7 @@ class ApiController extends Controller
         $lineItems = [];
 
         foreach ($cart->items as $item) {
+            if(empty($item->name)) $item->name = "Product";
             $lineItems[] = [
                 'unit_amount' => [
                     'currency_code' => $cart->cart_currency_code,
@@ -1171,6 +1226,20 @@ class ApiController extends Controller
             'message' => 'success'
         ], 200);
         
+    }
+
+    /**
+     * 
+     * 
+     */
+    public function cms($slug, Request $request) {
+        $page = $this->cmsRepository->findByUrlKeyOrFail($slug);
+
+        return response()->json([
+            'data' => $page,
+            'code' => 200,
+            'message' => 'success'
+        ], 200);
     }
 
 }

@@ -1535,8 +1535,8 @@
   <footer class="main__footer" role="contentinfo">
     @include('onebuy::footer-container-'.strtolower($default_country))
   </footer>
-  @include("onebuy::checkout-airwallex")
-  @include("onebuy::checkout-paypal")
+  @include("onebuy::v5/checkout-airwallex")
+  @include("onebuy::v5/checkout-paypal")
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=<?php echo $gtag; ?>"></script>
   <script>

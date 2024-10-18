@@ -5,6 +5,7 @@ use Nicelizhi\OneBuy\Http\Controllers\ProductController;
 use Nicelizhi\OneBuy\Http\Controllers\ProductV2Controller;
 use Nicelizhi\OneBuy\Http\Controllers\ProductV3Controller;
 use Nicelizhi\OneBuy\Http\Controllers\ProductV4Controller;
+use Nicelizhi\OneBuy\Http\Controllers\ProductV5Controller;
 use Nicelizhi\OneBuy\Http\Controllers\ApiController;
 
 // api
@@ -22,6 +23,7 @@ Route::group(['middleware' => ['locale', 'theme', 'currency'], 'prefix' => 'api'
         
         
         Route::get("faq", "faq")->name("api.onebuy.faq");
+        Route::get("cms/{slug}", "cms")->name("api.onebuy.cms");
         Route::get("product/detail/{slug}", "productDetail")->name("api.onebuy.product.detail");
     });
 });
@@ -87,5 +89,18 @@ Route::group(['middleware' => ['locale', 'theme', 'currency','web']], function (
         ->name('onebuy.v4.product.page')
         ->middleware('cacheResponse');
 
+
+});
+
+// v5 
+Route::group(['middleware' => ['locale', 'theme', 'currency','web']], function () {
+
+    Route::get('onebuy/v5/{slug}', [ProductV5Controller::class, 'detail'])
+        ->name('onebuy.v5.product.page')
+        ->middleware('cacheResponse');
+
+    Route::get('onebuy/checkout/v5/success/{id}', [ProductV5Controller::class, "success"])->name('onebuy.checkout.success.v5');
+
+    
 
 });
