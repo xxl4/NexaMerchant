@@ -60,7 +60,7 @@ return [
     'Contact us' => 'Contact Us',
     'imprint' => 'imprint',
     'size chart' => 'Size Chart',
-    'During the summer sale the discount is valid for' => 'During the summer sale the discount is valid for',
+    'During the summer sale the discount is valid for' => 'During the Autumn Sale the discount is valid for',
     'All transactions are secure and encrypted' => 'All transactions are secure and encrypted.',
     'Please enter your first name!' => 'Please enter your first name!',
     'Please enter your last name!' => 'Please enter your last name!',
