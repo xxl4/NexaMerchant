@@ -667,23 +667,19 @@ class ProductController extends Controller
         {
             $checkoutItems = $request->input('checkoutItems');
 
-            //var_dump($checkoutItems);exit;
-
-            //validate the data is json
-            foreach($checkoutItems as $key=>$value) {
-                // check the value is json
-                if(!json_decode($value)) {
-                    return $key."The data is not json". $value;
-                }
-            }
-
-
-
+            //var_dump($checkoutItems);
 
             foreach($checkoutItems as $key=>$value) {
-                $cachek_key = "checkout_".$key."_".$product_id;
-                $redis->set($cachek_key, $value);
+                $new_key = str_replace("checkoutItems[","",$key);
+                //var_dump($value, $key, $new_key);exit;
+
+                $cachek_key = "checkout_".$new_key."_".$product_id;
+                
+                $redis->set($cachek_key, json_encode($value));
+
             }
+
+            //exit;
             
             \Nicelizhi\Shopify\Helpers\Utils::clearCache($product->id, $product_id);
 
@@ -694,27 +690,23 @@ class ProductController extends Controller
 
         }
 
+        $codeKeys = [
+            'title' => 'Title'
+        ];
+
 
         foreach($checkoutItems as $key=>$item) {
             $cachek_key = "checkout_".$item."_".$product_id;
             //echo $cachek_key;
             $cacheData = $redis->get($cachek_key);
             if(empty($cacheData)) {
-                $cacheData = '
-{
-    "title": "",
-    "description": "",
-    "price": "",
-    "currency": "",
-    "image": "",
-    "product_id": "",
-    "product_handle": "",
-    "product_url": ""
-}';
+                $cacheData = json_encode($codeKeys);
             }
             $checkoutItems[$key] = $cacheData;
         }    
 
-        return view("shopify::products.customer-code",compact("product","product_id","checkoutItems"));
+        //var_dump($checkoutItems);
+
+        return view("shopify::products.customer-code",compact("product","product_id","checkoutItems","codeKeys"));
     }
 }
