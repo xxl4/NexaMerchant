@@ -901,7 +901,7 @@ class ApiController extends Controller
         $input['return_insurance'] = isset($input['return_insurance']) ? $input['return_insurance'] : 0; 
         if($input['return_insurance']==1) {
 
-            Cart::addProduct(6487, [
+            Cart::addProduct(config('onebuy.return_shipping_insurance.product_id'), [
                 'quantity' =>1 ,
                 'product_sku' => config('onebuy.return_shipping_insurance.product_sku'),
                 'selected_configurable_option' => '',
