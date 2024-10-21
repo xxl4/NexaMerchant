@@ -37,7 +37,7 @@ class LocalesTableSeeder extends Seeder
             ], [
                 'id'        => 5,
                 'code'      => 'es',
-                'name'      => 'Español',
+                'name'      => 'Spanish',
                 'logo_path' => 'locales/es.png',
             ], [
                 'id'        => 6,
@@ -91,16 +91,11 @@ class LocalesTableSeeder extends Seeder
                 'logo_path' => 'locales/id.png',
             ],[
                 'id'        => 16,
-                'code'      => 'es',
-                'name'      => 'Spanish',
-                'logo_path' => 'locales/es.png',
-            ],[
-                'id'        => 17,
                 'code'      => 'th',
                 'name'      => 'Thai',
                 'logo_path' => 'locales/th.png',
             ],[
-                'id'        => 18,
+                'id'        => 17,
                 'code'      => 'vi',
                 'name'      => 'Vietnamese',
                 'logo_path' => 'locales/vi.png',
