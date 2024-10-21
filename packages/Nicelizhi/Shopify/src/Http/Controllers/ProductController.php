@@ -652,4 +652,69 @@ class ProductController extends Controller
 
         echo "Clean Cache Success";
     }
+
+    // customer code
+    public function checkoutCustomerCode($product_id, Request $request) {
+        $product = $this->productRepository->findBySlug($product_id);
+        if(is_null($product)) {
+            return "please import products first";
+        }
+
+        $redis = Redis::connection('default');
+        
+        $checkoutItems = \Nicelizhi\Shopify\Helpers\Utils::getAllCheckoutVersion();
+        if ($request->isMethod('POST'))
+        {
+            $checkoutItems = $request->input('checkoutItems');
+
+            //var_dump($checkoutItems);exit;
+
+            //validate the data is json
+            foreach($checkoutItems as $key=>$value) {
+                // check the value is json
+                if(!json_decode($value)) {
+                    return $key."The data is not json". $value;
+                }
+            }
+
+
+
+
+            foreach($checkoutItems as $key=>$value) {
+                $cachek_key = "checkout_".$key."_".$product_id;
+                $redis->set($cachek_key, $value);
+            }
+            
+            \Nicelizhi\Shopify\Helpers\Utils::clearCache($product->id, $product_id);
+
+            return response()->json([
+                'product_id' => $product_id,
+                'message' => "success"
+            ]);
+
+        }
+
+
+        foreach($checkoutItems as $key=>$item) {
+            $cachek_key = "checkout_".$item."_".$product_id;
+            //echo $cachek_key;
+            $cacheData = $redis->get($cachek_key);
+            if(empty($cacheData)) {
+                $cacheData = '
+{
+    "title": "",
+    "description": "",
+    "price": "",
+    "currency": "",
+    "image": "",
+    "product_id": "",
+    "product_handle": "",
+    "product_url": ""
+}';
+            }
+            $checkoutItems[$key] = $cacheData;
+        }    
+
+        return view("shopify::products.customer-code",compact("product","product_id","checkoutItems"));
+    }
 }

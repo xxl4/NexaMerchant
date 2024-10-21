@@ -1,11 +1,32 @@
 <?php
 namespace Nicelizhi\Shopify\Helpers;
+
+use COM;
 use GuzzleHttp\Client;
 use Webkul\Attribute\Models\AttributeOption;
 use Webkul\Attribute\Models\AttributeOptionTranslation;
 use Illuminate\Support\Facades\Cache;
 
 final class Utils {
+
+    
+    const CHECKOUT_V1 = "v1";
+    const CHECKOUT_V2 = "v2";
+    const CHECKOUT_V3 = "v3";
+    const CHECKOUT_V4 = "v4";
+    const CHECKOUT_V5 = "v5";
+
+    // get all checkout version
+    public static function getAllCheckoutVersion() {
+        return [
+            self::CHECKOUT_V5 => self::CHECKOUT_V5,
+            self::CHECKOUT_V4 => self::CHECKOUT_V4,
+            self::CHECKOUT_V3 => self::CHECKOUT_V3,
+            self::CHECKOUT_V2 => self::CHECKOUT_V2,
+            self::CHECKOUT_V1 => self::CHECKOUT_V1
+        ];
+    }
+
 
     // send msg to wcom
     public static function send($text,$msgtype="text") {

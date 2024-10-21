@@ -78,7 +78,7 @@ class ApiController extends Controller
 
         //var_dump($currency);exit;
 
-        $data = Cache::get($this->checkout_v2_cache_key.$slug.$ip_country.$currency);
+        $data = Cache::get($this->checkout_v2_cache_key.$slug.$currency);
         $env = config("app.env");
         // when the env is pord use cache
 
@@ -167,6 +167,7 @@ class ApiController extends Controller
             $data['paypal_client_id'] = $paypal_client_id;
             $data['env'] = config("app.env");
             $data['sellPoints'] = $redis->hgetall("sell_points_".$slug);
+            $data['sell-points'] = $redis->hgetall("sell_points_".$slug);
     
             $ads = []; // add ads
             
@@ -206,6 +207,18 @@ class ApiController extends Controller
             $data['ip_country'] = $ip_country;
 
             $data['currency'] = $currency;
+
+            $data['customer_config'] = [];
+
+            $checkoutItems = \Nicelizhi\Shopify\Helpers\Utils::getAllCheckoutVersion();
+            $customer_config = [];
+            foreach($checkoutItems as $key=>$item) {
+                $cachek_key = "checkout_".$item."_".$slug;
+                $cacheData = $redis->get($cachek_key);
+                $customer_config[$item] = json_decode($cacheData);
+            }
+
+            $data['customer_config'] = $customer_config;
 
 
             Cache::put($this->checkout_v2_cache_key.$slug, json_encode($data));
@@ -463,8 +476,14 @@ class ApiController extends Controller
                 $airwallex_customer = [];
                 if(is_null($cus_id)) {
                     //Step 1: Create a Customer
-                    $airwallex_customer = $this->airwallex->createCustomer($cart, $order->id);
-                    $cus_id = $airwallex_customer->id;
+                    try {
+                        $airwallex_customer = $this->airwallex->createCustomer($cart, $order->id);
+                        $cus_id = $airwallex_customer->id;
+                    } catch (\Exception $e) {
+                        return response()->json(['error' => $e->getMessage(),'code'=>'203'], 400);
+                    }
+                    // $airwallex_customer = $this->airwallex->createCustomer($cart, $order->id);
+                    // $cus_id = $airwallex_customer->id;
                 }else{
                     $airwallex_customer['id'] = $cus_id;
                 }
@@ -884,9 +903,9 @@ class ApiController extends Controller
 
             Cart::addProduct(6487, [
                 'quantity' =>1 ,
-                'product_sku' => '8868666671334-45435838038246',
+                'product_sku' => config('onebuy.return_shipping_insurance.product_sku'),
                 'selected_configurable_option' => '',
-                'product_id' => 6487,
+                'product_id' => config('onebuy.return_shipping_insurance.product_id'),
                 'variant_id' => ''
             ]);
 

@@ -406,7 +406,7 @@ class ProductV5Controller extends Controller
             $payment_airwallex_vault = 1;
         }
 
-        $orderTransData = json_decode($orderTrans->data, JSON_OBJECT_AS_ARRAY);
+        $orderTransData = @json_decode($orderTrans->data, JSON_OBJECT_AS_ARRAY);
 
         $paypal_vault_id = "";
 

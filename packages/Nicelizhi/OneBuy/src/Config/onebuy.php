@@ -31,5 +31,9 @@ return [
         'airwallex_dropin' => env('ONEBUY_PAYMENT_AIRWALLEX_DROPIN', 0),
         'airwallex_google'  => env('ONEBUY_PAYMENT_AIRWALLEX_GOOGLE', 0),
         'airwallex_appley'  => env('ONEBUY_PAYMENT_AIRWALLEX_APPLE', 0),
+    ],
+    'return_shipping_insurance' => [
+        'product_id' => env('ONEBUY_RETURN_SHIPPING_INSURANCE_PRODUCT_ID', 0),
+        'product_sku' => env('ONEBUY_RETURN_SHIPPING_INSURANCE_PRODUCT_SKU', ''),
     ]
 ];

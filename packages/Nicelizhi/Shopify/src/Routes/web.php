@@ -27,6 +27,7 @@ Route::group(['middleware' => ['admin','admin_option_log'], 'prefix' => config('
             Route::any('info/{product_id}/{act_type}', 'info')->name('admin.shopify.products.info');
             Route::any('sell-points/{product_id}/{act_type}', 'sellPoints')->name('admin.shopify.products.sell-points');
             Route::get('clean-cache/{product_id}', 'cleanCache')->name('admin.shopify.products.clean-cache');
+            Route::any('checkout-customer-code/{product_id}', 'checkoutCustomerCode')->name('admin.shopify.products.checkout-customer-code');
             
             
 
