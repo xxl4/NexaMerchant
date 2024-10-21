@@ -691,7 +691,7 @@ class ProductController extends Controller
         }
 
         $codeKeys = [
-            'title' => 'Title'
+            'title' => ''
         ];
 
 
