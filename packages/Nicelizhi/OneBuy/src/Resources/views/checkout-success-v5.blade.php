@@ -14,26 +14,6 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/jquery-colorbox@1.6.4/jquery.colorbox.min.js"></script>
   <link href="https://cdn.jsdelivr.net/npm/jquery-colorbox@1.6.4/example1/colorbox.min.css" rel="stylesheet">
-
-      <!-- Google Tag Manager -->
-      <script>
-    (function(w, d, s, l, i) {
-      w[l] = w[l] || [];
-      w[l].push({
-        'gtm.start': new Date().getTime(),
-        event: 'gtm.js'
-      });
-      var f = d.getElementsByTagName(s)[0],
-        j = d.createElement(s),
-        dl = l != 'dataLayer' ? '&l=' + l : '';
-      j.async = true;
-      j.src =
-        'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
-      f.parentNode.insertBefore(j, f);
-    })(window, document, 'script', 'dataLayer', '<?php echo $gtm;?>');
-  </script>
-  <!-- End Google Tag Manager -->
-
   <style>
     :root {
       --text-family: Poppins, sans-serif;
@@ -166,14 +146,6 @@
       .order-summary {
         position: sticky;
         top: 0;
-        height: calc(100% - 20px);
-        margin-top: 20px;
-      }
-    }
-
-    @media (min-width: 1200px) {
-      .container {
-        max-width: 960px;
       }
     }
 
@@ -240,19 +212,13 @@
     }
 
     .btn-buy-again {
-      width: 90%;
-      background-color: #ff0707;
-      color: #fff;
+      background-color: #ffc107;
+      color: #212529;
       font-weight: bold;
       padding: 15px 30px;
       border-radius: 5px;
       margin-left: 20px;
       font-size: 18px;
-    }
-
-    .btn:hover {
-      color: #fff !important;
-      background-color: #ef4e4e !important;
     }
 
     .btn:hover {
@@ -328,18 +294,6 @@
       display: grid;
       gap: 20px;
       margin-top: 10px;
-    }
-
-    .tooltip1 {
-      position: absolute;
-      background: #fff;
-      border: 1px solid #ccc;
-      padding: 8px;
-      border-radius: 4px;
-      z-index: 1000;
-      margin-top: 10px;
-      margin-right: 10px;
-      left: 30px;
     }
 
     .order-details-subtext {
@@ -519,19 +473,6 @@
       width: 100%;
       height: 100%;
       background-color: rgba(0, 0, 0, 0.5);
-    }
-
-    .info-icon {
-      width: 25px;
-      height: 25px;
-      border-radius: 50%;
-      background-color: #007bff;
-      color: white;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 20px;
-      cursor: pointer;
     }
 
     .spinner {
@@ -763,20 +704,6 @@
           value: (value * 1).toFixed(2)
         });
       <?php } ?>
-
-      window.dataLayer = window.dataLayer || [];
-      window.dataLayer.push({
-      
-        eventType: 'conversion',
-        conversionClass: 'order',
-        conversionSubClass: 'purchase',
-        conversionId: '<?php echo $order->id; ?>',
-        offerIds: <?php echo json_encode($line_items); ?>,
-        conversionValue: (value * 1).toFixed(2),
-        conversionCurrency: '<?php echo $order->channel_currency_code; ?>',
-
-
-      });
 
 
 
@@ -1031,24 +958,13 @@
         </svg>
       </div>
       <!-- <button type="button" class="btn btn-home" onclick="goBack()">Return to Homepage</button> -->
-      <button type="button" class="btn btn-buy-again" id="buttonRight" onclick="rightButton()" data-toggle="modal" data-target="#exampleModal">
-        @lang('onebuy::app.v4.Buy again at half price')
-      </button>
+      <button type="button" class="btn btn-buy-again" id="buttonRight" onclick="rightButton()" data-toggle="modal" data-target="#exampleModal">@lang('onebuy::app.v4.Buy again at half price')</button>
 
       <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel" style="display: flex;gap:10px">@lang('onebuy::app.v4.Order now and enjoy half price discount')<div>
-                  <div class="info-icon" id="offerIcon">!</div>
-                  <div class="tooltip1" style="display:none;">
-                    @lang('onebuy::app.v4.tip1') {{ core()->currencySymbol(core()->getBaseCurrencyCode()) }}<?php echo number_format($order->grand_total, 2) / 2; ?>, @lang('onebuy::app.v4.tip2')
-                    <br />
-                    <div style="height: 10px;"></div>
-                    @lang('onebuy::app.v4.tip3')
-                  </div>
-                </div>
-              </h5>
+              <h5 class="modal-title" id="exampleModalLabel">@lang('onebuy::app.v4.Order now and enjoy half price discount')</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -1139,7 +1055,6 @@
         </div>
       </div>
 
-
       <!-- </div> -->
 
       <!-- <div class="header-left">
@@ -1155,7 +1070,6 @@
       </div>
       <div class="header-right" onclick="goBack()">@lang('onebuy::app.v2.success.Buy Again')</div> -->
     </header>
-
     <!-- header end-->
     <div class="w100 mt20">
       <div class="grid-row">
@@ -1280,7 +1194,7 @@
               ?>
                 <div class="sku-item-left">
 
-                  <div class="relative sku-img">
+                  <div class="sku-img relative">
                     <img src="<?php echo $item['item_img']; ?>" alt="">
                     <div class="absolute"><?php echo $item['quantity']; ?></div>
                   </div>
@@ -1347,9 +1261,9 @@
 
           </div>
         </div>
-        <div class="mt-4 counter">
+        <div class="counter mt-4">
           <button id="decrease" class="btn btn-secondary">-</button>
-          <input id="quantity" type="text" value="1" readonly class="mx-2 form-control">
+          <input id="quantity" type="text" value="1" readonly class="form-control mx-2">
           <button id="increase" class="btn btn-secondary">+</button>
         </div>
 
@@ -1621,8 +1535,8 @@
   <footer class="main__footer" role="contentinfo">
     @include('onebuy::footer-container-'.strtolower($default_country))
   </footer>
-  @include("onebuy::checkout-airwallex")
-  @include("onebuy::checkout-paypal")
+  @include("onebuy::v5/checkout-airwallex")
+  @include("onebuy::v5/checkout-paypal")
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=<?php echo $gtag; ?>"></script>
   <script>
@@ -1644,13 +1558,6 @@
     <?php } ?>
   </script>
   <script>
-    $(document).ready(function() {
-      $('#offerIcon').hover(function() {
-        $('.tooltip1').toggle();
-      }).click(function() {
-        $('.tooltip1').toggle();
-      });
-    });
     $(function() {
       const from = localStorage.getItem('from');
       if (!isEmpty(from) && from == 'success') {
@@ -1712,12 +1619,12 @@
               //   </div>
               // </div>`
               recommendDom += `
-              <div class="mt-4 mb-3 row align-items-center">
+              <div class="row mb-3 align-items-center mt-4">
                 <div class="col-auto">
-                    <img width="100" height="100" src="` + item.image_url + `" alt="Product Image" class="rounded-sm img-fluid">
+                    <img width="100" height="100" src="` + item.image_url + `" alt="Product Image" class="img-fluid rounded-sm">
                 </div>
                 <div class="col">
-                    <p class="mb-1 fw-bold">${item.title}</p>
+                    <p class="fw-bold mb-1">${item.title}</p>
                     
                 </div>
                 <div class="col-auto text-end" style="font-size:14px;">
@@ -2000,7 +1907,7 @@
       $shipping_address = $order->shipping_address;
       ?>
 
-      console.log(order_param.grand_total, 'order_param.grand_total');
+
       data = input.data;
       purchase(order_param.grand_total);
       //purchase(null);

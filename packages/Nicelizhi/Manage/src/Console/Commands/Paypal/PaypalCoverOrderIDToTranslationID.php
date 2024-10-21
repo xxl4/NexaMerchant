@@ -37,11 +37,11 @@ class PaypalCoverOrderIDToTranslationID extends Command {
     public function handle()
     {
 
-        $order_id = "12H17140LY8947938";
+        $order_id = "31K46807LW8164335";
 
         $smartButton = new SmartButton();
 
-        $captureID = $smartButton->captureOrder($order_id);
+        $captureID = $smartButton->getOrder($order_id);
 
         var_dump($captureID);
 
