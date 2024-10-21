@@ -132,7 +132,7 @@
           {
             data: 'product_id',
             render: function(data, type, row, meta) {
-              return '<a href="https://shop-v5.hatmeo.com/checkout/dollar/'+data+'" target="_blank" class="btn btn-sm">V5 USD</a><a href="https://shop-v5.hatmeo.com/checkout/adollar/'+data+'" target="_blank" class="btn btn-sm">V5 AUD</a>';
+              return '<a href="https://shop-v5.hatmeo.com/checkout/dollar/'+data+'" target="_blank" class="btn btn-sm">USA V5 USD</a><a href="https://shop-v5.hatmeo.com/checkout/adollar/'+data+'" target="_blank" class="btn btn-sm">USA V5 AUD</a><a href="https://offer-v5.hatme.de/checkout/euro/'+data+'" target="_blank" class="btn btn-sm">DE V5</a><a href="https://offer-v5.botma.fr/checkout/euro/'+data+'" target="_blank" class="btn btn-sm">FR V5</a><a href="https://shop-v5.yooje.uk/checkout/pound/'+data+'" target="_blank" class="btn btn-sm">UK V5</a><a href="https://shop-v5.hatmeo.com/checkout/euro/'+data+'" target="_blank" class="btn btn-sm">ES V5</a>';
             }
           }
           ,
