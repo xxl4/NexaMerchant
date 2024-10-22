@@ -93,7 +93,6 @@
 <body>
     <div class="" style="max-width: 800px;margin:0 auto;">
         <section>
-            <div style="margin: 10px 0;display:flex; justify-content: center;align-items: center;"><img src="/checkout/v2/images/logo_us.webp" width="100" height="50" alt=""></div>
             <h2><?php echo $page->meta_title; ?></h2>
             <?php echo $page->html_content; ?>
         </section>
