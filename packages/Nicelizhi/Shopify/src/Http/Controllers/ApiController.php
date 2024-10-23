@@ -134,16 +134,20 @@ class ApiController extends Controller
             Cache::put("shopify_store_".$this->shopify_store_id, $shopifyStore, 3600);
         }
 
+        // add cache for the products
 
-        $shopifyProducts = \Nicelizhi\Shopify\Models\ShopifyProduct::where("status","active")->select(['product_id',"title","handle","variants","images"])->get()->toArray();;
-        $products = [];
+        $products = Cache::get("shopify_products_".$this->shopify_store_id);
 
-        foreach($shopifyProducts as $product) {
-            $product['url'] = $shopifyStore->shopify_app_host_name."/products/".$product['handle'];
-            $products[] = $product;
+        if(empty($products)) {
+            $shopifyProducts = \Nicelizhi\Shopify\Models\ShopifyProduct::where("status","active")->where("shopify_store_id", $shopifyStore->shopify_store_id)->select(['product_id',"title","handle","variants","images"])->get()->toArray();;
+            $products = [];
+
+            foreach($shopifyProducts as $product) {
+                $product['url'] = $shopifyStore->shopify_app_host_name."/products/".$product['handle'];
+                $products[] = $product;
+            }
+            Cache::put("shopify_products_".$this->shopify_store_id, $products, 3600);
         }
-        
-
         //return response()->xml($shopifyProducts, $httpCode, $headers, $rootXmlTag);
         
         return response()->json([
