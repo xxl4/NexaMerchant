@@ -391,6 +391,15 @@ class ProductV5Controller extends Controller
     }
 
     public function success($order_id, Request $request) {
+
+        $refer = $request->input("refer");
+
+        if(!empty($refer)) { 
+            $request->session()->put('refer', $refer);
+        }else{
+            $refer = $request->session()->get('refer');
+        }
+
         $order = [];
 
         $payment_airwallex_vault = 0; //airwallex vault
@@ -420,7 +429,6 @@ class ProductV5Controller extends Controller
         $fb_ids = config('onebuy.fb_ids');
         $ob_adv_id = config('onebuy.ob_adv_id');
         $crm_channel = config('onebuy.crm_channel');
-        $refer = $request->session()->get('refer');
         $gtag = config('onebuy.gtag');
 
         $quora_adv_id = config('onebuy.quora_adv_id');
