@@ -1,6 +1,6 @@
 vendor
 .env
-storage/logs
+storage/logs/*.log
 storage/debugbar
 storage/db
 public/storage

@@ -2,18 +2,18 @@ version: "3.1"
 
 services:
   nexamerchant-php-apache:
-    build:
-      args:
-        container_project_path: /var/www/html/
-        uid: 1000
-        user: $USER
-      context: .
-      dockerfile: ./Dockerfile
-    image: nexamerchant-php-apache
+    image: nicesteven/nexamerchant:latest
     ports:
       - 80:80
+    depends_on:
+      - nexamerchant-mysql
+      - nexamerchant-redis
+      - nexamerchant-elasticsearch
+      - nexamerchant-mailhog
     volumes:
-      - ./workspace/:/var/www/html/
+      - ./.configs/.env:/var/www/html/NexaMerchant/.env
+      - ./.configs/.htaccess:/var/www/html/NexaMerchant/public/.htaccess
+      - ./.configs/apache.conf:/etc/apache2/sites-available/000-default.conf
 
   nexamerchant-mysql:
     image: mysql:8.0
@@ -21,15 +21,18 @@ services:
     environment:
       MYSQL_ROOT_HOST: "%"
       MYSQL_ROOT_PASSWORD: root
-    ports:
-      - 3306:3306
+      MYSQL_DATABASE: nexamerchant
+      MYSQL_USER: nexamerchant
+      MYSQL_PASSWORD: nexamerchant
+    expose:
+      - 3306
     volumes:
       - ./.configs/mysql-data:/var/lib/mysql/
 
   nexamerchant-redis:
     image: redis:6.2-alpine
-    ports:
-      - 6379:6379
+    expose:
+      - 6379
     command: redis-server --save 20 1 --loglevel warning
     volumes:
       - ./.configs/redis-data:/data
@@ -60,9 +63,9 @@ services:
         hard: 65536
     volumes:
       - ./.configs/elasticsearch-data:/var/lib/elasticsearch/data
-    ports:
-      - 9200:9200
-      - 9300:9300
+    expose:
+      - 9200
+      - 9300
 
   nexamerchant-kibana:
     image: docker.elastic.co/kibana/kibana:7.17.0
@@ -78,7 +81,6 @@ services:
       logging:
           # Disable saving logs.
           driver: 'none'
-      ports:
-          # SMTP server.
-          - 1025:1025
-          - 8025:8025
+      expose:
+          - 1025
+          - 8025
