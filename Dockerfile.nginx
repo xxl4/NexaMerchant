@@ -48,7 +48,7 @@ WORKDIR /var/www/html/NexaMerchant/
 COPY . /var/www/html/NexaMerchant/
 
 # Install PHP dependencies
-RUN composer install --no-interaction --prefer-dist --optimize-autoloader
+RUN composer update --no-interaction --prefer-dist --optimize-autoloader
 
 # Edit the file and directory permissions
 RUN chown -R www-data:www-data /var/www/html/NexaMerchant/
