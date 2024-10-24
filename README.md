@@ -2,6 +2,13 @@
 
 [Online Document](https://nexa-merchant.vercel.app/)
 
+# Docker Build
+
+```bash
+docker build -t nicesteven/nexamerchant .
+```
+
+
 # Docker Install
 
 ```
