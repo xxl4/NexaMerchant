@@ -1,7 +1,6 @@
 # Description: Dockerfile for NexaMerchant
 FROM php:8.1.29-apache
 
-
 RUN apt-get update && apt-get install -y \
     unzip \
     libzip-dev \
@@ -40,6 +39,7 @@ RUN apt-get update && apt-get install -y \
     libpng-dev \
     libxpm-dev \
     libwebp-dev \
+    libsodium-dev \
     libfreetype6-dev \
     libjpeg62-turbo-dev \
     libpng-dev \
