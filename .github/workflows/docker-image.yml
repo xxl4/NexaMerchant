@@ -40,3 +40,14 @@ jobs:
         tags: |
           nicesteven/nexamerchant:${{secrets.DOCKER_VERSION }}
           nicesteven/nexamerchant:latest
+        labels: ${{ steps.meta.outputs.labels }}
+    - name: Build Nginx Version Docker image
+      uses: docker/build-push-action@v2
+      with:
+        context: .
+        file: ./Dockerfile.nginx
+        push: true
+        tags: |
+          nicesteven/nexamerchant:nginx-${{secrets.DOCKER_VERSION }}
+          nicesteven/nexamerchant:nginx-latest
+        labels: ${{ steps.meta.outputs.labels }}
