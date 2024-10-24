@@ -37,7 +37,7 @@ class LocalesTableSeeder extends Seeder
             ], [
                 'id'        => 5,
                 'code'      => 'es',
-                'name'      => 'Español',
+                'name'      => 'Spanish',
                 'logo_path' => 'locales/es.png',
             ], [
                 'id'        => 6,
@@ -57,9 +57,49 @@ class LocalesTableSeeder extends Seeder
             ], [
                 'id'        => 9,
                 'code'      => 'uk',
-                'name'      => 'Ukrainian',
+                'name'      => 'Britain',
                 'logo_path' => 'locales/uk.png',
-            ],
+            ],[
+                'id'        => 10,
+                'code'      => 'ar',
+                'name'      => 'Arabic',
+                'logo_path' => 'locales/ar.png',
+            ],[
+                'id'        => 11,
+                'code'      => 'zh',
+                'name'      => 'Chinese',
+                'logo_path' => 'locales/zh.png',
+            ],[
+                'id'        => 12,
+                'code'      => 'ja',
+                'name'      => 'Japanese',
+                'logo_path' => 'locales/ja.png',
+            ],[
+                'id'        => 13,
+                'code'      => 'ko',
+                'name'      => 'Korean',
+                'logo_path' => 'locales/ko.png',
+            ],[
+                'id'        => 14,
+                'code'      => 'pt',
+                'name'      => 'Portuguese',
+                'logo_path' => 'locales/pt.png',
+            ],[
+                'id'        => 15,
+                'code'      => 'id',
+                'name'      => 'Indonesian',
+                'logo_path' => 'locales/id.png',
+            ],[
+                'id'        => 16,
+                'code'      => 'th',
+                'name'      => 'Thai',
+                'logo_path' => 'locales/th.png',
+            ],[
+                'id'        => 17,
+                'code'      => 'vi',
+                'name'      => 'Vietnamese',
+                'logo_path' => 'locales/vi.png',
+            ]
         ]);
     }
 }

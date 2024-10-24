@@ -2,6 +2,7 @@
 
 namespace Webkul\Paypal\Listeners;
 
+use Illuminate\Support\Facades\Log;
 use Webkul\Paypal\Payment\SmartButton;
 use Webkul\Sales\Repositories\OrderTransactionRepository;
 
@@ -34,9 +35,23 @@ class Transaction
 
                 $transactionDetails = json_decode(json_encode($transactionDetails), true);
 
+                Log::info('Paypal Smart Transaction Details: ' . json_encode($transactionDetails));
+                if(isset($transactionDetails['result']['purchase_units'][0]['payments']['captures'][0]['id'])) Log::info('Paypal Smart Transaction ID'. $transactionDetails['result']['purchase_units'][0]['payments']['captures'][0]['id']);
+
+
+                // save transaction vault
+                $paypal_vault = [];
+                $paypal_vault['vault'] = null;
+                if(isset($transactionDetails['result']['payment_source']['paypal']['attributes']['vault'])) {
+                    session()->put('paypal_vault', $transactionDetails['result']['payment_source']['paypal']['attributes']['vault']);
+                    $paypal_vault['vault'] = $transactionDetails['result']['payment_source']['paypal']['attributes']['vault'];
+                }
+
+
                 if ($transactionDetails['statusCode'] == 200) {
                     $this->orderTransactionRepository->create([
                         'transaction_id' => $transactionDetails['result']['id'],
+                        'captures_id'    => isset($transactionDetails['result']['purchase_units'][0]['payments']['captures'][0]['id']) ? $transactionDetails['result']['purchase_units'][0]['payments']['captures'][0]['id'] : null,
                         'status'         => $transactionDetails['result']['status'],
                         'type'           => $transactionDetails['result']['intent'],
                         'amount'         => $transactionDetails['result']['purchase_units'][0]['amount']['value'],
@@ -46,7 +61,8 @@ class Transaction
                         'data'           => json_encode(
                             array_merge(
                                 $transactionDetails['result']['purchase_units'],
-                                $transactionDetails['result']['payer']
+                                $transactionDetails['result']['payer'],
+                                $paypal_vault
                             )
                         ),
                     ]);

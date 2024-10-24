@@ -9,6 +9,12 @@ use PayPalCheckoutSdk\Core\ProductionEnvironment;
 use PayPalCheckoutSdk\Orders\OrdersCreateRequest;
 use PayPalCheckoutSdk\Orders\OrdersCaptureRequest;
 use PayPalCheckoutSdk\Payments\CapturesRefundRequest;
+use PayPalCheckoutSdk\Core\AccessTokenRequest;
+use Webkul\Paypal\Http\Request\Paypal\WebhooksListRequest;
+use Webkul\Paypal\Http\Request\Paypal\CreateWebookRequest;
+use Webkul\Paypal\Http\Request\Paypal\AuthIDTokenRequest;
+use Illuminate\Support\Facades\Log;
+use Webkul\Paypal\Http\Request\Paypal\AuthorizeRequest;
 
 class SmartButton extends Paypal
 {
@@ -38,7 +44,7 @@ class SmartButton extends Paypal
      *
      * @var string
      */
-    protected $paypalPartnerAttributionId = 'Bagisto_Cart';
+    protected $paypalPartnerAttributionId = 'NexaMerchant_Cart';
 
     /**
      * Constructor.
@@ -70,11 +76,18 @@ class SmartButton extends Paypal
     public function createOrder($body)
     {
         $request = new OrdersCreateRequest;
-        $request->headers['PayPal-Partner-Attribution-Id'] = $this->paypalPartnerAttributionId;
-        $request->prefer('return=representation');
+        //$request->headers['PayPal-Partner-Attribution-Id'] = $this->paypalPartnerAttributionId;
+        $request->headers['PayPal-Request-Id'] = time();
+        //$request->prefer('return=representation');
         $request->body = $body;
 
-        return $this->client()->execute($request);
+        Log::info("create order request ". json_encode($request));
+
+        $result = $this->client()->execute($request);
+
+        Log::info("create order result ". json_encode($result));
+
+        return $result;
     }
 
     /**
@@ -90,7 +103,8 @@ class SmartButton extends Paypal
         $request->headers['PayPal-Partner-Attribution-Id'] = $this->paypalPartnerAttributionId;
         $request->prefer('return=representation');
 
-        $this->client()->execute($request);
+        $result = $this->client()->execute($request);
+        Log::info("capture order ". json_encode($result));
     }
 
     /**
@@ -100,8 +114,17 @@ class SmartButton extends Paypal
      * @return HttpResponse
      */
     public function getOrder($orderId)
-    {
-        return $this->client()->execute(new OrdersGetRequest($orderId));
+    {   
+        try {
+            $result = $this->client()->execute(new OrdersGetRequest($orderId));
+            return $result;
+        }catch (\Exception $e) {
+            var_dump($e->getMessage());
+            //exit;
+        }finally {
+            //echo "Error";exit;
+        }
+        return false;
     }
 
     /**
@@ -128,8 +151,91 @@ class SmartButton extends Paypal
 
         $request->headers['PayPal-Partner-Attribution-Id'] = $this->paypalPartnerAttributionId;
         $request->body = $body;
+
+        Log::info("payment refund" . json_encode($request));
         
         return $this->client()->execute($request);
+    }
+
+    /**
+     * 
+     * authorize orders
+     * 
+     */
+    public function AuthorizeOrder($captureId) {
+        $request = new AuthorizeRequest($captureId);
+
+        $request->headers['PayPal-Partner-Attribution-Id'] = $this->paypalPartnerAttributionId;
+        //$request->body = $body;
+
+        Log::info("AuthorizeOrder " . json_encode($request));
+        
+        $result = $this->client()->execute($request);
+
+        Log::info("AuthorizeOrder result " . json_encode($result));
+
+        return $result;
+
+    }
+
+   
+    
+
+    /**
+     * Return paypal access token
+     *
+     * @return string
+     */
+    public function getAccessToken(){
+        $request = new AccessTokenRequest($this->environment());
+        $request->headers['PayPal-Partner-Attribution-Id'] = $this->paypalPartnerAttributionId;
+
+        return $this->client()->execute($request);
+    }
+
+
+    public function getIDAccessToken(){
+        $request = new AuthIDTokenRequest($this->environment());
+        $request->headers['PayPal-Partner-Attribution-Id'] = $this->paypalPartnerAttributionId;
+
+        return $this->client()->execute($request);
+    }
+
+    /**
+     * Return paypal webhook list
+     * 
+     * @return string
+     */
+    public function WebhookList() {
+        try {
+            $result = $this->client()->execute(new WebhooksListRequest());
+        }catch (\Exception $e) {
+            var_dump($e->getMessage());
+            //exit;
+        }finally {
+            //echo "Error";exit;
+        }
+        return $result;
+    }
+
+    /**
+     * Create a Webhook
+     * 
+     * @return string
+     */
+    public function CreateWebook($body) {
+        try {
+            $request = new CreateWebookRequest();
+            $request->body = $body;
+            $result = $this->client()->execute($request);
+            return $result;
+        }catch (\Exception $e) {
+            var_dump($e->getMessage());
+            //exit;
+        }finally {
+            //echo "Error";exit;
+        }
+        return false;
     }
 
     /**
@@ -168,5 +274,23 @@ class SmartButton extends Paypal
         $this->clientId = $this->getConfigData('client_id') ?: '';
 
         $this->clientSecret = $this->getConfigData('client_secret') ?: '';
+    }
+
+    /**
+     * 
+     * Set ClientID
+     * @return void
+     */
+    public function setClientId($clientId) {
+        $this->clientId = $clientId;
+    }
+
+    /**
+     * 
+     * Set ClientSecret
+     * @return void
+     */
+    public function setClientSecret($clientSecret) {
+        $this->clientSecret = $clientSecret;
     }
 }

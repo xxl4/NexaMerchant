@@ -1,0 +1,11 @@
+vendor
+.env
+storage/logs
+storage/debugbar
+storage/db
+public/storage
+public/size
+public/storage_old
+.git
+.github
+docs

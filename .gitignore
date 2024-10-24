@@ -12,7 +12,7 @@
 Homestead.json
 Homestead.yaml
 /ignorables/*
-/node_modules
+**/node_modules
 npm-debug.log
 package-lock.json
 /public/css
@@ -21,9 +21,17 @@ package-lock.json
 /public/hot
 /public/storage
 /public/vendor
+/public/*
 /lang/vendor
 /storage/*.key
 /storage/dcc-data/
 /vendor
 yarn.lock
 yarn-error.log
+/storage/debugbar/
+/packages/Nicelizhi/GraphQLAPI/
+/app/Providers/AppServiceProvider.php
+/storage/installed
+packages/Apps/
+*.log
+*.log.*

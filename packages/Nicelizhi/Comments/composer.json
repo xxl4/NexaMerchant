@@ -1,0 +1,26 @@
+{
+    "name": "Nicelizhi/Comments",
+    "license": "MIT",
+    "description" : "Comments platform",
+    "authors": [
+        {
+            "name": "Steven",
+            "email": "nice.lizhi@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Nicelizhi\\Comments\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Nicelizhi\\Comments\\Providers\\CommentsServiceProvider"
+            ],
+            "aliases": {}
+        }
+    },
+    "minimum-stability": "dev"
+}

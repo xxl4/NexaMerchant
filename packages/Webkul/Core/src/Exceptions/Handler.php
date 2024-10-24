@@ -80,8 +80,27 @@ class Handler extends BaseHandler
         } elseif ($exception instanceof ModelNotFoundException) {
             return $this->response($path, 404);
         } elseif ($exception instanceof PDOException) {
+
+            
+            
+            \Nicelizhi\Shopify\Helpers\Utils::send(json_encode($exception->getMessage()). " code is 500  url is".$request->fullUrl()." please check the log file for more details");
+
+
             return $this->response($path, 500);
         } else {
+
+            $mystring = $exception->getFile();
+            $findme   = 'Nicelizhi';
+            $pos = strpos($mystring, $findme);
+
+            if ($pos === false) {
+                
+            } else {
+                \Nicelizhi\Shopify\Helpers\Utils::send(json_encode($exception->getMessage()). " File is ".$exception->getFile()." url is ".$request->fullUrl()." please check the log file for more details");
+            }
+            
+            
+
             return parent::render($request, $exception);
         }
     }

@@ -14,7 +14,8 @@ class Airwallex {
     protected $clientId;
     protected $apiKey;
 
-    protected $host = "https://api-demo.airwallex.com";
+    //protected $host = "https://api-demo.airwallex.com";
+    protected $host = "https://api.airwallex.com";
 
     protected $client;
 
@@ -30,13 +31,13 @@ class Airwallex {
      * 
      * 
      */
-    public function __construct($config=array(), $productionMode) {
+    public function __construct($config=array(), $productionMode="") {
         $this->clientId = $config['clientId'];
         $this->apiKey = $config['apiKey'];
 
         $this->productionMode = $productionMode;
 
-        if($productionMode=='on') $this->host = "https://api.airwallex.com"; 
+        if($productionMode=='0') $this->host = "https://api-demo.airwallex.com"; 
 
         $this->client = new Client([
             // Base URI is used with relative requests
@@ -62,7 +63,6 @@ class Airwallex {
         $cache_key = "airwallex_token_".$this->productionMode;
 
         $token = Cache::get($cache_key);
-
         if(!Cache::has($cache_key)) {
         //if(true) {
             $response = $this->client->request('POST', "/api/v1/authentication/login", [ 
@@ -99,12 +99,85 @@ class Airwallex {
 
         $url = $this->host."/api/v1/pa/payment_intents/create";
 
+        //Log::info("airwallex post data ".json_encode($data));
+
         $result = $this->http_curl($url, 'xml', $data, 6, FALSE, '',$header);
 
         if($result['code']=='201') return json_decode($result['body']);
 
         return $result;
 
+    }
+
+    public function createCustomerClientSecret($customer_id) {
+        $header= array(
+                'Content-Type: application/json; charset=utf-8',
+                'Authorization: ' ."Bearer ".$this->token
+        );
+        //$url = $this->host."/api/v1/pa/payment_methods/create_customer_client_secret";
+        $url = $this->host."/api/v1/pa/customers/".$customer_id."/generate_client_secret";
+
+        $data = [];
+
+        $result = $this->http_curl($url, '', $data, 6, FALSE, '', $header);
+
+        if($result['code']=='200') return json_decode($result['body']);
+
+        return $result;
+
+    }
+
+    /***
+     * 
+     * @ create refund order
+     * @link https://www.airwallex.com/docs/api#/Payment_Acceptance/Refunds/
+     * 
+     */
+    public function createReRefund($payment_intent_id, $order_id, $amount ) {
+
+
+        $data = [];
+        $data['payment_intent_id'] = $payment_intent_id;
+        $data['request_id'] = $order_id."_".time();
+        $data['amount'] = $amount;
+        $data['metadata']['id'] = $order_id;
+
+        $data = json_encode($data, JSON_OBJECT_AS_ARRAY | JSON_UNESCAPED_UNICODE);
+
+        $header= array(
+                'Content-Type: application/json; charset=utf-8',
+                'Content-Length: ' . strlen($data),
+                'Authorization: ' ."Bearer ".$this->token
+        );
+
+        $url = $this->host."/api/v1/pa/refunds/create";
+        $result = $this->http_curl($url, 'xml', $data, 6, FALSE, '',$header);
+
+        return $result;
+
+    }
+
+    /**
+     * 
+     * 
+     * @link https://www.airwallex.com/docs/payments__global__klarna-beta__desktopmobile-website-browser
+     * 
+     */
+
+    public function confirm($payment_intents_id, $data) {
+        $header= array(
+                'Content-Type: application/json; charset=utf-8',
+                'Content-Length: ' . strlen($data),
+                'Authorization: ' ."Bearer ".$this->token
+        );
+
+        $url = $this->host."/api/v1/pa/payment_intents/".$payment_intents_id."/confirm";
+
+        $result = $this->http_curl($url, 'xml', $data, 6, FALSE, '',$header);
+
+        if($result['code']=='200') return json_decode($result['body']);
+
+        return $result;
     }
 
     /**
@@ -125,7 +198,7 @@ class Airwallex {
             'debug' => true
         ]);
         $body = $response->getBody();
-        var_dump($body, $data, $token);
+        return $body;
     }
 
     public function CheckPaymentStatus() {
@@ -139,6 +212,74 @@ class Airwallex {
 
     public function GetBalances() {
 
+    }
+
+    /**
+     * 
+     * @link https://www.airwallex.com/docs/api#/Payment_Acceptance/Customers/_api_v1_pa_customers_create/post
+     * @description create customer
+     * @param string $data
+     * @return array
+     * @author Steve
+     * 
+     */
+    public function createCustomer($data) {
+        // $response = $this->client->request('POST', "/api/v1/pa/customers/create", [ 
+        //     'headers' => [
+        //          'Accept' => 'application/json', 
+        //          'content-type' => 'application/json',
+        //          'Authorization' => "Basic ".$this->clientId, 
+        //     ],
+        //     'json' => $data,
+        //     'debug' => true
+        // ]);
+        // $body = $response->getBody();
+        // var_dump($body);
+        // return $body;
+
+        $header= array(
+                'Content-Type: application/json; charset=utf-8',
+                'Content-Length: ' . strlen($data),
+                'Authorization: ' ."Bearer ".$this->token
+        );
+
+        $url = $this->host."/api/v1/pa/customers/create";
+
+        $result = $this->http_curl($url, 'xml', $data, 6, FALSE, '',$header);
+
+        //var_dump($result);
+
+        if($result['code']=='201') return json_decode($result['body']);
+
+        return $result;
+
+    }
+
+
+    /**
+     * 
+     * @link https://www.airwallex.com/docs/api/Supporting_Services/Reference_Data/api#/Payment_Acceptance/Customers/
+     * @description get customer
+     * @param string $customer_id
+     * @return array
+     * 
+     */
+    public function CustomerList($data) {
+        $header= array(
+                'Content-Type: application/json; charset=utf-8',
+                'Content-Length: ' . strlen($data),
+                'Authorization: ' ."Bearer ".$this->token
+        );
+
+        $url = $this->host."/api/v1/pa/customers";
+
+        $result = $this->http_curl($url, 'xml', $data, 6, FALSE, '',$header);
+
+        //var_dump($result);
+
+        if($result['code']=='201') return json_decode($result['body']);
+
+        return $result;
     }
 
     /**

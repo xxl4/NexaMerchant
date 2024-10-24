@@ -1,6 +1,6 @@
 
 <!doctype html>
-<html class="no-js" lang="en">
+<html class="no-js" lang="{{ app()->getLocale() }}" dir="{{ core()->getCurrentLocale()->direction }}">
 <head>
 
 <meta charset="utf-8">
@@ -18,26 +18,94 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
+<?php if(!empty($quora_adv_id)) { ?>
+
+<script>
+!function(q,e,v,n,t,s){if(q.qp) return; n=q.qp=function(){n.qp?n.qp.apply(n,arguments):n.queue.push(arguments);}; n.queue=[];t=document.createElement(e);t.async=!0;t.src=v; s=document.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t,s);}(window, 'script', 'https://a.quora.com/qevents.js');
+<?php 
+    $quora_adv_arr = explode(',', $quora_adv_id);
+    foreach ($quora_adv_arr as $key => $quora_id) {
+    ?>
+qp('init', '<?php echo $quora_id;?>');
+<?php } ?>
+
+qp('track', 'ViewContent');
+</script>
+<?php foreach ($quora_adv_arr as $key => $quora_id) {?>
+<noscript><img height="1" width="1" style="display:none" src="https://q.quora.com/_/ad/<?php echo $quora_id;?>/pixel?tag=ViewContent&noscript=1"/></noscript>
+<?php } ?>
+<!-- End of Quora Pixel Code -->
+<?php } ?>
+
+<?php if(!empty($ob_adv_id)) { ?>
+
+<?php 
+    $ob_adv_ids = explode(',', $ob_adv_id); 
+    foreach($ob_adv_ids as $key=>$ob_adv_id) {
+?>
+
+<script data-obct type = "text/javascript">
+/** DO NOT MODIFY THIS CODE**/
+!function(_window, _document) {
+    var OB_ADV_ID = '<?php echo $ob_adv_id; ?>';
+    if (_window.obApi) {
+    var toArray = function(object) {
+        return Object.prototype.toString.call(object) === '[object Array]' ? object : [object];
+    };
+    _window.obApi.marketerId = toArray(_window.obApi.marketerId).concat(toArray(OB_ADV_ID));
+    return;
+    }
+    var api = _window.obApi = function() {
+    api.dispatch ? api.dispatch.apply(api, arguments) : api.queue.push(arguments);
+    };
+    api.version = '1.1';
+    api.loaded = true;
+    api.marketerId = OB_ADV_ID;
+    api.queue = [];
+    var tag = _document.createElement('script');
+    tag.async = true;
+    tag.src = '//amplify.outbrain.com/cp/obtp.js';
+    tag.type = 'text/javascript';
+    var script = _document.getElementsByTagName('script')[0];
+    script.parentNode.insertBefore(tag, script);
+}(window, document);
+
+obApi('track', 'PAGE_VIEW');
+</script>
+<?php } } ?>
+<!-- Facebook Pixel Code -->
+<script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    <?php 
+    $fb_ids_arr = explode(',', $fb_ids);
+    foreach ($fb_ids_arr as $key => $fb_id) {
+    ?>
+    fbq('init', '<?php echo $fb_id;?>');
+    <?php } ?>
+  </script>
+  <noscript>
+    <?php foreach ($fb_ids_arr as $key => $fb_id) { ?>
+        <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=<?php echo $fb_id;?>&ev=PageView&noscript=1"/>
+        <?php } ?>
+  </noscript>
+  <!-- End Facebook Pixel Code -->
+    <!-- Facebook Pixel Code -->
+<script>
+  fbq('track', 'PageView');
+  fbq('track', 'ViewContent');
+</script>
 <title>
-        Thank you &ndash;
+@lang('checkout::app.v1.success.Thank you')
     </title>
 <script>
         function addVoluumImg(data) {
-            console.log('addVoluumImg');
-            return false;
-            var payout = data.info.payout || (data.info.total + data.info.currency); 
-            var bigImg = document.createElement("img");
-            bigImg.src = "https://tick.colapaco-op.com/conversion.gif?payout="+ payout +"&txid="+data.info._id.$oid;
-            bigImg.width="1";
-            bigImg.height="1";
-            document.body.appendChild(bigImg);
-
-            var bigImg1 = document.createElement("img");
-            bigImg1.src = "https://tick.ponira.com/conversion.gif?payout="+ payout +"&txid="+data.info._id.$oid;
-            bigImg1.width="1";
-            bigImg1.height="1";
-            document.body.appendChild(bigImg1);
-            console.log('addVoluumImg end');
         }
 
         function postVoluumConversion(data) {
@@ -96,8 +164,66 @@
             return null;
         }
     </script>
+
+    <?php $products = $order->items;
+    $line_items = [];
+    foreach($products as $key=>$product) {
+        $sku = $product['additional'];
+
+        $skuInfo = explode('-', $sku['product_sku']);
+
+
+        $line_item = [];
+        $line_item['item_id'] = $skuInfo[0];
+        $line_item['item_name'] = $product['name'];
+        $line_item['price'] = $product['price'];
+        $line_item ['quantity'] = $product['qty_ordered'];
+        $line_item ['item_variant'] = @$sku['attribute_name'];
+
+        //var_dump($product);
+
+        array_push($line_items, $line_item);
+    }
+
+    ?>
 <script>
         function purchase(value) {
+            console.log("purchase "+ (value * 1).toFixed(2));
+            fbq('track', 'Purchase', {currency: "EUR", value: (value * 1).toFixed(2)});
+            console.log("purchase "+ (value * 1).toFixed(2));
+            <?php if(!empty($ob_adv_id)) { ?>
+            obApi('track', 'Purchase');
+            <?php } ?>
+
+            <?php if(!empty($quora_adv_id)) { ?>
+            qp('track', 'Purchase',{value: (value * 1).toFixed(2)});
+            <?php } ?>
+
+
+
+            gtag('event', 'purchase', {
+                transaction_id: '<?php echo $order->id;?>',
+                value: (value * 1).toFixed(2),
+                currency: "<?php echo $order->channel_currency_code;?>",
+                items: <?php echo json_encode($line_items);?>
+            });
+
+            params = {
+                "channel_id": "<?php echo $crm_channel;?>",
+                "token": "<?php echo $refer; ?>",
+                "type": "purchase",
+                "order_id": '<?php echo $order->id;?>',
+                "amount": (value * 1).toFixed(2)
+            };
+            fetch('https://crm.heomai.com/api/user/action',{
+                    body: JSON.stringify(params),
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+            })
+
+
             if(typeof gtag == 'function') {
                 if(window.localStorage) {
                     var ga_post_order_template_commom_ids_str = localStorage.getItem("ga_post_order_template_commom_ids");
@@ -129,7 +255,7 @@
                 }
             } else {
                 setTimeout(function(){
-                    purchase();
+                    //purchase();
                 },10)
             }
         }
@@ -264,17 +390,17 @@
 <div class="success_block">
 <div class="content-box">
 <div class="content-box__row text-container">
-<h2 class="heading-2 os-step__title">Your order is confirmed</h2>
+<h2 class="heading-2 os-step__title">@lang('checkout::app.v1.success.Your order is confirmed')</h2>
 <p class="os-step__description">
-We’ve accepted your order, and we’re getting it ready. Come back to this page for updates on your shipment status.
+@lang('checkout::app.v1.success.We ve accepted your order and we re getting it ready Come back to this page for updates on your shipment status')
 </p>
 </div>
 </div>
 <div class="content-box">
 <div class="content-box__row text-container">
-<h2 class="heading-2 os-step__title">Order information</h2>
+<h2 class="heading-2 os-step__title">@lang('checkout::app.v1.success.Order information')</h2>
 <p>
-Order Data: <?php echo $order->created_at;?>
+@lang('checkout::app.v1.success.Order Data'): <?php echo $order->created_at;?>
 <div class="product-content"></div>
 </p>
 <!--
@@ -287,33 +413,33 @@ Order Total:
 </div>
 <div class="content-box">
 <div class="content-box__row text-container">
-<h2 class="heading-2 os-step__title">Customer information</h2>
+<h2 class="heading-2 os-step__title">@lang('checkout::app.v1.success.Customer information')</h2>
 <p>
-<span class="left-info">First Name: </span> <strong style="font-size:20px;padding-left:10px;" class="customer_first_name right-info"></strong>
+<span class="left-info">@lang('checkout::app.v1.success.First Name'): </span> <strong style="font-size:20px;padding-left:10px;" class="customer_first_name right-info"></strong>
 </p>
 <p>
-<span class="left-info">Last Name: </span> <strong style="font-size:20px;padding-left:10px;" class="customer_last_name right-info"></strong>
+<span class="left-info">@lang('checkout::app.v1.success.Last Name'): </span> <strong style="font-size:20px;padding-left:10px;" class="customer_last_name right-info"></strong>
 </p>
 <p>
-<span class="left-info">Email: </span> <strong style="font-size:20px;padding-left:10px;" class="customer_email right-info"></strong>
+<span class="left-info">@lang('checkout::app.v1.success.Email'): </span> <strong style="font-size:20px;padding-left:10px;" class="customer_email right-info"></strong>
 </p>
 <p>
-<span class="left-info">Phone: </span> <strong style="font-size:20px;padding-left:10px;" class="customer_phone right-info"></strong>
+<span class="left-info">@lang('checkout::app.v1.success.Phone Number'): </span> <strong style="font-size:20px;padding-left:10px;" class="customer_phone right-info"></strong>
 </p>
 <p>
-<span class="left-info">Address: </span> <strong style="font-size:20px;padding-left:10px;" class="customer_address_1 right-info"></strong>
+<span class="left-info">@lang('checkout::app.v1.success.Address'): </span> <strong style="font-size:20px;padding-left:10px;" class="customer_address_1 right-info"></strong>
 </p>
 <p>
-<span class="left-info">City: </span> <strong style="font-size:20px;padding-left:10px;" class="customer_city right-info"></strong>
+<span class="left-info">@lang('checkout::app.v1.success.City'): </span> <strong style="font-size:20px;padding-left:10px;" class="customer_city right-info"></strong>
 </p>
 <p>
-<span class="left-info">Country: </span> <strong style="font-size:20px;padding-left:10px;" class="customer_country right-info"></strong>
+<span class="left-info">@lang('checkout::app.v1.success.Country'): </span> <strong style="font-size:20px;padding-left:10px;" class="customer_country right-info"></strong>
 </p>
 <p>
-<span class="left-info">State/Province: </span> <strong style="font-size:20px;padding-left:10px;" class="customer_state right-info"></strong>
+<span class="left-info">@lang('checkout::app.v1.success.State/Province'): </span> <strong style="font-size:20px;padding-left:10px;" class="customer_state right-info"></strong>
 </p>
 <p>
-<span class="left-info">Zip/Postcode: </span> <strong style="font-size:20px;padding-left:10px;" class="customer_zip right-info"></strong>
+<span class="left-info">@lang('checkout::app.v1.success.Zip/Postal Code'): </span> <strong style="font-size:20px;padding-left:10px;" class="customer_zip right-info"></strong>
 </p>
         </div>
 </div>
@@ -369,13 +495,16 @@ All rights reserved
 </footer>
 </div>
 <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-P6343Y2GKT"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=<?php echo $gtag; ?>"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
-  gtag('config', 'G-P6343Y2GKT');
+<?php if(empty($refer)) { ?>
+    gtag('config', '<?php echo $gtag; ?>',{"debug_mode": true});
+<?php }else { ?>
+  gtag('config', '<?php echo $gtag; ?>', {"user_id": "<?php echo $refer;?>","debug_mode": true});
+<?php } ?>
 </script>
 <script>
         if(getCookie('voluum_payout') && getCookie('order_id') == getQueryString('id')) {
@@ -479,7 +608,10 @@ All rights reserved
             console.log(order_param);
 
             data = input.data;
-            purchase(data.info.grand_total);
+            console.log("pushare " + order_param.grand_total);
+            console.log("pushare " + order_param.grand_total);
+            purchase(order_param.grand_total);
+            //purchase(null);
             console.log(data)
             if(!getCookie('voluum_payout') || getCookie('order_id') != getQueryString('id')) {
                 console.log('data');
@@ -513,7 +645,7 @@ All rights reserved
                 //var_dump($product);
             ?>
 
-                product_html += '<p class="order-date"><?php echo $product->name;?> ×<span class="order-count">(<?php echo $product->qty_ordered;?>)</span></p> ';
+                product_html += '<p class="order-date"><?php echo addslashes($product->name);?> ×<span class="order-count">(<?php echo $product->qty_ordered;?>)</span></p> ';
 
 
             <?php } ?>

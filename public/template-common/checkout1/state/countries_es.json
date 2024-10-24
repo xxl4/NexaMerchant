@@ -1,0 +1,32 @@
+[
+    {
+        "countryName": "Spain",
+        "countryNameLocalized": "Spain",
+        "countryCode": "ES",
+        "currencyCode": "EUR",
+        "currencyName": "European Euro",
+        "currencySign": "€",
+        "region": "Europe",
+        "postalCodeRegex": "\\d{5}"
+    },
+    {
+        "countryName": "Mexico",
+        "countryNameLocalized": "Mexico",
+        "countryCode": "MX",
+        "currencyCode": "MXN",
+        "currencyName": "Mexican Peso",
+        "currencySign": "Mex$",
+        "region": "Americas",
+        "postalCodeRegex": "\\d{5}"
+    },
+    {
+        "countryName": "Argentina",
+        "countryNameLocalized": "Argentina",
+        "countryCode": "AR",
+        "currencyCode": "ARS",
+        "currencyName": "Argentine Peso",
+        "currencySign": "AR$",
+        "region": "Americas",
+        "postalCodeRegex": "([A-HJ-NP-Z])?\\d{4}([A-Z]{3})?"
+    }
+]

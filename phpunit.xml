@@ -2,18 +2,11 @@
 <phpunit
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:noNamespaceSchemaLocation="./vendor/phpunit/phpunit/phpunit.xsd"
+    cacheResult="false"
     bootstrap="vendor/autoload.php"
     colors="true"
 >
     <testsuites>
-        <!-- Admin package testsuites. -->
-        <testsuite name="Admin Unit Test">
-            <directory suffix="Test.php">./packages/Webkul/Admin/tests/Unit</directory>
-        </testsuite>
-        <testsuite name="Admin Feature Test">
-            <directory suffix="Test.php">./packages/Webkul/Admin/tests/Feature</directory>
-        </testsuite>
-
         <!-- DataGrid package testsuites. -->
         <testsuite name="DataGrid Unit Test">
             <directory suffix="Test.php">./packages/Webkul/DataGrid/tests/Unit</directory>
@@ -40,9 +33,24 @@
             <directory suffix="Test.php">./packages/Nicelizhi/Binom/tests/Feature</directory>
         </testsuite>
 
+        <!-- OneBuy package testsuites. -->
+        <testsuite name="Binom Unit Test">
+            <directory suffix="Test.php">./packages/Nicelizhi/OneBuy/tests/Feature</directory>
+        </testsuite>
+
         <!-- Shopify package testsuites. -->
         <testsuite name="Shopify Unit Test">
             <directory suffix="Test.php">./packages/Nicelizhi/Shopify/tests/Feature</directory>
+        </testsuite>
+
+        <!-- Shopify package testsuites. -->
+        <testsuite name="Lp Unit Test">
+            <directory suffix="Test.php">./packages/Nicelizhi/Lp/tests/Feature</directory>
+        </testsuite>
+
+        <!-- Comments package testsuites. -->
+        <testsuite name="Shopify Unit Test">
+            <directory suffix="Test.php">./packages/Nicelizhi/Comments/tests/Feature</directory>
         </testsuite>
     </testsuites>
     <source>

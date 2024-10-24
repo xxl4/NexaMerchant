@@ -12,6 +12,11 @@ return [
             'provider' => 'customers',
         ],
 
+        'manage' => [
+            'driver' => 'session',
+            'provider' => 'manage',
+        ],
+
         'admin' => [
             'driver'   => 'session',
             'provider' => 'admins',
@@ -25,6 +30,11 @@ return [
         ],
 
         'admins' => [
+            'driver' => 'eloquent',
+            'model'  => Webkul\User\Models\Admin::class,
+        ],
+
+        'manage' => [
             'driver' => 'eloquent',
             'model'  => Webkul\User\Models\Admin::class,
         ],
@@ -44,5 +54,12 @@ return [
             'expire'   => 60,
             'throttle' => 60,
         ],
+
+        'manage' => [
+            'provider' => 'manage',
+            'table'    => 'admin_password_resets',
+            'expire'   => 60,
+            'throttle' => 60,
+        ]
     ],
 ];

@@ -46,6 +46,18 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Throwable $exception)
     {
+        
         return parent::render($request, $exception);
     }
+
+    /**
+     * Register the exception handling callbacks for the application.
+     */
+    public function register(): void
+    {
+        //$this->stopIgnoring(HttpException::class);
+    
+        // ...
+    }
+
 }

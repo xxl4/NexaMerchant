@@ -1,0 +1,42 @@
+[
+	{  
+      "CountryCode":"KE",
+      "StateCode":"110",
+      "StateName":"Nairobi"
+   },
+   {  
+      "CountryCode":"KE",
+      "StateCode":"200",
+      "StateName":"Central"
+   },
+   {  
+      "CountryCode":"KE",
+      "StateCode":"300",
+      "StateName":"Coast"
+   },
+   {  
+      "CountryCode":"KE",
+      "StateCode":"400",
+      "StateName":"Eastern"
+   },
+   {  
+      "CountryCode":"KE",
+      "StateCode":"500",
+      "StateName":"North-Eastern"
+   },
+   {  
+      "CountryCode":"KE",
+      "StateCode":"600",
+      "StateName":"Nyanza"
+   },
+   {  
+      "CountryCode":"KE",
+      "StateCode":"700",
+      "StateName":"Rift Valley"
+   },
+   {  
+      "CountryCode":"KE",
+      "StateCode":"900",
+      "StateName":"Western"
+   }
+]

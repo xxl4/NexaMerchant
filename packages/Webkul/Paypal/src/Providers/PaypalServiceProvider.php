@@ -28,6 +28,7 @@ class PaypalServiceProvider extends ServiceProvider
     public function register()
     {
         $this->registerConfig();
+        $this->registerCommands();
     }
 
     /**
@@ -40,5 +41,19 @@ class PaypalServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(
             dirname(__DIR__) . '/Config/paymentmethods.php', 'payment_methods'
         );
+    }
+
+    /**
+     * Register the console commands of this package.
+     *
+     * @return void
+     */
+    protected function registerCommands(): void
+    {
+        if ($this->app->runningInConsole()) {
+            $this->commands([
+                \Webkul\Paypal\Console\Commands\Webhooks\Get::class
+            ]);
+        }
     }
 }

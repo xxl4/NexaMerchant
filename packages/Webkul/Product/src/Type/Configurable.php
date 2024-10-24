@@ -4,7 +4,7 @@ namespace Webkul\Product\Type;
 
 use Illuminate\Support\Str;
 use Illuminate\Support\Arr;
-use Webkul\Admin\Validations\ConfigurableUniqueSku;
+use Nicelizhi\Manage\Validations\ConfigurableUniqueSku;
 use Webkul\Checkout\Models\CartItem as CartItemModel;
 use Webkul\Product\DataTypes\CartItemValidationResult;
 use Webkul\Product\Facades\ProductImage;

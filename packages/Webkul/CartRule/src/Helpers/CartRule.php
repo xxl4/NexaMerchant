@@ -4,6 +4,7 @@ namespace Webkul\CartRule\Helpers;
 
 use Illuminate\Database\Eloquent\Builder;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Log;
 use Webkul\Customer\Repositories\CustomerRepository;
 use Webkul\Checkout\Repositories\CartRepository;
 use Webkul\CartRule\Repositories\CartRuleRepository;
@@ -66,6 +67,18 @@ class CartRule
     {
         $this->cart = $cart;
 
+        // if cart is have sku 8868666671334-45435838038246
+        // then don't apply cart rules and quantity - 1
+        foreach ($cart->items as $item) {
+            Log::info('Item sku: ' . $item->product->sku);
+            if ($item->product->sku == config('onebuy.return_shipping_insurance.product_sku')) {
+                //$item->quantity = 1;
+                $cart->items_qty = $cart->items_qty - 1;
+                $cart->save();
+            }
+        }
+
+
         /**
          * If cart rules are not available then don't process further.
          */
@@ -81,6 +94,7 @@ class CartRule
         $this->calculateCartItemTotals();
 
         foreach ($cart->items as $item) {
+            // fix the issue of discount amount not getting reset when cart rule is removed
             $itemCartRuleIds = $this->process($item);
 
             $appliedCartRuleIds = array_merge($appliedCartRuleIds, $itemCartRuleIds);
@@ -213,8 +227,29 @@ class CartRule
             if (! $this->canProcessRule($rule)) {
                 continue;
             }
+            Log::info('Processing rule id: ' . $rule->id . ' for item id: ' . $item->id. ' and rule condition_type: ' . $rule->condition_type);
+            // when rule condition type is 1, and all the cart item conditions are met
+            if ($rule->condition_type == '1') {
+                
+                // get the cart all items needed for the rule condition
+                $cartItems = $this->cart->items;
+                // check every cart item for the rule condition
+                $checkItem = 1;
+                foreach ($cartItems as $cartItem) {
+                    // check if the rule condition is met
+                    if (! $this->validator->validate($rule, $cartItem)) {
+                        $checkItem = 0;
+                    }
+                }
 
+                Log::info('Rule condition type is 1 and checkItem is: ' . $checkItem);
+                if($checkItem==0) {
+                    //continue;
+                }
+
+            } 
             if (! $this->validator->validate($rule, $item)) {
+                Log::info('Rule validation failed for rule id: ' . $rule->id . ' and item id: ' . $item->id);
                 continue;
             }
 

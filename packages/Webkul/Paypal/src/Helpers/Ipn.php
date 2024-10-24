@@ -2,9 +2,12 @@
 
 namespace Webkul\Paypal\Helpers;
 
+use Illuminate\Support\Facades\Log;
 use Webkul\Paypal\Payment\Standard;
 use Webkul\Sales\Repositories\OrderRepository;
 use Webkul\Sales\Repositories\InvoiceRepository;
+use Webkul\Checkout\Facades\Cart;
+use Webkul\Checkout\Repositories\CartRepository;
 
 class Ipn
 {
@@ -32,6 +35,7 @@ class Ipn
     public function __construct(
         protected Standard $paypalStandard,
         protected OrderRepository $orderRepository,
+        protected CartRepository $cartRepository,
         protected InvoiceRepository $invoiceRepository
     )
     {
@@ -46,6 +50,10 @@ class Ipn
     public function processIpn($post)
     {
         $this->post = $post;
+ 
+        Log::info("ipn post".json_encode($this->post));
+
+        if(empty($this->post)) return; //
 
         if (! $this->postBack()) {
             return;
@@ -77,6 +85,16 @@ class Ipn
         if (empty($this->order)) {
             $this->order = $this->orderRepository->findOneByField(['cart_id' => $this->post['invoice']]);
         }
+        if(empty($this->order)) {
+            $cart = $this->cartRepository->findOneWhere([
+                'id'   => $this->post['invoice']
+            ]);
+            Cart::setCart($cart);
+
+            $this->orderRepository->create(Cart::prepareDataForOrder());
+
+            $this->order = $this->orderRepository->findOneByField(['cart_id' => $this->post['invoice']]);
+        }
     }
 
     /**
@@ -86,14 +104,16 @@ class Ipn
      */
     protected function processOrder()
     {
-        if ($this->post['payment_status'] == 'Completed') {
-            if ($this->post['mc_gross'] != $this->order->grand_total) {
-                return;
-            } else {
-                $this->orderRepository->update(['status' => 'processing'], $this->order->id);
-
-                if ($this->order->canInvoice()) {
-                    $invoice = $this->invoiceRepository->create($this->prepareInvoiceData());
+        if(isset($this->post['payment_status'])) {
+            if ($this->post['payment_status'] == 'Completed') {
+                if ($this->post['mc_gross'] != $this->order->grand_total) {
+                    return;
+                } else {
+                    $this->orderRepository->update(['status' => 'processing'], $this->order->id);
+    
+                    if ($this->order->canInvoice()) {
+                        $invoice = $this->invoiceRepository->create($this->prepareInvoiceData());
+                    }
                 }
             }
         }

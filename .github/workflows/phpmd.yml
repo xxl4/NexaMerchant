@@ -17,10 +17,16 @@ name: PHPMD
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "main_de" ]
+    paths-ignore:
+      - .github/**
+      - docs/**
   pull_request:
     # The branches below must be a subset of the branches above
-    branches: [ "main" ]
+    branches: [ "main_de" ]
+    paths-ignore:
+      - .github/**
+      - docs/**
   schedule:
     - cron: '26 22 * * 3'
 

@@ -69,6 +69,7 @@ class Order extends Model implements OrderContract
         'customer',
         'channel',
         'payment',
+        'dispute',
         'created_at',
         'updated_at',
     ];
@@ -138,6 +139,12 @@ class Order extends Model implements OrderContract
     {
         return $this->hasMany(OrderItemProxy::modelClass())
             ->whereNull('parent_id');
+    }
+
+    public function sku_items(): HasMany
+    {
+        return $this->hasMany(OrderItemProxy::modelClass())
+            ->whereNotNull('parent_id');
     }
 
     /**
@@ -210,6 +217,14 @@ class Order extends Model implements OrderContract
     public function addresses(): HasMany
     {
         return $this->hasMany(OrderAddressProxy::modelClass());
+    }
+
+    /**
+     * Get the payment for the order.
+     */
+    public function dispute(): HasOne
+    {
+        return $this->hasOne(OrderDispute::class, 'order_id');
     }
 
     /**
@@ -389,6 +404,27 @@ class Order extends Model implements OrderContract
     }
 
     /**
+     * 
+     * Checks if order need dispute or not
+     * 
+     * @return bool
+     * 
+     */
+    public function canDispute(): bool
+    {
+        if ($this->status === self::STATUS_FRAUD) {
+            return false;
+        }
+
+        $dispute = $this->dispute()->first();
+        if($dispute) {
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
      * Checks if order can be refunded or not
      *
      * @return bool
@@ -397,6 +433,14 @@ class Order extends Model implements OrderContract
     {
         if ($this->status === self::STATUS_FRAUD) {
             return false;
+        }
+
+        $dispute = $this->dispute()->first();
+        if($dispute) {
+            $payment = $this->payment()->first();
+            if($dispute->status !="RESOLVED" && $payment->method=='paypal_smart_button') return false;
+            //if($dispute->status !="ACCEPTED" && $payment->method=='airwallex') return false;
+            if(!in_array($dispute->status, ['LOST','ACCEPTED','CHALLENGED','REVERSED']) && $payment->method=='airwallex') return false;
         }
 
         $pendingInvoice = $this->invoices->where('state', 'pending')

@@ -38,7 +38,7 @@ class Installer
                 'lastname'         => ' ',
                 'countryCode'      => config('app.default_country') ?? 'in',
                 'marketingConsent' => FALSE,
-                'project'          => 'bagisto',
+                'project'          => 'NexaMerchant',
             ],
         ]);
     }
@@ -71,7 +71,7 @@ class Installer
                 'lastname'         => ' ',
                 'countryCode'      => config('app.default_country') ?? 'in',
                 'marketingConsent' => FALSE,
-                'project'          => 'bagisto',
+                'project'          => 'NexaMerchant',
             ],
         ]);
     }
