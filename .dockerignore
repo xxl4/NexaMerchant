@@ -9,4 +9,6 @@ public/storage_old
 .git
 .github
 docs
-docker
+docker/.configs/mysql-data
+docker/.configs/redis-data
+docker/.configs/elasticsearch-data
