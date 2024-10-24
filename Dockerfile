@@ -72,6 +72,8 @@ RUN a2dissite 000-default.conf
 COPY docker/.configs/apache.conf /etc/apache2/sites-available/vhost.conf
 RUN a2ensite vhost.conf
 
+RUN a2enmod rewrite
+
 
 # COPY composer.json composer.json
 RUN composer update --no-interaction --prefer-dist --optimize-autoloader
