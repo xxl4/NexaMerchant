@@ -1,0 +1,68 @@
+FROM php:8.1-fpm
+
+# Install Nginx
+RUN apt-get update && apt-get install -y nginx
+
+# Install PHP extensions
+RUN apt-get install -y \
+    git \
+    unzip \
+    libzip-dev \
+    libicu-dev \
+    libonig-dev \
+    libpng-dev \
+    libjpeg-dev \
+    libfreetype6-dev \
+    libxpm-dev \
+    libwebp-dev \
+    libsodium-dev \
+    zlib1g-dev \
+    libxml2-dev \
+    libpq-dev \
+    libssl-dev \
+    libcurl4-openssl-dev \
+    pkg-config \
+    libpcre3-dev \
+    libgd-dev \
+    libmcrypt-dev \
+    libmemcached-dev \
+    libsqlite3-dev
+
+# Configure PHP extensions
+RUN docker-php-ext-configure gd --with-freetype --with-jpeg --with-webp
+RUN docker-php-ext-install pdo_mysql mbstring zip exif pcntl bcmath gd intl opcache calendar sodium
+
+# Install Composer
+COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
+
+# Install Node.js
+COPY --from=node:latest /usr/local/bin/node /usr/local/bin/
+COPY --from=node:latest /usr/local/lib/node_modules /usr/local/lib/node_modules
+RUN ln -s /usr/local/lib/node_modules/npm/bin/npm-cli.js /usr/local/bin/npm \
+    && ln -s /usr/local/lib/node_modules/npm/bin/npx-cli.js /usr/local/bin/npx
+
+# Set working directory
+WORKDIR /var/www/html/NexaMerchant/
+
+# Copy files
+COPY . /var/www/html/NexaMerchant/
+
+# Install PHP dependencies
+RUN composer install --no-interaction --prefer-dist --optimize-autoloader
+
+# Edit the file and directory permissions
+RUN chown -R www-data:www-data /var/www/html/NexaMerchant/
+RUN chmod -R 775 /var/www/html/NexaMerchant/
+
+# Copy Nginx configuration files
+COPY ./docker/.configs/nginx.conf /etc/nginx/nginx.conf
+COPY ./docker/.configs/default.conf /etc/nginx/conf.d/default.conf
+
+# Clean up
+RUN apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# Expose port 80
+EXPOSE 80
+
+# Start Nginx and PHP-FPM
+CMD ["bash", "-c", "php-fpm & nginx -g 'daemon off;'"]

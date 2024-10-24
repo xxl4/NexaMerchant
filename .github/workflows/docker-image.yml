@@ -15,10 +15,7 @@ on:
       - 'README.md'
       - .github/**
       - docs/**
-
-
 jobs:
-
   build:
     runs-on: ubuntu-latest
     steps:
@@ -27,8 +24,7 @@ jobs:
       uses: docker/login-action@f4ef78c080cd8ba55a85445d5b36e214a81df20a
       with:
         username: ${{ secrets.HUB_DOCKER_USERNAME }}
-        password: ${{ secrets.HUB_DOCKER_PASSWORD }}
-    
+        password: ${{ secrets.HUB_DOCKER_PASSWORD }}   
     - name: Extract metadata (tags, labels) for Docker
       id: meta
       uses: docker/metadata-action@9ec57ed1fcdbf14dcef7dfbe97b2010124a938b7
@@ -36,17 +32,22 @@ jobs:
         images: nicesteven/nexamerchant
 
     - name: Build and push Docker image version
-      uses: docker/build-push-action@3b5e8027fcad23fda98b2e3ac259d8d67585f671
+      uses: docker/build-push-action@v2
       with:
         context: .
         file: ./Dockerfile
         push: true
-        tags: nicesteven/nexamerchant:${{secrets.DOCKER_VERSION }}
-    
-    - name: Build and push Docker image
-      uses: docker/build-push-action@3b5e8027fcad23fda98b2e3ac259d8d67585f671
+        tags: |
+          nicesteven/nexamerchant:${{secrets.DOCKER_VERSION }}
+          nicesteven/nexamerchant:latest
+        labels: ${{ steps.meta.outputs.labels }}
+    - name: Build Nginx Version Docker image
+      uses: docker/build-push-action@v2
       with:
         context: .
-        file: ./Dockerfile
+        file: ./Dockerfile.nginx
         push: true
-        tags: nicesteven/nexamerchant:latest
+        tags: |
+          nicesteven/nexamerchant:nginx-${{secrets.DOCKER_VERSION }}
+          nicesteven/nexamerchant:nginx-latest
+        labels: ${{ steps.meta.outputs.labels }}
