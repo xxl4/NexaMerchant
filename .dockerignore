@@ -1,6 +1,6 @@
 vendor
 .env
-storage/logs
+storage/logs/*.log
 storage/debugbar
 storage/db
 public/storage
@@ -9,3 +9,4 @@ public/storage_old
 .git
 .github
 docs
+docker

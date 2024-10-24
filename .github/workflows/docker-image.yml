@@ -3,14 +3,14 @@ name: Docker Image CI
 on:
   push:
     branches: 
-    - docker
+      - docker
     paths-ignore:
       - 'README.md'
       - .github/**
       - docs/**
   pull_request:
     branches: 
-    - docker
+      - docker
     paths-ignore:
       - 'README.md'
       - .github/**
