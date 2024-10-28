@@ -14,7 +14,7 @@ return new class extends Migration
         //
         Schema::table('shopify_products', function (Blueprint $table) {
             //
-            $table->boolean('is_feed')->default(false)->after('status');
+            $table->boolean('is_feed')->default(true)->after('status');
         });
     }
 
