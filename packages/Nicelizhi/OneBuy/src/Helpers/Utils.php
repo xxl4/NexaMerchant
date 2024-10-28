@@ -75,6 +75,7 @@ final class Utils {
                 $tip2_price = round($package_product['new_price'] / $i, 2);
                 $package_product['tip2'] = core()->currencySymbol($currency).$tip2_price;
                 $package_product['shipping_fee'] = $shipping_price; // shipping price
+                $package_product['return_fee'] = core()->convertPrice(2.99); // return price
                 $popup_info['name'] = null;
                 $popup_info['old_price'] = null;
                 $popup_info['new_price'] = null;

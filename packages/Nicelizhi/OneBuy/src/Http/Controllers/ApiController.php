@@ -95,6 +95,9 @@ class ApiController extends Controller
 
     
             $redis = Redis::connection('default');
+
+            $product_attr_sort_cache_key = "product_attr_sort_23_".$product->id;
+            $product_attr_sort = $redis->hgetall($product_attr_sort_cache_key); // get sku sort
     
             foreach($attributes['attributes'] as $key=>$attribute) {
 
