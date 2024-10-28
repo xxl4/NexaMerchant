@@ -141,14 +141,57 @@
     }
 
     .shopify-content {
-      width: 100%;
       float: left;
+    }
+
+    .shopify-content {
+      max-width: 100%;
+      color: #555555;
+      font-size: 16px;
+      line-height: 1.5;
+      padding: 0 10px;
     }
 
     .shopify-content img {
       width: 100% !important;
+      border-radius: 10px;
       margin: 0 auto;
+
       height: auto;
+    }
+
+    .shopify-content h2 {
+      font-size: 18px;
+      color: #555555;
+      margin-bottom: 15px;
+    }
+
+    .shopify-content h3 {
+      font-size: 16px;
+      color: #555555;
+      margin-bottom: 15px;
+    }
+
+    .shopify-content p {
+      margin: 10px 0;
+    }
+
+    .shopify-content ul {
+      list-style: none;
+    }
+
+    .shopify-content ul li {
+      margin: 10px 0;
+    }
+
+    .shopify-content span {
+      display: inline-block;
+      margin-bottom: 3px;
+      width: 100%;
+    }
+
+    .shopify-content video {
+      width: 100%;
     }
 
     .prod-name {
