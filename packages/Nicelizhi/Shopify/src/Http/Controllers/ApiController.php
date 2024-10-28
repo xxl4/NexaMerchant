@@ -139,7 +139,7 @@ class ApiController extends Controller
         $products = Cache::get("shopify_products_".$this->shopify_store_id);
 
         if(empty($products)) {
-            $shopifyProducts = \Nicelizhi\Shopify\Models\ShopifyProduct::where("status","active")->where("shopify_store_id", $shopifyStore->shopify_store_id)->select(['product_id',"title","handle","variants","images"])->get()->toArray();;
+            $shopifyProducts = \Nicelizhi\Shopify\Models\ShopifyProduct::where("status","active")->where("is_feed", 1)->where("shopify_store_id", $shopifyStore->shopify_store_id)->select(['product_id',"title","handle","variants","images"])->get()->toArray();;
             $products = [];
 
             foreach($shopifyProducts as $product) {

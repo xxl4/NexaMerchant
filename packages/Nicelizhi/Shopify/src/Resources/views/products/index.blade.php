@@ -28,6 +28,7 @@
                           <th>Title</th>
                           <th>handle</th>
                           <th>Status</th>
+                          <th>Is Feed</th>
                           <th>Clean Cache</th>
                           <th>V1</th>
                           <th>V2</th>
@@ -100,6 +101,9 @@
             data: 'status'
           },
           {
+            data: 'is_feed'
+          },
+          {
             data: 'product_id',
             render: function(data, type, row, meta) {
               return '<a href="./products/clean-cache/'+data+'" class="btn btn-danger btn-sm" target="_blank">Clean Cache</a>';
@@ -150,7 +154,7 @@
             [20, 50, 100],
             [20, 50, 100]
         ],
-        order: [[10, 'desc']],
+        order: [[11, 'desc']],
         processing: true,
         serverSide: true,
         

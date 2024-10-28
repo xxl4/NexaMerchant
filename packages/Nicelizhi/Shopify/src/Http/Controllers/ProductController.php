@@ -66,6 +66,7 @@ class ProductController extends Controller
                     return "/products/".$d;
                 }),
                 array( 'db' => '`p`.`status`',   'dt' => 'status', 'field'=>'status' ),
+                array( 'db' => '`p`.`is_feed`',   'dt' => 'is_feed', 'field'=>'is_feed' ),
                 array( 'db' => '`p`.`updated_at`',   'dt' => 'updated_at', 'field'=>'updated_at' )
             );
             // SQL server connection information
