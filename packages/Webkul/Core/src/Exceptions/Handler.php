@@ -89,15 +89,15 @@ class Handler extends BaseHandler
             return $this->response($path, 500);
         } else {
 
-            $mystring = $exception->getFile();
-            $findme   = 'Nicelizhi';
-            $pos = strpos($mystring, $findme);
+            // $mystring = $exception->getFile();
+            // $findme   = 'Nicelizhi';
+            // $pos = strpos($mystring, $findme);
 
-            if ($pos === false) {
+            // if ($pos === false) {
                 
-            } else {
+            // } else {
                 \Nicelizhi\Shopify\Helpers\Utils::send(json_encode($exception->getMessage()). " File is ".$exception->getFile()." url is ".$request->fullUrl()." please check the log file for more details");
-            }
+            //}
             
             
 
