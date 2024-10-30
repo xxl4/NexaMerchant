@@ -104,6 +104,8 @@ class Post extends Command
                 var_dump($e->getMessage());
                 Log::error(json_encode($e->getMessage()));
                 Log::error(json_encode($item));
+
+                Redis::set("shopify_customer_".$item->customer_email, 2, 3600*24); //mark the email is have into redis
             }
             //mark the email is have into redis
             //var_dump($item);exit;
