@@ -117,6 +117,7 @@ final class Utils {
             if(strpos($option['name'], "farbe") !==false) $attr_id = 23;
             if(strpos($option['name'], "stil") !==false) $attr_id = 23;
             if(strpos($option['name'], "barva") !==false) $attr_id = 23; // cv
+            if(strpos($option['name'], "culoare") !==false) $attr_id = 23; // ro
 
             
 
