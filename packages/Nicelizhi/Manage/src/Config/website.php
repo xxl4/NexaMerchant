@@ -21,6 +21,10 @@ return [
             'name' => 'France',
             'link' => env('SYNC_FR'),
         ],
+        'ro' => [
+            'name' => 'Romania',
+            'link' => env('SYNC_RO'),
+        ],
     ],
     'paypal' => [
         'v1' => [
