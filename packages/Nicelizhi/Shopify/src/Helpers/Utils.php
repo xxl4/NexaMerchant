@@ -54,6 +54,32 @@ final class Utils {
         //var_dump($response, $argc);     
     }
 
+    // send msg to feishu
+    public static function sendFeishu($text) {
+        $url = config("shopify.feishu_noticle_url");
+        //var_dump($url);
+        if(empty($url)) return false;
+
+        //echo $url."\r\n";
+
+        $argc = [];
+        $argc['msg_type'] = "text";
+        $argc['content'] = [
+            'text' => $text
+        ];
+
+         $header = [];
+         $header[] = "Content-Type:application/json";
+
+         //var_dump($argc);
+
+        $client = new Client();
+        $response = $client->post($url,[
+            \GuzzleHttp\RequestOptions::JSON => $argc
+        ]);
+        //var_dump($response, $argc);     
+    }
+
     // base on shopify data create options data
     public static function createOptions($options) {
         $data = [];
