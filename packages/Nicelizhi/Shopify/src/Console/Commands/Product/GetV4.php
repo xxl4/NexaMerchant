@@ -328,7 +328,7 @@ class GetV4 extends Command
                 $newShopifyVarant['id'] = $shopifyVariant['id'];
                 $newShopifyVarant['price'] = $shopifyVariant['price'];
                 $newShopifyVarant['title'] = $shopifyVariant['title'];
-                $newShopifyVarant['weight'] = $shopifyVariant['weight'];
+                $newShopifyVarant['weight'] = isset($shopifyVariant['weight']) ? $shopifyVariant['weight'] : 0;
                 $newShopifyVarant['sku'] = $shopifyVariant['sku'];
                 $newShopifyVarant['option1'] = $option1=="color" ?  $shopifyVariant['option1'] : $shopifyVariant['option2'];
                 $newShopifyVarant['option2'] = $option2=="size" ? $shopifyVariant['option2'] : $shopifyVariant['option1'];

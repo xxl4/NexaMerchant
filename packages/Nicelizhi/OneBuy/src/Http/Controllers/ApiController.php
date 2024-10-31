@@ -89,6 +89,9 @@ class ApiController extends Controller
         if(empty($data)) {
         //if(true) {
             $product = $this->productRepository->findBySlug($slug);
+            if(is_null($product)) {
+                return response()->json(['error' => 'Product not found','code'=>'201'], 400);
+            }
             $data = [];
             $productViewHelper = new \Webkul\Product\Helpers\ConfigurableOption();
             $attributes = $productViewHelper->getConfigurationConfig($product);
