@@ -15,10 +15,12 @@ final class Utils {
     const CHECKOUT_V3 = "v3";
     const CHECKOUT_V4 = "v4";
     const CHECKOUT_V5 = "v5";
+    const CHECKOUT_COD_V1 = "cod_v1";
 
     // get all checkout version
     public static function getAllCheckoutVersion() {
         return [
+            self::CHECKOUT_COD_V1 => self::CHECKOUT_COD_V1,
             self::CHECKOUT_V5 => self::CHECKOUT_V5,
             self::CHECKOUT_V4 => self::CHECKOUT_V4,
             self::CHECKOUT_V3 => self::CHECKOUT_V3,
@@ -107,6 +109,7 @@ final class Utils {
             if(strpos($option['name'], "tamaño") !==false) $attr_id = 24;
             if(strpos($option['name'], "dimensiuni") !==false) $attr_id = 24; // ro
             if(strpos($option['name'], "velikost") !==false) $attr_id = 24; // ro
+            if(strpos($option['name'], "dimensiune") !==false) $attr_id = 24; // ro
             
 
             if(strpos($option['name'], "Color") !==false) $attr_id = 23;
