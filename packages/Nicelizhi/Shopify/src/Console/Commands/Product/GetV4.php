@@ -25,7 +25,7 @@ class GetV4 extends Command
      *
      * @var string
      */
-    protected $signature = 'shopify:product:getv4 {--prod_id=} {--force=}';
+    protected $signature = 'shopify:product:getv4 {--prod_id=} {--force=} {--lang=} {--channel=}';
 
     /**
      * The console command description.
@@ -41,6 +41,8 @@ class GetV4 extends Command
     private $lang = null;
 
     private $locales = [];
+
+    private $channel = "default";
 
     /**
      * Create a new command instance.
@@ -68,6 +70,18 @@ class GetV4 extends Command
     public function handle()
     {
         $shopify_pro_id = $this->option('prod_id');
+        $lang = $this->option('lang'); // lang
+        $channel = $this->option('channel'); // channel
+
+        if(!empty($lang)) {
+            $this->lang = $lang;
+        }
+
+        if(!empty($channel)) {
+            $this->channel = $channel;
+        }
+
+        //var_dump($this->lang, $this->channel);exit;
         
         if(empty($shopify_pro_id)) {
             $this->error("prod id is empty");
@@ -271,7 +285,7 @@ class GetV4 extends Command
             $updateData['visible_individually'] = 1;
             $updateData['status'] = 1;
             $updateData['guest_checkout'] = 1;
-            $updateData['channel'] = "default";
+            $updateData['channel'] = $this->channel;
             $updateData['locale'] = $this->lang;
             $categories = [];
             $categories[] = $this->category_id;
@@ -414,7 +428,7 @@ class GetV4 extends Command
                         $var_product['name'] = $shopifyVariant['title']; 
                         $var_product['status'] = 1;
                         $var_product['guest_checkout'] = 1;
-                        $var_product['channel'] = "default";
+                        $var_product['channel'] = $this->channel;
                         $var_product['locale'] = $this->lang;
                         $var_product[] = $this->category_id;
                         $var_product['categories'] = $categories;
@@ -500,7 +514,7 @@ class GetV4 extends Command
                 $updateData['visible_individually'] = 1;
                 $updateData['status'] = 1;
                 $updateData['guest_checkout'] = 1;
-                $updateData['channel'] = "default";
+                $updateData['channel'] = $this->channel;
                 $updateData['locale'] = $this->lang;
                 $categories[] = $this->category_id;
                 $updateData['categories'] = $categories;
