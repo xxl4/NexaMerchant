@@ -35,3 +35,6 @@ yarn-error.log
 packages/Apps/
 *.log
 *.log.*
+/docker/.configs/mysql-data
+/docker/.configs/redis-data
+/docker/.configs/elasticsearch-data
