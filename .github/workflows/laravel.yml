@@ -139,3 +139,25 @@ jobs:
           cd ${{ secrets.WWW_DIR_US }} && git pull
           composer dump-autoload
           cd storage && sudo chmod -R 777 *
+    - name: Sync to Server 3 and Do it
+      uses: appleboy/ssh-action@master
+      env:
+        GITHUB_SHA_X: ${GITHUB_SHA}
+      with:
+        host: ${{ secrets.SSH_HOST_EURO_2 }}  
+        username: ${{ secrets.SSH_USERNAME }}
+        key: ${{ secrets.DEPLOY_KEY }}
+        port: ${{secrets.SSH_PORT }}
+        script: |
+          cd ${{ secrets.WWW_DIR_EURO_2_1 }} && sudo git pull
+          composer dump-autoload
+          cd storage && sudo chmod -R 777 *
+          cd ${{ secrets.WWW_DIR_EURO_2_2 }} && sudo git pull
+          composer dump-autoload
+          cd storage && sudo chmod -R 777 *
+          cd ${{ secrets.WWW_DIR_EURO_2_3 }} && sudo git pull
+          composer dump-autoload
+          cd storage && sudo chmod -R 777 *
+          cd ${{ secrets.WWW_DIR_EURO_2_4 }} && sudo git pull
+          composer dump-autoload
+          cd storage && sudo chmod -R 777 *
