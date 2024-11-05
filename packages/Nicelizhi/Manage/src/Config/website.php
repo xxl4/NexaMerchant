@@ -33,6 +33,14 @@ return [
             'name' => 'Slovakia',
             'link' => env('SYNC_SK'),
         ],
+        'hu' => [
+            'name' => 'Hungary',
+            'link' => env('SYNC_HU'),
+        ],
+        'pl' => [
+            'name' => 'Poland',
+            'link' => env('SYNC_PL'),
+        ],
     ],
     'paypal' => [
         'v1' => [
