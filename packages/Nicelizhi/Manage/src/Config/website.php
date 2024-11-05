@@ -29,6 +29,10 @@ return [
             'name' => 'Czech Republic',
             'link' => env('SYNC_CZ'),
         ],
+        'sk' => [
+            'name' => 'Slovakia',
+            'link' => env('SYNC_SK'),
+        ],
     ],
     'paypal' => [
         'v1' => [
