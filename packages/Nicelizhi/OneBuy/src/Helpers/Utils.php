@@ -65,6 +65,7 @@ final class Utils {
                 //$old_price_format = core()->convertPrice($package_product['old_price']);
                 $package_product['old_price_format'] = core()->currency(round($package_product['old_price'], 2)); 
                 //$package_product['new_price'] = "3.23" * $i;
+                $package_product['currency_symbol'] = core()->currencySymbol(core()->getCurrentCurrencyCode());
                 if ($i==2) $discount = 0.8;
                 if ($i==3) $discount = 0.7;
                 if ($i==4) $discount = 0.6;
