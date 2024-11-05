@@ -110,6 +110,8 @@ final class Utils {
             if(strpos($option['name'], "dimensiuni") !==false) $attr_id = 24; // ro
             if(strpos($option['name'], "velikost") !==false) $attr_id = 24; // ro
             if(strpos($option['name'], "dimensiune") !==false) $attr_id = 24; // ro
+            if(strpos($option['name'], "barva") !==false) $attr_id = 24; // cz
+
             
 
             if(strpos($option['name'], "Color") !==false) $attr_id = 23;
@@ -121,6 +123,7 @@ final class Utils {
             if(strpos($option['name'], "stil") !==false) $attr_id = 23;
             if(strpos($option['name'], "barva") !==false) $attr_id = 23; // cv
             if(strpos($option['name'], "culoare") !==false) $attr_id = 23; // ro
+            if(strpos($option['name'], "culoare") !==false) $attr_id = 23; // cz
 
             
 
