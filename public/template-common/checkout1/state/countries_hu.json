@@ -1,0 +1,12 @@
+[
+    {
+        "countryName": "Hungary",
+        "countryNameLocalized": "Magyarország",
+        "countryCode": "HU",
+        "currencyCode": "HUF",
+        "currencyName": "Hungarian Forint",
+        "currencySign": "Ft",
+        "region": "Europe",
+        "postalCodeRegex": "\\d{4}"
+    }
+]
