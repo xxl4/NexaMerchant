@@ -1,0 +1,12 @@
+[
+    {
+        "countryName": "Romania",
+        "countryNameLocalized": "Romania",
+        "countryCode": "RO",
+        "currencyCode": "Lei",
+        "currencyName": "European Euro",
+        "currencySign": "Lei",
+        "region": "Europe",
+        "postalCodeRegex": "\\d{5}"
+    }
+]
