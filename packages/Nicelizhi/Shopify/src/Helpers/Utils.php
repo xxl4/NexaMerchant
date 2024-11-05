@@ -113,6 +113,7 @@ final class Utils {
             if(strpos($option['name'], "barva") !==false) $attr_id = 24; // cz
             if(strpos($option['name'], "veĽkosŤ") !==false) $attr_id = 24; // sk
             if(strpos($option['name'], "rozmiar") !==false) $attr_id = 24; // pl
+            if(strpos($option['name'], "taille") !==false) $attr_id = 24; // hu
 
             if(strpos($option['name'], "Color") !==false) $attr_id = 23;
             if(strpos($option['name'], "color") !==false) $attr_id = 23;
@@ -126,6 +127,7 @@ final class Utils {
             if(strpos($option['name'], "culoare") !==false) $attr_id = 23; // cz
             if(strpos($option['name'], "farba") !==false) $attr_id = 23; // sk
             if(strpos($option['name'], "kolor") !==false) $attr_id = 23; // pl
+            if(strpos($option['name'], "szín") !==false) $attr_id = 23; // hu
 
             
 
