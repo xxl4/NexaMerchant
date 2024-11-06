@@ -29,7 +29,7 @@ class PostTest extends Command
      *
      * @var string
      */
-    protected $description = 'create Order shopify:test:order:post';
+    protected $description = 'create Order shopify:order:post';
 
     private $shopify_store_id = null;
     private $lang = null;
@@ -105,6 +105,29 @@ class PostTest extends Command
 
     /**
      * 
+     * check the today log file
+     * 
+     */
+
+     public function checkLog() {
+
+        //return false;
+       // use grep command to gerneter new log file
+
+       $yesterday = date("Y-m-d", strtotime('-1 days'));
+
+       $big_log_file = storage_path('logs/laravel-'.$yesterday.'.log');
+       $error_log_file = storage_path('logs/error-'.$yesterday.'.log');
+       echo $big_log_file."\r\n";
+       echo $error_log_file."\r\n";
+
+       if(!file_exists($error_log_file)) exec("cat ".$big_log_file." | grep SQLSTATE >".$error_log_file);
+       
+
+     }
+
+    /**
+     * 
      * 
      * @param object orderitem
      * 
@@ -128,6 +151,7 @@ class PostTest extends Command
             'order_id' => $id
         ])->first();
         if(!is_null($shopifyOrder)) {
+            $this->error("have sync to shopify ".$id);
             return false;
         }
 
@@ -253,10 +277,32 @@ class PostTest extends Command
                 "amount" => $order->grand_total,
             ]
         ];
+        
+        // Ensure payment_gateway_names is set correctly
+        if ($orderPayment['method'] == 'codpayment') {
+            $postOrder['gateway'] = "cash";
+            $postOrder['payment_gateway_names'] = ["Cash on Delivery (COD)"];
+            $postOrder['financial_status'] = "pending";
+            $postOrder['transactions'] = [
+                [
+                    "kind" => "sale",
+                    "status" => "pending",
+                    "amount" => $order->grand_total,
+                    "gateway" => "Cash on Delivery (COD)"
+                ]
+            ];
+        } else {
+            $postOrder['financial_status'] = "paid";
+            $postOrder['transactions'] = [
+                [
+                    "kind" => "sale",
+                    "status" => "success",
+                    "amount" => $order->grand_total,
+                ]
+            ];
+        }
 
-        $postOrder['transactions'] = $transactions;
-
-        $postOrder['financial_status'] = "paid";
+        $postOrder['test'] = true;
 
         $postOrder['current_subtotal_price'] = $order->sub_total;
 
@@ -401,7 +447,7 @@ class PostTest extends Command
         }
 
         try {
-            $response = $client->post($shopify['shopify_app_host_name'].'/admin/api/2023-10/orders.json', [
+            $response = $client->post($shopify['shopify_app_host_name'].'/admin/api/2024-10/orders.json', [
                 'http_errors' => true,
                 'headers' => [
                     'Content-Type' => 'application/json',
