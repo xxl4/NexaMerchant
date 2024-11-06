@@ -279,7 +279,15 @@ class Post extends Command
 
         $postOrder['transactions'] = $transactions;
 
-        $postOrder['financial_status'] = "paid";
+        
+        $financial_status = "paid";
+
+        if($orderPayment['method']=='codpayment') {
+            $financial_status = "pending";
+        }
+
+        //$postOrder['financial_status'] = "paid";
+        $postOrder['financial_status'] = $financial_status;
 
         $postOrder['current_subtotal_price'] = $order->sub_total;
 

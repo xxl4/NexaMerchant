@@ -22,14 +22,14 @@ class PostTest extends Command
      *
      * @var string
      */
-    protected $signature = 'shopify:order:post:test {--order_id=}';
+    protected $signature = 'shopify:order:test:post {--order_id=}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'create Order shopify:order:post:test {--order_id=}';
+    protected $description = 'create Order shopify:test:order:post';
 
     private $shopify_store_id = null;
     private $lang = null;
@@ -88,6 +88,9 @@ class PostTest extends Command
             $lists = [];
             //$lists = Order::where(['status'=>'processing'])->orderBy("updated_at", "desc")->select(['id'])->limit(100)->get();
         }
+        
+
+        //$this->checkLog();
 
         foreach($lists as $key=>$list) {
             $this->info("start post order " . $list->id);
@@ -379,9 +382,9 @@ class PostTest extends Command
         $pOrder['order'] = $postOrder;
         var_dump($pOrder);
 
-        $app_env = config("app.env");
-
         $crm_url = config('onebuy.crm_url');
+
+        $app_env = config("app.env");
         if($app_env=='demo') {
 
             $cnv_id = explode('-',$orderPayment['method_title']);
@@ -531,7 +534,7 @@ class PostTest extends Command
             $crm_channel = config('onebuy.crm_channel');
 
             
-            $url = $crm_url."/api/offers/callBack?refer=".$cnv_id[1]."&revenue=".$order->grand_total."&currency_code=".$order->order_currency_code."&channel_id=".$crm_channel."&q_ty=".$q_ty."&email=".$item['email'];
+            $url = $crm_url."/api/offers/callBack?refer=".$cnv_id[1]."&revenue=".$order->grand_total."&currency_code=".$order->order_currency_code."&channel_id=".$crm_channel."&q_ty=".$q_ty."&email=".$item['email']."&order_id=".$id;
             $res = $this->get_content($url);
             Log::info("post to bm 2 url ".$url." res ".json_encode($res));
 
