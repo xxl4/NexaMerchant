@@ -277,17 +277,31 @@ class Post extends Command
             ]
         ];
 
-        $postOrder['transactions'] = $transactions;
+        
 
         
         $financial_status = "paid";
 
         if($orderPayment['method']=='codpayment') {
             $financial_status = "pending";
+            $postOrder['payment_gateway_names'] = [
+                "codPay",
+                "cash_on_delivery"
+            ];
+
+            $transactions = [
+                [
+                   "kind" => "sale",
+                    "status" => "pending",
+                    "amount" => $order->grand_total,
+                    "gateway" => "Cash on Delivery (COD)"
+                ]
+            ];
         }
 
         //$postOrder['financial_status'] = "paid";
         $postOrder['financial_status'] = $financial_status;
+        $postOrder['transactions'] = $transactions;
 
         $postOrder['current_subtotal_price'] = $order->sub_total;
 
