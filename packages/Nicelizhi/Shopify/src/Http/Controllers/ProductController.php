@@ -17,10 +17,25 @@ use Maatwebsite\Excel\Facades\Excel;
 use Webkul\Product\Repositories\ProductReviewRepository;
 use Illuminate\Support\Facades\Event;
 
+use Nicelizhi\Manage\Helpers\SSP;
+use Webkul\Product\Repositories\ProductRepository;
+use Webkul\Product\Repositories\ProductAttributeValueRepository;
+use Illuminate\Support\Facades\Artisan;
+use Nicelizhi\Shopify\Models\ShopifyStore;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Http\Request;
+use Webkul\Product\Models\ProductAttributeValue;
+use Webkul\Product\Models\ProductFlat;
+use Illuminate\Support\Facades\Redis;
+use Maatwebsite\Excel\Facades\Excel;
+use Webkul\Product\Repositories\ProductReviewRepository;
+use Illuminate\Support\Facades\Event;
+
 
 class ProductController extends Controller
 {
 
+    private $lang = null;
     private $lang = null;
 
     public function __construct(
@@ -28,9 +43,14 @@ class ProductController extends Controller
         protected ProductAttributeValueRepository $productAttributeValueRepository,
         protected ShopifyStore $ShopifyStore,
         protected ProductReviewRepository $productReviewRepository,
+        protected ProductRepository $productRepository,
+        protected ProductAttributeValueRepository $productAttributeValueRepository,
+        protected ShopifyStore $ShopifyStore,
+        protected ProductReviewRepository $productReviewRepository,
         protected ShopifyProduct $ShopifyProduct
 
     ){
+        $this->lang = config('shopify.store_lang');
         $this->lang = config('shopify.store_lang');
     }
 

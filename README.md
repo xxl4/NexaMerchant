@@ -2,11 +2,29 @@
 
 [Online Document](https://nexa-merchant.vercel.app/)
 
+# Docker Build
+
+```bash
+docker build -t nicesteven/nexamerchant .
+```
+
+
 # Docker Install
 
 ```
 docker pull nicesteven/nexamerchant
 ```
+
+# Docker Compose
+    
+    ```bash
+    cd docker
+    docker-compose up -d
+
+    docker-compose exec nexamerchant-php-apache php artisan key:generate
+    docker-compose exec nexamerchant-php-apache php artisan migrate
+    docker-compose exec nexamerchant-php-apache php artisan db:seed
+    ```
 
 # Plugin
 
@@ -19,6 +37,16 @@ docker pull nicesteven/nexamerchant
 ## Airwallex
 
 ## Google Analytices
+
+## Facebook Pixel
+
+## Google Tag Manager
+
+## Google Recaptcha
+
+## Feeds
+
+## Shopee
 
 ## Issue
 [Github](https://github.com/xxl4/NexaMerchant/issues)  

@@ -1,7 +1,6 @@
 # Description: Dockerfile for NexaMerchant
 FROM php:8.1.29-apache
 
-
 RUN apt-get update && apt-get install -y \
     unzip \
     libzip-dev \
@@ -40,6 +39,7 @@ RUN apt-get update && apt-get install -y \
     libpng-dev \
     libxpm-dev \
     libwebp-dev \
+    libsodium-dev \
     libfreetype6-dev \
     libjpeg62-turbo-dev \
     libpng-dev \
@@ -69,8 +69,10 @@ COPY . ./
 RUN ls -la
 
 RUN a2dissite 000-default.conf
-COPY docker/.configs/apache.conf /etc/apache2/sites-available/vhost.conf
+COPY ./docker/.configs/apache.conf /etc/apache2/sites-available/vhost.conf
 RUN a2ensite vhost.conf
+
+RUN a2enmod rewrite
 
 
 # COPY composer.json composer.json
