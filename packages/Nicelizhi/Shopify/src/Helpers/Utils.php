@@ -110,7 +110,10 @@ final class Utils {
             if(strpos($option['name'], "dimensiuni") !==false) $attr_id = 24; // ro
             if(strpos($option['name'], "velikost") !==false) $attr_id = 24; // ro
             if(strpos($option['name'], "dimensiune") !==false) $attr_id = 24; // ro
-            
+            if(strpos($option['name'], "barva") !==false) $attr_id = 24; // cz
+            if(strpos($option['name'], "veĽkosŤ") !==false) $attr_id = 24; // sk
+            if(strpos($option['name'], "rozmiar") !==false) $attr_id = 24; // pl
+            if(strpos($option['name'], "taille") !==false) $attr_id = 24; // hu
 
             if(strpos($option['name'], "Color") !==false) $attr_id = 23;
             if(strpos($option['name'], "color") !==false) $attr_id = 23;
@@ -121,6 +124,10 @@ final class Utils {
             if(strpos($option['name'], "stil") !==false) $attr_id = 23;
             if(strpos($option['name'], "barva") !==false) $attr_id = 23; // cv
             if(strpos($option['name'], "culoare") !==false) $attr_id = 23; // ro
+            if(strpos($option['name'], "culoare") !==false) $attr_id = 23; // cz
+            if(strpos($option['name'], "farba") !==false) $attr_id = 23; // sk
+            if(strpos($option['name'], "kolor") !==false) $attr_id = 23; // pl
+            if(strpos($option['name'], "szín") !==false) $attr_id = 23; // hu
 
             
 
@@ -213,6 +220,9 @@ final class Utils {
 
     // clear cache
     public static function clearCache($pid, $shopify_id=0){
+
+        $currencies = core()->getAllCurrencies();
+
         if($pid!=0) {
             Cache::pull("product_color_size_".$pid);
             Cache::pull("product_attributes_".$pid);
@@ -226,11 +236,17 @@ final class Utils {
             Cache::pull("product_comment_".$pid."_4_10");
             Cache::pull("product_comment_".$pid."_5_10");
             Cache::pull("product_comment_".$pid."_6_10");
-            Cache::pull("product_ext_".$pid."_4_EUR");
-            Cache::pull("product_ext_".$pid."_4_USD");
-            Cache::pull("product_ext_".$pid."_4_AUD");
-            Cache::pull("product_ext_".$pid."_4_GBP");
-            Cache::pull("product_ext_".$pid."_4_CZK");
+
+            foreach($currencies as $k => $currency) {
+                Cache::pull("product_ext_".$pid."_4_".$currency->code);
+            }
+
+            // Cache::pull("product_ext_".$pid."_4_EUR");
+            // Cache::pull("product_ext_".$pid."_4_USD");
+            // Cache::pull("product_ext_".$pid."_4_AUD");
+            // Cache::pull("product_ext_".$pid."_4_GBP");
+            // Cache::pull("product_ext_".$pid."_4_CZK");
+            // Cache::pull("product_ext_".$pid."_4_RON");
         }
         if($shopify_id!=0) {
             Cache::pull("product_url_".$shopify_id);
@@ -240,14 +256,26 @@ final class Utils {
             Cache::pull("shopify_images_".$shopify_id);
             Cache::pull("shopify_full_".$shopify_id);
 
-            Cache::pull("product_url_".$shopify_id."_USD");
-            Cache::pull("product_url_".$shopify_id."_AUD");
-            Cache::pull("product_url_".$shopify_id."_EUR");
-            Cache::pull("product_url_".$shopify_id."_CZK");
-            Cache::pull("checkout_v2_".$shopify_id."_USD");
-            Cache::pull("checkout_v2_".$shopify_id."_AUD");
-            Cache::pull("checkout_v2_".$shopify_id."_EUR");
-            Cache::pull("checkout_v2_".$shopify_id."_CZK");
+            // get all currencies
+
+            //var_dump($currencies);
+
+            foreach($currencies as $k => $currency) {
+                Cache::pull("product_url_".$shopify_id."_".$currency->code);
+                Cache::pull("checkout_v2_".$shopify_id."_".$currency->code);
+                // shipping_price
+                //Cache::pull("shipping_price_".$currency->code);
+            }
+
+            // Cache::pull("product_url_".$shopify_id."_USD");
+            // Cache::pull("product_url_".$shopify_id."_AUD");
+            // Cache::pull("product_url_".$shopify_id."_EUR");
+            // Cache::pull("product_url_".$shopify_id."_CZK");
+            // Cache::pull("checkout_v2_".$shopify_id."_USD");
+            // Cache::pull("checkout_v2_".$shopify_id."_AUD");
+            // Cache::pull("checkout_v2_".$shopify_id."_EUR");
+            // Cache::pull("checkout_v2_".$shopify_id."_CZK");
+            // Cache::pull("checkout_v2_".$shopify_id."_RON");
         }
     }
 

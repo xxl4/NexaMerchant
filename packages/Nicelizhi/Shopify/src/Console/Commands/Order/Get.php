@@ -119,7 +119,9 @@ class Get extends Command
             $base_url = $shopify['shopify_app_host_name'].'/admin/api/2023-10/orders.json?status=any&fulfillment_status=shipped&updated_at_min='.$processed_at_min.'&updated_at_max='.$processed_at_max.'&limit=250'.$url;
             $this->error("base url ". $base_url);
             //$base_url = $shopify['shopify_app_host_name'].'/admin/api/2023-10/orders.json?fulfillment_status=unshipped&limit=250';
-            //$base_url = $shopify['shopify_app_host_name'].'/admin/api/2023-10/orders.json?ids=5585627676902';
+            $base_url = $shopify['shopify_app_host_name'].'/admin/api/2023-10/orders.json?ids=6257597677854';
+            $base_url = $shopify['shopify_app_host_name'].'/admin/api/2023-10/orders.json?ids=6257225597214';
+            //$base_url = $shopify['shopify_app_host_name'].'/admin/api/2023-10/orders.json?ids=6257653678366';
             $response = $client->get($base_url, [
                 'headers' => [
                     'Content-Type' => 'application/json',
@@ -132,7 +134,7 @@ class Get extends Command
 
             $body = $response->getBody();
             $body = json_decode($body, true);
-            //var_dump($body);
+            var_dump($body);exit;
             $i = 1;
             foreach($body['orders'] as $key=>$item) {
 

@@ -311,7 +311,7 @@ class GetV2 extends Command
                 $newShopifyVarant['id'] = $shopifyVariant['id'];
                 $newShopifyVarant['price'] = $shopifyVariant['price'];
                 $newShopifyVarant['title'] = $shopifyVariant['title'];
-                $newShopifyVarant['weight'] = $shopifyVariant['weight'];
+                $newShopifyVarant['weight'] = isset($shopifyVariant['weight']) ? $shopifyVariant['weight'] : 0;
                 $newShopifyVarant['sku'] = $shopifyVariant['sku'];
                 if(!empty($attr)) {
                     $newkey .="_".$attr->id;

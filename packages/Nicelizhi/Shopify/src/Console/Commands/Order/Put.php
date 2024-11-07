@@ -72,31 +72,21 @@ class Put extends Command
 
          $pOrder = [];
 
-        $shipping_amount = '9.99';
-        $order_currency_code = 'USD';
+        
 
-         $shipping_lines = [
-            'price' => $shipping_amount,
-            "title" => "Standard Shipping",
-            "price_set" => [
-                'shop_money' => [
-                    'amount' => $shipping_amount,
-                    'currency_code' => $order_currency_code
-                ],
-                'presentment_money' => [
-                    'amount' => $shipping_amount,
-                    'currency_code' => $order_currency_code
-                ]
-            ]
+        // $pOrder['id'] = 6257498915102;
+        // $pOrder['financial_status'] = "pending";
+
+        $pOrder['order'] = [
+            "id" => 6257498915102,
+            'transactions' => [],
+            "financial_status" => "pending"
         ];
-
-        $pOrder['id'] = 5592770478310;
-        $pOrder['shipping_lines'] = $shipping_lines;
 
         var_dump($pOrder);
        
 
-         $response = $client->put($shopify['shopify_app_host_name'].'/admin/api/2023-10/orders/5592770478310.json', [
+         $response = $client->put($shopify['shopify_app_host_name'].'/admin/api/2023-10/orders/6257498915102.json', [
             'headers' => [
                 'Content-Type' => 'application/json',
                 'Accept' => 'application/json',

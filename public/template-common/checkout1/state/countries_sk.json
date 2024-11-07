@@ -1,0 +1,12 @@
+[
+    {
+        "countryName": "Slovensko",
+        "countryNameLocalized": "Slovakia",
+        "countryCode": "SK",
+        "currencyCode": "Eur",
+        "currencyName": "Euro",
+        "currencySign": "€",
+        "region": "Europe",
+        "postalCodeRegex": "^[0-9]{5}$"
+    }
+]

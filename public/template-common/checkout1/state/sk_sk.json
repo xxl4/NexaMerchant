@@ -1,0 +1,42 @@
+[
+    {
+        "CountryCode": "SK",
+        "StateCode": "BC",
+        "StateName": "Banskobystrický kraj"
+    },
+    {
+        "CountryCode": "SK",
+        "StateCode": "BL",
+        "StateName": "Bratislavský kraj"
+    },
+    {
+        "CountryCode": "SK",
+        "StateCode": "KI",
+        "StateName": "Košický kraj"
+    },
+    {
+        "CountryCode": "SK",
+        "StateCode": "NI",
+        "StateName": "Nitriansky kraj"
+    },
+    {
+        "CountryCode": "SK",
+        "StateCode": "PV",
+        "StateName": "Prešovský kraj"
+    },
+    {
+        "CountryCode": "SK",
+        "StateCode": "TC",
+        "StateName": "Trenčiansky kraj"
+    },
+    {
+        "CountryCode": "SK",
+        "StateCode": "TA",
+        "StateName": "Trnavský kraj"
+    },
+    {
+        "CountryCode": "SK",
+        "StateCode": "ZI",
+        "StateName": "Žilinský kraj"
+    }
+]

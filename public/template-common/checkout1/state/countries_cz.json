@@ -1,0 +1,12 @@
+[
+    {
+        "countryName": "Czech Republic",
+        "countryNameLocalized": "Česká republika",
+        "countryCode": "CZ",
+        "currencyCode": "CZK",
+        "currencyName": "Czech Koruna",
+        "currencySign": "Kč",
+        "region": "Europe",
+        "postalCodeRegex": "\\d{3} \\d{2}"
+    }
+]

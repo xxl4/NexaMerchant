@@ -114,7 +114,9 @@ class ShopifyServiceProvider extends ServiceProvider
                 \Nicelizhi\Shopify\Console\Commands\CustomCollection\Get::class,
                 \Nicelizhi\Shopify\Console\Commands\CustomCollection\Products::class,
 
-                \Nicelizhi\Shopify\Console\Commands\Fulfillments\Create::class
+                \Nicelizhi\Shopify\Console\Commands\Fulfillments\Create::class,
+
+                \Nicelizhi\Shopify\Console\Commands\Transaction\Post::class,
             ]);
         }
     }
