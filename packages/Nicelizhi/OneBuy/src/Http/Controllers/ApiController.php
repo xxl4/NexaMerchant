@@ -680,6 +680,7 @@ class ApiController extends Controller
         if(config("Upselling.enable")) {
                
             $upselling = app('NexaMerchant\Upselling\Upselling');
+            $upselling->setCouponCode("upselling50");
             $upselling->applyUpselling($cart);
         }
 
