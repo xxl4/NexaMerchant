@@ -694,21 +694,58 @@ class ProductController extends Controller
         $codeKeys = [
             'title' => '',
             'title_activity' => '',
+            'activity_time' => '', // actiovity time
+            'activity_title' => '', // activity title
         ];
 
+        // foreach codekeys and get date from redis
 
+        // foreach($codeKeys as $key=>$value) {
+        //     $cachek_key = "checkout_".$key."_".$product_id;
+        //     $cacheData = $redis->get($cachek_key);
+        //     if(empty($cacheData)) {
+        //         $cacheData = json_encode($codeKeys);
+        //     }
+        //     $codeKeys[$key] = $cacheData;
+        // }
+
+
+        $checkoutList = [];
         foreach($checkoutItems as $key=>$item) {
-            $cachek_key = "checkout_".$item."_".$product_id;
-            //echo $cachek_key;
-            $cacheData = $redis->get($cachek_key);
-            if(empty($cacheData)) {
-                $cacheData = json_encode($codeKeys);
+
+            // foreach codekeys and get date from redis
+
+            foreach($codeKeys as $kk=>$value) {
+                $cachek_key = "checkout_".$item."_".$product_id;
+                //echo $cachek_key;
+                //echo $kk."\r\n";
+                $cacheData = $redis->get($cachek_key);
+                if(empty($cacheData)) {
+                    $cacheData = "";
+                }else{
+                    $cacheData = json_decode($cacheData,true);
+                }
+                //var_dump($cacheData);
+                if(isset($cacheData[$kk])) {
+                    $checkoutList[$key][$kk] = $cacheData[$kk];
+                }else{
+                    $checkoutList[$key][$kk] = "";
+                }
+                //$checkoutList[$key][$kk] = $cacheData;
             }
-            $checkoutItems[$key] = $cacheData;
+
+
+            // $cachek_key = "checkout_".$item."_".$product_id;
+            // //echo $cachek_key;
+            // $cacheData = $redis->get($cachek_key);
+            // if(empty($cacheData)) {
+            //     $cacheData = json_encode($codeKeys);
+            // }
+            // $checkoutItems[$key] = $cacheData;
         }    
 
-        //var_dump($checkoutItems);
+        //var_dump($checkoutList);exit;
 
-        return view("shopify::products.customer-code",compact("product","product_id","checkoutItems","codeKeys"));
+        return view("shopify::products.customer-code",compact("product","product_id","checkoutItems","codeKeys","checkoutList"));
     }
 }
