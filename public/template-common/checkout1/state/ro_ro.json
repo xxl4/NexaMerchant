@@ -1,212 +1,212 @@
 [
 	{  
       "CountryCode":"RO",
-      "StateCode":"RO-AB",
+      "StateCode":"AB",
       "StateName":"Alba"
    },
    {  
       "CountryCode":"RO",
-      "StateCode":"RO-AR",
+      "StateCode":"AR",
       "StateName":"Arad"
    },
    {  
       "CountryCode":"RO",
-      "StateCode":"RO-AG",
+      "StateCode":"AG",
       "StateName":"Argeș"
    },
    {  
       "CountryCode":"RO",
-      "StateCode":"RO-BC",
+      "StateCode":"BC",
       "StateName":"Bacău"
    },
    {  
       "CountryCode":"RO",
-      "StateCode":"RO-BH",
+      "StateCode":"BH",
       "StateName":"Bihor"
    },
    {  
       "CountryCode":"RO",
-      "StateCode":"RO-BN",
+      "StateCode":"BN",
       "StateName":"Bistrița-Năsăud"
    },
    {  
       "CountryCode":"RO",
-      "StateCode":"RO-BT",
+      "StateCode":"BT",
       "StateName":"Botoșani"
    },
    {  
       "CountryCode":"RO",
-      "StateCode":"RO-BV",
+      "StateCode":"BV",
       "StateName":"Brașov"
    },
    {  
       "CountryCode":"RO",
-      "StateCode":"RO-BR",
+      "StateCode":"BR",
       "StateName":"Brăila"
    },
    {  
       "CountryCode":"RO",
-      "StateCode":"RO-BZ",
+      "StateCode":"BZ",
       "StateName":"Buzău"
    },
    {  
       "CountryCode":"RO",
-      "StateCode":"RO-CS",
+      "StateCode":"CS",
       "StateName":"Caraș-Severin"
    },
    {  
       "CountryCode":"RO",
-      "StateCode":"RO-CL",
+      "StateCode":"CL",
       "StateName":"Călărași"
    },
    {  
       "CountryCode":"RO",
-      "StateCode":"RO-CJ",
+      "StateCode":"CJ",
       "StateName":"Cluj"
    },
    {  
       "CountryCode":"RO",
-      "StateCode":"RO-CT",
+      "StateCode":"CT",
       "StateName":"Constanța"
    },
    {  
       "CountryCode":"RO",
-      "StateCode":"RO-CV",
+      "StateCode":"CV",
       "StateName":"Covasna"
    },
    {  
       "CountryCode":"RO",
-      "StateCode":"RO-DB",
+      "StateCode":"DB",
       "StateName":"Dâmbovița"
    },
    {  
       "CountryCode":"RO",
-      "StateCode":"RO-DJ",
+      "StateCode":"DJ",
       "StateName":"Dolj"
    },
    {  
       "CountryCode":"RO",
-      "StateCode":"RO-GL",
+      "StateCode":"GL",
       "StateName":"Galați"
    },
    {  
       "CountryCode":"RO",
-      "StateCode":"RO-GR",
+      "StateCode":"GR",
       "StateName":"Giurgiu"
    },
    {  
       "CountryCode":"RO",
-      "StateCode":"RO-GJ",
+      "StateCode":"GJ",
       "StateName":"Gorj"
    },
    {  
       "CountryCode":"RO",
-      "StateCode":"RO-HR",
+      "StateCode":"HR",
       "StateName":"Harghita"
    },
    {  
       "CountryCode":"RO",
-      "StateCode":"RO-HD",
+      "StateCode":"HD",
       "StateName":"Hunedoara"
    },
    {  
       "CountryCode":"RO",
-      "StateCode":"RO-IL",
+      "StateCode":"IL",
       "StateName":"Ialomița"
    },
    {  
       "CountryCode":"RO",
-      "StateCode":"RO-IS",
+      "StateCode":"IS",
       "StateName":"Iași"
    },
    {  
       "CountryCode":"RO",
-      "StateCode":"RO-IF",
+      "StateCode":"IF",
       "StateName":"Ilfov"
    },
    {  
       "CountryCode":"RO",
-      "StateCode":"RO-MM",
+      "StateCode":"MM",
       "StateName":"Maramureș"
    },
    {  
       "CountryCode":"RO",
-      "StateCode":"RO-MH",
+      "StateCode":"MH",
       "StateName":"Mehedinți"
    },
    {  
       "CountryCode":"RO",
-      "StateCode":"RO-MS",
+      "StateCode":"MS",
       "StateName":"Mureș"
    },
    {  
       "CountryCode":"RO",
-      "StateCode":"RO-NT",
+      "StateCode":"NT",
       "StateName":"Neamț"
    },
    {  
       "CountryCode":"RO",
-      "StateCode":"RO-OT",
+      "StateCode":"OT",
       "StateName":"Olt"
    },
    {  
       "CountryCode":"RO",
-      "StateCode":"RO-PH",
+      "StateCode":"PH",
       "StateName":"Prahova"
    },
    {  
       "CountryCode":"RO",
-      "StateCode":"RO-SM",
+      "StateCode":"SM",
       "StateName":"Satu Mare"
    },
    {  
       "CountryCode":"RO",
-      "StateCode":"RO-SJ",
+      "StateCode":"SJ",
       "StateName":"Sălaj"
    },
    {  
       "CountryCode":"RO",
-      "StateCode":"RO-SB",
+      "StateCode":"SB",
       "StateName":"Sibiu"
    },
    {  
       "CountryCode":"RO",
-      "StateCode":"RO-SV",
+      "StateCode":"SV",
       "StateName":"Suceava"
    },
    {  
       "CountryCode":"RO",
-      "StateCode":"RO-TR",
+      "StateCode":"TR",
       "StateName":"Teleorman"
    },
    {  
       "CountryCode":"RO",
-      "StateCode":"RO-TM",
+      "StateCode":"TM",
       "StateName":"Timiș"
    },
    {  
       "CountryCode":"RO",
-      "StateCode":"RO-TL",
+      "StateCode":"TL",
       "StateName":"Tulcea"
    },
    {  
       "CountryCode":"RO",
-      "StateCode":"RO-VS",
+      "StateCode":"VS",
       "StateName":"Vaslui"
    },
    {  
       "CountryCode":"RO",
-      "StateCode":"RO-VL",
+      "StateCode":"VL",
       "StateName":"Vâlcea"
    },
    {  
       "CountryCode":"RO",
-      "StateCode":"RO-VN",
+      "StateCode":"VN",
       "StateName":"Vrancea"
    },
    {  
       "CountryCode":"RO",
-      "StateCode":"RO-B",
+      "StateCode":"B",
       "StateName":"București"
    }
 ]
