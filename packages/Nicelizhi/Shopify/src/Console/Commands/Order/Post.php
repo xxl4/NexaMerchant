@@ -277,6 +277,10 @@ class Post extends Command
             ]
         ];
 
+        if($shipping_address->email=='test@example.com') {
+            $postOrder['test'] = true;
+            return false;
+        }
         
 
         
