@@ -165,18 +165,18 @@ final class Utils {
 
         $channel = core()->getCurrentChannel();
 
-        Log::info("channel: ".json_encode($channel));
+        //Log::info("channel: ".json_encode($channel));
 
         $country = strtoupper($country);
 
         // currency from currenices table
         $currencies = core()->getAllCurrencies();
 
-        Log::info("currencies: ".json_encode($currencies));
+        //Log::info("currencies: ".json_encode($currencies));
 
         $currencies = core()->getChannelBaseCurrency();
 
-        Log::info("channel currencies: ".json_encode($currencies));
+        //Log::info("channel currencies: ".json_encode($currencies));
 
         return "USD";
     }
