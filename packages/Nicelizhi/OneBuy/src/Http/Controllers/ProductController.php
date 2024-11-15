@@ -562,6 +562,7 @@ class ProductController extends Controller
             if(config("Upselling.enable") && $upselling_enable) {
                 Log::info("upselling_enable". $upselling_enable);
                 $upselling = app('NexaMerchant\Upselling\Upselling');
+                $upselling->setCouponCode("upselling50");
                 $upselling->applyUpselling($cart);
             }
 
@@ -801,6 +802,7 @@ class ProductController extends Controller
         if(config("Upselling.enable") && $upselling_enable) {
             Log::info("upselling_enable". $upselling_enable);
             $upselling = app('NexaMerchant\Upselling\Upselling');
+            $upselling->setCouponCode("upselling50");
             $upselling->applyUpselling($cart);
         }
 
