@@ -1,5 +1,5 @@
 <?php
-namespace Nicelizhi\Shopify\Http\Responses;
+namespace Nicelizhi\Shopify\Http\Response;
 
 use Illuminate\Support\Facades\Response;
 
