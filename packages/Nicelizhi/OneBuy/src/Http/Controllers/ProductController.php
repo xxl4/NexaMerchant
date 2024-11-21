@@ -1407,13 +1407,13 @@ class ProductController extends Controller
 
         if(empty($paypal_id_token)) {
 
-            // $paypal_id_token = $this->smartButton->getIDAccessToken();
-            // $paypal_access_token = $paypal_id_token->result->access_token;
-            // $paypal_id_token = $paypal_id_token->result->id_token;
+            $paypal_id_token = $this->smartButton->getIDAccessToken();
+            $paypal_access_token = $paypal_id_token->result->access_token;
+            $paypal_id_token = $paypal_id_token->result->id_token;
 
-            $paypal_id_token = "";
-            $paypal_access_token = "";
-            $paypal_id_token ="";
+            // $paypal_id_token = "";
+            // $paypal_access_token = "";
+            // $paypal_id_token ="";
 
             
             

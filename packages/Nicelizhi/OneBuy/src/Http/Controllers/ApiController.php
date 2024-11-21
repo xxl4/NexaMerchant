@@ -82,13 +82,13 @@ class ApiController extends Controller
         $env = config("app.env");
         // when the env is pord use cache
 
-        // $paypal_id_token = $this->smartButton->getIDAccessToken();
-        // $paypal_access_token = $paypal_id_token->result->access_token;
-        // $paypal_id_token = $paypal_id_token->result->id_token;
+        $paypal_id_token = $this->smartButton->getIDAccessToken();
+        $paypal_access_token = $paypal_id_token->result->access_token;
+        $paypal_id_token = $paypal_id_token->result->id_token;
 
-        $paypal_id_token = "";
-        $paypal_access_token = "";
-        $paypal_id_token ="";
+        // $paypal_id_token = "";
+        // $paypal_access_token = "";
+        // $paypal_id_token ="";
 
         if(empty($data)) {
         //if(true) {
