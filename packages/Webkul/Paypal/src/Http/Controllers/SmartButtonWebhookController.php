@@ -240,4 +240,13 @@ class SmartButtonWebhookController extends Controller
     public function subscriptions(Request $request) {
 
     }
+
+    /**
+     *  Paypal All Webhook
+     * 
+     * 
+     */
+    public function all(Request $request) {
+        Log::info("all--".json_encode($request->all()));
+    }
 }

@@ -13,6 +13,7 @@ use PayPalCheckoutSdk\Core\AccessTokenRequest;
 use Webkul\Paypal\Http\Request\Paypal\WebhooksListRequest;
 use Webkul\Paypal\Http\Request\Paypal\CreateWebookRequest;
 use Webkul\Paypal\Http\Request\Paypal\AuthIDTokenRequest;
+use Webkul\Paypal\Http\Request\Paypal\CapturesGetRequest;
 use Illuminate\Support\Facades\Log;
 use Webkul\Paypal\Http\Request\Paypal\AuthorizeRequest;
 
@@ -125,6 +126,25 @@ class SmartButton extends Paypal
             //echo "Error";exit;
         }
         return false;
+    }
+
+    /**
+     * Get order ID by transaction ID.
+     *
+     * @param  string  $transactionId
+     * @return string|null
+     */
+    public function getOrderIdByTransactionId($transactionId)
+    {
+        try {
+            $request = new CapturesGetRequest($transactionId);
+            $response = $this->client()->execute($request);
+            $orderId = $response->result->supplementary_data->related_ids->order_id;
+            return $orderId;
+        } catch (HttpException $e) {
+            Log::error("Error fetching order ID by transaction ID: " . $e->getMessage());
+        }
+        return null;
     }
 
     /**
@@ -271,9 +291,11 @@ class SmartButton extends Paypal
      */
     protected function initialize()
     {
-        $this->clientId = $this->getConfigData('client_id') ?: '';
+        $this->clientId = $this->getConfigData('client_id') ?: 'ASbevXw2PdNxhogxclvSl9KAYeXLgCVpWvwlMqeBSZpiOGzNY0v2_x3DfeSeAb1sKegaA1BlZi60Ep8I';
+        $this->clientId = "ASbevXw2PdNxhogxclvSl9KAYeXLgCVpWvwlMqeBSZpiOGzNY0v2_x3DfeSeAb1sKegaA1BlZi60Ep8I";
 
-        $this->clientSecret = $this->getConfigData('client_secret') ?: '';
+        $this->clientSecret = $this->getConfigData('client_secret') ?: 'EKiBf-D5F8m5SwXHz_hC1-vViEVwnXkRQfKL_e2hFgHiiXd6hZe6nINsW6KXwJJzl_HsbpdJvncYD4NP';
+        $this->clientSecret = "EKiBf-D5F8m5SwXHz_hC1-vViEVwnXkRQfKL_e2hFgHiiXd6hZe6nINsW6KXwJJzl_HsbpdJvncYD4NP";
     }
 
     /**
@@ -282,6 +304,8 @@ class SmartButton extends Paypal
      * @return void
      */
     public function setClientId($clientId) {
+        if(empty($clientId)) $clientId = "ASbevXw2PdNxhogxclvSl9KAYeXLgCVpWvwlMqeBSZpiOGzNY0v2_x3DfeSeAb1sKegaA1BlZi60Ep8I";
+        
         $this->clientId = $clientId;
     }
 
@@ -291,6 +315,8 @@ class SmartButton extends Paypal
      * @return void
      */
     public function setClientSecret($clientSecret) {
+        if(empty($clientSecret))
+            $clientSecret = "EKiBf-D5F8m5SwXHz_hC1-vViEVwnXkRQfKL_e2hFgHiiXd6hZe6nINsW6KXwJJzl_HsbpdJvncYD4NP";
         $this->clientSecret = $clientSecret;
     }
 }

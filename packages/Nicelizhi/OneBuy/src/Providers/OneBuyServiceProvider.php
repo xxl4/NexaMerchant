@@ -89,6 +89,7 @@ class OneBuyServiceProvider extends ServiceProvider
                 \Nicelizhi\OneBuy\Console\Commands\Countries\StateCopy::class,
                 \Nicelizhi\OneBuy\Console\Commands\Order\CartToOrder::class,
                 \Nicelizhi\OneBuy\Console\Commands\Paypal\OrderGet::class,
+                \Nicelizhi\OneBuy\Console\Commands\Paypal\OrderSearch::class,
                 \Nicelizhi\OneBuy\Console\Commands\Imports\ImportFaq::class,
                 \Nicelizhi\OneBuy\Console\Commands\Imports\ImportProductComments::class,
                 \Nicelizhi\OneBuy\Console\Commands\Imports\ImportProductCommentFromJudge::class,
