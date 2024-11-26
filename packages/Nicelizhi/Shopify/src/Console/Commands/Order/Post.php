@@ -14,6 +14,7 @@ use Illuminate\Http\Client\RequestException;
 use GuzzleHttp\Exception\ClientException;
 use Webkul\Customer\Repositories\CustomerRepository;
 use Illuminate\Support\Facades\Event;
+use Illuminate\Support\Facades\Artisan;
 
 class Post extends Command
 {
@@ -586,6 +587,9 @@ class Post extends Command
             $url = $crm_url."/api/offers/callBack?refer=".$cnv_id[1]."&revenue=".$order->grand_total."&currency_code=".$order->order_currency_code."&channel_id=".$crm_channel."&q_ty=".$q_ty."&email=".$item['email']."&order_id=".$id;
             $res = $this->get_content($url);
             Log::info("post to bm 2 url ".$url." res ".json_encode($res));
+
+            // order check
+            Artisan::queue("GooglePlaces:check-order",['--order_id'=>$id])->onConnection('redis')->onQueue('order-checker'); // push to queue for check order
 
         }
 
