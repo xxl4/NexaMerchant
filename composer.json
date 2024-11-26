@@ -75,7 +75,7 @@
         "nexa-merchant/apis": "2.0.2",
         "nexa-merchant/apps": "^1.0",
         "nexa-merchant/checkoutcod": "^1.1",
-        "nexa-merchant/googleplaces": "v1.0.1",
+        "nexa-merchant/googleplaces": "^1.0",
         "nexa-merchant/upselling": "1.0.3",
         "paypal/paypal-checkout-sdk": "1.0.2",
         "predis/predis": "^2.2",
