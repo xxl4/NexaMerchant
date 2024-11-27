@@ -8,5 +8,6 @@ return [
     'store_lang' => env('SHOPIFY_STORE_LANG'),
     'wcom_noticle_url' => env('WCOME_NOTICLE_URL'),
     'feishu_noticle_url' => env('FEISU_NOTICLE_URL'),
-    'order_pre' => env('SHOPIFY_ORDER_PRE')
+    'order_pre' => env('SHOPIFY_ORDER_PRE'),
+    'enable' => env('SHOPIFY_ENABLE', true)
 ];
