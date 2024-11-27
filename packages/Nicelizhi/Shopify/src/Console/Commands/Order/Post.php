@@ -294,6 +294,12 @@ class Post extends Command
                 "cash_on_delivery"
             ];
 
+            // when cod payment need format the price to Round integer
+            $order->grand_total = round($order->grand_total);
+            $order->sub_total = round($order->sub_total);
+            $order->discount_amount = round($order->discount_amount);
+            $order->shipping_amount = round($order->shipping_amount);
+
             $transactions = [
                 [
                    "kind" => "sale",
@@ -302,6 +308,9 @@ class Post extends Command
                     "gateway" => "Cash on Delivery (COD)"
                 ]
             ];
+
+            
+
         }
 
         //$postOrder['financial_status'] = "paid";
@@ -431,6 +440,8 @@ class Post extends Command
         $postOrder['presentment_currency'] = $order->order_currency_code;
         $pOrder['order'] = $postOrder;
         var_dump($pOrder);
+
+        //exit;
 
         $crm_url = config('onebuy.crm_url');
 
