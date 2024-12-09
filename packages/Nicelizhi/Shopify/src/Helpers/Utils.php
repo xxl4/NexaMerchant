@@ -112,6 +112,7 @@ final class Utils {
             if(strpos($option['name'], "dimensiune") !==false) $attr_id = 24; // ro
             if(strpos($option['name'], "barva") !==false) $attr_id = 24; // cz
             if(strpos($option['name'], "veĽkosŤ") !==false) $attr_id = 24; // sk
+            if(strpos($option['name'], "veľkosť") !==false) $attr_id = 24; // sk
             if(strpos($option['name'], "rozmiar") !==false) $attr_id = 24; // pl
             if(strpos($option['name'], "méret") !==false) $attr_id = 24; // hu
 
