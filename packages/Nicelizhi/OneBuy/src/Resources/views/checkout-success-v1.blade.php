@@ -1,143 +1,162 @@
-
 <!doctype html>
 <html class="no-js" lang="{{ app()->getLocale() }}" dir="{{ core()->getCurrentLocale()->direction }}">
+
 <head>
 
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
-<link rel="stylesheet" href="https://shop.hatmeo.com/css/recommended.css">
-<link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
-/>
-<script src="/template-common/js/recommended.js?v=<?php echo time();?>"></script>
-<script src="https://unpkg.com/jquery@3.3.1/dist/jquery.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/jquery-colorbox@1.6.4/jquery.colorbox.min.js"></script>
-        <link href="https://cdn.jsdelivr.net/npm/jquery-colorbox@1.6.4/example1/colorbox.min.css" rel="stylesheet">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="https://shop.hatmeo.com/css/recommended.css">
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <script src="/template-common/js/recommended.js?v=<?php echo time(); ?>"></script>
+    <script src="https://unpkg.com/jquery@3.3.1/dist/jquery.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-colorbox@1.6.4/jquery.colorbox.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/jquery-colorbox@1.6.4/example1/colorbox.min.css" rel="stylesheet">
 
-         <!-- Google Tag Manager -->
+    <!-- Google Tag Manager -->
     <script>
-    (function(w, d, s, l, i) {
-      w[l] = w[l] || [];
-      w[l].push({
-        'gtm.start': new Date().getTime(),
-        event: 'gtm.js'
-      });
-      var f = d.getElementsByTagName(s)[0],
-        j = d.createElement(s),
-        dl = l != 'dataLayer' ? '&l=' + l : '';
-      j.async = true;
-      j.src =
-        'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
-      f.parentNode.insertBefore(j, f);
-    })(window, document, 'script', 'dataLayer', '<?php echo $gtm;?>');
-  </script>
-  <!-- End Google Tag Manager -->
+        (function(w, d, s, l, i) {
+            w[l] = w[l] || [];
+            w[l].push({
+                'gtm.start': new Date().getTime(),
+                event: 'gtm.js'
+            });
+            var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s),
+                dl = l != 'dataLayer' ? '&l=' + l : '';
+            j.async = true;
+            j.src =
+                'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+            f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-NS5CFS68');
+    </script>
+    <!-- End Google Tag Manager -->
 
-<?php if(!empty($quora_adv_id)) { ?>
+    <?php if (!empty($quora_adv_id)) { ?>
 
-<script>
-!function(q,e,v,n,t,s){if(q.qp) return; n=q.qp=function(){n.qp?n.qp.apply(n,arguments):n.queue.push(arguments);}; n.queue=[];t=document.createElement(e);t.async=!0;t.src=v; s=document.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t,s);}(window, 'script', 'https://a.quora.com/qevents.js');
-<?php 
-    $quora_adv_arr = explode(',', $quora_adv_id);
-    foreach ($quora_adv_arr as $key => $quora_id) {
-    ?>
-qp('init', '<?php echo $quora_id;?>');
-<?php } ?>
+        <script>
+            ! function(q, e, v, n, t, s) {
+                if (q.qp) return;
+                n = q.qp = function() {
+                    n.qp ? n.qp.apply(n, arguments) : n.queue.push(arguments);
+                };
+                n.queue = [];
+                t = document.createElement(e);
+                t.async = !0;
+                t.src = v;
+                s = document.getElementsByTagName(e)[0];
+                s.parentNode.insertBefore(t, s);
+            }(window, 'script', 'https://a.quora.com/qevents.js');
+            <?php
+            $quora_adv_arr = explode(',', $quora_adv_id);
+            foreach ($quora_adv_arr as $key => $quora_id) {
+            ?>
+                qp('init', '<?php echo $quora_id; ?>');
+            <?php } ?>
 
-qp('track', 'ViewContent');
-</script>
-<?php foreach ($quora_adv_arr as $key => $quora_id) {?>
-<noscript><img height="1" width="1" style="display:none" src="https://q.quora.com/_/ad/<?php echo $quora_id;?>/pixel?tag=ViewContent&noscript=1"/></noscript>
-<?php } ?>
-<!-- End of Quora Pixel Code -->
-<?php } ?>
-
-<?php if(!empty($ob_adv_id)) { ?>
-
-<?php 
-    $ob_adv_ids = explode(',', $ob_adv_id); 
-    foreach($ob_adv_ids as $key=>$ob_adv_id) {
-?>
-
-<script data-obct type = "text/javascript">
-/** DO NOT MODIFY THIS CODE**/
-!function(_window, _document) {
-    var OB_ADV_ID = '<?php echo $ob_adv_id; ?>';
-    if (_window.obApi) {
-    var toArray = function(object) {
-        return Object.prototype.toString.call(object) === '[object Array]' ? object : [object];
-    };
-    _window.obApi.marketerId = toArray(_window.obApi.marketerId).concat(toArray(OB_ADV_ID));
-    return;
-    }
-    var api = _window.obApi = function() {
-    api.dispatch ? api.dispatch.apply(api, arguments) : api.queue.push(arguments);
-    };
-    api.version = '1.1';
-    api.loaded = true;
-    api.marketerId = OB_ADV_ID;
-    api.queue = [];
-    var tag = _document.createElement('script');
-    tag.async = true;
-    tag.src = '//amplify.outbrain.com/cp/obtp.js';
-    tag.type = 'text/javascript';
-    var script = _document.getElementsByTagName('script')[0];
-    script.parentNode.insertBefore(tag, script);
-}(window, document);
-
-obApi('track', 'PAGE_VIEW');
-</script>
-<?php } } ?>
-<!-- Facebook Pixel Code -->
-<script>
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window, document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
-    <?php 
-    $fb_ids_arr = explode(',', $fb_ids);
-    foreach ($fb_ids_arr as $key => $fb_id) {
-    ?>
-    fbq('init', '<?php echo $fb_id;?>');
-    <?php } ?>
-  </script>
-  <noscript>
-    <?php foreach ($fb_ids_arr as $key => $fb_id) { ?>
-        <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=<?php echo $fb_id;?>&ev=PageView&noscript=1"/>
+            qp('track', 'ViewContent');
+        </script>
+        <?php foreach ($quora_adv_arr as $key => $quora_id) { ?>
+            <noscript><img height="1" width="1" style="display:none" src="https://q.quora.com/_/ad/<?php echo $quora_id; ?>/pixel?tag=ViewContent&noscript=1" /></noscript>
         <?php } ?>
-  </noscript>
-  <!-- End Facebook Pixel Code -->
+        <!-- End of Quora Pixel Code -->
+    <?php } ?>
+
+    <?php if (!empty($ob_adv_id)) { ?>
+
+        <?php
+        $ob_adv_ids = explode(',', $ob_adv_id);
+        foreach ($ob_adv_ids as $key => $ob_adv_id) {
+        ?>
+
+            <script data-obct type="text/javascript">
+                /** DO NOT MODIFY THIS CODE**/ ! function(_window, _document) {
+                    var OB_ADV_ID = '<?php echo $ob_adv_id; ?>';
+                    if (_window.obApi) {
+                        var toArray = function(object) {
+                            return Object.prototype.toString.call(object) === '[object Array]' ? object : [object];
+                        };
+                        _window.obApi.marketerId = toArray(_window.obApi.marketerId).concat(toArray(OB_ADV_ID));
+                        return;
+                    }
+                    var api = _window.obApi = function() {
+                        api.dispatch ? api.dispatch.apply(api, arguments) : api.queue.push(arguments);
+                    };
+                    api.version = '1.1';
+                    api.loaded = true;
+                    api.marketerId = OB_ADV_ID;
+                    api.queue = [];
+                    var tag = _document.createElement('script');
+                    tag.async = true;
+                    tag.src = '//amplify.outbrain.com/cp/obtp.js';
+                    tag.type = 'text/javascript';
+                    var script = _document.getElementsByTagName('script')[0];
+                    script.parentNode.insertBefore(tag, script);
+                }(window, document);
+
+                obApi('track', 'PAGE_VIEW');
+            </script>
+    <?php }
+    } ?>
     <!-- Facebook Pixel Code -->
-<script>
-  fbq('track', 'PageView');
-  fbq('track', 'ViewContent');
-</script>
-<title>
-@lang('checkout::app.v1.success.Thank you')
+    <script>
+        ! function(f, b, e, v, n, t, s) {
+            if (f.fbq) return;
+            n = f.fbq = function() {
+                n.callMethod ?
+                    n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+            };
+            if (!f._fbq) f._fbq = n;
+            n.push = n;
+            n.loaded = !0;
+            n.version = '2.0';
+            n.queue = [];
+            t = b.createElement(e);
+            t.async = !0;
+            t.src = v;
+            s = b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t, s)
+        }(window, document, 'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+        <?php
+        $fb_ids_arr = explode(',', $fb_ids);
+        foreach ($fb_ids_arr as $key => $fb_id) {
+        ?>
+            fbq('init', '<?php echo $fb_id; ?>');
+        <?php } ?>
+    </script>
+    <noscript>
+        <?php foreach ($fb_ids_arr as $key => $fb_id) { ?>
+            <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=<?php echo $fb_id; ?>&ev=PageView&noscript=1" />
+        <?php } ?>
+    </noscript>
+    <!-- End Facebook Pixel Code -->
+    <!-- Facebook Pixel Code -->
+    <script>
+        fbq('track', 'PageView');
+        fbq('track', 'ViewContent');
+    </script>
+    <title>
+        @lang('checkout::app.v1.success.Thank you')
     </title>
-<script>
-        function addVoluumImg(data) {
-        }
+    <script>
+        function addVoluumImg(data) {}
 
         function postVoluumConversion(data) {
-            if(getQueryString('s2')) {
+            if (getQueryString('s2')) {
                 var params = {
-                    cid     : getQueryString('s2'),
-                    payout  : data.info.payout || (data.info.total + data.info.currency),
-                    txid    : data.info._id.$oid
+                    cid: getQueryString('s2'),
+                    payout: data.info.payout || (data.info.total + data.info.currency),
+                    txid: data.info._id.$oid
                 };
 
-                fetch('/common/send_conversion/voluum',{
+                fetch('/common/send_conversion/voluum', {
                     body: JSON.stringify(params),
                     method: 'POST',
                     headers: {
@@ -150,21 +169,20 @@ obApi('track', 'PAGE_VIEW');
         }
 
 
-      
 
-        function sendPurchaseEvent(data) {
-        }
+
+        function sendPurchaseEvent(data) {}
 
         function getCookie(name) {
-            var strCookie=document.cookie;
+            var strCookie = document.cookie;
 
-            var arrCookie=strCookie.split(";");
+            var arrCookie = strCookie.split(";");
 
-            for(var i=0;i<arrCookie.length;i++){
+            for (var i = 0; i < arrCookie.length; i++) {
 
-                var c=arrCookie[i].trim().split("=");
+                var c = arrCookie[i].trim().split("=");
 
-                if(c[0]==name){
+                if (c[0] == name) {
 
                     return c[1];
 
@@ -180,7 +198,7 @@ obApi('track', 'PAGE_VIEW');
             var r = window.location.search.substr(1).match(reg);
 
             if (r != null) {
-            return unescape(r[2]);
+                return unescape(r[2]);
             }
             return null;
         }
@@ -188,7 +206,7 @@ obApi('track', 'PAGE_VIEW');
 
     <?php $products = $order->items;
     $line_items = [];
-    foreach($products as $key=>$product) {
+    foreach ($products as $key => $product) {
         $sku = $product['additional'];
 
         $skuInfo = explode('-', $sku['product_sku']);
@@ -198,8 +216,8 @@ obApi('track', 'PAGE_VIEW');
         $line_item['item_id'] = $skuInfo[0];
         $line_item['item_name'] = $product['name'];
         $line_item['price'] = $product['price'];
-        $line_item ['quantity'] = $product['qty_ordered'];
-        $line_item ['item_variant'] = @$sku['attribute_name'];
+        $line_item['quantity'] = $product['qty_ordered'];
+        $line_item['item_variant'] = @$sku['attribute_name'];
 
         //var_dump($product);
 
@@ -207,75 +225,48 @@ obApi('track', 'PAGE_VIEW');
     }
 
     ?>
-<script>
+    <script>
         function purchase(value) {
-            console.log("purchase "+ (value * 1).toFixed(2));
-            fbq('track', 'Purchase', {currency: "EUR", value: (value * 1).toFixed(2)});
-            console.log("purchase "+ (value * 1).toFixed(2));
-            <?php if(!empty($ob_adv_id)) { ?>
-            obApi('track', 'Purchase');
+            console.log("purchase " + (value * 1).toFixed(2));
+            fbq('track', 'Purchase', {
+                currency: "EUR",
+                value: (value * 1).toFixed(2)
+            });
+            console.log("purchase " + (value * 1).toFixed(2));
+            <?php if (!empty($ob_adv_id)) { ?>
+                obApi('track', 'Purchase');
             <?php } ?>
 
-            <?php if(!empty($quora_adv_id)) { ?>
-            qp('track', 'Purchase',{value: (value * 1).toFixed(2)});
+            <?php if (!empty($quora_adv_id)) { ?>
+                qp('track', 'Purchase', {
+                    value: (value * 1).toFixed(2)
+                });
             <?php } ?>
 
 
 
-            gtag('event', 'purchase', {
-                transaction_id: '<?php echo $order->id;?>',
-                value: (value * 1).toFixed(2),
-                currency: "<?php echo $order->channel_currency_code;?>",
-                items: <?php echo json_encode($line_items);?>
-            });
+            window.dataLayer = window.dataLayer || []
+            window.dataLayer.push({
+                revenue: (value * 1).toFixed(2),
+                currency: "<?php echo $order->channel_currency_code; ?>",
+            })
 
 
-            window.dataLayer = window.dataLayer || [];
-                window.dataLayer.push({
-                
-                    eventType: 'conversion',
-                    conversionClass: 'order',
-                    conversionSubClass: 'purchase',
-                    conversionId: '<?php echo $order->id; ?>',
-                    offerIds: <?php echo json_encode($line_items); ?>,
-                    conversionValue: (value * 1).toFixed(2),
-                    conversionCurrency: '<?php echo $order->channel_currency_code; ?>',
-
-
-            });
-
-
-            // params = {
-            //     "channel_id": "<?php echo $crm_channel;?>",
-            //     "token": "<?php echo $refer; ?>",
-            //     "type": "purchase",
-            //     "order_id": '<?php echo $order->id;?>',
-            //     "amount": (value * 1).toFixed(2)
-            // };
-            // fetch('https://crm.heomai.com/api/user/action',{
-            //         body: JSON.stringify(params),
-            //         method: 'POST',
-            //         headers: {
-            //             'content-type': 'application/json'
-            //         },
-            // })
-
-
-            if(typeof gtag == 'function') {
-                if(window.localStorage) {
+            if (typeof gtag == 'function') {
+                if (window.localStorage) {
                     var ga_post_order_template_commom_ids_str = localStorage.getItem("ga_post_order_template_commom_ids");
                     var ga_post_order_template_commom_ids = [];
-                    if(ga_post_order_template_commom_ids_str) {
+                    if (ga_post_order_template_commom_ids_str) {
                         ga_post_order_template_commom_ids = JSON.parse(ga_post_order_template_commom_ids_str);
                     }
-                    if(ga_post_order_template_commom_ids.indexOf(getQueryString('id')) > -1) {
+                    if (ga_post_order_template_commom_ids.indexOf(getQueryString('id')) > -1) {
                         return;
                     }
 
                     ga_post_order_template_commom_ids.push(getQueryString('id'));
                     localStorage.setItem("ga_post_order_template_commom_ids", JSON.stringify(ga_post_order_template_commom_ids));
                 }
-                if(value) {
+                if (value) {
                     gtag('event', 'sur_purchase', {
                         'transaction_id': getQueryString('id'),
                         'event_label': 'Sur Purchase',
@@ -291,19 +282,19 @@ obApi('track', 'PAGE_VIEW');
                     });
                 }
             } else {
-                setTimeout(function(){
+                setTimeout(function() {
                     //purchase();
-                },10)
+                }, 10)
             }
         }
 
         //fbq('track', 'Purchase');
     </script>
 
-<link href="https://shop.hatmeo.com/css/timber.scss.css" rel="stylesheet" type="text/css" media="all">
-<link href="https://shop.hatmeo.com/css/theme.scss.css" rel="stylesheet" type="text/css" media="all">
-<link rel="stylesheet" href="https://lander.heomai.com/template-common/checkout1/css/font-awesome.min.css">
-<style>
+    <link href="https://shop.hatmeo.com/css/timber.scss.css" rel="stylesheet" type="text/css" media="all">
+    <link href="https://shop.hatmeo.com/css/theme.scss.css" rel="stylesheet" type="text/css" media="all">
+    <link rel="stylesheet" href="https://lander.heomai.com/template-common/checkout1/css/font-awesome.min.css">
+    <style>
         @media screen and (min-width: 750px) {
             #dynamic-checkout-cart {
                 min-height: 50px;
@@ -316,160 +307,171 @@ obApi('track', 'PAGE_VIEW');
             }
         }
 
-        
+
         @media (max-width:3840px) {
             .header-banner {
                 background-image : url('/checkout/onebuy/success/{{ $default_country }}_pc.jpg');
                 height: 100px;
             }
         }
-     
+
 
         @media (max-width:750px) {
             .header-banner {
                 background-image : url('/checkout/onebuy/success/{{ $default_country }}_mobile.jpg');
             }
         }
-            .content-box{
-                font-size:14px;
-                border: 1px solid #666;
-            }
-            .loox-reviews-default {
-                max-width: 1200px;
-                margin: 0 auto;
-            }
 
-            .loox-rating .loox-icon {
-                color: #fbcd0a;
-            }
+        .content-box {
+            font-size: 14px;
+            border: 1px solid #666;
+        }
 
-            .success_block {
-                display: none;
-            }
-            .failed_block {
-                display: none;
-            }
+        .loox-reviews-default {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .loox-rating .loox-icon {
+            color: #fbcd0a;
+        }
+
+        .success_block {
+            display: none;
+        }
+
+        .failed_block {
+            display: none;
+        }
     </style>
 </head>
+
 <body id="terms-of-service" class="template-page">
-<div id="shopify-section-header" class="header-container-bg">
-    <div data-section-id="header" data-section-type="header-section" data-template="page">
-        <div class="header-container drawer__header-container">
-            <div class="header-wrapper" data-header-wrapper>
-                <header class="site-header" role="banner" data-transparent-header="true">
-                    <div class="wrapper">
-                        <div class="grid--full grid--table header-banner">
-                            <div class="grid__item large--one-third medium-down--one-half">
-                                <div class="h1 site-header__logo large--left" itemscope itemtype="http://schema.org/Organization">
-                                    <a href="#" itemprop="url" class="site-header__logo-link" id="logo-image">
-                                        <img class="site-header__logo-image" src height="70px" itemprop="logo">
-                                    </a>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NS5CFS68"
+            height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    <div id="shopify-section-header" class="header-container-bg">
+        <div data-section-id="header" data-section-type="header-section" data-template="page">
+            <div class="header-container drawer__header-container">
+                <div class="header-wrapper" data-header-wrapper>
+                    <header class="site-header" role="banner" data-transparent-header="true">
+                        <div class="wrapper">
+                            <div class="grid--full grid--table header-banner">
+                                <div class="grid__item large--one-third medium-down--one-half">
+                                    <div class="h1 site-header__logo large--left" itemscope itemtype="http://schema.org/Organization">
+                                        <a href="#" itemprop="url" class="site-header__logo-link" id="logo-image">
+                                            <img class="site-header__logo-image" src height="70px" itemprop="logo">
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </header>
+                    </header>
+                </div>
             </div>
         </div>
     </div>
-</div>
-<div id="PageContainer" class="page-container">
-    <main class="main-content" role="main">
-        <div class="wrapper">
+    <div id="PageContainer" class="page-container">
+        <main class="main-content" role="main">
+            <div class="wrapper">
 
-            <div class="grid">
-                <div class="grid__item large--five-sixths push--large--one-twelfth">
-                    <div class="success_block">
-                        <div class="content-box">
-                            <div class="content-box__row text-container">
-                                <h2 class="heading-2 os-step__title">@lang('checkout::app.v1.success.Your order is confirmed')</h2>
-                                <p class="os-step__description">@lang('checkout::app.v1.success.We ve accepted your order and we re getting it ready Come back to this page for updates on your shipment status')</p>
+                <div class="grid">
+                    <div class="grid__item large--five-sixths push--large--one-twelfth">
+                        <div class="success_block">
+                            <div class="content-box">
+                                <div class="content-box__row text-container">
+                                    <h2 class="heading-2 os-step__title">@lang('checkout::app.v1.success.Your order is confirmed')</h2>
+                                    <p class="os-step__description">@lang('checkout::app.v1.success.We ve accepted your order and we re getting it ready Come back to this page for updates on your shipment status')</p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="content-box">
-                            <div class="content-box__row text-container">
-                                <h2 class="heading-2 os-step__title">@lang('checkout::app.v1.success.Order information')</h2>
-                                <p>@lang('checkout::app.v1.success.Order Data'): <?php echo $order->created_at;?>
+                            <div class="content-box">
+                                <div class="content-box__row text-container">
+                                    <h2 class="heading-2 os-step__title">@lang('checkout::app.v1.success.Order information')</h2>
+                                    <p>@lang('checkout::app.v1.success.Order Data'): <?php echo $order->created_at; ?>
                                     <div class="product-content"></div>
-                                </p>
-                                <p>
-                                Order Total:
-                                <span class="order-total" data-value="orderTotalValue" data-currency="currencyCode">orderTotal</span>
-                                </p>
+                                    </p>
+                                    <p>
+                                        Order Total:
+                                        <span class="order-total" data-value="orderTotalValue" data-currency="currencyCode">orderTotal</span>
+                                    </p>
 
+                                </div>
+                            </div>
+                            <div class="content-box">
+                                <div class="content-box__row text-container">
+                                    <h2 class="heading-2 os-step__title">@lang('checkout::app.v1.success.Customer information')</h2>
+                                    <p>
+                                        <strong class="left-info" style="font-size:20px;">@lang('checkout::app.v1.success.First Name'): </strong> <span style="padding-left:10px;" class="customer_first_name right-info"></span>
+                                    </p>
+                                    <p>
+                                        <strong class="left-info" style="font-size:20px;">@lang('checkout::app.v1.success.Last Name'): </strong> <span style="padding-left:10px;" class="customer_last_name right-info"></span>
+                                    </p>
+                                    <p>
+                                        <strong class="left-info" style="font-size:20px;">@lang('checkout::app.v1.success.Email'): </strong> <span style="padding-left:10px;" class="customer_email right-info"></span>
+                                    </p>
+                                    <p>
+                                        <strong class="left-info" style="font-size:20px;">@lang('checkout::app.v1.success.Phone Number'): </strong> <span style="padding-left:10px;" class="customer_phone right-info"></span>
+                                    </p>
+                                    <p>
+                                        <strong class="left-info" style="font-size:20px;">@lang('checkout::app.v1.success.Street Address'): </strong> <span style="padding-left:10px;" class="customer_address_1 right-info"></span>
+                                    </p>
+                                    <p>
+                                        <strong class="left-info" style="font-size:20px;">@lang('checkout::app.v1.success.City'): </strong> <span style="padding-left:10px;" class="customer_city right-info"></span>
+                                    </p>
+                                    <p>
+                                        <strong class="left-info" style="font-size:20px;">@lang('checkout::app.v1.success.Country'): </strong> <span style="padding-left:10px;" class="customer_country right-info"></span>
+                                    </p>
+                                    <p>
+                                        <strong class="left-info" style="font-size:20px;">@lang('checkout::app.v1.success.State/Province'): </strong> <span style="padding-left:10px;" class="customer_state right-info"></span>
+                                    </p>
+                                    <p>
+                                        <strong class="left-info" style="font-size:20px;">@lang('checkout::app.v1.success.Zip/Postal Code'): </strong> <span style="padding-left:10px;" class="customer_zip right-info"></span>
+                                    </p>
+                                </div>
                             </div>
                         </div>
-                        <div class="content-box">
-                            <div class="content-box__row text-container">
-                                <h2 class="heading-2 os-step__title">@lang('checkout::app.v1.success.Customer information')</h2>
-                                <p>
-                                    <strong class="left-info" style="font-size:20px;">@lang('checkout::app.v1.success.First Name'): </strong> <span style="padding-left:10px;" class="customer_first_name right-info"></span>
-                                </p>
-                                <p>
-                                    <strong class="left-info" style="font-size:20px;">@lang('checkout::app.v1.success.Last Name'): </strong> <span style="padding-left:10px;" class="customer_last_name right-info"></span>
-                                </p>
-                                <p>
-                                    <strong class="left-info" style="font-size:20px;">@lang('checkout::app.v1.success.Email'): </strong> <span style="padding-left:10px;" class="customer_email right-info"></span>
-                                </p>
-                                <p>
-                                    <strong class="left-info" style="font-size:20px;">@lang('checkout::app.v1.success.Phone Number'): </strong> <span style="padding-left:10px;" class="customer_phone right-info"></span>
-                                </p>
-                                <p>
-                                    <strong class="left-info" style="font-size:20px;">@lang('checkout::app.v1.success.Street Address'): </strong> <span style="padding-left:10px;" class="customer_address_1 right-info"></span>
-                                </p>
-                                <p>
-                                    <strong class="left-info" style="font-size:20px;">@lang('checkout::app.v1.success.City'): </strong> <span style="padding-left:10px;" class="customer_city right-info"></span>
-                                </p>
-                                <p>
-                                    <strong class="left-info" style="font-size:20px;">@lang('checkout::app.v1.success.Country'): </strong> <span style="padding-left:10px;" class="customer_country right-info"></span>
-                                </p>
-                                <p>
-                                    <strong class="left-info" style="font-size:20px;">@lang('checkout::app.v1.success.State/Province'): </strong> <span style="padding-left:10px;" class="customer_state right-info"></span>
-                                </p>
-                                <p>
-                                    <strong class="left-info" style="font-size:20px;">@lang('checkout::app.v1.success.Zip/Postal Code'): </strong> <span style="padding-left:10px;" class="customer_zip right-info"></span>
-                                </p>
+                        <div class="failed_block">
+                            <div class="content-box" style="text-align: center;">
+                                <img src="./images/failed.png" style="height: 114px;margin: 10px auto;">
+                                <h2>Your order payment failed!</h2>
+                                <p class="failed_reason"></p>
+                                <p class="os-step__description">Please try again!</p>
+                            </div>
+                        </div>
+                        <div class="loading_block">
+                            <div class="content-box" style="text-align: center;padding: 10px">
+                                <h2>Please wait...</h2>
                             </div>
                         </div>
                     </div>
-                    <div class="failed_block">
-                        <div class="content-box" style="text-align: center;">
-                            <img src="./images/failed.png" style="height: 114px;margin: 10px auto;">
-                            <h2>Your order payment failed!</h2>
-                            <p class="failed_reason"></p>
-                            <p class="os-step__description">Please try again!</p>
-                        </div>
-                    </div>
-                    <div class="loading_block">
-                        <div class="content-box" style="text-align: center;padding: 10px">
-                        <h2>Please wait...</h2>
-                    </div>
+                </div>
             </div>
-</div>
-</div>
-</div>
-</main>
-<style>
-    .terms-block {
-    min-height: auto;
-    margin: 5px 0;
-    text-align: center;
-    padding: 5px 0;
-}
-    .terms-block a {
-    margin: 0 10px 0 0;
-    display: inline-block;
-    text-decoration: none;
-    color: #5c5c5c;
-    font-size: 12px;
-    font-family: Helvetica Regular;
-    opacity: 1;
-}
+        </main>
+        <style>
+            .terms-block {
+                min-height: auto;
+                margin: 5px 0;
+                text-align: center;
+                padding: 5px 0;
+            }
+
+            .terms-block a {
+                margin: 0 10px 0 0;
+                display: inline-block;
+                text-decoration: none;
+                color: #5c5c5c;
+                font-size: 12px;
+                font-family: Helvetica Regular;
+                opacity: 1;
+            }
+
             .main__footer {
                 background-color: #000;
                 color: #fff;
                 text-align: center;
             }
+
             .main__footer i {
                 width: 40px;
                 height: 40px;
@@ -480,29 +482,38 @@ obApi('track', 'PAGE_VIEW');
                 margin: 0 5px;
                 color: #4267b2;
             }
+
             .main__footer .copyright-text {
                 margin-top: 15px;
             }
         </style>
-    <footer class="main__footer" role="contentinfo">
-        @include('onebuy::footer-container-'.strtolower($default_country))
-    </footer>
-    
-</div>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=<?php echo $gtag; ?>"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-<?php if(empty($refer)) { ?>
-    gtag('config', '<?php echo $gtag; ?>',{"debug_mode": true});
-<?php }else { ?>
-  gtag('config', '<?php echo $gtag; ?>', {"user_id": "<?php echo $refer;?>","debug_mode": true});
-<?php } ?>
-</script>
-<script>
-        if(getCookie('voluum_payout') && getCookie('order_id') == getQueryString('id')) {
+        <footer class="main__footer" role="contentinfo">
+            @include('onebuy::footer-container-'.strtolower($default_country))
+        </footer>
+
+    </div>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=<?php echo $gtag; ?>"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+        <?php if (empty($refer)) { ?>
+            gtag('config', '<?php echo $gtag; ?>', {
+                "debug_mode": true
+            });
+        <?php } else { ?>
+            gtag('config', '<?php echo $gtag; ?>', {
+                "user_id": "<?php echo $refer; ?>",
+                "debug_mode": true
+            });
+        <?php } ?>
+    </script>
+    <script>
+        if (getCookie('voluum_payout') && getCookie('order_id') == getQueryString('id')) {
             var order_params = {};
 
             order_params['info'] = JSON.parse(localStorage.getItem('order_params'));
@@ -520,45 +531,47 @@ obApi('track', 'PAGE_VIEW');
         var cko_session_id = getQueryString('cko-session-id');
         var pacypay_response_code = getQueryString('responseCode');
         var awx_return_result = getQueryString('awx_return_result');
-        if(client_secret || cko_session_id) {
+        if (client_secret || cko_session_id) {
             var paypal_request_params = {
-                id : getQueryString('id'),
+                id: getQueryString('id'),
             }
-            if(client_secret) {
+            if (client_secret) {
                 paypal_request_params['client_secret'] = client_secret;
             }
-            if(cko_session_id) {
+            if (cko_session_id) {
                 paypal_request_params['cko_session_id'] = cko_session_id;
             }
             var paypal_request = '';
-            for(var i=0; i<Object.keys(paypal_request_params).length; i++) {
+            for (var i = 0; i < Object.keys(paypal_request_params).length; i++) {
                 paypal_request += Object.keys(paypal_request_params)[i] + '=' + paypal_request_params[Object.keys(paypal_request_params)[i]] + '&';
             }
-            paypal_request = paypal_request.substr(0,paypal_request.length - 1);
+            paypal_request = paypal_request.substr(0, paypal_request.length - 1);
             console.log(paypal_request);
 
             var paypal_status_url = '/pay/order/status?' + paypal_request
-            fetch(paypal_status_url,{
-                method: 'get',
-                headers: {
-                    'content-type': 'application/json'
-                },
-            })
-            .then(function(res) {return res.json()})
-            .then(function(res) {
-                postPayStatusParams(JSON.stringify(res), getQueryString('id'));
-                if(res.result === 200) {
-                    if(res.info.pay_status) {
-                        getOrderData();
-                    } else {
-                        showPayFailed(res.info.message);
+            fetch(paypal_status_url, {
+                    method: 'get',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                })
+                .then(function(res) {
+                    return res.json()
+                })
+                .then(function(res) {
+                    postPayStatusParams(JSON.stringify(res), getQueryString('id'));
+                    if (res.result === 200) {
+                        if (res.info.pay_status) {
+                            getOrderData();
+                        } else {
+                            showPayFailed(res.info.message);
+                        }
                     }
-                }
-            })
+                })
         } else {
-            if(pacypay_response_code && pacypay_response_code != '88') {
+            if (pacypay_response_code && pacypay_response_code != '88') {
                 showPayFailed(getQueryString('message'));
-            } else if(awx_return_result && awx_return_result != 'success') {
+            } else if (awx_return_result && awx_return_result != 'success') {
                 showPayFailed();
             } else {
                 getOrderData();
@@ -566,15 +579,19 @@ obApi('track', 'PAGE_VIEW');
         }
 
         function getOrderData() {
-            
+
             var params = {
-                id : getQueryString('id'),
+                id: getQueryString('id'),
             }
             var url = '/onebuy/order/query?id=' + getQueryString('id');
-            fetch(url,{
-                method: 'GET',
-            })
-            .then(function(data){return data.json()}).then(function(data){updataDom(data)})
+            fetch(url, {
+                    method: 'GET',
+                })
+                .then(function(data) {
+                    return data.json()
+                }).then(function(data) {
+                    updataDom(data)
+                })
         }
 
         function getFormatPrice(price, price_template) {
@@ -582,19 +599,19 @@ obApi('track', 'PAGE_VIEW');
             console.log(price);
             console.log(price_template)
             var price_prefix = '';
-            if(price*1 < 0) {
+            if (price * 1 < 0) {
                 price = Math.abs(price);
                 price_prefix = '-';
             }
-            
-            return price_prefix + price_template.replace('price', (price*1).toFixed(2));
+
+            return price_prefix + price_template.replace('price', (price * 1).toFixed(2));
         }
 
         function updataDom(input) {
 
             order_param = JSON.parse(localStorage.getItem('order_params'));
 
-            order_param = <?php echo json_encode($order);?>
+            order_param = <?php echo json_encode($order); ?>
 
             <?php
             $shipping_address = $order->shipping_address;
@@ -609,7 +626,7 @@ obApi('track', 'PAGE_VIEW');
             purchase(order_param.grand_total);
             //purchase(null);
             console.log(data)
-            if(!getCookie('voluum_payout') || getCookie('order_id') != getQueryString('id')) {
+            if (!getCookie('voluum_payout') || getCookie('order_id') != getQueryString('id')) {
                 console.log('data');
                 //sendPurchaseEvent(data);
             }
@@ -618,12 +635,12 @@ obApi('track', 'PAGE_VIEW');
             document.querySelector('.customer_first_name').innerHTML = order_param.customer_first_name;
             document.querySelector('.customer_last_name').innerHTML = order_param.customer_last_name;
             document.querySelector('.customer_email').innerHTML = order_param.customer_email;
-            document.querySelector('.customer_phone').innerHTML = "<?php echo $shipping_address->phone;?>";
-            document.querySelector('.customer_address_1').innerHTML = "<?php echo $shipping_address->address1;?>";
-            document.querySelector('.customer_city').innerHTML = "<?php echo $shipping_address->city;?>";
-            document.querySelector('.customer_country').innerHTML = "<?php echo $shipping_address->country;?>";
-            document.querySelector('.customer_state').innerHTML = "<?php echo $shipping_address->state;?>";
-            document.querySelector('.customer_zip').innerHTML = "<?php echo $shipping_address->postcode;?>";
+            document.querySelector('.customer_phone').innerHTML = "<?php echo $shipping_address->phone; ?>";
+            document.querySelector('.customer_address_1').innerHTML = "<?php echo $shipping_address->address1; ?>";
+            document.querySelector('.customer_city').innerHTML = "<?php echo $shipping_address->city; ?>";
+            document.querySelector('.customer_country').innerHTML = "<?php echo $shipping_address->country; ?>";
+            document.querySelector('.customer_state').innerHTML = "<?php echo $shipping_address->state; ?>";
+            document.querySelector('.customer_zip').innerHTML = "<?php echo $shipping_address->postcode; ?>";
 
 
             // setProductHtml(order_param.products, order_param.produt_amount_base);
@@ -631,8 +648,8 @@ obApi('track', 'PAGE_VIEW');
             showPaySuccess();
             console.log("getRecommendedData");
             console.log(order_param.items[0].sku);
-            getRecommendedData("/onebuy/v4/"+order_param.items[0].sku);
-            
+            getRecommendedData("/onebuy/v4/" + order_param.items[0].sku);
+
         }
 
         function setProductHtml() {
@@ -640,29 +657,30 @@ obApi('track', 'PAGE_VIEW');
             var product_attributes_html = "";
             <?php
             $products = $order->items;
-            foreach($products as $key=>$product) { ?>
-            product_attributes_html += "<p>";
-            <?php 
+            foreach ($products as $key => $product) { ?>
+                product_attributes_html += "<p>";
+                <?php
                 //var_dump($product->additional['attributes']);exit;
-                if(isset($product->additional['attributes'])) {
-                foreach($product->additional['attributes'] as $attribute) {
-            ?>
-                product_attributes_html += "<span><?php echo $attribute['attribute_name']; ?>: <?php echo $attribute['option_label']; ?></span>";
-            <?php } } ?>
+                if (isset($product->additional['attributes'])) {
+                    foreach ($product->additional['attributes'] as $attribute) {
+                ?>
+                        product_attributes_html += "<span><?php echo $attribute['attribute_name']; ?>: <?php echo $attribute['option_label']; ?></span>";
+                <?php }
+                } ?>
                 product_attributes_html += "</p>";
-                product_html += '<p class="order-date"><strong><?php echo addslashes($product->name);?> </strong> ×<span class="order-count">(<?php echo $product->qty_ordered;?>)</span> ' + product_attributes_html +'</p> ';
+                product_html += '<p class="order-date"><strong><?php echo addslashes($product->name); ?> </strong> ×<span class="order-count">(<?php echo $product->qty_ordered; ?>)</span> ' + product_attributes_html + '</p> ';
             <?php } ?>
 
             document.querySelector('.product-content').innerHTML = product_html;
 
         }
 
-        function setProductHtmlNew(products, produt_amount_base =1) {
+        function setProductHtmlNew(products, produt_amount_base = 1) {
             var product_html = ''
 
             for (var i = 0; i < products.length; i++) {
                 var product = products[i];
-                product_html += '<p class="order-date"><img src="'+product.img+'" height="50" style="vertical-align: middle;"> '+product.description+' ×<span class="order-count">'+(product.amount)+'</span></p> '
+                product_html += '<p class="order-date"><img src="' + product.img + '" height="50" style="vertical-align: middle;"> ' + product.description + ' ×<span class="order-count">' + (product.amount) + '</span></p> '
             }
 
             document.querySelector('.product-content').innerHTML = product_html;
@@ -675,7 +693,7 @@ obApi('track', 'PAGE_VIEW');
         }
 
         function showPayFailed(message) {
-            if(message) {
+            if (message) {
                 document.querySelector('.failed_reason').innerText = message;
             }
             document.querySelector('.failed_block').style.display = "block";
@@ -684,7 +702,7 @@ obApi('track', 'PAGE_VIEW');
         }
 
         function postPayStatusParams(log, order_id) {
-            let url = '/order/pay/status/error?order_id='+order_id+'&logo='+log;
+            let url = '/order/pay/status/error?order_id=' + order_id + '&logo=' + log;
 
             window.navigator.sendBeacon ? sendBeacon(url) : sendImage(url);
         }
@@ -707,12 +725,12 @@ obApi('track', 'PAGE_VIEW');
             var r = window.location.search.substr(1).match(reg);
 
             if (r != null) {
-            return unescape(r[2]);
+                return unescape(r[2]);
             }
             return null;
         }
     </script>
-<style type="text/css">
+    <style type="text/css">
         .ba-vol-wrapper {
             margin-top: 20px;
         }
@@ -1656,9 +1674,9 @@ obApi('track', 'PAGE_VIEW');
             text-align: center;
             text-transform: none;
             font-family: "Helvetica Neue",
-            Helvetica,
-            Arial,
-            sans-serif;
+                Helvetica,
+                Arial,
+                sans-serif;
             font-size: 14px;
             line-height: 1.42857143;
             color: #333333;
@@ -2491,4 +2509,5 @@ obApi('track', 'PAGE_VIEW');
         }
     </style>
 </body>
-</html> 
+
+</html>
