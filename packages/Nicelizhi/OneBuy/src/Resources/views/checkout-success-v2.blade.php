@@ -15,25 +15,6 @@
   <script src="https://cdn.jsdelivr.net/npm/jquery-colorbox@1.6.4/jquery.colorbox.min.js"></script>
   <link href="https://cdn.jsdelivr.net/npm/jquery-colorbox@1.6.4/example1/colorbox.min.css" rel="stylesheet">
 
-    <!-- Google Tag Manager -->
-    <script>
-    (function(w, d, s, l, i) {
-      w[l] = w[l] || [];
-      w[l].push({
-        'gtm.start': new Date().getTime(),
-        event: 'gtm.js'
-      });
-      var f = d.getElementsByTagName(s)[0],
-        j = d.createElement(s),
-        dl = l != 'dataLayer' ? '&l=' + l : '';
-      j.async = true;
-      j.src =
-        'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
-      f.parentNode.insertBefore(j, f);
-    })(window, document, 'script', 'dataLayer', '<?php echo $gtm;?>');
-  </script>
-  <!-- End Google Tag Manager -->
-
   <style>
     :root {
       --text-family: Poppins, sans-serif;
@@ -623,43 +604,13 @@
         });
       <?php } ?>
 
-      window.dataLayer = window.dataLayer || [];
+
+      window.dataLayer = window.dataLayer || []
       window.dataLayer.push({
-      
-        eventType: 'conversion',
-        conversionClass: 'order',
-        conversionSubClass: 'purchase',
-        conversionId: '<?php echo $order->id; ?>',
-        offerIds: <?php echo json_encode($line_items); ?>,
-        conversionValue: (value * 1).toFixed(2),
-        conversionCurrency: '<?php echo $order->channel_currency_code; ?>',
-
-
-      });
-
-
-
-      gtag('event', 'purchase', {
-        transaction_id: '<?php echo $order->id; ?>',
-        value: (value * 1).toFixed(2),
+        revenue: (value * 1).toFixed(2),
         currency: "<?php echo $order->channel_currency_code; ?>",
-        items: <?php echo json_encode($line_items); ?>
-      });
+      })
 
-      // params = {
-      //     "channel_id": "<?php echo $crm_channel; ?>",
-      //     "token": "<?php echo $refer; ?>",
-      //     "type": "purchase",
-      //     "order_id": '<?php echo $order->id; ?>',
-      //     "amount": (value * 1).toFixed(2)
-      // };
-      // fetch('https://crm.heomai.com/api/user/action',{
-      //         body: JSON.stringify(params),
-      //         method: 'POST',
-      //         headers: {
-      //             'content-type': 'application/json'
-      //         },
-      // })
 
 
       if (typeof gtag == 'function') {
@@ -701,9 +652,31 @@
     //fbq('track', 'Purchase');
   </script>
   <link rel="stylesheet" href="https://lander.heomai.com/template-common/checkout1/css/font-awesome.min.css">
+  <!-- Google Tag Manager -->
+  <script>
+    (function(w, d, s, l, i) {
+      w[l] = w[l] || [];
+      w[l].push({
+        'gtm.start': new Date().getTime(),
+        event: 'gtm.js'
+      });
+      var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s),
+        dl = l != 'dataLayer' ? '&l=' + l : '';
+      j.async = true;
+      j.src =
+        'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+      f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-NS5CFS68');
+  </script>
+  <!-- End Google Tag Manager -->
 </head>
 
 <body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NS5CFS68"
+      height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
   <div class="container">
     <!-- header banner -->
     <div class="header-banner">
@@ -851,7 +824,7 @@
               ?>
                 <div class="sku-item-left">
 
-                  <div class="sku-img relative">
+                  <div class="relative sku-img">
                     <img src="<?php echo $item['item_img']; ?>" alt="">
                     <div class="absolute"><?php echo $item['quantity']; ?></div>
                   </div>
@@ -904,32 +877,9 @@
   <footer class="main__footer" role="contentinfo">
     @include('onebuy::footer-container-'.strtolower($default_country))
   </footer>
-  <?php if($default_country=='US') {?>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-16498281514"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'AW-16498281514'); </script>
-  <?php } ?>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=<?php echo $gtag; ?>"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-
-    function gtag() {
-      dataLayer.push(arguments);
-    }
-    gtag('js', new Date());
-    <?php if (empty($refer)) { ?>
-      gtag('config', '<?php echo $gtag; ?>', {
-        "debug_mode": true
-      });
-    <?php } else { ?>
-      gtag('config', '<?php echo $gtag; ?>', {
-        "user_id": "<?php echo $refer; ?>",
-        "debug_mode": true
-      });
-    <?php } ?>
-  </script>
   <script>
     $(function() {
-   
+
     })
 
     function getRecommended(path) {
