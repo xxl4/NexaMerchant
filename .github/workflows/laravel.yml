@@ -150,14 +150,14 @@ jobs:
         port: ${{secrets.SSH_PORT }}
         script: |
           cd ${{ secrets.WWW_DIR_EURO_2_1 }} && sudo git pull
-          composer update -vvv --no-scripts
+          composer dump-autoload
           cd storage && sudo chmod -R 777 *
           cd ${{ secrets.WWW_DIR_EURO_2_2 }} && sudo git pull
-          composer update -vvv --no-scripts
+          composer dump-autoload
           cd storage && sudo chmod -R 777 *
           cd ${{ secrets.WWW_DIR_EURO_2_3 }} && sudo git pull
-          composer update -vvv --no-scripts
+          composer dump-autoload
           cd storage && sudo chmod -R 777 *
           cd ${{ secrets.WWW_DIR_EURO_2_4 }} && sudo git pull
-          composer update -vvv --no-scripts
+          composer dump-autoload
           cd storage && sudo chmod -R 777 *
