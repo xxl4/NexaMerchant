@@ -148,7 +148,7 @@ class ImportProductCommentFromJudge extends Command
             var_dump($item);
             //if($item['reviewer']['name']=='Anonymous') continue;
             if($item['published']!=true) continue;
-            //if($item['rating'] < 5) continue;
+            if($item['rating'] < 4) continue; // only get the rating >= 4
 
             if(!empty($item['title'])) {
                 $product = $this->productRepository->findBySlug($item['product_external_id']);
