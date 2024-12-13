@@ -332,6 +332,11 @@ class GetV4 extends Command
                 $newShopifyVarant['sku'] = $shopifyVariant['sku'];
                 $newShopifyVarant['option1'] = $option1=="color" ?  $shopifyVariant['option1'] : $shopifyVariant['option2'];
                 $newShopifyVarant['option2'] = $option2=="size" ? $shopifyVariant['option2'] : $shopifyVariant['option1'];
+                if(!isset($images_map[$shopifyVariant['image_id']])) {
+                    // send message to wecome
+                    \Nicelizhi\Shopify\Helpers\Utils::send(config("app.name").' '.$item['product_id']. " sku image not found, please check it ");
+                    return $this->error("image not found");
+                }
                 $newShopifyVarant['image_src'] = $images_map[$shopifyVariant['image_id']];
                 $newShopifyVarants[$newkey] = $newShopifyVarant;
                 $compare_at_price = $shopifyVariant['compare_at_price'];
