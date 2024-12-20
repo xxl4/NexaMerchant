@@ -291,11 +291,8 @@ class SmartButton extends Paypal
      */
     protected function initialize()
     {
-        $this->clientId = $this->getConfigData('client_id') ?: 'ASbevXw2PdNxhogxclvSl9KAYeXLgCVpWvwlMqeBSZpiOGzNY0v2_x3DfeSeAb1sKegaA1BlZi60Ep8I';
-        //$this->clientId = "ASbevXw2PdNxhogxclvSl9KAYeXLgCVpWvwlMqeBSZpiOGzNY0v2_x3DfeSeAb1sKegaA1BlZi60Ep8I";
-
-        $this->clientSecret = $this->getConfigData('client_secret') ?: 'EKiBf-D5F8m5SwXHz_hC1-vViEVwnXkRQfKL_e2hFgHiiXd6hZe6nINsW6KXwJJzl_HsbpdJvncYD4NP';
-       // $this->clientSecret = "EKiBf-D5F8m5SwXHz_hC1-vViEVwnXkRQfKL_e2hFgHiiXd6hZe6nINsW6KXwJJzl_HsbpdJvncYD4NP";
+        $this->clientId = $this->getConfigData('client_id');
+        $this->clientSecret = $this->getConfigData('client_secret');
     }
 
     /**
@@ -304,8 +301,6 @@ class SmartButton extends Paypal
      * @return void
      */
     public function setClientId($clientId) {
-       // if(empty($clientId)) $clientId = "ASbevXw2PdNxhogxclvSl9KAYeXLgCVpWvwlMqeBSZpiOGzNY0v2_x3DfeSeAb1sKegaA1BlZi60Ep8I";
-        
         $this->clientId = $clientId;
     }
 
@@ -315,8 +310,6 @@ class SmartButton extends Paypal
      * @return void
      */
     public function setClientSecret($clientSecret) {
-        //if(empty($clientSecret))
-            //$clientSecret = "EKiBf-D5F8m5SwXHz_hC1-vViEVwnXkRQfKL_e2hFgHiiXd6hZe6nINsW6KXwJJzl_HsbpdJvncYD4NP";
         $this->clientSecret = $clientSecret;
     }
 }
