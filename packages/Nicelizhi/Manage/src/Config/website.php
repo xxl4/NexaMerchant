@@ -21,6 +21,26 @@ return [
             'name' => 'France',
             'link' => env('SYNC_FR'),
         ],
+        'ro' => [
+            'name' => 'Romania',
+            'link' => env('SYNC_RO'),
+        ],
+        'cz' => [
+            'name' => 'Czech Republic',
+            'link' => env('SYNC_CZ'),
+        ],
+        'sk' => [
+            'name' => 'Slovakia',
+            'link' => env('SYNC_SK'),
+        ],
+        'hu' => [
+            'name' => 'Hungary',
+            'link' => env('SYNC_HU'),
+        ],
+        'pl' => [
+            'name' => 'Poland',
+            'link' => env('SYNC_PL'),
+        ],
     ],
     'paypal' => [
         'v1' => [

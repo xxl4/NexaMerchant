@@ -92,7 +92,24 @@
   <noscript>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
   </noscript>
-
+  <!-- Google Tag Manager -->
+  <script>
+    (function(w, d, s, l, i) {
+      w[l] = w[l] || [];
+      w[l].push({
+        'gtm.start': new Date().getTime(),
+        event: 'gtm.js'
+      });
+      var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s),
+        dl = l != 'dataLayer' ? '&l=' + l : '';
+      j.async = true;
+      j.src =
+        'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+      f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-NS5CFS68');
+  </script>
+  <!-- End Google Tag Manager -->
   <style>
     img {
       /* aspect-ratio: attr(width)/attr(height); */
@@ -139,14 +156,56 @@
     }
 
     .shopify-content {
-      width: 100%;
       float: left;
+    }
+
+    .shopify-content {
+      max-width: 100%;
+      color: #555555;
+      font-size: 16px;
+      line-height: 1.5;
+      padding: 0 10px;
     }
 
     .shopify-content img {
       width: 100% !important;
       margin: 0 auto;
+      border-radius: 10px;
       height: auto;
+    }
+
+    .shopify-content h2 {
+      font-size: 18px;
+      color: #555555;
+      margin-bottom: 15px;
+    }
+
+    .shopify-content h3 {
+      font-size: 16px;
+      color: #555555;
+      margin-bottom: 15px;
+    }
+
+    .shopify-content p {
+      margin: 10px 0;
+    }
+
+    .shopify-content ul {
+      list-style: none;
+    }
+
+    .shopify-content ul li {
+      margin: 10px 0;
+    }
+
+    .shopify-content span {
+      display: inline-block;
+      margin-bottom: 3px;
+      width: 100%;
+    }
+
+    .shopify-content video {
+      width: 100%;
     }
 
     .prod-name {
@@ -325,6 +384,10 @@
 </head>
 
 <body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NS5CFS68"
+      height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
   <div class="header-container">
     <div class="container">
       <div class="herder-content">

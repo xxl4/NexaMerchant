@@ -24,7 +24,7 @@ class GetV2 extends Command
      *
      * @var string
      */
-    protected $signature = 'shopify:product:getv2 {--prod_id=} {--force=}';
+    protected $signature = 'shopify:product:getv2 {--prod_id=} {--force=} {--lang=} {--channel=}';
 
     /**
      * The console command description.
@@ -41,18 +41,9 @@ class GetV2 extends Command
 
     private $attr_id = 0;
 
-    private $locales = [
-        'us',
-        'en',
-        'fr',
-        'nl',
-        'tr',
-        'es',
-        'de',
-        'it',
-        'ru',
-        'uk'
-    ];
+    private $locales = [];
+
+    private $channel = "default";
 
 
     /**
@@ -92,6 +83,16 @@ class GetV2 extends Command
             return false;
         }
         echo $shopify_pro_id."\r\n";
+
+        $lang = $this->option('lang'); // lang
+        $channel = $this->option('channel'); // channel
+
+        if(!empty($lang)) {
+            $this->lang = $lang;
+        }
+        if(!empty($channel)) {
+            $this->channel = $channel;
+        }
 
         $force = $this->option('force');
 
@@ -278,7 +279,7 @@ class GetV2 extends Command
             $updateData['visible_individually'] = 1;
             $updateData['status'] = 1;
             $updateData['guest_checkout'] = 1;
-            $updateData['channel'] = "default";
+            $updateData['channel'] = $this->channel;
             $updateData['locale'] = $this->lang;
             $categories[] = $this->category_id;
             $updateData['categories'] = $categories;
@@ -310,7 +311,7 @@ class GetV2 extends Command
                 $newShopifyVarant['id'] = $shopifyVariant['id'];
                 $newShopifyVarant['price'] = $shopifyVariant['price'];
                 $newShopifyVarant['title'] = $shopifyVariant['title'];
-                $newShopifyVarant['weight'] = $shopifyVariant['weight'];
+                $newShopifyVarant['weight'] = isset($shopifyVariant['weight']) ? $shopifyVariant['weight'] : 0;
                 $newShopifyVarant['sku'] = $shopifyVariant['sku'];
                 if(!empty($attr)) {
                     $newkey .="_".$attr->id;
@@ -417,7 +418,7 @@ class GetV2 extends Command
                         $var_product['name'] = $shopifyVariant['title']; 
                         $var_product['status'] = 1;
                         $var_product['guest_checkout'] = 1;
-                        $var_product['channel'] = "default";
+                        $var_product['channel'] = $this->channel;
                         $var_product['locale'] = $this->lang;
                         $var_product[] = $this->category_id;
                         $var_product['categories'] = $categories;
@@ -538,7 +539,7 @@ class GetV2 extends Command
                 $updateData['visible_individually'] = 1;
                 $updateData['status'] = 1;
                 $updateData['guest_checkout'] = 1;
-                $updateData['channel'] = "default";
+                $updateData['channel'] = $this->channel;
                 $updateData['locale'] = $this->lang;
                 $categories[] = $this->category_id;
                 $updateData['categories'] = $categories;
@@ -549,8 +550,16 @@ class GetV2 extends Command
 
                 $images = [];
                 $shopifyImages = [];
+
+                $src = isset($images_map[$sku_image[1]]) ? $images_map[$sku_image[1]] : "";
+
+                if(empty($src)) {
+
+                }else{
+                    $shopifyImages[] = ['src'=> $images_map[$sku_image[1]] ];
+                }
                 
-                $shopifyImages[] = ['src'=> $images_map[$sku_image[1]] ];
+                //$shopifyImages[] = ['src'=> $images_map[$sku_image[1]] ];
 
                 foreach($shopifyImages as $key=>$shopifyImage) {
 

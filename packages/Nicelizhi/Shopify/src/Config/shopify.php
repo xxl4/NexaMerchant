@@ -7,5 +7,7 @@ return [
     'shopify_store_id' => env('SHOPIFY_APP_ID'),
     'store_lang' => env('SHOPIFY_STORE_LANG'),
     'wcom_noticle_url' => env('WCOME_NOTICLE_URL'),
-    'order_pre' => env('SHOPIFY_ORDER_PRE')
+    'feishu_noticle_url' => env('FEISU_NOTICLE_URL'),
+    'order_pre' => env('SHOPIFY_ORDER_PRE'),
+    'enable' => env('SHOPIFY_ENABLE', true)
 ];

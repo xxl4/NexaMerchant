@@ -61,7 +61,12 @@ class Refund extends Base
 
 
             /* getting paypal oder id */
-            $paypalOrderID = $order->payment->additional['orderID'];
+            if(isset($order->payment->additional['orderID'])) {
+                $paypalOrderID = $order->payment->additional['orderID'];
+            } else {
+                $paypalOrderID = $order->transactions[0]->transaction_id;
+            }
+            // $paypalOrderID = $order->payment->additional['orderID'];
 
             /* getting capture id by paypal order id */
             try {

@@ -562,6 +562,7 @@ class ProductController extends Controller
             if(config("Upselling.enable") && $upselling_enable) {
                 Log::info("upselling_enable". $upselling_enable);
                 $upselling = app('NexaMerchant\Upselling\Upselling');
+                $upselling->setCouponCode("upselling50");
                 $upselling->applyUpselling($cart);
             }
 
@@ -801,6 +802,7 @@ class ProductController extends Controller
         if(config("Upselling.enable") && $upselling_enable) {
             Log::info("upselling_enable". $upselling_enable);
             $upselling = app('NexaMerchant\Upselling\Upselling');
+            $upselling->setCouponCode("upselling50");
             $upselling->applyUpselling($cart);
         }
 
@@ -1404,9 +1406,14 @@ class ProductController extends Controller
         //var_dump($paypal_access_token, $paypal_id_token);
 
         if(empty($paypal_id_token)) {
+
             $paypal_id_token = $this->smartButton->getIDAccessToken();
             $paypal_access_token = $paypal_id_token->result->access_token;
             $paypal_id_token = $paypal_id_token->result->id_token;
+
+            // $paypal_id_token = "";
+            // $paypal_access_token = "";
+            // $paypal_id_token ="";
 
             
             

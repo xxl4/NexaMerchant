@@ -1,0 +1,82 @@
+[
+    {  
+        "CountryCode": "PL",
+        "StateCode": "DS",
+        "StateName": "Dolnośląskie"
+    },
+    {  
+        "CountryCode": "PL",
+        "StateCode": "KP",
+        "StateName": "Kujawsko-Pomorskie"
+    },
+    {  
+        "CountryCode": "PL",
+        "StateCode": "LU",
+        "StateName": "Lubelskie"
+    },
+    {  
+        "CountryCode": "PL",
+        "StateCode": "LB",
+        "StateName": "Lubuskie"
+    },
+    {  
+        "CountryCode": "PL",
+        "StateCode": "LD",
+        "StateName": "Łódzkie"
+    },
+    {  
+        "CountryCode": "PL",
+        "StateCode": "MA",
+        "StateName": "Małopolskie"
+    },
+    {  
+        "CountryCode": "PL",
+        "StateCode": "MZ",
+        "StateName": "Mazowieckie"
+    },
+    {  
+        "CountryCode": "PL",
+        "StateCode": "OP",
+        "StateName": "Opolskie"
+    },
+    {  
+        "CountryCode": "PL",
+        "StateCode": "PK",
+        "StateName": "Podkarpackie"
+    },
+    {  
+        "CountryCode": "PL",
+        "StateCode": "PD",
+        "StateName": "Podlaskie"
+    },
+    {  
+        "CountryCode": "PL",
+        "StateCode": "PM",
+        "StateName": "Pomorskie"
+    },
+    {  
+        "CountryCode": "PL",
+        "StateCode": "SL",
+        "StateName": "Śląskie"
+    },
+    {  
+        "CountryCode": "PL",
+        "StateCode": "SK",
+        "StateName": "Świętokrzyskie"
+    },
+    {  
+        "CountryCode": "PL",
+        "StateCode": "WN",
+        "StateName": "Warmińsko-Mazurskie"
+    },
+    {  
+        "CountryCode": "PL",
+        "StateCode": "WP",
+        "StateName": "Wielkopolskie"
+    },
+    {  
+        "CountryCode": "PL",
+        "StateCode": "ZP",
+        "StateName": "Zachodniopomorskie"
+    }
+]

@@ -6,6 +6,7 @@ use Illuminate\Http\Response;
 use Illuminate\Http\Request;
 use Webkul\Product\Repositories\ProductRepository;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Log;
 
 class ApiController extends Controller {
 
@@ -56,6 +57,8 @@ class ApiController extends Controller {
         $product_id = request()->get('product_id', null);
         $product_id = request()->get('product_id', null);
 
+        
+
         $product = $this->productRepository->findBySlug($product_id);
         
         if(is_null($product)) {
@@ -69,7 +72,11 @@ class ApiController extends Controller {
         $reviews = Cache::get("product_comment_".$product['id']."_".$page."_".$per_page);
 
         if(empty($reviews)) {
-            $reviews = \Webkul\Product\Models\ProductReview::where("status","approved")->where("product_id", $product['id'])->orderBy("sort","desc")->skip($page*$per_page)->take($per_page)->get();
+            // skip and take when order by is not working
+
+            $reviews = \Webkul\Product\Models\ProductReviewProxy::where("status","approved")->where("product_id", $product['id'])->orderBy("sort","desc")->orderBy("id","desc")->skip($page*$per_page)->take($per_page)->get();
+
+            Log::info("product_comment_".$product['id']."_".$page."_".$per_page. " ". json_encode($reviews));
 
             $reviews = $reviews->map(function($review) {
                 $review->customer = $review->customer;
@@ -77,7 +84,7 @@ class ApiController extends Controller {
                 return $review;
             });
 
-            Cache::set("product_comment_".$product['id']."_".$page."_".$per_page, $reviews, 36000);
+            Cache::set("product_comment_".$product['id']."_".$page."_".$per_page, $reviews, 3600);
         }
 
         //$reviews = $product->reviews->where('status', 'approved')->skip($page*$per_page)->take($per_page);

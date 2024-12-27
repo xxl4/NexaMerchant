@@ -28,6 +28,7 @@
                           <th>Title</th>
                           <th>handle</th>
                           <th>Status</th>
+                          <th>Is Feed</th>
                           <th>Clean Cache</th>
                           <th>V1</th>
                           <th>V2</th>
@@ -100,6 +101,9 @@
             data: 'status'
           },
           {
+            data: 'is_feed'
+          },
+          {
             data: 'product_id',
             render: function(data, type, row, meta) {
               return '<a href="./products/clean-cache/'+data+'" class="btn btn-danger btn-sm" target="_blank">Clean Cache</a>';
@@ -132,7 +136,7 @@
           {
             data: 'product_id',
             render: function(data, type, row, meta) {
-              return '<a href="https://shop-v5.hatmeo.com/checkout/dollar/'+data+'" target="_blank" class="btn btn-sm">USA V5 USD</a><a href="https://shop-v5.hatmeo.com/checkout/adollar/'+data+'" target="_blank" class="btn btn-sm">USA V5 AUD</a><a href="https://offer-v5.hatme.de/checkout/euro/'+data+'" target="_blank" class="btn btn-sm">DE V5</a><a href="https://offer-v5.botma.fr/checkout/euro/'+data+'" target="_blank" class="btn btn-sm">FR V5</a><a href="https://shop-v5.yooje.uk/checkout/pound/'+data+'" target="_blank" class="btn btn-sm">UK V5</a><a href="https://shop-v5.wmcer.com/checkout/euro/'+data+'" target="_blank" class="btn btn-sm">ES V5</a>';
+              return '<a href="https://shop-v5.hatmeo.com/checkout/dollar/'+data+'" target="_blank" class="btn btn-sm">USA V5 USD</a><a href="https://shop-v5.hatmeo.com/checkout/adollar/'+data+'" target="_blank" class="btn btn-sm">USA V5 AUD</a><a href="https://offer-v5.hatme.de/checkout/euro/'+data+'" target="_blank" class="btn btn-sm">DE V5</a><a href="https://offer-v5.botma.fr/checkout/euro/'+data+'" target="_blank" class="btn btn-sm">FR V5</a><a href="https://shop-v5.yooje.uk/checkout/pound/'+data+'" target="_blank" class="btn btn-sm">UK V5</a><a href="https://shop-v5.wmcer.com/checkout/euro/'+data+'" target="_blank" class="btn btn-sm">ES V5</a> <a href="https://ro-v5.tdtopic.com/checkout/romania/'+data+'" target="_blank" class="btn btn-sm">RO V5</a> <a href="https://cz-v5.mqqhot.com/checkout/czech/'+data+'" target="_blank" class="btn btn-sm">CZ V5</a> <a href="https://pl-v5.sedyes.com/checkout/poland/'+data+'" target="_blank" class="btn btn-sm">PL V5</a> <a href="https://sk-v5.wmbh.net/checkout/euro/'+data+'" target="_blank" class="btn btn-sm">SK V5</a> <a href="https://hu-v5.hatme.net/checkout/forint/'+data+'" target="_blank" class="btn btn-sm">HU V5</a>';
             }
           }
           ,
@@ -150,7 +154,7 @@
             [20, 50, 100],
             [20, 50, 100]
         ],
-        order: [[10, 'desc']],
+        order: [[11, 'desc']],
         processing: true,
         serverSide: true,
         

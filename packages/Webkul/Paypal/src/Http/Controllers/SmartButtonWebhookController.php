@@ -181,6 +181,7 @@ class SmartButtonWebhookController extends Controller
            $refud['refund']['items'] =  $refundData;
 
            $totals = $this->refundRepository->getOrderItemsRefundSummary($refud['refund']['items'], $order_id);
+           
 
            $refund_total = 0.00;
            foreach($data['resource']['money_movements'] as $money_movement) {
@@ -198,6 +199,15 @@ class SmartButtonWebhookController extends Controller
 
            $refud['refund']['comment'] = $data['resource']['reason']."-UNDER_REVIEW-". $refund_total;
 
+           if($totals==false) {
+                Log::info("UNDER_REVIEW-".json_encode($refud));
+                Log::info("UNDER_REVIEW-".json_encode($data));
+                Log::info("UNDER_REVIEW-".json_encode($totals));
+                return false; // can not refund
+           } 
+
+           
+
            if(!empty($refud['refund']['custom_refund_amount'])) {
                $refundAmount = $totals['grand_total']['price'] - $totals['shipping']['price'] + $refud['refund']['shipping'] + $refud['refund']['adjustment_refund'] - $refud['refund']['adjustment_fee'];
                $refud['refund']['adjustment_fee'] = abs($refud['refund']['custom_refund_amount'] - $refundAmount);
@@ -205,10 +215,6 @@ class SmartButtonWebhookController extends Controller
 
            
            //var_dump($refud);exit;
-           
-
-
-
 
            $this->refundRepository->create(array_merge($refud, ['order_id' => $order_id]));
 
@@ -233,5 +239,14 @@ class SmartButtonWebhookController extends Controller
      */
     public function subscriptions(Request $request) {
 
+    }
+
+    /**
+     *  Paypal All Webhook
+     * 
+     * 
+     */
+    public function all(Request $request) {
+        Log::info("all--".json_encode($request->all()));
     }
 }

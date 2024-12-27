@@ -62,19 +62,24 @@ final class Utils {
                 //$package_product['old_price'] = $productPrice['regular']['price'] * $i;
                 $price = self::getCartProductPrice($product,$product->id, $i);
                 $package_product['old_price'] = round($source_price * $i, 2); 
-                $package_product['old_price_format'] = core()->currencySymbol($currency).round($package_product['old_price'], 2); 
+                //$old_price_format = core()->convertPrice($package_product['old_price']);
                 //$package_product['new_price'] = "3.23" * $i;
+                $package_product['currency_symbol'] = core()->currencySymbol(core()->getCurrentCurrencyCode());
+
+                $package_product['old_price_format'] = $package_product['currency_symbol'].$package_product['old_price'];
                 if ($i==2) $discount = 0.8;
                 if ($i==3) $discount = 0.7;
                 if ($i==4) $discount = 0.6;
                 if ($i==1) $discount = 1;
                 $package_product['new_price'] = $price * $discount;
-                $package_product['new_price_format'] = core()->currencySymbol($currency).round($package_product['new_price'], 2);
+                //$new_price_format = core()->currency($currency).round($package_product['new_price'], 2);
+                $package_product['new_price_format'] = $package_product['currency_symbol'].$package_product['new_price'];
                 $tip1_price = (1 - round(($package_product['new_price'] / $package_product['old_price']), 2)) * 100;
                 $package_product['tip1'] = $tip1_price."% ";
                 $tip2_price = round($package_product['new_price'] / $i, 2);
-                $package_product['tip2'] = core()->currencySymbol($currency).$tip2_price;
-                $package_product['shipping_fee'] = $shipping_price; // shipping price
+                $package_product['tip2'] = core()->currency($tip2_price);
+                $package_product['shipping_fee'] = core()->convertPrice($shipping_price); // shipping price
+                $package_product['return_fee'] = core()->convertPrice(2.99); // return price
                 $popup_info['name'] = null;
                 $popup_info['old_price'] = null;
                 $popup_info['new_price'] = null;
@@ -161,18 +166,18 @@ final class Utils {
 
         $channel = core()->getCurrentChannel();
 
-        Log::info("channel: ".json_encode($channel));
+        //Log::info("channel: ".json_encode($channel));
 
         $country = strtoupper($country);
 
         // currency from currenices table
         $currencies = core()->getAllCurrencies();
 
-        Log::info("currencies: ".json_encode($currencies));
+        //Log::info("currencies: ".json_encode($currencies));
 
         $currencies = core()->getChannelBaseCurrency();
 
-        Log::info("channel currencies: ".json_encode($currencies));
+        //Log::info("channel currencies: ".json_encode($currencies));
 
         return "USD";
     }

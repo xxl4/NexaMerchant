@@ -1,0 +1,22 @@
+[
+    { "CountryCode": "HU", "StateCode": "BU", "StateName": "Budapest" },
+    { "CountryCode": "HU", "StateCode": "BK", "StateName": "Bács-Kiskun" },
+    { "CountryCode": "HU", "StateCode": "BA", "StateName": "Baranya" },
+    { "CountryCode": "HU", "StateCode": "BE", "StateName": "Békés" },
+    { "CountryCode": "HU", "StateCode": "BZ", "StateName": "Borsod-Abaúj-Zemplén" },
+    { "CountryCode": "HU", "StateCode": "CS", "StateName": "Csongrád-Csanád" },
+    { "CountryCode": "HU", "StateCode": "FE", "StateName": "Fejér" },
+    { "CountryCode": "HU", "StateCode": "GS", "StateName": "Győr-Moson-Sopron" },
+    { "CountryCode": "HU", "StateCode": "HB", "StateName": "Hajdú-Bihar" },
+    { "CountryCode": "HU", "StateCode": "HE", "StateName": "Heves" },
+    { "CountryCode": "HU", "StateCode": "JN", "StateName": "Jász-Nagykun-Szolnok" },
+    { "CountryCode": "HU", "StateCode": "KE", "StateName": "Komárom-Esztergom" },
+    { "CountryCode": "HU", "StateCode": "NO", "StateName": "Nógrád" },
+    { "CountryCode": "HU", "StateCode": "PE", "StateName": "Pest" },
+    { "CountryCode": "HU", "StateCode": "SO", "StateName": "Somogy" },
+    { "CountryCode": "HU", "StateCode": "SZ", "StateName": "Szabolcs-Szatmár-Bereg" },
+    { "CountryCode": "HU", "StateCode": "TO", "StateName": "Tolna" },
+    { "CountryCode": "HU", "StateCode": "VA", "StateName": "Vas" },
+    { "CountryCode": "HU", "StateCode": "VE", "StateName": "Veszprém" },
+    { "CountryCode": "HU", "StateCode": "ZA", "StateName": "Zala" }
+]

@@ -86,15 +86,25 @@ class ApiController extends Controller
         $paypal_access_token = $paypal_id_token->result->access_token;
         $paypal_id_token = $paypal_id_token->result->id_token;
 
+        // $paypal_id_token = "";
+        // $paypal_access_token = "";
+        // $paypal_id_token ="";
+
         if(empty($data)) {
         //if(true) {
             $product = $this->productRepository->findBySlug($slug);
+            if(is_null($product)) {
+                return response()->json(['error' => 'Product not found','code'=>'201'], 400);
+            }
             $data = [];
             $productViewHelper = new \Webkul\Product\Helpers\ConfigurableOption();
             $attributes = $productViewHelper->getConfigurationConfig($product);
 
     
             $redis = Redis::connection('default');
+
+            $product_attr_sort_cache_key = "product_attr_sort_23_".$product->id;
+            $product_attr_sort = $redis->hgetall($product_attr_sort_cache_key); // get sku sort
     
             foreach($attributes['attributes'] as $key=>$attribute) {
 
@@ -457,8 +467,8 @@ class ApiController extends Controller
 
             // when enable the upselling and can config the upselling rule for carts
             if(config("Upselling.enable")) {
-               
                 $upselling = app('NexaMerchant\Upselling\Upselling');
+                $upselling->setCouponCode("upselling50");
                 $upselling->applyUpselling($cart);
             }
 
@@ -674,6 +684,7 @@ class ApiController extends Controller
         if(config("Upselling.enable")) {
                
             $upselling = app('NexaMerchant\Upselling\Upselling');
+            $upselling->setCouponCode("upselling50");
             $upselling->applyUpselling($cart);
         }
 

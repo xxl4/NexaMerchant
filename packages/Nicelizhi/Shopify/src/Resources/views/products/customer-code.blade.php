@@ -7,10 +7,8 @@
         <form class="form" method="POST" action="{{route('admin.shopify.products.checkout-customer-code', $product_id)}}">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
-        <?php foreach($checkoutItems as $key=>$checkoutItem) { 
-            
-            $checkoutItem = json_decode($checkoutItem, true);
-
+        <?php foreach($checkoutList as $key=>$checkoutItem) { 
+        
             //var_dump($checkoutItem);
         ?> 
         <h1><?php echo $key;?></h1>

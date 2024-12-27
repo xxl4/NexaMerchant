@@ -45,7 +45,6 @@
                           <th>order_currency_code</th>
                           <th>grand_total</th>
                           <th>base_grand_total</th>
-                          <th>base_grand_total</th>
                           <th>Transaction Id</th>
                           <th>method_title</th>
                           <th>Payment Method</th>

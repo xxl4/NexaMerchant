@@ -33,6 +33,8 @@ Route::prefix('paypal/v2')->group(function () {
 
 Route::prefix('paypal/smart-button')->group(function () {
     Route::post('/v1/webhooks/dispute', [SmartButtonWebhookController::class, 'dispute'])->name('paypal.smart-button.webhooks.dispute');
+    Route::post('/v1/webhooks/all', [SmartButtonWebhookController::class, 'all'])->name('paypal.smart-button.webhooks.all');
+
 
 });
 

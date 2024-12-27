@@ -14,6 +14,7 @@ use Illuminate\Http\Client\RequestException;
 use GuzzleHttp\Exception\ClientException;
 use Webkul\Customer\Repositories\CustomerRepository;
 use Illuminate\Support\Facades\Event;
+use Illuminate\Support\Facades\Artisan;
 
 class Post extends Command
 {
@@ -277,9 +278,44 @@ class Post extends Command
             ]
         ];
 
-        $postOrder['transactions'] = $transactions;
+        // if($shipping_address->email=='test@example.com') {
+        //     $postOrder['test'] = true;
+        //     return false;
+        // }
+        
 
-        $postOrder['financial_status'] = "paid";
+        
+        $financial_status = "paid";
+
+        if($orderPayment['method']=='codpayment') {
+            $financial_status = "pending";
+            $postOrder['payment_gateway_names'] = [
+                "codPay",
+                "cash_on_delivery"
+            ];
+
+            // when cod payment need format the price to Round integer
+            $order->grand_total = round($order->grand_total);
+            $order->sub_total = round($order->sub_total);
+            $order->discount_amount = round($order->discount_amount);
+            $order->shipping_amount = round($order->shipping_amount);
+
+            $transactions = [
+                [
+                   "kind" => "sale",
+                    "status" => "pending",
+                    "amount" => $order->grand_total,
+                    "gateway" => "Cash on Delivery (COD)"
+                ]
+            ];
+
+            
+
+        }
+
+        //$postOrder['financial_status'] = "paid";
+        $postOrder['financial_status'] = $financial_status;
+        $postOrder['transactions'] = $transactions;
 
         $postOrder['current_subtotal_price'] = $order->sub_total;
 
@@ -404,6 +440,8 @@ class Post extends Command
         $postOrder['presentment_currency'] = $order->order_currency_code;
         $pOrder['order'] = $postOrder;
         var_dump($pOrder);
+
+        //exit;
 
         $crm_url = config('onebuy.crm_url');
 
@@ -560,6 +598,9 @@ class Post extends Command
             $url = $crm_url."/api/offers/callBack?refer=".$cnv_id[1]."&revenue=".$order->grand_total."&currency_code=".$order->order_currency_code."&channel_id=".$crm_channel."&q_ty=".$q_ty."&email=".$item['email']."&order_id=".$id;
             $res = $this->get_content($url);
             Log::info("post to bm 2 url ".$url." res ".json_encode($res));
+
+            // order check
+            Artisan::queue("GooglePlaces:check-order",['--order_id'=>$id])->onConnection('redis')->onQueue('order-checker'); // push to queue for check order
 
         }
 

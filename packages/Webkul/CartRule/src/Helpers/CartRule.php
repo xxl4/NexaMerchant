@@ -227,7 +227,7 @@ class CartRule
             if (! $this->canProcessRule($rule)) {
                 continue;
             }
-            Log::info('Processing rule id: ' . $rule->id . ' for item id: ' . $item->id. ' and rule condition_type: ' . $rule->condition_type);
+            //Log::info('Processing rule id: ' . $rule->id . ' for item id: ' . $item->id. ' and rule condition_type: ' . $rule->condition_type);
             // when rule condition type is 1, and all the cart item conditions are met
             if ($rule->condition_type == '1') {
                 
@@ -242,14 +242,14 @@ class CartRule
                     }
                 }
 
-                Log::info('Rule condition type is 1 and checkItem is: ' . $checkItem);
+                //Log::info('Rule condition type is 1 and checkItem is: ' . $checkItem);
                 if($checkItem==0) {
                     //continue;
                 }
 
             } 
             if (! $this->validator->validate($rule, $item)) {
-                Log::info('Rule validation failed for rule id: ' . $rule->id . ' and item id: ' . $item->id);
+                //Log::info('Rule validation failed for rule id: ' . $rule->id . ' and item id: ' . $item->id);
                 continue;
             }
 

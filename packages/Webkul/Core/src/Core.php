@@ -553,6 +553,12 @@ class Core
      */
     public function currencySymbol($currency)
     {
+        if($currency == "CZK") {
+            return 'Kč';
+        }
+        if($currency == "RON") {
+            return 'lei';
+        }
         $code = $currency instanceof \Webkul\Core\Contracts\Currency ? $currency->code : $currency;
 
         $formatter = new \NumberFormatter(app()->getLocale() . '@currency=' . $code, \NumberFormatter::CURRENCY);

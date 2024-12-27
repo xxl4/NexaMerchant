@@ -1,0 +1,12 @@
+[
+    {
+        "countryName": "Poland",
+        "countryNameLocalized": "Poland",
+        "countryCode": "PL",
+        "currencyCode": "PLN",
+        "currencyName": "Polish Zloty",
+        "currencySign": "zł",
+        "region": "Europe",
+        "postalCodeRegex": "^\\d{2}-\\d{3}$"
+    }
+]
