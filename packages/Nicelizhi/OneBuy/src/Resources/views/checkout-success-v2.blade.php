@@ -609,7 +609,10 @@
       window.dataLayer.push({
         revenue: (value * 1).toFixed(2),
         currency: "<?php echo $order->channel_currency_code; ?>",
+        offerid: <?php echo $order->items[0]->sku; ?>,
       })
+      console.log("Google GTM ")
+      console.log(window.dataLayer)
 
 
 
