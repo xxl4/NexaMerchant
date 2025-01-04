@@ -201,6 +201,10 @@ class Cart
         }
 
         $product = $this->productRepository->find($productId);
+        // when product is not found
+        if (! $product) {
+            return ['warning' => __('shop::app.checkout.cart.item.error-add')];
+        }
 
         if (! $product->status) {
             return ['info' => __('shop::app.checkout.cart.item.inactive-add')];
