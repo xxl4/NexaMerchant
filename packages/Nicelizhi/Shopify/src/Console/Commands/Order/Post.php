@@ -196,6 +196,14 @@ class Post extends Command
             $line_item = [];
             $line_item['variant_id'] = $skuInfo[1];
             $line_item ['quantity'] = $product['qty_ordered'];
+
+            $price_set = [];
+            $price_set['shop_money'] = [
+                'amount' => $product['price'],
+                'currency_code' => $order->order_currency_code
+            ];
+            $line_item['price_set'] = $price_set;
+
             $q_ty += $product['qty_ordered'];
             $line_item ['requires_shipping'] = true;
 
