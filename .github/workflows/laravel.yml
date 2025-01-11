@@ -129,6 +129,27 @@ jobs:
           cd ${{ secrets.WWW_DIR_6 }} && sudo git pull
           composer dump-autoload
           cd storage && sudo chmod -R 777 *
+          cd ${{ secrets.WWW_DIR_7 }} && sudo git pull
+          composer dump-autoload
+          cd storage && sudo chmod -R 777 *
+          cd ${{ secrets.WWW_DIR_8 }} && sudo git pull
+          composer dump-autoload
+          cd storage && sudo chmod -R 777 *
+          cd ${{ secrets.WWW_DIR_9 }} && sudo git pull
+          composer dump-autoload
+          cd storage && sudo chmod -R 777 *
+          cd ${{ secrets.WWW_DIR_10 }} && sudo git pull
+          composer dump-autoload
+          cd storage && sudo chmod -R 777 *
+          cd ${{ secrets.WWW_DIR_11 }} && sudo git pull
+          composer dump-autoload
+          cd storage && sudo chmod -R 777 *
+          cd ${{ secrets.WWW_DIR_12 }} && sudo git pull
+          composer dump-autoload
+          cd storage && sudo chmod -R 777 *
+          cd ${{ secrets.WWW_DIR_13 }} && sudo git pull
+          composer dump-autoload
+          cd storage && sudo chmod -R 777 *
     - name: Sync to Server 2 and Do it
       uses: appleboy/ssh-action@master
       env:
