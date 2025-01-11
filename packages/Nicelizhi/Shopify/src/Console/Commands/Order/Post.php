@@ -196,7 +196,7 @@ class Post extends Command
             $line_item = [];
             $line_item['variant_id'] = $skuInfo[1];
             $line_item ['quantity'] = $product['qty_ordered'];
-
+            $line_item ['price'] = $product['price'];
             $price_set = [];
             $price_set['shop_money'] = [
                 'amount' => $product['price'],
@@ -353,7 +353,7 @@ class Post extends Command
             //\Nicelizhi\Shopify\Helpers\Utils::send($str.'--' .$id. " 需要留意查看 ");
             //continue;
             //return false;
-            $postOrder['send_receipt'] = false; 
+            $postOrder['send_receipt'] = true; 
         }else{
             $postOrder['send_receipt'] = true; 
         }
