@@ -227,3 +227,30 @@ jobs:
           cd ${{ secrets.WWW_DIR_EURO_2_4 }} && sudo git pull
           composer dump-autoload
           cd storage && sudo chmod -R 777 *
+          cd ${{ secrets.WWW_DIR_EURO_2_5 }} && sudo git pull
+          composer dump-autoload
+          cd storage && sudo chmod -R 777 *
+          cd ${{ secrets.WWW_DIR_EURO_2_6 }} && sudo git pull
+          composer dump-autoload
+          cd storage && sudo chmod -R 777 *
+          cd ${{ secrets.WWW_DIR_EURO_2_7 }} && sudo git pull
+          composer dump-autoload
+          cd storage && sudo chmod -R 777 *
+          cd ${{ secrets.WWW_DIR_EURO_2_8 }} && sudo git pull
+          composer dump-autoload
+          cd storage && sudo chmod -R 777 *
+          cd ${{ secrets.WWW_DIR_EURO_2_9 }} && sudo git pull
+          composer dump-autoload
+          cd storage && sudo chmod -R 777 *
+          cd ${{ secrets.WWW_DIR_EURO_2_10 }} && sudo git pull
+          composer dump-autoload
+          cd storage && sudo chmod -R 777 *
+          cd ${{ secrets.WWW_DIR_EURO_2_11 }} && sudo git pull
+          composer dump-autoload
+          cd storage && sudo chmod -R 777 *
+          cd ${{ secrets.WWW_DIR_EURO_2_12 }} && sudo git pull
+          composer dump-autoload
+          cd storage && sudo chmod -R 777 *
+          cd ${{ secrets.WWW_DIR_EURO_2_13 }} && sudo git pull
+          composer dump-autoload
+          cd storage && sudo chmod -R 777 *
