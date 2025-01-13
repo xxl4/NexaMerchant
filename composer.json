@@ -72,10 +72,8 @@
         "laravel/tinker": "^2.0",
         "laravel/ui": "^4.0",
         "maatwebsite/excel": "^3.1.46",
-        "nexa-merchant/apis": "2.0.2",
+        "nexa-merchant/apis": "dev-main",
         "nexa-merchant/apps": "^1.0",
-        "nexa-merchant/checkoutcod": "^1.1",
-        "nexa-merchant/googleplaces": "^1.0",
         "nexa-merchant/upselling": "1.0.3",
         "paypal/paypal-checkout-sdk": "1.0.2",
         "predis/predis": "^2.2",
@@ -146,6 +144,7 @@
             "NexaMerchant\\Apps\\": "packages\/Apps\/Apps\/src",
             "NexaMerchant\\Cms\\": "packages\/Apps\/Cms\/src",
             "NexaMerchant\\Apis\\": "packages\/Apps\/Apis\/src",
+            "NexaMerchant\\OdooApi\\": "packages\/Apps\/OdooApi\/src",
             "NexaMerchant\\GoogleAdsense\\": "packages\/Apps\/GoogleAdsense\/src"
         }
     },
