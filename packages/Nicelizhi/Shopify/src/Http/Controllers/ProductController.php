@@ -696,6 +696,7 @@ class ProductController extends Controller
             'title_activity' => '',
             'activity_time' => '', // actiovity time
             'activity_title' => '', // activity title
+            'ad_message' => '', // ad message
         ];
 
         // foreach codekeys and get date from redis

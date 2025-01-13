@@ -47,6 +47,7 @@
 
   function creatPaypalCardButton() {
     console.log('creatPaypalCardButton')
+    let cartId = ''
     paypal.Buttons({
       style: {
         layout: 'horizontal',
@@ -87,6 +88,7 @@
           console.log('------------------')
           console.log(data)
           console.log('------------------')
+          cartId = data.cart.id
           if (data.order.statusCode === 200 || data.order.statusCode === 201) {
             let order_info = data.order.result;
             let cart_info = data.cart;
@@ -94,9 +96,9 @@
             console.log(order_info)
             localStorage.setItem("order_id", order_info.id);
             localStorage.setItem("cart_id", cart_info.id);
-            
+
             if (order_info.status === "COMPLETED") {
-              gotoSuccess(data);
+              gotoSuccess(data, cartId);
               return
             }
             return order_info.id;
@@ -107,11 +109,11 @@
               }
             }
             var pay_error = JSON.parse(data.error);
-                var pay_error_message = pay_error.details;
+            var pay_error_message = pay_error.details;
 
-                if (pay_error_message && pay_error_message.length) {
-                  alert(pay_error_message)
-                }
+            if (pay_error_message && pay_error_message.length) {
+              alert(pay_error_message)
+            }
           }
         }).catch(function(res) {
           $('#loading').hide();
@@ -120,18 +122,18 @@
 
       // Call your server to finalize the transaction
       onApprove: function(data, actions) {
-        gotoSuccess(data)
+        gotoSuccess(data, cartId)
       }
     }).render('#complete-btn-id');
   }
 
-  function gotoSuccess(data) {
-    console.log(data, 'id?===')
+  function gotoSuccess(data, cartId) {
+    console.log(cartId, 'cartId=====');
     $('#loading').show();
     var orderData = {
       paymentID: localStorage.getItem('order_id'),
       orderID: localStorage.getItem('order_id'),
-      cartId: localStorage.getItem('cart_id'),
+      cartId: cartId,
     };
     var paypalParams = {
       first_name: shippingAddress.first_name || '',
@@ -149,8 +151,8 @@
       id: localStorage.getItem('order_id'),
       orderData: orderData,
       data: data,
-      cart_id: localStorage.getItem('cart_id'),
-      params: paypalParams
+      params: paypalParams,
+      cart_id: cartId
     }
     var url = "/api/onebuy/order/status?_token={{ csrf_token() }}&currency={{ core()->getCurrentCurrencyCode() }}";
     return fetch(url, {
@@ -177,6 +179,7 @@
 
   function creatPaypalCardButton2() {
     console.log('creatPaypalCardButton2')
+    let cartId = ''
     paypal.Buttons({
       style: {
         layout: 'horizontal',
@@ -216,7 +219,7 @@
         }).then(function(res) {
           $('#loading').hide();
           let data = res;
-
+          cartId = data.cart.id
           console.log('------------------')
           console.log(data)
           console.log('------------------')
@@ -225,11 +228,11 @@
             let order_info = data.order.result;
 
             console.log(order_info)
-            
+
             localStorage.setItem("order_id", order_info.id);
-            
+
             if (order_info.status === "COMPLETED") {
-              gotoSuccess(data);
+              gotoSuccess(data, cartId);
               return
             }
             return order_info.id;
@@ -240,11 +243,11 @@
               }
             }
             var pay_error = JSON.parse(data.error);
-                var pay_error_message = pay_error.details;
+            var pay_error_message = pay_error.details;
 
-                if (pay_error_message && pay_error_message.length) {
-                  alert(pay_error_message)
-                }
+            if (pay_error_message && pay_error_message.length) {
+              alert(pay_error_message)
+            }
           }
         }).catch(function(res) {
           $('#loading').hide();
@@ -253,7 +256,7 @@
 
       // Call your server to finalize the transaction
       onApprove: function(data, actions) {
-        gotoSuccess(data)
+        gotoSuccess(data, cartId)
       }
     }).render('#complete-btn-id2');
   }

@@ -1,7 +1,7 @@
 <script>
     // STEP #2: Initialize the Airwallex global context for event communication
     Airwallex.init({
-        env: '<?php echo $app_env;?>', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
+        env: '<?php echo $app_env; ?>', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
         origin: window.location.origin, // Setup your event target to receive the browser events message
         // components: ['cvc']
     });
@@ -85,12 +85,22 @@
                 var data = res;
                 if (data.result === 200) {
 
+                    // 获取当前 URL 的查询参数
+                    const queryString = window.location.search;
+
+                    // 创建 URLSearchParams 对象
+                    const urlParams = new URLSearchParams(queryString);
+
+                    // 获取参数
+                    const paymentId = urlParams.get('payment_id');
+
                     var order_info = data.order;
                     localStorage.setItem("order_id", order_info.id);
 
 
                     customer_id = localStorage.getItem('cus_id') ? localStorage.getItem('cus_id') : '<?php echo $airwallex_customer_id; ?>';
-                    payment_consent_id = localStorage.getItem('payment_consent_id') ? localStorage.getItem('payment_consent_id') : '';
+                    payment_consent_id = paymentId ? paymentId : '';
+
 
 
                     <?php if ($payment_airwallex_vault == 1) { ?>
@@ -199,11 +209,20 @@
                 var data = res;
                 if (data.result === 200) {
 
+
+                    // 获取当前 URL 的查询参数
+                    const queryString = window.location.search;
+
+                    // 创建 URLSearchParams 对象
+                    const urlParams = new URLSearchParams(queryString);
+
+                    // 获取参数
+                    const paymentId = urlParams.get('payment_id');
                     var order_info = data.order;
                     localStorage.setItem("order_id", order_info.id);
 
                     customer_id = localStorage.getItem('cus_id') ? localStorage.getItem('cus_id') : '<?php echo $airwallex_customer_id; ?>';
-                    payment_consent_id = localStorage.getItem('payment_consent_id') ? localStorage.getItem('payment_consent_id') : '';
+                    payment_consent_id = paymentId ? paymentId : '';
 
                     <?php if ($payment_airwallex_vault == 1) { ?>
 
