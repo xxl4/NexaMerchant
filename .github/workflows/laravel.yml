@@ -112,64 +112,64 @@ jobs:
         port: ${{secrets.SSH_PORT }}
         script: |
           cd ${{ secrets.WWW_DIR }} && sudo git pull
-          composer dump-autoload
+          composer update -vvv
           cd storage && sudo chmod -R 777 *
           cd ${{ secrets.WWW_DIR_2 }} && sudo git pull
-          composer dump-autoload
+          composer update -vvv
           cd storage && sudo chmod -R 777 *
           cd ${{ secrets.WWW_DIR_3 }} && sudo git pull
-          composer dump-autoload
+          composer update -vvv
           cd storage && sudo chmod -R 777 *
           cd ${{ secrets.WWW_DIR_4 }} && sudo git pull
-          composer dump-autoload
+          composer update -vvv
           cd storage && sudo chmod -R 777 *
           cd ${{ secrets.WWW_DIR_5 }} && sudo git pull
-          composer dump-autoload
+          composer update -vvv
           cd storage && sudo chmod -R 777 *
           cd ${{ secrets.WWW_DIR_6 }} && sudo git pull
-          composer dump-autoload
+          composer update -vvv
           cd storage && sudo chmod -R 777 *
           cd ${{ secrets.WWW_EUR_1_1 }} && sudo git pull
-          composer dump-autoload
+          composer update -vvv
           cd storage && sudo chmod -R 777 *
           cd ${{ secrets.WWW_EUR_1_2 }} && sudo git pull
-          composer dump-autoload
+          composer update -vvv
           cd storage && sudo chmod -R 777 *
           cd ${{ secrets.WWW_EUR_1_3 }} && sudo git pull
-          composer dump-autoload
+          composer update -vvv
           cd storage && sudo chmod -R 777 *
           cd ${{ secrets.WWW_EUR_1_4 }} && sudo git pull
-          composer dump-autoload
+          composer update -vvv
           cd storage && sudo chmod -R 777 *
           cd ${{ secrets.WWW_EUR_1_5 }} && sudo git pull
-          composer dump-autoload
+          composer update -vvv
           cd storage && sudo chmod -R 777 *
           cd ${{ secrets.WWW_EUR_1_6 }} && sudo git pull
-          composer dump-autoload
+          composer update -vvv
           cd storage && sudo chmod -R 777 *
           cd ${{ secrets.WWW_EUR_1_7 }} && sudo git pull
-          composer dump-autoload
+          composer update -vvv
           cd storage && sudo chmod -R 777 *
           cd ${{ secrets.WWW_EUR_1_8 }} && sudo git pull
-          composer dump-autoload
+          composer update -vvv
           cd storage && sudo chmod -R 777 *
           cd ${{ secrets.WWW_EUR_1_9 }} && sudo git pull
-          composer dump-autoload
+          composer update -vvv
           cd storage && sudo chmod -R 777 *
           cd ${{ secrets.WWW_EUR_1_10 }} && sudo git pull
-          composer dump-autoload
+          composer update -vvv
           cd storage && sudo chmod -R 777 *
           cd ${{ secrets.WWW_EUR_1_11 }} && sudo git pull
-          composer dump-autoload
+          composer update -vvv
           cd storage && sudo chmod -R 777 *
           cd ${{ secrets.WWW_EUR_1_12 }} && sudo git pull
-          composer dump-autoload
+          composer update -vvv
           cd storage && sudo chmod -R 777 *
           cd ${{ secrets.WWW_EUR_1_13 }} && sudo git pull
-          composer dump-autoload
+          composer update -vvv
           cd storage && sudo chmod -R 777 *
           cd ${{ secrets.WWW_EUR_1_14 }} && sudo git pull
-          composer dump-autoload
+          composer update -vvv
           cd storage && sudo chmod -R 777 *
     - name: Sync to Server 2 and Do it
       uses: appleboy/ssh-action@master
@@ -182,28 +182,28 @@ jobs:
         port: ${{secrets.SSH_PORT_US }}
         script: |
           cd ${{ secrets.WWW_DIR_US }} && git pull
-          composer dump-autoload
+          composer update -vvv
           cd storage && sudo chmod -R 777 *
           cd ${{ secrets.WWW_DIR_7 }} && sudo git pull
-          composer dump-autoload
+          composer update -vvv
           cd storage && sudo chmod -R 777 *
           cd ${{ secrets.WWW_DIR_8 }} && sudo git pull
-          composer dump-autoload
+          composer update -vvv
           cd storage && sudo chmod -R 777 *
           cd ${{ secrets.WWW_DIR_9 }} && sudo git pull
-          composer dump-autoload
+          composer update -vvv
           cd storage && sudo chmod -R 777 *
           cd ${{ secrets.WWW_DIR_10 }} && sudo git pull
-          composer dump-autoload
+          composer update -vvv
           cd storage && sudo chmod -R 777 *
           cd ${{ secrets.WWW_DIR_11 }} && sudo git pull
-          composer dump-autoload
+          composer update -vvv
           cd storage && sudo chmod -R 777 *
           cd ${{ secrets.WWW_DIR_12 }} && sudo git pull
-          composer dump-autoload
+          composer update -vvv
           cd storage && sudo chmod -R 777 *
           cd ${{ secrets.WWW_DIR_13 }} && sudo git pull
-          composer dump-autoload
+          composer update -vvv
           cd storage && sudo chmod -R 777 *
     - name: Sync to Server 3 and Do it
       uses: appleboy/ssh-action@master
@@ -216,41 +216,41 @@ jobs:
         port: ${{secrets.SSH_PORT }}
         script: |
           cd ${{ secrets.WWW_DIR_EURO_2_1 }} && sudo git pull
-          composer dump-autoload
+          composer update -vvv
           cd storage && sudo chmod -R 777 *
           cd ${{ secrets.WWW_DIR_EURO_2_2 }} && sudo git pull
-          composer dump-autoload
+          composer update -vvv
           cd storage && sudo chmod -R 777 *
           cd ${{ secrets.WWW_DIR_EURO_2_3 }} && sudo git pull
-          composer dump-autoload
+          composer update -vvv
           cd storage && sudo chmod -R 777 *
           cd ${{ secrets.WWW_DIR_EURO_2_4 }} && sudo git pull
-          composer dump-autoload
+          composer update -vvv
           cd storage && sudo chmod -R 777 *
           cd ${{ secrets.WWW_DIR_EURO_2_5 }} && sudo git pull
-          composer dump-autoload
+          composer update -vvv
           cd storage && sudo chmod -R 777 *
           cd ${{ secrets.WWW_DIR_EURO_2_6 }} && sudo git pull
-          composer dump-autoload
+          composer update -vvv
           cd storage && sudo chmod -R 777 *
           cd ${{ secrets.WWW_DIR_EURO_2_7 }} && sudo git pull
-          composer dump-autoload
+          composer update -vvv
           cd storage && sudo chmod -R 777 *
           cd ${{ secrets.WWW_DIR_EURO_2_8 }} && sudo git pull
-          composer dump-autoload
+          composer update -vvv
           cd storage && sudo chmod -R 777 *
           cd ${{ secrets.WWW_DIR_EURO_2_9 }} && sudo git pull
-          composer dump-autoload
+          composer update -vvv
           cd storage && sudo chmod -R 777 *
           cd ${{ secrets.WWW_DIR_EURO_2_10 }} && sudo git pull
-          composer dump-autoload
+          composer update -vvv
           cd storage && sudo chmod -R 777 *
           cd ${{ secrets.WWW_DIR_EURO_2_11 }} && sudo git pull
-          composer dump-autoload
+          composer update -vvv
           cd storage && sudo chmod -R 777 *
           cd ${{ secrets.WWW_DIR_EURO_2_12 }} && sudo git pull
-          composer dump-autoload
+          composer update -vvv
           cd storage && sudo chmod -R 777 *
           cd ${{ secrets.WWW_DIR_EURO_2_13 }} && sudo git pull
-          composer dump-autoload
+          composer update -vvv
           cd storage && sudo chmod -R 777 *
