@@ -4,6 +4,7 @@ namespace Webkul\Product\Type;
 
 use Illuminate\Support\Str;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Log;
 use Nicelizhi\Manage\Validations\ConfigurableUniqueSku;
 use Webkul\Checkout\Models\CartItem as CartItemModel;
 use Webkul\Product\DataTypes\CartItemValidationResult;
@@ -176,6 +177,11 @@ class Configurable extends AbstractType
      */
     public function update(array $data, $id, $attribute = 'id')
     {
+
+
+
+       
+
         $product = parent::update($data, $id, $attribute);
 
         $this->updateDefaultVariantId();
@@ -190,6 +196,8 @@ class Configurable extends AbstractType
             foreach ($data['variants'] as $variantId => $variantData) {
                 if (Str::contains($variantId, 'variant_')) {
                     $permutation = [];
+
+                    //var_dump($product->super_attributes);exit;
 
                     foreach ($product->super_attributes as $superAttribute) {
                         $permutation[$superAttribute->id] = $variantData[$superAttribute->code];
@@ -636,8 +644,19 @@ class Configurable extends AbstractType
     {
         $childProduct = app('Webkul\Product\Repositories\ProductRepository')->find($data['selected_configurable_option']);
 
+        //var_dump($data['selected_configurable_option']);
+
         foreach ($this->product->super_attributes as $attribute) {
             $option = $attribute->options()->where('id', $childProduct->{$attribute->code})->first();
+
+            if(is_null($option)) {
+                //send message to feishu
+                $message = 'Product ID: ' . $this->product->id . ' - ' . $this->product->name . ' - ' . $attribute->code . ' - ' . $childProduct->{$attribute->code} . ' - ' . $childProduct->id;
+                \Nicelizhi\Shopify\Helpers\Utils::sendFeishu($message);
+                continue;
+            }
+
+            //var_dump($option, $attribute->code);
 
             $data['attributes'][$attribute->code] = [
                 'attribute_name' => $attribute->name ? $attribute->name : $attribute->admin_name,
