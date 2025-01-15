@@ -73,7 +73,7 @@ jobs:
     - name: Copy .env
       run: php -r "file_exists('.env') || copy('.env.example', '.env');"
     - name: composer update 
-      run: composer update -vvv --no-scripts
+      run: composer dump-autoload -vvv --no-scripts
     - name: Directory Permissions
       run: chmod -R 777 storage bootstrap/cache
     - name: Generate key
@@ -112,64 +112,64 @@ jobs:
         port: ${{secrets.SSH_PORT }}
         script: |
           cd ${{ secrets.WWW_DIR }} && git config --global --add safe.directory ${{ secrets.WWW_DIR }} && sudo git pull
-          composer update -vvv
+          composer dump-autoload -vvv
           cd storage && sudo chmod -R 777 *
           cd ${{ secrets.WWW_DIR_2 }} && git config --global --add safe.directory ${{ secrets.WWW_DIR_2 }} && sudo git pull
-          composer update -vvv
+          composer dump-autoload -vvv
           cd storage && sudo chmod -R 777 *
           cd ${{ secrets.WWW_DIR_3 }} && git config --global --add safe.directory ${{ secrets.WWW_DIR_3 }} && sudo git pull
-          composer update -vvv
+          composer dump-autoload -vvv
           cd storage && sudo chmod -R 777 *
           cd ${{ secrets.WWW_DIR_4 }} && git config --global --add safe.directory ${{ secrets.WWW_DIR_4 }} && sudo git pull
-          composer update -vvv
+          composer dump-autoload -vvv
           cd storage && sudo chmod -R 777 *
           cd ${{ secrets.WWW_DIR_5 }} && git config --global --add safe.directory ${{ secrets.WWW_DIR_5 }} && sudo git pull
-          composer update -vvv
+          composer dump-autoload -vvv
           cd storage && sudo chmod -R 777 *
           cd ${{ secrets.WWW_DIR_6 }} && git config --global --add safe.directory ${{ secrets.WWW_DIR_6 }} && sudo git pull
-          composer update -vvv
+          composer dump-autoload -vvv
           cd storage && sudo chmod -R 777 *
           cd ${{ secrets.WWW_EUR_1_1 }} && git config --global --add safe.directory ${{ secrets.WWW_EUR_1_1 }} && sudo git pull
-          composer update -vvv
+          composer dump-autoload -vvv
           cd storage && sudo chmod -R 777 *
           cd ${{ secrets.WWW_EUR_1_2 }} && git config --global --add safe.directory ${{ secrets.WWW_EUR_1_2 }} && sudo git pull
-          composer update -vvv
+          composer dump-autoload -vvv
           cd storage && sudo chmod -R 777 *
           cd ${{ secrets.WWW_EUR_1_3 }} && git config --global --add safe.directory ${{ secrets.WWW_EUR_1_3 }} && sudo git pull
-          composer update -vvv
+          composer dump-autoload -vvv
           cd storage && sudo chmod -R 777 *
           cd ${{ secrets.WWW_EUR_1_4 }} && git config --global --add safe.directory ${{ secrets.WWW_EUR_1_4 }} && sudo git pull
-          composer update -vvv
+          composer dump-autoload -vvv
           cd storage && sudo chmod -R 777 *
           cd ${{ secrets.WWW_EUR_1_5 }} && git config --global --add safe.directory ${{ secrets.WWW_EUR_1_5 }} && sudo git pull
-          composer update -vvv
+          composer dump-autoload -vvv
           cd storage && sudo chmod -R 777 *
           cd ${{ secrets.WWW_EUR_1_6 }} && git config --global --add safe.directory ${{ secrets.WWW_EUR_1_6 }} && sudo git pull
-          composer update -vvv
+          composer dump-autoload -vvv
           cd storage && sudo chmod -R 777 *
           cd ${{ secrets.WWW_EUR_1_7 }} && git config --global --add safe.directory ${{ secrets.WWW_EUR_1_7 }} && sudo git pull
-          composer update -vvv
+          composer dump-autoload -vvv
           cd storage && sudo chmod -R 777 *
           cd ${{ secrets.WWW_EUR_1_8 }} && git config --global --add safe.directory ${{ secrets.WWW_EUR_1_8 }} && sudo git pull
-          composer update -vvv
+          composer dump-autoload -vvv
           cd storage && sudo chmod -R 777 *
           cd ${{ secrets.WWW_EUR_1_9 }} && git config --global --add safe.directory ${{ secrets.WWW_EUR_1_9 }} && sudo git pull
-          composer update -vvv
+          composer dump-autoload -vvv
           cd storage && sudo chmod -R 777 *
           cd ${{ secrets.WWW_EUR_1_10 }} && git config --global --add safe.directory ${{ secrets.WWW_EUR_1_10 }} && sudo git pull
-          composer update -vvv
+          composer dump-autoload -vvv
           cd storage && sudo chmod -R 777 *
           cd ${{ secrets.WWW_EUR_1_11 }} && git config --global --add safe.directory ${{ secrets.WWW_EUR_1_11 }} && sudo git pull
-          composer update -vvv
+          composer dump-autoload -vvv
           cd storage && sudo chmod -R 777 *
           cd ${{ secrets.WWW_EUR_1_12 }} && git config --global --add safe.directory ${{ secrets.WWW_EUR_1_12 }} && sudo git pull
-          composer update -vvv
+          composer dump-autoload -vvv
           cd storage && sudo chmod -R 777 *
           cd ${{ secrets.WWW_EUR_1_13 }} && git config --global --add safe.directory ${{ secrets.WWW_EUR_1_13 }} && sudo git pull
-          composer update -vvv
+          composer dump-autoload -vvv
           cd storage && sudo chmod -R 777 *
           cd ${{ secrets.WWW_EUR_1_14 }} && git config --global --add safe.directory ${{ secrets.WWW_EUR_1_14 }} && sudo git pull
-          composer update -vvv
+          composer dump-autoload -vvv
           cd storage && sudo chmod -R 777 *
     - name: Sync to Server 2 and Do it
       uses: appleboy/ssh-action@master
@@ -182,28 +182,28 @@ jobs:
         port: ${{secrets.SSH_PORT_US }}
         script: |
           cd ${{ secrets.WWW_DIR_US }} && git pull
-          composer update -vvv
+          composer dump-autoload -vvv
           cd storage && sudo chmod -R 777 *
           cd ${{ secrets.WWW_DIR_7 }} && git config --global --add safe.directory ${{ secrets.WWW_DIR_7 }} && sudo git pull
-          composer update -vvv
+          composer dump-autoload -vvv
           cd storage && sudo chmod -R 777 *
           cd ${{ secrets.WWW_DIR_8 }} && git config --global --add safe.directory ${{ secrets.WWW_DIR_8 }} && sudo git pull
-          composer update -vvv
+          composer dump-autoload -vvv
           cd storage && sudo chmod -R 777 *
           cd ${{ secrets.WWW_DIR_9 }} && git config --global --add safe.directory ${{ secrets.WWW_DIR_8 }} && sudo git pull
-          composer update -vvv
+          composer dump-autoload -vvv
           cd storage && sudo chmod -R 777 *
           cd ${{ secrets.WWW_DIR_10 }} && git config --global --add safe.directory ${{ secrets.WWW_DIR_10 }} && sudo git pull
-          composer update -vvv
+          composer dump-autoload -vvv
           cd storage && sudo chmod -R 777 *
           cd ${{ secrets.WWW_DIR_11 }} && git config --global --add safe.directory ${{ secrets.WWW_DIR_11 }} && sudo git pull
-          composer update -vvv
+          composer dump-autoload -vvv
           cd storage && sudo chmod -R 777 *
           cd ${{ secrets.WWW_DIR_12 }} && git config --global --add safe.directory ${{ secrets.WWW_DIR_12 }} && sudo git pull
-          composer update -vvv
+          composer dump-autoload -vvv
           cd storage && sudo chmod -R 777 *
           cd ${{ secrets.WWW_DIR_13 }} && git config --global --add safe.directory ${{ secrets.WWW_DIR_13 }} && sudo git pull
-          composer update -vvv
+          composer dump-autoload -vvv
           cd storage && sudo chmod -R 777 *
     - name: Sync to Server 3 and Do it
       uses: appleboy/ssh-action@master
@@ -216,41 +216,41 @@ jobs:
         port: ${{secrets.SSH_PORT }}
         script: |
           cd ${{ secrets.WWW_DIR_EURO_2_1 }} && git config --global --add safe.directory ${{ secrets.WWW_DIR_EURO_2_1 }} && sudo git pull
-          composer update -vvv
+          composer dump-autoload -vvv
           cd storage && sudo chmod -R 777 *
           cd ${{ secrets.WWW_DIR_EURO_2_2 }} && git config --global --add safe.directory ${{ secrets.WWW_DIR_EURO_2_2 }} && sudo git pull
-          composer update -vvv
+          composer dump-autoload -vvv
           cd storage && sudo chmod -R 777 *
           cd ${{ secrets.WWW_DIR_EURO_2_3 }} && git config --global --add safe.directory ${{ secrets.WWW_DIR_EURO_2_3 }} && sudo git pull
-          composer update -vvv
+          composer dump-autoload -vvv
           cd storage && sudo chmod -R 777 *
           cd ${{ secrets.WWW_DIR_EURO_2_4 }} && git config --global --add safe.directory ${{ secrets.WWW_DIR_EURO_2_4 }} && sudo git pull
-          composer update -vvv
+          composer dump-autoload -vvv
           cd storage && sudo chmod -R 777 *
           cd ${{ secrets.WWW_DIR_EURO_2_5 }} && git config --global --add safe.directory ${{ secrets.WWW_DIR_EURO_2_5 }} && sudo git pull
-          composer update -vvv
+          composer dump-autoload -vvv
           cd storage && sudo chmod -R 777 *
           cd ${{ secrets.WWW_DIR_EURO_2_6 }} && git config --global --add safe.directory ${{ secrets.WWW_DIR_EURO_2_6 }} && sudo git pull
-          composer update -vvv
+          composer dump-autoload -vvv
           cd storage && sudo chmod -R 777 *
           cd ${{ secrets.WWW_DIR_EURO_2_7 }} && git config --global --add safe.directory ${{ secrets.WWW_DIR_EURO_2_7 }} && sudo git pull
-          composer update -vvv
+          composer dump-autoload -vvv
           cd storage && sudo chmod -R 777 *
           cd ${{ secrets.WWW_DIR_EURO_2_8 }} && git config --global --add safe.directory ${{ secrets.WWW_DIR_EURO_2_8 }} && sudo git pull
-          composer update -vvv
+          composer dump-autoload -vvv
           cd storage && sudo chmod -R 777 *
           cd ${{ secrets.WWW_DIR_EURO_2_9 }} && git config --global --add safe.directory ${{ secrets.WWW_DIR_EURO_2_9 }} && sudo git pull
-          composer update -vvv
+          composer dump-autoload -vvv
           cd storage && sudo chmod -R 777 *
           cd ${{ secrets.WWW_DIR_EURO_2_10 }} && git config --global --add safe.directory ${{ secrets.WWW_DIR_EURO_2_10 }} && sudo git pull
-          composer update -vvv
+          composer dump-autoload -vvv
           cd storage && sudo chmod -R 777 *
           cd ${{ secrets.WWW_DIR_EURO_2_11 }} && git config --global --add safe.directory ${{ secrets.WWW_DIR_EURO_2_11 }} && sudo git pull
-          composer update -vvv
+          composer dump-autoload -vvv
           cd storage && sudo chmod -R 777 *
           cd ${{ secrets.WWW_DIR_EURO_2_12 }} && git config --global --add safe.directory ${{ secrets.WWW_DIR_EURO_2_12 }} && sudo git pull
-          composer update -vvv
+          composer dump-autoload -vvv
           cd storage && sudo chmod -R 777 *
           cd ${{ secrets.WWW_DIR_EURO_2_13 }} && git config --global --add safe.directory ${{ secrets.WWW_DIR_EURO_2_13 }} && sudo git pull
-          composer update -vvv
+          composer dump-autoload -vvv
           cd storage && sudo chmod -R 777 *
