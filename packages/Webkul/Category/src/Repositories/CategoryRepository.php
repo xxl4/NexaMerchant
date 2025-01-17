@@ -112,12 +112,16 @@ class CategoryRepository extends Repository
         $category = $this->find($id);
 
         $data = $this->setSameAttributeValueToAllLocale($data, 'slug');
+        $data['logo_path'] = $data['logo_path'];
+        $data['banner_path'] = $data['banner_path'][0];
 
         $category->update($data);
 
-        $this->uploadImages($data, $category);
+        $category->logo_path = $data['logo_path'];
+        $category->banner_path = $data['banner_path'];
+        $category->save();
 
-        $this->uploadImages($data, $category, 'banner_path');
+        // $this->uploadImages($data, $category, 'banner_path');
 
         if (isset($data['attributes'])) {
             $category->filterableAttributes()->sync($data['attributes']);
@@ -247,36 +251,36 @@ class CategoryRepository extends Repository
      */
     public function uploadImages($data, $category, $type = 'logo_path')
     {
+
+        // var_dump($data[$type]);
         if (isset($data[$type])) {
-            foreach ($data[$type] as $imageId => $image) {
-                $file = $type . '.' . $imageId;
-                $dir = 'category/' . $category->id;
 
-                if (request()->hasFile($file)) {
-                    if ($category->{$type}) {
-                        Storage::delete($category->{$type});
-                    }
+                // var_dump($data[$type]);exit;
 
-                    $manager = new ImageManager();
+            // foreach ($data[$type] as $imageId => $image) {
+                // $file = $type . '.' . $imageId;
+                // $dir = 'category/' . $category->id;
 
-                    $image = $manager->make(request()->file($file))->encode('webp');
+                $category->{$type} = $data[$type];
+                $category->save();
 
-                    $category->{$type} = 'category/' . $category->id . '/' . Str::random(40) . '.webp';
+                // if (request()->hasFile($file)) {
+                //     if ($category->{$type}) {
+                //         Storage::delete($category->{$type});
+                //     }
 
-                    Storage::put($category->{$type}, $image);
+                //     $manager = new ImageManager();
 
-                    $category->save();
-                }
-            }
-        } else {
-            if ($category->{$type}) {
-                Storage::delete($category->{$type});
-            }
+                //     $image = $manager->make(request()->file($file))->encode('webp');
 
-            $category->{$type} = null;
+                //     $category->{$type} = 'category/' . $category->id . '/' . Str::random(40) . '.webp';
 
-            $category->save();
-        }
+                //     Storage::put($category->{$type}, $image);
+
+                //     $category->save();
+                // }
+            // }
+        } 
     }
 
     /**

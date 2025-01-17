@@ -842,6 +842,7 @@ return [
                 'subject'  => 'New Order Confirmation',
                 'summary'  => 'Summary of Order',
                 'title'    => 'Order Confirmation!',
+                'Thank'    => 'Thank you for your purchase!'
             ],
 
             'invoiced' => [

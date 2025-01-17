@@ -174,7 +174,7 @@ class Category extends TranslatableModel implements CategoryContract
             return;
         }
 
-        return Storage::url($this->logo_path);
+        return $this->logo_path;
     }
 
     /**
@@ -188,7 +188,7 @@ class Category extends TranslatableModel implements CategoryContract
             return;
         }
 
-        return Storage::url($this->banner_path);
+        return $this->banner_path;
     }
 
     /**
