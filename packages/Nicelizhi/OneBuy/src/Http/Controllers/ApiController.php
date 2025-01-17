@@ -77,7 +77,7 @@ class ApiController extends Controller
       
 
         //var_dump($currency);exit;
-
+        //echo $this->checkout_v2_cache_key.$slug.$currency;exit;
         $data = Cache::get($this->checkout_v2_cache_key.$slug.$currency);
         $env = config("app.env");
         // when the env is pord use cache
@@ -231,7 +231,7 @@ class ApiController extends Controller
             $data['customer_config'] = $customer_config;
 
 
-            Cache::put($this->checkout_v2_cache_key.$slug, json_encode($data));
+            Cache::put($this->checkout_v2_cache_key.$slug.$currency, json_encode($data));
 
             $data['paypal_id_token'] = $paypal_id_token;
             $data['paypal_access_token'] = $paypal_access_token;
@@ -261,6 +261,12 @@ class ApiController extends Controller
      * @return void
      */
     public function OrderAddSync(Request $request) {
+
+        $currency = $request->input("currency");
+
+        if(!empty($currency)) {
+            core()->setCurrentCurrency($currency);
+        }
 
         $payment_method = $request->input('payment_method');
         $payment_method_input = $request->input('payment_method');
@@ -527,6 +533,13 @@ class ApiController extends Controller
     }
 
     public function OrderAddrAfter(Request $request) {
+
+        $currency = $request->input("currency");
+
+        if(!empty($currency)) {
+            core()->setCurrentCurrency($currency);
+        }
+
         $input = $request->all();
 
         //$last_order_id = $request->session()->get('last_order_id'); // check the laster order id
