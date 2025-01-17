@@ -12,40 +12,38 @@
 
 <body style="font-family: inter;">
     <div style="max-width: 640px; margin-left: auto; margin-right: auto;">
-        <!-- <div style="padding: 30px;">
-                {{-- Email Header --}}
-                <div style="margin-bottom: 65px;">
-                    <a href="{{ route('shop.home.index') }}">
-                        @if ($logo = core()->getCurrentChannel()->logo_url)
-                            <img
-                                src="{{ $logo }}"
-                                alt="{{ config('app.name') }}"
-                                style="height: 40px; width: 110px;"
-                            />
-                        @else
-                            <img
-                                src="{{ bagisto_asset('images/logo.svg', 'shop') }}"
-                                alt="{{ config('app.name') }}"
-                                width="131"
-                                height="29"
-                                style="width: 156px;height: 40px;"
-                            />
-                        @endif
-                    </a>
-                </div> -->
+        <div style="padding: 30px;">
+            {{-- Email Header --}}
+            <div style="margin-bottom: 65px;">
+                <a href="{{ route('shop.home.index') }}">
+                    @if ($logo = core()->getCurrentChannel()->logo_url)
+                    <img
+                        src="{{ $logo }}"
+                        alt="{{ config('app.name') }}"
+                        style="height: 40px; width: 110px;" />
+                    @else
+                    <img
+                        src="{{ bagisto_asset('images/logo.svg', 'shop') }}"
+                        alt="{{ config('app.name') }}"
+                        width="131"
+                        height="29"
+                        style="width: 156px;height: 40px;" />
+                    @endif
+                </a>
+            </div>
 
-        {{-- Email Content --}}
-        {{ $slot }}
+            {{-- Email Content --}}
+            {{ $slot }}
 
-        {{-- Email Footer --}}
-        <!-- <p style="font-size: 16px;color: #202B3C;line-height: 24px;">
-                    @lang('shop::app.emails.thanks', [
-                        'link' => 'mailto:customer@hatmeo.com',
-                        'email' => 'customer@hatmeo.com',
-                        'style' => 'color: #2969FF;'
-                    ])
-                </p> -->
-    </div>
+            {{-- Email Footer --}}
+            <p style="font-size: 16px;color: #202B3C;line-height: 24px;">
+                @lang('shop::app.emails.thanks', [
+                'link' => 'mailto:customer@hatmeo.com',
+                'email' => 'customer@hatmeo.com',
+                'style' => 'color: #2969FF;'
+                ])
+            </p>
+        </div>
     </div>
 </body>
 

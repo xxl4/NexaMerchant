@@ -574,7 +574,7 @@
     $line_item['price'] = number_format($product['base_price'], 2);
     $line_item['quantity'] = $product['qty_ordered'];
     $line_item['item_variant'] = @$sku['attribute_name'];
-    $line_item['item_img'] = $product['additional']['img'];
+    $line_item['item_img'] = @$product['additional']['img'];
     $line_item['base_total'] = number_format($product['base_total'], 2);
     // 小计base_sub_total
     // 折扣base_discount_amount
