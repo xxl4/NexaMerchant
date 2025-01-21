@@ -4,6 +4,7 @@ namespace Webkul\Core\Repositories;
 
 use Illuminate\Support\Facades\Storage;
 use Webkul\Core\Eloquent\Repository;
+use Webkul\Core\Models\Channel;
 
 class ChannelRepository extends Repository
 {
@@ -101,5 +102,16 @@ class ChannelRepository extends Repository
                 $channel->save();
             }
         }
+    }
+
+    /**
+     * Find a channel by its hostname.
+     *
+     * @param string $hostname
+     * @return Channel|null
+     */
+    public function findByHostname(string $hostname): ?Channel
+    {
+        return Channel::where('hostname', $hostname)->first();
     }
 }
