@@ -32,8 +32,8 @@ final class Utils {
             $shipping_price = core()->convertPrice($shipping_price);
             Cache::put($shipping_price_key, $shipping_price);
         }
-        if(empty($package_products)) {
-        //if(true) {
+        //if(empty($package_products)) {
+        if(true) {
             $package_products = [];
             $productBaseImage = product_image()->getProductBaseImage($product);
     
@@ -71,7 +71,7 @@ final class Utils {
                 if ($i==3) $discount = 0.7;
                 if ($i==4) $discount = 0.6;
                 if ($i==1) $discount = 1;
-                $package_product['new_price'] = $price * $discount;
+                $package_product['new_price'] = $price;
                 //$new_price_format = core()->currency($currency).round($package_product['new_price'], 2);
                 $package_product['new_price_format'] = $package_product['currency_symbol'].$package_product['new_price'];
                 $tip1_price = (1 - round(($package_product['new_price'] / $package_product['old_price']), 2)) * 100;
@@ -89,6 +89,8 @@ final class Utils {
             }
 
             Cache::put($cache_key, json_encode($package_products));
+            // set the cache expire time
+            //Cache::put($cache_key, json_encode($package_products), 60*60*24);
             //var_dump("hello");
             return $package_products;
         }
@@ -146,6 +148,7 @@ final class Utils {
     
             $AddcartProduct['selected_configurable_option'] = $product_variant_id;
             $AddcartProduct['super_attribute'] = $super_attribute;
+            $AddcartProduct['attribute_family_id'] = $product->attribute_family_id;
         }
         //var_dump($attributes);exit;
         //var_dump($product['product_id']);exit;
@@ -153,6 +156,8 @@ final class Utils {
             //Log::info($product_id."--". json_encode($AddcartProduct));
             //exit;
         }
+        //Log::info($product_id." add to cart --". json_encode($AddcartProduct));
+        //Log::info($product['product_id']." add to cart --". json_encode($product));
         $cart = Cart::addProduct($product['product_id'], $AddcartProduct);
         $cart = Cart::getCart();
         //清空购车动作
